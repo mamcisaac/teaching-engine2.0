@@ -29,9 +29,9 @@ describe('Rate Limiter Middleware - Real Implementation Tests', () => {
       try {
         redis = new Redis(process.env.REDIS_URL || 'redis://localhost:6379/1');
         await redis.ping();
-        console.log('Using real Redis for rate limiter tests');
+        // Using real Redis for rate limiter tests
       } catch (_error) {
-        console.log('Redis not available, using in-memory store');
+        // Redis not available, using in-memory store
         redis = null;
       }
     }
@@ -560,7 +560,7 @@ describe('Rate Limiter Middleware - Real Implementation Tests', () => {
       // Should complete reasonably fast even with Redis
       expect(duration).toBeLessThan(5000); // 5 seconds max
 
-      console.log(`Processed 100 requests in ${duration}ms`);
+      // Processed 100 requests in ${duration}ms
     });
   });
 });

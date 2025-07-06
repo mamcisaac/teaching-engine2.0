@@ -21,7 +21,7 @@ describe('AIService - Real Implementation Tests', () => {
 
   beforeAll(() => {
     if (!ENABLE_REAL_TESTS) {
-      console.log('🔕 Skipping real AI tests - set ENABLE_REAL_AI_TESTS=true and provide OPENAI_API_KEY to run');
+      // 🔕 Skipping real AI tests - set ENABLE_REAL_AI_TESTS=true and provide OPENAI_API_KEY to run
     }
   });
 

@@ -150,7 +150,7 @@ jobs:
       - name: Validate database schema
         run: |
           echo "🗄️ Validating database schema..."
-          pnpm --filter @teaching-engine/database db:push --preview-feature
+          pnpm --filter @teaching-engine/database db:push
 
       - name: Test database connectivity
         run: |

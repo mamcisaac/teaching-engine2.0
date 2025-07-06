@@ -317,7 +317,7 @@ describe('AI Service - Real Implementation Tests', () => {
         5000 // 5 second max for AI generation
       );
 
-      console.log(`AI activity generation completed in ${duration}ms`);
+      // AI activity generation completed in ${duration}ms
     });
 
     it('should validate activity quality with real AI responses', async () => {
