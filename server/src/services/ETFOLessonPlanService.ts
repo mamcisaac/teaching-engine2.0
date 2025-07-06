@@ -225,23 +225,30 @@ export class ETFOLessonPlanService extends BaseService {
       // Extract expectation IDs if they exist
       const expectationIds = originalPlan.expectations?.map(exp => exp.expectationId) || [];
 
-      // Clean up null values to undefined for create method
-      const cleanedData = {
-        ...cleanData,
+      // Create minimal duplicate data with only the essential fields
+      const createData = {
+        userId: userId,
+        unitPlanId: originalPlan.unitPlanId,
+        title: `${originalPlan.title} (Copy)`,
+        date: originalPlan.date.toISOString(),
+        duration: originalPlan.duration,
+        language: originalPlan.language || undefined,
+        subject: originalPlan.subject || undefined,
+        grade: originalPlan.grade,
+        titleFr: originalPlan.titleFr || undefined,
+        mindsOn: originalPlan.mindsOn || undefined,
+        action: originalPlan.action || undefined,
+        consolidation: originalPlan.consolidation || undefined,
+        learningGoals: originalPlan.learningGoals || undefined,
+        materials: Array.isArray(originalPlan.materials) ? originalPlan.materials as string[] : undefined,
+        grouping: originalPlan.grouping || undefined,
+        mindsOnFr: originalPlan.mindsOnFr || undefined,
+        actionFr: originalPlan.actionFr || undefined,
+        consolidationFr: originalPlan.consolidationFr || undefined,
         expectationIds: expectationIds.map(id => parseInt(id, 10)),
-        titleFr: cleanData.titleFr || undefined,
-        descriptionFr: cleanData.descriptionFr || undefined,
-        bigIdeas: cleanData.bigIdeas || undefined,
-        learningGoals: cleanData.learningGoals || undefined,
-        successCriteria: cleanData.successCriteria || undefined,
-        materials: cleanData.materials || undefined,
-        accommodations: cleanData.accommodations || undefined,
-        reflection: cleanData.reflection || undefined,
-        notes: cleanData.notes || undefined,
-        subNotes: cleanData.subNotes || undefined,
       };
       
-      return await this.create(cleanedData);
+      return await this.create(createData);
     } catch (error) {
       logger.error('Error duplicating ETFO lesson plan:', error);
       throw error;
