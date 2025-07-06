@@ -53,7 +53,7 @@ export const usePopularTemplates = (limit = 10) =>
   });
 
 // Statistics
-export const useSubstituteStats = (): UseQueryResult<unknown> =>
+export const useSubstituteStats = (): UseQueryResult =>
   useQuery({
     queryKey: ['substitute-stats'],
     queryFn: substituteApi.getStats,

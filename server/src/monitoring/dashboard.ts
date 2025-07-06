@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import * as os from 'os';
 
-import { Request, Response } from 'express';
 import { prisma } from '@teaching-engine/database';
+import type { Request, Response } from 'express';
 
-import { getMetrics } from '../middleware/metrics';
 import { logger } from '../logger';
+import { getMetrics } from '../middleware/metrics';
 
 import { withSpan, updateSystemHealth } from './telemetry';
 
@@ -69,7 +69,7 @@ interface DashboardMetrics {
     curriculum: {
       expectations_covered: number;
       coverage_percentage: number;
-      most_used_subjects: Array<{ subject: string; count: number }>;
+      most_used_subjects: { subject: string; count: number }[];
     };
     ai_usage: {
       total_operations: number;
@@ -78,12 +78,12 @@ interface DashboardMetrics {
       success_rate: number;
     };
   };
-  alerts: Array<{
+  alerts: {
     level: 'info' | 'warning' | 'error' | 'critical';
     message: string;
     timestamp: string;
     details?: unknown;
-  }>;
+  }[];
   health: {
     status: 'healthy' | 'degraded' | 'unhealthy';
     score: number;
@@ -220,7 +220,9 @@ const performHealthChecks = async (): Promise<DashboardMetrics['health']> => {
   const totalMem = os.totalmem();
   const memPercentage = (memUsage.heapUsed / totalMem) * 100;
   checks.memory = memPercentage < 90;
-  if (!checks.memory) score -= 20;
+  if (!checks.memory) {
+score -= 20;
+}
 
   // Disk space check (simplified)
   checks.disk_space = true; // Would need actual implementation

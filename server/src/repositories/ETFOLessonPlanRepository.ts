@@ -1,4 +1,4 @@
-import { ETFOLessonPlan, Prisma, PrismaClient } from '@prisma/client';
+import type { ETFOLessonPlan, Prisma, PrismaClient } from '@prisma/client';
 
 import logger from '../logger';
 

@@ -51,7 +51,7 @@ apiClient.interceptors.request.use(
     // Add authorization header if we have a token
     const authService = await getAuthService();
     const authHeaders = authService.getAuthHeaders();
-    if (authHeaders.Authorization) {
+    if (authHeaders.Authorization !== undefined && authHeaders.Authorization !== null && authHeaders.Authorization !== '') {
       config.headers.Authorization = authHeaders.Authorization;
     }
 
@@ -66,7 +66,9 @@ apiClient.interceptors.request.use(
 
     return config;
   },
-  (error: unknown): Promise<never> => Promise.reject(error as Error),
+  (error: unknown): Promise<never> => {
+    throw error as Error;
+  },
 );
 
 // Add response interceptor for error handling
@@ -91,7 +93,7 @@ apiClient.interceptors.response.use(
         if (recovered) {
           // Update the authorization header with the new token
           const authHeaders = authService.getAuthHeaders();
-          if (authHeaders.Authorization && originalRequest.headers) {
+          if (authHeaders.Authorization !== undefined && authHeaders.Authorization !== null && authHeaders.Authorization !== '' && originalRequest.headers) {
             originalRequest.headers.Authorization = authHeaders.Authorization;
           }
           return apiClient(originalRequest);

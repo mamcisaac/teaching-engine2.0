@@ -6,7 +6,7 @@ import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 import { studentApi } from './api';
 
 // Student Query Hooks
-export const useStudents = (): UseQueryResult<unknown> =>
+export const useStudents = (): UseQueryResult =>
   useQuery({
     queryKey: queryKeys.student.all,
     queryFn: studentApi.getStudents,

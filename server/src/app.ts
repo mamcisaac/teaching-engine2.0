@@ -3,9 +3,10 @@
  * Creates and configures the Express application
  */
 
-import express, { Express, Request, Response, NextFunction, json, urlencoded } from 'express';
-import cors from 'cors';
 import { PrismaClient } from '@teaching-engine/database';
+import cors from 'cors';
+import type { Express, Request, Response, NextFunction} from 'express';
+import express, { json, urlencoded } from 'express';
 
 import { errorHandler } from './middleware/errorHandler';
 import authEndpoints from './routes/authEndpoints';

@@ -7,7 +7,7 @@ import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 import { teacherApi } from './api';
 
 // Preferences Query hooks
-export const useTeacherPreferences = (): UseQueryResult<unknown> =>
+export const useTeacherPreferences = (): UseQueryResult =>
   useQuery({
     queryKey: queryKeys.teacher.preferences,
     queryFn: teacherApi.preferences.get,
@@ -28,7 +28,7 @@ export const useUpdateTeacherPreferences = () => {
 };
 
 // Reflections Query hooks
-export const useTeacherReflections = (): UseQueryResult<unknown> =>
+export const useTeacherReflections = (): UseQueryResult =>
   useQuery({
     queryKey: queryKeys.teacher.reflections.all,
     queryFn: teacherApi.reflections.getAll,
@@ -84,7 +84,7 @@ export const useDeleteTeacherReflection = () => {
 };
 
 // Dashboard Query hooks
-export const useTeacherDashboardStats = (): UseQueryResult<unknown> =>
+export const useTeacherDashboardStats = (): UseQueryResult =>
   useQuery({
     queryKey: queryKeys.teacher.dashboard.stats,
     queryFn: teacherApi.dashboard.getStats,
@@ -98,7 +98,7 @@ export const useTeacherRecentActivity = (limit = 10) =>
   });
 
 // Profile Query hooks
-export const useTeacherProfile = (): UseQueryResult<unknown> =>
+export const useTeacherProfile = (): UseQueryResult =>
   useQuery({
     queryKey: queryKeys.teacher.profile,
     queryFn: teacherApi.profile.get,

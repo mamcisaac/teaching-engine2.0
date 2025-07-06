@@ -1,4 +1,4 @@
-import { CurriculumExpectation, Prisma, PrismaClient } from '@prisma/client';
+import type { CurriculumExpectation, Prisma, PrismaClient } from '@prisma/client';
 
 import logger from '../logger';
 
@@ -117,7 +117,7 @@ export class CurriculumExpectationRepository {
   async findByCode(code: string): Promise<CurriculumExpectation | null> {
     try {
       const expectation = await this.model.findFirst({
-        where: { code: code },
+        where: { code },
       });
       return expectation;
     } catch (error) {

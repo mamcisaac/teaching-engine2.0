@@ -246,7 +246,7 @@ export function createDebouncedRequest<
       lastPromise = new Promise((resolve, reject) => {
         timeout = setTimeout(async () => {
           try {
-            const result = await fn(...(lastArgs as Parameters<T>));
+            const result = await fn(...(lastArgs!));
             resolve(result);
           } catch (error) {
             reject(error);

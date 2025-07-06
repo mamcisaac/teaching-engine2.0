@@ -25,7 +25,7 @@ export const KeyboardShortcutsHelp: React.FC<KeyboardShortcutsHelpProps> = ({
   // Group shortcuts by category
   const shortcutsByCategory = (shortcuts || [])
     .filter((s) => s.visible !== false)
-    .reduce(
+    .reduce<Record<KeyboardShortcut['category'], KeyboardShortcut[]>>(
       (acc, shortcut) => {
         if (!acc[shortcut.category]) {
           acc[shortcut.category] = [];
@@ -33,7 +33,7 @@ export const KeyboardShortcutsHelp: React.FC<KeyboardShortcutsHelpProps> = ({
         acc[shortcut.category].push(shortcut);
         return acc;
       },
-      {} as Record<KeyboardShortcut['category'], KeyboardShortcut[]>,
+      {},
     );
 
   const categories: {
@@ -128,14 +128,18 @@ export const KeyboardShortcutsHelp: React.FC<KeyboardShortcutsHelpProps> = ({
             <label className="text-sm font-medium text-gray-700">Enable Keyboard Shortcuts</label>
             <Switch
               checked={preferences.enabled}
-              onChange={(enabled) => updatePreferences({ enabled })}
+              onChange={(enabled) => {
+ updatePreferences({ enabled }); 
+}}
             />
           </div>
           <div className="flex items-center justify-between mt-3">
             <label className="text-sm font-medium text-gray-700">Show Shortcut Hints</label>
             <Switch
               checked={preferences.showHints}
-              onChange={(showHints) => updatePreferences({ showHints })}
+              onChange={(showHints) => {
+ updatePreferences({ showHints }); 
+}}
             />
           </div>
         </div>
@@ -143,7 +147,7 @@ export const KeyboardShortcutsHelp: React.FC<KeyboardShortcutsHelpProps> = ({
         {/* Categories */}
         <div className="flex space-x-2 mb-4">
           {categories.map((category) => {
-            const count = shortcutsByCategory[category.id]?.length || 0;
+            const count = shortcutsByCategory[category.id].length || 0;
             if (count === 0) {
 return null;
 }
@@ -172,7 +176,7 @@ return null;
 
         {/* Shortcuts List */}
         <div className="flex-1 overflow-y-auto">
-          {shortcutsByCategory[activeCategory]?.map((shortcut) => (
+          {shortcutsByCategory[activeCategory].map((shortcut) => (
             <div
               key={shortcut.id}
               className="flex items-center justify-between py-3 px-4 hover:bg-gray-50 rounded-lg"

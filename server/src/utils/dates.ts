@@ -40,7 +40,7 @@ export const getDateRanges = () => {
 };
 
 // Get start of week (Monday by default)
-export const getStartOfWeek = (date: Date, startDay: number = 1): Date => {
+export const getStartOfWeek = (date: Date, startDay = 1): Date => {
   const d = new Date(date);
   const _day = d.getDay();
   const diff = d.getDate() - _day + (_day === 0 ? -6 : startDay);
@@ -48,7 +48,7 @@ export const getStartOfWeek = (date: Date, startDay: number = 1): Date => {
 };
 
 // Get end of week (Sunday by default)
-export const getEndOfWeek = (date: Date, startDay: number = 1): Date => {
+export const getEndOfWeek = (date: Date, startDay = 1): Date => {
   const start = getStartOfWeek(date, startDay);
   return new Date(
     start.getTime() +
@@ -61,7 +61,7 @@ export const getEndOfWeek = (date: Date, startDay: number = 1): Date => {
 };
 
 // Date formatting
-export const formatDate = (date: Date | string, format: string = 'YYYY-MM-DD'): string => {
+export const formatDate = (date: Date | string, format = 'YYYY-MM-DD'): string => {
   const d = typeof date === 'string' ? new Date(date) : date;
 
   const year = d.getFullYear();
@@ -90,45 +90,49 @@ export const formatRelativeTime = (date: Date | string): string => {
   const diffHours = Math.floor(diffMins / 60);
   const diffDays = Math.floor(diffHours / 24);
 
-  if (diffSecs < 60) return 'just now';
-  if (diffMins < 60) return `${diffMins} minute${diffMins > 1 ? 's' : ''} ago`;
-  if (diffHours < 24) return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
-  if (diffDays < 7) return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
-  if (diffDays < 30)
-    return `${Math.floor(diffDays / 7)} week${Math.floor(diffDays / 7) > 1 ? 's' : ''} ago`;
-  if (diffDays < 365)
-    return `${Math.floor(diffDays / 30)} month${Math.floor(diffDays / 30) > 1 ? 's' : ''} ago`;
+  if (diffSecs < 60) {
+return 'just now';
+}
+  if (diffMins < 60) {
+return `${diffMins} minute${diffMins > 1 ? 's' : ''} ago`;
+}
+  if (diffHours < 24) {
+return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+}
+  if (diffDays < 7) {
+return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
+}
+  if (diffDays < 30) {
+return `${Math.floor(diffDays / 7)} week${Math.floor(diffDays / 7) > 1 ? 's' : ''} ago`;
+}
+  if (diffDays < 365) {
+return `${Math.floor(diffDays / 30)} month${Math.floor(diffDays / 30) > 1 ? 's' : ''} ago`;
+}
 
   return `${Math.floor(diffDays / 365)} year${Math.floor(diffDays / 365) > 1 ? 's' : ''} ago`;
 };
 
 // Date validation
 export const isValidDate = (date: unknown): boolean => {
-  if (!date) return false;
+  if (!date) {
+return false;
+}
   const d = date instanceof Date ? date : new Date(date as string | number);
   return d instanceof Date && !isNaN(d.getTime());
 };
 
 // Date comparison
-export const isSameDay = (date1: Date, date2: Date): boolean => {
-  return (
+export const isSameDay = (date1: Date, date2: Date): boolean => (
     date1.getFullYear() === date2.getFullYear() &&
     date1.getMonth() === date2.getMonth() &&
     date1.getDate() === date2.getDate()
   );
-};
 
-export const isToday = (date: Date): boolean => {
-  return isSameDay(date, new Date());
-};
+export const isToday = (date: Date): boolean => isSameDay(date, new Date());
 
-export const isPast = (date: Date): boolean => {
-  return date.getTime() < new Date().getTime();
-};
+export const isPast = (date: Date): boolean => date.getTime() < new Date().getTime();
 
-export const isFuture = (date: Date): boolean => {
-  return date.getTime() > new Date().getTime();
-};
+export const isFuture = (date: Date): boolean => date.getTime() > new Date().getTime();
 
 export const isBetween = (date: Date, start: Date, end: Date): boolean => {
   const time = date.getTime();
@@ -142,9 +146,7 @@ export const addDays = (date: Date, days: number): Date => {
   return result;
 };
 
-export const addWeeks = (date: Date, weeks: number): Date => {
-  return addDays(date, weeks * 7);
-};
+export const addWeeks = (date: Date, weeks: number): Date => addDays(date, weeks * 7);
 
 export const addMonths = (date: Date, months: number): Date => {
   const result = new Date(date);
@@ -163,9 +165,7 @@ export const getDaysBetween = (date1: Date, date2: Date): number => {
   return Math.floor(diffMs / (24 * 60 * 60 * 1000));
 };
 
-export const getWeeksBetween = (date1: Date, date2: Date): number => {
-  return Math.floor(getDaysBetween(date1, date2) / 7);
-};
+export const getWeeksBetween = (date1: Date, date2: Date): number => Math.floor(getDaysBetween(date1, date2) / 7);
 
 // Academic year helpers
 export const getAcademicYear = (date: Date = new Date()): string => {
@@ -176,22 +176,25 @@ export const getAcademicYear = (date: Date = new Date()): string => {
   if (month >= 8) {
     // September or later
     return `${year}-${year + 1}`;
-  } else {
+  } 
     return `${year - 1}-${year}`;
-  }
+  
 };
 
 export const getAcademicTerm = (date: Date = new Date()): string => {
   const month = date.getMonth();
 
-  if (month >= 8 || month <= 0) return 'Fall'; // Sep-Jan
-  if (month >= 1 && month <= 5) return 'Winter'; // Feb-Jun
+  if (month >= 8 || month <= 0) {
+return 'Fall';
+} // Sep-Jan
+  if (month >= 1 && month <= 5) {
+return 'Winter';
+} // Feb-Jun
   return 'Summer'; // Jul-Aug
 };
 
 // Time zone helpers (using UTC)
-export const toUTCDate = (date: Date): Date => {
-  return new Date(
+export const toUTCDate = (date: Date): Date => new Date(
     Date.UTC(
       date.getFullYear(),
       date.getMonth(),
@@ -202,10 +205,8 @@ export const toUTCDate = (date: Date): Date => {
       date.getMilliseconds(),
     ),
   );
-};
 
-export const fromUTCDate = (utcDate: Date): Date => {
-  return new Date(
+export const fromUTCDate = (utcDate: Date): Date => new Date(
     utcDate.getUTCFullYear(),
     utcDate.getUTCMonth(),
     utcDate.getUTCDate(),
@@ -214,11 +215,12 @@ export const fromUTCDate = (utcDate: Date): Date => {
     utcDate.getUTCSeconds(),
     utcDate.getUTCMilliseconds(),
   );
-};
 
 // Parse flexible date input
 export const parseFlexibleDate = (input: string | Date | number): Date | null => {
-  if (input instanceof Date) return input;
+  if (input instanceof Date) {
+return input;
+}
 
   if (typeof input === 'number') {
     // Assume timestamp in milliseconds
@@ -236,19 +238,29 @@ export const parseFlexibleDate = (input: string | Date | number): Date | null =>
     for (const pattern of patterns) {
       if (pattern.test(input)) {
         const date = new Date(input);
-        if (isValidDate(date)) return date;
+        if (isValidDate(date)) {
+return date;
+}
       }
     }
 
     // Try natural language
     const lowerInput = input.toLowerCase();
-    if (lowerInput === 'today') return getDateRanges().today;
-    if (lowerInput === 'yesterday') return getDateRanges().yesterday;
-    if (lowerInput === 'tomorrow') return getDateRanges().tomorrow;
+    if (lowerInput === 'today') {
+return getDateRanges().today;
+}
+    if (lowerInput === 'yesterday') {
+return getDateRanges().yesterday;
+}
+    if (lowerInput === 'tomorrow') {
+return getDateRanges().tomorrow;
+}
 
     // Try default parsing
     const date = new Date(input);
-    if (isValidDate(date)) return date;
+    if (isValidDate(date)) {
+return date;
+}
   }
 
   return null;

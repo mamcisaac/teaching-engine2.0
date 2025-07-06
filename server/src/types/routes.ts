@@ -37,7 +37,7 @@ export interface DaybookEntryCreateData {
   expectations?: ExpectationData[];
 }
 
-export interface DaybookEntryUpdateData extends Partial<DaybookEntryCreateData> {}
+export type DaybookEntryUpdateData = Partial<DaybookEntryCreateData>
 
 // ETFO Lesson Plan Types
 export interface ETFOLessonPlanCreateData {
@@ -80,7 +80,7 @@ export interface ETFOLessonPlanCreateData {
   expectationIds?: string[];
 }
 
-export interface ETFOLessonPlanUpdateData extends Partial<ETFOLessonPlanCreateData> {}
+export type ETFOLessonPlanUpdateData = Partial<ETFOLessonPlanCreateData>
 
 // Unit Plan Types
 export interface UnitPlanCreateData {
@@ -125,7 +125,7 @@ export interface UnitPlanCreateData {
   resources?: ResourceData[];
 }
 
-export interface UnitPlanUpdateData extends Partial<UnitPlanCreateData> {}
+export type UnitPlanUpdateData = Partial<UnitPlanCreateData>
 
 // Substitute Plan Types
 export interface SubstitutePlanCreateData {
@@ -158,7 +158,7 @@ export interface SubstitutePlanCreateData {
   importantNotes?: string;
 }
 
-export interface SubstitutePlanUpdateData extends Partial<SubstitutePlanCreateData> {}
+export type SubstitutePlanUpdateData = Partial<SubstitutePlanCreateData>
 
 // Template Types
 export interface TemplateCreateData {
@@ -186,7 +186,7 @@ export interface TemplateCreateData {
   templateData?: Record<string, unknown>;
 }
 
-export interface TemplateUpdateData extends Partial<TemplateCreateData> {}
+export type TemplateUpdateData = Partial<TemplateCreateData>
 
 // Cache Types
 export interface CacheData {

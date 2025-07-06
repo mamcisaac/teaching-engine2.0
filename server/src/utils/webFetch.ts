@@ -44,14 +44,14 @@ export class WebFetch {
       
       // Cache the result
       this.cache.set(cacheKey, {
-        html: html as string,
+        html,
         timestamp: Date.now()
       });
       
       // Clean old cache entries
       this.cleanCache();
       
-      return html as string;
+      return html;
     } catch (_error) {
       logger.error({ error: _error, url }, 'Error fetching URL');
       
@@ -115,9 +115,11 @@ export class WebFetch {
     
     // Remove script and style elements
     const scripts = document.querySelectorAll('script, style');
-    scripts.forEach(el => el.remove());
+    scripts.forEach(el => {
+ el.remove(); 
+});
     
-    return document.body?.textContent?.trim() ?? '';
+    return document.body.textContent?.trim() ?? '';
   }
   
   // Utility method to extract meta information

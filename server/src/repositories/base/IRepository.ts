@@ -1,4 +1,4 @@
-import { PaginationOptions, PaginatedResponse } from '../../utils/pagination';
+import type { PaginationOptions, PaginatedResponse } from '../../utils/pagination';
 
 export interface IRepository<T, CreateInput, UpdateInput> {
   findById(id: number): Promise<T | null>;

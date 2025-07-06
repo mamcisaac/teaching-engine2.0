@@ -1,6 +1,4 @@
 import { format, addDays, startOfWeek, endOfWeek, isToday } from 'date-fns';
-
-import { Alert, AlertDescription } from '@/components/ui/alert';
 import {
   Clock,
   BookOpen,
@@ -14,9 +12,9 @@ import {
   Star,
 } from 'lucide-react';
 import React, { useState, useRef } from 'react';
-import { useToast } from '@/components/ui/use-toast';
-
 import { useReactToPrint } from 'react-to-print';
+
+import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -31,6 +29,7 @@ import {
 import { Label } from '@/components/ui/Label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Textarea } from '@/components/ui/Textarea';
+import { useToast } from '@/components/ui/use-toast';
 
 import { BlankTemplateQuickActions } from '../components/printing/BlankTemplatePrinter';
 import {

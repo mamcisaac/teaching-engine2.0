@@ -64,12 +64,12 @@ export function validatePhoneNumber(phone: string): PhoneValidationResult {
     const [, areaCode, exchange, number] = naMatch;
 
     // Validate area code (cannot start with 0 or 1 in real North American system)
-    if (areaCode[0] === '0' || areaCode[0] === '1') {
+    if (areaCode.startsWith('0') || areaCode.startsWith('1')) {
       errors.push('Invalid area code');
     }
 
     // Validate exchange (cannot start with 0 or 1 in real North American system)
-    if (exchange[0] === '0' || exchange[0] === '1') {
+    if (exchange.startsWith('0') || exchange.startsWith('1')) {
       errors.push('Invalid exchange code');
     }
 
@@ -82,12 +82,12 @@ export function validatePhoneNumber(phone: string): PhoneValidationResult {
         number: `${exchange}${number}`,
         extension,
       };
-    } else {
+    } 
       return {
         isValid: false,
         errors,
       };
-    }
+    
   }
 
   // International format (country code + number)
@@ -104,13 +104,13 @@ export function validatePhoneNumber(phone: string): PhoneValidationResult {
         number: digits,
         extension,
       };
-    } else {
+    } 
       errors.push('International number must be 7-15 digits');
       return {
         isValid: false,
         errors,
       };
-    }
+    
   }
 
   // Simple validation for other formats
@@ -299,8 +299,12 @@ export function parseContactString(contactString: string): ContactValidationResu
  * Formats international phone numbers with spaces
  */
 function formatInternationalNumber(digits: string): string {
-  if (digits.length <= 4) return digits;
-  if (digits.length <= 7) return `${digits.slice(0, 3)} ${digits.slice(3)}`;
+  if (digits.length <= 4) {
+return digits;
+}
+  if (digits.length <= 7) {
+return `${digits.slice(0, 3)} ${digits.slice(3)}`;
+}
   return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6)}`;
 }
 
@@ -314,7 +318,7 @@ function formatBasicNumber(digits: string): string {
   if (digits.length === 10) {
     return `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(6)}`;
   }
-  if (digits.length === 11 && digits[0] === '1') {
+  if (digits.length === 11 && digits.startsWith('1')) {
     return `1-${digits.slice(1, 4)}-${digits.slice(4, 7)}-${digits.slice(7)}`;
   }
   return digits;

@@ -28,7 +28,7 @@ export const KeyboardShortcutsSettings: React.FC = () => {
   // Group shortcuts by category
   const shortcutsByCategory = shortcuts
     .filter((s) => s.visible !== false)
-    .reduce(
+    .reduce<Record<KeyboardShortcut['category'], KeyboardShortcut[]>>(
       (acc, shortcut) => {
         if (!acc[shortcut.category]) {
           acc[shortcut.category] = [];
@@ -36,7 +36,7 @@ export const KeyboardShortcutsSettings: React.FC = () => {
         acc[shortcut.category].push(shortcut);
         return acc;
       },
-      {} as Record<KeyboardShortcut['category'], KeyboardShortcut[]>,
+      {},
     );
 
   const categoryLabels: Record<KeyboardShortcut['category'], string> = {
@@ -115,7 +115,9 @@ export const KeyboardShortcutsSettings: React.FC = () => {
             <Switch
               checked={preferences.enabled}
               size="md"
-              onChange={(enabled) => updatePreferences({ enabled })}
+              onChange={(enabled) => {
+ updatePreferences({ enabled }); 
+}}
             />
           </div>
 
@@ -130,7 +132,9 @@ export const KeyboardShortcutsSettings: React.FC = () => {
             <Switch
               checked={preferences.showHints}
               size="md"
-              onChange={(showHints) => updatePreferences({ showHints })}
+              onChange={(showHints) => {
+ updatePreferences({ showHints }); 
+}}
             />
           </div>
 
@@ -154,7 +158,7 @@ export const KeyboardShortcutsSettings: React.FC = () => {
                   {categoryLabels[category as KeyboardShortcut['category']]}
                 </h3>
                 <div className="space-y-2">
-                  {(categoryShortcuts as KeyboardShortcut[]).map((shortcut) => {
+                  {(categoryShortcuts).map((shortcut) => {
                     const customShortcut = preferences.customShortcuts[shortcut.id];
                     const isEditing = editingShortcut === shortcut.id;
                     const hasCustom = !!customShortcut;

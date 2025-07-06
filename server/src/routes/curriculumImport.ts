@@ -1,5 +1,6 @@
 import type { Request, Response } from 'express';
-import express, { Router } from 'express';
+import type express from 'express';
+import { Router } from 'express';
 import multer from 'multer';
 
 import { logger } from '../logger';

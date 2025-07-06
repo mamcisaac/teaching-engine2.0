@@ -63,12 +63,12 @@ const pinoConfig: pino.LoggerOptions = {
     user: (user: unknown) => {
       const userData = user as { id?: string | number; email?: string; role?: string };
       return {
-        id: userData?.id,
+        id: userData.id,
         email:
-          userData?.email && typeof userData.email === 'string'
-            ? userData.email.substring(0, 3) + '***'
+          userData.email && typeof userData.email === 'string'
+            ? `${userData.email.substring(0, 3)  }***`
             : undefined,
-        role: userData?.role,
+        role: userData.role,
       };
     },
   },
@@ -106,27 +106,27 @@ class EnhancedLogger {
 
   // Standard log methods (allow both string and object for flexibility)
   fatal(obj: Record<string, unknown> | string, msg?: string, ...args: unknown[]) {
-    return this.logger.fatal(this.enhanceLogObject(obj), msg, ...args);
+    this.logger.fatal(this.enhanceLogObject(obj), msg, ...args);
   }
 
   error(obj: Record<string, unknown> | string, msg?: string, ...args: unknown[]) {
-    return this.logger.error(this.enhanceLogObject(obj), msg, ...args);
+    this.logger.error(this.enhanceLogObject(obj), msg, ...args);
   }
 
   warn(obj: Record<string, unknown> | string, msg?: string, ...args: unknown[]) {
-    return this.logger.warn(this.enhanceLogObject(obj), msg, ...args);
+    this.logger.warn(this.enhanceLogObject(obj), msg, ...args);
   }
 
   info(obj: Record<string, unknown> | string, msg?: string, ...args: unknown[]) {
-    return this.logger.info(this.enhanceLogObject(obj), msg, ...args);
+    this.logger.info(this.enhanceLogObject(obj), msg, ...args);
   }
 
   debug(obj: Record<string, unknown> | string, msg?: string, ...args: unknown[]) {
-    return this.logger.debug(this.enhanceLogObject(obj), msg, ...args);
+    this.logger.debug(this.enhanceLogObject(obj), msg, ...args);
   }
 
   trace(obj: Record<string, unknown> | string, msg?: string, ...args: unknown[]) {
-    return this.logger.trace(this.enhanceLogObject(obj), msg, ...args);
+    this.logger.trace(this.enhanceLogObject(obj), msg, ...args);
   }
 
   // Performance logging
@@ -146,7 +146,7 @@ class EnhancedLogger {
 
   // Audit logging for sensitive operations
   audit(operation: string, details: Record<string, unknown> = {}) {
-    return this.info(
+    this.info(
       {
         audit: true,
         operation,
@@ -159,7 +159,7 @@ class EnhancedLogger {
 
   // Security event logging
   security(event: string, details: Record<string, unknown> = {}) {
-    return this.warn(
+    this.warn(
       {
         security: true,
         event,
@@ -172,7 +172,7 @@ class EnhancedLogger {
 
   // Business logic logging
   business(action: string, context: Record<string, unknown> = {}) {
-    return this.info(
+    this.info(
       {
         business: true,
         action,
@@ -185,7 +185,7 @@ class EnhancedLogger {
 
   // API request/response logging
   apiRequest(req: Record<string, unknown>, additionalData: Record<string, unknown> = {}) {
-    return this.info(
+    this.info(
       {
         api: true,
         type: 'request',
@@ -202,7 +202,7 @@ class EnhancedLogger {
     duration: number,
     additionalData: Record<string, unknown> = {},
   ) {
-    return this.info(
+    this.info(
       {
         api: true,
         type: 'response',
@@ -217,7 +217,7 @@ class EnhancedLogger {
 
   // Database operation logging
   database(operation: string, details: Record<string, unknown> = {}) {
-    return this.debug(
+    this.debug(
       {
         database: true,
         operation,
@@ -229,7 +229,7 @@ class EnhancedLogger {
 
   // AI operation logging
   ai(operation: string, model: string, details: Record<string, unknown> = {}) {
-    return this.info(
+    this.info(
       {
         ai: true,
         operation,
@@ -351,14 +351,20 @@ class EnhancedLogger {
   }
 
   private redactEmail(email: unknown): string {
-    if (typeof email !== 'string') return '[INVALID_EMAIL]';
+    if (typeof email !== 'string') {
+return '[INVALID_EMAIL]';
+}
     const [local, domain] = email.split('@');
-    if (!local || !domain) return '[INVALID_EMAIL]';
+    if (!local || !domain) {
+return '[INVALID_EMAIL]';
+}
     return `${local.substring(0, 2)}***@${domain}`;
   }
 
   private maskIP(ip: unknown): string {
-    if (typeof ip !== 'string') return 'xxx.xxx.xxx.xxx';
+    if (typeof ip !== 'string') {
+return 'xxx.xxx.xxx.xxx';
+}
     const parts = ip.split('.');
     if (parts.length === 4) {
       return `${parts[0]}.${parts[1]}.xxx.xxx`;

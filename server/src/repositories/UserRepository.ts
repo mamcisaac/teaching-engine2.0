@@ -1,7 +1,7 @@
-import { User, Prisma, PrismaClient } from '@prisma/client';
+import type { User, Prisma, PrismaClient } from '@prisma/client';
 
-import { hashPassword } from '../utils/auth';
 import logger from '../logger';
+import { hashPassword } from '../utils/auth';
 
 import { BaseRepository } from './base/BaseRepository';
 
@@ -97,9 +97,6 @@ export class UserRepository extends BaseRepository<
       throw error;
     }
   }
-
-
-
 
   async findActiveUsers(pagination?: {
     skip?: number;

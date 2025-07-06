@@ -21,7 +21,7 @@ interface Alert {
   message: (context: AlertContext) => string;
   severity: 'info' | 'warning' | 'error' | 'critical';
   cooldown: number; // Minutes before re-alerting
-  channels: Array<'log' | 'email' | 'webhook'>;
+  channels: ('log' | 'email' | 'webhook')[];
 }
 
 interface AlertState {
@@ -51,7 +51,7 @@ interface AlertContext {
 const ALERT_EMAIL_ENABLED = process.env.ALERT_EMAIL_ENABLED === 'true';
 const ALERT_EMAIL_TO = process.env.ALERT_EMAIL_TO || 'admin@teaching-engine.com';
 const ALERT_EMAIL_FROM = process.env.ALERT_EMAIL_FROM || 'alerts@teaching-engine.com';
-const ALERT_WEBHOOK_URL = process.env.ALERT_WEBHOOK_URL;
+const {ALERT_WEBHOOK_URL} = process.env;
 const ALERT_CHECK_INTERVAL = parseInt(process.env.ALERT_CHECK_INTERVAL || '60000'); // Default 1 minute
 
 // Alert state management
@@ -128,7 +128,9 @@ const alerts: Alert[] = [
     condition: async () => {
       const metrics = getMetrics();
       const histogramData = metrics.histograms.http_request_duration_ms;
-      if (!histogramData || histogramData.count === 0) return false;
+      if (!histogramData || histogramData.count === 0) {
+return false;
+}
 
       // Calculate p95 from histogram buckets
       const targetCount = (histogramData.count * 95) / 100;
@@ -158,7 +160,9 @@ const alerts: Alert[] = [
       const hits = metrics.counters.cache_hits_total || 0;
       const misses = metrics.counters.cache_misses_total || 0;
       const total = hits + misses;
-      if (total < 100) return false; // Not enough data
+      if (total < 100) {
+return false;
+} // Not enough data
       const hitRate = (hits / total) * 100;
       return hitRate < 50;
     },
@@ -186,11 +190,11 @@ const alerts: Alert[] = [
   {
     id: 'disk_space_low',
     name: 'Low Disk Space',
-    condition: async () => {
+    condition: async () => 
       // This would need actual disk space checking implementation
       // For now, return false
-      return false;
-    },
+       false
+    ,
     message: (context) => `Disk space is ${context.percentage?.toFixed(2)}% full (threshold: 90%)`,
     severity: 'warning',
     cooldown: 60,
@@ -322,7 +326,9 @@ const sendAlert = async (alert: Alert, context: AlertContext): Promise<void> => 
 // Check if alert should be triggered
 const shouldTriggerAlert = (alert: Alert): boolean => {
   const lastTriggered = alertState.lastTriggered.get(alert.id);
-  if (!lastTriggered) return true;
+  if (!lastTriggered) {
+return true;
+}
 
   const cooldownMs = alert.cooldown * 60 * 1000;
   const timeSinceLastTrigger = Date.now() - lastTriggered.getTime();
@@ -515,8 +521,7 @@ export const triggerManualAlert = async (alertId: string, context?: any): Promis
 };
 
 // Get alert status
-export const getAlertStatus = (): unknown => {
-  return {
+export const getAlertStatus = (): unknown => ({
     alerts: alerts.map((alert) => ({
       id: alert.id,
       name: alert.name,
@@ -531,5 +536,4 @@ export const getAlertStatus = (): unknown => {
       emailEnabled: ALERT_EMAIL_ENABLED,
       webhookEnabled: !!ALERT_WEBHOOK_URL,
     },
-  };
-};
+  });

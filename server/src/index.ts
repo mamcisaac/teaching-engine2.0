@@ -1,28 +1,36 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // External imports (npm packages)
-import { Server } from 'http';
+import type { Server } from 'http';
 import path from 'path';
 
-import express, { Request, Response, NextFunction, json, urlencoded, static as staticServe } from 'express';
 import cookieParser from 'cookie-parser';
 import debug from 'debug';
 import { config } from 'dotenv';
+import type { Request, Response, NextFunction} from 'express';
+import express, { json, urlencoded, static as staticServe } from 'express';
 
+import { logger } from './logger.js';
 import { authenticate } from './middleware/authenticate';
+import { curriculumCache, staticCache, userCache } from './middleware/cache';
+import { errorContextMiddleware, authErrorMiddleware } from './middleware/errorContext';
+import { errorHandler, notFoundHandler } from './middleware/errorHandler';
+import { httpMetricsMiddleware, startSystemMetricsCollection } from './middleware/metrics';
+import { rateLimiters } from './middleware/rateLimit/index';
+import { prisma } from './prisma';
+import activityCollectionsRoutes from './routes/activity-collections';
+import aiPlanningRoutes from './routes/ai-planning';
+import curriculumExpectationRoutes from './routes/curriculum-expectations';
 import curriculumImportRoutes from './routes/curriculumImport';
 import newsletterRoutes from './routes/newsletters';
 import { router as substitutePlanRoutes } from './routes/substitute-plans';
-import curriculumExpectationRoutes from './routes/curriculum-expectations';
 import longRangePlanRoutes from './routes/long-range-plans';
+import { router as templateRoutes } from './routes/templates';
 import { router as unitPlanRoutes } from './routes/unit-plans';
 import { router as etfoLessonPlanRoutes } from './routes/etfo-lesson-plans';
 import { router as daybookEntryRoutes } from './routes/daybook-entries';
 import etfoProgressRoutes from './routes/etfo-progress';
 import plannerStateRoutes from './routes/planner-state';
-import aiPlanningRoutes from './routes/ai-planning';
-import activityCollectionsRoutes from './routes/activity-collections';
 import aiActivityGenerationRoutes from './routes/ai-activity-generation';
-import { router as templateRoutes } from './routes/templates';
 import calendarEventRoutes from './routes/calendar-events';
 import recentPlansRoutes from './routes/recent-plans';
 import cacheRoutes from './routes/cache';
@@ -31,28 +39,21 @@ import dashboardMetricsRoutes from './routes/dashboard-metrics';
 import authEndpoints from './routes/authEndpoints';
 import { userRoutes } from './routes/user';
 import notificationRoutes from './routes/notifications';
-import { logger } from './logger.js';
+import { errorReportingService } from './services/monitoring/errorReportingService';
 import {
   structuredLogger,
   correlationMiddleware,
   errorLoggingMiddleware as structuredErrorLoggingMiddleware,
 } from './utils/structuredLogger';
-import { prisma } from './prisma';
-import { rateLimiters } from './middleware/rateLimit/index';
-import { errorHandler, notFoundHandler } from './middleware/errorHandler';
 import {
   applySecurityMiddleware,
   authRateLimitMiddleware,
   validateFileUpload,
 } from './middleware/security';
-import { curriculumCache, staticCache, userCache } from './middleware/cache';
-import { httpMetricsMiddleware, startSystemMetricsCollection } from './middleware/metrics';
 import { requestLoggingMiddleware, errorLoggingMiddleware } from './middleware/requestLogger';
 import { standardErrorHandler } from './middleware/standardErrorHandler';
 import { initTelemetry, startAlertMonitoring } from './monitoring';
 import monitoringRoutes from './routes/monitoring';
-import { errorReportingService } from './services/monitoring/errorReportingService';
-import { errorContextMiddleware, authErrorMiddleware } from './middleware/errorContext';
 
 // Load environment variables
 config();

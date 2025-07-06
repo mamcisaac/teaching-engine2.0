@@ -12,41 +12,43 @@ export const arrayUtils = {
     const seen = new Set();
     return array.filter(item => {
       const value = item[key];
-      if (seen.has(value)) return false;
+      if (seen.has(value)) {
+return false;
+}
       seen.add(value);
       return true;
     });
   },
   
   // Group by key
-  groupBy: <T>(array: T[], key: keyof T | ((item: T) => string)): Record<string, T[]> => {
-    return array.reduce((groups, item) => {
+  groupBy: <T>(array: T[], key: keyof T | ((item: T) => string)): Record<string, T[]> => array.reduce<Record<string, T[]>>((groups, item) => {
       const groupKey = typeof key === 'function' ? key(item) : String(item[key]);
       groups[groupKey] = groups[groupKey] || [];
       groups[groupKey].push(item);
       return groups;
-    }, {} as Record<string, T[]>);
-  },
+    }, {}),
   
   // Sort by multiple fields
   sortBy: <T>(
     array: T[],
-    fields: Array<{
+    fields: {
       key: keyof T | ((item: T) => unknown);
       order?: 'asc' | 'desc';
-    }>
-  ): T[] => {
-    return [...array].sort((a, b) => {
+    }[]
+  ): T[] => [...array].sort((a, b) => {
       for (const { key, order = 'asc' } of fields) {
         const aValue = typeof key === 'function' ? key(a) : (a as any)[key];
         const bValue = typeof key === 'function' ? key(b) : (b as any)[key];
         
-        if ((aValue as any) < (bValue as any)) return order === 'asc' ? -1 : 1;
-        if ((aValue as any) > (bValue as any)) return order === 'asc' ? 1 : -1;
+        if ((aValue) < (bValue)) {
+return order === 'asc' ? -1 : 1;
+}
+        if ((aValue) > (bValue)) {
+return order === 'asc' ? 1 : -1;
+}
       }
       return 0;
-    });
-  },
+    }),
   
   // Chunk array
   chunk: <T>(array: T[], size: number): T[][] => {
@@ -58,20 +60,18 @@ export const arrayUtils = {
   },
   
   // Flatten nested arrays
-  flattenDeep: <T>(array: unknown[]): T[] => {
-    return array.reduce<T[]>((flat, item) => {
-      return flat.concat(Array.isArray(item) ? arrayUtils.flattenDeep<T>(item) : [item as T]);
-    }, []);
-  },
+  flattenDeep: <T>(array: unknown[]): T[] => array.reduce<T[]>((flat, item) => flat.concat(Array.isArray(item) ? arrayUtils.flattenDeep<T>(item) : [item as T]), []),
   
   // Intersection of arrays
   intersection: <T>(...arrays: T[][]): T[] => {
-    if (arrays.length === 0) return [];
-    if (arrays.length === 1) return arrays[0];
+    if (arrays.length === 0) {
+return [];
+}
+    if (arrays.length === 1) {
+return arrays[0];
+}
     
-    return arrays.reduce((result, array) => {
-      return result.filter(item => array.includes(item));
-    });
+    return arrays.reduce((result, array) => result.filter(item => array.includes(item)));
   },
   
   // Difference between arrays
@@ -179,47 +179,39 @@ export const objectUtils = {
 // String transformation utilities
 export const stringUtils = {
   // Capitalize first letter
-  capitalize: (str: string): string => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  },
+  capitalize: (str: string): string => str.charAt(0).toUpperCase() + str.slice(1),
   
   // Convert to title case
-  titleCase: (str: string): string => {
-    return str
+  titleCase: (str: string): string => str
       .toLowerCase()
       .split(' ')
       .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ');
-  },
+      .join(' '),
   
   // Convert to slug
-  slugify: (str: string): string => {
-    return str
+  slugify: (str: string): string => str
       .toLowerCase()
       .trim()
       .replace(/[^\w\s-]/g, '')
       .replace(/[\s_-]+/g, '-')
-      .replace(/^-+|-+$/g, '');
-  },
+      .replace(/^-+|-+$/g, ''),
   
   // Truncate with ellipsis
-  truncate: (str: string, maxLength: number, suffix: string = '...'): string => {
-    if (str.length <= maxLength) return str;
+  truncate: (str: string, maxLength: number, suffix = '...'): string => {
+    if (str.length <= maxLength) {
+return str;
+}
     return str.slice(0, maxLength - suffix.length) + suffix;
   },
   
   // Remove HTML tags
-  stripHtml: (html: string): string => {
-    return html.replace(/<[^>]*>/g, '');
-  },
+  stripHtml: (html: string): string => html.replace(/<[^>]*>/g, ''),
   
   // Escape special characters
-  escapeRegex: (str: string): string => {
-    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  },
+  escapeRegex: (str: string): string => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'),
   
   // Generate random string
-  randomString: (length: number, chars: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'): string => {
+  randomString: (length: number, chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'): string => {
     let result = '';
     for (let i = 0; i < length; i++) {
       result += chars.charAt(Math.floor(Math.random() * chars.length));
@@ -231,40 +223,30 @@ export const stringUtils = {
 // Number utilities
 export const numberUtils = {
   // Round to decimal places
-  round: (num: number, decimals: number = 2): number => {
-    return Math.round(num * Math.pow(10, decimals)) / Math.pow(10, decimals);
-  },
+  round: (num: number, decimals = 2): number => Math.round(num * Math.pow(10, decimals)) / Math.pow(10, decimals),
   
   // Format as percentage
-  toPercentage: (num: number, decimals: number = 0): string => {
-    return `${(num * 100).toFixed(decimals)}%`;
-  },
+  toPercentage: (num: number, decimals = 0): string => `${(num * 100).toFixed(decimals)}%`,
   
   // Format with commas
-  formatNumber: (num: number): string => {
-    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  },
+  formatNumber: (num: number): string => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','),
   
   // Clamp between min and max
-  clamp: (num: number, min: number, max: number): number => {
-    return Math.min(Math.max(num, min), max);
-  },
+  clamp: (num: number, min: number, max: number): number => Math.min(Math.max(num, min), max),
   
   // Check if within range
-  inRange: (num: number, min: number, max: number): boolean => {
-    return num >= min && num <= max;
-  },
+  inRange: (num: number, min: number, max: number): boolean => num >= min && num <= max,
   
   // Calculate average
   average: (numbers: number[]): number => {
-    if (numbers.length === 0) return 0;
+    if (numbers.length === 0) {
+return 0;
+}
     return numbers.reduce((sum, num) => sum + num, 0) / numbers.length;
   },
   
   // Calculate sum
-  sum: (numbers: number[]): number => {
-    return numbers.reduce((total, num) => total + num, 0);
-  },
+  sum: (numbers: number[]): number => numbers.reduce((total, num) => total + num, 0),
 };
 
 // Common transformations for API responses
@@ -274,31 +256,27 @@ export const transformUtils = {
     items: T[],
     labelKey: keyof T,
     valueKey: keyof T
-  ): Array<{ label: string; value: string }> => {
-    return items.map(item => ({
+  ): { label: string; value: string }[] => items.map(item => ({
       label: String(item[labelKey]),
       value: String(item[valueKey]),
-    }));
-  },
+    })),
   
   // Convert to key-value pairs
   toKeyValue: <T>(
     items: T[],
     keyField: keyof T,
     valueField: keyof T
-  ): Record<string, unknown> => {
-    return items.reduce((acc, item) => {
+  ): Record<string, unknown> => items.reduce<Record<string, unknown>>((acc, item) => {
       acc[String(item[keyField])] = item[valueField];
       return acc;
-    }, {} as Record<string, unknown>);
-  },
+    }, {}),
   
   // Normalize array to object
   normalize: <T extends { id: string | number }>(
     items: T[]
-  ): { byId: Record<string | number, T>; allIds: Array<string | number> } => {
+  ): { byId: Record<string | number, T>; allIds: (string | number)[] } => {
     const byId: Record<string | number, T> = {};
-    const allIds: Array<string | number> = [];
+    const allIds: (string | number)[] = [];
     
     items.forEach(item => {
       byId[item.id] = item;

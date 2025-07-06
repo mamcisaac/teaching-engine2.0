@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
-import { NodeSDK } from '@opentelemetry/sdk-node';
-import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
-import { PeriodicExportingMetricReader } from '@opentelemetry/sdk-metrics';
-import { Resource } from '@opentelemetry/resources';
-import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
-import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
-import { OTLPMetricExporter } from '@opentelemetry/exporter-metrics-otlp-http';
-// import { BatchSpanProcessor } from '@opentelemetry/sdk-trace-base';
 import { trace, metrics, context, SpanStatusCode } from '@opentelemetry/api';
 import type { Span, SpanOptions, Attributes } from '@opentelemetry/api';
+import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
+import { OTLPMetricExporter } from '@opentelemetry/exporter-metrics-otlp-http';
+import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
+import { Resource } from '@opentelemetry/resources';
+import { PeriodicExportingMetricReader } from '@opentelemetry/sdk-metrics';
+import { NodeSDK } from '@opentelemetry/sdk-node';
+import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
+// import { BatchSpanProcessor } from '@opentelemetry/sdk-trace-base';
 
 import { logger } from '../logger';
 
@@ -81,8 +81,12 @@ export const initTelemetry = async (): Promise<void> => {
     process.on('SIGTERM', () => {
       otelSDK
         ?.shutdown()
-        .then(() => logger.info('OpenTelemetry terminated'))
-        .catch((error) => logger.error('Error terminating OpenTelemetry', error));
+        .then(() => {
+ logger.info('OpenTelemetry terminated'); 
+})
+        .catch((error) => {
+ logger.error('Error terminating OpenTelemetry', error); 
+});
     });
   } catch (_error) {
     logger.error('Failed to initialize OpenTelemetry', _error);
@@ -125,7 +129,9 @@ export const withSpan = async <T>(
 
 // Utility to add attributes to current span
 export const addSpanAttributes = (attributes: Attributes): void => {
-  if (!OTEL_ENABLED) return;
+  if (!OTEL_ENABLED) {
+return;
+}
 
   const span = trace.getActiveSpan();
   if (span) {
@@ -135,7 +141,9 @@ export const addSpanAttributes = (attributes: Attributes): void => {
 
 // Utility to record an event in the current span
 export const recordSpanEvent = (name: string, attributes?: Attributes): void => {
-  if (!OTEL_ENABLED) return;
+  if (!OTEL_ENABLED) {
+return;
+}
 
   const span = trace.getActiveSpan();
   if (span) {

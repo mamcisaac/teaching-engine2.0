@@ -1,8 +1,8 @@
-import { PrismaClient } from '@prisma/client';
+import type { PrismaClient } from '@prisma/client';
 
-import { UserRepository } from './UserRepository';
 import { CurriculumExpectationRepository } from './CurriculumExpectationRepository';
 import { ETFOLessonPlanRepository } from './ETFOLessonPlanRepository';
+import { UserRepository } from './UserRepository';
 
 export class RepositoryFactory {
   private static instance: RepositoryFactory;
