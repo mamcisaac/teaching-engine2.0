@@ -175,13 +175,13 @@ router.get('/', async (req: Request, res, _next) => {
         let progress = undefined;
         let status = 'in-progress';
 
-        if (access.planType === 'long-range' && '_count' in plan) {
+        if (access.planType === 'long-range' && '_count' in plan && 'unitPlans' in plan._count) {
           // For simplicity, assume progress based on unit count
-          progress = Math.min(plan._count.unitPlans * 10, 100);
-        } else if (access.planType === 'unit' && '_count' in plan) {
-          progress = Math.min(plan._count.lessonPlans * 5, 100);
+          progress = Math.min((plan._count as any).unitPlans * 10, 100);
+        } else if (access.planType === 'unit' && '_count' in plan && 'lessonPlans' in plan._count) {
+          progress = Math.min((plan._count as any).lessonPlans * 5, 100);
         } else if (access.planType === 'lesson' && 'daybookEntry' in plan) {
-          status = plan.daybookEntry ? 'completed' : 'in-progress';
+          status = (plan as any).daybookEntry ? 'completed' : 'in-progress';
         }
 
         return {
@@ -189,8 +189,8 @@ router.get('/', async (req: Request, res, _next) => {
           type: access.planType,
           title:
             'title' in plan ? plan.title : `Daybook - ${new Date(plan.date).toLocaleDateString()}`,
-          subject: parentInfo?.longRangePlan?.subject || parentInfo?.subject,
-          grade: parentInfo?.longRangePlan?.grade || parentInfo?.grade,
+          subject: (parentInfo as any)?.longRangePlan?.subject || (parentInfo as any)?.subject,
+          grade: (parentInfo as any)?.longRangePlan?.grade || (parentInfo as any)?.grade,
           lastAccessed: access.lastAccessed.toISOString(),
           progress,
           status,

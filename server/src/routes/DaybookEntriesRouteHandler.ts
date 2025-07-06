@@ -457,12 +457,12 @@ export class DaybookEntriesRouteHandler extends BaseRouteHandler {
       const filters = schemas.query.parse(req.query);
 
       // Convert string dates to Date objects for service and fix field names
-      const { sortBy, sortOrder, ...filterBase } = filters;
+      const { sortBy, sortOrder, startDate, endDate, lessonPlanId, ...filterBase } = filters;
       const convertedFilters = {
         ...filterBase,
-        ...(filters.startDate && { startDate: new Date(filters.startDate) }),
-        ...(filters.endDate && { endDate: new Date(filters.endDate) }),
-        ...(filters.lessonPlanId && { lessonPlanId: parseInt(String(filters.lessonPlanId), 10) }),
+        ...(startDate && { startDate: new Date(startDate) }),
+        ...(endDate && { endDate: new Date(endDate) }),
+        ...(lessonPlanId && { lessonPlanId: parseInt(String(lessonPlanId), 10) }),
         // Convert sortBy/sortOrder to sort/order for service
         sort: sortBy,
         order: sortOrder,

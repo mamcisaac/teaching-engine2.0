@@ -128,7 +128,7 @@ class UnitPlanService extends BaseService {
 
     const longRangePlanFilter: Prisma.LongRangePlanWhereInput = { userId };
     if (subject) {
-      longRangePlanFilter.subject = { contains: subject };
+      longRangePlanFilter.subject = { contains: String(subject) };
     }
 
     const where: Prisma.UnitPlanWhereInput = {
@@ -136,24 +136,24 @@ class UnitPlanService extends BaseService {
     };
 
     if (longRangePlanId) where.longRangePlanId = longRangePlanId;
-    if (startDate) where.startDate = { gte: new Date(startDate) };
-    if (endDate) where.endDate = { lte: new Date(endDate) };
+    if (startDate) where.startDate = { gte: new Date(String(startDate)) };
+    if (endDate) where.endDate = { lte: new Date(String(endDate)) };
 
     // Search functionality using optimized search utility
     if (search) {
       where.OR = [
-        ...optimizedQueries.createSearchWhere(search, ['title', 'description', 'bigIdeas']).OR,
+        ...optimizedQueries.createSearchWhere(String(search), ['title', 'description', 'bigIdeas']).OR,
       ];
     }
 
     // Date range filtering
-    const dateWhere = optimizedQueries.createDateRangeWhere('startDate', startDate, endDate);
+    const dateWhere = optimizedQueries.createDateRangeWhere('startDate', startDate ? String(startDate) : undefined, endDate ? String(endDate) : undefined);
     if (Object.keys(dateWhere).length > 0) {
       Object.assign(where, dateWhere);
     }
 
     // Sorting with validation
-    const orderBy = queryPerformance.createOptimizedSort(sortBy, sortOrder, [
+    const orderBy = queryPerformance.createOptimizedSort(String(sortBy || 'startDate'), (sortOrder || 'asc') as 'asc' | 'desc', [
       'title',
       'startDate',
       'endDate',
@@ -162,8 +162,8 @@ class UnitPlanService extends BaseService {
 
     const result = await queryPerformance.monitorQuery('unitPlan.findMany', () =>
       optimizedQueries.paginatedQuery(prisma.unitPlan, where, {
-        limit,
-        offset,
+        limit: Number(limit || 20),
+        offset: Number(offset || 0),
         orderBy,
         include: optimizedIncludes.unitPlan,
       }),
@@ -175,9 +175,9 @@ class UnitPlanService extends BaseService {
       unitPlans,
       pagination: {
         total,
-        limit,
-        offset,
-        hasMore: offset + limit < total,
+        limit: Number(limit || 20),
+        offset: Number(offset || 0),
+        hasMore: Number(offset || 0) + Number(limit || 20) < total,
       },
     };
   }
@@ -419,20 +419,20 @@ class UnitPlanService extends BaseService {
         descriptionFr: sourceUnitPlan.descriptionFr,
         bigIdeas: sourceUnitPlan.bigIdeas,
         bigIdeasFr: sourceUnitPlan.bigIdeasFr,
-        essentialQuestions: sourceUnitPlan.essentialQuestions,
+        essentialQuestions: sourceUnitPlan.essentialQuestions || undefined,
         startDate: sourceUnitPlan.startDate,
         endDate: sourceUnitPlan.endDate,
         estimatedHours: sourceUnitPlan.estimatedHours,
         assessmentPlan: sourceUnitPlan.assessmentPlan,
-        successCriteria: sourceUnitPlan.successCriteria,
+        successCriteria: sourceUnitPlan.successCriteria || undefined,
         crossCurricularConnections: sourceUnitPlan.crossCurricularConnections,
-        learningSkills: sourceUnitPlan.learningSkills,
+        learningSkills: sourceUnitPlan.learningSkills || undefined,
         culminatingTask: sourceUnitPlan.culminatingTask,
-        keyVocabulary: sourceUnitPlan.keyVocabulary,
+        keyVocabulary: sourceUnitPlan.keyVocabulary || undefined,
         priorKnowledge: sourceUnitPlan.priorKnowledge,
         parentCommunicationPlan: sourceUnitPlan.parentCommunicationPlan,
         fieldTripsAndGuestSpeakers: sourceUnitPlan.fieldTripsAndGuestSpeakers,
-        differentiationStrategies: sourceUnitPlan.differentiationStrategies,
+        differentiationStrategies: sourceUnitPlan.differentiationStrategies || undefined,
         socialJusticeConnections: sourceUnitPlan.socialJusticeConnections,
         technologyIntegration: sourceUnitPlan.technologyIntegration,
         communityConnections: sourceUnitPlan.communityConnections,

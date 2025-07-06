@@ -122,7 +122,7 @@ class TemplateService extends BaseService {
 
     // Search functionality using optimized search utility
     if (search) {
-      const searchWhere = optimizedQueries.createSearchWhere(search, [
+      const searchWhere = optimizedQueries.createSearchWhere(String(search), [
         'title',
         'description',
         'subject',
@@ -131,7 +131,7 @@ class TemplateService extends BaseService {
     }
 
     // Tag filtering
-    if (tags && tags.length > 0) {
+    if (tags && Array.isArray(tags) && tags.length > 0) {
       where.AND.push({
         tags: {
           path: [],
@@ -141,7 +141,7 @@ class TemplateService extends BaseService {
     }
 
     // Sorting with validation
-    const orderBy = queryPerformance.createOptimizedSort(sortBy, sortOrder, [
+    const orderBy = queryPerformance.createOptimizedSort(String(sortBy || 'title'), (sortOrder || 'asc') as 'asc' | 'desc', [
       'title',
       'usageCount',
       'averageRating',
@@ -151,8 +151,8 @@ class TemplateService extends BaseService {
 
     const result = await queryPerformance.monitorQuery('template.findMany', () =>
       optimizedQueries.paginatedQuery(prisma.planTemplate, where, {
-        limit,
-        offset,
+        limit: Number(limit || 20),
+        offset: Number(offset || 0),
         orderBy,
         include: optimizedIncludes.template,
       }),
@@ -164,9 +164,9 @@ class TemplateService extends BaseService {
       templates,
       pagination: {
         total,
-        limit,
-        offset,
-        hasMore: offset + limit < total,
+        limit: Number(limit || 20),
+        offset: Number(offset || 0),
+        hasMore: Number(offset || 0) + Number(limit || 20) < total,
       },
     };
   }
@@ -190,8 +190,8 @@ class TemplateService extends BaseService {
         titleFr: data.titleFr,
         description: data.description,
         descriptionFr: data.descriptionFr,
-        type: data.type,
-        category: data.category,
+        type: data.type as 'UNIT_PLAN' | 'LESSON_PLAN',
+        category: data.category as 'BY_SUBJECT' | 'BY_GRADE' | 'BY_THEME' | 'BY_SEASON' | 'BY_SKILL' | 'CUSTOM',
         subject: data.subject,
         gradeMin: data.gradeMin,
         gradeMax: data.gradeMax,
@@ -224,8 +224,8 @@ class TemplateService extends BaseService {
         ...(data.titleFr && { titleFr: data.titleFr }),
         ...(data.description && { description: data.description }),
         ...(data.descriptionFr && { descriptionFr: data.descriptionFr }),
-        ...(data.type && { type: data.type }),
-        ...(data.category && { category: data.category }),
+        ...(data.type && { type: data.type as 'UNIT_PLAN' | 'LESSON_PLAN' }),
+        ...(data.category && { category: data.category as 'BY_SUBJECT' | 'BY_GRADE' | 'BY_THEME' | 'BY_SEASON' | 'BY_SKILL' | 'CUSTOM' }),
         ...(data.subject && { subject: data.subject }),
         ...(data.gradeMin !== undefined && { gradeMin: data.gradeMin }),
         ...(data.gradeMax !== undefined && { gradeMax: data.gradeMax }),

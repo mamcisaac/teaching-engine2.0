@@ -22,9 +22,11 @@ export abstract class BaseRepository<T extends { id: number }, CreateInput, Upda
     this.modelName = modelName;
   }
 
-  // Use Record for Prisma model delegate access - this is necessary for dynamic model access
-  protected get model(): Record<string, unknown> {
-    return (this.prisma as Record<string, unknown>)[this.modelName] as Record<string, unknown>;
+  // Use any for Prisma model delegate access - this is necessary for dynamic model access
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  protected get model(): any {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return (this.prisma as any)[this.modelName];
   }
 
   async findById(id: number): Promise<T | null> {

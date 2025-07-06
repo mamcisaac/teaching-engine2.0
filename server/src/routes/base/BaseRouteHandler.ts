@@ -274,7 +274,8 @@ export abstract class BaseRouteHandler<T = any> {
     userId: number
   ): Promise<boolean> {
     try {
-      const record = await (prisma as Record<string, unknown>)[tableName].findFirst({
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const record = await (prisma as any)[tableName].findFirst({
         where: {
           id,
           OR: [

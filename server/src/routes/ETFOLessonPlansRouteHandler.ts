@@ -505,7 +505,7 @@ class ETFOLessonPlanService extends BaseService {
   }
 
   async duplicate(
-    duplicateData: { lessonPlanId: string; unitPlanId: string; date: string | Date; title: string },
+    duplicateData: { lessonPlanId: string; unitPlanId: string; date?: string | Date; title?: string },
     userId: number,
   ) {
     const { lessonPlanId, unitPlanId, date, title } = duplicateData;
@@ -618,12 +618,12 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       const filters = schemas.query.parse(req.query);
 
       // Convert string dates to Date objects and fix field names for service
-      const { sortBy, sortOrder, ...filterBase } = filters;
+      const { sortBy, sortOrder, startDate, endDate, unitPlanId, ...filterBase } = filters;
       const convertedFilters = {
         ...filterBase,
-        ...(filters.startDate && { startDate: new Date(filters.startDate) }),
-        ...(filters.endDate && { endDate: new Date(filters.endDate) }),
-        ...(filters.unitPlanId && { unitPlanId: parseInt(String(filters.unitPlanId), 10) }),
+        ...(startDate && { startDate: new Date(startDate) }),
+        ...(endDate && { endDate: new Date(endDate) }),
+        ...(unitPlanId && { unitPlanId: parseInt(String(unitPlanId), 10) }),
         // Convert sortBy/sortOrder to sort/order for service
         sort: sortBy,
         order: sortOrder,

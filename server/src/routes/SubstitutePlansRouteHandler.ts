@@ -138,7 +138,7 @@ class SubstitutePlanServiceWrapper extends BaseService {
       Object.assign(where, dateWhere);
     }
 
-    if (grade) where.grade = grade;
+    if (grade) where.grade = String(grade);
     if (subject) where.subject = { contains: subject };
     if (isActive !== undefined) where.isActive = isActive;
 
@@ -150,7 +150,7 @@ class SubstitutePlanServiceWrapper extends BaseService {
     }
 
     // Sorting with validation
-    const orderBy = queryPerformance.createOptimizedSort(sortBy, sortOrder, [
+    const orderBy = queryPerformance.createOptimizedSort(sortBy || 'dateFor', sortOrder || 'asc', [
       'dateFor',
       'title',
       'grade',
@@ -159,8 +159,8 @@ class SubstitutePlanServiceWrapper extends BaseService {
 
     const result = await queryPerformance.monitorQuery('substitutePlan.findMany', () =>
       optimizedQueries.paginatedQuery(prisma.substitutePlan, where, {
-        limit,
-        offset,
+        limit: limit!,
+        offset: offset!,
         orderBy,
       }),
     );
@@ -171,9 +171,9 @@ class SubstitutePlanServiceWrapper extends BaseService {
       plans,
       pagination: {
         total,
-        limit,
-        offset,
-        hasMore: offset + limit < total,
+        limit: limit!,
+        offset: offset!,
+        hasMore: offset! + limit! < total,
       },
     };
   }
@@ -207,7 +207,7 @@ class SubstitutePlanServiceWrapper extends BaseService {
         behaviorPlan: {},
         studentNotes: {},
         materialsList: data.materials ? { materials: data.materials } : {},
-        importantInfo: data.importantNotes ? { notes: data.importantNotes } : null,
+        importantInfo: data.importantNotes ? { notes: data.importantNotes } : undefined,
         isActive: data.isActive ?? true,
       },
     });
@@ -229,7 +229,7 @@ class SubstitutePlanServiceWrapper extends BaseService {
     });
   }
 
-  async delete(id: string, _userId: number): Promise<boolean> {
+  async delete(id: string, userId: number): Promise<boolean> {
     const plan = await prisma.substitutePlan.findFirst({
       where: { id, userId },
     });
@@ -362,7 +362,16 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       const schemas = this.getValidationSchemas();
       const filters = schemas.query.parse(req.query);
 
-      const result = await this.substitutePlanService.findMany(filters, userId);
+      // Convert string dates to Date objects and fix types for service
+      const { startDate, endDate, grade, ...filterBase } = filters;
+      const convertedFilters = {
+        ...filterBase,
+        ...(startDate && { startDate: new Date(startDate) }),
+        ...(endDate && { endDate: new Date(endDate) }),
+        ...(grade && { grade: String(grade) }),
+      };
+      
+      const result = await this.substitutePlanService.findMany(convertedFilters, userId);
       res.json(result);
     } catch (_error) {
       this.logger.error(`Error in ${this.routeName} list:`, _error);
