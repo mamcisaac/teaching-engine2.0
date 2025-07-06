@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import { BaseService } from '../base/BaseService';
 
 export class AuthService extends BaseService {
@@ -54,15 +54,9 @@ export class AuthService extends BaseService {
     }
 
     // Check for common weak passwords
-    const weakPasswords = [
-      'password123',
-      '123456789',
-      'qwerty123',
-      'admin123',
-      'teacher123',
-    ];
+    const weakPasswords = ['password123', '123456789', 'qwerty123', 'admin123', 'teacher123'];
 
-    if (weakPasswords.some(weak => password.toLowerCase().includes(weak.toLowerCase()))) {
+    if (weakPasswords.some((weak) => password.toLowerCase().includes(weak.toLowerCase()))) {
       throw new Error('Password is too common. Please choose a more secure password');
     }
 
@@ -75,10 +69,10 @@ export class AuthService extends BaseService {
   async hashPassword(password: string): Promise<string> {
     try {
       await this.validatePassword(password);
-      
+
       const hash = await bcrypt.hash(password, this.saltRounds);
       this.logger.info('Password hashed successfully');
-      
+
       return hash;
     } catch (error) {
       this.logger.error({ error }, 'Password hashing failed');
@@ -93,7 +87,7 @@ export class AuthService extends BaseService {
     try {
       const isMatch = await bcrypt.compare(password, hash);
       this.logger.info({ isMatch }, 'Password comparison completed');
-      
+
       return isMatch;
     } catch (error) {
       this.logger.error({ error }, 'Password comparison failed');
@@ -109,24 +103,27 @@ export class AuthService extends BaseService {
     const lowercase = 'abcdefghijklmnopqrstuvwxyz';
     const numbers = '0123456789';
     const symbols = '!@#$%^&*';
-    
+
     const allChars = uppercase + lowercase + numbers + symbols;
-    
+
     let password = '';
-    
+
     // Ensure at least one character from each category
     password += uppercase[Math.floor(Math.random() * uppercase.length)];
     password += lowercase[Math.floor(Math.random() * lowercase.length)];
     password += numbers[Math.floor(Math.random() * numbers.length)];
     password += symbols[Math.floor(Math.random() * symbols.length)];
-    
+
     // Fill the rest randomly
     for (let i = 4; i < 12; i++) {
       password += allChars[Math.floor(Math.random() * allChars.length)];
     }
-    
+
     // Shuffle the password
-    return password.split('').sort(() => Math.random() - 0.5).join('');
+    return password
+      .split('')
+      .sort(() => Math.random() - 0.5)
+      .join('');
   }
 
   /**
@@ -138,9 +135,9 @@ export class AuthService extends BaseService {
       userId,
       email,
       iat: Math.floor(Date.now() / 1000),
-      exp: Math.floor(Date.now() / 1000) + (60 * 60), // 1 hour
+      exp: Math.floor(Date.now() / 1000) + 60 * 60, // 1 hour
     };
-    
+
     // Simple base64 encoding for testing - replace with proper JWT in production
     return Buffer.from(JSON.stringify(payload)).toString('base64');
   }
