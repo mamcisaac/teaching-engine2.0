@@ -109,7 +109,8 @@ export function requestLoggingMiddleware(req: Request, res: Response, next: Next
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   res.end = function (this: Response, ...args: any[]): Response {
     logResponse();
-    return originalEnd.apply(this, args);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return originalEnd.apply(this, args as any);
   };
 
   // Handle request completion
