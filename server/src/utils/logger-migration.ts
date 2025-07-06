@@ -67,7 +67,12 @@ function parseArgs(args: unknown[]): [unknown, LogMeta?] {
 
   // If last arg looks like metadata, separate it
   const lastArg = args[args.length - 1];
-  if (typeof lastArg === 'object' && lastArg !== null && !Array.isArray(lastArg) && !(lastArg instanceof Error)) {
+  if (
+    typeof lastArg === 'object' &&
+    lastArg !== null &&
+    !Array.isArray(lastArg) &&
+    !(lastArg instanceof Error)
+  ) {
     return [args.slice(0, -1)[0], lastArg as LogMeta];
   }
 
@@ -149,6 +154,7 @@ export function requestLoggerMiddleware(
     requestId: req.id,
     method: req.method,
     path: req.path,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   }) as any;
 
   // Helper methods

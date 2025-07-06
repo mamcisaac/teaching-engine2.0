@@ -150,7 +150,7 @@ export class ETFOLessonPlanService extends BaseService {
             connect: { id: planData.unitPlanId },
           },
         },
-        expectationIds.map(id => String(id)),
+        expectationIds.map((id) => String(id)),
       );
 
       return plan;
@@ -176,7 +176,7 @@ export class ETFOLessonPlanService extends BaseService {
           ...updateData,
           date: updateData.date ? new Date(updateData.date) : undefined,
         },
-        (expectationIds || []).map(id => String(id)),
+        (expectationIds || []).map((id) => String(id)),
       );
 
       return updatedPlan;
@@ -220,10 +220,18 @@ export class ETFOLessonPlanService extends BaseService {
       };
 
       // Remove id and relation fields that should not be copied
-      const { id: _id, createdAt: _createdAt, updatedAt: _updatedAt, unitPlan: _unitPlan, expectations: _expectations, resources: _resources, ...cleanData } = duplicateData;
+      const {
+        id: _id,
+        createdAt: _createdAt,
+        updatedAt: _updatedAt,
+        unitPlan: _unitPlan,
+        expectations: _expectations,
+        resources: _resources,
+        ..._cleanData
+      } = duplicateData;
 
       // Extract expectation IDs if they exist
-      const expectationIds = originalPlan.expectations?.map(exp => exp.expectationId) || [];
+      const expectationIds = originalPlan.expectations?.map((exp) => exp.expectationId) || [];
 
       // Create minimal duplicate data with only the essential fields
       const createData = {
@@ -240,14 +248,16 @@ export class ETFOLessonPlanService extends BaseService {
         action: originalPlan.action || undefined,
         consolidation: originalPlan.consolidation || undefined,
         learningGoals: originalPlan.learningGoals || undefined,
-        materials: Array.isArray(originalPlan.materials) ? originalPlan.materials as string[] : undefined,
+        materials: Array.isArray(originalPlan.materials)
+          ? (originalPlan.materials as string[])
+          : undefined,
         grouping: originalPlan.grouping || undefined,
         mindsOnFr: originalPlan.mindsOnFr || undefined,
         actionFr: originalPlan.actionFr || undefined,
         consolidationFr: originalPlan.consolidationFr || undefined,
-        expectationIds: expectationIds.map(id => parseInt(id, 10)),
+        expectationIds: expectationIds.map((id) => parseInt(id, 10)),
       };
-      
+
       return await this.create(createData);
     } catch (error) {
       logger.error('Error duplicating ETFO lesson plan:', error);

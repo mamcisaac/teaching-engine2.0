@@ -3,7 +3,7 @@ import { nodeProfilingIntegration } from '@sentry/profiling-node';
 import { AppError } from '../../utils/errors';
 import { logger } from '../../logger';
 
-type Context = Record<string, any>;
+type Context = Record<string, unknown>;
 
 interface UserContext {
   id: string | number;
@@ -212,7 +212,7 @@ export class ErrorReportingService {
       message: breadcrumb.message,
       category: breadcrumb.category,
       level: breadcrumb.level || 'info',
-      data: sanitizedData as { [key: string]: any },
+      data: sanitizedData as Record<string, unknown>,
       timestamp: Date.now() / 1000,
     });
   }
@@ -228,7 +228,7 @@ export class ErrorReportingService {
     }
 
     const sanitizedContext = this.sanitizeData(context);
-    Sentry.setContext(key, sanitizedContext as { [key: string]: any });
+    Sentry.setContext(key, sanitizedContext as Context);
   }
 
   categorizeError(error: unknown): ErrorCategory {
@@ -316,7 +316,7 @@ export class ErrorReportingService {
     }
 
     if (breadcrumb.data) {
-      breadcrumb.data = this.sanitizeData(breadcrumb.data) as { [key: string]: any };
+      breadcrumb.data = this.sanitizeData(breadcrumb.data) as Record<string, unknown>;
     }
 
     return breadcrumb;

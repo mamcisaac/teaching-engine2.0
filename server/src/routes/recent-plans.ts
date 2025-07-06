@@ -177,10 +177,13 @@ router.get('/', async (req: Request, res, _next) => {
 
         if (access.planType === 'long-range' && '_count' in plan && 'unitPlans' in plan._count) {
           // For simplicity, assume progress based on unit count
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           progress = Math.min((plan._count as any).unitPlans * 10, 100);
         } else if (access.planType === 'unit' && '_count' in plan && 'lessonPlans' in plan._count) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           progress = Math.min((plan._count as any).lessonPlans * 5, 100);
         } else if (access.planType === 'lesson' && 'daybookEntry' in plan) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           status = (plan as any).daybookEntry ? 'completed' : 'in-progress';
         }
 
@@ -189,7 +192,9 @@ router.get('/', async (req: Request, res, _next) => {
           type: access.planType,
           title:
             'title' in plan ? plan.title : `Daybook - ${new Date(plan.date).toLocaleDateString()}`,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           subject: (parentInfo as any)?.longRangePlan?.subject || (parentInfo as any)?.subject,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           grade: (parentInfo as any)?.longRangePlan?.grade || (parentInfo as any)?.grade,
           lastAccessed: access.lastAccessed.toISOString(),
           progress,

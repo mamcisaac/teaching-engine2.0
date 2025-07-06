@@ -36,9 +36,10 @@ export function generateAccessToken(payload: JWTPayload): string {
   if (!secret) {
     throw new Error('JWT_SECRET is not defined');
   }
-  
+
   const options: SignOptions = {
-    expiresIn: (process.env.JWT_EXPIRES_IN || '7d') as any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    expiresIn: (process.env.JWT_EXPIRES_IN || '7d') as any,
   };
   return jwt.sign(payload, secret, options);
 }
@@ -51,9 +52,10 @@ export function generateRefreshToken(payload: JWTPayload): string {
   if (!secret) {
     throw new Error('JWT_REFRESH_SECRET is not defined');
   }
-  
+
   const options: SignOptions = {
-    expiresIn: (process.env.JWT_REFRESH_EXPIRES_IN || '30d') as any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    expiresIn: (process.env.JWT_REFRESH_EXPIRES_IN || '30d') as any,
   };
   return jwt.sign(payload, secret, options);
 }
@@ -75,7 +77,7 @@ export function verifyAccessToken(token: string): JWTPayload {
   if (!process.env.JWT_SECRET) {
     throw new Error('JWT_SECRET is not defined');
   }
-  
+
   try {
     return jwt.verify(token, process.env.JWT_SECRET) as JWTPayload;
   } catch (error) {
@@ -90,7 +92,7 @@ export function verifyRefreshToken(token: string): JWTPayload {
   if (!process.env.JWT_REFRESH_SECRET) {
     throw new Error('JWT_REFRESH_SECRET is not defined');
   }
-  
+
   try {
     return jwt.verify(token, process.env.JWT_REFRESH_SECRET) as JWTPayload;
   } catch (error) {
@@ -103,11 +105,11 @@ export function verifyRefreshToken(token: string): JWTPayload {
  */
 export function extractTokenFromHeader(authHeader?: string): string | null {
   if (!authHeader) return null;
-  
+
   const parts = authHeader.split(' ');
   if (parts.length !== 2 || parts[0] !== 'Bearer') {
     return null;
   }
-  
+
   return parts[1];
 }
