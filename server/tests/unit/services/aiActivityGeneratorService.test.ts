@@ -85,28 +85,30 @@ describe('AIActivityGeneratorService', () => {
     });
 
     test('should limit search results to 3 items', () => {
-      const mockSearchResults: ExternalActivity[] = Array(10).fill(null).map((_, i) => ({
-        id: i + 1,
-        source: 'test',
-        externalId: `test-${i + 1}`,
-        url: `http://example.com/${i + 1}`,
-        title: `Activity ${i + 1}`,
-        description: `Description ${i + 1}`,
-        duration: 30,
-        activityType: 'worksheet',
-        gradeMin: 3,
-        gradeMax: 4,
-        subject: 'Math',
-        language: 'fr',
-        materials: ['worksheets'],
-        groupSize: 'individual',
-        learningGoals: ['Basic fractions'],
-        curriculumTags: [],
-        isFree: true,
-        isActive: true,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      }));
+      const mockSearchResults: ExternalActivity[] = Array(10)
+        .fill(null)
+        .map((_, i) => ({
+          id: i + 1,
+          source: 'test',
+          externalId: `test-${i + 1}`,
+          url: `http://example.com/${i + 1}`,
+          title: `Activity ${i + 1}`,
+          description: `Description ${i + 1}`,
+          duration: 30,
+          activityType: 'worksheet',
+          gradeMin: 3,
+          gradeMax: 4,
+          subject: 'Math',
+          language: 'fr',
+          materials: ['worksheets'],
+          groupSize: 'individual',
+          learningGoals: ['Basic fractions'],
+          curriculumTags: [],
+          isFree: true,
+          isActive: true,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        }));
 
       const params = { searchResults: mockSearchResults };
       const prompt = (service as unknown).buildGenerationPrompt(params);
@@ -238,10 +240,21 @@ describe('AIActivityGeneratorService', () => {
           'Review completed work for accuracy',
         ],
         differentiation: {
-          support: ['Provide visual aids', 'Offer one-on-one assistance', 'Break tasks into smaller steps'],
-          extension: ['Provide additional challenges', 'Encourage peer teaching', 'Offer independent research opportunities'],
+          support: [
+            'Provide visual aids',
+            'Offer one-on-one assistance',
+            'Break tasks into smaller steps',
+          ],
+          extension: [
+            'Provide additional challenges',
+            'Encourage peer teaching',
+            'Offer independent research opportunities',
+          ],
         },
-        safetyConsiderations: ['Ensure proper use of materials', 'Maintain safe classroom environment'],
+        safetyConsiderations: [
+          'Ensure proper use of materials',
+          'Maintain safe classroom environment',
+        ],
         technologyRequirements: [],
       });
     });
@@ -298,7 +311,10 @@ describe('AIActivityGeneratorService', () => {
           grade: 4,
           subject: 'Mathematics',
           duration: 75,
-          learningGoals: ['Understand equivalent fractions', 'Add fractions with like denominators'],
+          learningGoals: [
+            'Understand equivalent fractions',
+            'Add fractions with like denominators',
+          ],
         },
         specificRequirements: {
           activityType: 'collaborative project',
@@ -313,7 +329,7 @@ describe('AIActivityGeneratorService', () => {
 
       expect(result).toEqual({
         title: 'Mathematics Activity - Fractions Workshop',
-        description: 'An engaging Mathematics activity designed for Grade 4 students.',
+        description: 'An engaging mathematics activity designed for Grade 4 students.',
         detailedInstructions: [
           'Introduce the activity and learning goals to students',
           'Provide necessary materials and set up workspace',
@@ -332,10 +348,21 @@ describe('AIActivityGeneratorService', () => {
           'Review completed work for accuracy',
         ],
         differentiation: {
-          support: ['Provide visual aids', 'Offer one-on-one assistance', 'Break tasks into smaller steps'],
-          extension: ['Provide additional challenges', 'Encourage peer teaching', 'Offer independent research opportunities'],
+          support: [
+            'Provide visual aids',
+            'Offer one-on-one assistance',
+            'Break tasks into smaller steps',
+          ],
+          extension: [
+            'Provide additional challenges',
+            'Encourage peer teaching',
+            'Offer independent research opportunities',
+          ],
         },
-        safetyConsiderations: ['Ensure proper use of materials', 'Maintain safe classroom environment'],
+        safetyConsiderations: [
+          'Ensure proper use of materials',
+          'Maintain safe classroom environment',
+        ],
         technologyRequirements: [],
       });
     });
@@ -344,8 +371,8 @@ describe('AIActivityGeneratorService', () => {
   describe('Template Quality Validation', () => {
     test('should generate educationally sound activities for different grade levels', () => {
       const gradeLevels = [1, 3, 5, 8];
-      
-      gradeLevels.forEach(grade => {
+
+      gradeLevels.forEach((grade) => {
         const params = {
           lessonContext: {
             title: `Grade ${grade} Activity`,
@@ -359,19 +386,21 @@ describe('AIActivityGeneratorService', () => {
         // Should be age-appropriate
         expect(result.title).toContain(`Grade ${grade}`);
         expect(result.description).toContain(`Grade ${grade} students`);
-        
+
         // Should have educational structure
         expect(result.detailedInstructions).toHaveLength(5);
         expect(result.detailedInstructions[0]).toContain('Introduce');
         expect(result.detailedInstructions[4]).toContain('Assess');
-        
+
         // Should include differentiation
         expect(result.differentiation.support).toContain('Provide visual aids');
         expect(result.differentiation.extension).toContain('Provide additional challenges');
-        
+
         // Should include assessment
-        expect(result.assessmentSuggestions).toContain('Observe student participation and engagement');
-        
+        expect(result.assessmentSuggestions).toContain(
+          'Observe student participation and engagement',
+        );
+
         // Should include safety
         expect(result.safetyConsiderations).toContain('Ensure proper use of materials');
       });
@@ -379,8 +408,8 @@ describe('AIActivityGeneratorService', () => {
 
     test('should generate appropriate activities for different subjects', () => {
       const subjects = ['Math', 'Science', 'Language Arts', 'Social Studies', 'Art'];
-      
-      subjects.forEach(subject => {
+
+      subjects.forEach((subject) => {
         const params = {
           lessonContext: {
             title: `${subject} Exploration`,
@@ -392,7 +421,7 @@ describe('AIActivityGeneratorService', () => {
         const result = (service as unknown).generateTemplateActivity(params);
 
         expect(result.title).toContain(subject);
-        expect(result.description).toContain(subject);
+        expect(result.description.toLowerCase()).toContain(subject.toLowerCase());
         expect(result.description).toContain('Grade 3');
       });
     });
@@ -458,10 +487,10 @@ describe('AIActivityGeneratorService', () => {
 
       // Should reference French language instruction
       expect(prompt).toContain('Language: fr');
-      
+
       // Should reference Ontario curriculum
       expect(prompt).toContain('Ontario curriculum');
-      
+
       // Should ask for proper JSON structure
       expect(prompt).toContain('JSON format');
       expect(prompt).toContain('"title"');

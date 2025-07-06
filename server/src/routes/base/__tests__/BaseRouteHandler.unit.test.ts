@@ -4,23 +4,20 @@
  * Comprehensive test suite for the BaseRouteHandler abstract class
  */
 
+import { jest } from '@jest/globals';
+
+// Mock prisma
+jest.mock('../../../prisma', () => ({
+  prisma: {},
+}));
+
+// Mock logger - uses manual mock from src/__mocks__/logger.ts
+jest.mock('../../../logger');
+
 import { Request, Response, NextFunction } from 'express';
 import { z } from 'zod';
 import { BaseRouteHandler, CrudOperations, AuthenticatedRequest } from '../BaseRouteHandler';
 import { BaseService } from '../../../services/base/BaseService';
-import { jest } from '@jest/globals';
-
-// Mock logger
-jest.mock('@/logger', () => ({
-  default: {
-    child: jest.fn(() => ({
-      error: jest.fn(),
-      info: jest.fn(),
-      debug: jest.fn(),
-      warn: jest.fn(),
-    })),
-  },
-}));
 
 // Test implementation of BaseRouteHandler
 class TestService extends BaseService {
@@ -33,7 +30,10 @@ class TestService extends BaseService {
   }
 
   async findMany(): Promise<any[]> {
-    return [{ id: '1', name: 'Test 1' }, { id: '2', name: 'Test 2' }];
+    return [
+      { id: '1', name: 'Test 1' },
+      { id: '2', name: 'Test 2' },
+    ];
   }
 
   async findById(id: string): Promise<any | null> {
@@ -100,7 +100,16 @@ describe('BaseRouteHandler', () => {
   let mockResponse: Partial<Response>;
   let mockNext: NextFunction;
 
+  // Add test to verify mock is working
+  it('should have logger mock available', () => {
+    const logger = require('../../../logger').default;
+    expect(logger).toBeDefined();
+    expect(logger.child).toBeDefined();
+    expect(typeof logger.child).toBe('function');
+  });
+
   beforeEach(() => {
+    jest.clearAllMocks();
     handler = new TestRouteHandler();
     mockRequest = {
       user: { id: 1, email: 'test@example.com', name: 'Test User' },
@@ -128,7 +137,7 @@ describe('BaseRouteHandler', () => {
     it('should set userId from authenticated user', () => {
       const middleware = handler['requireAuthentication'];
       middleware(mockRequest as AuthenticatedRequest, mockResponse as Response, mockNext);
-      
+
       expect(mockRequest.userId).toBe(1);
       expect(mockNext).toHaveBeenCalled();
     });
@@ -137,7 +146,7 @@ describe('BaseRouteHandler', () => {
       mockRequest.user = undefined;
       const middleware = handler['requireAuthentication'];
       middleware(mockRequest as AuthenticatedRequest, mockResponse as Response, mockNext);
-      
+
       expect(mockResponse.status).toHaveBeenCalledWith(401);
       expect(mockResponse.json).toHaveBeenCalledWith({ error: 'Unauthorized' });
       expect(mockNext).not.toHaveBeenCalled();
@@ -148,11 +157,11 @@ describe('BaseRouteHandler', () => {
     describe('handleList', () => {
       it('should return list of items', async () => {
         mockRequest.query = { limit: '5', offset: '0' };
-        
+
         await handler['handleList'](
           mockRequest as AuthenticatedRequest,
           mockResponse as Response,
-          mockNext
+          mockNext,
         );
 
         expect(mockResponse.json).toHaveBeenCalledWith([
@@ -163,11 +172,11 @@ describe('BaseRouteHandler', () => {
 
       it('should handle query validation errors', async () => {
         mockRequest.query = { limit: 'invalid' };
-        
+
         await handler['handleList'](
           mockRequest as AuthenticatedRequest,
           mockResponse as Response,
-          mockNext
+          mockNext,
         );
 
         expect(mockNext).toHaveBeenCalledWith(expect.any(Error));
@@ -177,11 +186,11 @@ describe('BaseRouteHandler', () => {
     describe('handleGet', () => {
       it('should return single item by id', async () => {
         mockRequest.params = { id: '123' };
-        
+
         await handler['handleGet'](
           mockRequest as AuthenticatedRequest,
           mockResponse as Response,
-          mockNext
+          mockNext,
         );
 
         expect(mockResponse.json).toHaveBeenCalledWith({
@@ -192,11 +201,11 @@ describe('BaseRouteHandler', () => {
 
       it('should return 404 for non-existent item', async () => {
         mockRequest.params = { id: 'not-found' };
-        
+
         await handler['handleGet'](
           mockRequest as AuthenticatedRequest,
           mockResponse as Response,
-          mockNext
+          mockNext,
         );
 
         expect(mockResponse.status).toHaveBeenCalledWith(404);
@@ -207,11 +216,11 @@ describe('BaseRouteHandler', () => {
     describe('handleCreate', () => {
       it('should create new item with valid data', async () => {
         mockRequest.body = { name: 'New Test Item', email: 'test@example.com' };
-        
+
         await handler['handleCreate'](
           mockRequest as AuthenticatedRequest,
           mockResponse as Response,
-          mockNext
+          mockNext,
         );
 
         expect(mockResponse.status).toHaveBeenCalledWith(201);
@@ -224,11 +233,11 @@ describe('BaseRouteHandler', () => {
 
       it('should handle validation errors', async () => {
         mockRequest.body = { name: '', email: 'invalid-email' };
-        
+
         await handler['handleCreate'](
           mockRequest as AuthenticatedRequest,
           mockResponse as Response,
-          mockNext
+          mockNext,
         );
 
         expect(mockNext).toHaveBeenCalledWith(expect.any(Error));
@@ -239,11 +248,11 @@ describe('BaseRouteHandler', () => {
       it('should update existing item', async () => {
         mockRequest.params = { id: '123' };
         mockRequest.body = { name: 'Updated Name' };
-        
+
         await handler['handleUpdate'](
           mockRequest as AuthenticatedRequest,
           mockResponse as Response,
-          mockNext
+          mockNext,
         );
 
         expect(mockResponse.json).toHaveBeenCalledWith({
@@ -255,11 +264,11 @@ describe('BaseRouteHandler', () => {
       it('should handle partial updates', async () => {
         mockRequest.params = { id: '123' };
         mockRequest.body = { email: 'new@example.com' };
-        
+
         await handler['handleUpdate'](
           mockRequest as AuthenticatedRequest,
           mockResponse as Response,
-          mockNext
+          mockNext,
         );
 
         expect(mockResponse.json).toHaveBeenCalledWith({
@@ -272,11 +281,11 @@ describe('BaseRouteHandler', () => {
     describe('handleDelete', () => {
       it('should delete existing item', async () => {
         mockRequest.params = { id: '123' };
-        
+
         await handler['handleDelete'](
           mockRequest as AuthenticatedRequest,
           mockResponse as Response,
-          mockNext
+          mockNext,
         );
 
         expect(mockResponse.status).toHaveBeenCalledWith(204);
@@ -285,11 +294,11 @@ describe('BaseRouteHandler', () => {
 
       it('should return 404 for non-existent item', async () => {
         mockRequest.params = { id: 'not-found' };
-        
+
         await handler['handleDelete'](
           mockRequest as AuthenticatedRequest,
           mockResponse as Response,
-          mockNext
+          mockNext,
         );
 
         expect(mockResponse.status).toHaveBeenCalledWith(404);
@@ -303,11 +312,11 @@ describe('BaseRouteHandler', () => {
       // Mock service to throw error
       const testService = handler['testService'];
       jest.spyOn(testService, 'findMany').mockRejectedValue(new Error('Service error'));
-      
+
       await handler['handleList'](
         mockRequest as AuthenticatedRequest,
         mockResponse as Response,
-        mockNext
+        mockNext,
       );
 
       expect(mockNext).toHaveBeenCalledWith(expect.any(Error));
@@ -317,11 +326,11 @@ describe('BaseRouteHandler', () => {
       const errorSpy = jest.spyOn(handler['logger'], 'error');
       const testService = handler['testService'];
       jest.spyOn(testService, 'findMany').mockRejectedValue(new Error('Service error'));
-      
+
       await handler['handleList'](
         mockRequest as AuthenticatedRequest,
         mockResponse as Response,
-        mockNext
+        mockNext,
       );
 
       expect(errorSpy).toHaveBeenCalledWith('Error in test list:', expect.any(Error));
@@ -331,15 +340,11 @@ describe('BaseRouteHandler', () => {
   describe('Ownership Validation', () => {
     it('should create proper ownership filter', () => {
       const filter = handler['createOwnershipFilter'](1, { status: 'active' });
-      
+
       expect(filter).toEqual({
         AND: [
           {
-            OR: [
-              { isSystem: true },
-              { createdByUserId: 1 },
-              { userId: 1 },
-            ],
+            OR: [{ isSystem: true }, { createdByUserId: 1 }, { userId: 1 }],
           },
           { status: 'active' },
         ],
@@ -348,15 +353,11 @@ describe('BaseRouteHandler', () => {
 
     it('should create ownership filter without additional filters', () => {
       const filter = handler['createOwnershipFilter'](1);
-      
+
       expect(filter).toEqual({
         AND: [
           {
-            OR: [
-              { isSystem: true },
-              { createdByUserId: 1 },
-              { userId: 1 },
-            ],
+            OR: [{ isSystem: true }, { createdByUserId: 1 }, { userId: 1 }],
           },
         ],
       });
@@ -367,12 +368,8 @@ describe('BaseRouteHandler', () => {
     it('should catch and forward async errors', async () => {
       const asyncFn = jest.fn().mockRejectedValue(new Error('Async error'));
       const wrappedFn = handler['asyncHandler'](asyncFn);
-      
-      await wrappedFn(
-        mockRequest as AuthenticatedRequest,
-        mockResponse as Response,
-        mockNext
-      );
+
+      await wrappedFn(mockRequest as AuthenticatedRequest, mockResponse as Response, mockNext);
 
       expect(mockNext).toHaveBeenCalledWith(expect.any(Error));
     });
@@ -380,12 +377,8 @@ describe('BaseRouteHandler', () => {
     it('should handle successful async operations', async () => {
       const asyncFn = jest.fn().mockResolvedValue(undefined);
       const wrappedFn = handler['asyncHandler'](asyncFn);
-      
-      await wrappedFn(
-        mockRequest as AuthenticatedRequest,
-        mockResponse as Response,
-        mockNext
-      );
+
+      await wrappedFn(mockRequest as AuthenticatedRequest, mockResponse as Response, mockNext);
 
       expect(asyncFn).toHaveBeenCalled();
       expect(mockNext).not.toHaveBeenCalled();

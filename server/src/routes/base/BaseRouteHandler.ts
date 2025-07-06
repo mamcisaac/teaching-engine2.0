@@ -6,10 +6,10 @@
 
 import { Router, Request, Response, NextFunction } from 'express';
 import { z } from 'zod';
-import { prisma } from '../../prisma.js';
-import logger from '../../logger.js';
-import { BaseService } from '../../services/base/BaseService.js';
-import { AuthenticatedRequest } from './middleware.js';
+import { prisma } from '../../prisma';
+import logger from '../../logger';
+import { BaseService } from '../../services/base/BaseService';
+import { AuthenticatedRequest } from './middleware';
 
 export type { AuthenticatedRequest };
 
@@ -41,7 +41,7 @@ export abstract class BaseRouteHandler<T = any> {
     this.routeName = options.routeName;
     this.requireAuth = options.requireAuth ?? true;
     this.logger = logger.child({ route: options.routeName });
-    
+
     this.setupRoutes();
   }
 
@@ -62,7 +62,7 @@ export abstract class BaseRouteHandler<T = any> {
   protected requireAuthentication = (
     req: AuthenticatedRequest,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): void => {
     const userId = req.user?.id;
     if (!userId) {
@@ -77,7 +77,7 @@ export abstract class BaseRouteHandler<T = any> {
    * Async error handler wrapper
    */
   protected asyncHandler = (
-    fn: (req: AuthenticatedRequest, res: Response, next: NextFunction) => Promise<void>
+    fn: (req: AuthenticatedRequest, res: Response, next: NextFunction) => Promise<void>,
   ) => {
     return (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
       Promise.resolve(fn(req, res, next)).catch(next);
@@ -91,39 +91,19 @@ export abstract class BaseRouteHandler<T = any> {
     const middleware = this.requireAuth ? [this.requireAuthentication] : [];
 
     // GET / - List items
-    this.router.get(
-      '/',
-      ...middleware,
-      this.asyncHandler(this.handleList.bind(this))
-    );
+    this.router.get('/', ...middleware, this.asyncHandler(this.handleList.bind(this)));
 
     // GET /:id - Get single item
-    this.router.get(
-      '/:id',
-      ...middleware,
-      this.asyncHandler(this.handleGet.bind(this))
-    );
+    this.router.get('/:id', ...middleware, this.asyncHandler(this.handleGet.bind(this)));
 
     // POST / - Create item
-    this.router.post(
-      '/',
-      ...middleware,
-      this.asyncHandler(this.handleCreate.bind(this))
-    );
+    this.router.post('/', ...middleware, this.asyncHandler(this.handleCreate.bind(this)));
 
     // PUT /:id - Update item
-    this.router.put(
-      '/:id',
-      ...middleware,
-      this.asyncHandler(this.handleUpdate.bind(this))
-    );
+    this.router.put('/:id', ...middleware, this.asyncHandler(this.handleUpdate.bind(this)));
 
     // DELETE /:id - Delete item
-    this.router.delete(
-      '/:id',
-      ...middleware,
-      this.asyncHandler(this.handleDelete.bind(this))
-    );
+    this.router.delete('/:id', ...middleware, this.asyncHandler(this.handleDelete.bind(this)));
 
     // Allow subclasses to add custom routes
     this.setupCustomRoutes();
@@ -142,16 +122,16 @@ export abstract class BaseRouteHandler<T = any> {
   protected async handleList(
     req: AuthenticatedRequest,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<void> {
     try {
       const userId = req.userId!;
       const crudOps = this.getCrudOperations();
-      
+
       // Validate query parameters if schema provided
       const schemas = this.getValidationSchemas();
       const filters = schemas.query ? schemas.query.parse(req.query) : req.query;
-      
+
       const items = await crudOps.findMany(filters, userId);
       res.json(items);
     } catch (error) {
@@ -163,20 +143,20 @@ export abstract class BaseRouteHandler<T = any> {
   protected async handleGet(
     req: AuthenticatedRequest,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<void> {
     try {
       const userId = req.userId!;
       const { id } = req.params;
       const crudOps = this.getCrudOperations();
-      
+
       const item = await crudOps.findById(id, userId);
-      
+
       if (!item) {
         res.status(404).json({ error: `${this.routeName} not found` });
         return;
       }
-      
+
       res.json(item);
     } catch (error) {
       this.logger.error(`Error in ${this.routeName} get:`, error);
@@ -187,14 +167,14 @@ export abstract class BaseRouteHandler<T = any> {
   protected async handleCreate(
     req: AuthenticatedRequest,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<void> {
     try {
       const userId = req.userId!;
       const schemas = this.getValidationSchemas();
       const data = schemas.create.parse(req.body);
       const crudOps = this.getCrudOperations();
-      
+
       const item = await crudOps.create(data, userId);
       res.status(201).json(item);
     } catch (error) {
@@ -206,7 +186,7 @@ export abstract class BaseRouteHandler<T = any> {
   protected async handleUpdate(
     req: AuthenticatedRequest,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<void> {
     try {
       const userId = req.userId!;
@@ -214,7 +194,7 @@ export abstract class BaseRouteHandler<T = any> {
       const schemas = this.getValidationSchemas();
       const data = schemas.update.parse(req.body);
       const crudOps = this.getCrudOperations();
-      
+
       const item = await crudOps.update(id, data, userId);
       res.json(item);
     } catch (error) {
@@ -226,20 +206,20 @@ export abstract class BaseRouteHandler<T = any> {
   protected async handleDelete(
     req: AuthenticatedRequest,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<void> {
     try {
       const userId = req.userId!;
       const { id } = req.params;
       const crudOps = this.getCrudOperations();
-      
+
       const success = await crudOps.delete(id, userId);
-      
+
       if (!success) {
         res.status(404).json({ error: `${this.routeName} not found` });
         return;
       }
-      
+
       res.status(204).send();
     } catch (error) {
       this.logger.error(`Error in ${this.routeName} delete:`, error);
@@ -257,11 +237,11 @@ export abstract class BaseRouteHandler<T = any> {
           OR: [
             { isSystem: true },
             { createdByUserId: userId },
-            { userId: userId } // Alternative ownership field
-          ]
+            { userId: userId }, // Alternative ownership field
+          ],
         },
-        ...(additionalFilters ? [additionalFilters] : [])
-      ]
+        ...(additionalFilters ? [additionalFilters] : []),
+      ],
     };
   }
 
@@ -271,19 +251,15 @@ export abstract class BaseRouteHandler<T = any> {
   protected async validateOwnership(
     tableName: string,
     id: string,
-    userId: number
+    userId: number,
   ): Promise<boolean> {
     try {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const record = await (prisma as any)[tableName].findFirst({
         where: {
           id,
-          OR: [
-            { isSystem: true },
-            { createdByUserId: userId },
-            { userId: userId }
-          ]
-        }
+          OR: [{ isSystem: true }, { createdByUserId: userId }, { userId: userId }],
+        },
       });
       return !!record;
     } catch (error) {

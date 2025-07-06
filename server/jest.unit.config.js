@@ -7,5 +7,5 @@
 process.env.TEST_TYPE = 'unit';
 
 // Import and export main configuration
-import config from './jest.config.js';
-export default config;
+const config = require('./jest.config.js');
+module.exports = config;

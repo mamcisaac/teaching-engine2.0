@@ -5,7 +5,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { z } from 'zod';
 import { ParsedQs } from 'qs';
-import logger from '../../logger.js';
+import logger from '../../logger';
 import { formatValidationError } from './validation.js';
 
 export interface AuthenticatedRequest extends Request {
@@ -23,11 +23,7 @@ export interface AuthenticatedRequest extends Request {
 /**
  * Authentication middleware
  */
-export const requireAuth = (
-  req: AuthenticatedRequest,
-  res: Response,
-  next: NextFunction
-): void => {
+export const requireAuth = (req: AuthenticatedRequest, res: Response, next: NextFunction): void => {
   const userId = req.user?.id;
   if (!userId) {
     res.status(401).json({ error: 'Unauthorized' });
@@ -43,7 +39,7 @@ export const requireAuth = (
 export const optionalAuth = (
   req: AuthenticatedRequest,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): void => {
   const userId = req.user?.id;
   if (userId) {
@@ -112,7 +108,7 @@ export const validateQuery = (schema: z.ZodSchema) => {
  * Async error handler wrapper
  */
 export const asyncHandler = (
-  fn: (req: Request, res: Response, next: NextFunction) => Promise<void>
+  fn: (req: Request, res: Response, next: NextFunction) => Promise<void>,
 ) => {
   return (req: Request, res: Response, next: NextFunction) => {
     Promise.resolve(fn(req, res, next)).catch(next);
@@ -122,15 +118,11 @@ export const asyncHandler = (
 /**
  * Request logging middleware
  */
-export const requestLogger = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-): void => {
+export const requestLogger = (req: Request, res: Response, next: NextFunction): void => {
   const start = Date.now();
   const originalSend = res.send;
 
-  res.send = function(body) {
+  res.send = function (body) {
     const duration = Date.now() - start;
     logger.info(
       {
@@ -139,9 +131,9 @@ export const requestLogger = (
         statusCode: res.statusCode,
         duration: `${duration}ms`,
         userAgent: req.get('User-Agent'),
-        ip: req.ip
+        ip: req.ip,
       },
-      'Request completed'
+      'Request completed',
     );
     return originalSend.call(this, body);
   };
@@ -152,11 +144,7 @@ export const requestLogger = (
 /**
  * Rate limiting middleware factory
  */
-export const createRateLimit = (options: {
-  windowMs: number;
-  max: number;
-  message?: string;
-}) => {
+export const createRateLimit = (options: { windowMs: number; max: number; message?: string }) => {
   const requests = new Map<string, { count: number; resetTime: number }>();
 
   return (req: Request, res: Response, next: NextFunction): void => {
@@ -182,7 +170,7 @@ export const createRateLimit = (options: {
     if (entry.count >= options.max) {
       res.status(429).json({
         error: options.message || 'Too many requests',
-        retryAfter: Math.ceil((entry.resetTime - now) / 1000)
+        retryAfter: Math.ceil((entry.resetTime - now) / 1000),
       });
       return;
     }
@@ -196,11 +184,7 @@ export const createRateLimit = (options: {
 /**
  * Input sanitization middleware
  */
-export const sanitizeInput = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-): void => {
+export const sanitizeInput = (req: Request, res: Response, next: NextFunction): void => {
   const sanitizeValue = (value: unknown): unknown => {
     if (typeof value === 'string') {
       // Remove HTML tags, including content within script tags, and normalize whitespace
@@ -240,16 +224,19 @@ export const errorHandler = (
   err: Error,
   req: Request,
   res: Response,
-  _next: NextFunction
+  _next: NextFunction,
 ): void => {
-  logger.error({
-    error: err.message,
-    stack: err.stack,
-    method: req.method,
-    url: req.url,
-    body: req.body,
-    query: req.query
-  }, 'Route error');
+  logger.error(
+    {
+      error: err.message,
+      stack: err.stack,
+      method: req.method,
+      url: req.url,
+      body: req.body,
+      query: req.query,
+    },
+    'Route error',
+  );
 
   // Handle specific error types
   if (err instanceof z.ZodError) {
@@ -274,8 +261,8 @@ export const errorHandler = (
     error: 'Internal server error',
     ...(process.env.NODE_ENV === 'development' && {
       details: err.message,
-      stack: err.stack
-    })
+      stack: err.stack,
+    }),
   });
 };
 
@@ -291,12 +278,12 @@ export const corsMiddleware = (allowedOrigins: string[]) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     res.setHeader('Access-Control-Allow-Credentials', 'true');
-    
+
     if (req.method === 'OPTIONS') {
       res.status(200).end();
       return;
     }
-    
+
     next();
   };
 };
@@ -304,11 +291,7 @@ export const corsMiddleware = (allowedOrigins: string[]) => {
 /**
  * Security headers middleware
  */
-export const securityHeaders = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-): void => {
+export const securityHeaders = (req: Request, res: Response, next: NextFunction): void => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
   res.setHeader('X-XSS-Protection', '1; mode=block');

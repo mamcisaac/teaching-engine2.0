@@ -482,6 +482,9 @@ importers:
       node-cron:
         specifier: ^3.0.3
         version: 3.0.3
+      nodemailer:
+        specifier: ^6.9.16
+        version: 6.10.1
       openai:
         specifier: ^4.28.4
         version: 4.104.0(ws@8.18.2)(zod@3.25.58)
@@ -10704,6 +10707,13 @@ packages:
       {
         integrity: sha512-xxOWJsBKtzAq7DY0J+DTzuz58K8e7sJbdgwkbMWQe8UYB6ekmsQ45q0M/tJDsGaZmbC+l7n57UV8Hl5tHxO9uw==,
       }
+
+  nodemailer@6.10.1:
+    resolution:
+      {
+        integrity: sha512-Z+iLaBGVaSjbIzQ4pX6XV41HrooLsQ10ZWPUehGmuantvzWoDVBnmsdUcOIDM1t+yPor5pDhVlDESgOMEGxhHA==,
+      }
+    engines: { node: '>=6.0.0' }
 
   normalize-path@2.1.1:
     resolution:
@@ -21557,6 +21567,8 @@ snapshots:
   node-int64@0.4.0: {}
 
   node-releases@2.0.19: {}
+
+  nodemailer@6.10.1: {}
 
   normalize-path@2.1.1:
     dependencies:
