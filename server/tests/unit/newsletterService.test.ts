@@ -305,14 +305,14 @@ describe('NewsletterService', () => {
 
   describe('getLastNewsletterDate', () => {
     it('should return null when no last newsletter date', async () => {
-      const result = await (NewsletterService as unknown).getLastNewsletterDate(1);
+      const result = await (NewsletterService as any)._getLastNewsletterDate(1);
 
       expect(result).toBeNull();
     });
 
     it('should handle different user IDs', async () => {
-      const result1 = await (NewsletterService as unknown).getLastNewsletterDate(1);
-      const result2 = await (NewsletterService as unknown).getLastNewsletterDate(999);
+      const result1 = await (NewsletterService as any)._getLastNewsletterDate(1);
+      const result2 = await (NewsletterService as any)._getLastNewsletterDate(999);
 
       expect(result1).toBeNull();
       expect(result2).toBeNull();
