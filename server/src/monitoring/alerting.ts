@@ -3,7 +3,14 @@ import { logger } from '../logger';
 import { getMetrics } from '../middleware/metrics';
 import { prisma } from '@teaching-engine/database';
 import { withSpan, errorCounter } from './telemetry';
-import nodemailer from 'nodemailer';
+
+// Optional nodemailer import - alerting works without email
+let nodemailer: any;
+try {
+  nodemailer = require('nodemailer');
+} catch (error) {
+  logger.warn('Nodemailer not available - email alerts disabled');
+}
 
 interface Alert {
   id: string;
@@ -52,9 +59,9 @@ const alertState: AlertState = {
 };
 
 // Email transporter (if enabled)
-let emailTransporter: nodemailer.Transporter | null = null;
+let emailTransporter: any = null;
 
-if (ALERT_EMAIL_ENABLED) {
+if (ALERT_EMAIL_ENABLED && nodemailer) {
   emailTransporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST || 'localhost',
     port: parseInt(process.env.SMTP_PORT || '587'),
