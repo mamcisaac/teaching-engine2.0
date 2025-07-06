@@ -29,7 +29,7 @@ export abstract class BaseRepository<T extends { id: number }, CreateInput, Upda
 
   async findById(id: number): Promise<T | null> {
     try {
-      const result = await (this.model as any).findUnique({
+      const result = await (this.model as Record<string, unknown>).findUnique({
         where: { id },
       });
       return result;
