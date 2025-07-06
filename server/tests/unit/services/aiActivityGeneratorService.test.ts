@@ -54,7 +54,7 @@ describe('AIActivityGeneratorService', () => {
         ],
       };
 
-      const prompt = (service as unknown).buildGenerationPrompt(params);
+      const prompt = (service as any)._buildGenerationPrompt(params);
 
       expect(prompt).toContain('Generate an engaging educational activity');
       expect(prompt).toContain('Title: Fractions Introduction');
@@ -76,7 +76,7 @@ describe('AIActivityGeneratorService', () => {
     test('should handle minimal parameters', () => {
       const params = {};
 
-      const prompt = (service as unknown).buildGenerationPrompt(params);
+      const prompt = (service as any)._buildGenerationPrompt(params);
 
       expect(prompt).toContain('Generate an engaging educational activity');
       expect(prompt).toContain('Please provide a complete activity plan in JSON format');
@@ -111,7 +111,7 @@ describe('AIActivityGeneratorService', () => {
         }));
 
       const params = { searchResults: mockSearchResults };
-      const prompt = (service as unknown).buildGenerationPrompt(params);
+      const prompt = (service as any)._buildGenerationPrompt(params);
 
       // Should only include first 3 results
       expect(prompt).toContain('Activity 1: Description 1');
@@ -142,7 +142,7 @@ describe('AIActivityGeneratorService', () => {
       };
 
       const response = `Here's the activity: ${JSON.stringify(mockActivityJSON)}`;
-      const result = (service as unknown).parseGeneratedActivity(response);
+      const result = (service as any)._parseGeneratedActivity(response);
 
       expect(result).toEqual(mockActivityJSON);
     });
@@ -156,7 +156,7 @@ describe('AIActivityGeneratorService', () => {
       };
 
       const response = JSON.stringify(mockActivityJSON);
-      const result = (service as unknown).parseGeneratedActivity(response);
+      const result = (service as any)._parseGeneratedActivity(response);
 
       expect(result).toEqual({
         title: 'Test Activity',
@@ -186,7 +186,7 @@ describe('AIActivityGeneratorService', () => {
       const response = JSON.stringify(mockActivityJSON);
 
       expect(() => {
-        (service as unknown).parseGeneratedActivity(response);
+        (service as any)._parseGeneratedActivity(response);
       }).toThrow('Failed to parse generated activity');
     });
 
@@ -194,7 +194,7 @@ describe('AIActivityGeneratorService', () => {
       const response = 'Invalid JSON {]';
 
       expect(() => {
-        (service as unknown).parseGeneratedActivity(response);
+        (service as any)._parseGeneratedActivity(response);
       }).toThrow('Failed to parse generated activity');
     });
 
@@ -202,7 +202,7 @@ describe('AIActivityGeneratorService', () => {
       const response = 'No JSON content here';
 
       expect(() => {
-        (service as unknown).parseGeneratedActivity(response);
+        (service as any)._parseGeneratedActivity(response);
       }).toThrow('Failed to parse generated activity');
     });
   });
@@ -483,7 +483,7 @@ describe('AIActivityGeneratorService', () => {
         },
       };
 
-      const prompt = (service as unknown).buildGenerationPrompt(params);
+      const prompt = (service as any)._buildGenerationPrompt(params);
 
       // Should reference French language instruction
       expect(prompt).toContain('Language: fr');
@@ -505,14 +505,14 @@ describe('AIActivityGeneratorService', () => {
         },
       };
 
-      const prompt = (service as unknown).buildGenerationPrompt(params);
+      const prompt = (service as any)._buildGenerationPrompt(params);
 
       expect(prompt).toContain('Curriculum Expectations: 3.NF.1, 3.NF.2, 3.OA.1');
     });
 
     test('should include proper JSON schema in prompt', () => {
       const params = {};
-      const prompt = (service as unknown).buildGenerationPrompt(params);
+      const prompt = (service as any)._buildGenerationPrompt(params);
 
       // Check that the JSON schema is complete and valid
       expect(prompt).toContain('"title"');
@@ -534,7 +534,7 @@ describe('AIActivityGeneratorService', () => {
 
   describe('System Prompt Quality', () => {
     test('should include comprehensive system prompt requirements', () => {
-      const systemPrompt = (service as unknown).getSystemPrompt();
+      const systemPrompt = (service as any)._getSystemPrompt();
 
       expect(systemPrompt).toContain('expert elementary school teacher');
       expect(systemPrompt).toContain('French immersion');

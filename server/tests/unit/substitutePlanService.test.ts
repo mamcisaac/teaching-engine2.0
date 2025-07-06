@@ -21,7 +21,7 @@ describe('SubstitutePlanService', () => {
   describe('createBasicSchedule() method', () => {
     test('should create standard daily schedule', () => {
       // Access private method for testing
-      const schedule = (SubstitutePlanService as unknown).createBasicSchedule();
+      const schedule = (SubstitutePlanService as any).createBasicSchedule();
 
       expect(schedule).toHaveLength(9);
       expect(schedule[0]).toMatchObject({
@@ -47,7 +47,7 @@ describe('SubstitutePlanService', () => {
     });
 
     test('should include all required time slots', () => {
-      const schedule = (SubstitutePlanService as unknown).createBasicSchedule();
+      const schedule = (SubstitutePlanService as any).createBasicSchedule();
       const times = schedule.map((item: unknown) => item.time);
 
       expect(times).toContain('8:30 AM');
@@ -62,7 +62,7 @@ describe('SubstitutePlanService', () => {
     });
 
     test('should have consistent data structure', () => {
-      const schedule = (SubstitutePlanService as unknown).createBasicSchedule();
+      const schedule = (SubstitutePlanService as any).createBasicSchedule();
 
       schedule.forEach((item: unknown) => {
         expect(item).toHaveProperty('time');
@@ -79,7 +79,7 @@ describe('SubstitutePlanService', () => {
 
   describe('time slot functionality', () => {
     test('should work with basic schedule structure', () => {
-      const schedule = (SubstitutePlanService as unknown).createBasicSchedule();
+      const schedule = (SubstitutePlanService as any).createBasicSchedule();
       expect(schedule).toHaveLength(9);
 
       // Test that lesson blocks are available at expected times
@@ -93,7 +93,7 @@ describe('SubstitutePlanService', () => {
     });
 
     test('should return first time slot for negative index', () => {
-      const timeSlot = (SubstitutePlanService as unknown).getTimeSlot(-1);
+      const timeSlot = (SubstitutePlanService as any)._getTimeSlot(-1);
       expect(timeSlot).toBe('9:15 AM');
     });
   });
@@ -107,7 +107,7 @@ describe('SubstitutePlanService', () => {
         consolidationActivities: 'Exit ticket with problems',
       };
 
-      const instructions = (SubstitutePlanService as unknown).formatLessonInstructions(lessonPlan);
+      const instructions = (SubstitutePlanService as any)._formatLessonInstructions(lessonPlan);
 
       expect(instructions).toContain('Learning Goals: Students will understand fractions');
       expect(instructions).toContain('Start (10 min): Review previous lesson');
@@ -122,7 +122,7 @@ describe('SubstitutePlanService', () => {
         // Missing mindsOnActivities and consolidationActivities
       };
 
-      const instructions = (SubstitutePlanService as unknown).formatLessonInstructions(lessonPlan);
+      const instructions = (SubstitutePlanService as any)._formatLessonInstructions(lessonPlan);
 
       expect(instructions).toContain('Learning Goals: Students will understand fractions');
       expect(instructions).toContain('Main Activity: Hands-on fraction activities');
@@ -133,7 +133,7 @@ describe('SubstitutePlanService', () => {
     test('should return fallback message for empty lesson plan', () => {
       const lessonPlan = {};
 
-      const instructions = (SubstitutePlanService as unknown).formatLessonInstructions(lessonPlan);
+      const instructions = (SubstitutePlanService as any)._formatLessonInstructions(lessonPlan);
 
       expect(instructions).toBe('Follow the activities as outlined in the lesson plan binder.');
     });
@@ -146,7 +146,7 @@ describe('SubstitutePlanService', () => {
         consolidationActivities: '',
       };
 
-      const instructions = (SubstitutePlanService as unknown).formatLessonInstructions(lessonPlan);
+      const instructions = (SubstitutePlanService as any)._formatLessonInstructions(lessonPlan);
 
       expect(instructions).toContain('Main Activity: Hands-on fraction activities');
       expect(instructions).not.toContain('Learning Goals:');
@@ -160,7 +160,7 @@ describe('SubstitutePlanService', () => {
         actionActivities: 'Hands-on fraction activities',
       };
 
-      const instructions = (SubstitutePlanService as unknown).formatLessonInstructions(lessonPlan);
+      const instructions = (SubstitutePlanService as any)._formatLessonInstructions(lessonPlan);
 
       expect(instructions).toMatch(/Learning Goals:.*\n\n/);
       expect(instructions).toMatch(/Main Activity: Hands-on fraction activities$/);
@@ -169,7 +169,7 @@ describe('SubstitutePlanService', () => {
 
   describe('createGeneralNotes() method', () => {
     test('should create general notes with teacher name', () => {
-      const notes = (SubstitutePlanService as unknown).createGeneralNotes('Jane Teacher');
+      const notes = (SubstitutePlanService as any).createGeneralNotes('Jane Teacher');
 
       expect(notes).toContain('Welcome! Thank you for substituting today.');
       expect(notes).toContain('Teacher: Jane Teacher');
@@ -181,7 +181,7 @@ describe('SubstitutePlanService', () => {
     });
 
     test('should create general notes without teacher name', () => {
-      const notes = (SubstitutePlanService as unknown).createGeneralNotes();
+      const notes = (SubstitutePlanService as any).createGeneralNotes();
 
       expect(notes).toContain('Welcome! Thank you for substituting today.');
       expect(notes).toContain('Teacher: See class information');
@@ -189,19 +189,19 @@ describe('SubstitutePlanService', () => {
     });
 
     test('should handle null teacher name', () => {
-      const notes = (SubstitutePlanService as unknown).createGeneralNotes(null);
+      const notes = (SubstitutePlanService as any).createGeneralNotes(null);
 
       expect(notes).toContain('Teacher: See class information');
     });
 
     test('should handle empty teacher name', () => {
-      const notes = (SubstitutePlanService as unknown).createGeneralNotes('');
+      const notes = (SubstitutePlanService as any).createGeneralNotes('');
 
       expect(notes).toContain('Teacher: See class information');
     });
 
     test('should include all required sections', () => {
-      const notes = (SubstitutePlanService as unknown).createGeneralNotes('Jane Teacher');
+      const notes = (SubstitutePlanService as any).createGeneralNotes('Jane Teacher');
 
       expect(notes).toContain('Key Information:');
       expect(notes).toContain('Teacher:');
@@ -368,33 +368,33 @@ describe('SubstitutePlanService', () => {
     });
 
     test('should have private methods accessible for testing', () => {
-      expect(typeof (SubstitutePlanService as unknown).createBasicSchedule).toBe('function');
-      expect(typeof (SubstitutePlanService as unknown).getTimeSlot).toBe('function');
-      expect(typeof (SubstitutePlanService as unknown).formatLessonInstructions).toBe('function');
-      expect(typeof (SubstitutePlanService as unknown).createGeneralNotes).toBe('function');
+      expect(typeof (SubstitutePlanService as any).createBasicSchedule).toBe('function');
+      expect(typeof (SubstitutePlanService as any)._getTimeSlot).toBe('function');
+      expect(typeof (SubstitutePlanService as any)._formatLessonInstructions).toBe('function');
+      expect(typeof (SubstitutePlanService as any).createGeneralNotes).toBe('function');
     });
 
     test('should handle edge case parameters in private methods', () => {
       // Test edge cases for getTimeSlot
-      expect((SubstitutePlanService as unknown).getTimeSlot(100)).toBe('9:15 AM');
-      expect((SubstitutePlanService as unknown).getTimeSlot(-100)).toBe('9:15 AM');
+      expect((SubstitutePlanService as any)._getTimeSlot(100)).toBe('9:15 AM');
+      expect((SubstitutePlanService as any)._getTimeSlot(-100)).toBe('9:15 AM');
 
       // Test edge cases for formatLessonInstructions - service handles null/undefined gracefully
-      expect((SubstitutePlanService as unknown).formatLessonInstructions(null)).toBe(
+      expect((SubstitutePlanService as any)._formatLessonInstructions(null)).toBe(
         'Follow the activities as outlined in the lesson plan binder.',
       );
-      expect((SubstitutePlanService as unknown).formatLessonInstructions(undefined)).toBe(
+      expect((SubstitutePlanService as any)._formatLessonInstructions(undefined)).toBe(
         'Follow the activities as outlined in the lesson plan binder.',
       );
 
       // Test edge cases for createGeneralNotes
-      expect((SubstitutePlanService as unknown).createGeneralNotes(null)).toContain(
+      expect((SubstitutePlanService as any).createGeneralNotes(null)).toContain(
         'See class information',
       );
-      expect((SubstitutePlanService as unknown).createGeneralNotes(undefined)).toContain(
+      expect((SubstitutePlanService as any).createGeneralNotes(undefined)).toContain(
         'See class information',
       );
-      expect((SubstitutePlanService as unknown).createGeneralNotes('')).toContain(
+      expect((SubstitutePlanService as any).createGeneralNotes('')).toContain(
         'See class information',
       );
     });
@@ -411,7 +411,7 @@ describe('SubstitutePlanService', () => {
       // Test that time slots are consistent across multiple calls
       const slots = [];
       for (let i = 0; i < 10; i++) {
-        slots.push((SubstitutePlanService as unknown).getTimeSlot(i));
+        slots.push((SubstitutePlanService as any)._getTimeSlot(i));
       }
 
       // Should cycle through the three available slots

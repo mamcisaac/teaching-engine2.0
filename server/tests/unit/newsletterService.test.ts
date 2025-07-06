@@ -245,12 +245,7 @@ describe('NewsletterService', () => {
       const fromDate = new Date('2023-10-15');
       const toDate = new Date('2023-10-29');
 
-      const result = (NewsletterService as unknown).generateTemplateContent(
-        [],
-        [],
-        fromDate,
-        toDate,
-      );
+      const result = (NewsletterService as any)._generateTemplateContent([], [], fromDate, toDate);
 
       expect(result).toContain('2023-10-14 to 2023-10-28'); // Adjusted for actual date formatting
     });
@@ -294,14 +289,14 @@ describe('NewsletterService', () => {
 
   describe('getUserPreferences', () => {
     it('should return empty preferences object', async () => {
-      const result = await (NewsletterService as unknown).getUserPreferences(1);
+      const result = await (NewsletterService as any).getUserPreferences(1);
 
       expect(result).toEqual({});
     });
 
     it('should handle different user IDs', async () => {
-      const result1 = await (NewsletterService as unknown).getUserPreferences(1);
-      const result2 = await (NewsletterService as unknown).getUserPreferences(999);
+      const result1 = await (NewsletterService as any).getUserPreferences(1);
+      const result2 = await (NewsletterService as any).getUserPreferences(999);
 
       expect(result1).toEqual({});
       expect(result2).toEqual({});
@@ -336,7 +331,7 @@ describe('NewsletterService', () => {
       const fromDate = new Date('2023-11-01');
       const toDate = new Date('2023-11-15');
 
-      const result = (NewsletterService as unknown).formatDateRange(fromDate, toDate);
+      const result = (NewsletterService as any).formatDateRange(fromDate, toDate);
 
       expect(result).toBe('2023-10-31 to 2023-11-14'); // Adjusted for actual date formatting
     });
@@ -355,7 +350,7 @@ describe('NewsletterService', () => {
         },
       ];
 
-      const result = (NewsletterService as unknown).formatLessonSummary(mockLessonPlans);
+      const result = (NewsletterService as any)._formatLessonSummary(mockLessonPlans);
 
       expect(result).toContain('### Recent Lessons');
       expect(result).toContain('**2023-11-01**: Math Addition'); // Adjusted for actual date formatting
@@ -378,7 +373,7 @@ describe('NewsletterService', () => {
         },
       ];
 
-      const result = (NewsletterService as unknown).formatReflectionHighlights(mockReflections);
+      const result = (NewsletterService as any)._formatReflectionHighlights(mockReflections);
 
       expect(result).toContain('### Teacher Reflections');
       expect(result).toContain('- 2023-11-01: Great progress in math'); // Adjusted for actual date formatting
@@ -387,12 +382,12 @@ describe('NewsletterService', () => {
     });
 
     it('should return empty string for empty lesson summary', () => {
-      const result = (NewsletterService as unknown).formatLessonSummary([]);
+      const result = (NewsletterService as any)._formatLessonSummary([]);
       expect(result).toBe('');
     });
 
     it('should return empty string for empty reflection highlights', () => {
-      const result = (NewsletterService as unknown).formatReflectionHighlights([]);
+      const result = (NewsletterService as any)._formatReflectionHighlights([]);
       expect(result).toBe('');
     });
   });

@@ -178,4 +178,10 @@ Warm regards,
     // Mock implementation that doesn't throw
     return Promise.resolve();
   }
+
+  // @ts-expect-error Method reserved for future user preferences
+  static async getUserPreferences(_userId: number): Promise<Record<string, never>> {
+    // Mock implementation - returns empty object
+    return {};
+  }
 }
