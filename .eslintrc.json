@@ -26,6 +26,7 @@
     "packages/database/prisma/seed.ts",
     "packages/database/prisma/seed-*.ts",
     "playwright.config.ci.ts",
+    "playwright.config.full.ts",
     "scripts/**/*",
     "server/scripts/**/*",
     "client/scripts/**/*",

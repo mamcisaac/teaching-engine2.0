@@ -3,7 +3,7 @@ import { beforeEach, afterEach, beforeAll, afterAll } from '@jest/globals';
 import { testDb } from './setup-test-db';
 import { randomBytes } from 'crypto';
 import { PrismaClient } from '@teaching-engine/database';
-import { resetRateLimiterState } from '../src/middleware/rateLimiter';
+import { resetRateLimiterState } from '../src/middleware/rateLimit';
 
 // Store current test context
 let currentTestId: string | null = null;
@@ -31,8 +31,8 @@ beforeAll(async () => {
     };
     globalForPrisma.testPrismaClient = testDb.getPrismaClient(workerId);
   } catch (_error) {
-    console.error('Failed to setup test database:', error);
-    throw error;
+    console.error('Failed to setup test database:', _error);
+    throw _error;
   }
 });
 
@@ -62,8 +62,8 @@ beforeEach(async () => {
     // Set up real implementation environment
     setupRealTestEnvironment();
   } catch (_error) {
-    console.error('Failed to start transaction for test:', error);
-    throw error;
+    console.error('Failed to start transaction for test:', _error);
+    throw _error;
   }
 });
 
@@ -111,7 +111,7 @@ afterEach(async () => {
       };
       globalForPrisma.testPrismaClient = testDb.getPrismaClient(workerId);
     } catch (_error) {
-      console.error('Failed to reset database:', error);
+      console.error('Failed to reset database:', _error);
     } finally {
       currentTestId = null;
       currentTransactionClient = null;
@@ -133,7 +133,7 @@ afterAll(async () => {
 
     await testDb.cleanup();
   } catch (_error) {
-    console.warn('Failed to cleanup test database:', error);
+    console.warn('Failed to cleanup test database:', _error);
   }
 });
 
@@ -206,8 +206,8 @@ export async function createTestData<T>(
     console.log('createTestData result:', result);
     return result;
   } catch (_error) {
-    console.error('createTestData error:', error);
-    throw error;
+    console.error('createTestData error:', _error);
+    throw _error;
   }
 }
 

@@ -65,8 +65,10 @@ export class CurriculumValidator {
   validate(curriculum: ParsedCurriculum): ValidationResult {
     const errors: ValidationError[] = [];
     const warnings: ValidationWarning[] = [];
+    
+    // Initialize stats with safe defaults
     const stats: ValidationStats = {
-      totalExpectations: curriculum.expectations.length,
+      totalExpectations: 0,
       overallExpectations: 0,
       specificExpectations: 0,
       strands: [],
@@ -76,6 +78,19 @@ export class CurriculumValidator {
 
     // Basic structure validation
     this.validateStructure(curriculum, errors);
+    
+    // Early return if curriculum is invalid
+    if (!curriculum || !curriculum.expectations || !Array.isArray(curriculum.expectations)) {
+      return {
+        isValid: false,
+        errors,
+        warnings,
+        stats,
+      };
+    }
+    
+    // Now safe to update totalExpectations
+    stats.totalExpectations = curriculum.expectations.length;
 
     // Grade validation
     this.validateGrade(curriculum.grade, errors);
@@ -246,7 +261,7 @@ export class CurriculumValidator {
           message: 'Expectation description is required',
           expectationCode: expectation.code,
         });
-      } else if (expectation.description.length < 10) {
+      } else if (expectation.description.length < 10 && this.options.strictMode) {
         warnings.push({
           field: 'expectation.description',
           message: 'Expectation description is too short',

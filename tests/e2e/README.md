@@ -2,6 +2,37 @@
 
 This directory contains end-to-end tests with integrated server management and dynamic test user creation.
 
+## Test Organization
+
+### Quick Smoke Tests (CI)
+- `ci-quick-smoke.spec.ts` - Ultra-fast smoke tests optimized for CI (< 30s)
+- `smoke-simple.spec.ts` - Basic smoke tests for critical functionality
+
+### Core Feature Tests
+- `auth-flow.spec.ts` - Authentication and authorization flows
+- `basic-health.spec.ts` - Basic application health checks
+
+### Comprehensive Tests (Full Suite)
+- `teacher-planning-flow.spec.ts` - Full ETFO teacher planning workflow (5-10 min)
+- `curriculum-import.spec.ts` - Curriculum import and management (5-10 min)
+- `full-app-flow.spec.ts` - Complete application workflow testing
+
+### Running Test Suites
+
+```bash
+# Quick CI smoke tests (< 2 minutes)
+pnpm test:e2e:ci
+
+# Full comprehensive test suite (30-60 minutes)
+pnpm test:e2e:full
+
+# Standard test run
+pnpm test:e2e
+
+# Individual test file
+pnpm test:e2e tests/e2e/specific-test.spec.ts
+```
+
 ## Architecture
 
 ### 1. Test Server Management

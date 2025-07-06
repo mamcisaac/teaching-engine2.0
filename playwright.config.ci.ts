@@ -6,10 +6,10 @@ export default defineConfig({
 
   // Override test directory to run only essential tests
   testDir: './tests/e2e',
-  testMatch: ['smoke-simple.spec.ts', 'teacher-planning-flow.spec.ts', 'curriculum-import.spec.ts'],
+  testMatch: ['ci-quick-smoke.spec.ts', 'smoke-simple.spec.ts'],
 
-  // Reduce timeout for CI
-  timeout: 60 * 1000, // 1 minute per test
+  // Reasonable timeout for CI smoke tests
+  timeout: 30 * 1000, // 30 seconds per test
 
   // CI-specific settings
   workers: 1,

@@ -95,11 +95,22 @@ class TestDatabaseManager {
       // Connect to ensure database exists
       await client.$connect();
 
-      // Run a simple query to ensure schema is initialized
-      await client.$executeRaw`SELECT 1`;
-
-      // The schema will be automatically created by Prisma when first accessed
-      // For SQLite, this happens on first query
+      // For SQLite, we need to create the schema explicitly
+      // Run Prisma push to create tables
+      const { execSync } = await import('child_process');
+      const workerId = process.env.JEST_WORKER_ID || 'default';
+      const dbPath = this.getTestDatabasePath(workerId);
+      
+      console.log(`[TestDB] Creating schema for database: ${dbPath}`);
+      
+      // Run prisma db push to create the schema
+      const prismaPath = resolve(process.cwd(), '../packages/database');
+      execSync(
+        `cd "${prismaPath}" && DATABASE_URL="file:${dbPath}" npx prisma db push --skip-generate`,
+        { stdio: 'pipe' }
+      );
+      
+      console.log('[TestDB] Schema created successfully');
     } catch (error) {
       console.error('[TestDB] Failed to initialize database:', error);
       throw error;

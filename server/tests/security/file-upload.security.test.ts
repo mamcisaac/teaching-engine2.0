@@ -6,27 +6,25 @@
 
 import { describe, it, expect, beforeEach, afterEach, beforeAll, afterAll } from '@jest/globals';
 import supertest from 'supertest';
-import express from 'express';
+import express, { Request, Response } from 'express';
 import multer from 'multer';
-import { PrismaClient } from '@teaching-engine/database';
-import { generateAuthToken } from '../../services/auth/authService';
-import { rateLimiters } from '../../middleware/rateLimit';
-import curriculumImportRoutes from '../../routes/curriculumImport';
-import { authMiddleware } from '../../middleware/auth';
-import logger from '../../logger';
+import { generateAuthToken } from '../../src/services/auth/authService';
+import { getTestPrismaClient } from '../jest.setup';
+
+// Require the actual PrismaClient, bypassing any mocks
+const { PrismaClient } = jest.requireActual('@teaching-engine/database') as typeof import('@teaching-engine/database');
+import { rateLimiters } from '../../src/middleware/rateLimit';
+import curriculumImportRoutes from '../../src/routes/curriculumImport';
+import { authMiddleware } from '../../src/middleware/auth';
+import logger from '../../src/logger';
 import path from 'path';
 import fs from 'fs';
 
-// Mock logger
-jest.mock('../../logger', () => ({
-  info: jest.fn(),
-  warn: jest.fn(),
-  error: jest.fn(),
-  debug: jest.fn(),
-}));
+// Use the automatic mock from __mocks__ directory
+jest.mock('../../src/logger');
 
 // Mock the curriculum import service
-jest.mock('../../services/curriculum', () => ({
+jest.mock('../../src/services/curriculum', () => ({
   curriculumImportService: {
     startImport: jest.fn().mockResolvedValue('test-import-id'),
     storeUploadedFile: jest.fn().mockResolvedValue(true),
@@ -50,10 +48,10 @@ jest.mock('../../services/curriculum', () => ({
 
 describe('File Upload Security Tests', () => {
   let app: express.Application;
-  let prisma: PrismaClient;
+  let prisma: InstanceType<typeof PrismaClient>;
   let request: supertest.SuperTest<supertest.Test>;
   let testToken: string;
-  let testUser: unknown;
+  let testUser: any;
 
   // Malicious file content samples
   const maliciousFiles = {
@@ -182,11 +180,15 @@ describe('File Upload Security Tests', () => {
     process.env.JWT_SECRET = 'test-file-upload-secret';
     process.env.NODE_ENV = 'test';
 
-    // Initialize test database
-    prisma = new PrismaClient({
-      datasources: {
-        db: { url: process.env.DATABASE_URL || 'file:./test-file-upload.db' },
-      },
+    // Get test database from setup - but use the real PrismaClient
+    // The getTestPrismaClient should return a real client for security tests
+    prisma = getTestPrismaClient();
+  });
+
+  beforeEach(async () => {
+    // Clean up any existing test users before creating new ones
+    await prisma.user.deleteMany({
+      where: { email: { contains: 'file.upload' } },
     });
 
     // Create test user and token
@@ -195,7 +197,7 @@ describe('File Upload Security Tests', () => {
         email: 'file.upload@test.com',
         name: 'File Upload Test User',
         password: 'HashedPassword123!',
-        role: 'USER',
+        role: 'teacher',
       },
     });
 
@@ -253,17 +255,18 @@ describe('File Upload Security Tests', () => {
     });
 
     request = supertest(app);
-  });
-
-  beforeEach(() => {
+    
+    // Clear mocks
     jest.clearAllMocks();
   });
 
   afterAll(async () => {
-    await prisma.user.deleteMany({
-      where: { email: { contains: 'file.upload' } },
-    });
-    await prisma.$disconnect();
+    // Clean up test users
+    if (prisma) {
+      await prisma.user.deleteMany({
+        where: { email: { contains: 'file.upload' } },
+      });
+    }
   });
 
   describe('File Type Validation', () => {
@@ -651,7 +654,7 @@ describe('File Upload Security Tests', () => {
           email: 'file.upload.2@test.com',
           name: 'File Upload Test User 2',
           password: 'HashedPassword123!',
-          role: 'USER',
+          role: 'teacher',
         },
       });
 

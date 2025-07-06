@@ -3,6 +3,9 @@
  * Jest setup for security tests
  */
 
+// Ensure we use real database for security tests
+jest.unmock('@teaching-engine/database');
+
 // Add custom matchers
 expect.extend({
   toBeOneOf(received, array) {

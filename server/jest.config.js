@@ -138,6 +138,7 @@ const securityTestProject = {
   // Security test setup with real database
   setupFilesAfterEnv: [
     '<rootDir>/jest.setup.js',
+    '<rootDir>/tests/security/jest-setup.ts', // Security-specific setup
     '<rootDir>/tests/jest.setup.ts', // Real database setup
   ],
 
