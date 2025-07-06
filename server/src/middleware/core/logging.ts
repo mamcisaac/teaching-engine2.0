@@ -259,7 +259,7 @@ export const performanceLoggingMiddleware = (
 // Development logging middleware
 export const developmentLoggingMiddleware = (
   req: LoggedRequest,
-  res: Response,
+  _res: Response,
   next: NextFunction,
 ): void => {
   if (process.env.NODE_ENV !== 'development') {

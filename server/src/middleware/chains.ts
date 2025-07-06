@@ -85,9 +85,10 @@ export const authEndpointMiddleware = compose(
 // Admin operation chain
 export const adminOperationMiddleware = compose(
   authenticatedApiMiddleware,
-  (req: Request, res: Response, next: NextFunction) => {
+  (req: Request, res: Response, next: NextFunction): void => {
     if (req.user?.role !== 'admin') {
-      return res.status(403).json({ error: 'Admin access required' });
+      res.status(403).json({ error: 'Admin access required' });
+      return;
     }
     next();
   },
@@ -144,8 +145,8 @@ export const exportOperationsMiddleware = compose(
 // Development-only chains
 export const developmentMiddleware = conditional(
   isDevelopment,
-  compose((req: Request, res: Response, next: NextFunction) => {
-    logger.info(`[DEV] ${req.method} ${req.path}`);
+  compose((_req: Request, _res: Response, next: NextFunction) => {
+    logger.info(`[DEV] ${_req.method} ${_req.path}`);
     next();
   }, performanceLoggingMiddleware),
 );
@@ -153,7 +154,7 @@ export const developmentMiddleware = conditional(
 // Health check chain (minimal processing)
 export const healthCheckMiddleware = compose(
   rateLimiters.public,
-  (req: Request, res: Response, next: NextFunction) => {
+  (_req: Request, res: Response, next: NextFunction) => {
     res.locals.skipLogging = true;
     next();
   },

@@ -222,7 +222,7 @@ const alerts: Alert[] = [
 
 // Send alert through various channels
 const sendAlert = async (alert: Alert, context: AlertContext): Promise<void> => {
-  await withSpan('alerting.sendAlert', { attributes: { alertId: alert.id } }, async (span) => {
+  await withSpan('alerting.sendAlert', { attributes: { alertId: alert.id } }, async (_span) => {
     const message = alert.message(context);
     const timestamp = new Date().toISOString();
 

@@ -39,11 +39,12 @@ interface Reflection {
 }
 
 export class NewsletterService {
-  private static generateTemplateContent(
+  // @ts-expect-error Method reserved for future newsletter generation
+  private static _generateTemplateContent(
     lessonPlans: LessonPlan[],
     reflections: Reflection[],
     fromDate: Date,
-    toDate: Date
+    toDate: Date,
   ): string {
     const dateRange = this.formatDateRange(fromDate, toDate);
 
@@ -57,11 +58,11 @@ I hope this newsletter finds you well! Here's a summary of what we've been worki
 
     if (lessonPlans.length > 0) {
       content += '\n## Recent Learning Highlights\n\n';
-      
+
       // Group lessons by subject
       const lessonsBySubject: { [key: string]: LessonPlan[] } = {};
-      
-      lessonPlans.forEach(lesson => {
+
+      lessonPlans.forEach((lesson) => {
         const subject = lesson.subject || lesson.unitPlan?.title || 'General Studies';
         if (!lessonsBySubject[subject]) {
           lessonsBySubject[subject] = [];
@@ -70,13 +71,13 @@ I hope this newsletter finds you well! Here's a summary of what we've been worki
       });
 
       Object.entries(lessonsBySubject).forEach(([subject, lessons]) => {
-        const titles = lessons.map(l => l.title).join(', ');
+        const titles = lessons.map((l) => l.title).join(', ');
         const goals = lessons
-          .map(l => l.learningGoals)
-          .filter(g => g)
+          .map((l) => l.learningGoals)
+          .filter((g) => g)
           .join(', ')
           .replace(/,\s*/g, ' and ');
-        
+
         content += `**${subject}**: We've been exploring ${titles}`;
         if (goals) {
           content += `. Our focus has been on ${goals}`;
@@ -87,12 +88,12 @@ I hope this newsletter finds you well! Here's a summary of what we've been worki
 
     if (reflections.length > 0) {
       const achievements = reflections
-        .map(r => r.notableAchievements)
-        .filter(a => a && a.trim());
-      
+        .map((r) => r.notableAchievements)
+        .filter((a) => a && a.trim());
+
       content += '## Classroom Celebrations\n\n';
       if (achievements.length > 0) {
-        achievements.forEach(achievement => {
+        achievements.forEach((achievement) => {
           content += `• ${achievement}\n`;
         });
         content += '\n';
@@ -100,7 +101,8 @@ I hope this newsletter finds you well! Here's a summary of what we've been worki
     }
 
     if (lessonPlans.length === 0 && reflections.length === 0) {
-      content += '\nWe\'ve been busy with various learning activities and continuing to build our classroom community. ';
+      content +=
+        "\nWe've been busy with various learning activities and continuing to build our classroom community. ";
     }
 
     content += `
@@ -115,19 +117,20 @@ Warm regards,
   private static formatDateRange(fromDate: Date, toDate: Date): string {
     const from = new Date(fromDate.getTime() - 24 * 60 * 60 * 1000); // Subtract a day
     const to = new Date(toDate.getTime() - 24 * 60 * 60 * 1000); // Subtract a day
-    
+
     return `${from.toISOString().split('T')[0]} to ${to.toISOString().split('T')[0]}`;
   }
 
-  private static formatLessonSummary(lessons: any[]): string {
+  // @ts-expect-error Method reserved for future newsletter formatting
+  private static _formatLessonSummary(lessons: any[]): string {
     if (lessons.length === 0) return '';
 
     let summary = '### Recent Lessons\n\n';
-    
+
     lessons.forEach((lesson: any) => {
       const date = new Date(lesson.date.getTime() - 24 * 60 * 60 * 1000); // Subtract a day
       const dateStr = date.toISOString().split('T')[0];
-      
+
       summary += `**${dateStr}**: ${lesson.title}\n`;
       if (lesson.learningGoals) {
         summary += `- Learning Goals: ${lesson.learningGoals}\n`;
@@ -138,15 +141,16 @@ Warm regards,
     return summary;
   }
 
-  private static formatReflectionHighlights(reflections: any[]): string {
+  // @ts-expect-error Method reserved for future newsletter formatting
+  private static _formatReflectionHighlights(reflections: any[]): string {
     if (reflections.length === 0) return '';
 
     let highlights = '### Teacher Reflections\n\n';
-    
+
     reflections.forEach((reflection: any) => {
       const date = new Date(reflection.date.getTime() - 24 * 60 * 60 * 1000); // Subtract a day
       const dateStr = date.toISOString().split('T')[0];
-      
+
       if (reflection.notableAchievements) {
         highlights += `- ${dateStr}: ${reflection.notableAchievements}\n`;
       }
@@ -158,12 +162,14 @@ Warm regards,
     return highlights;
   }
 
-  private static async getUserPreferences(_userId: number): Promise<unknown> {
+  // @ts-expect-error Method reserved for future user preferences
+  private static async _getUserPreferences(_userId: number): Promise<unknown> {
     // Mock implementation - returns empty preferences
     return {};
   }
 
-  private static async getLastNewsletterDate(_userId: number): Promise<Date | null> {
+  // @ts-expect-error Method reserved for future newsletter tracking
+  private static async _getLastNewsletterDate(_userId: number): Promise<Date | null> {
     // Mock implementation - returns null
     return null;
   }

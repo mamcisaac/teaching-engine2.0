@@ -27,15 +27,16 @@ const querySchema = z.object({
 });
 
 // Get calendar events for a date range
-router.get('/', async (req: AuthenticatedRequest, res: Response) => {
+router.get('/', async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
     // Validate query parameters
     const queryValidation = querySchema.safeParse(req.query);
     if (!queryValidation.success) {
-      return res.status(400).json({
+      res.status(400).json({
         error: 'Invalid query parameters',
         details: queryValidation.error.errors,
       });
+      return;
     }
     const { start, end, eventType } = queryValidation.data;
     const userId = req.user!.id;
@@ -65,40 +66,49 @@ router.get('/', async (req: AuthenticatedRequest, res: Response) => {
     });
 
     res.json(events);
+    return;
+    return;
   } catch (_error) {
     logger.error('Error fetching calendar events:', _error);
     res.status(500).json({ error: 'Failed to fetch calendar events' });
+    return;
   }
 });
 
 // Create a new calendar event
-router.post('/', validateRequest(calendarEventSchema), async (req: AuthenticatedRequest, res: Response) => {
-  try {
-    const data = req.body as z.infer<typeof calendarEventSchema>;
-    const userId = req.user!.id;
+router.post(
+  '/',
+  validateRequest(calendarEventSchema),
+  async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+    try {
+      const data = req.body as z.infer<typeof calendarEventSchema>;
+      const userId = req.user!.id;
 
-    const event = await prisma.calendarEvent.create({
-      data: {
-        title: data.title,
-        description: data.description,
-        start: new Date(data.start),
-        end: new Date(data.end),
-        allDay: data.allDay,
-        eventType: data.eventType,
-        source: data.source,
-        teacherId: userId,
-      },
-    });
+      const event = await prisma.calendarEvent.create({
+        data: {
+          title: data.title,
+          description: data.description,
+          start: new Date(data.start),
+          end: new Date(data.end),
+          allDay: data.allDay,
+          eventType: data.eventType,
+          source: data.source,
+          teacherId: userId,
+        },
+      });
 
-    res.status(201).json(event);
-  } catch (_error) {
-    logger.error('Error creating calendar event:', _error);
-    res.status(500).json({ error: 'Failed to create calendar event' });
-  }
-});
+      res.status(201).json(event);
+      return;
+    } catch (_error) {
+      logger.error('Error creating calendar event:', _error);
+      res.status(500).json({ error: 'Failed to create calendar event' });
+      return;
+    }
+  },
+);
 
 // Update a calendar event
-router.patch('/:id', async (req: Request, res: Response) => {
+router.patch('/:id', async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
     const userId = req.user!.id;
@@ -113,7 +123,8 @@ router.patch('/:id', async (req: Request, res: Response) => {
     });
 
     if (!event) {
-      return res.status(404).json({ error: 'Event not found or unauthorized' });
+      res.status(404).json({ error: 'Event not found or unauthorized' });
+      return;
     }
 
     // Convert date strings to Date objects if present
@@ -126,14 +137,17 @@ router.patch('/:id', async (req: Request, res: Response) => {
     });
 
     res.json(updatedEvent);
+    return;
+    return;
   } catch (_error) {
     logger.error('Error updating calendar event:', _error);
     res.status(500).json({ error: 'Failed to update calendar event' });
+    return;
   }
 });
 
 // Delete a calendar event
-router.delete('/:id', async (req: AuthenticatedRequest, res: Response) => {
+router.delete('/:id', async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
     const userId = req.user!.id;
@@ -147,7 +161,8 @@ router.delete('/:id', async (req: AuthenticatedRequest, res: Response) => {
     });
 
     if (!event) {
-      return res.status(404).json({ error: 'Event not found or unauthorized' });
+      res.status(404).json({ error: 'Event not found or unauthorized' });
+      return;
     }
 
     await prisma.calendarEvent.delete({
@@ -155,9 +170,11 @@ router.delete('/:id', async (req: AuthenticatedRequest, res: Response) => {
     });
 
     res.status(204).send();
+    return;
   } catch (_error) {
     logger.error('Error deleting calendar event:', _error);
     res.status(500).json({ error: 'Failed to delete calendar event' });
+    return;
   }
 });
 

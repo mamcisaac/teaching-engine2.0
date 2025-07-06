@@ -35,7 +35,8 @@ router.get('/', async (req: Request, res, _next) => {
   try {
     const userId = req.user?.id || 0;
     if (!userId) {
-      return res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: 'Unauthorized' });
+      return;
     }
 
     const { academicYear, subject, grade } = req.query;
@@ -59,8 +60,9 @@ router.get('/', async (req: Request, res, _next) => {
     });
 
     res.json(plans);
+    return;
   } catch (_err) {
-    _next(_err);
+    return _next(_err);
   }
 });
 
@@ -69,7 +71,8 @@ router.get('/:id', async (req: Request, res, _next) => {
   try {
     const userId = req.user?.id || 0;
     if (!userId) {
-      return res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: 'Unauthorized' });
+      return;
     }
 
     const plan = await prisma.longRangePlan.findFirst({
@@ -101,12 +104,14 @@ router.get('/:id', async (req: Request, res, _next) => {
     });
 
     if (!plan) {
-      return res.status(404).json({ error: 'Long-range plan not found' });
+      res.status(404).json({ error: 'Long-range plan not found' });
+      return;
     }
 
     res.json(plan);
+    return;
   } catch (_err) {
-    _next(_err);
+    return _next(_err);
   }
 });
 
@@ -115,7 +120,8 @@ router.post('/', validate(longRangePlanCreateSchema), async (req: Request, res, 
   try {
     const userId = req.user?.id || 0;
     if (!userId) {
-      return res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: 'Unauthorized' });
+      return;
     }
 
     const { expectationIds, themes, ...planData } = req.body;
@@ -172,12 +178,14 @@ router.post('/', validate(longRangePlanCreateSchema), async (req: Request, res, 
         },
       });
 
-      return res.status(201).json(updatedPlan);
+      res.status(201).json(updatedPlan);
+      return;
     }
 
     res.status(201).json(plan);
+    return;
   } catch (_err) {
-    _next(_err);
+    return _next(_err);
   }
 });
 
@@ -186,7 +194,8 @@ router.put('/:id', validate(longRangePlanUpdateSchema), async (req: Request, res
   try {
     const userId = req.user?.id || 0;
     if (!userId) {
-      return res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: 'Unauthorized' });
+      return;
     }
 
     const { expectationIds, themes, ...updateData } = req.body;
@@ -197,7 +206,8 @@ router.put('/:id', validate(longRangePlanUpdateSchema), async (req: Request, res
     });
 
     if (!existing) {
-      return res.status(404).json({ error: 'Long-range plan not found' });
+      res.status(404).json({ error: 'Long-range plan not found' });
+      return;
     }
 
     // Update the plan
@@ -249,8 +259,9 @@ router.put('/:id', validate(longRangePlanUpdateSchema), async (req: Request, res
     });
 
     res.json(updatedPlan);
+    return;
   } catch (_err) {
-    _next(_err);
+    return _next(_err);
   }
 });
 
@@ -259,7 +270,8 @@ router.delete('/:id', async (req: Request, res, _next) => {
   try {
     const userId = req.user?.id || 0;
     if (!userId) {
-      return res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: 'Unauthorized' });
+      return;
     }
 
     // Verify ownership and check for dependencies
@@ -271,22 +283,24 @@ router.delete('/:id', async (req: Request, res, _next) => {
     });
 
     if (!plan) {
-      return res.status(404).json({ error: 'Long-range plan not found' });
+      res.status(404).json({ error: 'Long-range plan not found' });
+      return;
     }
 
     if (plan._count.unitPlans > 0) {
-      return res.status(400).json({
+      res.status(400).json({
         error: 'Cannot delete long-range plan with existing unit plans',
       });
+      return;
     }
 
     await prisma.longRangePlan.delete({
       where: { id: req.params.id },
     });
 
-    res.status(204).end();
+    return res.status(204).end();
   } catch (_err) {
-    _next(_err);
+    return _next(_err);
   }
 });
 
@@ -295,13 +309,15 @@ router.post('/ai-draft', async (req: Request, res, _next) => {
   try {
     const userId = req.user?.id || 0;
     if (!userId) {
-      return res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: 'Unauthorized' });
+      return;
     }
 
-    const { expectationIds, subject, grade, academicYear, termStructure } = req.body;
+    const { expectationIds, subject, grade, academicYear } = req.body;
 
     if (!expectationIds || !Array.isArray(expectationIds) || expectationIds.length === 0) {
-      return res.status(400).json({ error: 'Expectation IDs are required' });
+      res.status(400).json({ error: 'Expectation IDs are required' });
+      return;
     }
 
     // Fetch the curriculum expectations
@@ -310,29 +326,24 @@ router.post('/ai-draft', async (req: Request, res, _next) => {
     });
 
     if (expectations.length === 0) {
-      return res.status(400).json({ error: 'No valid expectations found' });
+      res.status(400).json({ error: 'No valid expectations found' });
+      return;
     }
 
     const draft = await generateLongRangePlanDraft({
-      expectations: expectations.map((exp) => ({
-        code: exp.code,
-        description: exp.description,
-        type: 'specific' as const, // Default to specific since we don't store this
-        strand: exp.strand,
-        substrand: exp.substrand || undefined,
-        subject: exp.subject,
-        grade: exp.grade,
-      })),
+      title: '',
+      expectationIds: expectations.map((exp) => exp.id),
       subject: subject || expectations[0].subject,
       grade: grade || expectations[0].grade,
       academicYear: academicYear || '2024-2025',
-      termStructure: termStructure || 'semester',
     });
 
     res.json(draft);
+    return;
   } catch (_err) {
     logger.error('AI draft generation error:', _err);
     res.status(500).json({ error: 'Failed to generate AI draft' });
+    return;
   }
 });
 
@@ -341,7 +352,8 @@ router.post('/:id/ai-suggestions', async (req: Request, res, _next) => {
   try {
     const userId = req.user?.id || 0;
     if (!userId) {
-      return res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: 'Unauthorized' });
+      return;
     }
 
     const plan = await prisma.longRangePlan.findFirst({
@@ -352,7 +364,8 @@ router.post('/:id/ai-suggestions', async (req: Request, res, _next) => {
     });
 
     if (!plan) {
-      return res.status(404).json({ error: 'Long-range plan not found' });
+      res.status(404).json({ error: 'Long-range plan not found' });
+      return;
     }
 
     const existingContent = `
@@ -367,9 +380,11 @@ Expectations: ${plan.expectations.map((e) => `${e.expectation.code}: ${e.expecta
     const suggestions = await generatePlanSuggestions('long-range', existingContent);
 
     res.json({ suggestions });
+    return;
   } catch (_err) {
     logger.error('AI suggestions error:', _err);
     res.status(500).json({ error: 'Failed to generate suggestions' });
+    return;
   }
 });
 

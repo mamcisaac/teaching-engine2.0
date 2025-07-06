@@ -55,7 +55,9 @@ export class SubstitutePlanService {
   }
 
   static async exportAsHTML(plan: SubstitutePlan): Promise<string> {
-    const dateStr = new Date(plan.dateFor.getTime() - 24 * 60 * 60 * 1000).toISOString().split('T')[0]; // Subtract a day for formatting
+    const dateStr = new Date(plan.dateFor.getTime() - 24 * 60 * 60 * 1000)
+      .toISOString()
+      .split('T')[0]; // Subtract a day for formatting
 
     let html = `<!DOCTYPE html>
 <html>
@@ -82,7 +84,7 @@ export class SubstitutePlanService {
 
   <h2>Daily Schedule</h2>`;
 
-    plan.schedule.forEach(item => {
+    plan.schedule.forEach((item) => {
       html += `<p><strong>${item.time}:</strong> ${item.activity}`;
       if (item.notes) {
         html += ` <em>${item.notes}</em>`;
@@ -91,7 +93,7 @@ export class SubstitutePlanService {
     });
 
     html += '<h2>Lesson Plans</h2>';
-    plan.lessons.forEach(lesson => {
+    plan.lessons.forEach((lesson) => {
       html += `<h3>${lesson.time} - ${lesson.title}</h3>
         <p><strong>Duration:</strong> ${lesson.duration} minutes</p>
         <p><strong>Materials:</strong> ${lesson.materials.length ? lesson.materials.join(', ') : 'See classroom supplies'}</p>
@@ -109,7 +111,11 @@ export class SubstitutePlanService {
   private static createBasicSchedule(): ScheduleItem[] {
     return [
       { time: '8:30 AM', activity: 'Morning Entry', notes: 'Students enter, unpack, morning work' },
-      { time: '9:00 AM', activity: 'Morning Meeting/Attendance', notes: 'Take attendance, morning announcements' },
+      {
+        time: '9:00 AM',
+        activity: 'Morning Meeting/Attendance',
+        notes: 'Take attendance, morning announcements',
+      },
       { time: '9:15 AM', activity: 'First Lesson Block', notes: 'See lesson plan' },
       { time: '10:30 AM', activity: 'Nutrition Break' },
       { time: '10:45 AM', activity: 'Second Lesson Block', notes: 'See lesson plan' },
@@ -120,7 +126,8 @@ export class SubstitutePlanService {
     ];
   }
 
-  private static getTimeSlot(index: number): string {
+  // @ts-expect-error Method reserved for future time slot management
+  private static _getTimeSlot(index: number): string {
     const timeSlots = ['9:15 AM', '10:45 AM', '1:00 PM'];
     if (index < 0 || index >= timeSlots.length) {
       return timeSlots[0]; // Return first slot for out-of-bounds indices
@@ -128,7 +135,8 @@ export class SubstitutePlanService {
     return timeSlots[index];
   }
 
-  private static formatLessonInstructions(lessonPlan: any): string {
+  // @ts-expect-error Method reserved for future lesson formatting
+  private static _formatLessonInstructions(lessonPlan: any): string {
     if (!lessonPlan || typeof lessonPlan !== 'object') {
       return 'Follow the activities as outlined in the lesson plan binder.';
     }

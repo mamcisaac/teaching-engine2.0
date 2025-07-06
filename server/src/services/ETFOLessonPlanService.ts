@@ -210,26 +210,6 @@ export class ETFOLessonPlanService extends BaseService {
         throw new Error('Lesson plan not found or unauthorized');
       }
 
-      // Create a duplicate with a new title
-      const duplicateData = {
-        ...originalPlan,
-        title: `${originalPlan.title} (Copy)`,
-        userId: userId,
-        unitPlanId: originalPlan.unitPlanId,
-        date: originalPlan.date.toISOString(),
-      };
-
-      // Remove id and relation fields that should not be copied
-      const {
-        id: _id,
-        createdAt: _createdAt,
-        updatedAt: _updatedAt,
-        unitPlan: _unitPlan,
-        expectations: _expectations,
-        resources: _resources,
-        ..._cleanData
-      } = duplicateData;
-
       // Extract expectation IDs if they exist
       const expectationIds = originalPlan.expectations?.map((exp) => exp.expectationId) || [];
 

@@ -83,7 +83,7 @@ export function asyncHandler(
 /**
  * 404 Not Found handler
  */
-export function notFoundHandler(req: Request, res: Response, next: NextFunction): void {
+export function notFoundHandler(req: Request, _res: Response, next: NextFunction): void {
   const error = new NotFoundError(`Route ${req.method} ${req.path} not found`);
   next(error);
 }
@@ -297,24 +297,32 @@ function handleSpecificErrors(
  */
 export function errorHandler(err: Error, req: Request, res: Response, _next: NextFunction): void {
   // Special handling for auth endpoints to match test expectations
-  if (req.path === '/api/login' || req.path === '/api/register' || 
-      req.path === '/login' || req.path === '/register') {
-    
+  if (
+    req.path === '/api/login' ||
+    req.path === '/api/register' ||
+    req.path === '/login' ||
+    req.path === '/register'
+  ) {
     // Handle AuthenticationError
-    if (err instanceof AuthenticationError || 
-        (err.message && (err.message.includes('Invalid email or password') || 
-                        err.message.includes('Invalid credentials')))) {
+    if (
+      err instanceof AuthenticationError ||
+      (err.message &&
+        (err.message.includes('Invalid email or password') ||
+          err.message.includes('Invalid credentials')))
+    ) {
       res.status(401).json({ error: 'Invalid credentials' });
       return;
     }
-    
+
     // Handle ConflictError for duplicate email
-    if (err instanceof ConflictError || 
-        (err.message && err.message.toLowerCase().includes('email already'))) {
+    if (
+      err instanceof ConflictError ||
+      (err.message && err.message.toLowerCase().includes('email already'))
+    ) {
       res.status(409).json({ error: 'Email already exists' });
       return;
     }
-    
+
     // Handle specific ValidationErrors
     if (err instanceof ValidationError) {
       if (err.message === 'Email and password are required') {

@@ -116,7 +116,6 @@ export async function login(req: Request, res: Response, next: NextFunction): Pr
       domain: process.env.COOKIE_DOMAIN, // Optional: set domain for subdomain sharing
     });
 
-
     // Log successful login
     logger.info(
       {
@@ -596,7 +595,7 @@ export async function resetPassword(
  */
 export async function validateSession(
   req: Request,
-  res: Response,
+  _res: Response,
   next: NextFunction,
 ): Promise<void> {
   try {

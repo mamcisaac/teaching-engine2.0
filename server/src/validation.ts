@@ -201,13 +201,14 @@ export const classroomAnnouncementUpdateSchema = classroomAnnouncementCreateSche
 export const cuidSchema = () => z.string().regex(/^c[0-9a-z]{24}$/, 'Invalid ID format');
 
 export function validate(schema: ZodSchema) {
-  return (req: Request, res: Response, next: NextFunction) => {
+  return (req: Request, res: Response, next: NextFunction): void => {
     // For now, always validate req.body directly
     // The schemas should not wrap body in an object
     const result = schema.safeParse(req.body);
 
     if (!result.success) {
-      return res.status(400).json({ errors: result.error.flatten() });
+      res.status(400).json({ errors: result.error.flatten() });
+      return;
     }
 
     req.body = result.data;

@@ -184,8 +184,8 @@ export async function requestPasswordReset(email: string): Promise<void> {
   }
 
   // Generate reset token (simplified - should use crypto.randomBytes)
-  const resetToken = Math.random().toString(36).substring(2, 15);
-  const resetExpires = new Date(Date.now() + 3600000); // 1 hour
+  // const resetToken = Math.random().toString(36).substring(2, 15);
+  // const resetExpires = new Date(Date.now() + 3600000); // 1 hour
 
   // TODO: Implement password reset token storage
   // Current User model doesn't support passwordResetToken/passwordResetExpires
@@ -202,7 +202,7 @@ export async function requestPasswordReset(email: string): Promise<void> {
 /**
  * Reset password with token
  */
-export async function resetPassword(token: string, newPassword: string): Promise<void> {
+export async function resetPassword(_token: string, newPassword: string): Promise<void> {
   // Validate new password
   const passwordValidation = validatePasswordStrength(newPassword);
   if (!passwordValidation.isValid) {

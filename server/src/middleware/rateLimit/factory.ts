@@ -18,14 +18,14 @@ async function loadRedisModules() {
   }
 }
 import logger from '../../logger.js';
-import { 
-  rateLimitConfigs, 
+import {
+  rateLimitConfigs,
   rateLimitTiers,
   skipRateLimitPaths,
   storeConfig,
   endpointOverrides,
   getRateLimitConfig,
-  shouldBypassRateLimit
+  shouldBypassRateLimit,
 } from './config';
 
 // Redis client for rate limiting (if configured)
@@ -33,23 +33,27 @@ let redisClient: unknown = null;
 let redisInitialized = false;
 
 // Initialize Redis on first use
-async function _initializeRedis() {
+// @ts-ignore TS6133
+async function __initializeRedis() {
   if (redisInitialized) return;
   redisInitialized = true;
-  
+
   if (storeConfig.useRedis && process.env.REDIS_URL) {
     await loadRedisModules();
-    
+
     if (createClient) {
       try {
         redisClient = (createClient as (config: { url: string }) => unknown)({
           url: process.env.REDIS_URL,
         });
-        
-        (redisClient as { on: (event: string, callback: (err: unknown) => void) => void }).on('error', (err: unknown) => {
-          logger.error({ error: err }, 'Redis client error');
-        });
-        
+
+        (redisClient as { on: (event: string, callback: (err: unknown) => void) => void }).on(
+          'error',
+          (err: unknown) => {
+            logger.error({ error: err }, 'Redis client error');
+          },
+        );
+
         await (redisClient as { connect: () => Promise<void> }).connect();
       } catch (err) {
         logger.error({ error: err }, 'Failed to connect to Redis');
@@ -64,7 +68,7 @@ async function _initializeRedis() {
  */
 export function createRateLimiter(
   configName: keyof typeof rateLimitConfigs,
-  customOptions?: Partial<Options>
+  customOptions?: Partial<Options>,
 ): RateLimitRequestHandler {
   const config = rateLimitConfigs[configName];
   if (!config) {
@@ -77,50 +81,57 @@ export function createRateLimiter(
     message: config.message,
     standardHeaders: true,
     legacyHeaders: false,
-    
+
     // Use Redis store in production (if available)
-    ...(redisClient && storeConfig.useRedis && RedisStore ? {
-      store: new (RedisStore as { default: new (config: { client: unknown; prefix: string }) => unknown }).default({
-        client: redisClient,
-        prefix: `${storeConfig.keyPrefix}${configName}:`,
-      }) as unknown as Options['store'],
-    } : {}),
-    
+    ...(redisClient && storeConfig.useRedis && RedisStore
+      ? {
+          store: new (
+            RedisStore as { default: new (config: { client: unknown; prefix: string }) => unknown }
+          ).default({
+            client: redisClient,
+            prefix: `${storeConfig.keyPrefix}${configName}:`,
+          }) as unknown as Options['store'],
+        }
+      : {}),
+
     // Key generator based on config
     keyGenerator: (req: Request) => {
-      if (config.keyGenerator === 'user' && req.user?.id) {
-        return `user:${req.user.id}`;
+      if (config.keyGenerator === 'user' && (req as any).user?.id) {
+        return `user:${(req as any).user.id}`;
       }
       return req.ip || 'unknown';
     },
-    
+
     // Skip successful requests if configured
     skipSuccessfulRequests: config.skipSuccessful || false,
-    
+
     // Skip rate limiting for certain paths or in development
     skip: (req: Request) => {
       return skipRateLimitPaths.includes(req.path) || shouldBypassRateLimit(req);
     },
-    
+
     // Custom handler for rate limit exceeded
     handler: (req: Request, res: Response) => {
-      logger.warn({
-        ip: req.ip,
-        path: req.path,
-        method: req.method,
-        userId: req.user?.id,
-        rateLimitType: configName,
-      }, 'Rate limit exceeded');
+      logger.warn(
+        {
+          ip: req.ip,
+          path: req.path,
+          method: req.method,
+          userId: (req as any).user?.id,
+          rateLimitType: configName,
+        },
+        'Rate limit exceeded',
+      );
 
       res.status(429).json({
         error: 'Too Many Requests',
         message: config.message || 'Rate limit exceeded. Please try again later.',
-        retryAfter: req.rateLimit?.resetTime,
+        retryAfter: (req as any).rateLimit?.resetTime,
         limit: config.max,
         windowMs: config.windowMs,
       });
     },
-    
+
     // Apply custom options
     ...customOptions,
   };
@@ -133,65 +144,72 @@ export function createRateLimiter(
  */
 export function createDynamicRateLimiter(
   configName: keyof typeof rateLimitConfigs,
-  customOptions?: Partial<Options>
+  customOptions?: Partial<Options>,
 ): RateLimitRequestHandler {
   return rateLimit({
     windowMs: rateLimitConfigs[configName].windowMs,
     standardHeaders: true,
     legacyHeaders: false,
-    
+
     // Dynamic max based on user tier
     max: (req: Request) => {
       const userTier = getUserTier(req);
       const config = getRateLimitConfig(configName, userTier);
       return config.max;
     },
-    
+
     // Use Redis store if available
-    ...(redisClient && storeConfig.useRedis && RedisStore ? {
-      store: new (RedisStore as { default: new (config: { client: unknown; prefix: string }) => unknown }).default({
-        client: redisClient,
-        prefix: `${storeConfig.keyPrefix}${configName}:`,
-      }) as unknown as Options['store'],
-    } : {}),
-    
+    ...(redisClient && storeConfig.useRedis && RedisStore
+      ? {
+          store: new (
+            RedisStore as { default: new (config: { client: unknown; prefix: string }) => unknown }
+          ).default({
+            client: redisClient,
+            prefix: `${storeConfig.keyPrefix}${configName}:`,
+          }) as unknown as Options['store'],
+        }
+      : {}),
+
     // Key generator
     keyGenerator: (req: Request) => {
       const config = rateLimitConfigs[configName];
-      if (config.keyGenerator === 'user' && req.user?.id) {
-        return `user:${req.user.id}`;
+      if (config.keyGenerator === 'user' && (req as any).user?.id) {
+        return `user:${(req as any).user.id}`;
       }
       return req.ip || 'unknown';
     },
-    
+
     // Skip rate limiting for certain paths or in development
     skip: (req: Request) => {
       return skipRateLimitPaths.includes(req.path) || shouldBypassRateLimit(req);
     },
-    
+
     // Custom handler
     handler: (req: Request, res: Response) => {
       const userTier = getUserTier(req);
       const config = getRateLimitConfig(configName, userTier);
-      
-      logger.warn({
-        ip: req.ip,
-        path: req.path,
-        userId: req.user?.id,
-        userTier,
-        rateLimitType: configName,
-      }, 'Rate limit exceeded');
+
+      logger.warn(
+        {
+          ip: req.ip,
+          path: req.path,
+          userId: (req as any).user?.id,
+          userTier,
+          rateLimitType: configName,
+        },
+        'Rate limit exceeded',
+      );
 
       res.status(429).json({
         error: 'Too Many Requests',
         message: config.message || 'Rate limit exceeded. Please try again later.',
-        retryAfter: req.rateLimit?.resetTime,
+        retryAfter: (req as any).rateLimit?.resetTime,
         limit: config.max,
         windowMs: config.windowMs,
         userTier,
       });
     },
-    
+
     ...customOptions,
   });
 }
@@ -201,11 +219,11 @@ export function createDynamicRateLimiter(
  */
 export function createEndpointRateLimiter(
   endpoint: string,
-  baseConfig: keyof typeof rateLimitConfigs = 'general'
+  baseConfig: keyof typeof rateLimitConfigs = 'general',
 ): RateLimitRequestHandler {
   const overrides = endpointOverrides[endpoint] || {};
   const config = { ...rateLimitConfigs[baseConfig], ...overrides };
-  
+
   return createRateLimiter(baseConfig, {
     windowMs: config.windowMs,
     max: config.max,
@@ -218,18 +236,25 @@ export function createEndpointRateLimiter(
  */
 export function applyRateLimitGroup(
   groupName: string,
-  limiters: RateLimitRequestHandler[]
+  limiters: RateLimitRequestHandler[],
 ): RateLimitRequestHandler[] {
-  return limiters.map(limiter => {
+  return limiters.map((limiter) => {
     // Add group name to logger context
-    const originalHandler = (limiter as RateLimitRequestHandler & { handler?: (req: Request, res: Response) => void }).handler;
-    (limiter as RateLimitRequestHandler & { handler?: (req: Request, res: Response) => void }).handler = (req: Request, res: Response) => {
-      logger.warn({
-        rateLimitGroup: groupName,
-        ip: req.ip,
-        path: req.path,
-      }, 'Rate limit exceeded in group');
-      
+    const originalHandler = (
+      limiter as RateLimitRequestHandler & { handler?: (req: Request, res: Response) => void }
+    ).handler;
+    (
+      limiter as RateLimitRequestHandler & { handler?: (req: Request, res: Response) => void }
+    ).handler = (req: Request, res: Response) => {
+      logger.warn(
+        {
+          rateLimitGroup: groupName,
+          ip: req.ip,
+          path: req.path,
+        },
+        'Rate limit exceeded in group',
+      );
+
       if (originalHandler) {
         originalHandler(req, res);
       } else {
@@ -240,7 +265,7 @@ export function applyRateLimitGroup(
         });
       }
     };
-    
+
     return limiter;
   });
 }
@@ -249,32 +274,29 @@ export function applyRateLimitGroup(
  * Get user tier from request
  */
 function getUserTier(req: Request): keyof typeof rateLimitTiers | undefined {
-  if (!req.user) return undefined;
-  
+  if (!(req as any).user) return undefined;
+
   // Check user role
-  if (req.user.role === 'ADMIN') return 'admin';
-  if (req.user.role === 'PREMIUM') return 'premium';
-  
+  if ((req as any).user.role === 'ADMIN') return 'admin';
+  if ((req as any).user.role === 'PREMIUM') return 'premium';
+
   // Check for API token
   if (req.headers.authorization?.startsWith('Bearer ')) {
     return 'api';
   }
-  
+
   return 'free';
 }
 
 /**
  * Reset rate limit for a specific key (testing/admin use)
  */
-export async function resetRateLimit(
-  configName: string,
-  key: string
-): Promise<void> {
+export async function resetRateLimit(configName: string, key: string): Promise<void> {
   if (!redisClient) {
     logger.warn('Cannot reset rate limit - Redis not configured');
     return;
   }
-  
+
   const fullKey = `${storeConfig.keyPrefix}${configName}:${key}`;
   try {
     await (redisClient as { del: (key: string) => Promise<void> }).del(fullKey);
@@ -289,17 +311,19 @@ export async function resetRateLimit(
  */
 export async function getRateLimitStatus(
   configName: string,
-  key: string
+  key: string,
 ): Promise<{ count: number; resetTime: Date } | null> {
   if (!redisClient) {
     return null;
   }
-  
+
   const fullKey = `${storeConfig.keyPrefix}${configName}:${key}`;
   try {
-    const count = await (redisClient as { get: (key: string) => Promise<string | null> }).get(fullKey);
+    const count = await (redisClient as { get: (key: string) => Promise<string | null> }).get(
+      fullKey,
+    );
     const ttl = await (redisClient as { ttl: (key: string) => Promise<number> }).ttl(fullKey);
-    
+
     if (count && ttl > 0) {
       return {
         count: parseInt(count),
@@ -309,7 +333,7 @@ export async function getRateLimitStatus(
   } catch (error) {
     logger.error('Failed to get rate limit status:', error);
   }
-  
+
   return null;
 }
 

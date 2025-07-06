@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { NodeSDK } from '@opentelemetry/sdk-node';
 import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
-import { PeriodicExportingMetricReader, ConsoleMetricExporter } from '@opentelemetry/sdk-metrics';
+import { PeriodicExportingMetricReader } from '@opentelemetry/sdk-metrics';
 import { Resource } from '@opentelemetry/resources';
 import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
 import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
 import { OTLPMetricExporter } from '@opentelemetry/exporter-metrics-otlp-http';
-import { BatchSpanProcessor } from '@opentelemetry/sdk-trace-base';
+// import { BatchSpanProcessor } from '@opentelemetry/sdk-trace-base';
 import { trace, metrics, context, SpanStatusCode } from '@opentelemetry/api';
 import type { Span, SpanOptions, Attributes } from '@opentelemetry/api';
 import { logger } from '../logger';
@@ -67,11 +67,14 @@ export const initTelemetry = async (): Promise<void> => {
 
     // Start SDK
     await otelSDK.start();
-    logger.info({
-      endpoint: OTEL_ENDPOINT,
-      serviceName: OTEL_SERVICE_NAME,
-      environment: OTEL_ENVIRONMENT,
-    }, 'OpenTelemetry initialized successfully');
+    logger.info(
+      {
+        endpoint: OTEL_ENDPOINT,
+        serviceName: OTEL_SERVICE_NAME,
+        environment: OTEL_ENVIRONMENT,
+      },
+      'OpenTelemetry initialized successfully',
+    );
 
     // Graceful shutdown
     process.on('SIGTERM', () => {

@@ -38,7 +38,7 @@ export const requireAuth = (req: AuthenticatedRequest, res: Response, next: Next
  */
 export const optionalAuth = (
   req: AuthenticatedRequest,
-  res: Response,
+  _res: Response,
   next: NextFunction,
 ): void => {
   const userId = req.user?.id;
@@ -75,9 +75,11 @@ export const validate = (schema: z.ZodSchema) => {
       if (_error instanceof z.ZodError) {
         const formattedError = formatValidationError(_error);
         res.status(400).json(formattedError);
+        return;
       } else {
         logger.error({ error: _error }, 'Validation error');
         res.status(500).json({ error: 'Internal server error' });
+        return;
       }
     }
   };
@@ -96,9 +98,11 @@ export const validateQuery = (schema: z.ZodSchema) => {
       if (_error instanceof z.ZodError) {
         const formattedError = formatValidationError(_error);
         res.status(400).json(formattedError);
+        return;
       } else {
         logger.error({ error: _error }, 'Query validation error');
         res.status(500).json({ error: 'Internal server error' });
+        return;
       }
     }
   };
@@ -184,7 +188,7 @@ export const createRateLimit = (options: { windowMs: number; max: number; messag
 /**
  * Input sanitization middleware
  */
-export const sanitizeInput = (req: Request, res: Response, next: NextFunction): void => {
+export const sanitizeInput = (req: Request, _res: Response, next: NextFunction): void => {
   const sanitizeValue = (value: unknown): unknown => {
     if (typeof value === 'string') {
       // Remove HTML tags, including content within script tags, and normalize whitespace
@@ -264,6 +268,7 @@ export const errorHandler = (
       stack: err.stack,
     }),
   });
+  return;
 };
 
 /**
@@ -291,7 +296,7 @@ export const corsMiddleware = (allowedOrigins: string[]) => {
 /**
  * Security headers middleware
  */
-export const securityHeaders = (req: Request, res: Response, next: NextFunction): void => {
+export const securityHeaders = (_req: Request, res: Response, next: NextFunction): void => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
   res.setHeader('X-XSS-Protection', '1; mode=block');

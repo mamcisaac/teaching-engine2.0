@@ -146,7 +146,7 @@ export function requestLoggerMiddleware(
     logDebug?: (message: string, meta?: LogMeta) => void;
     id?: string;
   },
-  res: Response,
+  _res: Response,
   next: () => void,
 ) {
   // Add logger to request for convenience

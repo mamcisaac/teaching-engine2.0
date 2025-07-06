@@ -141,13 +141,11 @@ class TemplateService extends BaseService {
     }
 
     // Sorting with validation
-    const orderBy = queryPerformance.createOptimizedSort(String(sortBy || 'title'), (sortOrder || 'asc') as 'asc' | 'desc', [
-      'title',
-      'usageCount',
-      'averageRating',
-      'createdAt',
-      'lastUsedAt',
-    ]);
+    const orderBy = queryPerformance.createOptimizedSort(
+      String(sortBy || 'title'),
+      (sortOrder || 'asc') as 'asc' | 'desc',
+      ['title', 'usageCount', 'averageRating', 'createdAt', 'lastUsedAt'],
+    );
 
     const result = await queryPerformance.monitorQuery('template.findMany', () =>
       optimizedQueries.paginatedQuery(prisma.planTemplate, where, {
@@ -191,7 +189,13 @@ class TemplateService extends BaseService {
         description: data.description,
         descriptionFr: data.descriptionFr,
         type: data.type as 'UNIT_PLAN' | 'LESSON_PLAN',
-        category: data.category as 'BY_SUBJECT' | 'BY_GRADE' | 'BY_THEME' | 'BY_SEASON' | 'BY_SKILL' | 'CUSTOM',
+        category: data.category as
+          | 'BY_SUBJECT'
+          | 'BY_GRADE'
+          | 'BY_THEME'
+          | 'BY_SEASON'
+          | 'BY_SKILL'
+          | 'CUSTOM',
         subject: data.subject,
         gradeMin: data.gradeMin,
         gradeMax: data.gradeMax,
@@ -225,7 +229,15 @@ class TemplateService extends BaseService {
         ...(data.description && { description: data.description }),
         ...(data.descriptionFr && { descriptionFr: data.descriptionFr }),
         ...(data.type && { type: data.type as 'UNIT_PLAN' | 'LESSON_PLAN' }),
-        ...(data.category && { category: data.category as 'BY_SUBJECT' | 'BY_GRADE' | 'BY_THEME' | 'BY_SEASON' | 'BY_SKILL' | 'CUSTOM' }),
+        ...(data.category && {
+          category: data.category as
+            | 'BY_SUBJECT'
+            | 'BY_GRADE'
+            | 'BY_THEME'
+            | 'BY_SEASON'
+            | 'BY_SKILL'
+            | 'CUSTOM',
+        }),
         ...(data.subject && { subject: data.subject }),
         ...(data.gradeMin !== undefined && { gradeMin: data.gradeMin }),
         ...(data.gradeMax !== undefined && { gradeMax: data.gradeMax }),
@@ -348,11 +360,25 @@ export class TemplatesRouteHandler extends BaseRouteHandler {
 
   protected getCrudOperations(): CrudOperations<unknown> {
     return {
-      create: this.templateService.create.bind(this.templateService),
-      findMany: this.templateService.findMany.bind(this.templateService),
-      findById: this.templateService.findById.bind(this.templateService),
-      update: this.templateService.update.bind(this.templateService),
-      delete: this.templateService.delete.bind(this.templateService),
+      create: async (data: unknown, userId: number) => {
+        return this.templateService.create(data as TemplateCreateData, userId);
+      },
+      findMany: async (filters: unknown, userId: number) => {
+        const result = await this.templateService.findMany(
+          filters as Record<string, unknown>,
+          userId,
+        );
+        return result.templates;
+      },
+      findById: async (id: string, userId: number) => {
+        return this.templateService.findById(id, userId);
+      },
+      update: async (id: string, data: unknown, userId: number) => {
+        return this.templateService.update(id, data as TemplateUpdateData, userId);
+      },
+      delete: async (id: string, userId: number) => {
+        return this.templateService.delete(id, userId);
+      },
     };
   }
 
@@ -371,9 +397,10 @@ export class TemplatesRouteHandler extends BaseRouteHandler {
 
       const result = await this.templateService.findMany(filters, userId);
       res.json(result);
+      return;
     } catch (_error) {
       this.logger.error(`Error in ${this.routeName} list:`, _error);
-      next(_error);
+      return next(_error);
     }
   }
 
@@ -398,9 +425,10 @@ export class TemplatesRouteHandler extends BaseRouteHandler {
       const userId = req.userId!;
       const options = await this.templateService.getFilterOptions(userId);
       res.json(options);
+      return;
     } catch (_error) {
       this.logger.error('Error getting filter options:', _error);
-      next(_error);
+      return next(_error);
     }
   }
 }

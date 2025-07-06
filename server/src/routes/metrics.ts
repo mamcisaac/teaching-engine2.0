@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { metricsStore, getPerformanceSummary } from '../middleware/metrics.js';
 import { authMiddleware } from '../middleware/auth.js';
 import logger from '../logger.js';
@@ -9,7 +9,7 @@ const router = Router();
  * Prometheus metrics endpoint (no auth required for monitoring tools)
  * GET /metrics
  */
-router.get('/', (req, res) => {
+router.get('/', (_req: Request, res: Response): void => {
   try {
     const prometheusFormat = metricsStore.getPrometheusFormat();
 
@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
  * JSON metrics endpoint (requires authentication)
  * GET /api/metrics/json
  */
-router.get('/json', authMiddleware, (req, res) => {
+router.get('/json', authMiddleware, (_req: Request, res: Response): void => {
   try {
     const metrics = metricsStore.getMetrics();
 
@@ -34,12 +34,14 @@ router.get('/json', authMiddleware, (req, res) => {
       data: metrics,
       timestamp: new Date().toISOString(),
     });
+    return;
   } catch (_error) {
     logger.error('Error getting JSON metrics:', _error);
     res.status(500).json({
       success: false,
       message: 'Failed to get metrics',
     });
+    return;
   }
 });
 
@@ -47,7 +49,7 @@ router.get('/json', authMiddleware, (req, res) => {
  * Performance summary endpoint
  * GET /api/metrics/summary
  */
-router.get('/summary', authMiddleware, (req, res) => {
+router.get('/summary', authMiddleware, (_req: Request, res: Response): void => {
   try {
     const summary = getPerformanceSummary();
 
@@ -56,12 +58,14 @@ router.get('/summary', authMiddleware, (req, res) => {
       data: summary,
       timestamp: new Date().toISOString(),
     });
+    return;
   } catch (_error) {
     logger.error('Error getting performance summary:', _error);
     res.status(500).json({
       success: false,
       message: 'Failed to get performance summary',
     });
+    return;
   }
 });
 
@@ -69,7 +73,7 @@ router.get('/summary', authMiddleware, (req, res) => {
  * Health check with performance data
  * GET /api/metrics/health
  */
-router.get('/health', authMiddleware, (req, res) => {
+router.get('/health', authMiddleware, (_req: Request, res: Response): void => {
   try {
     const summary = getPerformanceSummary();
 
@@ -115,12 +119,14 @@ router.get('/health', authMiddleware, (req, res) => {
         timestamp: new Date().toISOString(),
       },
     });
+    return;
   } catch (_error) {
     logger.error('Error getting health metrics:', _error);
     res.status(500).json({
       success: false,
       message: 'Failed to get health metrics',
     });
+    return;
   }
 });
 
@@ -128,14 +134,15 @@ router.get('/health', authMiddleware, (req, res) => {
  * Reset metrics (development/testing only)
  * DELETE /api/metrics/reset
  */
-router.delete('/reset', authMiddleware, (req, res) => {
+router.delete('/reset', authMiddleware, (req: Request, res: Response): void => {
   try {
     // Only allow in development/test environments
     if (process.env.NODE_ENV === 'production') {
-      return res.status(403).json({
+      res.status(403).json({
         success: false,
         message: 'Metrics reset not allowed in production',
       });
+      return;
     }
 
     metricsStore.reset();
@@ -147,12 +154,14 @@ router.delete('/reset', authMiddleware, (req, res) => {
       message: 'Metrics reset successfully',
       timestamp: new Date().toISOString(),
     });
+    return;
   } catch (_error) {
     logger.error('Error resetting metrics:', _error);
     res.status(500).json({
       success: false,
       message: 'Failed to reset metrics',
     });
+    return;
   }
 });
 
@@ -160,7 +169,7 @@ router.delete('/reset', authMiddleware, (req, res) => {
  * Real-time metrics for dashboard
  * GET /api/metrics/realtime
  */
-router.get('/realtime', authMiddleware, (req, res) => {
+router.get('/realtime', authMiddleware, (_req: Request, res: Response): void => {
   try {
     const summary = getPerformanceSummary();
     const metrics = metricsStore.getMetrics();
@@ -192,12 +201,14 @@ router.get('/realtime', authMiddleware, (req, res) => {
       },
       timestamp: new Date().toISOString(),
     });
+    return;
   } catch (_error) {
     logger.error('Error getting realtime metrics:', _error);
     res.status(500).json({
       success: false,
       message: 'Failed to get realtime metrics',
     });
+    return;
   }
 });
 

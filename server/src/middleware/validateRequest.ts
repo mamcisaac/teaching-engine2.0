@@ -7,7 +7,7 @@ import logger from '../logger.js';
  * Creates middleware that validates request data against a Zod schema
  */
 export function validateRequest(schema: ZodSchema) {
-  return async (req: Request, res: Response, next: NextFunction) => {
+  return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       // Validate request body
       const validated = await schema.parseAsync(req.body);
@@ -57,20 +57,22 @@ export function validateRequest(schema: ZodSchema) {
           mainMessage = passwordError.message;
         }
 
-        return res.status(400).json({
+        res.status(400).json({
           error: 'Validation failed',
           message: mainMessage,
           errors: formattedErrors,
           messages: messages,
         });
+        return;
       }
 
       // Handle unexpected errors
       logger.error({ error: _error }, 'Unexpected error in validation middleware');
-      return res.status(500).json({
+      res.status(500).json({
         error: 'Internal server error',
         message: 'An unexpected error occurred',
       });
+      return;
     }
   };
 }
@@ -79,7 +81,7 @@ export function validateRequest(schema: ZodSchema) {
  * Validate query parameters
  */
 export function validateQuery(schema: ZodSchema) {
-  return async (req: Request, res: Response, next: NextFunction) => {
+  return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       // Validate query parameters
       const validated = await schema.parseAsync(req.query);
@@ -115,19 +117,21 @@ export function validateQuery(schema: ZodSchema) {
         // Use generic message for query parameters
         const mainMessage = 'Invalid query parameters';
 
-        return res.status(400).json({
+        res.status(400).json({
           error: 'Validation failed',
           message: mainMessage,
           errors: formattedErrors,
           messages: messages,
         });
+        return;
       }
 
       logger.error({ error: _error }, 'Unexpected error in query validation middleware');
-      return res.status(500).json({
+      res.status(500).json({
         error: 'Internal server error',
         message: 'An unexpected error occurred',
       });
+      return;
     }
   };
 }
@@ -136,7 +140,7 @@ export function validateQuery(schema: ZodSchema) {
  * Validate route parameters
  */
 export function validateParams(schema: ZodSchema) {
-  return async (req: Request, res: Response, next: NextFunction) => {
+  return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       // Validate route parameters
       const validated = await schema.parseAsync(req.params);
@@ -172,19 +176,21 @@ export function validateParams(schema: ZodSchema) {
         // Use generic message for route parameters
         const mainMessage = 'Invalid route parameters';
 
-        return res.status(400).json({
+        res.status(400).json({
           error: 'Validation failed',
           message: mainMessage,
           errors: formattedErrors,
           messages: messages,
         });
+        return;
       }
 
       logger.error({ error: _error }, 'Unexpected error in parameter validation middleware');
-      return res.status(500).json({
+      res.status(500).json({
         error: 'Internal server error',
         message: 'An unexpected error occurred',
       });
+      return;
     }
   };
 }
@@ -193,7 +199,7 @@ export function validateParams(schema: ZodSchema) {
  * Combined validation for body, query, and params
  */
 export function validate(options: { body?: ZodSchema; query?: ZodSchema; params?: ZodSchema }) {
-  return async (req: Request, res: Response, next: NextFunction) => {
+  return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       // Validate each part if schema provided
       if (options.body) {
@@ -247,19 +253,21 @@ export function validate(options: { body?: ZodSchema; query?: ZodSchema; params?
           mainMessage = passwordError.message;
         }
 
-        return res.status(400).json({
+        res.status(400).json({
           error: 'Validation failed',
           message: mainMessage,
           errors: formattedErrors,
           messages: messages,
         });
+        return;
       }
 
       logger.error({ error: _error }, 'Unexpected error in validation middleware');
-      return res.status(500).json({
+      res.status(500).json({
         error: 'Internal server error',
         message: 'An unexpected error occurred',
       });
+      return;
     }
   };
 }

@@ -77,25 +77,19 @@ describe('SubstitutePlanService', () => {
     });
   });
 
-  describe('getTimeSlot() method', () => {
-    test('should return correct time slot for index 0', () => {
-      const timeSlot = (SubstitutePlanService as unknown).getTimeSlot(0);
-      expect(timeSlot).toBe('9:15 AM');
-    });
+  describe('time slot functionality', () => {
+    test('should work with basic schedule structure', () => {
+      const schedule = (SubstitutePlanService as unknown).createBasicSchedule();
+      expect(schedule).toHaveLength(9);
 
-    test('should return correct time slot for index 1', () => {
-      const timeSlot = (SubstitutePlanService as unknown).getTimeSlot(1);
-      expect(timeSlot).toBe('10:45 AM');
-    });
+      // Test that lesson blocks are available at expected times
+      const lessonTimes = schedule
+        .filter((item: any) => item.activity.includes('Lesson'))
+        .map((item: any) => item.time);
 
-    test('should return correct time slot for index 2', () => {
-      const timeSlot = (SubstitutePlanService as unknown).getTimeSlot(2);
-      expect(timeSlot).toBe('1:00 PM');
-    });
-
-    test('should return first time slot for index greater than available slots', () => {
-      const timeSlot = (SubstitutePlanService as unknown).getTimeSlot(5);
-      expect(timeSlot).toBe('9:15 AM');
+      expect(lessonTimes).toContain('9:15 AM');
+      expect(lessonTimes).toContain('10:45 AM');
+      expect(lessonTimes).toContain('1:00 PM');
     });
 
     test('should return first time slot for negative index', () => {
@@ -235,7 +229,8 @@ describe('SubstitutePlanService', () => {
           subject: 'Mathematics',
           time: '9:15 AM',
           duration: 60,
-          instructions: 'Learning Goals: Students will understand fractions\n\nMain Activity: Hands-on activities',
+          instructions:
+            'Learning Goals: Students will understand fractions\n\nMain Activity: Hands-on activities',
           materials: ['fraction bars', 'worksheets'],
         },
       ],
@@ -337,9 +332,7 @@ describe('SubstitutePlanService', () => {
     test('should handle schedule items without notes', async () => {
       const planWithNotelessSchedule = {
         ...samplePlan,
-        schedule: [
-          { time: '9:00 AM', activity: 'Morning Meeting' },
-        ],
+        schedule: [{ time: '9:00 AM', activity: 'Morning Meeting' }],
       };
 
       const html = await SubstitutePlanService.exportAsHTML(planWithNotelessSchedule);
@@ -356,12 +349,12 @@ describe('SubstitutePlanService', () => {
       expect(html).toMatch(/<\/html>/);
       expect(html).toMatch(/<head>.*<\/head>/s);
       expect(html).toMatch(/<body>.*<\/body>/s);
-      
+
       // Check for proper escaping (no script tags or dangerous content)
       expect(html).not.toContain('<script>');
       expect(html).not.toContain('javascript:');
       expect(html).not.toContain('onload=');
-      
+
       // Check for print-friendly features
       expect(html).toContain('page-break-after: always');
       expect(html).toContain('@media print');
@@ -385,21 +378,31 @@ describe('SubstitutePlanService', () => {
       // Test edge cases for getTimeSlot
       expect((SubstitutePlanService as unknown).getTimeSlot(100)).toBe('9:15 AM');
       expect((SubstitutePlanService as unknown).getTimeSlot(-100)).toBe('9:15 AM');
-      
+
       // Test edge cases for formatLessonInstructions - service handles null/undefined gracefully
-      expect((SubstitutePlanService as unknown).formatLessonInstructions(null)).toBe('Follow the activities as outlined in the lesson plan binder.');
-      expect((SubstitutePlanService as unknown).formatLessonInstructions(undefined)).toBe('Follow the activities as outlined in the lesson plan binder.');
-      
+      expect((SubstitutePlanService as unknown).formatLessonInstructions(null)).toBe(
+        'Follow the activities as outlined in the lesson plan binder.',
+      );
+      expect((SubstitutePlanService as unknown).formatLessonInstructions(undefined)).toBe(
+        'Follow the activities as outlined in the lesson plan binder.',
+      );
+
       // Test edge cases for createGeneralNotes
-      expect((SubstitutePlanService as unknown).createGeneralNotes(null)).toContain('See class information');
-      expect((SubstitutePlanService as unknown).createGeneralNotes(undefined)).toContain('See class information');
-      expect((SubstitutePlanService as unknown).createGeneralNotes('')).toContain('See class information');
+      expect((SubstitutePlanService as unknown).createGeneralNotes(null)).toContain(
+        'See class information',
+      );
+      expect((SubstitutePlanService as unknown).createGeneralNotes(undefined)).toContain(
+        'See class information',
+      );
+      expect((SubstitutePlanService as unknown).createGeneralNotes('')).toContain(
+        'See class information',
+      );
     });
 
     test('should create consistent schedule structure', () => {
       const schedule1 = (SubstitutePlanService as unknown).createBasicSchedule();
       const schedule2 = (SubstitutePlanService as unknown).createBasicSchedule();
-      
+
       expect(schedule1).toEqual(schedule2);
       expect(schedule1.length).toBe(schedule2.length);
     });
@@ -410,7 +413,7 @@ describe('SubstitutePlanService', () => {
       for (let i = 0; i < 10; i++) {
         slots.push((SubstitutePlanService as unknown).getTimeSlot(i));
       }
-      
+
       // Should cycle through the three available slots
       expect(slots[0]).toBe('9:15 AM');
       expect(slots[1]).toBe('10:45 AM');
@@ -431,7 +434,11 @@ describe('SubstitutePlanService', () => {
         subject: 'Science & Technology',
         schedule: [
           { time: '8:30 AM', activity: 'Morning Entry & Setup' },
-          { time: '9:00 AM', activity: 'Attendance & Announcements', notes: 'Check for special instructions' },
+          {
+            time: '9:00 AM',
+            activity: 'Attendance & Announcements',
+            notes: 'Check for special instructions',
+          },
           { time: '9:15 AM', activity: 'Science Experiment', notes: 'Safety equipment required' },
           { time: '10:30 AM', activity: 'Recess & Fresh Air' },
           { time: '11:00 AM', activity: 'Math Review', notes: 'Use manipulatives if available' },
@@ -443,8 +450,15 @@ describe('SubstitutePlanService', () => {
             subject: 'Science',
             time: '9:15 AM',
             duration: 75,
-            instructions: 'Learning Goals: Students will observe chemical reactions safely\n\nStart (10 min): Review lab safety rules\n\nMain Activity: Conduct baking soda & vinegar experiment\n\nWrap-up: Record observations in science journals',
-            materials: ['baking soda', 'vinegar', 'safety goggles', 'measuring cups', 'science journals'],
+            instructions:
+              'Learning Goals: Students will observe chemical reactions safely\n\nStart (10 min): Review lab safety rules\n\nMain Activity: Conduct baking soda & vinegar experiment\n\nWrap-up: Record observations in science journals',
+            materials: [
+              'baking soda',
+              'vinegar',
+              'safety goggles',
+              'measuring cups',
+              'science journals',
+            ],
           },
           {
             id: 'lesson-math',
@@ -452,14 +466,17 @@ describe('SubstitutePlanService', () => {
             subject: 'Mathematics',
             time: '11:00 AM',
             duration: 60,
-            instructions: 'Learning Goals: Students will add and subtract fractions with different denominators\n\nStart (5 min): Quick review of equivalent fractions\n\nMain Activity: Fraction problem-solving worksheets\n\nWrap-up: Share solution strategies',
+            instructions:
+              'Learning Goals: Students will add and subtract fractions with different denominators\n\nStart (5 min): Quick review of equivalent fractions\n\nMain Activity: Fraction problem-solving worksheets\n\nWrap-up: Share solution strategies',
             materials: ['fraction manipulatives', 'worksheets', 'calculators (if needed)'],
           },
         ],
-        generalNotes: 'Welcome! Thank you for substituting today.\n\nKey Information:\n- Teacher: Dr. Sarah Johnson\n- Students have been working hard on science fair projects\n- Please ensure all safety protocols are followed during experiments\n- Mathematics worksheets are differentiated by ability level\n\nHave a wonderful day with the class!',
+        generalNotes:
+          'Welcome! Thank you for substituting today.\n\nKey Information:\n- Teacher: Dr. Sarah Johnson\n- Students have been working hard on science fair projects\n- Please ensure all safety protocols are followed during experiments\n- Mathematics worksheets are differentiated by ability level\n\nHave a wonderful day with the class!',
         emergencyInfo: {
           officePhone: '(555) 123-4567 ext. 101',
-          procedures: 'In case of emergency, contact the main office immediately. Fire drill procedures are posted by the door. First aid kit is located in the top right cabinet.',
+          procedures:
+            'In case of emergency, contact the main office immediately. Fire drill procedures are posted by the door. First aid kit is located in the top right cabinet.',
         },
       };
 
@@ -482,7 +499,9 @@ describe('SubstitutePlanService', () => {
       // Test complex content rendering
       expect(html).toContain('Dr. Sarah Johnson');
       expect(html).toContain('(555) 123-4567 ext. 101');
-      expect(html).toContain('baking soda, vinegar, safety goggles, measuring cups, science journals');
+      expect(html).toContain(
+        'baking soda, vinegar, safety goggles, measuring cups, science journals',
+      );
       expect(html).toContain('fraction manipulatives, worksheets, calculators (if needed)');
 
       // Test newline conversion

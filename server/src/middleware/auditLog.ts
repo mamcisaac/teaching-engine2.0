@@ -15,8 +15,9 @@ export interface AuditLogEntry {
 }
 
 class AuditLogger {
-  private readonly maxRetries = 3;
-  private readonly retryDelay = 1000; // 1 second
+  // Retry configuration for future use
+  // private readonly maxRetries = 3;
+  // private readonly retryDelay = 1000; // 1 second
 
   /**
    * Log an audit event
@@ -55,13 +56,13 @@ class AuditLogger {
       const originalSend = res.send;
       const originalJson = res.json;
 
-      let _responseData: unknown;
+      // let _responseData: unknown;
       let success = true;
       let errorMessage: string | undefined;
 
       // Intercept response
       res.send = function (data: unknown) {
-        _responseData = data;
+        // _responseData = data;
         if (res.statusCode >= 400) {
           success = false;
           const errorData = data as { error?: string; message?: string };
@@ -71,7 +72,7 @@ class AuditLogger {
       };
 
       res.json = function (data: unknown) {
-        _responseData = data;
+        // _responseData = data;
         if (res.statusCode >= 400) {
           success = false;
           const errorData = data as { error?: string; message?: string };

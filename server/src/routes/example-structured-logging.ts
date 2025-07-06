@@ -32,6 +32,7 @@ router.get('/api/example/basic', authenticate, async (req: Request, res: Respons
     });
 
     res.json({ data: result });
+    return;
   } catch (error) {
     // Log error with full context
     structuredLogger.error('Failed to process example request', error as Error, {
@@ -40,13 +41,14 @@ router.get('/api/example/basic', authenticate, async (req: Request, res: Respons
     });
 
     res.status(500).json({ error: 'Internal server error' });
+    return;
   }
 });
 
 /**
  * Example: Route with performance logging
  */
-router.get('/api/example/performance', authenticate, async (req: Request, res: Response) => {
+router.get('/api/example/performance', authenticate, async (_req: Request, res: Response) => {
   const perfLogger = new PerformanceLogger('example.performance');
 
   try {
@@ -71,11 +73,13 @@ router.get('/api/example/performance', authenticate, async (req: Request, res: R
     });
 
     res.json({ data: processed });
+    return;
   } catch (error) {
     perfLogger.end({ success: false, error: (error as Error).message });
 
     structuredLogger.error('Performance example failed', error as Error);
     res.status(500).json({ error: 'Internal server error' });
+    return;
   }
 });
 
@@ -127,6 +131,7 @@ router.post('/api/example/batch', authenticate, async (req: Request, res: Respon
     results,
     errors,
   });
+  return;
 });
 
 /**
@@ -157,6 +162,7 @@ router.post(
           structuredLogger.info('Processing completed', { resultId: result.id });
 
           res.json({ workflowId, result });
+          return;
         });
       } catch (error) {
         structuredLogger.error('Workflow failed', error as Error, { workflowId });

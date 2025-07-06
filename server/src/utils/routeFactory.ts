@@ -110,7 +110,7 @@ export function createCrudRoutes<T extends BaseModel = BaseModel>(
   });
 
   // GET - Get single by ID
-  router.get('/:id', async (req: Request, res: Response) => {
+  router.get('/:id', async (req: Request, res: Response): Promise<void> => {
     try {
       const id = parseInt(req.params.id);
 
@@ -120,7 +120,8 @@ export function createCrudRoutes<T extends BaseModel = BaseModel>(
       });
 
       if (!item) {
-        return res.status(404).json({ message: `${modelName} not found` });
+        res.status(404).json({ message: `${modelName} not found` });
+        return;
       }
 
       res.json(transformResponse(item));
@@ -131,7 +132,7 @@ export function createCrudRoutes<T extends BaseModel = BaseModel>(
   });
 
   // POST - Create new
-  router.post('/', async (req: Request, res: Response) => {
+  router.post('/', async (req: Request, res: Response): Promise<void> => {
     try {
       let data = createSchema ? createSchema.parse(req.body) : req.body;
 
@@ -158,7 +159,8 @@ export function createCrudRoutes<T extends BaseModel = BaseModel>(
       res.status(201).json(transformResponse(item));
     } catch (_error) {
       if (_error instanceof z.ZodError) {
-        return res.status(400).json({ message: 'Invalid data', errors: _error.errors });
+        res.status(400).json({ message: 'Invalid data', errors: _error.errors });
+        return;
       }
       logger.error({ error: _error, modelName }, `Error creating ${modelName}`);
       res.status(500).json({ message: `Failed to create ${modelName}` });
@@ -166,7 +168,7 @@ export function createCrudRoutes<T extends BaseModel = BaseModel>(
   });
 
   // PUT - Update by ID
-  router.put('/:id', async (req: Request, res: Response) => {
+  router.put('/:id', async (req: Request, res: Response): Promise<void> => {
     try {
       const id = parseInt(req.params.id);
       let data = updateSchema ? updateSchema.parse(req.body) : req.body;
@@ -174,12 +176,14 @@ export function createCrudRoutes<T extends BaseModel = BaseModel>(
       // Check if item exists
       const existing = await prismaModel.findUnique({ where: { id } });
       if (!existing) {
-        return res.status(404).json({ message: `${modelName} not found` });
+        res.status(404).json({ message: `${modelName} not found` });
+        return;
       }
 
       // Check ownership if user ID exists
       if (req.user && existing.userId && existing.userId !== req.user.id) {
-        return res.status(403).json({ message: 'Unauthorized' });
+        res.status(403).json({ message: 'Unauthorized' });
+        return;
       }
 
       // Run before update hook
@@ -201,7 +205,8 @@ export function createCrudRoutes<T extends BaseModel = BaseModel>(
       res.json(transformResponse(item));
     } catch (_error) {
       if (_error instanceof z.ZodError) {
-        return res.status(400).json({ message: 'Invalid data', errors: _error.errors });
+        res.status(400).json({ message: 'Invalid data', errors: _error.errors });
+        return;
       }
       logger.error({ error: _error, modelName, id: req.params.id }, `Error updating ${modelName}`);
       res.status(500).json({ message: `Failed to update ${modelName}` });
@@ -209,19 +214,21 @@ export function createCrudRoutes<T extends BaseModel = BaseModel>(
   });
 
   // DELETE - Delete by ID
-  router.delete('/:id', async (req: Request, res: Response) => {
+  router.delete('/:id', async (req: Request, res: Response): Promise<void> => {
     try {
       const id = parseInt(req.params.id);
 
       // Check if item exists
       const existing = await prismaModel.findUnique({ where: { id } });
       if (!existing) {
-        return res.status(404).json({ message: `${modelName} not found` });
+        res.status(404).json({ message: `${modelName} not found` });
+        return;
       }
 
       // Check ownership if user ID exists
       if (req.user && existing.userId && existing.userId !== req.user.id) {
-        return res.status(403).json({ message: 'Unauthorized' });
+        res.status(403).json({ message: 'Unauthorized' });
+        return;
       }
 
       // Run before delete hook

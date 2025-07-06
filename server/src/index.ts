@@ -135,7 +135,7 @@ app.get('/api/health/detailed', (_req, res) => {
 app.post(
   '/api/login',
   authRateLimitMiddleware,
-  (req: Request, res: Response, next: NextFunction) => {
+  (req: Request, _res: Response, next: NextFunction) => {
     // Forward to the auth router
     req.url = '/auth/login';
     next();

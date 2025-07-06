@@ -33,10 +33,12 @@ export function userRoutes(prisma: PrismaClient): Router {
       const user = await userRepository.findByIdWithoutPassword(userId);
 
       if (!user) {
-        return res.status(404).json({ error: 'User not found' });
+        res.status(404).json({ error: 'User not found' });
+        return;
       }
 
       res.json(user);
+      return;
     }),
   );
 
@@ -54,19 +56,22 @@ export function userRoutes(prisma: PrismaClient): Router {
       const user = await userRepository.findById(userId);
 
       if (!user) {
-        return res.status(404).json({ error: 'User not found' });
+        res.status(404).json({ error: 'User not found' });
+        return;
       }
 
       // Verify current password
       const isValidPassword = await bcrypt.compare(currentPassword, user.password);
       if (!isValidPassword) {
-        return res.status(401).json({ error: 'Current password is incorrect' });
+        res.status(401).json({ error: 'Current password is incorrect' });
+        return;
       }
 
       // Update password
       await userRepository.updatePassword(userId, newPassword);
 
       res.json({ message: 'Password updated successfully' });
+      return;
     }),
   );
 
@@ -77,7 +82,8 @@ export function userRoutes(prisma: PrismaClient): Router {
       const userRole = (req as Request & { user?: { role?: string } }).user?.role;
 
       if (userRole !== 'ADMIN') {
-        return res.status(403).json({ error: 'Forbidden' });
+        res.status(403).json({ error: 'Forbidden' });
+        return;
       }
 
       const { email, name, role } = req.body;
@@ -93,6 +99,7 @@ export function userRoutes(prisma: PrismaClient): Router {
       });
 
       res.status(201).json(user);
+      return;
     }),
   );
 
@@ -104,22 +111,27 @@ export function userRoutes(prisma: PrismaClient): Router {
 
       // Type validation
       if (data.age !== undefined && typeof data.age !== 'number') {
-        return res.status(400).json({ error: 'Invalid data type: age must be a number' });
+        res.status(400).json({ error: 'Invalid data type: age must be a number' });
+        return;
       }
 
       if (data.active !== undefined && typeof data.active !== 'boolean') {
-        return res.status(400).json({ error: 'Invalid data type: active must be a boolean' });
+        res.status(400).json({ error: 'Invalid data type: active must be a boolean' });
+        return;
       }
 
       if (data.tags !== undefined && !Array.isArray(data.tags)) {
-        return res.status(400).json({ error: 'Invalid data type: tags must be an array' });
+        res.status(400).json({ error: 'Invalid data type: tags must be an array' });
+        return;
       }
 
       if (data.metadata !== undefined && typeof data.metadata !== 'object') {
-        return res.status(400).json({ error: 'Invalid data type: metadata must be an object' });
+        res.status(400).json({ error: 'Invalid data type: metadata must be an object' });
+        return;
       }
 
       res.json({ valid: true });
+      return;
     }),
   );
 

@@ -83,32 +83,39 @@ const saveActivitySchema = z.object({
 /**
  * Generate an AI-powered activity
  */
-router.post('/generate', authMiddleware, aiRateLimit, async (req: Request, res: Response) => {
-  try {
-    const params = generateActivitySchema.parse(req.body);
-    const searchResults = undefined;
+router.post(
+  '/generate',
+  authMiddleware,
+  aiRateLimit,
+  async (req: Request, res: Response): Promise<void> => {
+    try {
+      const params = generateActivitySchema.parse(req.body);
+      const searchResults = undefined;
 
-    // Activity search removed - generating activities directly from lesson context
+      // Activity search removed - generating activities directly from lesson context
 
-    // Generate the activity
-    const generatedActivity = await aiGenerator.generateActivity({
-      searchResults,
-      lessonContext: params.lessonContext,
-      specificRequirements: params.specificRequirements,
-    });
+      // Generate the activity
+      const generatedActivity = await aiGenerator.generateActivity({
+        searchResults,
+        lessonContext: params.lessonContext,
+        specificRequirements: params.specificRequirements,
+      });
 
-    res.json({
-      success: true,
-      data: generatedActivity,
-    });
-  } catch (_error) {
-    log('Error generating activity:', _error);
-    res.status(500).json({
-      success: false,
-      error: 'Failed to generate activity',
-    });
-  }
-});
+      res.json({
+        success: true,
+        data: generatedActivity,
+      });
+      return;
+    } catch (_error) {
+      log('Error generating activity:', _error);
+      res.status(500).json({
+        success: false,
+        error: 'Failed to generate activity',
+      });
+      return;
+    }
+  },
+);
 
 /**
  * Generate multiple activity variations
@@ -117,7 +124,7 @@ router.post(
   '/generate-variations',
   authMiddleware,
   aiRateLimit,
-  async (req: Request, res: Response) => {
+  async (req: Request, res: Response): Promise<void> => {
     try {
       const params = generateActivitySchema.parse(req.body);
       const count = Math.min(req.body.count || 3, 5); // Max 5 variations
@@ -143,12 +150,14 @@ router.post(
           count: variations.length,
         },
       });
+      return;
     } catch (_error) {
       log('Error generating activity variations:', _error);
       res.status(500).json({
         success: false,
         error: 'Failed to generate activity variations',
       });
+      return;
     }
   },
 );
@@ -158,7 +167,7 @@ router.post(
 /**
  * Save a generated activity
  */
-router.post('/save', authMiddleware, async (req: Request, res: Response) => {
+router.post('/save', authMiddleware, async (req: Request, res: Response): Promise<void> => {
   try {
     const params = saveActivitySchema.parse(req.body);
 
@@ -192,12 +201,14 @@ router.post('/save', authMiddleware, async (req: Request, res: Response) => {
       success: true,
       data: savedActivity,
     });
+    return;
   } catch (_error) {
     logger.error('Error saving generated activity:', _error);
     res.status(500).json({
       success: false,
       error: 'Failed to save generated activity',
     });
+    return;
   }
 });
 

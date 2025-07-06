@@ -14,13 +14,13 @@
     },
     "noImplicitAny": true,
     "strictNullChecks": true,
-    "noImplicitReturns": false,
-    "noImplicitThis": false,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "strictBindCallApply": false,
-    "strictFunctionTypes": false,
-    "strictPropertyInitialization": false
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true
   },
   "include": ["src", "src/types/**/*"],
   "exclude": [
@@ -28,14 +28,6 @@
     "src/__mocks__/**/*",
     "**/__mocks__/**/*",
     "**/*.test.ts",
-    "**/*.spec.ts",
-    "src/services/analytics/curriculumAnalytics.ts",
-    "src/services/analytics/domainAnalytics.ts",
-    "src/services/analytics/themeAnalytics.ts",
-    "src/middleware/rateLimit/**/*",
-    "src/utils/errors.ts",
-    "src/utils/performance.ts",
-    "src/utils/routeFactory.ts",
-    "src/utils/urlValidator.ts"
+    "**/*.spec.ts"
   ]
 }

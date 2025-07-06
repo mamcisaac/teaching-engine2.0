@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import helmet from 'helmet';
-import cors from 'cors';
+import * as cors from 'cors';
 import { RateLimiterMemory, RateLimiterRedis } from 'rate-limiter-flexible';
 import Redis from 'ioredis';
 import logger from '../logger.js';
@@ -67,7 +67,8 @@ export const helmetConfig = helmet({
 /**
  * Create rate limiter instance
  */
-function createRateLimiter() {
+// @ts-expect-error TS6133
+function _createRateLimiter() {
   // Use Redis in production for distributed rate limiting
   if (process.env.REDIS_URL && process.env.NODE_ENV === 'production') {
     const redis = new Redis(process.env.REDIS_URL);
@@ -88,18 +89,18 @@ function createRateLimiter() {
   });
 }
 
-// Rate limiter instances
-const _generalLimiter = createRateLimiter();
-const _authLimiter = new RateLimiterMemory({
-  points: process.env.NODE_ENV === 'test' ? 20 : 5, // Higher limit for tests to allow multiple test registrations
-  duration: process.env.NODE_ENV === 'test' ? 5 : 900, // 5 seconds for tests, 15 minutes for production
-  blockDuration: process.env.NODE_ENV === 'test' ? 1 : 1800, // 1 second for tests, 30 minutes for production
-});
+// Rate limiter instances - kept for future use
+// const _generalLimiter = _createRateLimiter();
+// const _authLimiter = new RateLimiterMemory({
+//   points: process.env.NODE_ENV === 'test' ? 20 : 5, // Higher limit for tests to allow multiple test registrations
+//   duration: process.env.NODE_ENV === 'test' ? 5 : 900, // 5 seconds for tests, 15 minutes for production
+//   blockDuration: process.env.NODE_ENV === 'test' ? 1 : 1800, // 1 second for tests, 30 minutes for production
+// });
 
 /**
  * General rate limiting middleware
  */
-export async function rateLimitMiddleware(req: Request, res: Response, next: NextFunction) {
+export async function rateLimitMiddleware(_req: Request, _res: Response, next: NextFunction) {
   // SINGLE USER APP - Skip all rate limiting
   return next();
 }
@@ -107,7 +108,7 @@ export async function rateLimitMiddleware(req: Request, res: Response, next: Nex
 /**
  * Strict rate limiting for authentication endpoints
  */
-export async function authRateLimitMiddleware(req: Request, res: Response, next: NextFunction) {
+export async function authRateLimitMiddleware(_req: Request, _res: Response, next: NextFunction) {
   // SINGLE USER APP - Skip all rate limiting
   return next();
 }
@@ -160,7 +161,7 @@ export function validateFileUpload(allowedTypes: string[] = ALLOWED_FILE_TYPES) 
 /**
  * Security headers middleware for enhanced protection
  */
-export function securityHeaders(req: Request, res: Response, next: NextFunction) {
+export function securityHeaders(_req: Request, res: Response, next: NextFunction) {
   // Set additional security headers not covered by Helmet
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
@@ -183,7 +184,7 @@ export function securityHeaders(req: Request, res: Response, next: NextFunction)
 /**
  * Input sanitization middleware
  */
-export function sanitizeInput(req: Request, res: Response, next: NextFunction) {
+export function sanitizeInput(req: Request, _res: Response, next: NextFunction) {
   // Sanitize request body
   if (req.body && typeof req.body === 'object') {
     sanitizeObject(req.body);
@@ -268,7 +269,8 @@ export function applySecurityMiddleware(app: { use: (middleware: unknown) => voi
   app.use(helmetConfig);
 
   // Apply CORS
-  app.use(cors(corsOptions));
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  app.use(cors.default ? cors.default(corsOptions) : (cors as any)(corsOptions));
 
   // Apply custom security headers
   app.use(securityHeaders);

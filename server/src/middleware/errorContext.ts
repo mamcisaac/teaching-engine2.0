@@ -15,11 +15,11 @@ interface ExtendedRequest extends Request {
 export const errorContextMiddleware = (
   req: ExtendedRequest,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): void => {
   // Generate request ID if not present
-  req.id = req.id || req.headers['x-request-id'] as string || uuidv4();
-  
+  req.id = req.id || (req.headers['x-request-id'] as string) || uuidv4();
+
   // Track request start time
   req.startTime = Date.now();
 
@@ -62,7 +62,7 @@ export const errorContextMiddleware = (
   // Clean up on response finish
   res.on('finish', () => {
     const duration = req.startTime ? Date.now() - req.startTime : 0;
-    
+
     // Add response breadcrumb
     errorReportingService.addBreadcrumb({
       message: `${req.method} ${req.path} - ${res.statusCode}`,
@@ -92,8 +92,8 @@ export const errorContextMiddleware = (
 export const authErrorMiddleware = (
   err: Error,
   req: ExtendedRequest,
-  res: Response,
-  next: NextFunction
+  _res: Response,
+  next: NextFunction,
 ): void => {
   if (err.name === 'UnauthorizedError' || err.message.includes('auth')) {
     errorReportingService.addBreadcrumb({
@@ -107,6 +107,6 @@ export const authErrorMiddleware = (
       },
     });
   }
-  
+
   next(err);
 };

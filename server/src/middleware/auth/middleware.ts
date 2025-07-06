@@ -18,13 +18,13 @@ export class ForbiddenError extends Error {
  */
 export async function authenticate(
   req: Request,
-  res: Response,
-  next: NextFunction
+  _res: Response,
+  next: NextFunction,
 ): Promise<void> {
   try {
     // Extract token from Authorization header
     const token = extractTokenFromHeader(req.headers.authorization);
-    
+
     if (!token) {
       throw new AuthenticationError('No authentication token provided');
     }
@@ -72,9 +72,9 @@ export async function authenticate(
  * Checks if user has required role(s)
  */
 export function authorize(...allowedRoles: UserRole[]) {
-  return (req: Request, res: Response, next: NextFunction): void => {
+  return (req: Request, _res: Response, next: NextFunction): void => {
     const authReq = req as AuthRequest;
-    
+
     if (!authReq.user) {
       return next(new AuthenticationError('User not authenticated'));
     }
@@ -85,7 +85,7 @@ export function authorize(...allowedRoles: UserRole[]) {
 
     if (!allowedRoles.includes(authReq.user.role)) {
       logger.warn(
-        `Access denied for user ${authReq.user.email} with role ${authReq.user.role}. Required roles: ${allowedRoles.join(', ')}`
+        `Access denied for user ${authReq.user.email} with role ${authReq.user.role}. Required roles: ${allowedRoles.join(', ')}`,
       );
       return next(new ForbiddenError('Insufficient permissions'));
     }
@@ -100,12 +100,12 @@ export function authorize(...allowedRoles: UserRole[]) {
  */
 export async function optionalAuthenticate(
   req: Request,
-  res: Response,
-  next: NextFunction
+  _res: Response,
+  next: NextFunction,
 ): Promise<void> {
   try {
     const token = extractTokenFromHeader(req.headers.authorization);
-    
+
     if (!token) {
       return next();
     }
@@ -141,13 +141,9 @@ export async function optionalAuthenticate(
 /**
  * Require organization membership
  */
-export function requireOrganization(
-  req: Request,
-  res: Response,
-  next: NextFunction
-): void {
+export function requireOrganization(req: Request, _res: Response, next: NextFunction): void {
   const authReq = req as AuthRequest;
-  
+
   if (!authReq.user) {
     return next(new AuthenticationError('User not authenticated'));
   }

@@ -2,18 +2,20 @@
 import { Request, Response, NextFunction } from 'express';
 import { ZodError } from 'zod';
 import { logger } from '../../logger';
-import { 
-  AppError, 
-  handleDatabaseError,
-  formatErrorResponse 
-} from '../../utils/errors';
+import { AppError, handleDatabaseError, formatErrorResponse } from '../../utils/errors';
 import { errorCounter } from '../../monitoring/telemetry';
 import { errorReportingService } from '../../services/monitoring/errorReportingService';
 
 // Extended Express Request with additional properties
 interface ExtendedRequest extends Request {
   id?: string;
-  user?: { id: number; email: string; role: string; organizationId?: number; permissions?: string[] };
+  user?: {
+    id: number;
+    email: string;
+    role: string;
+    organizationId?: number;
+    permissions?: string[];
+  };
   startTime?: number;
 }
 
@@ -21,8 +23,8 @@ interface ExtendedRequest extends Request {
 export const errorLoggingMiddleware = (
   err: Error | AppError | ZodError,
   req: ExtendedRequest,
-  res: Response,
-  next: NextFunction
+  _res: Response,
+  next: NextFunction,
 ): void => {
   // Log error details
   const errorData = {
@@ -92,12 +94,15 @@ export const errorLoggingMiddleware = (
   }
 
   // Track error metrics
-  const errorType = err instanceof AppError ? 'app_error' : 
-                   err instanceof ZodError ? 'validation_error' : 
-                   'unhandled_error';
-  
+  const errorType =
+    err instanceof AppError
+      ? 'app_error'
+      : err instanceof ZodError
+        ? 'validation_error'
+        : 'unhandled_error';
+
   const statusCode = err instanceof AppError ? err.statusCode.toString() : '500';
-  
+
   errorCounter.add(1, {
     type: errorType,
     status: statusCode,
@@ -113,7 +118,7 @@ export const errorHandlerMiddleware = (
   err: Error | AppError | ZodError,
   req: ExtendedRequest,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): void => {
   // Don't handle if response was already sent
   if (res.headersSent) {
@@ -137,31 +142,29 @@ export const errorHandlerMiddleware = (
     errorResponse = formatErrorResponse(err, req.id);
   } else if (err.name === 'UnauthorizedError') {
     statusCode = 401;
-    errorResponse = formatErrorResponse(
-      new AppError(401, 'Unauthorized', 'UNAUTHORIZED'),
-      req.id
-    );
+    errorResponse = formatErrorResponse(new AppError(401, 'Unauthorized', 'UNAUTHORIZED'), req.id);
   } else if (err.name === 'ValidationError') {
     statusCode = 400;
     errorResponse = formatErrorResponse(
       new AppError(400, err.message || 'Validation failed', 'VALIDATION_ERROR'),
-      req.id
+      req.id,
     );
   } else if ('type' in err && err.type === 'entity.too.large') {
     statusCode = 413;
     errorResponse = formatErrorResponse(
       new AppError(413, 'Request entity too large', 'PAYLOAD_TOO_LARGE'),
-      req.id
+      req.id,
     );
   } else {
     // Generic error
-    const message = process.env.NODE_ENV === 'production' 
-      ? 'An unexpected error occurred' 
-      : err.message || 'Unknown error';
-    
+    const message =
+      process.env.NODE_ENV === 'production'
+        ? 'An unexpected error occurred'
+        : err.message || 'Unknown error';
+
     errorResponse = formatErrorResponse(
       new AppError(statusCode, message, 'INTERNAL_ERROR'),
-      req.id
+      req.id,
     );
   }
 
@@ -170,22 +173,14 @@ export const errorHandlerMiddleware = (
 };
 
 // 404 Not Found handler
-export const notFoundHandler = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-): void => {
-  const error = new AppError(
-    404,
-    `Cannot ${req.method} ${req.path}`,
-    'NOT_FOUND'
-  );
+export const notFoundHandler = (req: Request, _res: Response, next: NextFunction): void => {
+  const error = new AppError(404, `Cannot ${req.method} ${req.path}`, 'NOT_FOUND');
   next(error);
 };
 
 // Async error catcher for route handlers
 export const catchAsync = (
-  fn: (req: Request, res: Response, next: NextFunction) => Promise<void>
+  fn: (req: Request, res: Response, next: NextFunction) => Promise<void>,
 ) => {
   return (req: Request, res: Response, next: NextFunction): void => {
     Promise.resolve(fn(req, res, next)).catch(next);
@@ -193,27 +188,21 @@ export const catchAsync = (
 };
 
 // Error handler for unhandled promise rejections
-export const unhandledRejectionHandler = (
-  reason: unknown,
-  promise: Promise<unknown>
-): void => {
+export const unhandledRejectionHandler = (reason: unknown, promise: Promise<unknown>): void => {
   logger.error(
     {
       reason,
       promise,
       type: 'unhandledRejection',
     },
-    'Unhandled Promise Rejection'
+    'Unhandled Promise Rejection',
   );
 
   // Report to error service
-  errorReportingService.captureError(
-    reason instanceof Error ? reason : new Error(String(reason)),
-    {
-      type: 'unhandledRejection',
-      promise: String(promise),
-    }
-  );
+  errorReportingService.captureError(reason instanceof Error ? reason : new Error(String(reason)), {
+    type: 'unhandledRejection',
+    promise: String(promise),
+  });
 
   // In production, you might want to gracefully shutdown
   if (process.env.NODE_ENV === 'production') {
@@ -231,7 +220,7 @@ export const uncaughtExceptionHandler = (error: Error): void => {
       error,
       type: 'uncaughtException',
     },
-    'Uncaught Exception'
+    'Uncaught Exception',
   );
 
   // Report critical error
@@ -263,17 +252,12 @@ export const installGlobalErrorHandlers = (): void => {
 };
 
 // Create error boundary middleware for specific routes
-export const errorBoundary = (
-  handler: (err: unknown, req: Request, res: Response) => void
-) => {
+export const errorBoundary = (handler: (err: unknown, req: Request, res: Response) => void) => {
   return (err: unknown, req: Request, res: Response, next: NextFunction): void => {
     try {
       handler(err, req, res);
     } catch (boundaryError) {
-      logger.error(
-        { error: boundaryError, originalError: err },
-        'Error boundary failed'
-      );
+      logger.error({ error: boundaryError, originalError: err }, 'Error boundary failed');
       next(err); // Pass original error
     }
   };

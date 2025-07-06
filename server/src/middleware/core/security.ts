@@ -58,7 +58,7 @@ export const applySecurityMiddleware = (app: Application): void => {
   app.use(cors(corsOptions));
 
   // Additional security headers
-  app.use((req: Request, res: Response, next: NextFunction) => {
+  app.use((_req: Request, res: Response, next: NextFunction) => {
     res.setHeader('X-Content-Type-Options', 'nosniff');
     res.setHeader('X-Frame-Options', 'DENY');
     res.setHeader('X-XSS-Protection', '1; mode=block');
@@ -71,7 +71,7 @@ export const applySecurityMiddleware = (app: Application): void => {
 // Input sanitization middleware
 export const inputSanitizationMiddleware = (
   req: Request,
-  res: Response,
+  _res: Response,
   next: NextFunction,
 ): void => {
   // Recursive sanitization function
@@ -116,7 +116,7 @@ export const inputSanitizationMiddleware = (
 };
 
 // XSS Protection middleware
-export const xssProtectionMiddleware = (req: Request, res: Response, next: NextFunction): void => {
+export const xssProtectionMiddleware = (_req: Request, res: Response, next: NextFunction): void => {
   // Additional XSS protection for JSON responses
   const originalJson = res.json;
 
@@ -160,7 +160,7 @@ export const xssProtectionMiddleware = (req: Request, res: Response, next: NextF
 // SQL Injection protection (for raw queries)
 export const sqlInjectionProtectionMiddleware = (
   req: Request,
-  res: Response,
+  _res: Response,
   next: NextFunction,
 ): void => {
   const suspiciousPatterns = [
@@ -217,7 +217,7 @@ export const sqlInjectionProtectionMiddleware = (
 export const fileUploadSecurityMiddleware = (
   allowedTypes: string[] = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf'],
 ) => {
-  return (req: Request, res: Response, next: NextFunction): void => {
+  return (req: Request, _res: Response, next: NextFunction): void => {
     if (!req.file && !req.files) {
       return next();
     }
@@ -255,7 +255,7 @@ export const fileUploadSecurityMiddleware = (
 // Security monitoring middleware
 export const securityMonitoringMiddleware = (
   req: Request,
-  res: Response,
+  _res: Response,
   next: NextFunction,
 ): void => {
   // Track security-relevant events
@@ -296,7 +296,11 @@ export const securityMonitoringMiddleware = (
 };
 
 // Rate limiting specific to authentication attempts
-export const authRateLimitMiddleware = (req: Request, res: Response, next: NextFunction): void => {
+export const authRateLimitMiddleware = (
+  _req: Request,
+  _res: Response,
+  next: NextFunction,
+): void => {
   // This would integrate with the rate limiting module
   // Placeholder for now - actual implementation in rateLimit module
   next();

@@ -74,19 +74,19 @@ class MetricsStore {
     this.createGauge('cpu_usage_percent', 'CPU usage percentage');
   }
 
-  createCounter(name: string, help: string): void {
+  createCounter(name: string, _help: string): void {
     if (!this.counters.has(name)) {
       this.counters.set(name, 0);
     }
   }
 
-  createGauge(name: string, help: string): void {
+  createGauge(name: string, _help: string): void {
     if (!this.gauges.has(name)) {
       this.gauges.set(name, 0);
     }
   }
 
-  createHistogram(name: string, help: string, buckets?: number[]): void {
+  createHistogram(name: string, _help: string, buckets?: number[]): void {
     if (!this.histograms.has(name)) {
       const histogramBuckets = (buckets || this.defaultBuckets).map((le) => ({ le, count: 0 }));
       this.histograms.set(name, {
@@ -173,19 +173,19 @@ class MetricsStore {
     let output = '';
 
     // Counters
-    for (const [name, value] of this.counters) {
+    this.counters.forEach((value, name) => {
       output += `# TYPE ${name} counter\n`;
       output += `${name} ${value}\n`;
-    }
+    });
 
     // Gauges
-    for (const [name, value] of this.gauges) {
+    this.gauges.forEach((value, name) => {
       output += `# TYPE ${name} gauge\n`;
       output += `${name} ${value}\n`;
-    }
+    });
 
     // Histograms
-    for (const [name, data] of this.histograms) {
+    this.histograms.forEach((data, name) => {
       output += `# TYPE ${name} histogram\n`;
 
       // Buckets
@@ -197,7 +197,7 @@ class MetricsStore {
       // Sum and count
       output += `${name}_sum ${data.sum}\n`;
       output += `${name}_count ${data.count}\n`;
-    }
+    });
 
     return output;
   }
@@ -249,7 +249,7 @@ export function httpMetricsMiddleware(req: Request, res: Response, next: NextFun
     }
 
     // Call original end method
-    return originalEnd.call(this, chunk, encoding);
+    return originalEnd.call(this, chunk, encoding as BufferEncoding);
   };
 
   next();
@@ -342,7 +342,7 @@ export function withMetrics<T extends any[], R>(
   metricName: string,
   labels: Record<string, string> = {},
 ) {
-  return function (target: unknown, propertyKey: string, descriptor: PropertyDescriptor) {
+  return function (_target: unknown, propertyKey: string, descriptor: PropertyDescriptor) {
     const originalMethod = descriptor.value;
 
     descriptor.value = async function (...args: T): Promise<R> {

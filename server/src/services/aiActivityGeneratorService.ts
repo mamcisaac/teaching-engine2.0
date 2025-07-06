@@ -60,16 +60,19 @@ export class AIActivityGeneratorService {
   /**
    * Generate multiple activity variations
    */
-  async generateActivityVariations(params: GenerationParams, count: number = 3): Promise<GeneratedActivity[]> {
+  async generateActivityVariations(
+    params: GenerationParams,
+    count: number = 3,
+  ): Promise<GeneratedActivity[]> {
     const variations: GeneratedActivity[] = [];
-    
+
     for (let i = 0; i < count; i++) {
       const variation = await this.generateActivity(params);
       // Add variation suffix to make each unique
       variation.title = `${variation.title} - Variation ${i + 1}`;
       variations.push(variation);
     }
-    
+
     return variations;
   }
 
@@ -79,7 +82,7 @@ export class AIActivityGeneratorService {
   async saveGeneratedActivity(
     activity: GeneratedActivity,
     userId: number,
-    metadata?: { lessonPlanId?: string; basedOnActivities?: string[] }
+    metadata?: { lessonPlanId?: string; basedOnActivities?: string[] },
   ): Promise<{ id: string; activity: GeneratedActivity }> {
     // In a full implementation, this would save to database
     // For now, return a mock saved activity
@@ -89,16 +92,17 @@ export class AIActivityGeneratorService {
       userId,
       metadata,
       createdAt: new Date(),
-      updatedAt: new Date()
+      updatedAt: new Date(),
     };
-    
+
     return {
       id: savedActivity.id,
-      activity: savedActivity.activity
+      activity: savedActivity.activity,
     };
   }
 
-  private buildGenerationPrompt(params: GenerationParams): string {
+  // @ts-expect-error Method reserved for future LLM integration
+  private _buildGenerationPrompt(params: GenerationParams): string {
     let prompt = 'Generate an engaging educational activity.\n\n';
 
     if (params.lessonContext) {
@@ -107,7 +111,8 @@ export class AIActivityGeneratorService {
       if (context.title) prompt += `Title: ${context.title}\n`;
       if (context.grade) prompt += `Grade: ${context.grade}\n`;
       if (context.subject) prompt += `Subject: ${context.subject}\n`;
-      if (context.learningGoals?.length) prompt += `Learning Goals: ${context.learningGoals.join(', ')}\n`;
+      if (context.learningGoals?.length)
+        prompt += `Learning Goals: ${context.learningGoals.join(', ')}\n`;
       if (context.duration) prompt += `Duration: ${context.duration} minutes\n`;
       if (context.section) prompt += `Section: ${context.section}\n`;
       prompt += '\n';
@@ -120,20 +125,22 @@ export class AIActivityGeneratorService {
       if (reqs.materials?.length) prompt += `Materials Available: ${reqs.materials.join(', ')}\n`;
       if (reqs.groupSize) prompt += `Group Size: ${reqs.groupSize}\n`;
       if (reqs.language) prompt += `Language: ${reqs.language}\n`;
-      if (reqs.curriculumExpectations?.length) prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`;
+      if (reqs.curriculumExpectations?.length)
+        prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`;
       prompt += '\n';
     }
 
     if (params.searchResults?.length) {
       prompt += 'Consider these similar activities for inspiration:\n';
       const limitedResults = params.searchResults.slice(0, 3);
-      limitedResults.forEach(result => {
+      limitedResults.forEach((result) => {
         prompt += `${result.title}: ${result.description}\n`;
       });
       prompt += '\n';
     }
 
-    prompt += 'Please provide a complete activity plan in JSON format with the following structure:\n';
+    prompt +=
+      'Please provide a complete activity plan in JSON format with the following structure:\n';
     prompt += '{\n';
     prompt += '  "title": "string",\n';
     prompt += '  "description": "string",\n';
@@ -155,7 +162,8 @@ export class AIActivityGeneratorService {
     return prompt;
   }
 
-  private parseGeneratedActivity(response: string): GeneratedActivity {
+  // @ts-expect-error Method reserved for future LLM integration
+  private _parseGeneratedActivity(response: string): GeneratedActivity {
     try {
       // Extract JSON from response
       const jsonMatch = response.match(/\{[\s\S]*\}/);
@@ -223,15 +231,27 @@ export class AIActivityGeneratorService {
         'Review completed work for accuracy',
       ],
       differentiation: {
-        support: ['Provide visual aids', 'Offer one-on-one assistance', 'Break tasks into smaller steps'],
-        extension: ['Provide additional challenges', 'Encourage peer teaching', 'Offer independent research opportunities'],
+        support: [
+          'Provide visual aids',
+          'Offer one-on-one assistance',
+          'Break tasks into smaller steps',
+        ],
+        extension: [
+          'Provide additional challenges',
+          'Encourage peer teaching',
+          'Offer independent research opportunities',
+        ],
       },
-      safetyConsiderations: ['Ensure proper use of materials', 'Maintain safe classroom environment'],
+      safetyConsiderations: [
+        'Ensure proper use of materials',
+        'Maintain safe classroom environment',
+      ],
       technologyRequirements: [],
     };
   }
 
-  private getSystemPrompt(): string {
+  // @ts-expect-error Method reserved for future LLM integration
+  private _getSystemPrompt(): string {
     return `You are an expert elementary school teacher with extensive experience in French immersion education and the Ontario curriculum. You specialize in creating engaging, developmentally appropriate learning activities that follow ETFO best practices.
 
 Your activities should be:

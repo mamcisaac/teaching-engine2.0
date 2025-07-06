@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import { getMetrics } from '../middleware/metrics';
 import { logger } from '../logger';
 import { prisma } from '@teaching-engine/database';
-import os from 'os';
+import * as os from 'os';
 import { withSpan, updateSystemHealth } from './telemetry';
 
 interface DashboardMetrics {
@@ -234,7 +234,7 @@ const performHealthChecks = async (): Promise<DashboardMetrics['health']> => {
   };
 };
 
-export const getDashboardMetrics = async (req: Request, res: Response): Promise<void> => {
+export const getDashboardMetrics = async (_req: Request, res: Response): Promise<void> => {
   await withSpan('dashboard.getMetrics', {}, async (span) => {
     try {
       const metrics = getMetrics();

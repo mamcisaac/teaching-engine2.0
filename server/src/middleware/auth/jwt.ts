@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
-import jwt, { SignOptions } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import { TokenPayload, JWTConfig as _JWTConfig } from './types';
 import logger from '../../logger.js';
 
@@ -41,15 +41,11 @@ export function generateAccessToken(user: {
  * Generate JWT refresh token
  */
 export function generateRefreshToken(userId: number): string {
-  return jwt.sign(
-    { userId: userId.toString(), type: 'refresh' },
-    config.secret,
-    {
-      expiresIn: '7d',
-      issuer: config.issuer,
-      audience: config.audience,
-    }
-  );
+  return jwt.sign({ userId: userId.toString(), type: 'refresh' }, config.secret, {
+    expiresIn: '7d',
+    issuer: config.issuer,
+    audience: config.audience,
+  });
 }
 
 /**
@@ -61,7 +57,7 @@ export function verifyToken(token: string): TokenPayload {
       issuer: config.issuer,
       audience: config.audience,
     }) as TokenPayload;
-    
+
     return decoded;
   } catch (_error) {
     logger.error({ error: _error }, 'Token verification failed');
@@ -74,12 +70,12 @@ export function verifyToken(token: string): TokenPayload {
  */
 export function extractTokenFromHeader(authHeader?: string): string | null {
   if (!authHeader) return null;
-  
+
   const parts = authHeader.split(' ');
   if (parts.length !== 2 || parts[0] !== 'Bearer') {
     return null;
   }
-  
+
   return parts[1];
 }
 

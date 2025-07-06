@@ -32,7 +32,7 @@ const DEFAULT_OPTIONS: Required<URLValidationOptions> = {
  */
 export function isValidExternalURL(
   urlString: string,
-  options: URLValidationOptions = {}
+  options: URLValidationOptions = {},
 ): { valid: boolean; error?: string; url?: URL } {
   const config = { ...DEFAULT_OPTIONS, ...options };
 
@@ -79,7 +79,7 @@ export function isValidExternalURL(
   } catch (_error) {
     return {
       valid: false,
-      error: `Invalid URL format: ${error instanceof Error ? error.message : 'Unknown error'}`,
+      error: `Invalid URL format: ${_error instanceof Error ? _error.message : 'Unknown error'}`,
     };
   }
 }
@@ -90,17 +90,17 @@ export function isValidExternalURL(
 function isPrivateIP(hostname: string): boolean {
   // IPv4 private ranges
   const ipv4PrivateRanges = [
-    /^10\./,                    // 10.0.0.0/8
+    /^10\./, // 10.0.0.0/8
     /^172\.(1[6-9]|2[0-9]|3[0-1])\./, // 172.16.0.0/12
-    /^192\.168\./,              // 192.168.0.0/16
-    /^169\.254\./,              // 169.254.0.0/16 (link-local)
+    /^192\.168\./, // 192.168.0.0/16
+    /^169\.254\./, // 169.254.0.0/16 (link-local)
   ];
 
   // IPv6 private ranges (simplified)
   const ipv6PrivateRanges = [
-    /^fc00:/,                   // fc00::/7
-    /^fe80:/,                   // fe80::/10 (link-local)
-    /^::1$/,                    // ::1 (loopback)
+    /^fc00:/, // fc00::/7
+    /^fe80:/, // fe80::/10 (link-local)
+    /^::1$/, // ::1 (loopback)
   ];
 
   // Check IPv4
@@ -124,13 +124,7 @@ function isPrivateIP(hostname: string): boolean {
  * Check if hostname is localhost/loopback
  */
 function isLocalhost(hostname: string): boolean {
-  const localhostPatterns = [
-    'localhost',
-    '127.0.0.1',
-    '0.0.0.0',
-    '::1',
-    '0:0:0:0:0:0:0:1',
-  ];
+  const localhostPatterns = ['localhost', '127.0.0.1', '0.0.0.0', '::1', '0:0:0:0:0:0:0:1'];
 
   return localhostPatterns.includes(hostname.toLowerCase());
 }
@@ -139,12 +133,14 @@ function isLocalhost(hostname: string): boolean {
  * Sanitize URL input by removing dangerous characters
  */
 export function sanitizeURL(url: string): string {
-  return url
-    .trim()
-    // eslint-disable-next-line no-control-regex
-    .replace(/[\x00-\x1f\x7f-\x9f]/g, '') // Remove control characters
-    .replace(/[<>"'{}|\\^`]/g, '')        // Remove dangerous characters
-    .slice(0, 2048);                      // Limit length
+  return (
+    url
+      .trim()
+      // eslint-disable-next-line no-control-regex
+      .replace(/[\x00-\x1f\x7f-\x9f]/g, '') // Remove control characters
+      .replace(/[<>"'{}|\\^`]/g, '') // Remove dangerous characters
+      .slice(0, 2048)
+  ); // Limit length
 }
 
 /**
@@ -153,7 +149,7 @@ export function sanitizeURL(url: string): string {
 export async function safeFetch(
   urlString: string,
   init?: RequestInit,
-  options?: URLValidationOptions
+  options?: URLValidationOptions,
 ): Promise<Response> {
   const sanitizedUrl = sanitizeURL(urlString);
   const validation = isValidExternalURL(sanitizedUrl, options);
@@ -164,8 +160,11 @@ export async function safeFetch(
 
   // Add security headers
   const headers = new Headers(init?.headers);
-  headers.set('User-Agent', 'Teaching Engine 2.0 Educational Bot (+https://teaching-engine.ca/bot)');
-  
+  headers.set(
+    'User-Agent',
+    'Teaching Engine 2.0 Educational Bot (+https://teaching-engine.ca/bot)',
+  );
+
   // Set timeouts to prevent hanging requests
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
@@ -190,7 +189,10 @@ export async function safeFetch(
 /**
  * Validate file size from response headers before downloading
  */
-export function validateFileSize(response: Response, maxSizeBytes: number = 50 * 1024 * 1024): boolean {
+export function validateFileSize(
+  response: Response,
+  maxSizeBytes: number = 50 * 1024 * 1024,
+): boolean {
   const contentLength = response.headers.get('content-length');
   if (contentLength) {
     const size = parseInt(contentLength, 10);

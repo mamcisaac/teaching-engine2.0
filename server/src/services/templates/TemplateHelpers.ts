@@ -45,7 +45,9 @@ export class TemplateHelpers extends BaseService {
    */
   protected async initialize(): Promise<void> {
     await super.initialize();
-    this.logger.info(`Template helpers initialized: helpersCount=${this.helpers.size}, categoriesCount=${this.categories.size}`);
+    this.logger.info(
+      `Template helpers initialized: helpersCount=${this.helpers.size}, categoriesCount=${this.categories.size}`,
+    );
   }
 
   /**
@@ -65,7 +67,8 @@ export class TemplateHelpers extends BaseService {
   private initializeDefaultHelpers(): void {
     // Formatting helpers
     this.registerHelper('formatCurrency', {
-      fn: (amount: number, currency: string = 'USD', locale: string = 'en-US') => {
+      fn: (...args: unknown[]) => {
+        const [amount, currency = 'USD', locale = 'en-US'] = args as [number, string?, string?];
         return new Intl.NumberFormat(locale, {
           style: 'currency',
           currency,
@@ -77,7 +80,12 @@ export class TemplateHelpers extends BaseService {
     });
 
     this.registerHelper('formatDate', {
-      fn: (date: Date | string, format: string = 'short', locale: string = 'en-US') => {
+      fn: (...args: unknown[]) => {
+        const [date, format = 'short', locale = 'en-US'] = args as [
+          Date | string,
+          string?,
+          string?,
+        ];
         const dateObj = typeof date === 'string' ? new Date(date) : date;
 
         if (format === 'short') {
@@ -101,7 +109,8 @@ export class TemplateHelpers extends BaseService {
     });
 
     this.registerHelper('formatGrade', {
-      fn: (grade: string | number) => {
+      fn: (...args: unknown[]) => {
+        const [grade] = args as [string | number];
         const numGrade = typeof grade === 'string' ? parseFloat(grade) : grade;
         if (isNaN(numGrade)) return 'N/A';
         if (numGrade >= 80) return 'A';
@@ -116,7 +125,8 @@ export class TemplateHelpers extends BaseService {
     });
 
     this.registerHelper('formatPhoneNumber', {
-      fn: (phone: string) => {
+      fn: (...args: unknown[]) => {
+        const [phone] = args as [string];
         const cleaned = phone.replace(/\D/g, '');
         const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
         if (match) {
@@ -131,35 +141,48 @@ export class TemplateHelpers extends BaseService {
 
     // Math helpers
     this.registerHelper('add', {
-      fn: (a: number, b: number) => a + b,
+      fn: (...args: unknown[]) => {
+        const [a, b] = args as [number, number];
+        return a + b;
+      },
       description: 'Add two numbers',
       category: 'math',
       examples: ['{{add 5 3}}', '{{add student.score bonus}}'],
     });
 
     this.registerHelper('subtract', {
-      fn: (a: number, b: number) => a - b,
+      fn: (...args: unknown[]) => {
+        const [a, b] = args as [number, number];
+        return a - b;
+      },
       description: 'Subtract two numbers',
       category: 'math',
       examples: ['{{subtract 10 3}}'],
     });
 
     this.registerHelper('multiply', {
-      fn: (a: number, b: number) => a * b,
+      fn: (...args: unknown[]) => {
+        const [a, b] = args as [number, number];
+        return a * b;
+      },
       description: 'Multiply two numbers',
       category: 'math',
       examples: ['{{multiply 5 3}}'],
     });
 
     this.registerHelper('divide', {
-      fn: (a: number, b: number) => (b !== 0 ? a / b : 0),
+      fn: (...args: unknown[]) => {
+        const [a, b] = args as [number, number];
+        return b !== 0 ? a / b : 0;
+      },
       description: 'Divide two numbers (safe division)',
       category: 'math',
       examples: ['{{divide 15 3}}'],
     });
 
     this.registerHelper('percentage', {
-      fn: (value: number, total: number) => {
+      fn: (...args: unknown[]) => {
+        const [value, total] = args as [number, number];
         if (total === 0) return '0%';
         return `${Math.round((value / total) * 100)}%`;
       },
@@ -170,7 +193,8 @@ export class TemplateHelpers extends BaseService {
 
     // String helpers
     this.registerHelper('capitalize', {
-      fn: (str: string) => {
+      fn: (...args: unknown[]) => {
+        const [str] = args as [string];
         if (!str) return '';
         return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
       },
@@ -180,24 +204,28 @@ export class TemplateHelpers extends BaseService {
     });
 
     this.registerHelper('uppercase', {
-      
-      fn: (str: string) => (str ? str.toUpperCase() : ''),
+      fn: (...args: unknown[]) => {
+        const [str] = args as [string];
+        return str ? str.toUpperCase() : '';
+      },
       description: 'Convert to uppercase',
       category: 'string',
       examples: ['{{uppercase student.name}}'],
     });
 
     this.registerHelper('lowercase', {
-      
-      fn: (str: string) => (str ? str.toLowerCase() : ''),
+      fn: (...args: unknown[]) => {
+        const [str] = args as [string];
+        return str ? str.toLowerCase() : '';
+      },
       description: 'Convert to lowercase',
       category: 'string',
       examples: ['{{lowercase student.name}}'],
     });
 
     this.registerHelper('truncate', {
-      
-      fn: (str: string, length: number = 50) => {
+      fn: (...args: unknown[]) => {
+        const [str, length = 50] = args as [string, number?];
         if (!str) return '';
         if (str.length <= length) return str;
         return str.substring(0, length - 3) + '...';
@@ -209,32 +237,40 @@ export class TemplateHelpers extends BaseService {
 
     // Comparison helpers
     this.registerHelper('eq', {
-      
-      fn: (a: unknown, b: unknown) => a === b,
+      fn: (...args: unknown[]) => {
+        const [a, b] = args;
+        return a === b;
+      },
       description: 'Check if values are equal',
       category: 'comparison',
       examples: ['{{#if (eq status "active")}}...{{/if}}'],
     });
 
     this.registerHelper('ne', {
-      
-      fn: (a: unknown, b: unknown) => a !== b,
+      fn: (...args: unknown[]) => {
+        const [a, b] = args;
+        return a !== b;
+      },
       description: 'Check if values are not equal',
       category: 'comparison',
       examples: ['{{#if (ne status "inactive")}}...{{/if}}'],
     });
 
     this.registerHelper('gt', {
-      
-      fn: (a: number, b: number) => a > b,
+      fn: (...args: unknown[]) => {
+        const [a, b] = args as [number, number];
+        return a > b;
+      },
       description: 'Check if first value is greater than second',
       category: 'comparison',
       examples: ['{{#if (gt score 80)}}...{{/if}}'],
     });
 
     this.registerHelper('lt', {
-      
-      fn: (a: number, b: number) => a < b,
+      fn: (...args: unknown[]) => {
+        const [a, b] = args as [number, number];
+        return a < b;
+      },
       description: 'Check if first value is less than second',
       category: 'comparison',
       examples: ['{{#if (lt score 50)}}...{{/if}}'],
@@ -242,8 +278,8 @@ export class TemplateHelpers extends BaseService {
 
     // Educational helpers
     this.registerHelper('gradeLevel', {
-      
-      fn: (grade: number) => {
+      fn: (...args: unknown[]) => {
+        const [grade] = args as [number];
         if (grade <= 0) return 'Pre-K';
         if (grade <= 8) return `Grade ${grade}`;
         if (grade === 9) return 'Grade 9';
@@ -258,8 +294,8 @@ export class TemplateHelpers extends BaseService {
     });
 
     this.registerHelper('academicYear', {
-      
-      fn: (date?: Date) => {
+      fn: (...args: unknown[]) => {
+        const [date] = args as [Date?];
         const now = date || new Date();
         const year = now.getFullYear();
         const month = now.getMonth();
@@ -278,32 +314,38 @@ export class TemplateHelpers extends BaseService {
 
     // Array helpers
     this.registerHelper('first', {
-      
-      fn: (array: unknown[]) => (array && array.length > 0 ? array[0] : null),
+      fn: (...args: unknown[]) => {
+        const [array] = args as [unknown[]];
+        return array && array.length > 0 ? array[0] : null;
+      },
       description: 'Get first item from array',
       category: 'array',
       examples: ['{{first students}}'],
     });
 
     this.registerHelper('last', {
-      
-      fn: (array: unknown[]) => (array && array.length > 0 ? array[array.length - 1] : null),
+      fn: (...args: unknown[]) => {
+        const [array] = args as [unknown[]];
+        return array && array.length > 0 ? array[array.length - 1] : null;
+      },
       description: 'Get last item from array',
       category: 'array',
       examples: ['{{last grades}}'],
     });
 
     this.registerHelper('length', {
-      
-      fn: (array: unknown[]) => (array ? array.length : 0),
+      fn: (...args: unknown[]) => {
+        const [array] = args as [unknown[]];
+        return array ? array.length : 0;
+      },
       description: 'Get array length',
       category: 'array',
       examples: ['{{length students}}'],
     });
 
     this.registerHelper('join', {
-      
-      fn: (array: unknown[], separator: string = ', ') => {
+      fn: (...args: unknown[]) => {
+        const [array, separator = ', '] = args as [unknown[], string?];
         if (!array || !Array.isArray(array)) return '';
         return array.join(separator);
       },
@@ -483,7 +525,9 @@ export class TemplateHelpers extends BaseService {
     try {
       return helper(...args);
     } catch (_error) {
-      this.logger.error(`Helper test failed: name=${name}, args=${JSON.stringify(args)}, error=${_error instanceof Error ? _error.message : _error}`);
+      this.logger.error(
+        `Helper test failed: name=${name}, args=${JSON.stringify(args)}, error=${_error instanceof Error ? _error.message : _error}`,
+      );
       throw _error;
     }
   }

@@ -56,7 +56,8 @@ export class LLMService extends BaseService {
   private openaiClient: OpenAI | null = null;
   private readonly defaultModel = 'gpt-4o-mini';
   private readonly maxRetries = 3;
-  private readonly retryDelay = 1000; // 1 second
+  // @ts-expect-error Reserved for future retry implementation
+  private readonly _retryDelay = 1000; // 1 second
 
   private constructor() {
     super('LLMService');
@@ -84,7 +85,7 @@ export class LLMService extends BaseService {
   private initializeOpenAI(): void {
     try {
       const apiKey = process.env.OPENAI_API_KEY;
-      
+
       if (!apiKey) {
         this.logger.warn('OpenAI API key not provided. LLM features will be disabled.');
         return;
@@ -127,8 +128,10 @@ export class LLMService extends BaseService {
       }
 
       const enhancedPrompt = this.enhancePrompt(request);
-      
-      this.logger.debug(`Generating content with prompt - type: ${request.type}, promptLength: ${enhancedPrompt.length}`);
+
+      this.logger.debug(
+        `Generating content with prompt - type: ${request.type}, promptLength: ${enhancedPrompt.length}`,
+      );
 
       const response = await this.openaiClient!.chat.completions.create({
         model: this.defaultModel,
@@ -147,12 +150,14 @@ export class LLMService extends BaseService {
       });
 
       const content = response.choices[0]?.message?.content || '';
-      
+
       if (!content) {
         throw new Error('No content generated from OpenAI');
       }
 
-      this.logger.debug(`Content generated successfully - length: ${content.length}, tokens: ${response.usage?.total_tokens || 'unknown'}`);
+      this.logger.debug(
+        `Content generated successfully - length: ${content.length}, tokens: ${response.usage?.total_tokens || 'unknown'}`,
+      );
 
       return content;
     }, 'generateContent');
@@ -161,18 +166,26 @@ export class LLMService extends BaseService {
   /**
    * Generate bilingual content (English and French)
    */
-  public async generateBilingualContent(request: ContentGenerationRequest): Promise<BilingualContent> {
+  public async generateBilingualContent(
+    request: ContentGenerationRequest,
+  ): Promise<BilingualContent> {
     return this.executeWithMetrics(async () => {
       if (!this.isReady()) {
         throw new Error('LLM service not initialized. Please check OpenAI API key.');
       }
 
       // Generate English content first
-      const englishRequest = { ...request, context: { ...request.context, language: 'english' as const } };
+      const englishRequest = {
+        ...request,
+        context: { ...request.context, language: 'english' as const },
+      };
       const englishContent = await this.generateContent(englishRequest);
 
       // Generate French content
-      const frenchRequest = { ...request, context: { ...request.context, language: 'french' as const } };
+      const frenchRequest = {
+        ...request,
+        context: { ...request.context, language: 'french' as const },
+      };
       const frenchContent = await this.generateContent(frenchRequest);
 
       return {
@@ -185,14 +198,16 @@ export class LLMService extends BaseService {
   /**
    * Generate content with detailed response information
    */
-  public async generateContentDetailed(request: ContentGenerationRequest): Promise<GenerationResult> {
+  public async generateContentDetailed(
+    request: ContentGenerationRequest,
+  ): Promise<GenerationResult> {
     return this.executeWithMetrics(async () => {
       if (!this.isReady()) {
         throw new Error('LLM service not initialized. Please check OpenAI API key.');
       }
 
       const enhancedPrompt = this.enhancePrompt(request);
-      
+
       const response = await this.openaiClient!.chat.completions.create({
         model: this.defaultModel,
         messages: [
@@ -210,7 +225,7 @@ export class LLMService extends BaseService {
       });
 
       const content = response.choices[0]?.message?.content || '';
-      
+
       if (!content) {
         throw new Error('No content generated from OpenAI');
       }
@@ -237,19 +252,19 @@ export class LLMService extends BaseService {
     // Add context if provided
     if (request.context) {
       const contextParts: string[] = [];
-      
+
       if (request.context.subject) {
         contextParts.push(`Subject: ${request.context.subject}`);
       }
-      
+
       if (request.context.grade) {
         contextParts.push(`Grade Level: ${request.context.grade}`);
       }
-      
+
       if (request.context.duration) {
         contextParts.push(`Duration: ${request.context.duration} minutes`);
       }
-      
+
       if (request.context.language) {
         contextParts.push(`Language: ${request.context.language}`);
       }
@@ -294,18 +309,19 @@ export class LLMService extends BaseService {
    */
   protected getHealthStatus(): 'healthy' | 'degraded' | 'unhealthy' {
     const baseHealth = super.getHealthStatus();
-    
+
     if (!this.isReady()) {
       return 'degraded'; // Service works but AI features unavailable
     }
-    
+
     return baseHealth;
   }
 
   /**
    * Validate content generation request
    */
-  private validateRequest(request: ContentGenerationRequest): void {
+  // @ts-expect-error Method reserved for future request validation
+  private _validateRequest(request: ContentGenerationRequest): void {
     if (!request.prompt || request.prompt.trim().length === 0) {
       throw new Error('Prompt is required and cannot be empty');
     }
@@ -332,14 +348,16 @@ export class LLMService extends BaseService {
 export const llmService = LLMService.getInstance();
 
 // Export individual functions for backward compatibility and ease of use
-export const generateContent = (request: ContentGenerationRequest): Promise<string> => 
+export const generateContent = (request: ContentGenerationRequest): Promise<string> =>
   llmService.generateContent(request);
 
-export const generateBilingualContent = (request: ContentGenerationRequest): Promise<BilingualContent> => 
-  llmService.generateBilingualContent(request);
+export const generateBilingualContent = (
+  request: ContentGenerationRequest,
+): Promise<BilingualContent> => llmService.generateBilingualContent(request);
 
-export const generateContentDetailed = (request: ContentGenerationRequest): Promise<GenerationResult> => 
-  llmService.generateContentDetailed(request);
+export const generateContentDetailed = (
+  request: ContentGenerationRequest,
+): Promise<GenerationResult> => llmService.generateContentDetailed(request);
 
 // Export OpenAI client for direct access (used by tests and other services)
 export const openai = llmService.openai;

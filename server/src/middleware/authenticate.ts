@@ -96,11 +96,14 @@ export async function verifyToken(token: string): Promise<TokenPayload | { error
   try {
     // Debug logging for test environment
     if (process.env.NODE_ENV === 'test') {
-      logger.debug({
-        tokenStart: token.substring(0, 20) + '...',
-        jwtSecret: JWT_SECRET ? 'present' : 'missing',
-        jwtSecretLength: JWT_SECRET?.length
-      }, 'Verifying token');
+      logger.debug(
+        {
+          tokenStart: token.substring(0, 20) + '...',
+          jwtSecret: JWT_SECRET ? 'present' : 'missing',
+          jwtSecretLength: JWT_SECRET?.length,
+        },
+        'Verifying token',
+      );
     }
 
     // First try to verify with issuer/audience (production tokens)
@@ -112,35 +115,42 @@ export async function verifyToken(token: string): Promise<TokenPayload | { error
 
       // Debug logging for test environment
       if (process.env.NODE_ENV === 'test') {
-        logger.debug({
-          decoded,
-          hasUserId: !!decoded.userId,
-          hasEmail: !!decoded.email
-        }, 'Token decoded successfully with issuer/audience');
+        logger.debug(
+          {
+            decoded,
+            hasUserId: !!decoded.userId,
+            hasEmail: !!decoded.email,
+          },
+          'Token decoded successfully with issuer/audience',
+        );
       }
 
       return decoded;
     } catch (issuerError) {
       // If it's a test environment and the _error is about issuer/audience, try without them
-      if (process.env.NODE_ENV === 'test' && 
-          issuerError instanceof jwt.JsonWebTokenError && 
-          (issuerError.message.includes('jwt audience invalid') || 
-           issuerError.message.includes('jwt issuer invalid'))) {
-        
+      if (
+        process.env.NODE_ENV === 'test' &&
+        issuerError instanceof jwt.JsonWebTokenError &&
+        (issuerError.message.includes('jwt audience invalid') ||
+          issuerError.message.includes('jwt issuer invalid'))
+      ) {
         // Try again without issuer/audience validation for test tokens
         const decoded = jwt.verify(token, JWT_SECRET) as TokenPayload;
-        
+
         if (process.env.NODE_ENV === 'test') {
-          logger.debug({
-            decoded,
-            hasUserId: !!decoded.userId,
-            hasEmail: !!decoded.email
-          }, 'Token decoded successfully without issuer/audience (test mode)');
+          logger.debug(
+            {
+              decoded,
+              hasUserId: !!decoded.userId,
+              hasEmail: !!decoded.email,
+            },
+            'Token decoded successfully without issuer/audience (test mode)',
+          );
         }
-        
+
         return decoded;
       }
-      
+
       // Re-throw the _error if it's not an issuer/audience issue
       throw issuerError;
     }
@@ -167,12 +177,15 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
 
     // Debug logging for test environment
     if (process.env.NODE_ENV === 'test') {
-      logger.debug({
-        path: req.path,
-        hasToken: !!token,
-        authHeader: req.headers.authorization,
-        tokenLength: token?.length
-      }, 'Authenticate middleware called');
+      logger.debug(
+        {
+          path: req.path,
+          hasToken: !!token,
+          authHeader: req.headers.authorization,
+          tokenLength: token?.length,
+        },
+        'Authenticate middleware called',
+      );
     }
 
     if (!token) {
@@ -207,14 +220,17 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
     // Handle specific JWT errors
     if ('error' in decoded) {
       if (process.env.NODE_ENV === 'test') {
-        logger.debug({
-          decodedError: decoded.error,
-          path: req.path,
-          originalUrl: req.originalUrl,
-          baseUrl: req.baseUrl
-        }, 'JWT error detected');
+        logger.debug(
+          {
+            decodedError: decoded.error,
+            path: req.path,
+            originalUrl: req.originalUrl,
+            baseUrl: req.baseUrl,
+          },
+          'JWT error detected',
+        );
       }
-      
+
       if (decoded.error === 'expired') {
         res.status(403).json({
           error: 'Token expired',
@@ -226,7 +242,7 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
         });
         return;
       }
-      
+
       res.status(401).json({
         error: 'Authentication required',
       });
@@ -395,7 +411,7 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
  */
 export async function optionalAuthenticate(
   req: Request,
-  res: Response,
+  _res: Response,
   next: NextFunction,
 ): Promise<void> {
   try {
@@ -429,12 +445,13 @@ export async function optionalAuthenticate(
  * Role-based authorization middleware
  */
 export function authorize(...allowedRoles: string[]) {
-  return (req: Request, res: Response, next: NextFunction) => {
+  return (req: Request, res: Response, next: NextFunction): void => {
     if (!req.user) {
-      return res.status(401).json({
+      res.status(401).json({
         error: 'Unauthorized',
         message: 'Authentication required',
       });
+      return;
     }
 
     if (!allowedRoles.includes(req.user.role)) {
@@ -448,10 +465,11 @@ export function authorize(...allowedRoles: string[]) {
         'Authorization failed - insufficient role',
       );
 
-      return res.status(403).json({
+      res.status(403).json({
         error: 'Forbidden',
         message: 'Insufficient permissions',
       });
+      return;
     }
 
     next();
@@ -462,12 +480,13 @@ export function authorize(...allowedRoles: string[]) {
  * Permission-based authorization middleware
  */
 export function requirePermission(...requiredPermissions: string[]) {
-  return (req: Request, res: Response, next: NextFunction) => {
+  return (req: Request, res: Response, next: NextFunction): void => {
     if (!req.user) {
-      return res.status(401).json({
+      res.status(401).json({
         error: 'Unauthorized',
         message: 'Authentication required',
       });
+      return;
     }
 
     const userPermissions = req.user.permissions || [];
@@ -486,10 +505,11 @@ export function requirePermission(...requiredPermissions: string[]) {
         'Authorization failed - missing permissions',
       );
 
-      return res.status(403).json({
+      res.status(403).json({
         error: 'Forbidden',
         message: 'Insufficient permissions',
       });
+      return;
     }
 
     next();
@@ -499,19 +519,21 @@ export function requirePermission(...requiredPermissions: string[]) {
 /**
  * Organization-based authorization middleware
  */
-export function requireOrganization(req: Request, res: Response, next: NextFunction) {
+export function requireOrganization(req: Request, res: Response, next: NextFunction): void {
   if (!req.user) {
-    return res.status(401).json({
+    res.status(401).json({
       error: 'Unauthorized',
       message: 'Authentication required',
     });
+    return;
   }
 
   if (!req.user.organizationId) {
-    return res.status(403).json({
+    res.status(403).json({
       error: 'Forbidden',
       message: 'Organization membership required',
     });
+    return;
   }
 
   next();

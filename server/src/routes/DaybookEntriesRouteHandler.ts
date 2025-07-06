@@ -438,11 +438,34 @@ export class DaybookEntriesRouteHandler extends BaseRouteHandler {
 
   protected getCrudOperations(): CrudOperations<unknown> {
     return {
-      create: this.daybookService.create.bind(this.daybookService),
-      findMany: this.daybookService.findMany.bind(this.daybookService),
-      findById: this.daybookService.findById.bind(this.daybookService),
-      update: this.daybookService.update.bind(this.daybookService),
-      delete: this.daybookService.delete.bind(this.daybookService),
+      create: async (data: unknown, userId: number) => {
+        return this.daybookService.create(data as DaybookEntryCreateData, userId);
+      },
+      findMany: async (filters: unknown, userId: number) => {
+        const result = await this.daybookService.findMany(
+          filters as {
+            startDate?: Date;
+            endDate?: Date;
+            lessonPlanId?: number;
+            subject?: string;
+            limit?: number;
+            offset?: number;
+            sort?: string;
+            order?: 'asc' | 'desc';
+          },
+          userId,
+        );
+        return result.entries;
+      },
+      findById: async (id: string, userId: number) => {
+        return this.daybookService.findById(id, userId);
+      },
+      update: async (id: string, data: unknown, userId: number) => {
+        return this.daybookService.update(id, data as DaybookEntryUpdateData, userId);
+      },
+      delete: async (id: string, userId: number) => {
+        return this.daybookService.delete(id, userId);
+      },
     };
   }
 
@@ -467,12 +490,13 @@ export class DaybookEntriesRouteHandler extends BaseRouteHandler {
         sort: sortBy,
         order: sortOrder,
       };
-      
+
       const result = await this.daybookService.findMany(convertedFilters, userId);
       res.json(result);
+      return;
     } catch (_error) {
       this.logger.error(`Error in ${this.routeName} list:`, _error);
-      next(_error);
+      return next(_error);
     }
   }
 
@@ -494,9 +518,10 @@ export class DaybookEntriesRouteHandler extends BaseRouteHandler {
       const userId = req.userId!;
       const insights = await this.daybookService.getInsightsSummary(userId);
       res.json(insights);
+      return;
     } catch (_error) {
       this.logger.error('Error getting insights summary:', _error);
-      next(_error);
+      return next(_error);
     }
   }
 }

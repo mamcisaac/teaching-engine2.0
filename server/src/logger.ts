@@ -2,63 +2,79 @@
 import pino from 'pino';
 import { performance } from 'perf_hooks';
 
-// Log levels configuration
-const _LOG_LEVELS = {
-  fatal: 60,
-  error: 50,
-  warn: 40,
-  info: 30,
-  debug: 20,
-  trace: 10
-};
+// Log levels configuration - kept for future use
+// const _LOG_LEVELS = {
+//   fatal: 60,
+//   error: 50,
+//   warn: 40,
+//   info: 30,
+//   debug: 20,
+//   trace: 10
+// };
 
 // Base logger configuration
 const pinoConfig: pino.LoggerOptions = {
   level: process.env.LOG_LEVEL || (process.env.NODE_ENV === 'production' ? 'info' : 'debug'),
-  
+
   // Custom serializers for better structured logging
   serializers: {
     req: (req: unknown) => {
-      const request = req as Record<string, unknown> & { method?: string; url?: string; headers?: Record<string, unknown>; remoteAddress?: string; remotePort?: number; connection?: { remoteAddress?: string; remotePort?: number } };
+      const request = req as Record<string, unknown> & {
+        method?: string;
+        url?: string;
+        headers?: Record<string, unknown>;
+        remoteAddress?: string;
+        remotePort?: number;
+        connection?: { remoteAddress?: string; remotePort?: number };
+      };
       return {
-      method: request.method,
-      url: request.url,
-      headers: {
-        'user-agent': request.headers?.['user-agent'],
-        'content-type': request.headers?.['content-type'],
-        'authorization': request.headers?.authorization ? '[REDACTED]' : undefined
-      },
-      remoteAddress: request.remoteAddress || request.connection?.remoteAddress,
-      remotePort: request.remotePort || request.connection?.remotePort
-    };
+        method: request.method,
+        url: request.url,
+        headers: {
+          'user-agent': request.headers?.['user-agent'],
+          'content-type': request.headers?.['content-type'],
+          authorization: request.headers?.authorization ? '[REDACTED]' : undefined,
+        },
+        remoteAddress: request.remoteAddress || request.connection?.remoteAddress,
+        remotePort: request.remotePort || request.connection?.remotePort,
+      };
     },
-    
+
     res: (res: unknown) => {
       const response = res as { statusCode?: number; getHeader?: (name: string) => unknown };
       return {
-      statusCode: response.statusCode,
-      headers: {
-        'content-type': typeof response.getHeader === 'function' ? response.getHeader('content-type') : undefined,
-        'content-length': typeof response.getHeader === 'function' ? response.getHeader('content-length') : undefined
-      }
-    };
+        statusCode: response.statusCode,
+        headers: {
+          'content-type':
+            typeof response.getHeader === 'function'
+              ? response.getHeader('content-type')
+              : undefined,
+          'content-length':
+            typeof response.getHeader === 'function'
+              ? response.getHeader('content-length')
+              : undefined,
+        },
+      };
     },
-    
+
     err: pino.stdSerializers.err,
-    
+
     user: (user: unknown) => {
       const userData = user as { id?: string | number; email?: string; role?: string };
       return {
-      id: userData?.id,
-      email: userData?.email && typeof userData.email === 'string' ? userData.email.substring(0, 3) + '***' : undefined,
-      role: userData?.role
-    };
-    }
+        id: userData?.id,
+        email:
+          userData?.email && typeof userData.email === 'string'
+            ? userData.email.substring(0, 3) + '***'
+            : undefined,
+        role: userData?.role,
+      };
+    },
   },
 
   // Add timestamp and performance info
   timestamp: () => `,"time":"${new Date().toISOString()}"`,
-  
+
   // Format based on environment
   ...(process.env.NODE_ENV === 'development' && {
     transport: {
@@ -69,10 +85,10 @@ const pinoConfig: pino.LoggerOptions = {
         ignore: 'pid,hostname',
         singleLine: false,
         hideObject: false,
-        customColors: 'error:red,warn:yellow,info:green,debug:blue,trace:gray'
-      }
-    }
-  })
+        customColors: 'error:red,warn:yellow,info:green,debug:blue,trace:gray',
+      },
+    },
+  }),
 };
 
 // Create the base logger
@@ -114,81 +130,113 @@ class EnhancedLogger {
 
   // Performance logging
   time(label: string): void {
-    this.debug({ performanceStart: label, timestamp: performance.now() }, `Performance timer started: ${label}`);
+    this.debug(
+      { performanceStart: label, timestamp: performance.now() },
+      `Performance timer started: ${label}`,
+    );
   }
 
   timeEnd(label: string): void {
-    this.debug({ performanceEnd: label, timestamp: performance.now() }, `Performance timer ended: ${label}`);
+    this.debug(
+      { performanceEnd: label, timestamp: performance.now() },
+      `Performance timer ended: ${label}`,
+    );
   }
 
   // Audit logging for sensitive operations
   audit(operation: string, details: Record<string, unknown> = {}) {
-    return this.info({
-      audit: true,
-      operation,
-      details: this.sanitizeAuditDetails(details),
-      timestamp: new Date().toISOString()
-    }, `Audit: ${operation}`);
+    return this.info(
+      {
+        audit: true,
+        operation,
+        details: this.sanitizeAuditDetails(details),
+        timestamp: new Date().toISOString(),
+      },
+      `Audit: ${operation}`,
+    );
   }
 
   // Security event logging
   security(event: string, details: Record<string, unknown> = {}) {
-    return this.warn({
-      security: true,
-      event,
-      details: this.sanitizeSecurityDetails(details),
-      timestamp: new Date().toISOString()
-    }, `Security: ${event}`);
+    return this.warn(
+      {
+        security: true,
+        event,
+        details: this.sanitizeSecurityDetails(details),
+        timestamp: new Date().toISOString(),
+      },
+      `Security: ${event}`,
+    );
   }
 
   // Business logic logging
   business(action: string, context: Record<string, unknown> = {}) {
-    return this.info({
-      business: true,
-      action,
-      context: this.sanitizeBusinessContext(context),
-      timestamp: new Date().toISOString()
-    }, `Business: ${action}`);
+    return this.info(
+      {
+        business: true,
+        action,
+        context: this.sanitizeBusinessContext(context),
+        timestamp: new Date().toISOString(),
+      },
+      `Business: ${action}`,
+    );
   }
 
   // API request/response logging
   apiRequest(req: Record<string, unknown>, additionalData: Record<string, unknown> = {}) {
-    return this.info({
-      api: true,
-      type: 'request',
-      req,
-      ...additionalData
-    }, `API Request: ${req.method} ${req.url}`);
+    return this.info(
+      {
+        api: true,
+        type: 'request',
+        req,
+        ...additionalData,
+      },
+      `API Request: ${req.method} ${req.url}`,
+    );
   }
 
-  apiResponse(req: Record<string, unknown>, res: Record<string, unknown>, duration: number, additionalData: Record<string, unknown> = {}) {
-    return this.info({
-      api: true,
-      type: 'response',
-      req,
-      res,
-      duration,
-      ...additionalData
-    }, `API Response: ${req.method} ${req.url} - ${res.statusCode} (${duration}ms)`);
+  apiResponse(
+    req: Record<string, unknown>,
+    res: Record<string, unknown>,
+    duration: number,
+    additionalData: Record<string, unknown> = {},
+  ) {
+    return this.info(
+      {
+        api: true,
+        type: 'response',
+        req,
+        res,
+        duration,
+        ...additionalData,
+      },
+      `API Response: ${req.method} ${req.url} - ${res.statusCode} (${duration}ms)`,
+    );
   }
 
   // Database operation logging
   database(operation: string, details: Record<string, unknown> = {}) {
-    return this.debug({
-      database: true,
-      operation,
-      details: this.sanitizeDatabaseDetails(details)
-    }, `Database: ${operation}`);
+    return this.debug(
+      {
+        database: true,
+        operation,
+        details: this.sanitizeDatabaseDetails(details),
+      },
+      `Database: ${operation}`,
+    );
   }
 
   // AI operation logging
   ai(operation: string, model: string, details: Record<string, unknown> = {}) {
-    return this.info({
-      ai: true,
-      operation,
-      model,
-      details: this.sanitizeAIDetails(details)
-    }, `AI: ${operation} using ${model}`);
+    return this.info(
+      {
+        ai: true,
+        operation,
+        model,
+        details: this.sanitizeAIDetails(details),
+      },
+      `AI: ${operation} using ${model}`,
+    );
   }
 
   // Create child logger with context
@@ -211,7 +259,7 @@ class EnhancedLogger {
         message: obj,
         requestId: this.requestId,
         service: 'teaching-engine',
-        version: process.env.npm_package_version || 'unknown'
+        version: process.env.npm_package_version || 'unknown',
       };
     }
 
@@ -220,7 +268,7 @@ class EnhancedLogger {
         ...(obj as Record<string, unknown>),
         requestId: this.requestId,
         service: 'teaching-engine',
-        version: process.env.npm_package_version || 'unknown'
+        version: process.env.npm_package_version || 'unknown',
       };
     }
 
@@ -228,72 +276,76 @@ class EnhancedLogger {
       data: obj,
       requestId: this.requestId,
       service: 'teaching-engine',
-      version: process.env.npm_package_version || 'unknown'
+      version: process.env.npm_package_version || 'unknown',
     };
   }
 
   // Sanitization methods to prevent sensitive data leakage
   private sanitizeAuditDetails(details: Record<string, unknown>): Record<string, unknown> {
     const sanitized = { ...details };
-    
+
     // Remove sensitive fields
     delete sanitized.password;
     delete sanitized.token;
     delete sanitized.secret;
     delete sanitized.apiKey;
-    
+
     // Redact email addresses
     if (sanitized.email) {
       sanitized.email = this.redactEmail(sanitized.email);
     }
-    
+
     return sanitized;
   }
 
   private sanitizeSecurityDetails(details: Record<string, unknown>): Record<string, unknown> {
     const sanitized = { ...details };
-    
+
     // Keep only necessary security info
     if (sanitized.ip) {
       sanitized.ip = this.maskIP(sanitized.ip);
     }
-    
+
     if (sanitized.userAgent && typeof sanitized.userAgent === 'string') {
       sanitized.userAgent = sanitized.userAgent.substring(0, 100);
     }
-    
+
     return sanitized;
   }
 
   private sanitizeBusinessContext(context: Record<string, unknown>): Record<string, unknown> {
     const sanitized = { ...context };
-    
+
     // Remove any PII
     delete sanitized.studentData;
     delete sanitized.personalInfo;
-    
+
     return sanitized;
   }
 
   private sanitizeDatabaseDetails(details: Record<string, unknown>): Record<string, unknown> {
     const sanitized = { ...details };
-    
+
     // Remove sensitive query parameters
     if (sanitized.query && typeof sanitized.query === 'string') {
-      sanitized.query = sanitized.query.replace(/password\s*=\s*'[^']*'/gi, "password='[REDACTED]'");
+      sanitized.query = sanitized.query.replace(
+        /password\s*=\s*'[^']*'/gi,
+        "password='[REDACTED]'",
+      );
     }
-    
+
     return sanitized;
   }
 
   private sanitizeAIDetails(details: Record<string, unknown>): Record<string, unknown> {
     const sanitized = { ...details };
-    
+
     // Limit prompt size and remove sensitive content
     if (sanitized.prompt && typeof sanitized.prompt === 'string') {
-      sanitized.prompt = sanitized.prompt.substring(0, 500) + (sanitized.prompt.length > 500 ? '...' : '');
+      sanitized.prompt =
+        sanitized.prompt.substring(0, 500) + (sanitized.prompt.length > 500 ? '...' : '');
     }
-    
+
     return sanitized;
   }
 

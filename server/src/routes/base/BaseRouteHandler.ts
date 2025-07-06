@@ -4,7 +4,7 @@
  * Provides common functionality, authentication, and CRUD operations
  */
 
-import { Router, Request, Response, NextFunction } from 'express';
+import { Router, Response, NextFunction } from 'express';
 import { z } from 'zod';
 import { prisma } from '../../prisma';
 import logger from '../../logger';
@@ -134,6 +134,7 @@ export abstract class BaseRouteHandler<T = any> {
 
       const items = await crudOps.findMany(filters, userId);
       res.json(items);
+      return;
     } catch (error) {
       this.logger?.error(`Error in ${this.routeName} list:`, error);
       next(error);
@@ -158,6 +159,7 @@ export abstract class BaseRouteHandler<T = any> {
       }
 
       res.json(item);
+      return;
     } catch (error) {
       this.logger?.error(`Error in ${this.routeName} get:`, error);
       next(error);
@@ -197,6 +199,7 @@ export abstract class BaseRouteHandler<T = any> {
 
       const item = await crudOps.update(id, data, userId);
       res.json(item);
+      return;
     } catch (error) {
       this.logger?.error(`Error in ${this.routeName} update:`, error);
       next(error);

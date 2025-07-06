@@ -204,14 +204,15 @@ export function createCursorPaginatedResponse<T>(
 /**
  * Middleware to validate pagination parameters
  */
-export function validatePagination(req: Request, res: Response, next: NextFunction) {
+export function validatePagination(req: Request, res: Response, next: NextFunction): void {
   const result = paginationSchema.safeParse(req.query);
 
   if (!result.success) {
-    return res.status(400).json({
+    res.status(400).json({
       error: 'Invalid pagination parameters',
       details: result.error.flatten(),
     });
+    return;
   }
 
   // Attach validated params to request

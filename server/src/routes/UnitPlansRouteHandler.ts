@@ -142,23 +142,27 @@ class UnitPlanService extends BaseService {
     // Search functionality using optimized search utility
     if (search) {
       where.OR = [
-        ...optimizedQueries.createSearchWhere(String(search), ['title', 'description', 'bigIdeas']).OR,
+        ...optimizedQueries.createSearchWhere(String(search), ['title', 'description', 'bigIdeas'])
+          .OR,
       ];
     }
 
     // Date range filtering
-    const dateWhere = optimizedQueries.createDateRangeWhere('startDate', startDate ? String(startDate) : undefined, endDate ? String(endDate) : undefined);
+    const dateWhere = optimizedQueries.createDateRangeWhere(
+      'startDate',
+      startDate ? String(startDate) : undefined,
+      endDate ? String(endDate) : undefined,
+    );
     if (Object.keys(dateWhere).length > 0) {
       Object.assign(where, dateWhere);
     }
 
     // Sorting with validation
-    const orderBy = queryPerformance.createOptimizedSort(String(sortBy || 'startDate'), (sortOrder || 'asc') as 'asc' | 'desc', [
-      'title',
-      'startDate',
-      'endDate',
-      'createdAt',
-    ]);
+    const orderBy = queryPerformance.createOptimizedSort(
+      String(sortBy || 'startDate'),
+      (sortOrder || 'asc') as 'asc' | 'desc',
+      ['title', 'startDate', 'endDate', 'createdAt'],
+    );
 
     const result = await queryPerformance.monitorQuery('unitPlan.findMany', () =>
       optimizedQueries.paginatedQuery(prisma.unitPlan, where, {
@@ -207,7 +211,7 @@ class UnitPlanService extends BaseService {
       throw new Error('Long range plan not found or access denied');
     }
 
-    const { expectations, resources, ..._unitPlanData } = data;
+    const { expectations, resources } = data;
 
     // Create unit plan data that matches Prisma schema
     const createData = {
@@ -216,7 +220,9 @@ class UnitPlanService extends BaseService {
       longRangePlanId: data.longRangePlanId,
       description: data.description,
       bigIdeas: data.bigIdeas,
-      essentialQuestions: data.essentialQuestions ? JSON.stringify(data.essentialQuestions) : undefined,
+      essentialQuestions: data.essentialQuestions
+        ? JSON.stringify(data.essentialQuestions)
+        : undefined,
       startDate: new Date(data.startDate),
       endDate: new Date(data.endDate),
       estimatedHours: data.estimatedHours,
@@ -293,8 +299,9 @@ class UnitPlanService extends BaseService {
 
     // Build update data without longRangePlanId and with proper date conversion
     const updateData: Record<string, unknown> = {};
-    Object.keys(updateDataBase).forEach(key => {
-      if (key !== 'longRangePlanId') { // Skip longRangePlanId - can't be updated
+    Object.keys(updateDataBase).forEach((key) => {
+      if (key !== 'longRangePlanId') {
+        // Skip longRangePlanId - can't be updated
         updateData[key] = updateDataBase[key as keyof typeof updateDataBase];
       }
     });
@@ -489,11 +496,25 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
 
   protected getCrudOperations(): CrudOperations<unknown> {
     return {
-      create: this.unitPlanService.create.bind(this.unitPlanService),
-      findMany: this.unitPlanService.findMany.bind(this.unitPlanService),
-      findById: this.unitPlanService.findById.bind(this.unitPlanService),
-      update: this.unitPlanService.update.bind(this.unitPlanService),
-      delete: this.unitPlanService.delete.bind(this.unitPlanService),
+      create: async (data: unknown, userId: number) => {
+        return this.unitPlanService.create(data as UnitPlanCreateData, userId);
+      },
+      findMany: async (filters: unknown, userId: number) => {
+        const result = await this.unitPlanService.findMany(
+          filters as Record<string, unknown>,
+          userId,
+        );
+        return result.unitPlans;
+      },
+      findById: async (id: string, userId: number) => {
+        return this.unitPlanService.findById(id, userId);
+      },
+      update: async (id: string, data: unknown, userId: number) => {
+        return this.unitPlanService.update(id, data as UnitPlanUpdateData, userId);
+      },
+      delete: async (id: string, userId: number) => {
+        return this.unitPlanService.delete(id, userId);
+      },
     };
   }
 
@@ -509,9 +530,10 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
 
       const result = await this.unitPlanService.findMany(filters, userId);
       res.json(result);
+      return;
     } catch (_error) {
       this.logger.error(`Error in ${this.routeName} list:`, _error);
-      next(_error);
+      return next(_error);
     }
   }
 
@@ -558,7 +580,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
       res.status(201).json(resource);
     } catch (_error) {
       this.logger.error('Error adding resource:', _error);
-      next(_error);
+      return next(_error);
     }
   }
 
@@ -581,7 +603,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
       res.status(204).send();
     } catch (_error) {
       this.logger.error('Error removing resource:', _error);
-      next(_error);
+      return next(_error);
     }
   }
 
@@ -603,7 +625,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
       res.status(201).json(duplicatedUnitPlan);
     } catch (_error) {
       this.logger.error('Error duplicating unit plan:', _error);
-      next(_error);
+      return next(_error);
     }
   }
 }

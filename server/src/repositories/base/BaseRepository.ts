@@ -165,7 +165,14 @@ export abstract class BaseRepository<T extends { id: number }, CreateInput, Upda
   }
 
   // Transaction support
-  async transaction<R>(fn: (tx: PrismaClient) => Promise<R>): Promise<R> {
+  async transaction<R>(
+    fn: (
+      tx: Omit<
+        PrismaClient,
+        '$connect' | '$disconnect' | '$on' | '$transaction' | '$use' | '$extends'
+      >,
+    ) => Promise<R>,
+  ): Promise<R> {
     return this.prisma.$transaction(fn);
   }
 

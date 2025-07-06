@@ -173,66 +173,73 @@ export class ETFOLessonPlanRepository {
     expectationIds: string[],
   ): Promise<ETFOLessonPlanWithRelations> {
     try {
-      const plan = await this.prisma.$transaction(async (tx: PrismaClient) => {
-        // Create the lesson plan
-        const createdPlan = await tx.eTFOLessonPlan.create({
-          data,
-        });
-
-        // Link expectations if provided
-        if (expectationIds.length > 0) {
-          await tx.eTFOLessonPlanExpectation.createMany({
-            data: expectationIds.map((expectationId) => ({
-              lessonPlanId: createdPlan.id,
-              expectationId,
-            })),
+      const plan = await this.prisma.$transaction(
+        async (
+          tx: Omit<
+            PrismaClient,
+            '$connect' | '$disconnect' | '$on' | '$transaction' | '$use' | '$extends'
+          >,
+        ) => {
+          // Create the lesson plan
+          const createdPlan = await tx.eTFOLessonPlan.create({
+            data,
           });
-        }
 
-        // Return with relations
-        return tx.eTFOLessonPlan.findUnique({
-          where: { id: createdPlan.id },
-          include: {
-            unitPlan: {
-              select: {
-                id: true,
-                title: true,
-                longRangePlan: {
-                  select: {
-                    id: true,
-                    title: true,
-                    subject: true,
-                    grade: true,
+          // Link expectations if provided
+          if (expectationIds.length > 0) {
+            await tx.eTFOLessonPlanExpectation.createMany({
+              data: expectationIds.map((expectationId) => ({
+                lessonPlanId: createdPlan.id,
+                expectationId,
+              })),
+            });
+          }
+
+          // Return with relations
+          return tx.eTFOLessonPlan.findUnique({
+            where: { id: createdPlan.id },
+            include: {
+              unitPlan: {
+                select: {
+                  id: true,
+                  title: true,
+                  longRangePlan: {
+                    select: {
+                      id: true,
+                      title: true,
+                      subject: true,
+                      grade: true,
+                    },
                   },
                 },
               },
-            },
-            expectations: {
-              select: {
-                lessonPlanId: true,
-                expectationId: true,
-                expectation: {
-                  select: {
-                    code: true,
-                    description: true,
-                    strand: true,
-                    substrand: true,
+              expectations: {
+                select: {
+                  lessonPlanId: true,
+                  expectationId: true,
+                  expectation: {
+                    select: {
+                      code: true,
+                      description: true,
+                      strand: true,
+                      substrand: true,
+                    },
                   },
                 },
               },
-            },
-            resources: {
-              select: {
-                id: true,
-                title: true,
-                url: true,
-                type: true,
-                content: true,
+              resources: {
+                select: {
+                  id: true,
+                  title: true,
+                  url: true,
+                  type: true,
+                  content: true,
+                },
               },
             },
-          },
-        });
-      });
+          });
+        },
+      );
 
       logger.info(`Created ETFO lesson plan with id: ${plan!.id}`);
       return plan!;
@@ -242,10 +249,7 @@ export class ETFOLessonPlanRepository {
     }
   }
 
-  async update(
-    id: string,
-    data: Prisma.ETFOLessonPlanUpdateInput,
-  ): Promise<ETFOLessonPlan> {
+  async update(id: string, data: Prisma.ETFOLessonPlanUpdateInput): Promise<ETFOLessonPlan> {
     try {
       const result = await this.prisma.eTFOLessonPlan.update({
         where: { id },
@@ -265,75 +269,82 @@ export class ETFOLessonPlanRepository {
     expectationIds?: string[],
   ): Promise<ETFOLessonPlanWithRelations> {
     try {
-      const plan = await this.prisma.$transaction(async (tx: PrismaClient) => {
-        // Update the lesson plan
-        await tx.eTFOLessonPlan.update({
-          where: { id },
-          data,
-        });
-
-        // Update expectations if provided
-        if (expectationIds !== undefined) {
-          // Remove existing expectations
-          await tx.eTFOLessonPlanExpectation.deleteMany({
-            where: { lessonPlanId: id },
+      const plan = await this.prisma.$transaction(
+        async (
+          tx: Omit<
+            PrismaClient,
+            '$connect' | '$disconnect' | '$on' | '$transaction' | '$use' | '$extends'
+          >,
+        ) => {
+          // Update the lesson plan
+          await tx.eTFOLessonPlan.update({
+            where: { id },
+            data,
           });
 
-          // Add new expectations
-          if (expectationIds.length > 0) {
-            await tx.eTFOLessonPlanExpectation.createMany({
-              data: expectationIds.map((expectationId) => ({
-                lessonPlanId: id,
-                expectationId,
-              })),
+          // Update expectations if provided
+          if (expectationIds !== undefined) {
+            // Remove existing expectations
+            await tx.eTFOLessonPlanExpectation.deleteMany({
+              where: { lessonPlanId: id },
             });
-          }
-        }
 
-        // Return with relations
-        return tx.eTFOLessonPlan.findUnique({
-          where: { id },
-          include: {
-            unitPlan: {
-              select: {
-                id: true,
-                title: true,
-                longRangePlan: {
-                  select: {
-                    id: true,
-                    title: true,
-                    subject: true,
-                    grade: true,
+            // Add new expectations
+            if (expectationIds.length > 0) {
+              await tx.eTFOLessonPlanExpectation.createMany({
+                data: expectationIds.map((expectationId) => ({
+                  lessonPlanId: id,
+                  expectationId,
+                })),
+              });
+            }
+          }
+
+          // Return with relations
+          return tx.eTFOLessonPlan.findUnique({
+            where: { id },
+            include: {
+              unitPlan: {
+                select: {
+                  id: true,
+                  title: true,
+                  longRangePlan: {
+                    select: {
+                      id: true,
+                      title: true,
+                      subject: true,
+                      grade: true,
+                    },
                   },
                 },
               },
-            },
-            expectations: {
-              select: {
-                lessonPlanId: true,
-                expectationId: true,
-                expectation: {
-                  select: {
-                    code: true,
-                    description: true,
-                    strand: true,
-                    substrand: true,
+              expectations: {
+                select: {
+                  lessonPlanId: true,
+                  expectationId: true,
+                  expectation: {
+                    select: {
+                      code: true,
+                      description: true,
+                      strand: true,
+                      substrand: true,
+                    },
                   },
                 },
               },
-            },
-            resources: {
-              select: {
-                id: true,
-                title: true,
-                url: true,
-                type: true,
-                content: true,
+              resources: {
+                select: {
+                  id: true,
+                  title: true,
+                  url: true,
+                  type: true,
+                  content: true,
+                },
               },
             },
-          },
-        });
-      });
+          });
+        },
+      );
 
       logger.info(`Updated ETFO lesson plan with id: ${id}`);
       return plan!;

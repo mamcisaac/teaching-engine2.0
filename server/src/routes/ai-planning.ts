@@ -36,35 +36,37 @@ const sanitizeAIInput = (input: unknown): unknown => {
       .slice(0, 20)
       .forEach((key) => {
         // Limit object keys
-        (sanitized as Record<string, unknown>)[key] = sanitizeAIInput((input as Record<string, unknown>)[key]);
+        (sanitized as Record<string, unknown>)[key] = sanitizeAIInput(
+          (input as Record<string, unknown>)[key],
+        );
       });
     return sanitized;
   }
   return input;
 };
 
-// Additional validation for educational content
-const _validateEducationalInput = (input: unknown, fieldName: string): string => {
-  if (!input || typeof input !== 'string') {
-    throw new Error(`Invalid ${fieldName}: must be a non-empty string`);
-  }
+// Additional validation for educational content - kept for future use
+// const _validateEducationalInput = (input: unknown, fieldName: string): string => {
+//   if (!input || typeof input !== 'string') {
+//     throw new Error(`Invalid ${fieldName}: must be a non-empty string`);
+//   }
 
-  // Check for obvious non-educational content
-  const suspiciousPatterns = [
-    /crypto|bitcoin|investment|trading/gi,
-    /hack|exploit|vulnerability|attack/gi,
-    /password|token|api.key|secret/gi,
-    /download|install|execute|script/gi,
-  ];
+//   // Check for obvious non-educational content
+//   const suspiciousPatterns = [
+//     /crypto|bitcoin|investment|trading/gi,
+//     /hack|exploit|vulnerability|attack/gi,
+//     /password|token|api.key|secret/gi,
+//     /download|install|execute|script/gi,
+//   ];
 
-  for (const pattern of suspiciousPatterns) {
-    if (pattern.test(input)) {
-      throw new Error(`Invalid ${fieldName}: contains inappropriate content`);
-    }
-  }
+//   for (const pattern of suspiciousPatterns) {
+//     if (pattern.test(input)) {
+//       throw new Error(`Invalid ${fieldName}: contains inappropriate content`);
+//     }
+//   }
 
-  return sanitizeAIInput(input) as string;
-};
+//   return sanitizeAIInput(input) as string;
+// };
 
 const router = Router();
 
@@ -72,7 +74,7 @@ const router = Router();
  * GET /api/ai-planning/status
  * Check AI service availability and user quota status
  */
-router.get('/status', async (req: Request, res) => {
+router.get('/status', async (req: Request, res: Response): Promise<void> => {
   try {
     const userId = req.user?.id;
 
@@ -106,12 +108,14 @@ router.get('/status', async (req: Request, res) => {
     };
 
     res.json(status);
+    return;
   } catch (_error) {
     logger.error('Error checking AI status:', _error);
     res.status(500).json({
       available: false,
       error: 'Failed to check AI service status',
     });
+    return;
   }
 });
 
@@ -119,41 +123,48 @@ router.get('/status', async (req: Request, res) => {
  * POST /api/ai-planning/long-range/goals
  * Generate AI suggestions for long-range plan goals
  */
-router.post('/long-range/goals', aiRateLimit, async (req: Request, res) => {
-  try {
-    const sanitizedBody = sanitizeAIInput(req.body) as {
-      subject?: string;
-      grade?: string | number;
-      termLength?: string | number;
-      focusAreas?: string[];
-    };
-    const { subject, grade, termLength, focusAreas } = sanitizedBody;
+router.post(
+  '/long-range/goals',
+  aiRateLimit,
+  async (req: Request, res: Response): Promise<void> => {
+    try {
+      const sanitizedBody = sanitizeAIInput(req.body) as {
+        subject?: string;
+        grade?: string | number;
+        termLength?: string | number;
+        focusAreas?: string[];
+      };
+      const { subject, grade, termLength, focusAreas } = sanitizedBody;
 
-    if (!subject || !grade || !termLength) {
-      return res.status(400).json({
-        error: 'Missing required fields: subject, grade, termLength',
+      if (!subject || !grade || !termLength) {
+        res.status(400).json({
+          error: 'Missing required fields: subject, grade, termLength',
+        });
+        return;
+      }
+
+      const suggestions = await aiPlanningAssistant.generateLongRangeGoals({
+        subject: subject!,
+        grade: Number(grade),
+        termLength: Number(termLength),
+        focusAreas: focusAreas as string[],
       });
+
+      res.json(suggestions);
+      return;
+    } catch (_error) {
+      logger.error('Error generating long-range goals:', _error);
+      res.status(500).json({ error: 'Failed to generate suggestions' });
+      return;
     }
-
-    const suggestions = await aiPlanningAssistant.generateLongRangeGoals({
-      subject: subject!,
-      grade: Number(grade),
-      termLength: Number(termLength),
-      focusAreas: focusAreas as string[],
-    });
-
-    res.json(suggestions);
-  } catch (_error) {
-    logger.error('Error generating long-range goals:', _error);
-    res.status(500).json({ error: 'Failed to generate suggestions' });
-  }
-});
+  },
+);
 
 /**
  * POST /api/ai-planning/unit/big-ideas
  * Generate AI suggestions for unit plan big ideas
  */
-router.post('/unit/big-ideas', aiRateLimit, async (req: Request, res) => {
+router.post('/unit/big-ideas', aiRateLimit, async (req: Request, res: Response): Promise<void> => {
   try {
     const sanitizedBody = sanitizeAIInput(req.body) as {
       unitTitle?: string;
@@ -165,10 +176,11 @@ router.post('/unit/big-ideas', aiRateLimit, async (req: Request, res) => {
     const { unitTitle, subject, grade, curriculumExpectations, duration } = sanitizedBody;
 
     if (!unitTitle || !subject || !grade || !curriculumExpectations || !duration) {
-      return res.status(400).json({
+      res.status(400).json({
         error:
           'Missing required fields: unitTitle, subject, grade, curriculumExpectations, duration',
       });
+      return;
     }
 
     const suggestions = await aiPlanningAssistant.generateUnitBigIdeas({
@@ -180,9 +192,11 @@ router.post('/unit/big-ideas', aiRateLimit, async (req: Request, res) => {
     });
 
     res.json(suggestions);
+    return;
   } catch (_error) {
     logger.error('Error generating unit big ideas:', _error);
     res.status(500).json({ error: 'Failed to generate suggestions' });
+    return;
   }
 });
 
@@ -190,178 +204,214 @@ router.post('/unit/big-ideas', aiRateLimit, async (req: Request, res) => {
  * POST /api/ai-planning/lesson/activities
  * Generate AI suggestions for lesson activities
  */
-router.post('/lesson/activities', aiRateLimit, async (req: Request, res) => {
-  try {
-    const sanitizedBody = sanitizeAIInput(req.body) as {
-      lessonTitle?: string;
-      learningGoals?: string[];
-      subject?: string;
-      grade?: string | number;
-      duration?: string | number;
-      materials?: string[];
-    };
-    const { lessonTitle, learningGoals, subject, grade, duration, materials } = sanitizedBody;
+router.post(
+  '/lesson/activities',
+  aiRateLimit,
+  async (req: Request, res: Response): Promise<void> => {
+    try {
+      const sanitizedBody = sanitizeAIInput(req.body) as {
+        lessonTitle?: string;
+        learningGoals?: string[];
+        subject?: string;
+        grade?: string | number;
+        duration?: string | number;
+        materials?: string[];
+      };
+      const { lessonTitle, learningGoals, subject, grade, duration, materials } = sanitizedBody;
 
-    if (!lessonTitle || !learningGoals || !subject || !grade || !duration) {
-      return res.status(400).json({
-        error: 'Missing required fields: lessonTitle, learningGoals, subject, grade, duration',
+      if (!lessonTitle || !learningGoals || !subject || !grade || !duration) {
+        res.status(400).json({
+          error: 'Missing required fields: lessonTitle, learningGoals, subject, grade, duration',
+        });
+        return;
+      }
+
+      const suggestions = await aiPlanningAssistant.generateLessonActivities({
+        lessonTitle,
+        learningGoals,
+        subject,
+        grade: Number(grade),
+        duration: Number(duration),
+        materials,
       });
+
+      res.json(suggestions);
+      return;
+    } catch (_error) {
+      logger.error('Error generating lesson activities:', _error);
+      res.status(500).json({ error: 'Failed to generate suggestions' });
+      return;
     }
-
-    const suggestions = await aiPlanningAssistant.generateLessonActivities({
-      lessonTitle,
-      learningGoals,
-      subject,
-      grade: Number(grade),
-      duration: Number(duration),
-      materials,
-    });
-
-    res.json(suggestions);
-  } catch (_error) {
-    logger.error('Error generating lesson activities:', _error);
-    res.status(500).json({ error: 'Failed to generate suggestions' });
-  }
-});
+  },
+);
 
 /**
  * POST /api/ai-planning/lesson/materials
  * Generate AI suggestions for materials list
  */
-router.post('/lesson/materials', aiRateLimit, async (req: Request, res) => {
-  try {
-    const sanitizedBody = sanitizeAIInput(req.body) as {
-      activities?: string[];
-      subject?: string;
-      grade?: string | number;
-      classSize?: string | number;
-    };
-    const { activities, subject, grade, classSize } = sanitizedBody;
+router.post(
+  '/lesson/materials',
+  aiRateLimit,
+  async (req: Request, res: Response): Promise<void> => {
+    try {
+      const sanitizedBody = sanitizeAIInput(req.body) as {
+        activities?: string[];
+        subject?: string;
+        grade?: string | number;
+        classSize?: string | number;
+      };
+      const { activities, subject, grade, classSize } = sanitizedBody;
 
-    if (!activities || !subject || !grade) {
-      return res.status(400).json({
-        error: 'Missing required fields: activities, subject, grade',
+      if (!activities || !subject || !grade) {
+        res.status(400).json({
+          error: 'Missing required fields: activities, subject, grade',
+        });
+        return;
+      }
+
+      const suggestions = await aiPlanningAssistant.generateMaterialsList({
+        activities,
+        subject,
+        grade: Number(grade),
+        classSize: Number(classSize) || 25,
       });
+
+      res.json(suggestions);
+      return;
+    } catch (_error) {
+      logger.error('Error generating materials list:', _error);
+      res.status(500).json({ error: 'Failed to generate suggestions' });
+      return;
     }
-
-    const suggestions = await aiPlanningAssistant.generateMaterialsList({
-      activities,
-      subject,
-      grade: Number(grade),
-      classSize: Number(classSize) || 25,
-    });
-
-    res.json(suggestions);
-  } catch (_error) {
-    logger.error('Error generating materials list:', _error);
-    res.status(500).json({ error: 'Failed to generate suggestions' });
-  }
-});
+  },
+);
 
 /**
  * POST /api/ai-planning/lesson/assessments
  * Generate AI suggestions for assessment strategies
  */
-router.post('/lesson/assessments', aiRateLimit, async (req: Request, res) => {
-  try {
-    const sanitizedBody = sanitizeAIInput(req.body) as {
-      learningGoals?: string[];
-      activities?: string[];
-      subject?: string;
-      grade?: string | number;
-    };
-    const { learningGoals, activities, subject, grade } = sanitizedBody;
+router.post(
+  '/lesson/assessments',
+  aiRateLimit,
+  async (req: Request, res: Response): Promise<void> => {
+    try {
+      const sanitizedBody = sanitizeAIInput(req.body) as {
+        learningGoals?: string[];
+        activities?: string[];
+        subject?: string;
+        grade?: string | number;
+      };
+      const { learningGoals, activities, subject, grade } = sanitizedBody;
 
-    if (!learningGoals || !activities || !subject || !grade) {
-      return res.status(400).json({
-        error: 'Missing required fields: learningGoals, activities, subject, grade',
+      if (!learningGoals || !activities || !subject || !grade) {
+        res.status(400).json({
+          error: 'Missing required fields: learningGoals, activities, subject, grade',
+        });
+        return;
+      }
+
+      const suggestions = await aiPlanningAssistant.generateAssessmentStrategies({
+        learningGoals,
+        activities,
+        subject,
+        grade: Number(grade),
       });
+
+      res.json(suggestions);
+      return;
+    } catch (_error) {
+      logger.error('Error generating assessment strategies:', _error);
+      res.status(500).json({ error: 'Failed to generate suggestions' });
+      return;
     }
-
-    const suggestions = await aiPlanningAssistant.generateAssessmentStrategies({
-      learningGoals,
-      activities,
-      subject,
-      grade: Number(grade),
-    });
-
-    res.json(suggestions);
-  } catch (_error) {
-    logger.error('Error generating assessment strategies:', _error);
-    res.status(500).json({ error: 'Failed to generate suggestions' });
-  }
-});
+  },
+);
 
 /**
  * POST /api/ai-planning/daybook/reflections
  * Generate AI suggestions for daybook reflection prompts
  */
-router.post('/daybook/reflections', aiRateLimit, async (req: Request, res) => {
-  try {
-    const sanitizedBody = sanitizeAIInput(req.body) as {
-      date?: string;
-      activities?: string[];
-      subject?: string;
-      grade?: string | number;
-      previousReflections?: string[];
-    };
-    const { date, activities, subject, grade, previousReflections } = sanitizedBody;
+router.post(
+  '/daybook/reflections',
+  aiRateLimit,
+  async (req: Request, res: Response): Promise<void> => {
+    try {
+      const sanitizedBody = sanitizeAIInput(req.body) as {
+        date?: string;
+        activities?: string[];
+        subject?: string;
+        grade?: string | number;
+        previousReflections?: string[];
+      };
+      const { date, activities, subject, grade, previousReflections } = sanitizedBody;
 
-    if (!date || !activities || !subject || !grade) {
-      return res.status(400).json({
-        error: 'Missing required fields: date, activities, subject, grade',
+      if (!date || !activities || !subject || !grade) {
+        res.status(400).json({
+          error: 'Missing required fields: date, activities, subject, grade',
+        });
+        return;
+      }
+
+      const suggestions = await aiPlanningAssistant.generateReflectionPrompts({
+        date: new Date(date),
+        activities,
+        subject,
+        grade: Number(grade),
+        previousReflections,
       });
+
+      res.json(suggestions);
+      return;
+    } catch (_error) {
+      logger.error('Error generating reflection prompts:', _error);
+      res.status(500).json({ error: 'Failed to generate suggestions' });
+      return;
     }
-
-    const suggestions = await aiPlanningAssistant.generateReflectionPrompts({
-      date: new Date(date),
-      activities,
-      subject,
-      grade: Number(grade),
-      previousReflections,
-    });
-
-    res.json(suggestions);
-  } catch (_error) {
-    logger.error('Error generating reflection prompts:', _error);
-    res.status(500).json({ error: 'Failed to generate suggestions' });
-  }
-});
+  },
+);
 
 /**
  * POST /api/ai-planning/curriculum-aligned
  * Get curriculum-aligned suggestions
  */
-router.post('/curriculum-aligned', aiRateLimit, async (req: Request, res) => {
-  try {
-    const sanitizedBody = sanitizeAIInput(req.body) as {
-      expectationIds?: string[];
-      suggestionType?: string;
-    };
-    const { expectationIds, suggestionType } = sanitizedBody;
+router.post(
+  '/curriculum-aligned',
+  aiRateLimit,
+  async (req: Request, res: Response): Promise<void> => {
+    try {
+      const sanitizedBody = sanitizeAIInput(req.body) as {
+        expectationIds?: string[];
+        suggestionType?: string;
+      };
+      const { expectationIds, suggestionType } = sanitizedBody;
 
-    if (!expectationIds || !suggestionType) {
-      return res.status(400).json({
-        error: 'Missing required fields: expectationIds, suggestionType',
-      });
+      if (!expectationIds || !suggestionType) {
+        res.status(400).json({
+          error: 'Missing required fields: expectationIds, suggestionType',
+        });
+        return;
+      }
+
+      if (!['activities', 'assessments', 'resources'].includes(suggestionType)) {
+        res.status(400).json({
+          error: 'Invalid suggestionType. Must be: activities, assessments, or resources',
+        });
+        return;
+      }
+
+      const suggestions = await aiPlanningAssistant.getCurriculumAlignedSuggestions(
+        expectationIds,
+        suggestionType as 'activities' | 'assessments' | 'resources',
+      );
+
+      res.json({ suggestions });
+      return;
+    } catch (_error) {
+      logger.error('Error generating curriculum-aligned suggestions:', _error);
+      res.status(500).json({ error: 'Failed to generate suggestions' });
+      return;
     }
-
-    if (!['activities', 'assessments', 'resources'].includes(suggestionType)) {
-      return res.status(400).json({
-        error: 'Invalid suggestionType. Must be: activities, assessments, or resources',
-      });
-    }
-
-    const suggestions = await aiPlanningAssistant.getCurriculumAlignedSuggestions(
-      expectationIds,
-      suggestionType as 'activities' | 'assessments' | 'resources',
-    );
-
-    res.json({ suggestions });
-  } catch (_error) {
-    logger.error('Error generating curriculum-aligned suggestions:', _error);
-    res.status(500).json({ error: 'Failed to generate suggestions' });
-  }
-});
+  },
+);
 
 export default router;

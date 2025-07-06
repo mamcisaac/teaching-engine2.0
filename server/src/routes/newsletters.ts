@@ -25,23 +25,27 @@ router.post('/generate', async (req: Request, res: Response) => {
   try {
     const userId = req.user?.id;
     if (!userId) {
-      return res.status(401).json({ error: 'Authentication required' });
+      res.status(401).json({ error: 'Authentication required' });
+      return;
     }
 
     const validation = generateNewsletterSchema.safeParse(req.body);
     if (!validation.success) {
-      return res.status(400).json({ 
-        error: 'Invalid input', 
-        details: validation.error.errors 
+      res.status(400).json({
+        error: 'Invalid input',
+        details: validation.error.errors,
       });
+      return;
     }
 
     const { sinceDate } = validation.data;
-    
+
     log(`Generating newsletter for user ${userId}`, { sinceDate });
 
     // Generate newsletter using the new template system
-    const startDate = sinceDate ? new Date(sinceDate) : new Date(Date.now() - 7 * 24 * 60 * 60 * 1000); // Default to 1 week ago
+    const startDate = sinceDate
+      ? new Date(sinceDate)
+      : new Date(Date.now() - 7 * 24 * 60 * 60 * 1000); // Default to 1 week ago
     const endDate = new Date(); // Current date
     const newsletter = await renderNewsletter(userId, startDate, endDate, 'standard');
 
@@ -52,13 +56,14 @@ router.post('/generate', async (req: Request, res: Response) => {
       success: true,
       data: newsletter,
     });
-
+    return;
   } catch (_error) {
     log('Error generating newsletter:', _error);
     res.status(500).json({
       error: 'Failed to generate newsletter',
       message: _error instanceof Error ? _error.message : 'Unknown error',
     });
+    return;
   }
 });
 
@@ -70,7 +75,8 @@ router.get('/status', async (req: Request, res: Response) => {
   try {
     const userId = req.user?.id;
     if (!userId) {
-      return res.status(401).json({ error: 'Authentication required' });
+      res.status(401).json({ error: 'Authentication required' });
+      return;
     }
 
     // Get count of recent lesson plans and reflections for preview
@@ -97,7 +103,7 @@ router.get('/status', async (req: Request, res: Response) => {
       }),
     ]);
 
-    res.json({
+    return res.json({
       success: true,
       data: {
         availableContent: {
@@ -108,13 +114,13 @@ router.get('/status', async (req: Request, res: Response) => {
         canGenerate: lessonCount > 0 || reflectionCount > 0,
       },
     });
-
   } catch (_error) {
     log('Error getting newsletter status:', _error);
     res.status(500).json({
       error: 'Failed to get newsletter status',
       message: _error instanceof Error ? _error.message : 'Unknown error',
     });
+    return;
   }
 });
 

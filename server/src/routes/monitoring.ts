@@ -16,11 +16,12 @@ router.get('/dashboard', authenticate, async (req: Request, res: Response) => {
 });
 
 // Alert status endpoint
-router.get('/alerts', authenticate, async (req: Request, res: Response) => {
+router.get('/alerts', authenticate, async (_req: Request, res: Response) => {
   await withSpan('api.monitoring.alerts', {}, async () => {
     try {
       const status = getAlertStatus();
       res.json(status);
+      return;
     } catch (_error) {
       logger.error('Failed to get alert status', _error);
       res.status(500).json({ error: 'Failed to get alert status' });
@@ -42,6 +43,7 @@ router.post('/alerts/:alertId/trigger', authenticate, async (req: Request, res: 
 
       await triggerManualAlert(alertId, context);
       res.json({ success: true, message: `Alert ${alertId} triggered` });
+      return;
     } catch (_error) {
       logger.error('Failed to trigger manual alert', _error);
       res.status(500).json({ error: 'Failed to trigger alert' });
@@ -50,7 +52,7 @@ router.post('/alerts/:alertId/trigger', authenticate, async (req: Request, res: 
 });
 
 // Health check endpoint with detailed status
-router.get('/health/detailed', async (req: Request, res: Response) => {
+router.get('/health/detailed', async (_req: Request, res: Response) => {
   await withSpan('api.monitoring.healthDetailed', {}, async (span) => {
     try {
       const health = {

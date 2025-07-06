@@ -27,17 +27,17 @@ export interface ValidationOptions {
 // Main validation middleware factory
 export const validate = <T>(
   schema: ZodSchema<T>,
-  options: ValidationOptions = {}
+  options: ValidationOptions = {},
 ): ((req: ValidatedRequest<T>, res: Response, next: NextFunction) => void) => {
   const {
     source = ['body', 'query', 'params'],
     stripUnknown = true,
-    abortEarly = false,
-    context,
+    abortEarly: _abortEarly = false,
+    context: _context,
     customErrorHandler,
   } = options;
 
-  return async (req: ValidatedRequest<T>, res: Response, next: NextFunction) => {
+  return async (req: ValidatedRequest<T>, _res: Response, next: NextFunction) => {
     try {
       // Determine sources to validate
       const sources = Array.isArray(source) ? source : [source];
@@ -69,7 +69,7 @@ export const validate = <T>(
 
       // Store validated data
       req.validated = validated;
-      
+
       // Also store in specific locations for convenience
       if (sources.includes('body')) {
         req.validatedBody = validated;
@@ -92,12 +92,15 @@ export const validate = <T>(
     } catch (_error) {
       if (_error instanceof ZodError) {
         // Log validation failure
-        logger.warn({
-          path: req.path,
-          method: req.method,
-          errors: _error.errors,
-          data: { body: req.body, query: req.query, params: req.params },
-        }, 'Validation failed');
+        logger.warn(
+          {
+            path: req.path,
+            method: req.method,
+            errors: _error.errors,
+            data: { body: req.body, query: req.query, params: req.params },
+          },
+          'Validation failed',
+        );
 
         // Use custom _error handler if provided
         if (customErrorHandler) {
@@ -106,7 +109,7 @@ export const validate = <T>(
         }
 
         // Format validation _errors
-        const formattedErrors = _error.errors.map(err => ({
+        const formattedErrors = _error.errors.map((err) => ({
           field: err.path.join('.'),
           message: err.message,
           code: err.code,
@@ -125,24 +128,24 @@ export const validate = <T>(
 // Validate specific source only
 export const validateBody = <T>(
   schema: ZodSchema<T>,
-  options?: Omit<ValidationOptions, 'source'>
+  options?: Omit<ValidationOptions, 'source'>,
 ) => validate(schema, { ...options, source: 'body' });
 
 export const validateQuery = <T>(
   schema: ZodSchema<T>,
-  options?: Omit<ValidationOptions, 'source'>
+  options?: Omit<ValidationOptions, 'source'>,
 ) => validate(schema, { ...options, source: 'query' });
 
 export const validateParams = <T>(
   schema: ZodSchema<T>,
-  options?: Omit<ValidationOptions, 'source'>
+  options?: Omit<ValidationOptions, 'source'>,
 ) => validate(schema, { ...options, source: 'params' });
 
 // Conditional validation
 export const validateIf = <T>(
   condition: (req: Request) => boolean,
   schema: ZodSchema<T>,
-  options?: ValidationOptions
+  options?: ValidationOptions,
 ) => {
   return (req: ValidatedRequest<T>, res: Response, next: NextFunction) => {
     if (condition(req)) {
@@ -155,7 +158,7 @@ export const validateIf = <T>(
 // Multiple schema validation (OR)
 export const validateOneOf = <T extends ZodSchema<unknown>[]>(
   schemas: T,
-  options?: ValidationOptions
+  options?: ValidationOptions,
 ) => {
   return async (req: ValidatedRequest, res: Response, next: NextFunction) => {
     const errors: ZodError[] = [];
@@ -172,15 +175,13 @@ export const validateOneOf = <T extends ZodSchema<unknown>[]>(
     }
 
     // All schemas failed
-    const combinedErrors = errors.flatMap(e => e.errors);
+    const combinedErrors = errors.flatMap((e) => e.errors);
     next(new ValidationError('None of the validation schemas passed', combinedErrors));
   };
 };
 
 // Schema composition helpers
-export const mergeSchemas = <T extends ZodSchema<unknown>[]>(
-  ...schemas: T
-): ZodSchema => {
+export const mergeSchemas = <T extends ZodSchema<unknown>[]>(...schemas: T): ZodSchema => {
   return schemas.reduce((merged, schema) => {
     if ('merge' in merged && typeof merged.merge === 'function') {
       return merged.merge(schema);
@@ -194,7 +195,12 @@ export const commonValidators = {
   // Pagination validation
   pagination: z.object({
     page: z.string().regex(/^\d+$/).transform(Number).pipe(z.number().int().min(1)).optional(),
-    pageSize: z.string().regex(/^\d+$/).transform(Number).pipe(z.number().int().min(1).max(100)).optional(),
+    pageSize: z
+      .string()
+      .regex(/^\d+$/)
+      .transform(Number)
+      .pipe(z.number().int().min(1).max(100))
+      .optional(),
     sortBy: z.string().optional(),
     sortOrder: z.enum(['asc', 'desc']).optional(),
   }),
@@ -205,18 +211,23 @@ export const commonValidators = {
   }),
 
   // Date range validation
-  dateRange: z.object({
-    from: z.string().datetime().optional(),
-    to: z.string().datetime().optional(),
-  }).refine(
-    (data) => !data.from || !data.to || new Date(data.from) <= new Date(data.to),
-    'From date must be before or equal to to date'
-  ),
+  dateRange: z
+    .object({
+      from: z.string().datetime().optional(),
+      to: z.string().datetime().optional(),
+    })
+    .refine(
+      (data) => !data.from || !data.to || new Date(data.from) <= new Date(data.to),
+      'From date must be before or equal to to date',
+    ),
 
   // Search query validation
   searchQuery: z.object({
     q: z.string().min(1).max(100).optional(),
-    fields: z.string().transform(s => s.split(',')).optional(),
+    fields: z
+      .string()
+      .transform((s) => s.split(','))
+      .optional(),
   }),
 };
 
@@ -226,9 +237,9 @@ export const sanitizeRequest = (
     body?: string[];
     query?: string[];
     params?: string[];
-  } = {}
+  } = {},
 ) => {
-  return (req: Request, res: Response, next: NextFunction) => {
+  return (req: Request, _res: Response, next: NextFunction) => {
     const sanitizeHtml = (str: string): string => {
       return str
         .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
@@ -238,7 +249,7 @@ export const sanitizeRequest = (
 
     // Sanitize specified fields
     if (fieldsToSanitize.body && req.body) {
-      fieldsToSanitize.body.forEach(field => {
+      fieldsToSanitize.body.forEach((field) => {
         if (req.body[field] && typeof req.body[field] === 'string') {
           req.body[field] = sanitizeHtml(req.body[field]);
         }
@@ -246,7 +257,7 @@ export const sanitizeRequest = (
     }
 
     if (fieldsToSanitize.query && req.query) {
-      fieldsToSanitize.query.forEach(field => {
+      fieldsToSanitize.query.forEach((field) => {
         if (req.query[field] && typeof req.query[field] === 'string') {
           req.query[field] = sanitizeHtml(req.query[field] as string);
         }
@@ -254,7 +265,7 @@ export const sanitizeRequest = (
     }
 
     if (fieldsToSanitize.params && req.params) {
-      fieldsToSanitize.params.forEach(field => {
+      fieldsToSanitize.params.forEach((field) => {
         if (req.params[field] && typeof req.params[field] === 'string') {
           req.params[field] = sanitizeHtml(req.params[field]);
         }
@@ -267,9 +278,9 @@ export const sanitizeRequest = (
 
 // Type coercion middleware for query parameters
 export const coerceQueryParams = (
-  coercions: Record<string, 'number' | 'boolean' | 'array' | 'date'>
+  coercions: Record<string, 'number' | 'boolean' | 'array' | 'date'>,
 ) => {
-  return (req: Request, res: Response, next: NextFunction) => {
+  return (req: Request, _res: Response, next: NextFunction) => {
     for (const [param, type] of Object.entries(coercions)) {
       if (req.query[param] !== undefined) {
         const value = req.query[param] as string;
@@ -279,7 +290,7 @@ export const coerceQueryParams = (
             (req.query as any)[param] = parseFloat(value);
             break;
           case 'boolean':
-            (req.query as any)[param] = (value === 'true' || value === '1');
+            (req.query as any)[param] = value === 'true' || value === '1';
             break;
           case 'array':
             (req.query as any)[param] = value.split(',');

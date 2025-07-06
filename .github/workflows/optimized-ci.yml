@@ -54,6 +54,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile --prefer-offline
 
+      - name: Generate Prisma Client
+        run: pnpm db:generate
+
       - name: Lint
         run: pnpm lint
 
@@ -76,6 +79,9 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           pnpm-version: ${{ env.PNPM_VERSION }}
+
+      - name: Generate Prisma Client
+        run: pnpm db:generate
 
       - name: Cache test results
         uses: actions/cache@v3
@@ -113,6 +119,9 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           pnpm-version: ${{ env.PNPM_VERSION }}
+
+      - name: Generate Prisma Client
+        run: pnpm db:generate
 
       - name: Run integration tests
         run: TEST_TYPE=integration pnpm --filter server test -- --testNamePattern="server-health|auth|simple|d3|etfo-planning" --maxWorkers=1 --no-coverage

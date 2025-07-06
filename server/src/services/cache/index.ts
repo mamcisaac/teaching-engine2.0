@@ -186,7 +186,7 @@ export function Cacheable(options: CacheOptions & { keyPrefix?: string } = {}) {
  * Cache invalidation decorator
  */
 export function CacheInvalidate(tags: string[] | ((args: unknown[]) => string[])) {
-  return function (target: unknown, propertyKey: string, descriptor: PropertyDescriptor) {
+  return function (_target: unknown, _propertyKey: string, descriptor: PropertyDescriptor) {
     const originalMethod = descriptor.value;
 
     descriptor.value = async function (...args: unknown[]) {

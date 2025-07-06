@@ -69,7 +69,7 @@ export class AIPlanningService extends BaseService {
 
   async getServiceHealth(): Promise<ServiceHealth> {
     const startTime = Date.now();
-    
+
     try {
       // Check if OpenAI API key is available
       if (!process.env.OPENAI_API_KEY) {
@@ -81,7 +81,7 @@ export class AIPlanningService extends BaseService {
 
       // Simple health check - could ping OpenAI API in the future
       const responseTime = Date.now() - startTime;
-      
+
       return {
         healthy: true,
         lastCheck: new Date(),
@@ -98,7 +98,7 @@ export class AIPlanningService extends BaseService {
 
   async generateLongRangeGoals(request: LongRangeGoalsRequest): Promise<string[]> {
     this.logger.info('Generating long-range goals');
-    
+
     // For now, return static educational suggestions
     // In a full implementation, this would use OpenAI API
     const baseGoals = [
@@ -109,7 +109,7 @@ export class AIPlanningService extends BaseService {
     ];
 
     if (request.focusAreas?.length) {
-      request.focusAreas.forEach(area => {
+      request.focusAreas.forEach((area) => {
         baseGoals.push(`Strengthen understanding in ${area}`);
       });
     }
@@ -119,7 +119,7 @@ export class AIPlanningService extends BaseService {
 
   async generateUnitBigIdeas(request: UnitBigIdeasRequest): Promise<string[]> {
     this.logger.info('Generating unit big ideas');
-    
+
     return [
       `${request.unitTitle} connects to broader themes in ${request.subject}`,
       `Students will understand key concepts through hands-on exploration`,
@@ -130,7 +130,7 @@ export class AIPlanningService extends BaseService {
 
   async generateLessonActivities(request: LessonActivitiesRequest): Promise<string[]> {
     this.logger.info('Generating lesson activities');
-    
+
     return [
       `Opening activity to activate prior knowledge (5-10 minutes)`,
       `Main instructional activity aligned with learning goals (${Math.floor(request.duration * 0.6)} minutes)`,
@@ -141,7 +141,7 @@ export class AIPlanningService extends BaseService {
 
   async generateMaterialsList(request: MaterialsListRequest): Promise<string[]> {
     this.logger.info('Generating materials list');
-    
+
     const baseMaterials = [
       'Whiteboard and markers',
       'Student notebooks or worksheets',
@@ -162,7 +162,7 @@ export class AIPlanningService extends BaseService {
 
   async generateAssessmentStrategies(_request: AssessmentStrategiesRequest): Promise<string[]> {
     this.logger.info('Generating assessment strategies');
-    
+
     return [
       'Formative assessment through observation and questioning',
       'Student self-assessment using learning goals',
@@ -174,9 +174,9 @@ export class AIPlanningService extends BaseService {
 
   async generateReflectionPrompts(_request: ReflectionPromptsRequest): Promise<string[]> {
     this.logger.info('Generating reflection prompts');
-    
+
     return [
-      'What went well in today\'s lesson?',
+      "What went well in today's lesson?",
       'What would you change or improve?',
       'How did students respond to the activities?',
       'What evidence of learning did you observe?',
@@ -185,11 +185,11 @@ export class AIPlanningService extends BaseService {
   }
 
   async getCurriculumAlignedSuggestions(
-    expectationIds: string[],
-    suggestionType: 'activities' | 'assessments' | 'resources'
+    _expectationIds: string[],
+    suggestionType: 'activities' | 'assessments' | 'resources',
   ): Promise<string[]> {
     this.logger.info('Generating curriculum-aligned suggestions');
-    
+
     const suggestions: Record<string, string[]> = {
       activities: [
         'Hands-on investigation or experiment',

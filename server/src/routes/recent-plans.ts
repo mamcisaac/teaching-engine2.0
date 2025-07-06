@@ -8,13 +8,15 @@ router.post('/track', async (req: Request, res, _next) => {
   try {
     const userId = req.user?.id || 0;
     if (!userId) {
-      return res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: 'Unauthorized' });
+      return;
     }
 
     const { planType, planId } = req.body;
 
     if (!planType || !planId) {
-      return res.status(400).json({ error: 'Plan type and ID are required' });
+      res.status(400).json({ error: 'Plan type and ID are required' });
+      return;
     }
 
     // Upsert recent plan access
@@ -40,6 +42,7 @@ router.post('/track', async (req: Request, res, _next) => {
     });
 
     res.json({ success: true });
+    return;
   } catch (err) {
     logger.error('Error in recent plans route:', err);
     res.status(500).json({ error: 'Failed to process request' });
@@ -51,7 +54,8 @@ router.get('/', async (req: Request, res, _next) => {
   try {
     const userId = req.user?.id || 0;
     if (!userId) {
-      return res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: 'Unauthorized' });
+      return;
     }
 
     const limit = parseInt(req.query.limit as string) || 10;
@@ -208,6 +212,7 @@ router.get('/', async (req: Request, res, _next) => {
     const validPlans = recentPlans.filter(Boolean);
 
     res.json(validPlans);
+    return;
   } catch (err) {
     logger.error('Error in recent plans route:', err);
     res.status(500).json({ error: 'Failed to process request' });
@@ -219,7 +224,8 @@ router.delete('/clear', async (req: Request, res, _next) => {
   try {
     const userId = req.user?.id || 0;
     if (!userId) {
-      return res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: 'Unauthorized' });
+      return;
     }
 
     await prisma.recentPlanAccess.deleteMany({
@@ -227,6 +233,7 @@ router.delete('/clear', async (req: Request, res, _next) => {
     });
 
     res.json({ success: true });
+    return;
   } catch (err) {
     logger.error('Error in recent plans route:', err);
     res.status(500).json({ error: 'Failed to process request' });

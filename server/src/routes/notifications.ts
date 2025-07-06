@@ -8,7 +8,8 @@ router.get('/', async (req: Request, res) => {
   try {
     const userId = req.user?.id || 0;
     if (!userId) {
-      return res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: 'Unauthorized' });
+      return;
     }
 
     const limit = parseInt(req.query.limit as string) || 20;
@@ -44,6 +45,7 @@ router.get('/', async (req: Request, res) => {
       limit,
       offset,
     });
+    return;
   } catch (err) {
     logger.error('Error fetching notifications:', err);
     res.status(500).json({ error: 'Failed to fetch notifications' });
@@ -55,12 +57,14 @@ router.patch('/:id/read', async (req: Request, res) => {
   try {
     const userId = req.user?.id || 0;
     if (!userId) {
-      return res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: 'Unauthorized' });
+      return;
     }
 
     const notificationId = parseInt(req.params.id);
     if (isNaN(notificationId)) {
-      return res.status(400).json({ error: 'Invalid notification ID' });
+      res.status(400).json({ error: 'Invalid notification ID' });
+      return;
     }
 
     // Check if notification belongs to user
@@ -69,7 +73,8 @@ router.patch('/:id/read', async (req: Request, res) => {
     });
 
     if (!notification) {
-      return res.status(404).json({ error: 'Notification not found' });
+      res.status(404).json({ error: 'Notification not found' });
+      return;
     }
 
     // Update notification
@@ -79,6 +84,7 @@ router.patch('/:id/read', async (req: Request, res) => {
     });
 
     res.json(updated);
+    return;
   } catch (err) {
     logger.error('Error marking notification as read:', err);
     res.status(500).json({ error: 'Failed to update notification' });
@@ -90,7 +96,8 @@ router.patch('/read-all', async (req: Request, res) => {
   try {
     const userId = req.user?.id || 0;
     if (!userId) {
-      return res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: 'Unauthorized' });
+      return;
     }
 
     const result = await prisma.notification.updateMany({
@@ -99,6 +106,7 @@ router.patch('/read-all', async (req: Request, res) => {
     });
 
     res.json({ updated: result.count });
+    return;
   } catch (err) {
     logger.error('Error marking all notifications as read:', err);
     res.status(500).json({ error: 'Failed to update notifications' });
@@ -110,12 +118,14 @@ router.delete('/:id', async (req: Request, res) => {
   try {
     const userId = req.user?.id || 0;
     if (!userId) {
-      return res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: 'Unauthorized' });
+      return;
     }
 
     const notificationId = parseInt(req.params.id);
     if (isNaN(notificationId)) {
-      return res.status(400).json({ error: 'Invalid notification ID' });
+      res.status(400).json({ error: 'Invalid notification ID' });
+      return;
     }
 
     // Check if notification belongs to user
@@ -124,7 +134,8 @@ router.delete('/:id', async (req: Request, res) => {
     });
 
     if (!notification) {
-      return res.status(404).json({ error: 'Notification not found' });
+      res.status(404).json({ error: 'Notification not found' });
+      return;
     }
 
     // Delete notification
@@ -133,6 +144,7 @@ router.delete('/:id', async (req: Request, res) => {
     });
 
     res.json({ success: true });
+    return;
   } catch (err) {
     logger.error('Error deleting notification:', err);
     res.status(500).json({ error: 'Failed to delete notification' });
@@ -144,7 +156,8 @@ router.delete('/clear-all', async (req: Request, res) => {
   try {
     const userId = req.user?.id || 0;
     if (!userId) {
-      return res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: 'Unauthorized' });
+      return;
     }
 
     const result = await prisma.notification.deleteMany({
@@ -152,6 +165,7 @@ router.delete('/clear-all', async (req: Request, res) => {
     });
 
     res.json({ deleted: result.count });
+    return;
   } catch (err) {
     logger.error('Error clearing notifications:', err);
     res.status(500).json({ error: 'Failed to clear notifications' });
@@ -163,7 +177,8 @@ router.post('/test', async (req: Request, res) => {
   try {
     const userId = req.user?.id || 0;
     if (!userId) {
-      return res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: 'Unauthorized' });
+      return;
     }
 
     const notification = await prisma.notification.create({
@@ -177,6 +192,7 @@ router.post('/test', async (req: Request, res) => {
     });
 
     res.json(notification);
+    return;
   } catch (err) {
     logger.error('Error creating test notification:', err);
     res.status(500).json({ error: 'Failed to create notification' });

@@ -28,11 +28,11 @@ const getPrisma = () => {
 
 // Create a proxy to always use the current client
 export const prisma = new Proxy({} as InstanceType<typeof PrismaClient>, {
-  get(target, prop) {
+  get(_target, prop) {
     const client = getPrisma();
     return client[prop as keyof InstanceType<typeof PrismaClient>];
   },
-  has(target, prop) {
+  has(_target, prop) {
     const client = getPrisma();
     return prop in client;
   },

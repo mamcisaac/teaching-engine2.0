@@ -6,13 +6,13 @@ import logger from '../logger';
 const router = Router();
 
 // Get user's collections
-router.get('/', authMiddleware, async (req: Request, res: Response) => {
+router.get('/', authMiddleware, async (req: Request, res: Response): Promise<void> => {
   try {
     const { includePublic = false } = req.query;
 
     const where = includePublic
       ? {
-          userId: req.user!.id // Single-teacher use - only show user's own collections,
+          userId: req.user!.id, // Single-teacher use - only show user's own collections,
         }
       : { userId: req.user!.id };
 
@@ -36,24 +36,26 @@ router.get('/', authMiddleware, async (req: Request, res: Response) => {
       success: true,
       data: collections,
     });
+    return;
   } catch (_error) {
     logger.error('Get collections error:', _error);
     res.status(500).json({
       success: false,
       error: 'Failed to get collections',
     });
+    return;
   }
 });
 
 // Get collection details with activities
-router.get('/:collectionId', authMiddleware, async (req: Request, res: Response) => {
+router.get('/:collectionId', authMiddleware, async (req: Request, res: Response): Promise<void> => {
   try {
     const { collectionId } = req.params;
 
     const collection = await prisma.activityCollection.findFirst({
       where: {
         id: collectionId,
-        userId: req.user!.id // Single-teacher use - only show user's own collections,
+        userId: req.user!.id, // Single-teacher use - only show user's own collections,
       },
       include: {
         items: {
@@ -72,22 +74,25 @@ router.get('/:collectionId', authMiddleware, async (req: Request, res: Response)
     });
 
     if (!collection) {
-      return res.status(404).json({
+      res.status(404).json({
         success: false,
         error: 'Collection not found',
       });
+      return;
     }
 
     res.json({
       success: true,
       data: collection,
     });
+    return;
   } catch (_error) {
     logger.error('Get collection details error:', _error);
     res.status(500).json({
       success: false,
       error: 'Failed to get collection details',
     });
+    return;
   }
 });
 
@@ -98,7 +103,7 @@ const createCollectionSchema = z.object({
   // isPublic field removed - single-teacher use only
 });
 
-router.post('/', authMiddleware, async (req: Request, res: Response) => {
+router.post('/', authMiddleware, async (req: Request, res: Response): Promise<void> => {
   try {
     const data = createCollectionSchema.parse(req.body);
 
@@ -115,12 +120,14 @@ router.post('/', authMiddleware, async (req: Request, res: Response) => {
       success: true,
       data: collection,
     });
+    return;
   } catch (_error) {
     logger.error('Create collection error:', _error);
     res.status(400).json({
       success: false,
       error: _error instanceof z.ZodError ? _error.errors : 'Failed to create collection',
     });
+    return;
   }
 });
 
@@ -131,7 +138,7 @@ const updateCollectionSchema = z.object({
   // isPublic field removed - single-teacher use only
 });
 
-router.put('/:collectionId', authMiddleware, async (req: Request, res: Response) => {
+router.put('/:collectionId', authMiddleware, async (req: Request, res: Response): Promise<void> => {
   try {
     const { collectionId } = req.params;
     const data = updateCollectionSchema.parse(req.body);
@@ -145,10 +152,11 @@ router.put('/:collectionId', authMiddleware, async (req: Request, res: Response)
     });
 
     if (!existing) {
-      return res.status(404).json({
+      res.status(404).json({
         success: false,
         error: 'Collection not found or you do not have permission to edit it',
       });
+      return;
     }
 
     const updated = await prisma.activityCollection.update({
@@ -160,197 +168,228 @@ router.put('/:collectionId', authMiddleware, async (req: Request, res: Response)
       success: true,
       data: updated,
     });
+    return;
   } catch (_error) {
     logger.error('Update collection error:', _error);
     res.status(400).json({
       success: false,
       error: _error instanceof z.ZodError ? _error.errors : 'Failed to update collection',
     });
+    return;
   }
 });
 
 // Delete collection
-router.delete('/:collectionId', authMiddleware, async (req: Request, res: Response) => {
-  try {
-    const { collectionId } = req.params;
+router.delete(
+  '/:collectionId',
+  authMiddleware,
+  async (req: Request, res: Response): Promise<void> => {
+    try {
+      const { collectionId } = req.params;
 
-    // Check ownership
-    const existing = await prisma.activityCollection.findFirst({
-      where: {
-        id: collectionId,
-        userId: req.user!.id,
-      },
-    });
-
-    if (!existing) {
-      return res.status(404).json({
-        success: false,
-        error: 'Collection not found or you do not have permission to delete it',
+      // Check ownership
+      const existing = await prisma.activityCollection.findFirst({
+        where: {
+          id: collectionId,
+          userId: req.user!.id,
+        },
       });
+
+      if (!existing) {
+        res.status(404).json({
+          success: false,
+          error: 'Collection not found or you do not have permission to delete it',
+        });
+        return;
+      }
+
+      await prisma.activityCollection.delete({
+        where: { id: collectionId },
+      });
+
+      res.json({
+        success: true,
+        message: 'Collection deleted successfully',
+      });
+      return;
+    } catch (_error) {
+      logger.error('Delete collection error:', _error);
+      res.status(500).json({
+        success: false,
+        error: 'Failed to delete collection',
+      });
+      return;
     }
-
-    await prisma.activityCollection.delete({
-      where: { id: collectionId },
-    });
-
-    res.json({
-      success: true,
-      message: 'Collection deleted successfully',
-    });
-  } catch (_error) {
-    logger.error('Delete collection error:', _error);
-    res.status(500).json({
-      success: false,
-      error: 'Failed to delete collection',
-    });
-  }
-});
+  },
+);
 
 // Add activity to collection
 const addActivitySchema = z.object({
   activityId: z.string(),
 });
 
-router.post('/:collectionId/activities', authMiddleware, async (req: Request, res: Response) => {
-  try {
-    const { collectionId } = req.params;
-    const { activityId } = addActivitySchema.parse(req.body);
+router.post(
+  '/:collectionId/activities',
+  authMiddleware,
+  async (req: Request, res: Response): Promise<void> => {
+    try {
+      const { collectionId } = req.params;
+      const { activityId } = addActivitySchema.parse(req.body);
 
-    // Check collection ownership
-    const collection = await prisma.activityCollection.findFirst({
-      where: {
-        id: collectionId,
-        userId: req.user!.id,
-      },
-    });
-
-    if (!collection) {
-      return res.status(404).json({
-        success: false,
-        error: 'Collection not found or you do not have permission to modify it',
-      });
-    }
-
-    // Check if activity exists
-    const activity = await prisma.externalActivity.findUnique({
-      where: { id: activityId },
-    });
-
-    if (!activity) {
-      return res.status(404).json({
-        success: false,
-        error: 'Activity not found',
-      });
-    }
-
-    // Add to collection (upsert to avoid duplicates)
-    const item = await prisma.activityCollectionItem.upsert({
-      where: {
-        collectionId_activityId: {
-          collectionId,
-          activityId,
+      // Check collection ownership
+      const collection = await prisma.activityCollection.findFirst({
+        where: {
+          id: collectionId,
+          userId: req.user!.id,
         },
-      },
-      update: {
-        addedAt: new Date(), // Update timestamp if re-adding
-      },
-      create: {
-        collectionId,
-        activityId,
-      },
-      include: {
-        activity: true,
-      },
-    });
-
-    res.json({
-      success: true,
-      data: item,
-    });
-  } catch (_error) {
-    logger.error('Add activity to collection error:', _error);
-    res.status(400).json({
-      success: false,
-      error: _error instanceof z.ZodError ? _error.errors : 'Failed to add activity to collection',
-    });
-  }
-});
-
-// Remove activity from collection
-router.delete('/:collectionId/activities/:activityId', authMiddleware, async (req: Request, res: Response) => {
-  try {
-    const { collectionId, activityId } = req.params;
-
-    // Check collection ownership
-    const collection = await prisma.activityCollection.findFirst({
-      where: {
-        id: collectionId,
-        userId: req.user!.id,
-      },
-    });
-
-    if (!collection) {
-      return res.status(404).json({
-        success: false,
-        error: 'Collection not found or you do not have permission to modify it',
       });
-    }
 
-    await prisma.activityCollectionItem.delete({
-      where: {
-        collectionId_activityId: {
-          collectionId,
-          activityId,
-        },
-      },
-    });
+      if (!collection) {
+        res.status(404).json({
+          success: false,
+          error: 'Collection not found or you do not have permission to modify it',
+        });
+        return;
+      }
 
-    res.json({
-      success: true,
-      message: 'Activity removed from collection',
-    });
-  } catch (_error) {
-    logger.error('Remove activity from collection error:', _error);
-    res.status(500).json({
-      success: false,
-      error: 'Failed to remove activity from collection',
-    });
-  }
-});
+      // Check if activity exists
+      const activity = await prisma.externalActivity.findUnique({
+        where: { id: activityId },
+      });
 
-// Get popular/trending collections
-router.get('/trending/public', authMiddleware, async (req: Request, res: Response) => {
-  try {
-    const { limit = 10 } = req.query;
+      if (!activity) {
+        res.status(404).json({
+          success: false,
+          error: 'Activity not found',
+        });
+        return;
+      }
 
-    const collections = await prisma.activityCollection.findMany({
-      where: { userId: req.user!.id }, // Single-teacher use - only user's collections
-      include: {
-        _count: {
-          select: { items: true },
-        },
-        user: {
-          select: {
-            id: true,
-            name: true,
+      // Add to collection (upsert to avoid duplicates)
+      const item = await prisma.activityCollectionItem.upsert({
+        where: {
+          collectionId_activityId: {
+            collectionId,
+            activityId,
           },
         },
-      },
-      orderBy: [{ items: { _count: 'desc' } }, { updatedAt: 'desc' }],
-      take: Number(limit),
-    });
+        update: {
+          addedAt: new Date(), // Update timestamp if re-adding
+        },
+        create: {
+          collectionId,
+          activityId,
+        },
+        include: {
+          activity: true,
+        },
+      });
 
-    res.json({
-      success: true,
-      data: collections,
-    });
-  } catch (_error) {
-    logger.error('Get trending collections error:', _error);
-    res.status(500).json({
-      success: false,
-      error: 'Failed to get trending collections',
-    });
-  }
-});
+      res.json({
+        success: true,
+        data: item,
+      });
+      return;
+    } catch (_error) {
+      logger.error('Add activity to collection error:', _error);
+      res.status(400).json({
+        success: false,
+        error:
+          _error instanceof z.ZodError ? _error.errors : 'Failed to add activity to collection',
+      });
+      return;
+    }
+  },
+);
+
+// Remove activity from collection
+router.delete(
+  '/:collectionId/activities/:activityId',
+  authMiddleware,
+  async (req: Request, res: Response): Promise<void> => {
+    try {
+      const { collectionId, activityId } = req.params;
+
+      // Check collection ownership
+      const collection = await prisma.activityCollection.findFirst({
+        where: {
+          id: collectionId,
+          userId: req.user!.id,
+        },
+      });
+
+      if (!collection) {
+        res.status(404).json({
+          success: false,
+          error: 'Collection not found or you do not have permission to modify it',
+        });
+        return;
+      }
+
+      await prisma.activityCollectionItem.delete({
+        where: {
+          collectionId_activityId: {
+            collectionId,
+            activityId,
+          },
+        },
+      });
+
+      res.json({
+        success: true,
+        message: 'Activity removed from collection',
+      });
+      return;
+    } catch (_error) {
+      logger.error('Remove activity from collection error:', _error);
+      res.status(500).json({
+        success: false,
+        error: 'Failed to remove activity from collection',
+      });
+      return;
+    }
+  },
+);
+
+// Get popular/trending collections
+router.get(
+  '/trending/public',
+  authMiddleware,
+  async (req: Request, res: Response): Promise<void> => {
+    try {
+      const { limit = 10 } = req.query;
+
+      const collections = await prisma.activityCollection.findMany({
+        where: { userId: req.user!.id }, // Single-teacher use - only user's collections
+        include: {
+          _count: {
+            select: { items: true },
+          },
+          user: {
+            select: {
+              id: true,
+              name: true,
+            },
+          },
+        },
+        orderBy: [{ items: { _count: 'desc' } }, { updatedAt: 'desc' }],
+        take: Number(limit),
+      });
+
+      res.json({
+        success: true,
+        data: collections,
+      });
+      return;
+    } catch (_error) {
+      logger.error('Get trending collections error:', _error);
+      res.status(500).json({
+        success: false,
+        error: 'Failed to get trending collections',
+      });
+      return;
+    }
+  },
+);
 
 export default router;

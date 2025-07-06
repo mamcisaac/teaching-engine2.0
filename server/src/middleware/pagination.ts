@@ -177,10 +177,10 @@ export function paginatedHandler<T>(
 /**
  * Cache-aware pagination middleware
  */
-export function cachedPagination(cacheKeyPrefix: string, _ttl: number = 60) {
-  return async (req: Request, res: Response, next: NextFunction) => {
-    const pagination = getPaginationParams(req);
-    const _cacheKey = `${cacheKeyPrefix}:${JSON.stringify({ ...req.query, ...pagination })}`;
+export function cachedPagination(_cacheKeyPrefix: string, _ttl: number = 60) {
+  return async (_req: Request, res: Response, next: NextFunction) => {
+    // const _pagination = getPaginationParams(req);
+    // const _cacheKey = `${cacheKeyPrefix}:${JSON.stringify({ ...req.query, ...pagination })}`;
 
     // Try to get from cache (implement cache service)
     // const cached = await cacheService.get(cacheKey);

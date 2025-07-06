@@ -26,7 +26,7 @@ export function createApp(prisma: PrismaClient): Express {
   // Rate limiting is applied at route level, not here
 
   // Health check
-  app.get('/health', (req: Request, res: Response) => {
+  app.get('/health', (_req: Request, res: Response) => {
     res.json({ status: 'ok', timestamp: new Date().toISOString() });
   });
 
@@ -35,7 +35,7 @@ export function createApp(prisma: PrismaClient): Express {
   app.use('/api/user', userRoutes(prisma));
 
   // 404 handler
-  app.use((req: Request, res: Response) => {
+  app.use((_req: Request, res: Response) => {
     res.status(404).json({ error: 'Route not found' });
   });
 
@@ -53,7 +53,7 @@ export async function createTestApp(prisma?: PrismaClient): Promise<Express> {
 
   // Add test-specific middleware
   if (process.env.NODE_ENV === 'test') {
-    app.use((req: Request, res: Response, next: NextFunction) => {
+    app.use((req: Request, _res: Response, next: NextFunction) => {
       // Mock authentication for testing
       if (req.headers.authorization === 'Bearer valid.jwt.token') {
         req.user = {

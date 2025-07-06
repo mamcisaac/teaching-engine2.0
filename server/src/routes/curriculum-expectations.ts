@@ -2,42 +2,39 @@ import { Router, Request, Response } from 'express';
 import { Prisma } from '../prisma';
 import { prisma } from '../prisma';
 import logger from '../logger';
-import { 
+import {
   getPaginationParams,
   createPaginatedResponse,
   setPaginationHeaders,
   validatePagination,
   createSearchFilter,
   combineFilters,
-  fetchPaginatedData
+  fetchPaginatedData,
 } from '../utils/pagination';
 import { cache, cacheMiddleware, CacheKeys, CacheTags } from '../services/cache';
 
 const router = Router();
 
 // Get curriculum expectations by bulk search (for autocomplete)
-router.get('/search', async (req: Request, res: Response) => {
+router.get('/search', async (req: Request, res: Response): Promise<void> => {
   try {
     const { q, limit = '10' } = req.query as Record<string, string>;
     const limitNumber = Math.min(parseInt(limit, 10), 50); // Cap at 50 for autocomplete
 
     if (!q || q.length < 2) {
-      return res.json({ results: [] });
+      res.json({ results: [] });
+      return;
+      return;
     }
 
     // Try cache first
     const cacheKey = CacheKeys.curriculumSearch(`${q}:${limitNumber}`);
     const cacheService = cache();
-    
+
     const results = await cacheService.getOrSet(
       cacheKey,
       async () => {
-        const searchFilter = createSearchFilter(q, [
-          'code',
-          'description',
-          'strand',
-          'substrand',
-        ]);
+        const searchFilter = createSearchFilter(q, ['code', 'description', 'strand', 'substrand']);
 
         const expectations = await prisma.curriculumExpectation.findMany({
           where: searchFilter,
@@ -55,10 +52,11 @@ router.get('/search', async (req: Request, res: Response) => {
 
         return { results: expectations };
       },
-      { ttl: 300, tags: CacheTags.curriculum() } // Cache for 5 minutes
+      { ttl: 300, tags: CacheTags.curriculum() }, // Cache for 5 minutes
     );
 
     res.json(results);
+    return;
   } catch (error) {
     logger.error('Error searching curriculum expectations:', error);
     res.status(500).json({ error: 'Failed to search curriculum expectations' });
@@ -66,7 +64,7 @@ router.get('/search', async (req: Request, res: Response) => {
 });
 
 // Get all curriculum expectations with optional filtering
-router.get('/', validatePagination, async (req: Request, res: Response) => {
+router.get('/', validatePagination, async (req: Request, res: Response): Promise<void> => {
   try {
     const pagination = getPaginationParams(req);
     const { subject, grade, strand } = req.query as Record<string, string>;
@@ -92,7 +90,11 @@ router.get('/', validatePagination, async (req: Request, res: Response) => {
     // Build order by clause
     const orderBy: Prisma.CurriculumExpectationOrderByWithRelationInput = {};
     const sortBy = pagination.sortBy as keyof Prisma.CurriculumExpectationOrderByWithRelationInput;
-    if (sortBy && sortBy in { code: true, description: true, strand: true, substrand: true, grade: true, subject: true }) {
+    if (
+      sortBy &&
+      sortBy in
+        { code: true, description: true, strand: true, substrand: true, grade: true, subject: true }
+    ) {
       orderBy[sortBy] = pagination.sortOrder || 'asc';
     } else {
       orderBy.code = 'asc'; // Default sort by expectation code
@@ -101,26 +103,32 @@ router.get('/', validatePagination, async (req: Request, res: Response) => {
     // Fetch paginated data
     const { data: expectations, total } = await fetchPaginatedData(
       () => prisma.curriculumExpectation.count({ where }),
-      () => prisma.curriculumExpectation.findMany({
-        where,
-        orderBy,
-        skip: (pagination.page - 1) * pagination.limit,
-        take: pagination.limit,
-      }),
-      pagination
+      () =>
+        prisma.curriculumExpectation.findMany({
+          where,
+          orderBy,
+          skip: (pagination.page - 1) * pagination.limit,
+          take: pagination.limit,
+        }),
+      pagination,
     );
 
     // Create paginated response
-    const response = createPaginatedResponse(expectations, {
-      page: pagination.page,
-      limit: pagination.limit,
-      total,
-    }, `${req.protocol}://${req.get('host')}${req.baseUrl}${req.path}`);
+    const response = createPaginatedResponse(
+      expectations,
+      {
+        page: pagination.page,
+        limit: pagination.limit,
+        total,
+      },
+      `${req.protocol}://${req.get('host')}${req.baseUrl}${req.path}`,
+    );
 
     // Set pagination headers
     setPaginationHeaders(res, response.pagination);
 
     res.json(response);
+    return;
   } catch (error) {
     logger.error('Error fetching curriculum expectations:', error);
     res.status(500).json({ error: 'Failed to fetch curriculum expectations' });
@@ -128,7 +136,7 @@ router.get('/', validatePagination, async (req: Request, res: Response) => {
 });
 
 // Get a single curriculum expectation by ID
-router.get('/:id', async (req: Request, res) => {
+router.get('/:id', async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
 
@@ -159,10 +167,12 @@ router.get('/:id', async (req: Request, res) => {
     });
 
     if (!expectation) {
-      return res.status(404).json({ error: 'Curriculum expectation not found' });
+      res.status(404).json({ error: 'Curriculum expectation not found' });
+      return;
     }
 
     res.json(expectation);
+    return;
   } catch (_error) {
     logger.error('Error fetching curriculum expectation:', _error);
     res.status(500).json({ error: 'Failed to fetch curriculum expectation' });
@@ -170,35 +180,41 @@ router.get('/:id', async (req: Request, res) => {
 });
 
 // Get distinct values for filters
-router.get('/filters/options', cacheMiddleware('curriculum:filters', { ttl: 3600, tags: CacheTags.curriculum() }), async (req: Request, res) => {
-  try {
-    const [subjects, grades, strands] = await Promise.all([
-      prisma.curriculumExpectation.findMany({
-        select: { subject: true },
-        distinct: ['subject'],
-        orderBy: { subject: 'asc' },
-      }),
-      prisma.curriculumExpectation.findMany({
-        select: { grade: true },
-        distinct: ['grade'],
-        orderBy: { grade: 'asc' },
-      }),
-      prisma.curriculumExpectation.findMany({
-        select: { strand: true },
-        distinct: ['strand'],
-        orderBy: { strand: 'asc' },
-      }),
-    ]);
+router.get(
+  '/filters/options',
+  cacheMiddleware('curriculum:filters', { ttl: 3600, tags: CacheTags.curriculum() }),
+  async (_req: Request, res: Response): Promise<void> => {
+    try {
+      const [subjects, grades, strands] = await Promise.all([
+        prisma.curriculumExpectation.findMany({
+          select: { subject: true },
+          distinct: ['subject'],
+          orderBy: { subject: 'asc' },
+        }),
+        prisma.curriculumExpectation.findMany({
+          select: { grade: true },
+          distinct: ['grade'],
+          orderBy: { grade: 'asc' },
+        }),
+        prisma.curriculumExpectation.findMany({
+          select: { strand: true },
+          distinct: ['strand'],
+          orderBy: { strand: 'asc' },
+        }),
+      ]);
 
-    res.json({
-      subjects: subjects.map(s => s.subject),
-      grades: grades.map(g => g.grade),
-      strands: strands.map(s => s.strand),
-    });
-  } catch (_error) {
-    logger.error('Error fetching filter options:', _error);
-    res.status(500).json({ error: 'Failed to fetch filter options' });
-  }
-});
+      res.json({
+        subjects: subjects.map((s) => s.subject),
+        grades: grades.map((g) => g.grade),
+        strands: strands.map((s) => s.strand),
+      });
+      return;
+    } catch (_error) {
+      logger.error('Error fetching filter options:', _error);
+      res.status(500).json({ error: 'Failed to fetch filter options' });
+      return;
+    }
+  },
+);
 
 export default router;

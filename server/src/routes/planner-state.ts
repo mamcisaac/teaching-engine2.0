@@ -43,12 +43,14 @@ const csrfProtection = (
 
   if (req.method !== 'GET' && req.method !== 'HEAD') {
     if (!origin && !referer) {
-      return res.status(403).json({ error: 'CSRF protection: Missing origin/referer header' });
+      res.status(403).json({ error: 'CSRF protection: Missing origin/referer header' });
+      return;
     }
 
     const sourceUrl = origin || (referer ? new URL(referer).origin : '');
     if (!allowedOrigins.includes(sourceUrl)) {
-      return res.status(403).json({ error: 'CSRF protection: Invalid origin' });
+      res.status(403).json({ error: 'CSRF protection: Invalid origin' });
+      return;
     }
   }
 
@@ -123,7 +125,8 @@ const WeeklyPlannerStateSchema = z
 router.get('/state', async (req: express.Request, res: express.Response) => {
   try {
     if (!req.user?.id) {
-      return res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: 'Unauthorized' });
+      return;
     }
 
     const userId = req.user.id;
@@ -172,6 +175,7 @@ router.get('/state', async (req: express.Request, res: express.Response) => {
     };
 
     res.json(responseState);
+    return;
   } catch (_error) {
     logger.error('Error fetching planner state:', _error);
     res.status(500).json({ error: 'Internal server error' });
@@ -186,7 +190,8 @@ router.put(
   async (req: express.Request, res: Response) => {
     try {
       if (!req.user?.id) {
-        return res.status(401).json({ error: 'Unauthorized' });
+        res.status(401).json({ error: 'Unauthorized' });
+        return;
       }
 
       const userId = req.user.id;
@@ -194,10 +199,11 @@ router.put(
       // Validate the request body
       const validationResult = WeeklyPlannerStateSchema.safeParse(req.body);
       if (!validationResult.success) {
-        return res.status(400).json({
+        res.status(400).json({
           error: 'Invalid planner state data',
           details: validationResult.error.errors,
         });
+        return;
       }
 
       const stateData = validationResult.data;
@@ -273,6 +279,7 @@ router.put(
       };
 
       res.json(responseState);
+      return;
     } catch (_error) {
       logger.error('Error updating planner state:', _error);
       res.status(500).json({ error: 'Internal server error' });
@@ -284,14 +291,16 @@ router.put(
 router.get('/week/:weekStart/state', async (req: express.Request, res: Response) => {
   try {
     if (!req.user?.id) {
-      return res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: 'Unauthorized' });
+      return;
     }
 
     const userId = req.user.id;
     const weekStart = new Date(req.params.weekStart);
 
     if (isNaN(weekStart.getTime())) {
-      return res.status(400).json({ error: 'Invalid week start date' });
+      res.status(400).json({ error: 'Invalid week start date' });
+      return;
     }
 
     // Get lesson plans for the week
@@ -389,6 +398,7 @@ router.get('/week/:weekStart/state', async (req: express.Request, res: Response)
     };
 
     res.json(weeklyState);
+    return;
   } catch (_error) {
     logger.error('Error fetching weekly state:', _error);
     res.status(500).json({ error: 'Internal server error' });
@@ -403,7 +413,8 @@ router.post(
   async (req: express.Request, res: Response) => {
     try {
       if (!req.user?.id) {
-        return res.status(401).json({ error: 'Unauthorized' });
+        res.status(401).json({ error: 'Unauthorized' });
+        return;
       }
 
       const userId = req.user.id;
@@ -454,6 +465,7 @@ router.post(
       };
 
       res.json(responseState);
+      return;
     } catch (_error) {
       logger.error('Error resetting planner state:', _error);
       res.status(500).json({ error: 'Internal server error' });

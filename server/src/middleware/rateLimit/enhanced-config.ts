@@ -7,7 +7,12 @@
 
 import { Request } from 'express';
 import Redis from 'ioredis';
-import { RateLimiterRedis, RateLimiterMemory, IRateLimiterOptions } from 'rate-limiter-flexible';
+import {
+  RateLimiterRedis,
+  RateLimiterMemory,
+  IRateLimiterOptions,
+  IRateLimiterRedisOptions,
+} from 'rate-limiter-flexible';
 import logger from '../../logger';
 export enum UserTier {
   FREE = 'FREE',
@@ -104,9 +109,9 @@ export const rateLimitConfigs = {
  * Get user tier from request
  */
 export function getUserTier(req: Request): UserTier {
-  const user = (req as unknown).user;
+  const user = (req as any)?.user;
   if (!user) return UserTier.FREE;
-  
+
   switch (user.role) {
     case 'ADMIN':
       return UserTier.ADMIN;
@@ -122,27 +127,33 @@ export function getUserTier(req: Request): UserTier {
  */
 export async function createEnhancedRateLimiter(
   type: keyof typeof rateLimitConfigs,
-  customConfig?: Partial<RateLimitConfig>
+  customConfig?: Partial<RateLimitConfig>,
 ): Promise<unknown> {
   const config = rateLimitConfigs[type];
   const redis = await getRedisClient();
 
-  const options: IRateLimiterOptions = {
-    storeClient: redis,
-    keyPrefix: `rate_limit_${type}_`,
+  const baseOptions = {
     points: config.tierLimits[UserTier.FREE], // Default to free tier
     duration: Math.floor(config.windowMs / 1000), // Convert to seconds
     blockDuration: Math.floor(config.windowMs / 1000),
     ...customConfig,
   };
 
+  const options: IRateLimiterRedisOptions | IRateLimiterOptions = redis
+    ? {
+        ...baseOptions,
+        storeClient: redis,
+        keyPrefix: `rate_limit_${type}_`,
+      }
+    : baseOptions;
+
   // Create rate limiter instance
   const rateLimiter = redis
-    ? new RateLimiterRedis(options)
-    : new RateLimiterMemory(options);
+    ? new RateLimiterRedis(options as IRateLimiterRedisOptions)
+    : new RateLimiterMemory(options as IRateLimiterOptions);
 
   // Return Express middleware
-  return async (req: Request, res: unknown, next: unknown) => {
+  return async (req: Request, res: any, next: any) => {
     try {
       // Get user tier and corresponding limit
       const tier = getUserTier(req);
@@ -151,7 +162,7 @@ export async function createEnhancedRateLimiter(
       // Generate key
       const key = customConfig?.keyGenerator
         ? customConfig.keyGenerator(req)
-        : (req as unknown).user?.userId || req.ip;
+        : (req as any)?.user?.userId || req.ip;
 
       // Check if should skip
       if (customConfig?.skip?.(req)) {
@@ -162,26 +173,28 @@ export async function createEnhancedRateLimiter(
       const rateLimiterRes = await rateLimiter.consume(key, 1);
 
       // Set headers
-      res.setHeader('X-RateLimit-Limit', limit);
-      res.setHeader('X-RateLimit-Remaining', rateLimiterRes.remainingPoints);
-      res.setHeader('X-RateLimit-Reset', 
-        new Date(Date.now() + rateLimiterRes.msBeforeNext).toISOString()
+      (res as any).setHeader('X-RateLimit-Limit', limit);
+      (res as any).setHeader('X-RateLimit-Remaining', rateLimiterRes.remainingPoints);
+      (res as any).setHeader(
+        'X-RateLimit-Reset',
+        new Date(Date.now() + rateLimiterRes.msBeforeNext).toISOString(),
       );
-      res.setHeader('X-RateLimit-Tier', tier);
+      (res as any).setHeader('X-RateLimit-Tier', tier);
 
       next();
-    } catch (rejRes: unknown) {
+    } catch (rejRes: any) {
       // Rate limit exceeded
       const retryAfter = Math.floor((rejRes?.msBeforeNext || config.windowMs) / 1000);
-      
-      res.setHeader('Retry-After', retryAfter);
-      res.setHeader('X-RateLimit-Limit', config.tierLimits[getUserTier(req)]);
-      res.setHeader('X-RateLimit-Remaining', 0);
-      res.setHeader('X-RateLimit-Reset', 
-        new Date(Date.now() + (rejRes?.msBeforeNext || config.windowMs)).toISOString()
+
+      (res as any).setHeader('Retry-After', retryAfter);
+      (res as any).setHeader('X-RateLimit-Limit', config.tierLimits[getUserTier(req)]);
+      (res as any).setHeader('X-RateLimit-Remaining', 0);
+      (res as any).setHeader(
+        'X-RateLimit-Reset',
+        new Date(Date.now() + (rejRes?.msBeforeNext || config.windowMs)).toISOString(),
       );
 
-      res.status(429).json({
+      (res as any).status(429).json({
         error: customConfig?.message || 'Too many requests, please try again later.',
         retryAfter,
         tier: getUserTier(req),
@@ -213,7 +226,7 @@ export async function getRedisClient(): Promise<Redis | null> {
 
     await redisClient.ping();
     logger.info('Redis connected for rate limiting');
-    
+
     return redisClient;
   } catch (_error) {
     logger.info('Redis connection failed, using in-memory rate limiting', _error);
@@ -231,7 +244,7 @@ export const enhancedRateLimiters = {
   upload: () => createEnhancedRateLimiter('upload'),
   read: () => createEnhancedRateLimiter('read'),
   write: () => createEnhancedRateLimiter('write'),
-  
+
   // Custom limiter for specific needs
   custom: (config: RateLimitConfig) => createEnhancedRateLimiter('api', config),
 };
@@ -240,7 +253,7 @@ export const enhancedRateLimiters = {
  * Apply multiple rate limits to a route
  */
 export function applyRateLimits(types: Array<keyof typeof rateLimitConfigs>) {
-  return types.map(type => enhancedRateLimiters[type]());
+  return types.map((type) => enhancedRateLimiters[type]());
 }
 
 /**
@@ -250,7 +263,7 @@ export function dynamicRateLimiter() {
   return async (req: Request, res: unknown, next: unknown) => {
     // Determine rate limit type based on request
     let type: keyof typeof rateLimitConfigs = 'api';
-    
+
     if (req.path.includes('/auth/')) {
       type = 'auth';
     } else if (req.path.includes('/ai/') || req.path.includes('/generate')) {
@@ -264,7 +277,7 @@ export function dynamicRateLimiter() {
     }
 
     const limiter = await enhancedRateLimiters[type]();
-    return limiter(req, res, next);
+    return (limiter as any)(req, res, next);
   };
 }
 

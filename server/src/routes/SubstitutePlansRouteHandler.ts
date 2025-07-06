@@ -95,11 +95,8 @@ const substitutePlanQuerySchema = z.object({
 
 // Substitute plan service wrapper
 class SubstitutePlanServiceWrapper extends BaseService {
-  private substitutePlanService: SubstitutePlanService;
-
   constructor() {
     super('SubstitutePlanServiceWrapper');
-    this.substitutePlanService = new SubstitutePlanService();
   }
 
   async findMany(
@@ -344,11 +341,36 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
 
   protected getCrudOperations(): CrudOperations<unknown> {
     return {
-      create: this.substitutePlanService.create.bind(this.substitutePlanService),
-      findMany: this.substitutePlanService.findMany.bind(this.substitutePlanService),
-      findById: this.substitutePlanService.findById.bind(this.substitutePlanService),
-      update: this.substitutePlanService.update.bind(this.substitutePlanService),
-      delete: this.substitutePlanService.delete.bind(this.substitutePlanService),
+      create: async (data: unknown, userId: number) => {
+        return this.substitutePlanService.create(data as SubstitutePlanCreateData, userId);
+      },
+      findMany: async (filters: unknown, userId: number) => {
+        const result = await this.substitutePlanService.findMany(
+          filters as {
+            startDate?: Date;
+            endDate?: Date;
+            grade?: string;
+            subject?: string;
+            isActive?: boolean;
+            upcoming?: boolean;
+            limit?: number;
+            offset?: number;
+            sortBy?: string;
+            sortOrder?: 'asc' | 'desc';
+          },
+          userId,
+        );
+        return result.plans;
+      },
+      findById: async (id: string, userId: number) => {
+        return this.substitutePlanService.findById(id, userId);
+      },
+      update: async (id: string, data: unknown, userId: number) => {
+        return this.substitutePlanService.update(id, data as SubstitutePlanUpdateData, userId);
+      },
+      delete: async (id: string, userId: number) => {
+        return this.substitutePlanService.delete(id, userId);
+      },
     };
   }
 
@@ -370,12 +392,13 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
         ...(endDate && { endDate: new Date(endDate) }),
         ...(grade && { grade: String(grade) }),
       };
-      
+
       const result = await this.substitutePlanService.findMany(convertedFilters, userId);
       res.json(result);
+      return;
     } catch (_error) {
       this.logger.error(`Error in ${this.routeName} list:`, _error);
-      next(_error);
+      return next(_error);
     }
   }
 
@@ -422,7 +445,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       res.status(201).json(generatedPlan);
     } catch (_error) {
       this.logger.error('Error generating substitute plan:', _error);
-      next(_error);
+      return next(_error);
     }
   }
 
@@ -437,9 +460,10 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
 
       const deactivatedPlan = await this.substitutePlanService.deactivatePlan(planId, userId);
       res.json(deactivatedPlan);
+      return;
     } catch (_error) {
       this.logger.error('Error deactivating substitute plan:', _error);
-      next(_error);
+      return next(_error);
     }
   }
 
@@ -452,9 +476,10 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       const userId = req.userId!;
       const stats = await this.substitutePlanService.getStats(userId);
       res.json(stats);
+      return;
     } catch (_error) {
       this.logger.error('Error getting substitute plan stats:', _error);
-      next(_error);
+      return next(_error);
     }
   }
 
@@ -469,9 +494,10 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
 
       const upcomingDates = await this.substitutePlanService.getUpcomingDates(userId, daysAhead);
       res.json(upcomingDates);
+      return;
     } catch (_error) {
       this.logger.error('Error getting upcoming dates:', _error);
-      next(_error);
+      return next(_error);
     }
   }
 }

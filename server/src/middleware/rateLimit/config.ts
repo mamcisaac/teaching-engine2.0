@@ -1,15 +1,15 @@
 /**
  * Centralized Rate Limit Configuration
- * 
+ *
  * SINGLE USER APP - Rate limiting is disabled via shouldBypassRateLimit()
  * This app is for personal use by a single teacher, so rate limits are not needed.
  * The configuration is kept for reference but all requests bypass rate limiting.
  */
 
 export interface RateLimitConfig {
-  windowMs: number;     // Time window in milliseconds
-  max: number;          // Maximum number of requests
-  message?: string;     // Custom error message
+  windowMs: number; // Time window in milliseconds
+  max: number; // Maximum number of requests
+  message?: string; // Custom error message
   skipSuccessful?: boolean; // Skip counting successful requests
   keyGenerator?: 'ip' | 'user' | 'custom'; // How to identify clients
 }
@@ -145,39 +145,36 @@ export const rateLimitTiers = {
 /**
  * Endpoints that should skip rate limiting
  */
-export const skipRateLimitPaths = [
-  '/health',
-  '/api/health',
-  '/metrics',
-  '/api/metrics',
-];
+export const skipRateLimitPaths = ['/health', '/api/health', '/metrics', '/api/metrics'];
 
 /**
  * Development mode overrides
  */
-export const developmentOverrides: Partial<RateLimitConfig> = isDevelopment ? {
-  max: 10000, // Very high limit in development
-  windowMs: MINUTE, // Short window for easier testing
-} : {};
+export const developmentOverrides: Partial<RateLimitConfig> = isDevelopment
+  ? {
+      max: 10000, // Very high limit in development
+      windowMs: MINUTE, // Short window for easier testing
+    }
+  : {};
 
 /**
  * Development bypass for testing
  */
-export const shouldBypassRateLimit = (req: any): boolean => {
+export const shouldBypassRateLimit = (_req: any): boolean => {
   // SINGLE USER APP - Always bypass rate limits
   return true;
-  
+
   // Original logic kept for reference:
   // // Always bypass in development for easier testing
   // if (isDevelopment) {
   //   return true;
   // }
-  // 
+  //
   // // Check for specific test header
   // if (req.headers['x-test-bypass-rate-limit'] === 'true') {
   //   return true;
   // }
-  // 
+  //
   // return false;
 };
 
@@ -186,7 +183,7 @@ export const shouldBypassRateLimit = (req: any): boolean => {
  */
 export function getRateLimitConfig(
   configName: keyof typeof rateLimitConfigs,
-  userTier?: keyof typeof rateLimitTiers
+  userTier?: keyof typeof rateLimitTiers,
 ): RateLimitConfig {
   const baseConfig = rateLimitConfigs[configName];
   if (!baseConfig) {
@@ -219,19 +216,19 @@ export function resetRateLimiterState(): void {
 export const rateLimitGroups = {
   // Standard API protection
   api: ['general', 'read'],
-  
+
   // Authenticated routes
   authenticated: ['general', 'write'],
-  
+
   // AI-powered features
   aiFeatures: ['ai', 'general'],
-  
+
   // File handling
   fileOperations: ['upload', 'write'],
-  
+
   // Authentication flow
   authFlow: ['auth', 'public'],
-  
+
   // Data export
   dataExport: ['export', 'read'],
 };
@@ -264,13 +261,13 @@ export const endpointOverrides: Record<string, Partial<RateLimitConfig>> = {
 export const storeConfig = {
   // Use Redis in production for distributed rate limiting
   useRedis: process.env.NODE_ENV === 'production' && !!process.env.REDIS_URL,
-  
+
   // Redis key prefix
   keyPrefix: 'rl:',
-  
+
   // How long to keep rate limit records
   resetExpiryOnChange: true,
-  
+
   // Clean up old entries
   clearExpiredByTimeout: true,
 };

@@ -51,32 +51,36 @@ const upload = multer({
 router.post(
   '/upload',
   upload.single('file') as unknown as express.RequestHandler,
-  async (req: Request, res: Response) => {
+  async (req: Request, res: Response): Promise<void> => {
     try {
       if (!req.file) {
-        return res.status(400).json({
+        res.status(400).json({
           error: 'No file uploaded',
         });
+        return;
       }
 
       if (!req.user?.id) {
-        return res.status(401).json({
+        res.status(401).json({
           error: 'User not authenticated',
         });
+        return;
       }
 
       // Additional file validation
       if (req.file.size === 0) {
-        return res.status(400).json({
+        res.status(400).json({
           error: 'File is empty',
         });
+        return;
       }
 
       // Validate file buffer is not null
       if (!req.file.buffer || req.file.buffer.length === 0) {
-        return res.status(400).json({
+        res.status(400).json({
           error: 'Invalid file content',
         });
+        return;
       }
 
       // Start import session
@@ -107,6 +111,7 @@ router.post(
         message: 'File uploaded successfully',
         filename: req.file.originalname,
       });
+      return;
     } catch (_error) {
       logger.error('Upload error:', _error);
       res.status(500).json({
@@ -117,20 +122,22 @@ router.post(
 );
 
 // POST /api/curriculum/import/parse - Parse uploaded file
-router.post('/parse', async (req: AuthenticatedRequest, res: Response) => {
+router.post('/parse', async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
     const { sessionId, useAiExtraction } = req.body;
 
     if (!sessionId) {
-      return res.status(400).json({
+      res.status(400).json({
         error: 'Session ID is required',
       });
+      return;
     }
 
     if (!req.user?.id) {
-      return res.status(401).json({
+      res.status(401).json({
         error: 'User not authenticated',
       });
+      return;
     }
 
     // Parse the uploaded file
@@ -145,6 +152,7 @@ router.post('/parse', async (req: AuthenticatedRequest, res: Response) => {
       subjects: parseResult.subjects,
       errors: parseResult.errors || [],
     });
+    return;
   } catch (_error) {
     logger.error('Parse error:', _error);
     res.status(500).json({
@@ -154,20 +162,22 @@ router.post('/parse', async (req: AuthenticatedRequest, res: Response) => {
 });
 
 // POST /api/curriculum/import/import-preset - Load preset curriculum
-router.post('/import-preset', async (req: Request, res: Response) => {
+router.post('/import-preset', async (req: Request, res: Response): Promise<void> => {
   try {
     const { presetId } = req.body;
 
     if (!presetId) {
-      return res.status(400).json({
+      res.status(400).json({
         error: 'Preset ID is required',
       });
+      return;
     }
 
     if (!req.user?.id) {
-      return res.status(401).json({
+      res.status(401).json({
         error: 'User not authenticated',
       });
+      return;
     }
 
     // Load preset curriculum
@@ -178,6 +188,7 @@ router.post('/import-preset', async (req: Request, res: Response) => {
       message: 'Preset curriculum loaded successfully',
       subjects: presetResult.subjects,
     });
+    return;
   } catch (_error) {
     logger.error('Preset load error:', _error);
     res.status(500).json({
@@ -187,25 +198,28 @@ router.post('/import-preset', async (req: Request, res: Response) => {
 });
 
 // GET /api/curriculum/import/:id/status - Check import status
-router.get('/:id/status', async (req: Request, res: Response) => {
+router.get('/:id/status', async (req: Request, res: Response): Promise<void> => {
   try {
     const importId = req.params.id;
 
     if (!req.user?.id) {
-      return res.status(401).json({
+      res.status(401).json({
         error: 'User not authenticated',
       });
+      return;
     }
 
     const status = await curriculumImportService.getImportProgress(importId);
 
     if (!status) {
-      return res.status(404).json({
+      res.status(404).json({
         error: 'Import not found',
       });
+      return;
     }
 
     res.json(status);
+    return;
   } catch (_error) {
     logger.error('Status check error:', _error);
     res.status(500).json({
@@ -215,29 +229,32 @@ router.get('/:id/status', async (req: Request, res: Response) => {
 });
 
 // POST /api/curriculum/import/:id/confirm - Confirm and finalize import
-router.post('/:id/confirm', async (req: Request, res: Response) => {
+router.post('/:id/confirm', async (req: Request, res: Response): Promise<void> => {
   try {
     const importId = req.params.id;
 
     if (!req.user?.id) {
-      return res.status(401).json({
+      res.status(401).json({
         error: 'User not authenticated',
       });
+      return;
     }
 
     // Check if import exists and is ready
     const progress = await curriculumImportService.getImportProgress(importId);
 
     if (!progress) {
-      return res.status(404).json({
+      res.status(404).json({
         error: 'Import not found',
       });
+      return;
     }
 
     if (progress.status !== 'READY_FOR_REVIEW') {
-      return res.status(400).json({
+      res.status(400).json({
         error: 'Import is not ready to be confirmed',
       });
+      return;
     }
 
     // Confirm the import and create expectations
@@ -248,6 +265,7 @@ router.post('/:id/confirm', async (req: Request, res: Response) => {
       importId,
       created: result.created,
     });
+    return;
   } catch (_error) {
     logger.error('Confirm import error:', _error);
     res.status(500).json({
@@ -257,12 +275,13 @@ router.post('/:id/confirm', async (req: Request, res: Response) => {
 });
 
 // GET /api/curriculum/import/history - Get user's import history
-router.get('/history', async (req: Request, res: Response) => {
+router.get('/history', async (req: Request, res: Response): Promise<void> => {
   try {
     if (!req.user?.id) {
-      return res.status(401).json({
+      res.status(401).json({
         error: 'User not authenticated',
       });
+      return;
     }
 
     const limit = parseInt(req.query.limit as string) || 10;
@@ -271,6 +290,7 @@ router.get('/history', async (req: Request, res: Response) => {
     const history = await curriculumImportService.getImportHistory(req.user.id, limit);
 
     res.json(history);
+    return;
   } catch (_error) {
     logger.error('History error:', _error);
     res.status(500).json({
@@ -280,25 +300,28 @@ router.get('/history', async (req: Request, res: Response) => {
 });
 
 // DELETE /api/curriculum/import/:id - Delete import and associated data
-router.delete('/:id', async (req: Request, res: Response) => {
+router.delete('/:id', async (req: Request, res: Response): Promise<void> => {
   try {
     const importId = req.params.id;
 
     if (!req.user?.id) {
-      return res.status(401).json({
+      res.status(401).json({
         error: 'User not authenticated',
       });
+      return;
     }
 
     const result = await curriculumImportService.cancelImport(importId);
 
     if (!result) {
-      return res.status(404).json({
+      res.status(404).json({
         error: 'Import not found',
       });
+      return;
     }
 
     res.json({ message: 'Import deleted successfully' });
+    return;
   } catch (_error) {
     logger.error('Delete import error:', _error);
     res.status(500).json({
@@ -308,18 +331,18 @@ router.delete('/:id', async (req: Request, res: Response) => {
 });
 
 // Start a new curriculum import session
-router.post('/start', async (req: Request, res: Response) => {
+router.post('/start', async (req: Request, res: Response): Promise<void> => {
   try {
     const { grade, subject, sourceFormat } = req.body;
 
     if (!grade || !subject || !sourceFormat) {
-      return res
-        .status(400)
-        .json({ error: 'Missing required fields: grade, subject, sourceFormat' });
+      res.status(400).json({ error: 'Missing required fields: grade, subject, sourceFormat' });
+      return;
     }
 
     if (!req.user?.id) {
-      return res.status(401).json({ error: 'User not authenticated' });
+      res.status(401).json({ error: 'User not authenticated' });
+      return;
     }
 
     const importId = await curriculumImportService.startImport(
@@ -330,6 +353,7 @@ router.post('/start', async (req: Request, res: Response) => {
     );
 
     res.json({ importId, message: 'Import session started successfully' });
+    return;
   } catch (_error) {
     logger.error({ error: _error }, 'Failed to start curriculum import');
     res.status(500).json({ error: 'Failed to start import session' });
@@ -337,16 +361,18 @@ router.post('/start', async (req: Request, res: Response) => {
 });
 
 // Get import progress
-router.get('/:importId/progress', async (req: Request, res: Response) => {
+router.get('/:importId/progress', async (req: Request, res: Response): Promise<void> => {
   try {
     const { importId } = req.params;
     const progress = await curriculumImportService.getImportProgress(importId);
 
     if (!progress) {
-      return res.status(404).json({ error: 'Import session not found' });
+      res.status(404).json({ error: 'Import session not found' });
+      return;
     }
 
     res.json(progress);
+    return;
   } catch (_error) {
     logger.error({ error: _error }, 'Failed to get import progress');
     res.status(500).json({ error: 'Failed to get progress' });
@@ -354,16 +380,18 @@ router.get('/:importId/progress', async (req: Request, res: Response) => {
 });
 
 // Cancel an import session
-router.post('/:importId/cancel', async (req: Request, res: Response) => {
+router.post('/:importId/cancel', async (req: Request, res: Response): Promise<void> => {
   try {
     const { importId } = req.params;
     const success = await curriculumImportService.cancelImport(importId);
 
     if (!success) {
-      return res.status(404).json({ error: 'Import session not found or already completed' });
+      res.status(404).json({ error: 'Import session not found or already completed' });
+      return;
     }
 
     res.json({ message: 'Import cancelled successfully' });
+    return;
   } catch (_error) {
     logger.error({ error: _error }, 'Failed to cancel import');
     res.status(500).json({ error: 'Failed to cancel import' });
@@ -371,29 +399,32 @@ router.post('/:importId/cancel', async (req: Request, res: Response) => {
 });
 
 // POST /api/curriculum/import/:id - Finalize import and create curriculum expectations
-router.post('/:id', async (req: Request, res: Response) => {
+router.post('/:id', async (req: Request, res: Response): Promise<void> => {
   try {
     const importId = req.params.id;
 
     if (!req.user?.id) {
-      return res.status(401).json({
+      res.status(401).json({
         error: 'User not authenticated',
       });
+      return;
     }
 
     // Get the import session
     const importRecord = await curriculumImportService.getImportProgress(importId);
 
     if (!importRecord) {
-      return res.status(404).json({
+      res.status(404).json({
         error: 'Import session not found',
       });
+      return;
     }
 
     if (importRecord.status !== 'READY_FOR_REVIEW') {
-      return res.status(400).json({
+      res.status(400).json({
         error: 'Import is not ready to be finalized',
       });
+      return;
     }
 
     // Finalize the import and create curriculum expectations
@@ -404,6 +435,7 @@ router.post('/:id', async (req: Request, res: Response) => {
       totalExpectations: result.totalExpectations,
       subjects: result.subjects,
     });
+    return;
   } catch (_error) {
     logger.error('Finalize import error:', _error);
     res.status(500).json({
