@@ -33,7 +33,13 @@ export const KeyboardShortcutsHelp: React.FC<KeyboardShortcutsHelpProps> = ({
         acc[shortcut.category].push(shortcut);
         return acc;
       },
-      {},
+      {
+        global: [],
+        navigation: [],
+        planning: [],
+        editing: [],
+        other: [],
+      } as Record<KeyboardShortcut['category'], KeyboardShortcut[]>,
     );
 
   const categories: {

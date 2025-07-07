@@ -107,7 +107,7 @@ return null;
 
     // Find the first incomplete but accessible level
     const nextLevel = workflowState.progress.find((p) => !p.isComplete && p.isAccessible);
-    return ((nextLevel?.level) != null) || null;
+    return nextLevel?.level ?? null;
   };
 
   const getPreviousLevel = (level: ETFOLevel): ETFOLevel | null => {

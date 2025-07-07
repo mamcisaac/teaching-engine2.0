@@ -1,44 +1,57 @@
-import type { UseQueryResult } from '@tanstack/react-query';
+import type { UseQueryResult, UseMutationResult } from '@tanstack/react-query';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 
 import { studentApi } from './api';
 
+import type { 
+  Student, 
+  StudentInput, 
+  StudentGoal, 
+  StudentGoalInput,
+  StudentReflection,
+  StudentReflectionInput,
+  ParentSummary,
+  ParentSummaryGeneration,
+  GenerateParentSummaryRequest,
+  SaveParentSummaryRequest
+} from '../../../types';
+
 // Student Query Hooks
-export const useStudents = (): UseQueryResult =>
+export const useStudents = (): UseQueryResult<Student[], Error> =>
   useQuery({
     queryKey: queryKeys.student.all,
     queryFn: studentApi.getStudents,
   });
 
-export const useStudent = (id: number) => useQuery({
+export const useStudent = (id: number): UseQueryResult<Student, Error> => useQuery({
     queryKey: queryKeys.student.detail(id),
     queryFn: () => studentApi.getStudent(id),
     enabled: !!id,
   });
 
-export const useStudentGoals = (studentId: number) => useQuery({
+export const useStudentGoals = (studentId: number): UseQueryResult<StudentGoal[], Error> => useQuery({
     queryKey: queryKeys.student.goals(studentId),
     queryFn: () => studentApi.getStudentGoals(studentId),
     enabled: !!studentId,
   });
 
-export const useStudentReflections = (studentId: number) =>
+export const useStudentReflections = (studentId: number): UseQueryResult<StudentReflection[], Error> =>
   useQuery({
     queryKey: queryKeys.student.reflections(studentId),
     queryFn: () => studentApi.getStudentReflections(studentId),
     enabled: !!studentId,
   });
 
-export const useStudentParentSummaries = (studentId: number) => useQuery({
+export const useStudentParentSummaries = (studentId: number): UseQueryResult<ParentSummary[], Error> => useQuery({
     queryKey: queryKeys.student.parentSummaries(studentId),
     queryFn: () => studentApi.getStudentParentSummaries(studentId),
     enabled: !!studentId,
   });
 
 // Student Mutation Hooks
-export const useCreateStudent = () => {
+export const useCreateStudent = (): UseMutationResult<Student, Error, StudentInput> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -51,7 +64,7 @@ export const useCreateStudent = () => {
   });
 };
 
-export const useUpdateStudent = () => {
+export const useUpdateStudent = (): UseMutationResult<Student, Error, StudentInput & { id: number }> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -65,7 +78,7 @@ export const useUpdateStudent = () => {
   });
 };
 
-export const useDeleteStudent = () => {
+export const useDeleteStudent = (): UseMutationResult<void, Error, number> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -79,7 +92,7 @@ export const useDeleteStudent = () => {
 };
 
 // Student Goal Mutation Hooks
-export const useCreateStudentGoal = () => {
+export const useCreateStudentGoal = (): UseMutationResult<StudentGoal, Error, StudentGoalInput> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -92,7 +105,7 @@ export const useCreateStudentGoal = () => {
   });
 };
 
-export const useUpdateStudentGoal = () => {
+export const useUpdateStudentGoal = (): UseMutationResult<StudentGoal, Error, StudentGoalInput & { id: number }> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -105,7 +118,7 @@ export const useUpdateStudentGoal = () => {
   });
 };
 
-export const useDeleteStudentGoal = () => {
+export const useDeleteStudentGoal = (): UseMutationResult<void, Error, number> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -119,7 +132,7 @@ export const useDeleteStudentGoal = () => {
 };
 
 // Student Reflection Mutation Hooks
-export const useCreateStudentReflection = () => {
+export const useCreateStudentReflection = (): UseMutationResult<StudentReflection, Error, StudentReflectionInput> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -132,7 +145,7 @@ export const useCreateStudentReflection = () => {
   });
 };
 
-export const useDeleteStudentReflection = () => {
+export const useDeleteStudentReflection = (): UseMutationResult<void, Error, number> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -146,7 +159,7 @@ export const useDeleteStudentReflection = () => {
 };
 
 // Parent Summary Mutation Hooks
-export const useGenerateParentSummary = () => useMutation({
+export const useGenerateParentSummary = (): UseMutationResult<ParentSummaryGeneration, Error, GenerateParentSummaryRequest> => useMutation({
     mutationFn: studentApi.generateParentSummary,
     onSuccess: () => {
       showSuccessToast('Parent summary generated successfully');
@@ -154,7 +167,7 @@ export const useGenerateParentSummary = () => useMutation({
     onError: (error) => handleApiError(error, 'Failed to generate parent summary'),
   });
 
-export const useSaveParentSummary = () => {
+export const useSaveParentSummary = (): UseMutationResult<ParentSummary, Error, SaveParentSummaryRequest> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -167,7 +180,7 @@ export const useSaveParentSummary = () => {
   });
 };
 
-export const useUpdateParentSummary = () => {
+export const useUpdateParentSummary = (): UseMutationResult<ParentSummary, Error, { id: number; content: string }> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -180,7 +193,7 @@ export const useUpdateParentSummary = () => {
   });
 };
 
-export const useRegenerateParentSummary = () => useMutation({
+export const useRegenerateParentSummary = (): UseMutationResult<ParentSummaryGeneration, Error, number> => useMutation({
     mutationFn: studentApi.regenerateParentSummary,
     onSuccess: () => {
       showSuccessToast('Parent summary regenerated successfully');
@@ -188,7 +201,7 @@ export const useRegenerateParentSummary = () => useMutation({
     onError: (error) => handleApiError(error, 'Failed to regenerate parent summary'),
   });
 
-export const useDeleteParentSummary = () => {
+export const useDeleteParentSummary = (): UseMutationResult<void, Error, number> => {
   const queryClient = useQueryClient();
 
   return useMutation({

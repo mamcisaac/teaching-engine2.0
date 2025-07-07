@@ -223,8 +223,8 @@ export const substituteApi = {
     },
 
     // Export plan as PDF
-    exportPDF: async (id: number) => {
-      const { data } = await apiClient.get(`/api/substitute-plans/${id}/export`, {
+    exportPDF: async (id: number): Promise<Blob> => {
+      const { data } = await apiClient.get<Blob>(`/api/substitute-plans/${id}/export`, {
         responseType: 'blob',
       });
       return data;
@@ -380,8 +380,8 @@ export const substituteApi = {
     return data;
   },
 
-  export: async (filters?: SubstituteFilters, format: 'csv' | 'pdf' | 'json' = 'csv') => {
-    const { data } = await apiClient.get('/api/substitute-plans/export', {
+  export: async (filters?: SubstituteFilters, format: 'csv' | 'pdf' | 'json' = 'csv'): Promise<Blob> => {
+    const { data } = await apiClient.get<Blob>('/api/substitute-plans/export', {
       params: { ...filters, format },
       responseType: 'blob',
     });
@@ -412,7 +412,7 @@ export const substituteApi = {
       suggestions?: string;
       workingConditions?: string;
     }) => {
-      const { data } = await apiClient.post(`/api/substitute-plans/${planId}/feedback`, feedback);
+      const { data } = await apiClient.post<{ success: boolean }>(`/api/substitute-plans/${planId}/feedback`, feedback);
       return data;
     },
   },
@@ -460,8 +460,8 @@ export const substituteApi = {
   },
 
   // Legacy compatibility functions
-  generateSubPlan: async (date: string, reason: string) => {
-    const { data } = await apiClient.post('/api/sub-plan', { date, reason });
+  generateSubPlan: async (date: string, reason: string): Promise<SubstitutePlan> => {
+    const { data } = await apiClient.post<SubstitutePlan>('/api/sub-plan', { date, reason });
     return data;
   },
 
@@ -483,23 +483,23 @@ export const substituteApi = {
     return response;
   },
 
-  getSubPlanRecords: async (userId?: number) => {
-    const response = await apiClient.get('/subplan/records', { params: { userId } });
+  getSubPlanRecords: async (userId?: number): Promise<SubstitutePlan[]> => {
+    const response = await apiClient.get<SubstitutePlan[]>('/subplan/records', { params: { userId } });
     return response.data;
   },
 
-  getClassRoutines: async (userId?: number) => {
-    const response = await apiClient.get('/subplan/routines', { params: { userId } });
+  getClassRoutines: async (userId?: number): Promise<unknown[]> => {
+    const response = await apiClient.get<unknown[]>('/subplan/routines', { params: { userId } });
     return response.data;
   },
 
-  saveClassRoutine: async (routine: { name: string; description?: string; activities: unknown[]; timeSlots?: unknown[] }) => {
-    const response = await apiClient.post('/subplan/routines', routine);
+  saveClassRoutine: async (routine: { name: string; description?: string; activities: unknown[]; timeSlots?: unknown[] }): Promise<{ id: number; name: string }> => {
+    const response = await apiClient.post<{ id: number; name: string }>('/subplan/routines', routine);
     return response.data;
   },
 
-  deleteClassRoutine: async (id: number) => {
-    const response = await apiClient.delete(`/subplan/routines/${id}`);
+  deleteClassRoutine: async (id: number): Promise<{ success: boolean }> => {
+    const response = await apiClient.delete<{ success: boolean }>(`/subplan/routines/${id}`);
     return response.data;
   },
 

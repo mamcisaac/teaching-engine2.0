@@ -11,7 +11,7 @@ interface BatchRequest {
   headers?: Record<string, string>;
 }
 
-interface _BatchResponse {
+interface BatchResponse {
   id: string;
   status: number;
   data: unknown;
@@ -153,17 +153,17 @@ return;
         })),
       };
 
-      const response = await apiClient.post('/api/batch', batchData);
+      const response = await apiClient.post<{ responses: BatchResponse[] }>('/api/batch', batchData);
       const {responses} = response.data;
 
       // Map responses back to promises
-      const responseMap = new Map(responses.map((r) => [r.id, r]));
+      const responseMap = new Map<string, BatchResponse>(responses.map((r) => [r.id, r]));
 
       for (const pending of requests) {
         const batchResponse = responseMap.get(pending.request.id);
 
         if (batchResponse) {
-          if (batchResponse.error) {
+          if ('error' in batchResponse && batchResponse.error) {
             pending.reject(new Error(batchResponse.error));
           } else {
             pending.resolve(batchResponse.data);
@@ -228,13 +228,14 @@ export const batchedApi = {
 
 // Debounced request helper
 export function createDebouncedRequest<
-  T extends (...args: Parameters<T>) => Promise<ReturnType<T>>,
->(fn: T, delay = 300): T & { cancel: () => void } {
+  TArgs extends any[],
+  TReturn,
+>(fn: (...args: TArgs) => Promise<TReturn>, delay = 300): ((...args: TArgs) => Promise<TReturn>) & { cancel: () => void } {
   let timeout: NodeJS.Timeout | null = null;
-  let lastArgs: Parameters<T> | null = null;
-  let lastPromise: Promise<ReturnType<T>> | null = null;
+  let lastArgs: TArgs | null = null;
+  let lastPromise: Promise<TReturn> | null = null;
 
-  const debounced = (...args: Parameters<T>) => {
+  const debounced = (...args: TArgs): Promise<TReturn> => {
     lastArgs = args;
 
     if (timeout) {
@@ -242,10 +243,13 @@ export function createDebouncedRequest<
     }
 
     if (!lastPromise) {
-      lastPromise = new Promise((resolve, reject) => {
+      lastPromise = new Promise<TReturn>((resolve, reject) => {
         timeout = setTimeout(async () => {
           try {
-            const result = await fn(...(lastArgs!));
+            if (!lastArgs) {
+              throw new Error('No arguments available');
+            }
+            const result = await fn(...lastArgs);
             resolve(result);
           } catch (error) {
             reject(error);
@@ -270,5 +274,5 @@ export function createDebouncedRequest<
     lastArgs = null;
   };
 
-  return debounced as T & { cancel: () => void };
+  return debounced;
 }

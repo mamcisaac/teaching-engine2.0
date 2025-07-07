@@ -11,6 +11,7 @@ import type {
   RoutineFilters,
   RoutineTemplateInput,
   DailyRoutineInput,
+  OralRoutineTemplate,
 } from './api';
 
 // Template query hooks
@@ -145,7 +146,7 @@ export const useCreateRoutineTemplate = (): UseMutationResult<any, Error, Routin
   });
 };
 
-export const useUpdateRoutineTemplate = (): UseMutationResult<any, Error, { id: number; template: RoutineTemplateInput }> => {
+export const useUpdateRoutineTemplate = (): UseMutationResult<OralRoutineTemplate, Error, { id: number; updates: Partial<RoutineTemplateInput> }> => {
   const queryClient = useQueryClient();
 
   return useMutation({

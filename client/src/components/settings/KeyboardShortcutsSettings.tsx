@@ -36,7 +36,13 @@ export const KeyboardShortcutsSettings: React.FC = () => {
         acc[shortcut.category].push(shortcut);
         return acc;
       },
-      {},
+      {
+        global: [],
+        navigation: [],
+        planning: [],
+        editing: [],
+        other: [],
+      } as Record<KeyboardShortcut['category'], KeyboardShortcut[]>,
     );
 
   const categoryLabels: Record<KeyboardShortcut['category'], string> = {
