@@ -378,8 +378,10 @@ export class TemplateDataFetcher {
         });
       }
 
-      const group = grouped.get(subject)!;
-      group.highlights.push((lesson as any).title);
+      const group = grouped.get(subject);
+      if (group) {
+        group.highlights.push((lesson as any).title);
+      }
     }
 
     // Generate summaries

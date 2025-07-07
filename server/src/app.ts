@@ -5,7 +5,7 @@
 
 import { PrismaClient } from '@teaching-engine/database';
 import cors from 'cors';
-import type { Express, Request, Response, NextFunction} from 'express';
+import type { Express, Request, Response, NextFunction } from 'express';
 import express, { json, urlencoded } from 'express';
 
 import { errorHandler } from './middleware/errorHandler';

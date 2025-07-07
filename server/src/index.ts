@@ -6,8 +6,8 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import debug from 'debug';
 import { config } from 'dotenv';
-import type { Request, Response, NextFunction} from 'express';
-import express, { json, urlencoded, static as staticServe } from 'express';
+import type { Request, Response, NextFunction } from 'express';
+import express, { json, urlencoded, static as expressStatic } from 'express';
 
 import { logger } from './logger.js';
 import { authenticate } from './middleware/authenticate';
@@ -305,9 +305,9 @@ log('Configuring URL-encoded and cookie parser middleware...');
 app.use(urlencoded({ extended: true }));
 app.use(cookieParser());
 log('Configuring static file serving for uploads...');
-app.use('/uploads', staticServe(path.join(__dirname_index, '../uploads')));
+app.use('/uploads', expressStatic(path.join(__dirname_index, '../uploads')));
 log('Configuring static file serving for client distribution...');
-app.use(staticServe(clientDist));
+app.use(expressStatic(clientDist));
 log('Configuring catch-all route for client-side routing...');
 app.get('*', (_req, res) => {
   res.sendFile(path.join(clientDist, 'index.html'));

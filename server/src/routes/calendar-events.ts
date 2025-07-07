@@ -42,7 +42,11 @@ router.get('/', async (req: AuthenticatedRequest, res: Response): Promise<void> 
       return;
     }
     const { start, end, eventType } = queryValidation.data;
-    const userId = req.user!.id;
+    const userId = req.user?.id;
+    if (!userId) {
+      res.status(401).json({ error: 'User not authenticated' });
+      return;
+    }
 
     const where: Prisma.CalendarEventWhereInput = {
       OR: [
@@ -85,7 +89,11 @@ router.post(
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       const data = req.body as z.infer<typeof calendarEventSchema>;
-      const userId = req.user!.id;
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'User not authenticated' });
+        return;
+      }
 
       const event = await prisma.calendarEvent.create({
         data: {
@@ -114,7 +122,11 @@ router.post(
 router.patch('/:id', async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
-    const userId = req.user!.id;
+    const userId = req.user?.id;
+    if (!userId) {
+      res.status(401).json({ error: 'User not authenticated' });
+      return;
+    }
     const updates = req.body;
 
     // Check ownership
@@ -145,7 +157,6 @@ updates.end = new Date(updates.end);
 
     res.json(updatedEvent);
     return;
-    return;
   } catch (_error) {
     logger.error('Error updating calendar event:', _error);
     res.status(500).json({ error: 'Failed to update calendar event' });
@@ -157,7 +168,11 @@ updates.end = new Date(updates.end);
 router.delete('/:id', async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
-    const userId = req.user!.id;
+    const userId = req.user?.id;
+    if (!userId) {
+      res.status(401).json({ error: 'User not authenticated' });
+      return;
+    }
 
     // Check ownership
     const event = await prisma.calendarEvent.findFirst({

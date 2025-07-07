@@ -1,4 +1,4 @@
-import cron from 'node-cron';
+import { schedule } from 'node-cron';
 
 import { logger } from '../logger';
 /**
@@ -14,5 +14,5 @@ export async function sendEquipmentBookingReminders() {
  * Schedule the booking reminder job to run daily at 8 AM.
  */
 export function scheduleEquipmentBookingReminders() {
-  cron.schedule('0 8 * * *', sendEquipmentBookingReminders);
+  schedule('0 8 * * *', sendEquipmentBookingReminders);
 }

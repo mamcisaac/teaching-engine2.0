@@ -10,7 +10,7 @@ import { NodeSDK } from '@opentelemetry/sdk-node';
 import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
 // import { BatchSpanProcessor } from '@opentelemetry/sdk-trace-base';
 
-import { logger } from '../logger';
+import logger from '../logger';
 
 // Environment configuration
 const OTEL_ENABLED = process.env.OTEL_ENABLED === 'true';
@@ -82,10 +82,12 @@ export const initTelemetry = async (): Promise<void> => {
       otelSDK
         ?.shutdown()
         .then(() => {
- logger.info('OpenTelemetry terminated'); 
+ logger.info('OpenTelemetry terminated');
+ return undefined;
 })
         .catch((error) => {
- logger.error('Error terminating OpenTelemetry', error); 
+ logger.error('Error terminating OpenTelemetry', error);
+ return undefined;
 });
     });
   } catch (_error) {

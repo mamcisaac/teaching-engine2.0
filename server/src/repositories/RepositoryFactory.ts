@@ -5,7 +5,7 @@ import { ETFOLessonPlanRepository } from './ETFOLessonPlanRepository';
 import { UserRepository } from './UserRepository';
 
 export class RepositoryFactory {
-  private static instance: RepositoryFactory;
+  private static instance: RepositoryFactory | undefined;
   private prisma: PrismaClient;
 
   private userRepository?: UserRepository;
@@ -55,6 +55,6 @@ export class RepositoryFactory {
 
   // Reset method for testing
   static reset() {
-    RepositoryFactory.instance = undefined!;
+    RepositoryFactory.instance = undefined;
   }
 }

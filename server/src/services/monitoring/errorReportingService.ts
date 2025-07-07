@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/node';
 import { nodeProfilingIntegration } from '@sentry/profiling-node';
 
-import { logger } from '../../logger';
+import logger from '../../logger';
 import { AppError } from '../../utils/errors';
 
 type Context = Record<string, unknown>;

@@ -4,7 +4,7 @@ import * as os from 'os';
 import { prisma } from '@teaching-engine/database';
 import type { Request, Response } from 'express';
 
-import { logger } from '../logger';
+import logger from '../logger';
 import { getMetrics } from '../middleware/metrics';
 
 import { withSpan, updateSystemHealth } from './telemetry';

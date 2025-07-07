@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 
-import { logger } from '../../logger';
+import logger from '../../logger';
 import { addSpanAttributes } from '../../monitoring/telemetry';
 import { AuditEventType } from '../auditLogger';
 
@@ -234,10 +234,10 @@ export const performanceLoggingMiddleware = (
   res.on('finish', () => {
     const totalDuration = Date.now() - (req.startTime || 0);
     const measurements = segments
-      .filter((s) => s.end)
+      .filter((s) => s.end !== undefined)
       .map((s) => ({
         name: s.name,
-        duration: s.end! - s.start,
+        duration: (s.end as number) - s.start,
       }));
 
     if (measurements.length > 0 || totalDuration > 1000) {

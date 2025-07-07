@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import type { Request, Response, NextFunction, RequestHandler } from 'express';
 
-import { logger } from '../../logger';
+import logger from '../../logger';
 
 // Middleware type
 export type Middleware = RequestHandler | ErrorRequestHandler;
@@ -174,6 +174,7 @@ export const chain = (): MiddlewareChain => new MiddlewareChain();
 export const asyncMiddleware = (
   fn: (req: Request, res: Response, next: NextFunction) => Promise<void>
 ): RequestHandler => (req: Request, res: Response, next: NextFunction) => {
+    // eslint-disable-next-line promise/no-callback-in-promise
     Promise.resolve(fn(req, res, next)).catch(next);
   };
 

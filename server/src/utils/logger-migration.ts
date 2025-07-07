@@ -160,20 +160,25 @@ export function requestLoggerMiddleware(
   }) as any;
 
   // Helper methods
+  const logger = req.logger;
+  if (!logger) {
+    throw new Error('Logger not initialized on request object');
+  }
+  
   req.logInfo = (message: string, meta?: LogMeta) => {
-    req.logger!.info(message, meta);
+    logger.info(message, meta);
   };
 
   req.logError = (message: string, error: Error, meta?: LogMeta) => {
-    req.logger!.error(message, error, meta);
+    logger.error(message, error, meta);
   };
 
   req.logWarn = (message: string, meta?: LogMeta) => {
-    req.logger!.warn(message, meta);
+    logger.warn(message, meta);
   };
 
   req.logDebug = (message: string, meta?: LogMeta) => {
-    req.logger!.debug(message, meta);
+    logger.debug(message, meta);
   };
 
   next();

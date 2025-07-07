@@ -1,9 +1,8 @@
 import type { Request, Response } from 'express';
-import type express from 'express';
-import { Router } from 'express';
-import multer from 'multer';
+import express, { Router } from 'express';
+import multer, { memoryStorage } from 'multer';
 
-import { logger } from '../logger';
+import logger from '../logger';
 import { curriculumImportService } from '../services';
 // Clustering service removed - over-engineered for single-teacher use
 
@@ -13,7 +12,7 @@ const router = Router();
 
 // Configure multer for file uploads with enhanced security
 const upload = multer({
-  storage: multer.memoryStorage(),
+  storage: memoryStorage(),
   limits: {
     fileSize: 10 * 1024 * 1024, // 10MB limit
     files: 1, // Only allow 1 file per request

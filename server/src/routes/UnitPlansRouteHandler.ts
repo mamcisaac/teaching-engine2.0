@@ -529,7 +529,11 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId!;
+      const userId = req.userId;
+      if (!userId) {
+        res.status(401).json({ error: 'User not authenticated' });
+        return;
+      }
       const schemas = this.getValidationSchemas();
       const filters = schemas.query.parse(req.query);
 
@@ -571,7 +575,11 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId!;
+      const userId = req.userId;
+      if (!userId) {
+        res.status(401).json({ error: 'User not authenticated' });
+        return;
+      }
       const { id: unitPlanId } = req.params;
       const parsedData = resourceSchema.parse(req.body);
       const resourceData: ResourceData = {
@@ -595,7 +603,11 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId!;
+      const userId = req.userId;
+      if (!userId) {
+        res.status(401).json({ error: 'User not authenticated' });
+        return;
+      }
       const { id: unitPlanId, resourceId } = req.params;
 
       const success = await this.unitPlanService.removeResource(unitPlanId, resourceId, userId);
@@ -618,7 +630,11 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId!;
+      const userId = req.userId;
+      if (!userId) {
+        res.status(401).json({ error: 'User not authenticated' });
+        return;
+      }
       const parsedData = duplicateUnitPlanSchema.parse(req.body);
       const duplicateData = {
         unitPlanId: parsedData.unitPlanId,

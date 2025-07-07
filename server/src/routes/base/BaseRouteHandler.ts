@@ -82,6 +82,7 @@ export abstract class BaseRouteHandler<T = any> {
   protected asyncHandler = (
     fn: (req: AuthenticatedRequest, res: Response, next: NextFunction) => Promise<void>,
   ) => (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+      // eslint-disable-next-line promise/no-callback-in-promise
       Promise.resolve(fn(req, res, next)).catch(next);
     };
 
@@ -126,7 +127,11 @@ export abstract class BaseRouteHandler<T = any> {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId!;
+      const userId = req.userId;
+      if (!userId) {
+        res.status(401).json({ error: 'User not authenticated' });
+        return;
+      }
       const crudOps = this.getCrudOperations();
 
       // Validate query parameters if schema provided
@@ -148,7 +153,11 @@ export abstract class BaseRouteHandler<T = any> {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId!;
+      const userId = req.userId;
+      if (!userId) {
+        res.status(401).json({ error: 'User not authenticated' });
+        return;
+      }
       const { id } = req.params;
       const crudOps = this.getCrudOperations();
 
@@ -173,7 +182,11 @@ export abstract class BaseRouteHandler<T = any> {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId!;
+      const userId = req.userId;
+      if (!userId) {
+        res.status(401).json({ error: 'User not authenticated' });
+        return;
+      }
       const schemas = this.getValidationSchemas();
       const data = schemas.create.parse(req.body);
       const crudOps = this.getCrudOperations();
@@ -192,7 +205,11 @@ export abstract class BaseRouteHandler<T = any> {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId!;
+      const userId = req.userId;
+      if (!userId) {
+        res.status(401).json({ error: 'User not authenticated' });
+        return;
+      }
       const { id } = req.params;
       const schemas = this.getValidationSchemas();
       const data = schemas.update.parse(req.body);
@@ -213,7 +230,11 @@ export abstract class BaseRouteHandler<T = any> {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId!;
+      const userId = req.userId;
+      if (!userId) {
+        res.status(401).json({ error: 'User not authenticated' });
+        return;
+      }
       const { id } = req.params;
       const crudOps = this.getCrudOperations();
 

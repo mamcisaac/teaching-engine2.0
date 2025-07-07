@@ -240,8 +240,8 @@ orderBy.createdAt = order;
 
     const result = await queryPerformance.monitorQuery('daybookEntry.findMany', () =>
       optimizedQueries.paginatedQuery(prisma.daybookEntry, where, {
-        limit: limit!,
-        offset: offset!,
+        limit: limit ?? 10,
+        offset: offset ?? 0,
         orderBy,
         include: optimizedIncludes.daybookEntry,
       }),
@@ -253,9 +253,9 @@ orderBy.createdAt = order;
       entries,
       pagination: {
         total,
-        limit: limit!,
-        offset: offset!,
-        hasMore: offset! + limit! < total,
+        limit: limit ?? 10,
+        offset: offset ?? 0,
+        hasMore: (offset ?? 0) + (limit ?? 10) < total,
       },
     };
   }
@@ -476,7 +476,11 @@ export class DaybookEntriesRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId!;
+      const userId = req.userId;
+      if (!userId) {
+        res.status(401).json({ error: 'User not authenticated' });
+        return;
+      }
       const schemas = this.getValidationSchemas();
       const filters = schemas.query.parse(req.query);
 
@@ -516,7 +520,11 @@ export class DaybookEntriesRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId!;
+      const userId = req.userId;
+      if (!userId) {
+        res.status(401).json({ error: 'User not authenticated' });
+        return;
+      }
       const insights = await this.daybookService.getInsightsSummary(userId);
       res.json(insights);
       return;

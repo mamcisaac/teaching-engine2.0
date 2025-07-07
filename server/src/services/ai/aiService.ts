@@ -4,6 +4,7 @@
  * Coordinates AI operations across different providers with real OpenAI integration
  */
 
+// eslint-disable-next-line import/no-named-as-default
 import OpenAI from 'openai';
 
 import logger from '../../logger';

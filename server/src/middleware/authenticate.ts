@@ -1,8 +1,8 @@
 import type { Request, Response, NextFunction } from 'express';
+import { sign, verify, JsonWebTokenError, TokenExpiredError } from 'jsonwebtoken';
 import type { JwtPayload, SignOptions } from 'jsonwebtoken';
-import jwt, { sign, verify, TokenExpiredError, JsonWebTokenError } from 'jsonwebtoken';
 
-import { logger } from '../logger.js';
+import logger from '../logger.js';
 import { prisma } from '../prisma.js';
 
 // User interface is defined in /src/types/express.d.ts
@@ -58,13 +58,13 @@ export function generateToken(user: {
  * Generate refresh token
  */
 export function generateRefreshToken(userId: number): string {
-  return jwt.sign(
+  return sign(
     { userId: userId.toString(), type: 'refresh' },
     JWT_SECRET,
     {
       expiresIn: JWT_REFRESH_EXPIRES_IN,
       issuer: 'teaching-engine',
-    } as jwt.SignOptions,
+    } as SignOptions,
   );
 }
 
@@ -110,7 +110,7 @@ export async function verifyToken(token: string): Promise<TokenPayload | { error
 
     // First try to verify with issuer/audience (production tokens)
     try {
-      const decoded = jwt.verify(token, JWT_SECRET, {
+      const decoded = verify(token, JWT_SECRET, {
         issuer: 'teaching-engine',
         audience: 'teaching-engine-users',
       }) as TokenPayload;
@@ -132,12 +132,12 @@ export async function verifyToken(token: string): Promise<TokenPayload | { error
       // If it's a test environment and the _error is about issuer/audience, try without them
       if (
         process.env.NODE_ENV === 'test' &&
-        issuerError instanceof jwt.JsonWebTokenError &&
+        issuerError instanceof JsonWebTokenError &&
         (issuerError.message.includes('jwt audience invalid') ||
           issuerError.message.includes('jwt issuer invalid'))
       ) {
         // Try again without issuer/audience validation for test tokens
-        const decoded = jwt.verify(token, JWT_SECRET) as TokenPayload;
+        const decoded = verify(token, JWT_SECRET) as TokenPayload;
 
         if (process.env.NODE_ENV === 'test') {
           logger.debug(
@@ -157,10 +157,10 @@ export async function verifyToken(token: string): Promise<TokenPayload | { error
       throw issuerError;
     }
   } catch (_error) {
-    if (_error instanceof jwt.TokenExpiredError) {
+    if (_error instanceof TokenExpiredError) {
       logger.debug('Token expired');
       return { error: 'expired' };
-    } else if (_error instanceof jwt.JsonWebTokenError) {
+    } else if (_error instanceof JsonWebTokenError) {
       logger.debug({ error: _error.message }, 'Invalid token');
       return { error: 'invalid' };
     } 
@@ -557,7 +557,7 @@ export async function refreshToken(req: Request, res: Response): Promise<void> {
       return;
     }
 
-    const decoded = jwt.verify(refreshToken, JWT_SECRET) as JwtPayload & {
+    const decoded = verify(refreshToken, JWT_SECRET) as JwtPayload & {
       type: string;
       userId: string;
     };

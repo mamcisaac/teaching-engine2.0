@@ -237,7 +237,10 @@ continue;
       if (!this.tagIndex.has(tag)) {
         this.tagIndex.set(tag, new Set());
       }
-      this.tagIndex.get(tag)!.add(key);
+      const tagSet = this.tagIndex.get(tag);
+      if (tagSet) {
+        tagSet.add(key);
+      }
     }
   }
 

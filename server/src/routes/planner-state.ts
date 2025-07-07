@@ -1,11 +1,11 @@
 import type { Response } from 'express';
-import type express from 'express';
-import { Router } from 'express';
-import { rateLimit } from 'express-rate-limit';
+import express, { Router } from 'express';
+// eslint-disable-next-line import/no-named-as-default
+import rateLimit from 'express-rate-limit';
 import DOMPurify from 'isomorphic-dompurify';
 import { z } from 'zod';
 
-import { logger } from '../logger';
+import logger from '../logger';
 import { prisma } from '../prisma';
 import { cuidSchema } from '../validation';
 const router = Router();

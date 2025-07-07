@@ -132,7 +132,11 @@ function createAuthRouter(prisma = defaultPrisma) {
   router.get('/me', authenticate, async (req: Request, res: Response): Promise<void> => {
     try {
       // Always fetch fresh user data from database for /me endpoint
-      const userId = req.user!.id;
+      if (!req.user?.id) {
+        res.status(401).json({ error: 'User not authenticated' });
+        return;
+      }
+      const userId = req.user.id;
 
       const user = await prisma.user.findUnique({
         where: { id: userId },
@@ -173,8 +177,12 @@ function createAuthRouter(prisma = defaultPrisma) {
 
   // Simple auth check endpoint - returns userId if authenticated
   router.get('/check', authenticate, (req: Request, res: Response): void => {
-    res.json({ userId: req.user!.id });
-    return;
+    const userId = req.user?.id;
+    if (!userId) {
+      res.status(401).json({ error: 'User not authenticated' });
+      return;
+    }
+    res.json({ userId });
     return;
   });
 

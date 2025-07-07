@@ -153,11 +153,11 @@ return;
         })),
       };
 
-      const response = await apiClient.post<{ responses: _BatchResponse[] }>('/api/batch', batchData);
+      const response = await apiClient.post('/api/batch', batchData);
       const {responses} = response.data;
 
       // Map responses back to promises
-      const responseMap = new Map(responses.map((r: _BatchResponse) => [r.id, r]));
+      const responseMap = new Map(responses.map((r) => [r.id, r]));
 
       for (const pending of requests) {
         const batchResponse = responseMap.get(pending.request.id);
@@ -228,8 +228,7 @@ export const batchedApi = {
 
 // Debounced request helper
 export function createDebouncedRequest<
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  T extends (...args: any[]) => Promise<any>,
+  T extends (...args: Parameters<T>) => Promise<ReturnType<T>>,
 >(fn: T, delay = 300): T & { cancel: () => void } {
   let timeout: NodeJS.Timeout | null = null;
   let lastArgs: Parameters<T> | null = null;

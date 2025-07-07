@@ -1,9 +1,9 @@
 import { Prisma } from '@prisma/client';
 import type { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
+import { TokenExpiredError, JsonWebTokenError } from 'jsonwebtoken';
 import { ZodError } from 'zod';
 
-import { logger } from '../logger.js';
+import logger from '../logger.js';
 
 /**
  * Error interface for type safety
@@ -77,6 +77,7 @@ export function asyncHandler(
   fn: (req: Request, res: Response, next: NextFunction) => Promise<unknown>,
 ) {
   return (req: Request, res: Response, next: NextFunction) => {
+    // eslint-disable-next-line promise/no-callback-in-promise
     Promise.resolve(fn(req, res, next)).catch(next);
   };
 }
@@ -234,11 +235,11 @@ function handleSpecificErrors(
   }
 
   // JWT errors
-  if (err instanceof jwt.TokenExpiredError) {
+  if (err instanceof TokenExpiredError) {
     return new AuthenticationError('Token has expired');
   }
 
-  if (err instanceof jwt.JsonWebTokenError) {
+  if (err instanceof JsonWebTokenError) {
     return new AuthenticationError('Invalid token');
   }
 
@@ -396,11 +397,11 @@ export function handleGracefulShutdown(server: { close: (callback: () => void) =
             .$disconnect()
             .then(() => {
               logger.info('Database connections closed');
-              process.exit(0);
+              return process.exit(0);
             })
             .catch((err: unknown) => {
               logger.error({ error: err }, 'Error closing database connections');
-              process.exit(1);
+              return process.exit(1);
             });
         } catch (_error) {
           logger.warn('Could not access prisma for shutdown');

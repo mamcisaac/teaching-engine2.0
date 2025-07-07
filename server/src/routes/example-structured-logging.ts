@@ -25,7 +25,12 @@ router.get('/api/example/basic', authenticate, async (req: Request, res: Respons
 
   try {
     // Simulate some work
-    const result = await someBusinessLogic(req.user!.id);
+    const userId = req.user?.id;
+    if (!userId) {
+      res.status(401).json({ error: 'User not authenticated' });
+      return;
+    }
+    const result = await someBusinessLogic(userId);
 
     // Log success with relevant data
     structuredLogger.info('Example request completed successfully', {
@@ -91,10 +96,16 @@ router.get('/api/example/performance', authenticate, async (_req: Request, res: 
 router.post('/api/example/batch', authenticate, async (req: Request, res: Response) => {
   const batchId = `batch-${Date.now()}`;
 
+  const userId = req.user?.id;
+  if (!userId) {
+    res.status(401).json({ error: 'User not authenticated' });
+    return;
+  }
+
   // Create child logger with batch context
   const batchLogger = structuredLogger.child({
     batchId,
-    userId: req.user!.id,
+    userId,
     itemCount: req.body.items?.length || 0,
   });
 
@@ -179,7 +190,14 @@ router.post(
  */
 router.get('/api/example/stream', authenticate, async (req: Request, res: Response) => {
   const streamId = `stream-${Date.now()}`;
-  const streamLogger = structuredLogger.child({ streamId, userId: req.user!.id });
+  
+  const userId = req.user?.id;
+  if (!userId) {
+    res.status(401).json({ error: 'User not authenticated' });
+    return;
+  }
+  
+  const streamLogger = structuredLogger.child({ streamId, userId });
 
   streamLogger.info('Starting stream');
 

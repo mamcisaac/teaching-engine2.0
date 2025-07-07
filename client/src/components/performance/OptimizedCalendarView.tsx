@@ -345,3 +345,5 @@ grouped[dateKey] = [];
 );
 
 OptimizedCalendarView.displayName = 'OptimizedCalendarView';
+
+export default OptimizedCalendarView;

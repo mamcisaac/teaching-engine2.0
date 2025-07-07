@@ -1,6 +1,6 @@
 import type { Request, Response, NextFunction } from 'express';
 
-import { logger } from '../logger.js';
+import logger from '../logger.js';
 
 /**
  * Middleware for API key validation
@@ -43,7 +43,7 @@ export async function validateApiKey(
     }
 
     // Check Authorization header with Bearer format
-    const authHeader = req.headers.authorization!;
+    const authHeader = req.headers.authorization;
     if (authHeader && typeof authHeader === 'string') {
       const bearerMatch = authHeader.match(/^Bearer (.+)$/i);
       if (bearerMatch) {

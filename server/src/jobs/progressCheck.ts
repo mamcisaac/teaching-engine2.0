@@ -1,4 +1,4 @@
-import cron from 'node-cron';
+import { schedule } from 'node-cron';
 
 import { logger } from '../logger';
 import { prisma } from '../prisma';
@@ -36,5 +36,5 @@ export async function runProgressCheck() {
  * to run without manual intervention.
  */
 export function scheduleProgressCheck() {
-  cron.schedule('0 6 * * *', runProgressCheck);
+  schedule('0 6 * * *', runProgressCheck);
 }

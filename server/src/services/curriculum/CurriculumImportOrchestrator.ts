@@ -311,11 +311,11 @@ export class CurriculumImportOrchestrator extends BaseService {
       );
 
       // Create new expectations
-      if (toCreate.length > 0) {
+      if (toCreate.length > 0 && subject) {
         await tx.curriculumExpectation.createMany({
           data: toCreate.map((exp) => ({
             ...exp,
-            subject: subject!.name,
+            subject: subject.name,
           })),
         });
         stats.created = toCreate.length;

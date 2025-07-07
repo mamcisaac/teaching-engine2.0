@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
-import bcrypt, { hash, compare } from 'bcryptjs';
+import { hash, compare } from 'bcryptjs';
 
 import { BaseService } from '../base/BaseService';
 
@@ -71,10 +71,10 @@ export class AuthService extends BaseService {
     try {
       await this.validatePassword(password);
 
-      const hashResult = await hash(password, this.saltRounds);
+      const hashed = await hash(password, this.saltRounds);
       this.logger.info('Password hashed successfully');
 
-      return hashResult;
+      return hashed;
     } catch (error) {
       this.logger.error({ error }, 'Password hashing failed');
       throw error;

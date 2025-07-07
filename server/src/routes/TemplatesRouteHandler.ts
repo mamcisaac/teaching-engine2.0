@@ -402,7 +402,11 @@ export class TemplatesRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId!;
+      const userId = req.userId;
+      if (!userId) {
+        res.status(401).json({ error: 'User not authenticated' });
+        return;
+      }
       const schemas = this.getValidationSchemas();
       const filters = schemas.query.parse(req.query);
 
@@ -433,7 +437,11 @@ export class TemplatesRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId!;
+      const userId = req.userId;
+      if (!userId) {
+        res.status(401).json({ error: 'User not authenticated' });
+        return;
+      }
       const options = await this.templateService.getFilterOptions(userId);
       res.json(options);
       return;

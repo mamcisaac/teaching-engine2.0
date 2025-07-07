@@ -1,5 +1,5 @@
-import bcrypt, { hash, compare } from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+import { hash, compare } from 'bcryptjs';
+import { sign, verify } from 'jsonwebtoken';
 import type { SignOptions } from 'jsonwebtoken';
 
 const SALT_ROUNDS = 10;
@@ -41,7 +41,7 @@ export function generateAccessToken(payload: JWTPayload): string {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expiresIn: (process.env.JWT_EXPIRES_IN || '7d') as any,
   };
-  return jwt.sign(payload, secret, options);
+  return sign(payload, secret, options);
 }
 
 /**
@@ -57,7 +57,7 @@ export function generateRefreshToken(payload: JWTPayload): string {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expiresIn: (process.env.JWT_REFRESH_EXPIRES_IN || '30d') as any,
   };
-  return jwt.sign(payload, secret, options);
+  return sign(payload, secret, options);
 }
 
 /**
@@ -79,7 +79,7 @@ export function verifyAccessToken(token: string): JWTPayload {
   }
 
   try {
-    return jwt.verify(token, process.env.JWT_SECRET) as JWTPayload;
+    return verify(token, process.env.JWT_SECRET) as JWTPayload;
   } catch (error) {
     throw new Error('Invalid or expired token');
   }
@@ -94,7 +94,7 @@ export function verifyRefreshToken(token: string): JWTPayload {
   }
 
   try {
-    return jwt.verify(token, process.env.JWT_REFRESH_SECRET) as JWTPayload;
+    return verify(token, process.env.JWT_REFRESH_SECRET) as JWTPayload;
   } catch (error) {
     throw new Error('Invalid or expired refresh token');
   }

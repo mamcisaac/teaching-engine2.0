@@ -4,6 +4,7 @@
  * Handles OpenAI integration and content generation
  */
 
+// eslint-disable-next-line import/no-named-as-default
 import OpenAI from 'openai';
 
 import { BaseService } from './base/BaseService.js';
@@ -134,7 +135,11 @@ export class LLMService extends BaseService {
         `Generating content with prompt - type: ${request.type}, promptLength: ${enhancedPrompt.length}`,
       );
 
-      const response = await this.openaiClient!.chat.completions.create({
+      if (!this.openaiClient) {
+        throw new Error('OpenAI client is not available');
+      }
+      
+      const response = await this.openaiClient.chat.completions.create({
         model: this.defaultModel,
         messages: [
           {
@@ -209,7 +214,11 @@ export class LLMService extends BaseService {
 
       const enhancedPrompt = this.enhancePrompt(request);
 
-      const response = await this.openaiClient!.chat.completions.create({
+      if (!this.openaiClient) {
+        throw new Error('OpenAI client is not available');
+      }
+      
+      const response = await this.openaiClient.chat.completions.create({
         model: this.defaultModel,
         messages: [
           {

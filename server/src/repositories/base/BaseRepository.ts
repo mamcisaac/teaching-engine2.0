@@ -219,7 +219,9 @@ export abstract class BaseRepository<T extends { id: number }, CreateInput, Upda
       let nextCursor: number | undefined;
       if (items.length > limit) {
         const nextItem = items.pop();
-        nextCursor = nextItem!.id;
+        if (nextItem) {
+          nextCursor = nextItem.id;
+        }
       }
 
       return {

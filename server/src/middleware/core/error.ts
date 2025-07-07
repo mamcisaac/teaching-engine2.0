@@ -183,6 +183,7 @@ export const notFoundHandler = (req: Request, _res: Response, next: NextFunction
 export const catchAsync = (
   fn: (req: Request, res: Response, next: NextFunction) => Promise<void>,
 ) => (req: Request, res: Response, next: NextFunction): void => {
+    // eslint-disable-next-line promise/no-callback-in-promise
     Promise.resolve(fn(req, res, next)).catch(next);
   };
 

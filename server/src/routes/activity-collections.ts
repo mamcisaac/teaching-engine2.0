@@ -10,13 +10,19 @@ const router = Router();
 // Get user's collections
 router.get('/', authMiddleware, async (req: Request, res: Response): Promise<void> => {
   try {
+    if (!req.user?.id) {
+      res.status(401).json({ error: 'User not authenticated' });
+      return;
+    }
+    const userId = req.user.id;
+    
     const { includePublic = false } = req.query;
 
     const where = includePublic
       ? {
-          userId: req.user!.id, // Single-teacher use - only show user's own collections,
+          userId, // Single-teacher use - only show user's own collections,
         }
-      : { userId: req.user!.id };
+      : { userId };
 
     const collections = await prisma.activityCollection.findMany({
       where,
@@ -52,12 +58,18 @@ router.get('/', authMiddleware, async (req: Request, res: Response): Promise<voi
 // Get collection details with activities
 router.get('/:collectionId', authMiddleware, async (req: Request, res: Response): Promise<void> => {
   try {
+    if (!req.user?.id) {
+      res.status(401).json({ error: 'User not authenticated' });
+      return;
+    }
+    const userId = req.user.id;
+    
     const { collectionId } = req.params;
 
     const collection = await prisma.activityCollection.findFirst({
       where: {
         id: collectionId,
-        userId: req.user!.id, // Single-teacher use - only show user's own collections,
+        userId: userId, // Single-teacher use - only show user's own collections,
       },
       include: {
         items: {
@@ -107,6 +119,12 @@ const createCollectionSchema = z.object({
 
 router.post('/', authMiddleware, async (req: Request, res: Response): Promise<void> => {
   try {
+    if (!req.user?.id) {
+      res.status(401).json({ error: 'User not authenticated' });
+      return;
+    }
+    const userId = req.user.id;
+    
     const data = createCollectionSchema.parse(req.body);
 
     const collection = await prisma.activityCollection.create({
@@ -114,7 +132,7 @@ router.post('/', authMiddleware, async (req: Request, res: Response): Promise<vo
         name: data.name,
         description: data.description,
         // isPublic removed - single-teacher use only
-        userId: req.user!.id,
+        userId: userId,
       },
     });
 
@@ -142,6 +160,12 @@ const updateCollectionSchema = z.object({
 
 router.put('/:collectionId', authMiddleware, async (req: Request, res: Response): Promise<void> => {
   try {
+    if (!req.user?.id) {
+      res.status(401).json({ error: 'User not authenticated' });
+      return;
+    }
+    const userId = req.user.id;
+    
     const { collectionId } = req.params;
     const data = updateCollectionSchema.parse(req.body);
 
@@ -149,7 +173,7 @@ router.put('/:collectionId', authMiddleware, async (req: Request, res: Response)
     const existing = await prisma.activityCollection.findFirst({
       where: {
         id: collectionId,
-        userId: req.user!.id,
+        userId: userId,
       },
     });
 
@@ -187,13 +211,19 @@ router.delete(
   authMiddleware,
   async (req: Request, res: Response): Promise<void> => {
     try {
+      if (!req.user?.id) {
+        res.status(401).json({ error: 'User not authenticated' });
+        return;
+      }
+      const userId = req.user.id;
+      
       const { collectionId } = req.params;
 
       // Check ownership
       const existing = await prisma.activityCollection.findFirst({
         where: {
           id: collectionId,
-          userId: req.user!.id,
+          userId: userId,
         },
       });
 
@@ -235,6 +265,12 @@ router.post(
   authMiddleware,
   async (req: Request, res: Response): Promise<void> => {
     try {
+      if (!req.user?.id) {
+        res.status(401).json({ error: 'User not authenticated' });
+        return;
+      }
+      const userId = req.user.id;
+      
       const { collectionId } = req.params;
       const { activityId } = addActivitySchema.parse(req.body);
 
@@ -242,7 +278,7 @@ router.post(
       const collection = await prisma.activityCollection.findFirst({
         where: {
           id: collectionId,
-          userId: req.user!.id,
+          userId: userId,
         },
       });
 
@@ -310,13 +346,19 @@ router.delete(
   authMiddleware,
   async (req: Request, res: Response): Promise<void> => {
     try {
+      if (!req.user?.id) {
+        res.status(401).json({ error: 'User not authenticated' });
+        return;
+      }
+      const userId = req.user.id;
+      
       const { collectionId, activityId } = req.params;
 
       // Check collection ownership
       const collection = await prisma.activityCollection.findFirst({
         where: {
           id: collectionId,
-          userId: req.user!.id,
+          userId: userId,
         },
       });
 
@@ -359,10 +401,16 @@ router.get(
   authMiddleware,
   async (req: Request, res: Response): Promise<void> => {
     try {
+      if (!req.user?.id) {
+        res.status(401).json({ error: 'User not authenticated' });
+        return;
+      }
+      const userId = req.user.id;
+      
       const { limit = 10 } = req.query;
 
       const collections = await prisma.activityCollection.findMany({
-        where: { userId: req.user!.id }, // Single-teacher use - only user's collections
+        where: { userId: userId }, // Single-teacher use - only user's collections
         include: {
           _count: {
             select: { items: true },

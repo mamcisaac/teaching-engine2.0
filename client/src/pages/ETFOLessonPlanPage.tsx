@@ -33,13 +33,6 @@ import {
 import { AutoSaveIndicator } from '../components/ui/AutoSaveIndicator';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
-import { Checkbox } from '../components/ui/checkbox';
-import { Input } from '../components/ui/Input';
-import { Label } from '../components/ui/Label';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
-import { Textarea } from '../components/ui/Textarea';
-import { InfoTooltip } from '../components/ui/Tooltip';
 import {
   useUnitPlan,
   useETFOLessonPlans,
@@ -49,8 +42,14 @@ import {
   useDeleteETFOLessonPlan,
 } from '../hooks/useETFOPlanning';
 import { useTemplates, useApplyTemplate } from '../hooks/useTemplates';
-import type { PlanTemplate, LessonPlanContent } from '../types/template';
-import { isLessonPlanTemplate } from '../types/template';
+import { PlanTemplate, isLessonPlanTemplate, LessonPlanContent } from '../types/template';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
+import { Label } from '../components/ui/Label';
+import { Input } from '../components/ui/Input';
+import { Textarea } from '../components/ui/Textarea';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
+import { Checkbox } from '../components/ui/checkbox';
+import { InfoTooltip } from '../components/ui/Tooltip';
 
 // Lazy load AI components for better performance
 const AILessonPlanPanel = lazy(() =>

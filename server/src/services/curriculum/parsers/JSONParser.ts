@@ -313,11 +313,13 @@ return 'specific';
         grouped.set(exp.strand, { overall: [], specific: [] });
       }
       
-      const group = grouped.get(exp.strand)!;
-      if (exp.type === 'overall') {
-        group.overall.push(exp);
-      } else {
-        group.specific.push(exp);
+      const group = grouped.get(exp.strand);
+      if (group) {
+        if (exp.type === 'overall') {
+          group.overall.push(exp);
+        } else {
+          group.specific.push(exp);
+        }
       }
     }
 

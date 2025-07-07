@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { performance } from 'perf_hooks';
 
-import pino from 'pino';
+// eslint-disable-next-line import/no-named-as-default
+import pino, { stdSerializers } from 'pino';
 
 // Log levels configuration - kept for future use
 // const _LOG_LEVELS = {
@@ -58,7 +59,7 @@ const pinoConfig: pino.LoggerOptions = {
       };
     },
 
-    err: pino.stdSerializers.err,
+    err: stdSerializers.err,
 
     user: (user: unknown) => {
       const userData = user as { id?: string | number; email?: string; role?: string };
@@ -379,8 +380,5 @@ const logger = new EnhancedLogger(baseLogger);
 // Export types for TypeScript
 export type Logger = EnhancedLogger;
 export { EnhancedLogger };
-
-// Named export for compatibility
-export { logger };
 
 export default logger;

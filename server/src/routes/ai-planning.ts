@@ -149,7 +149,7 @@ router.post(
         subject,
         grade: Number(grade),
         termLength: Number(termLength),
-        focusAreas: focusAreas!,
+        focusAreas: focusAreas || [],
       });
 
       res.json(suggestions);

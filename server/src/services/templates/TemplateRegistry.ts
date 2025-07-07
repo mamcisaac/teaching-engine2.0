@@ -144,7 +144,10 @@ export class TemplateRegistry extends BaseService {
     if (!this.providersByType.has(providerType)) {
       this.providersByType.set(providerType, []);
     }
-    this.providersByType.get(providerType)!.push(name);
+    const providers = this.providersByType.get(providerType);
+    if (providers) {
+      providers.push(name);
+    }
 
     this.logger.info({ name, type: providerType }, 'Template provider registered');
   }

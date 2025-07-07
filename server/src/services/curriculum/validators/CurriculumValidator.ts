@@ -147,7 +147,7 @@ export class CurriculumValidator {
         message: 'Expectations must be an array',
         value: typeof curriculum.expectations,
       });
-    } else if (curriculum.expectations.length < this.options.minExpectations!) {
+    } else if (this.options.minExpectations && curriculum.expectations.length < this.options.minExpectations) {
       errors.push({
         field: 'expectations',
         message: `At least ${this.options.minExpectations} expectation(s) required`,
@@ -168,13 +168,15 @@ export class CurriculumValidator {
       return;
     }
 
-    const { min, max } = this.options.gradeRange!;
-    if (grade < min || grade > max) {
-      errors.push({
-        field: 'grade',
-        message: `Grade must be between ${min} and ${max}`,
-        value: grade,
-      });
+    if (this.options.gradeRange) {
+      const { min, max } = this.options.gradeRange;
+      if (grade < min || grade > max) {
+        errors.push({
+          field: 'grade',
+          message: `Grade must be between ${min} and ${max}`,
+          value: grade,
+        });
+      }
     }
   }
 
@@ -347,7 +349,11 @@ export class CurriculumValidator {
    * Validate required strands
    */
   private validateRequiredStrands(strands: string[], errors: ValidationError[]): void {
-    const requiredStrands = this.options.requiredStrands!;
+    if (!this.options.requiredStrands) {
+      return;
+    }
+    
+    const requiredStrands = this.options.requiredStrands;
     const missingStrands = requiredStrands.filter(s => !strands.includes(s));
 
     if (missingStrands.length > 0) {

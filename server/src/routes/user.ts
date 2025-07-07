@@ -4,7 +4,7 @@
  */
 
 import type { PrismaClient } from '@teaching-engine/database';
-import bcrypt from 'bcryptjs';
+import { compare } from 'bcryptjs';
 import type { Request } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
@@ -30,7 +30,11 @@ export function userRoutes(prisma: PrismaClient): Router {
   router.get(
     '/profile',
     asyncHandler(async (req, res) => {
-      const userId = req.user!.id;
+      if (!req.user?.id) {
+        res.status(401).json({ error: 'User not authenticated' });
+        return;
+      }
+      const userId = req.user.id;
 
       const user = await userRepository.findByIdWithoutPassword(userId);
 
@@ -48,7 +52,11 @@ export function userRoutes(prisma: PrismaClient): Router {
   router.put(
     '/password',
     asyncHandler(async (req, res) => {
-      const userId = req.user!.id;
+      if (!req.user?.id) {
+        res.status(401).json({ error: 'User not authenticated' });
+        return;
+      }
+      const userId = req.user.id;
       const { currentPassword, newPassword } = updatePasswordSchema.parse(req.body);
 
       // Validate new password
@@ -63,7 +71,7 @@ export function userRoutes(prisma: PrismaClient): Router {
       }
 
       // Verify current password
-      const isValidPassword = await bcrypt.compare(currentPassword, user.password);
+      const isValidPassword = await compare(currentPassword, user.password);
       if (!isValidPassword) {
         res.status(401).json({ error: 'Current password is incorrect' });
         return;

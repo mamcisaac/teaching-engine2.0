@@ -1,4 +1,4 @@
-import cron from 'node-cron';
+import { schedule } from 'node-cron';
 
 import { logger } from '../logger';
 export async function sendReportDeadlineReminders() {
@@ -8,5 +8,5 @@ export async function sendReportDeadlineReminders() {
 }
 
 export function scheduleReportDeadlineReminders() {
-  cron.schedule('0 2 * * *', sendReportDeadlineReminders);
+  schedule('0 2 * * *', sendReportDeadlineReminders);
 }

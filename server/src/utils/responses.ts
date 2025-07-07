@@ -41,13 +41,13 @@ export const successResponse = <T>(
   data: T,
   meta?: Omit<SuccessResponse['meta'], 'timestamp'>
 ): SuccessResponse<T> => ({
-  success: true,
-  data,
-  meta: {
-    timestamp: new Date().toISOString(),
-    ...meta,
-  },
-});
+    success: true,
+    data,
+    meta: {
+      timestamp: new Date().toISOString(),
+      ...meta,
+    },
+  });
 
 export const paginatedResponse = <T>(
   data: T[],
@@ -81,14 +81,14 @@ export const createdResponse = <T>(
   location?: string,
   meta?: Record<string, unknown>
 ): CreatedResponse<T> => ({
-  success: true,
-  data,
-  meta: {
-    timestamp: new Date().toISOString(),
-    location,
-    ...meta,
-  },
-});
+    success: true,
+    data,
+    meta: {
+      timestamp: new Date().toISOString(),
+      location,
+      ...meta,
+    },
+  });
 
 // Response senders
 export const sendSuccess = <T>(
@@ -116,7 +116,7 @@ export const sendCreated = <T>(
     ...meta,
   });
   
-  if (location !== null && location !== undefined && location !== '') {
+  if (location) {
     res.setHeader('Location', location);
   }
   
@@ -148,7 +148,7 @@ export const sendAccepted = <T>(
   data?: T,
   meta?: Record<string, unknown>
 ): void => {
-  if (data !== null && data !== undefined) {
+  if (data) {
     sendSuccess(res, data, 202, meta);
   } else {
     res.status(202).json({
@@ -170,16 +170,16 @@ export const sendFile = (
   filename?: string,
   contentType?: string
 ): void => {
-  if (contentType !== null && contentType !== undefined && contentType !== '') {
+  if (contentType) {
     res.setHeader('Content-Type', contentType);
   }
   
-  if (filename !== null && filename !== undefined && filename !== '') {
+  if (filename) {
     res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
   }
   
   res.sendFile(filePath, (err) => {
-    if (err !== null && err !== undefined) {
+    if (err) {
       logger.error({ error: err, filePath }, 'Failed to send file');
       res.status(500).json({
         success: false,

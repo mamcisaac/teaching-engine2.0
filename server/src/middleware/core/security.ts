@@ -4,7 +4,7 @@ import type { Application, Request, Response, NextFunction } from 'express';
 import helmet from 'helmet';
 import DOMPurify from 'isomorphic-dompurify';
 
-import { logger } from '../../logger';
+import logger from '../../logger';
 import { AppError } from '../../utils/errors';
 
 // CORS configuration

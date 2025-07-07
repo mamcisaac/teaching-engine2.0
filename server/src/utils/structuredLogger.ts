@@ -8,7 +8,7 @@ import { performance } from 'perf_hooks';
 
 import type { Request, Response, NextFunction } from 'express';
 import { v4 as uuidv4 } from 'uuid';
-import winston from 'winston';
+import { createLogger, format, transports } from 'winston';
 
 // Async context for storing request metadata
 const asyncLocalStorage = new AsyncLocalStorage<LogContext>();
@@ -38,8 +38,6 @@ export enum LogLevel {
 }
 
 // Custom log format
-const { format } = winston;
-
 const logFormat = format.combine(
   format.timestamp({
     format: 'YYYY-MM-DD HH:mm:ss.SSS',
@@ -81,7 +79,7 @@ const logFormat = format.combine(
 );
 
 // Create logger instance
-const logger = winston.createLogger({
+const logger = createLogger({
   level: process.env.LOG_LEVEL ?? 'info',
   format: logFormat,
   defaultMeta: {
@@ -91,20 +89,20 @@ const logger = winston.createLogger({
   },
   transports: [
     // Console transport for development
-    new winston.transports.Console({
+    new transports.Console({
       format: format.combine(format.colorize(), format.simple()),
       silent: process.env.NODE_ENV === 'test',
     }),
     // File transport for production
     ...(process.env.NODE_ENV === 'production'
       ? [
-          new winston.transports.File({
+          new transports.File({
             filename: 'logs/error.log',
             level: 'error',
             maxsize: 10485760, // 10MB
             maxFiles: 5,
           }),
-          new winston.transports.File({
+          new transports.File({
             filename: 'logs/combined.log',
             maxsize: 10485760, // 10MB
             maxFiles: 10,

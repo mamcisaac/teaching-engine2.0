@@ -40,7 +40,7 @@ export class WebFetch {
         validateStatus: (status) => status < 400
       });
       
-      const html = response.data as string;
+      const html = response.data;
       
       // Cache the result
       this.cache.set(cacheKey, {
@@ -106,11 +106,11 @@ export class WebFetch {
   // Utility method to extract text content from HTML
   extractText(html: string, selector?: string): string {
     const dom = new JSDOM(html);
-    const { document } = dom.window;
+    const {document} = dom.window;
     
-    if (selector !== undefined && selector !== null && selector !== '') {
+    if (selector) {
       const element = document.querySelector(selector);
-      return element?.textContent?.trim() ?? '';
+      return element?.textContent?.trim() || '';
     }
     
     // Remove script and style elements
@@ -119,29 +119,29 @@ export class WebFetch {
  el.remove(); 
 });
     
-    return document.body.textContent?.trim() ?? '';
+    return document.body.textContent?.trim() || '';
   }
   
   // Utility method to extract meta information
   extractMeta(html: string): Record<string, string> {
     const dom = new JSDOM(html);
-    const { document } = dom.window;
+    const {document} = dom.window;
     const meta: Record<string, string> = {};
     
     // Extract common meta tags
     const metaTags = document.querySelectorAll('meta[name], meta[property]');
     metaTags.forEach(tag => {
-      const name = tag.getAttribute('name') ?? tag.getAttribute('property');
+      const name = tag.getAttribute('name') || tag.getAttribute('property');
       const content = tag.getAttribute('content');
-      if (name !== null && name !== '' && content !== null && content !== '') {
+      if (name && content) {
         meta[name] = content;
       }
     });
     
     // Extract title
     const title = document.querySelector('title');
-    if (title !== null && title !== undefined) {
-      meta.title = title.textContent ?? '';
+    if (title) {
+      meta.title = title.textContent || '';
     }
     
     return meta;

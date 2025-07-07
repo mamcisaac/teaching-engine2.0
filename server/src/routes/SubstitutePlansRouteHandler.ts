@@ -165,8 +165,8 @@ where.isActive = isActive;
 
     const result = await queryPerformance.monitorQuery('substitutePlan.findMany', () =>
       optimizedQueries.paginatedQuery(prisma.substitutePlan, where, {
-        limit: limit!,
-        offset: offset!,
+        limit: limit ?? 10,
+        offset: offset ?? 0,
         orderBy,
       }),
     );
@@ -177,9 +177,9 @@ where.isActive = isActive;
       plans,
       pagination: {
         total,
-        limit: limit!,
-        offset: offset!,
-        hasMore: offset! + limit! < total,
+        limit: limit ?? 10,
+        offset: offset ?? 0,
+        hasMore: (offset ?? 0) + (limit ?? 10) < total,
       },
     };
   }
@@ -381,7 +381,11 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId!;
+      const userId = req.userId;
+      if (!userId) {
+        res.status(401).json({ error: 'User not authenticated' });
+        return;
+      }
       const schemas = this.getValidationSchemas();
       const filters = schemas.query.parse(req.query);
 
@@ -439,7 +443,11 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId!;
+      const userId = req.userId;
+      if (!userId) {
+        res.status(401).json({ error: 'User not authenticated' });
+        return;
+      }
       const generateData = generateSubPlanSchema.parse(req.body);
 
       const generatedPlan = await this.substitutePlanService.generatePlan(generateData, userId);
@@ -456,7 +464,11 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId!;
+      const userId = req.userId;
+      if (!userId) {
+        res.status(401).json({ error: 'User not authenticated' });
+        return;
+      }
       const { id: planId } = req.params;
 
       const deactivatedPlan = await this.substitutePlanService.deactivatePlan(planId, userId);
@@ -474,7 +486,11 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId!;
+      const userId = req.userId;
+      if (!userId) {
+        res.status(401).json({ error: 'User not authenticated' });
+        return;
+      }
       const stats = await this.substitutePlanService.getStats(userId);
       res.json(stats);
       return;
@@ -490,7 +506,11 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId!;
+      const userId = req.userId;
+      if (!userId) {
+        res.status(401).json({ error: 'User not authenticated' });
+        return;
+      }
       const daysAhead = req.query.days ? parseInt(req.query.days as string, 10) : 30;
 
       const upcomingDates = await this.substitutePlanService.getUpcomingDates(userId, daysAhead);

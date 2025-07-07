@@ -242,8 +242,12 @@ export class ETFOLessonPlanRepository {
         },
       );
 
-      logger.info(`Created ETFO lesson plan with id: ${plan!.id}`);
-      return plan!;
+      if (!plan) {
+        throw new Error('Failed to retrieve created ETFO lesson plan');
+      }
+      
+      logger.info(`Created ETFO lesson plan with id: ${plan.id}`);
+      return plan;
     } catch (error) {
       logger.error('Error creating ETFO lesson plan with expectations:', error);
       throw error;
@@ -348,7 +352,12 @@ export class ETFOLessonPlanRepository {
       );
 
       logger.info(`Updated ETFO lesson plan with id: ${id}`);
-      return plan!;
+      
+      if (!plan) {
+        throw new Error('Failed to retrieve updated ETFO lesson plan');
+      }
+      
+      return plan;
     } catch (error) {
       logger.error('Error updating ETFO lesson plan with expectations:', error);
       throw error;

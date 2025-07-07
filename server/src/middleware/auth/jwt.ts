@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
-import jwt, { sign, verify } from 'jsonwebtoken';
+import { sign, verify } from 'jsonwebtoken';
 
 import { logger } from '../../logger.js';
 

@@ -1,8 +1,8 @@
-import { hash, compare } from 'bcryptjs';
+import { hash as bcryptHash, compare as bcryptCompare } from 'bcryptjs';
 import type { Request, Response, NextFunction } from 'express';
-import jwt, { sign, verify } from 'jsonwebtoken';
+import { sign, verify } from 'jsonwebtoken';
 
-import { logger } from '../logger.js';
+import logger from '../logger.js';
 import { prisma } from '../prisma.js';
 
 import { generateToken, generateRefreshToken } from './authenticate.js';
@@ -16,6 +16,14 @@ import { AuthenticationError, ValidationError, ConflictError, AppError } from '.
  * Combines authentication, authorization, and user management
  */
 
+// Environment validation
+const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET) {
+  throw new Error('JWT_SECRET environment variable is required');
+}
+// TypeScript now knows JWT_SECRET is defined, but we need to help it
+const jwtSecret: string = JWT_SECRET;
+
 // Password requirements
 const PASSWORD_MIN_LENGTH = 8;
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/;
@@ -25,14 +33,14 @@ const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@
  */
 export async function hashPassword(password: string): Promise<string> {
   const saltRounds = parseInt(process.env.BCRYPT_SALT_ROUNDS || '10', 10);
-  return hash(password, saltRounds);
+  return bcryptHash(password, saltRounds);
 }
 
 /**
  * Verify password against hash
  */
 export async function verifyPassword(password: string, hash: string): Promise<boolean> {
-  return compare(password, hash);
+  return bcryptCompare(password, hash);
 }
 
 /**
@@ -497,11 +505,6 @@ export async function forgotPassword(
     }
 
     // Generate reset token
-    const jwtSecret = process.env.JWT_SECRET;
-    if (!jwtSecret) {
-      throw new AppError('JWT secret not configured', 500);
-    }
-    
     const resetToken = sign(
       { userId: user.id, type: 'password-reset' },
       jwtSecret,
@@ -553,16 +556,11 @@ export async function resetPassword(
     // Verify reset token
     let decoded: { userId: string; exp: number; type?: string };
     try {
-      const jwtSecret = process.env.JWT_SECRET;
-      if (!jwtSecret) {
-        throw new AppError('JWT secret not configured', 500);
-      }
-      
       const verifyResult = verify(token, jwtSecret);
       if (typeof verifyResult === 'string') {
         throw new ValidationError('Invalid token format');
       }
-      decoded = verifyResult as { userId: string; exp: number; type?: string };
+      decoded = verifyResult as unknown as { userId: string; exp: number; type?: string };
     } catch (_error) {
       throw new ValidationError('Invalid or expired reset token');
     }

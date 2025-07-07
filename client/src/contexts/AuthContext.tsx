@@ -292,4 +292,4 @@ return;
   return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
 }
 
-export const useAuth = (): AuthContextValue => useContext(AuthContext);
+export const useAuth = () => useContext(AuthContext);
