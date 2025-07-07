@@ -1,10 +1,6 @@
 import type { UseQueryResult, UseMutationResult } from '@tanstack/react-query';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
-
-import { studentApi } from './api';
-
 import type { 
   Student, 
   StudentInput, 
@@ -17,34 +13,37 @@ import type {
   GenerateParentSummaryRequest,
   SaveParentSummaryRequest
 } from '../../../types';
+import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
+
+import { studentApi } from './api';
 
 // Student Query Hooks
-export const useStudents = (): UseQueryResult<Student[], Error> =>
+export const useStudents = (): UseQueryResult<Student[]> =>
   useQuery({
     queryKey: queryKeys.student.all,
     queryFn: studentApi.getStudents,
   });
 
-export const useStudent = (id: number): UseQueryResult<Student, Error> => useQuery({
+export const useStudent = (id: number): UseQueryResult<Student> => useQuery({
     queryKey: queryKeys.student.detail(id),
     queryFn: () => studentApi.getStudent(id),
     enabled: !!id,
   });
 
-export const useStudentGoals = (studentId: number): UseQueryResult<StudentGoal[], Error> => useQuery({
+export const useStudentGoals = (studentId: number): UseQueryResult<StudentGoal[]> => useQuery({
     queryKey: queryKeys.student.goals(studentId),
     queryFn: () => studentApi.getStudentGoals(studentId),
     enabled: !!studentId,
   });
 
-export const useStudentReflections = (studentId: number): UseQueryResult<StudentReflection[], Error> =>
+export const useStudentReflections = (studentId: number): UseQueryResult<StudentReflection[]> =>
   useQuery({
     queryKey: queryKeys.student.reflections(studentId),
     queryFn: () => studentApi.getStudentReflections(studentId),
     enabled: !!studentId,
   });
 
-export const useStudentParentSummaries = (studentId: number): UseQueryResult<ParentSummary[], Error> => useQuery({
+export const useStudentParentSummaries = (studentId: number): UseQueryResult<ParentSummary[]> => useQuery({
     queryKey: queryKeys.student.parentSummaries(studentId),
     queryFn: () => studentApi.getStudentParentSummaries(studentId),
     enabled: !!studentId,

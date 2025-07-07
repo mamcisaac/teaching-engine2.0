@@ -523,10 +523,10 @@ export const substituteApi = {
       }),
       ...(options.includePlans !== undefined && { includePlans: options.includePlans.toString() }),
       ...(options.anonymize !== undefined && { anonymize: options.anonymize.toString() }),
-      ...(options.userId && { userId: options.userId.toString() }),
+      ...(options.userId !== undefined && { userId: options.userId.toString() }),
     });
 
-    const response = await apiClient.get(`/subplan/extract/weekly?${params}`);
+    const response = await apiClient.get(`/subplan/extract/weekly?${params.toString()}`);
     return response.data;
   },
 
@@ -534,18 +534,18 @@ export const substituteApi = {
     const params = new URLSearchParams();
     if (conditions) {
       Object.entries(conditions).forEach(([key, value]) => {
-        if (value) {
-params.append(key, value as string);
-}
+        if (value !== undefined && value !== null) {
+          params.append(key, String(value));
+        }
       });
     }
 
-    const response = await apiClient.get(`/subplan/extract/scenarios?${params}`);
+    const response = await apiClient.get(`/subplan/extract/scenarios?${params.toString()}`);
     return response.data;
   },
 
   autoDetectScenario: async (userId?: number) => {
-    const params = userId ? `?userId=${userId}` : '';
+    const params = userId !== undefined ? `?userId=${userId}` : '';
     const response = await apiClient.get(`/subplan/extract/scenarios/auto${params}`);
     return response.data;
   },
@@ -556,14 +556,14 @@ params.append(key, value as string);
     className?: string,
   ) => {
     const params = new URLSearchParams();
-    if (teacherName) {
+    if (teacherName !== undefined && teacherName !== '') {
 params.append('teacherName', teacherName);
 }
-    if (className) {
+    if (className !== undefined && className !== '') {
 params.append('className', className);
 }
 
-    const response = await apiClient.get(`/subplan/extract/scenarios/${scenarioId}?${params}`);
+    const response = await apiClient.get(`/subplan/extract/scenarios/${scenarioId}?${params.toString()}`);
     return response.data;
   },
 
@@ -572,12 +572,12 @@ params.append('className', className);
     format: 'organized' | 'emergency' | 'card' | 'formatted' = 'organized',
   ) => {
     const params = new URLSearchParams();
-    if (userId) {
-params.append('userId', userId.toString());
-}
+    if (userId !== undefined) {
+      params.append('userId', userId.toString());
+    }
     params.append('format', format);
 
-    const response = await apiClient.get(`/subplan/extract/contacts?${params}`);
+    const response = await apiClient.get(`/subplan/extract/contacts?${params.toString()}`);
     return response.data;
   },
 
@@ -586,11 +586,11 @@ params.append('userId', userId.toString());
     userId?: number,
   ) => {
     const params = new URLSearchParams({ date });
-    if (userId) {
-params.append('userId', userId.toString());
-}
+    if (userId !== undefined) {
+      params.append('userId', userId.toString());
+    }
 
-    const response = await apiClient.get(`/subplan/extract/materials/day?${params}`);
+    const response = await apiClient.get(`/subplan/extract/materials/day?${params.toString()}`);
     return response.data;
   },
 
@@ -600,11 +600,11 @@ params.append('userId', userId.toString());
     userId?: number,
   ) => {
     const params = new URLSearchParams({ startDate, days: days.toString() });
-    if (userId) {
-params.append('userId', userId.toString());
-}
+    if (userId !== undefined) {
+      params.append('userId', userId.toString());
+    }
 
-    const response = await apiClient.get(`/subplan/extract/materials/weekly?${params}`);
+    const response = await apiClient.get(`/subplan/extract/materials/weekly?${params.toString()}`);
     return response.data;
   },
 

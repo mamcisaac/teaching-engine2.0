@@ -2,27 +2,26 @@
 import type { UseQueryResult, UseMutationResult } from '@tanstack/react-query';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
+import type { SubstitutePlan, SubstitutePlanInput, SubstituteTemplate, SubstituteFilters, SubstituteStats } from './api';
 import { showSuccessToast, handleApiError } from '../../core/utils';
-
 import { substituteApi } from './api';
-import type { SubstitutePlan, SubstitutePlanInput, SubstituteTemplate, SubstituteFilters } from './api';
 
 // Plan query hooks
-export const useSubstitutePlans = (filters?: SubstituteFilters): UseQueryResult<SubstitutePlan[], Error> =>
+export const useSubstitutePlans = (filters?: SubstituteFilters): UseQueryResult<SubstitutePlan[]> =>
   useQuery({
     queryKey: ['substitute-plans', filters],
     queryFn: () => substituteApi.plans.getAll(filters),
     staleTime: 2 * 60 * 1000, // 2 minutes
   });
 
-export const useSubstitutePlan = (id: number): UseQueryResult<SubstitutePlan, Error> =>
+export const useSubstitutePlan = (id: number): UseQueryResult<SubstitutePlan> =>
   useQuery({
     queryKey: ['substitute-plan', id],
     queryFn: () => substituteApi.plans.getById(id),
     enabled: !!id,
   });
 
-export const useSubstitutePlansByDate = (date: string): UseQueryResult<SubstitutePlan[], Error> =>
+export const useSubstitutePlansByDate = (date: string): UseQueryResult<SubstitutePlan[]> =>
   useQuery({
     queryKey: ['substitute-plans-by-date', date],
     queryFn: () => substituteApi.plans.getByDate(date),
@@ -31,21 +30,21 @@ export const useSubstitutePlansByDate = (date: string): UseQueryResult<Substitut
   });
 
 // Template query hooks
-export const useSubstituteTemplates = (includePublic = true): UseQueryResult<SubstituteTemplate[], Error> =>
+export const useSubstituteTemplates = (includePublic = true): UseQueryResult<SubstituteTemplate[]> =>
   useQuery({
     queryKey: ['substitute-templates', includePublic],
     queryFn: () => substituteApi.templates.getAll(includePublic),
     staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
-export const useSubstituteTemplate = (id: number): UseQueryResult<SubstituteTemplate, Error> =>
+export const useSubstituteTemplate = (id: number): UseQueryResult<SubstituteTemplate> =>
   useQuery({
     queryKey: ['substitute-template', id],
     queryFn: () => substituteApi.templates.getById(id),
     enabled: !!id,
   });
 
-export const usePopularTemplates = (limit = 10): UseQueryResult<SubstituteTemplate[], Error> =>
+export const usePopularTemplates = (limit = 10): UseQueryResult<SubstituteTemplate[]> =>
   useQuery({
     queryKey: ['popular-substitute-templates', limit],
     queryFn: () => substituteApi.templates.getPopular(limit),
@@ -53,9 +52,7 @@ export const usePopularTemplates = (limit = 10): UseQueryResult<SubstituteTempla
   });
 
 // Statistics
-import type { SubstituteStats } from './api';
-
-export const useSubstituteStats = (): UseQueryResult<SubstituteStats, Error> =>
+export const useSubstituteStats = (): UseQueryResult<SubstituteStats> =>
   useQuery({
     queryKey: ['substitute-stats'],
     queryFn: substituteApi.getStats,
@@ -63,7 +60,7 @@ export const useSubstituteStats = (): UseQueryResult<SubstituteStats, Error> =>
   });
 
 // Quick actions hooks
-export const useSuggestedActivities = (grade: number, subject?: string, duration?: number): UseQueryResult<any[], Error> =>
+export const useSuggestedActivities = (grade: number, subject?: string, duration?: number): UseQueryResult<any[]> =>
   useQuery({
     queryKey: ['suggested-activities', grade, subject, duration],
     queryFn: () => substituteApi.quickActions.getSuggestedActivities(grade, subject, duration),
@@ -170,7 +167,7 @@ export const useMarkPlanCompleted = (): UseMutationResult<SubstitutePlan, Error,
 };
 
 // Template mutation hooks
-export const useCreateSubstituteTemplate = () => {
+export const useCreateSubstituteTemplate = (): UseMutationResult<SubstituteTemplate, Error, Omit<SubstituteTemplate, 'id' | 'userId' | 'usageCount' | 'rating' | 'createdAt' | 'updatedAt'>> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -186,7 +183,7 @@ export const useCreateSubstituteTemplate = () => {
   });
 };
 
-export const useCreateEmergencyPlan = () => {
+export const useCreateEmergencyPlan = (): UseMutationResult<SubstitutePlan, Error, { grade: number; subject?: string }> => {
   const queryClient = useQueryClient();
 
   return useMutation({

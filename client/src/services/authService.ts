@@ -2,7 +2,26 @@
  * Centralized authentication service for managing tokens and auth state
  */
 
-import { apiClient } from '../api/core/client';
+// Dynamic import to avoid circular dependency
+interface AuthApiModule {
+  authApi: {
+    login: (credentials: any) => Promise<any>;
+    register: (userData: any) => Promise<any>;
+    logout: () => Promise<void>;
+    refreshToken: (refreshToken: string) => Promise<{ accessToken: string }>;
+    checkAuth: () => Promise<any>;
+    forgotPassword: (email: string) => Promise<{ message: string }>;
+    resetPassword: (token: string, newPassword: string) => Promise<{ message: string }>;
+  };
+}
+
+let authApiModule: AuthApiModule | undefined;
+const getAuthApi = async (): Promise<AuthApiModule['authApi']> => {
+  if (!authApiModule) {
+    authApiModule = await import('../api/auth/authApi') as AuthApiModule;
+  }
+  return authApiModule.authApi;
+};
 
 // Import User type from shared types
 import type { User } from '../types';
