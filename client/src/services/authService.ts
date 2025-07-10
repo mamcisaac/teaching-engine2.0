@@ -3,13 +3,31 @@
  */
 
 // Dynamic import to avoid circular dependency
+interface LoginCredentials {
+  email: string;
+  password: string;
+}
+
+interface RegisterData {
+  email: string;
+  password: string;
+  name: string;
+}
+
+interface AuthResponse {
+  user: User;
+  accessToken?: string;
+  token?: string;
+  tokens?: AuthTokens;
+}
+
 interface AuthApiModule {
   authApi: {
-    login: (credentials: any) => Promise<any>;
-    register: (userData: any) => Promise<any>;
+    login: (credentials: LoginCredentials) => Promise<AuthResponse>;
+    register: (userData: RegisterData) => Promise<AuthResponse>;
     logout: () => Promise<void>;
     refreshToken: (refreshToken: string) => Promise<{ accessToken: string }>;
-    checkAuth: () => Promise<any>;
+    checkAuth: () => Promise<User>;
     forgotPassword: (email: string) => Promise<{ message: string }>;
     resetPassword: (token: string, newPassword: string) => Promise<{ message: string }>;
   };
@@ -154,8 +172,8 @@ return false;
    */
   async login(email: string, password: string): Promise<LoginResponse> {
     try {
-      const response = await apiClient.post('/api/auth/login', { email, password });
-      const {data} = response;
+      const authApi = await getAuthApi();
+      const data = await authApi.login({ email, password });
 
       if (data.user) {
         this.setUser(data.user);
@@ -183,13 +201,8 @@ return false;
    */
   async logout(): Promise<void> {
     try {
-      await apiClient.post(
-        '/api/auth/logout',
-        {},
-        {
-          headers: this.getAuthHeaders(),
-        },
-      );
+      const authApi = await getAuthApi();
+      await authApi.logout();
     } catch (error) {
       logger.warn('Logout request failed:', error);
     } finally {

@@ -228,7 +228,7 @@ export const batchedApi = {
 
 // Debounced request helper
 export function createDebouncedRequest<
-  TArgs extends any[],
+  TArgs extends unknown[],
   TReturn,
 >(fn: (...args: TArgs) => Promise<TReturn>, delay = 300): ((...args: TArgs) => Promise<TReturn>) & { cancel: () => void } {
   let timeout: NodeJS.Timeout | null = null;

@@ -1,6 +1,6 @@
 import { schedule } from 'node-cron';
 
-import { logger } from '../logger';
+import logger from '../logger';
 export async function sendReportDeadlineReminders() {
   // DISABLED: ReportDeadline and Notification models have been archived
   // TODO: Implement using CalendarEvent with type REPORT_DEADLINE and ParentMessage for notifications

@@ -9,7 +9,7 @@ import { config } from 'dotenv';
 import type { Request, Response, NextFunction } from 'express';
 import express, { json, urlencoded, static as expressStatic } from 'express';
 
-import { logger } from './logger.js';
+import logger from './logger.js';
 import { authenticate } from './middleware/authenticate';
 import { curriculumCache, staticCache, userCache } from './middleware/cache';
 import { errorContextMiddleware, authErrorMiddleware } from './middleware/errorContext';

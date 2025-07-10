@@ -30,11 +30,8 @@ export function setupInterceptors(apiClient: AxiosInstance): void {
       // Add authorization header if we have a token
       const authService = await getAuthService();
       const authHeaders = authService.getAuthHeaders();
-      if (authHeaders.Authorization) {
-        config.headers = {
-          ...config.headers,
-          ...authHeaders,
-        };
+      if (authHeaders.Authorization && config.headers) {
+        config.headers.Authorization = authHeaders.Authorization;
       }
 
       // Ensure token is valid before making the request

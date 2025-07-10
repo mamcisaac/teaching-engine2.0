@@ -3,7 +3,7 @@ import crypto from 'crypto';
 import type { Request, Response, NextFunction } from 'express';
 import NodeCache from 'node-cache';
 
-import { logger } from '../logger.js';
+import logger from '../logger.js';
 
 import { cacheMetrics } from './metrics.js';
 
@@ -109,10 +109,11 @@ export function createCacheMiddleware(
   const cache = caches[cacheType];
   const { ttl, keyPrefix = '', condition = shouldCache, skipUserSpecific = false } = options;
 
-  return async (req: Request, res: Response, next: NextFunction) => {
+  return async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
     // Check if this request should be cached
     if (!condition(req)) {
-      next(); return;
+      next(); 
+      return;
     }
 
     try {

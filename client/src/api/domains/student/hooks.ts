@@ -179,7 +179,7 @@ export const useSaveParentSummary = (): UseMutationResult<ParentSummary, Error, 
   });
 };
 
-export const useUpdateParentSummary = (): UseMutationResult<ParentSummary, Error, { id: number; content: string }> => {
+export const useUpdateParentSummary = (): UseMutationResult<ParentSummary, Error, { id: number } & Partial<SaveParentSummaryRequest>> => {
   const queryClient = useQueryClient();
 
   return useMutation({

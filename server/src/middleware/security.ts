@@ -118,9 +118,10 @@ export async function authRateLimitMiddleware(_req: Request, _res: Response, nex
  * File upload validation middleware
  */
 export function validateFileUpload(allowedTypes: string[] = ALLOWED_FILE_TYPES) {
-  return (req: Request, res: Response, next: NextFunction) => {
+  return (req: Request, res: Response, next: NextFunction): Response | void => {
     if (!req.file && !req.files) {
-      next(); return;
+      next(); 
+      return;
     }
 
     const files = req.file ? [req.file] : Object.values(req.files || {}).flat();
@@ -235,10 +236,11 @@ function sanitizeObject(obj: Record<string, unknown>): void {
 /**
  * CSRF protection middleware
  */
-export function csrfProtection(req: Request, res: Response, next: NextFunction) {
+export function csrfProtection(req: Request, res: Response, next: NextFunction): Response | void {
   // Skip CSRF for GET requests and API endpoints that use JWT
   if (req.method === 'GET' || req.path.startsWith('/api/')) {
-    next(); return;
+    next(); 
+    return;
   }
 
   const token = req.headers['x-csrf-token'] || req.body?._csrf;

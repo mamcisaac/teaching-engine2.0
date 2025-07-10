@@ -139,20 +139,22 @@ export const useDuplicateSubstitutePlan = (): UseMutationResult<SubstitutePlan, 
   });
 };
 
-export const useMarkPlanCompleted = (): UseMutationResult<SubstitutePlan, Error, { id: number; feedback?: string }> => {
+interface SubstituteFeedback {
+  rating?: number;
+  comments?: string;
+  issues?: string;
+  suggestions?: string;
+  completedActivities?: string[];
+  substituteNotes?: string;
+}
+
+export const useMarkPlanCompleted = (): UseMutationResult<SubstitutePlan, Error, { id: number; feedback: SubstituteFeedback }> => {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: ({ id, feedback }: {
       id: number;
-      feedback: {
-        rating?: number;
-        comments?: string;
-        issues?: string;
-        suggestions?: string;
-        completedActivities?: string[];
-        substituteNotes?: string;
-      };
+      feedback: SubstituteFeedback;
     }) => substituteApi.plans.markCompleted(id, feedback),
     onSuccess: (data) => {
       queryClient.setQueryData(['substitute-plan', data.id], data);

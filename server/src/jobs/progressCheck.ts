@@ -1,6 +1,6 @@
 import { schedule } from 'node-cron';
 
-import { logger } from '../logger';
+import logger from '../logger';
 import { prisma } from '../prisma';
 /**
  * Query unit plans that are due within the next week and notify the teacher
