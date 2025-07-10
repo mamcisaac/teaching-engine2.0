@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useRef, useState, useCallback } from 'react';
 
 import logger from '../utils/logger';
+import { safeJsonParse } from '../utils/typeGuards';
 export interface KeyboardShortcut {
   id: string;
   key: string;
@@ -86,7 +87,7 @@ export const KeyboardShortcutsProvider: React.FC<{ children: React.ReactNode }> 
     const savedPrefs = localStorage.getItem('keyboard-shortcuts-preferences');
     if (savedPrefs) {
       try {
-        const parsed = JSON.parse(savedPrefs);
+        const parsed = safeJsonParse(savedPrefs, {});
         setPreferences({ ...defaultPreferences, ...parsed });
         setIsEnabled(parsed.enabled ?? true);
       } catch (e) {

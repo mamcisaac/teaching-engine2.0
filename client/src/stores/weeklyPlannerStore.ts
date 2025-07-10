@@ -403,7 +403,7 @@ return;
 
           try {
             const response = await api.get('/api/planner/state');
-            const serverState = response.data;
+            const serverState = response.data as WeeklyPlannerState;
 
             set((state) => {
               Object.assign(state, {

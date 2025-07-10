@@ -134,7 +134,7 @@ export class ErrorReportingService {
 
     if (this.mockMode) {
       logger.info(
-        `[MOCK] Would capture error: ${error instanceof Error ? error.message : String(error)}`,
+        `[MOCK] Would capture error: ${error instanceof Error ? (error instanceof Error ? error.message : String(error)) : String(error)}`,
       );
       return;
     }
@@ -274,7 +274,7 @@ export class ErrorReportingService {
       };
 
       // Check for specific error patterns
-      const message = error.message.toLowerCase();
+      const message = (error instanceof Error ? error.message : String(error)).toLowerCase();
       if (message.includes('network') || message.includes('fetch') || message.includes('timeout')) {
         category.category = 'network';
         category.severity = 'warning';
@@ -325,7 +325,7 @@ export class ErrorReportingService {
 
   private sanitizeEvent(event: Sentry.Event): Sentry.Event {
     // Deep clone to avoid modifying original
-    const sanitized = JSON.parse(JSON.stringify(event));
+    const sanitized = safeJsonParse(JSON.stringify(event, {}));
 
     // Sanitize message
     if (sanitized.message) {

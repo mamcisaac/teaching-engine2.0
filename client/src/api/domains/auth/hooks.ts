@@ -43,7 +43,7 @@ export const useLogin = (): UseMutationResult<
       void queryClient.invalidateQueries({ queryKey: ['auth', 'currentUser'] });
 
       showSuccessToast('Logged in successfully');
-      void navigate('/dashboard');
+      navigate('/dashboard');
     },
     onError: (error) => handleApiError(error, 'Login failed'),
   });
@@ -74,7 +74,7 @@ export const useRegister = (): UseMutationResult<
       void queryClient.invalidateQueries({ queryKey: ['auth', 'currentUser'] });
 
       showSuccessToast('Registration successful');
-      void navigate('/onboarding');
+      navigate('/onboarding');
     },
     onError: (error) => handleApiError(error, 'Registration failed'),
   });
@@ -94,13 +94,13 @@ export const useLogout = (): UseMutationResult<void, Error, void> => {
       queryClient.clear();
 
       showSuccessToast('Logged out successfully');
-      void navigate('/login');
+      navigate('/login');
     },
     onError: (_error) => {
       // Even if logout fails on server, clear local state
       authService.clearTokens();
       queryClient.clear();
-      void navigate('/login');
+      navigate('/login');
     },
   });
 };
@@ -152,7 +152,7 @@ export const useResetPassword = (): UseMutationResult<
       authApi.resetPassword(token, newPassword),
     onSuccess: () => {
       showSuccessToast('Password reset successfully. Please login with your new password.');
-      void navigate('/login');
+      navigate('/login');
     },
     onError: (error) => handleApiError(error, 'Failed to reset password'),
   });

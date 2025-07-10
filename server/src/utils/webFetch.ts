@@ -40,7 +40,7 @@ export class WebFetch {
         validateStatus: (status) => status < 400
       });
       
-      const html = response.data;
+      const html = response.data as Record<string, unknown>;
       
       // Cache the result
       this.cache.set(cacheKey, {

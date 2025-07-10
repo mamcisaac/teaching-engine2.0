@@ -217,7 +217,7 @@ export class CurriculumImportOrchestrator extends BaseService {
         return result;
       } catch (error) {
         this.logger.error('Import failed');
-        result.message = `Import failed: ${error.message}`;
+        result.message = `Import failed: ${(error instanceof Error ? error.message : String(error))}`;
         result.stats.errors++;
         return result;
       }
@@ -388,7 +388,7 @@ export class CurriculumImportOrchestrator extends BaseService {
     return this.exportService.export(options);
   }
 
-  public async searchExpectations(options: any): Promise<any> {
+  public async searchExpectations(options: any): Promise<unknown> {
     return this.searchService.searchExpectations(options);
   }
 
@@ -558,7 +558,7 @@ export class CurriculumImportService {
     return curriculumImportOrchestrator.export(options);
   }
 
-  static async searchExpectations(query: string, filters?: unknown): Promise<any[]> {
+  static async searchExpectations(query: string, filters?: unknown): Promise<unknown[]> {
     return curriculumImportOrchestrator.searchExpectations({ query, filters });
   }
 

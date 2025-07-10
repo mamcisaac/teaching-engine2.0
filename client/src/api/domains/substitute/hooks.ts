@@ -61,7 +61,7 @@ export const useSubstituteStats = (): UseQueryResult<SubstituteStats> =>
   });
 
 // Quick actions hooks
-export const useSuggestedActivities = (grade: number, subject?: string, duration?: number): UseQueryResult<any[]> =>
+export const useSuggestedActivities = (grade: number, subject?: string, duration?: number): UseQueryResult<unknown[]> =>
   useQuery({
     queryKey: ['suggested-activities', grade, subject, duration],
     queryFn: () => substituteApi.quickActions.getSuggestedActivities(grade, subject, duration),

@@ -296,7 +296,7 @@ orderBy.createdAt = order;
   }
 
   async create(data: DaybookEntryCreateData, userId: number) {
-    const { expectations, ...daybookData } = data;
+    const { expectations, ...daybookData } = data as Record<string, unknown>;
 
     return prisma.daybookEntry.create({
       data: {
@@ -326,7 +326,7 @@ orderBy.createdAt = order;
       throw new Error('Daybook entry not found');
     }
 
-    const { expectations, ...updateData } = data;
+    const { expectations, ...updateData } = data as Record<string, unknown>;
 
     return prisma.daybookEntry.update({
       where: { id },
@@ -476,7 +476,7 @@ export class DaybookEntriesRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId;
+      const {userId} = req;
       if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
@@ -520,7 +520,7 @@ export class DaybookEntriesRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId;
+      const {userId} = req;
       if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;

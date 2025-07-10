@@ -253,7 +253,7 @@ return;
       });
 
       setTimeout(() => {
-        void navigate('/curriculum');
+        navigate('/curriculum');
       }, 1500);
     } catch (_error) {
       toast({
@@ -376,7 +376,9 @@ return;
                 <Button
                   className="w-full"
                   disabled={!selectedPreset || isUploading}
-                  onClick={() => { void handlePresetSelection(selectedPreset)}
+                  onClick={() => {
+ void handlePresetSelection(selectedPreset); 
+}}
                 >
                   {isUploading ? 'Loading...' : 'Load Curriculum'}
                 </Button>

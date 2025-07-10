@@ -35,7 +35,7 @@ export function useAutoSave<T>({
       setHasUnsavedChanges(true);
     }
     
-    lastDataRef.current = data;
+    lastDataRef.current = data as Record<string, unknown>;
   }, [data, lastSaved]);
 
   // Auto-save logic

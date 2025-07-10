@@ -89,7 +89,7 @@ export const formatErrorResponse = (
 
   if (error instanceof AppError) {
     code = error.code || 'APP_ERROR';
-    message = error.message;
+    message = (error instanceof Error ? error.message : String(error));
     details = error.details;
   } else if (error instanceof ZodError) {
     code = 'VALIDATION_ERROR';
@@ -100,7 +100,7 @@ export const formatErrorResponse = (
       code: err.code,
     }));
   } else if (error instanceof Error) {
-    message = error.message;
+    message = (error instanceof Error ? error.message : String(error));
   }
 
   return {

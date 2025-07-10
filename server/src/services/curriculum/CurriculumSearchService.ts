@@ -23,7 +23,7 @@ export interface SearchOptions {
 }
 
 export interface SearchResult {
-  expectations: any[];
+  expectations: unknown[];
   total: number;
   hasMore: boolean;
 }
@@ -127,7 +127,7 @@ export class CurriculumSearchService extends BaseService {
   /**
    * Search by keywords
    */
-  public async searchByKeywords(keywords: string[], filters?: SearchFilters): Promise<any[]> {
+  public async searchByKeywords(keywords: string[], filters?: SearchFilters): Promise<unknown[]> {
     return this.executeWithMetrics(
       async () => {
         const where: any = {};
@@ -176,7 +176,7 @@ export class CurriculumSearchService extends BaseService {
   /**
    * Search by code pattern
    */
-  public async searchByCodePattern(pattern: string, filters?: SearchFilters): Promise<any[]> {
+  public async searchByCodePattern(pattern: string, filters?: SearchFilters): Promise<unknown[]> {
     return this.executeWithMetrics(
       async () => {
         const where: any = {
@@ -224,7 +224,7 @@ export class CurriculumSearchService extends BaseService {
   /**
    * Get similar expectations
    */
-  public async getSimilarExpectations(expectationId: string, limit = 10): Promise<any[]> {
+  public async getSimilarExpectations(expectationId: string, limit = 10): Promise<unknown[]> {
     return this.executeWithMetrics(
       async () => {
         // Get the reference expectation

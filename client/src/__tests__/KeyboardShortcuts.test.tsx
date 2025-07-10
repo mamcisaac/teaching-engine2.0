@@ -1,3 +1,4 @@
+import { safeJsonParse } from "../utils/typeGuards";
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
@@ -47,10 +48,10 @@ const PreferencesTestComponent: React.FC = () => {
     <div>
       <div data-testid="enabled">{preferences.enabled ? 'Enabled' : 'Disabled'}</div>
       <div data-testid="show-hints">{preferences.showHints ? 'Show hints' : 'Hide hints'}</div>
-      <button onClick={() => { void updatePreferences({ enabled: !preferences.enabled })}>
+      <button onClick={() => { void updatePreferences({ enabled: !preferences.enabled }); }}>
         Toggle Enabled
       </button>
-      <button onClick={() => { void updatePreferences({ showHints: !preferences.showHints })}>
+      <button onClick={() => { void updatePreferences({ showHints: !preferences.showHints }); }}>
         Toggle Hints
       </button>
     </div>
@@ -147,7 +148,7 @@ describe('KeyboardShortcuts', () => {
       });
 
       // Check localStorage
-      const saved = JSON.parse(localStorage.getItem('keyboard-shortcuts-preferences') ?? '{}');
+      const saved = safeJsonParse(localStorage.getItem('keyboard-shortcuts-preferences') ?? '{}', {}) as { enabled?: boolean };
       expect(saved.enabled).toBe(false);
     });
 

@@ -175,7 +175,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // Extract error message
   const getErrorMessage = (): string | null => {
     if (loginMutation.error) {
-      return loginMutation.error.message;
+      return loginMutation.error instanceof Error ? loginMutation.error.message : String(loginMutation.error);
     }
     if (logoutMutation.error) {
       return 'Logout failed';

@@ -220,7 +220,7 @@ where.endDate = { lte: new Date(String(endDate)) };
       throw new Error('Long range plan not found or access denied');
     }
 
-    const { expectations, resources } = data;
+    const { expectations, resources } = data as Record<string, unknown>;
 
     // Create unit plan data that matches Prisma schema
     const createData = {
@@ -304,7 +304,7 @@ where.endDate = { lte: new Date(String(endDate)) };
       throw new Error('Unit plan not found or access denied');
     }
 
-    const { expectationIds, ...updateDataBase } = data;
+    const { expectationIds, ...updateDataBase } = data as Record<string, unknown>;
 
     // Build update data without longRangePlanId and with proper date conversion
     const updateData: Record<string, unknown> = {};
@@ -529,7 +529,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId;
+      const {userId} = req;
       if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
@@ -575,7 +575,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId;
+      const {userId} = req;
       if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
@@ -603,7 +603,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId;
+      const {userId} = req;
       if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
@@ -630,7 +630,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId;
+      const {userId} = req;
       if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;

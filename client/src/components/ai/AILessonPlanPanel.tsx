@@ -1,3 +1,4 @@
+import { getErrorMessage } from "../../utils/typeGuards";
 import { 
   Sparkles, 
   RefreshCw, 
@@ -296,7 +297,7 @@ export function AILessonPlanPanel({
       logger.error('Error generating three-part lesson:', _error);
       toast({
         title: 'Generation Failed',
-        description: (_error instanceof Error ? _error.message : String(_error)) || 'Failed to generate lesson plan.',
+        description: getErrorMessage(_error) || 'Failed to generate lesson plan.',
         variant: 'destructive',
       });
     } finally {
@@ -361,7 +362,7 @@ export function AILessonPlanPanel({
       logger.error('Error generating suggestions:', _error);
       toast({
         title: 'Generation Failed',
-        description: (_error instanceof Error ? _error.message : String(_error)) || 'Failed to generate suggestions.',
+        description: getErrorMessage(_error) || 'Failed to generate suggestions.',
         variant: 'destructive',
       });
     } finally {
@@ -678,7 +679,9 @@ export function AILessonPlanPanel({
                 <Button 
                   disabled={isGenerating} 
                   variant="outline"
-                  onClick={() => { void generateSuggestions('materials')}
+                  onClick={() => {
+ void generateSuggestions('materials'); 
+}}
                 >
                   <BookOpen className="h-4 w-4 mr-2" />
                   Materials
@@ -686,7 +689,9 @@ export function AILessonPlanPanel({
                 <Button 
                   disabled={isGenerating} 
                   variant="outline"
-                  onClick={() => { void generateSuggestions('assessments')}
+                  onClick={() => {
+ void generateSuggestions('assessments'); 
+}}
                 >
                   <Target className="h-4 w-4 mr-2" />
                   Assessments

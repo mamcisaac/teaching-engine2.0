@@ -14,7 +14,7 @@ interface LogEntry {
   message: string;
   timestamp: string;
   data?: any;
-  context?: Record<string, any>;
+  context?: Record<string, unknown>;
 }
 
 class ClientLogger {

@@ -79,7 +79,7 @@ export function isValidExternalURL(
   } catch (_error) {
     return {
       valid: false,
-      error: `Invalid URL format: ${_error instanceof Error ? _error.message : 'Unknown error'}`,
+      error: `Invalid URL format: ${_error instanceof Error ? _(error instanceof Error ? error.message : String(error)) : 'Unknown error'}`,
     };
   }
 }

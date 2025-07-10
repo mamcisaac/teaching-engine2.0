@@ -402,7 +402,7 @@ export class TemplatesRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId;
+      const {userId} = req;
       if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
@@ -437,7 +437,7 @@ export class TemplatesRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId;
+      const {userId} = req;
       if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;

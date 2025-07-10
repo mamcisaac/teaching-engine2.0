@@ -191,7 +191,7 @@ prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`
         throw new Error('No JSON found in response');
       }
 
-      const parsed = JSON.parse(jsonMatch[0]);
+      const parsed = safeJsonParse(jsonMatch[0], {});
 
       // Validate required fields
       if (!parsed.title || !parsed.description || !parsed.detailedInstructions) {

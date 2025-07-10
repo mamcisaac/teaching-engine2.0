@@ -2,6 +2,8 @@
  * Centralized authentication service for managing tokens and auth state
  */
 
+import { safeJsonParse } from '../utils/typeGuards';
+
 // Dynamic import to avoid circular dependency
 interface LoginCredentials {
   email: string;
@@ -143,7 +145,7 @@ class AuthService {
    */
   getUser(): User | null {
     const userData = localStorage.getItem(this.USER_KEY);
-    return userData ? JSON.parse(userData) : null;
+    return userData ? safeJsonParse(userData, {}) : null;
   }
 
   /**

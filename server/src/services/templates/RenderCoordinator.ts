@@ -402,7 +402,7 @@ export class RenderCoordinator extends BaseService {
       }
 
     } catch (_error) {
-      issues.push(`Validation error: ${_error instanceof Error ? _error.message : _error}`);
+      issues.push(`Validation error: ${_error instanceof Error ? _(error instanceof Error ? error.message : String(error)) : _error}`);
     }
 
     return {
@@ -527,7 +527,7 @@ export class RenderCoordinator extends BaseService {
           template.sampleData || {}
         );
       } catch (_error) {
-        this.logger.error(`Failed to warm up template cache for ${template.templateType}/${template.templateId || 'default'}: ${_error instanceof Error ? _error.message : _error}`);
+        this.logger.error(`Failed to warm up template cache for ${template.templateType}/${template.templateId || 'default'}: ${_error instanceof Error ? _(error instanceof Error ? error.message : String(error)) : _error}`);
       }
     }
 

@@ -271,7 +271,7 @@ export function invalidateCache(
       cb?: () => void,
     ) {
       invalidateCacheEntries();
-      return originalEnd.call(this, chunk, encoding as BufferEncoding, cb);
+      return originalEnd.call(this, chunk, encoding!, cb);
     } as Response['end'];
 
     next();

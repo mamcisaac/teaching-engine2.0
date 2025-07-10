@@ -1,5 +1,6 @@
 import type { Response } from 'express';
-import express, { Router } from 'express';
+import type express from 'express';
+import { Router } from 'express';
 // eslint-disable-next-line import/no-named-as-default
 import rateLimit from 'express-rate-limit';
 import DOMPurify from 'isomorphic-dompurify';
@@ -168,11 +169,11 @@ router.get('/state', async (req: express.Request, res: express.Response) => {
     // Parse JSON fields for response
     const responseState = {
       ...plannerState,
-      workingHours: JSON.parse(plannerState.workingHours),
-      draftChanges: plannerState.draftChanges ? JSON.parse(plannerState.draftChanges) : null,
-      undoHistory: JSON.parse(plannerState.undoHistory),
-      redoHistory: JSON.parse(plannerState.redoHistory),
-      offlineData: plannerState.offlineData ? JSON.parse(plannerState.offlineData) : null,
+      workingHours: safeJsonParse(plannerState.workingHours, {}),
+      draftChanges: plannerState.draftChanges ? safeJsonParse(plannerState.draftChanges, {}) : null,
+      undoHistory: safeJsonParse(plannerState.undoHistory, {}),
+      redoHistory: safeJsonParse(plannerState.redoHistory, {}),
+      offlineData: plannerState.offlineData ? safeJsonParse(plannerState.offlineData, {}) : null,
     };
 
     res.json(responseState);
@@ -272,11 +273,11 @@ router.put(
       // Parse JSON fields for response
       const responseState = {
         ...plannerState,
-        workingHours: JSON.parse(plannerState.workingHours),
-        draftChanges: plannerState.draftChanges ? JSON.parse(plannerState.draftChanges) : null,
-        undoHistory: JSON.parse(plannerState.undoHistory),
-        redoHistory: JSON.parse(plannerState.redoHistory),
-        offlineData: plannerState.offlineData ? JSON.parse(plannerState.offlineData) : null,
+        workingHours: safeJsonParse(plannerState.workingHours, {}),
+        draftChanges: plannerState.draftChanges ? safeJsonParse(plannerState.draftChanges, {}) : null,
+        undoHistory: safeJsonParse(plannerState.undoHistory, {}),
+        redoHistory: safeJsonParse(plannerState.redoHistory, {}),
+        offlineData: plannerState.offlineData ? safeJsonParse(plannerState.offlineData, {}) : null,
       };
 
       res.json(responseState);
@@ -458,11 +459,11 @@ router.post(
       // Parse JSON fields for response
       const responseState = {
         ...plannerState,
-        workingHours: JSON.parse(plannerState.workingHours),
-        draftChanges: plannerState.draftChanges ? JSON.parse(plannerState.draftChanges) : null,
-        undoHistory: JSON.parse(plannerState.undoHistory),
-        redoHistory: JSON.parse(plannerState.redoHistory),
-        offlineData: plannerState.offlineData ? JSON.parse(plannerState.offlineData) : null,
+        workingHours: safeJsonParse(plannerState.workingHours, {}),
+        draftChanges: plannerState.draftChanges ? safeJsonParse(plannerState.draftChanges, {}) : null,
+        undoHistory: safeJsonParse(plannerState.undoHistory, {}),
+        redoHistory: safeJsonParse(plannerState.redoHistory, {}),
+        offlineData: plannerState.offlineData ? safeJsonParse(plannerState.offlineData, {}) : null,
       };
 
       res.json(responseState);

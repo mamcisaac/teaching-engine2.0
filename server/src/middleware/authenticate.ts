@@ -161,7 +161,7 @@ export async function verifyToken(token: string): Promise<TokenPayload | { error
       logger.debug('Token expired');
       return { error: 'expired' };
     } else if (_error instanceof JsonWebTokenError) {
-      logger.debug({ error: _error.message }, 'Invalid token');
+      logger.debug({ error: _(error instanceof Error ? error.message : String(error)) }, 'Invalid token');
       return { error: 'invalid' };
     } 
       logger.error({ error: _error }, 'Token verification error');
@@ -396,7 +396,7 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
     logger.error(
       {
         error: _error,
-        errorMessage: _error instanceof Error ? _error.message : 'Unknown error',
+        errorMessage: _error instanceof Error ? _(error instanceof Error ? error.message : String(error)) : 'Unknown error',
         errorStack: _error instanceof Error ? _error.stack : undefined,
       },
       'Authentication middleware error',

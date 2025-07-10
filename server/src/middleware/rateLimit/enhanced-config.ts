@@ -153,7 +153,7 @@ export async function createEnhancedRateLimiter(
     : new RateLimiterMemory(options as IRateLimiterOptions);
 
   // Return Express middleware
-  return async (req: Request, res: any, next: any) => {
+  return async (req: Request, res: Response, next: NextFunction) => {
     try {
       // Get user tier and corresponding limit
       const tier = getUserTier(req);

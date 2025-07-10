@@ -86,9 +86,9 @@ export default function TemplateApplyModal({
       
       // Navigate to the created plan
       if (template.type === 'UNIT_PLAN') {
-        void navigate(`/planner/units/${_data.id}`);
+        navigate(`/planner/units/${_data.id}`);
       } else {
-        void navigate(`/planner/lessons/${_data.id}`);
+        navigate(`/planner/lessons/${_data.id}`);
       }
       
       onClose();

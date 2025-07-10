@@ -98,7 +98,7 @@ export async function retryAssertion(
       shouldRetry: (error, attempt) => {
         // Only retry assertion errors
         const isAssertionError =
-          error.name === 'AssertionError' || error.message.includes('expected');
+          error.name === 'AssertionError' || (error instanceof Error ? error.message : String(error)).includes('expected');
 
         if (options.shouldRetry) {
           return isAssertionError && options.shouldRetry(error, attempt);
@@ -214,11 +214,11 @@ export function networkRetryOptions(baseOptions: RetryOptions = {}): RetryOption
     shouldRetry: (error, attempt) => {
       // Retry on network errors
       const isNetworkError =
-        error.message.includes('ECONNREFUSED') ||
-        error.message.includes('ETIMEDOUT') ||
-        error.message.includes('ENOTFOUND') ||
-        error.message.includes('network') ||
-        error.message.includes('fetch');
+        (error instanceof Error ? error.message : String(error)).includes('ECONNREFUSED') ||
+        (error instanceof Error ? error.message : String(error)).includes('ETIMEDOUT') ||
+        (error instanceof Error ? error.message : String(error)).includes('ENOTFOUND') ||
+        (error instanceof Error ? error.message : String(error)).includes('network') ||
+        (error instanceof Error ? error.message : String(error)).includes('fetch');
 
       if (baseOptions.shouldRetry) {
         return isNetworkError && baseOptions.shouldRetry(error, attempt);
@@ -244,10 +244,10 @@ export function databaseRetryOptions(baseOptions: RetryOptions = {}): RetryOptio
     shouldRetry: (error, attempt) => {
       // Retry on database errors
       const isDatabaseError =
-        error.message.includes('SQLITE_BUSY') ||
-        error.message.includes('deadlock') ||
-        error.message.includes('connection') ||
-        error.message.includes('timeout');
+        (error instanceof Error ? error.message : String(error)).includes('SQLITE_BUSY') ||
+        (error instanceof Error ? error.message : String(error)).includes('deadlock') ||
+        (error instanceof Error ? error.message : String(error)).includes('connection') ||
+        (error instanceof Error ? error.message : String(error)).includes('timeout');
 
       if (baseOptions.shouldRetry) {
         return isDatabaseError && baseOptions.shouldRetry(error, attempt);

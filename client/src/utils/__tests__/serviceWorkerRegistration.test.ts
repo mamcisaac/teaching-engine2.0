@@ -286,7 +286,7 @@ describe('serviceWorkerRegistration', () => {
       
       await unregister();
       
-      expect(logger.error).toHaveBeenCalledWith(error.message);
+      expect(logger.error).toHaveBeenCalledWith((error instanceof Error ? error.message : String(error)));
     });
 
     it('should do nothing if service worker not supported', async () => {

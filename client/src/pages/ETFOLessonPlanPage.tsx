@@ -206,7 +206,7 @@ export default function ETFOLessonPlanPage() {
     await deleteLesson.mutateAsync(id);
     setDeleteConfirmId(null);
     if (lessonId === id) {
-      void navigate(`/planner/units/${unitId}/lessons`);
+      navigate(`/planner/units/${unitId}/lessons`);
     }
   };
 

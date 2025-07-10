@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { apiClient } from '../api/core/client';
 import { useLanguage } from '../contexts/LanguageContext';
 import logger from '../utils/logger';
+import { safeJsonParse } from '../utils/typeGuards';
 
 import LanguageSwitcher from './LanguageSwitcher';
 import PreferenceWizard from './onboarding/PreferenceWizard';
@@ -43,7 +44,7 @@ export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingF
   const [completedSteps, setCompletedSteps] = useState<string[]>(() => {
     try {
       const saved = localStorage.getItem('onboarding-completed-steps');
-      return saved ? JSON.parse(saved) : [];
+      return saved ? safeJsonParse(saved, {}) : [];
     } catch {
       return [];
     }
@@ -730,7 +731,7 @@ return;
         onClick: () => {
           markStepCompleted('features');
           completeOnboarding();
-          void navigate('/planner/dashboard');
+          navigate('/planner/dashboard');
         },
       },
     },

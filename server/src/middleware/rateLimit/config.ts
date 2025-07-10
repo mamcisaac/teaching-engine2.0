@@ -160,7 +160,7 @@ export const developmentOverrides: Partial<RateLimitConfig> = isDevelopment
 /**
  * Development bypass for testing
  */
-export const shouldBypassRateLimit = (_req: any): boolean => {
+export const shouldBypassRateLimit = (_req: Request): boolean => {
   // SINGLE USER APP - Always bypass rate limits
   return true;
 

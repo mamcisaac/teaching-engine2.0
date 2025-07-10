@@ -135,7 +135,7 @@ export default function TemplatesPage() {
         isPublic: false,
         content: {},
       });
-      void navigate(`/templates/${newTemplate.id}`);
+      navigate(`/templates/${newTemplate.id}`);
     } catch (_error) {
       logger.error('Failed to create template:', _error);
     }
@@ -147,7 +147,7 @@ export default function TemplatesPage() {
         id: template.id,
         title: `${template.title} (Copy)`,
       });
-      void navigate(`/templates/${duplicated.id}`);
+      navigate(`/templates/${duplicated.id}`);
     } catch (_error) {
       logger.error('Failed to duplicate template:', _error);
     }
@@ -163,7 +163,7 @@ return;
       setIsDeleteModalOpen(false);
       setSelectedTemplate(null);
       if (templateId === selectedTemplate.id) {
-        void navigate('/templates');
+        navigate('/templates');
       }
     } catch (_error) {
       logger.error('Failed to delete template:', _error);
@@ -177,12 +177,12 @@ return;
       // Navigate to appropriate planning page based on template type
       if (template.type === 'UNIT_PLAN') {
         // Pass template data to unit plan creation
-        void navigate('/planner/units', {
+        navigate('/planner/units', {
           state: { templateData: applied.appliedContent },
         });
       } else {
         // Pass template data to lesson plan creation
-        void navigate('/planner/lessons', {
+        navigate('/planner/lessons', {
           state: { templateData: applied.appliedContent },
         });
       }
@@ -296,13 +296,17 @@ return;
             className="flex-1"
             size="sm"
             variant="outline"
-            onClick={() => { void handleApplyTemplate(template)}
+            onClick={() => {
+ void handleApplyTemplate(template); 
+}}
           >
             <Plus className="h-4 w-4 mr-1" />
             Use
           </Button>
 
-          <Button size="sm" variant="ghost" onClick={() => { void handleDuplicateTemplate(template)}>
+          <Button size="sm" variant="ghost" onClick={() => {
+ void handleDuplicateTemplate(template); 
+}}>
             <Copy className="h-4 w-4" />
           </Button>
 
@@ -724,13 +728,17 @@ return;
                 <div className="flex gap-2">
                   <Button
                     className="bg-indigo-600 hover:bg-indigo-700 text-white"
-                    onClick={() => { void handleApplyTemplate(selectedTemplate)}
+                    onClick={() => {
+ void handleApplyTemplate(selectedTemplate); 
+}}
                   >
                     Use Template
                   </Button>
                   <Button
                     variant="outline"
-                    onClick={() => { void handleDuplicateTemplate(selectedTemplate)}
+                    onClick={() => {
+ void handleDuplicateTemplate(selectedTemplate); 
+}}
                   >
                     Duplicate
                   </Button>

@@ -53,7 +53,7 @@ export class AIDraftService extends BaseService {
     return draft;
   }
 
-  async generateUnitPlanDraft(request: AIServiceRequestData): Promise<any> {
+  async generateUnitPlanDraft(request: AIServiceRequestData): Promise<unknown> {
     this.logger.info('Generating unit plan draft');
     
     return {
@@ -64,7 +64,7 @@ export class AIDraftService extends BaseService {
     };
   }
 
-  async generateLessonPlanDraft(request: AIServiceRequestData): Promise<any> {
+  async generateLessonPlanDraft(request: AIServiceRequestData): Promise<unknown> {
     this.logger.info('Generating lesson plan draft');
     
     return {
@@ -76,7 +76,7 @@ export class AIDraftService extends BaseService {
     };
   }
 
-  async generateDaybookDraft(request: AIServiceRequestData): Promise<any> {
+  async generateDaybookDraft(request: AIServiceRequestData): Promise<unknown> {
     this.logger.info('Generating daybook draft');
     
     return {

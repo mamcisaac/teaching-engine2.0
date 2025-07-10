@@ -63,7 +63,7 @@ class AuditLogger {
 
       // Intercept response
       res.send = function (data: unknown) {
-        // _responseData = data;
+        // _responseData = data as Record<string, unknown>;
         if (res.statusCode >= 400) {
           success = false;
           const errorData = data as { error?: string; message?: string };
@@ -73,7 +73,7 @@ class AuditLogger {
       };
 
       res.json = function (data: unknown) {
-        // _responseData = data;
+        // _responseData = data as Record<string, unknown>;
         if (res.statusCode >= 400) {
           success = false;
           const errorData = data as { error?: string; message?: string };

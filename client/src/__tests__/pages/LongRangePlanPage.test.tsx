@@ -78,7 +78,7 @@ vi.mock('../../components/planning/AISuggestionPanel', () => ({
     <div data-testid="ai-suggestion-panel">
       <h3>{title}</h3>
       <button onClick={onGenerate}>Generate</button>
-      <button onClick={() => { void onAcceptSuggestion('Test suggestion')}>Accept Suggestion</button>
+      <button onClick={() => { void onAcceptSuggestion('Test suggestion'); }}>Accept Suggestion</button>
       <button onClick={onAcceptAll}>Accept All</button>
     </div>
   ),

@@ -111,7 +111,7 @@ return;
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  res.end = function (this: Response, ...args: any[]): Response {
+  res.end = function (this: Response, ...args: unknown[]): Response {
     logResponse();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return originalEnd.apply(this, args as any);
@@ -127,10 +127,10 @@ return;
     extendedReq.logger.error(
       {
         responseError: true,
-        error: error.message,
+        error: (error instanceof Error ? error.message : String(error)),
         stack: error.stack,
       },
-      `Response error: ${error.message}`,
+      `Response error: ${(error instanceof Error ? error.message : String(error))}`,
     );
   });
 
@@ -241,7 +241,7 @@ export function errorLoggingMiddleware(
       unhandledError: true,
       error: {
         name: error.name,
-        message: error.message,
+        message: (error instanceof Error ? error.message : String(error)),
         stack: error.stack,
       },
       request: {
@@ -251,7 +251,7 @@ export function errorLoggingMiddleware(
         body: sanitizeRequestBody(extendedReq.body),
       },
     },
-    `Unhandled error: ${error.message}`,
+    `Unhandled error: ${(error instanceof Error ? error.message : String(error))}`,
   );
 
   next(error);

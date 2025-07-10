@@ -30,7 +30,7 @@ describe('ClientError', () => {
     const details = { field: 'email', value: 'invalid' };
     const error = new ClientError('Invalid input', 'VALIDATION_ERROR', details);
 
-    expect(error.message).toBe('Invalid input');
+    expect((error instanceof Error ? error.message : String(error))).toBe('Invalid input');
     expect(error.code).toBe('VALIDATION_ERROR');
     expect(error.details).toBe(details);
     expect(error.name).toBe('ClientError');
@@ -40,7 +40,7 @@ describe('ClientError', () => {
   it('should create error without details', () => {
     const error = new ClientError('Something went wrong', 'UNKNOWN_ERROR');
 
-    expect(error.message).toBe('Something went wrong');
+    expect((error instanceof Error ? error.message : String(error))).toBe('Something went wrong');
     expect(error.code).toBe('UNKNOWN_ERROR');
     expect(error.details).toBeUndefined();
   });

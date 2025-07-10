@@ -80,10 +80,10 @@ export function handleApiError(error: unknown, customMessage?: string): void {
     }
   } else if (error instanceof Error) {
     // Handle network errors
-    if (error.message === 'Network Error') {
+    if ((error instanceof Error ? error.message : String(error)) === 'Network Error') {
       toast.error('Network error. Please check your internet connection.');
     } else {
-      toast.error(customMessage || error.message);
+      toast.error(customMessage || (error instanceof Error ? error.message : String(error)));
     }
   } else {
     toast.error(customMessage || 'An unexpected error occurred.');

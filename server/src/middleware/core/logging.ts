@@ -84,7 +84,7 @@ export const requestLoggingMiddleware = (
   // Capture response
   const originalSend = res.send;
   res.send = function (data: unknown) {
-    res.locals.body = data;
+    res.locals.body = data as Record<string, unknown>;
     return originalSend.call(this, data);
   };
 
@@ -237,7 +237,7 @@ export const performanceLoggingMiddleware = (
       .filter((s) => s.end !== undefined)
       .map((s) => ({
         name: s.name,
-        duration: (s.end as number) - s.start,
+        duration: (s.end!) - s.start,
       }));
 
     if (measurements.length > 0 || totalDuration > 1000) {

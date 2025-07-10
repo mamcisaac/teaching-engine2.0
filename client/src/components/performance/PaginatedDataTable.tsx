@@ -3,7 +3,7 @@ import React, { useState, useMemo, useCallback } from 'react';
 
 // Simple debounce implementation
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const debounce = <T extends (...args: any[]) => any>(
+const debounce = <T extends (...args: unknown[]) => any>(
   func: T,
   wait: number,
 ): ((...args: Parameters<T>) => void) => {
@@ -160,7 +160,7 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
 return [];
 }
 
-    const { totalPages } = data;
+    const { totalPages } = data as Record<string, unknown>;
     const buttons: (number | string)[] = [];
     const maxButtons = 7;
 
@@ -207,7 +207,9 @@ return [];
     return (
       <div className="text-center py-8">
         <div className="text-red-600 mb-4">Failed to load data</div>
-        <Button variant="outline" onClick={() => { void refetch()}>
+        <Button variant="outline" onClick={() => {
+ void refetch(); 
+}}>
           Retry
         </Button>
       </div>

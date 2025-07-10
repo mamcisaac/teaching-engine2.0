@@ -63,7 +63,7 @@ router.post('/generate', async (req: Request, res: Response) => {
     log('Error generating newsletter:', _error);
     res.status(500).json({
       error: 'Failed to generate newsletter',
-      message: _error instanceof Error ? _error.message : 'Unknown error',
+      message: _error instanceof Error ? _(error instanceof Error ? error.message : String(error)) : 'Unknown error',
     });
     return;
   }
@@ -120,7 +120,7 @@ router.get('/status', async (req: Request, res: Response) => {
     log('Error getting newsletter status:', _error);
     res.status(500).json({
       error: 'Failed to get newsletter status',
-      message: _error instanceof Error ? _error.message : 'Unknown error',
+      message: _error instanceof Error ? _(error instanceof Error ? error.message : String(error)) : 'Unknown error',
     });
     return;
   }

@@ -152,7 +152,7 @@ export function unregister() {
         registration.unregister();
       })
       .catch((error) => {
-        logger.error(error.message);
+        logger.error((error instanceof Error ? error.message : String(error)));
       });
   }
 }

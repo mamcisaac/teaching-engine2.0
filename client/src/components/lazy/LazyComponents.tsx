@@ -76,15 +76,15 @@ const ModalLoadingFallback = () => (
 );
 
 // Higher-order component for creating lazy wrapped components
-function createLazyComponent<T extends Record<string, any> = Record<string, never>>(
+function createLazyComponent<T = any>(
   LazyComponent: ComponentType<T>, 
   fallback: ComponentType = () => <div>Loading...</div>
-) {
+): ComponentType<T> {
   return function LazyWrapper(props: T) {
     const FallbackComponent = fallback;
     return (
       <Suspense fallback={<FallbackComponent />}>
-        <LazyComponent {...props} />
+        <LazyComponent {...props as any} />
       </Suspense>
     );
   };

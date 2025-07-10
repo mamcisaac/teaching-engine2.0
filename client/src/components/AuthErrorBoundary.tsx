@@ -119,7 +119,7 @@ export class AuthErrorBoundary extends Component<AuthErrorBoundaryProps, AuthErr
 return false;
 }
 
-    const message = error.message.toLowerCase();
+    const message = (error instanceof Error ? error.message : String(error)).toLowerCase();
     const retryableMessages = [
       'network error',
       'fetch',
@@ -137,7 +137,7 @@ return false;
 return false;
 }
 
-    const message = error.message.toLowerCase();
+    const message = (error instanceof Error ? error.message : String(error)).toLowerCase();
     return (
       message.includes('network') ||
       message.includes('fetch') ||
@@ -151,7 +151,7 @@ return false;
 return false;
 }
 
-    const message = error.message.toLowerCase();
+    const message = (error instanceof Error ? error.message : String(error)).toLowerCase();
     return (
       message.includes('auth') ||
       message.includes('token') ||
@@ -340,9 +340,9 @@ return;
                     Error Details (Development)
                   </summary>
                   <pre className="mt-2 text-xs text-gray-600 whitespace-pre-wrap overflow-auto">
-                    {this.state.error.message}
+                    {this.state.error instanceof Error ? this.state.error.message : String(this.state.error)}
                     {'\n\n'}
-                    {this.state.error.stack}
+                    {this.state.error?.stack}
                     {this.state.errorInfo &&
                       `\n\nComponent Stack:\n${  this.state.errorInfo.componentStack}`}
                   </pre>

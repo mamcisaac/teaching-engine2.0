@@ -426,7 +426,7 @@ describe('Planner State Routes', () => {
         where: { userId: testUser.id },
       });
       
-      const savedUndo = JSON.parse(dbState?.undoHistory || '[]');
+      const savedUndo = safeJsonParse(dbState?.undoHistory || '[]', {});
       expect(savedUndo).toHaveLength(3);
       expect(savedUndo[0].action).toBe('action2'); // First item trimmed
     });

@@ -1,3 +1,4 @@
+import { safeJsonParse } from "../../utils/typeGuards";
 import {
   Database,
   FileUp,
@@ -250,7 +251,7 @@ return;
 
     try {
       const text = await file.text();
-      const data = JSON.parse(text);
+      const data = safeJsonParse(text, {});
 
       if (Array.isArray(data)) {
         // Determine type based on data structure

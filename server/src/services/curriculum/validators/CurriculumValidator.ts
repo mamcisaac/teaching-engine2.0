@@ -353,7 +353,7 @@ export class CurriculumValidator {
       return;
     }
     
-    const requiredStrands = this.options.requiredStrands;
+    const {requiredStrands} = this.options;
     const missingStrands = requiredStrands.filter(s => !strands.includes(s));
 
     if (missingStrands.length > 0) {

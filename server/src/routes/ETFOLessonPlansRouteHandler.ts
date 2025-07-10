@@ -212,7 +212,7 @@ where.assessmentType = assessmentType;
       throw new Error('Unit plan not found or access denied');
     }
 
-    const { expectationIds } = data;
+    const { expectationIds } = data as Record<string, unknown>;
 
     // Create lesson plan data that matches Prisma schema
     const baseData = {
@@ -276,7 +276,7 @@ where.assessmentType = assessmentType;
       throw new Error('Lesson plan not found or access denied');
     }
 
-    const { expectationIds, ...updateData } = data;
+    const { expectationIds, ...updateData } = data as Record<string, unknown>;
 
     // Create update data that matches Prisma schema
     const baseUpdateData: Record<string, unknown> = {};
@@ -682,7 +682,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId;
+      const {userId} = req;
       if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
@@ -706,7 +706,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       res.json(result);
       return;
     } catch (error) {
-      const message = error instanceof Error ? error.message : 'Unknown error';
+      const message = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Unknown error';
       this.logger.error(`Error in ${this.routeName} list:`, message);
       next(error);
     }
@@ -755,7 +755,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId;
+      const {userId} = req;
       if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
@@ -777,7 +777,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId;
+      const {userId} = req;
       if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
@@ -804,7 +804,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId;
+      const {userId} = req;
       if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
@@ -825,7 +825,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId;
+      const {userId} = req;
       if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
@@ -852,7 +852,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const userId = req.userId;
+      const {userId} = req;
       if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;

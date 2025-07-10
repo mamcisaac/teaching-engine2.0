@@ -249,7 +249,7 @@ export const buildUpdateSchema = <T extends z.ZodRawShape>(
 };
 
 // Validation middleware factory
-export const createValidationMiddleware = <T>(schema: z.ZodSchema<T>) => (req: any, res: any, next: any) => {
+export const createValidationMiddleware = <T>(schema: z.ZodSchema<T>) => (req: Request, res: Response, next: NextFunction) => {
     try {
       const data = {
         ...(req.body || {}),

@@ -98,7 +98,7 @@ export default function ParentNewsletterPage() {
       };
 
       const savedDraft = await saveNewsletterDraft.mutateAsync(draft);
-      void navigate(`/newsletters/${savedDraft.id}`);
+      navigate(`/newsletters/${savedDraft.id}`);
       setShowCreateForm(false);
     } catch (_error) {
       logger.error('Failed to generate newsletter:', _error);
@@ -163,7 +163,7 @@ return;
     try {
       await deleteNewsletter.mutateAsync(newsletterId);
       if (id === newsletterId) {
-        void navigate('/newsletters');
+        navigate('/newsletters');
       }
     } catch (_error) {
       logger.error('Failed to delete newsletter:', _error);
@@ -354,7 +354,9 @@ return;
               
               <button
                 className="flex items-center gap-2 px-4 py-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg"
-                onClick={() => { void handleDeleteNewsletter(currentNewsletter.id!)}
+                onClick={() => {
+ void handleDeleteNewsletter(currentNewsletter.id!); 
+}}
               >
                 <Trash2 className="w-4 h-4" />
                 Delete
@@ -460,7 +462,9 @@ return;
                   
                   <button
                     className="flex items-center gap-2 px-3 py-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg"
-                    onClick={() => { void handleDeleteNewsletter(draft.id!)}
+                    onClick={() => {
+ void handleDeleteNewsletter(draft.id!); 
+}}
                   >
                     <Trash2 className="w-4 h-4" />
                     Delete

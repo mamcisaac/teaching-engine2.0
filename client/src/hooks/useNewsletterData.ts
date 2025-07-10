@@ -46,7 +46,7 @@ export function useGenerateNewsletter() {
       void queryClient.invalidateQueries({ queryKey: ['newsletter-drafts'] });
     },
     onError: (error) => {
-      toast.error(`Failed to generate newsletter: ${error.message}`);
+      toast.error(`Failed to generate newsletter: ${(error instanceof Error ? error.message : String(error))}`);
     },
   });
 }
@@ -71,7 +71,7 @@ export function useRegenerateNewsletter() {
       toast.success('Newsletter regenerated with new variations!');
     },
     onError: (error) => {
-      toast.error(`Failed to regenerate newsletter: ${error.message}`);
+      toast.error(`Failed to regenerate newsletter: ${(error instanceof Error ? error.message : String(error))}`);
     },
   });
 }
@@ -97,7 +97,7 @@ export function useSaveNewsletterDraft() {
       void queryClient.invalidateQueries({ queryKey: ['newsletter', _data.id] });
     },
     onError: (error) => {
-      toast.error(`Failed to save newsletter: ${error.message}`);
+      toast.error(`Failed to save newsletter: ${(error instanceof Error ? error.message : String(error))}`);
     },
   });
 }
@@ -144,7 +144,7 @@ export function useSendNewsletter() {
       void queryClient.invalidateQueries({ queryKey: ['newsletter-drafts'] });
     },
     onError: (error) => {
-      toast.error(`Failed to send newsletter: ${error.message}`);
+      toast.error(`Failed to send newsletter: ${(error instanceof Error ? error.message : String(error))}`);
     },
   });
 }
@@ -162,7 +162,7 @@ export function useDeleteNewsletter() {
       void queryClient.invalidateQueries({ queryKey: ['newsletter-drafts'] });
     },
     onError: (error) => {
-      toast.error(`Failed to delete newsletter: ${error.message}`);
+      toast.error(`Failed to delete newsletter: ${(error instanceof Error ? error.message : String(error))}`);
     },
   });
 }

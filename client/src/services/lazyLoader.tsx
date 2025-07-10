@@ -201,7 +201,7 @@ class LazyLoader {
 
     // Combine chunks based on document type
     if (doc.metadata.type === 'json') {
-      return JSON.parse(chunks.join(''));
+      return safeJsonParse(chunks.join('', {}));
     } else if (doc.metadata.type === 'text') {
       return chunks.join('');
     } 
@@ -360,7 +360,7 @@ export function LazyDocument<T = unknown>({
   return (
     <div ref={elementRef}>
       {loading && (placeholder || <div>Loading...</div>)}
-      {error && <div>Error loading document: {error.message}</div>}
+      {error && <div>Error loading document: {(error instanceof Error ? error.message : String(error))}</div>}
       {document !== null && document !== undefined && <>{render(document as T)}</>}
     </div>
   );

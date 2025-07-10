@@ -154,7 +154,7 @@ return;
       };
 
       const response = await apiClient.post<{ responses: BatchResponse[] }>('/api/batch', batchData);
-      const {responses} = response.data;
+      const {responses} = response.data as Record<string, unknown>;
 
       // Map responses back to promises
       const responseMap = new Map<string, BatchResponse>(responses.map((r) => [r.id, r]));

@@ -325,7 +325,7 @@ export const retryWithBackoff = async <T>(
           attempt: attempt + 1,
           maxRetries,
           delay,
-          error: _error instanceof Error ? _error.message : _error,
+          error: _error instanceof Error ? _(error instanceof Error ? error.message : String(error)) : _error,
         },
         'Retrying operation after failure',
       );

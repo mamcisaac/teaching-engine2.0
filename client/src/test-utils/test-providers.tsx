@@ -375,7 +375,7 @@ export const testUtils = {
     // Test both mock and real implementations side by side
     testBothImplementations: async (
       ui: React.ReactElement,
-      testFn: (result: any) => void | Promise<void>,
+      testFn: (result: unknown) => void | Promise<void>,
       options?: CustomRenderOptions,
     ) => {
       // Test with mock providers
@@ -596,7 +596,7 @@ export const performanceUtils = {
     })),
 
   // Measure real API response times
-  measureApiResponseTime: async (apiCall: () => Promise<any>) => {
+  measureApiResponseTime: async (apiCall: () => Promise<unknown>) => {
     const start = performance.now();
     try {
       await apiCall();

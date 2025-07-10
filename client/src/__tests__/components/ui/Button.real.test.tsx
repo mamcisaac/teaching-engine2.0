@@ -111,8 +111,9 @@ describe('Button - Real Backend Integration', () => {
         try {
           submissionResult = await realApiHelpers.createLongRangePlan(authContext, formData);
           validationError = null;
-        } catch (error: any) {
-          validationError = error.response?.data?.message || 'Validation failed';
+        } catch (error: unknown) {
+          const axiosError = error as { response?: { data?: { message?: string } } };
+          validationError = axiosError.response?.data?.message || 'Validation failed';
           submissionResult = null;
         }
       };
@@ -208,7 +209,7 @@ describe('Button - Real Backend Integration', () => {
       const { cleanup } = await renderWithRealBackend(
         <div>
           <Button 
-            onClick={() => { void checkPlanExists(createdPlan.id)}
+            onClick={() => { void checkPlanExists(createdPlan.id); }}
             loading={checkingPlan}
             variant={planExists ? 'primary' : 'secondary'}
           >
@@ -236,7 +237,7 @@ describe('Button - Real Backend Integration', () => {
 
     it('handles concurrent button clicks with real API calls', async () => {
       let clickCount = 0;
-      let createdPlans: any[] = [];
+      let createdPlans: Array<{ title: string }> = [];
 
       const handleClick = async () => {
         clickCount++;
@@ -280,9 +281,10 @@ describe('Button - Real Backend Integration', () => {
         try {
           // Try to fetch a non-existent plan
           await realApiHelpers.getLongRangePlan(authContext, 'non-existent-id');
-        } catch (error: any) {
+        } catch (error: unknown) {
           hasError = true;
-          errorMessage = error.response?.data?.message || 'API Error';
+          const axiosError = error as { response?: { data?: { message?: string } } };
+          errorMessage = axiosError.response?.data?.message || 'API Error';
         }
       };
 

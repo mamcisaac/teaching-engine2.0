@@ -359,7 +359,7 @@ export function runPropertyTest(
     fc.assert(property, defaultOptions);
   } catch (error) {
     if (error instanceof Error) {
-      console.error('Property test failed:', error.message);
+      console.error('Property test failed:', (error instanceof Error ? error.message : String(error)));
       if (error.stack) {
         console.error('Stack trace:', error.stack);
       }

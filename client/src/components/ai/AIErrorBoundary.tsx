@@ -60,7 +60,7 @@ export class AIErrorBoundary extends Component<Props, State> {
 
     // Log AI-specific errors with context
     logger.error('=== AI ERROR BOUNDARY ===');
-    logger.error(`Error: ${error.name} - ${error.message}`);
+    logger.error(`Error: ${error.name} - ${(error instanceof Error ? error.message : String(error))}`);
     logger.error('Stack:', error.stack);
     logger.error('Component Stack:', errorInfo.componentStack);
     logger.error('Retry Count:', this.state.retryCount);
@@ -70,14 +70,14 @@ export class AIErrorBoundary extends Component<Props, State> {
     if (window.gtag) {
       window.gtag('event', 'ai_error', {
         event_category: 'AI Integration',
-        event_label: error.message,
+        event_label: (error instanceof Error ? error.message : String(error)),
         value: this.state.retryCount,
       });
     }
   }
 
   private classifyError(error: Error): AIError {
-    const message = error.message.toLowerCase();
+    const message = (error instanceof Error ? error.message : String(error)).toLowerCase();
     let type = AIErrorType.UNKNOWN;
     let retryable = false;
     let suggestedAction = 'Something unexpected happened with the AI assistant. You can try again or continue creating your lesson manually. Your work is automatically saved.';
@@ -294,7 +294,7 @@ export class AIErrorBoundary extends Component<Props, State> {
                       </summary>
                       <div className="mt-2 p-2 bg-gray-100 rounded text-xs font-mono">
                         <div><strong>Type:</strong> {aiError.type}</div>
-                        <div><strong>Message:</strong> {this.state.error.message}</div>
+                        <div><strong>Message:</strong> {this.state.error instanceof Error ? this.state.error.message : String(this.state.error)}</div>
                         {aiError.statusCode && (
                           <div><strong>Status:</strong> {aiError.statusCode}</div>
                         )}
@@ -346,7 +346,7 @@ export function isAIError(error: unknown): error is AIError {
 return false;
 }
   
-  const message = error.message.toLowerCase();
+  const message = (error instanceof Error ? error.message : String(error)).toLowerCase();
   return (
     message.includes('openai') ||
     message.includes('api key') ||

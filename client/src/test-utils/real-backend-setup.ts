@@ -183,7 +183,7 @@ export async function createTestUser(userData?: Partial<TestUserData>) {
 export async function loginTestUser(email: string, password: string) {
   try {
     const response = await axios.post('/api/auth/login', { email, password });
-    const { token, user } = response.data;
+    const { token, user } = response.data as Record<string, unknown>;
 
     // Set auth header for subsequent requests
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;

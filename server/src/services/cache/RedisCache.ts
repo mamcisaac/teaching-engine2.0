@@ -398,7 +398,7 @@ return false;
 
   private deserializeValue<T>(value: string): T {
     try {
-      return JSON.parse(value);
+      return safeJsonParse(value, {});
     } catch (error) {
       structuredLogger.error('Cache deserialization error', error as Error);
       throw error;

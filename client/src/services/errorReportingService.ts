@@ -3,6 +3,7 @@ import { Replay } from '@sentry/replay';
 import type { ErrorInfo } from 'react';
 
 import { logger } from '../utils/logger';
+import { safeJsonParse } from '../utils/typeGuards';
 
 interface UserContext {
   id: string;
@@ -162,7 +163,7 @@ export class ErrorReportingService {
     if (this.mockMode) {
       // eslint-disable-next-line no-console
       console.info('[MOCK] Would capture error:', {
-        error: error instanceof Error ? error.message : String(error),
+        error: error instanceof Error ? (error instanceof Error ? error.message : String(error)) : String(error),
         stack: error instanceof Error ? error.stack : undefined,
         context: this.sanitizeData(context || {}),
         errorInfo: errorInfo?.componentStack,
@@ -255,7 +256,7 @@ export class ErrorReportingService {
       category: breadcrumb.category,
       level: breadcrumb.level || 'info',
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      data: sanitizedData as Record<string, any>,
+      data: sanitizedData as Record<string, unknown>,
       timestamp: Date.now() / 1000,
     });
   }
@@ -288,7 +289,7 @@ export class ErrorReportingService {
         error_type: error.constructor.name,
       };
 
-      const message = error.message.toLowerCase();
+      const message = (error instanceof Error ? error.message : String(error)).toLowerCase();
       const stack = error.stack?.toLowerCase() || '';
 
       // Network errors
@@ -368,12 +369,12 @@ export class ErrorReportingService {
       const error = hint.originalException as Error;
 
       // Ignore ResizeObserver errors (browser quirk)
-      if (error.message.includes('ResizeObserver')) {
+      if ((error instanceof Error ? error.message : String(error)).includes('ResizeObserver')) {
         return null;
       }
 
       // Ignore generic script errors (usually from extensions)
-      if (error.message === 'Script error.' || error.message === 'Script error') {
+      if ((error instanceof Error ? error.message : String(error)) === 'Script error.' || (error instanceof Error ? error.message : String(error)) === 'Script error') {
         return null;
       }
     }
@@ -410,7 +411,7 @@ export class ErrorReportingService {
 
     if (breadcrumb.data) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      breadcrumb.data = this.sanitizeData(breadcrumb.data) as Record<string, any>;
+      breadcrumb.data = this.sanitizeData(breadcrumb.data) as Record<string, unknown>;
     }
 
     return breadcrumb;
@@ -418,7 +419,7 @@ export class ErrorReportingService {
 
   private sanitizeEvent(event: Sentry.ErrorEvent): Sentry.ErrorEvent {
     // Deep clone to avoid modifying original
-    const sanitized = JSON.parse(JSON.stringify(event));
+    const sanitized = safeJsonParse(JSON.stringify(event), {});
 
     // Sanitize message
     if (sanitized.message) {

@@ -148,7 +148,7 @@ export function showExportSuccess(type: ExportType, format: ExportFormat): void 
  */
 export function showExportError(type: ExportType, format: ExportFormat, error: Error): void {
   // This could integrate with a toast notification system
-  logger.error(`Failed to export ${type} as ${format}:`, error.message);
+  logger.error(`Failed to export ${type} as ${format}:`, (error instanceof Error ? error.message : String(error)));
 }
 
 /**

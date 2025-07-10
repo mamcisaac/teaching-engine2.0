@@ -114,7 +114,7 @@ url += `?${params.toString()}`;
 }
 
                 const response = await apiClient.get(url);
-                const plans = response.data;
+                const plans = response.data as LessonPlan[];
 
                 set((state) => {
                   state.lessonPlans = plans;
@@ -154,7 +154,7 @@ url += `?${params.toString()}`;
 
               set((state) => {
                 state.lessonPlans = cachedPlans || [];
-                state.error = error instanceof Error ? error.message : 'Failed to load plans';
+                state.error = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Failed to load plans';
                 state.isLoading = false;
               });
             }
@@ -169,7 +169,7 @@ url += `?${params.toString()}`;
             try {
               if (get().isOnline) {
                 const response = await apiClient.get(`/api/etfo-lesson-plans/${id}`);
-                const lesson = response.data;
+                const lesson = response.data as LessonPlan;
 
                 set((state) => {
                   state.currentLesson = lesson;
@@ -205,7 +205,7 @@ url += `?${params.toString()}`;
             } catch (error) {
               logger.error('Failed to load lesson plan:', error);
               set((state) => {
-                state.error = error instanceof Error ? error.message : 'Failed to load lesson';
+                state.error = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Failed to load lesson';
                 state.isLoading = false;
               });
             }
@@ -228,7 +228,7 @@ url += `?${params.toString()}`;
 
               if (get().isOnline) {
                 const response = await apiClient.post('/api/etfo-lesson-plans', planData);
-                const createdLesson = response.data;
+                const createdLesson = response.data as LessonPlan;
 
                 set((state) => {
                   state.lessonPlans.push(createdLesson);
@@ -258,7 +258,7 @@ url += `?${params.toString()}`;
             } catch (error) {
               logger.error('Failed to create lesson plan:', error);
               set((state) => {
-                state.error = error instanceof Error ? error.message : 'Failed to create lesson';
+                state.error = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Failed to create lesson';
                 state.isSaving = false;
               });
               throw error;
@@ -315,7 +315,7 @@ url += `?${params.toString()}`;
             } catch (error) {
               logger.error('Failed to update lesson plan:', error);
               set((state) => {
-                state.error = error instanceof Error ? error.message : 'Failed to update lesson';
+                state.error = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Failed to update lesson';
                 state.isSaving = false;
               });
               throw error;
@@ -361,7 +361,7 @@ url += `?${params.toString()}`;
             } catch (error) {
               logger.error('Failed to delete lesson plan:', error);
               set((state) => {
-                state.error = error instanceof Error ? error.message : 'Failed to delete lesson';
+                state.error = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Failed to delete lesson';
                 state.isSaving = false;
               });
               throw error;

@@ -105,9 +105,9 @@ export default function CalendarEventDetails({
 
   const handleViewDetails = () => {
     if (event.type === 'lesson' && event.metadata?.lessonId) {
-      void navigate(`/planner/lessons/${event.metadata.lessonId}`);
+      navigate(`/planner/lessons/${event.metadata.lessonId}`);
     } else if (event.type === 'unit-boundary' && event.metadata?.unitId) {
-      void navigate(`/planner/units/${event.metadata.unitId}`);
+      navigate(`/planner/units/${event.metadata.unitId}`);
     }
   };
 

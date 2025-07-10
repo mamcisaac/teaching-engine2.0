@@ -227,7 +227,7 @@ export function generateProgressReport(data: {
   assessments: AssessmentData[];
   period: string;
 }): ProgressReport {
-  const { studentId, assessments, period } = data;
+  const { studentId, assessments, period } = data as Record<string, unknown>;
 
   // Calculate overall average
   const ratings = assessments.map(a => a.rating);

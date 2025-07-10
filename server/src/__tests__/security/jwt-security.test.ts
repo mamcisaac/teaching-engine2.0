@@ -193,7 +193,7 @@ describe('JWT Security Tests', () => {
     it('should reject tokens with tampered payload', async () => {
       const parts = validToken.split('.');
       const header = parts[0];
-      const payload = JSON.parse(Buffer.from(parts[1], 'base64').toString());
+      const payload = safeJsonParse(Buffer.from(parts[1], 'base64', {}).toString());
 
       // Tamper with payload
       payload.userId = 'malicious-user-id';
@@ -274,7 +274,7 @@ describe('JWT Security Tests', () => {
     it('should use secure signing algorithm (HS256)', async () => {
       const token = await generateAuthToken(testUserId, testUserEmail);
       const parts = token.split('.');
-      const header = JSON.parse(Buffer.from(parts[0], 'base64').toString());
+      const header = safeJsonParse(Buffer.from(parts[0], 'base64', {}).toString());
 
       expect(header.alg).toBe('HS256');
       expect(header.typ).toBe('JWT');

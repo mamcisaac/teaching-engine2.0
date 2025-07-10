@@ -83,7 +83,7 @@ export function mockCurrentTime(date: Date | string): () => void {
 
   // Mock new Date() when called without arguments
   global.Date = class extends Date {
-    constructor(...args: any[]) {
+    constructor(...args: unknown[]) {
       if (args.length === 0) {
         super(targetDate.getTime());
       } else {

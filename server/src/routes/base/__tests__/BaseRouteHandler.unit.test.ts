@@ -29,7 +29,7 @@ class TestService extends BaseService {
     return { id: '123', ...data };
   }
 
-  async findMany(): Promise<any[]> {
+  async findMany(): Promise<unknown[]> {
     return [
       { id: '1', name: 'Test 1' },
       { id: '2', name: 'Test 2' },

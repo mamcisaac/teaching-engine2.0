@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { safeJsonParse } from '../../utils/typeGuards';
 
 interface Props {
   filters: Record<string, boolean>;
@@ -38,5 +39,5 @@ export function loadPlannerFilters(): Record<string, boolean> {
 return {};
 }
   const stored = localStorage.getItem(STORAGE_KEY);
-  return stored ? (JSON.parse(stored) as Record<string, boolean>) : {};
+  return stored ? (safeJsonParse(stored, {}) as Record<string, boolean>) : {};
 }

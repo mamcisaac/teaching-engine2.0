@@ -26,7 +26,7 @@ export default function LoginPage() {
   useEffect(() => {
     // Only redirect if we're done checking auth and the user is authenticated
     if (!isAuthLoading && isAuthenticated) {
-      void navigate('/planner/dashboard', { replace: true });
+      navigate('/planner/dashboard', { replace: true });
     }
   }, [isAuthenticated, isAuthLoading, navigate]);
 
@@ -50,7 +50,7 @@ return;
 
       // Navigate to the planning dashboard after successful login
       setTimeout(() => {
-        void navigate('/planner/dashboard', { replace: true });
+        navigate('/planner/dashboard', { replace: true });
       }, 1000);
     } catch (err: unknown) {
       // The AuthContext already handles the error, but we can show additional local feedback

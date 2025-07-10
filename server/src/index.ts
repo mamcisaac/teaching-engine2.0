@@ -16,27 +16,35 @@ import { errorContextMiddleware, authErrorMiddleware } from './middleware/errorC
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
 import { httpMetricsMiddleware, startSystemMetricsCollection } from './middleware/metrics';
 import { rateLimiters } from './middleware/rateLimit/index';
+import { requestLoggingMiddleware, errorLoggingMiddleware } from './middleware/requestLogger';
+import {
+  applySecurityMiddleware,
+  authRateLimitMiddleware,
+  validateFileUpload,
+} from './middleware/security';
+import { standardErrorHandler } from './middleware/standardErrorHandler';
+import { initTelemetry, startAlertMonitoring } from './monitoring';
 import { prisma } from './prisma';
 import activityCollectionsRoutes from './routes/activity-collections';
+import aiActivityGenerationRoutes from './routes/ai-activity-generation';
 import aiPlanningRoutes from './routes/ai-planning';
+import authEndpoints from './routes/authEndpoints';
+import cacheRoutes from './routes/cache';
+import calendarEventRoutes from './routes/calendar-events';
 import curriculumExpectationRoutes from './routes/curriculum-expectations';
 import curriculumImportRoutes from './routes/curriculumImport';
+import { router as etfoLessonPlanRoutes } from './routes/etfo-lesson-plans';
+import longRangePlanRoutes from './routes/long-range-plans';
 import newsletterRoutes from './routes/newsletters';
 import { router as substitutePlanRoutes } from './routes/substitute-plans';
-import longRangePlanRoutes from './routes/long-range-plans';
 import { router as templateRoutes } from './routes/templates';
 import { router as unitPlanRoutes } from './routes/unit-plans';
-import { router as etfoLessonPlanRoutes } from './routes/etfo-lesson-plans';
 import { router as daybookEntryRoutes } from './routes/daybook-entries';
 import etfoProgressRoutes from './routes/etfo-progress';
 import plannerStateRoutes from './routes/planner-state';
-import aiActivityGenerationRoutes from './routes/ai-activity-generation';
-import calendarEventRoutes from './routes/calendar-events';
 import recentPlansRoutes from './routes/recent-plans';
-import cacheRoutes from './routes/cache';
 import metricsRoutes from './routes/metrics';
 import dashboardMetricsRoutes from './routes/dashboard-metrics';
-import authEndpoints from './routes/authEndpoints';
 import { userRoutes } from './routes/user';
 import notificationRoutes from './routes/notifications';
 import { errorReportingService } from './services/monitoring/errorReportingService';
@@ -45,14 +53,6 @@ import {
   correlationMiddleware,
   errorLoggingMiddleware as structuredErrorLoggingMiddleware,
 } from './utils/structuredLogger';
-import {
-  applySecurityMiddleware,
-  authRateLimitMiddleware,
-  validateFileUpload,
-} from './middleware/security';
-import { requestLoggingMiddleware, errorLoggingMiddleware } from './middleware/requestLogger';
-import { standardErrorHandler } from './middleware/standardErrorHandler';
-import { initTelemetry, startAlertMonitoring } from './monitoring';
 import monitoringRoutes from './routes/monitoring';
 
 // Load environment variables

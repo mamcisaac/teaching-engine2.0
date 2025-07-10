@@ -1,3 +1,4 @@
+import { getErrorMessage } from "../../utils/typeGuards";
 import { 
   Sparkles, 
   RefreshCw, 
@@ -176,7 +177,7 @@ export function AIUnitPlanPanel({
       logger.error('Error generating suggestions:', _error);
       toast({
         title: 'Generation Failed',
-        description: (_error instanceof Error ? _error.message : String(_error)) || 'Failed to generate suggestions. Please try again.',
+        description: getErrorMessage(_error) || 'Failed to generate suggestions. Please try again.',
         variant: 'destructive',
       });
     } finally {
@@ -259,7 +260,7 @@ export function AIUnitPlanPanel({
       logger.error('Error generating complete unit:', _error);
       toast({
         title: 'Generation Failed',
-        description: (_error instanceof Error ? _error.message : String(_error)) || 'Failed to generate complete unit plan.',
+        description: getErrorMessage(_error) || 'Failed to generate complete unit plan.',
         variant: 'destructive',
       });
     } finally {
@@ -495,7 +496,9 @@ export function AIUnitPlanPanel({
                 <Button 
                   disabled={isGenerating} 
                   variant="outline"
-                  onClick={() => { void generateSuggestions('bigIdeas')}
+                  onClick={() => {
+ void generateSuggestions('bigIdeas'); 
+}}
                 >
                   <Lightbulb className="h-4 w-4 mr-2" />
                   Big Ideas
@@ -503,7 +506,9 @@ export function AIUnitPlanPanel({
                 <Button 
                   disabled={isGenerating} 
                   variant="outline"
-                  onClick={() => { void generateSuggestions('activities')}
+                  onClick={() => {
+ void generateSuggestions('activities'); 
+}}
                 >
                   <BookOpen className="h-4 w-4 mr-2" />
                   Activities

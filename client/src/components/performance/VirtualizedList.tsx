@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 // Simple debounce implementation
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const debounce = <T extends (...args: any[]) => any>(
+const debounce = <T extends (...args: unknown[]) => any>(
   func: T,
   wait: number,
 ): ((...args: Parameters<T>) => void) & { cancel(): void } => {

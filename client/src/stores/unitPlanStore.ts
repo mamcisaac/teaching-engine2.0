@@ -102,7 +102,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
               // Try to load from server if online
               if (get().isOnline) {
                 const response = await apiClient.get('/api/unit-plans');
-                const plans = response.data;
+                const plans = response.data as UnitPlan[];
 
                 set((state) => {
                   state.unitPlans = plans;
@@ -133,7 +133,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
 
               set((state) => {
                 state.unitPlans = cachedPlans || [];
-                state.error = error instanceof Error ? error.message : 'Failed to load plans';
+                state.error = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Failed to load plans';
                 state.isLoading = false;
               });
             }
@@ -148,7 +148,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
             try {
               if (get().isOnline) {
                 const response = await apiClient.get(`/api/unit-plans/${id}`);
-                const plan = response.data;
+                const plan = response.data as UnitPlan;
 
                 set((state) => {
                   state.currentPlan = plan;
@@ -182,7 +182,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
             } catch (error) {
               logger.error('Failed to load unit plan:', error);
               set((state) => {
-                state.error = error instanceof Error ? error.message : 'Failed to load plan';
+                state.error = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Failed to load plan';
                 state.isLoading = false;
               });
             }
@@ -205,7 +205,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
 
               if (get().isOnline) {
                 const response = await apiClient.post('/api/unit-plans', planData);
-                const createdPlan = response.data;
+                const createdPlan = response.data as UnitPlan;
 
                 set((state) => {
                   state.unitPlans.push(createdPlan);
@@ -235,7 +235,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
             } catch (error) {
               logger.error('Failed to create unit plan:', error);
               set((state) => {
-                state.error = error instanceof Error ? error.message : 'Failed to create plan';
+                state.error = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Failed to create plan';
                 state.isSaving = false;
               });
               throw error;
@@ -292,7 +292,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
             } catch (error) {
               logger.error('Failed to update unit plan:', error);
               set((state) => {
-                state.error = error instanceof Error ? error.message : 'Failed to update plan';
+                state.error = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Failed to update plan';
                 state.isSaving = false;
               });
               throw error;
@@ -338,7 +338,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
             } catch (error) {
               logger.error('Failed to delete unit plan:', error);
               set((state) => {
-                state.error = error instanceof Error ? error.message : 'Failed to delete plan';
+                state.error = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Failed to delete plan';
                 state.isSaving = false;
               });
               throw error;

@@ -106,7 +106,7 @@ router.get('/progress', async (req: Request, res: Response): Promise<void> => {
     res.json(progressData);
     return;
   } catch (error) {
-    const message = error instanceof Error ? error.message : 'Unknown error';
+    const message = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Unknown error';
     logger.error('Error fetching ETFO progress:', message);
     res.status(500).json({ error: 'Failed to fetch ETFO progress' });
   }

@@ -447,7 +447,7 @@ describe('ErrorReportingService', () => {
       expect(console.info).toHaveBeenCalledWith(
         '[MOCK] Would capture error:',
         expect.objectContaining({
-          error: error.message,
+          error: (error instanceof Error ? error.message : String(error)),
           stack: expect.any(String),
           context: { test: true },
         })

@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { safeJsonParse } from '../utils/typeGuards';
 
 export interface OnboardingStep {
   id: string;
@@ -189,7 +190,7 @@ export function OnboardingProvider({ children }: { children: ReactNode }) {
     
     // Load saved onboarding state
     const saved = localStorage.getItem(ONBOARDING_KEY);
-    const savedState = saved ? JSON.parse(saved) : null;
+    const savedState = saved ? safeJsonParse(saved, {}) : null;
     
     return {
       isFirstTimeUser: isFirstTime,

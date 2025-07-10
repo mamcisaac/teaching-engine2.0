@@ -167,7 +167,7 @@ export class AIService extends BaseService {
 
           let lessonPlan: LessonPlan;
           try {
-            lessonPlan = JSON.parse(content);
+            lessonPlan = safeJsonParse(content, {});
           } catch (parseError) {
             logger.warn('Failed to parse AI response, using fallback');
             lessonPlan = this.createFallbackLesson(input);
@@ -191,11 +191,11 @@ export class AIService extends BaseService {
       );
 
       return lessonPlan;
-    } catch (error: any) {
+    } catch (error: unknown) {
       logger.error('Error generating lesson plan:', error);
       const fallback = this.createFallbackLesson(input);
       fallback.fallback = true;
-      fallback.error = error.message;
+      fallback.error = (error instanceof Error ? error.message : String(error));
       return fallback;
     }
   }
@@ -228,7 +228,7 @@ export class AIService extends BaseService {
 
           let activity: Activity;
           try {
-            activity = JSON.parse(content);
+            activity = safeJsonParse(content, {});
           } catch (parseError) {
             activity = this.createFallbackActivity(input);
           }
@@ -242,7 +242,7 @@ export class AIService extends BaseService {
       );
 
       return activity;
-    } catch (error: any) {
+    } catch (error: unknown) {
       logger.error('Error generating activity:', error);
       return this.createFallbackActivity(input);
     }
@@ -276,7 +276,7 @@ export class AIService extends BaseService {
 
           let parsedPlan: SubstitutePlan;
           try {
-            parsedPlan = JSON.parse(content);
+            parsedPlan = safeJsonParse(content, {});
           } catch (parseError) {
             parsedPlan = this.createFallbackSubstitutePlan(input);
           }
@@ -290,7 +290,7 @@ export class AIService extends BaseService {
       );
 
       return plan;
-    } catch (error: any) {
+    } catch (error: unknown) {
       logger.error('Error generating substitute plan:', error);
       return this.createFallbackSubstitutePlan(input);
     }
@@ -324,7 +324,7 @@ export class AIService extends BaseService {
 
           let parsedNewsletter: Newsletter;
           try {
-            parsedNewsletter = JSON.parse(content);
+            parsedNewsletter = safeJsonParse(content, {});
           } catch (parseError) {
             parsedNewsletter = this.createFallbackNewsletter(input);
           }
@@ -338,7 +338,7 @@ export class AIService extends BaseService {
       );
 
       return newsletter;
-    } catch (error: any) {
+    } catch (error: unknown) {
       logger.error('Error generating newsletter:', error);
       return this.createFallbackNewsletter(input);
     }
@@ -364,7 +364,7 @@ export class AIService extends BaseService {
       });
 
       return !!response.choices[0]?.message?.content;
-    } catch (error: any) {
+    } catch (error: unknown) {
       logger.error('AI Service health check failed:', error);
       // If we have a fallback key or test key, consider it healthy (fallback mode)
       if (this.apiKey && (this.apiKey.includes('test') || this.apiKey.includes('fallback'))) {
@@ -375,7 +375,7 @@ export class AIService extends BaseService {
   }
 
   // Additional methods for AI functionality
-  async analyzeCurriculum(content: string): Promise<any> {
+  async analyzeCurriculum(content: string): Promise<unknown> {
     try {
       const systemPrompt =
         'You are an expert curriculum analyst. Analyze the provided curriculum content and extract key information about learning objectives, skills, and assessment criteria.';
@@ -393,7 +393,7 @@ export class AIService extends BaseService {
       return (
         response.choices[0]?.message?.content || this.createFallbackCurriculumAnalysis(content)
       );
-    } catch (error: any) {
+    } catch (error: unknown) {
       logger.error('Error analyzing curriculum:', error);
       // Return fallback analysis instead of throwing
       return this.createFallbackCurriculumAnalysis(content);
@@ -404,7 +404,7 @@ export class AIService extends BaseService {
     lesson: any;
     enhancementType: string;
     userId?: number;
-  }): Promise<any> {
+  }): Promise<unknown> {
     try {
       const systemPrompt =
         'You are an expert educator who enhances lesson plans with differentiation strategies, accommodations, and improvements.';
@@ -426,17 +426,17 @@ export class AIService extends BaseService {
       }
 
       try {
-        return JSON.parse(content);
+        return safeJsonParse(content, {});
       } catch {
         return this.createFallbackEnhancedLesson(input.lesson, input.enhancementType);
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       logger.error('Error enhancing lesson:', error);
       return this.createFallbackEnhancedLesson(input.lesson, input.enhancementType);
     }
   }
 
-  async generateAlignedLesson(input: any): Promise<any> {
+  async generateAlignedLesson(input: any): Promise<unknown> {
     try {
       const lessonPlan = await this.generateLesson(input);
       // Add aligned standards
@@ -446,7 +446,7 @@ export class AIService extends BaseService {
           ? ['MA3.NF.1', 'MA3.NF.2'] // Mock standards for testing
           : input.standards || [],
       };
-    } catch (error: any) {
+    } catch (error: unknown) {
       logger.error('Error generating aligned lesson:', error);
       throw error;
     }
@@ -457,7 +457,7 @@ export class AIService extends BaseService {
     difficulty?: string;
     count?: number;
     gradeLevel?: string;
-  }): Promise<any> {
+  }): Promise<unknown> {
     try {
       const systemPrompt =
         'You are an expert educator who creates assessment questions. Generate educational assessment questions based on the provided topic and difficulty level.';
@@ -481,12 +481,12 @@ export class AIService extends BaseService {
 
       // Try to parse as JSON first
       try {
-        return JSON.parse(content);
+        return safeJsonParse(content, {});
       } catch {
         // If not JSON, return as string
         return content;
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       logger.error('Error generating questions:', error);
       // Return fallback questions instead of throwing
       return this.createFallbackQuestions(input);

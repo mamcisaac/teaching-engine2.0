@@ -104,7 +104,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
               if (get().isOnline) {
                 const params = new URLSearchParams({ startDate, endDate });
                 const response = await apiClient.get(`/api/daybook?${params.toString()}`);
-                const entries = response.data;
+                const entries = response.data as DaybookEntry[];
 
                 set((state) => {
                   state.entries = entries;
@@ -155,7 +155,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
 
               set((state) => {
                 state.entries = cachedEntries || [];
-                state.error = error instanceof Error ? error.message : 'Failed to load entries';
+                state.error = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Failed to load entries';
                 state.isLoading = false;
               });
             }
@@ -181,7 +181,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
 
               if (get().isOnline) {
                 const response = await apiClient.get(`/api/daybook/date/${date}`);
-                const entry = response.data;
+                const entry = response.data as DaybookEntry;
 
                 set((state) => {
                   state.currentEntry = entry;
@@ -209,7 +209,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
             } catch (error) {
               logger.error('Failed to load daybook entry:', error);
               set((state) => {
-                state.error = error instanceof Error ? error.message : 'Failed to load entry';
+                state.error = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Failed to load entry';
                 state.isLoading = false;
               });
             }
@@ -232,7 +232,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
 
               if (get().isOnline) {
                 const response = await apiClient.post('/api/daybook', entryData);
-                const createdEntry = response.data;
+                const createdEntry = response.data as DaybookEntry;
 
                 set((state) => {
                   // Replace or add entry
@@ -276,7 +276,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
             } catch (error) {
               logger.error('Failed to create daybook entry:', error);
               set((state) => {
-                state.error = error instanceof Error ? error.message : 'Failed to create entry';
+                state.error = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Failed to create entry';
                 state.isSaving = false;
               });
               throw error;
@@ -333,7 +333,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
             } catch (error) {
               logger.error('Failed to update daybook entry:', error);
               set((state) => {
-                state.error = error instanceof Error ? error.message : 'Failed to update entry';
+                state.error = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Failed to update entry';
                 state.isSaving = false;
               });
               throw error;
@@ -379,7 +379,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
             } catch (error) {
               logger.error('Failed to delete daybook entry:', error);
               set((state) => {
-                state.error = error instanceof Error ? error.message : 'Failed to delete entry';
+                state.error = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Failed to delete entry';
                 state.isSaving = false;
               });
               throw error;

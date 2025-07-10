@@ -161,7 +161,7 @@ return;
   };
 
   const handleImportCurriculum = () => {
-    void navigate('/curriculum-import');
+    navigate('/curriculum-import');
   };
 
   const ExpectationRow = ({ expectation }: { expectation: CurriculumExpectation }) => (
@@ -210,7 +210,9 @@ return;
 }}>
             <Edit2 className="h-4 w-4" />
           </Button>
-          <Button size="sm" variant="ghost" onClick={() => { void handleDelete(expectation.id)}>
+          <Button size="sm" variant="ghost" onClick={() => {
+ void handleDelete(expectation.id); 
+}}>
             <Trash2 className="h-4 w-4" />
           </Button>
         </div>

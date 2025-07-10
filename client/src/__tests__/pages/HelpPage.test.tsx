@@ -94,7 +94,7 @@ vi.mock('../../components/help', () => ({
       />
       {showFilters && <div data-testid="search-filters">Filters enabled</div>}
       {showSuggestions && <div data-testid="search-suggestions">Suggestions enabled</div>}
-      <button onClick={() => { void onResultSelect('test-content')}>Select Test Result</button>
+      <button onClick={() => { void onResultSelect('test-content'); }}>Select Test Result</button>
     </div>
   ),
 }));

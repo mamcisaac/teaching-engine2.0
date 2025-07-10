@@ -12,7 +12,7 @@ const mockJwt = {
       try {
         const parts = token.split('.');
         if (parts.length > 3 && parts[0] === 'mock' && parts[1] === 'jwt') {
-          const payload = JSON.parse(Buffer.from(parts[3], 'base64').toString());
+          const payload = safeJsonParse(Buffer.from(parts[3], 'base64', {}).toString());
           // Add standard JWT fields
           const fullPayload = {
             ...payload,
@@ -53,7 +53,7 @@ const mockJwt = {
     try {
       const parts = token.split('.');
       if (parts.length > 3 && parts[0] === 'mock') {
-        return JSON.parse(Buffer.from(parts[3], 'base64').toString());
+        return safeJsonParse(Buffer.from(parts[3], 'base64', {}).toString());
       }
     } catch (_e) {
       // ignore

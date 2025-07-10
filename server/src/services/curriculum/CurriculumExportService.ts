@@ -137,7 +137,7 @@ export class CurriculumExportService extends BaseService {
   /**
    * Convert data to CSV
    */
-  private convertToCSV(data: any[]): string {
+  private convertToCSV(data: unknown[]): string {
     if (!Array.isArray(data) || data.length === 0) {
       return '';
     }

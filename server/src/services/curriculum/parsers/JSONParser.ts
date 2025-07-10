@@ -53,9 +53,9 @@ export class JSONParser extends CurriculumParser {
     
     let data: unknown;
     try {
-      data = JSON.parse(stringContent);
+      data = safeJsonParse(stringContent, {});
     } catch (_error) {
-      throw new Error(`Invalid JSON format: ${_error instanceof Error ? _error.message : String(_error)}`);
+      throw new Error(`Invalid JSON format: ${_error instanceof Error ? _(error instanceof Error ? error.message : String(error)) : String(_error)}`);
     }
 
     // Handle array of expectations

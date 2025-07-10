@@ -17,7 +17,7 @@ interface LessonPlan {
   materials: string;
   assessment: string;
   differentiation: string;
-  expectations: any[];
+  expectations: unknown[];
   unitPlan?: {
     title: string;
   } | null;
@@ -122,7 +122,7 @@ Warm regards,
   }
 
   // @ts-expect-error Method reserved for future newsletter formatting
-  private static _formatLessonSummary(lessons: any[]): string {
+  private static _formatLessonSummary(lessons: unknown[]): string {
     if (lessons.length === 0) {
 return '';
 }
@@ -144,7 +144,7 @@ return '';
   }
 
   // @ts-expect-error Method reserved for future newsletter formatting
-  private static _formatReflectionHighlights(reflections: any[]): string {
+  private static _formatReflectionHighlights(reflections: unknown[]): string {
     if (reflections.length === 0) {
 return '';
 }

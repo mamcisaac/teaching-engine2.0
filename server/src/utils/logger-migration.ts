@@ -160,7 +160,7 @@ export function requestLoggerMiddleware(
   }) as any;
 
   // Helper methods
-  const logger = req.logger;
+  const {logger} = req;
   if (!logger) {
     throw new Error('Logger not initialized on request object');
   }

@@ -126,7 +126,7 @@ export class ETFOLessonPlanService extends BaseService {
 
   async create(data: ETFOLessonPlanCreateData) {
     try {
-      const { expectationIds = [], ...planData } = data;
+      const { expectationIds = [], ...planData } = data as Record<string, unknown>;
 
       // Verify unit plan belongs to user
       const unitPlan = await this.prisma.unitPlan.findFirst({
@@ -169,7 +169,7 @@ export class ETFOLessonPlanService extends BaseService {
         throw new Error('Lesson plan not found or unauthorized');
       }
 
-      const { expectationIds, ...updateData } = data;
+      const { expectationIds, ...updateData } = data as Record<string, unknown>;
 
       const updatedPlan = await this.repository.updateWithExpectations(
         id,
@@ -275,7 +275,7 @@ export class ETFOLessonPlanService extends BaseService {
       return {
         healthy: false,
         details: {
-          error: error instanceof Error ? error.message : 'Unknown error',
+          error: error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Unknown error',
         },
       };
     }

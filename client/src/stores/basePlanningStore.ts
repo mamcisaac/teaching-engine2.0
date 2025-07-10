@@ -178,7 +178,7 @@ async function syncWithServer<T extends Record<string, unknown>>(
     set((s) => ({
       ...s,
       syncStatus: 'error',
-      syncError: error instanceof Error ? error.message : 'Sync failed'
+      syncError: error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Sync failed'
     }));
   }
 }
@@ -256,7 +256,7 @@ return localData;
           merged[key] = Array.from(new Set(combined.map(item => 
             typeof item === 'object' ? JSON.stringify(item) : item
           ))).map(item => 
-            typeof item === 'string' && item.startsWith('{') ? JSON.parse(item) : item
+            typeof item === 'string' && item.startsWith('{') ? safeJsonParse(item, {}) : item
           );
         } else if (localData[key] !== serverData[key]) {
           // For scalar values, prefer local

@@ -189,7 +189,7 @@ export const useHelpStore = create<HelpState>()(
         }),
       deserialize: (str) => {
         try {
-          const parsed = JSON.parse(str);
+          const parsed = safeJsonParse(str, {});
           if (parsed.state?.userProgress?.lastVisited) {
             parsed.state.userProgress.lastVisited = new Date(parsed.state.userProgress.lastVisited);
           }

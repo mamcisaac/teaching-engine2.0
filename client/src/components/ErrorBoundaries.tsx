@@ -134,7 +134,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
                     Error Details (Development)
                   </summary>
                   <pre className="mt-2 text-xs text-gray-600 whitespace-pre-wrap overflow-auto">
-                    {this.state.error.message}
+                    {this.state.error instanceof Error ? this.state.error.message : String(this.state.error)}
                     {'\n\n'}
                     {this.state.error.stack}
                     {this.state.errorInfo && `\n\nComponent Stack:\n${  this.state.errorInfo.componentStack}`}

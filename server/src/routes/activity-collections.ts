@@ -69,7 +69,7 @@ router.get('/:collectionId', authMiddleware, async (req: Request, res: Response)
     const collection = await prisma.activityCollection.findFirst({
       where: {
         id: collectionId,
-        userId: userId, // Single-teacher use - only show user's own collections,
+        userId, // Single-teacher use - only show user's own collections,
       },
       include: {
         items: {
@@ -132,7 +132,7 @@ router.post('/', authMiddleware, async (req: Request, res: Response): Promise<vo
         name: data.name,
         description: data.description,
         // isPublic removed - single-teacher use only
-        userId: userId,
+        userId,
       },
     });
 
@@ -173,7 +173,7 @@ router.put('/:collectionId', authMiddleware, async (req: Request, res: Response)
     const existing = await prisma.activityCollection.findFirst({
       where: {
         id: collectionId,
-        userId: userId,
+        userId,
       },
     });
 
@@ -223,7 +223,7 @@ router.delete(
       const existing = await prisma.activityCollection.findFirst({
         where: {
           id: collectionId,
-          userId: userId,
+          userId,
         },
       });
 
@@ -278,7 +278,7 @@ router.post(
       const collection = await prisma.activityCollection.findFirst({
         where: {
           id: collectionId,
-          userId: userId,
+          userId,
         },
       });
 
@@ -358,7 +358,7 @@ router.delete(
       const collection = await prisma.activityCollection.findFirst({
         where: {
           id: collectionId,
-          userId: userId,
+          userId,
         },
       });
 
@@ -410,7 +410,7 @@ router.get(
       const { limit = 10 } = req.query;
 
       const collections = await prisma.activityCollection.findMany({
-        where: { userId: userId }, // Single-teacher use - only user's collections
+        where: { userId }, // Single-teacher use - only user's collections
         include: {
           _count: {
             select: { items: true },

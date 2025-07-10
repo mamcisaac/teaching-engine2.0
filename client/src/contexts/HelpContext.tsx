@@ -2,6 +2,7 @@ import React, { createContext, useContext, useReducer, useEffect } from 'react';
 
 import type { HelpState, HelpContextType } from '../types/help';
 import logger from '../utils/logger';
+import { safeJsonParse } from '../utils/typeGuards';
 // Initial state
 const initialState: HelpState = {
   currentSection: null,
@@ -127,7 +128,7 @@ export function HelpProvider({ children }: { children: React.ReactNode }) {
     try {
       const savedState = localStorage.getItem(HELP_STATE_KEY);
       if (savedState) {
-        const parsedState = JSON.parse(savedState);
+        const parsedState = safeJsonParse(savedState, {});
         // Convert date strings back to Date objects
         if (parsedState.userProgress?.lastVisited) {
           parsedState.userProgress.lastVisited = new Date(parsedState.userProgress.lastVisited);

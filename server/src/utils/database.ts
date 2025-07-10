@@ -178,7 +178,7 @@ export const batchUpdate = async <T>(
 
     const results = await Promise.all(
       chunk.map(
-        ({ where, data }): Promise<any> => (model as any).update({ where, data }).catch(() => null),
+        ({ where, data }): Promise<unknown> => (model as any).update({ where, data }).catch(() => null),
       ),
     );
 
@@ -214,7 +214,7 @@ export const upsertMany = async <T>(
     create: T;
     update: Partial<T>;
   }>,
-): Promise<any[]> => {
+): Promise<unknown[]> => {
   return Promise.all(
     records.map(({ where, create, update }) => (model as any).upsert({ where, create, update })),
   );
@@ -263,7 +263,7 @@ export const softDelete = async (
   model: PrismaModel,
   id: string | number,
   deletedAtField: string = 'deletedAt',
-): Promise<any> => {
+): Promise<unknown> => {
   return (model as any).update({
     where: { id },
     data: { [deletedAtField]: new Date() },
@@ -314,7 +314,7 @@ export const testConnection = async (prisma: PrismaClientLike): Promise<boolean>
   }
 };
 
-export const getConnectionInfo = async (prisma: PrismaClientLike): Promise<any> => {
+export const getConnectionInfo = async (prisma: PrismaClientLike): Promise<unknown> => {
   const [version, tables, size] = await Promise.all([
     (prisma as any).$queryRaw`SELECT sqlite_version() as version`,
     (prisma as any).$queryRaw`SELECT name FROM sqlite_master WHERE type='table'`,

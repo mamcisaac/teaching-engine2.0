@@ -225,12 +225,12 @@ describe('MonitoringService Integration Tests', () => {
         .set('Accept', 'text/event-stream');
 
       let messageCount = 0;
-      const messages: any[] = [];
+      const messages: unknown[] = [];
 
       eventSource.on('data', (chunk) => {
         const data = chunk.toString();
         if (data.startsWith('data: ')) {
-          const json = JSON.parse(data.substring(6));
+          const json = safeJsonParse(data.substring(6, {}));
           messages.push(json);
           messageCount++;
 
@@ -363,7 +363,7 @@ describe('MonitoringService Integration Tests', () => {
 
   describe('Alerting System', () => {
     test('should trigger alerts based on real metrics', async () => {
-      const alerts: any[] = [];
+      const alerts: unknown[] = [];
       
       monitoringService.onAlert((alert) => {
         alerts.push(alert);
