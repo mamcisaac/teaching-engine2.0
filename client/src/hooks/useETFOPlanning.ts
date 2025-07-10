@@ -229,7 +229,7 @@ export function useUpdateCurriculumExpectation() {
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['curriculum-expectations'] });
+      void queryClient.invalidateQueries({ queryKey: ['curriculum-expectations'] });
       toast.success('Curriculum expectation updated successfully');
     },
     onError: (error) => {
@@ -247,7 +247,7 @@ export function useDeleteCurriculumExpectation() {
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['curriculum-expectations'] });
+      void queryClient.invalidateQueries({ queryKey: ['curriculum-expectations'] });
       toast.success('Curriculum expectation deleted successfully');
     },
     onError: (error) => {
@@ -302,7 +302,7 @@ export function useCreateLongRangePlan() {
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['long-range-plans'] });
+      void queryClient.invalidateQueries({ queryKey: ['long-range-plans'] });
     },
   });
 }
@@ -319,8 +319,8 @@ export function useUpdateLongRangePlan() {
       return response.data;
     },
     onSuccess: (_data) => {
-      queryClient.invalidateQueries({ queryKey: ['long-range-plans'] });
-      queryClient.invalidateQueries({ queryKey: ['long-range-plans', _data.id] });
+      void queryClient.invalidateQueries({ queryKey: ['long-range-plans'] });
+      void queryClient.invalidateQueries({ queryKey: ['long-range-plans', _data.id] });
     },
   });
 }
@@ -334,8 +334,8 @@ export function useDeleteLongRangePlan() {
       return response.data;
     },
     onSuccess: (_, id) => {
-      queryClient.invalidateQueries({ queryKey: ['long-range-plans'] });
-      queryClient.invalidateQueries({ queryKey: ['long-range-plans', id] });
+      void queryClient.invalidateQueries({ queryKey: ['long-range-plans'] });
+      void queryClient.invalidateQueries({ queryKey: ['long-range-plans', id] });
     },
   });
 }
@@ -386,8 +386,8 @@ export function useCreateUnitPlan() {
       return response.data;
     },
     onSuccess: (_data) => {
-      queryClient.invalidateQueries({ queryKey: ['unit-plans'] });
-      queryClient.invalidateQueries({ queryKey: ['long-range-plans', _data.longRangePlanId] });
+      void queryClient.invalidateQueries({ queryKey: ['unit-plans'] });
+      void queryClient.invalidateQueries({ queryKey: ['long-range-plans', _data.longRangePlanId] });
     },
   });
 }
@@ -404,8 +404,8 @@ export function useUpdateUnitPlan() {
       return response.data;
     },
     onSuccess: (_data) => {
-      queryClient.invalidateQueries({ queryKey: ['unit-plans'] });
-      queryClient.invalidateQueries({ queryKey: ['unit-plans', _data.id] });
+      void queryClient.invalidateQueries({ queryKey: ['unit-plans'] });
+      void queryClient.invalidateQueries({ queryKey: ['unit-plans', _data.id] });
     },
   });
 }
@@ -419,8 +419,8 @@ export function useDeleteUnitPlan() {
       return response.data;
     },
     onSuccess: (_, id) => {
-      queryClient.invalidateQueries({ queryKey: ['unit-plans'] });
-      queryClient.invalidateQueries({ queryKey: ['unit-plans', id] });
+      void queryClient.invalidateQueries({ queryKey: ['unit-plans'] });
+      void queryClient.invalidateQueries({ queryKey: ['unit-plans', id] });
       toast.success('Unit plan deleted successfully');
     },
     onError: (error) => {
@@ -479,8 +479,8 @@ export function useCreateETFOLessonPlan() {
       return response.data;
     },
     onSuccess: (_data) => {
-      queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans'] });
-      queryClient.invalidateQueries({ queryKey: ['unit-plans', _data.unitPlanId] });
+      void queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans'] });
+      void queryClient.invalidateQueries({ queryKey: ['unit-plans', _data.unitPlanId] });
     },
   });
 }
@@ -500,8 +500,8 @@ export function useUpdateETFOLessonPlan() {
       return response.data;
     },
     onSuccess: (_data) => {
-      queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans'] });
-      queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans', _data.id] });
+      void queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans'] });
+      void queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans', _data.id] });
     },
   });
 }
@@ -515,7 +515,7 @@ export function useDeleteETFOLessonPlan() {
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans'] });
+      void queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans'] });
     },
   });
 }
@@ -574,9 +574,9 @@ export function useCreateDaybookEntry() {
       return response.data;
     },
     onSuccess: (_data) => {
-      queryClient.invalidateQueries({ queryKey: ['daybook-entries'] });
+      void queryClient.invalidateQueries({ queryKey: ['daybook-entries'] });
       if (_data.lessonPlanId) {
-        queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans', _data.lessonPlanId] });
+        void queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans', _data.lessonPlanId] });
       }
     },
   });
@@ -597,8 +597,8 @@ export function useUpdateDaybookEntry() {
       return response.data;
     },
     onSuccess: (_data) => {
-      queryClient.invalidateQueries({ queryKey: ['daybook-entries'] });
-      queryClient.invalidateQueries({ queryKey: ['daybook-entries', _data.id] });
+      void queryClient.invalidateQueries({ queryKey: ['daybook-entries'] });
+      void queryClient.invalidateQueries({ queryKey: ['daybook-entries', _data.id] });
     },
   });
 }

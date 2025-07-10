@@ -208,7 +208,7 @@ describe('Button - Real Backend Integration', () => {
       const { cleanup } = await renderWithRealBackend(
         <div>
           <Button 
-            onClick={() => checkPlanExists(createdPlan.id)}
+            onClick={() => { void checkPlanExists(createdPlan.id)}
             loading={checkingPlan}
             variant={planExists ? 'primary' : 'secondary'}
           >

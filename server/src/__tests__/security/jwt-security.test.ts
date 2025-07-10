@@ -46,7 +46,7 @@ describe('JWT Security Tests', () => {
 
     prisma = new PrismaClient({
       datasources: {
-        db: { url: process.env.DATABASE_URL || 'file:./test-jwt-security.db' },
+        db: { url: process.env.DATABASE_URL ?? 'file:./test-jwt-security.db' },
       },
     });
 

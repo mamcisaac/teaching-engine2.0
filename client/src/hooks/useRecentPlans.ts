@@ -39,7 +39,7 @@ export function useTrackPlanAccess() {
     },
     onSuccess: () => {
       // Invalidate recent plans cache to update the list
-      queryClient.invalidateQueries({ queryKey: ['recent-plans'] });
+      void queryClient.invalidateQueries({ queryKey: ['recent-plans'] });
     },
   });
 }
@@ -53,7 +53,7 @@ export function useClearRecentPlans() {
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['recent-plans'] });
+      void queryClient.invalidateQueries({ queryKey: ['recent-plans'] });
     },
   });
 }
@@ -98,8 +98,8 @@ export function useDuplicatePlan() {
         'lesson': 'etfo-lesson-plans',
       }[variables.planType];
       
-      queryClient.invalidateQueries({ queryKey: [queryKey] });
-      queryClient.invalidateQueries({ queryKey: ['recent-plans'] });
+      void queryClient.invalidateQueries({ queryKey: [queryKey] });
+      void queryClient.invalidateQueries({ queryKey: ['recent-plans'] });
     },
   });
 }

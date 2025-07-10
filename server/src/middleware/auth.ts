@@ -32,7 +32,7 @@ const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@
  * Hash password using bcrypt
  */
 export async function hashPassword(password: string): Promise<string> {
-  const saltRounds = parseInt(process.env.BCRYPT_SALT_ROUNDS || '10', 10);
+  const saltRounds = parseInt(process.env.BCRYPT_SALT_ROUNDS ?? '10', 10);
   return bcryptHash(password, saltRounds);
 }
 

@@ -13,7 +13,7 @@ async function getS3Client() {
   if (!s3Client && bucket && process.env.AWS_ACCESS_KEY_ID && process.env.AWS_SECRET_ACCESS_KEY) {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const { S3Client } = await import('@aws-sdk/client-s3');
-    s3Client = new S3Client({ region: process.env.AWS_REGION || 'us-east-1' });
+    s3Client = new S3Client({ region: process.env.AWS_REGION ?? 'us-east-1' });
   }
   return s3Client;
 }

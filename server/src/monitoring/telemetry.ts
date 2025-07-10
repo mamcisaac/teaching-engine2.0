@@ -14,9 +14,9 @@ import logger from '../logger';
 
 // Environment configuration
 const OTEL_ENABLED = process.env.OTEL_ENABLED === 'true';
-const OTEL_SERVICE_NAME = process.env.OTEL_SERVICE_NAME || 'teaching-engine-api';
-const OTEL_ENVIRONMENT = process.env.NODE_ENV || 'development';
-const OTEL_ENDPOINT = process.env.OTEL_ENDPOINT || 'http://localhost:4318';
+const OTEL_SERVICE_NAME = process.env.OTEL_SERVICE_NAME ?? 'teaching-engine-api';
+const OTEL_ENVIRONMENT = process.env.NODE_ENV ?? 'development';
+const OTEL_ENDPOINT = process.env.OTEL_ENDPOINT ?? 'http://localhost:4318';
 
 // Initialize resource
 const resource = Resource.default().merge(

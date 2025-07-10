@@ -39,7 +39,7 @@ export const KeyboardShortcutsHelp: React.FC<KeyboardShortcutsHelpProps> = ({
         planning: [],
         editing: [],
         other: [],
-      } as Record<KeyboardShortcut['category'], KeyboardShortcut[]>,
+      },
     );
 
   const categories: {

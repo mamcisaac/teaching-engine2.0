@@ -12,7 +12,7 @@ import { performance } from 'perf_hooks';
 
 // Real database connection for tests
 const prisma = new PrismaClient({
-  datasourceUrl: process.env.TEST_DATABASE_URL || process.env.DATABASE_URL,
+  datasourceUrl: process.env.TEST_DATABASE_URL ?? process.env.DATABASE_URL,
 });
 
 describe('MonitoringService Integration Tests', () => {

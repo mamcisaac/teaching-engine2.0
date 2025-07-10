@@ -33,7 +33,7 @@ export default function QuickLessonPage() {
       );
 
       toast.success('Quick lesson created successfully!');
-      navigate('/planner/etfo-lessons');
+      void navigate('/planner/etfo-lessons');
     } catch (_error) {
       logger.error('Failed to create quick lesson:', _error);
       toast.error('Failed to create lesson. Please try again.');

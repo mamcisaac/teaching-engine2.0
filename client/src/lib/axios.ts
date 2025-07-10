@@ -4,7 +4,7 @@ import { authService } from '../services/authService';
 import logger from '../utils/logger';
 // Create axios instance with base configuration
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000',
+  baseURL: import.meta.env.VITE_API_URL ?? 'http://localhost:3000',
   timeout: 10000,
   withCredentials: true, // Include cookies in requests
 });

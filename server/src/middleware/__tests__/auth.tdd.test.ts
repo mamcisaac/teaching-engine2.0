@@ -53,7 +53,7 @@ describe('Authentication Middleware - Real Implementation Tests', () => {
       // Verify token is valid JWT
       const decoded = jwt.verify(
         response.body.token,
-        process.env.JWT_SECRET || 'test-secret'
+        process.env.JWT_SECRET ?? 'test-secret'
       ) as unknown;
       expect(decoded.userId).toBe(testUser.id);
       expect(decoded.email).toBe(testUser.email);
@@ -135,7 +135,7 @@ describe('Authentication Middleware - Real Implementation Tests', () => {
       // Create an expired token
       const expiredToken = jwt.sign(
         { userId: testUser.id, email: testUser.email },
-        process.env.JWT_SECRET || 'test-secret',
+        process.env.JWT_SECRET ?? 'test-secret',
         { expiresIn: '-1h' } // Expired 1 hour ago
       );
 

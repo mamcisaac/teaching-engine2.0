@@ -83,7 +83,7 @@ describe('Service Layer - Real Performance Tests', () => {
     // Initialize services
     if (ENABLE_AI_PERFORMANCE_TESTS) {
       aiService = new AIService({
-        apiKey: process.env.OPENAI_API_KEY || 'test-key',
+        apiKey: process.env.OPENAI_API_KEY ?? 'test-key',
         model: 'gpt-3.5-turbo',
         maxTokens: 500, // Lower for performance tests to save costs
       });

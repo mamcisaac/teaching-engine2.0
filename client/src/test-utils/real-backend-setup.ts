@@ -7,11 +7,11 @@ import axios from 'axios';
 import { QueryClient } from '@tanstack/react-query';
 
 // Base URL for real backend
-export const REAL_BACKEND_URL = process.env.VITE_API_URL || 'http://localhost:3000';
+export const REAL_BACKEND_URL = process.env.VITE_API_URL ?? 'http://localhost:3000';
 
 // Test database URL for integration tests
 export const TEST_DATABASE_URL =
-  process.env.TEST_DATABASE_URL || 'postgresql://test:test@localhost:5432/teaching_engine_test';
+  process.env.TEST_DATABASE_URL ?? 'postgresql://test:test@localhost:5432/teaching_engine_test';
 
 /**
  * Configuration for real backend tests

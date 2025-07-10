@@ -54,8 +54,8 @@ export default function CalendarEventDetails({
     },
     onSuccess: () => {
       toast.success('Event deleted successfully');
-      queryClient.invalidateQueries({ queryKey: ['calendar-events'] });
-      queryClient.invalidateQueries({ queryKey: ['lessons'] });
+      void queryClient.invalidateQueries({ queryKey: ['calendar-events'] });
+      void queryClient.invalidateQueries({ queryKey: ['lessons'] });
       onUpdate?.();
       onClose();
     },
@@ -79,8 +79,8 @@ export default function CalendarEventDetails({
     },
     onSuccess: () => {
       toast.success('Event updated successfully');
-      queryClient.invalidateQueries({ queryKey: ['calendar-events'] });
-      queryClient.invalidateQueries({ queryKey: ['lessons'] });
+      void queryClient.invalidateQueries({ queryKey: ['calendar-events'] });
+      void queryClient.invalidateQueries({ queryKey: ['lessons'] });
       setIsEditing(false);
       onUpdate?.();
     },
@@ -105,9 +105,9 @@ export default function CalendarEventDetails({
 
   const handleViewDetails = () => {
     if (event.type === 'lesson' && event.metadata?.lessonId) {
-      navigate(`/planner/lessons/${event.metadata.lessonId}`);
+      void navigate(`/planner/lessons/${event.metadata.lessonId}`);
     } else if (event.type === 'unit-boundary' && event.metadata?.unitId) {
-      navigate(`/planner/units/${event.metadata.unitId}`);
+      void navigate(`/planner/units/${event.metadata.unitId}`);
     }
   };
 

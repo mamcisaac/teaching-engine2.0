@@ -85,8 +85,8 @@ export function useWorkflowState() {
   };
 
   const refreshWorkflowState = () => {
-    queryClient.invalidateQueries({ queryKey: ['workflow-state'] });
-    queryClient.invalidateQueries({ queryKey: ['etfo-progress'] });
+    void queryClient.invalidateQueries({ queryKey: ['workflow-state'] });
+    void queryClient.invalidateQueries({ queryKey: ['etfo-progress'] });
   };
 
   const getLevelProgress = (level: ETFOLevel): LevelProgress | undefined => workflowState?.progress.find((p) => p.level === level);

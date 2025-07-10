@@ -43,7 +43,7 @@ export function useGenerateNewsletter() {
     },
     onSuccess: () => {
       toast.success('Newsletter content generated successfully!');
-      queryClient.invalidateQueries({ queryKey: ['newsletter-drafts'] });
+      void queryClient.invalidateQueries({ queryKey: ['newsletter-drafts'] });
     },
     onError: (error) => {
       toast.error(`Failed to generate newsletter: ${error.message}`);
@@ -93,8 +93,8 @@ export function useSaveNewsletterDraft() {
     },
     onSuccess: (_data) => {
       toast.success(_data.isDraft ? 'Draft saved!' : 'Newsletter finalized!');
-      queryClient.invalidateQueries({ queryKey: ['newsletter-drafts'] });
-      queryClient.invalidateQueries({ queryKey: ['newsletter', _data.id] });
+      void queryClient.invalidateQueries({ queryKey: ['newsletter-drafts'] });
+      void queryClient.invalidateQueries({ queryKey: ['newsletter', _data.id] });
     },
     onError: (error) => {
       toast.error(`Failed to save newsletter: ${error.message}`);
@@ -140,8 +140,8 @@ export function useSendNewsletter() {
     },
     onSuccess: (_, { newsletterId }) => {
       toast.success('Newsletter sent successfully!');
-      queryClient.invalidateQueries({ queryKey: ['newsletter', newsletterId] });
-      queryClient.invalidateQueries({ queryKey: ['newsletter-drafts'] });
+      void queryClient.invalidateQueries({ queryKey: ['newsletter', newsletterId] });
+      void queryClient.invalidateQueries({ queryKey: ['newsletter-drafts'] });
     },
     onError: (error) => {
       toast.error(`Failed to send newsletter: ${error.message}`);
@@ -159,7 +159,7 @@ export function useDeleteNewsletter() {
     },
     onSuccess: () => {
       toast.success('Newsletter deleted successfully!');
-      queryClient.invalidateQueries({ queryKey: ['newsletter-drafts'] });
+      void queryClient.invalidateQueries({ queryKey: ['newsletter-drafts'] });
     },
     onError: (error) => {
       toast.error(`Failed to delete newsletter: ${error.message}`);

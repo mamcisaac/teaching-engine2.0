@@ -28,7 +28,7 @@ describe('AI Service - Real Implementation Tests', () => {
   beforeEach(async () => {
     // Create real service instance with test configuration
     aiService = await createRealService(AIActivityGeneratorService, {
-      apiKey: process.env.OPENAI_API_KEY || 'test-key',
+      apiKey: process.env.OPENAI_API_KEY ?? 'test-key',
       model: 'gpt-3.5-turbo', // Use cheaper model for tests
       maxTokens: 500, // Limit tokens for cost control
       temperature: 0.1, // Low temperature for consistent test results

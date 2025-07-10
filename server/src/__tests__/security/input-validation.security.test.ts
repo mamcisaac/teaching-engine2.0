@@ -172,7 +172,7 @@ describe('Input Validation Security Tests', () => {
     // Initialize test database
     prisma = new PrismaClient({
       datasources: {
-        db: { url: process.env.DATABASE_URL || 'file:./test-input-validation.db' },
+        db: { url: process.env.DATABASE_URL ?? 'file:./test-input-validation.db' },
       },
     });
 

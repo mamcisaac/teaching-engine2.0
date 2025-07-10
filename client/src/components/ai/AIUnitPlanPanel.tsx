@@ -495,7 +495,7 @@ export function AIUnitPlanPanel({
                 <Button 
                   disabled={isGenerating} 
                   variant="outline"
-                  onClick={() => generateSuggestions('bigIdeas')}
+                  onClick={() => { void generateSuggestions('bigIdeas')}
                 >
                   <Lightbulb className="h-4 w-4 mr-2" />
                   Big Ideas
@@ -503,7 +503,7 @@ export function AIUnitPlanPanel({
                 <Button 
                   disabled={isGenerating} 
                   variant="outline"
-                  onClick={() => generateSuggestions('activities')}
+                  onClick={() => { void generateSuggestions('activities')}
                 >
                   <BookOpen className="h-4 w-4 mr-2" />
                   Activities

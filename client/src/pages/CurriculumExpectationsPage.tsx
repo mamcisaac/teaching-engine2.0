@@ -5,22 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
-
-import {
-  useCurriculumExpectations,
-  useUpdateCurriculumExpectation,
-  useDeleteCurriculumExpectation
-} from '../hooks/useETFOPlanning';
-
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
   Dialog,
   DialogContent,
@@ -32,6 +17,13 @@ import {
 import { Input } from '@/components/ui/Input';
 import { Label } from '@/components/ui/Label';
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import {
   Table,
   TableBody,
   TableCell,
@@ -39,8 +31,15 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Textarea } from '@/components/ui/Textarea';
 import { useToast } from '@/components/ui/use-toast';
+
+import {
+  useCurriculumExpectations,
+  useUpdateCurriculumExpectation,
+  useDeleteCurriculumExpectation
+} from '../hooks/useETFOPlanning';
 import type {
   CurriculumExpectation} from '../hooks/useETFOPlanning';
 
@@ -162,7 +161,7 @@ return;
   };
 
   const handleImportCurriculum = () => {
-    navigate('/curriculum-import');
+    void navigate('/curriculum-import');
   };
 
   const ExpectationRow = ({ expectation }: { expectation: CurriculumExpectation }) => (
@@ -211,7 +210,7 @@ return;
 }}>
             <Edit2 className="h-4 w-4" />
           </Button>
-          <Button size="sm" variant="ghost" onClick={() => handleDelete(expectation.id)}>
+          <Button size="sm" variant="ghost" onClick={() => { void handleDelete(expectation.id)}>
             <Trash2 className="h-4 w-4" />
           </Button>
         </div>

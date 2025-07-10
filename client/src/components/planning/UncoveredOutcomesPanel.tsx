@@ -83,7 +83,7 @@ params.append('theme', theme);
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['uncovered-outcomes'] });
+      void queryClient.invalidateQueries({ queryKey: ['uncovered-outcomes'] });
       setGeneratingFor(null);
     },
     onError: () => {

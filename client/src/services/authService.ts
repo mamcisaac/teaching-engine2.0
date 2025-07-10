@@ -230,7 +230,7 @@ return false;
   }
 
   private async _performTokenRefresh(): Promise<boolean> {
-    const baseURL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+    const baseURL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:3000';
 
     try {
       // Refresh token is now sent as HTTP-only cookie automatically
@@ -274,7 +274,7 @@ return false;
       return null;
     }
 
-    const baseURL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+    const baseURL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:3000';
 
     try {
       const response = await fetch(`${baseURL}/api/auth/me`, {

@@ -102,7 +102,7 @@ export class ErrorReportingService {
     try {
       Sentry.init({
         dsn,
-        environment: process.env.NODE_ENV || 'production',
+        environment: process.env.NODE_ENV ?? 'production',
         integrations: [
           // Automatically capture console errors
           new Sentry.Integrations.Console(),

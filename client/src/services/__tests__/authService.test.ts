@@ -26,7 +26,7 @@ beforeEach(() => {
 });
 
 describe('AuthService Integration Tests', () => {
-  const TEST_API_URL = process.env.VITE_API_URL || 'http://localhost:3000';
+  const TEST_API_URL = process.env.VITE_API_URL ?? 'http://localhost:3000';
   const testUser = {
     id: 1,
     email: 'test@example.com',

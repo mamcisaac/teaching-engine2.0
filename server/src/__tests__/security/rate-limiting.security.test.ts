@@ -40,7 +40,7 @@ describe('Rate Limiting Security Tests', () => {
     // Initialize test database
     prisma = new PrismaClient({
       datasources: {
-        db: { url: process.env.DATABASE_URL || 'file:./test-rate-limiting.db' },
+        db: { url: process.env.DATABASE_URL ?? 'file:./test-rate-limiting.db' },
       },
     });
 

@@ -18,7 +18,7 @@ export const GlobalKeyboardShortcuts: React.FC = () => {
  setIsHelpOpen(true); 
 }, []);
   const handleCreateNewLesson = useCallback(() => {
-    navigate('/planner/quick-lesson');
+    void navigate('/planner/quick-lesson');
     // addNotification('info', 'Create a new lesson plan');
   }, [navigate]);
   const handleSave = useCallback(() => {
@@ -188,7 +188,7 @@ const GlobalSearch: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     e.preventDefault();
     if (query.trim()) {
       // Navigate to curriculum page with search query
-      navigate(`/curriculum?search=${encodeURIComponent(query)}`);
+      void navigate(`/curriculum?search=${encodeURIComponent(query)}`);
       onClose();
     }
   };

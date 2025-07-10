@@ -9,8 +9,8 @@
 // Set environment variables for real implementation testing
 process.env.NODE_ENV = 'test';
 process.env.VITE_TEST_MODE = 'real';
-process.env.VITE_USE_REAL_API = process.env.VITE_USE_REAL_API || 'true';
-process.env.VITE_API_BASE_URL = process.env.VITE_API_BASE_URL || 'http://localhost:3000';
+process.env.VITE_USE_REAL_API = process.env.VITE_USE_REAL_API ?? 'true';
+process.env.VITE_API_BASE_URL = process.env.VITE_API_BASE_URL ?? 'http://localhost:3000';
 
 // Import testing library matchers for Vitest
 import * as matchers from '@testing-library/jest-dom/matchers';

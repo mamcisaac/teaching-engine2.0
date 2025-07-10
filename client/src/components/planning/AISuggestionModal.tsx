@@ -61,7 +61,7 @@ export function AISuggestionModal({
       await apiClient.delete(`/ai-suggestions/suggestions/${suggestion.id}`);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['uncovered-outcomes'] });
+      void queryClient.invalidateQueries({ queryKey: ['uncovered-outcomes'] });
       toast({
         title: 'Suggestion deleted',
         description: 'The AI suggestion has been removed.',

@@ -16,7 +16,7 @@ import pino, { stdSerializers } from 'pino';
 
 // Base logger configuration
 const pinoConfig: pino.LoggerOptions = {
-  level: process.env.LOG_LEVEL || (process.env.NODE_ENV === 'production' ? 'info' : 'debug'),
+  level: process.env.LOG_LEVEL ?? (process.env.NODE_ENV === 'production' ? 'info' : 'debug'),
 
   // Custom serializers for better structured logging
   serializers: {

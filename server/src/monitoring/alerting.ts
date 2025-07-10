@@ -49,10 +49,10 @@ interface AlertContext {
 
 // Alert configuration from environment
 const ALERT_EMAIL_ENABLED = process.env.ALERT_EMAIL_ENABLED === 'true';
-const ALERT_EMAIL_TO = process.env.ALERT_EMAIL_TO || 'admin@teaching-engine.com';
-const ALERT_EMAIL_FROM = process.env.ALERT_EMAIL_FROM || 'alerts@teaching-engine.com';
+const ALERT_EMAIL_TO = process.env.ALERT_EMAIL_TO ?? 'admin@teaching-engine.com';
+const ALERT_EMAIL_FROM = process.env.ALERT_EMAIL_FROM ?? 'alerts@teaching-engine.com';
 const {ALERT_WEBHOOK_URL} = process.env;
-const ALERT_CHECK_INTERVAL = parseInt(process.env.ALERT_CHECK_INTERVAL || '60000'); // Default 1 minute
+const ALERT_CHECK_INTERVAL = parseInt(process.env.ALERT_CHECK_INTERVAL ?? '60000'); // Default 1 minute
 
 // Alert state management
 const alertState: AlertState = {
@@ -65,8 +65,8 @@ let emailTransporter: any = null;
 
 if (ALERT_EMAIL_ENABLED && nodemailer) {
   emailTransporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST || 'localhost',
-    port: parseInt(process.env.SMTP_PORT || '587'),
+    host: process.env.SMTP_HOST ?? 'localhost',
+    port: parseInt(process.env.SMTP_PORT ?? '587'),
     secure: process.env.SMTP_SECURE === 'true',
     auth: {
       user: process.env.SMTP_USER,

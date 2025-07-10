@@ -9,7 +9,7 @@ export const pactVerifierConfig = {
     path.resolve(__dirname, '../../../../client/pacts/teachingengineclient-teachingengineserver.json'),
   ],
   // Alternatively, use Pact Broker
-  // pactBrokerUrl: process.env.PACT_BROKER_URL || 'http://localhost:9292',
+  // pactBrokerUrl: process.env.PACT_BROKER_URL ?? 'http://localhost:9292',
   // pactBrokerUsername: process.env.PACT_BROKER_USERNAME,
   // pactBrokerPassword: process.env.PACT_BROKER_PASSWORD,
   // publishVerificationResult: true,

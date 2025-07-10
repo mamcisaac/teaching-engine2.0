@@ -42,7 +42,7 @@ export const KeyboardShortcutsSettings: React.FC = () => {
         planning: [],
         editing: [],
         other: [],
-      } as Record<KeyboardShortcut['category'], KeyboardShortcut[]>,
+      },
     );
 
   const categoryLabels: Record<KeyboardShortcut['category'], string> = {

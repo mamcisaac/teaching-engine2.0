@@ -211,7 +211,7 @@ let redisClient: Redis | null = null;
 export async function getRedisClient(): Promise<Redis | null> {
   if (redisClient) return redisClient;
 
-  const redisUrl = process.env.REDIS_URL || process.env.RATE_LIMIT_REDIS_URL;
+  const redisUrl = process.env.REDIS_URL ?? process.env.RATE_LIMIT_REDIS_URL;
   if (!redisUrl) return null;
 
   try {

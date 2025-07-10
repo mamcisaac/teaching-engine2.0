@@ -7,7 +7,7 @@ describe('Privacy Utilities', () => {
 
   beforeEach(() => {
     privacyUtils = new PrivacyUtils({
-      encryptionKey: process.env.ENCRYPTION_KEY || 'test-encryption-key-32-characters!!'
+      encryptionKey: process.env.ENCRYPTION_KEY ?? 'test-encryption-key-32-characters!!'
     });
     jest.clearAllMocks();
   });

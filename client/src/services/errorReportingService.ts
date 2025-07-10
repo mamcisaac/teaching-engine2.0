@@ -100,7 +100,7 @@ export class ErrorReportingService {
     try {
       Sentry.init({
         dsn,
-        environment: import.meta.env.MODE || 'production',
+        environment: import.meta.env.MODE ?? 'production',
         integrations: [
           Sentry.browserTracingIntegration(),
           new Replay({

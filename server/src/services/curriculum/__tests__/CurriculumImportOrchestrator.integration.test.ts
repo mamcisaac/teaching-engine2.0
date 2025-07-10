@@ -16,7 +16,7 @@ const __dirname = dirname(__filename);
 
 // Real database connection for tests
 const prisma = new PrismaClient({
-  datasourceUrl: process.env.TEST_DATABASE_URL || process.env.DATABASE_URL,
+  datasourceUrl: process.env.TEST_DATABASE_URL ?? process.env.DATABASE_URL,
 });
 
 describe('CurriculumImportOrchestrator Integration Tests', () => {

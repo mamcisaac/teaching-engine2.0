@@ -678,7 +678,7 @@ export function AILessonPlanPanel({
                 <Button 
                   disabled={isGenerating} 
                   variant="outline"
-                  onClick={() => generateSuggestions('materials')}
+                  onClick={() => { void generateSuggestions('materials')}
                 >
                   <BookOpen className="h-4 w-4 mr-2" />
                   Materials
@@ -686,7 +686,7 @@ export function AILessonPlanPanel({
                 <Button 
                   disabled={isGenerating} 
                   variant="outline"
-                  onClick={() => generateSuggestions('assessments')}
+                  onClick={() => { void generateSuggestions('assessments')}
                 >
                   <Target className="h-4 w-4 mr-2" />
                   Assessments

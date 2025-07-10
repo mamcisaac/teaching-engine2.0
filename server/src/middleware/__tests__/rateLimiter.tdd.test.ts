@@ -25,9 +25,9 @@ describe('Rate Limiter Middleware - Real Implementation Tests', () => {
     app = await createTestApp();
     
     // Try to connect to real Redis for tests
-    if (process.env.REDIS_URL || process.env.TEST_REDIS) {
+    if (process.env.REDIS_URL ?? process.env.TEST_REDIS) {
       try {
-        redis = new Redis(process.env.REDIS_URL || 'redis://localhost:6379/1');
+        redis = new Redis(process.env.REDIS_URL ?? 'redis://localhost:6379/1');
         await redis.ping();
         // Using real Redis for rate limiter tests
       } catch (_error) {

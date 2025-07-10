@@ -150,7 +150,7 @@ export default function CalendarPlanningPage() {
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['lessons'] });
+      void queryClient.invalidateQueries({ queryKey: ['lessons'] });
       toast.success('Lesson rescheduled successfully');
     },
     onError: () => {
@@ -497,8 +497,8 @@ return false;
               setSelectedSlot(null);
             }}
             onEventCreated={() => {
-              queryClient.invalidateQueries({ queryKey: ['calendar-events'] });
-              queryClient.invalidateQueries({ queryKey: ['lessons'] });
+              void queryClient.invalidateQueries({ queryKey: ['calendar-events'] });
+              void queryClient.invalidateQueries({ queryKey: ['lessons'] });
             }}
           />
         </Suspense>
@@ -520,8 +520,8 @@ return false;
  setSelectedEvent(null); 
 }}
             onUpdate={() => {
-              queryClient.invalidateQueries({ queryKey: ['calendar-events'] });
-              queryClient.invalidateQueries({ queryKey: ['lessons'] });
+              void queryClient.invalidateQueries({ queryKey: ['calendar-events'] });
+              void queryClient.invalidateQueries({ queryKey: ['lessons'] });
             }}
           />
         </Suspense>

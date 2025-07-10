@@ -16,10 +16,17 @@ import Dialog from '../components/Dialog';
 import { PlanningErrorBoundary } from '../components/ErrorBoundaries';
 import { EmptyState } from '../components/LoadingStates';
 import { OptimizedUnitPlanCard, LoadingSkeleton } from '../components/performance';
+import { PlanAccessTracker } from '../components/planning/PlanAccessTracker';
 import { BlankTemplateQuickActions } from '../components/printing/BlankTemplatePrinter';
 import { AutoSaveIndicator } from '../components/ui/AutoSaveIndicator';
 import { Button } from '../components/ui/Button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
+import { Input } from '../components/ui/Input';
+import { Label } from '../components/ui/Label';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
+import { Textarea } from '../components/ui/Textarea';
 import { UnitPlanOverviewTab } from '../components/unitPlans/UnitPlanOverviewTab';
+import { UnitPlanPlanningTab } from '../components/unitPlans/UnitPlanPlanningTab';
 import type {
   UnitPlan} from '../hooks/useETFOPlanning';
 import {
@@ -33,13 +40,8 @@ import {
 import { useTemplates, useApplyTemplate } from '../hooks/useTemplates';
 import { useUnitPlanForm } from '../hooks/useUnitPlanForm';
 // import { UnitPlanService } from '../services/unitPlanService';
-import { PlanTemplate, isUnitPlanTemplate, UnitPlanContent } from '../types/template';
-import { UnitPlanPlanningTab } from '../components/unitPlans/UnitPlanPlanningTab';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
-import { Label } from '../components/ui/Label';
-import { Input } from '../components/ui/Input';
-import { Textarea } from '../components/ui/Textarea';
+import type { PlanTemplate, UnitPlanContent } from '../types/template';
+import { isUnitPlanTemplate } from '../types/template';
 
 // Lazy load AI components for better performance
 const AIUnitPlanPanel = lazy(() =>
@@ -53,7 +55,6 @@ import logger from '../utils/logger';
 import { generateUnitPlanHTML, printHTML, downloadHTML } from '../utils/printUtils';
 import { SafeHtmlRenderer } from '../utils/sanitization';
 import RichTextEditor from '../components/RichTextEditor';
-import { PlanAccessTracker } from '../components/planning/PlanAccessTracker';
 // Extended UnitPlan type with all ETFO fields
 interface ExtendedUnitPlan extends UnitPlan {
   crossCurricularConnections?: string;

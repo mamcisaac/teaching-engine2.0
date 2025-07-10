@@ -64,7 +64,7 @@ export default function LongRangePlanPage() {
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['long-range-plans'] });
+      void queryClient.invalidateQueries({ queryKey: ['long-range-plans'] });
       setIsCreateModalOpen(false);
     },
   });

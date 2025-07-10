@@ -19,7 +19,7 @@ export function ETFONavigationSection() {
       useKeyboardShortcut(
         () => {
           if (level.isAccessible) {
-            navigate(level.path);
+            void navigate(level.path);
           }
         },
         {

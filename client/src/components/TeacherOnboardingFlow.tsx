@@ -730,7 +730,7 @@ return;
         onClick: () => {
           markStepCompleted('features');
           completeOnboarding();
-          navigate('/planner/dashboard');
+          void navigate('/planner/dashboard');
         },
       },
     },

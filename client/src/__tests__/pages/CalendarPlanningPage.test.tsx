@@ -31,7 +31,7 @@ vi.mock('react-big-calendar', () => ({
           Test Lesson
         </button>
         <button
-          onClick={() => onSelectSlot({ start: new Date(), end: new Date() })}
+          onClick={() => { void onSelectSlot({ start: new Date(), end: new Date() })}
           data-testid="calendar-slot"
         >
           Select Slot

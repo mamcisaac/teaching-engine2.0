@@ -68,7 +68,7 @@ export function DuplicatePlanModal({
       });
     },
     onSuccess: (response) => {
-      queryClient.invalidateQueries({ queryKey: ['plans'] });
+      void queryClient.invalidateQueries({ queryKey: ['plans'] });
       onClose();
       // Navigate to the new plan
       const routePrefix = {

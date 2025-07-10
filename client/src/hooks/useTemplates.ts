@@ -129,7 +129,7 @@ export function useCreateTemplate() {
     mutationFn: templatesApi.createTemplate,
     onSuccess: (newTemplate) => {
       // Invalidate template lists
-      queryClient.invalidateQueries({ queryKey: templateKeys.lists() });
+      void queryClient.invalidateQueries({ queryKey: templateKeys.lists() });
       
       // Add to cache
       queryClient.setQueryData(templateKeys.detail(newTemplate.id), newTemplate);
@@ -149,7 +149,7 @@ export function useUpdateTemplate() {
       queryClient.setQueryData(templateKeys.detail(updatedTemplate.id), updatedTemplate);
       
       // Invalidate lists to ensure consistency
-      queryClient.invalidateQueries({ queryKey: templateKeys.lists() });
+      void queryClient.invalidateQueries({ queryKey: templateKeys.lists() });
     },
   });
 }
@@ -165,7 +165,7 @@ export function useDeleteTemplate() {
       queryClient.removeQueries({ queryKey: templateKeys.detail(deletedId) });
       
       // Invalidate lists
-      queryClient.invalidateQueries({ queryKey: templateKeys.lists() });
+      void queryClient.invalidateQueries({ queryKey: templateKeys.lists() });
     },
   });
 }
@@ -182,7 +182,7 @@ export function useDuplicateTemplate() {
       queryClient.setQueryData(templateKeys.detail(duplicatedTemplate.id), duplicatedTemplate);
       
       // Invalidate lists
-      queryClient.invalidateQueries({ queryKey: templateKeys.lists() });
+      void queryClient.invalidateQueries({ queryKey: templateKeys.lists() });
     },
   });
 }
@@ -204,10 +204,10 @@ export function useRateTemplate() {
       templatesApi.rateTemplate(id, rating, comment),
     onSuccess: (_, { id }) => {
       // Invalidate the specific template to refetch with updated rating
-      queryClient.invalidateQueries({ queryKey: templateKeys.detail(id) });
+      void queryClient.invalidateQueries({ queryKey: templateKeys.detail(id) });
       
       // Invalidate lists to update average ratings
-      queryClient.invalidateQueries({ queryKey: templateKeys.lists() });
+      void queryClient.invalidateQueries({ queryKey: templateKeys.lists() });
     },
   });
 }

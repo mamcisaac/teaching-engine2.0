@@ -207,7 +207,7 @@ return [];
     return (
       <div className="text-center py-8">
         <div className="text-red-600 mb-4">Failed to load data</div>
-        <Button variant="outline" onClick={() => refetch()}>
+        <Button variant="outline" onClick={() => { void refetch()}>
           Retry
         </Button>
       </div>

@@ -239,7 +239,7 @@ export const fileUploadSecurityMiddleware = (
       }
 
       // Check file size (10MB default)
-      const maxSize = parseInt(process.env.MAX_FILE_SIZE || '10485760', 10);
+      const maxSize = parseInt(process.env.MAX_FILE_SIZE ?? '10485760', 10);
       if (file.size > maxSize) {
         next(new AppError(400, 'File size too large', 'FILE_TOO_LARGE')); return;
       }

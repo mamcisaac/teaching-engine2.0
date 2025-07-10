@@ -89,8 +89,8 @@ export default function CalendarEventModal({
     },
     onSuccess: () => {
       toast.success(`${eventType === 'lesson' ? 'Lesson' : 'Event'} created successfully`);
-      queryClient.invalidateQueries({ queryKey: ['calendar-events'] });
-      queryClient.invalidateQueries({ queryKey: ['lessons'] });
+      void queryClient.invalidateQueries({ queryKey: ['calendar-events'] });
+      void queryClient.invalidateQueries({ queryKey: ['lessons'] });
       onEventCreated?.();
       onClose();
     },

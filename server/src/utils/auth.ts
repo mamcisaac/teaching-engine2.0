@@ -39,7 +39,7 @@ export function generateAccessToken(payload: JWTPayload): string {
 
   const options: SignOptions = {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    expiresIn: (process.env.JWT_EXPIRES_IN || '7d') as any,
+    expiresIn: (process.env.JWT_EXPIRES_IN ?? '7d') as any,
   };
   return sign(payload, secret, options);
 }
@@ -55,7 +55,7 @@ export function generateRefreshToken(payload: JWTPayload): string {
 
   const options: SignOptions = {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    expiresIn: (process.env.JWT_REFRESH_EXPIRES_IN || '30d') as any,
+    expiresIn: (process.env.JWT_REFRESH_EXPIRES_IN ?? '30d') as any,
   };
   return sign(payload, secret, options);
 }

@@ -19,7 +19,7 @@ describe('AIService', () => {
     // Create service with test configuration
     // This uses a real OpenAI client - no mocks
     aiService = new AIService({
-      apiKey: process.env.OPENAI_API_KEY || 'sk-test-fallback-key',
+      apiKey: process.env.OPENAI_API_KEY ?? 'sk-test-fallback-key',
       model: 'gpt-3.5-turbo',
       temperature: 0.7,
       maxTokens: 500, // Lower for tests
@@ -400,7 +400,7 @@ describe('AIService', () => {
     test('should complete basic operations', async () => {
       // This test verifies the service works end-to-end
       const service = new AIService({
-        apiKey: process.env.OPENAI_API_KEY || 'fallback-key',
+        apiKey: process.env.OPENAI_API_KEY ?? 'fallback-key',
       });
 
       const healthCheck = await service.checkHealth();

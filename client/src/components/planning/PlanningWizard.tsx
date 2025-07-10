@@ -135,7 +135,7 @@ export function PlanningWizard({
   };
 
   const handleStartStep = () => {
-    navigate(currentStepData.route);
+    void navigate(currentStepData.route);
   };
 
   return (

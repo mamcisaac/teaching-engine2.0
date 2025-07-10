@@ -175,7 +175,7 @@ describe('Advanced XSS Protection Security Tests', () => {
     // Initialize test database
     prisma = new PrismaClient({
       datasources: {
-        db: { url: process.env.DATABASE_URL || 'file:./test-advanced-xss.db' },
+        db: { url: process.env.DATABASE_URL ?? 'file:./test-advanced-xss.db' },
       },
     });
 

@@ -124,8 +124,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       });
       
       // Invalidate other queries that depend on auth
-      queryClient.invalidateQueries({ queryKey: ['notifications'] });
-      queryClient.invalidateQueries({ queryKey: ['user'] });
+      void queryClient.invalidateQueries({ queryKey: ['notifications'] });
+      void queryClient.invalidateQueries({ queryKey: ['user'] });
     },
   });
 

@@ -47,7 +47,7 @@ describe('Authorization Security Tests', () => {
     // Initialize test database
     prisma = new PrismaClient({
       datasources: {
-        db: { url: process.env.DATABASE_URL || 'file:./test-authorization.db' },
+        db: { url: process.env.DATABASE_URL ?? 'file:./test-authorization.db' },
       },
     });
 

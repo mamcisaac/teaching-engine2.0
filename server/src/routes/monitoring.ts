@@ -65,7 +65,7 @@ router.get('/health/detailed', async (_req: Request, res: Response) => {
         pid: process.pid,
         version: process.env.npm_package_version || 'unknown',
         node: process.version,
-        environment: process.env.NODE_ENV || 'development',
+        environment: process.env.NODE_ENV ?? 'development',
         services: {
           database: false,
           cache: true,
