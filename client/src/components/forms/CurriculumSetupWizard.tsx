@@ -72,7 +72,7 @@ interface CurriculumSetupWizardProps {
 export default function CurriculumSetupWizard({
   onComplete,
   onCancel,
-}: CurriculumSetupWizardProps) {
+}: CurriculumSetupWizardProps): React.ReactElement {
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<CurriculumSetupData>({
     academicYear: `${new Date().getFullYear()  }-${  new Date().getFullYear() + 1}`,
@@ -253,13 +253,13 @@ export default function CurriculumSetupWizard({
         return (
           <div className="space-y-6">
             <div>
-              <Label>Planning Style</Label>
+              <Label htmlFor="input">Planning Style</Label>
               <div className="grid gap-3 mt-2">
                 {[
                   { value: 'thematic', label: 'Thematic', desc: 'Organize learning around themes and big ideas' },
                   { value: 'subject-based', label: 'Subject-Based', desc: 'Traditional subject-focused approach' },
                   { value: 'inquiry-based', label: 'Inquiry-Based', desc: 'Student-driven questions and investigations' },
-                ].map((option) => (
+                ].map((option, _index) => (
                   <label key={option.value} className="flex items-start gap-3 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
                     <input
                       checked={formData.planningStyle === option.value}
@@ -280,7 +280,7 @@ export default function CurriculumSetupWizard({
               </div>
             </div>
             <div>
-              <Label>Term Structure</Label>
+              <Label htmlFor="input">Term Structure</Label>
               <select
                 className="w-full mt-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 value={formData.termStructure}
@@ -295,7 +295,7 @@ export default function CurriculumSetupWizard({
               </select>
             </div>
             <div>
-              <Label>Assessment Frequency</Label>
+              <Label htmlFor="input">Assessment Frequency</Label>
               <select
                 className="w-full mt-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 value={formData.assessmentFrequency}
@@ -316,7 +316,7 @@ export default function CurriculumSetupWizard({
         return (
           <div className="space-y-6">
             <div>
-              <Label>Priority Curriculum Strands</Label>
+              <Label htmlFor="input">Priority Curriculum Strands</Label>
               <p className="text-sm text-gray-600 mb-2">Add the main curriculum strands you&apos;ll focus on</p>
               <div className="flex gap-2 mb-2">
                 <Input
@@ -344,7 +344,7 @@ export default function CurriculumSetupWizard({
                 </Button>
               </div>
               <div className="flex flex-wrap gap-2">
-                {formData.priorityStrands.map((strand) => (
+                {formData.priorityStrands.map((strand, _index) => (
                   <Badge key={strand} className="flex items-center gap-1" variant="secondary">
                     {strand}
                     <button
@@ -361,7 +361,7 @@ export default function CurriculumSetupWizard({
               </div>
             </div>
             <div>
-              <Label>Cross-Curricular Connections</Label>
+              <Label htmlFor="input">Cross-Curricular Connections</Label>
               <p className="text-sm text-gray-600 mb-2">Subjects or areas you&apos;ll integrate</p>
               <div className="flex gap-2 mb-2">
                 <Input
@@ -389,7 +389,7 @@ export default function CurriculumSetupWizard({
                 </Button>
               </div>
               <div className="flex flex-wrap gap-2">
-                {formData.crossCurricularConnections.map((connection) => (
+                {formData.crossCurricularConnections.map((connection, _index) => (
                   <Badge key={connection} className="flex items-center gap-1" variant="outline">
                     {connection}
                     <button
@@ -470,7 +470,7 @@ export default function CurriculumSetupWizard({
         return (
           <div className="space-y-6">
             <div>
-              <Label>Available Resources</Label>
+              <Label htmlFor="input">Available Resources</Label>
               <p className="text-sm text-gray-600 mb-2">List the resources available in your classroom</p>
               <div className="flex gap-2 mb-2">
                 <Input
@@ -498,7 +498,7 @@ export default function CurriculumSetupWizard({
                 </Button>
               </div>
               <div className="flex flex-wrap gap-2">
-                {formData.availableResources.map((resource) => (
+                {formData.availableResources.map((resource, _index) => (
                   <Badge key={resource} className="flex items-center gap-1" variant="secondary">
                     {resource}
                     <button
@@ -515,7 +515,7 @@ export default function CurriculumSetupWizard({
               </div>
             </div>
             <div>
-              <Label>Technology Access</Label>
+              <Label htmlFor="input">Technology Access</Label>
               <p className="text-sm text-gray-600 mb-2">Available technology tools and platforms</p>
               <div className="flex gap-2 mb-2">
                 <Input
@@ -543,7 +543,7 @@ export default function CurriculumSetupWizard({
                 </Button>
               </div>
               <div className="flex flex-wrap gap-2">
-                {formData.technologyAccess.map((tech) => (
+                {formData.technologyAccess.map((tech, _index) => (
                   <Badge key={tech} className="flex items-center gap-1" variant="outline">
                     {tech}
                     <button
@@ -578,14 +578,14 @@ export default function CurriculumSetupWizard({
         return (
           <div className="space-y-6">
             <div>
-              <Label>What would you like to generate?</Label>
+              <Label htmlFor="input">What would you like to generate?</Label>
               <div className="space-y-3 mt-2">
                 {[
                   { key: 'generateUnitPlans', label: 'Unit Plans', desc: 'Complete unit planning documents' },
                   { key: 'generateLessonPlans', label: 'Lesson Plans', desc: 'Individual lesson planning templates' },
                   { key: 'includeAssessments', label: 'Assessment Plans', desc: 'Assessment strategies and rubrics' },
                   { key: 'includeDifferentiation', label: 'Differentiation Strategies', desc: 'Support for diverse learners' },
-                ].map((option) => (
+                ].map((option, _index) => (
                   <label key={option.key} className="flex items-start gap-3 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
                     <input
                       checked={formData[option.key as keyof CurriculumSetupData] as boolean}
@@ -604,7 +604,7 @@ export default function CurriculumSetupWizard({
               </div>
             </div>
             <div>
-              <Label>Export Format</Label>
+              <Label htmlFor="input">Export Format</Label>
               <select
                 className="w-full mt-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 value={formData.exportFormat}
@@ -673,7 +673,7 @@ export default function CurriculumSetupWizard({
                 <ChevronLeft className="h-4 w-4" />
                 Previous
               </Button>
-              <Button type="button" variant="ghost" onClick={onCancel}>
+              <Button aria-label="Click button" onClick={onCancel}>
                 Cancel
               </Button>
             </div>

@@ -98,7 +98,7 @@ export const sendSuccess = <T>(
   meta?: Record<string, unknown>
 ): void => {
   const response = successResponse(data, {
-    requestId: (res as unknown as { locals?: { requestId?: string } }).locals?.requestId,
+    requestId: res.locals.requestId,
     ...meta,
   });
   
@@ -112,7 +112,7 @@ export const sendCreated = <T>(
   meta?: Record<string, unknown>
 ): void => {
   const response = createdResponse(data, location, {
-    requestId: (res as unknown as { locals?: { requestId?: string } }).locals?.requestId,
+    requestId: res.locals.requestId,
     ...meta,
   });
   
@@ -132,7 +132,7 @@ export const sendPaginated = <T>(
   meta?: Record<string, unknown>
 ): void => {
   const response = paginatedResponse(data, page, pageSize, totalItems, {
-    requestId: (res as unknown as { locals?: { requestId?: string } }).locals?.requestId,
+    requestId: res.locals.requestId,
     ...meta,
   });
   
@@ -156,7 +156,7 @@ export const sendAccepted = <T>(
       message: 'Request accepted for processing',
       meta: {
         timestamp: new Date().toISOString(),
-        requestId: (res as unknown as { locals?: { requestId?: string } }).locals?.requestId,
+        requestId: res.locals.requestId,
         ...meta,
       },
     });

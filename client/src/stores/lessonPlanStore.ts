@@ -123,11 +123,11 @@ url += `?${params.toString()}`;
                 get().updateLastSynced();
 
                 // Cache for offline use
-                const cacheKey = `lesson-plans-${startDate || 'all'}-${endDate || 'all'}`;
-                await offlineStorage.cacheData(cacheKey, plans, 60);
+                const cacheKey = `lesson-plans-${startDate ?? 'all'}-${endDate ?? 'all'}`;
+                await offlineStorage.cacheData(cacheKey, plans as unknown as StoredData, 60);
               } else {
                 // Load from cache if offline
-                const cacheKey = `lesson-plans-${startDate || 'all'}-${endDate || 'all'}`;
+                const cacheKey = `lesson-plans-${startDate ?? 'all'}-${endDate ?? 'all'}`;
                 const cachedPlans = await offlineStorage.getCachedData<LessonPlan[]>(cacheKey);
 
                 if (cachedPlans) {
@@ -140,7 +140,7 @@ url += `?${params.toString()}`;
                   const allPlans =
                     await offlineStorage.getCachedData<LessonPlan[]>('lesson-plans-all-all');
                   set((state) => {
-                    state.lessonPlans = allPlans || [];
+                    state.lessonPlans = allPlans ?? [];
                     state.isLoading = false;
                   });
                 }
@@ -153,8 +153,8 @@ url += `?${params.toString()}`;
                 await offlineStorage.getCachedData<LessonPlan[]>('lesson-plans-all-all');
 
               set((state) => {
-                state.lessonPlans = cachedPlans || [];
-                state.error = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Failed to load plans';
+                state.lessonPlans = cachedPlans ?? [];
+                state.error = error instanceof Error ? error.message : 'Failed to load plans';
                 state.isLoading = false;
               });
             }
@@ -177,7 +177,7 @@ url += `?${params.toString()}`;
                 });
 
                 // Cache individual lesson
-                await offlineStorage.cacheData(`lesson-plan-${id}`, lesson, 60);
+                await offlineStorage.cacheData(`lesson-plan-${id}`, lesson as unknown as StoredData, 60);
               } else {
                 // Load from cache if offline
                 const cachedLesson = await offlineStorage.getCachedData<LessonPlan>(
@@ -205,7 +205,7 @@ url += `?${params.toString()}`;
             } catch (error) {
               logger.error('Failed to load lesson plan:', error);
               set((state) => {
-                state.error = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Failed to load lesson';
+                state.error = error instanceof Error ? error.message : 'Failed to load lesson';
                 state.isLoading = false;
               });
             }
@@ -258,7 +258,7 @@ url += `?${params.toString()}`;
             } catch (error) {
               logger.error('Failed to create lesson plan:', error);
               set((state) => {
-                state.error = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Failed to create lesson';
+                state.error = error instanceof Error ? error.message : 'Failed to create lesson';
                 state.isSaving = false;
               });
               throw error;
@@ -315,7 +315,7 @@ url += `?${params.toString()}`;
             } catch (error) {
               logger.error('Failed to update lesson plan:', error);
               set((state) => {
-                state.error = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Failed to update lesson';
+                state.error = error instanceof Error ? error.message : 'Failed to update lesson';
                 state.isSaving = false;
               });
               throw error;
@@ -361,7 +361,7 @@ url += `?${params.toString()}`;
             } catch (error) {
               logger.error('Failed to delete lesson plan:', error);
               set((state) => {
-                state.error = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Failed to delete lesson';
+                state.error = error instanceof Error ? error.message : 'Failed to delete lesson';
                 state.isSaving = false;
               });
               throw error;

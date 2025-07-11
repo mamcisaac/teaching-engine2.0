@@ -220,7 +220,7 @@ where.endDate = { lte: new Date(String(endDate)) };
       throw new Error('Long range plan not found or access denied');
     }
 
-    const { expectations, resources } = data as Record<string, unknown>;
+    const { expectations, resources } = data as unknown as Record<string, unknown>;
 
     // Create unit plan data that matches Prisma schema
     const createData = {
@@ -257,23 +257,31 @@ where.endDate = { lte: new Date(String(endDate)) };
       communityConnections: data.communityConnections,
       // Add expectations relationship if provided
       ...(expectations &&
+        Array.isArray(expectations) &&
         expectations.length > 0 && {
           expectations: {
-            create: expectations.map((exp) => ({
-              expectationId: exp.expectationId,
-            })),
+            create: expectations.map((exp: unknown) => {
+              const expectation = exp as { expectationId: string };
+              return {
+                expectationId: expectation.expectationId,
+              };
+            }),
           },
         }),
       // Add resources relationship if provided
       ...(resources &&
+        Array.isArray(resources) &&
         resources.length > 0 && {
           resources: {
-            create: resources.map((resource) => ({
-              title: resource.title,
-              type: resource.type,
-              url: resource.url,
-              notes: resource.content, // Map content to notes field
-            })),
+            create: resources.map((resource: unknown) => {
+              const res = resource as { title: string; type: string; url?: string; content?: string };
+              return {
+                title: res.title,
+                type: res.type,
+                url: res.url,
+                notes: res.content, // Map content to notes field
+              };
+            }),
           },
         }),
     };
@@ -304,7 +312,7 @@ where.endDate = { lte: new Date(String(endDate)) };
       throw new Error('Unit plan not found or access denied');
     }
 
-    const { expectationIds, ...updateDataBase } = data as Record<string, unknown>;
+    const { expectationIds, ...updateDataBase } = data as unknown as Record<string, unknown>;
 
     // Build update data without longRangePlanId and with proper date conversion
     const updateData: Record<string, unknown> = {};
@@ -327,11 +335,11 @@ updateData.endDate = new Date(data.endDate);
       where: { id },
       data: {
         ...updateData,
-        ...(expectationIds && {
+        ...(expectationIds && Array.isArray(expectationIds) && {
           expectations: {
             deleteMany: {},
-            create: expectationIds.map((expectationId: string) => ({
-              expectationId,
+            create: expectationIds.map((expectationId: unknown) => ({
+              expectationId: String(expectationId),
             })),
           },
         }),

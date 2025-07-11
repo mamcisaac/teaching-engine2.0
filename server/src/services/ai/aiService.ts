@@ -9,6 +9,7 @@ import OpenAI from 'openai';
 
 import logger from '../../logger';
 import { AppError } from '../../utils/errors';
+import { safeJsonParse } from '../../utils/type-guards';
 import { BaseService } from '../base/BaseService';
 import { cache, CacheKeys, CacheTags } from '../cache';
 
@@ -165,10 +166,9 @@ export class AIService extends BaseService {
             throw new AppError(500, 'No response from AI service');
           }
 
-          let lessonPlan: LessonPlan;
-          try {
-            lessonPlan = safeJsonParse(content, {});
-          } catch (parseError) {
+          let lessonPlan = safeJsonParse<LessonPlan>(content);
+          
+          if (!lessonPlan) {
             logger.warn('Failed to parse AI response, using fallback');
             lessonPlan = this.createFallbackLesson(input);
             lessonPlan.fallback = true;
@@ -226,10 +226,9 @@ export class AIService extends BaseService {
             throw new AppError(500, 'No response from AI service');
           }
 
-          let activity: Activity;
-          try {
-            activity = safeJsonParse(content, {});
-          } catch (parseError) {
+          let activity = safeJsonParse<Activity>(content);
+          
+          if (!activity) {
             activity = this.createFallbackActivity(input);
           }
 
@@ -274,10 +273,9 @@ export class AIService extends BaseService {
             throw new AppError(500, 'No response from AI service');
           }
 
-          let parsedPlan: SubstitutePlan;
-          try {
-            parsedPlan = safeJsonParse(content, {});
-          } catch (parseError) {
+          let parsedPlan = safeJsonParse<SubstitutePlan>(content);
+          
+          if (!parsedPlan) {
             parsedPlan = this.createFallbackSubstitutePlan(input);
           }
 
@@ -322,10 +320,9 @@ export class AIService extends BaseService {
             throw new AppError(500, 'No response from AI service');
           }
 
-          let parsedNewsletter: Newsletter;
-          try {
-            parsedNewsletter = safeJsonParse(content, {});
-          } catch (parseError) {
+          let parsedNewsletter = safeJsonParse<Newsletter>(content);
+          
+          if (!parsedNewsletter) {
             parsedNewsletter = this.createFallbackNewsletter(input);
           }
 
@@ -425,26 +422,25 @@ export class AIService extends BaseService {
         return this.createFallbackEnhancedLesson(input.lesson, input.enhancementType);
       }
 
-      try {
-        return safeJsonParse(content, {});
-      } catch {
-        return this.createFallbackEnhancedLesson(input.lesson, input.enhancementType);
-      }
+      const parsed = safeJsonParse<unknown>(content);
+      return parsed !== undefined ? parsed : this.createFallbackEnhancedLesson(input.lesson, input.enhancementType);
     } catch (error: unknown) {
       logger.error('Error enhancing lesson:', error);
       return this.createFallbackEnhancedLesson(input.lesson, input.enhancementType);
     }
   }
 
-  async generateAlignedLesson(input: any): Promise<unknown> {
+  async generateAlignedLesson(input: unknown): Promise<unknown> {
     try {
-      const lessonPlan = await this.generateLesson(input);
+      const inputObj = input as LessonGenerationInput;
+      const lessonPlan = await this.generateLesson(inputObj);
       // Add aligned standards
+      const inputRecord = input as Record<string, unknown>;
       return {
         ...lessonPlan,
-        alignedStandards: input.curriculumExpectationIds
+        alignedStandards: inputRecord.curriculumExpectationIds
           ? ['MA3.NF.1', 'MA3.NF.2'] // Mock standards for testing
-          : input.standards || [],
+          : (inputRecord.standards as string[]) || [],
       };
     } catch (error: unknown) {
       logger.error('Error generating aligned lesson:', error);
@@ -570,38 +566,48 @@ Return a JSON object with the structure: { title, dateRange, sections, footer }`
     return cleaned.trim() || 'Safe topic';
   }
 
-  private validateAndFixLessonPlan(plan: any, input: LessonGenerationInput): LessonPlan {
+  private validateAndFixLessonPlan(plan: unknown, input: LessonGenerationInput): LessonPlan {
+    // Type guard to ensure plan is an object
+    const lessonPlan = (typeof plan === 'object' && plan !== null ? plan : {}) as Record<string, unknown>;
+    
     // Ensure required fields exist
-    if (!plan.title) {
-plan.title = `${input.topic} - Grade ${input.grade} ${input.subject}`;
-}
-    if (!plan.objectives || !Array.isArray(plan.objectives)) {
-plan.objectives = ['Understand key concepts'];
-}
-    if (!plan.activities || !Array.isArray(plan.activities)) {
-plan.activities = [];
-}
-    if (!plan.materials || !Array.isArray(plan.materials)) {
-plan.materials = [];
-}
-    if (!plan.duration) {
-plan.duration = input.duration;
-}
+    if (!lessonPlan.title) {
+      lessonPlan.title = `${input.topic} - Grade ${input.grade} ${input.subject}`;
+    }
+    if (!lessonPlan.objectives || !Array.isArray(lessonPlan.objectives)) {
+      lessonPlan.objectives = ['Understand key concepts'];
+    }
+    if (!lessonPlan.activities || !Array.isArray(lessonPlan.activities)) {
+      lessonPlan.activities = [];
+    }
+    if (!lessonPlan.materials || !Array.isArray(lessonPlan.materials)) {
+      lessonPlan.materials = [];
+    }
+    if (!lessonPlan.duration) {
+      lessonPlan.duration = input.duration;
+    }
 
     // Validate activity durations sum correctly
-    const totalActivityDuration = plan.activities.reduce(
-      (sum: number, activity: any) => sum + (activity.duration || 0),
+    const activities = Array.isArray(lessonPlan.activities) ? lessonPlan.activities : [];
+    const totalActivityDuration = activities.reduce(
+      (sum: number, activity: unknown) => {
+        const activityObj = activity as Record<string, unknown>;
+        return sum + (typeof activityObj.duration === 'number' ? activityObj.duration : 0);
+      },
       0,
     );
     if (totalActivityDuration > input.duration) {
       // Adjust activities to fit duration
       const ratio = input.duration / totalActivityDuration;
-      plan.activities.forEach((activity: any) => {
-        activity.duration = Math.round((activity.duration || 0) * ratio);
+      activities.forEach((activity: unknown) => {
+        const activityObj = activity as Record<string, unknown>;
+        if (typeof activityObj.duration === 'number') {
+          activityObj.duration = Math.round(activityObj.duration * ratio);
+        }
       });
     }
 
-    return plan as LessonPlan;
+    return lessonPlan as LessonPlan;
   }
 
   private createFallbackLesson(input: LessonGenerationInput): LessonPlan {
@@ -743,8 +749,9 @@ This is a fallback analysis. For more detailed analysis, please ensure AI servic
     };
   }
 
-  private createFallbackEnhancedLesson(lesson: any, enhancementType: string): any {
-    const enhanced = { ...lesson };
+  private createFallbackEnhancedLesson(lesson: unknown, enhancementType: string): unknown {
+    const lessonObj = typeof lesson === 'object' && lesson !== null ? lesson : {};
+    const enhanced = { ...lessonObj } as Record<string, unknown>;
 
     if (enhancementType === 'differentiation') {
       enhanced.differentiation = {

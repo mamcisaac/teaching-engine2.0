@@ -6,6 +6,8 @@
  * The configuration is kept for reference but all requests bypass rate limiting.
  */
 
+import type { Request } from 'express';
+
 export interface RateLimitConfig {
   windowMs: number; // Time window in milliseconds
   max: number; // Maximum number of requests

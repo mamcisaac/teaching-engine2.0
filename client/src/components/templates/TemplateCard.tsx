@@ -16,7 +16,7 @@ export default function TemplateCard({
   onPreview,
   onApply,
   onDuplicate,
-}: TemplateCardProps) {
+}: TemplateCardProps): React.ReactElement {
   const getTypeIcon = () => template.type === 'UNIT_PLAN' ? (
       <FileText className="h-5 w-5 text-blue-600" />
     ) : (
@@ -24,16 +24,16 @@ export default function TemplateCard({
     );
 
   const getDuration = () => {
-    if (template.type === 'UNIT_PLAN' && template.estimatedWeeks) {
+    if (template.type === 'UNIT_PLAN' && template.estimatedWeeks !== null && template.estimatedWeeks !== undefined && template.estimatedWeeks > 0) {
       return `${template.estimatedWeeks} week${template.estimatedWeeks > 1 ? 's' : ''}`;
-    } else if (template.type === 'LESSON_PLAN' && template.estimatedMinutes) {
+    } else if (template.type === 'LESSON_PLAN' && template.estimatedMinutes !== null && template.estimatedMinutes !== undefined && template.estimatedMinutes > 0) {
       return `${template.estimatedMinutes} minutes`;
     }
     return 'Duration not specified';
   };
 
   const getGradeRange = () => {
-    if (template.gradeMin && template.gradeMax) {
+    if (template.gradeMin !== null && template.gradeMin !== undefined && template.gradeMax !== null && template.gradeMax !== undefined) {
       return template.gradeMin === template.gradeMax
         ? `Grade ${template.gradeMin}`
         : `Grades ${template.gradeMin}-${template.gradeMax}`;
@@ -49,12 +49,12 @@ export default function TemplateCard({
           {getTypeIcon()}
           <div>
             <h3 className="font-semibold text-lg">{template.title}</h3>
-            {template.subject && (
+            {template.subject !== null && template.subject !== undefined && template.subject !== '' && (
               <p className="text-sm text-gray-600 capitalize">{template.subject}</p>
             )}
           </div>
         </div>
-        {template.isSystem && (
+        {template.isSystem === true && (
           <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full">
             System
           </span>
@@ -62,7 +62,7 @@ export default function TemplateCard({
       </div>
 
       {/* Description */}
-      {template.description && (
+      {template.description !== null && template.description !== undefined && template.description !== '' && (
         <p className="text-gray-700 text-sm mb-4 line-clamp-2">
           {template.description}
         </p>
@@ -83,11 +83,11 @@ export default function TemplateCard({
       {/* Stats */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-4 text-sm">
-          {template.averageRating && (
+          {template.averageRating !== null && template.averageRating !== undefined && template.averageRating > 0 && (
             <div className="flex items-center gap-1">
               <Star className="h-4 w-4 text-yellow-500 fill-current" />
               <span className="font-medium">{template.averageRating.toFixed(1)}</span>
-              {template._count?.ratings && (
+              {template._count?.ratings !== null && template._count?.ratings !== undefined && template._count.ratings > 0 && (
                 <span className="text-gray-500">({template._count.ratings})</span>
               )}
             </div>
@@ -101,7 +101,7 @@ export default function TemplateCard({
       {/* Tags */}
       {template.tags.length > 0 && (
         <div className="flex flex-wrap gap-1 mb-4">
-          {template.tags.slice(0, 3).map((tag) => (
+          {template.tags.slice(0, 3).map((tag, _index) => (
             <span
               key={tag}
               className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full"
@@ -138,7 +138,7 @@ export default function TemplateCard({
         >
           Use Template
         </Button>
-        {onDuplicate && (
+        {onDuplicate !== undefined && (
           <Button
             size="sm"
             title="Duplicate template"
@@ -154,12 +154,12 @@ export default function TemplateCard({
 
       {/* Created info */}
       <div className="mt-4 pt-4 border-t text-xs text-gray-500">
-        {template.createdByUser ? (
+        {template.createdByUser !== null && template.createdByUser !== undefined ? (
           <span>Created by {template.createdByUser.name}</span>
         ) : (
           <span>System template</span>
         )}
-        {template.lastUsedAt && (
+        {template.lastUsedAt !== null && template.lastUsedAt !== undefined && template.lastUsedAt !== '' && (
           <span className="ml-2">
             • Last used {format(new Date(template.lastUsedAt), 'MMM d, yyyy')}
           </span>

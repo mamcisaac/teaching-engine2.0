@@ -1,0 +1,114 @@
+
+> lint
+> eslint --config .eslintrc.json "**/*.{ts,tsx,js,jsx}"
+
+
+/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/api/core/setupInterceptors.ts
+  66:67  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  94:28  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/api/domains/teacher/hooks.ts
+   10:57  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   17:66  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   17:78  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   31:57  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   37:66  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   45:65  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   58:65  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   87:60  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   94:70  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  101:53  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  108:62  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  108:74  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/performance/performance-utils.ts
+  116:3  warning  React Hook useEffect contains a call to 'setRenderCount'. Without a list of dependencies, this can lead to an infinite chain of updates. To fix this, pass [] as a second argument to the useEffect Hook  react-hooks/exhaustive-deps
+
+/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/settings/HolidaySettings.tsx
+  54:27  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/settings/KeyboardShortcutsSettings.tsx
+  167:55  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/templates/FrenchImmersionTemplateSelector.tsx
+  163:43  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  284:43  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  320:56  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/templates/FrenchImmersionWeeklyTemplate.tsx
+  341:34  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/templates/PEICurriculumConnector.tsx
+  270:49  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/templates/TemplateApplyModal.tsx
+  164:109  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  190:72   error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  240:42   error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/templates/TemplateCard.tsx
+  104:48  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/templates/TemplateFilters.tsx
+  144:48  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  169:46  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  189:46  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  218:42  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/templates/TemplatePreviewModal.tsx
+  254:42  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/unitPlans/UnitPlanOverviewTab.tsx
+  37:47  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/contexts/AuthContext.tsx
+  246:10  error  Definition for rule 'react-hooks/exhaustive-deps // Only run once on mount' was not found  react-hooks/exhaustive-deps // Only run once on mount
+
+/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/hooks/useAIStatus.tsx
+  255:30  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/pages/CurriculumExpectationsPage.tsx
+  278:41  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  297:37  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  326:35  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  333:33  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  370:70  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/pages/CurriculumImportPage.tsx
+  192:72  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  196:56  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  221:72  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  432:59  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  442:57  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/pages/DaybookPage.tsx
+  109:34  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  148:47  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  315:49  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  586:29  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/pages/LongRangePlanPage.tsx
+  128:37  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  192:44  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/pages/ParentNewsletterPage.tsx
+  245:95  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  409:31  error  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/stores/helpStore.ts
+  194:62  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/utils/typeGuards.ts
+  12:22  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/middleware/authenticate.ts
+  367:25  warning  Forbidden non-null assertion  @typescript-eslint/no-non-null-assertion
+
+/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/middleware/cache.ts
+  274:44  warning  Forbidden non-null assertion  @typescript-eslint/no-non-null-assertion
+
+/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/middleware/core/logging.ts
+  240:20  warning  Forbidden non-null assertion  @typescript-eslint/no-non-null-assertion
+
+✖ 57 problems (53 errors, 4 warnings)
+

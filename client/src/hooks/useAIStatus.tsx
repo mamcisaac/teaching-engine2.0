@@ -105,7 +105,7 @@ export function useAIStatus(): AIStatusHookReturn {
     retry: (failureCount, error: unknown) => {
       // Don't retry on auth errors or client errors
       const axiosError = error as { response?: { status?: number } };
-      if (axiosError.response?.status && axiosError.response.status < 500) {
+      if (axiosError.response?.status !== undefined && axiosError.response.status < 500) {
         return false;
       }
       return failureCount < 3;
@@ -176,19 +176,19 @@ export function useAIFeature(feature: keyof AIStatusInfo['features']) {
 export function useAIQuota() {
   const { aiStatus } = useAIStatus();
   
-  const quotaPercentage = aiStatus.limitations?.quotaLimit 
-    ? (aiStatus.limitations.quotaUsed || 0) / aiStatus.limitations.quotaLimit * 100
+  const quotaPercentage = (aiStatus.limitations?.quotaLimit !== null && aiStatus.limitations?.quotaLimit !== undefined && aiStatus.limitations.quotaLimit > 0)
+    ? ((aiStatus.limitations.quotaUsed ?? 0) / aiStatus.limitations.quotaLimit * 100)
     : 0;
 
   const isNearQuotaLimit = quotaPercentage > 80;
   const isQuotaExceeded = quotaPercentage >= 100;
 
   return {
-    quotaUsed: aiStatus.limitations?.quotaUsed || 0,
-    quotaLimit: aiStatus.limitations?.quotaLimit || 0,
+    quotaUsed: aiStatus.limitations?.quotaUsed ?? 0,
+    quotaLimit: aiStatus.limitations?.quotaLimit ?? 0,
     quotaPercentage,
-    requestsRemaining: aiStatus.limitations?.requestsRemaining || 0,
-    requestsPerHour: aiStatus.limitations?.requestsPerHour || 0,
+    requestsRemaining: aiStatus.limitations?.requestsRemaining ?? 0,
+    requestsPerHour: aiStatus.limitations?.requestsPerHour ?? 0,
     isNearQuotaLimit,
     isQuotaExceeded,
   };
@@ -244,7 +244,7 @@ return 'Limited';
         <span className="font-medium">AI Assistant: {getStatusText()}</span>
       </div>
       
-      {aiDisabledReason && (
+      {aiDisabledReason !== undefined && aiDisabledReason !== null && (
         <p className="text-sm text-gray-600 mb-2">{aiDisabledReason}</p>
       )}
 
@@ -254,7 +254,7 @@ return 'Limited';
             .filter(([, enabled]) => enabled)
             .map(([feature]) => feature)
             .join(', ') || 'None'}</div>
-          {aiStatus.limitations?.requestsRemaining && (
+          {aiStatus.limitations?.requestsRemaining !== undefined && aiStatus.limitations.requestsRemaining !== null && (
             <div>Requests remaining: {aiStatus.limitations.requestsRemaining}</div>
           )}
           {aiStatus.lastChecked && (

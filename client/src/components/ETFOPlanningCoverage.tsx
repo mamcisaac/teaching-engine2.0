@@ -33,7 +33,7 @@ interface PlanningLevel {
   description: string;
 }
 
-export default function ETFOPlanningCoverage() {
+export default function ETFOPlanningCoverage(): React.ReactElement {
   // Fetch data for all planning levels
   const { data: longRangePlans = [] } = useLongRangePlans();
   const { data: unitPlans = [] } = useUnitPlans();
@@ -150,7 +150,7 @@ return 'text-yellow-600';
 
       {/* Planning Levels Breakdown */}
       <div className="grid gap-4 md:grid-cols-2">
-        {planningLevels.map((level) => {
+        {planningLevels.map((level, _index) => {
           const percentage = calculatePercentage(level.completed, level.total);
           return (
             <Card key={level.name}>
@@ -227,7 +227,7 @@ return 'text-yellow-600';
                 <div key={subject} className="space-y-2">
                   <h4 className="font-medium">{subject}</h4>
                   <div className="grid gap-2">
-                    {plans.map((plan) => {
+                    {plans.map((plan, _index) => {
                       const planUnits = unitPlans.filter((u) => u.longRangePlanId === plan.id);
                       const unitPercentage = plan._count?.unitPlans
                         ? calculatePercentage(planUnits.length, plan._count.unitPlans)
@@ -282,7 +282,7 @@ return 'text-yellow-600';
                     const unitLessons = lessonPlans.filter((l) => l.unitPlanId === unit.id);
                     return unitLessons.length === 0;
                   })
-                  .map((unit) => (
+                  .map((unit, _index) => (
                     <div key={unit.id} className="p-3 bg-yellow-50 rounded-lg">
                       <div className="flex items-center justify-between">
                         <div>
@@ -308,7 +308,7 @@ return 'text-yellow-600';
                     return !hasReflection;
                   })
                   .slice(0, 5)
-                  .map((lesson) => (
+                  .map((lesson, _index) => (
                     <div key={lesson.id} className="p-3 bg-orange-50 rounded-lg">
                       <div className="flex items-center justify-between">
                         <div>

@@ -13,8 +13,8 @@ interface OnboardingHighlightProps {
   onClick?: (e: React.MouseEvent) => void;
 }
 
-export function OnboardingHighlight({ highlightPosition, onClick }: OnboardingHighlightProps) {
-  if (!highlightPosition) {
+export function OnboardingHighlight({ highlightPosition, onClick }: OnboardingHighlightProps): React.ReactElement | null {
+  if (highlightPosition === null || highlightPosition === undefined) {
 return null;
 }
 

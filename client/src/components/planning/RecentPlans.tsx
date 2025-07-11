@@ -68,13 +68,13 @@ export const RecentPlans = memo(({
   className,
 }: RecentPlansProps) => {
   // Memoize expensive calculations for plan processing
-  const processedPlans = useMemo(() => plans.map((plan) => ({
+  const processedPlans = useMemo(() => plans.map((plan, _index) => ({
       ...plan,
       formattedDate: formatDistanceToNow(new Date(plan.lastAccessed), { addSuffix: true }),
       planRoute: `${PLAN_TYPE_CONFIG[plan.type].route}/${plan.id}`,
     })), [plans]);
 
-  if (isLoading) {
+  if (isLoading === true) {
     return (
       <Card className={className}>
         <CardHeader>
@@ -86,7 +86,7 @@ export const RecentPlans = memo(({
         </CardHeader>
         <CardContent>
           <div className="space-y-3">
-            {[1, 2, 3].map((i) => (
+            {[1, 2, 3].map((i, _index) => (
               <LoadingSkeleton 
                 key={i} 
                 layout={[
@@ -123,7 +123,7 @@ export const RecentPlans = memo(({
     );
   }
 
-  const getStatusBadge = (plan: RecentPlan) => {
+  const getStatusBadge = (plan: RecentPlan): React.ReactElement | null => {
     if (plan.status === 'completed') {
       return (
         <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
@@ -174,7 +174,7 @@ export const RecentPlans = memo(({
       </CardHeader>
       <CardContent>
         <div className="space-y-3">
-          {processedPlans.map((plan) => {
+          {processedPlans.map((plan, _index) => {
             const config = PLAN_TYPE_CONFIG[plan.type];
             const Icon = config.icon;
 
@@ -193,22 +193,22 @@ export const RecentPlans = memo(({
                         </h4>
                         <div className="flex items-center gap-2 mt-0.5">
                           <span className="text-xs text-gray-500">{config.label}</span>
-                          {plan.subject && (
+                          {(plan.subject !== undefined && plan.subject !== '') ? (
                             <>
                               <span className="text-xs text-gray-400">•</span>
                               <span className="text-xs text-gray-500">{plan.subject}</span>
                             </>
-                          )}
-                          {plan.grade && (
+                          ) : null}
+                          {(plan.grade !== undefined) ? (
                             <>
                               <span className="text-xs text-gray-400">•</span>
                               <span className="text-xs text-gray-500">Grade {plan.grade}</span>
                             </>
-                          )}
+                          ) : null}
                         </div>
-                        {plan.parentTitle && (
+                        {(plan.parentTitle !== undefined && plan.parentTitle !== '') ? (
                           <p className="text-xs text-gray-500 mt-0.5">in {plan.parentTitle}</p>
-                        )}
+                        ) : null}
                       </div>
                       <ChevronRight className="h-4 w-4 text-gray-400 group-hover:text-gray-600 flex-shrink-0 mt-0.5" />
                     </div>

@@ -5,10 +5,10 @@ import React from 'react';
 import { useOnboarding } from '../../contexts/OnboardingContext';
 import { Button } from '../ui/Button';
 
-export function WelcomeModal() {
+export function WelcomeModal(): React.ReactElement | null {
   const { state, startOnboarding, skipOnboarding } = useOnboarding();
 
-  if (!state.isFirstTimeUser || state.skippedOnboarding || state.currentFlow) {
+  if (state.isFirstTimeUser !== true || state.skippedOnboarding === true || (state.currentFlow !== null && state.currentFlow !== undefined)) {
     return null;
   }
 
@@ -114,7 +114,7 @@ export function WelcomeModal() {
               Take the 5-minute tour
               <ChevronRight className="h-4 w-4" />
             </Button>
-            <Button className="flex-1" size="lg" variant="outline" onClick={skipOnboarding}>
+            <Button aria-label="Click button" onClick={skipOnboarding}>
               I&apos;ll explore on my own
             </Button>
           </motion.div>

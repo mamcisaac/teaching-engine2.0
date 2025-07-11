@@ -31,9 +31,9 @@ export const OptimizedUnitPlanCard = memo(({
 
   // Memoize count calculations
   const counts = useMemo(() => ({
-    lessons: unit._count?.lessonPlans || 0,
-    expectations: unit._count?.expectations || 0,
-    hours: unit.estimatedHours || 0,
+    lessons: unit._count?.lessonPlans ?? 0,
+    expectations: unit._count?.expectations ?? 0,
+    hours: unit.estimatedHours ?? 0,
   }), [unit._count?.lessonPlans, unit._count?.expectations, unit.estimatedHours]);
 
   // Memoize progress calculation
@@ -81,7 +81,7 @@ return null;
         </div>
 
         {/* Big Ideas - only show if not compact and exists */}
-        {!compact && unit.bigIdeas && (
+        {!compact && unit.bigIdeas !== null && unit.bigIdeas !== undefined && unit.bigIdeas !== '' && (
           <div>
             <h4 className="text-sm font-medium text-gray-700 mb-1">Big Ideas</h4>
             <p className="text-sm text-gray-600 line-clamp-2">{unit.bigIdeas}</p>

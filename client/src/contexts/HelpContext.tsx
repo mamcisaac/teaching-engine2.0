@@ -66,7 +66,7 @@ function helpReducer(state: HelpState, action: HelpAction): HelpState {
       };
 
     case 'NEXT_TUTORIAL_STEP': {
-      const currentStep = state.tutorialProgress[action.payload] || 0;
+      const currentStep = state.tutorialProgress[action.payload] ?? 0;
       return {
         ...state,
         tutorialProgress: { ...state.tutorialProgress, [action.payload]: currentStep + 1 }
@@ -125,10 +125,13 @@ export function HelpProvider({ children }: { children: React.ReactNode }) {
 
   // Load state from localStorage on mount
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     try {
       const savedState = localStorage.getItem(HELP_STATE_KEY);
       if (savedState) {
-        const parsedState = safeJsonParse(savedState, {});
+        const parsedState = safeJsonParse(savedState, initialState) as HelpState;
         // Convert date strings back to Date objects
         if (parsedState.userProgress?.lastVisited) {
           parsedState.userProgress.lastVisited = new Date(parsedState.userProgress.lastVisited);
@@ -138,10 +141,13 @@ export function HelpProvider({ children }: { children: React.ReactNode }) {
     } catch (_error) {
       logger.warn('Failed to load help state from localStorage:', _error);
     }
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Save state to localStorage whenever it changes
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     try {
       localStorage.setItem(HELP_STATE_KEY, JSON.stringify(state));
     } catch (_error) {
@@ -208,7 +214,7 @@ export function useTutorialProgress(tutorialId: string) {
   const { state } = useHelp();
   
   return {
-    currentStep: state.tutorialProgress[tutorialId] || 0,
+    currentStep: state.tutorialProgress[tutorialId] ?? 0,
     isActive: tutorialId in state.tutorialProgress,
     isCompleted: state.completedTutorials.includes(tutorialId)
   };

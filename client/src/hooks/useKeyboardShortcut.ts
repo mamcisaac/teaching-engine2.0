@@ -108,7 +108,7 @@ export const useMultipleKeyboardShortcuts = (
   );
 
   // Always call hooks, but with empty array if shortcuts is null/undefined
-  const safeShortcuts = shortcuts || [];
+  const safeShortcuts = shortcuts ?? [];
   safeShortcuts.forEach(({ handler, options }) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useKeyboardShortcut(handler, options, deps);

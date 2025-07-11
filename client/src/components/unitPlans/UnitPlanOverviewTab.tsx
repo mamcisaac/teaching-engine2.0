@@ -34,7 +34,7 @@ export const UnitPlanOverviewTab: React.FC<UnitPlanOverviewTabProps> = ({
 }}
               >
                 <option value="">Select a long-range plan...</option>
-                {allLongRangePlans.map((plan) => (
+                {allLongRangePlans.map((plan, _index) => (
                   <option key={plan.id} value={plan.id}>
                     {plan.title} - {plan.subject} Grade {plan.grade}
                   </option>

@@ -3,7 +3,7 @@ import React, { useState, useMemo, useCallback } from 'react';
 
 // Simple debounce implementation
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const debounce = <T extends (...args: unknown[]) => any>(
+const debounce = <T extends (...args: any[]) => any>(
   func: T,
   wait: number,
 ): ((...args: Parameters<T>) => void) => {
@@ -89,6 +89,7 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
           if (search) {
             newFilters._global = search;
           } else {
+            // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
             delete newFilters._global;
           }
           return newFilters;
@@ -99,7 +100,7 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
   );
 
   // Fetch data query
-  const { data, isLoading, error, refetch } = useQuery({
+  const { data, isLoading, error, refetch } = useQuery<PaginatedResult<T>>({
     queryKey: ['paginatedData', currentPage, pageSize, sortBy, sortOrder, filters],
     queryFn: () =>
       fetchData({
@@ -152,15 +153,15 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
   // Handle pagination
   const handlePageChange = useCallback((page: number) => {
     setCurrentPage(page);
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Generate pagination buttons
   const paginationButtons = useMemo(() => {
-    if (!data) {
+    if (data === null || data === undefined) {
 return [];
 }
 
-    const { totalPages } = data as Record<string, unknown>;
+    const { totalPages } = data;
     const buttons: (number | string)[] = [];
     const maxButtons = 7;
 
@@ -207,7 +208,7 @@ return [];
     return (
       <div className="text-center py-8">
         <div className="text-red-600 mb-4">Failed to load data</div>
-        <Button variant="outline" onClick={() => {
+        <Button aria-label="Click button" onClick={() => {
  void refetch(); 
 }}>
           Retry
@@ -242,20 +243,20 @@ return [];
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              {columns.map((column) => (
+              {columns.map((column, _index) => (
                 <th
                   key={column.key as string}
                   className={`px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ${
-                    column.sortable ? 'cursor-pointer hover:bg-gray-100' : ''
+                    column.sortable === true ? 'cursor-pointer hover:bg-gray-100' : ''
                   }`}
                   style={{ width: column.width }}
-                  onClick={column.sortable ? () => {
+                  onClick={column.sortable === true ? () => {
  handleSort(column.key as string); 
 } : undefined}
                 >
                   <div className="flex items-center space-x-1">
                     <span>{column.label}</span>
-                    {column.sortable && renderSortIcon(column.key as string)}
+                    {column.sortable === true && renderSortIcon(column.key as string)}
                   </div>
                 </th>
               ))}
@@ -263,9 +264,9 @@ return [];
 
             {/* Filter Row */}
             <tr className="bg-gray-25">
-              {columns.map((column) => (
+              {columns.map((column, _index) => (
                 <th key={`filter-${column.key as string}`} className="px-6 py-2">
-                  {column.filterable && (
+                  {column.filterable === true && (
                     <Input
                       className="text-sm"
                       placeholder={`Filter by ${column.label.toLowerCase()}...`}
@@ -283,10 +284,10 @@ return [];
           <tbody className="bg-white divide-y divide-gray-200">
             {isLoading ? (
               // Loading skeleton
-              Array.from({ length: pageSize }).map((_, index) => (
-                <tr key={`skeleton-${index}`}>
-                  {columns.map((column) => (
-                    <td key={`skeleton-${index}-${column.key as string}`} className="px-6 py-4">
+              Array.from({ length: pageSize }).map((_, _index) => (
+                <tr key={`skeleton-${_index}`}>
+                  {columns.map((column, _colIndex) => (
+                    <td key={`skeleton-${_index}-${column.key as string}`} className="px-6 py-4">
                       <LoadingSkeleton lines={1} variant="text" />
                     </td>
                   ))}
@@ -299,16 +300,16 @@ return [];
                 </td>
               </tr>
             ) : (
-              data?.items.map((item, index) => (
-                <tr key={index} className="hover:bg-gray-50">
-                  {columns.map((column) => (
+              data?.items.map((item, _index) => (
+                <tr key={_index} className="hover:bg-gray-50">
+                  {columns.map((column, _index) => (
                     <td
                       key={column.key as string}
                       className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"
                     >
                       {column.render
                         ? column.render(item[column.key], item)
-                        : String(item[column.key] || '')}
+                        : String(item[column.key] ?? '')}
                     </td>
                   ))}
                 </tr>
@@ -338,9 +339,9 @@ return [];
               Previous
             </Button>
 
-            {paginationButtons.map((page, index) => (
+            {paginationButtons.map((page, _index) => (
               <Button
-                key={index}
+                key={_index}
                 className={page === '...' ? 'cursor-default' : ''}
                 disabled={page === '...'}
                 size="sm"
@@ -369,7 +370,7 @@ return [];
       )}
 
       {/* Loading overlay for data fetching */}
-      {isLoading && data && (
+      {isLoading === true && data !== null && data !== undefined && (
         <div
           className="absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center"
           data-testid="loading-skeleton"

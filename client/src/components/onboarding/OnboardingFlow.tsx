@@ -15,7 +15,7 @@ const OnboardingLoadingFallback = () => (
 );
 
 // Export the lazy-loaded component
-export function OnboardingFlow() {
+export function OnboardingFlow(): React.ReactElement {
   return (
     <Suspense fallback={<OnboardingLoadingFallback />}>
       <OnboardingFlowOptimized />

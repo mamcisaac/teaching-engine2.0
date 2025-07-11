@@ -84,7 +84,7 @@ interface FormTemplatesProps {
 export default function FormTemplates({
   onTemplateGenerate,
   onTemplateDownload,
-}: FormTemplatesProps) {
+}: FormTemplatesProps): React.ReactElement {
   const [selectedTemplate, setSelectedTemplate] = useState<TemplateConfig | null>(null);
   const [customConfig, setCustomConfig] = useState({
     quantity: 1,
@@ -275,7 +275,7 @@ return;
         </CardHeader>
         <CardContent>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {TEMPLATE_LIBRARY.map((template) => (
+            {TEMPLATE_LIBRARY.map((template, _index) => (
               <div
                 key={template.id}
                 className={`p-4 border rounded-lg cursor-pointer transition-all ${
@@ -389,7 +389,7 @@ return;
             </div>
 
             <div className="flex gap-2">
-              <Button className="flex items-center gap-2" onClick={handleTemplateGenerate}>
+              <Button aria-label="Click button" onClick={handleTemplateGenerate}>
                 <Wand2 className="h-4 w-4" />
                 Generate Template
               </Button>
@@ -422,7 +422,7 @@ return;
                 {selectedTemplate.fields.includes('all') ? (
                   <Badge variant="outline">All available fields</Badge>
                 ) : (
-                  selectedTemplate.fields.map((field) => (
+                  selectedTemplate.fields.map((field, _index) => (
                     <Badge key={field} className="text-xs" variant="outline">
                       {field}
                     </Badge>

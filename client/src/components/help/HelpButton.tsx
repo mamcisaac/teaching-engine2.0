@@ -19,7 +19,7 @@ export const HelpButton: React.FC<HelpButtonProps> = ({
   position = 'top',
   className,
   onClick
-}) => {
+}): React.ReactElement => {
   const sizes = {
     sm: 'h-4 w-4',
     md: 'h-5 w-5',
@@ -32,7 +32,7 @@ export const HelpButton: React.FC<HelpButtonProps> = ({
     lg: 'p-2'
   };
 
-  const renderButton = () => {
+  const renderButton = (): React.ReactElement => {
     const baseClasses = clsx(
       'inline-flex items-center justify-center rounded-full transition-colors',
       'text-gray-400 hover:text-blue-600 focus:text-blue-600',

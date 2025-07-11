@@ -311,7 +311,7 @@ return;
 
               <div className="flex flex-wrap gap-2">
                 {showRetryButton && (
-                  <Button disabled={this.state.isRetrying} onClick={this.handleManualRetry}>
+                  <Button aria-label="Click button" onClick={this.handleManualRetry}>
                     <RefreshCw
                       className={`h-4 w-4 mr-2 ${this.state.isRetrying ? 'animate-spin' : ''}`}
                     />
@@ -320,13 +320,13 @@ return;
                 )}
 
                 {showLoginButton && (
-                  <Button variant="outline" onClick={this.handleLoginRedirect}>
+                  <Button aria-label="Click button" onClick={this.handleLoginRedirect}>
                     <LogIn className="h-4 w-4 mr-2" />
                     Log In Again
                   </Button>
                 )}
 
-                <Button variant="outline" onClick={() => {
+                <Button aria-label="Click button" onClick={() => {
  window.location.reload(); 
 }}>
                   <RefreshCw className="h-4 w-4 mr-2" />

@@ -20,10 +20,16 @@ export default function LoginPage() {
 
   // Clear any auth errors when component mounts
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     clearError();
   }, [clearError]);
 
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     // Only redirect if we're done checking auth and the user is authenticated
     if (!isAuthLoading && isAuthenticated) {
       navigate('/planner/dashboard', { replace: true });
@@ -121,10 +127,7 @@ return;
         )}
         <form
           className="mt-8 space-y-6"
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleSubmit(e);
-          }}
+          onSubmit={handleSubmit}
         >
           <input name="remember" type="hidden" value="true" />
           <div className="rounded-md shadow-sm -space-y-px">

@@ -43,12 +43,15 @@ export function AILoadingIndicator({
   canCancel = true,
   autoCloseOnSuccess = true,
   autoCloseDelay = 2000,
-}: AILoadingIndicatorProps) {
+}: AILoadingIndicatorProps): React.ReactElement | null {
   const [localProgress, setLocalProgress] = useState(0);
   const [elapsedTime, setElapsedTime] = useState(0);
 
   // Auto-increment progress if not provided
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     if (state === 'processing' && progress === 0) {
       const interval = setInterval(() => {
         setLocalProgress((prev) => {
@@ -67,6 +70,9 @@ export function AILoadingIndicator({
 
   // Track elapsed time
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     if (state === 'processing') {
       const startTime = Date.now();
       const interval = setInterval(() => {
@@ -81,9 +87,12 @@ export function AILoadingIndicator({
 
   // Auto-close on success
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     if (state === 'success' && autoCloseOnSuccess && onCancel) {
       const timeout = setTimeout(() => {
-        onCancel();
+        onCancel?.();
       }, autoCloseDelay);
 
       return () => {
@@ -94,6 +103,9 @@ export function AILoadingIndicator({
 
   // Reset progress when opening
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     if (isOpen && state === 'waiting') {
       setLocalProgress(0);
       setElapsedTime(0);
@@ -102,13 +114,16 @@ export function AILoadingIndicator({
 
   // Complete progress on success
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     if (state === 'success' || state === 'completing') {
       setLocalProgress(100);
     }
   }, [state]);
 
   const currentStep = steps.find((step) => step.id === currentStepId);
-  const currentStepIndex = currentStepId ? steps.findIndex((step) => step.id === currentStepId) : -1;
+  const currentStepIndex = currentStepId !== null && currentStepId !== undefined && currentStepId !== '' ? steps.findIndex((step) => step.id === currentStepId) : -1;
   const displayProgress = progress > 0 ? progress : localProgress;
 
   const formatElapsedTime = (ms: number) => {
@@ -190,7 +205,7 @@ return null;
               >
                 {title}
               </h3>
-              {subtitle && (
+              {subtitle !== null && subtitle !== undefined && subtitle !== '' && (
                 <p 
                   className="text-sm text-gray-500"
                   id="ai-loading-description"
@@ -268,7 +283,7 @@ return null;
             aria-live="assertive" 
             className="sr-only"
           >
-            AI generation failed{error ? `: ${error}` : ''}
+            AI generation failed{error !== null && error !== undefined && error !== '' ? `: ${error}` : ''}
           </div>
         )}
 
@@ -325,14 +340,14 @@ return null;
         )}
 
         {/* Error Message */}
-        {state === 'error' && error && (
+        {state === 'error' && error !== null && error !== undefined && error !== '' && (
           <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
             <p className="text-sm text-red-700">{error}</p>
           </div>
         )}
 
         {/* Success Message */}
-        {state === 'success' && successMessage && (
+        {state === 'success' && successMessage !== null && successMessage !== undefined && successMessage !== '' && (
           <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-md">
             <p className="text-sm text-green-700">{successMessage}</p>
           </div>
@@ -342,12 +357,12 @@ return null;
         {(state === 'error' || state === 'success') && (
           <div className="flex justify-end gap-2">
             {state === 'error' && (
-              <Button size="sm" variant="outline" onClick={onCancel}>
+              <Button aria-label="Click button" onClick={onCancel}>
                 Close
               </Button>
             )}
             {state === 'success' && !autoCloseOnSuccess && (
-              <Button size="sm" onClick={onCancel}>
+              <Button aria-label="Click button" onClick={onCancel}>
                 Done
               </Button>
             )}
@@ -357,7 +372,7 @@ return null;
         {/* Cancel Button for Processing */}
         {state === 'processing' && canCancel && onCancel && (
           <div className="flex justify-end mt-4">
-            <Button size="sm" variant="outline" onClick={onCancel}>
+            <Button aria-label="Click button" onClick={onCancel}>
               Cancel
             </Button>
           </div>

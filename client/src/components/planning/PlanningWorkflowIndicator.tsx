@@ -34,7 +34,7 @@ export function PlanningWorkflowIndicator({
   progress,
   currentLevel,
   className,
-}: PlanningWorkflowIndicatorProps) {
+}: PlanningWorkflowIndicatorProps): React.ReactElement {
   const getStepIcon = (level: LevelProgress) => {
     if (level.isComplete) {
       return <CheckCircle2 className="h-5 w-5 text-green-600" />;
@@ -76,11 +76,11 @@ export function PlanningWorkflowIndicator({
                 <h4 className="font-medium text-gray-900">{level.title}</h4>
                 <p className="text-sm text-gray-600">{level.description}</p>
 
-                {level.requiredFields && level.requiredFields.length > 0 && (
+                {level.requiredFields !== null && level.requiredFields !== undefined && level.requiredFields.length > 0 && (
                   <div className="mt-2">
                     <p className="text-xs text-gray-500 mb-1">Required:</p>
                     <div className="flex flex-wrap gap-1">
-                      {level.requiredFields.map((field) => (
+                      {level.requiredFields.map((field, _index) => (
                         <Badge key={field} className="text-xs" variant="outline">
                           {field}
                         </Badge>

@@ -104,14 +104,14 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
               
               <div className="flex flex-wrap gap-2">
                 {allowRetry && (
-                  <Button onClick={this.handleReset}>
+                  <Button aria-label="Click button" onClick={this.handleReset}>
                     <RefreshCw className="h-4 w-4 mr-2" />
                     Try Again
                   </Button>
                 )}
                 
                 {allowHome && (
-                  <Button variant="outline" onClick={() => window.location.href = '/'}>
+                  <Button aria-label="Click button" onClick={() => window.location.href = '/'}>
                     <Home className="h-4 w-4 mr-2" />
                     Go Home
                   </Button>

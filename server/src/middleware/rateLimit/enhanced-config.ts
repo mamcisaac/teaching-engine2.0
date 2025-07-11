@@ -5,7 +5,7 @@
  * Supports Redis, user tiers, and dynamic limits
  */
 
-import { Request } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import Redis from 'ioredis';
 import {
   RateLimiterRedis,

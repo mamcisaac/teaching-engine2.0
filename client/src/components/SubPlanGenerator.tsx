@@ -8,7 +8,7 @@ interface Props {
   onClose: () => void;
 }
 
-export default function SubPlanGenerator({ onClose }: Props) {
+export default function SubPlanGenerator({ onClose }: Props): React.ReactElement {
   const [date, setDate] = useState(() => new Date().toISOString().slice(0, 10));
   const [days, setDays] = useState(1);
   const [url, setUrl] = useState<string>();

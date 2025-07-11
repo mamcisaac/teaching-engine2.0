@@ -114,7 +114,7 @@ export default function UnitPlansPage() {
   });
   const applyTemplate = useApplyTemplate();
 
-  const unitTemplates = unitTemplatesResult?.templates || [];
+  const unitTemplates = unitTemplatesResult?.templates ?? [];
 
   // Form management with custom hook
   const {
@@ -179,7 +179,7 @@ export default function UnitPlansPage() {
         // Add to description or a specific activities field if available
         const currentDesc = formData.description;
         const activitiesText =
-          `\n\nSuggested Activities:\n${  content.map((a) => `• ${a}`).join('\n')}`;
+          `\n\nSuggested Activities:\n${  content.map((a, _index) => `• ${a}`).join('\n')}`;
         updateField('description', currentDesc + activitiesText);
         break;
       }
@@ -200,11 +200,11 @@ export default function UnitPlansPage() {
     learningGoals?: string[];
     vocabulary?: string[];
   }) => {
-    updateField('title', unitPlan.title || formData.title);
-    updateField('description', unitPlan.description || formData.description);
-    updateField('bigIdeas', unitPlan.bigIdeas?.join('\n\n') || formData.bigIdeas);
-    updateField('essentialQuestions', unitPlan.learningGoals || formData.essentialQuestions);
-    updateField('keyVocabulary', unitPlan.vocabulary || formData.keyVocabulary);
+    updateField('title', unitPlan.title ?? formData.title);
+    updateField('description', unitPlan.description ?? formData.description);
+    updateField('bigIdeas', unitPlan.bigIdeas?.join('\n\n') ?? formData.bigIdeas);
+    updateField('essentialQuestions', unitPlan.learningGoals ?? formData.essentialQuestions);
+    updateField('keyVocabulary', unitPlan.vocabulary ?? formData.keyVocabulary);
   };
 
   const handleEditUnit = (unit: UnitPlan) => {
@@ -213,10 +213,10 @@ export default function UnitPlansPage() {
     const formDataUnit = {
       ...unit,
       differentiationStrategies: {
-        forStruggling: unit.differentiationStrategies?.forStruggling || [],
-        forAdvanced: unit.differentiationStrategies?.forAdvanced || [],
-        forELL: unit.differentiationStrategies?.forELL || [],
-        forIEP: unit.differentiationStrategies?.forIEP || [],
+        forStruggling: unit.differentiationStrategies?.forStruggling ?? [],
+        forAdvanced: unit.differentiationStrategies?.forAdvanced ?? [],
+        forELL: unit.differentiationStrategies?.forELL ?? [],
+        forIEP: unit.differentiationStrategies?.forIEP ?? [],
       },
     };
     loadUnitPlan(formDataUnit as ExtendedUnitPlan);
@@ -231,16 +231,16 @@ export default function UnitPlansPage() {
         // Pre-populate form with template data
         const templateContent = applied.appliedContent as UnitPlanContent;
         updateField('title', '');
-        updateField('description', templateContent.overview || '');
-        updateField('bigIdeas', templateContent.bigIdeas || '');
-        updateField('essentialQuestions', templateContent.essentialQuestions || []);
-        updateField('keyVocabulary', templateContent.keyVocabulary || []);
+        updateField('description', templateContent.overview ?? '');
+        updateField('bigIdeas', templateContent.bigIdeas ?? '');
+        updateField('essentialQuestions', templateContent.essentialQuestions ?? []);
+        updateField('keyVocabulary', templateContent.keyVocabulary ?? []);
         updateField(
           'assessmentPlan',
           templateContent.assessments ? JSON.stringify(templateContent.assessments) : '',
         );
-        updateField('successCriteria', templateContent.successCriteria || []);
-        updateField('crossCurricularConnections', templateContent.crossCurricularConnections || '');
+        updateField('successCriteria', templateContent.successCriteria ?? []);
+        updateField('crossCurricularConnections', templateContent.crossCurricularConnections ?? '');
         // Handle differentiationStrategies which might have different structure in template
         const diffStrategies = templateContent.differentiationStrategies;
         if (diffStrategies && typeof diffStrategies === 'object') {
@@ -262,15 +262,15 @@ export default function UnitPlansPage() {
             forIEP: [],
           });
         }
-        updateField('culminatingTask', templateContent.culminatingTask || '');
-        updateField('priorKnowledge', templateContent.priorKnowledge || '');
-        updateField('parentCommunicationPlan', templateContent.parentCommunicationPlan || '');
-        updateField('fieldTripsAndGuestSpeakers', templateContent.fieldTripsAndGuestSpeakers || '');
-        updateField('indigenousPerspectives', templateContent.indigenousPerspectives || '');
-        updateField('environmentalEducation', templateContent.environmentalEducation || '');
-        updateField('socialJusticeConnections', templateContent.socialJusticeConnections || '');
-        updateField('technologyIntegration', templateContent.technologyIntegration || '');
-        updateField('communityConnections', templateContent.communityConnections || '');
+        updateField('culminatingTask', templateContent.culminatingTask ?? '');
+        updateField('priorKnowledge', templateContent.priorKnowledge ?? '');
+        updateField('parentCommunicationPlan', templateContent.parentCommunicationPlan ?? '');
+        updateField('fieldTripsAndGuestSpeakers', templateContent.fieldTripsAndGuestSpeakers ?? '');
+        updateField('indigenousPerspectives', templateContent.indigenousPerspectives ?? '');
+        updateField('environmentalEducation', templateContent.environmentalEducation ?? '');
+        updateField('socialJusticeConnections', templateContent.socialJusticeConnections ?? '');
+        updateField('technologyIntegration', templateContent.technologyIntegration ?? '');
+        updateField('communityConnections', templateContent.communityConnections ?? '');
 
         // Set estimated duration if available
         if (template.estimatedWeeks) {
@@ -300,8 +300,8 @@ export default function UnitPlansPage() {
             <LoadingSkeleton height="40px" width="200px" />
           </div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {Array.from({ length: 6 }).map((_, index) => (
-              <LoadingSkeleton key={index} variant="card" />
+            {Array.from({ length: 6 }).map((_, _index) => (
+              <LoadingSkeleton key={_index} variant="card" />
             ))}
           </div>
         </div>
@@ -340,8 +340,8 @@ export default function UnitPlansPage() {
                       {new Date(unit.startDate).toLocaleDateString()} -{' '}
                       {new Date(unit.endDate).toLocaleDateString()}
                     </span>
-                    <span>{unit.estimatedHours || 0} hours</span>
-                    <span>{unit._count?.lessonPlans || 0} lessons</span>
+                    <span>{unit.estimatedHours ?? 0} hours</span>
+                    <span>{unit._count?.lessonPlans ?? 0} lessons</span>
                   </div>
                 </div>
                 <div className="flex gap-2">
@@ -388,7 +388,7 @@ export default function UnitPlansPage() {
                       View Lessons
                     </Button>
                   </Link>
-                  <Button variant="outline" onClick={() => {
+                  <Button aria-label="Click button" onClick={() => {
  handleEditUnit(unit); 
 }}>
                     Edit Unit
@@ -417,8 +417,8 @@ export default function UnitPlansPage() {
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Essential Questions</h3>
                   <ul className="list-disc list-inside space-y-1">
-                    {unit.essentialQuestions.map((question, index) => (
-                      <li key={index} className="text-gray-700">
+                    {unit.essentialQuestions.map((question, _index) => (
+                      <li key={_index} className="text-gray-700">
                         {question}
                       </li>
                     ))}
@@ -430,8 +430,8 @@ export default function UnitPlansPage() {
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Success Criteria</h3>
                   <ul className="list-disc list-inside space-y-1">
-                    {unit.successCriteria.map((criteria, index) => (
-                      <li key={index} className="text-gray-700">
+                    {unit.successCriteria.map((criteria, _index) => (
+                      <li key={_index} className="text-gray-700">
                         {criteria}
                       </li>
                     ))}
@@ -450,8 +450,8 @@ export default function UnitPlansPage() {
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Key Vocabulary</h3>
                   <div className="flex flex-wrap gap-2">
-                    {unit.keyVocabulary.map((term, index) => (
-                      <span key={index} className="px-3 py-1 bg-gray-100 rounded-full text-sm">
+                    {unit.keyVocabulary.map((term, _index) => (
+                      <span key={_index} className="px-3 py-1 bg-gray-100 rounded-full text-sm">
                         {term}
                       </span>
                     ))}
@@ -502,8 +502,8 @@ export default function UnitPlansPage() {
                           </CardHeader>
                           <CardContent>
                             <ul className="list-disc list-inside space-y-1 text-sm">
-                              {unit.differentiationStrategies.forAdvanced.map((strategy, index) => (
-                                <li key={index}>{strategy}</li>
+                              {unit.differentiationStrategies.forAdvanced.map((strategy, _index) => (
+                                <li key={_index}>{strategy}</li>
                               ))}
                             </ul>
                           </CardContent>
@@ -518,8 +518,8 @@ export default function UnitPlansPage() {
                           </CardHeader>
                           <CardContent>
                             <ul className="list-disc list-inside space-y-1 text-sm">
-                              {unit.differentiationStrategies.forELL.map((strategy, index) => (
-                                <li key={index}>{strategy}</li>
+                              {unit.differentiationStrategies.forELL.map((strategy, _index) => (
+                                <li key={_index}>{strategy}</li>
                               ))}
                             </ul>
                           </CardContent>
@@ -534,8 +534,8 @@ export default function UnitPlansPage() {
                           </CardHeader>
                           <CardContent>
                             <ul className="list-disc list-inside space-y-1 text-sm">
-                              {unit.differentiationStrategies.forIEP.map((strategy, index) => (
-                                <li key={index}>{strategy}</li>
+                              {unit.differentiationStrategies.forIEP.map((strategy, _index) => (
+                                <li key={_index}>{strategy}</li>
                               ))}
                             </ul>
                           </CardContent>
@@ -552,7 +552,7 @@ export default function UnitPlansPage() {
                     Curriculum Expectations
                   </h3>
                   <div className="grid gap-2">
-                    {unit.expectations.map(({ expectation }) => (
+                    {unit.expectations.map(({ expectation }, _index) => (
                       <div key={expectation.id} className="bg-gray-50 p-3 rounded">
                         <div className="flex justify-between items-start">
                           <div>
@@ -611,7 +611,7 @@ export default function UnitPlansPage() {
               </Link>
               <span>›</span>
               <span className="text-gray-900 font-medium">
-                {longRangePlan?.title || 'Unit Plans'}
+                {longRangePlan?.title ?? 'Unit Plans'}
               </span>
             </>
           ) : (
@@ -647,8 +647,8 @@ export default function UnitPlansPage() {
             <BlankTemplateQuickActions
               schoolInfo={{
                 grade: longRangePlan ? `Grade ${longRangePlan.grade}` : '',
-                subject: longRangePlan?.subject || '',
-                academicYear: longRangePlan?.academicYear || '',
+                subject: longRangePlan?.subject ?? '',
+                academicYear: longRangePlan?.academicYear ?? '',
               }}
               templateType="unit"
             />
@@ -711,7 +711,7 @@ export default function UnitPlansPage() {
           />
         ) : (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {unitPlans.map((unit) => (
+            {unitPlans.map((unit, _index) => (
               <OptimizedUnitPlanCard key={unit.id} unitPlan={unit} onEdit={handleEditUnit} />
             ))}
           </div>
@@ -790,15 +790,15 @@ export default function UnitPlansPage() {
                         className="w-full"
                         curriculumExpectations={curriculumExpectations
                           .filter((exp) => formData.expectationIds.includes(exp.id))
-                          .map((exp) => ({
+                          .map((exp, _index) => ({
                             id: exp.id,
                             code: exp.code,
                             description: exp.description,
                             strand: exp.strand,
                           }))}
                         duration={2} // Default 2 weeks
-                        grade={longRangePlan?.grade || 1}
-                        subject={longRangePlan?.subject || ''}
+                        grade={longRangePlan?.grade ?? 1}
+                        subject={longRangePlan?.subject ?? ''}
                         unitTitle={formData.title}
                         onSuggestionAccepted={handleAISuggestionAccepted}
                         onUnitGenerated={handleAIUnitGenerated}
@@ -820,7 +820,7 @@ export default function UnitPlansPage() {
 
                 <TabsContent className="space-y-6 mt-4" value="assessment">
                   <div>
-                    <Label>Assessment Plan</Label>
+                    <Label htmlFor="input">Assessment Plan</Label>
                     <RichTextEditor
                       value={formData.assessmentPlan}
                       onChange={(value) => {
@@ -830,7 +830,7 @@ export default function UnitPlansPage() {
                   </div>
 
                   <div>
-                    <Label>Learning Skills & Work Habits Focus</Label>
+                    <Label htmlFor="input">Learning Skills & Work Habits Focus</Label>
                     <div className="grid grid-cols-2 gap-4 mt-2">
                       {[
                         'Responsibility',
@@ -839,7 +839,7 @@ export default function UnitPlansPage() {
                         'Collaboration',
                         'Initiative',
                         'Self-Regulation',
-                      ].map((skill) => (
+                      ].map((skill, _index) => (
                         <label key={skill} className="flex items-center space-x-2">
                           <input
                             checked={formData.learningSkills.includes(skill)}
@@ -873,7 +873,7 @@ export default function UnitPlansPage() {
                     </CardHeader>
                     <CardContent className="space-y-4">
                       <div>
-                        <Label>For Struggling Learners</Label>
+                        <Label htmlFor="input">For Struggling Learners</Label>
                         <div className="space-y-2 mt-2">
                           {formData.differentiationStrategies.forStruggling.map(
                             (strategy, index) => (
@@ -918,7 +918,7 @@ export default function UnitPlansPage() {
                       </div>
 
                       <div>
-                        <Label>For Advanced Learners</Label>
+                        <Label htmlFor="input">For Advanced Learners</Label>
                         <div className="space-y-2 mt-2">
                           {formData.differentiationStrategies.forAdvanced.map((strategy, index) => (
                             <div key={index} className="flex gap-2">
@@ -960,7 +960,7 @@ export default function UnitPlansPage() {
                       </div>
 
                       <div>
-                        <Label>For English Language Learners</Label>
+                        <Label htmlFor="input">For English Language Learners</Label>
                         <div className="space-y-2 mt-2">
                           {formData.differentiationStrategies.forELL.map((strategy, index) => (
                             <div key={index} className="flex gap-2">
@@ -998,7 +998,7 @@ export default function UnitPlansPage() {
                       </div>
 
                       <div>
-                        <Label>For Students with IEPs</Label>
+                        <Label htmlFor="input">For Students with IEPs</Label>
                         <div className="space-y-2 mt-2">
                           {formData.differentiationStrategies.forIEP.map((strategy, index) => (
                             <div key={index} className="flex gap-2">
@@ -1040,7 +1040,7 @@ export default function UnitPlansPage() {
 
                 <TabsContent className="space-y-6 mt-4" value="connections">
                   <div>
-                    <Label>Cross-Curricular Connections</Label>
+                    <Label htmlFor="input">Cross-Curricular Connections</Label>
                     <Textarea
                       className="mt-2"
                       placeholder="How does this unit connect to other subject areas?"
@@ -1053,7 +1053,7 @@ export default function UnitPlansPage() {
                   </div>
 
                   <div>
-                    <Label>Indigenous Perspectives</Label>
+                    <Label htmlFor="input">Indigenous Perspectives</Label>
                     <Textarea
                       className="mt-2"
                       placeholder="How will you incorporate Indigenous knowledge and perspectives?"
@@ -1066,7 +1066,7 @@ export default function UnitPlansPage() {
                   </div>
 
                   <div>
-                    <Label>Environmental Education</Label>
+                    <Label htmlFor="input">Environmental Education</Label>
                     <Textarea
                       className="mt-2"
                       placeholder="Environmental learning opportunities in this unit..."
@@ -1079,7 +1079,7 @@ export default function UnitPlansPage() {
                   </div>
 
                   <div>
-                    <Label>Social Justice Connections</Label>
+                    <Label htmlFor="input">Social Justice Connections</Label>
                     <Textarea
                       className="mt-2"
                       placeholder="Equity and social justice themes..."
@@ -1092,7 +1092,7 @@ export default function UnitPlansPage() {
                   </div>
 
                   <div>
-                    <Label>Technology Integration</Label>
+                    <Label htmlFor="input">Technology Integration</Label>
                     <Textarea
                       className="mt-2"
                       placeholder="How will technology enhance learning in this unit?"
@@ -1105,7 +1105,7 @@ export default function UnitPlansPage() {
                   </div>
 
                   <div>
-                    <Label>Community Connections</Label>
+                    <Label htmlFor="input">Community Connections</Label>
                     <Textarea
                       className="mt-2"
                       placeholder="Local partnerships, field trips, guest speakers..."
@@ -1118,7 +1118,7 @@ export default function UnitPlansPage() {
                   </div>
 
                   <div>
-                    <Label>Parent Communication Plan</Label>
+                    <Label htmlFor="input">Parent Communication Plan</Label>
                     <Textarea
                       className="mt-2"
                       placeholder="How will you communicate unit goals and progress to families?"
@@ -1187,7 +1187,7 @@ export default function UnitPlansPage() {
                 pre-structured content that you can customize.
               </p>
               <div className="grid gap-4 md:grid-cols-2">
-                {unitTemplates.map((template) => (
+                {unitTemplates.map((template, _index) => (
                   <Card
                     key={template.id}
                     className={`cursor-pointer border-2 transition-colors ${
@@ -1213,7 +1213,7 @@ export default function UnitPlansPage() {
                         </div>
                         <div className="flex items-center gap-1 text-yellow-500">
                           <span className="text-sm">
-                            {template.averageRating?.toFixed(1) || '—'}
+                            {template.averageRating?.toFixed(1) ?? '—'}
                           </span>
                           <svg className="h-4 w-4 fill-current" viewBox="0 0 20 20">
                             <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
@@ -1224,7 +1224,7 @@ export default function UnitPlansPage() {
                     <CardContent>
                       <p className="text-sm text-gray-700 mb-3">{template.description}</p>
                       <div className="flex flex-wrap gap-1 mb-3">
-                        {template.tags.slice(0, 3).map((tag) => (
+                        {template.tags.slice(0, 3).map((tag, _index) => (
                           <span
                             key={tag}
                             className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-full"
@@ -1239,8 +1239,8 @@ export default function UnitPlansPage() {
                         )}
                       </div>
                       <div className="flex items-center justify-between text-xs text-gray-500">
-                        <span>Used {template.usageCount || 0} times</span>
-                        <span>By {template.createdByUser?.name || 'Anonymous'}</span>
+                        <span>Used {template.usageCount ?? 0} times</span>
+                        <span>By {template.createdByUser?.name ?? 'Anonymous'}</span>
                       </div>
                     </CardContent>
                   </Card>

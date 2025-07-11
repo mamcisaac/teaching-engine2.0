@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Request, Response, NextFunction } from 'express';
 import { ZodError } from 'zod';
 
@@ -33,7 +32,7 @@ export const errorLoggingMiddleware = (
     method: req.method,
     path: req.path,
     query: req.query,
-    body: req.body,
+    body: req.body as unknown,
     userId: req.user?.id,
     requestId: req.id,
     ip: req.ip,

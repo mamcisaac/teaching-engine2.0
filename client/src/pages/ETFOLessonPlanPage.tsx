@@ -95,7 +95,7 @@ export default function ETFOLessonPlanPage() {
   });
   const applyTemplate = useApplyTemplate();
 
-  const lessonTemplates = lessonTemplatesResult?.templates || [];
+  const lessonTemplates = lessonTemplatesResult?.templates ?? [];
 
   // Form state
   const [formData, setFormData] = useState({
@@ -138,10 +138,10 @@ export default function ETFOLessonPlanPage() {
         const cleanedData = {
           ...data,
           unitPlanId: unitId || '',
-          materials: data.materials.filter((m: string) => m.trim()) || [],
-          accommodations: data.accommodations.filter((a: string) => a.trim()) || [],
-          modifications: data.modifications.filter((m: string) => m.trim()) || [],
-          extensions: data.extensions.filter((e: string) => e.trim()) || [],
+          materials: data.materials.filter((m: string) => m.trim()),
+          accommodations: data.accommodations.filter((a: string) => a.trim()),
+          modifications: data.modifications.filter((m: string) => m.trim()),
+          extensions: data.extensions.filter((e: string) => e.trim()),
         };
         await updateLesson.mutateAsync({ id: editingLesson, data: cleanedData });
       }
@@ -347,15 +347,15 @@ export default function ETFOLessonPlanPage() {
       // Legacy format
       setFormData({
         ...formData,
-        title: lessonPlan.title || formData.title,
-        learningGoals: lessonPlan.learningGoals?.join('\n') || formData.learningGoals,
-        mindsOn: lessonPlan.structure?.mindsOn?.activities?.join('\n\n') || formData.mindsOn,
-        action: lessonPlan.structure?.handsOn?.activities?.join('\n\n') || formData.action,
+        title: lessonPlan.title ?? formData.title,
+        learningGoals: lessonPlan.learningGoals?.join('\n') ?? formData.learningGoals,
+        mindsOn: lessonPlan.structure?.mindsOn?.activities?.join('\n\n') ?? formData.mindsOn,
+        action: lessonPlan.structure?.handsOn?.activities?.join('\n\n') ?? formData.action,
         consolidation:
-          lessonPlan.structure?.mindsOnReflection?.activities?.join('\n\n') ||
+          lessonPlan.structure?.mindsOnReflection?.activities?.join('\n\n') ??
           formData.consolidation,
-        materials: lessonPlan.materials || formData.materials,
-        duration: lessonPlan.duration || formData.duration,
+        materials: lessonPlan.materials ?? formData.materials,
+        duration: lessonPlan.duration ?? formData.duration,
       });
     }
   };
@@ -371,24 +371,24 @@ export default function ETFOLessonPlanPage() {
           ...formData,
           title: '',
           titleFr: '',
-          duration: templateContent.duration || 60,
+          duration: templateContent.duration ?? 60,
           learningGoals: '',
           learningGoalsFr: '',
-          mindsOn: templateContent.mindsOn || '',
+          mindsOn: templateContent.mindsOn ?? '',
           mindsOnFr: '',
-          action: templateContent.action || '',
+          action: templateContent.action ?? '',
           actionFr: '',
-          consolidation: templateContent.consolidation || '',
+          consolidation: templateContent.consolidation ?? '',
           consolidationFr: '',
-          materials: templateContent.materials || [''],
-          grouping: templateContent.grouping || 'whole',
-          accommodations: templateContent.accommodations || [''],
-          modifications: templateContent.modifications || [''],
-          extensions: templateContent.extensions || [''],
+          materials: templateContent.materials ?? [''],
+          grouping: templateContent.grouping ?? 'whole',
+          accommodations: templateContent.accommodations ?? [''],
+          modifications: templateContent.modifications ?? [''],
+          extensions: templateContent.extensions ?? [''],
           assessmentType:
-            (templateContent.assessmentType as 'diagnostic' | 'formative' | 'summative') ||
+            (templateContent.assessmentType as 'diagnostic' | 'formative' | 'summative') ??
             'formative',
-          assessmentNotes: templateContent.assessmentNotes || '',
+          assessmentNotes: templateContent.assessmentNotes ?? '',
           isSubFriendly: false,
           subNotes: '',
         });
@@ -501,28 +501,28 @@ export default function ETFOLessonPlanPage() {
                     setEditingLesson(selectedLesson.id);
                     setFormData({
                       title: selectedLesson.title,
-                      titleFr: selectedLesson.titleFr || '',
+                      titleFr: selectedLesson.titleFr ?? '',
                       date: selectedLesson.date.split('T')[0],
                       duration: selectedLesson.duration,
-                      mindsOn: selectedLesson.mindsOn || '',
-                      mindsOnFr: selectedLesson.mindsOnFr || '',
-                      action: selectedLesson.action || '',
-                      actionFr: selectedLesson.actionFr || '',
-                      consolidation: selectedLesson.consolidation || '',
-                      consolidationFr: selectedLesson.consolidationFr || '',
-                      learningGoals: selectedLesson.learningGoals || '',
-                      learningGoalsFr: selectedLesson.learningGoalsFr || '',
-                      materials: selectedLesson.materials || [''],
-                      grouping: selectedLesson.grouping || 'whole',
-                      accommodations: selectedLesson.accommodations || [''],
-                      modifications: selectedLesson.modifications || [''],
-                      extensions: selectedLesson.extensions || [''],
-                      assessmentType: selectedLesson.assessmentType || 'formative',
-                      assessmentNotes: selectedLesson.assessmentNotes || '',
+                      mindsOn: selectedLesson.mindsOn ?? '',
+                      mindsOnFr: selectedLesson.mindsOnFr ?? '',
+                      action: selectedLesson.action ?? '',
+                      actionFr: selectedLesson.actionFr ?? '',
+                      consolidation: selectedLesson.consolidation ?? '',
+                      consolidationFr: selectedLesson.consolidationFr ?? '',
+                      learningGoals: selectedLesson.learningGoals ?? '',
+                      learningGoalsFr: selectedLesson.learningGoalsFr ?? '',
+                      materials: selectedLesson.materials ?? [''],
+                      grouping: selectedLesson.grouping ?? 'whole',
+                      accommodations: selectedLesson.accommodations ?? [''],
+                      modifications: selectedLesson.modifications ?? [''],
+                      extensions: selectedLesson.extensions ?? [''],
+                      assessmentType: selectedLesson.assessmentType ?? 'formative',
+                      assessmentNotes: selectedLesson.assessmentNotes ?? '',
                       isSubFriendly: selectedLesson.isSubFriendly,
-                      subNotes: selectedLesson.subNotes || '',
+                      subNotes: selectedLesson.subNotes ?? '',
                       expectationIds:
-                        selectedLesson.expectations?.map((e) => e.expectation.id) || [],
+                        selectedLesson.expectations?.map((e, _index) => e.expectation.id) ?? [],
                     });
                     setIsCreateModalOpen(true);
                   }}
@@ -616,8 +616,8 @@ export default function ETFOLessonPlanPage() {
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Materials Needed</h3>
                 <ul className="list-disc list-inside space-y-1">
-                  {selectedLesson.materials.map((material, index) => (
-                    <li key={index} className="text-gray-700">
+                  {selectedLesson.materials.map((material, _index) => (
+                    <li key={_index} className="text-gray-700">
                       {material}
                     </li>
                   ))}
@@ -644,8 +644,8 @@ export default function ETFOLessonPlanPage() {
                 <div>
                   <h4 className="font-medium text-gray-900 mb-2">Accommodations</h4>
                   <ul className="list-disc list-inside space-y-1 text-sm">
-                    {selectedLesson.accommodations.map((item, index) => (
-                      <li key={index} className="text-gray-700">
+                    {selectedLesson.accommodations.map((item, _index) => (
+                      <li key={_index} className="text-gray-700">
                         {item}
                       </li>
                     ))}
@@ -657,8 +657,8 @@ export default function ETFOLessonPlanPage() {
                 <div>
                   <h4 className="font-medium text-gray-900 mb-2">Modifications</h4>
                   <ul className="list-disc list-inside space-y-1 text-sm">
-                    {selectedLesson.modifications.map((item, index) => (
-                      <li key={index} className="text-gray-700">
+                    {selectedLesson.modifications.map((item, _index) => (
+                      <li key={_index} className="text-gray-700">
                         {item}
                       </li>
                     ))}
@@ -670,8 +670,8 @@ export default function ETFOLessonPlanPage() {
                 <div>
                   <h4 className="font-medium text-gray-900 mb-2">Extensions</h4>
                   <ul className="list-disc list-inside space-y-1 text-sm">
-                    {selectedLesson.extensions.map((item, index) => (
-                      <li key={index} className="text-gray-700">
+                    {selectedLesson.extensions.map((item, _index) => (
+                      <li key={_index} className="text-gray-700">
                         {item}
                       </li>
                     ))}
@@ -699,7 +699,7 @@ export default function ETFOLessonPlanPage() {
                   Curriculum Expectations
                 </h3>
                 <div className="space-y-2">
-                  {selectedLesson.expectations.map(({ expectation }) => (
+                  {selectedLesson.expectations.map(({ expectation }, _index) => (
                     <div key={expectation.id} className="bg-gray-50 p-3 rounded">
                       <div className="flex justify-between items-start">
                         <div>
@@ -761,8 +761,8 @@ export default function ETFOLessonPlanPage() {
             <BlankTemplateQuickActions
               schoolInfo={{
                 grade: unitPlan?.longRangePlan ? `Grade ${unitPlan.longRangePlan.grade}` : '',
-                subject: unitPlan?.longRangePlan?.subject || '',
-                academicYear: unitPlan?.longRangePlan?.academicYear || '',
+                subject: unitPlan?.longRangePlan?.subject ?? '',
+                academicYear: unitPlan?.longRangePlan?.academicYear ?? '',
               }}
               templateType="lesson"
             />
@@ -839,7 +839,7 @@ export default function ETFOLessonPlanPage() {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {lessonPlans.map((lesson) => (
+              {lessonPlans.map((lesson, _index) => (
                 <tr key={lesson.id} className="hover:bg-gray-50">
                   <td className="px-3 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-900">
                     <span className="block sm:hidden">
@@ -893,27 +893,27 @@ export default function ETFOLessonPlanPage() {
                           setEditingLesson(lesson.id);
                           setFormData({
                             title: lesson.title,
-                            titleFr: lesson.titleFr || '',
+                            titleFr: lesson.titleFr ?? '',
                             date: lesson.date.split('T')[0],
                             duration: lesson.duration,
-                            mindsOn: lesson.mindsOn || '',
-                            mindsOnFr: lesson.mindsOnFr || '',
-                            action: lesson.action || '',
-                            actionFr: lesson.actionFr || '',
-                            consolidation: lesson.consolidation || '',
-                            consolidationFr: lesson.consolidationFr || '',
-                            learningGoals: lesson.learningGoals || '',
-                            learningGoalsFr: lesson.learningGoalsFr || '',
-                            materials: lesson.materials || [''],
-                            grouping: lesson.grouping || 'whole',
-                            accommodations: lesson.accommodations || [''],
-                            modifications: lesson.modifications || [''],
-                            extensions: lesson.extensions || [''],
-                            assessmentType: lesson.assessmentType || 'formative',
-                            assessmentNotes: lesson.assessmentNotes || '',
+                            mindsOn: lesson.mindsOn ?? '',
+                            mindsOnFr: lesson.mindsOnFr ?? '',
+                            action: lesson.action ?? '',
+                            actionFr: lesson.actionFr ?? '',
+                            consolidation: lesson.consolidation ?? '',
+                            consolidationFr: lesson.consolidationFr ?? '',
+                            learningGoals: lesson.learningGoals ?? '',
+                            learningGoalsFr: lesson.learningGoalsFr ?? '',
+                            materials: lesson.materials ?? [''],
+                            grouping: lesson.grouping ?? 'whole',
+                            accommodations: lesson.accommodations ?? [''],
+                            modifications: lesson.modifications ?? [''],
+                            extensions: lesson.extensions ?? [''],
+                            assessmentType: lesson.assessmentType ?? 'formative',
+                            assessmentNotes: lesson.assessmentNotes ?? '',
                             isSubFriendly: lesson.isSubFriendly,
-                            subNotes: lesson.subNotes || '',
-                            expectationIds: lesson.expectations?.map((e) => e.expectation.id) || [],
+                            subNotes: lesson.subNotes ?? '',
+                            expectationIds: lesson.expectations?.map((e, _index) => e.expectation.id) ?? [],
                           });
                           setIsCreateModalOpen(true);
                         }}
@@ -992,7 +992,7 @@ export default function ETFOLessonPlanPage() {
                   <CollapsibleSection defaultExpanded required title="Basic Information">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <Label>Lesson Title *</Label>
+                        <Label htmlFor="input">Lesson Title *</Label>
                         <Input
                           required
                           placeholder="e.g., Introduction to Ecosystems"
@@ -1003,7 +1003,7 @@ export default function ETFOLessonPlanPage() {
                         />
                       </div>
                       <div>
-                        <Label>Title (French)</Label>
+                        <Label htmlFor="input">Title (French)</Label>
                         <Input
                           placeholder="e.g., Introduction aux écosystèmes"
                           value={formData.titleFr}
@@ -1018,7 +1018,7 @@ export default function ETFOLessonPlanPage() {
                   <CollapsibleSection defaultExpanded title="Scheduling & Duration">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div>
-                        <Label>Date *</Label>
+                        <Label htmlFor="input">Date *</Label>
                         <Input
                           required
                           type="date"
@@ -1029,7 +1029,7 @@ export default function ETFOLessonPlanPage() {
                         />
                       </div>
                       <div>
-                        <Label>Duration (minutes) *</Label>
+                        <Label htmlFor="input">Duration (minutes) *</Label>
                         <Input
                           required
                           max="300"
@@ -1043,7 +1043,7 @@ export default function ETFOLessonPlanPage() {
                         />
                       </div>
                       <div>
-                        <Label>Grouping</Label>
+                        <Label htmlFor="input">Grouping</Label>
                         <select
                           className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                           value={formData.grouping}
@@ -1063,7 +1063,7 @@ export default function ETFOLessonPlanPage() {
 
                   <CollapsibleSection defaultExpanded title="Learning Goals">
                     <div>
-                      <Label>Learning Goals</Label>
+                      <Label htmlFor="input">Learning Goals</Label>
                       <RichTextEditor
                         value={formData.learningGoals}
                         onChange={(value) => {
@@ -1073,7 +1073,7 @@ export default function ETFOLessonPlanPage() {
                     </div>
 
                     <div>
-                      <Label>Learning Goals (French)</Label>
+                      <Label htmlFor="input">Learning Goals (French)</Label>
                       <RichTextEditor
                         value={formData.learningGoalsFr}
                         onChange={(value) => {
@@ -1101,7 +1101,7 @@ export default function ETFOLessonPlanPage() {
 
                       {formData.isSubFriendly && (
                         <div>
-                          <Label>Substitute Teacher Notes</Label>
+                          <Label htmlFor="input">Substitute Teacher Notes</Label>
                           <Textarea
                             placeholder="Special instructions for substitute teachers..."
                             rows={3}
@@ -1144,17 +1144,17 @@ export default function ETFOLessonPlanPage() {
                       <AILessonPlanPanel
                         className="w-full"
                         duration={formData.duration}
-                        grade={unitPlan?.longRangePlan?.grade || 1}
+                        grade={unitPlan?.longRangePlan?.grade ?? 1}
                         learningGoals={formData.learningGoals ? [formData.learningGoals] : []}
                         lessonTitle={formData.title}
-                        subject={unitPlan?.longRangePlan?.subject || ''}
+                        subject={unitPlan?.longRangePlan?.subject ?? ''}
                         unitContext={
                           unitPlan
                             ? {
                                 title: unitPlan.title,
                                 bigIdeas: unitPlan.bigIdeas ? [unitPlan.bigIdeas] : [],
                                 expectations:
-                                  unitPlan.expectations?.map((exp) => ({
+                                  unitPlan.expectations?.map((exp, _index) => ({
                                     id: exp.expectation.id,
                                     code: exp.expectation.code,
                                     description: exp.expectation.description,
@@ -1179,7 +1179,7 @@ export default function ETFOLessonPlanPage() {
                     </CardHeader>
                     <CardContent className="space-y-4">
                       <div>
-                        <Label>Activities (English)</Label>
+                        <Label htmlFor="input">Activities (English)</Label>
                         <RichTextEditor
                           value={formData.mindsOn}
                           onChange={(value) => {
@@ -1188,7 +1188,7 @@ export default function ETFOLessonPlanPage() {
                         />
                       </div>
                       <div>
-                        <Label>Activities (French)</Label>
+                        <Label htmlFor="input">Activities (French)</Label>
                         <RichTextEditor
                           value={formData.mindsOnFr}
                           onChange={(value) => {
@@ -1208,7 +1208,7 @@ export default function ETFOLessonPlanPage() {
                     </CardHeader>
                     <CardContent className="space-y-4">
                       <div>
-                        <Label>Activities (English)</Label>
+                        <Label htmlFor="input">Activities (English)</Label>
                         <RichTextEditor
                           value={formData.action}
                           onChange={(value) => {
@@ -1217,7 +1217,7 @@ export default function ETFOLessonPlanPage() {
                         />
                       </div>
                       <div>
-                        <Label>Activities (French)</Label>
+                        <Label htmlFor="input">Activities (French)</Label>
                         <RichTextEditor
                           value={formData.actionFr}
                           onChange={(value) => {
@@ -1237,7 +1237,7 @@ export default function ETFOLessonPlanPage() {
                     </CardHeader>
                     <CardContent className="space-y-4">
                       <div>
-                        <Label>Activities (English)</Label>
+                        <Label htmlFor="input">Activities (English)</Label>
                         <RichTextEditor
                           value={formData.consolidation}
                           onChange={(value) => {
@@ -1246,7 +1246,7 @@ export default function ETFOLessonPlanPage() {
                         />
                       </div>
                       <div>
-                        <Label>Activities (French)</Label>
+                        <Label htmlFor="input">Activities (French)</Label>
                         <RichTextEditor
                           value={formData.consolidationFr}
                           onChange={(value) => {
@@ -1260,7 +1260,7 @@ export default function ETFOLessonPlanPage() {
 
                 <TabsContent className="space-y-4 mt-4" value="materials">
                   <div>
-                    <Label>Materials and Resources</Label>
+                    <Label htmlFor="input">Materials and Resources</Label>
                     <div className="space-y-2 mt-2">
                       {formData.materials.map((material, index) => (
                         <div key={index} className="flex gap-2">
@@ -1299,7 +1299,7 @@ export default function ETFOLessonPlanPage() {
 
                 <TabsContent className="space-y-6 mt-4" value="differentiation">
                   <div>
-                    <Label>Accommodations</Label>
+                    <Label htmlFor="input">Accommodations</Label>
                     <p className="text-sm text-gray-600 mb-2">
                       Supports for students to access the curriculum
                     </p>
@@ -1339,7 +1339,7 @@ export default function ETFOLessonPlanPage() {
                   </div>
 
                   <div>
-                    <Label>Modifications</Label>
+                    <Label htmlFor="input">Modifications</Label>
                     <p className="text-sm text-gray-600 mb-2">
                       Changes to curriculum expectations for individual students
                     </p>
@@ -1379,7 +1379,7 @@ export default function ETFOLessonPlanPage() {
                   </div>
 
                   <div>
-                    <Label>Extensions</Label>
+                    <Label htmlFor="input">Extensions</Label>
                     <p className="text-sm text-gray-600 mb-2">
                       Enrichment activities for students who finish early
                     </p>
@@ -1422,7 +1422,7 @@ export default function ETFOLessonPlanPage() {
                 <TabsContent className="space-y-4 mt-4" value="assessment">
                   <div>
                     <div className="flex items-center">
-                      <Label>Assessment Type</Label>
+                      <Label htmlFor="input">Assessment Type</Label>
                       <InfoTooltip content="Choose the primary purpose of assessment for this lesson. You can use multiple types throughout the lesson." />
                     </div>
                     <select
@@ -1481,7 +1481,7 @@ export default function ETFOLessonPlanPage() {
 
                   <div>
                     <div className="flex items-center">
-                      <Label>Success Criteria</Label>
+                      <Label htmlFor="input">Success Criteria</Label>
                       <InfoTooltip content="Clear, specific statements that describe what success looks like. Written in student-friendly language starting with 'I can...'" />
                     </div>
                     <Textarea
@@ -1565,7 +1565,7 @@ Assessment Strategies:
                 pre-structured content that you can customize.
               </p>
               <div className="grid gap-4 md:grid-cols-2">
-                {lessonTemplates.map((template) => (
+                {lessonTemplates.map((template, _index) => (
                   <Card
                     key={template.id}
                     className={`cursor-pointer border-2 transition-colors ${
@@ -1591,7 +1591,7 @@ Assessment Strategies:
                         </div>
                         <div className="flex items-center gap-1 text-yellow-500">
                           <span className="text-sm">
-                            {template.averageRating?.toFixed(1) || '—'}
+                            {template.averageRating?.toFixed(1) ?? '—'}
                           </span>
                           <svg className="h-4 w-4 fill-current" viewBox="0 0 20 20">
                             <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
@@ -1602,7 +1602,7 @@ Assessment Strategies:
                     <CardContent>
                       <p className="text-sm text-gray-700 mb-3">{template.description}</p>
                       <div className="flex flex-wrap gap-1 mb-3">
-                        {template.tags.slice(0, 3).map((tag) => (
+                        {template.tags.slice(0, 3).map((tag, _index) => (
                           <span
                             key={tag}
                             className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-full"
@@ -1617,10 +1617,10 @@ Assessment Strategies:
                         )}
                       </div>
                       <div className="flex items-center justify-between text-xs text-gray-500">
-                        <span>Used {template.usageCount || 0} times</span>
+                        <span>Used {template.usageCount ?? 0} times</span>
                         <span>
                           By{' '}
-                          {(template as { createdBy?: { name?: string } }).createdBy?.name ||
+                          {(template as { createdBy?: { name?: string } }).createdBy?.name ??
                             'Anonymous'}
                         </span>
                       </div>

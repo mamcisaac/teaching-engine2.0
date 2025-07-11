@@ -69,7 +69,7 @@ export function BlankTemplatePrinter({
   onClose,
   templateType = null,
   defaultSchoolInfo = {}
-}: BlankTemplatePrinterProps) {
+}: BlankTemplatePrinterProps): React.ReactElement {
   const [selectedTemplate, setSelectedTemplate] = useState<keyof typeof templateConfigs | null>(
     templateType
   );
@@ -270,7 +270,7 @@ export function BlankTemplatePrinter({
                   >
                     View All Templates
                   </Button>
-                  <Button onClick={onClose}>
+                  <Button aria-label="Click button" onClick={onClose}>
                     Close
                   </Button>
                 </div>
@@ -278,7 +278,7 @@ export function BlankTemplatePrinter({
             ) : (
               // Show all templates
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {Object.keys(templateConfigs).map((key) =>
+                {Object.keys(templateConfigs).map((key, _index) =>
                   renderTemplateCard(key as keyof typeof templateConfigs)
                 )}
               </div>
@@ -311,7 +311,7 @@ export function BlankTemplatePrinter({
                 <Printer className="h-4 w-4 mr-2" />
                 Print
               </Button>
-              <Button size="sm" variant="outline" onClick={() => {
+              <Button aria-label="Click button" onClick={() => {
  setPreviewOpen(false); 
 }}>
                 Close
@@ -342,7 +342,7 @@ export function BlankTemplateQuickActions({
 }: {
   templateType?: keyof typeof templateConfigs;
   schoolInfo?: Partial<ETFOSchoolInfo>;
-}) {
+}): React.ReactElement {
   const [printerOpen, setPrinterOpen] = useState(false);
 
   if (!templateType) {

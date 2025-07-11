@@ -8,15 +8,18 @@ interface PlanAccessTrackerProps {
   children: React.ReactNode;
 }
 
-export function PlanAccessTracker({ planType, children }: PlanAccessTrackerProps) {
+export function PlanAccessTracker({ planType, children }: PlanAccessTrackerProps): React.ReactElement {
   const params = useParams();
   const trackAccess = useTrackPlanAccess();
   
   // Get the plan ID from route params based on plan type
-  const planId = params.unitId || params.lessonId || params.longRangePlanId || params.id;
+  const planId = params.unitId ?? params.lessonId ?? params.longRangePlanId ?? params.id;
   
   useEffect(() => {
-    if (planId) {
+    return () => { // Cleanup
+    };
+
+    if (planId !== undefined && planId !== null && planId !== '') {
       // Track access when component mounts or planId changes
       trackAccess.mutate({ planType, planId });
     }

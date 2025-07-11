@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useUploadResource } from '../api/domains/resource/hooks';
 
 // Updated for ETFO-aligned media resource uploads
-export default function FileUpload() {
+export default function FileUpload(): React.ReactElement {
   const [file, setFile] = useState<File | null>(null);
   const upload = useUploadResource();
 

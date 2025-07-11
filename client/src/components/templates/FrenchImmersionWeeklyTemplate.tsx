@@ -42,11 +42,11 @@ export default function FrenchImmersionWeeklyTemplate({
   onSave,
   onCancel,
   metadata,
-}: FrenchImmersionWeeklyTemplateProps) {
+}: FrenchImmersionWeeklyTemplateProps): React.ReactElement {
   const [weekData, setWeekData] = React.useState<WeeklyPlanData>({
-    weekNumber: metadata?.weekNumber || 1,
-    theme: initialData?.theme || '',
-    themeFr: initialData?.themeFr || '',
+    weekNumber: metadata?.weekNumber !== null && metadata?.weekNumber !== undefined && metadata.weekNumber !== 0 ? metadata.weekNumber : 1,
+    theme: initialData?.theme !== null && initialData?.theme !== undefined ? initialData.theme : '',
+    themeFr: initialData?.themeFr !== null && initialData?.themeFr !== undefined ? initialData.themeFr : '',
     weekFocus: initialData?.weekFocus || {
       vocabulary: [],
       structures: [],
@@ -60,7 +60,7 @@ export default function FrenchImmersionWeeklyTemplate({
       { day: 'Thursday', languageTarget: '', mainActivity: '', vocabulary: [] },
       { day: 'Friday', languageTarget: '', mainActivity: '', vocabulary: [] },
     ],
-    assessmentFocus: initialData?.assessmentFocus || '',
+    assessmentFocus: initialData?.assessmentFocus !== null && initialData?.assessmentFocus !== undefined ? initialData.assessmentFocus : '',
     parentUpdate: initialData?.parentUpdate || { english: '', french: '' },
   });
 
@@ -107,7 +107,7 @@ export default function FrenchImmersionWeeklyTemplate({
               Grade 1 French Immersion Weekly Plan
             </h2>
             <p className="text-gray-600 mt-1">
-              {metadata?.month
+              {metadata?.month !== null && metadata?.month !== undefined && metadata.month !== ''
                 ? `${metadata.month} - Week ${metadata.weekNumber}`
                 : 'Structured weekly planning template'}
             </p>
@@ -198,7 +198,7 @@ export default function FrenchImmersionWeeklyTemplate({
                     className="p-2 border rounded"
                     placeholder="Pronunciation"
                     type="text"
-                    value={vocab.pronunciation || ''}
+                    value={vocab.pronunciation !== null && vocab.pronunciation !== undefined ? vocab.pronunciation : ''}
                     onChange={(e) => {
                       const updated = [...weekData.weekFocus.vocabulary];
                       updated[index].pronunciation = e.target.value;
@@ -212,7 +212,7 @@ export default function FrenchImmersionWeeklyTemplate({
                     className="p-2 border rounded"
                     placeholder="Context"
                     type="text"
-                    value={vocab.context || ''}
+                    value={vocab.context !== null && vocab.context !== undefined ? vocab.context : ''}
                     onChange={(e) => {
                       const updated = [...weekData.weekFocus.vocabulary];
                       updated[index].context = e.target.value;
@@ -224,7 +224,7 @@ export default function FrenchImmersionWeeklyTemplate({
                   />
                 </div>
               ))}
-              <Button size="sm" type="button" variant="outline" onClick={addVocabularyToWeek}>
+              <Button aria-label="Click button" onClick={addVocabularyToWeek}>
                 + Add Vocabulary
               </Button>
             </div>
@@ -338,7 +338,7 @@ Use possessive adjectives correctly"
                       'vocabulary',
                       e.target.value
                         .split(',')
-                        .map((v) => v.trim())
+                        .map((v, _index) => v.trim())
                         .filter((v) => v),
                     ); 
 }
@@ -355,7 +355,7 @@ Use possessive adjectives correctly"
                     className="w-full p-2 border rounded"
                     placeholder="Explore French-Canadian family traditions"
                     type="text"
-                    value={dayPlan.culturalNote || ''}
+                    value={dayPlan.culturalNote !== null && dayPlan.culturalNote !== undefined ? dayPlan.culturalNote : ''}
                     onChange={(e) => {
  updateDailyPlan(index, 'culturalNote', e.target.value); 
 }}
@@ -561,7 +561,7 @@ Votre enfant apprendra à dire les noms des membres de la famille...
       {/* Action Buttons */}
       <div className="flex justify-end gap-3 pt-6 border-t">
         {onCancel && (
-          <Button type="button" variant="outline" onClick={onCancel}>
+          <Button aria-label="Click button" onClick={onCancel}>
             Cancel
           </Button>
         )}

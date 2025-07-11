@@ -45,7 +45,7 @@ export function useAutoSave<T>({
     }
 
     // Clear existing timeout
-    if (timeoutRef.current) {
+    if (timeoutRef.current !== null) {
       clearTimeout(timeoutRef.current);
     }
 
@@ -81,7 +81,7 @@ export function useAutoSave<T>({
     }, delay);
 
     return () => {
-      if (timeoutRef.current) {
+      if (timeoutRef.current !== null) {
         clearTimeout(timeoutRef.current);
       }
     };
@@ -124,7 +124,7 @@ return;
 
   // Cleanup on unmount
   useEffect(() => () => {
-      if (timeoutRef.current) {
+      if (timeoutRef.current !== null) {
         clearTimeout(timeoutRef.current);
       }
     }, []);
@@ -140,6 +140,7 @@ return;
 // Hook for warning about unsaved changes before leaving
 export function useUnsavedChangesWarning(hasUnsavedChanges: boolean) {
   useEffect(() => {
+
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
       if (hasUnsavedChanges) {
         e.preventDefault();

@@ -9,8 +9,11 @@ interface Props {
 const TAGS = ['HandsOn', 'Worksheet', 'Video'];
 const STORAGE_KEY = 'te:planner:filters';
 
-export default function PlannerFilters({ filters, onChange }: Props) {
+export default function PlannerFilters({ filters, onChange }: Props): React.ReactElement {
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     if (typeof window !== 'undefined') {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(filters));
     }
@@ -18,7 +21,7 @@ export default function PlannerFilters({ filters, onChange }: Props) {
 
   return (
     <div className="flex gap-2" title="Filter suggested activities">
-      {TAGS.map((t) => (
+      {TAGS.map((t, _index) => (
         <label key={t} className="inline-flex items-center gap-1" title={`Show ${t} activities`}>
           <input
             checked={filters[t] ?? true}

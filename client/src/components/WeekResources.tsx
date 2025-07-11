@@ -2,7 +2,7 @@ interface Props {
   week: { id: number };
 }
 
-export default function WeekResources({ week }: Props) {
+export default function WeekResources({ week }: Props): React.ReactElement {
   return (
     <button
       className="px-2 py-1 bg-blue-600 text-white"

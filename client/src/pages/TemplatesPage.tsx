@@ -117,7 +117,7 @@ export default function TemplatesPage() {
   const applyTemplate = useApplyTemplate();
   // const rateTemplate = useRateTemplate();
 
-  const templates = templatesResult?.templates || [];
+  const templates = templatesResult?.templates ?? [];
 
   // Handlers
   const handleCreateTemplate = async (e: React.FormEvent) => {
@@ -239,7 +239,7 @@ return;
         <p className="text-sm text-gray-600 mb-4 line-clamp-3">{template.description}</p>
 
         <div className="flex flex-wrap gap-1 mb-4">
-          {template.tags.slice(0, 3).map((tag) => (
+          {template.tags.slice(0, 3).map((tag, _index) => (
             <span key={tag} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">
               {tag}
             </span>
@@ -304,7 +304,7 @@ return;
             Use
           </Button>
 
-          <Button size="sm" variant="ghost" onClick={() => {
+          <Button aria-label="Click button" onClick={() => {
  void handleDuplicateTemplate(template); 
 }}>
             <Copy className="h-4 w-4" />
@@ -405,7 +405,7 @@ return;
             <CardContent className="pt-6">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div>
-                  <Label>View</Label>
+                  <Label htmlFor="input">View</Label>
                   <select
                     className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
                     value={view}
@@ -422,7 +422,7 @@ return;
                 </div>
 
                 <div>
-                  <Label>Type</Label>
+                  <Label htmlFor="input">Type</Label>
                   <select
                     className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
                     value={selectedType}
@@ -437,7 +437,7 @@ return;
                 </div>
 
                 <div>
-                  <Label>Category</Label>
+                  <Label htmlFor="input">Category</Label>
                   <select
                     className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
                     value={selectedCategory}
@@ -456,7 +456,7 @@ return;
                 </div>
 
                 <div>
-                  <Label>Subject</Label>
+                  <Label htmlFor="input">Subject</Label>
                   <select
                     className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
                     value={selectedSubject}
@@ -465,7 +465,7 @@ return;
 }}
                   >
                     <option value="all">All Subjects</option>
-                    {filterOptions?.subjects.map((subject) => (
+                    {filterOptions?.subjects.map((subject, _index) => (
                       <option key={subject} value={subject}>
                         {subject}
                       </option>
@@ -474,7 +474,7 @@ return;
                 </div>
 
                 <div>
-                  <Label>Grade</Label>
+                  <Label htmlFor="input">Grade</Label>
                   <select
                     className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
                     value={selectedGrade}
@@ -484,7 +484,7 @@ return;
                     }
                   >
                     <option value="all">All Grades</option>
-                    {filterOptions?.grades.map((grade) => (
+                    {filterOptions?.grades.map((grade, _index) => (
                       <option key={grade} value={grade}>
                         Grade {grade}
                       </option>
@@ -493,7 +493,7 @@ return;
                 </div>
 
                 <div>
-                  <Label>Sort By</Label>
+                  <Label htmlFor="input">Sort By</Label>
                   <select
                     className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
                     value={sortBy}
@@ -512,7 +512,7 @@ return;
                 </div>
 
                 <div>
-                  <Label>Order</Label>
+                  <Label htmlFor="input">Order</Label>
                   <select
                     className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
                     value={sortOrder}
@@ -561,7 +561,7 @@ return;
         </Card>
       ) : (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {templates.map((template) => (
+          {templates.map((template, _index) => (
             <TemplateCard key={template.id} template={template} />
           ))}
         </div>
@@ -574,7 +574,7 @@ return;
 
           <form className="space-y-4" onSubmit={handleCreateTemplate}>
             <div>
-              <Label>Title</Label>
+              <Label htmlFor="input">Title</Label>
               <Input
                 required
                 placeholder="Template title..."
@@ -586,7 +586,7 @@ return;
             </div>
 
             <div>
-              <Label>Description</Label>
+              <Label htmlFor="input">Description</Label>
               <Textarea
                 placeholder="Describe this template..."
                 rows={3}
@@ -599,7 +599,7 @@ return;
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <Label>Type</Label>
+                <Label htmlFor="input">Type</Label>
                 <select
                   required
                   className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
@@ -615,7 +615,7 @@ return;
               </div>
 
               <div>
-                <Label>Category</Label>
+                <Label htmlFor="input">Category</Label>
                 <select
                   required
                   className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
@@ -635,10 +635,10 @@ return;
             </div>
 
             <div>
-              <Label>Subject (optional)</Label>
+              <Label htmlFor="input">Subject (optional)</Label>
               <Input
                 placeholder="Mathematics, Language Arts, etc."
-                value={formData.subject || ''}
+                value={formData.subject ?? ''}
                 onChange={(e) => {
  setFormData({ ...formData, subject: e.target.value }); 
 }}
@@ -647,12 +647,12 @@ return;
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <Label>Minimum Grade (optional)</Label>
+                <Label htmlFor="input">Minimum Grade (optional)</Label>
                 <Input
                   max="12"
                   min="1"
                   type="number"
-                  value={formData.gradeMin || ''}
+                  value={formData.gradeMin ?? ''}
                   onChange={(e) => {
  setFormData({
                       ...formData,
@@ -664,12 +664,12 @@ return;
               </div>
 
               <div>
-                <Label>Maximum Grade (optional)</Label>
+                <Label htmlFor="input">Maximum Grade (optional)</Label>
                 <Input
                   max="12"
                   min="1"
                   type="number"
-                  value={formData.gradeMax || ''}
+                  value={formData.gradeMax ?? ''}
                   onChange={(e) => {
  setFormData({
                       ...formData,
@@ -697,7 +697,7 @@ return;
             </div>
 
             <div className="flex justify-end gap-3 pt-4">
-              <Button type="button" variant="outline" onClick={() => {
+              <Button aria-label="Click button" onClick={() => {
  setIsCreateModalOpen(false); 
 }}>
                 Cancel
@@ -800,8 +800,8 @@ return;
                         <div>
                           <h5 className="font-medium mb-2">Learning Goals</h5>
                           <ul className="list-disc list-inside space-y-1">
-                            {selectedTemplate.content.learningGoals.map((goal, index) => (
-                              <li key={index} className="text-gray-700">
+                            {selectedTemplate.content.learningGoals.map((goal, _index) => (
+                              <li key={_index} className="text-gray-700">
                                 {goal}
                               </li>
                             ))}
@@ -814,8 +814,8 @@ return;
                         <div>
                           <h5 className="font-medium mb-2">Essential Questions</h5>
                           <ul className="list-disc list-inside space-y-1">
-                            {selectedTemplate.content.essentialQuestions.map((question, index) => (
-                              <li key={index} className="text-gray-700">
+                            {selectedTemplate.content.essentialQuestions.map((question, _index) => (
+                              <li key={_index} className="text-gray-700">
                                 {question}
                               </li>
                             ))}
@@ -834,8 +834,8 @@ return;
                         <div>
                           <h5 className="font-medium mb-2">Learning Objectives</h5>
                           <ul className="list-disc list-inside space-y-1">
-                            {selectedTemplate.content.objectives.map((objective, index) => (
-                              <li key={index} className="text-gray-700">
+                            {selectedTemplate.content.objectives.map((objective, _index) => (
+                              <li key={_index} className="text-gray-700">
                                 {objective}
                               </li>
                             ))}
@@ -848,8 +848,8 @@ return;
                         <div>
                           <h5 className="font-medium mb-2">Materials</h5>
                           <ul className="list-disc list-inside space-y-1">
-                            {selectedTemplate.content.materials.map((material, index) => (
-                              <li key={index} className="text-gray-700">
+                            {selectedTemplate.content.materials.map((material, _index) => (
+                              <li key={_index} className="text-gray-700">
                                 {material}
                               </li>
                             ))}
@@ -887,7 +887,7 @@ return;
                   <div>
                     <h5 className="font-medium mb-2">Tags</h5>
                     <div className="flex flex-wrap gap-2">
-                      {selectedTemplate.tags.map((tag) => (
+                      {selectedTemplate.tags.map((tag, _index) => (
                         <span
                           key={tag}
                           className="px-2 py-1 bg-gray-100 text-gray-700 text-sm rounded"
@@ -914,7 +914,7 @@ return;
           </p>
 
           <div className="flex justify-end gap-3">
-            <Button variant="outline" onClick={() => {
+            <Button aria-label="Click button" onClick={() => {
  setIsDeleteModalOpen(false); 
 }}>
               Cancel

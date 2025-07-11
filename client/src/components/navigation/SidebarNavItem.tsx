@@ -11,12 +11,12 @@ interface SidebarNavItemProps {
   testId?: string;
 }
 
-export function SidebarNavItem({ path, label, icon, testId }: SidebarNavItemProps) {
+export function SidebarNavItem({ path, label, icon, testId }: SidebarNavItemProps): React.ReactElement {
   const { isSidebarOpen } = useNavigation();
 
   return (
     <NavLink
-      className={({ isActive: active }) =>
+      className={({ isActive: active }): string =>
         `flex items-center py-2 px-4 ${
           active ? 'bg-indigo-900 text-white' : 'text-indigo-100 hover:bg-indigo-700'
         } ${!isSidebarOpen && 'justify-center'}`

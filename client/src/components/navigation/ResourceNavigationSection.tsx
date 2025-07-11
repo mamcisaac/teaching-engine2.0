@@ -4,7 +4,7 @@ import { secondaryNavItems } from './navigationConfig';
 import { useNavigation } from './NavigationProvider';
 import { SidebarNavItem } from './SidebarNavItem';
 
-export function ResourceNavigationSection() {
+export function ResourceNavigationSection(): React.ReactElement {
   const { isSidebarOpen } = useNavigation();
 
   return (
@@ -12,7 +12,7 @@ export function ResourceNavigationSection() {
       <h2 className="px-4 py-2 text-xs uppercase text-indigo-300 font-semibold">
         {isSidebarOpen ? 'Resources' : ''}
       </h2>
-      {secondaryNavItems.map((item) => (
+      {secondaryNavItems.map((item, _index) => (
         <SidebarNavItem
           key={item.path}
           icon={item.icon}

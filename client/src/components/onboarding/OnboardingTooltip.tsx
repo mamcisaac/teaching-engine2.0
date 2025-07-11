@@ -43,7 +43,7 @@ function isFlowTooltipProps(props: OnboardingTooltipProps): props is FlowTooltip
   return 'currentStep' in props;
 }
 
-export function OnboardingTooltip(props: OnboardingTooltipProps) {
+export function OnboardingTooltip(props: OnboardingTooltipProps): React.ReactElement {
   // If this is being used in the flow, render the flow tooltip
   if (isFlowTooltipProps(props)) {
     return <FlowTooltip {...props} />;
@@ -86,7 +86,7 @@ function FlowTooltip({
       transition={{ delay: 0.2 }}
     >
       {/* Close button */}
-      {currentStep.showSkip && (
+      {currentStep.showSkip === true ? (
         <button
           aria-label="Skip onboarding"
           className="absolute top-2 right-2 p-1 text-gray-400 hover:text-gray-600 transition-colors"
@@ -94,19 +94,19 @@ function FlowTooltip({
         >
           <X className="h-5 w-5" />
         </button>
-      )}
+      ) : null}
 
       {/* Progress indicator */}
       <div className="mb-4">
         <div className="flex items-center justify-between mb-2">
           <span className="text-sm text-gray-500">
-            Step {state.currentStepIndex + 1} of {state.currentFlow?.steps.length || 0}
+            Step {state.currentStepIndex + 1} of {state.currentFlow?.steps.length ?? 0}
           </span>
-          {state.currentFlow?.estimatedTime && (
+          {state.currentFlow?.estimatedTime !== null && state.currentFlow?.estimatedTime !== undefined ? (
             <span className="text-sm text-gray-500">
               ~{state.currentFlow.estimatedTime} min
             </span>
-          )}
+          ) : null}
         </div>
         <Progress className="h-2" value={progress} />
       </div>
@@ -124,7 +124,7 @@ function FlowTooltip({
         </div>
 
         {/* Action hint */}
-        {currentStep.requiresAction && (
+        {currentStep.requiresAction === true ? (
           <div className="bg-blue-50 border border-blue-200 rounded-md p-3 text-sm text-blue-700">
             <p className="font-medium">Action required:</p>
             <p>
@@ -133,39 +133,39 @@ function FlowTooltip({
               {currentStep.action === 'hover' && 'Hover over the highlighted element'}
             </p>
           </div>
-        )}
+        ) : null}
 
         {/* Navigation buttons */}
         <div className="flex items-center justify-between pt-2">
           <div className="flex items-center gap-2">
-            {canGoBack && (
-              <Button className="gap-1" size="sm" variant="ghost" onClick={previousStep}>
+            {canGoBack === true ? (
+              <Button aria-label="Click button" onClick={previousStep}>
                 <ChevronLeft className="h-4 w-4" />
                 Previous
               </Button>
-            )}
-            {currentStep.showSkip && (
+            ) : null}
+            {currentStep.showSkip === true ? (
               <Button
                 className="text-gray-500"
                 size="sm"
                 variant="ghost"
                 onClick={skipOnboarding}
               >
-                {currentStep.skipButtonText || 'Skip tour'}
+                {currentStep.skipButtonText ?? 'Skip tour'}
               </Button>
-            )}
+            ) : null}
           </div>
 
-          {!currentStep.requiresAction && (
+          {currentStep.requiresAction !== true ? (
             <Button
               className="gap-1 bg-blue-600 hover:bg-blue-700"
               size="sm"
               onClick={nextStep}
             >
-              {currentStep.nextButtonText || 'Next'}
-              {canGoForward && <ChevronRight className="h-4 w-4" />}
+              {currentStep.nextButtonText ?? 'Next'}
+              {canGoForward === true ? <ChevronRight className="h-4 w-4" /> : null}
             </Button>
-          )}
+          ) : null}
         </div>
       </div>
     </motion.div>
@@ -190,17 +190,17 @@ function HoverTooltip({
   const [hasBeenShown, setHasBeenShown] = useState(false);
 
   // Don't show if onboarding is active or user isn't new
-  if (state.currentFlow || !state.isFirstTimeUser) {
+  if ((state.currentFlow !== null && state.currentFlow !== undefined) || state.isFirstTimeUser !== true) {
     return children;
   }
 
   // Don't show if already dismissed or shown (when showOnce is true)
-  if (isDismissed || (showOnce && hasBeenShown)) {
+  if (isDismissed === true || (showOnce === true && hasBeenShown === true)) {
     return children;
   }
 
   const handleMouseEnter = () => {
-    if (hasBeenShown && showOnce) {
+    if (hasBeenShown === true && showOnce === true) {
 return;
 }
 
@@ -258,11 +258,11 @@ return;
       {cloneElement(children, {
         onMouseEnter: handleMouseEnter,
         onMouseLeave: handleMouseLeave,
-        className: `${children.props.className || ''} ${isVisible ? 'z-40' : ''}`,
+        className: `${children.props.className ?? ''} ${isVisible === true ? 'z-40' : ''}`,
       })}
 
       <AnimatePresence>
-        {isVisible && (
+        {isVisible === true ? (
           <motion.div
             animate={{ opacity: 1, scale: 1 }}
             className={getTooltipStyles()}
@@ -298,7 +298,7 @@ return;
                 </div>
               </div>
 
-              {actionText && onAction && (
+              {actionText !== null && actionText !== undefined && actionText !== '' && onAction !== null && onAction !== undefined ? (
                 <button
                   className="mt-3 text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
                   onClick={() => {
@@ -308,10 +308,10 @@ return;
                 >
                   {actionText} →
                 </button>
-              )}
+              ) : null}
             </div>
           </motion.div>
-        )}
+        ) : null}
       </AnimatePresence>
     </div>
   );

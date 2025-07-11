@@ -6,7 +6,7 @@ import { useKeyboardShortcut } from '../../hooks/useKeyboardShortcut';
 
 import { useNavigation } from './NavigationProvider';
 
-export function ETFONavigationSection() {
+export function ETFONavigationSection(): React.ReactElement {
   const { getETFOLevels } = useETFOProgress();
   const { isSidebarOpen } = useNavigation();
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ export function ETFONavigationSection() {
     if (index < 9) {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       useKeyboardShortcut(
-        () => {
+        (): void => {
           if (level.isAccessible) {
             navigate(level.path);
           }
@@ -67,7 +67,7 @@ export function ETFONavigationSection() {
               </div>
             )}
             <NavLink
-              className={({ isActive }) => {
+              className={({ isActive }): string => {
                 const baseClasses = `flex items-center py-2 px-4 ${!isSidebarOpen && 'justify-center'}`;
 
                 if (!isAccessible) {
@@ -82,7 +82,7 @@ export function ETFONavigationSection() {
               }}
               data-testid={level.id === 2 ? 'long-range-nav' : undefined}
               to={isAccessible ? level.path : '#'}
-              onClick={(e) => {
+              onClick={(e): void => {
                 if (!isAccessible) {
                   e.preventDefault();
                 }

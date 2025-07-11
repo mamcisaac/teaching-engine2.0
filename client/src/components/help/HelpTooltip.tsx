@@ -11,7 +11,7 @@ export const HelpTooltip: React.FC<HelpTooltipProps> = ({
   delay = 200,
   maxWidth = 300,
   children,
-}) => {
+}): React.ReactElement => {
   const [isVisible, setIsVisible] = useState(false);
   const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
   const triggerRef = useRef<HTMLElement>(null);
@@ -19,7 +19,7 @@ export const HelpTooltip: React.FC<HelpTooltipProps> = ({
   const timeoutRef = useRef<NodeJS.Timeout>();
 
   // Calculate tooltip position
-  const calculatePosition = useCallback(() => {
+  const calculatePosition = useCallback((): void => {
     if (!triggerRef.current || !tooltipRef.current) {
 return;
 }
@@ -68,7 +68,7 @@ top = 8;
     setTooltipPosition({ top, left });
   }, [position]);
 
-  const showTooltip = () => {
+  const showTooltip = (): void => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
@@ -77,24 +77,24 @@ top = 8;
     }, delay);
   };
 
-  const hideTooltip = () => {
+  const hideTooltip = (): void => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
     setIsVisible(false);
   };
 
-  useEffect(() => {
+  useEffect((): void => {
     if (isVisible) {
       calculatePosition();
     }
   }, [isVisible, position, calculatePosition]);
 
-  useEffect(() => () => {
+  useEffect((): (() => void) => () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
-    }, []);
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Clone the child element and add event handlers
   const triggerElement = React.cloneElement(children, {
@@ -105,7 +105,7 @@ top = 8;
           onMouseLeave: hideTooltip,
         }
       : {
-          onClick: () => {
+          onClick: (): void => {
             if (isVisible) {
               hideTooltip();
             } else {
@@ -115,7 +115,7 @@ top = 8;
         }),
   });
 
-  const getArrowClasses = () => {
+  const getArrowClasses = (): string => {
     const base = 'absolute w-2 h-2 bg-gray-900 transform rotate-45';
     switch (position) {
       case 'top':

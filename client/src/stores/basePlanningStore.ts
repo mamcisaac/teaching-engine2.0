@@ -6,6 +6,7 @@ import type { StateCreator } from 'zustand';
 import { offlineStorage } from '../services/offlineStorage';
 import logger from '../utils/logger';
 import { isOnline } from '../utils/serviceWorkerRegistration';
+import { safeJsonParse } from '../utils/typeGuards';
 export interface OfflineState {
   isOnline: boolean;
   lastSyncedAt: Date | null;
@@ -58,7 +59,7 @@ export const createOfflineSlice = <T extends Record<string, unknown>>(
       setTimeout(() => {
         const currentState = get();
         if (currentState.syncStatus === 'idle') {
-          syncWithServer(config, set, get);
+          void syncWithServer(config, set, get);
         }
       }, 1000);
       return {};
@@ -141,7 +142,7 @@ async function syncWithServer<T extends Record<string, unknown>>(
           conflicts,
           state,
           serverData,
-          config.mergingStrategy || 'local-wins'
+          config.mergingStrategy ?? 'local-wins'
         );
         
         // Save resolved data
@@ -297,16 +298,19 @@ export function createAutoSave(
 clearTimeout(timeout);
 }
     
-    timeout = setTimeout(async () => {
-      const state = store.getState();
-      
-      if (state.hasOfflineChanges && !state.isSaving) {
-        try {
-          await saveFunction();
-        } catch (error) {
-          logger.error('Auto-save failed:', error);
+    timeout = setTimeout(() => {
+      const performSave = async () => {
+        const state = store.getState();
+        
+        if (state.hasOfflineChanges && !state.isSaving) {
+          try {
+            await saveFunction();
+          } catch (error) {
+            logger.error('Auto-save failed:', error);
+          }
         }
-      }
+      };
+      void performSave();
     }, debounceMs);
   };
 }

@@ -133,20 +133,20 @@ const PlanItem = memo(
                   <span className={cn('text-xs text-gray-500', compact && 'text-xs')}>
                     {config.label}
                   </span>
-                  {plan.subject && (
+                  {plan.subject !== null && plan.subject !== undefined && plan.subject !== '' && (
                     <>
                       <span className="text-xs text-gray-400">•</span>
                       <span className="text-xs text-gray-500">{plan.subject}</span>
                     </>
                   )}
-                  {plan.grade && (
+                  {plan.grade !== null && plan.grade !== undefined && (
                     <>
                       <span className="text-xs text-gray-400">•</span>
                       <span className="text-xs text-gray-500">Grade {plan.grade}</span>
                     </>
                   )}
                 </div>
-                {plan.parentTitle && (
+                {plan.parentTitle !== null && plan.parentTitle !== undefined && plan.parentTitle !== '' && (
                   <p className="text-xs text-gray-500 mt-0.5">in {plan.parentTitle}</p>
                 )}
               </div>
@@ -194,7 +194,7 @@ export const OptimizedRecentPlans = memo(
     compact = false,
   }: OptimizedRecentPlansProps) => {
     // Memoize expensive calculations for plan processing
-    const processedPlans = useMemo(() => plans.map((plan) => ({
+    const processedPlans = useMemo(() => plans.map((plan, _index) => ({
         ...plan,
         formattedDate: formatDistanceToNow(new Date(plan.lastAccessed), { addSuffix: true }),
         planRoute: `${PLAN_TYPE_CONFIG[plan.type].route}/${plan.id}`,
@@ -218,7 +218,7 @@ export const OptimizedRecentPlans = memo(
       [compact],
     );
 
-    if (isLoading) {
+    if (isLoading === true) {
       return (
         <Card className={className}>
           <CardHeader>
@@ -230,7 +230,7 @@ export const OptimizedRecentPlans = memo(
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              {[1, 2, 3, 4, 5].map((i) => (
+              {[1, 2, 3, 4, 5].map((i, _index) => (
                 <LoadingSkeleton
                   key={i}
                   layout={[
@@ -301,7 +301,7 @@ export const OptimizedRecentPlans = memo(
             />
           ) : (
             <div className="space-y-1">
-              {processedPlans.map((plan) => (
+              {processedPlans.map((plan, _index) => (
                 <PlanItem key={`${plan.type}-${plan.id}`} compact={compact} plan={plan} />
               ))}
             </div>

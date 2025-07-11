@@ -11,7 +11,7 @@ interface TutorialManagerProps {
   children: React.ReactNode;
 }
 
-export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }) => {
+export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }): React.ReactElement => {
   const { state, startTutorial, nextTutorialStep, completeTutorial } = useHelp();
   const { getTutorial, getTutorialProgress } = useTutorials();
   const [showTutorialMenu, setShowTutorialMenu] = useState(false);
@@ -24,7 +24,7 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }) =>
   const progress = activeTutorialId ? getTutorialProgress(activeTutorialId) : 0;
 
   // Handle tutorial completion
-  const handleCompleteTutorial = useCallback(() => {
+  const handleCompleteTutorial = useCallback((): void => {
     if (activeTutorialId) {
       completeTutorial(activeTutorialId);
 
@@ -36,14 +36,14 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }) =>
   }, [activeTutorialId, completeTutorial, activeTutorial?.completionMessage]);
 
   // Handle skipping tutorial
-  const handleSkipTutorial = () => {
+  const handleSkipTutorial = (): void => {
     if (activeTutorialId) {
       completeTutorial(activeTutorialId);
     }
   };
 
   // Handle next step
-  const handleNextStep = useCallback(() => {
+  const handleNextStep = useCallback((): void => {
     if (activeTutorialId) {
       if (currentStepIndex >= (activeTutorial?.steps.length || 0) - 1) {
         handleCompleteTutorial();
@@ -60,7 +60,7 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }) =>
   ]);
 
   // Handle previous step
-  const handlePreviousStep = () => {
+  const handlePreviousStep = (): void => {
     if (activeTutorialId && currentStepIndex > 0) {
       // For simplicity, we'll just skip to previous step
       // In a real implementation, you might want to track step history
@@ -69,16 +69,16 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }) =>
   };
 
   // Auto-advance tutorial based on user actions
-  useEffect(() => {
+  useEffect((): void => {
     if (currentStep?.validation && currentStep.validation()) {
       // Auto-advance if validation passes
-      setTimeout(() => {
+      setTimeout((): void => {
         handleNextStep();
       }, 1000);
     }
   }, [currentStep, handleNextStep]);
 
-  const TutorialMenuModal = () => {
+  const TutorialMenuModal = (): React.ReactElement => {
     const { availableTutorials, completedTutorials } = useTutorials();
 
     return (
@@ -86,7 +86,7 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }) =>
         isOpen={showTutorialMenu}
         size="lg"
         title="Interactive Tutorials"
-        onClose={() => {
+        onClose={(): void => {
  setShowTutorialMenu(false); 
 }}
       >
@@ -99,7 +99,7 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }) =>
           <div>
             <h3 className="text-lg font-medium text-gray-900 mb-4">Available Tutorials</h3>
             <div className="space-y-3">
-              {availableTutorials.map((tutorial) => {
+              {availableTutorials.map((tutorial, _index) => {
                 const isCompleted = completedTutorials.includes(tutorial.id);
                 const isActive = activeTutorialId === tutorial.id;
 
@@ -146,7 +146,7 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }) =>
                           <Button
                             size="sm"
                             variant="primary"
-                            onClick={() => {
+                            onClick={(): void => {
                               setShowTutorialMenu(false);
                               // Resume tutorial - overlay will show automatically
                             }}
@@ -157,7 +157,7 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }) =>
                           <Button
                             size="sm"
                             variant="primary"
-                            onClick={() => {
+                            onClick={(): void => {
                               startTutorial(tutorial.id);
                               setShowTutorialMenu(false);
                             }}
@@ -216,7 +216,7 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }) =>
         <button
           className="fixed bottom-20 right-6 bg-green-600 text-white rounded-full p-3 shadow-lg hover:bg-green-700 transition-colors z-40"
           title="Start Interactive Tutorial"
-          onClick={() => {
+          onClick={(): void => {
  setShowTutorialMenu(true); 
 }}
         >

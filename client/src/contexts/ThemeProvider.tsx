@@ -25,10 +25,13 @@ interface ThemeProviderProps {
 export function ThemeProvider({ children }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(() => {
     const savedTheme = localStorage.getItem('theme') as Theme;
-    return savedTheme || 'light';
+    return savedTheme ?? 'light';
   });
 
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     const root = window.document.documentElement;
     if (theme === 'dark') {
       root.classList.add('dark');

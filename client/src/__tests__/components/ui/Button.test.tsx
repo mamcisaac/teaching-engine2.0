@@ -46,7 +46,7 @@ describe('Button', () => {
 
   it('handles click events', async () => {
     const handleClick = vi.fn();
-    renderWithProviders(<Button onClick={handleClick}>Click me</Button>);
+    renderWithProviders(<Button aria-label="Click button" onClick={handleClick}>Click me</Button>);
 
     const button = screen.getByRole('button');
     await user.click(button);
@@ -64,7 +64,7 @@ describe('Button', () => {
   it('does not trigger click when disabled', async () => {
     const handleClick = vi.fn();
     renderWithProviders(
-      <Button disabled onClick={handleClick}>
+      <Button aria-label="Click button" onClick={handleClick}>
         Disabled
       </Button>
     );
@@ -111,7 +111,7 @@ describe('Button', () => {
 
   it('handles keyboard navigation', async () => {
     const handleClick = vi.fn();
-    renderWithProviders(<Button onClick={handleClick}>Button</Button>);
+    renderWithProviders(<Button aria-label="Click button" onClick={handleClick}>Button</Button>);
 
     const button = screen.getByRole('button');
     button.focus();
@@ -166,7 +166,7 @@ describe('Button', () => {
 
   it('handles multiple clicks rapidly', async () => {
     const handleClick = vi.fn();
-    renderWithProviders(<Button onClick={handleClick}>Button</Button>);
+    renderWithProviders(<Button aria-label="Click button" onClick={handleClick}>Button</Button>);
 
     const button = screen.getByRole('button');
     

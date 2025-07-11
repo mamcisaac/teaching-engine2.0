@@ -35,8 +35,8 @@ export const PageLoader: React.FC<{ message?: string }> = ({ message = 'Loading.
 // Card skeleton for list items
 export const CardSkeleton: React.FC<{ count?: number }> = ({ count = 1 }) => (
   <>
-    {Array.from({ length: count }).map((_, index) => (
-      <Card key={index} className="animate-pulse">
+    {Array.from({ length: count }).map((_, _index) => (
+      <Card key={_index} className="animate-pulse">
         <CardHeader>
           <div className="h-4 bg-gray-200 rounded w-3/4" />
           <div className="h-3 bg-gray-200 rounded w-1/2 mt-2" />
@@ -63,8 +63,8 @@ export const TableSkeleton: React.FC<{ rows?: number; columns?: number }> = ({
       {/* Header */}
       <div className="bg-gray-50 px-6 py-3 border-b">
         <div className="flex gap-4">
-          {Array.from({ length: columns }).map((_, index) => (
-            <div key={index} className="h-4 bg-gray-200 rounded flex-1" />
+          {Array.from({ length: columns }).map((_, _index) => (
+            <div key={_index} className="h-4 bg-gray-200 rounded flex-1" />
           ))}
         </div>
       </div>
@@ -149,7 +149,7 @@ export const LessonPlanSkeleton: React.FC = () => (
     <div className="p-6 space-y-6">
       {/* Three-part lesson structure */}
       <div className="grid gap-6 lg:grid-cols-3">
-        {['Minds On', 'Action', 'Consolidation'].map((section) => (
+        {['Minds On', 'Action', 'Consolidation'].map((section, _index) => (
           <Card key={section}>
             <CardHeader>
               <div className="h-4 bg-gray-200 rounded w-20" />

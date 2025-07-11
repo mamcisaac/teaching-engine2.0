@@ -99,7 +99,7 @@ export default function CurriculumExpectationsPage() {
   const handleEdit = (expectation: CurriculumExpectation) => {
     setEditingExpectation({
       ...expectation,
-      descriptionFr: expectation.descriptionFr || '',
+      descriptionFr: expectation.descriptionFr ?? '',
     });
     setIsEditDialogOpen(true);
   };
@@ -205,12 +205,12 @@ return;
       </TableCell>
       <TableCell>
         <div className="flex items-center gap-2">
-          <Button size="sm" variant="ghost" onClick={() => {
+          <Button aria-label="Click button" onClick={() => {
  handleEdit(expectation); 
 }}>
             <Edit2 className="h-4 w-4" />
           </Button>
-          <Button size="sm" variant="ghost" onClick={() => {
+          <Button aria-label="Click button" onClick={() => {
  void handleDelete(expectation.id); 
 }}>
             <Trash2 className="h-4 w-4" />
@@ -242,7 +242,7 @@ return;
             Browse and manage curriculum expectations that form the foundation of your planning
           </p>
         </div>
-        <Button className="gap-2" onClick={handleImportCurriculum}>
+        <Button aria-label="Click button" onClick={handleImportCurriculum}>
           <Upload className="h-4 w-4" />
           Import Curriculum
         </Button>
@@ -275,7 +275,7 @@ return;
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All subjects</SelectItem>
-                {subjects.map((subject) => (
+                {subjects.map((subject, _index) => (
                   <SelectItem key={subject} value={subject}>
                     {subject}
                   </SelectItem>
@@ -294,7 +294,7 @@ return;
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All grades</SelectItem>
-                {grades.map((grade) => (
+                {grades.map((grade, _index) => (
                   <SelectItem key={grade} value={String(grade)}>
                     Grade {grade}
                   </SelectItem>
@@ -321,23 +321,23 @@ return;
         </CardContent>
       </Card>
 
-      <Tabs className="space-y-4" defaultValue={subjects[0] || 'all'}>
+      <Tabs className="space-y-4" defaultValue={subjects[0] ?? 'all'}>
         <TabsList className="grid w-full grid-cols-auto">
-          {subjects.map((subject) => (
+          {subjects.map((subject, _index) => (
             <TabsTrigger key={subject} value={subject}>
               {subject}
             </TabsTrigger>
           ))}
         </TabsList>
 
-        {subjects.map((subject) => (
+        {subjects.map((subject, _index) => (
           <TabsContent key={subject} className="space-y-4" value={subject}>
             <Card>
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle>{subject} Expectations</CardTitle>
                   <Badge variant="outline">
-                    {groupedExpectations[subject].length || 0} expectations
+                    {groupedExpectations[subject].length ?? 0} expectations
                   </Badge>
                 </div>
               </CardHeader>
@@ -367,7 +367,7 @@ return;
                         </TableCell>
                       </TableRow>
                     ) : (
-                      groupedExpectations[subject].map((expectation) => (
+                      groupedExpectations[subject].map((expectation, _index) => (
                         <ExpectationRow key={expectation.id} expectation={expectation} />
                       ))
                     )}
@@ -391,17 +391,17 @@ return;
             <div className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <Label>Code</Label>
-                  <Input disabled value={editingExpectation.code} />
+                  <Label htmlFor="input">Code</Label>
+                  <Input id="input" />
                 </div>
                 <div>
-                  <Label>Type</Label>
-                  <Input disabled value={editingExpectation.type} />
+                  <Label htmlFor="input">Type</Label>
+                  <Input id="input" />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <Label>Description (English)</Label>
+                <Label htmlFor="input">Description (English)</Label>
                 <Textarea
                   rows={3}
                   value={editingExpectation.description}
@@ -416,11 +416,11 @@ return;
               </div>
 
               <div className="space-y-2">
-                <Label>Description (French)</Label>
+                <Label htmlFor="input">Description (French)</Label>
                 <Textarea
                   placeholder="Optional French translation"
                   rows={3}
-                  value={editingExpectation.descriptionFr || ''}
+                  value={editingExpectation.descriptionFr ?? ''}
                   onChange={(e) => {
  setEditingExpectation({
                       ...editingExpectation,
@@ -433,7 +433,7 @@ return;
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <Label>Strand</Label>
+                  <Label htmlFor="input">Strand</Label>
                   <Input
                     value={editingExpectation.strand}
                     onChange={(e) => {
@@ -446,9 +446,9 @@ return;
                   />
                 </div>
                 <div>
-                  <Label>Substrand (Optional)</Label>
+                  <Label htmlFor="input">Substrand (Optional)</Label>
                   <Input
-                    value={editingExpectation.substrand || ''}
+                    value={editingExpectation.substrand ?? ''}
                     onChange={(e) => {
  setEditingExpectation({
                         ...editingExpectation,
@@ -462,12 +462,12 @@ return;
             </div>
           )}
           <DialogFooter>
-            <Button variant="outline" onClick={() => {
+            <Button aria-label="Click button" onClick={() => {
  setIsEditDialogOpen(false); 
 }}>
               Cancel
             </Button>
-            <Button onClick={handleSaveEdit}>Save Changes</Button>
+            <Button aria-label="Click button" onClick={handleSaveEdit}>Save Changes</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

@@ -9,7 +9,7 @@ describe('Input', () => {
   const user = userEvent.setup();
 
   it('renders with default props', () => {
-    renderWithProviders(<Input />);
+    renderWithProviders(<Input id="input" />);
 
     const input = screen.getByRole('textbox');
     expect(input).toBeInTheDocument();
@@ -18,7 +18,7 @@ describe('Input', () => {
 
   it('handles value changes', async () => {
     const handleChange = vi.fn();
-    renderWithProviders(<Input onChange={handleChange} />);
+    renderWithProviders(<Input id="input" />);
 
     const input = screen.getByRole('textbox');
     await user.type(input, 'test value');
@@ -28,14 +28,14 @@ describe('Input', () => {
   });
 
   it('accepts placeholder text', () => {
-    renderWithProviders(<Input placeholder="Enter your name" />);
+    renderWithProviders(<Input id="input" />);
 
     const input = screen.getByPlaceholderText('Enter your name');
     expect(input).toBeInTheDocument();
   });
 
   it('can be disabled', () => {
-    renderWithProviders(<Input disabled />);
+    renderWithProviders(<Input id="input" />);
 
     const input = screen.getByRole('textbox');
     expect(input).toBeDisabled();
@@ -43,7 +43,7 @@ describe('Input', () => {
 
   it('does not accept input when disabled', async () => {
     const handleChange = vi.fn();
-    renderWithProviders(<Input disabled onChange={handleChange} />);
+    renderWithProviders(<Input id="input" />);
 
     const input = screen.getByRole('textbox');
     await user.type(input, 'test');
@@ -53,25 +53,25 @@ describe('Input', () => {
   });
 
   it('supports different input types', () => {
-    const { rerender } = renderWithProviders(<Input type="email" />);
+    const { rerender } = renderWithProviders(<Input id="input" />);
     expect(screen.getByRole('textbox')).toHaveAttribute('type', 'email');
 
-    rerender(<Input type="password" />);
+    rerender(<Input id="input" />);
     expect(screen.getByRole('textbox')).toHaveAttribute('type', 'password');
 
-    rerender(<Input type="number" />);
+    rerender(<Input id="input" />);
     expect(screen.getByRole('spinbutton')).toHaveAttribute('type', 'number');
   });
 
   it('shows error state with error prop', () => {
-    renderWithProviders(<Input error />);
+    renderWithProviders(<Input id="input" />);
 
     const input = screen.getByRole('textbox');
     expect(input).toHaveClass('border-red-500');
   });
 
   it('accepts custom className', () => {
-    renderWithProviders(<Input className="custom-input" />);
+    renderWithProviders(<Input id="input" />);
 
     const input = screen.getByRole('textbox');
     expect(input).toHaveClass('custom-input');
@@ -79,7 +79,7 @@ describe('Input', () => {
 
   it('forwards ref correctly', () => {
     const ref = vi.fn();
-    renderWithProviders(<Input ref={ref} />);
+    renderWithProviders(<Input id="input" />);
 
     expect(ref).toHaveBeenCalledWith(expect.any(HTMLInputElement));
   });
@@ -87,7 +87,7 @@ describe('Input', () => {
   it('supports controlled component pattern', async () => {
     const handleChange = vi.fn();
     const { rerender } = renderWithProviders(
-      <Input value="initial" onChange={handleChange} />
+      <Input id="input" />
     );
 
     const input = screen.getByRole('textbox');
@@ -97,12 +97,12 @@ describe('Input', () => {
     await user.type(input, 'new value');
 
     // Simulate controlled update
-    rerender(<Input value="controlled value" onChange={handleChange} />);
+    rerender(<Input id="input" />);
     expect(input).toHaveValue('controlled value');
   });
 
   it('supports uncontrolled component pattern', async () => {
-    renderWithProviders(<Input defaultValue="default" />);
+    renderWithProviders(<Input id="input" />);
 
     const input = screen.getByRole('textbox');
     expect(input).toHaveValue('default');
@@ -116,7 +116,7 @@ describe('Input', () => {
   it('handles focus and blur events', async () => {
     const handleFocus = vi.fn();
     const handleBlur = vi.fn();
-    renderWithProviders(<Input onFocus={handleFocus} onBlur={handleBlur} />);
+    renderWithProviders(<Input id="input" />);
 
     const input = screen.getByRole('textbox');
     
@@ -129,7 +129,7 @@ describe('Input', () => {
 
   it('supports keyboard shortcuts', async () => {
     const handleKeyDown = vi.fn();
-    renderWithProviders(<Input onKeyDown={handleKeyDown} />);
+    renderWithProviders(<Input id="input" />);
 
     const input = screen.getByRole('textbox');
     input.focus();
@@ -157,7 +157,7 @@ describe('Input', () => {
   });
 
   it('supports maxLength constraint', async () => {
-    renderWithProviders(<Input maxLength={5} />);
+    renderWithProviders(<Input id="input" />);
 
     const input = screen.getByRole('textbox');
     await user.type(input, '1234567890');
@@ -166,21 +166,21 @@ describe('Input', () => {
   });
 
   it('supports minLength validation', () => {
-    renderWithProviders(<Input minLength={3} />);
+    renderWithProviders(<Input id="input" />);
 
     const input = screen.getByRole('textbox');
     expect(input).toHaveAttribute('minLength', '3');
   });
 
   it('supports pattern validation', () => {
-    renderWithProviders(<Input pattern="[0-9]*" />);
+    renderWithProviders(<Input id="input" />);
 
     const input = screen.getByRole('textbox');
     expect(input).toHaveAttribute('pattern', '[0-9]*');
   });
 
   it('handles disabled state correctly', () => {
-    renderWithProviders(<Input disabled />);
+    renderWithProviders(<Input id="input" />);
 
     const input = screen.getByRole('textbox');
     expect(input).toBeDisabled();
@@ -188,7 +188,7 @@ describe('Input', () => {
   });
 
   it('handles autoComplete correctly', () => {
-    renderWithProviders(<Input autoComplete="email" />);
+    renderWithProviders(<Input id="input" />);
 
     const input = screen.getByRole('textbox');
     expect(input).toHaveAttribute('autoComplete', 'email');
@@ -196,7 +196,7 @@ describe('Input', () => {
 
   it('supports readonly state', async () => {
     const handleChange = vi.fn();
-    renderWithProviders(<Input readOnly value="readonly" onChange={handleChange} />);
+    renderWithProviders(<Input id="input" />);
 
     const input = screen.getByRole('textbox');
     expect(input).toHaveAttribute('readOnly');
@@ -207,7 +207,7 @@ describe('Input', () => {
   });
 
   it('supports required attribute', () => {
-    renderWithProviders(<Input required />);
+    renderWithProviders(<Input id="input" />);
     
     const input = screen.getByRole('textbox');
     expect(input).toBeRequired();
@@ -215,7 +215,7 @@ describe('Input', () => {
 
   it('handles value changes correctly', async () => {
     const handleChange = vi.fn();
-    renderWithProviders(<Input value="test" onChange={handleChange} />);
+    renderWithProviders(<Input id="input" />);
 
     const input = screen.getByRole('textbox');
     expect(input).toHaveValue('test');
@@ -227,7 +227,7 @@ describe('Input', () => {
   });
 
   it('respects maxLength attribute', async () => {
-    renderWithProviders(<Input maxLength={10} />);
+    renderWithProviders(<Input id="input" />);
 
     const input = screen.getByRole('textbox');
     expect(input).toHaveAttribute('maxLength', '10');

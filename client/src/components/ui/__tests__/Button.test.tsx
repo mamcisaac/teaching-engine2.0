@@ -173,7 +173,7 @@ describe('Button', () => {
   describe('Event Handling', () => {
     it('should handle click events', async () => {
       const handleClick = vi.fn();
-      render(<Button onClick={handleClick}>Click me</Button>);
+      render(<Button aria-label="Click button" onClick={handleClick}>Click me</Button>);
       
       const button = screen.getByRole('button');
       await user.click(button);
@@ -183,7 +183,7 @@ describe('Button', () => {
 
     it('should not handle click events when disabled', async () => {
       const handleClick = vi.fn();
-      render(<Button onClick={handleClick} disabled>Disabled</Button>);
+      render(<Button aria-label="Click button" onClick={handleClick} disabled>Disabled</Button>);
       
       const button = screen.getByRole('button');
       await user.click(button);
@@ -193,7 +193,7 @@ describe('Button', () => {
 
     it('should not handle click events when loading', async () => {
       const handleClick = vi.fn();
-      render(<Button onClick={handleClick} loading>Loading</Button>);
+      render(<Button aria-label="Click button" onClick={handleClick} loading>Loading</Button>);
       
       const button = screen.getByRole('button');
       await user.click(button);
@@ -281,7 +281,7 @@ describe('Button', () => {
 
     it('should handle keyboard navigation', async () => {
       const handleClick = vi.fn();
-      render(<Button onClick={handleClick}>Keyboard Test</Button>);
+      render(<Button aria-label="Click button" onClick={handleClick}>Keyboard Test</Button>);
       
       const button = screen.getByRole('button');
       

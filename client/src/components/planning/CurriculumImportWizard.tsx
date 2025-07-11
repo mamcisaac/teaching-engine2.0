@@ -34,7 +34,7 @@ export function CurriculumImportWizard({
   isOpen,
   onClose,
   onSuccess,
-}: CurriculumImportWizardProps) {
+}: CurriculumImportWizardProps): React.ReactElement {
   const [currentStep, setCurrentStep] = useState<
     'upload' | 'processing' | 'review' | 'confirmation'
   >('upload');
@@ -52,7 +52,7 @@ export function CurriculumImportWizard({
     setReviewedData(null);
     setIsUploading(false);
     setIsConfirming(false);
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleClose = useCallback(() => {
     resetWizard();
@@ -73,7 +73,7 @@ export function CurriculumImportWizard({
             },
           });
 
-          if (!response.ok) {
+          if (response.ok !== true) {
             throw new Error('Failed to check status');
           }
 
@@ -81,7 +81,7 @@ export function CurriculumImportWizard({
           setImportStatus(status);
 
           if (status.status === 'READY_FOR_REVIEW') {
-            setReviewedData(status.parsedData || null);
+            setReviewedData(status.parsedData ?? null);
             setCurrentStep('review');
             return;
           }
@@ -90,7 +90,7 @@ export function CurriculumImportWizard({
             setCurrentStep('upload');
             toast({
               title: 'Processing Failed',
-              description: status.errorMessage || 'Failed to process document',
+              description: status.errorMessage ?? 'Failed to process document',
               variant: 'destructive',
             });
             return;
@@ -126,7 +126,7 @@ export function CurriculumImportWizard({
 
   const handleFileUpload = useCallback(
     async (file: File) => {
-      if (!file) {
+      if (file === null || file === undefined) {
 return;
 }
 
@@ -174,7 +174,7 @@ return;
   );
 
   const handleConfirmImport = useCallback(async () => {
-    if (!importId || !reviewedData) {
+    if (importId === null || reviewedData === null) {
 return;
 }
 
@@ -226,7 +226,7 @@ return;
 
   const handleExpectationEdit = useCallback(
     (index: number, field: keyof ParsedExpectation, value: string) => {
-      if (!reviewedData) {
+      if (reviewedData === null) {
 return;
 }
 
@@ -243,7 +243,7 @@ return;
 
   const handleSubjectGradeEdit = useCallback(
     (field: 'subject' | 'grade', value: string | number) => {
-      if (!reviewedData) {
+      if (reviewedData === null) {
 return;
 }
 
@@ -300,12 +300,12 @@ handleFileUpload(file);
         </label>
       </div>
 
-      {isUploading && (
+      {isUploading === true ? (
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto" />
           <p className="mt-2 text-sm text-gray-600">Uploading document...</p>
         </div>
-      )}
+      ) : null}
     </div>
   );
 
@@ -325,7 +325,7 @@ handleFileUpload(file);
   );
 
   const renderReviewStep = () => {
-    if (!reviewedData) {
+    if (reviewedData === null) {
 return null;
 }
 
@@ -413,7 +413,7 @@ return null;
                         className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
                         placeholder="Optional"
                         type="text"
-                        value={expectation.strand || ''}
+                        value={expectation.strand ?? ''}
                         onChange={(e) => {
  handleExpectationEdit(index, 'strand', e.target.value); 
 }}
@@ -427,16 +427,16 @@ return null;
         </div>
 
         <div className="flex justify-between">
-          <Button variant="outline" onClick={() => {
+          <Button aria-label="Click button" onClick={() => {
  setCurrentStep('upload'); 
 }}>
             Back to Upload
           </Button>
           <Button
-            disabled={isConfirming || !reviewedData.subject || !reviewedData.expectations.length}
+            disabled={isConfirming === true || reviewedData.subject === '' || reviewedData.expectations.length === 0}
             onClick={handleConfirmImport}
           >
-            {isConfirming
+            {isConfirming === true
               ? 'Importing...'
               : `Import ${reviewedData.expectations.length} Expectations`}
           </Button>
@@ -501,7 +501,7 @@ return null;
                   >
                     {index + 1}
                   </div>
-                  {index < 3 && (
+                  {index < 3 ? (
                     <div
                       className={`flex-1 h-1 mx-2 ${
                         index <
@@ -510,7 +510,7 @@ return null;
                           : 'bg-gray-200'
                       }`}
                     />
-                  )}
+                  ) : null}
                 </React.Fragment>
               ))}
             </div>
@@ -524,10 +524,10 @@ return null;
         </div>
 
         <div className="px-6 py-6 overflow-y-auto max-h-[calc(90vh-200px)]">
-          {currentStep === 'upload' && renderUploadStep()}
-          {currentStep === 'processing' && renderProcessingStep()}
-          {currentStep === 'review' && renderReviewStep()}
-          {currentStep === 'confirmation' && renderConfirmationStep()}
+          {currentStep === 'upload' ? renderUploadStep() : null}
+          {currentStep === 'processing' ? renderProcessingStep() : null}
+          {currentStep === 'review' ? renderReviewStep() : null}
+          {currentStep === 'confirmation' ? renderConfirmationStep() : null}
         </div>
       </div>
     </Dialog>

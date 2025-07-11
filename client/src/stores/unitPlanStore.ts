@@ -111,7 +111,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
                 get().updateLastSynced();
 
                 // Cache for offline use
-                await offlineStorage.cacheData('unit-plans', plans, 60);
+                await offlineStorage.cacheData('unit-plans', plans as unknown as StoredData, 60);
               } else {
                 // Load from cache if offline
                 const cachedPlans = await offlineStorage.getCachedData<UnitPlan[]>('unit-plans');
@@ -132,8 +132,8 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
               const cachedPlans = await offlineStorage.getCachedData<UnitPlan[]>('unit-plans');
 
               set((state) => {
-                state.unitPlans = cachedPlans || [];
-                state.error = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Failed to load plans';
+                state.unitPlans = cachedPlans ?? [];
+                state.error = error instanceof Error ? error.message : 'Failed to load plans';
                 state.isLoading = false;
               });
             }
@@ -156,7 +156,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
                 });
 
                 // Cache individual plan
-                await offlineStorage.cacheData(`unit-plan-${id}`, plan, 60);
+                await offlineStorage.cacheData(`unit-plan-${id}`, plan as unknown as StoredData, 60);
               } else {
                 // Load from cache if offline
                 const cachedPlan = await offlineStorage.getCachedData<UnitPlan>(`unit-plan-${id}`);
@@ -182,7 +182,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
             } catch (error) {
               logger.error('Failed to load unit plan:', error);
               set((state) => {
-                state.error = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Failed to load plan';
+                state.error = error instanceof Error ? error.message : 'Failed to load plan';
                 state.isLoading = false;
               });
             }
@@ -235,7 +235,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
             } catch (error) {
               logger.error('Failed to create unit plan:', error);
               set((state) => {
-                state.error = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Failed to create plan';
+                state.error = error instanceof Error ? error.message : 'Failed to create plan';
                 state.isSaving = false;
               });
               throw error;
@@ -292,7 +292,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
             } catch (error) {
               logger.error('Failed to update unit plan:', error);
               set((state) => {
-                state.error = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Failed to update plan';
+                state.error = error instanceof Error ? error.message : 'Failed to update plan';
                 state.isSaving = false;
               });
               throw error;
@@ -338,7 +338,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
             } catch (error) {
               logger.error('Failed to delete unit plan:', error);
               set((state) => {
-                state.error = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Failed to delete plan';
+                state.error = error instanceof Error ? error.message : 'Failed to delete plan';
                 state.isSaving = false;
               });
               throw error;

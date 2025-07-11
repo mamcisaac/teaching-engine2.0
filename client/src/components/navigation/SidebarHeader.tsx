@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useNavigation } from './NavigationProvider';
 
-export function SidebarHeader() {
+export function SidebarHeader(): React.ReactElement {
   const { isSidebarOpen, toggleSidebar, isMobile } = useNavigation();
 
   return (

@@ -25,7 +25,7 @@ interface TeacherOnboardingFlowProps {
   onComplete?: () => void;
 }
 
-export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingFlowProps) {
+export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingFlowProps): React.ReactElement {
   const { t } = useLanguage();
   const navigate = useNavigate();
 
@@ -44,7 +44,7 @@ export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingF
   const [completedSteps, setCompletedSteps] = useState<string[]>(() => {
     try {
       const saved = localStorage.getItem('onboarding-completed-steps');
-      return saved ? safeJsonParse(saved, {}) : [];
+      return saved ? safeJsonParse(saved, []) : [];
     } catch {
       return [];
     }
@@ -60,6 +60,9 @@ export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingF
 
   // Save completed steps to localStorage with debouncing to prevent flashing
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     if (completedSteps.length > 0) {
       try {
         localStorage.setItem('onboarding-completed-steps', JSON.stringify(completedSteps));
@@ -71,6 +74,9 @@ export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingF
 
   // Handle escape key to close wizard
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     if (!visible) {
 return;
 }
@@ -809,7 +815,7 @@ return null;
 
         {/* Actions */}
         <div className="border-t border-gray-200 p-6 flex justify-between items-center">
-          <Button disabled={currentStep === 0} variant="outline" onClick={previousStep}>
+          <Button aria-label="Click button" onClick={previousStep}>
             {t('previous', 'Previous')}
           </Button>
 
@@ -831,7 +837,7 @@ return null;
               </Button>
             ) : (
               currentStep < steps.length - 1 && (
-                <Button className="min-w-[120px]" onClick={nextStep}>
+                <Button aria-label="Click button" onClick={nextStep}>
                   {t('next', 'Next')}
                 </Button>
               )

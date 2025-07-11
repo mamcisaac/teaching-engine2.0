@@ -39,12 +39,12 @@ export const ButtonWithShortcut = React.forwardRef<HTMLButtonElement, ButtonWith
       ...props
     },
     ref,
-  ) => {
+  ): React.ReactElement => {
     // Register keyboard shortcut if provided
     if (shortcut?.key) {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       useKeyboardShortcut(
-        (_e) => {
+        (_e): void => {
           if (!disabled) {
             // Call the shortcut handler or the regular onClick
             if (onShortcutTrigger) {
@@ -71,7 +71,7 @@ export const ButtonWithShortcut = React.forwardRef<HTMLButtonElement, ButtonWith
     }
 
     return (
-      <Button ref={ref} disabled={disabled} onClick={onClick} {...props}>
+      <Button ref={ref} aria-label="Click button" onClick={onClick} {...props}>
         <span className="flex items-center gap-2">
           {children}
           {shortcut && showShortcutHint && (

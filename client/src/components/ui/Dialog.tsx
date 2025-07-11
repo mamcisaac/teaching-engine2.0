@@ -19,9 +19,9 @@ const DialogWrapper: React.FC<DialogProps> = ({
   onOpenChange,
   children,
   className: _className,
-}) => {
+}): React.ReactElement => {
   const isOpenValue = isOpen ?? open ?? false;
-  const handleOpenChange = (newOpen: boolean) => {
+  const handleOpenChange = (newOpen: boolean): void => {
     if (!newOpen && onClose) {
       onClose();
     }
@@ -46,7 +46,7 @@ const DialogPortal = RadixDialog.Portal;
 const DialogOverlay = React.forwardRef<
   React.ElementRef<typeof RadixDialog.Overlay>,
   React.ComponentPropsWithoutRef<typeof RadixDialog.Overlay>
->(({ className, ...props }, ref) => (
+>(({ className, ...props }, ref): React.ReactElement => (
   <RadixDialog.Overlay
     ref={ref}
     className={clsx(
@@ -61,7 +61,7 @@ DialogOverlay.displayName = RadixDialog.Overlay.displayName;
 const DialogContent = React.forwardRef<
   React.ElementRef<typeof RadixDialog.Content>,
   React.ComponentPropsWithoutRef<typeof RadixDialog.Content>
->(({ className, children, ...props }, ref) => (
+>(({ className, children, ...props }, ref): React.ReactElement => (
   <DialogPortal>
     <DialogOverlay />
     <RadixDialog.Content
@@ -84,7 +84,7 @@ const DialogContent = React.forwardRef<
 ));
 DialogContent.displayName = RadixDialog.Content.displayName;
 
-const DialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
+const DialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>): React.ReactElement => (
   <div
     className={clsx('flex flex-col space-y-1.5 text-center sm:text-left', className)}
     {...props}
@@ -92,7 +92,7 @@ const DialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivEleme
 );
 DialogHeader.displayName = 'DialogHeader';
 
-const DialogFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
+const DialogFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>): React.ReactElement => (
   <div
     className={clsx('flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2', className)}
     {...props}
@@ -103,7 +103,7 @@ DialogFooter.displayName = 'DialogFooter';
 const DialogTitle = React.forwardRef<
   React.ElementRef<typeof RadixDialog.Title>,
   React.ComponentPropsWithoutRef<typeof RadixDialog.Title>
->(({ className, ...props }, ref) => (
+>(({ className, ...props }, ref): React.ReactElement => (
   <RadixDialog.Title
     ref={ref}
     className={clsx('text-lg font-semibold leading-none tracking-tight', className)}
@@ -115,7 +115,7 @@ DialogTitle.displayName = RadixDialog.Title.displayName;
 const DialogDescription = React.forwardRef<
   React.ElementRef<typeof RadixDialog.Description>,
   React.ComponentPropsWithoutRef<typeof RadixDialog.Description>
->(({ className, ...props }, ref) => (
+>(({ className, ...props }, ref): React.ReactElement => (
   <RadixDialog.Description
     ref={ref}
     className={clsx('text-sm text-gray-500', className)}

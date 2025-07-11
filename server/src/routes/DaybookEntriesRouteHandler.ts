@@ -296,19 +296,22 @@ orderBy.createdAt = order;
   }
 
   async create(data: DaybookEntryCreateData, userId: number) {
-    const { expectations, ...daybookData } = data as Record<string, unknown>;
+    const { expectations, ...daybookData } = data as unknown as Record<string, unknown>;
 
     return prisma.daybookEntry.create({
       data: {
         ...daybookData,
         userId,
         date: new Date(data.date),
-        expectations: expectations
+        expectations: expectations && Array.isArray(expectations)
           ? {
-              create: expectations.map((exp: { expectationId: string; coverage?: string }) => ({
-                expectationId: exp.expectationId,
-                coverage: exp.coverage || 'introduced',
-              })),
+              create: expectations.map((exp: unknown) => {
+                const expectation = exp as { expectationId: string; coverage?: string };
+                return {
+                  expectationId: expectation.expectationId,
+                  coverage: expectation.coverage || 'introduced',
+                };
+              }),
             }
           : undefined,
       },
@@ -326,22 +329,23 @@ orderBy.createdAt = order;
       throw new Error('Daybook entry not found');
     }
 
-    const { expectations, ...updateData } = data as Record<string, unknown>;
+    const { expectations, ...updateData } = data as unknown as Record<string, unknown>;
 
     return prisma.daybookEntry.update({
       where: { id },
       data: {
         ...updateData,
         ...(data.date && { date: new Date(data.date) }),
-        ...(expectations && {
+        ...(expectations && Array.isArray(expectations) && {
           expectations: {
             deleteMany: {},
-            create: expectations.map(
-              (exp: { expectationId: string; notes?: string; coverage?: string }) => ({
-                expectationId: exp.expectationId,
-                coverage: exp.coverage || 'introduced',
-              }),
-            ),
+            create: expectations.map((exp: unknown) => {
+              const expectation = exp as { expectationId: string; notes?: string; coverage?: string };
+              return {
+                expectationId: expectation.expectationId,
+                coverage: expectation.coverage || 'introduced',
+              };
+            }),
           },
         }),
       },

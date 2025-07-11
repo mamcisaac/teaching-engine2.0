@@ -65,7 +65,7 @@ const DayCell = memo(({
       </div>
       
       <div className="space-y-0.5">
-        {visibleEvents.map((event) => (
+        {visibleEvents.map((event, _index) => (
           <div
             key={event.id}
             className="text-xs bg-gray-200 rounded px-1 py-0.5 cursor-pointer hover:bg-gray-300 transition-colors truncate"
@@ -199,7 +199,7 @@ export const OptimizedCalendarView = memo(({
         if (event.start) {
           const dateKey = event.start.split('T')[0];
           if (dateKey) {
-            if (!grouped[dateKey]) {
+            if (grouped[dateKey] === undefined) {
 grouped[dateKey] = [];
 }
             grouped[dateKey].push(event);
@@ -281,16 +281,16 @@ grouped[dateKey] = [];
       {viewMode === 'calendar' ? (
         <div className="grid grid-cols-7 gap-1 text-sm">
           {/* Day headers */}
-          {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
+          {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day, _index) => (
             <div key={day} className="font-bold text-center py-2 text-gray-600">
               {day}
             </div>
           ))}
 
           {/* Calendar days */}
-          {days.map((day) => {
+          {days.map((day, _index) => {
             const dayKey = format(day, 'yyyy-MM-dd');
-            const dayEvents = groupedEvents[dayKey] || [];
+            const dayEvents = groupedEvents[dayKey] ?? [];
             const isCurrentMonth = isSameMonth(day, month);
 
             return (
@@ -321,7 +321,7 @@ grouped[dateKey] = [];
             />
           ) : (
             <div className="space-y-2">
-              {events.map((event) => (
+              {events.map((event, _index) => (
                 <EventListItem
                   key={event.id}
                   event={event}

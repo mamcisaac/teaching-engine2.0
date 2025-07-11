@@ -161,7 +161,7 @@ export async function verifyToken(token: string): Promise<TokenPayload | { error
       logger.debug('Token expired');
       return { error: 'expired' };
     } else if (_error instanceof JsonWebTokenError) {
-      logger.debug({ error: _(error instanceof Error ? error.message : String(error)) }, 'Invalid token');
+      logger.debug({ error: _error instanceof Error ? _error.message : String(_error) }, 'Invalid token');
       return { error: 'invalid' };
     } 
       logger.error({ error: _error }, 'Token verification error');
@@ -363,10 +363,12 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
       }
 
       // Update request with fresh user data
+      // TypeScript type narrowing: user is non-null here due to the check above
+      const validUser = user!;
       req.user = {
-        id: user.id,
-        email: user.email,
-        role: user.role,
+        id: validUser.id,
+        email: validUser.email,
+        role: validUser.role,
         organizationId: decoded.organizationId ? parseInt(decoded.organizationId, 10) : undefined,
         permissions: decoded.permissions,
       };
@@ -396,7 +398,7 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
     logger.error(
       {
         error: _error,
-        errorMessage: _error instanceof Error ? _(error instanceof Error ? error.message : String(error)) : 'Unknown error',
+        errorMessage: _error instanceof Error ? _error.message : 'Unknown error',
         errorStack: _error instanceof Error ? _error.stack : undefined,
       },
       'Authentication middleware error',

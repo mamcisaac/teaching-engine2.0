@@ -12,7 +12,7 @@ interface MobileOptimizedFormProps {
   className?: string;
 }
 
-export function MobileOptimizedForm({ children, className }: MobileOptimizedFormProps) {
+export function MobileOptimizedForm({ children, className }: MobileOptimizedFormProps): React.ReactElement {
   return (
     <div className={cn(
       "w-full max-w-full mx-auto",
@@ -39,7 +39,7 @@ export function CollapsibleSection({
   defaultExpanded = true,
   required = false,
   className,
-}: CollapsibleSectionProps) {
+}: CollapsibleSectionProps): React.ReactElement {
   const [isExpanded, setIsExpanded] = useState(defaultExpanded);
 
   return (
@@ -54,7 +54,7 @@ export function CollapsibleSection({
             className="h-8 w-8 p-0"
             size="sm"
             variant="ghost"
-            onClick={() => {
+            onClick={(): void => {
  setIsExpanded(!isExpanded); 
 }}
           >
@@ -81,7 +81,7 @@ interface MobileTabsProps {
   className?: string;
 }
 
-export function MobileTabs({ children, className }: MobileTabsProps) {
+export function MobileTabs({ children, className }: MobileTabsProps): React.ReactElement {
   return (
     <div className={cn(
       "w-full",
@@ -100,7 +100,7 @@ interface ResponsiveGridProps {
   className?: string;
 }
 
-export function ResponsiveGrid({ children, cols = 2, className }: ResponsiveGridProps) {
+export function ResponsiveGrid({ children, cols = 2, className }: ResponsiveGridProps): React.ReactElement {
   const gridClasses = {
     1: "grid-cols-1",
     2: "grid-cols-1 md:grid-cols-2",
@@ -132,7 +132,7 @@ export function TouchFriendlyInput({
   label, 
   required = false, 
   className 
-}: TouchFriendlyInputProps) {
+}: TouchFriendlyInputProps): React.ReactElement {
   return (
     <div className={cn("space-y-2", className)}>
       <label className="block text-sm font-medium text-gray-700">
@@ -156,7 +156,7 @@ interface FormPreviewProps {
   className?: string;
 }
 
-export function FormPreview({ data, onEdit, className }: FormPreviewProps) {
+export function FormPreview({ data, onEdit, className }: FormPreviewProps): React.ReactElement {
   const [showAll, setShowAll] = useState(false);
   
   return (
@@ -169,7 +169,7 @@ export function FormPreview({ data, onEdit, className }: FormPreviewProps) {
               className="h-8"
               size="sm"
               variant="ghost"
-              onClick={() => {
+              onClick={(): void => {
  setShowAll(!showAll); 
 }}
             >

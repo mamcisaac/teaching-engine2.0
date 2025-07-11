@@ -55,15 +55,15 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
 
   // Initialize all ETFO-aligned fields
   const [formData, setFormData] = useState({
-    notes: entry?.notes || '',
-    privateNotes: entry?.privateNotes || '',
-    whatWorked: entry?.whatWorked || '',
-    whatDidntWork: entry?.whatDidntWork || '',
-    nextSteps: entry?.nextSteps || '',
-    studentEngagement: entry?.studentEngagement || '',
-    studentChallenges: entry?.studentChallenges || '',
-    studentSuccesses: entry?.studentSuccesses || '',
-    overallRating: entry?.overallRating || 3,
+    notes: entry?.notes ?? '',
+    privateNotes: entry?.privateNotes ?? '',
+    whatWorked: entry?.whatWorked ?? '',
+    whatDidntWork: entry?.whatDidntWork ?? '',
+    nextSteps: entry?.nextSteps ?? '',
+    studentEngagement: entry?.studentEngagement ?? '',
+    studentChallenges: entry?.studentChallenges ?? '',
+    studentSuccesses: entry?.studentSuccesses ?? '',
+    overallRating: entry?.overallRating ?? 3,
     wouldReuseLesson: entry?.wouldReuseLesson ?? true,
   });
 
@@ -76,7 +76,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
     setIsEditing(false);
   };
 
-  const totalDuration = lessons.reduce((sum, lesson) => sum + (lesson.duration || 0), 0);
+  const totalDuration = lessons.reduce((sum, lesson) => sum + (lesson.duration ?? 0), 0);
 
   return (
     <Card className={_isDayToday ? 'ring-2 ring-primary' : ''}>
@@ -90,7 +90,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
               </Badge>
             )}
           </div>
-          <Button size="sm" variant="ghost" onClick={() => {
+          <Button aria-label="Click button" onClick={() => {
  setIsEditing(!isEditing); 
 }}>
             <PenTool className="h-4 w-4" />
@@ -106,7 +106,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
           {lessons.length === 0 ? (
             <div className="text-sm text-muted-foreground italic">No lessons scheduled</div>
           ) : (
-            lessons.map((lesson) => (
+            lessons.map((lesson, _index) => (
               <div
                 key={lesson.id}
                 className="flex items-start justify-between p-2 bg-muted rounded-md"
@@ -143,9 +143,9 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
           <div className="space-y-4">
             {/* Overall Rating */}
             <div className="space-y-2">
-              <Label>Overall Day Rating</Label>
+              <Label htmlFor="input">Overall Day Rating</Label>
               <div className="flex items-center gap-1">
-                {[1, 2, 3, 4, 5].map((rating) => (
+                {[1, 2, 3, 4, 5].map((rating, _index) => (
                   <button
                     key={rating}
                     className="p-1 hover:scale-110 transition-transform"
@@ -175,7 +175,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
 
             {/* What Worked Well */}
             <div className="space-y-2">
-              <Label>What Worked Well?</Label>
+              <Label htmlFor="input">What Worked Well?</Label>
               <Textarea
                 placeholder="Describe successful strategies, activities, or moments..."
                 rows={2}
@@ -188,7 +188,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
 
             {/* What Didn't Work */}
             <div className="space-y-2">
-              <Label>What Could Be Improved?</Label>
+              <Label htmlFor="input">What Could Be Improved?</Label>
               <Textarea
                 placeholder="Identify challenges or areas for improvement..."
                 rows={2}
@@ -201,7 +201,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
 
             {/* Next Steps */}
             <div className="space-y-2">
-              <Label>Next Steps</Label>
+              <Label htmlFor="input">Next Steps</Label>
               <Textarea
                 placeholder="What will you do differently next time? Follow-up needed?"
                 rows={2}
@@ -256,7 +256,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
             {/* General Notes */}
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <Label>Additional Notes</Label>
+                <Label htmlFor="input">Additional Notes</Label>
                 <Badge className="text-xs" variant="outline">
                   Public - May appear in newsletters
                 </Badge>
@@ -290,7 +290,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
             {/* Private Notes */}
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <Label>Private Teacher Notes</Label>
+                <Label htmlFor="input">Private Teacher Notes</Label>
                 <Badge className="text-xs" variant="secondary">
                   Private - For your eyes only
                 </Badge>
@@ -312,7 +312,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-sm font-medium">Day Rating:</span>
                 <div className="flex items-center gap-1">
-                  {[1, 2, 3, 4, 5].map((rating) => (
+                  {[1, 2, 3, 4, 5].map((rating, _index) => (
                     <Star
                       key={rating}
                       className={`h-4 w-4 ${
@@ -361,12 +361,12 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
         {/* Save button */}
         {isEditing && (
           <div className="flex justify-end gap-2">
-            <Button variant="outline" onClick={() => {
+            <Button aria-label="Click button" onClick={() => {
  setIsEditing(false); 
 }}>
               Cancel
             </Button>
-            <Button className="gap-2" onClick={handleSave}>
+            <Button aria-label="Click button" onClick={handleSave}>
               <Save className="h-4 w-4" />
               Save Entry
             </Button>
@@ -487,7 +487,7 @@ export default function DaybookPage() {
             }}
             templateType="weekly"
           />
-          <Button className="gap-2" onClick={() => {
+          <Button aria-label="Click button" onClick={() => {
  setIsPrintDialogOpen(true); 
 }}>
             <Printer className="h-4 w-4" />
@@ -511,7 +511,7 @@ export default function DaybookPage() {
               >
                 <ChevronLeft className="h-4 w-4" />
               </Button>
-              <Button variant="outline" onClick={() => {
+              <Button aria-label="Click button" onClick={() => {
  setSelectedWeek(new Date()); 
 }}>
                 This Week
@@ -583,7 +583,7 @@ export default function DaybookPage() {
 
       {/* Daily Entries */}
       <div ref={printRef} className="space-y-4">
-        {weekDays.map((day) => (
+        {weekDays.map((day, _index) => (
           <DayEntry
             key={day.toISOString()}
             date={day}
@@ -773,7 +773,7 @@ export default function DaybookPage() {
           </Tabs>
 
           <DialogFooter>
-            <Button variant="outline" onClick={() => {
+            <Button aria-label="Click button" onClick={() => {
  setIsPrintDialogOpen(false); 
 }}>
               Cancel

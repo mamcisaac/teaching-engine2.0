@@ -8,13 +8,13 @@ import NotificationBell from '../NotificationBell';
 import { secondaryNavItems } from './navigationConfig';
 import { useNavigation } from './NavigationProvider';
 
-export function TopNavigationBar() {
+export function TopNavigationBar(): React.ReactElement {
   const location = useLocation();
   const { getETFOLevels } = useETFOProgress();
   const { toggleSidebar, isMobile } = useNavigation();
   const etfoLevels = getETFOLevels();
 
-  const getCurrentPageTitle = () => {
+  const getCurrentPageTitle = (): string => {
     // Check ETFO levels first
     const etfoMatch = etfoLevels.find((level) =>
       location.pathname.startsWith(level.path),

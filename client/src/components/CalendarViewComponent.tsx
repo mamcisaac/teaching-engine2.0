@@ -80,10 +80,10 @@ grouped[d] = [];
         </button>
       )}
       <div className="grid grid-cols-7 gap-1 text-sm">
-        {days.map((d) => (
+        {days.map((d, index) => (
           <div key={d.toISOString()} className="border p-1 min-h-16">
             <div className="font-bold text-xs">{d.getDate()}</div>
-            {(grouped[d.toISOString().split('T')[0]] || []).map((ev) => (
+            {(grouped[d.toISOString().split('T')[0]] || []).map((ev, index) => (
               <div key={ev.id} className="text-xs bg-gray-200 rounded mt-1 px-1" title={ev.title}>
                 {ev.title}
               </div>

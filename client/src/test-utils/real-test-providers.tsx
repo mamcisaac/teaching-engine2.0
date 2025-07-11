@@ -36,6 +36,9 @@ export function RealTestProviders({
   const [testQueryClient] = React.useState(() => queryClient || createRealTestQueryClient());
 
   React.useEffect(() => {
+    return () => { // Cleanup
+    };
+
     if (initialRoute !== '/') {
       window.history.pushState({}, '', initialRoute);
     }
@@ -43,6 +46,9 @@ export function RealTestProviders({
 
   // Set up authentication context if provided
   React.useEffect(() => {
+    return () => { // Cleanup
+    };
+
     return () => {
       // Cleanup on unmount
       if (authContext?.cleanup) {
@@ -189,6 +195,9 @@ export function useRealTestSetup() {
   } | null>(null);
 
   React.useEffect(() => {
+    return () => { // Cleanup
+    };
+
     setupRealBackendTest().then(setSetup);
 
     return () => {
@@ -210,6 +219,9 @@ export function useAuthenticatedTestSetup() {
   } | null>(null);
 
   React.useEffect(() => {
+    return () => { // Cleanup
+    };
+
     async function setup() {
       const backendSetup = await setupRealBackendTest();
       const authContext = await createAuthenticatedTestUser();

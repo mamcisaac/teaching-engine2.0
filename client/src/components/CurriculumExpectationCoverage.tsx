@@ -42,7 +42,7 @@ interface GradeCoverage {
   }[];
 }
 
-export default function CurriculumExpectationCoverage() {
+export default function CurriculumExpectationCoverage(): React.ReactElement {
   // Fetch data
   const { data: expectations = [] } = useCurriculumExpectations();
   const { data: unitPlans = [] } = useUnitPlans();
@@ -244,7 +244,7 @@ return 'text-yellow-600';
             <CardContent>
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="space-y-4">
-                  {coverageMetrics.bySubject.map((subject) => (
+                  {coverageMetrics.bySubject.map((subject, _index) => (
                     <div key={subject.subject} className="space-y-2">
                       <div className="flex justify-between items-center">
                         <span className="font-medium">{subject.subject}</span>
@@ -272,8 +272,8 @@ return 'text-yellow-600';
                         labelLine={false}
                         outerRadius={80}
                       >
-                        {coverageMetrics.bySubject.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        {coverageMetrics.bySubject.map((_entry, _index) => (
+                          <Cell key={`cell-${_index}`} fill={COLORS[_index % COLORS.length]} />
                         ))}
                       </Pie>
                       <Tooltip />
@@ -318,11 +318,11 @@ return 'text-yellow-600';
             </CardHeader>
             <CardContent>
               <div className="space-y-6">
-                {coverageMetrics.byGrade.map((grade) => (
+                {coverageMetrics.byGrade.map((grade, _index) => (
                   <div key={grade.grade} className="space-y-3">
                     <h4 className="text-lg font-semibold">Grade {grade.grade}</h4>
                     <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-                      {grade.subjects.map((subject) => (
+                      {grade.subjects.map((subject, _index) => (
                         <div key={subject.subject} className="p-3 bg-gray-50 rounded-lg">
                           <div className="flex justify-between items-center mb-2">
                             <span className="font-medium text-sm">{subject.subject}</span>
@@ -372,7 +372,7 @@ return 'text-yellow-600';
                       High Priority Expectations ({coverageMetrics.gaps.highPriority.length})
                     </h4>
                     <div className="space-y-2">
-                      {coverageMetrics.gaps.highPriority.slice(0, 5).map((exp) => (
+                      {coverageMetrics.gaps.highPriority.slice(0, 5).map((exp, _index) => (
                         <div key={exp.id} className="p-3 bg-red-50 rounded-lg">
                           <div className="flex items-start justify-between">
                             <div className="flex-1">
@@ -403,7 +403,7 @@ return 'text-yellow-600';
                       Regular Expectations ({coverageMetrics.gaps.regular.length})
                     </h4>
                     <div className="space-y-2">
-                      {coverageMetrics.gaps.regular.slice(0, 5).map((exp) => (
+                      {coverageMetrics.gaps.regular.slice(0, 5).map((exp, _index) => (
                         <div key={exp.id} className="p-3 bg-yellow-50 rounded-lg">
                           <div className="flex items-start">
                             <div className="flex-1">

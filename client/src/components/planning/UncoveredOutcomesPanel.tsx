@@ -46,7 +46,7 @@ export function UncoveredOutcomesPanel({
   endDate,
   theme,
   onSelectSuggestion,
-}: UncoveredOutcomesPanelProps) {
+}: UncoveredOutcomesPanelProps): React.ReactElement {
   const queryClient = useQueryClient();
   const [generatingFor, setGeneratingFor] = useState<string | null>(null);
 
@@ -55,13 +55,13 @@ export function UncoveredOutcomesPanel({
     queryKey: ['uncovered-outcomes', startDate, endDate, theme],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (startDate) {
+      if (startDate !== null && startDate !== undefined) {
 params.append('startDate', startDate.toISOString());
 }
-      if (endDate) {
+      if (endDate !== null && endDate !== undefined) {
 params.append('endDate', endDate.toISOString());
 }
-      if (theme) {
+      if (theme !== null && theme !== undefined && theme !== '') {
 params.append('theme', theme);
 }
 
@@ -99,7 +99,7 @@ params.append('theme', theme);
     );
   }
 
-  if (!uncoveredOutcomes || uncoveredOutcomes.length === 0) {
+  if (uncoveredOutcomes === null || uncoveredOutcomes === undefined || uncoveredOutcomes.length === 0) {
     return (
       <div className="text-center p-8 bg-green-50 rounded-lg">
         <div className="text-4xl mx-auto mb-4">🎯</div>
@@ -136,7 +136,7 @@ params.append('theme', theme);
                 </div>
                 <p className="text-sm text-gray-700">{expectation.description}</p>
 
-                {suggestion && (
+                {suggestion !== null && (
                   <div className="mt-3 p-3 bg-gray-50 rounded-md">
                     <div className="flex items-center justify-between mb-2">
                       <h4 className="font-medium text-sm">{suggestion.title}</h4>
@@ -159,7 +159,7 @@ params.append('theme', theme);
               </div>
 
               <div className="ml-4">
-                {!suggestion && (
+                {suggestion === null && (
                   <Button
                     disabled={generatingFor === expectation.id}
                     size="sm"

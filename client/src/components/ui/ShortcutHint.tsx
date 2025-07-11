@@ -21,7 +21,7 @@ export const ShortcutHint: React.FC<ShortcutHintProps> = ({
   position = 'inline',
   size = 'sm',
   showAlways = false
-}) => {
+}): React.ReactElement | null => {
   const { preferences } = useKeyboardShortcuts();
 
   // Don't show if hints are disabled (unless showAlways is true)
@@ -85,7 +85,7 @@ export const ButtonWithShortcut: React.FC<ButtonWithShortcutProps> = ({
   children,
   className,
   ...props
-}) => (
+}): React.ReactElement => (
     <button
       className={clsx('inline-flex items-center gap-2', className)}
       {...props}
@@ -115,7 +115,7 @@ export const TooltipWithShortcut: React.FC<TooltipWithShortcutProps> = ({
   content,
   shortcut,
   children
-}) => (
+}): React.ReactElement => (
     <div className="group relative inline-block">
       {children}
       <div className="invisible group-hover:visible absolute z-10 w-max max-w-xs px-3 py-2 text-sm text-white bg-gray-900 rounded-lg shadow-lg -top-10 left-1/2 transform -translate-x-1/2">
@@ -149,7 +149,7 @@ export const MenuItemWithShortcut: React.FC<MenuItemWithShortcutProps> = ({
   icon,
   disabled = false,
   className
-}) => (
+}): React.ReactElement => (
     <button
       className={clsx(
         'w-full flex items-center justify-between px-4 py-2 text-sm text-left hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed',

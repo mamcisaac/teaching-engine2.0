@@ -17,8 +17,8 @@ export const Switch: React.FC<SwitchProps> = ({
   size = 'md',
   className,
   label,
-}) => {
-  const handleChange = () => {
+}): React.ReactElement => {
+  const handleChange = (): void => {
     if (!disabled) {
       onChange(!checked);
     }

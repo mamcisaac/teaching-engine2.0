@@ -196,7 +196,7 @@ export const useOnboardingStore = create<OnboardingState>()(
     immer<OnboardingState>((set, get) => {
       const updateComputedValues = (state: Draft<OnboardingState>) => {
         state.isOnboardingActive = !!state.currentFlow;
-        state.currentStep = state.currentFlow?.steps[state.currentStepIndex] || null;
+        state.currentStep = state.currentFlow?.steps[state.currentStepIndex] ?? null;
         state.progress = state.currentFlow
           ? ((state.currentStepIndex + 1) / state.currentFlow.steps.length) * 100
           : 0;

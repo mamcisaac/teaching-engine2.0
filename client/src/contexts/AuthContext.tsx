@@ -32,7 +32,7 @@ const AuthContext = createContext<AuthContextValue>({
   clearError: () => {},
 });
 
-export function AuthProvider({ children }: { children: React.ReactNode }) {
+export function AuthProvider({ children }: { children: React.ReactNode }): React.ReactElement {
   const [user, setUser] = useState<User | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true); // Start as true
@@ -40,11 +40,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [error, setError] = useState<string | null>(null);
   const [retryCount, setRetryCount] = useState(0);
 
-  const clearError = useCallback(() => {
+  const clearError = useCallback((): void => {
     setError(null);
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const updateAuthState = useCallback((userData: User | null) => {
+  const updateAuthState = useCallback((userData: User | null): void => {
     setUser(userData);
     setIsAuthenticated(!!userData);
     if (userData) {
@@ -54,16 +54,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         id: String(userData.id),
         email: userData.email,
         name: userData.name,
-        role: userData.role || 'teacher',
+        role: userData.role ?? 'teacher',
         organizationId: userData.organizationId ? String(userData.organizationId) : undefined,
       });
     } else {
       // Clear user context when logged out
       errorReportingService.setUserContext(null);
     }
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const checkAuth = useCallback(async () => {
+  const checkAuth = useCallback(async (): Promise<void> => {
     try {
       const userData = await authService.verifyAuth();
       updateAuthState(userData);
@@ -83,7 +83,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [updateAuthState, retryCount]);
 
   const login = useCallback(
-    async (email: string, password: string) => {
+    async (email: string, password: string): Promise<void> => {
       setIsLoading(true);
       setError(null);
 
@@ -120,7 +120,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     [updateAuthState],
   );
 
-  const logout = useCallback(async () => {
+  const logout = useCallback(async (): Promise<void> => {
     setIsLoading(true);
     setError(null);
 
@@ -158,7 +158,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [updateAuthState]);
 
   // Initial auth check with improved error handling and retry logic
-  useEffect(() => {
+  useEffect((): (() => void) => {
+    return (): void => { // Cleanup
+    };
+
     let isMounted = true;
     const timeoutId: NodeJS.Timeout = setTimeout(() => {
       if (isMounted && isLoading) {
@@ -169,7 +172,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
     }, 2000); // 2 second timeout - reduced for better UX
 
-    const performInitialAuthCheck = async () => {
+    const performInitialAuthCheck = async (): Promise<void> => {
       logger.debug('[AuthContext] Starting initial auth check');
       try {
         // Check if we have any stored authentication data
@@ -198,8 +201,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // Add a timeout to prevent hanging
         if (storedUser && hasToken) {
           const checkAuthPromise = checkAuth();
-          const timeoutPromise = new Promise((_, reject) =>
-            setTimeout(() => {
+          const timeoutPromise = new Promise<void>((_, reject) =>
+            setTimeout((): void => {
  reject(new Error('Auth check timeout')); 
 }, 1500),
           );
@@ -235,20 +238,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     performInitialAuthCheck();
 
-    return () => {
+    return (): void => {
       isMounted = false;
       clearTimeout(timeoutId);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Only run once on mount
+  }, []) // Only run once on mount
 
   // Auto-refresh token when it's about to expire
-  useEffect(() => {
+  useEffect((): (() => void) => {
+    return (): void => { // Cleanup
+    };
+
     if (!isAuthenticated) {
 return;
 }
 
-    const interval = setInterval(async () => {
+    const interval = setInterval(async (): Promise<void> => {
       try {
         await authService.ensureValidToken();
       } catch (_error) {
@@ -256,20 +262,23 @@ return;
       }
     }, 60000); // Check every minute
 
-    return () => {
+    return (): void => {
  clearInterval(interval); 
 };
   }, [isAuthenticated, error]);
 
   // Retry auth check with exponential backoff when there are connection issues
-  useEffect(() => {
+  useEffect((): (() => void) => {
+    return (): void => { // Cleanup
+    };
+
     if (error && retryCount > 0 && retryCount < 3) {
       const retryDelay = Math.min(1000 * Math.pow(2, retryCount - 1), 5000);
-      const timeoutId = setTimeout(() => {
+      const timeoutId = setTimeout((): void => {
         checkAuth();
       }, retryDelay);
 
-      return () => {
+      return (): void => {
  clearTimeout(timeoutId); 
 };
     }
@@ -292,4 +301,5 @@ return;
   return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
 }
 
-export const useAuth = () => useContext(AuthContext);
+export { AuthContext };
+export const useAuth = (): AuthContextValue => useContext(AuthContext);

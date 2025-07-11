@@ -36,7 +36,7 @@ interface QuickActionsProps {
   className?: string;
 }
 
-export function QuickActions({ onDuplicatePlan, className }: QuickActionsProps) {
+export function QuickActions({ onDuplicatePlan, className }: QuickActionsProps): React.ReactElement {
   const navigate = useNavigate();
 
   const quickActions: QuickAction[] = [
@@ -140,7 +140,7 @@ export function QuickActions({ onDuplicatePlan, className }: QuickActionsProps) 
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {quickActions.map((action) => (
+          {quickActions.map((action, _index) => (
             <button
               key={action.id}
               className={cn(
@@ -150,7 +150,7 @@ export function QuickActions({ onDuplicatePlan, className }: QuickActionsProps) 
               )}
               onClick={action.onClick}
             >
-              {action.isNew && (
+              {action.isNew === true && (
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-full">
                   New
                 </span>

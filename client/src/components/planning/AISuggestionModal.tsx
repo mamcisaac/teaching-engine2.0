@@ -42,17 +42,17 @@ export function AISuggestionModal({
   open,
   onClose,
   onAddToWeek,
-}: AISuggestionModalProps) {
+}: AISuggestionModalProps): React.ReactElement {
   const queryClient = useQueryClient();
   const { toast } = useToast();
   const [isEditing, setIsEditing] = useState(false);
   const [editedSuggestion, setEditedSuggestion] = useState({
     title: suggestion.title,
     descriptionFr: suggestion.descriptionFr,
-    descriptionEn: suggestion.descriptionEn || '',
+    descriptionEn: suggestion.descriptionEn ?? '',
     materials: suggestion.materials.join(', '),
     duration: suggestion.duration,
-    theme: suggestion.theme || '',
+    theme: suggestion.theme ?? '',
   });
 
   // Delete suggestion mutation
@@ -71,7 +71,7 @@ export function AISuggestionModal({
   });
 
   // Save to library (for future implementation)
-  const saveToLibrary = () => {
+  const saveToLibrary = (): void => {
     toast({
       title: 'Saved to library',
       description: 'This activity has been saved for future use.',
@@ -79,7 +79,7 @@ export function AISuggestionModal({
     });
   };
 
-  const handleAddToWeek = () => {
+  const handleAddToWeek = (): void => {
     if (onAddToWeek) {
       // If editing, create a modified version
       const activityToAdd = isEditing
@@ -197,7 +197,7 @@ export function AISuggestionModal({
               />
             ) : (
               <p className="text-sm whitespace-pre-wrap text-gray-600">
-                {suggestion.descriptionEn || 'No English description provided'}
+                {(suggestion.descriptionEn !== undefined && suggestion.descriptionEn !== '') ? suggestion.descriptionEn : 'No English description provided'}
               </p>
             )}
           </div>
@@ -223,8 +223,8 @@ export function AISuggestionModal({
               />
             ) : (
               <div className="flex flex-wrap gap-2">
-                {suggestion.materials.map((material, index) => (
-                  <span key={index} className="px-2 py-1 bg-gray-100 rounded-md text-sm">
+                {suggestion.materials.map((material, _index) => (
+                  <span key={_index} className="px-2 py-1 bg-gray-100 rounded-md text-sm">
                     {material}
                   </span>
                 ))}
@@ -233,7 +233,7 @@ export function AISuggestionModal({
           </div>
 
           {/* Theme */}
-          {(suggestion.theme || isEditing) && (
+          {((suggestion.theme !== undefined && suggestion.theme !== '') || isEditing) ? (
             <div className="space-y-2">
               <Label htmlFor="theme">Theme</Label>
               {isEditing ? (
@@ -257,12 +257,12 @@ export function AISuggestionModal({
                 </p>
               )}
             </div>
-          )}
+          ) : null}
         </div>
 
         <DialogFooter className="flex flex-col sm:flex-row gap-2">
           <div className="flex gap-2 flex-1">
-            <Button variant="outline" onClick={() => {
+            <Button aria-label="Click button" onClick={() => {
  setIsEditing(!isEditing); 
 }}>
               {isEditing ? 'Cancel Edit' : 'Edit'}
@@ -279,11 +279,11 @@ export function AISuggestionModal({
             </Button>
           </div>
           <div className="flex gap-2">
-            <Button variant="outline" onClick={saveToLibrary}>
+            <Button aria-label="Click button" onClick={saveToLibrary}>
               <span className="mr-2">🔖</span>
               Save to Library
             </Button>
-            <Button onClick={handleAddToWeek}>
+            <Button aria-label="Click button" onClick={handleAddToWeek}>
               <span className="mr-2">+</span>
               Add to Week Plan
             </Button>
@@ -293,4 +293,3 @@ export function AISuggestionModal({
     </Dialog>
   );
 }
-export default AISuggestionModal;

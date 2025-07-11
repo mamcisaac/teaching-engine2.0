@@ -86,10 +86,9 @@ describe('RecentPlans', () => {
         { wrapper: createWrapper() }
       );
 
-      expect(screen.getByRole('status')).toBeInTheDocument();
-      // Check for loading skeletons
+      // Check for loading skeletons (there should be 3)
       const loadingElements = screen.getAllByTestId('loading-skeleton');
-      expect(loadingElements.length).toBeGreaterThan(0);
+      expect(loadingElements).toHaveLength(3);
     });
   });
 
@@ -319,6 +318,128 @@ describe('RecentPlans', () => {
       await user.tab();
       const secondLink = screen.getByText('Number Patterns Unit').closest('a');
       expect(secondLink).toHaveFocus();
+    });
+  });
+
+  describe('strict-boolean-expressions compliance', () => {
+    it('should handle loading state with explicit boolean check', () => {
+      render(
+        <RecentPlans plans={[]} isLoading={true} />,
+        { wrapper: createWrapper() }
+      );
+
+      // Should show loading skeletons (3 of them)
+      const loadingElements = screen.getAllByTestId('loading-skeleton');
+      expect(loadingElements).toHaveLength(3);
+    });
+
+    it('should handle plans without subject field', () => {
+      const plansWithoutSubject: RecentPlan[] = [{
+        id: 'test-1',
+        type: 'lesson',
+        title: 'Test Lesson',
+        lastAccessed: '2024-09-20T10:00:00Z',
+        status: 'draft',
+        // subject is undefined
+      }];
+
+      render(
+        <RecentPlans plans={plansWithoutSubject} />,
+        { wrapper: createWrapper() }
+      );
+
+      // Should not show the subject divider bullet
+      const bullets = screen.queryAllByText('•');
+      expect(bullets).toHaveLength(0);
+    });
+
+    it('should handle plans without grade field', () => {
+      const plansWithoutGrade: RecentPlan[] = [{
+        id: 'test-2',
+        type: 'lesson',
+        title: 'Test Lesson',
+        subject: 'Science',
+        lastAccessed: '2024-09-20T10:00:00Z',
+        status: 'draft',
+        // grade is undefined
+      }];
+
+      render(
+        <RecentPlans plans={plansWithoutGrade} />,
+        { wrapper: createWrapper() }
+      );
+
+      // Should show subject but not grade
+      expect(screen.getByText('Science')).toBeInTheDocument();
+      expect(screen.queryByText(/Grade/)).not.toBeInTheDocument();
+    });
+
+    it('should handle plans without parentTitle field', () => {
+      const plansWithoutParent: RecentPlan[] = [{
+        id: 'test-3',
+        type: 'lesson',
+        title: 'Standalone Lesson',
+        subject: 'Math',
+        grade: 3,
+        lastAccessed: '2024-09-20T10:00:00Z',
+        status: 'draft',
+        // parentTitle is undefined
+      }];
+
+      render(
+        <RecentPlans plans={plansWithoutParent} />,
+        { wrapper: createWrapper() }
+      );
+
+      // Should not show "in" text
+      expect(screen.queryByText(/^in /)).not.toBeInTheDocument();
+    });
+
+    it('should handle plans with empty string fields', () => {
+      const plansWithEmptyStrings: RecentPlan[] = [{
+        id: 'test-4',
+        type: 'lesson',
+        title: 'Test Lesson',
+        subject: '',  // empty string
+        parentTitle: '',  // empty string
+        lastAccessed: '2024-09-20T10:00:00Z',
+        status: 'draft',
+      }];
+
+      render(
+        <RecentPlans plans={plansWithEmptyStrings} />,
+        { wrapper: createWrapper() }
+      );
+
+      // Should not render empty subject or parentTitle
+      const bullets = screen.queryAllByText('•');
+      expect(bullets).toHaveLength(0);
+      expect(screen.queryByText(/^in /)).not.toBeInTheDocument();
+    });
+
+    it('should handle plans with all optional fields present', () => {
+      const fullyPopulatedPlan: RecentPlan[] = [{
+        id: 'test-5',
+        type: 'lesson',
+        title: 'Complete Lesson',
+        subject: 'Science',
+        grade: 4,
+        parentTitle: 'Unit Name',
+        lastAccessed: '2024-09-20T10:00:00Z',
+        status: 'in-progress',
+        progress: 50,
+      }];
+
+      render(
+        <RecentPlans plans={fullyPopulatedPlan} />,
+        { wrapper: createWrapper() }
+      );
+
+      // Should show all fields
+      expect(screen.getByText('Science')).toBeInTheDocument();
+      expect(screen.getByText('Grade 4')).toBeInTheDocument();
+      expect(screen.getByText(/in Unit Name/)).toBeInTheDocument();
+      expect(screen.getByText('50%')).toBeInTheDocument();
     });
   });
 });

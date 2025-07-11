@@ -54,7 +54,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             id: String(userData.id),
             email: userData.email,
             name: userData.name,
-            role: userData.role || 'teacher',
+            role: userData.role ?? 'teacher',
             organizationId: userData.organizationId ? String(userData.organizationId) : undefined,
           });
         }
@@ -119,7 +119,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         id: String(userData.id),
         email: userData.email,
         name: userData.name,
-        role: userData.role || 'teacher',
+        role: userData.role ?? 'teacher',
         organizationId: userData.organizationId ? String(userData.organizationId) : undefined,
       });
       
@@ -187,7 +187,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const contextValue: AuthContextValue = {
-    user: user || null,
+    user: user ?? null,
     login: async (credentials: LoginCredentials) => {
       await loginMutation.mutateAsync(credentials);
     },

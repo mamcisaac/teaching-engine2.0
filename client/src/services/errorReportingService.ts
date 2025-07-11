@@ -419,7 +419,7 @@ export class ErrorReportingService {
 
   private sanitizeEvent(event: Sentry.ErrorEvent): Sentry.ErrorEvent {
     // Deep clone to avoid modifying original
-    const sanitized = safeJsonParse(JSON.stringify(event), {});
+    const sanitized = safeJsonParse(JSON.stringify(event), event) as Sentry.ErrorEvent;
 
     // Sanitize message
     if (sanitized.message) {

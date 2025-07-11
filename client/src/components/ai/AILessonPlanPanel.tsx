@@ -89,7 +89,7 @@ export function AILessonPlanPanel({
   onSuggestionAccepted,
   onLessonGenerated,
   className = '',
-}: AILessonPlanPanelProps) {
+}: AILessonPlanPanelProps): React.ReactElement {
   const { toast } = useToast();
   const { canUseAI, aiDisabledReason } = useAIStatus();
   const { available: _planGenerationAvailable } = useAIFeature('planGeneration');
@@ -160,7 +160,7 @@ export function AILessonPlanPanel({
     if (!canUseAI) {
       toast({
         title: 'AI Unavailable',
-        description: aiDisabledReason || 'AI features are currently unavailable.',
+        description: aiDisabledReason !== null && aiDisabledReason !== undefined && aiDisabledReason !== '' ? aiDisabledReason : 'AI features are currently unavailable.',
         variant: 'destructive',
       });
       return;
@@ -310,7 +310,7 @@ export function AILessonPlanPanel({
     if (!canUseAI) {
       toast({
         title: 'AI Unavailable',
-        description: aiDisabledReason || 'AI features are currently unavailable.',
+        description: aiDisabledReason !== null && aiDisabledReason !== undefined && aiDisabledReason !== '' ? aiDisabledReason : 'AI features are currently unavailable.',
         variant: 'destructive',
       });
       return;
@@ -548,13 +548,13 @@ export function AILessonPlanPanel({
                     placeholder="Add learning goal"
                     onKeyPress={(e) => e.key === 'Enter' && addLearningGoal()}
                   />
-                  <Button size="sm" type="button" onClick={addLearningGoal}>
+                  <Button aria-label="Click button" onClick={addLearningGoal}>
                     <Plus className="h-4 w-4" />
                   </Button>
                 </div>
                 <div className="space-y-2">
-                  {formData.learningGoals.map((goal, index) => (
-                    <div key={index} className="flex items-center gap-2 p-2 bg-gray-50 rounded">
+                  {formData.learningGoals.map((goal, _index) => (
+                    <div key={_index} className="flex items-center gap-2 p-2 bg-gray-50 rounded">
                       <Target className="h-4 w-4 text-purple-500 flex-shrink-0" />
                       <span className="flex-1 text-sm">{goal}</span>
                       <button
@@ -578,13 +578,13 @@ export function AILessonPlanPanel({
                     placeholder="Add material or resource"
                     onKeyPress={(e) => e.key === 'Enter' && addMaterial()}
                   />
-                  <Button size="sm" type="button" onClick={addMaterial}>
+                  <Button aria-label="Click button" onClick={addMaterial}>
                     <Plus className="h-4 w-4" />
                   </Button>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  {formData.materials.map((material, index) => (
-                    <Badge key={index} className="gap-1" variant="secondary">
+                  {formData.materials.map((material, _index) => (
+                    <Badge key={_index} className="gap-1" variant="secondary">
                       {material}
                       <button
                         className="text-xs hover:text-red-500"
@@ -637,8 +637,8 @@ export function AILessonPlanPanel({
                         <div>
                           <span className="font-medium">Big Ideas:</span>
                           <ul className="list-disc list-inside ml-2">
-                            {unitContext.bigIdeas.slice(0, 3).map((idea, index) => (
-                              <li key={index} className="text-gray-700">{idea}</li>
+                            {unitContext.bigIdeas.slice(0, 3).map((idea, _index) => (
+                              <li key={_index} className="text-gray-700">{idea}</li>
                             ))}
                           </ul>
                         </div>
@@ -708,7 +708,7 @@ export function AILessonPlanPanel({
                 </div>
               ) : (
                 <div className="space-y-4">
-                  {(Object.keys(threePartStructure) as (keyof ThreePartStructure)[]).map((phase) => (
+                  {(Object.keys(threePartStructure) as (keyof ThreePartStructure)[]).map((phase, _index) => (
                     <Card key={phase} className="border-l-4 border-l-purple-500">
                       <CardHeader>
                         <CardTitle className="text-base flex items-center gap-2">
@@ -724,8 +724,8 @@ export function AILessonPlanPanel({
                       </CardHeader>
                       <CardContent>
                         <div className="space-y-2">
-                          {threePartStructure[phase].activities.map((activity, index) => (
-                            <div key={index} className="p-3 bg-gray-50 rounded-lg">
+                          {threePartStructure[phase].activities.map((activity, _index) => (
+                            <div key={_index} className="p-3 bg-gray-50 rounded-lg">
                               <p className="text-sm">{activity}</p>
                             </div>
                           ))}
@@ -746,8 +746,8 @@ export function AILessonPlanPanel({
                 </div>
               ) : (
                 <div className="space-y-4">
-                  {suggestions.map((suggestion, index) => (
-                    <Card key={`${suggestion.type}-${index}`}>
+                  {suggestions.map((suggestion, _index) => (
+                    <Card key={`${suggestion.type}-${_index}`}>
                       <CardHeader>
                         <CardTitle className="text-base capitalize flex items-center gap-2">
                           {suggestion.type === 'materials' && <BookOpen className="h-4 w-4" />}
@@ -755,13 +755,13 @@ export function AILessonPlanPanel({
                           {suggestion.type.includes('mindson') && <Play className="h-4 w-4" />}
                           {suggestion.type === 'handson' && <Activity className="h-4 w-4" />}
                           {suggestion.type.replace(/_/g, ' ').replace(/([A-Z])/g, ' $1').trim()}
-                          {suggestion.timeEstimate && (
+                          {suggestion.timeEstimate !== null && suggestion.timeEstimate !== undefined && suggestion.timeEstimate > 0 && !isNaN(suggestion.timeEstimate) && (
                             <Badge className="ml-auto" variant="outline">
                               {suggestion.timeEstimate} min
                             </Badge>
                           )}
                         </CardTitle>
-                        {suggestion.rationale && (
+                        {suggestion.rationale !== null && suggestion.rationale !== undefined && suggestion.rationale !== '' && (
                           <CardDescription>{suggestion.rationale}</CardDescription>
                         )}
                       </CardHeader>

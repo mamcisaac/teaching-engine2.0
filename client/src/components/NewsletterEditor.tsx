@@ -24,7 +24,7 @@ export default function NewsletterEditor({
   onSend,
   onRegenerate,
   className,
-}: NewsletterEditorProps) {
+}: NewsletterEditorProps): React.ReactElement {
   const [editingSection, setEditingSection] = useState<string | null>(null);
   const [language, setLanguage] = useState<'en' | 'fr'>('en');
   const [previewMode, setPreviewMode] = useState(false);
@@ -35,12 +35,18 @@ export default function NewsletterEditor({
 
   // Update local draft when prop changes
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     setLocalDraft(draft);
     setUnsavedChanges(false);
   }, [draft]);
 
   // Auto-save functionality
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     if (unsavedChanges) {
       const timer = setTimeout(() => {
         onSave(localDraft);

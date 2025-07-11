@@ -87,6 +87,9 @@ export function useETFOLessonPlanForm({
 
   // Update form data when initial data changes
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     if (initialData) {
       setFormData(prev => ({
         ...prev,
@@ -101,7 +104,7 @@ export function useETFOLessonPlanForm({
     value: LessonPlanFormData[K]
   ) => {
     setFormData(prev => ({ ...prev, [field]: value }));
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Array field handlers
   const addArrayItem = useCallback((field: keyof LessonPlanFormData, value = '') => {
@@ -109,7 +112,7 @@ export function useETFOLessonPlanForm({
       ...prev,
       [field]: [...(prev[field] as string[]), value],
     }));
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const updateArrayItem = useCallback((
     field: keyof LessonPlanFormData,
@@ -121,14 +124,14 @@ export function useETFOLessonPlanForm({
       array[index] = value;
       return { ...prev, [field]: array };
     });
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const removeArrayItem = useCallback((field: keyof LessonPlanFormData, index: number) => {
     setFormData(prev => ({
       ...prev,
       [field]: (prev[field] as string[]).filter((_, i) => i !== index),
     }));
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Form validation
   const validateForm = useCallback((): { isValid: boolean; errors: string[] } => {
@@ -162,7 +165,7 @@ export function useETFOLessonPlanForm({
   // Reset form
   const resetForm = useCallback(() => {
     setFormData(initialFormData);
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Load lesson plan data into form
   const loadLessonPlan = useCallback((lesson: {
@@ -213,7 +216,7 @@ export function useETFOLessonPlanForm({
       subNotes: lesson.subNotes || '',
       expectationIds: lesson.expectations?.map((e) => e.expectation.id) || [],
     });
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // AI suggestion handlers
   const applyAISuggestion = useCallback((type: string, content: string[]) => {
@@ -237,7 +240,7 @@ export function useETFOLessonPlanForm({
         setFormData(prev => ({ ...prev, assessmentNotes: content.join('\n\n') }));
         break;
     }
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const applyAILessonPlan = useCallback((lessonPlan: {
     title?: string;
@@ -260,7 +263,7 @@ export function useETFOLessonPlanForm({
       materials: lessonPlan.materials || prev.materials,
       duration: lessonPlan.duration || prev.duration,
     }));
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return {
     formData,

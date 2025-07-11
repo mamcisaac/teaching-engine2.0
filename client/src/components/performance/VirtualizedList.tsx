@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 // Simple debounce implementation
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const debounce = <T extends (...args: unknown[]) => any>(
+const debounce = <T extends (...args: any[]) => any>(
   func: T,
   wait: number,
 ): ((...args: Parameters<T>) => void) & { cancel(): void } => {
@@ -52,7 +52,7 @@ export function VirtualizedList<T>({
       return { start: 0, end: 0 };
     }
 
-    const effectiveItemHeight = estimatedItemHeight || itemHeight;
+    const effectiveItemHeight = estimatedItemHeight ?? itemHeight;
     const startIndex = Math.floor(scrollTop / effectiveItemHeight);
     const endIndex = Math.min(
       itemCount - 1,

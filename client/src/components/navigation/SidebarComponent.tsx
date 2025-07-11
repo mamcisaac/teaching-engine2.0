@@ -7,12 +7,12 @@ import { useNavigation } from './NavigationProvider';
 import { ResourceNavigationSection } from './ResourceNavigationSection';
 import { SidebarHeader } from './SidebarHeader';
 
-export function SidebarComponent() {
+export function SidebarComponent(): React.ReactElement {
   const { logout } = useAuth();
   const { isSidebarOpen, isMobile } = useNavigation();
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = (): void => {
+    void logout();
   };
 
   return (

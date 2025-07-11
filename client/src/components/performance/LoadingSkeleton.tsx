@@ -35,7 +35,7 @@ export function LoadingSkeleton({
   animate = true,
   layout = [],
   'aria-label': ariaLabel = 'Loading...',
-}: LoadingSkeletonProps) {
+}: LoadingSkeletonProps): React.ReactElement {
   const baseClasses = 'bg-gray-200 rounded';
   const animationClasses = animate ? 'animate-pulse' : '';
   
@@ -46,10 +46,10 @@ export function LoadingSkeleton({
   };
 
   const containerStyle: React.CSSProperties = {};
-  if (height) {
+  if (height !== undefined && height !== null && height !== '') {
 containerStyle.height = height;
 }
-  if (width) {
+  if (width !== undefined && width !== null && width !== '') {
 containerStyle.width = width;
 }
 
@@ -94,12 +94,12 @@ containerStyle.width = width;
           case 'text':
             return (
               <div key={index} className="flex-1 space-y-2" data-testid="skeleton-text">
-                {Array.from({ length: item.lines || 2 }).map((_, lineIndex) => (
+                {Array.from({ length: item.lines ?? 2 }).map((_, lineIndex) => (
                   <SkeletonBox
                     key={lineIndex}
                     className={cn(
                       'h-4',
-                      lineIndex === (item.lines || 2) - 1 ? 'w-3/4' : 'w-full'
+                      lineIndex === (item.lines ?? 2) - 1 ? 'w-3/4' : 'w-full'
                     )}
                   />
                 ))}
@@ -111,7 +111,7 @@ containerStyle.width = width;
                 key={index}
                 className="h-9 rounded-md"
                 data-testid="skeleton-button"
-                style={{ width: item.width || '100px' }}
+                style={{ width: item.width ?? '100px' }}
               />
             );
           case 'image':

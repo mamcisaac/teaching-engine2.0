@@ -19,7 +19,7 @@ export default function Dialog({
   title,
   maxWidth = 'lg',
   description,
-}: DialogProps) {
+}: DialogProps): React.ReactElement {
   const handleOpenChange = (newOpen: boolean) => {
     if (onOpenChange) {
       onOpenChange(newOpen);

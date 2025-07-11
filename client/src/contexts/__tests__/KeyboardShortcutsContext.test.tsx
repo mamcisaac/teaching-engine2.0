@@ -53,12 +53,12 @@ const createKeyboardEvent = (options: Partial<KeyboardEvent> = {}) => {
 
   // Override properties that can't be set in constructor
   Object.defineProperties(event, {
-    key: { value: options.key || 'a', writable: true },
-    ctrlKey: { value: options.ctrlKey || false, writable: true },
-    metaKey: { value: options.metaKey || false, writable: true },
-    altKey: { value: options.altKey || false, writable: true },
-    shiftKey: { value: options.shiftKey || false, writable: true },
-    target: { value: options.target || document.body, writable: true },
+    key: { value: options.key ?? 'a', writable: true },
+    ctrlKey: { value: options.ctrlKey ?? false, writable: true },
+    metaKey: { value: options.metaKey ?? false, writable: true },
+    altKey: { value: options.altKey ?? false, writable: true },
+    shiftKey: { value: options.shiftKey ?? false, writable: true },
+    target: { value: options.target ?? document.body, writable: true },
   });
 
   return event;

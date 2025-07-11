@@ -96,7 +96,7 @@ export function useModals(initialModals: string[] = []): UseModalsReturn {
 
   const toggleModal = useCallback((name: string, data?: unknown) => {
     setModals((prev) => {
-      const modal = prev[name] || { isOpen: false };
+      const modal = prev[name] ?? { isOpen: false };
       return {
         ...prev,
         [name]: modal.isOpen ? { ...modal, isOpen: false } : { isOpen: true, data },
@@ -126,12 +126,12 @@ export function useModals(initialModals: string[] = []): UseModalsReturn {
   }, []);
 
   const isModalOpen = useCallback(
-    (name: string) => modals[name].isOpen || false,
+    (name: string) => modals[name]?.isOpen ?? false,
     [modals],
   );
 
   const getModalData = useCallback(
-    <T = unknown>(name: string): T | undefined => modals[name].data as T,
+    <T = unknown>(name: string): T | undefined => modals[name]?.data as T,
     [modals],
   );
 

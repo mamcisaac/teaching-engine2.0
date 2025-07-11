@@ -19,7 +19,7 @@ export default function ResourceSelector({
   onClose,
   fileTypeFilter,
   title = 'Select Resource',
-}: ResourceSelectorProps) {
+}: ResourceSelectorProps): React.ReactElement {
   const [search, setSearch] = useState('');
   const [selectedFileType, setSelectedFileType] = useState(fileTypeFilter || '');
 
@@ -124,7 +124,7 @@ return '0 Bytes';
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {filteredResources.map((resource) => (
+              {filteredResources.map((resource, _index) => (
                 <div
                   key={resource.id}
                   className="border rounded-lg p-4 hover:shadow-md hover:bg-blue-50 cursor-pointer transition-all"
@@ -168,7 +168,7 @@ return '0 Bytes';
                   {/* Tags */}
                   {resource.tags.length > 0 && (
                     <div className="flex flex-wrap gap-1">
-                      {resource.tags.slice(0, 2).map((tag) => (
+                      {resource.tags.slice(0, 2).map((tag, _index) => (
                         <span
                           key={tag}
                           className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"

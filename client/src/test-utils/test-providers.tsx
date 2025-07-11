@@ -82,6 +82,9 @@ export function RealProviders({
 
   // Setup authentication if provided
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     return () => {
       // Cleanup on unmount
       if (authContext?.cleanup) {
@@ -98,6 +101,9 @@ export function RealProviders({
 
   // Handle browser router navigation
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     if (!useMemoryRouter && initialRoute !== '/') {
       window.history.pushState({}, '', initialRoute);
     }
@@ -156,6 +162,9 @@ export function AllProviders({
 }: AllProvidersProps) {
   // Move useEffect before conditional return
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     if (useMockProviders && initialRoute !== '/') {
       window.history.pushState({}, '', initialRoute);
     }

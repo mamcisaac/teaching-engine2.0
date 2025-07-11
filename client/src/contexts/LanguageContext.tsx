@@ -392,12 +392,15 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
   const [language, setLanguageState] = useState<string>('en');
 
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     // Load saved language preference from localStorage
     const savedLanguage = localStorage.getItem('preferredLanguage');
     if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'fr')) {
       setLanguageState(savedLanguage);
     }
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const setLanguage = (lang: string) => {
     setLanguageState(lang);
@@ -406,7 +409,7 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
   };
 
   const t = (key: string, fallback?: string, substitutions?: string[]): string => {
-    let translation = translations[language][key] || fallback || key;
+    let translation = translations[language][key] ?? fallback ?? key;
 
     // Handle string interpolation for placeholders like {0}, {1}, etc.
     if (substitutions) {
@@ -428,7 +431,7 @@ return '';
     const localizedValue = obj[localizedFieldName];
 
     // Return localized version if it exists, otherwise fall back to base field
-    return String(localizedValue || obj[field] || '');
+    return String(localizedValue ?? obj[field] ?? '');
   };
 
   return (

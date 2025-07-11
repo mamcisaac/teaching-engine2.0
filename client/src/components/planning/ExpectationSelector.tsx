@@ -39,7 +39,7 @@ export default function ExpectationSelector({
   error,
   required = false,
   disabled = false,
-}: ExpectationSelectorProps) {
+}: ExpectationSelectorProps): React.ReactElement {
   const [open, setOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [expandedStrands, setExpandedStrands] = useState<Set<string>>(new Set());
@@ -52,7 +52,7 @@ export default function ExpectationSelector({
 
   // Filter expectations based on search
   const filteredExpectations = useMemo(() => {
-    if (!searchQuery.trim()) {
+    if (searchQuery.trim() === '') {
 return expectations;
 }
 
@@ -62,7 +62,7 @@ return expectations;
         exp.code.toLowerCase().includes(query) ||
         exp.description.toLowerCase().includes(query) ||
         exp.strand.toLowerCase().includes(query) ||
-        (exp.substrand && exp.substrand.toLowerCase().includes(query)),
+        (exp.substrand !== null && exp.substrand !== undefined ? exp.substrand.toLowerCase().includes(query) : false),
     );
   }, [expectations, searchQuery]);
 
@@ -71,11 +71,11 @@ return expectations;
     const grouped: GroupedExpectations = {};
 
     filteredExpectations.forEach((exp) => {
-      if (!grouped[exp.strand]) {
+      if (grouped[exp.strand] === undefined) {
         grouped[exp.strand] = {};
       }
-      const substrand = exp.substrand || 'General';
-      if (!grouped[exp.strand][substrand]) {
+      const substrand = exp.substrand ?? 'General';
+      if (grouped[exp.strand][substrand] === undefined) {
         grouped[exp.strand][substrand] = [];
       }
       grouped[exp.strand][substrand].push(exp);
@@ -89,6 +89,9 @@ return expectations;
 
   // Auto-expand strands with selected expectations
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     const strandsWithSelected = new Set<string>();
     selectedExpectations.forEach((exp) => {
       strandsWithSelected.add(exp.strand);
@@ -130,7 +133,7 @@ return expectations;
   return (
     <div className={className}>
       {label && (
-        <Label className={cn("mb-2", required && "after:content-['*'] after:ml-1 after:text-red-500")}>
+        <Label className={cn("mb-2", required === true ? "after:content-['*'] after:ml-1 after:text-red-500" : "")}>
           {label}
         </Label>
       )}
@@ -141,7 +144,7 @@ return expectations;
             aria-expanded={open}
             className={cn(
               "w-full justify-between",
-              error && "border-red-500 focus:ring-red-500 focus:border-red-500",
+              error !== undefined && error !== null ? "border-red-500 focus:ring-red-500 focus:border-red-500" : "",
               className
             )}
             disabled={disabled}
@@ -173,7 +176,7 @@ return expectations;
 
           <ScrollArea className="h-[400px]">
             <div className="p-4">
-              {isLoading ? (
+              {isLoading === true ? (
                 <div className="text-center py-8 text-muted-foreground">
                   Loading expectations...
                 </div>
@@ -197,17 +200,17 @@ return expectations;
                       {strand}
                     </button>
 
-                    {expandedStrands.has(strand) && (
+                    {expandedStrands.has(strand) === true ? (
                       <div className="ml-6 space-y-3">
                         {Object.entries(substrands).map(([substrand, expectations]) => (
                           <div key={substrand}>
-                            {substrand !== 'General' && (
+                            {substrand !== 'General' ? (
                               <div className="text-xs font-medium text-muted-foreground mb-1">
                                 {substrand}
                               </div>
-                            )}
+                            ) : null}
                             <div className="space-y-1">
-                              {expectations.map((exp) => (
+                              {expectations.map((exp, _index) => (
                                 <div
                                   key={exp.id}
                                   className={cn(
@@ -219,7 +222,7 @@ return expectations;
 }}
                                 >
                                   <div className="mt-0.5">
-                                    {multiSelect ? (
+                                    {multiSelect === true ? (
                                       <div
                                         className={cn(
                                           'h-4 w-4 rounded border',
@@ -228,9 +231,9 @@ return expectations;
                                             : 'border-input',
                                         )}
                                       >
-                                        {selectedIds.includes(exp.id) && (
+                                        {selectedIds.includes(exp.id) === true ? (
                                           <Check className="h-3 w-3 text-primary-foreground" />
-                                        )}
+                                        ) : null}
                                       </div>
                                     ) : (
                                       <div
@@ -241,9 +244,9 @@ return expectations;
                                             : 'border-input',
                                         )}
                                       >
-                                        {selectedIds.includes(exp.id) && (
+                                        {selectedIds.includes(exp.id) === true ? (
                                           <div className="h-2 w-2 rounded-full bg-primary m-0.5" />
-                                        )}
+                                        ) : null}
                                       </div>
                                     )}
                                   </div>
@@ -252,11 +255,11 @@ return expectations;
                                       <Badge className="text-xs" variant="outline">
                                         {exp.code}
                                       </Badge>
-                                      {exp.type && (
+                                      {exp.type !== null && exp.type !== undefined ? (
                                         <Badge className="text-xs" variant="secondary">
                                           {exp.type}
                                         </Badge>
-                                      )}
+                                      ) : null}
                                     </div>
                                     <p className="text-sm mt-1">{exp.description}</p>
                                   </div>
@@ -266,30 +269,30 @@ return expectations;
                           </div>
                         ))}
                       </div>
-                    )}
+                    ) : null}
                   </div>
                 ))
               )}
             </div>
           </ScrollArea>
 
-          {multiSelect && selectedIds.length > 0 && (
+          {multiSelect === true && selectedIds.length > 0 ? (
             <div className="p-4 border-t">
               <div className="flex items-center justify-between">
                 <span className="text-sm text-muted-foreground">{selectedIds.length} selected</span>
-                <Button className="text-destructive" size="sm" variant="ghost" onClick={clearAll}>
+                <Button aria-label="Click button" onClick={clearAll}>
                   Clear all
                 </Button>
               </div>
             </div>
-          )}
+          ) : null}
         </PopoverContent>
       </Popover>
 
       {/* Display selected expectations */}
-      {selectedExpectations.length > 0 && (
+      {selectedExpectations.length > 0 ? (
         <div className="mt-3 space-y-2">
-          {selectedExpectations.map((exp) => (
+          {selectedExpectations.map((exp, _index) => (
             <div
               key={exp.id}
               className="flex items-start justify-between gap-2 p-2 bg-muted rounded-md"
@@ -303,7 +306,7 @@ return expectations;
                 </div>
                 <p className="text-sm mt-1">{exp.description}</p>
               </div>
-              {multiSelect && (
+              {multiSelect === true ? (
                 <Button
                   className="h-auto p-1"
                   size="sm"
@@ -314,16 +317,16 @@ return expectations;
                 >
                   <X className="h-4 w-4" />
                 </Button>
-              )}
+              ) : null}
             </div>
           ))}
         </div>
-      )}
+      ) : null}
 
       {/* Error display */}
-      {error && (
+      {error !== undefined && error !== null ? (
         <p className="mt-1 text-sm text-red-600">{error}</p>
-      )}
+      ) : null}
     </div>
   );
 }

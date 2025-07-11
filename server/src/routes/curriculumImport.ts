@@ -119,7 +119,7 @@ router.post(
     } catch (_error) {
       logger.error('Upload error:', _error);
       res.status(500).json({
-        error: _error instanceof Error ? _(error instanceof Error ? error.message : String(error)) : 'Failed to process upload',
+        error: _error instanceof Error ? _error.message : 'Failed to process upload',
       });
     }
   },
@@ -160,7 +160,7 @@ router.post('/parse', async (req: AuthenticatedRequest, res: Response): Promise<
   } catch (_error) {
     logger.error('Parse error:', _error);
     res.status(500).json({
-      error: _error instanceof Error ? _(error instanceof Error ? error.message : String(error)) : 'Failed to parse file',
+      error: _error instanceof Error ? _error.message : 'Failed to parse file',
     });
   }
 });
@@ -196,7 +196,7 @@ router.post('/import-preset', async (req: Request, res: Response): Promise<void>
   } catch (_error) {
     logger.error('Preset load error:', _error);
     res.status(500).json({
-      error: _error instanceof Error ? _(error instanceof Error ? error.message : String(error)) : 'Failed to load preset curriculum',
+      error: _error instanceof Error ? _error.message : 'Failed to load preset curriculum',
     });
   }
 });
@@ -227,7 +227,7 @@ router.get('/:id/status', async (req: Request, res: Response): Promise<void> => 
   } catch (_error) {
     logger.error('Status check error:', _error);
     res.status(500).json({
-      error: _error instanceof Error ? _(error instanceof Error ? error.message : String(error)) : 'Failed to get import status',
+      error: _error instanceof Error ? _error.message : 'Failed to get import status',
     });
   }
 });
@@ -273,7 +273,7 @@ router.post('/:id/confirm', async (req: Request, res: Response): Promise<void> =
   } catch (_error) {
     logger.error('Confirm import error:', _error);
     res.status(500).json({
-      error: _error instanceof Error ? _(error instanceof Error ? error.message : String(error)) : 'Failed to confirm import',
+      error: _error instanceof Error ? _error.message : 'Failed to confirm import',
     });
   }
 });
@@ -298,7 +298,7 @@ router.get('/history', async (req: Request, res: Response): Promise<void> => {
   } catch (_error) {
     logger.error('History error:', _error);
     res.status(500).json({
-      error: _error instanceof Error ? _(error instanceof Error ? error.message : String(error)) : 'Failed to get import history',
+      error: _error instanceof Error ? _error.message : 'Failed to get import history',
     });
   }
 });
@@ -329,7 +329,7 @@ router.delete('/:id', async (req: Request, res: Response): Promise<void> => {
   } catch (_error) {
     logger.error('Delete import error:', _error);
     res.status(500).json({
-      error: _error instanceof Error ? _(error instanceof Error ? error.message : String(error)) : 'Failed to delete import',
+      error: _error instanceof Error ? _error.message : 'Failed to delete import',
     });
   }
 });
@@ -443,7 +443,7 @@ router.post('/:id', async (req: Request, res: Response): Promise<void> => {
   } catch (_error) {
     logger.error('Finalize import error:', _error);
     res.status(500).json({
-      error: _error instanceof Error ? _(error instanceof Error ? error.message : String(error)) : 'Failed to finalize import',
+      error: _error instanceof Error ? _error.message : 'Failed to finalize import',
     });
   }
 });

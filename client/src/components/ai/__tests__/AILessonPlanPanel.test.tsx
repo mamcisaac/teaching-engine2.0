@@ -173,6 +173,156 @@ describe('AILessonPlanPanel', () => {
     });
   });
 
+  describe('Strict Boolean Expression Tests', () => {
+    describe('aiDisabledReason handling', () => {
+      it('should handle null aiDisabledReason', () => {
+        vi.mocked(require('../../hooks/useAIStatus').useAIStatus).mockReturnValue({
+          canUseAI: false,
+          aiDisabledReason: null,
+        });
+
+        renderWithProviders(<AILessonPlanPanel {...defaultProps} />);
+
+        expect(screen.getByText('AI features are currently unavailable.')).toBeInTheDocument();
+      });
+
+      it('should handle undefined aiDisabledReason', () => {
+        vi.mocked(require('../../hooks/useAIStatus').useAIStatus).mockReturnValue({
+          canUseAI: false,
+          aiDisabledReason: undefined,
+        });
+
+        renderWithProviders(<AILessonPlanPanel {...defaultProps} />);
+
+        expect(screen.getByText('AI features are currently unavailable.')).toBeInTheDocument();
+      });
+
+      it('should handle empty string aiDisabledReason', () => {
+        vi.mocked(require('../../hooks/useAIStatus').useAIStatus).mockReturnValue({
+          canUseAI: false,
+          aiDisabledReason: '',
+        });
+
+        renderWithProviders(<AILessonPlanPanel {...defaultProps} />);
+
+        expect(screen.getByText('AI features are currently unavailable.')).toBeInTheDocument();
+      });
+
+      it('should display custom aiDisabledReason when provided', () => {
+        vi.mocked(require('../../hooks/useAIStatus').useAIStatus).mockReturnValue({
+          canUseAI: false,
+          aiDisabledReason: 'Custom reason for AI being disabled',
+        });
+
+        renderWithProviders(<AILessonPlanPanel {...defaultProps} />);
+
+        expect(screen.getByText('Custom reason for AI being disabled')).toBeInTheDocument();
+      });
+    });
+
+    describe('suggestion timeEstimate handling', () => {
+      it('should handle null timeEstimate', () => {
+        mockGenerateSuggestions.mockResolvedValueOnce({
+          type: 'materials',
+          content: ['Test material 1', 'Test material 2'],
+          rationale: 'Test rationale',
+          timeEstimate: null,
+        });
+
+        renderWithProviders(<AILessonPlanPanel {...defaultProps} />);
+        
+        // Should not crash or show time estimate when null
+        expect(screen.queryByText(/min$/)).not.toBeInTheDocument();
+      });
+
+      it('should handle undefined timeEstimate', () => {
+        mockGenerateSuggestions.mockResolvedValueOnce({
+          type: 'materials',
+          content: ['Test material 1', 'Test material 2'],
+          rationale: 'Test rationale',
+          timeEstimate: undefined,
+        });
+
+        renderWithProviders(<AILessonPlanPanel {...defaultProps} />);
+        
+        // Should not crash or show time estimate when undefined
+        expect(screen.queryByText(/min$/)).not.toBeInTheDocument();
+      });
+
+      it('should handle zero timeEstimate', () => {
+        mockGenerateSuggestions.mockResolvedValueOnce({
+          type: 'materials',
+          content: ['Test material 1', 'Test material 2'],
+          rationale: 'Test rationale',
+          timeEstimate: 0,
+        });
+
+        renderWithProviders(<AILessonPlanPanel {...defaultProps} />);
+        
+        // Should not show time estimate when zero
+        expect(screen.queryByText(/0 min/)).not.toBeInTheDocument();
+      });
+
+      it('should handle NaN timeEstimate', () => {
+        mockGenerateSuggestions.mockResolvedValueOnce({
+          type: 'materials',
+          content: ['Test material 1', 'Test material 2'],
+          rationale: 'Test rationale',
+          timeEstimate: NaN,
+        });
+
+        renderWithProviders(<AILessonPlanPanel {...defaultProps} />);
+        
+        // Should not show time estimate when NaN
+        expect(screen.queryByText(/NaN min/)).not.toBeInTheDocument();
+      });
+    });
+
+    describe('suggestion rationale handling', () => {
+      it('should handle null rationale', () => {
+        mockGenerateSuggestions.mockResolvedValueOnce({
+          type: 'materials',
+          content: ['Test material 1', 'Test material 2'],
+          rationale: null,
+          timeEstimate: 15,
+        });
+
+        renderWithProviders(<AILessonPlanPanel {...defaultProps} />);
+        
+        // Should not crash when rationale is null
+        expect(screen.queryByText('Test rationale')).not.toBeInTheDocument();
+      });
+
+      it('should handle undefined rationale', () => {
+        mockGenerateSuggestions.mockResolvedValueOnce({
+          type: 'materials',
+          content: ['Test material 1', 'Test material 2'],
+          rationale: undefined,
+          timeEstimate: 15,
+        });
+
+        renderWithProviders(<AILessonPlanPanel {...defaultProps} />);
+        
+        // Should not crash when rationale is undefined
+        expect(screen.queryByText('Test rationale')).not.toBeInTheDocument();
+      });
+
+      it('should handle empty string rationale', () => {
+        mockGenerateSuggestions.mockResolvedValueOnce({
+          type: 'materials',
+          content: ['Test material 1', 'Test material 2'],
+          rationale: '',
+          timeEstimate: 15,
+        });
+
+        renderWithProviders(<AILessonPlanPanel {...defaultProps} />);
+        
+        // Should not show rationale when empty string
+        expect(screen.queryByText('Test rationale')).not.toBeInTheDocument();
+      });
+    });
+  });
+
   describe('Quick Generate Tab', () => {
     it('should generate complete lesson plan', async () => {
       renderWithProviders(<AILessonPlanPanel {...defaultProps} />);

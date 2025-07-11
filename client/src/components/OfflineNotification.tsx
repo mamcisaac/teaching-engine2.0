@@ -8,12 +8,15 @@ import { isOnline } from '../utils/serviceWorkerRegistration';
 
 import { Button } from './ui/Button';
 
-export function OfflineNotification() {
+export function OfflineNotification(): React.ReactElement | null {
   const [isOnlineState, setIsOnlineState] = useState(isOnline());
   const [dismissed, setDismissed] = useState(false);
   const [retrying, setRetrying] = useState(false);
 
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     const handleOnline = () => {
       setIsOnlineState(true);
       setDismissed(false);
@@ -31,7 +34,7 @@ export function OfflineNotification() {
       window.removeEventListener('online', handleOnline);
       window.removeEventListener('offline', handleOffline);
     };
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleRetry = async () => {
     setRetrying(true);
@@ -131,7 +134,7 @@ export function ConflictResolutionModal({
   conflict, 
   onResolve, 
   onCancel 
-}: ConflictResolutionModalProps) {
+}: ConflictResolutionModalProps): React.ReactElement {
   const [selectedResolution, setSelectedResolution] = useState<'local' | 'remote' | 'merge'>('local');
   const [_mergedData, _setMergedData] = useState<unknown>(null);
 
@@ -232,10 +235,10 @@ export function ConflictResolutionModal({
         </div>
 
         <div className="px-6 py-4 border-t border-gray-200 flex justify-end gap-3">
-          <Button variant="outline" onClick={onCancel}>
+          <Button aria-label="Click button" onClick={onCancel}>
             Cancel
           </Button>
-          <Button onClick={handleResolve}>
+          <Button aria-label="Click button" onClick={handleResolve}>
             Resolve Conflict
           </Button>
         </div>

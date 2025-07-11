@@ -37,7 +37,7 @@ export default function CalendarEventDetails({
   event,
   onClose,
   onUpdate,
-}: CalendarEventDetailsProps) {
+}: CalendarEventDetailsProps): React.ReactElement {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [isEditing, setIsEditing] = useState(false);
@@ -226,7 +226,7 @@ export default function CalendarEventDetails({
           {/* Actions */}
           <div className="mt-6 flex gap-2">
             {(event.type === 'lesson' || event.type === 'unit-boundary') && (
-              <Button className="flex-1" onClick={handleViewDetails}>
+              <Button aria-label="Click button" onClick={handleViewDetails}>
                 View Details
               </Button>
             )}

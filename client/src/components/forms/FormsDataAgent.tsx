@@ -59,7 +59,7 @@ export default function FormsDataAgent({
   onBatchLessonCreate,
   onTemplateExport,
   onDataImport,
-}: FormsDataAgentProps) {
+}: FormsDataAgentProps): React.ReactElement {
   const [activeTab, setActiveTab] = useState<'batch' | 'templates' | 'import' | 'wizard'>('batch');
   const [batchOperations, setBatchOperations] = useState<BatchOperation[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -116,7 +116,7 @@ return;
 
     try {
       // Validate all operations first
-      const validatedOps = batchOperations.map((op) => ({
+      const validatedOps = batchOperations.map((op, _index) => ({
         ...op,
         errors: validateBatchOperation(op),
         status: 'processing' as const,
@@ -132,12 +132,12 @@ return;
 
       // Process units in batch
       if (unitOps.length > 0 && onBatchUnitCreate) {
-        const unitData = unitOps.map((op) => op.data as UnitPlanFormData);
+        const unitData = unitOps.map((op, _index) => op.data as UnitPlanFormData);
         await onBatchUnitCreate(unitData);
 
         // Mark units as completed
         setBatchOperations((prev) =>
-          prev.map((op) =>
+          prev.map((op, _index) =>
             unitOps.some((validOp) => validOp.id === op.id)
               ? { ...op, status: 'completed', progress: 100 }
               : op,
@@ -147,12 +147,12 @@ return;
 
       // Process lessons in batch
       if (lessonOps.length > 0 && onBatchLessonCreate) {
-        const lessonData = lessonOps.map((op) => op.data as LessonPlanFormData);
+        const lessonData = lessonOps.map((op, _index) => op.data as LessonPlanFormData);
         await onBatchLessonCreate(lessonData);
 
         // Mark lessons as completed
         setBatchOperations((prev) =>
-          prev.map((op) =>
+          prev.map((op, _index) =>
             lessonOps.some((validOp) => validOp.id === op.id)
               ? { ...op, status: 'completed', progress: 100 }
               : op,
@@ -162,12 +162,12 @@ return;
 
       // Mark operations with errors
       setBatchOperations((prev) =>
-        prev.map((op) => (op.errors && op.errors.length > 0 ? { ...op, status: 'error' } : op)),
+        prev.map((op, _index) => (op.errors && op.errors.length > 0 ? { ...op, status: 'error' } : op)),
       );
     } catch (_error) {
       logger.error('Batch processing error:', _error);
       setBatchOperations((prev) =>
-        prev.map((op) => ({
+        prev.map((op, _index) => ({
           ...op,
           status: 'error',
           errors: [`Processing failed: ${  (_error as Error).message}`],
@@ -354,7 +354,7 @@ return;
                 >
                   {isProcessing ? 'Processing...' : 'Process All'}
                 </Button>
-                <Button variant="outline" onClick={clearAllOperations}>
+                <Button aria-label="Click button" onClick={clearAllOperations}>
                   Clear All
                 </Button>
               </div>
@@ -366,7 +366,7 @@ return;
                 </div>
               ) : (
                 <div className="space-y-2 max-h-96 overflow-y-auto">
-                  {batchOperations.map((operation) => (
+                  {batchOperations.map((operation, _index) => (
                     <div
                       key={operation.id}
                       className="flex items-center justify-between p-3 border rounded-lg"

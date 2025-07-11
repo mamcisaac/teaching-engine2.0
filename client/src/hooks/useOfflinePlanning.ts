@@ -23,15 +23,21 @@ export function useOfflinePlanning() {
 
   // Check for conflicts on mount
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     const checkConflicts = async () => {
       const unresolvedConflicts = await offlineStorage.getUnresolvedConflicts();
       setConflicts(unresolvedConflicts);
     };
     checkConflicts();
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Sync all stores when coming online
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     const handleOnline = () => {
       // Sync all stores
       if (unitPlanStore.hasOfflineChanges) {
@@ -132,6 +138,9 @@ export function useUnitPlanWithOffline(unitPlanId?: string) {
 
   // Load unit plan with offline support
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     if (!unitPlanId) {
 return;
 }

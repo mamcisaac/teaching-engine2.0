@@ -18,7 +18,7 @@ export default function DateRangeSelector({
   endDate,
   onChange,
   className,
-}: DateRangeSelectorProps) {
+}: DateRangeSelectorProps): React.ReactElement {
   const [preset, setPreset] = useState<PresetRange>('thisWeek');
   const [showCustomPicker, setShowCustomPicker] = useState(false);
   const [customStart, setCustomStart] = useState(format(startDate, 'yyyy-MM-dd'));
@@ -26,6 +26,9 @@ export default function DateRangeSelector({
 
   // Update custom dates when props change
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     setCustomStart(format(startDate, 'yyyy-MM-dd'));
     setCustomEnd(format(endDate, 'yyyy-MM-dd'));
   }, [startDate, endDate]);

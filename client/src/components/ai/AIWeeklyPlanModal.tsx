@@ -51,7 +51,7 @@ export function AIWeeklyPlanModal({
   onClose,
   weekStart,
   onPlanApplied,
-}: AIWeeklyPlanModalProps) {
+}: AIWeeklyPlanModalProps): React.ReactElement {
   const [preferences, setPreferences] = useState({
     preferredComplexity: 'moderate' as 'simple' | 'moderate' | 'complex',
     includeAssessments: false,
@@ -100,7 +100,7 @@ export function AIWeeklyPlanModal({
       }
       const errorMessage =
         error instanceof Error && 'response' in error
-          ? (error as ApiError).response?.data?.error || 'Failed to apply plan'
+          ? (error as ApiError).response?.data?.error !== null && (error as ApiError).response?.data?.error !== undefined && (error as ApiError).response?.data?.error !== '' ? (error as ApiError).response?.data?.error : 'Failed to apply plan'
           : 'Failed to apply plan';
       toast.error(errorMessage);
     },
@@ -291,7 +291,7 @@ return 'text-yellow-600';
 
               {/* Day Selector */}
               <div className="flex gap-2 mb-4">
-                {(['monday', 'tuesday', 'wednesday', 'thursday', 'friday'] as const).map((day) => (
+                {(['monday', 'tuesday', 'wednesday', 'thursday', 'friday'] as const).map((day, _index) => (
                   <button
                     key={day}
                     className={`px-3 py-1 rounded-md text-sm font-medium capitalize ${

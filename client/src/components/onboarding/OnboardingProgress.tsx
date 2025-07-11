@@ -5,7 +5,7 @@ interface OnboardingProgressProps {
   completionMessage: string;
 }
 
-export function OnboardingProgress({ completionMessage }: OnboardingProgressProps) {
+export function OnboardingProgress({ completionMessage }: OnboardingProgressProps): React.ReactElement {
   return (
     <motion.div
       animate={{ opacity: 1, scale: 1 }}

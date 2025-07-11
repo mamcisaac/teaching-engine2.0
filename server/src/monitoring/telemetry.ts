@@ -119,7 +119,7 @@ export const withSpan = async <T>(
     } catch (_error) {
       span.setStatus({
         code: SpanStatusCode.ERROR,
-        message: _error instanceof Error ? _(error instanceof Error ? error.message : String(error)) : 'Unknown error',
+        message: _error instanceof Error ? _error.message : String(_error),
       });
       span.recordException(_error as Error);
       throw _error;

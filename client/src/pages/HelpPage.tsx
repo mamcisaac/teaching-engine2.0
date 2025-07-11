@@ -199,10 +199,16 @@ export default function HelpPage() {
   const [filteredSections, setFilteredSections] = useState<HelpSection[]>(HELP_SECTIONS);
 
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     markHelpPageViewed('help-main');
   }, [markHelpPageViewed]);
 
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     if (state.searchQuery) {
       const filtered = HELP_SECTIONS.filter(
         (section) =>
@@ -295,7 +301,7 @@ export default function HelpPage() {
   };
 
   const renderSectionContent = (sectionId: string) => {
-    const sectionContent = mockHelpContent[sectionId] || 'Content not available.';
+    const sectionContent = mockHelpContent[sectionId] ?? 'Content not available.';
 
     return (
       <div className="prose prose-lg max-w-none">
@@ -351,7 +357,7 @@ export default function HelpPage() {
               <h2 className="text-lg font-semibold text-gray-900 mb-4">Help Topics</h2>
 
               <nav className="space-y-2">
-                {filteredSections.map((section) => (
+                {filteredSections.map((section, _index) => (
                   <button
                     key={section.id}
                     className={clsx(
@@ -446,7 +452,7 @@ export default function HelpPage() {
 
                   {/* Popular topics */}
                   <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
-                    {HELP_SECTIONS.slice(0, 4).map((section) => (
+                    {HELP_SECTIONS.slice(0, 4).map((section, _index) => (
                       <button
                         key={section.id}
                         className="p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors"

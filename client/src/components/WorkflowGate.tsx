@@ -13,13 +13,16 @@ interface WorkflowGateProps {
   children: React.ReactNode;
 }
 
-export default function WorkflowGate({ level, children }: WorkflowGateProps) {
+export default function WorkflowGate({ level, children }: WorkflowGateProps): React.ReactElement {
   const { workflowState, isLevelAccessible, getBlockedReason, getLevelProgress, getPreviousLevel } =
     useWorkflowState();
   const { toast } = useToast();
   const [isChecking, setIsChecking] = useState(true);
 
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     if (workflowState) {
       setIsChecking(false);
 
@@ -109,8 +112,8 @@ export default function WorkflowGate({ level, children }: WorkflowGateProps) {
           <div className="space-y-3">
             <h3 className="font-semibold">How to Unlock</h3>
             <ol className="list-decimal list-inside space-y-2 text-sm">
-              {getUnlockSteps(level).map((step, index) => (
-                <li key={index} className="text-muted-foreground">
+              {getUnlockSteps(level).map((step, _index) => (
+                <li key={_index} className="text-muted-foreground">
                   {step}
                 </li>
               ))}

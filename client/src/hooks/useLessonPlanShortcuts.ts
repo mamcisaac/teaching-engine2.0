@@ -141,6 +141,9 @@ export const useLessonPlanShortcuts = ({
 
   // Listen for Tab/Shift+Tab for field navigation
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     if (!enabled) {
 return;
 }
@@ -169,6 +172,9 @@ return;
 
   // Listen for global save event
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     if (!enabled || !onSave) {
 return;
 }

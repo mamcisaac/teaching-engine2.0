@@ -152,7 +152,7 @@ export const KeyboardShortcutsHelp: React.FC<KeyboardShortcutsHelpProps> = ({
 
         {/* Categories */}
         <div className="flex space-x-2 mb-4">
-          {categories.map((category) => {
+          {categories.map((category, _index) => {
             const count = shortcutsByCategory[category.id].length || 0;
             if (count === 0) {
 return null;
@@ -182,7 +182,7 @@ return null;
 
         {/* Shortcuts List */}
         <div className="flex-1 overflow-y-auto">
-          {shortcutsByCategory[activeCategory].map((shortcut) => (
+          {shortcutsByCategory[activeCategory].map((shortcut, _index) => (
             <div
               key={shortcut.id}
               className="flex items-center justify-between py-3 px-4 hover:bg-gray-50 rounded-lg"

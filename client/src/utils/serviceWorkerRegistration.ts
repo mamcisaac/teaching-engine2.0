@@ -37,7 +37,7 @@ export function register(config?: ServiceWorkerConfig) {
         checkValidServiceWorker(swUrl, config);
 
         // Add some additional logging to localhost
-        navigator.serviceWorker.ready.then(() => {
+        void navigator.serviceWorker.ready.then(() => {
           if (process.env.NODE_ENV === 'development') {
             logger.info('This web app is being served cache-first by a service worker.');
           }
@@ -56,9 +56,9 @@ export function register(config?: ServiceWorkerConfig) {
       config?.onOnline?.();
 
       // Trigger background sync
-      navigator.serviceWorker.ready.then((registration) => {
+      void navigator.serviceWorker.ready.then((registration) => {
         if ('sync' in registration) {
-          (registration as ServiceWorkerRegistrationWithSync).sync?.register('sync-planning-data');
+          void (registration as ServiceWorkerRegistrationWithSync).sync?.register('sync-planning-data');
         }
       });
     });
@@ -128,8 +128,8 @@ function checkValidServiceWorker(swUrl: string, config?: ServiceWorkerConfig) {
         (contentType != null && !contentType.includes('javascript'))
       ) {
         // No service worker found. Probably a different app. Reload the page.
-        navigator.serviceWorker.ready.then((registration) => {
-          registration.unregister().then(() => {
+        void navigator.serviceWorker.ready.then((registration) => {
+          void registration.unregister().then(() => {
             window.location.reload();
           });
         });
@@ -147,9 +147,9 @@ function checkValidServiceWorker(swUrl: string, config?: ServiceWorkerConfig) {
 
 export function unregister() {
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.ready
+    void navigator.serviceWorker.ready
       .then((registration) => {
-        registration.unregister();
+        return registration.unregister();
       })
       .catch((error) => {
         logger.error((error instanceof Error ? error.message : String(error)));

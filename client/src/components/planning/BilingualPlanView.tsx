@@ -14,14 +14,14 @@ export default function BilingualPlanView({
   children, 
   mode: controlledMode,
   defaultMode = 'toggle' 
-}: BilingualPlanViewProps) {
+}: BilingualPlanViewProps): React.ReactElement {
   const { t, language } = useLanguage();
-  const [viewMode, setViewMode] = React.useState(controlledMode || defaultMode);
+  const [viewMode, setViewMode] = React.useState(controlledMode ?? defaultMode);
   const [showEnglish, setShowEnglish] = React.useState(true);
   const [showFrench, setShowFrench] = React.useState(true);
 
   // Allow controlled mode
-  const activeMode = controlledMode || viewMode;
+  const activeMode = controlledMode ?? viewMode;
 
   const renderSideBySide = () => (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -199,9 +199,9 @@ export default function BilingualPlanView({
         </div>
       </div>
 
-      {activeMode === 'side-by-side' && renderSideBySide()}
-      {activeMode === 'toggle' && renderToggle()}
-      {activeMode === 'overlay' && renderOverlay()}
+      {activeMode === 'side-by-side' ? renderSideBySide() : null}
+      {activeMode === 'toggle' ? renderToggle() : null}
+      {activeMode === 'overlay' ? renderOverlay() : null}
     </div>
   );
 }

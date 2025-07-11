@@ -1,6 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import type { RefObject } from 'react';
 
-import logger from '../../utils/logger';
+import defaultLogger from '../../utils/logger';
+
+const logger = defaultLogger;
 
 // Simple debounce and throttle implementations
 const _debounce = <T extends (...args: unknown[]) => unknown>(
@@ -21,7 +24,7 @@ const throttle = <T extends (...args: unknown[]) => unknown>(
   let inThrottle: boolean;
   let timeoutId: ReturnType<typeof setTimeout>;
 
-  const throttled = (...args: Parameters<T>) => {
+  const throttled = (...args: Parameters<T>): void => {
     if (!inThrottle) {
       func(...args);
       inThrottle = true;
@@ -83,7 +86,7 @@ export function useIntersectionObserver(
 
   useEffect(() => {
     const element = elementRef.current;
-    if (!element) {
+    if (element === null) {
 return;
 }
 
@@ -107,21 +110,23 @@ return;
 /**
  * Hook for measuring render performance
  */
-export function useRenderPerformance(_componentName: string) {
+export function useRenderPerformance(_componentName: string): { renderCount: number; logRender: (operation: string) => void } {
   const renderStart = useRef<number>(0);
-  const renderCount = useRef<number>(0);
+  const renderCountRef = useRef<number>(0);
+  const [renderCount, setRenderCount] = useState(0);
 
   useEffect(() => {
     renderStart.current = performance.now();
-    renderCount.current += 1;
-  });
+    renderCountRef.current += 1;
+    setRenderCount(renderCountRef.current);
+  }, []);
 
   useEffect(() => {
     // const renderTime = performance.now() - renderStart.current;
   });
 
   return {
-    renderCount: renderCount.current,
+    renderCount,
     logRender: (_operation: string) => {
       // Performance logging can be enabled here if needed
     },
@@ -131,7 +136,12 @@ export function useRenderPerformance(_componentName: string) {
 /**
  * Hook for managing component state with optimistic updates
  */
-export function useOptimisticState<T>(initialValue: T, asyncUpdate: (value: T) => Promise<T>) {
+export function useOptimisticState<T>(initialValue: T, asyncUpdate: (value: T) => Promise<T>): {
+  value: T;
+  updateValue: (newValue: T) => Promise<void>;
+  isUpdating: boolean;
+  error: Error | null;
+} {
   const [value, setValue] = useState(initialValue);
   const [isUpdating, setIsUpdating] = useState(false);
   const [error, setError] = useState<Error | null>(null);
@@ -172,15 +182,17 @@ export function useVirtualizedList<T>(
   itemHeight: number,
   containerHeight: number,
   overscan = 5,
-) {
+): {
+  scrollTop: number;
+  setScrollTop: (value: number | ((prevState: number) => number)) => void;
+  visibleRange: { start: number; end: number };
+  totalHeight: number;
+} {
   const [scrollTop, setScrollTop] = useState(0);
 
   const visibleRange = useCallback(() => {
     const startIndex = Math.floor(scrollTop / itemHeight);
-    const endIndex = Math.min(
-      items.length - 1,
-      Math.ceil((scrollTop + containerHeight) / itemHeight),
-    );
+    const endIndex = Math.ceil((scrollTop + containerHeight) / itemHeight) - 1;
 
     return {
       start: Math.max(0, startIndex - overscan),
@@ -243,8 +255,8 @@ export const PerformanceMonitor = {
   /**
    * Create a performance mark for complex operations
    */
-  mark: (name: string) => {
-    if (typeof performance !== 'undefined' && performance.mark) {
+  mark: (name: string): void => {
+    if (typeof performance !== 'undefined') {
       performance.mark(name);
     }
   },
@@ -252,16 +264,15 @@ export const PerformanceMonitor = {
   /**
    * Measure time between two marks
    */
-  measure: (name: string, startMark: string, endMark: string) => {
-    if (typeof performance !== 'undefined' && performance.measure) {
+  measure: (name: string, startMark: string, endMark: string): number => {
+    if (typeof performance !== 'undefined') {
       try {
         performance.measure(name, startMark, endMark);
         const measures = performance.getEntriesByName(name, 'measure');
-        const duration = measures[measures.length - 1]?.duration;
-
-        // Duration is available in 'duration' variable if needed for logging
-
-        return duration;
+        if (measures.length > 0) {
+          return measures[measures.length - 1].duration;
+        }
+        return 0;
       } catch (error) {
         logger.warn('Performance measurement failed:', error);
       }
@@ -281,6 +292,7 @@ export const MemoUtils = {
     if (a === b) {
 return true;
 }
+    // eslint-disable-next-line eqeqeq
     if (a == null || b == null) {
 return false;
 }
@@ -354,19 +366,19 @@ export const ImageUtils = {
    * Create optimized image URL with size parameters
    */
   optimizeImageUrl: (url: string, width?: number, height?: number, quality?: number): string => {
-    if (!url) {
+    if (url === '') {
 return '';
 }
 
     const urlObj = new URL(url, window.location.origin);
 
-    if (width) {
+    if (width !== undefined) {
 urlObj.searchParams.set('w', width.toString());
 }
-    if (height) {
+    if (height !== undefined) {
 urlObj.searchParams.set('h', height.toString());
 }
-    if (quality) {
+    if (quality !== undefined) {
 urlObj.searchParams.set('q', quality.toString());
 }
 
@@ -381,13 +393,17 @@ urlObj.searchParams.set('q', quality.toString());
   /**
    * Lazy load images with intersection observer
    */
-  useLazyImage: (src: string, placeholder?: string) => {
-    const [imageSrc, setImageSrc] = useState(placeholder || '');
+  useLazyImage: (src: string, placeholder?: string): {
+    elementRef: RefObject<Element>;
+    imageSrc: string;
+    isLoaded: boolean;
+  } => {
+    const [imageSrc, setImageSrc] = useState(placeholder ?? '');
     const [isLoaded, setIsLoaded] = useState(false);
     const [elementRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
 
     useEffect(() => {
-      if (isVisible && src && !isLoaded) {
+      if (isVisible && src !== '' && !isLoaded) {
         const img = new Image();
         img.onload = () => {
           setImageSrc(src);

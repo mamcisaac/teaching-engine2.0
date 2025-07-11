@@ -8,7 +8,7 @@ interface CurriculumImportButtonProps {
   className?: string;
 }
 
-export function CurriculumImportButton({ onImportSuccess, className }: CurriculumImportButtonProps) {
+export function CurriculumImportButton({ onImportSuccess, className }: CurriculumImportButtonProps): React.ReactElement {
   const [isWizardOpen, setIsWizardOpen] = useState(false);
 
   const handleImportSuccess = () => {

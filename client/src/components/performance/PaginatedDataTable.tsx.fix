@@ -1,0 +1,2 @@
+// Fix for line 163 - change cast
+const { totalPages } = data || { totalPages: 1 };

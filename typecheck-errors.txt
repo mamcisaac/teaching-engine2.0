@@ -1,0 +1,159 @@
+
+> typecheck
+> pnpm --filter client run typecheck && pnpm --filter server run typecheck
+
+
+> client@ typecheck /Users/michaelmcisaac/GitHub/teaching-engine2.0/client
+> tsc --noEmit
+
+src/components/ai/AILoadingIndicator.tsx(95,9): error TS2722: Cannot invoke an object which is possibly 'undefined'.
+src/components/ai/AILoadingIndicator.tsx(185,1): error TS2322: Type 'null' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
+src/components/ai/GPTPlanningAgent.tsx(194,7): error TS18047: 'recognitionRef.current' is possibly 'null'.
+src/components/ai/GPTPlanningAgent.tsx(195,7): error TS18047: 'recognitionRef.current' is possibly 'null'.
+src/components/ai/GPTPlanningAgent.tsx(196,7): error TS18047: 'recognitionRef.current' is possibly 'null'.
+src/components/ai/GPTPlanningAgent.tsx(198,7): error TS18047: 'recognitionRef.current' is possibly 'null'.
+src/components/ai/GPTPlanningAgent.tsx(204,7): error TS18047: 'recognitionRef.current' is possibly 'null'.
+src/components/ai/GPTPlanningAgent.tsx(209,7): error TS18047: 'recognitionRef.current' is possibly 'null'.
+src/components/ai/GPTPlanningAgent.tsx(263,1): error TS2322: Type 'null' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
+src/components/MaterialChecklist.tsx(10,1): error TS2322: Type 'null' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
+src/components/navigation/__tests__/SidebarComponent.test.tsx(5,10): error TS2459: Module '"../../../contexts/AuthContext"' declares 'AuthContext' locally, but it is not exported.
+src/components/NotificationBell.tsx(29,1): error TS2322: Type 'null' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
+src/components/OfflineNotification.tsx(55,5): error TS2322: Type 'null' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
+src/components/onboarding/OnboardingFlowOptimized.tsx(53,23): error TS18047: 'currentStep' is possibly 'null'.
+src/components/onboarding/OnboardingFlowOptimized.tsx(54,34): error TS18047: 'currentStep' is possibly 'null'.
+src/components/onboarding/OnboardingFlowOptimized.tsx(62,23): error TS18047: 'currentStep' is possibly 'null'.
+src/components/onboarding/OnboardingFlowOptimized.tsx(77,15): error TS18047: 'currentStep' is possibly 'null'.
+src/components/onboarding/OnboardingFlowOptimized.tsx(128,41): error TS18047: 'currentStep' is possibly 'null'.
+src/components/onboarding/OnboardingFlowOptimized.tsx(133,46): error TS18047: 'currentStep' is possibly 'null'.
+src/components/onboarding/OnboardingFlowOptimized.tsx(146,1): error TS2322: Type 'null' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
+src/components/onboarding/OnboardingHighlight.tsx(18,1): error TS2322: Type 'null' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
+src/components/onboarding/WelcomeModal.tsx(12,5): error TS2322: Type 'null' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
+src/components/performance/performance-utils.ts(103,22): error TS2345: Argument of type 'Element | null' is not assignable to parameter of type 'Element'.
+  Type 'null' is not assignable to type 'Element'.
+src/components/performance/performance-utils.ts(106,26): error TS2345: Argument of type 'Element | null' is not assignable to parameter of type 'Element'.
+  Type 'null' is not assignable to type 'Element'.
+src/components/performance/ProgressiveDataLoader.tsx(125,5): error TS18047: 'container' is possibly 'null'.
+src/components/performance/ProgressiveDataLoader.tsx(127,2): error TS18047: 'container' is possibly 'null'.
+src/components/planning/__tests__/CurriculumImportWizard.test.tsx(7,16): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/CurriculumImportWizard.test.tsx(10,19): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/CurriculumImportWizard.test.tsx(11,1): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/CurriculumImportWizard.test.tsx(16,1): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/CurriculumImportWizard.test.tsx(18,12): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/CurriculumImportWizard.test.tsx(23,23): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/CurriculumImportWizard.test.tsx(24,25): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/CurriculumImportWizard.test.tsx(27,5): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/CurriculumImportWizard.test.tsx(28,27): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/CurriculumImportWizard.test.tsx(56,29): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/CurriculumImportWizard.test.tsx(88,29): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/CurriculumImportWizard.test.tsx(110,29): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/CurriculumImportWizard.test.tsx(145,29): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/CurriculumImportWizard.test.tsx(151,29): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/CurriculumImportWizard.test.tsx(192,29): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/CurriculumImportWizard.test.tsx(197,29): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/CurriculumImportWizard.test.tsx(225,29): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/CurriculumImportWizard.test.tsx(230,29): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/CurriculumImportWizard.test.tsx(309,29): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/CurriculumImportWizard.test.tsx(314,29): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/CurriculumImportWizard.test.tsx(330,29): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/CurriculumImportWizard.test.tsx(366,29): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/CurriculumImportWizard.test.tsx(371,29): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/CurriculumImportWizard.test.tsx(412,29): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/CurriculumImportWizard.test.tsx(417,29): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/CurriculumImportWizard.test.tsx(457,29): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/DuplicatePlanModal.test.tsx(8,1): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/DuplicatePlanModal.test.tsx(10,11): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/DuplicatePlanModal.test.tsx(31,23): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/DuplicatePlanModal.test.tsx(35,5): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/DuplicatePlanModal.test.tsx(217,7): error TS2322: Type '{ href: string; ancestorOrigins: DOMStringList; hash: string; host: string; hostname: string; toString(): string; origin: string; pathname: string; port: string; protocol: string; search: string; assign(url: string | URL): void; reload(): void; replace(url: string | URL): void; }' is not assignable to type 'string & Location'.
+  Type '{ href: string; ancestorOrigins: DOMStringList; hash: string; host: string; hostname: string; toString(): string; origin: string; pathname: string; port: string; protocol: string; search: string; assign(url: string | URL): void; reload(): void; replace(url: string | URL): void; }' is not assignable to type 'string'.
+src/components/planning/__tests__/DuplicatePlanModal.test.tsx(234,7): error TS2322: Type 'Location' is not assignable to type 'string & Location'.
+  Type 'Location' is not assignable to type 'string'.
+src/components/planning/__tests__/ExpectationSelector.test.tsx(8,1): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/ExpectationSelector.test.tsx(9,30): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/ExpectationSelector.test.tsx(64,24): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/ExpectationSelector.test.tsx(68,5): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/PlanAccessTracker.test.tsx(7,1): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/PlanAccessTracker.test.tsx(8,14): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/PlanAccessTracker.test.tsx(12,1): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/PlanAccessTracker.test.tsx(13,23): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/PlanAccessTracker.test.tsx(17,43): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/PlanAccessTracker.test.tsx(18,22): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/PlanAccessTracker.test.tsx(22,5): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/index.ts(4,10): error TS2305: Module '"./AISuggestionModal"' has no exported member 'default'.
+src/components/planning/PlanAccessTracker.tsx(24,38): error TS2322: Type 'string | undefined' is not assignable to type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+src/components/printing/BlankTemplatePrinter.tsx(349,1): error TS2322: Type 'null' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
+src/components/TeacherOnboardingFlow.tsx(747,1): error TS2322: Type 'null' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
+src/components/weeks/WeekMaterials.tsx(10,1): error TS2322: Type 'null' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
+src/contexts/__tests__/OnboardingContext.test.tsx(33,6): error TS2786: 'OnboardingProvider' cannot be used as a JSX component.
+  Its type '({ children }: { children: ReactNode; }) => Element | (() => void)' is not a valid JSX element type.
+    Type '({ children }: { children: ReactNode; }) => Element | (() => void)' is not assignable to type '(props: any, deprecatedLegacyContext?: any) => ReactNode'.
+      Type 'Element | (() => void)' is not assignable to type 'ReactNode'.
+        Type '() => void' is not assignable to type 'ReactNode'.
+src/contexts/HelpContext.tsx(134,43): error TS2345: Argument of type 'string | null' is not assignable to parameter of type 'string'.
+  Type 'null' is not assignable to type 'string'.
+src/contexts/KeyboardShortcutsContext.tsx(93,38): error TS2345: Argument of type 'string | null' is not assignable to parameter of type 'string'.
+  Type 'null' is not assignable to type 'string'.
+src/contexts/LanguageContext.tsx(401,24): error TS2345: Argument of type 'string | null' is not assignable to parameter of type 'SetStateAction<string>'.
+  Type 'null' is not assignable to type 'SetStateAction<string>'.
+src/contexts/OnboardingContext.tsx(305,39): error TS18047: 'state.currentFlow' is possibly 'null'.
+src/contexts/OnboardingContext.tsx(320,67): error TS18047: 'state.currentFlow' is possibly 'null'.
+src/hooks/__tests__/useHelp.test.ts(34,39): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Argument of type '{}' is not assignable to parameter of type 'Attributes & { children: ReactNode; }'.
+      Property 'children' is missing in type '{}' but required in type '{ children: ReactNode; }'.
+src/hooks/__tests__/useKeyboardShortcut.test.ts(19,52): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Argument of type '{}' is not assignable to parameter of type 'Attributes & { children: ReactNode; }'.
+      Property 'children' is missing in type '{}' but required in type '{ children: ReactNode; }'.
+src/hooks/useAutoSave.tsx(38,5): error TS2322: Type 'Record<string, unknown>' is not assignable to type 'T'.
+  'T' could be instantiated with an arbitrary type which could be unrelated to 'Record<string, unknown>'.
+src/hooks/useLessonPlanShortcuts.ts(183,2): error TS2722: Cannot invoke an object which is possibly 'undefined'.
+src/hooks/useOfflinePlanning.ts(151,42): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+src/pages/ParentNewsletterPage.tsx(61,29): error TS18048: 'currentNewsletter' is possibly 'undefined'.
+src/pages/ParentNewsletterPage.tsx(63,24): error TS18048: 'currentNewsletter' is possibly 'undefined'.
+src/pages/ParentNewsletterPage.tsx(64,22): error TS18048: 'currentNewsletter' is possibly 'undefined'.
+src/pages/ParentNewsletterPage.tsx(66,15): error TS18048: 'currentNewsletter' is possibly 'undefined'.
+src/services/authService.ts(148,23): error TS2739: Type '{}' is missing the following properties from type 'User': id, email, name, role
+src/services/errorReportingService.ts(431,7): error TS2322: Type 'unknown' is not assignable to type 'Extras | undefined'.
+src/services/errorReportingService.ts(437,9): error TS2322: Type 'Record<string, unknown>' is not assignable to type '{ [key: string]: string; }'.
+  'string' index signatures are incompatible.
+    Type 'unknown' is not assignable to type 'string'.
+src/services/errorReportingService.ts(443,62): error TS2345: Argument of type 'QueryParams' is not assignable to parameter of type 'string'.
+  Type '[string, string][]' is not assignable to type 'string'.
+src/services/errorReportingService.ts(446,9): error TS2322: Type 'string' is not assignable to type 'Record<string, string>'.
+src/services/errorReportingService.ts(458,9): error TS2322: Type 'unknown' is not assignable to type 'Context | undefined'.
+src/services/errorReportingService.ts(464,7): error TS2322: Type 'unknown' is not assignable to type '{ [key: string]: Primitive; } | undefined'.
+src/services/lazyLoader.tsx(294,51): error TS2345: Argument of type 'string | null' is not assignable to parameter of type 'string'.
+  Type 'null' is not assignable to type 'string'.
+src/services/lazyLoader.tsx(351,33): error TS2345: Argument of type 'HTMLDivElement | null' is not assignable to parameter of type 'HTMLElement'.
+  Type 'null' is not assignable to type 'HTMLElement'.
+src/services/lazyLoader.tsx(366,7): error TS2722: Cannot invoke an object which is possibly 'undefined'.
+src/services/lazyLoader.tsx(366,15): error TS2345: Argument of type 'Error | null' is not assignable to parameter of type 'Error'.
+  Type 'null' is not assignable to type 'Error'.
+src/services/requestBatcher.ts(160,58): error TS18046: 'responses' is of type 'unknown'.
+src/stores/__tests__/basePlanningStore.test.ts(37,46): error TS2344: Type 'TestStore' does not satisfy the constraint 'StoreApi<unknown>'.
+  Type 'TestStore' is missing the following properties from type 'StoreApi<unknown>': setState, getState, getInitialState, subscribe, destroy
+src/stores/__tests__/basePlanningStore.test.ts(50,10): error TS2554: Expected 3 arguments, but got 2.
+src/stores/__tests__/basePlanningStore.test.ts(59,9): error TS18046: 'result.current' is of type 'unknown'.
+src/stores/__tests__/basePlanningStore.test.ts(62,14): error TS18046: 'result.current' is of type 'unknown'.
+src/stores/__tests__/basePlanningStore.test.ts(69,9): error TS18046: 'result.current' is of type 'unknown'.
+src/stores/__tests__/basePlanningStore.test.ts(72,14): error TS18046: 'result.current' is of type 'unknown'.
+src/stores/__tests__/basePlanningStore.test.ts(79,9): error TS18046: 'result.current' is of type 'unknown'.
+src/stores/__tests__/basePlanningStore.test.ts(84,14): error TS18046: 'result.current' is of type 'unknown'.
+src/stores/__tests__/basePlanningStore.test.ts(91,9): error TS18046: 'result.current' is of type 'unknown'.
+src/stores/__tests__/basePlanningStore.test.ts(94,14): error TS18046: 'result.current' is of type 'unknown'.
+src/stores/__tests__/basePlanningStore.test.ts(101,9): error TS18046: 'result.current' is of type 'unknown'.
+src/stores/__tests__/basePlanningStore.test.ts(104,14): error TS18046: 'result.current' is of type 'unknown'.
+src/stores/__tests__/basePlanningStore.test.ts(117,12): error TS2554: Expected 3 arguments, but got 2.
+src/stores/__tests__/basePlanningStore.test.ts(133,12): error TS2554: Expected 3 arguments, but got 2.
+src/stores/__tests__/basePlanningStore.test.ts(145,35): error TS2339: Property 'lastModified' does not exist on type '{ updatedAt: Date; }'.
+src/stores/__tests__/basePlanningStore.test.ts(175,26): error TS2339: Property 'id' does not exist on type '{ data: string; }'.
+src/stores/__tests__/lessonPlanStore.test.ts(206,63): error TS2339: Property 'toISOString' does not exist on type 'never'.
+src/stores/__tests__/lessonPlanStore.test.ts(210,70): error TS2339: Property 'toISOString' does not exist on type 'never'.
+src/stores/__tests__/unitPlanStore.test.ts(135,63): error TS2339: Property 'toISOString' does not exist on type 'never'.
+src/stores/__tests__/unitPlanStore.test.ts(139,70): error TS2339: Property 'toISOString' does not exist on type 'never'.
+/Users/michaelmcisaac/GitHub/teaching-engine2.0/client:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  client@ typecheck: `tsc --noEmit`
+Exit status 2

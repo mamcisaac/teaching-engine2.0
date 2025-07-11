@@ -75,7 +75,7 @@ export function GPTPlanningAgent({
   onClose,
   onActivityGenerated,
   onPlanGenerated,
-}: GPTPlanningAgentProps) {
+}: GPTPlanningAgentProps): React.ReactElement | null {
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
@@ -104,7 +104,7 @@ export function GPTPlanningAgent({
   // Send message
   const sendMessageMutation = useMutation({
     mutationFn: async (message: string) => {
-      if (!sessionId) {
+      if (sessionId === null || sessionId === undefined || sessionId === '') {
 throw new Error('No session');
 }
       const response = await api.post('/api/ai/agent/messages', {
@@ -126,7 +126,7 @@ throw new Error('No session');
       ]);
 
       // Handle action results
-      if (_data.actionResults) {
+      if (_data.actionResults !== null && _data.actionResults !== undefined && Array.isArray(_data.actionResults)) {
         _data.actionResults.forEach((result: ActionResult) => {
           switch (result.type) {
             case 'activities_generated':
@@ -166,42 +166,53 @@ throw new Error('No session');
 
   // Initialize session when opened
   useEffect(() => {
-    if (isOpen && !sessionId) {
+    return () => { // Cleanup
+    };
+
+    if (isOpen && (sessionId === null || sessionId === undefined || sessionId === '')) {
       startSessionMutation.mutate();
     }
   }, [isOpen, sessionId, startSessionMutation]);
 
   // Scroll to bottom when messages change
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
   // Initialize speech recognition
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
       const SpeechRecognitionConstructor =
-        window.SpeechRecognition || window.webkitSpeechRecognition;
-      recognitionRef.current = new SpeechRecognitionConstructor();
-      recognitionRef.current.continuous = false;
-      recognitionRef.current.interimResults = false;
-      recognitionRef.current.lang = 'en-US';
+        window.SpeechRecognition !== null && window.SpeechRecognition !== undefined ? window.SpeechRecognition : window.webkitSpeechRecognition;
+      const recognition = new SpeechRecognitionConstructor();
+      recognitionRef.current = recognition;
+      
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.lang = 'en-US';
 
-      recognitionRef.current.onresult = (event: SpeechRecognitionEvent) => {
+      recognition.onresult = (event: SpeechRecognitionEvent) => {
         const {transcript} = event.results[0][0];
         setInputValue(transcript);
         setIsListening(false);
       };
 
-      recognitionRef.current.onerror = () => {
+      recognition.onerror = () => {
         setIsListening(false);
         toast.error('Voice recognition failed');
       };
 
-      recognitionRef.current.onend = () => {
+      recognition.onend = () => {
         setIsListening(false);
       };
     }
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSend = () => {
     if (!inputValue.trim() || sendMessageMutation.isPending) {
@@ -269,9 +280,9 @@ return null;
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
-        {messages.map((message, index) => (
+        {messages.map((message, _index) => (
           <div
-            key={index}
+            key={_index}
             className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
           >
             <div

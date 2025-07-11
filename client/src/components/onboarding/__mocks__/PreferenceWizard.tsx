@@ -5,7 +5,7 @@ interface PreferenceWizardProps {
   onSkip?: () => void;
 }
 
-export default function PreferenceWizard({ onComplete, onSkip }: PreferenceWizardProps) {
+export default function PreferenceWizard({ onComplete, onSkip }: PreferenceWizardProps): React.ReactElement {
   return (
     <div data-testid="preference-wizard-mock">
       <h3>Preference Wizard Mock</h3>

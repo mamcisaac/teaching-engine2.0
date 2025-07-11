@@ -1,19 +1,19 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 // TODO: Holiday hooks not yet implemented
 // import { useHolidays, useAddHoliday, useDeleteHoliday } from '../../api';
 
-export default function HolidaySettings() {
+export default function HolidaySettings(): React.ReactElement {
   // TODO: Holiday hooks not yet implemented
   // const { data: holidays } = useHolidays();
   // const add = useAddHoliday();
   // const remove = useDeleteHoliday();
   const holidays: { id: number; date: string; name: string }[] = []; // Placeholder
-  const add = { mutate: (_data: { date: string; name: string }) => {} }; // Placeholder
-  const remove = { mutate: (_id: number) => {} }; // Placeholder
+  const add = { mutate: (_data: { date: string; name: string }): void => {} }; // Placeholder
+  const remove = { mutate: (_id: number): void => {} }; // Placeholder
   const [date, setDate] = useState('');
   const [name, setName] = useState('');
 
-  const handleAdd = () => {
+  const handleAdd = (): void => {
     if (!date || !name.trim()) {
 return;
 }
@@ -29,7 +29,7 @@ return;
           className="border p-1"
           type="date"
           value={date}
-          onChange={(e) => {
+          onChange={(e): void => {
  setDate(e.target.value); 
 }}
         />
@@ -38,7 +38,7 @@ return;
           placeholder="Holiday name"
           type="text"
           value={name}
-          onChange={(e) => {
+          onChange={(e): void => {
  setName(e.target.value); 
 }}
         />
@@ -51,7 +51,7 @@ return;
         </button>
       </div>
       <ul className="space-y-1">
-        {holidays.map((h) => (
+        {holidays.map((h, _index) => (
           <li key={h.id} className="flex gap-2 items-center">
             <span>
               {h.date.split('T')[0]} - {h.name}
@@ -59,7 +59,7 @@ return;
             <button
               className="px-1 text-sm bg-red-600 text-white"
               title="Remove holiday"
-              onClick={() => {
+              onClick={(): void => {
  remove.mutate(h.id); 
 }}
             >

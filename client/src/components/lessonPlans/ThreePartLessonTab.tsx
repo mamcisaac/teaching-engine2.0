@@ -28,7 +28,7 @@ export const ThreePartLessonTab: React.FC<ThreePartLessonTabProps> = ({
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <Label>Activities (English)</Label>
+            <Label htmlFor="input">Activities (English)</Label>
             <RichTextEditor
               value={formData.mindsOn}
               onChange={(value) => {
@@ -37,7 +37,7 @@ export const ThreePartLessonTab: React.FC<ThreePartLessonTabProps> = ({
             />
           </div>
           <div>
-            <Label>Activities (French)</Label>
+            <Label htmlFor="input">Activities (French)</Label>
             <RichTextEditor
               value={formData.mindsOnFr}
               onChange={(value) => {
@@ -57,7 +57,7 @@ export const ThreePartLessonTab: React.FC<ThreePartLessonTabProps> = ({
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <Label>Activities (English)</Label>
+            <Label htmlFor="input">Activities (English)</Label>
             <RichTextEditor
               value={formData.action}
               onChange={(value) => {
@@ -66,7 +66,7 @@ export const ThreePartLessonTab: React.FC<ThreePartLessonTabProps> = ({
             />
           </div>
           <div>
-            <Label>Activities (French)</Label>
+            <Label htmlFor="input">Activities (French)</Label>
             <RichTextEditor
               value={formData.actionFr}
               onChange={(value) => {
@@ -86,7 +86,7 @@ export const ThreePartLessonTab: React.FC<ThreePartLessonTabProps> = ({
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <Label>Activities (English)</Label>
+            <Label htmlFor="input">Activities (English)</Label>
             <RichTextEditor
               value={formData.consolidation}
               onChange={(value) => {
@@ -95,7 +95,7 @@ export const ThreePartLessonTab: React.FC<ThreePartLessonTabProps> = ({
             />
           </div>
           <div>
-            <Label>Activities (French)</Label>
+            <Label htmlFor="input">Activities (French)</Label>
             <RichTextEditor
               value={formData.consolidationFr}
               onChange={(value) => {

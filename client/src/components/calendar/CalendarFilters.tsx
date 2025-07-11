@@ -27,7 +27,7 @@ export default function CalendarFilters({
   filters,
   onFiltersChange,
   availableSubjects,
-}: CalendarFiltersProps) {
+}: CalendarFiltersProps): React.ReactElement {
   const handleSubjectToggle = (subject: string) => {
     const newSubjects = filters.subjects.includes(subject)
       ? filters.subjects.filter(s => s !== subject)

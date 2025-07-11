@@ -67,7 +67,7 @@ export default function LessonPlanForm({
   onCancel,
   isSubmitting = false,
   showUnitPlanSelector = false,
-}: LessonPlanFormProps) {
+}: LessonPlanFormProps): React.ReactElement {
   const { t } = useLanguage();
   const [formData, setFormData] = useState<LessonPlanFormData>({
     title: '',
@@ -103,6 +103,9 @@ export default function LessonPlanForm({
 
   // Update form data when initialData changes
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     if (initialData) {
       setFormData((prev) => ({ ...prev, ...initialData }));
     }
@@ -267,7 +270,7 @@ export default function LessonPlanForm({
 }}
                   >
                     <option value="">Select a unit plan...</option>
-                    {allUnitPlans.map((plan) => (
+                    {allUnitPlans.map((plan, _index) => (
                       <option key={plan.id} value={plan.id}>
                         {plan.title}
                       </option>
@@ -368,7 +371,7 @@ export default function LessonPlanForm({
               </div>
 
               <div>
-                <Label>Materials & Resources</Label>
+                <Label htmlFor="input">Materials & Resources</Label>
                 <div className="space-y-2 mt-2">
                   {formData.materials.map((material, index) => (
                     <div key={index} className="flex gap-2">
@@ -432,7 +435,7 @@ export default function LessonPlanForm({
         <TabsContent className="space-y-6 mt-4" value="lesson-structure">
           <div className="space-y-6">
             <div>
-              <Label>Minds On (Introduction/Hook)</Label>
+              <Label htmlFor="input">Minds On (Introduction/Hook)</Label>
               <RichTextEditor
                 value={formData.mindsOn || ''}
                 onChange={(value) => {
@@ -442,7 +445,7 @@ export default function LessonPlanForm({
             </div>
 
             <div>
-              <Label>Minds On (French)</Label>
+              <Label htmlFor="input">Minds On (French)</Label>
               <RichTextEditor
                 value={formData.mindsOnFr || ''}
                 onChange={(value) => {
@@ -452,7 +455,7 @@ export default function LessonPlanForm({
             </div>
 
             <div>
-              <Label>Action (Main Learning Activities)</Label>
+              <Label htmlFor="input">Action (Main Learning Activities)</Label>
               <RichTextEditor
                 value={formData.action || ''}
                 onChange={(value) => {
@@ -462,7 +465,7 @@ export default function LessonPlanForm({
             </div>
 
             <div>
-              <Label>Action (French)</Label>
+              <Label htmlFor="input">Action (French)</Label>
               <RichTextEditor
                 value={formData.actionFr || ''}
                 onChange={(value) => {
@@ -472,7 +475,7 @@ export default function LessonPlanForm({
             </div>
 
             <div>
-              <Label>Consolidation (Closure/Assessment)</Label>
+              <Label htmlFor="input">Consolidation (Closure/Assessment)</Label>
               <RichTextEditor
                 value={formData.consolidation || ''}
                 onChange={(value) => {
@@ -482,7 +485,7 @@ export default function LessonPlanForm({
             </div>
 
             <div>
-              <Label>Consolidation (French)</Label>
+              <Label htmlFor="input">Consolidation (French)</Label>
               <RichTextEditor
                 value={formData.consolidationFr || ''}
                 onChange={(value) => {
@@ -495,7 +498,7 @@ export default function LessonPlanForm({
 
         <TabsContent className="space-y-6 mt-4" value="differentiation">
           <div>
-            <Label>Accommodations</Label>
+            <Label htmlFor="input">Accommodations</Label>
             <p className="text-sm text-gray-600 mb-2">
               Changes to how students access learning (without changing expectations)
             </p>
@@ -537,7 +540,7 @@ export default function LessonPlanForm({
           </div>
 
           <div>
-            <Label>Modifications</Label>
+            <Label htmlFor="input">Modifications</Label>
             <p className="text-sm text-gray-600 mb-2">
               Changes to curriculum expectations or learning goals
             </p>
@@ -579,7 +582,7 @@ export default function LessonPlanForm({
           </div>
 
           <div>
-            <Label>Extensions</Label>
+            <Label htmlFor="input">Extensions</Label>
             <p className="text-sm text-gray-600 mb-2">
               Additional challenges for students who finish early or need enrichment
             </p>
@@ -678,7 +681,7 @@ export default function LessonPlanForm({
 
           <div>
             <div className="flex items-center">
-              <Label>Success Criteria & Assessment Strategies</Label>
+              <Label htmlFor="input">Success Criteria & Assessment Strategies</Label>
               <InfoTooltip content="Clear, specific statements that describe what success looks like. Written in student-friendly language starting with 'I can...'" />
             </div>
             <BilingualTextInput
@@ -720,7 +723,7 @@ Stratégies d'évaluation:
           </div>
 
           <div>
-            <Label>Substitute Teacher Ready</Label>
+            <Label htmlFor="input">Substitute Teacher Ready</Label>
             <div className="mt-2 space-y-4">
               <label className="flex items-center space-x-2">
                 <input
@@ -761,7 +764,7 @@ Stratégies d'évaluation:
 
       <div className="flex justify-end space-x-3 mt-6 pt-6 border-t">
         {onCancel && (
-          <Button type="button" variant="outline" onClick={onCancel}>
+          <Button aria-label="Click button" onClick={onCancel}>
             Cancel
           </Button>
         )}

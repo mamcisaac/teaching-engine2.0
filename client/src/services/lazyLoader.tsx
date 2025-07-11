@@ -5,6 +5,7 @@ import React from 'react';
 
 import { apiClient } from '../api/core/client';
 import logger from '../utils/logger';
+import { safeJsonParse } from '../utils/typeGuards';
 
 import type { StoredData } from './offlineStorage';
 import { offlineStorage } from './offlineStorage';
@@ -201,7 +202,7 @@ class LazyLoader {
 
     // Combine chunks based on document type
     if (doc.metadata.type === 'json') {
-      return safeJsonParse(chunks.join('', {}));
+      return safeJsonParse(chunks.join(''), {});
     } else if (doc.metadata.type === 'text') {
       return chunks.join('');
     } 
@@ -275,6 +276,9 @@ export function useLazyDocument(documentId: string | null, options?: LoadOptions
   const [progress, setProgress] = React.useState(0);
 
   React.useEffect(() => {
+    return () => { // Cleanup
+    };
+
     if (!documentId) {
 return;
 }
@@ -339,6 +343,9 @@ export function LazyDocument<T = unknown>({
   const { document, loading, error } = useLazyDocument(documentId);
 
   React.useEffect(() => {
+    return () => { // Cleanup
+    };
+
     const element = elementRef.current;
     if (element) {
       lazyLoader.observeElement(element, documentId);
@@ -352,6 +359,9 @@ export function LazyDocument<T = unknown>({
   }, [documentId]);
 
   React.useEffect(() => {
+    return () => { // Cleanup
+    };
+
     if (error && onError) {
       onError(error);
     }

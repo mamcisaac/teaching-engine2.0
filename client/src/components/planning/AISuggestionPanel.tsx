@@ -29,13 +29,13 @@ export default function AISuggestionPanel({
   onAcceptSuggestion,
   onAcceptAll,
   error,
-}: AISuggestionPanelProps) {
+}: AISuggestionPanelProps): React.ReactElement {
   const { toast } = useToast();
   const [acceptedIndices, setAcceptedIndices] = useState<Set<number>>(new Set());
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
   const handleCopy = (suggestion: string, index: number) => {
-    navigator.clipboard.writeText(suggestion);
+    void navigator.clipboard.writeText(suggestion);
     setCopiedIndex(index);
     setTimeout(() => {
  setCopiedIndex(null); 
@@ -163,7 +163,7 @@ export default function AISuggestionPanel({
             </div>
 
             {onAcceptAll && acceptedIndices.size < suggestions.suggestions.length && (
-              <Button className="w-full" size="sm" variant="outline" onClick={handleAcceptAll}>
+              <Button aria-label="Click button" onClick={handleAcceptAll}>
                 Accept All Suggestions
               </Button>
             )}

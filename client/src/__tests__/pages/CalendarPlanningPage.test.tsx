@@ -176,7 +176,7 @@ vi.mock('../../components/calendar/CalendarFilters', () => ({
         }
       >
         <option value="">All Subjects</option>
-        {availableSubjects.map((subject: string) => (
+        {availableSubjects.map((subject: string, index) => (
           <option key={subject} value={subject}>
             {subject}
           </option>

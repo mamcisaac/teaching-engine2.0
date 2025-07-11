@@ -212,7 +212,7 @@ where.assessmentType = assessmentType;
       throw new Error('Unit plan not found or access denied');
     }
 
-    const { expectationIds } = data as Record<string, unknown>;
+    const { expectationIds } = data as unknown as Record<string, unknown>;
 
     // Create lesson plan data that matches Prisma schema
     const baseData = {
@@ -243,12 +243,12 @@ where.assessmentType = assessmentType;
 
     // Add expectations relationship if provided
     const createData =
-      expectationIds && expectationIds.length > 0
+      expectationIds && Array.isArray(expectationIds) && expectationIds.length > 0
         ? {
             ...baseData,
             expectations: {
-              create: expectationIds.map((expectationId: string) => ({
-                expectationId,
+              create: expectationIds.map((expectationId: unknown) => ({
+                expectationId: String(expectationId),
               })),
             },
           }
@@ -276,7 +276,7 @@ where.assessmentType = assessmentType;
       throw new Error('Lesson plan not found or access denied');
     }
 
-    const { expectationIds, ...updateData } = data as Record<string, unknown>;
+    const { expectationIds, ...updateData } = data as unknown as Record<string, unknown>;
 
     // Create update data that matches Prisma schema
     const baseUpdateData: Record<string, unknown> = {};
@@ -361,13 +361,13 @@ baseUpdateData.subNotes = updateData.subNotes;
 
     // Handle expectations relationship if provided
     const updateInput =
-      expectationIds !== undefined
+      expectationIds !== undefined && Array.isArray(expectationIds)
         ? {
             ...baseUpdateData,
             expectations: {
               deleteMany: {},
-              create: expectationIds.map((expectationId: string) => ({
-                expectationId,
+              create: expectationIds.map((expectationId: unknown) => ({
+                expectationId: String(expectationId),
               })),
             },
           }

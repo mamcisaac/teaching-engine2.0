@@ -40,7 +40,7 @@ export function NotificationProvider({ children }: { children: ReactNode }) {
     if (isAuthenticated && notifications.length > 0) {
       const unreadIds = notifications
         .filter((notification) => !notification.read)
-        .map((notification) => notification.id);
+        .map((notification, _index) => notification.id);
 
       unreadIds.forEach((id) => {
  markMutation.mutate(id); 

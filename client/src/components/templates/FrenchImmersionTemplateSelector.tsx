@@ -65,7 +65,7 @@ export default function FrenchImmersionTemplateSelector({
   onTemplateSelect,
   grade = 1,
   filterByType,
-}: FrenchImmersionTemplateSelectorProps) {
+}: FrenchImmersionTemplateSelectorProps): React.ReactElement {
   const [selectedPersona, setSelectedPersona] = React.useState<PersonaType | null>(null);
   const [searchTerm, setSearchTerm] = React.useState('');
   const [selectedTimeOfYear, setSelectedTimeOfYear] = React.useState<string>('');
@@ -86,7 +86,7 @@ export default function FrenchImmersionTemplateSelector({
     allTemplates = allTemplates.filter(
       (t) =>
         t.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        t.titleFr?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (t.titleFr !== null && t.titleFr !== undefined && t.titleFr !== '' && t.titleFr.toLowerCase().includes(searchTerm.toLowerCase())) ||
         t.tags.some((tag) => tag.toLowerCase().includes(searchTerm.toLowerCase())),
     );
   }
@@ -114,20 +114,20 @@ return true;
     // Check if template matches persona preferences
     if (selectedPersona === 'jean-luc') {
       return (
-        ('culturalConnections' in template.content && !!template.content.culturalConnections) ||
+        ('culturalConnections' in template.content && template.content.culturalConnections !== null && template.content.culturalConnections !== undefined) ||
         template.tags.includes('art-integration') ||
         template.tags.includes('cultural')
       );
     } else if (selectedPersona === 'sophie') {
       return (
-        ('assessments' in template.content && !!template.content.assessments) ||
-        ('assessmentNotes' in template.content && !!template.content.assessmentNotes) ||
-        ('lessonStructure' in template && !!template.lessonStructure)
+        ('assessments' in template.content && template.content.assessments !== null && template.content.assessments !== undefined) ||
+        ('assessmentNotes' in template.content && template.content.assessmentNotes !== null && template.content.assessmentNotes !== undefined && template.content.assessmentNotes !== '') ||
+        ('lessonStructure' in template && template.lessonStructure !== null && template.lessonStructure !== undefined)
       );
     } else if (selectedPersona === 'marie-claire') {
       return (
-        ('parentCommunication' in template.content && !!template.content.parentCommunication) ||
-        template.description?.includes('structured') ||
+        ('parentCommunication' in template.content && template.content.parentCommunication !== null && template.content.parentCommunication !== undefined) ||
+        (template.description !== null && template.description !== undefined && template.description !== '' && template.description.includes('structured')) ||
         template.tags.includes('guided')
       );
     }
@@ -160,7 +160,7 @@ return true;
       <Card className="p-6">
         <h3 className="font-semibold mb-4">Select Your Teaching Style</h3>
         <div className="grid md:grid-cols-3 gap-4">
-          {TEACHER_PERSONAS.map((persona) => (
+          {TEACHER_PERSONAS.map((persona, _index) => (
             <button
               key={persona.id}
               className={`p-4 rounded-lg border-2 transition-all text-left ${
@@ -281,7 +281,7 @@ return true;
 
       {/* Template Grid */}
       <div className="grid md:grid-cols-2 gap-4">
-        {filteredTemplates.map((template) => {
+        {filteredTemplates.map((template, _index) => {
           const {fiMetadata} = (template as PlanTemplate & { fiMetadata?: FrenchImmersionTemplateMetadata });
 
           return (
@@ -305,7 +305,7 @@ return true;
                       )}
                     </div>
                     <h4 className="font-semibold text-lg">{template.title}</h4>
-                    {template.titleFr && (
+                    {template.titleFr !== null && template.titleFr !== undefined && template.titleFr !== '' && (
                       <p className="text-sm text-gray-600 italic">{template.titleFr}</p>
                     )}
                   </div>
@@ -317,7 +317,7 @@ return true;
                 <p className="text-sm text-gray-700 mb-3 line-clamp-2">{template.description}</p>
 
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {template.tags.slice(0, 4).map((tag) => (
+                  {template.tags.slice(0, 4).map((tag, _index) => (
                     <span key={tag} className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">
                       {tag}
                     </span>

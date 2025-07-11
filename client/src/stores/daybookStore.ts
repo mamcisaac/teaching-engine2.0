@@ -114,7 +114,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
 
                 // Cache for offline use
                 const cacheKey = `daybook-${startDate}-${endDate}`;
-                await offlineStorage.cacheData(cacheKey, entries, 60);
+                await offlineStorage.cacheData(cacheKey, entries as unknown as StoredData, 60);
               } else {
                 // Load from cache if offline
                 const cacheKey = `daybook-${startDate}-${endDate}`;
@@ -154,8 +154,8 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
                 await offlineStorage.getCachedData<DaybookEntry[]>('daybook-cache');
 
               set((state) => {
-                state.entries = cachedEntries || [];
-                state.error = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Failed to load entries';
+                state.entries = cachedEntries ?? [];
+                state.error = error instanceof Error ? error.message : 'Failed to load entries';
                 state.isLoading = false;
               });
             }
@@ -193,7 +193,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
 
                 // Cache individual entry
                 if (entry) {
-                  await offlineStorage.cacheData(`daybook-entry-${date}`, entry, 60);
+                  await offlineStorage.cacheData(`daybook-entry-${date}`, entry as unknown as StoredData, 60);
                 }
               } else {
                 // Load from cache if offline

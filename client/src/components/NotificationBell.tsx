@@ -4,11 +4,14 @@ import { Link } from 'react-router-dom';
 import { newsletterApi } from '../api/domains/newsletter';
 import { useAuth } from '../contexts/AuthContext';
 
-export default function NotificationBell() {
+export default function NotificationBell(): React.ReactElement | null {
   const [suggested, setSuggested] = useState(false);
   const { isAuthenticated, isInitialized } = useAuth();
 
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     // Only fetch suggestions if authenticated and initialized
     if (isAuthenticated && isInitialized) {
       newsletterApi.getSuggestions()

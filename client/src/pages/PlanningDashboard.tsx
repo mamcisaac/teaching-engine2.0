@@ -171,7 +171,7 @@ export default function PlanningDashboard() {
         <h2 className="text-2xl font-semibold text-gray-900">Quick Actions • Actions rapides</h2>
 
         <div className="grid gap-6 md:grid-cols-3">
-          {primaryActions.map((action) => {
+          {primaryActions.map((action, _index) => {
             const actionCard = (
               <Link key={action.id} id={action.id} to={action.path}>
                 <Card
@@ -246,13 +246,13 @@ export default function PlanningDashboard() {
           <CardContent>
             {recentPlansLoading ? (
               <div className="space-y-3">
-                {[1, 2, 3].map((i) => (
+                {[1, 2, 3].map((i, _index) => (
                   <div key={i} className="h-12 bg-gray-100 rounded-md animate-pulse" />
                 ))}
               </div>
             ) : recentPlans.length > 0 ? (
               <div className="space-y-3">
-                {recentPlans.map((plan) => (
+                {recentPlans.map((plan, _index) => (
                   <div
                     key={plan.id}
                     className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 transition-colors"
@@ -294,7 +294,7 @@ export default function PlanningDashboard() {
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              {resources.map((resource) => (
+              {resources.map((resource, _index) => (
                 <Link
                   key={resource.path}
                   className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 transition-colors"

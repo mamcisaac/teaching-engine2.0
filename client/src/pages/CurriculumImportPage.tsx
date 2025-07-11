@@ -112,13 +112,13 @@ return;
           id: sessionId,
           status: 'parsed',
           originalFilename: file.name,
-          parsedSubjects: parseResponse.data.subjects || [],
-          errors: parseResponse.data.errors || [],
+          parsedSubjects: parseResponse.data.subjects ?? [],
+          errors: parseResponse.data.errors ?? [],
         });
 
         toast({
           title: 'Success',
-          description: `Parsed ${parseResponse.data.subjects?.length || 0} subjects from ${file.name}`,
+          description: `Parsed ${parseResponse.data.subjects?.length ?? 0} subjects from ${file.name}`,
         });
       } catch (_error) {
         logger.error('Import error:', _error);
@@ -161,13 +161,13 @@ return;
         id: response.data.sessionId,
         status: 'parsed',
         originalFilename: `${presetId} (Preset)`,
-        parsedSubjects: response.data.subjects || [],
+        parsedSubjects: response.data.subjects ?? [],
         errors: [],
       });
 
       toast({
         title: 'Success',
-        description: `Loaded ${response.data.subjects?.length || 0} subjects from preset`,
+        description: `Loaded ${response.data.subjects?.length ?? 0} subjects from preset`,
       });
     } catch (_error) {
       toast({
@@ -189,11 +189,11 @@ return;
 return;
 }
 
-    const updatedSubjects = importSession.parsedSubjects.map((subject) => {
+    const updatedSubjects = importSession.parsedSubjects.map((subject, _index) => {
       if (subject.name === editingExpectation.subject) {
         return {
           ...subject,
-          expectations: subject.expectations.map((exp) =>
+          expectations: subject.expectations.map((exp, _index) =>
             exp.code === editingExpectation.code ? editingExpectation : exp,
           ),
         };
@@ -218,7 +218,7 @@ return;
 return;
 }
 
-    const updatedSubjects = importSession.parsedSubjects.map((subject) => {
+    const updatedSubjects = importSession.parsedSubjects.map((subject, _index) => {
       if (subject.name === expectation.subject) {
         return {
           ...subject,
@@ -275,7 +275,7 @@ return;
   });
 
   const totalExpectations =
-    importSession?.parsedSubjects.reduce((sum, subject) => sum + subject.expectations.length, 0) ||
+    importSession?.parsedSubjects.reduce((sum, subject) => sum + subject.expectations.length, 0) ??
     0;
 
   return (
@@ -287,7 +287,7 @@ return;
             Upload a curriculum document or select a known curriculum to get started
           </p>
         </div>
-        <Button variant="outline" onClick={() => {
+        <Button aria-label="Click button" onClick={() => {
  navigate('/curriculum'); 
 }}>
           Back to Curriculum
@@ -356,7 +356,7 @@ return;
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-2">
-                  <Label>Available Curricula</Label>
+                  <Label htmlFor="input">Available Curricula</Label>
                   <Select value={selectedPreset} onValueChange={setSelectedPreset}>
                     <SelectTrigger>
                       <SelectValue placeholder="Select a curriculum" />
@@ -427,9 +427,9 @@ return;
           </Card>
 
           {/* Subject Review */}
-          <Tabs defaultValue={importSession.parsedSubjects[0]?.name || 'overview'}>
+          <Tabs defaultValue={importSession.parsedSubjects[0]?.name ?? 'overview'}>
             <TabsList className="grid w-full grid-cols-auto">
-              {importSession.parsedSubjects.map((subject) => (
+              {importSession.parsedSubjects.map((subject, _index) => (
                 <TabsTrigger key={subject.name} value={subject.name}>
                   {subject.name}
                   <Badge className="ml-2" variant="secondary">
@@ -439,7 +439,7 @@ return;
               ))}
             </TabsList>
 
-            {importSession.parsedSubjects.map((subject) => (
+            {importSession.parsedSubjects.map((subject, _index) => (
               <TabsContent key={subject.name} className="space-y-4" value={subject.name}>
                 <Card>
                   <CardHeader>
@@ -448,9 +448,9 @@ return;
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-2">
-                      {subject.expectations.map((expectation, index) => (
+                      {subject.expectations.map((expectation, _index) => (
                         <div
-                          key={`${expectation.code}-${index}`}
+                          key={`${expectation.code}-${_index}`}
                           className="flex items-start justify-between p-3 border rounded-md"
                         >
                           <div className="space-y-1 flex-1">
@@ -509,12 +509,12 @@ return;
                   </p>
                 </div>
                 <div className="flex gap-2">
-                  <Button variant="outline" onClick={() => {
+                  <Button aria-label="Click button" onClick={() => {
  setImportSession(null); 
 }}>
                     Start Over
                   </Button>
-                  <Button className="gap-2" onClick={handleFinalImport}>
+                  <Button aria-label="Click button" onClick={handleFinalImport}>
                     <Sparkles className="h-4 w-4" />
                     Import Curriculum
                   </Button>
@@ -536,7 +536,7 @@ return;
             <CardContent className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label>Code</Label>
+                  <Label htmlFor="input">Code</Label>
                   <Input
                     value={editingExpectation.code}
                     onChange={(e) => {
@@ -549,7 +549,7 @@ return;
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label>Type</Label>
+                  <Label htmlFor="input">Type</Label>
                   <Select
                     value={editingExpectation.type}
                     onValueChange={(value: 'overall' | 'specific') => {
@@ -572,7 +572,7 @@ return;
               </div>
 
               <div className="space-y-2">
-                <Label>Description</Label>
+                <Label htmlFor="input">Description</Label>
                 <Textarea
                   rows={3}
                   value={editingExpectation.description}
@@ -588,7 +588,7 @@ return;
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label>Strand</Label>
+                  <Label htmlFor="input">Strand</Label>
                   <Input
                     value={editingExpectation.strand}
                     onChange={(e) => {
@@ -601,9 +601,9 @@ return;
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label>Substrand (Optional)</Label>
+                  <Label htmlFor="input">Substrand (Optional)</Label>
                   <Input
-                    value={editingExpectation.substrand || ''}
+                    value={editingExpectation.substrand ?? ''}
                     onChange={(e) => {
  setEditingExpectation({
                         ...editingExpectation,
@@ -616,12 +616,12 @@ return;
               </div>
 
               <div className="flex justify-end gap-2">
-                <Button variant="outline" onClick={() => {
+                <Button aria-label="Click button" onClick={() => {
  setEditingExpectation(null); 
 }}>
                   Cancel
                 </Button>
-                <Button onClick={handleSaveExpectation}>Save Changes</Button>
+                <Button aria-label="Click button" onClick={handleSaveExpectation}>Save Changes</Button>
               </div>
             </CardContent>
           </Card>

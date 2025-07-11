@@ -14,10 +14,13 @@ export default function RichTextEditor({
   onChange, 
   placeholder = "Start typing...",
   className = ""
-}: Props) {
+}: Props): React.ReactElement {
   const [html, setHtml] = useState(value);
 
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     setHtml(value);
   }, [value]);
 

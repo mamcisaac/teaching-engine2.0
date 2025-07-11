@@ -14,7 +14,7 @@ import { Input } from '../ui/Input';
 import { Label } from '../ui/Label';
 import { Switch } from '../ui/Switch';
 
-export const KeyboardShortcutsSettings: React.FC = () => {
+export const KeyboardShortcutsSettings: React.FC = (): React.ReactElement => {
   const { shortcuts, preferences, updatePreferences } = useKeyboardShortcuts();
   const [editingShortcut, setEditingShortcut] = useState<string | null>(null);
   const [captureKey, setCaptureKey] = useState<string>('');
@@ -53,7 +53,7 @@ export const KeyboardShortcutsSettings: React.FC = () => {
     other: 'Other',
   };
 
-  const handleKeyCapture = (e: React.KeyboardEvent, _shortcutId: string) => {
+  const handleKeyCapture = (e: React.KeyboardEvent, _shortcutId: string): void => {
     e.preventDefault();
 
     const {key} = e;
@@ -68,7 +68,7 @@ export const KeyboardShortcutsSettings: React.FC = () => {
     setCaptureModifiers(modifiers);
   };
 
-  const saveCustomShortcut = (shortcutId: string) => {
+  const saveCustomShortcut = (shortcutId: string): void => {
     const customShortcuts = {
       ...preferences.customShortcuts,
       [shortcutId]: {
@@ -83,13 +83,13 @@ export const KeyboardShortcutsSettings: React.FC = () => {
     setCaptureModifiers({ ctrl: false, cmd: false, alt: false, shift: false });
   };
 
-  const resetShortcut = (shortcutId: string) => {
+  const resetShortcut = (shortcutId: string): void => {
     const customShortcuts = { ...preferences.customShortcuts };
     delete customShortcuts[shortcutId];
     updatePreferences({ customShortcuts });
   };
 
-  const resetAllShortcuts = () => {
+  const resetAllShortcuts = (): void => {
     if (
       window.confirm('Are you sure you want to reset all keyboard shortcuts to their defaults?')
     ) {
@@ -121,7 +121,7 @@ export const KeyboardShortcutsSettings: React.FC = () => {
             <Switch
               checked={preferences.enabled}
               size="md"
-              onChange={(enabled) => {
+              onChange={(enabled): void => {
  updatePreferences({ enabled }); 
 }}
             />
@@ -138,7 +138,7 @@ export const KeyboardShortcutsSettings: React.FC = () => {
             <Switch
               checked={preferences.showHints}
               size="md"
-              onChange={(showHints) => {
+              onChange={(showHints): void => {
  updatePreferences({ showHints }); 
 }}
             />
@@ -164,7 +164,7 @@ export const KeyboardShortcutsSettings: React.FC = () => {
                   {categoryLabels[category as KeyboardShortcut['category']]}
                 </h3>
                 <div className="space-y-2">
-                  {(categoryShortcuts).map((shortcut) => {
+                  {(categoryShortcuts).map((shortcut, _index) => {
                     const customShortcut = preferences.customShortcuts[shortcut.id];
                     const isEditing = editingShortcut === shortcut.id;
                     const hasCustom = !!customShortcut;
@@ -203,7 +203,7 @@ export const KeyboardShortcutsSettings: React.FC = () => {
                                       })
                                     : ''
                                 }
-                                onKeyDown={(e) => {
+                                onKeyDown={(e): void => {
  handleKeyCapture(e, shortcut.id); 
 }}
                               />
@@ -211,7 +211,7 @@ export const KeyboardShortcutsSettings: React.FC = () => {
                                 disabled={!captureKey}
                                 size="sm"
                                 variant="ghost"
-                                onClick={() => {
+                                onClick={(): void => {
  saveCustomShortcut(shortcut.id); 
 }}
                               >
@@ -220,7 +220,7 @@ export const KeyboardShortcutsSettings: React.FC = () => {
                               <Button
                                 size="sm"
                                 variant="ghost"
-                                onClick={() => {
+                                onClick={(): void => {
                                   setEditingShortcut(null);
                                   setCaptureKey('');
                                   setCaptureModifiers({
@@ -242,7 +242,7 @@ export const KeyboardShortcutsSettings: React.FC = () => {
                               <Button
                                 size="sm"
                                 variant="ghost"
-                                onClick={() => {
+                                onClick={(): void => {
  setEditingShortcut(shortcut.id); 
 }}
                               >
@@ -253,7 +253,7 @@ export const KeyboardShortcutsSettings: React.FC = () => {
                                   size="sm"
                                   title="Reset to default"
                                   variant="ghost"
-                                  onClick={() => {
+                                  onClick={(): void => {
  resetShortcut(shortcut.id); 
 }}
                                 >
@@ -273,7 +273,7 @@ export const KeyboardShortcutsSettings: React.FC = () => {
 
           {/* Reset All Button */}
           <div className="pt-4 border-t">
-            <Button className="w-full sm:w-auto" variant="secondary" onClick={resetAllShortcuts}>
+            <Button aria-label="Click button" onClick={resetAllShortcuts}>
               <RefreshCw className="h-4 w-4 mr-2" />
               Reset All to Defaults
             </Button>

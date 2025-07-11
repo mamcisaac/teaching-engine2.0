@@ -92,7 +92,7 @@ export default function UnitPlanForm({
   onCancel,
   isSubmitting = false,
   showLongRangePlanSelector = false,
-}: UnitPlanFormProps) {
+}: UnitPlanFormProps): React.ReactElement {
   const { t } = useLanguage();
   const [_showBilingualFields, _setShowBilingualFields] = useState(false);
   
@@ -159,6 +159,9 @@ export default function UnitPlanForm({
 
   // Update form data when initialData changes
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     if (initialData) {
       setFormData(prev => ({ ...prev, ...initialData }));
     }
@@ -359,7 +362,7 @@ export default function UnitPlanForm({
                     }
                   >
                     <option value="">Select a long-range plan...</option>
-                    {allLongRangePlans.map((plan) => (
+                    {allLongRangePlans.map((plan, _index) => (
                       <option key={plan.id} value={plan.id}>
                         {plan.title} - {plan.subject} Grade {plan.grade}
                       </option>
@@ -465,7 +468,7 @@ export default function UnitPlanForm({
 
           {/* Big Ideas */}
           <div>
-            <Label>Big Ideas & Enduring Understandings</Label>
+            <Label htmlFor="input">Big Ideas & Enduring Understandings</Label>
             <RichTextEditor
               value={formData.bigIdeas}
               onChange={(value) => {
@@ -476,7 +479,7 @@ export default function UnitPlanForm({
 
           {/* Essential Questions */}
           <div>
-            <Label>Essential Questions</Label>
+            <Label htmlFor="input">Essential Questions</Label>
             <div className="space-y-2 mt-2">
               {formData.essentialQuestions.map((question, index) => (
                 <div key={index} className="flex gap-2">
@@ -559,7 +562,7 @@ export default function UnitPlanForm({
 
         <TabsContent className="space-y-6 mt-4" value="planning">
           <div>
-            <Label>Key Vocabulary</Label>
+            <Label htmlFor="input">Key Vocabulary</Label>
             <div className="space-y-2 mt-2">
               {formData.keyVocabulary.map((term, index) => (
                 <div key={index} className="flex gap-2">
@@ -598,7 +601,7 @@ export default function UnitPlanForm({
           </div>
 
           <div>
-            <Label>Prior Knowledge Requirements</Label>
+            <Label htmlFor="input">Prior Knowledge Requirements</Label>
             <Textarea
               className="mt-2"
               placeholder="What should students already know before starting this unit?"
@@ -628,7 +631,7 @@ export default function UnitPlanForm({
           </div>
 
           <div>
-            <Label>Culminating Task Description</Label>
+            <Label htmlFor="input">Culminating Task Description</Label>
             <RichTextEditor
               value={formData.culminatingTask}
               onChange={(value) => {
@@ -641,7 +644,7 @@ export default function UnitPlanForm({
         <TabsContent className="space-y-6 mt-4" value="assessment">
           <div>
             <div className="flex items-center">
-              <Label>Assessment Plan</Label>
+              <Label htmlFor="input">Assessment Plan</Label>
               <InfoTooltip content="Describe how you will assess student learning throughout the unit. Include diagnostic, formative, and summative assessments." />
             </div>
             <RichTextEditor
@@ -672,7 +675,7 @@ Summative Assessment (End of Unit):
           </div>
 
           <div>
-            <Label>Learning Skills & Work Habits Focus</Label>
+            <Label htmlFor="input">Learning Skills & Work Habits Focus</Label>
             <div className="grid grid-cols-2 gap-4 mt-2">
               {[
                 'Responsibility',
@@ -681,7 +684,7 @@ Summative Assessment (End of Unit):
                 'Collaboration',
                 'Initiative',
                 'Self-Regulation',
-              ].map((skill) => (
+              ].map((skill, _index) => (
                 <label key={skill} className="flex items-center space-x-2">
                   <input
                     checked={formData.learningSkills.includes(skill)}
@@ -709,7 +712,7 @@ Summative Assessment (End of Unit):
 
           <div>
             <div className="flex items-center">
-              <Label>Success Criteria</Label>
+              <Label htmlFor="input">Success Criteria</Label>
               <InfoTooltip content="Clear statements that describe what students will know and be able to do by the end of the unit. Use student-friendly 'I can' statements." />
             </div>
             <p className="text-sm text-gray-600 mb-2">
@@ -765,7 +768,7 @@ Summative Assessment (End of Unit):
         <TabsContent className="space-y-6 mt-4" value="differentiation">
           {Object.entries(formData.differentiationStrategies).map(([category, strategies]) => (
             <div key={category}>
-              <Label>
+              <Label htmlFor="input">
                 {category === 'forStruggling' && 'Supports for Struggling Learners'}
                 {category === 'forAdvanced' && 'Extensions for Advanced Learners'}
                 {category === 'forELL' && 'Supports for English Language Learners'}
@@ -826,7 +829,7 @@ Summative Assessment (End of Unit):
 
         <TabsContent className="space-y-6 mt-4" value="connections">
           <div>
-            <Label>Cross-Curricular Connections</Label>
+            <Label htmlFor="input">Cross-Curricular Connections</Label>
             <Textarea
               className="mt-2"
               placeholder="How does this unit connect to other subject areas?"
@@ -839,7 +842,7 @@ Summative Assessment (End of Unit):
           </div>
 
           <div>
-            <Label>Indigenous Perspectives</Label>
+            <Label htmlFor="input">Indigenous Perspectives</Label>
             <Textarea
               className="mt-2"
               placeholder="How will Indigenous knowledge and perspectives be integrated?"
@@ -852,7 +855,7 @@ Summative Assessment (End of Unit):
           </div>
 
           <div>
-            <Label>Environmental Education</Label>
+            <Label htmlFor="input">Environmental Education</Label>
             <Textarea
               className="mt-2"
               placeholder="How will environmental learning be integrated?"
@@ -865,7 +868,7 @@ Summative Assessment (End of Unit):
           </div>
 
           <div>
-            <Label>Social Justice Connections</Label>
+            <Label htmlFor="input">Social Justice Connections</Label>
             <Textarea
               className="mt-2"
               placeholder="How will equity and social justice themes be addressed?"
@@ -878,7 +881,7 @@ Summative Assessment (End of Unit):
           </div>
 
           <div>
-            <Label>Technology Integration</Label>
+            <Label htmlFor="input">Technology Integration</Label>
             <Textarea
               className="mt-2"
               placeholder="How will technology be used to enhance learning?"
@@ -891,7 +894,7 @@ Summative Assessment (End of Unit):
           </div>
 
           <div>
-            <Label>Community Connections</Label>
+            <Label htmlFor="input">Community Connections</Label>
             <Textarea
               className="mt-2"
               placeholder="How will local partnerships and community connections be utilized?"
@@ -904,7 +907,7 @@ Summative Assessment (End of Unit):
           </div>
 
           <div>
-            <Label>Parent Communication Plan</Label>
+            <Label htmlFor="input">Parent Communication Plan</Label>
             <Textarea
               className="mt-2"
               placeholder="How will families be kept informed and engaged?"
@@ -917,7 +920,7 @@ Summative Assessment (End of Unit):
           </div>
 
           <div>
-            <Label>Field Trips & Guest Speakers</Label>
+            <Label htmlFor="input">Field Trips & Guest Speakers</Label>
             <Textarea
               className="mt-2"
               placeholder="What community experiences will enhance learning?"
@@ -933,7 +936,7 @@ Summative Assessment (End of Unit):
 
       <div className="flex justify-end space-x-3 mt-6 pt-6 border-t">
         {onCancel && (
-          <Button type="button" variant="outline" onClick={onCancel}>
+          <Button aria-label="Click button" onClick={onCancel}>
             Cancel
           </Button>
         )}

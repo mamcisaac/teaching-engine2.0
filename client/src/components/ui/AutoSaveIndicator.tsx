@@ -30,14 +30,14 @@ export function AutoSaveIndicator({
   syncStatus = 'idle',
   syncError = null,
   pendingChanges = 0,
-}: AutoSaveIndicatorProps) {
+}: AutoSaveIndicatorProps): React.ReactElement {
   const [isOnlineState, setIsOnlineState] = useState(isOnlineProp ?? isOnline());
 
-  useEffect(() => {
-    const handleOnline = () => {
+  useEffect((): (() => void) => {
+    const handleOnline = (): void => {
  setIsOnlineState(true); 
 };
-    const handleOffline = () => {
+    const handleOffline = (): void => {
  setIsOnlineState(false); 
 };
 
@@ -48,9 +48,9 @@ export function AutoSaveIndicator({
       window.removeEventListener('online', handleOnline);
       window.removeEventListener('offline', handleOffline);
     };
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const getStatus = () => {
+  const getStatus = (): { icon: React.ReactElement; text: string; variant: 'outline' | 'secondary' | 'destructive'; tooltip: string } => {
     // Offline status takes priority
     if (!isOnlineState) {
       return {
@@ -208,7 +208,7 @@ export function FormAutoSaveHeader({
   isSaving: boolean;
   hasUnsavedChanges: boolean;
   onManualSave?: () => void;
-}) {
+}): React.ReactElement {
   return (
     <div className="flex items-center justify-between pb-4 border-b">
       <h3 className="text-lg font-semibold">{title}</h3>

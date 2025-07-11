@@ -27,7 +27,7 @@ export default function FrenchImmersionLessonTemplate({
   onSave,
   onCancel,
   metadata,
-}: FrenchImmersionLessonTemplateProps) {
+}: FrenchImmersionLessonTemplateProps): React.ReactElement {
   const { register, handleSubmit } = useForm<FrenchImmersionLessonContent>({
     defaultValues: initialData || {
       objectivesEn: [''],
@@ -109,7 +109,7 @@ export default function FrenchImmersionLessonTemplate({
               Grade 1 French Immersion Lesson Plan
             </h2>
             <p className="text-gray-600 mt-1">
-              {metadata?.theme
+              {metadata?.theme !== null && metadata?.theme !== undefined && metadata.theme !== ''
                 ? `Theme: ${metadata.theme}`
                 : 'Structured bilingual learning template'}
             </p>
@@ -198,7 +198,7 @@ export default function FrenchImmersionLessonTemplate({
                   className="p-2 border rounded"
                   placeholder="Pronunciation"
                   type="text"
-                  value={vocab.pronunciation || ''}
+                  value={vocab.pronunciation !== null && vocab.pronunciation !== undefined ? vocab.pronunciation : ''}
                   onChange={(e) => {
  updateVocabulary(index, 'pronunciation', e.target.value); 
 }}
@@ -208,7 +208,7 @@ export default function FrenchImmersionLessonTemplate({
                     className="flex-1 p-2 border rounded"
                     placeholder="Context/Visual"
                     type="text"
-                    value={vocab.context || ''}
+                    value={vocab.context !== null && vocab.context !== undefined ? vocab.context : ''}
                     onChange={(e) => {
  updateVocabulary(index, 'context', e.target.value); 
 }}
@@ -228,7 +228,7 @@ export default function FrenchImmersionLessonTemplate({
             </div>
           ))}
 
-          <Button type="button" variant="outline" onClick={addVocabulary}>
+          <Button aria-label="Click button" onClick={addVocabulary}>
             + Add Vocabulary Word
           </Button>
         </div>
@@ -512,7 +512,7 @@ export default function FrenchImmersionLessonTemplate({
               </div>
             ))}
 
-            <Button size="sm" type="button" variant="outline" onClick={addHomeActivity}>
+            <Button aria-label="Click button" onClick={addHomeActivity}>
               + Add Home Activity
             </Button>
           </div>
@@ -543,7 +543,7 @@ export default function FrenchImmersionLessonTemplate({
       {/* Action Buttons */}
       <div className="flex justify-end gap-3 pt-6 border-t">
         {onCancel && (
-          <Button type="button" variant="outline" onClick={onCancel}>
+          <Button aria-label="Click button" onClick={onCancel}>
             Cancel
           </Button>
         )}

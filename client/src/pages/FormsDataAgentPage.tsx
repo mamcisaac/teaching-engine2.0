@@ -22,7 +22,7 @@ export default function FormsDataAgentPage() {
 
   // Batch creation handlers
   const handleBatchUnitCreate = async (units: UnitPlanFormData[]) => {
-    const results = await Promise.allSettled(units.map((unit) => createUnit.mutateAsync(unit)));
+    const results = await Promise.allSettled(units.map((unit, _index) => createUnit.mutateAsync(unit)));
 
     const failures = results.filter((r) => r.status === 'rejected');
     if (failures.length > 0) {
@@ -33,7 +33,7 @@ export default function FormsDataAgentPage() {
 
   const handleBatchLessonCreate = async (lessons: LessonPlanFormData[]) => {
     const results = await Promise.allSettled(
-      lessons.map((lesson) => createLesson.mutateAsync(lesson)),
+      lessons.map((lesson, _index) => createLesson.mutateAsync(lesson)),
     );
 
     const failures = results.filter((r) => r.status === 'rejected');

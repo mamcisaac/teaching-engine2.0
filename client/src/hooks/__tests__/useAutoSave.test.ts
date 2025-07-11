@@ -253,3 +253,114 @@ describe('useUnsavedChangesWarning', () => {
     expect(mockEvent.returnValue).toBe('');
   });
 });
+
+describe('useAutoSave - Timeout Cleanup', () => {
+  beforeEach(() => {
+    setupTest();
+    vi.useFakeTimers();
+    mockToast.mockClear();
+  });
+
+  afterEach(() => {
+    vi.runAllTimers();
+    vi.clearAllTimers();
+    vi.useRealTimers();
+    vi.clearAllMocks();
+  });
+
+  it('should properly cleanup timeout when component unmounts', () => {
+    const saveFn = vi.fn();
+    const data = { text: 'hello' };
+
+    const { result, unmount, rerender } = renderHook(() =>
+      useAutoSave({ data, saveFn }),
+      { wrapper }
+    );
+
+    // Trigger a change to start auto-save timer
+    rerender();
+    
+    // Update data to trigger auto-save
+    act(() => {
+      result.current.saveNow();
+    });
+
+    // Wait for save to complete
+    act(() => {
+      vi.runAllTimers();
+    });
+
+    // Now trigger another change
+    const newData = { text: 'world' };
+    const { result: result2 } = renderHook(() =>
+      useAutoSave({ data: newData, saveFn }),
+      { wrapper }
+    );
+
+    // Unmount before timer executes
+    unmount();
+
+    // Advance time - should not throw any errors
+    act(() => {
+      vi.advanceTimersByTime(35000);
+    });
+
+    // Save function should not be called after unmount
+    expect(saveFn).toHaveBeenCalledTimes(1); // Only from manual save
+  });
+
+  it('should handle null timeout ref properly', () => {
+    const saveFn = vi.fn();
+    const data = { text: 'test' };
+
+    const { result } = renderHook(() =>
+      useAutoSave({ data, saveFn, delay: 1000 }),
+      { wrapper }
+    );
+
+    // Initially, no timeout should be set
+    expect(result.current.hasUnsavedChanges).toBe(false);
+
+    // Manual save should work even with null timeout
+    act(() => {
+      result.current.saveNow();
+    });
+
+    expect(saveFn).toHaveBeenCalledWith(data);
+  });
+
+  it('should clear existing timeout when data changes', () => {
+    const saveFn = vi.fn();
+    let data = { text: 'initial' };
+
+    const { rerender } = renderHook(
+      () => useAutoSave({ data, saveFn, delay: 5000 }),
+      { wrapper }
+    );
+
+    // Trigger first save by updating lastSaved
+    act(() => {
+      vi.advanceTimersByTime(100);
+    });
+
+    // Change data before timeout executes
+    data = { text: 'updated' };
+    rerender();
+
+    // Advance time less than delay
+    act(() => {
+      vi.advanceTimersByTime(4000);
+    });
+
+    // Save should not have been called yet
+    expect(saveFn).not.toHaveBeenCalled();
+
+    // Advance past the new timeout
+    act(() => {
+      vi.advanceTimersByTime(2000);
+    });
+
+    // Now save should be called with updated data
+    expect(saveFn).toHaveBeenCalledWith({ text: 'updated' });
+  });
+});

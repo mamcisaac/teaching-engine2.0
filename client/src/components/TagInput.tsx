@@ -6,7 +6,7 @@ interface Props {
   placeholder?: string;
 }
 
-export default function TagInput({ tags, onChange, placeholder }: Props) {
+export default function TagInput({ tags, onChange, placeholder }: Props): React.ReactElement {
   const [input, setInput] = useState('');
 
   const addTag = () => {
@@ -20,7 +20,7 @@ export default function TagInput({ tags, onChange, placeholder }: Props) {
   return (
     <div>
       <div className="flex flex-wrap gap-1">
-        {tags.map((t) => (
+        {tags.map((t, _index) => (
           <span key={t} className="px-1 bg-gray-200 text-sm flex items-center gap-1">
             {t}
             <button

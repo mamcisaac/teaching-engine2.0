@@ -41,7 +41,7 @@ describe('Button - Real Backend Integration', () => {
     it('handles click events', async () => {
       const handleClick = vi.fn();
       const { cleanup } = await renderWithRealBackend(
-        <Button onClick={handleClick}>Click me</Button>
+        <Button aria-label="Click button" onClick={handleClick}>Click me</Button>
       );
 
       const button = screen.getByRole('button');
@@ -249,7 +249,7 @@ describe('Button - Real Backend Integration', () => {
 
       const { cleanup } = await renderWithRealBackend(
         <div>
-          <Button onClick={handleClick}>Create Plan</Button>
+          <Button aria-label="Click button" onClick={handleClick}>Create Plan</Button>
           <div data-testid="plan-count">Plans created: {createdPlans.length}</div>
         </div>
       );
@@ -365,7 +365,7 @@ describe('Button - Real Backend Integration', () => {
       };
 
       const { cleanup } = await renderWithRealBackend(
-        <Button onClick={handleKeyboardAction}>Keyboard Test</Button>
+        <Button aria-label="Click button" onClick={handleKeyboardAction}>Keyboard Test</Button>
       );
 
       const button = screen.getByRole('button');
@@ -396,7 +396,7 @@ describe('Button - Real Backend Integration', () => {
       };
 
       const { cleanup } = await renderWithRealBackend(
-        <Button onClick={handleFastOperation}>Fast Operation</Button>
+        <Button aria-label="Click button" onClick={handleFastOperation}>Fast Operation</Button>
       );
 
       const button = screen.getByRole('button');

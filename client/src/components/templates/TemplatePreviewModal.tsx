@@ -14,7 +14,7 @@ export default function TemplatePreviewModal({
   template,
   onClose,
   onApply,
-}: TemplatePreviewModalProps) {
+}: TemplatePreviewModalProps): React.ReactElement {
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(['overview']));
 
   const toggleSection = (section: string) => {
@@ -45,7 +45,7 @@ export default function TemplatePreviewModal({
     return (
       <div className="space-y-4">
         {sections.map(({ key, title, content, isList, isAssessments, isDiff }) => {
-          if (!content || (Array.isArray(content) && content.length === 0)) {
+          if (content === null || content === undefined || (Array.isArray(content) && content.length === 0)) {
 return null;
 }
 
@@ -68,25 +68,25 @@ return null;
               </button>
               {isExpanded && (
                 <div className="px-4 pb-3">
-                  {isList && Array.isArray(content) ? (
+                  {isList === true && Array.isArray(content) ? (
                     <ul className="list-disc list-inside space-y-1">
-                      {content.map((item, index) => (
-                        <li key={index} className="text-gray-700">{item}</li>
+                      {content.map((item, _index) => (
+                        <li key={_index} className="text-gray-700">{item}</li>
                       ))}
                     </ul>
-                  ) : isAssessments && Array.isArray(content) ? (
+                  ) : isAssessments === true && Array.isArray(content) ? (
                     <div className="space-y-2">
-                      {content.map((assessment, index) => (
-                        <div key={index} className="bg-gray-50 p-3 rounded">
+                      {content.map((assessment, _index) => (
+                        <div key={_index} className="bg-gray-50 p-3 rounded">
                           <div className="font-medium">{assessment.type}</div>
                           <div className="text-gray-700">{assessment.description}</div>
-                          {assessment.timing && (
+                          {assessment.timing !== null && assessment.timing !== undefined && assessment.timing !== '' && (
                             <div className="text-sm text-gray-500 mt-1">Timing: {assessment.timing}</div>
                           )}
                         </div>
                       ))}
                     </div>
-                  ) : isDiff && typeof content === 'object' ? (
+                  ) : isDiff === true && typeof content === 'object' ? (
                     <div className="space-y-2">
                       {Object.entries(content).map(([key, strategies]) => (
                         <div key={key}>
@@ -94,8 +94,8 @@ return null;
                             {key.replace(/([A-Z])/g, ' $1').trim()}:
                           </div>
                           <ul className="list-disc list-inside ml-4">
-                            {(strategies).map((strategy, index) => (
-                              <li key={index} className="text-gray-700 text-sm">{strategy}</li>
+                            {(strategies as string[]).map((strategy, _index) => (
+                              <li key={_index} className="text-gray-700 text-sm">{strategy}</li>
                             ))}
                           </ul>
                         </div>
@@ -129,7 +129,7 @@ return null;
     return (
       <div className="space-y-4">
         {sections.map(({ key, title, content, isList, assessmentType }) => {
-          if (!content || (Array.isArray(content) && content.length === 0)) {
+          if (content === null || content === undefined || (Array.isArray(content) && content.length === 0)) {
 return null;
 }
 
@@ -152,15 +152,15 @@ return null;
               </button>
               {isExpanded && (
                 <div className="px-4 pb-3">
-                  {isList && Array.isArray(content) ? (
+                  {isList === true && Array.isArray(content) ? (
                     <ul className="list-disc list-inside space-y-1">
-                      {content.map((item, index) => (
-                        <li key={index} className="text-gray-700">{item}</li>
+                      {content.map((item, _index) => (
+                        <li key={_index} className="text-gray-700">{item}</li>
                       ))}
                     </ul>
                   ) : key === 'assessment' ? (
                     <div>
-                      {assessmentType && (
+                      {assessmentType !== null && assessmentType !== undefined && assessmentType !== '' && (
                         <div className="mb-2">
                           <span className="font-medium">Type:</span>{' '}
                           <span className="capitalize">{assessmentType}</span>
@@ -210,7 +210,7 @@ return null;
         <div className="flex-1 overflow-y-auto p-6">
           {/* Metadata */}
           <div className="mb-6 grid grid-cols-2 md:grid-cols-4 gap-4">
-            {template.subject && (
+            {template.subject !== null && template.subject !== undefined && template.subject !== '' && (
               <div className="flex items-center gap-2 text-sm">
                 <Tag className="h-4 w-4 text-gray-400" />
                 <span className="capitalize">{template.subject}</span>
@@ -219,7 +219,7 @@ return null;
             <div className="flex items-center gap-2 text-sm">
               <Users className="h-4 w-4 text-gray-400" />
               <span>
-                {template.gradeMin && template.gradeMax
+                {template.gradeMin !== null && template.gradeMin !== undefined && template.gradeMax !== null && template.gradeMax !== undefined
                   ? template.gradeMin === template.gradeMax
                     ? `Grade ${template.gradeMin}`
                     : `Grades ${template.gradeMin}-${template.gradeMax}`
@@ -229,9 +229,9 @@ return null;
             <div className="flex items-center gap-2 text-sm">
               <Clock className="h-4 w-4 text-gray-400" />
               <span>
-                {template.type === 'UNIT_PLAN' && template.estimatedWeeks
+                {template.type === 'UNIT_PLAN' && template.estimatedWeeks !== null && template.estimatedWeeks !== undefined && template.estimatedWeeks > 0
                   ? `${template.estimatedWeeks} weeks`
-                  : template.type === 'LESSON_PLAN' && template.estimatedMinutes
+                  : template.type === 'LESSON_PLAN' && template.estimatedMinutes !== null && template.estimatedMinutes !== undefined && template.estimatedMinutes > 0
                   ? `${template.estimatedMinutes} minutes`
                   : 'Duration varies'}
               </span>
@@ -239,7 +239,7 @@ return null;
           </div>
 
           {/* Description */}
-          {template.description && (
+          {template.description !== null && template.description !== undefined && template.description !== '' && (
             <div className="mb-6">
               <h3 className="font-medium mb-2">Description</h3>
               <p className="text-gray-700">{template.description}</p>
@@ -251,7 +251,7 @@ return null;
             <div className="mb-6">
               <h3 className="font-medium mb-2">Tags</h3>
               <div className="flex flex-wrap gap-2">
-                {template.tags.map((tag) => (
+                {template.tags.map((tag, _index) => (
                   <span
                     key={tag}
                     className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full"
@@ -272,18 +272,18 @@ return null;
           </div>
 
           {/* Structure */}
-          {template.type === 'UNIT_PLAN' && template.unitStructure && (
+          {template.type === 'UNIT_PLAN' && template.unitStructure !== null && template.unitStructure !== undefined && (
             <div className="mt-6">
               <h3 className="font-medium mb-3">Unit Structure</h3>
-              {template.unitStructure.phases && template.unitStructure.phases.length > 0 && (
+              {template.unitStructure.phases !== null && template.unitStructure.phases !== undefined && template.unitStructure.phases.length > 0 && (
                 <div className="space-y-3">
-                  {template.unitStructure.phases.map((phase, index) => (
-                    <div key={index} className="bg-gray-50 p-4 rounded-lg">
+                  {template.unitStructure.phases.map((phase, _index) => (
+                    <div key={_index} className="bg-gray-50 p-4 rounded-lg">
                       <div className="font-medium">{phase.name}</div>
-                      {phase.description && (
+                      {phase.description !== null && phase.description !== undefined && phase.description !== '' && (
                         <p className="text-gray-700 text-sm mt-1">{phase.description}</p>
                       )}
-                      {phase.estimatedDays && (
+                      {phase.estimatedDays !== null && phase.estimatedDays !== undefined && phase.estimatedDays > 0 && (
                         <p className="text-gray-500 text-sm mt-1">
                           Estimated: {phase.estimatedDays} days
                         </p>
@@ -299,7 +299,7 @@ return null;
         {/* Footer */}
         <div className="px-6 py-4 border-t flex justify-between items-center">
           <div className="text-sm text-gray-500">
-            {template.createdByUser ? (
+            {template.createdByUser !== null && template.createdByUser !== undefined ? (
               <span>Created by {template.createdByUser.name}</span>
             ) : (
               <span>System template</span>
@@ -309,10 +309,10 @@ return null;
             )}
           </div>
           <div className="flex gap-2">
-            <Button variant="outline" onClick={onClose}>
+            <Button aria-label="Click button" onClick={onClose}>
               Close
             </Button>
-            <Button onClick={() => {
+            <Button aria-label="Click button" onClick={() => {
  onApply(template); 
 }}>
               Use This Template

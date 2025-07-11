@@ -395,7 +395,7 @@ export const useLanguageStore = create<LanguageState>()(
       const updateComputedValues = (state: Draft<LanguageState>) => {
         state.isEnglish = state.language === 'en';
         state.isFrench = state.language === 'fr';
-        state.currentTranslations = translations[state.language] || translations.en;
+        state.currentTranslations = translations[state.language] ?? translations.en;
       };
 
       return {
@@ -418,7 +418,7 @@ export const useLanguageStore = create<LanguageState>()(
 
         t: (key: string, fallback?: string, substitutions?: string[]): string => {
           const state = get();
-          let translation = translations[state.language][key] || fallback || key;
+          let translation = translations[state.language][key] ?? fallback ?? key;
 
           // Handle string interpolation for placeholders like {0}, {1}, etc.
           if (substitutions) {
@@ -440,7 +440,7 @@ return '';
           const localizedValue = obj[localizedFieldName];
 
           // Return localized version if it exists, otherwise fall back to base field
-          return String(localizedValue || obj[field] || '');
+          return String(localizedValue ?? obj[field] ?? '');
         },
       };
     }),

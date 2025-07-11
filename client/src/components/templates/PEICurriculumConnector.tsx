@@ -176,7 +176,7 @@ export default function PEICurriculumConnector({
   subject,
   onOutcomeSelect,
   selectedOutcomes = [],
-}: PEICurriculumConnectorProps) {
+}: PEICurriculumConnectorProps): React.ReactElement {
   const [expandedStrand, setExpandedStrand] = React.useState<string | null>(null);
   const [searchTerm, setSearchTerm] = React.useState('');
 
@@ -255,7 +255,7 @@ export default function PEICurriculumConnector({
                 <Book className="h-5 w-5 text-blue-600" />
                 <div>
                   <h3 className="font-semibold">{alignment.subject}</h3>
-                  {alignment.strand && <p className="text-sm text-gray-600">{alignment.strand}</p>}
+                  {alignment.strand !== null && alignment.strand !== undefined && alignment.strand !== '' && <p className="text-sm text-gray-600">{alignment.strand}</p>}
                 </div>
               </div>
               <div className="flex items-center gap-2">
@@ -267,7 +267,7 @@ export default function PEICurriculumConnector({
 
           {expandedStrand === strandName && (
             <div className="p-4 space-y-4">
-              {alignment.outcomes.map((outcome) => (
+              {alignment.outcomes.map((outcome, _index) => (
                 <div
                   key={outcome.code}
                   className={`p-4 rounded-lg border-2 transition-all ${

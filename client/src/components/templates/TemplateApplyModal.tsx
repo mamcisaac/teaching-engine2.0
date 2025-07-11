@@ -33,7 +33,7 @@ export default function TemplateApplyModal({
   template,
   isOpen,
   onClose,
-}: TemplateApplyModalProps) {
+}: TemplateApplyModalProps): React.ReactElement {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: template.title,
@@ -102,12 +102,12 @@ export default function TemplateApplyModal({
     e.preventDefault();
     
     // Validate required fields
-    if (template.type === 'UNIT_PLAN' && !formData.longRangePlanId) {
+    if (template.type === 'UNIT_PLAN' && (formData.longRangePlanId === null || formData.longRangePlanId === undefined || formData.longRangePlanId === '')) {
       toast.error('Please select a long-range plan');
       return;
     }
     
-    if (template.type === 'LESSON_PLAN' && !formData.unitPlanId) {
+    if (template.type === 'LESSON_PLAN' && (formData.unitPlanId === null || formData.unitPlanId === undefined || formData.unitPlanId === '')) {
       toast.error('Please select a unit plan');
       return;
     }
@@ -161,7 +161,7 @@ export default function TemplateApplyModal({
                   <SelectValue placeholder="Select a long-range plan" />
                 </SelectTrigger>
                 <SelectContent>
-                  {longRangePlans.map((plan: { id: string; title: string; subject: string; grade: string }) => (
+                  {longRangePlans.map((plan: { id: string; title: string; subject: string; grade: string }, _index) => (
                     <SelectItem key={plan.id} value={plan.id}>
                       {plan.title} - {plan.subject} (Grade {plan.grade})
                     </SelectItem>
@@ -187,7 +187,7 @@ export default function TemplateApplyModal({
                   <SelectValue placeholder="Select a unit plan" />
                 </SelectTrigger>
                 <SelectContent>
-                  {unitPlans.map((unit: { id: string; title: string }) => (
+                  {unitPlans.map((unit: { id: string; title: string }, _index) => (
                     <SelectItem key={unit.id} value={unit.id}>
                       {unit.title}
                     </SelectItem>
@@ -225,19 +225,19 @@ export default function TemplateApplyModal({
               )}
               <span>{template.type === 'UNIT_PLAN' ? 'Unit Plan' : 'Lesson Plan'} Template</span>
             </div>
-            {template.estimatedWeeks && (
+            {template.estimatedWeeks !== null && template.estimatedWeeks !== undefined && template.estimatedWeeks > 0 && (
               <p className="text-sm text-gray-600">
                 Duration: {template.estimatedWeeks} weeks
               </p>
             )}
-            {template.estimatedMinutes && (
+            {template.estimatedMinutes !== null && template.estimatedMinutes !== undefined && template.estimatedMinutes > 0 && (
               <p className="text-sm text-gray-600">
                 Duration: {template.estimatedMinutes} minutes
               </p>
             )}
             {template.tags.length > 0 && (
               <div className="flex flex-wrap gap-1 mt-2">
-                {template.tags.map((tag) => (
+                {template.tags.map((tag, _index) => (
                   <span
                     key={tag}
                     className="px-2 py-1 bg-white text-gray-600 text-xs rounded-full"
@@ -251,7 +251,7 @@ export default function TemplateApplyModal({
 
           {/* Actions */}
           <div className="flex justify-end gap-2 pt-4">
-            <Button type="button" variant="outline" onClick={onClose}>
+            <Button aria-label="Click button" onClick={onClose}>
               Cancel
             </Button>
             <Button

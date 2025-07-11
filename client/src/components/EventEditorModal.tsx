@@ -8,7 +8,7 @@ interface Props {
   onClose: () => void;
 }
 
-export default function EventEditorModal({ onClose }: Props) {
+export default function EventEditorModal({ onClose }: Props): React.ReactElement {
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
   const mutation = useAddCalendarEvent();

@@ -24,10 +24,10 @@ export function DuplicatePlanModal({
   planType, 
   planId, 
   planTitle 
-}: DuplicatePlanModalProps) {
+}: DuplicatePlanModalProps): React.ReactElement {
   const queryClient = useQueryClient();
-  const [selectedType, setSelectedType] = useState(planType || '');
-  const [selectedPlanId, setSelectedPlanId] = useState(planId || '');
+  const [selectedType, setSelectedType] = useState(planType ?? '');
+  const [selectedPlanId, setSelectedPlanId] = useState(planId ?? '');
   const [newTitle, setNewTitle] = useState('');
   const [notes, setNotes] = useState('');
   const [includeSubItems, setIncludeSubItems] = useState(true);
@@ -56,7 +56,7 @@ export function DuplicatePlanModal({
         'lesson': '/api/etfo-lesson-plans/duplicate',
       }[selectedType];
 
-      if (!endpoint) {
+      if (endpoint === undefined) {
         throw new Error('Invalid plan type selected');
       }
 
@@ -82,7 +82,7 @@ export function DuplicatePlanModal({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (selectedType && selectedPlanId && newTitle) {
+    if (selectedType !== '' && selectedPlanId !== '' && newTitle !== '') {
       duplicateMutation.mutate({});
     }
   };
@@ -116,9 +116,9 @@ export function DuplicatePlanModal({
         </div>
 
         <form className="space-y-4" onSubmit={handleSubmit}>
-          {!planType && (
+          {planType === undefined ? (
             <div>
-              <Label>Plan Type</Label>
+              <Label htmlFor="input">Plan Type</Label>
               <Select value={selectedType} onValueChange={setSelectedType}>
                 <SelectTrigger className="mt-1">
                   <SelectValue placeholder="Select plan type" />
@@ -145,45 +145,45 @@ export function DuplicatePlanModal({
                 </SelectContent>
               </Select>
             </div>
-          )}
+          ) : null}
 
-          {(selectedType || planType) && !planId && (
+          {(selectedType !== '' || planType !== undefined) && planId === undefined ? (
             <div>
-              <Label>Select Plan to Duplicate</Label>
+              <Label htmlFor="input">Select Plan to Duplicate</Label>
               <Select value={selectedPlanId} onValueChange={setSelectedPlanId}>
                 <SelectTrigger className="mt-1">
                   <SelectValue placeholder="Choose a plan" />
                 </SelectTrigger>
                 <SelectContent>
-                  {availablePlans[selectedType as keyof typeof availablePlans].map((plan) => (
+                  {availablePlans[selectedType as keyof typeof availablePlans].map((plan, _index) => (
                     <SelectItem key={plan.id} value={plan.id}>
                       <div>
                         <div className="font-medium">{plan.title}</div>
-                        {'parent' in plan && (
+                        {'parent' in plan ? (
                           <div className="text-xs text-gray-500">{plan.parent}</div>
-                        )}
-                        {'subject' in plan && (
+                        ) : null}
+                        {'subject' in plan ? (
                           <div className="text-xs text-gray-500">
                             {plan.subject} • Grade {plan.grade}
                           </div>
-                        )}
+                        ) : null}
                       </div>
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
             </div>
-          )}
+          ) : null}
 
-          {planTitle && (
+          {planTitle !== undefined ? (
             <div className="p-3 bg-gray-50 rounded-lg">
               <p className="text-sm text-gray-600">Duplicating:</p>
               <p className="font-medium flex items-center gap-2 mt-1">
-                {getTypeIcon(planType || selectedType)}
+                {getTypeIcon(planType ?? selectedType)}
                 {planTitle}
               </p>
             </div>
-          )}
+          ) : null}
 
           <div>
             <Label htmlFor="newTitle">New Plan Title</Label>
@@ -213,7 +213,7 @@ export function DuplicatePlanModal({
             />
           </div>
 
-          {(selectedType === 'long-range' || selectedType === 'unit') && (
+          {(selectedType === 'long-range' || selectedType === 'unit') ? (
             <div className="flex items-center gap-2">
               <input
                 checked={includeSubItems}
@@ -228,7 +228,7 @@ export function DuplicatePlanModal({
                 Include all {selectedType === 'long-range' ? 'units' : 'lessons'} from the original plan
               </Label>
             </div>
-          )}
+          ) : null}
 
           <div className="pt-4 border-t">
             <div className="bg-blue-50 p-3 rounded-lg mb-4">
@@ -253,7 +253,7 @@ export function DuplicatePlanModal({
               </Button>
               <Button
                 className="bg-indigo-600 hover:bg-indigo-700 text-white"
-                disabled={!selectedType || !selectedPlanId || !newTitle || duplicateMutation.isPending}
+                disabled={selectedType === '' || selectedPlanId === '' || newTitle === '' || duplicateMutation.isPending === true}
                 type="submit"
               >
                 {duplicateMutation.isPending ? 'Duplicating...' : 'Duplicate Plan'}

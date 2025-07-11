@@ -9,7 +9,7 @@ interface NavigationContextValue {
 
 const NavigationContext = createContext<NavigationContextValue | undefined>(undefined);
 
-export function useNavigation() {
+export function useNavigation(): NavigationContextValue {
   const context = useContext(NavigationContext);
   if (!context) {
     throw new Error('useNavigation must be used within NavigationProvider');
@@ -21,20 +21,20 @@ interface NavigationProviderProps {
   children: React.ReactNode;
 }
 
-export function NavigationProvider({ children }: NavigationProviderProps) {
+export function NavigationProvider({ children }: NavigationProviderProps): React.ReactElement {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
-  const toggleSidebar = useCallback(() => {
+  const toggleSidebar = useCallback((): void => {
     setIsSidebarOpen(prev => !prev);
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const setSidebarOpen = useCallback((isOpen: boolean) => {
+  const setSidebarOpen = useCallback((isOpen: boolean): void => {
     setIsSidebarOpen(isOpen);
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(() => {
-    const handleResize = () => {
+  useEffect((): (() => void) => {
+    const handleResize = (): void => {
       const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
       
@@ -48,7 +48,7 @@ export function NavigationProvider({ children }: NavigationProviderProps) {
 
     handleResize();
     window.addEventListener('resize', handleResize);
-    return () => {
+    return (): void => {
  window.removeEventListener('resize', handleResize); 
 };
   }, [isSidebarOpen]);

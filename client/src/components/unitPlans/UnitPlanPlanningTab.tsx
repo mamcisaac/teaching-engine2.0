@@ -122,7 +122,7 @@ export const UnitPlanPlanningTab: React.FC<UnitPlanPlanningTabProps> = ({
       </div>
 
       <div>
-        <Label>Key Vocabulary & Terminology</Label>
+        <Label htmlFor="input">Key Vocabulary & Terminology</Label>
         <div className="space-y-2 mt-2">
           {formData.keyVocabulary.map((term, index) => (
             <div key={index} className="flex gap-2">
@@ -162,7 +162,7 @@ export const UnitPlanPlanningTab: React.FC<UnitPlanPlanningTabProps> = ({
       </div>
 
       <div>
-        <Label>Prior Knowledge Requirements</Label>
+        <Label htmlFor="input">Prior Knowledge Requirements</Label>
         <Textarea
           className="mt-2"
           placeholder="What should students already know before starting this unit?"
@@ -188,7 +188,7 @@ export const UnitPlanPlanningTab: React.FC<UnitPlanPlanningTabProps> = ({
       </div>
 
       <div>
-        <Label>Culminating Task Description</Label>
+        <Label htmlFor="input">Culminating Task Description</Label>
         <RichTextEditor
           value={formData.culminatingTask}
           onChange={(value) => {

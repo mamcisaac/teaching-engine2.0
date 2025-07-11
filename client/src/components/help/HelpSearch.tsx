@@ -18,7 +18,7 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
   showFilters = true,
   showSuggestions = true,
   onResultSelect
-}) => {
+}): React.ReactElement => {
   const { query, setQuery, suggestions, popularSearches } = useHelpSearch();
   const { content, availableFilters } = useHelpContent();
   const { state, addFilter, removeFilter, clearFilters } = useHelp();
@@ -27,8 +27,8 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
   const searchRef = useRef<HTMLDivElement>(null);
 
   // Close dropdowns when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+  useEffect((): (() => void) => {
+    const handleClickOutside = (event: MouseEvent): void => {
       if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
         setShowSuggestionsDropdown(false);
         setShowFiltersDropdown(false);
@@ -36,23 +36,23 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
     };
 
     document.addEventListener('mousedown', handleClickOutside);
-    return () => {
+    return (): void => {
  document.removeEventListener('mousedown', handleClickOutside); 
 };
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const handleSearchSubmit = (e: React.FormEvent) => {
+  const handleSearchSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
     setShowSuggestionsDropdown(false);
     // Results will automatically update through the useHelpContent hook
   };
 
-  const handleSuggestionClick = (suggestion: string) => {
+  const handleSuggestionClick = (suggestion: string): void => {
     setQuery(suggestion);
     setShowSuggestionsDropdown(false);
   };
 
-  const handleFilterToggle = (filterValue: string) => {
+  const handleFilterToggle = (filterValue: string): void => {
     if (state.activeFilters.includes(filterValue)) {
       removeFilter(filterValue);
     } else {
@@ -60,7 +60,7 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
     }
   };
 
-  const handleClearAll = () => {
+  const handleClearAll = (): void => {
     setQuery('');
     clearFilters();
   };
@@ -75,11 +75,11 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
             placeholder={placeholder}
             type="text"
             value={query}
-            onChange={(e) => {
+            onChange={(e): void => {
               setQuery(e.target.value);
               setShowSuggestionsDropdown(e.target.value.length > 0 && showSuggestions);
             }}
-            onFocus={() => {
+            onFocus={(): void => {
  setShowSuggestionsDropdown(query.length > 0 && showSuggestions); 
 }}
           />
@@ -95,7 +95,7 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
                 size="sm"
                 type="button"
                 variant="ghost"
-                onClick={() => {
+                onClick={(): void => {
  setShowFiltersDropdown(!showFiltersDropdown); 
 }}
               >
@@ -121,7 +121,7 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
       {state.activeFilters.length > 0 && (
         <div className="mt-2 flex flex-wrap items-center gap-2">
           <span className="text-sm text-gray-500">Filters:</span>
-          {state.activeFilters.map((filter) => (
+          {state.activeFilters.map((filter, _index) => (
             <span
               key={filter}
               className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800"
@@ -130,7 +130,7 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
               <button
                 className="ml-1 text-blue-600 hover:text-blue-800"
                 type="button"
-                onClick={() => {
+                onClick={(): void => {
  removeFilter(filter); 
 }}
               >
@@ -157,11 +157,11 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
           {content.length > 0 && (
             <div className="p-3 border-b border-gray-100">
               <div className="text-xs font-medium text-gray-500 mb-2">Search Results ({content.length})</div>
-              {content.slice(0, 3).map((item) => (
+              {content.slice(0, 3).map((item, _index) => (
                 <button
                   key={item.id}
                   className="w-full text-left p-2 hover:bg-gray-50 rounded text-sm"
-                  onClick={() => {
+                  onClick={(): void => {
                     if (onResultSelect) {
                       onResultSelect(item.id);
                     }
@@ -184,11 +184,11 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
           {suggestions.length > 0 && (
             <div className="p-3 border-b border-gray-100">
               <div className="text-xs font-medium text-gray-500 mb-2">Suggestions</div>
-              {suggestions.map((suggestion, index) => (
+              {suggestions.map((suggestion, _index) => (
                 <button
-                  key={index}
+                  key={_index}
                   className="block w-full text-left p-2 hover:bg-gray-50 rounded text-sm text-gray-700"
-                  onClick={() => {
+                  onClick={(): void => {
  handleSuggestionClick(suggestion); 
 }}
                 >
@@ -202,11 +202,11 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
           {query.length === 0 && (
             <div className="p-3">
               <div className="text-xs font-medium text-gray-500 mb-2">Popular Searches</div>
-              {popularSearches.map((search, index) => (
+              {popularSearches.map((search, _index) => (
                 <button
-                  key={index}
+                  key={_index}
                   className="block w-full text-left p-2 hover:bg-gray-50 rounded text-sm text-gray-700"
-                  onClick={() => {
+                  onClick={(): void => {
  handleSuggestionClick(search); 
 }}
                 >
@@ -239,7 +239,7 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
               <div>
                 <h5 className="text-xs font-medium text-gray-700 mb-2">Difficulty</h5>
                 <div className="space-y-1">
-                  {['beginner', 'intermediate', 'advanced'].map((difficulty) => {
+                  {['beginner', 'intermediate', 'advanced'].map((difficulty, _index) => {
                     const filter = availableFilters.find(f => f.value === difficulty);
                     if (!filter) {
 return null;
@@ -251,7 +251,7 @@ return null;
                           checked={state.activeFilters.includes(difficulty)}
                           className="h-3 w-3 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                           type="checkbox"
-                          onChange={() => {
+                          onChange={(): void => {
  handleFilterToggle(difficulty); 
 }}
                         />
@@ -271,13 +271,13 @@ return null;
                   {availableFilters
                     .filter(f => !['beginner', 'intermediate', 'advanced'].includes(f.value))
                     .slice(0, 8) // Limit to prevent overflow
-                    .map((filter) => (
+                    .map((filter, _index) => (
                       <label key={filter.value} className="flex items-center">
                         <input
                           checked={state.activeFilters.includes(filter.value)}
                           className="h-3 w-3 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                           type="checkbox"
-                          onChange={() => {
+                          onChange={(): void => {
  handleFilterToggle(filter.value); 
 }}
                         />

@@ -13,16 +13,16 @@ export const HelpModal: React.FC<HelpModalProps> = ({
   category,
   showProgress = false,
   nextAction
-}) => {
+}): React.ReactElement => {
   const { markHelpPageViewed } = useHelp();
 
-  React.useEffect(() => {
+  React.useEffect((): void => {
     if (isOpen && title) {
       markHelpPageViewed(title);
     }
   }, [isOpen, title, markHelpPageViewed]);
 
-  const renderContent = () => {
+  const renderContent = (): React.ReactNode => {
     if (typeof content === 'string') {
       return (
         <div className="prose prose-sm max-w-none">
@@ -48,11 +48,11 @@ export const HelpModal: React.FC<HelpModalProps> = ({
         )}
       </div>
       <div className="flex space-x-3">
-        <Button variant="secondary" onClick={onClose}>
+        <Button aria-label="Click button" onClick={onClose}>
           Close
         </Button>
         {nextAction && (
-          <Button variant="primary" onClick={nextAction.action}>
+          <Button aria-label="Click button" onClick={nextAction.action}>
             {nextAction.label}
           </Button>
         )}

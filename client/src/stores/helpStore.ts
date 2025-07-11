@@ -3,6 +3,7 @@ import { persist } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 
 import logger from '../utils/logger';
+import { safeJsonParse } from '../utils/typeGuards';
 
 interface UserProgress {
   helpPagesViewed: string[];
@@ -109,7 +110,7 @@ export const useHelpStore = create<HelpState>()(
       
       nextTutorialStep: (tutorialId: string) => {
         set((state) => {
-          const currentStep = state.tutorialProgress[tutorialId] || 0;
+          const currentStep = state.tutorialProgress[tutorialId] ?? 0;
           state.tutorialProgress[tutorialId] = currentStep + 1;
         });
       },
@@ -155,7 +156,7 @@ export const useHelpStore = create<HelpState>()(
       getTutorialProgress: (tutorialId: string) => {
         const state = get();
         return {
-          currentStep: state.tutorialProgress[tutorialId] || 0,
+          currentStep: state.tutorialProgress[tutorialId] ?? 0,
           isActive: tutorialId in state.tutorialProgress,
           isCompleted: state.completedTutorials.includes(tutorialId)
         };
@@ -189,7 +190,8 @@ export const useHelpStore = create<HelpState>()(
         }),
       deserialize: (str) => {
         try {
-          const parsed = safeJsonParse(str, {});
+          const defaultValue = { state: {}, version: 0 };
+          const parsed = safeJsonParse(str, defaultValue) as { state: Partial<HelpState>; version: number };
           if (parsed.state?.userProgress?.lastVisited) {
             parsed.state.userProgress.lastVisited = new Date(parsed.state.userProgress.lastVisited);
           }

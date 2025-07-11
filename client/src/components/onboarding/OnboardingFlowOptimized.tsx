@@ -22,7 +22,7 @@ const OnboardingLoadingFallback = () => (
   </div>
 );
 
-export function OnboardingFlowOptimized() {
+export function OnboardingFlowOptimized(): React.ReactElement | null {
   const {
     isOnboardingActive,
     currentStep,
@@ -41,22 +41,28 @@ export function OnboardingFlowOptimized() {
 
   // Update highlight position when step changes
   useEffect(() => {
-    if (!currentStep?.targetElement) {
+    return () => { // Cleanup
+    };
+
+    if (currentStep?.targetElement === null || currentStep?.targetElement === undefined || currentStep?.targetElement === '') {
       setHighlightPosition(null);
       return;
     }
 
     const updatePosition = () => {
-      const element = currentStep.targetElement
-        ? document.querySelector(currentStep.targetElement)
-        : null;
-      if (!element) {
+      if (currentStep?.targetElement === null || currentStep?.targetElement === undefined || currentStep?.targetElement === '') {
+        setHighlightPosition(null);
+        return;
+      }
+      
+      const element = document.querySelector(currentStep.targetElement);
+      if (element === null || element === undefined) {
         setHighlightPosition(null);
         return;
       }
 
       const rect = element.getBoundingClientRect();
-      const padding = currentStep.highlightPadding || 8;
+      const padding = currentStep.highlightPadding ?? 8;
 
       setHighlightPosition({
         top: rect.top - padding + window.scrollY,
@@ -71,7 +77,7 @@ export function OnboardingFlowOptimized() {
       let top = rect.top + window.scrollY;
       let left = rect.left + window.scrollX;
 
-      switch (currentStep.position) {
+      switch (currentStep?.position) {
         case 'top':
           top -= tooltipHeight + 20;
           left += rect.width / 2 - tooltipWidth / 2;
@@ -119,13 +125,17 @@ export function OnboardingFlowOptimized() {
 
   // Handle element click if required
   useEffect(() => {
-    if (!currentStep?.targetElement || !currentStep.requiresAction) {
+    return () => { // Cleanup
+    };
+
+    if (currentStep?.targetElement === null || currentStep?.targetElement === undefined || currentStep?.targetElement === '' || currentStep?.requiresAction !== true) {
 return;
 }
 
     const handleClick = (e: MouseEvent) => {
-      const element = document.querySelector(currentStep.targetElement!);
-      if (element && element.contains(e.target as Node)) {
+      if (currentStep?.targetElement === null || currentStep?.targetElement === undefined || currentStep?.targetElement === '') return;
+      const element = document.querySelector(currentStep.targetElement);
+      if (element !== null && element !== undefined && element.contains(e.target as Node)) {
         nextStep();
       }
     };
@@ -136,11 +146,11 @@ return;
 };
   }, [currentStep, nextStep]);
 
-  if (!isOnboardingActive || !currentStep) {
+  if (isOnboardingActive !== true || currentStep === null || currentStep === undefined) {
 return null;
 }
 
-  const isCenter = currentStep.position === 'center' || !currentStep.targetElement;
+  const isCenter = currentStep.position === 'center' || currentStep.targetElement === null || currentStep.targetElement === undefined || currentStep.targetElement === '';
 
   return createPortal(
     <Suspense fallback={<OnboardingLoadingFallback />}>
@@ -154,15 +164,15 @@ return null;
             initial={{ opacity: 0 }}
             onClick={(e) => {
               // Allow clicking through to highlighted element
-              if (highlightPosition && currentStep.requiresAction) {
+              if (highlightPosition !== null && highlightPosition !== undefined && currentStep.requiresAction === true) {
                 e.stopPropagation();
               }
             }}
           >
             {/* Spotlight cutout */}
-            {highlightPosition && (
+            {highlightPosition !== null && highlightPosition !== undefined ? (
               <OnboardingHighlight highlightPosition={highlightPosition} />
-            )}
+            ) : null}
           </motion.div>
 
           {/* Tooltip */}
@@ -180,10 +190,12 @@ return null;
           />
 
           {/* Completion message */}
-          {state.currentFlow?.completionMessage &&
-            state.currentStepIndex === state.currentFlow.steps.length - 1 && (
+          {state.currentFlow?.completionMessage !== null &&
+            state.currentFlow?.completionMessage !== undefined &&
+            state.currentFlow?.completionMessage !== '' &&
+            state.currentStepIndex === state.currentFlow.steps.length - 1 ? (
               <OnboardingProgress completionMessage={state.currentFlow.completionMessage} />
-            )}
+            ) : null}
         </div>
       </AnimatePresence>
     </Suspense>,

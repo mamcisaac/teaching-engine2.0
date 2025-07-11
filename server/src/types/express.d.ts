@@ -1,4 +1,4 @@
-import { Request } from 'express';
+import { Request, Response } from 'express';
 import { EnhancedLogger } from '../logger';
 
 declare global {
@@ -26,6 +26,13 @@ declare global {
       code?: string;
       // Cache control
       cacheEnabled?: boolean;
+    }
+    
+    interface Response {
+      locals: {
+        requestId?: string;
+        [key: string]: any;
+      };
     }
   }
 }

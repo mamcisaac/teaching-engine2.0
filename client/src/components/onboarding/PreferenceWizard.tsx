@@ -24,7 +24,7 @@ interface TeacherPreferences {
   };
 }
 
-export default function PreferenceWizard({ onComplete, onSkip }: PreferenceWizardProps) {
+export default function PreferenceWizard({ onComplete, onSkip }: PreferenceWizardProps): React.ReactElement {
   const [preferences, setPreferences] = useState<TeacherPreferences>({
     grade: '',
     subjects: [],
@@ -318,11 +318,11 @@ export default function PreferenceWizard({ onComplete, onSkip }: PreferenceWizar
 
       {/* Action Buttons */}
       <div className="flex justify-between items-center pt-6">
-        <Button variant="outline" onClick={onSkip}>
+        <Button aria-label="Click button" onClick={onSkip}>
           Skip for Now
         </Button>
         <Button 
-          disabled={!preferences.grade || preferences.subjects.length === 0}
+          disabled={preferences.grade === '' || preferences.subjects.length === 0}
           onClick={handleComplete}
         >
           Save Preferences

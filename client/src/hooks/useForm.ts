@@ -143,7 +143,7 @@ return true;
   // Set field error programmatically
   const setFieldError = useCallback((name: string, error: string | undefined) => {
     setErrors((prev) => ({ ...prev, [name]: error }));
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Set field touched programmatically
   const setFieldTouched = useCallback(

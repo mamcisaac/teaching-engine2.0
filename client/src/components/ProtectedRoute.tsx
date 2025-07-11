@@ -8,7 +8,7 @@ interface ProtectedRouteProps {
   children: React.ReactNode;
 }
 
-export default function ProtectedRoute({ children }: ProtectedRouteProps) {
+export default function ProtectedRoute({ children }: ProtectedRouteProps): React.ReactElement {
   const { isAuthenticated, isLoading, isInitialized } = useAuth();
   const location = useLocation();
 

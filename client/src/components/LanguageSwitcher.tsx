@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { useLanguage } from '../contexts/LanguageContext';
 
-export default function LanguageSwitcher() {
+export default function LanguageSwitcher(): React.ReactElement {
   const { language, setLanguage } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -49,7 +49,7 @@ export default function LanguageSwitcher() {
           {/* Dropdown */}
           <div className="absolute right-0 mt-1 w-48 bg-white rounded-md shadow-lg border border-gray-200 z-20">
             <div className="py-1">
-              {languages.map((lang) => (
+              {languages.map((lang, _index) => (
                 <button
                   key={lang.code}
                   className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-50 flex items-center gap-3 ${

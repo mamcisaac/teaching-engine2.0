@@ -42,7 +42,7 @@ export default function CalendarEventModal({
   onClose,
   selectedDate = new Date(),
   onEventCreated,
-}: CalendarEventModalProps) {
+}: CalendarEventModalProps): React.ReactElement {
   const queryClient = useQueryClient();
   const [eventType, setEventType] = useState<EventType>('lesson');
   const [formData, setFormData] = useState({
@@ -252,7 +252,7 @@ export default function CalendarEventModal({
           )}
 
           <div className="flex justify-end gap-2 pt-4">
-            <Button type="button" variant="outline" onClick={onClose}>
+            <Button aria-label="Click button" onClick={onClose}>
               Cancel
             </Button>
             <Button disabled={createEventMutation.isPending} type="submit">

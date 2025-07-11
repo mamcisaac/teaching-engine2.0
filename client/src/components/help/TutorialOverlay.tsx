@@ -14,11 +14,11 @@ export const TutorialOverlay: React.FC<TutorialOverlayProps> = ({
   onSkip,
   onComplete,
   progress
-}) => {
+}): React.ReactElement | null => {
   const _highlightRef = useRef<HTMLDivElement>(null);
 
   // Highlight target element
-  useEffect(() => {
+  useEffect((): (() => void) | void => {
     if (!isActive || !currentStep?.targetElement) {
 return;
 }
@@ -30,7 +30,7 @@ return;
       // Add highlight class
       targetElement.classList.add('tutorial-highlight');
       
-      return () => {
+      return (): void => {
         targetElement.classList.remove('tutorial-highlight');
       };
     }

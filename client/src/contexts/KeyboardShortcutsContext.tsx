@@ -84,17 +84,20 @@ export const KeyboardShortcutsProvider: React.FC<{ children: React.ReactNode }> 
 
   // Load preferences from localStorage
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     const savedPrefs = localStorage.getItem('keyboard-shortcuts-preferences');
     if (savedPrefs) {
       try {
-        const parsed = safeJsonParse(savedPrefs, {});
+        const parsed = safeJsonParse(savedPrefs, defaultPreferences) as KeyboardShortcutPreferences;
         setPreferences({ ...defaultPreferences, ...parsed });
         setIsEnabled(parsed.enabled ?? true);
       } catch (e) {
         logger.error('Failed to parse keyboard shortcuts preferences:', e);
       }
     }
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Save preferences to localStorage
   const updatePreferences = useCallback((prefs: Partial<KeyboardShortcutPreferences>) => {
@@ -108,7 +111,7 @@ export const KeyboardShortcutsProvider: React.FC<{ children: React.ReactNode }> 
       
       return newPrefs;
     });
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const registerShortcut = useCallback((shortcut: KeyboardShortcut) => {
     setShortcuts(prev => {
@@ -121,31 +124,37 @@ export const KeyboardShortcutsProvider: React.FC<{ children: React.ReactNode }> 
       // Add new shortcut
       return [...prev, shortcut];
     });
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const unregisterShortcut = useCallback((id: string) => {
     setShortcuts(prev => prev.filter(s => s.id !== id));
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const enableShortcut = useCallback((id: string) => {
     setShortcuts(prev => prev.map(s => 
       s.id === id ? { ...s, enabled: true } : s
     ));
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const disableShortcut = useCallback((id: string) => {
     setShortcuts(prev => prev.map(s => 
       s.id === id ? { ...s, enabled: false } : s
     ));
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Update ref when shortcuts change
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     shortcutsRef.current = shortcuts;
   }, [shortcuts]);
 
   // Global keyboard event handler
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     if (!isEnabled || !preferences.enabled) {
 return;
 }

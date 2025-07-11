@@ -11,6 +11,9 @@ export function useFeatureTutorial() {
   const location = useLocation();
 
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     // Don't start tutorials if main onboarding is active or user has skipped
     if (state.currentFlow || state.skippedOnboarding || !state.isFirstTimeUser) {
       return;

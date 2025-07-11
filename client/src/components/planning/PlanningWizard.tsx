@@ -111,7 +111,7 @@ export function PlanningWizard({
   currentLevel: _currentLevel, 
   completedLevels = [], 
   onClose 
-}: PlanningWizardProps) {
+}: PlanningWizardProps): React.ReactElement {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
   
@@ -198,7 +198,7 @@ export function PlanningWizard({
                   <h3 className="text-lg font-semibold">
                     Step {currentStep + 1}: {currentStepData.title}
                   </h3>
-                  {currentStepData.isAIAssisted && (
+                  {currentStepData.isAIAssisted === true && (
                     <span className="inline-flex items-center gap-1 text-xs bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded-full">
                       <Sparkles className="h-3 w-3" />
                       AI-Assisted
@@ -226,7 +226,7 @@ export function PlanningWizard({
                   </div>
                 </div>
                 
-                {isStepCompleted && (
+                {isStepCompleted === true && (
                   <div className="mt-4 p-3 bg-green-50 rounded-lg flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
                     <p className="text-sm text-green-800">

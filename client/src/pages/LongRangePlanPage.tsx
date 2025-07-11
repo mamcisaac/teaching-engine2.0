@@ -125,7 +125,7 @@ export default function LongRangePlanPage() {
  setSelectedYear(e.target.value); 
 }}
           >
-            {[0, 1, 2].map((offset) => {
+            {[0, 1, 2].map((offset, _index) => {
               const year = new Date().getFullYear() - 1 + offset;
               return (
                 <option key={year} value={`${year}-${year + 1}`}>
@@ -189,7 +189,7 @@ export default function LongRangePlanPage() {
         </div>
       ) : (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {plans.map((plan: LongRangePlan) => (
+          {plans.map((plan: LongRangePlan, _index) => (
             <Link
               key={plan.id}
               className="block bg-white rounded-lg shadow hover:shadow-lg transition-shadow border border-gray-200"
@@ -204,7 +204,7 @@ export default function LongRangePlanPage() {
                     </p>
                   </div>
                   <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
-                    {plan.term || 'Full Year'}
+                    {plan.term ?? 'Full Year'}
                   </span>
                 </div>
 
@@ -234,9 +234,9 @@ export default function LongRangePlanPage() {
 
                 {plan.themes && plan.themes.length > 0 && (
                   <div className="mt-4 flex flex-wrap gap-2">
-                    {plan.themes.slice(0, 3).map((theme, index) => (
+                    {plan.themes.slice(0, 3).map((theme, _index) => (
                       <span
-                        key={index}
+                        key={_index}
                         className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-gray-100 text-gray-700"
                       >
                         {theme}
@@ -495,7 +495,7 @@ export default function LongRangePlanPage() {
             </div>
 
             <div className="flex justify-end gap-3 pt-4">
-              <Button type="button" variant="outline" onClick={() => {
+              <Button aria-label="Click button" onClick={() => {
  setIsCreateModalOpen(false); 
 }}>
                 Cancel

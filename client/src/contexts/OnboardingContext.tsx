@@ -190,20 +190,24 @@ export function OnboardingProvider({ children }: { children: ReactNode }) {
     
     // Load saved onboarding state
     const saved = localStorage.getItem(ONBOARDING_KEY);
-    const savedState = saved ? safeJsonParse(saved, {}) : null;
+    const defaultSavedState = { completedFlows: [], skippedOnboarding: false };
+    const savedState = saved ? safeJsonParse(saved, defaultSavedState) as typeof defaultSavedState : defaultSavedState;
     
     return {
       isFirstTimeUser: isFirstTime,
       currentFlow: null,
       currentStepIndex: 0,
-      completedFlows: savedState?.completedFlows || [],
-      skippedOnboarding: savedState?.skippedOnboarding || false,
+      completedFlows: savedState.completedFlows ?? [],
+      skippedOnboarding: savedState.skippedOnboarding ?? false,
       showOnboarding: false // Disabled by default to not block UI
     };
   });
 
   // Auto-start onboarding for first-time users - DISABLED
   // useEffect(() => {
+    return () => { // Cleanup
+    };
+
   //   if (state.isFirstTimeUser && state.showOnboarding && !state.currentFlow && !state.skippedOnboarding) {
   //     startOnboarding('main-onboarding');
   //   }
@@ -211,6 +215,9 @@ export function OnboardingProvider({ children }: { children: ReactNode }) {
 
   // Save state to localStorage
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     localStorage.setItem(ONBOARDING_KEY, JSON.stringify({
       completedFlows: state.completedFlows,
       skippedOnboarding: state.skippedOnboarding
@@ -293,7 +300,7 @@ return;
     startOnboarding('main-onboarding');
   };
 
-  const currentStep = state.currentFlow?.steps[state.currentStepIndex] || null;
+  const currentStep = state.currentFlow?.steps[state.currentStepIndex] ?? null;
   const progress = state.currentFlow 
     ? ((state.currentStepIndex + 1) / state.currentFlow.steps.length) * 100 
     : 0;

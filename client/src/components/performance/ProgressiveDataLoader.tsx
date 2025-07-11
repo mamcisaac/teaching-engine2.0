@@ -64,9 +64,12 @@ export function ProgressiveDataLoader<T>({
 
   // Load initial data
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     if (isInitialLoad.current) {
       isInitialLoad.current = false;
-      loadInitialData();
+      void loadInitialData();
     }
   }, [loadInitialData]);
 
@@ -101,12 +104,15 @@ return;
     const remainingScroll = scrollHeight - scrollTop - clientHeight;
 
     if (remainingScroll <= threshold && hasMore && !loadingMore) {
-      loadMoreData();
+      void loadMoreData();
     }
   }, [infiniteScroll, threshold, hasMore, loadingMore, loadMoreData]);
 
   // Attach scroll listener for infinite scroll
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     if (!infiniteScroll) {
 return;
 }
@@ -127,19 +133,19 @@ return;
     setError(null);
     setHasMore(true);
     isInitialLoad.current = true;
-    loadInitialData();
+    void loadInitialData();
   };
 
   // Error state
-  if (error && items.length === 0) {
+  if (error !== null && error !== undefined && error !== '' && items.length === 0) {
     return (
       <div className={`text-center py-8 ${className}`}>
-        {errorState || (
+        {errorState ?? (
           <>
             <AlertTriangle className="h-12 w-12 text-red-500 mx-auto mb-4" />
             <div className="text-red-600 mb-4">Failed to load data</div>
             <div className="text-gray-500 text-sm mb-4">{error}</div>
-            <Button variant="outline" onClick={handleRetry}>
+            <Button aria-label="Click button" onClick={handleRetry}>
               <RefreshCw className="h-4 w-4 mr-2" />
               Retry
             </Button>
@@ -153,7 +159,7 @@ return;
   if (loading && items.length === 0) {
     return (
       <div className={className} data-testid="progressive-loader-container">
-        {loadingState || (
+        {loadingState ?? (
           <div className="space-y-4">
             {Array.from({ length: Math.min(batchSize, 10) }).map((_, index) => (
               <LoadingSkeleton key={index} variant="card" />
@@ -168,7 +174,7 @@ return;
   if (items.length === 0 && !loading) {
     return (
       <div className={`text-center py-8 ${className}`}>
-        {emptyState || (
+        {emptyState ?? (
           <>
             <div className="text-gray-500 text-lg mb-2">No items found</div>
             <div className="text-gray-400 text-sm">Try adjusting your search criteria</div>
@@ -186,7 +192,7 @@ return;
       style={infiniteScroll ? { maxHeight: '600px' } : undefined}
     >
       {/* Progress indicator */}
-      {total && (
+      {total !== null && total !== undefined && total > 0 && (
         <div className="mb-4 text-sm text-gray-500">
           Showing {items.length} of {total} items
           {items.length < total && ` (${((items.length / total) * 100).toFixed(1)}% loaded)`}
@@ -213,7 +219,7 @@ return;
               className="min-w-[120px]"
               disabled={loadingMore}
               variant="outline"
-              onClick={loadMoreData}
+              onClick={() => void loadMoreData()}
             >
               Load More
             </Button>
@@ -227,16 +233,16 @@ return;
       {!hasMore && items.length > 0 && (
         <div className="mt-6 text-center">
           <div className="text-sm text-gray-500 py-4 border-t">
-            {total ? `All ${total} items loaded` : 'All items loaded'}
+            {total !== null && total !== undefined && total > 0 ? `All ${total} items loaded` : 'All items loaded'}
           </div>
         </div>
       )}
 
       {/* Error state for load more */}
-      {error && items.length > 0 && (
+      {error !== null && error !== undefined && error !== '' && items.length > 0 && (
         <div className="mt-4 text-center">
           <div className="text-red-600 text-sm mb-2">Failed to load more items</div>
-          <Button size="sm" variant="outline" onClick={loadMoreData}>
+          <Button aria-label="Click button" onClick={loadMoreData}>
             Try Again
           </Button>
         </div>

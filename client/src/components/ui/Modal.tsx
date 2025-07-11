@@ -26,11 +26,11 @@ export const Modal: React.FC<ModalProps> = ({
   footer,
   closeOnOverlayClick = true,
   closeOnEscape = true,
-}) => {
+}): React.ReactElement | null => {
   const modalRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
+  useEffect((): (() => void) => {
+    const handleEscape = (event: KeyboardEvent): void => {
       if (closeOnEscape && event.key === 'Escape') {
         onClose();
       }
@@ -47,7 +47,7 @@ export const Modal: React.FC<ModalProps> = ({
     };
   }, [isOpen, onClose, closeOnEscape]);
 
-  const handleOverlayClick = (event: React.MouseEvent) => {
+  const handleOverlayClick = (event: React.MouseEvent): void => {
     if (closeOnOverlayClick && event.target === event.currentTarget) {
       onClose();
     }
@@ -160,12 +160,12 @@ export const ModalFooter: React.FC<ModalFooterProps> = ({
   confirmText = 'Confirm',
   confirmVariant = 'primary',
   loading = false,
-}) => (
+}): React.ReactElement => (
     <div className="flex justify-end space-x-3">
-      <Button disabled={loading} variant="secondary" onClick={onCancel}>
+      <Button aria-label="Click button" onClick={onCancel} disabled={loading}>
         {cancelText}
       </Button>
-      <Button loading={loading} variant={confirmVariant} onClick={onConfirm}>
+      <Button aria-label="Click button" onClick={onConfirm} variant={confirmVariant} disabled={loading}>
         {confirmText}
       </Button>
     </div>

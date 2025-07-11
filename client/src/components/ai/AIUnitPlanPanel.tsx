@@ -70,7 +70,7 @@ export function AIUnitPlanPanel({
   onSuggestionAccepted,
   onUnitGenerated,
   className = '',
-}: AIUnitPlanPanelProps) {
+}: AIUnitPlanPanelProps): React.ReactElement {
   const { toast } = useToast();
   const { canUseAI, aiDisabledReason } = useAIStatus();
   const { available: _planGenerationAvailable } = useAIFeature('planGeneration');
@@ -120,7 +120,7 @@ export function AIUnitPlanPanel({
     if (!canUseAI) {
       toast({
         title: 'AI Unavailable',
-        description: aiDisabledReason || 'AI features are currently unavailable.',
+        description: aiDisabledReason !== null && aiDisabledReason !== undefined && aiDisabledReason !== '' ? aiDisabledReason : 'AI features are currently unavailable.',
         variant: 'destructive',
       });
       return;
@@ -190,7 +190,7 @@ export function AIUnitPlanPanel({
     if (!canUseAI) {
       toast({
         title: 'AI Unavailable',
-        description: aiDisabledReason || 'AI features are currently unavailable.',
+        description: aiDisabledReason !== null && aiDisabledReason !== undefined && aiDisabledReason !== '' ? aiDisabledReason : 'AI features are currently unavailable.',
         variant: 'destructive',
       });
       return;
@@ -425,7 +425,7 @@ export function AIUnitPlanPanel({
                     placeholder="Add focus area (e.g., Scientific Method)"
                     onKeyPress={(e) => e.key === 'Enter' && addFocusArea()}
                   />
-                  <Button size="sm" type="button" onClick={addFocusArea}>
+                  <Button aria-label="Click button" onClick={addFocusArea}>
                     <Plus className="h-4 w-4" />
                   </Button>
                 </div>
@@ -461,7 +461,7 @@ export function AIUnitPlanPanel({
 
               {curriculumExpectations.length > 0 && (
                 <div>
-                  <Label>Curriculum Expectations ({curriculumExpectations.length})</Label>
+                  <Label htmlFor="input">Curriculum Expectations ({curriculumExpectations.length})</Label>
                   <div className="mt-2 space-y-1 max-h-32 overflow-y-auto">
                     {curriculumExpectations.map((exp, _index) => (
                       <div key={exp.id} className="text-sm p-2 bg-gray-50 rounded">
@@ -533,7 +533,7 @@ export function AIUnitPlanPanel({
                           {suggestion.type === 'assessments' && <Target className="h-4 w-4" />}
                           {suggestion.type.replace(/([A-Z])/g, ' $1').trim()}
                         </CardTitle>
-                        {suggestion.rationale && (
+                        {suggestion.rationale !== null && suggestion.rationale !== undefined && suggestion.rationale !== '' && (
                           <CardDescription>{suggestion.rationale}</CardDescription>
                         )}
                       </CardHeader>

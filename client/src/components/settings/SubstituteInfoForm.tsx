@@ -1,20 +1,20 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // TODO: Substitute info hooks not yet implemented - using substitute plan hooks instead
 // import { useSubstituteInfo, useSaveSubstituteInfo } from '../../api';
 // import { useSubstitutePlans } from '../../api';
 
-export default function SubstituteInfoForm() {
+export default function SubstituteInfoForm(): React.ReactElement {
   // TODO: Substitute info hooks not yet implemented
   // const { data } = useSubstituteInfo();
   // const save = useSaveSubstituteInfo();
 
   // Mock data - in reality this would come from the API
   const data = null as { procedures?: string; allergies?: string } | null;
-  const save = { mutate: (_data: { procedures: string; allergies: string }) => {} }; // Placeholder
+  const save = { mutate: (_data: { procedures: string; allergies: string }): void => {} }; // Placeholder
   const [procedures, setProcedures] = useState('');
   const [allergies, setAllergies] = useState('');
 
-  useEffect(() => {
+  useEffect((): void => {
     // Since data is always null in this mock, skip the update
     // When real hooks are implemented, this will work properly
     if (data && typeof data === 'object') {
@@ -23,7 +23,7 @@ export default function SubstituteInfoForm() {
     }
   }, [data]);
 
-  const handleSave = () => {
+  const handleSave = (): void => {
     save.mutate({ procedures, allergies });
   };
 
@@ -34,7 +34,7 @@ export default function SubstituteInfoForm() {
         maxLength={1000}
         placeholder="Procedures"
         value={procedures}
-        onChange={(e) => {
+        onChange={(e): void => {
  setProcedures(e.target.value); 
 }}
       />
@@ -43,7 +43,7 @@ export default function SubstituteInfoForm() {
         maxLength={1000}
         placeholder="Allergies"
         value={allergies}
-        onChange={(e) => {
+        onChange={(e): void => {
  setAllergies(e.target.value); 
 }}
       />

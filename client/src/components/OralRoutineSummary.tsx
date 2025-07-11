@@ -4,7 +4,7 @@ interface OralRoutineSummaryProps {
   className?: string;
 }
 
-export default function OralRoutineSummary({ className = '' }: OralRoutineSummaryProps) {
+export default function OralRoutineSummary({ className = '' }: OralRoutineSummaryProps): React.ReactElement {
   // Get current week
   const today = new Date();
   const startOfWeek = new Date(today);

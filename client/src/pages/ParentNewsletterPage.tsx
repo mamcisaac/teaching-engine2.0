@@ -54,8 +54,11 @@ export default function ParentNewsletterPage() {
 
   // Effects
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     if (currentNewsletter && !showCreateForm) {
-      setSelectedStudentIds(currentNewsletter.studentIds || []);
+      setSelectedStudentIds(currentNewsletter.studentIds ?? []);
       setDateRange({
         from: new Date(currentNewsletter.dateFrom),
         to: new Date(currentNewsletter.dateTo)
@@ -239,7 +242,7 @@ return;
                 Newsletter Tone
               </label>
               <div className="flex gap-3">
-                {(['friendly', 'formal', 'informative'] as NewsletterTone[]).map((toneOption) => (
+                {(['friendly', 'formal', 'informative'] as NewsletterTone[]).map((toneOption, _index) => (
                   <button
                     key={toneOption}
                     className={cn(
@@ -403,7 +406,7 @@ return;
       {/* Newsletter drafts */}
       {drafts && drafts.length > 0 ? (
         <div className="grid gap-6">
-          {drafts.map((draft) => (
+          {drafts.map((draft, _index) => (
             <div key={draft.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
               <div className="flex items-start justify-between">
                 <div className="flex-1">

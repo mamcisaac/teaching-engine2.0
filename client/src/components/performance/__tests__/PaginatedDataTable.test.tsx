@@ -276,4 +276,138 @@ describe('PaginatedDataTable', () => {
       expect(screen.getByText(/no data available/i)).toBeInTheDocument();
     });
   });
+
+  it('handles sortable and filterable flags correctly', async () => {
+    const mockData = {
+      items: [{ id: 1, name: 'Test', category: 'A' }],
+      total: 1,
+      page: 1,
+      totalPages: 1,
+    };
+
+    mockFetch.mockResolvedValue(mockData);
+
+    const columns = [
+      { key: 'id', label: 'ID', sortable: true },
+      { key: 'name', label: 'Name', sortable: false },
+      { key: 'category', label: 'Category', filterable: true },
+    ];
+
+    render(
+      <TestWrapper>
+        <PaginatedDataTable
+          columns={columns}
+          fetchData={mockFetch}
+          pageSize={10}
+        />
+      </TestWrapper>
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText('Test')).toBeInTheDocument();
+    });
+
+    // ID column should be sortable (has cursor-pointer class)
+    const idHeader = screen.getByText('ID').closest('th');
+    expect(idHeader).toHaveClass('cursor-pointer');
+
+    // Name column should not be sortable
+    const nameHeader = screen.getByText('Name').closest('th');
+    expect(nameHeader).not.toHaveClass('cursor-pointer');
+
+    // Category column should have filter input
+    expect(screen.getByPlaceholderText(/filter by category/i)).toBeInTheDocument();
+  });
+
+  it('handles null and undefined values in cells', async () => {
+    const mockData = {
+      items: [
+        { id: 1, name: null, category: undefined },
+        { id: 2, name: 'Item 2', category: 'Category B' },
+      ],
+      total: 2,
+      page: 1,
+      totalPages: 1,
+    };
+
+    mockFetch.mockResolvedValue(mockData);
+
+    const columns = [
+      { key: 'id', label: 'ID' },
+      { key: 'name', label: 'Name' },
+      { key: 'category', label: 'Category' },
+    ];
+
+    render(
+      <TestWrapper>
+        <PaginatedDataTable
+          columns={columns}
+          fetchData={mockFetch}
+          pageSize={10}
+        />
+      </TestWrapper>
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText('1')).toBeInTheDocument();
+    });
+
+    // Check that null/undefined values are rendered as empty strings
+    const cells = screen.getAllByRole('cell');
+    const nameCellContent = cells[1].textContent;
+    const categoryCellContent = cells[2].textContent;
+    
+    expect(nameCellContent).toBe('');
+    expect(categoryCellContent).toBe('');
+  });
+
+  it('shows loading overlay when refetching data', async () => {
+    const mockData = {
+      items: [{ id: 1, name: 'Item 1' }],
+      total: 1,
+      page: 1,
+      totalPages: 1,
+    };
+
+    let resolvePromise;
+    const pendingPromise = new Promise((resolve) => {
+      resolvePromise = resolve;
+    });
+
+    mockFetch
+      .mockResolvedValueOnce(mockData)
+      .mockReturnValueOnce(pendingPromise);
+
+    const columns = [
+      { key: 'id', label: 'ID' },
+      { key: 'name', label: 'Name', sortable: true },
+    ];
+
+    render(
+      <TestWrapper>
+        <PaginatedDataTable
+          columns={columns}
+          fetchData={mockFetch}
+          pageSize={10}
+        />
+      </TestWrapper>
+    );
+
+    // Wait for initial data to load
+    await waitFor(() => {
+      expect(screen.getByText('Item 1')).toBeInTheDocument();
+    });
+
+    // Click to sort (triggers refetch)
+    fireEvent.click(screen.getByText('Name'));
+
+    // Loading overlay should appear while keeping existing data visible
+    await waitFor(() => {
+      const loadingOverlay = screen.queryByTestId('loading-skeleton');
+      expect(loadingOverlay).toBeInTheDocument();
+    });
+
+    // Resolve the promise to complete the test
+    resolvePromise(mockData);
+  });
 });

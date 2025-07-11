@@ -9,6 +9,7 @@ import { z } from 'zod';
 import logger from '../logger';
 import { prisma } from '../prisma';
 import { cuidSchema } from '../validation';
+import { safeJsonParse } from '../utils/type-guards';
 const router = Router();
 
 // Rate limiting for state operations

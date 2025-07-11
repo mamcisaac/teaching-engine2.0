@@ -69,7 +69,7 @@ function MainLayoutContent({ children }: MainLayoutProps) {
   );
 }
 
-export default function MainLayout({ children }: MainLayoutProps) {
+export default function MainLayout({ children }: MainLayoutProps): React.ReactElement {
   return (
     <NavigationProvider>
       <MainLayoutContent>{children}</MainLayoutContent>

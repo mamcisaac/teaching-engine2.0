@@ -30,7 +30,7 @@ export default function BilingualTextInput({
   multiline = false,
   rows = 3,
   className = '',
-}: BilingualTextInputProps) {
+}: BilingualTextInputProps): React.ReactElement {
   const { t, language } = useLanguage();
   const [showBothLanguages, setShowBothLanguages] = useState(false);
 

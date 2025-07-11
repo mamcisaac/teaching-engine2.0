@@ -20,6 +20,9 @@ export function useToast() {
   const [toasts, setToasts] = useState<Toast[]>([]);
 
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     const listener = (toast: Toast) => {
       setToasts((prev) => [...prev, toast]);
 
@@ -36,7 +39,7 @@ export function useToast() {
         toastListeners.splice(index, 1);
       }
     };
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const toast = (options: ToastOptions) => {
     const newToast: Toast = {

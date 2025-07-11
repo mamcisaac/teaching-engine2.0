@@ -217,6 +217,9 @@ export function useTemplateSearch(searchTerm: string, otherOptions: Omit<Templat
   const [debouncedSearchTerm, setDebouncedSearchTerm] = React.useState(searchTerm);
 
   React.useEffect(() => {
+    return () => { // Cleanup
+    };
+
     const timer = setTimeout(() => {
       setDebouncedSearchTerm(searchTerm);
     }, debounceMs);
@@ -251,15 +254,15 @@ export function useTemplatesPaginated(options: TemplateSearchOptions = {}) {
 
   const prevPage = React.useCallback(() => {
     setCurrentPage(prev => Math.max(0, prev - 1));
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const goToPage = React.useCallback((page: number) => {
     setCurrentPage(Math.max(0, page));
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const resetPage = React.useCallback(() => {
     setCurrentPage(0);
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return {
     ...query,

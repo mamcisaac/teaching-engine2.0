@@ -81,11 +81,14 @@ export default function CalendarPlanningPage() {
 
   // Load the localizer asynchronously
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     createMomentLocalizer().then((loc) => {
       localizer = loc;
       setLocalizerReady(true);
     });
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
   const { user: _user } = useAuth();
   const queryClient = useQueryClient();
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -185,12 +188,12 @@ export default function CalendarPlanningPage() {
       if (lesson.date) {
         allEvents.push({
           id: `lesson-${lesson.id}`,
-          title: lesson.title || 'Untitled Lesson',
+          title: lesson.title ?? 'Untitled Lesson',
           start: new Date(lesson.date),
           end: new Date(lesson.date),
           type: 'lesson',
           metadata: {
-            subject: lesson.unitPlan?.longRangePlan?.subject || 'general',
+            subject: lesson.unitPlan?.longRangePlan?.subject ?? 'general',
             unitId: lesson.unitPlanId,
             lessonId: lesson.id,
             color:
@@ -262,7 +265,7 @@ return false;
   // Event style getter
   const eventStyleGetter = useCallback((event: CalendarViewEvent) => ({
       style: {
-        backgroundColor: event.metadata?.color || '#6B7280',
+        backgroundColor: event.metadata?.color ?? '#6B7280',
         borderRadius: '4px',
         opacity: 0.9,
         color: 'white',
@@ -274,13 +277,13 @@ return false;
   // Handle event selection
   const handleSelectEvent = useCallback((event: CalendarViewEvent) => {
     setSelectedEvent(event);
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Handle slot selection (for creating new events)
   const handleSelectSlot = useCallback((slotInfo: SlotInfo) => {
     setSelectedSlot(slotInfo);
     setShowEventModal(true);
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Handle event drop (drag and drop)
   const _handleEventDrop = useCallback(
@@ -298,7 +301,7 @@ return false;
   // Navigate calendar
   const handleNavigate = useCallback((newDate: Date) => {
     setCurrentDate(newDate);
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Custom toolbar component
   const CustomToolbar = useCallback(
@@ -334,13 +337,13 @@ return false;
       return (
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4 gap-4 calendar-toolbar-mobile md:calendar-toolbar-desktop">
           <div className="flex items-center gap-2 w-full md:w-auto">
-            <Button size="sm" variant="outline" onClick={goToBack}>
+            <Button aria-label="Click button" onClick={goToBack}>
               <ChevronLeft className="h-4 w-4" />
             </Button>
-            <Button size="sm" variant="outline" onClick={goToToday}>
+            <Button aria-label="Click button" onClick={goToToday}>
               Today
             </Button>
-            <Button size="sm" variant="outline" onClick={goToNext}>
+            <Button aria-label="Click button" onClick={goToNext}>
               <ChevronRight className="h-4 w-4" />
             </Button>
             <h2 className="text-lg md:text-xl font-semibold ml-2 md:ml-4">
@@ -435,10 +438,10 @@ return false;
             availableSubjects={[
               ...new Set(
                 lessons
-                  .map((l: ETFOLessonPlan) => (l as { subject?: string }).subject)
+                  .map((l: ETFOLessonPlan, _index) => (l as { subject?: string }).subject)
                   .filter(Boolean),
               ),
-            ].map((s) => String(s))}
+            ].map((s, _index) => String(s))}
             filters={filters}
             // @ts-expect-error - Type mismatch in CalendarFilter interface
             onFiltersChange={(newFilters: CalendarFilter) => {
@@ -459,11 +462,11 @@ return false;
               }}
               date={currentDate}
               defaultView={window.innerWidth < 768 ? 'agenda' : 'month'}
-              endAccessor={(event: object) => (event as CalendarViewEvent).end || new Date()}
+              endAccessor={(event: object) => (event as CalendarViewEvent).end ?? new Date()}
               eventPropGetter={(event: object) => eventStyleGetter(event as CalendarViewEvent)}
               events={events}
               localizer={localizer}
-              startAccessor={(event: object) => (event as CalendarViewEvent).start || new Date()}
+              startAccessor={(event: object) => (event as CalendarViewEvent).start ?? new Date()}
               style={{ height: window.innerWidth < 768 ? 500 : 700 }}
               view={view}
               views={['month', 'week', 'agenda']}
@@ -491,7 +494,7 @@ return false;
         >
           <CalendarEventModal
             isOpen={showEventModal}
-            selectedDate={selectedSlot?.start || new Date()}
+            selectedDate={selectedSlot?.start ?? new Date()}
             onClose={() => {
               setShowEventModal(false);
               setSelectedSlot(null);

@@ -7,17 +7,17 @@ interface TooltipProps {
   className?: string;
 }
 
-export function Tooltip({ content, children, className = '' }: TooltipProps) {
+export function Tooltip({ content, children, className = '' }: TooltipProps): React.ReactElement {
   const [isVisible, setIsVisible] = useState(false);
 
   return (
     <div className="relative inline-block">
       <div
         className={className}
-        onMouseEnter={() => {
+        onMouseEnter={(): void => {
  setIsVisible(true); 
 }}
-        onMouseLeave={() => {
+        onMouseLeave={(): void => {
  setIsVisible(false); 
 }}
       >
@@ -40,7 +40,7 @@ interface InfoTooltipProps {
   className?: string;
 }
 
-export function InfoTooltip({ content, className = '' }: InfoTooltipProps) {
+export function InfoTooltip({ content, className = '' }: InfoTooltipProps): React.ReactElement {
   return (
     <Tooltip className={`inline-flex items-center ml-1 ${className}`} content={content}>
       <HelpCircle className="h-4 w-4 text-gray-400 hover:text-gray-600 cursor-help" />

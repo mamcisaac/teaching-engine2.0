@@ -4,7 +4,7 @@ interface Props {
   weekStart: string;
 }
 
-export default function DownloadPrintablesButton({ weekStart }: Props) {
+export default function DownloadPrintablesButton({ weekStart }: Props): React.ReactElement {
   const handleClick = async () => {
     const blob = await planningApi.downloadPrintables(weekStart);
     const url = window.URL.createObjectURL(blob);

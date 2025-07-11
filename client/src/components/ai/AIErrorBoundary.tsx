@@ -55,7 +55,7 @@ export class AIErrorBoundary extends Component<Props, State> {
     return { hasError: true, error };
   }
 
-  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
     this.setState({ errorInfo });
 
     // Log AI-specific errors with context
@@ -67,7 +67,7 @@ export class AIErrorBoundary extends Component<Props, State> {
     logger.error('========================');
 
     // Report to monitoring service if available
-    if (window.gtag) {
+    if (window.gtag !== undefined) {
       window.gtag('event', 'ai_error', {
         event_category: 'AI Integration',
         event_label: (error instanceof Error ? error.message : String(error)),
@@ -117,7 +117,7 @@ export class AIErrorBoundary extends Component<Props, State> {
     } as AIError;
   }
 
-  private handleRetry = () => {
+  private handleRetry = (): void => {
     if (this.state.retryCount >= this.maxRetries) {
       return;
     }
@@ -130,22 +130,24 @@ export class AIErrorBoundary extends Component<Props, State> {
     }));
 
     // Call external retry handler if provided
-    if (this.props.onRetry) {
+    if (this.props.onRetry !== undefined) {
       this.props.onRetry();
     }
 
     // Auto-retry with exponential backoff for retryable errors
-    const aiError = this.classifyError(this.state.error!);
-    if (aiError.retryable) {
+    if (this.state.error) {
+      const aiError = this.classifyError(this.state.error);
+      if (aiError.retryable === true) {
       const delay = Math.pow(2, this.state.retryCount) * 1000; // 1s, 2s, 4s
       this.retryTimeout = setTimeout(() => {
         // Force re-render to trigger retry
         this.forceUpdate();
-      }, delay);
+        }, delay);
+      }
     }
   };
 
-  private handleManualFallback = () => {
+  private handleManualFallback = (): void => {
     // Switch to manual mode - hide AI features
     this.setState({
       hasError: false,
@@ -160,13 +162,13 @@ export class AIErrorBoundary extends Component<Props, State> {
     window.location.reload();
   };
 
-  componentWillUnmount() {
-    if (this.retryTimeout) {
+  componentWillUnmount(): void {
+    if (this.retryTimeout !== undefined) {
       clearTimeout(this.retryTimeout);
     }
   }
 
-  private getErrorIcon(type: AIErrorType) {
+  private getErrorIcon(type: AIErrorType): React.ReactElement {
     switch (type) {
       case AIErrorType.API_KEY_MISSING:
         return <Settings className="h-6 w-6" />;
@@ -194,15 +196,15 @@ export class AIErrorBoundary extends Component<Props, State> {
     }
   }
 
-  render() {
+  render(): React.ReactNode {
     if (this.state.hasError && this.state.error) {
-      if (this.props.fallback) {
+      if (this.props.fallback !== undefined && this.props.fallback !== null) {
         return this.props.fallback;
       }
 
       const aiError = this.classifyError(this.state.error);
       const canRetry = this.state.retryCount < this.maxRetries;
-      const severity = this.getErrorSeverity(aiError.type!);
+      const severity = this.getErrorSeverity(aiError.type ?? AIErrorType.UNKNOWN);
 
       return (
         <div className="min-h-[200px] flex items-center justify-center p-6">
@@ -217,7 +219,7 @@ export class AIErrorBoundary extends Component<Props, State> {
                 'text-yellow-600': severity === 'warning',
                 'text-blue-600': severity === 'info',
               })}>
-                {this.getErrorIcon(aiError.type!)}
+                {this.getErrorIcon(aiError.type ?? AIErrorType.UNKNOWN)}
                 <div className="flex-1">
                   <h3 
                     className="font-semibold mb-2"
@@ -248,7 +250,7 @@ export class AIErrorBoundary extends Component<Props, State> {
                     className="flex flex-wrap gap-2"
                     role="group"
                   >
-                    {canRetry && aiError.retryable && (
+                    {canRetry && aiError.retryable === true && (
                       <Button
                         aria-label="Retry AI generation"
                         className="gap-2"
@@ -261,7 +263,7 @@ export class AIErrorBoundary extends Component<Props, State> {
                       </Button>
                     )}
 
-                    {this.props.enableManualFallback && (
+                    {this.props.enableManualFallback === true && (
                       <Button
                         aria-label="Continue creating content manually without AI assistance"
                         className="gap-2"
@@ -295,11 +297,11 @@ export class AIErrorBoundary extends Component<Props, State> {
                       <div className="mt-2 p-2 bg-gray-100 rounded text-xs font-mono">
                         <div><strong>Type:</strong> {aiError.type}</div>
                         <div><strong>Message:</strong> {this.state.error instanceof Error ? this.state.error.message : String(this.state.error)}</div>
-                        {aiError.statusCode && (
+                        {aiError.statusCode !== undefined && (
                           <div><strong>Status:</strong> {aiError.statusCode}</div>
                         )}
-                        <div><strong>Retryable:</strong> {aiError.retryable ? 'Yes' : 'No'}</div>
-                        {this.state.errorInfo && (
+                        <div><strong>Retryable:</strong> {aiError.retryable === true ? 'Yes' : 'No'}</div>
+                        {this.state.errorInfo !== undefined && (
                           <details className="mt-2">
                             <summary>Component Stack</summary>
                             <pre className="whitespace-pre-wrap text-xs mt-1">
@@ -323,15 +325,15 @@ export class AIErrorBoundary extends Component<Props, State> {
 }
 
 // Hook for handling AI errors in functional components
-export function useAIErrorHandler() {
-  const handleAIError = (error: unknown, context?: string) => {
-    logger.error(`AI Error${context ? ` in ${context}` : ''}:`, error);
+export function useAIErrorHandler(): { handleAIError: (error: unknown, context?: string) => void } {
+  const handleAIError = (error: unknown, context?: string): void => {
+    logger.error(`AI Error${context !== undefined && context !== '' ? ` in ${context}` : ''}:`, error);
     
     // Report to monitoring
-    if (window.gtag) {
+    if (window.gtag !== undefined) {
       window.gtag('event', 'ai_error', {
         event_category: 'AI Integration',
-        event_label: context || 'Unknown',
+        event_label: context !== undefined && context !== '' ? context : 'Unknown',
         value: 1,
       });
     }
@@ -368,7 +370,7 @@ export function WithAIErrorBoundary({
   children,
   onRetry,
   enableManualFallback = true,
-}: WithAIErrorBoundaryProps) {
+}: WithAIErrorBoundaryProps): React.ReactElement {
   return (
     <AIErrorBoundary enableManualFallback={enableManualFallback} onRetry={onRetry}>
       {children}

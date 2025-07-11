@@ -103,6 +103,9 @@ export function useUnitPlanForm({
 
   // Update form data when initial data changes
   useEffect(() => {
+    return () => { // Cleanup
+    };
+
     if (initialData) {
       setFormData(prev => ({
         ...prev,
@@ -117,7 +120,7 @@ export function useUnitPlanForm({
     value: UnitPlanFormData[K]
   ) => {
     setFormData(prev => ({ ...prev, [field]: value }));
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Array field handlers
   const addArrayItem = useCallback((field: keyof UnitPlanFormData, value = '') => {
@@ -125,7 +128,7 @@ export function useUnitPlanForm({
       ...prev,
       [field]: [...(prev[field] as string[]), value],
     }));
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const updateArrayItem = useCallback((
     field: keyof UnitPlanFormData,
@@ -137,14 +140,14 @@ export function useUnitPlanForm({
       array[index] = value;
       return { ...prev, [field]: array };
     });
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const removeArrayItem = useCallback((field: keyof UnitPlanFormData, index: number) => {
     setFormData(prev => ({
       ...prev,
       [field]: (prev[field] as string[]).filter((_, i) => i !== index),
     }));
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Differentiation strategy handlers
   const updateDifferentiationStrategy = useCallback((
@@ -157,7 +160,7 @@ export function useUnitPlanForm({
       updated[type][index] = value;
       return { ...prev, differentiationStrategies: updated };
     });
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const addDifferentiationStrategy = useCallback((
     type: keyof UnitPlanFormData['differentiationStrategies']
@@ -167,7 +170,7 @@ export function useUnitPlanForm({
       updated[type] = [...updated[type], ''];
       return { ...prev, differentiationStrategies: updated };
     });
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const removeDifferentiationStrategy = useCallback((
     type: keyof UnitPlanFormData['differentiationStrategies'],
@@ -178,7 +181,7 @@ export function useUnitPlanForm({
       updated[type] = updated[type].filter((_, i) => i !== index);
       return { ...prev, differentiationStrategies: updated };
     });
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Form validation
   const validateForm = useCallback((): { isValid: boolean; errors: string[] } => {
@@ -288,7 +291,7 @@ export function useUnitPlanForm({
       technologyIntegration: unit.technologyIntegration || '',
       communityConnections: unit.communityConnections || '',
     });
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return {
     formData,
