@@ -124,10 +124,10 @@ class AuditLogger {
       userRole: req.user?.role,
       action,
       details,
-      ipAddress: req.ip || req.connection.remoteAddress,
+      ipAddress: req.ip ?? req.connection.remoteAddress,
       userAgent: req.get('User-Agent'),
       sessionId:
-        (req as Request & { sessionID?: string; requestId?: string }).sessionID ||
+        (req as Request & { sessionID?: string; requestId?: string }).sessionID ??
         (req as Request & { sessionID?: string; requestId?: string }).requestId,
       timestamp: new Date().toISOString(),
       success,

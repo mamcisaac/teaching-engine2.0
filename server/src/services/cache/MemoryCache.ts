@@ -34,7 +34,7 @@ export class MemoryCache {
     } = {},
   ) {
     // Start cleanup interval
-    const interval = config.cleanupInterval || 60000; // 1 minute default
+    const interval = config.cleanupInterval ?? 60000; // 1 minute default
     this.cleanupInterval = setInterval(() => {
  this.cleanup(); 
 }, interval);
@@ -84,9 +84,9 @@ export class MemoryCache {
         this.evictOldest();
       }
 
-      const ttl = options.ttl || this.config.defaultTtl || 3600;
+      const ttl = options.ttl ?? this.config.defaultTtl ?? 3600;
       const expires = ttl > 0 ? Date.now() + ttl * 1000 : 0;
-      const tags = options.tags || [];
+      const tags = options.tags ?? [];
 
       this.cache.set(key, { value, expires, tags });
 
@@ -176,7 +176,7 @@ continue;
   }
 
   async increment(key: string, amount = 1): Promise<number> {
-    const current = (await this.get<number>(key)) || 0;
+    const current = (await this.get<number>(key)) ?? 0;
     const newValue = current + amount;
     await this.set(key, newValue);
     return newValue;

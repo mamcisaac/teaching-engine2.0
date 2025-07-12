@@ -51,12 +51,12 @@ export class RedisCache {
     } = {},
   ) {
     this.client = createClient({
-      url: config.url || `redis://${config.host || 'localhost'}:${config.port || 6379}`,
+      url: config.url ?? `redis://${config.host ?? 'localhost'}:${config.port ?? 6379}`,
       password: config.password,
-      database: config.db || 0,
+      database: config.db ?? 0,
       socket: {
         reconnectStrategy: (retries) => {
-          const maxRetries = config.maxRetries || 3;
+          const maxRetries = config.maxRetries ?? 3;
           if (retries > maxRetries) {
             structuredLogger.error('Redis reconnection failed', new Error('Max retries exceeded'), {
               retries,
@@ -166,7 +166,7 @@ return;
 
     const perfLogger = new PerformanceLogger('cache.set');
     const fullKey = this.getFullKey(key);
-    const ttl = options.ttl || this.config.defaultTtl || 3600; // Default 1 hour
+    const ttl = options.ttl ?? this.config.defaultTtl ?? 3600; // Default 1 hour
 
     try {
       const serialized = this.serializeValue(value, options.compress);
@@ -256,7 +256,7 @@ return 0;
 
     try {
       for (const tag of tags) {
-        const tagKey = `${this.config.keyPrefix || 'cache'}:tag:${tag}`;
+        const tagKey = `${this.config.keyPrefix ?? 'cache'}:tag:${tag}`;
         const keys = await this.client.sMembers(tagKey);
 
         if (keys.length > 0) {
@@ -458,8 +458,8 @@ export function cacheMiddleware(keyPattern: string, options: CacheOptions = {}) 
 
   return async (req: Request, res: Response, next: NextFunction) => {
     const key = keyPattern
-      .replace(':id', req.params.id || '')
-      .replace(':userId', (req as Request & { user?: { id: string } }).user?.id || 'anonymous');
+      .replace(':id', req.params.id ?? '')
+      .replace(':userId', (req as Request & { user?: { id: string } }).user?.id ?? 'anonymous');
 
     // Try to get from cache
     const cached = await cache.get(key);

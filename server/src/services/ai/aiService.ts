@@ -127,10 +127,10 @@ export class AIService extends BaseService {
   constructor(options: AIServiceOptions) {
     super('AIService');
     this.apiKey = options.apiKey;
-    this.model = options.model || 'gpt-3.5-turbo';
-    this.temperature = options.temperature || 0.7;
-    this.maxTokens = options.maxTokens || 2000;
-    this.timeout = options.timeout || 30000;
+    this.model = options.model ?? 'gpt-3.5-turbo';
+    this.temperature = options.temperature ?? 0.7;
+    this.maxTokens = options.maxTokens ?? 2000;
+    this.timeout = options.timeout ?? 30000;
 
     this.openAIClient =
       options.openAIClient ||
@@ -388,7 +388,7 @@ export class AIService extends BaseService {
       });
 
       return (
-        response.choices[0]?.message?.content || this.createFallbackCurriculumAnalysis(content)
+        response.choices[0]?.message?.content ?? this.createFallbackCurriculumAnalysis(content)
       );
     } catch (error: unknown) {
       logger.error('Error analyzing curriculum:', error);
@@ -440,7 +440,7 @@ export class AIService extends BaseService {
         ...lessonPlan,
         alignedStandards: inputRecord.curriculumExpectationIds
           ? ['MA3.NF.1', 'MA3.NF.2'] // Mock standards for testing
-          : (inputRecord.standards as string[]) || [],
+          : (inputRecord.standards as string[]) ?? [],
       };
     } catch (error: unknown) {
       logger.error('Error generating aligned lesson:', error);
@@ -458,7 +458,7 @@ export class AIService extends BaseService {
       const systemPrompt =
         'You are an expert educator who creates assessment questions. Generate educational assessment questions based on the provided topic and difficulty level.';
 
-      const prompt = `Generate ${input.count || 5} ${input.difficulty || 'medium'} difficulty questions about: ${input.topic}`;
+      const prompt = `Generate ${input.count ?? 5} ${input.difficulty ?? 'medium'} difficulty questions about: ${input.topic}`;
 
       const response = await this.openAIClient.chat.completions.create({
         model: this.model,
@@ -614,7 +614,7 @@ Return a JSON object with the structure: { title, dateRange, sections, footer }`
     const sanitizedTopic = this.sanitizeInput(input.topic);
     return {
       title: `${sanitizedTopic} - Grade ${input.grade} ${input.subject}`,
-      objectives: input.objectives || ['Understand key concepts'],
+      objectives: input.objectives ?? ['Understand key concepts'],
       activities: [
         {
           name: 'Introduction',
@@ -647,10 +647,10 @@ Return a JSON object with the structure: { title, dateRange, sections, footer }`
       name: `${input.type} Activity: ${input.topic}`,
       type: input.type,
       description: `A ${input.type} activity for ${input.topic}`,
-      duration: input.duration || 30,
-      materials: input.materials || [],
+      duration: input.duration ?? 30,
+      materials: input.materials ?? [],
       instructions: ['Step 1: Introduction', 'Step 2: Main activity', 'Step 3: Conclusion'],
-      learningObjectives: input.learningObjectives || [],
+      learningObjectives: input.learningObjectives ?? [],
     };
   }
 
@@ -666,7 +666,7 @@ Return a JSON object with the structure: { title, dateRange, sections, footer }`
         materials: ['Textbook', 'Worksheets'],
         notes: 'Follow the lesson plan in the binder',
       })),
-      generalNotes: input.notes || 'Please follow the daily routine',
+      generalNotes: input.notes ?? 'Please follow the daily routine',
       emergencyContacts: [
         { name: 'Office', number: '555-0100' },
         { name: 'Principal', number: '555-0101' },
@@ -685,11 +685,11 @@ Return a JSON object with the structure: { title, dateRange, sections, footer }`
         },
         {
           title: 'Upcoming Events',
-          content: (input.upcomingEvents || []).join('\n'),
+          content: (input.upcomingEvents ?? []).join('\n'),
         },
         {
           title: 'Reminders',
-          content: (input.reminders || []).join('\n'),
+          content: (input.reminders ?? []).join('\n'),
         },
       ],
       footer: 'Thank you for your continued support!',
@@ -727,8 +727,8 @@ This is a fallback analysis. For more detailed analysis, please ensure AI servic
     count?: number;
     gradeLevel?: string;
   }): any {
-    const count = input.count || 5;
-    const difficulty = input.difficulty || 'medium';
+    const count = input.count ?? 5;
+    const difficulty = input.difficulty ?? 'medium';
     const questions = [];
 
     for (let i = 1; i <= count; i++) {
