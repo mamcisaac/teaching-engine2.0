@@ -11,8 +11,8 @@ interface CurriculumImportButtonProps {
 export function CurriculumImportButton({ onImportSuccess, className }: CurriculumImportButtonProps): React.ReactElement {
   const [isWizardOpen, setIsWizardOpen] = useState(false);
 
-  const handleImportSuccess = () => {
-    if (onImportSuccess) {
+  const handleImportSuccess = (): void => {
+    if (onImportSuccess !== undefined) {
       onImportSuccess();
     }
   };

@@ -74,23 +74,23 @@ export default function CurriculumExpectationCoverage(): React.ReactElement {
 
     expectations.forEach((exp) => {
       // By subject
-      if (!bySubject[exp.subject]) {
+      if (bySubject[exp.subject] === null || bySubject[exp.subject] === undefined) {
         bySubject[exp.subject] = [];
       }
       bySubject[exp.subject].push(exp);
 
       // By strand
-      const strand = exp.strand || 'Other';
-      if (!byStrand[strand]) {
+      const strand = exp.strand !== null && exp.strand !== undefined && exp.strand !== '' ? exp.strand : 'Other';
+      if (byStrand[strand] === null || byStrand[strand] === undefined) {
         byStrand[strand] = [];
       }
       byStrand[strand].push(exp);
 
       // By grade and subject
-      if (!byGrade[exp.grade]) {
+      if (byGrade[exp.grade] === null || byGrade[exp.grade] === undefined) {
         byGrade[exp.grade] = {};
       }
-      if (!byGrade[exp.grade][exp.subject]) {
+      if (byGrade[exp.grade][exp.subject] === null || byGrade[exp.grade][exp.subject] === undefined) {
         byGrade[exp.grade][exp.subject] = [];
       }
       byGrade[exp.grade][exp.subject].push(exp);
@@ -147,7 +147,7 @@ export default function CurriculumExpectationCoverage(): React.ReactElement {
       totalExpectations > 0 ? Math.round((coveredExpectations / totalExpectations) * 100) : 0;
 
     // Find gaps (uncovered expectations grouped by priority)
-    const uncoveredExpectations = expectations.filter((exp) => !coveredExpectationIds.has(exp.id));
+    const uncoveredExpectations = expectations.filter((exp) => coveredExpectationIds.has(exp.id) === false);
     // For now, treat all gaps as regular priority since we don't have type classification
     const highPriorityGaps: typeof expectations = [];
     const regularGaps = uncoveredExpectations;
@@ -366,7 +366,7 @@ return 'text-yellow-600';
             <CardContent>
               <div className="space-y-6">
                 {/* High Priority Gaps */}
-                {coverageMetrics.gaps.highPriority.length > 0 && (
+                {coverageMetrics.gaps.highPriority.length > 0 ? (
                   <div>
                     <h4 className="font-medium text-red-600 mb-3">
                       High Priority Expectations ({coverageMetrics.gaps.highPriority.length})
@@ -394,10 +394,10 @@ return 'text-yellow-600';
                       )}
                     </div>
                   </div>
-                )}
+                ) : null}
 
                 {/* Regular Gaps */}
-                {coverageMetrics.gaps.regular.length > 0 && (
+                {coverageMetrics.gaps.regular.length > 0 ? (
                   <div>
                     <h4 className="font-medium text-yellow-600 mb-3">
                       Regular Expectations ({coverageMetrics.gaps.regular.length})
@@ -422,11 +422,11 @@ return 'text-yellow-600';
                       )}
                     </div>
                   </div>
-                )}
+                ) : null}
 
                 {/* No Gaps Message */}
                 {coverageMetrics.gaps.highPriority.length === 0 &&
-                  coverageMetrics.gaps.regular.length === 0 && (
+                  coverageMetrics.gaps.regular.length === 0 ? (
                     <div className="text-center py-8">
                       <Target className="h-12 w-12 text-green-600 mx-auto mb-3" />
                       <p className="text-lg font-medium text-green-600">Excellent Coverage!</p>
@@ -434,7 +434,7 @@ return 'text-yellow-600';
                         All curriculum expectations are covered in your planning.
                       </p>
                     </div>
-                  )}
+                  ) : null}
               </div>
             </CardContent>
           </Card>

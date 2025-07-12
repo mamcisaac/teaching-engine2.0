@@ -17,7 +17,7 @@ interface NewsletterEditorProps {
   className?: string;
 }
 
-export default function NewsletterEditor({
+export function NewsletterEditor({
   draft,
   isGenerating = false,
   onSave,
@@ -59,7 +59,7 @@ export default function NewsletterEditor({
     }
   }, [localDraft, unsavedChanges, onSave]);
 
-  const updateSection = (sectionId: string, field: 'content' | 'contentFr' | 'title' | 'titleFr', value: string) => {
+  const updateSection = (sectionId: string, field: 'content' | 'contentFr' | 'title' | 'titleFr', value: string): void => {
     const updatedSections = localDraft.sections.map(section =>
       section.id === sectionId
         ? { ...section, [field]: value }
@@ -70,22 +70,22 @@ export default function NewsletterEditor({
     setUnsavedChanges(true);
   };
 
-  const updateTitle = (field: 'title' | 'titleFr', value: string) => {
+  const updateTitle = (field: 'title' | 'titleFr', value: string): void => {
     setLocalDraft({ ...localDraft, [field]: value });
     setUnsavedChanges(true);
   };
 
-  const formatText = (command: string, value?: string) => {
+  const formatText = (command: string, value?: string): void => {
     document.execCommand(command, false, value);
   };
 
-  const removeSection = (sectionId: string) => {
+  const removeSection = (sectionId: string): void => {
     const updatedSections = localDraft.sections.filter(section => section.id !== sectionId);
     setLocalDraft({ ...localDraft, sections: updatedSections });
     setUnsavedChanges(true);
   };
 
-  const addNewSection = () => {
+  const addNewSection = (): void => {
     const newSection: NewsletterSection = {
       id: `section-${Date.now()}`,
       title: 'New Section',
@@ -104,7 +104,7 @@ export default function NewsletterEditor({
     setEditingSection(newSection.id);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent, _sectionId: string, _field: 'content' | 'contentFr') => {
+  const handleKeyDown = (e: React.KeyboardEvent, _sectionId: string, _field: 'content' | 'contentFr'): void => {
     if (e.ctrlKey || e.metaKey) {
       switch (e.key) {
         case 'b':
@@ -128,7 +128,7 @@ export default function NewsletterEditor({
     }
   };
 
-  const renderToolbar = (_sectionId: string) => (
+  const renderToolbar = (_sectionId: string): React.ReactElement => (
     <div className="flex items-center gap-1 p-2 border-b bg-gray-50 rounded-t-lg">
       <button
         className="p-1.5 hover:bg-gray-200 rounded"
@@ -213,7 +213,7 @@ export default function NewsletterEditor({
     </div>
   );
 
-  const renderSection = (section: NewsletterSection) => {
+  const renderSection = (section: NewsletterSection): React.ReactElement => {
     const isEditing = editingSection === section.id;
     const content = language === 'en' ? section.content : section.contentFr;
     const title = language === 'en' ? section.title : section.titleFr;
@@ -273,17 +273,25 @@ export default function NewsletterEditor({
           <div>
             {renderToolbar(section.id)}
             <div
-              dangerouslySetInnerHTML={{ __html: content }}
-              ref={(el) => editorRefs.current[section.id] = el}
+              ref={(el) => {
+                editorRefs.current[section.id] = el;
+              }}
               contentEditable
               className="p-4 min-h-[100px] focus:outline-none prose prose-sm max-w-none"
+              dangerouslySetInnerHTML={{ __html: content }}
+              role="textbox"
               style={{ whiteSpace: 'pre-wrap' }}
-              onBlur={(e) => updateSection(
-                section.id,
-                language === 'en' ? 'content' : 'contentFr',
-                e.currentTarget.innerHTML
-              )}
-              onKeyDown={(e) => handleKeyDown(e, section.id, language === 'en' ? 'content' : 'contentFr')}
+              tabIndex={0}
+              onBlur={(e) => {
+                updateSection(
+                  section.id,
+                  language === 'en' ? 'content' : 'contentFr',
+                  e.currentTarget.innerHTML
+                );
+              }}
+              onKeyDown={(e) => {
+                handleKeyDown(e, section.id, language === 'en' ? 'content' : 'contentFr');
+              }}
             />
           </div>
         ) : (
@@ -450,7 +458,7 @@ export default function NewsletterEditor({
           </div>
           <div>
             {localDraft.isDraft ? 'Draft' : 'Finalized'} • 
-            Last updated: {localDraft.updatedAt?.toLocaleString() || 'Never'}
+            Last updated: {localDraft.updatedAt?.toLocaleString() ?? 'Never'}
           </div>
         </div>
       </div>

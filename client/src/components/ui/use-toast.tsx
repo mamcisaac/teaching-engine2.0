@@ -16,7 +16,7 @@ interface ToastOptions {
 
 const toastListeners: ((toast: Toast) => void)[] = [];
 
-export function useToast() {
+export function useToast(): { toasts: Toast[]; toast: (options: ToastOptions) => void; dismiss: (toastId: string) => void } {
   const [toasts, setToasts] = useState<Toast[]>([]);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export function useToast() {
     };
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const toast = (options: ToastOptions) => {
+  const toast = (options: ToastOptions): void => {
     const newToast: Toast = {
       id: Date.now().toString(),
       ...options,
@@ -52,7 +52,7 @@ export function useToast() {
 });
   };
 
-  const dismiss = (toastId: string) => {
+  const dismiss = (toastId: string): void => {
     setToasts((prev) => prev.filter((t) => t.id !== toastId));
   };
 

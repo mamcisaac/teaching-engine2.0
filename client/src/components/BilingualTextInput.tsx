@@ -17,7 +17,7 @@ interface BilingualTextInputProps {
   className?: string;
 }
 
-export default function BilingualTextInput({
+function BilingualTextInput({
   label,
   valueEn,
   valueFr,
@@ -34,6 +34,25 @@ export default function BilingualTextInput({
   const { t, language } = useLanguage();
   const [showBothLanguages, setShowBothLanguages] = useState(false);
 
+  // Helper function to get placeholder value
+  const getPlaceholder = (langPlaceholder: string | undefined, fallback: string | undefined): string | undefined => {
+    if (langPlaceholder !== undefined && langPlaceholder !== '') {
+      return langPlaceholder;
+    }
+    if (fallback !== undefined && fallback !== '') {
+      return fallback;
+    }
+    return undefined;
+  };
+
+  // Helper function to check if value is non-empty
+  const hasValue = (value: string): boolean => value !== '';
+
+  // Determine which placeholder to use based on language
+  const currentPlaceholder = language === 'en' 
+    ? getPlaceholder(placeholderEn, placeholder)
+    : getPlaceholder(placeholderFr, placeholder);
+
   const InputComponent = multiline ? 'textarea' : 'input';
 
   const inputProps = {
@@ -42,6 +61,19 @@ export default function BilingualTextInput({
     required,
     ...(multiline ? { rows } : { type: 'text' }),
   };
+
+  // Helper to handle change events
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+    const { value } = e.target;
+    if (language === 'en') {
+      onChangeEn(value);
+    } else {
+      onChangeFr(value);
+    }
+  };
+
+  const showPreview = (language === 'en' && hasValue(valueFr)) || 
+                      (language === 'fr' && hasValue(valueEn));
 
   return (
     <div className={className}>
@@ -53,8 +85,8 @@ export default function BilingualTextInput({
           className="text-xs text-blue-600 hover:text-blue-800 flex items-center gap-1"
           type="button"
           onClick={() => {
- setShowBothLanguages(!showBothLanguages); 
-}}
+            setShowBothLanguages(!showBothLanguages);
+          }}
         >
           <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
@@ -79,11 +111,11 @@ export default function BilingualTextInput({
             </div>
             <InputComponent
               {...inputProps}
-              placeholder={placeholderEn || placeholder}
+              placeholder={getPlaceholder(placeholderEn, placeholder)}
               value={valueEn}
-              onChange={(e) => {
- onChangeEn(e.target.value); 
-}}
+              onChange={(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+                onChangeEn(e.target.value);
+              }}
             />
           </div>
 
@@ -96,11 +128,11 @@ export default function BilingualTextInput({
             </div>
             <InputComponent
               {...inputProps}
-              placeholder={placeholderFr || placeholder}
+              placeholder={getPlaceholder(placeholderFr, placeholder)}
               value={valueFr}
-              onChange={(e) => {
- onChangeFr(e.target.value); 
-}}
+              onChange={(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+                onChangeFr(e.target.value);
+              }}
             />
           </div>
         </div>
@@ -113,17 +145,12 @@ export default function BilingualTextInput({
           </div>
           <InputComponent
             {...inputProps}
-            placeholder={
-              language === 'en' ? placeholderEn || placeholder : placeholderFr || placeholder
-            }
+            placeholder={currentPlaceholder}
             value={language === 'en' ? valueEn : valueFr}
-            onChange={(e) => {
- language === 'en' ? onChangeEn(e.target.value) : onChangeFr(e.target.value); 
-}
-            }
+            onChange={handleChange}
           />
           {/* Show preview of other language if it exists */}
-          {((language === 'en' && valueFr) || (language === 'fr' && valueEn)) && (
+          {showPreview && (
             <div className="mt-2 p-2 bg-gray-50 rounded text-xs text-gray-600">
               <span className="font-medium">
                 {language === 'en' ? '🇫🇷 French:' : '🇨🇦 English:'}
@@ -136,3 +163,5 @@ export default function BilingualTextInput({
     </div>
   );
 }
+
+export { BilingualTextInput };

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import { useKeyboardShortcut } from '../hooks/useKeyboardShortcut';
@@ -166,7 +166,7 @@ export const GlobalKeyboardShortcuts: React.FC = () => {
   });
 
   return (
-    <>
+    <div data-testid="keyboard-shortcuts-container">
       <KeyboardShortcutsHelp isOpen={isHelpOpen} onClose={() => {
  setIsHelpOpen(false); 
 }} />
@@ -175,7 +175,7 @@ export const GlobalKeyboardShortcuts: React.FC = () => {
       {isSearchOpen && <GlobalSearch onClose={() => {
  setIsSearchOpen(false); 
 }} />}
-    </>
+    </div>
   );
 };
 
@@ -183,10 +183,16 @@ export const GlobalKeyboardShortcuts: React.FC = () => {
 const GlobalSearch: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const [query, setQuery] = useState('');
   const navigate = useNavigate();
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleSearch = (e: React.FormEvent) => {
+  useEffect(() => {
+    // Focus input when component mounts
+    inputRef.current?.focus();
+  }, []);
+
+  const handleSearch = (e: React.FormEvent): void => {
     e.preventDefault();
-    if (query.trim()) {
+    if (query.trim().length > 0) {
       // Navigate to curriculum page with search query
       navigate(`/curriculum?search=${encodeURIComponent(query)}`);
       onClose();
@@ -197,8 +203,16 @@ const GlobalSearch: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     <div className="fixed inset-0 z-50 overflow-y-auto">
       <div className="flex min-h-screen items-start justify-center px-4 pt-20">
         <div
+          aria-label="Close search dialog"
           className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+          role="button"
+          tabIndex={0}
           onClick={onClose}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              onClose();
+            }
+          }}
         />
 
         <div className="relative bg-white rounded-lg shadow-xl p-6 w-full max-w-lg">
@@ -206,7 +220,7 @@ const GlobalSearch: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
           <form onSubmit={handleSearch}>
             <input
-              autoFocus
+              ref={inputRef}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               placeholder="Search for curriculum, lessons, or resources..."
               type="text"

@@ -13,7 +13,7 @@ export default function NotificationBell(): React.ReactElement | null {
     };
 
     // Only fetch suggestions if authenticated and initialized
-    if (isAuthenticated && isInitialized) {
+    if (isAuthenticated === true && isInitialized === true) {
       newsletterApi.getSuggestions()
         .then((r) => {
  setSuggested(r.suggested); 
@@ -25,7 +25,7 @@ export default function NotificationBell(): React.ReactElement | null {
     }
   }, [isAuthenticated, isInitialized]);
 
-  if (!suggested) {
+  if (suggested === false) {
 return null;
 }
   return (

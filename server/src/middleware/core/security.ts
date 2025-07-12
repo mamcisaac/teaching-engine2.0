@@ -10,7 +10,7 @@ import { AppError } from '../../utils/errors';
 // CORS configuration
 const corsOptions: cors.CorsOptions = {
   origin: (origin, callback) => {
-    const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',') || [
+    const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',') ?? [
       'http://localhost:5173',
       'http://localhost:3000',
     ];

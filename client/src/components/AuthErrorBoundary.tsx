@@ -52,7 +52,7 @@ export class AuthErrorBoundary extends Component<AuthErrorBoundaryProps, AuthErr
     this.setState({ errorInfo });
 
     // Call custom error handler if provided
-    if (this.props.onAuthError) {
+    if (this.props.onAuthError !== undefined) {
       this.props.onAuthError(error, errorInfo);
     }
 
@@ -82,10 +82,10 @@ export class AuthErrorBoundary extends Component<AuthErrorBoundaryProps, AuthErr
 
   componentWillUnmount() {
     // Cleanup
-    if (this.retryTimeout) {
+    if (this.retryTimeout !== null) {
       clearTimeout(this.retryTimeout);
     }
-    if (this.connectionCheckInterval) {
+    if (this.connectionCheckInterval !== null) {
       clearInterval(this.connectionCheckInterval);
     }
 
@@ -97,7 +97,7 @@ export class AuthErrorBoundary extends Component<AuthErrorBoundaryProps, AuthErr
     this.setState({ connectionStatus: 'online' });
 
     // If we were offline and now we're online, try to recover
-    if (this.state.hasError && this.isNetworkError(this.state.error)) {
+    if (this.state.hasError === true && this.isNetworkError(this.state.error)) {
       this.handleRetryAuth();
     }
   };
@@ -115,7 +115,7 @@ export class AuthErrorBoundary extends Component<AuthErrorBoundaryProps, AuthErr
   }
 
   private isRetryableError(error?: Error): boolean {
-    if (!error) {
+    if (error === null || error === undefined) {
 return false;
 }
 
@@ -133,7 +133,7 @@ return false;
   }
 
   private isNetworkError(error?: Error): boolean {
-    if (!error) {
+    if (error === null || error === undefined) {
 return false;
 }
 
@@ -147,7 +147,7 @@ return false;
   }
 
   private isAuthError(error?: Error): boolean {
-    if (!error) {
+    if (error === null || error === undefined) {
 return false;
 }
 
@@ -179,7 +179,7 @@ return;
       // Try to refresh the auth state
       const userData = await authService.verifyAuth();
 
-      if (userData) {
+      if (userData !== null && userData !== undefined) {
         // Success! Reset the error state
         this.setState({
           hasError: false,
@@ -262,8 +262,8 @@ return;
   }
 
   render() {
-    if (this.state.hasError) {
-      if (this.props.fallback) {
+    if (this.state.hasError === true) {
+      if (this.props.fallback !== null && this.props.fallback !== undefined) {
         return this.props.fallback;
       }
 
@@ -313,7 +313,7 @@ return;
                 {showRetryButton && (
                   <Button aria-label="Click button" onClick={this.handleManualRetry}>
                     <RefreshCw
-                      className={`h-4 w-4 mr-2 ${this.state.isRetrying ? 'animate-spin' : ''}`}
+                      className={`h-4 w-4 mr-2 ${this.state.isRetrying === true ? 'animate-spin' : ''}`}
                     />
                     {this.state.isRetrying ? 'Retrying...' : 'Try Again'}
                   </Button>
@@ -334,7 +334,7 @@ return;
                 </Button>
               </div>
 
-              {process.env.NODE_ENV === 'development' && this.state.error && (
+              {process.env.NODE_ENV === 'development' && this.state.error !== null && this.state.error !== undefined && (
                 <details className="mt-4 bg-gray-100 p-4 rounded-md">
                   <summary className="cursor-pointer font-medium text-gray-700">
                     Error Details (Development)
@@ -343,7 +343,7 @@ return;
                     {this.state.error instanceof Error ? this.state.error.message : String(this.state.error)}
                     {'\n\n'}
                     {this.state.error?.stack}
-                    {this.state.errorInfo &&
+                    {this.state.errorInfo !== null && this.state.errorInfo !== undefined &&
                       `\n\nComponent Stack:\n${  this.state.errorInfo.componentStack}`}
                   </pre>
                 </details>

@@ -48,7 +48,7 @@ export function CollapsibleSection({
         <div className="flex items-center justify-between">
           <CardTitle className="text-base sm:text-lg flex items-center gap-2">
             {title}
-            {required && <span className="text-red-500 text-sm">*</span>}
+            {required === true && <span className="text-red-500 text-sm">*</span>}
           </CardTitle>
           <Button
             className="h-8 w-8 p-0"
@@ -67,7 +67,7 @@ export function CollapsibleSection({
         </div>
       </CardHeader>
       
-      {isExpanded && (
+      {isExpanded === true && (
         <CardContent className="pt-0 space-y-4">
           {children}
         </CardContent>
@@ -137,7 +137,7 @@ export function TouchFriendlyInput({
     <div className={cn("space-y-2", className)}>
       <label className="block text-sm font-medium text-gray-700">
         {label}
-        {required && <span className="text-red-500 ml-1">*</span>}
+        {required === true && <span className="text-red-500 ml-1">*</span>}
       </label>
       <div className="relative">
         {/* Add touch-friendly styling to child inputs */}
@@ -173,7 +173,7 @@ export function FormPreview({ data, onEdit, className }: FormPreviewProps): Reac
  setShowAll(!showAll); 
 }}
             >
-              {showAll ? (
+              {showAll === true ? (
                 <>
                   <EyeOff className="h-4 w-4 mr-1" />
                   Show Less
@@ -200,7 +200,7 @@ export function FormPreview({ data, onEdit, className }: FormPreviewProps): Reac
       <CardContent>
         <div className="space-y-4">
           {Object.entries(data)
-            .filter(([key, value]) => value && (showAll || key === 'title' || key === 'description'))
+            .filter(([key, value]) => value !== null && value !== undefined && (showAll === true || key === 'title' || key === 'description'))
             .map(([key, value]) => (
               <div key={key}>
                 <h4 className="font-medium text-sm text-gray-700 capitalize mb-1">

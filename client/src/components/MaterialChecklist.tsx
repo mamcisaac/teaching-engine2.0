@@ -6,7 +6,7 @@ interface Props {
 
 export default function MaterialChecklist({ weekStart }: Props): React.ReactElement | null {
   const { data } = useMaterialList(weekStart);
-  if (!data) {
+  if (data === null || data === undefined) {
 return null;
 }
   return (

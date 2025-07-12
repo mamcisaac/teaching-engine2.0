@@ -28,7 +28,7 @@ interface ErrorBoundaryState {
 }
 
 // Base Error Boundary with customizable options
-export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false, retryCount: 0 };
@@ -43,7 +43,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
     this.setState({ errorInfo });
     
     // Call custom error handler if provided
-    if (this.props.onError) {
+    if (this.props.onError !== undefined) {
       this.props.onError(error, errorInfo);
     }
     
@@ -69,7 +69,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 
   render() {
     if (this.state.hasError) {
-      if (this.props.fallback) {
+      if (this.props.fallback !== undefined) {
         return this.props.fallback;
       }
 
@@ -93,31 +93,31 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
               <CardDescription>{errorDescription}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              {this.state.retryCount > 2 && (
+              {this.state.retryCount > 2 ? (
                 <Alert variant="destructive">
                   <AlertTitle>Multiple Errors</AlertTitle>
                   <AlertDescription>
                     This error has occurred multiple times. Please refresh the page or contact support.
                   </AlertDescription>
                 </Alert>
-              )}
+              ) : null}
               
               <div className="flex flex-wrap gap-2">
-                {allowRetry && (
+                {allowRetry ? (
                   <Button aria-label="Click button" onClick={this.handleReset}>
                     <RefreshCw className="h-4 w-4 mr-2" />
                     Try Again
                   </Button>
-                )}
+                ) : null}
                 
-                {allowHome && (
+                {allowHome ? (
                   <Button aria-label="Click button" onClick={() => window.location.href = '/'}>
                     <Home className="h-4 w-4 mr-2" />
                     Go Home
                   </Button>
-                )}
+                ) : null}
                 
-                {supportEmail && (
+                {supportEmail !== undefined ? (
                   <Button 
                     variant="outline" 
                     onClick={() => window.location.href = `mailto:${supportEmail}?subject=Error Report`}
@@ -125,22 +125,31 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
                     <Mail className="h-4 w-4 mr-2" />
                     Contact Support
                   </Button>
-                )}
+                ) : null}
               </div>
 
-              {showDetails && this.state.error && (
+              {showDetails && this.state.error !== undefined ? (
                 <details className="mt-4 bg-gray-100 p-4 rounded-md">
                   <summary className="cursor-pointer font-medium text-gray-700">
                     Error Details (Development)
                   </summary>
-                  <pre className="mt-2 text-xs text-gray-600 whitespace-pre-wrap overflow-auto">
-                    {this.state.error instanceof Error ? this.state.error.message : String(this.state.error)}
-                    {'\n\n'}
-                    {this.state.error.stack}
-                    {this.state.errorInfo && `\n\nComponent Stack:\n${  this.state.errorInfo.componentStack}`}
-                  </pre>
+                  <div className="mt-2">
+                    <div className="text-xs text-gray-600">
+                      {this.state.error instanceof Error ? this.state.error.message : String(this.state.error)}
+                    </div>
+                    {this.state.error instanceof Error && this.state.error.stack !== undefined && this.state.error.stack !== '' ? (
+                      <pre className="mt-2 text-xs text-gray-600 whitespace-pre-wrap overflow-auto">
+                        {this.state.error.stack}
+                      </pre>
+                    ) : null}
+                    {this.state.errorInfo !== undefined && this.state.errorInfo.componentStack !== undefined && this.state.errorInfo.componentStack !== '' ? (
+                      <pre className="mt-2 text-xs text-gray-600 whitespace-pre-wrap overflow-auto">
+                        Component Stack:{'\n'}{this.state.errorInfo.componentStack}
+                      </pre>
+                    ) : null}
+                  </div>
                 </details>
-              )}
+              ) : null}
             </CardContent>
           </Card>
         </div>
@@ -218,3 +227,9 @@ export const GlobalErrorBoundary: React.FC<{ children: ReactNode }> = ({ childre
     {children}
   </ErrorBoundary>
 );
+
+// Create alias for backward compatibility
+const ErrorBoundaries = ErrorBoundary;
+
+// Named exports for all error boundaries
+export { ErrorBoundary, ErrorBoundaries };

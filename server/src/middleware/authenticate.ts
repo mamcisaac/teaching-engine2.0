@@ -40,7 +40,7 @@ export function generateToken(user: {
     email: user.email,
     role: user.role,
     organizationId: user.organizationId?.toString(),
-    permissions: user.permissions || [],
+    permissions: user.permissions ?? [],
   };
 
   return sign(

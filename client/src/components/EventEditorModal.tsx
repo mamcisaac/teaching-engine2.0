@@ -14,7 +14,7 @@ export default function EventEditorModal({ onClose }: Props): React.ReactElement
   const mutation = useAddCalendarEvent();
 
   const submit = () => {
-    if (!date || !title) {
+    if (date === null || date === undefined || date === '' || title === null || title === undefined || title === '') {
 return;
 }
     mutation.mutate({

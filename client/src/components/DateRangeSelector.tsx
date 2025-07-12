@@ -13,7 +13,7 @@ interface DateRangeSelectorProps {
 
 type PresetRange = 'thisWeek' | 'lastWeek' | 'thisMonth' | 'lastMonth' | 'custom';
 
-export default function DateRangeSelector({
+export function DateRangeSelector({
   startDate,
   endDate,
   onChange,
@@ -33,7 +33,7 @@ export default function DateRangeSelector({
     setCustomEnd(format(endDate, 'yyyy-MM-dd'));
   }, [startDate, endDate]);
 
-  const handlePresetChange = (newPreset: PresetRange) => {
+  const handlePresetChange = (newPreset: PresetRange): void => {
     setPreset(newPreset);
     setShowCustomPicker(newPreset === 'custom');
 
@@ -72,7 +72,7 @@ export default function DateRangeSelector({
     onChange(newStart, newEnd);
   };
 
-  const handleCustomDateChange = () => {
+  const handleCustomDateChange = (): void => {
     const start = new Date(customStart);
     const end = new Date(customEnd);
     
@@ -82,7 +82,7 @@ export default function DateRangeSelector({
     }
   };
 
-  const quickNavigation = (direction: 'prev' | 'next') => {
+  const quickNavigation = (direction: 'prev' | 'next'): void => {
     let newStart: Date;
     let newEnd: Date;
 
@@ -124,9 +124,9 @@ export default function DateRangeSelector({
   return (
     <div className={cn("space-y-4", className)}>
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <div className="block text-sm font-medium text-gray-700 mb-2">
           Date Range
-        </label>
+        </div>
         
         {/* Preset buttons */}
         <div className="flex flex-wrap gap-2 mb-3">
@@ -186,11 +186,12 @@ export default function DateRangeSelector({
           <div className="mt-3 p-4 bg-white border border-gray-200 rounded-lg shadow-sm">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="custom-start-date">
                   Start Date
                 </label>
                 <input
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  id="custom-start-date"
                   type="date"
                   value={customStart}
                   onChange={(e) => {
@@ -199,11 +200,12 @@ export default function DateRangeSelector({
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="custom-end-date">
                   End Date
                 </label>
                 <input
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  id="custom-end-date"
                   min={customStart}
                   type="date"
                   value={customEnd}

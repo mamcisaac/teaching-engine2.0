@@ -29,7 +29,7 @@ const CalendarViewComponent = memo(({ month, events }: Props) => {
   const evts = useMemo(() => Array.isArray(events) ? events : Array.isArray(fetch.data) ? fetch.data : [], [events, fetch.data]);
 
   // Log any errors for debugging
-  if (fetch.error) {
+  if (fetch.error !== null && fetch.error !== undefined) {
     logger.error('Error loading calendar events:', fetch.error);
   }
 
@@ -44,10 +44,10 @@ const CalendarViewComponent = memo(({ month, events }: Props) => {
     // Safely process events
     if (Array.isArray(evts)) {
       evts.forEach((e) => {
-        if (e.start) {
+        if (e.start !== null && e.start !== undefined && e.start !== '') {
           const d = e.start.split('T')[0];
-          if (d) {
-            if (!grouped[d]) {
+          if (d !== null && d !== undefined && d !== '') {
+            if (grouped[d] === null || grouped[d] === undefined) {
 grouped[d] = [];
 }
             grouped[d].push(e);
@@ -69,7 +69,7 @@ grouped[d] = [];
 
   return (
     <div className="border rounded p-2">
-      {!events && (
+      {(events === null || events === undefined) && (
         <button
           className="mb-2 px-2 py-1 bg-blue-500 text-white rounded"
           onClick={() => {
@@ -91,7 +91,7 @@ grouped[d] = [];
           </div>
         ))}
       </div>
-      {!events && editorOpen && <EventEditorModal onClose={() => {
+      {(events === null || events === undefined) && editorOpen === true && <EventEditorModal onClose={() => {
  setEditorOpen(false); 
 }} />}
     </div>

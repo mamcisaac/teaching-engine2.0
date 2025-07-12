@@ -18,7 +18,7 @@ export const LoadingSpinner: React.FC<{
   return (
     <div className={`flex flex-col items-center justify-center ${className}`}>
       <Loader2 className={`${sizeClasses[size]} animate-spin text-indigo-600`} />
-      {message !== null && message !== undefined && message !== '' && (
+      {message !== undefined && message !== '' && (
         <p className="mt-2 text-sm text-gray-600">{message}</p>
       )}
     </div>

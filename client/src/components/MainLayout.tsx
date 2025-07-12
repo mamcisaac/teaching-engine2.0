@@ -14,7 +14,7 @@ interface MainLayoutProps {
   children: ReactNode;
 }
 
-function MainLayoutContent({ children }: MainLayoutProps) {
+function MainLayoutContent({ children }: MainLayoutProps): React.ReactElement {
   const { isSidebarOpen, toggleSidebar, isMobile } = useNavigation();
 
   // Enable feature tutorials
@@ -35,7 +35,7 @@ function MainLayoutContent({ children }: MainLayoutProps) {
     <TutorialManager>
       <div className="flex h-screen bg-gray-100">
         {/* Mobile backdrop */}
-        {isMobile && isSidebarOpen && (
+        {isMobile === true && isSidebarOpen === true && (
           <div
             className="fixed inset-0 bg-black bg-opacity-50 z-20 md:hidden"
             onClick={() => {
@@ -50,7 +50,7 @@ function MainLayoutContent({ children }: MainLayoutProps) {
         {/* Main content */}
         <div
           className={`flex-1 transition-all duration-300 ease-in-out ${
-            isMobile ? 'ml-0' : isSidebarOpen ? 'ml-64' : 'ml-16'
+            isMobile === true ? 'ml-0' : isSidebarOpen === true ? 'ml-64' : 'ml-16'
           }`}
         >
           {/* Top navigation bar */}

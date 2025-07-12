@@ -11,7 +11,7 @@ interface DialogProps {
   description?: string;
 }
 
-export default function Dialog({
+function Dialog({
   open,
   onOpenChange,
   onClose,
@@ -20,7 +20,11 @@ export default function Dialog({
   maxWidth = 'lg',
   description,
 }: DialogProps): React.ReactElement {
-  const handleOpenChange = (newOpen: boolean) => {
+  // Helper to check if string has content
+  const hasContent = (value: string | undefined): boolean => 
+    value !== undefined && value.trim() !== '';
+
+  const handleOpenChange = (newOpen: boolean): void => {
     if (onOpenChange) {
       onOpenChange(newOpen);
     }
@@ -44,19 +48,16 @@ export default function Dialog({
       <RadixDialog.Portal>
         <RadixDialog.Overlay aria-hidden="true" className="fixed inset-0 bg-black/50 z-50" />
         <RadixDialog.Content
-          aria-describedby={description ? 'dialog-description' : undefined}
-          aria-labelledby={title ? 'dialog-title' : undefined}
+          aria-describedby={hasContent(description) ? 'dialog-description' : undefined}
+          aria-labelledby={hasContent(title) ? 'dialog-title' : undefined}
           aria-modal="true"
           className="fixed inset-0 z-50 flex items-center justify-center outline-none"
           role="dialog"
         >
           <div
             className={`bg-white rounded shadow w-full ${maxWidthClasses[maxWidth as keyof typeof maxWidthClasses] || maxWidthClasses.lg} mx-4`}
-            onClick={(e) => {
- e.stopPropagation(); 
-}}
           >
-            {title && (
+            {hasContent(title) && (
               <div className="px-6 py-4 border-b">
                 <RadixDialog.Title asChild>
                   <h2 className="text-lg font-semibold" id="dialog-title">
@@ -65,7 +66,7 @@ export default function Dialog({
                 </RadixDialog.Title>
               </div>
             )}
-            {description && (
+            {hasContent(description) && (
               <RadixDialog.Description asChild>
                 <p className="sr-only" id="dialog-description">
                   {description}
@@ -79,3 +80,5 @@ export default function Dialog({
     </RadixDialog.Root>
   );
 }
+
+export { Dialog };

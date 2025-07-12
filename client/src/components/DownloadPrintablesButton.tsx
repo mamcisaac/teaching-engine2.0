@@ -4,8 +4,8 @@ interface Props {
   weekStart: string;
 }
 
-export default function DownloadPrintablesButton({ weekStart }: Props): React.ReactElement {
-  const handleClick = async () => {
+export function DownloadPrintablesButton({ weekStart }: Props): React.ReactElement {
+  const handleClick = async (): Promise<void> => {
     const blob = await planningApi.downloadPrintables(weekStart);
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -16,7 +16,9 @@ export default function DownloadPrintablesButton({ weekStart }: Props): React.Re
   };
 
   return (
-    <button className="border px-2 py-1" onClick={handleClick}>
+    <button className="border px-2 py-1" onClick={() => {
+      void handleClick();
+    }}>
       Download Printables
     </button>
   );

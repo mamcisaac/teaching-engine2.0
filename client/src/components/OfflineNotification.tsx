@@ -51,7 +51,7 @@ export function OfflineNotification(): React.ReactElement | null {
   };
 
   // Don't show if online or dismissed
-  if (isOnlineState || dismissed) {
+  if (isOnlineState === true || dismissed === true) {
     return null;
   }
 
@@ -77,7 +77,7 @@ export function OfflineNotification(): React.ReactElement | null {
                 variant="outline"
                 onClick={handleRetry}
               >
-                {retrying ? (
+                {retrying === true ? (
                   <>
                     <RefreshCw className="w-3 h-3 mr-1 animate-spin" />
                     Checking...
@@ -139,7 +139,7 @@ export function ConflictResolutionModal({
   const [_mergedData, _setMergedData] = useState<unknown>(null);
 
   const handleResolve = () => {
-    if (selectedResolution === 'merge' && _mergedData) {
+    if (selectedResolution === 'merge' && _mergedData !== null && _mergedData !== undefined) {
       onResolve('merge', _mergedData);
     } else {
       onResolve(selectedResolution);
