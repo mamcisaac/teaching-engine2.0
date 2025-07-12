@@ -62,7 +62,7 @@ const stats = {
  * Generate cache key from request
  */
 function generateCacheKey(req: Request, prefix = ''): string {
-  const userId = req.user?.id || 'anonymous';
+  const userId = req.user?.id ?? 'anonymous';
   const {method} = req;
   const {path} = req;
   const query = JSON.stringify(req.query);
@@ -159,7 +159,7 @@ export function createCacheMiddleware(
       res.json = function (data: unknown) {
         // Cache the response data
         if (res.statusCode === 200 && data) {
-          const cacheTTL = ttl || cache.options.stdTTL || DEFAULT_TTL;
+          const cacheTTL = ttl ?? cache.options.stdTTL ?? DEFAULT_TTL;
           cache.set(cacheKey, data, cacheTTL);
 
           logger.debug(

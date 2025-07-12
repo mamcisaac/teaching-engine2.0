@@ -20,7 +20,7 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }): R
   const activeTutorialId = Object.keys(state.tutorialProgress)[0];
   const activeTutorial = activeTutorialId ? getTutorial(activeTutorialId) : null;
   const currentStepIndex = activeTutorialId ? state.tutorialProgress[activeTutorialId] : 0;
-  const currentStep = activeTutorial?.steps[currentStepIndex] || null;
+  const currentStep = activeTutorial?.steps[currentStepIndex] ?? null;
   const progress = activeTutorialId ? getTutorialProgress(activeTutorialId) : 0;
 
   // Handle tutorial completion
@@ -45,7 +45,7 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }): R
   // Handle next step
   const handleNextStep = useCallback((): void => {
     if (activeTutorialId) {
-      if (currentStepIndex >= (activeTutorial?.steps.length || 0) - 1) {
+      if (currentStepIndex >= (activeTutorial?.steps.length ?? 0) - 1) {
         handleCompleteTutorial();
       } else {
         nextTutorialStep(activeTutorialId);
@@ -204,7 +204,7 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }): R
         currentStep={currentStep}
         isActive={!!activeTutorial}
         progress={progress}
-        tutorial={activeTutorial || null}
+        tutorial={activeTutorial ?? null}
         onComplete={handleCompleteTutorial}
         onNext={handleNextStep}
         onPrevious={handlePreviousStep}

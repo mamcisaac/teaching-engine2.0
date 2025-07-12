@@ -29,7 +29,7 @@ export default function FrenchImmersionLessonTemplate({
   metadata,
 }: FrenchImmersionLessonTemplateProps): React.ReactElement {
   const { register, handleSubmit } = useForm<FrenchImmersionLessonContent>({
-    defaultValues: initialData || {
+    defaultValues: initialData ?? {
       objectivesEn: [''],
       objectivesFr: [''],
       materials: [''],
@@ -49,11 +49,11 @@ export default function FrenchImmersionLessonTemplate({
   });
 
   const [vocabulary, setVocabulary] = React.useState<BilingualVocabulary[]>(
-    initialData?.languageFocus?.targetVocabulary || [],
+    initialData?.languageFocus?.targetVocabulary ?? [],
   );
 
   const [homeActivities, setHomeActivities] = React.useState<BilingualActivity[]>(
-    initialData?.parentCommunication?.homeActivities || [],
+    initialData?.parentCommunication?.homeActivities ?? [],
   );
 
   const addVocabulary = () => {

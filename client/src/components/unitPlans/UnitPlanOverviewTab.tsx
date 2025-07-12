@@ -20,7 +20,7 @@ export const UnitPlanOverviewTab: React.FC<UnitPlanOverviewTabProps> = ({
     <div className="space-y-6">
       <CollapsibleSection defaultExpanded required title="Basic Information">
         <div className="space-y-4">
-          {!longRangePlanId && (
+          {(longRangePlanId === null || longRangePlanId === undefined || longRangePlanId === '') && (
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Long-Range Plan *

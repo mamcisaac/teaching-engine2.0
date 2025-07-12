@@ -230,7 +230,7 @@ export const fileUploadSecurityMiddleware = (
       next(); return;
     }
 
-    const files = req.file ? [req.file] : Object.values(req.files || {}).flat();
+    const files = req.file ? [req.file] : Object.values(req.files ?? {}).flat();
 
     for (const file of files) {
       // Check file type
@@ -248,7 +248,7 @@ export const fileUploadSecurityMiddleware = (
       const ext = file.originalname.split('.').pop()?.toLowerCase();
       const allowedExtensions = allowedTypes.map((type) => {
         const parts = type.split('/');
-        return parts[1] || parts[0];
+        return parts[1] ?? parts[0];
       });
 
       if (!ext || !allowedExtensions.includes(ext)) {

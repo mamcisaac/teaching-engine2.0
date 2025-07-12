@@ -19,9 +19,9 @@ export const UnitPlanCard: React.FC<UnitPlanCardProps> = memo(({ unitPlan: unit,
 
   // Memoize count calculations
   const counts = useMemo(() => ({
-    lessons: unit._count?.lessonPlans || 0,
-    expectations: unit._count?.expectations || 0,
-    hours: unit.estimatedHours || 0,
+    lessons: unit._count?.lessonPlans ?? 0,
+    expectations: unit._count?.expectations ?? 0,
+    hours: unit.estimatedHours ?? 0,
   }), [unit._count?.lessonPlans, unit._count?.expectations, unit.estimatedHours]);
 
   return (
@@ -34,7 +34,7 @@ export const UnitPlanCard: React.FC<UnitPlanCardProps> = memo(({ unitPlan: unit,
           </span>
         </div>
 
-        {unit.bigIdeas && (
+        {unit.bigIdeas !== null && unit.bigIdeas !== undefined && unit.bigIdeas !== '' && (
           <div className="mb-4">
             <h4 className="text-sm font-medium text-gray-700 mb-1">Big Ideas</h4>
             <p className="text-sm text-gray-600 line-clamp-2">{unit.bigIdeas}</p>
@@ -51,7 +51,7 @@ export const UnitPlanCard: React.FC<UnitPlanCardProps> = memo(({ unitPlan: unit,
             <span>{counts.expectations} expectations</span>
           </div>
 
-          {unit.progress && (
+          {unit.progress !== null && unit.progress !== undefined && (
             <div className="text-right">
               <div className="text-sm font-medium text-gray-900">
                 {unit.progress.percentage}%

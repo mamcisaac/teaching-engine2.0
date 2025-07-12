@@ -219,14 +219,14 @@ export const generateUnitPlanHTML = (unitPlan: UnitPlan, longRangePlan?: { title
         ${unitPlan.description ? `<p>${escapeHtml(unitPlan.description)}</p>` : ''}
       </div>
 
-      ${unitPlan.bigIdeas ? `
+      ${unitPlan.bigIdeas !== null && unitPlan.bigIdeas !== undefined && unitPlan.bigIdeas !== '' ? `
         <div class="section no-break">
           <div class="section-title">Big Ideas</div>
           <div>${escapeHtml(unitPlan.bigIdeas)}</div>
         </div>
       ` : ''}
 
-      ${unitPlan.essentialQuestions?.length ? `
+      ${unitPlan.essentialQuestions !== null && unitPlan.essentialQuestions !== undefined && unitPlan.essentialQuestions.length > 0 ? `
         <div class="section no-break">
           <div class="section-title">Essential Questions</div>
           <ul>
@@ -235,7 +235,7 @@ export const generateUnitPlanHTML = (unitPlan: UnitPlan, longRangePlan?: { title
         </div>
       ` : ''}
 
-      ${unitPlan.successCriteria?.length ? `
+      ${unitPlan.successCriteria !== null && unitPlan.successCriteria !== undefined && unitPlan.successCriteria.length > 0 ? `
         <div class="section no-break">
           <div class="section-title">Success Criteria</div>
           <ul>
@@ -244,14 +244,14 @@ export const generateUnitPlanHTML = (unitPlan: UnitPlan, longRangePlan?: { title
         </div>
       ` : ''}
 
-      ${unitPlan.assessmentPlan ? `
+      ${unitPlan.assessmentPlan !== null && unitPlan.assessmentPlan !== undefined && unitPlan.assessmentPlan !== '' ? `
         <div class="section no-break">
           <div class="section-title">Assessment Plan</div>
           <div>${escapeHtml(unitPlan.assessmentPlan)}</div>
         </div>
       ` : ''}
 
-      ${unitPlan.keyVocabulary?.length ? `
+      ${unitPlan.keyVocabulary !== null && unitPlan.keyVocabulary !== undefined && unitPlan.keyVocabulary.length > 0 ? `
         <div class="section no-break">
           <div class="section-title">Key Vocabulary</div>
           <div class="vocab-grid">
@@ -260,7 +260,7 @@ export const generateUnitPlanHTML = (unitPlan: UnitPlan, longRangePlan?: { title
         </div>
       ` : ''}
 
-      ${unitPlan.expectations?.length ? `
+      ${unitPlan.expectations !== null && unitPlan.expectations !== undefined && unitPlan.expectations.length > 0 ? `
         <div class="section">
           <div class="section-title">Curriculum Expectations</div>
           ${unitPlan.expectations.map(exp => `
@@ -272,11 +272,11 @@ export const generateUnitPlanHTML = (unitPlan: UnitPlan, longRangePlan?: { title
         </div>
       ` : ''}
 
-      ${unitPlan.differentiationStrategies ? `
+      ${unitPlan.differentiationStrategies !== null && unitPlan.differentiationStrategies !== undefined ? `
         <div class="section page-break">
           <div class="section-title">Differentiation Strategies</div>
           <div class="diff-grid">
-            ${unitPlan.differentiationStrategies.forStruggling?.length ? `
+            ${unitPlan.differentiationStrategies.forStruggling !== null && unitPlan.differentiationStrategies.forStruggling !== undefined && unitPlan.differentiationStrategies.forStruggling.length > 0 ? `
               <div class="diff-section">
                 <div class="diff-title">For Struggling Learners</div>
                 <ul>
@@ -285,7 +285,7 @@ export const generateUnitPlanHTML = (unitPlan: UnitPlan, longRangePlan?: { title
               </div>
             ` : ''}
             
-            ${unitPlan.differentiationStrategies.forAdvanced?.length ? `
+            ${unitPlan.differentiationStrategies.forAdvanced !== null && unitPlan.differentiationStrategies.forAdvanced !== undefined && unitPlan.differentiationStrategies.forAdvanced.length > 0 ? `
               <div class="diff-section">
                 <div class="diff-title">For Advanced Learners</div>
                 <ul>
@@ -294,7 +294,7 @@ export const generateUnitPlanHTML = (unitPlan: UnitPlan, longRangePlan?: { title
               </div>
             ` : ''}
             
-            ${unitPlan.differentiationStrategies.forELL?.length ? `
+            ${unitPlan.differentiationStrategies.forELL !== null && unitPlan.differentiationStrategies.forELL !== undefined && unitPlan.differentiationStrategies.forELL.length > 0 ? `
               <div class="diff-section">
                 <div class="diff-title">For English Language Learners</div>
                 <ul>
@@ -303,7 +303,7 @@ export const generateUnitPlanHTML = (unitPlan: UnitPlan, longRangePlan?: { title
               </div>
             ` : ''}
             
-            ${unitPlan.differentiationStrategies.forIEP?.length ? `
+            ${unitPlan.differentiationStrategies.forIEP !== null && unitPlan.differentiationStrategies.forIEP !== undefined && unitPlan.differentiationStrategies.forIEP.length > 0 ? `
               <div class="diff-section">
                 <div class="diff-title">For Students with IEPs</div>
                 <ul>
@@ -315,7 +315,7 @@ export const generateUnitPlanHTML = (unitPlan: UnitPlan, longRangePlan?: { title
         </div>
       ` : ''}
 
-      ${unitPlan.crossCurricularConnections ? `
+      ${unitPlan.crossCurricularConnections !== null && unitPlan.crossCurricularConnections !== undefined && unitPlan.crossCurricularConnections !== '' ? `
         <div class="section no-break">
           <div class="section-title">Cross-Curricular Connections</div>
           <p>${escapeHtml(unitPlan.crossCurricularConnections)}</p>

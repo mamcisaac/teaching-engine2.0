@@ -11,7 +11,7 @@ export default function LanguageSwitcher(): React.ReactElement {
     { code: 'fr', name: 'Français', flag: '🇫🇷' },
   ];
 
-  const currentLanguage = languages.find((lang) => lang.code === language) || languages[0];
+  const currentLanguage = languages.find((lang) => lang.code === language) ?? languages[0];
 
   const handleLanguageChange = (langCode: string) => {
     setLanguage(langCode);

@@ -493,7 +493,7 @@ export function requirePermission(...requiredPermissions: string[]) {
       return;
     }
 
-    const userPermissions = req.user.permissions || [];
+    const userPermissions = req.user.permissions ?? [];
     const hasPermission = requiredPermissions.every((permission) =>
       userPermissions.includes(permission),
     );

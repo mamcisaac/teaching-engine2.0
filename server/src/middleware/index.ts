@@ -103,7 +103,7 @@ export const setup = {
   // Public endpoints
   public: (rateLimitKey?: keyof typeof rateLimiters) =>
     middleware.custom({
-      rateLimit: rateLimitKey || 'api',
+      rateLimit: rateLimitKey ?? 'api',
     }),
 
   // Authenticated endpoints
@@ -114,7 +114,7 @@ export const setup = {
   }) =>
     middleware.custom({
       authenticate: true,
-      rateLimit: options?.rateLimit || 'api',
+      rateLimit: options?.rateLimit ?? 'api',
       cache: options?.cache,
       audit: options?.audit,
     }),
