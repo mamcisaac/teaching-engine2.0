@@ -93,7 +93,7 @@ export default function TemplatesPage() {
 
   // Build search options
   const searchOptions: TemplateSearchOptions = {
-    search: searchTerm || undefined,
+    search: searchTerm !== null && searchTerm !== undefined && searchTerm !== '' ? searchTerm : undefined,
     type: selectedType !== 'all' ? selectedType : undefined,
     category: selectedCategory !== 'all' ? selectedCategory : undefined,
     subject: selectedSubject !== 'all' ? selectedSubject : undefined,
@@ -154,7 +154,7 @@ export default function TemplatesPage() {
   };
 
   const handleDeleteTemplate = async () => {
-    if (!selectedTemplate) {
+    if (selectedTemplate === null || selectedTemplate === undefined) {
 return;
 }
 
@@ -210,7 +210,7 @@ return;
               <CardTitle className="text-lg">{template.title}</CardTitle>
               <CardDescription className="text-sm">
                 {template.type === 'UNIT_PLAN' ? 'Unit Plan' : 'Lesson Plan'}
-                {template.subject && ` • ${template.subject}`}
+                {template.subject !== null && template.subject !== undefined && template.subject !== '' && ` • ${template.subject}`}
                 {template.gradeMin === template.gradeMax
                   ? ` • Grade ${template.gradeMin}`
                   : template.gradeMin && template.gradeMax
@@ -221,12 +221,12 @@ return;
           </div>
 
           <div className="flex items-center gap-1">
-            {template.isSystem && (
+            {template.isSystem === true && (
               <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
                 System
               </span>
             )}
-            {template.isPublic && (
+            {template.isPublic === true && (
               <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">
                 Public
               </span>
@@ -253,7 +253,7 @@ return;
 
         <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
           <div className="flex items-center gap-4">
-            {template.averageRating && (
+            {template.averageRating !== null && template.averageRating !== undefined && template.averageRating !== 0 && (
               <div className="flex items-center gap-1">
                 <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                 <span>{template.averageRating.toFixed(1)}</span>
@@ -265,13 +265,13 @@ return;
             </div>
           </div>
 
-          {template.estimatedWeeks && (
+          {template.estimatedWeeks !== null && template.estimatedWeeks !== undefined && template.estimatedWeeks !== 0 && (
             <div className="flex items-center gap-1">
               <Calendar className="h-4 w-4" />
               <span>{template.estimatedWeeks}w</span>
             </div>
           )}
-          {template.estimatedMinutes && (
+          {template.estimatedMinutes !== null && template.estimatedMinutes !== undefined && template.estimatedMinutes !== 0 && (
             <div className="flex items-center gap-1">
               <Clock className="h-4 w-4" />
               <span>{template.estimatedMinutes}m</span>
@@ -310,7 +310,7 @@ return;
             <Copy className="h-4 w-4" />
           </Button>
 
-          {template.createdByUserId && !template.isSystem && (
+          {template.createdByUserId !== null && template.createdByUserId !== undefined && template.createdByUserId !== '' && template.isSystem !== true && (
             <Button
               size="sm"
               variant="ghost"
@@ -327,7 +327,7 @@ return;
     </Card>
   );
 
-  if (isLoading) {
+  if (isLoading === true) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <LoadingSpinner message="Loading templates..." size="lg" />
@@ -387,12 +387,12 @@ return;
             className="flex items-center gap-2"
             variant="outline"
             onClick={() => {
- setShowFilters(!showFilters); 
+ setShowFilters(showFilters === false); 
 }}
           >
             <Filter className="h-4 w-4" />
             Filters
-            {showFilters ? (
+            {showFilters === true ? (
               <ChevronDown className="h-4 w-4" />
             ) : (
               <ChevronRight className="h-4 w-4" />
@@ -400,7 +400,7 @@ return;
           </Button>
         </div>
 
-        {showFilters && (
+        {showFilters === true && (
           <Card>
             <CardContent className="pt-6">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -531,7 +531,7 @@ return;
       </div>
 
       {/* Templates Grid */}
-      {error ? (
+      {error !== null && error !== undefined ? (
         <Card>
           <CardContent className="text-center py-8">
             <p className="text-red-600">Failed to load templates. Please try again.</p>
@@ -547,7 +547,7 @@ return;
                 ? 'Try adjusting your search or filters'
                 : 'Get started by creating your first template'}
             </p>
-            {!searchTerm && (
+            {(searchTerm === null || searchTerm === undefined || searchTerm === '') && (
               <Button
                 data-testid="create-template-empty-state-button"
                 onClick={() => {
@@ -656,7 +656,7 @@ return;
                   onChange={(e) => {
  setFormData({
                       ...formData,
-                      gradeMin: e.target.value ? parseInt(e.target.value) : undefined,
+                      gradeMin: e.target.value !== '' ? parseInt(e.target.value) : undefined,
                     }); 
 }
                   }
@@ -673,7 +673,7 @@ return;
                   onChange={(e) => {
  setFormData({
                       ...formData,
-                      gradeMax: e.target.value ? parseInt(e.target.value) : undefined,
+                      gradeMax: e.target.value !== '' ? parseInt(e.target.value) : undefined,
                     }); 
 }
                   }
@@ -707,7 +707,7 @@ return;
                 disabled={createTemplate.isPending}
                 type="submit"
               >
-                {createTemplate.isPending ? 'Creating...' : 'Create Template'}
+                {createTemplate.isPending === true ? 'Creating...' : 'Create Template'}
               </Button>
             </div>
           </form>

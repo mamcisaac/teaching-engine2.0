@@ -105,52 +105,52 @@ export class AIActivityGeneratorService {
   private _buildGenerationPrompt(params: GenerationParams): string {
     let prompt = 'Generate an engaging educational activity.\n\n';
 
-    if (params.lessonContext) {
+    if (params.lessonContext !== null && params.lessonContext !== undefined) {
       const context = params.lessonContext;
       prompt += 'Lesson Context:\n';
-      if (context.title) {
+      if (context.title !== null && context.title !== undefined && context.title !== '') {
 prompt += `Title: ${context.title}\n`;
 }
-      if (context.grade) {
+      if (context.grade !== null && context.grade !== undefined && context.grade !== 0) {
 prompt += `Grade: ${context.grade}\n`;
 }
-      if (context.subject) {
+      if (context.subject !== null && context.subject !== undefined && context.subject !== '') {
 prompt += `Subject: ${context.subject}\n`;
 }
-      if (context.learningGoals?.length) {
+      if (context.learningGoals !== null && context.learningGoals !== undefined && context.learningGoals.length > 0) {
 prompt += `Learning Goals: ${context.learningGoals.join(', ')}\n`;
 }
-      if (context.duration) {
+      if (context.duration !== null && context.duration !== undefined && context.duration !== 0) {
 prompt += `Duration: ${context.duration} minutes\n`;
 }
-      if (context.section) {
+      if (context.section !== null && context.section !== undefined && context.section !== '') {
 prompt += `Section: ${context.section}\n`;
 }
       prompt += '\n';
     }
 
-    if (params.specificRequirements) {
+    if (params.specificRequirements !== null && params.specificRequirements !== undefined) {
       const reqs = params.specificRequirements;
       prompt += 'Requirements:\n';
-      if (reqs.activityType) {
+      if (reqs.activityType !== null && reqs.activityType !== undefined && reqs.activityType !== '') {
 prompt += `Activity Type: ${reqs.activityType}\n`;
 }
-      if (reqs.materials?.length) {
+      if (reqs.materials !== null && reqs.materials !== undefined && reqs.materials.length > 0) {
 prompt += `Materials Available: ${reqs.materials.join(', ')}\n`;
 }
-      if (reqs.groupSize) {
+      if (reqs.groupSize !== null && reqs.groupSize !== undefined && reqs.groupSize !== '') {
 prompt += `Group Size: ${reqs.groupSize}\n`;
 }
-      if (reqs.language) {
+      if (reqs.language !== null && reqs.language !== undefined && reqs.language !== '') {
 prompt += `Language: ${reqs.language}\n`;
 }
-      if (reqs.curriculumExpectations?.length) {
+      if (reqs.curriculumExpectations !== null && reqs.curriculumExpectations !== undefined && reqs.curriculumExpectations.length > 0) {
 prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`;
 }
       prompt += '\n';
     }
 
-    if (params.searchResults?.length) {
+    if (params.searchResults !== null && params.searchResults !== undefined && params.searchResults.length > 0) {
       prompt += 'Consider these similar activities for inspiration:\n';
       const limitedResults = params.searchResults.slice(0, 3);
       limitedResults.forEach((result) => {
@@ -187,14 +187,14 @@ prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`
     try {
       // Extract JSON from response
       const jsonMatch = response.match(/\{[\s\S]*\}/);
-      if (!jsonMatch) {
+      if (jsonMatch === null || jsonMatch === undefined) {
         throw new Error('No JSON found in response');
       }
 
       const parsed = safeJsonParse(jsonMatch[0], {});
 
       // Validate required fields
-      if (!parsed.title || !parsed.description || !parsed.detailedInstructions) {
+      if ((parsed.title === null || parsed.title === undefined || parsed.title === '') || (parsed.description === null || parsed.description === undefined || parsed.description === '') || (parsed.detailedInstructions === null || parsed.detailedInstructions === undefined)) {
         throw new Error('Missing required fields');
       }
 
@@ -202,16 +202,16 @@ prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`
       return {
         title: parsed.title,
         description: parsed.description,
-        detailedInstructions: parsed.detailedInstructions || [],
-        duration: parsed.duration || 30,
-        activityType: parsed.activityType || 'handson',
-        materials: parsed.materials || [],
-        groupSize: parsed.groupSize || 'flexible',
-        learningGoals: parsed.learningGoals || [],
-        assessmentSuggestions: parsed.assessmentSuggestions || [],
+        detailedInstructions: parsed.detailedInstructions ?? [],
+        duration: parsed.duration ?? 30,
+        activityType: parsed.activityType ?? 'handson',
+        materials: parsed.materials ?? [],
+        groupSize: parsed.groupSize ?? 'flexible',
+        learningGoals: parsed.learningGoals ?? [],
+        assessmentSuggestions: parsed.assessmentSuggestions ?? [],
         differentiation: {
-          support: parsed.differentiation?.support || [],
-          extension: parsed.differentiation?.extension || [],
+          support: parsed.differentiation?.support ?? [],
+          extension: parsed.differentiation?.extension ?? [],
         },
         safetyConsiderations: parsed.safetyConsiderations,
         technologyRequirements: parsed.technologyRequirements,
@@ -222,13 +222,13 @@ prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`
   }
 
   private generateTemplateActivity(params: GenerationParams): GeneratedActivity {
-    const context = params.lessonContext || {};
-    const reqs = params.specificRequirements || {};
+    const context = params.lessonContext ?? {};
+    const reqs = params.specificRequirements ?? {};
 
-    const grade = context.grade || 1;
-    const subject = context.subject || 'Learning';
-    const title = context.title || 'Exploration';
-    const duration = context.duration || 30;
+    const grade = context.grade ?? 1;
+    const subject = context.subject ?? 'Learning';
+    const title = context.title ?? 'Exploration';
+    const duration = context.duration ?? 30;
 
     return {
       title: `${subject} Activity - ${title}`,
@@ -241,10 +241,10 @@ prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`
         'Assess understanding and provide feedback',
       ],
       duration,
-      activityType: reqs.activityType || 'hands-on',
-      materials: reqs.materials || ['paper', 'pencils', 'whiteboard'],
-      groupSize: reqs.groupSize || 'individual or small groups',
-      learningGoals: context.learningGoals || ['Students will explore new concepts'],
+      activityType: reqs.activityType ?? 'hands-on',
+      materials: reqs.materials ?? ['paper', 'pencils', 'whiteboard'],
+      groupSize: reqs.groupSize ?? 'individual or small groups',
+      learningGoals: context.learningGoals ?? ['Students will explore new concepts'],
       assessmentSuggestions: [
         'Observe student participation and engagement',
         'Ask questions to check understanding',

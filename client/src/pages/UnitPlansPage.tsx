@@ -85,12 +85,12 @@ export default function UnitPlansPage() {
   const [selectedTemplate, setSelectedTemplate] = useState<PlanTemplate | null>(null);
 
   // Fetch data
-  const { data: longRangePlan } = useLongRangePlan(longRangePlanId || '');
+  const { data: longRangePlan } = useLongRangePlan(longRangePlanId ?? '');
   const { data: allLongRangePlans = [] } = useLongRangePlans();
   const { data: unitPlans = [], isLoading } = useUnitPlans(
     longRangePlanId ? { longRangePlanId } : {},
   );
-  const { data: selectedUnit } = useUnitPlan(unitId || '');
+  const { data: selectedUnit } = useUnitPlan(unitId ?? '');
 
   // Curriculum expectations for AI assistance
   const { data: curriculumExpectations = [] } = useCurriculumExpectations({
@@ -138,7 +138,7 @@ export default function UnitPlansPage() {
     longRangePlanId,
     editingId: editingUnit,
     onSave: async (data) => {
-      if (editingUnit) {
+      if (editingUnit !== null && editingUnit !== undefined) {
         await updateUnit.mutateAsync({ id: editingUnit, ...data });
       }
     },
@@ -148,14 +148,14 @@ export default function UnitPlansPage() {
     e.preventDefault();
 
     const { isValid, errors } = validateForm();
-    if (!isValid) {
+    if (isValid === false) {
       logger.error('Form validation errors:', errors);
       return;
     }
 
     const cleanData = getCleanFormData();
 
-    if (editingUnit) {
+    if (editingUnit !== null && editingUnit !== undefined) {
       await updateUnit.mutateAsync({ id: editingUnit, ...cleanData });
       setEditingUnit(null);
     } else {
@@ -227,7 +227,7 @@ export default function UnitPlansPage() {
     try {
       const applied = await applyTemplate.mutateAsync({ id: template.id });
 
-      if (isUnitPlanTemplate(template) && applied.appliedContent) {
+      if (isUnitPlanTemplate(template) && applied.appliedContent !== null && applied.appliedContent !== undefined) {
         // Pre-populate form with template data
         const templateContent = applied.appliedContent as UnitPlanContent;
         updateField('title', '');
@@ -243,7 +243,7 @@ export default function UnitPlansPage() {
         updateField('crossCurricularConnections', templateContent.crossCurricularConnections ?? '');
         // Handle differentiationStrategies which might have different structure in template
         const diffStrategies = templateContent.differentiationStrategies;
-        if (diffStrategies && typeof diffStrategies === 'object') {
+        if (diffStrategies !== null && diffStrategies !== undefined && typeof diffStrategies === 'object') {
           updateField('differentiationStrategies', {
             forStruggling: Array.isArray(diffStrategies.forStruggling)
               ? diffStrategies.forStruggling
@@ -273,7 +273,7 @@ export default function UnitPlansPage() {
         updateField('communityConnections', templateContent.communityConnections ?? '');
 
         // Set estimated duration if available
-        if (template.estimatedWeeks) {
+        if (template.estimatedWeeks !== null && template.estimatedWeeks !== undefined && template.estimatedWeeks !== 0) {
           const startDate = new Date();
           const endDate = new Date();
           endDate.setDate(startDate.getDate() + template.estimatedWeeks * 7);
@@ -291,7 +291,7 @@ export default function UnitPlansPage() {
     }
   };
 
-  if (isLoading) {
+  if (isLoading === true) {
     return (
       <PlanningErrorBoundary>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -310,7 +310,7 @@ export default function UnitPlansPage() {
   }
 
   // Detail view for a specific unit
-  if (unitId && selectedUnit) {
+  if (unitId !== null && unitId !== undefined && unitId !== '' && selectedUnit !== null && selectedUnit !== undefined) {
     const unit = selectedUnit as ExtendedUnitPlan;
     return (
       <PlanAccessTracker planType="unit">
@@ -334,7 +334,7 @@ export default function UnitPlansPage() {
               <div className="flex justify-between items-start">
                 <div>
                   <h1 className="text-2xl font-bold text-gray-900">{unit.title}</h1>
-                  {unit.titleFr && <p className="text-sm text-gray-600 mt-1">{unit.titleFr}</p>}
+                  {unit.titleFr !== null && unit.titleFr !== undefined && unit.titleFr !== '' && <p className="text-sm text-gray-600 mt-1">{unit.titleFr}</p>}
                   <div className="flex gap-4 mt-2 text-sm text-gray-600">
                     <span>
                       {new Date(unit.startDate).toLocaleDateString()} -{' '}
@@ -399,21 +399,21 @@ export default function UnitPlansPage() {
 
             {/* Unit Detail Content */}
             <div className="p-6 space-y-6">
-              {unit.description && (
+              {unit.description !== null && unit.description !== undefined && unit.description !== '' && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Description</h3>
                   <p className="text-gray-700">{unit.description}</p>
                 </div>
               )}
 
-              {unit.bigIdeas && (
+              {unit.bigIdeas !== null && unit.bigIdeas !== undefined && unit.bigIdeas !== '' && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Big Ideas</h3>
                   <SafeHtmlRenderer className="prose max-w-none" html={unit.bigIdeas} />
                 </div>
               )}
 
-              {unit.essentialQuestions && unit.essentialQuestions.length > 0 && (
+              {unit.essentialQuestions !== null && unit.essentialQuestions !== undefined && unit.essentialQuestions.length > 0 && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Essential Questions</h3>
                   <ul className="list-disc list-inside space-y-1">
@@ -426,7 +426,7 @@ export default function UnitPlansPage() {
                 </div>
               )}
 
-              {unit.successCriteria && unit.successCriteria.length > 0 && (
+              {unit.successCriteria !== null && unit.successCriteria !== undefined && unit.successCriteria.length > 0 && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Success Criteria</h3>
                   <ul className="list-disc list-inside space-y-1">
@@ -439,14 +439,14 @@ export default function UnitPlansPage() {
                 </div>
               )}
 
-              {unit.assessmentPlan && (
+              {unit.assessmentPlan !== null && unit.assessmentPlan !== undefined && unit.assessmentPlan !== '' && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Assessment Plan</h3>
                   <SafeHtmlRenderer className="prose max-w-none" html={unit.assessmentPlan} />
                 </div>
               )}
 
-              {unit.keyVocabulary && unit.keyVocabulary.length > 0 && (
+              {unit.keyVocabulary !== null && unit.keyVocabulary !== undefined && unit.keyVocabulary.length > 0 && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Key Vocabulary</h3>
                   <div className="flex flex-wrap gap-2">
@@ -460,7 +460,7 @@ export default function UnitPlansPage() {
               )}
 
               {/* ETFO-specific sections */}
-              {unit.crossCurricularConnections && (
+              {unit.crossCurricularConnections !== null && unit.crossCurricularConnections !== undefined && unit.crossCurricularConnections !== '' && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">
                     Cross-Curricular Connections
@@ -470,13 +470,14 @@ export default function UnitPlansPage() {
               )}
 
               {/* Differentiation Strategies */}
-              {unit.differentiationStrategies && (
+              {unit.differentiationStrategies !== null && unit.differentiationStrategies !== undefined && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">
                     Differentiation Strategies
                   </h3>
                   <div className="grid gap-4 md:grid-cols-2">
-                    {unit.differentiationStrategies.forStruggling &&
+                    {unit.differentiationStrategies.forStruggling !== null &&
+                      unit.differentiationStrategies.forStruggling !== undefined &&
                       unit.differentiationStrategies.forStruggling.length > 0 && (
                         <Card>
                           <CardHeader>
@@ -494,7 +495,8 @@ export default function UnitPlansPage() {
                         </Card>
                       )}
 
-                    {unit.differentiationStrategies.forAdvanced &&
+                    {unit.differentiationStrategies.forAdvanced !== null &&
+                      unit.differentiationStrategies.forAdvanced !== undefined &&
                       unit.differentiationStrategies.forAdvanced.length > 0 && (
                         <Card>
                           <CardHeader>
@@ -510,7 +512,8 @@ export default function UnitPlansPage() {
                         </Card>
                       )}
 
-                    {unit.differentiationStrategies.forELL &&
+                    {unit.differentiationStrategies.forELL !== null &&
+                      unit.differentiationStrategies.forELL !== undefined &&
                       unit.differentiationStrategies.forELL.length > 0 && (
                         <Card>
                           <CardHeader>
@@ -526,7 +529,8 @@ export default function UnitPlansPage() {
                         </Card>
                       )}
 
-                    {unit.differentiationStrategies.forIEP &&
+                    {unit.differentiationStrategies.forIEP !== null &&
+                      unit.differentiationStrategies.forIEP !== undefined &&
                       unit.differentiationStrategies.forIEP.length > 0 && (
                         <Card>
                           <CardHeader>
@@ -546,7 +550,7 @@ export default function UnitPlansPage() {
               )}
 
               {/* Curriculum Expectations */}
-              {unit.expectations && unit.expectations.length > 0 && (
+              {unit.expectations !== null && unit.expectations !== undefined && unit.expectations.length > 0 && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">
                     Curriculum Expectations
@@ -568,7 +572,7 @@ export default function UnitPlansPage() {
               )}
 
               {/* Progress Summary */}
-              {unit.progress && (
+              {unit.progress !== null && unit.progress !== undefined && (
                 <Card className="bg-indigo-50 border-indigo-200">
                   <CardHeader>
                     <CardTitle className="text-base">Progress Summary</CardTitle>
@@ -604,7 +608,7 @@ export default function UnitPlansPage() {
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
-          {longRangePlanId ? (
+          {longRangePlanId !== null && longRangePlanId !== undefined && longRangePlanId !== '' ? (
             <>
               <Link className="hover:text-indigo-600" to="/planner/long-range">
                 Long-Range Plans
@@ -632,9 +636,9 @@ export default function UnitPlansPage() {
         <div className="flex justify-between items-start">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">
-              {longRangePlanId ? 'Unit Plans' : 'All Unit Plans'}
+              {longRangePlanId !== null && longRangePlanId !== undefined && longRangePlanId !== '' ? 'Unit Plans' : 'All Unit Plans'}
             </h1>
-            {longRangePlan ? (
+            {longRangePlan !== null && longRangePlan !== undefined ? (
               <p className="mt-2 text-gray-600">
                 {longRangePlan.subject} - Grade {longRangePlan.grade} - {longRangePlan.academicYear}
               </p>
@@ -646,7 +650,7 @@ export default function UnitPlansPage() {
           <div className="flex items-center gap-3">
             <BlankTemplateQuickActions
               schoolInfo={{
-                grade: longRangePlan ? `Grade ${longRangePlan.grade}` : '',
+                grade: longRangePlan !== null && longRangePlan !== undefined ? `Grade ${longRangePlan.grade}` : '',
                 subject: longRangePlan?.subject ?? '',
                 academicYear: longRangePlan?.academicYear ?? '',
               }}
@@ -723,9 +727,9 @@ export default function UnitPlansPage() {
         <div className="p-6 max-w-5xl max-h-[90vh] overflow-y-auto">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold">
-              {editingUnit ? 'Edit Unit Plan' : 'Create Unit Plan'}
+              {editingUnit !== null && editingUnit !== undefined ? 'Edit Unit Plan' : 'Create Unit Plan'}
             </h3>
-            {editingUnit && (
+            {editingUnit !== null && editingUnit !== undefined && (
               <div className="flex items-center gap-2">
                 <AutoSaveIndicator
                   hasUnsavedChanges={hasUnsavedChanges}
@@ -735,13 +739,13 @@ export default function UnitPlansPage() {
                 />
                 <Button
                   className="flex items-center gap-2"
-                  disabled={isSaving || !hasUnsavedChanges}
+                  disabled={isSaving === true || hasUnsavedChanges === false}
                   size="sm"
                   type="button"
                   variant="outline"
                   onClick={saveNow}
                 >
-                  {isSaving ? (
+                  {isSaving === true ? (
                     <RefreshCw className="h-4 w-4 animate-spin" />
                   ) : (
                     <Save className="h-4 w-4" />
@@ -846,7 +850,7 @@ export default function UnitPlansPage() {
                             className="rounded"
                             type="checkbox"
                             onChange={(e) => {
-                              if (e.target.checked) {
+                              if (e.target.checked === true) {
                                 updateField('learningSkills', [...formData.learningSkills, skill]);
                               } else {
                                 updateField(
@@ -1146,12 +1150,12 @@ export default function UnitPlansPage() {
                 </Button>
                 <Button
                   className="bg-indigo-600 hover:bg-indigo-700 text-white"
-                  disabled={createUnit.isPending || updateUnit.isPending || isSaving}
+                  disabled={createUnit.isPending === true || updateUnit.isPending === true || isSaving === true}
                   type="submit"
                 >
-                  {createUnit.isPending || updateUnit.isPending || isSaving
+                  {createUnit.isPending === true || updateUnit.isPending === true || isSaving === true
                     ? 'Saving...'
-                    : editingUnit
+                    : editingUnit !== null && editingUnit !== undefined
                       ? 'Update Unit Plan'
                       : 'Create Unit Plan'}
                 </Button>
@@ -1175,7 +1179,7 @@ export default function UnitPlansPage() {
               </div>
               <h3 className="text-lg font-medium text-gray-900 mb-2">No templates available</h3>
               <p className="text-gray-600">
-                {longRangePlan
+                {longRangePlan !== null && longRangePlan !== undefined
                   ? `No unit plan templates found for Grade ${longRangePlan.grade} ${longRangePlan.subject}.`
                   : 'No unit plan templates available at this time.'}
               </p>
@@ -1191,7 +1195,7 @@ export default function UnitPlansPage() {
                   <Card
                     key={template.id}
                     className={`cursor-pointer border-2 transition-colors ${
-                      selectedTemplate?.id === template.id
+                      selectedTemplate !== null && selectedTemplate !== undefined && selectedTemplate.id === template.id
                         ? 'border-indigo-500 bg-indigo-50'
                         : 'border-gray-200 hover:border-gray-300'
                     }`}
@@ -1208,7 +1212,7 @@ export default function UnitPlansPage() {
                             {template.gradeMax &&
                               template.gradeMax !== template.gradeMin &&
                               `-${template.gradeMax}`}
-                            {template.estimatedWeeks && ` • ${template.estimatedWeeks} weeks`}
+                            {template.estimatedWeeks !== null && template.estimatedWeeks !== undefined && template.estimatedWeeks !== 0 && ` • ${template.estimatedWeeks} weeks`}
                           </CardDescription>
                         </div>
                         <div className="flex items-center gap-1 text-yellow-500">
@@ -1232,7 +1236,7 @@ export default function UnitPlansPage() {
                             {tag}
                           </span>
                         ))}
-                        {template.tags && template.tags.length > 3 && (
+                        {template.tags !== null && template.tags !== undefined && template.tags.length > 3 && (
                           <span className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-full">
                             +{template.tags.length - 3} more
                           </span>
@@ -1262,11 +1266,11 @@ export default function UnitPlansPage() {
             </Button>
             <Button
               className="bg-indigo-600 hover:bg-indigo-700 text-white"
-              disabled={!selectedTemplate || applyTemplate.isPending}
+              disabled={selectedTemplate === null || selectedTemplate === undefined || applyTemplate.isPending === true}
               type="button"
-              onClick={() => selectedTemplate && handleApplyTemplate(selectedTemplate)}
+              onClick={() => selectedTemplate !== null && selectedTemplate !== undefined && handleApplyTemplate(selectedTemplate)}
             >
-              {applyTemplate.isPending ? 'Loading...' : 'Use This Template'}
+              {applyTemplate.isPending === true ? 'Loading...' : 'Use This Template'}
             </Button>
           </div>
         </div>

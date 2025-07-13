@@ -79,19 +79,19 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
   const totalDuration = lessons.reduce((sum, lesson) => sum + (lesson.duration ?? 0), 0);
 
   return (
-    <Card className={_isDayToday ? 'ring-2 ring-primary' : ''}>
+    <Card className={_isDayToday === true ? 'ring-2 ring-primary' : ''}>
       <CardHeader>
         <div className="flex items-center justify-between">
           <div>
             <CardTitle className="text-lg">{format(date, 'EEEE, MMMM d')}</CardTitle>
-            {_isDayToday && (
+            {_isDayToday === true && (
               <Badge className="mt-1" variant="default">
                 Today
               </Badge>
             )}
           </div>
           <Button aria-label="Click button" onClick={() => {
- setIsEditing(!isEditing); 
+ setIsEditing(isEditing === false); 
 }}>
             <PenTool className="h-4 w-4" />
           </Button>
@@ -118,7 +118,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
                       <Clock className="h-3 w-3" />
                       {lesson.duration} min
                     </span>
-                    {lesson.unitPlan && (
+                    {lesson.unitPlan !== null && lesson.unitPlan !== undefined && (
                       <span className="flex items-center gap-1">
                         <BookOpen className="h-3 w-3" />
                         {lesson.unitPlan.title}
@@ -127,7 +127,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
                   </div>
                 </div>
                 <div className="flex gap-1">
-                  {lesson.assessmentType && (
+                  {lesson.assessmentType !== null && lesson.assessmentType !== undefined && lesson.assessmentType !== '' && (
                     <Badge className="text-xs" variant="secondary">
                       {lesson.assessmentType}
                     </Badge>
@@ -139,7 +139,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
         </div>
 
         {/* ETFO Reflection Prompts */}
-        {isEditing ? (
+        {isEditing === true ? (
           <div className="space-y-4">
             {/* Overall Rating */}
             <div className="space-y-2">
@@ -308,7 +308,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
         ) : (
           <div className="space-y-2">
             {/* Display saved reflections */}
-            {formData.overallRating && (
+            {formData.overallRating !== null && formData.overallRating !== undefined && formData.overallRating !== 0 && (
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-sm font-medium">Day Rating:</span>
                 <div className="flex items-center gap-1">
@@ -326,28 +326,28 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
               </div>
             )}
 
-            {formData.whatWorked && (
+            {formData.whatWorked !== null && formData.whatWorked !== undefined && formData.whatWorked !== '' && (
               <div>
                 <p className="text-sm font-medium text-green-700">What Worked:</p>
                 <p className="text-sm text-muted-foreground">{formData.whatWorked}</p>
               </div>
             )}
 
-            {formData.whatDidntWork && (
+            {formData.whatDidntWork !== null && formData.whatDidntWork !== undefined && formData.whatDidntWork !== '' && (
               <div>
                 <p className="text-sm font-medium text-orange-700">Challenges:</p>
                 <p className="text-sm text-muted-foreground">{formData.whatDidntWork}</p>
               </div>
             )}
 
-            {formData.nextSteps && (
+            {formData.nextSteps !== null && formData.nextSteps !== undefined && formData.nextSteps !== '' && (
               <div>
                 <p className="text-sm font-medium text-blue-700">Next Steps:</p>
                 <p className="text-sm text-muted-foreground">{formData.nextSteps}</p>
               </div>
             )}
 
-            {!formData.whatWorked && !formData.whatDidntWork && !formData.nextSteps && (
+            {(formData.whatWorked === null || formData.whatWorked === undefined || formData.whatWorked === '') && (formData.whatDidntWork === null || formData.whatDidntWork === undefined || formData.whatDidntWork === '') && (formData.nextSteps === null || formData.nextSteps === undefined || formData.nextSteps === '') && (
               <p className="text-sm text-muted-foreground italic">No reflection yet</p>
             )}
           </div>
@@ -359,7 +359,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
         </div>
 
         {/* Save button */}
-        {isEditing && (
+        {isEditing === true && (
           <div className="flex justify-end gap-2">
             <Button aria-label="Click button" onClick={() => {
  setIsEditing(false); 
@@ -412,7 +412,7 @@ export default function DaybookPage() {
         (e) => format(new Date(e.date), 'yyyy-MM-dd') === format(date, 'yyyy-MM-dd'),
       );
 
-      if (existingEntry) {
+      if (existingEntry !== null && existingEntry !== undefined) {
         await updateMutation.mutateAsync({
           id: existingEntry.id,
           ...data,
@@ -607,10 +607,10 @@ export default function DaybookPage() {
               size="sm"
               variant="outline"
               onClick={() => {
- setShowQuickTemplates(!showQuickTemplates); 
+ setShowQuickTemplates(showQuickTemplates === false); 
 }}
             >
-              {showQuickTemplates ? 'Hide' : 'Show'} Templates
+              {showQuickTemplates === true ? 'Hide' : 'Show'} Templates
             </Button>
           </div>
         </CardHeader>
