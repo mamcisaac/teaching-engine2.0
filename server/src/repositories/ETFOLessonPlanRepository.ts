@@ -60,7 +60,7 @@ export class ETFOLessonPlanRepository {
     },
   ): Promise<ETFOLessonPlanWithRelations[]> {
     try {
-      const { includeRelations = false, skip = 0, take = 20 } = options || {};
+      const { includeRelations = false, skip = 0, take = 20 } = options ?? {};
 
       const plans = await this.prisma.eTFOLessonPlan.findMany({
         where: { userId },
@@ -396,7 +396,7 @@ export class ETFOLessonPlanRepository {
     },
   ): Promise<ETFOLessonPlanWithRelations[]> {
     try {
-      const { skip = 0, take = 20 } = options || {};
+      const { skip = 0, take = 20 } = options ?? {};
 
       const plans = await this.prisma.eTFOLessonPlan.findMany({
         where: {

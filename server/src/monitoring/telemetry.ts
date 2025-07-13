@@ -22,7 +22,7 @@ const OTEL_ENDPOINT = process.env.OTEL_ENDPOINT ?? 'http://localhost:4318';
 const resource = Resource.default().merge(
   new Resource({
     [SemanticResourceAttributes.SERVICE_NAME]: OTEL_SERVICE_NAME,
-    [SemanticResourceAttributes.SERVICE_VERSION]: process.env.npm_package_version || '1.0.0',
+    [SemanticResourceAttributes.SERVICE_VERSION]: process.env.npm_package_version ?? '1.0.0',
     [SemanticResourceAttributes.DEPLOYMENT_ENVIRONMENT]: OTEL_ENVIRONMENT,
   }),
 );

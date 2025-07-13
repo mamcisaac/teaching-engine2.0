@@ -161,7 +161,7 @@ export class BusinessLogicError extends StandardError {
       message,
       400,
       true,
-      userMessage || 'The operation cannot be completed due to business rules.',
+      userMessage ?? 'The operation cannot be completed due to business rules.',
       details,
     );
   }
@@ -212,8 +212,8 @@ export function standardErrorHandler(
   if (error instanceof StandardError) {
     statusCode = error.statusCode;
     errorType = error.type;
-    userMessage = error.userMessage || userMessage;
-    details = error.details || {};
+    userMessage = error.userMessage ?? userMessage;
+    details = error.details ?? {};
   } else if (error instanceof ZodError) {
     statusCode = 400;
     errorType = ErrorType.VALIDATION_ERROR;
@@ -261,7 +261,7 @@ export function standardErrorHandler(
   }
 
   // Log the error
-  const requestLogger = (req as { logger?: typeof logger }).logger || logger;
+  const requestLogger = (req as { logger?: typeof logger }).logger ?? logger;
 
   if (statusCode >= 500) {
     // Server errors

@@ -101,9 +101,9 @@ function calculateTrends(entries: DaybookEntryForAnalytics[]): {
     const secondHalf = ratingsWithValues.slice(Math.floor(ratingsWithValues.length / 2));
 
     const firstAvg =
-      firstHalf.reduce((sum, e) => sum + (e.overallRating || 0), 0) / firstHalf.length;
+      firstHalf.reduce((sum, e) => sum + (e.overallRating ?? 0), 0) / firstHalf.length;
     const secondAvg =
-      secondHalf.reduce((sum, e) => sum + (e.overallRating || 0), 0) / secondHalf.length;
+      secondHalf.reduce((sum, e) => sum + (e.overallRating ?? 0), 0) / secondHalf.length;
 
     if (secondAvg > firstAvg + 0.3) {
       ratingTrend = 'improving';
@@ -166,12 +166,12 @@ function extractKeywords(entries: DaybookEntryForAnalytics[]): string[] {
     .join(' ')
     .toLowerCase();
 
-  const words = allText.match(/\b\w{3,}\b/g) || [];
+  const words = allText.match(/\b\w{3,}\b/g) ?? [];
   const wordFreq: Record<string, number> = {};
 
   words.forEach((word) => {
     if (!stopWords.includes(word)) {
-      wordFreq[word] = (wordFreq[word] || 0) + 1;
+      wordFreq[word] = (wordFreq[word] ?? 0) + 1;
     }
   });
 
@@ -309,7 +309,7 @@ orderBy.createdAt = order;
                 const expectation = exp as { expectationId: string; coverage?: string };
                 return {
                   expectationId: expectation.expectationId,
-                  coverage: expectation.coverage || 'introduced',
+                  coverage: expectation.coverage ?? 'introduced',
                 };
               }),
             }
@@ -399,14 +399,14 @@ orderBy.createdAt = order;
 
     const averageRating =
       recentEntries.length > 0
-        ? recentEntries.reduce((sum: number, entry: { overallRating: number | null }) => sum + (entry.overallRating || 0), 0) /
+        ? recentEntries.reduce((sum: number, entry: { overallRating: number | null }) => sum + (entry.overallRating ?? 0), 0) /
           recentEntries.length
         : 0;
 
     const subjectBreakdown = recentEntries.reduce<Record<string, number>>(
       (acc: Record<string, number>, entry) => {
-        const subject = entry.lessonPlan?.unitPlan.longRangePlan.subject || 'Unknown';
-        acc[subject] = (acc[subject] || 0) + 1;
+        const subject = entry.lessonPlan?.unitPlan.longRangePlan.subject ?? 'Unknown';
+        acc[subject] = (acc[subject] ?? 0) + 1;
         return acc;
       },
       {},

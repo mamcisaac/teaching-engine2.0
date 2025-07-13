@@ -51,8 +51,8 @@ export class PDFParser extends CurriculumParser {
     }
 
     const curriculum: ParsedCurriculum = {
-      subject: metadata.subject || 'Unknown',
-      grade: metadata.grade || 0,
+      subject: metadata.subject ?? 'Unknown',
+      grade: metadata.grade ?? 0,
       expectations: this.deduplicateExpectations(expectations),
       metadata: {
         source: 'PDF Import',
@@ -85,7 +85,7 @@ export class PDFParser extends CurriculumParser {
     // Try to extract from PDF metadata
     if (pdfData && typeof pdfData === 'object' && 'info' in pdfData) {
       const {info} = (pdfData as { info?: { Title?: string; Subject?: string } });
-      metadata.version = info?.Title || info?.Subject;
+      metadata.version = info?.Title ?? info?.Subject;
     }
 
     // Extract from text content
@@ -218,7 +218,7 @@ export class PDFParser extends CurriculumParser {
     const type: 'overall' | 'specific' = isOverall ? 'overall' : 'specific';
 
     // Extract strand from section title
-    const strand = this.extractStrand(section.title) || 'General';
+    const strand = this.extractStrand(section.title) ?? 'General';
 
     // Parse expectations using different patterns
     const patterns = [
