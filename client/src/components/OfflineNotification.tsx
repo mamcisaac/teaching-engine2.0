@@ -72,7 +72,7 @@ export function OfflineNotification(): React.ReactElement | null {
                 disabled={retrying}
                 size="sm"
                 variant="outline"
-                onClick={handleRetry}
+                onClick={() => { void handleRetry(); }}
               >
                 {retrying !== null && retrying !== undefined && retrying === true ? (
                   <>

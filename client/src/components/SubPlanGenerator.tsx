@@ -55,7 +55,7 @@ export default function SubPlanGenerator({ onClose }: Props): React.ReactElement
           <option value={2}>2 days</option>
           <option value={3}>3 days</option>
         </select>
-        <button className="px-2 py-1 bg-blue-500 text-white rounded" onClick={generate}>
+        <button className="px-2 py-1 bg-blue-500 text-white rounded" onClick={() => { void generate(); }}>
           Generate
         </button>
         {url && <iframe className="w-full h-64 border" src={url} />}

@@ -98,7 +98,7 @@ export class AuthErrorBoundary extends Component<AuthErrorBoundaryProps, AuthErr
 
     // If we were offline and now we're online, try to recover
     if (this.state.hasError === true && this.isNetworkError(this.state.error)) {
-      this.handleRetryAuth();
+      void this.handleRetryAuth();
     }
   };
 

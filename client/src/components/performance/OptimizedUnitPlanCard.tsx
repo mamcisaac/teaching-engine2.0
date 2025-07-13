@@ -44,8 +44,8 @@ return null;
     
     return {
       percentage: Math.min(100, Math.max(0, unit.progress.percentage)),
-      completed: unit.progress.completed || 0,
-      total: unit.progress.total || 0,
+      completed: unit.progress.completed ?? 0,
+      total: unit.progress.total ?? 0,
     };
   }, [unit.progress]);
 

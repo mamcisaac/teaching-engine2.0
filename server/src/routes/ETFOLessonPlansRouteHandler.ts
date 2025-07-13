@@ -217,7 +217,7 @@ where.assessmentType = assessmentType;
     // Create lesson plan data that matches Prisma schema
     const baseData = {
       title: data.title,
-      unitPlanId: data.unitPlanId || '',
+      unitPlanId: data.unitPlanId ?? '',
       date: new Date(data.date),
       duration: data.duration || 60, // Default 60 minutes
       mindsOn: data.mindsOn,

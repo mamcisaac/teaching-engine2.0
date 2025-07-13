@@ -352,12 +352,12 @@ return null;
   const config = templateConfigs[templateType];
 
   const handleQuickPrint = () => {
-    const html = config.generator(schoolInfo || {});
+    const html = config.generator(schoolInfo ?? {});
     printHTML(html, config.filename);
   };
 
   const _handleQuickDownload = () => {
-    const html = config.generator(schoolInfo || {});
+    const html = config.generator(schoolInfo ?? {});
     downloadHTML(html, config.filename);
   };
 

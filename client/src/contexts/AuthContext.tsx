@@ -254,12 +254,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
 return;
 }
 
-    const interval = setInterval(async (): Promise<void> => {
-      try {
-        await authService.ensureValidToken();
-      } catch (_error) {
-        logger.error('Auto token refresh failed:', _error);
-      }
+    const interval = setInterval((): void => {
+      void (async (): Promise<void> => {
+        try {
+          await authService.ensureValidToken();
+        } catch (_error) {
+          logger.error('Auto token refresh failed:', _error);
+        }
+      })();
     }, 60000); // Check every minute
 
     return (): void => {

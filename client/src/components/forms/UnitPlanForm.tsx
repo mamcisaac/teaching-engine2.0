@@ -113,7 +113,7 @@ export default function UnitPlanForm({
     successCriteria: [''],
     successCriteriaFr: [''],
     expectationIds: [],
-    longRangePlanId: longRangePlan?.id || '',
+    longRangePlanId: longRangePlan?.id ?? '',
     // Additional ETFO fields
     crossCurricularConnections: '',
     crossCurricularConnectionsFr: '',
@@ -381,7 +381,7 @@ export default function UnitPlanForm({
                   placeholderEn="Enter unit title..."
                   placeholderFr="Entrez le titre de l'unité..."
                   valueEn={formData.title}
-                  valueFr={formData.titleFr || ''}
+                  valueFr={formData.titleFr ?? ''}
                   onChangeEn={(value) => {
  setFormData({ ...formData, title: value }); 
 }}
@@ -454,7 +454,7 @@ export default function UnitPlanForm({
                   placeholderFr="Fournissez un aperçu de ce que cette unité couvrira..."
                   rows={3}
                   valueEn={formData.description}
-                  valueFr={formData.descriptionFr || ''}
+                  valueFr={formData.descriptionFr ?? ''}
                   onChangeEn={(value) => {
  setFormData({ ...formData, description: value }); 
 }}
@@ -531,7 +531,7 @@ export default function UnitPlanForm({
               }))}
             duration={2}
             grade={longRangePlan?.grade || 1}
-            subject={longRangePlan?.subject || ''}
+            subject={longRangePlan?.subject ?? ''}
             unitTitle={formData.title}
             onSuggestionAccepted={(type, content) => {
               // Handle AI suggestions

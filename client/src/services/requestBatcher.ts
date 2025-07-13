@@ -244,20 +244,22 @@ export function createDebouncedRequest<
 
     if (!lastPromise) {
       lastPromise = new Promise<TReturn>((resolve, reject) => {
-        timeout = setTimeout(async (): Promise<void> => {
-          try {
-            if (!lastArgs) {
-              throw new Error('No arguments available');
+        timeout = setTimeout((): void => {
+          void (async (): Promise<void> => {
+            try {
+              if (!lastArgs) {
+                throw new Error('No arguments available');
+              }
+              const result = await fn(...lastArgs);
+              resolve(result);
+            } catch (error) {
+              reject(error);
+            } finally {
+              timeout = null;
+              lastPromise = null;
+              lastArgs = null;
             }
-            const result = await fn(...lastArgs);
-            resolve(result);
-          } catch (error) {
-            reject(error);
-          } finally {
-            timeout = null;
-            lastPromise = null;
-            lastArgs = null;
-          }
+          })();
         }, delay);
       });
     }

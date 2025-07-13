@@ -165,14 +165,14 @@ export class ErrorReportingService {
       console.info('[MOCK] Would capture error:', {
         error: error instanceof Error ? error.message : String(error),
         stack: error instanceof Error ? error.stack : undefined,
-        context: this.sanitizeData(context || {}),
+        context: this.sanitizeData(context ?? {}),
         errorInfo: errorInfo?.componentStack,
       });
       return;
     }
 
     const errorCategory = this.categorizeError(error);
-    const sanitizedContext = this.sanitizeData(context || {});
+    const sanitizedContext = this.sanitizeData(context ?? {});
 
     Sentry.withScope((scope) => {
       // Set error category and severity
@@ -249,7 +249,7 @@ export class ErrorReportingService {
       return;
     }
 
-    const sanitizedData = this.sanitizeData(breadcrumb.data || {});
+    const sanitizedData = this.sanitizeData(breadcrumb.data ?? {});
 
     Sentry.addBreadcrumb({
       message: breadcrumb.message,

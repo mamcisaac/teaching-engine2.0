@@ -24,7 +24,7 @@ export default function ResourceSelector({
   const [selectedFileType, setSelectedFileType] = useState(fileTypeFilter || '');
 
   const { data: mediaData, isLoading } = useMediaResources({ userId });
-  const resources = mediaData?.resources || [];
+  const resources = mediaData?.resources ?? [];
 
   // Filter resources
   const filteredResources = resources.filter((resource) => {

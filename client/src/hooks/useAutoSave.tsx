@@ -55,34 +55,36 @@ export function useAutoSave<T>({
     }
 
     // Set new timeout
-    timeoutRef.current = setTimeout(async () => {
-      try {
-        setIsSaving(true);
-        await saveFn(data);
-        setLastSaved(new Date());
-        setHasUnsavedChanges(false);
-        
-        toast({
-          title: 'Auto-saved',
-          description: 'Your changes have been automatically saved.',
-          duration: 2000,
-        });
+    timeoutRef.current = setTimeout(() => {
+      void (async () => {
+        try {
+          setIsSaving(true);
+          await saveFn(data);
+          setLastSaved(new Date());
+          setHasUnsavedChanges(false);
+          
+          toast({
+            title: 'Auto-saved',
+            description: 'Your changes have been automatically saved.',
+            duration: 2000,
+          });
 
-        onSaveSuccess?.();
-      } catch (_error) {
-        logger.error('Auto-save failed:', _error);
-        
-        toast({
-          title: 'Auto-save failed',
-          description: 'Failed to save automatically. Please save manually.',
-          variant: 'destructive',
-          duration: 5000,
-        });
+          onSaveSuccess?.();
+        } catch (_error) {
+          logger.error('Auto-save failed:', _error);
+          
+          toast({
+            title: 'Auto-save failed',
+            description: 'Failed to save automatically. Please save manually.',
+            variant: 'destructive',
+            duration: 5000,
+          });
 
-        onSaveError?.(_error as Error);
-      } finally {
-        setIsSaving(false);
-      }
+          onSaveError?.(_error as Error);
+        } finally {
+          setIsSaving(false);
+        }
+      })();
     }, delay);
 
     return (): void => {

@@ -72,7 +72,7 @@ export default function LessonPlanForm({
   const [formData, setFormData] = useState<LessonPlanFormData>({
     title: '',
     titleFr: '',
-    unitPlanId: unitPlan?.id || '',
+    unitPlanId: unitPlan?.id ?? '',
     date: new Date().toISOString().split('T')[0],
     duration: 60,
     mindsOn: '',
@@ -289,7 +289,7 @@ export default function LessonPlanForm({
                   placeholderEn="Enter lesson title..."
                   placeholderFr="Entrez le titre de la leçon..."
                   valueEn={formData.title}
-                  valueFr={formData.titleFr || ''}
+                  valueFr={formData.titleFr ?? ''}
                   onChangeEn={(value) => {
  setFormData({ ...formData, title: value }); 
 }}
@@ -338,7 +338,7 @@ export default function LessonPlanForm({
                   <select
                     className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                     id="grouping"
-                    value={formData.grouping || ''}
+                    value={formData.grouping ?? ''}
                     onChange={(e) => {
  setFormData({ ...formData, grouping: e.target.value }); 
 }}
@@ -359,8 +359,8 @@ export default function LessonPlanForm({
                   placeholderEn="What will students learn in this lesson?"
                   placeholderFr="Que vont apprendre les élèves dans cette leçon?"
                   rows={3}
-                  valueEn={formData.learningGoals || ''}
-                  valueFr={formData.learningGoalsFr || ''}
+                  valueEn={formData.learningGoals ?? ''}
+                  valueFr={formData.learningGoalsFr ?? ''}
                   onChangeEn={(value) => {
  setFormData({ ...formData, learningGoals: value }); 
 }}
@@ -437,7 +437,7 @@ export default function LessonPlanForm({
             <div>
               <Label htmlFor="input">Minds On (Introduction/Hook)</Label>
               <RichTextEditor
-                value={formData.mindsOn || ''}
+                value={formData.mindsOn ?? ''}
                 onChange={(value) => {
  setFormData({ ...formData, mindsOn: value }); 
 }}
@@ -447,7 +447,7 @@ export default function LessonPlanForm({
             <div>
               <Label htmlFor="input">Minds On (French)</Label>
               <RichTextEditor
-                value={formData.mindsOnFr || ''}
+                value={formData.mindsOnFr ?? ''}
                 onChange={(value) => {
  setFormData({ ...formData, mindsOnFr: value }); 
 }}
@@ -457,7 +457,7 @@ export default function LessonPlanForm({
             <div>
               <Label htmlFor="input">Action (Main Learning Activities)</Label>
               <RichTextEditor
-                value={formData.action || ''}
+                value={formData.action ?? ''}
                 onChange={(value) => {
  setFormData({ ...formData, action: value }); 
 }}
@@ -467,7 +467,7 @@ export default function LessonPlanForm({
             <div>
               <Label htmlFor="input">Action (French)</Label>
               <RichTextEditor
-                value={formData.actionFr || ''}
+                value={formData.actionFr ?? ''}
                 onChange={(value) => {
  setFormData({ ...formData, actionFr: value }); 
 }}
@@ -477,7 +477,7 @@ export default function LessonPlanForm({
             <div>
               <Label htmlFor="input">Consolidation (Closure/Assessment)</Label>
               <RichTextEditor
-                value={formData.consolidation || ''}
+                value={formData.consolidation ?? ''}
                 onChange={(value) => {
  setFormData({ ...formData, consolidation: value }); 
 }}

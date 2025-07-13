@@ -237,11 +237,11 @@ export function AIUnitPlanPanel({
         focusAreas: formData.focusAreas,
         teachingApproach: formData.teachingApproach,
         curriculumExpectations,
-        bigIdeas: suggestions.find(s => s.type === 'bigIdeas')?.content || [],
-        learningGoals: suggestions.find(s => s.type === 'learningGoals')?.content || [],
-        activities: suggestions.find(s => s.type === 'activities')?.content || [],
-        assessments: suggestions.find(s => s.type === 'assessments')?.content || [],
-        materials: suggestions.find(s => s.type === 'materials')?.content || [],
+        bigIdeas: suggestions.find(s => s.type === 'bigIdeas')?.content ?? [],
+        learningGoals: suggestions.find(s => s.type === 'learningGoals')?.content ?? [],
+        activities: suggestions.find(s => s.type === 'activities')?.content ?? [],
+        assessments: suggestions.find(s => s.type === 'assessments')?.content ?? [],
+        materials: suggestions.find(s => s.type === 'materials')?.content ?? [],
         generatedAt: new Date(),
       };
 

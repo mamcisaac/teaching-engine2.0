@@ -169,11 +169,13 @@ clearTimeout(timeout);
 }
       
       return new Promise<void>((resolve) => {
-        timeout = setTimeout(async () => {
-          if (unitPlanStore.currentPlan) {
-            await unitPlanStore.updateUnitPlan(unitPlanStore.currentPlan.id, updates as Record<string, unknown>);
-          }
-          resolve();
+        timeout = setTimeout(() => {
+          void (async () => {
+            if (unitPlanStore.currentPlan) {
+              await unitPlanStore.updateUnitPlan(unitPlanStore.currentPlan.id, updates as Record<string, unknown>);
+            }
+            resolve();
+          })();
         }, 1000);
       });
     };
