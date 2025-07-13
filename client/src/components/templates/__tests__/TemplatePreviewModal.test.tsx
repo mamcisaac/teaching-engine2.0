@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { vi } from 'vitest';
-import TemplatePreviewModal from '../TemplatePreviewModal';
+import { TemplatePreviewModal } from '../TemplatePreviewModal';
 import type { PlanTemplate, UnitPlanContent, LessonPlanContent } from '../../../types/template';
 
 describe('TemplatePreviewModal - Strict Boolean Expressions', () => {

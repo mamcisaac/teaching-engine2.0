@@ -4,7 +4,7 @@ interface Props {
   weekStart: string;
 }
 
-export default function WeekMaterials({ weekStart }: Props): React.ReactElement {
+export function WeekMaterials({ weekStart }: Props): React.ReactElement {
   const { data } = useMaterialList(weekStart);
   if (!data) {
     return <div>Loading materials...</div>;

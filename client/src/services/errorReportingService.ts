@@ -91,7 +91,7 @@ export class ErrorReportingService {
   }
 
   init(): void {
-    if (this.mockMode) {
+    if (this.mockMode === true) {
       logger.info('Using mock error reporting service');
       this.enabled = true;
       return;
@@ -103,7 +103,7 @@ export class ErrorReportingService {
     }
 
     const dsn = import.meta.env.VITE_SENTRY_DSN as string | undefined;
-    if (!dsn) {
+    if (dsn === undefined || dsn === '') {
       logger.warn('VITE_SENTRY_DSN not configured, error reporting disabled');
       return;
     }
@@ -162,12 +162,12 @@ export class ErrorReportingService {
     context?: Record<string, unknown>,
     errorInfo?: ErrorInfo,
   ): void {
-    if (!this.enabled) {
+    if (this.enabled === false) {
       logger.debug('Error reporting disabled, skipping:', { error, context });
       return;
     }
 
-    if (this.mockMode) {
+    if (this.mockMode === true) {
       // eslint-disable-next-line no-console
       console.info('[MOCK] Would capture error:', {
         error: error instanceof Error ? error.message : String(error),
@@ -193,7 +193,7 @@ export class ErrorReportingService {
       }
 
       // Add React error info if available
-      if (errorInfo) {
+      if (errorInfo !== undefined) {
         scope.setContext('react', {
           componentStack: errorInfo.componentStack,
         });
@@ -205,11 +205,11 @@ export class ErrorReportingService {
   }
 
   captureMessage(message: string, level: Sentry.SeverityLevel = 'info'): void {
-    if (!this.enabled) {
+    if (this.enabled === false) {
       return;
     }
 
-    if (this.mockMode) {
+    if (this.mockMode === true) {
       // eslint-disable-next-line no-console
       console.info('[MOCK] Would capture message:', { message, level });
       return;
@@ -219,24 +219,24 @@ export class ErrorReportingService {
   }
 
   setUserContext(user: UserContext | null): void {
-    if (!this.enabled) {
+    if (this.enabled === false) {
       return;
     }
 
-    if (this.mockMode) {
+    if (this.mockMode === true) {
       // eslint-disable-next-line no-console
       console.info('[MOCK] Would set user context:', user);
       return;
     }
 
-    if (!user) {
+    if (user === null) {
       Sentry.setUser(null);
       return;
     }
 
     const sanitizedUser = {
       id: String(user.id),
-      email: user.email ? this.maskEmail(user.email) : undefined,
+      email: user.email !== undefined ? this.maskEmail(user.email) : undefined,
       username: user.name,
       role: user.role,
       organizationId: user.organizationId ? String(user.organizationId) : undefined,
@@ -246,11 +246,11 @@ export class ErrorReportingService {
   }
 
   addBreadcrumb(breadcrumb: BreadcrumbData): void {
-    if (!this.enabled) {
+    if (this.enabled === false) {
       return;
     }
 
-    if (this.mockMode) {
+    if (this.mockMode === true) {
       // eslint-disable-next-line no-console
       console.info('[MOCK] Would add breadcrumb:', breadcrumb);
       return;
@@ -268,11 +268,11 @@ export class ErrorReportingService {
   }
 
   setErrorContext(key: string, context: Record<string, unknown>): void {
-    if (!this.enabled) {
+    if (this.enabled === false) {
       return;
     }
 
-    if (this.mockMode) {
+    if (this.mockMode === true) {
       // eslint-disable-next-line no-console
       console.info('[MOCK] Would set error context:', { key, context });
       return;
@@ -371,7 +371,7 @@ export class ErrorReportingService {
 
   private beforeSend(event: Sentry.ErrorEvent, hint: Sentry.EventHint): Sentry.ErrorEvent | null {
     // Filter out non-actionable errors
-    if (hint.originalException) {
+    if (hint.originalException !== undefined) {
       const error = hint.originalException;
       const errorMessage = isError(error) ? error.message : String(error);
 
@@ -409,11 +409,11 @@ export class ErrorReportingService {
     }
 
     // Sanitize breadcrumb
-    if (breadcrumb.message) {
+    if (breadcrumb.message !== undefined) {
       breadcrumb.message = this.sanitizeString(breadcrumb.message);
     }
 
-    if (breadcrumb.data) {
+    if (breadcrumb.data !== undefined) {
       breadcrumb.data = this.sanitizeData(breadcrumb.data) as Record<string, unknown> | undefined;
     }
 
@@ -425,25 +425,25 @@ export class ErrorReportingService {
     const sanitized = safeJsonParse(JSON.stringify(event), event);
 
     // Sanitize message
-    if (sanitized.message) {
+    if (sanitized.message !== undefined) {
       sanitized.message = this.sanitizeString(sanitized.message);
     }
 
     // Sanitize extra data
-    if (sanitized.extra) {
+    if (sanitized.extra !== undefined) {
       const sanitizedExtra = this.sanitizeData(sanitized.extra);
       sanitized.extra = this.isValidExtras(sanitizedExtra) ? sanitizedExtra : undefined;
     }
 
     // Sanitize request data
-    if (sanitized.request) {
-      if (sanitized.request.headers) {
+    if (sanitized.request !== undefined) {
+      if (sanitized.request.headers !== undefined) {
         sanitized.request.headers = this.sanitizeHeaders(sanitized.request.headers);
       }
-      if (sanitized.request.data) {
+      if (sanitized.request.data !== undefined) {
         sanitized.request.data = this.sanitizeData(sanitized.request.data);
       }
-      if (sanitized.request.query_string) {
+      if (sanitized.request.query_string !== undefined) {
         if (typeof sanitized.request.query_string === 'string') {
           sanitized.request.query_string = this.sanitizeString(sanitized.request.query_string);
         } else {
@@ -451,7 +451,7 @@ export class ErrorReportingService {
           sanitized.request.query_string = '';
         }
       }
-      if (sanitized.request.cookies) {
+      if (sanitized.request.cookies !== undefined) {
         sanitized.request.cookies = {} as Record<string, string>;
       }
     }
@@ -462,14 +462,14 @@ export class ErrorReportingService {
     }
 
     // Sanitize contexts
-    if (sanitized.contexts) {
+    if (sanitized.contexts !== undefined) {
       for (const key in sanitized.contexts) {
         sanitized.contexts[key] = this.sanitizeData(sanitized.contexts[key]) as Sentry.Context | undefined;
       }
     }
 
     // Sanitize tags
-    if (sanitized.tags) {
+    if (sanitized.tags !== undefined) {
       sanitized.tags = this.sanitizeData(sanitized.tags) as { [key: string]: string; } | undefined;
     }
 
@@ -503,9 +503,9 @@ export class ErrorReportingService {
         // Check if field should be redacted
         if (this.sensitiveFields.some((field) => lowerKey.includes(field))) {
           sanitized[key] = '[REDACTED]';
-        } else if (key === 'email' && dataObj[key]) {
+        } else if (key === 'email' && dataObj[key] !== undefined && dataObj[key] !== null) {
           sanitized[key] = this.maskEmail(String(dataObj[key]));
-        } else if ((key === 'ip' || key === 'ipAddress' || key === 'ip_address') && dataObj[key]) {
+        } else if ((key === 'ip' || key === 'ipAddress' || key === 'ip_address') && dataObj[key] !== undefined && dataObj[key] !== null) {
           sanitized[key] = this.maskIP(String(dataObj[key]));
         } else {
           sanitized[key] = this.sanitizeData(dataObj[key]);
@@ -577,7 +577,7 @@ export class ErrorReportingService {
   }
 
   private maskEmail(email: string): string {
-    if (!email || typeof email !== 'string') {
+    if (email === '' || typeof email !== 'string') {
       return '[INVALID_EMAIL]';
     }
 

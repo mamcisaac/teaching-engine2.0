@@ -4,13 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 
 import type { LessonPlanFormData } from '../components/forms/LessonPlanForm';
-import LessonPlanForm from '../components/forms/LessonPlanForm';
+import { LessonPlanForm } from '../components/forms/LessonPlanForm';
 import { OnboardingTooltip } from '../components/onboarding';
 import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { useCreateETFOLessonPlan } from '../hooks/useETFOPlanning';
 import { useShowContextualHints } from '../hooks/useFeatureTutorial';
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
 export default function QuickLessonPage(): React.ReactElement {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);

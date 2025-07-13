@@ -3,7 +3,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
-import ExpectationSelector from '../ExpectationSelector';
+import { ExpectationSelector } from '../ExpectationSelector';
 
 // Mock the hook
 vi.mock('../../../hooks/useETFOPlanning', () => ({

@@ -22,7 +22,7 @@ export const convertToHtml = jest.fn().mockImplementation(async (options: any) =
 });
 
 // Default export for compatibility
-export default {
+export const mammothMock = {
   extractRawText,
   convertToHtml,
 };

@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express';
 import { Router } from 'express';
 
-import logger from '../logger';
+import { logger } from '../logger';
 import { aiPlanningAssistant } from '../services/ai/aiPlanningService';
 // Simple rate limiting for AI endpoints (to avoid async issues)
 const aiRateLimit = (_req: Request, _res: Response, next: () => void): void => {
@@ -428,4 +428,4 @@ router.post(
   },
 );
 
-export default router;
+export { router };

@@ -195,7 +195,7 @@ function createAuthRouter(prisma = defaultPrisma) {
 
 // Export default router instance
 const router = createAuthRouter();
-export default router;
+export { router };
 
 // Export factory function for testing
 export { createAuthRouter };

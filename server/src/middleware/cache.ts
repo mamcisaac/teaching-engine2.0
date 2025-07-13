@@ -3,7 +3,7 @@ import crypto from 'crypto';
 import type { Request, Response, NextFunction } from 'express';
 import NodeCache from 'node-cache';
 
-import logger from '../logger.js';
+import { logger } from '../logger.js';
 
 import { cacheMetrics } from './metrics.js';
 
@@ -271,7 +271,7 @@ export function invalidateCache(
       cb?: () => void,
     ) {
       invalidateCacheEntries();
-      return originalEnd.call(this, chunk, encoding, cb);
+      return originalEnd.call(this, chunk, encoding!, cb);
     } as Response['end'];
 
     next();

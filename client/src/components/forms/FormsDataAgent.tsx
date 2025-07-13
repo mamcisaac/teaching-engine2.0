@@ -15,7 +15,7 @@ import React, { useState } from 'react';
 
 import type { LongRangePlan, UnitPlan } from '../../hooks/useETFOPlanning';
 import { validateUnitPlan, validateLessonPlan } from '../../utils/formValidation';
-import logger from '../../utils/logger';
+import { logger } from '../../utils/logger';
 import { safeJsonParse } from "../../utils/typeGuards";
 import { Badge } from '../ui/Badge';
 import { Button } from '../ui/Button';
@@ -27,9 +27,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 
 // import { Textarea } from '../ui/Textarea';
 import type { LessonPlanFormData } from './LessonPlanForm';
-import LessonPlanForm from './LessonPlanForm';
+import { LessonPlanForm } from './LessonPlanForm';
 import type { UnitPlanFormData } from './UnitPlanForm';
-import UnitPlanForm from './UnitPlanForm';
+import { UnitPlanForm } from './UnitPlanForm';
 
 interface BatchOperation {
   id: string;
@@ -52,7 +52,7 @@ interface FormsDataAgentProps {
   onDataImport?: (type: 'unit' | 'lesson', data: (UnitPlanFormData | LessonPlanFormData)[]) => void;
 }
 
-export default function FormsDataAgent({
+export function FormsDataAgent({
   longRangePlans = [],
   unitPlans = [],
   onBatchUnitCreate,

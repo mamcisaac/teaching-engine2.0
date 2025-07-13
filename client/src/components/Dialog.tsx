@@ -55,7 +55,7 @@ function Dialog({
           role="dialog"
         >
           <div
-            className={`bg-white rounded shadow w-full ${maxWidthClasses[maxWidth as keyof typeof maxWidthClasses] ?? maxWidthClasses.lg} mx-4`}
+            className={`bg-white rounded shadow w-full ${maxWidthClasses[maxWidth as keyof typeof maxWidthClasses] || maxWidthClasses.lg} mx-4`}
           >
             {hasContent(title) && (
               <div className="px-6 py-4 border-b">

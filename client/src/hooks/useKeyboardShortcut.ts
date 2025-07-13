@@ -5,7 +5,7 @@ import type {
 import {
   useKeyboardShortcuts as useKeyboardShortcutsContext
 } from '../contexts/KeyboardShortcutsContext';
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
 
 export interface UseKeyboardShortcutOptions {
   key: string;

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import type { Request, Response, NextFunction, RequestHandler } from 'express';
 
-import logger from '../../logger';
+import { logger } from '../../logger';
 
 // Middleware type
 export type Middleware = RequestHandler | ErrorRequestHandler;

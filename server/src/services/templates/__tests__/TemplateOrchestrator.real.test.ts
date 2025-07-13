@@ -11,7 +11,7 @@ import { LessonTemplateProvider } from '../providers/LessonTemplateProvider';
 import { NewsletterTemplateProvider } from '../providers/NewsletterTemplateProvider';
 import { ReportTemplateProvider } from '../providers/ReportTemplateProvider';
 import { prisma } from '../../../prisma';
-import logger from '../../../logger';
+import { logger } from '../../../logger';
 
 // Real template content for testing
 const REAL_LESSON_TEMPLATE = `

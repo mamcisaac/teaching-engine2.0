@@ -9,7 +9,7 @@ interface Props {
   className?: string;
 }
 
-export default function RichTextEditor({ 
+export function RichTextEditor({ 
   value, 
   onChange, 
   placeholder = "Start typing...",
@@ -84,6 +84,7 @@ export default function RichTextEditor({
       <div
         dangerouslySetInnerHTML={{ __html: sanitizeHtml(html) }}
         contentEditable
+        suppressContentEditableWarning
         aria-label="Rich text editor"
         aria-multiline="true"
         className="border border-gray-300 rounded-md p-3 min-h-[150px] focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
@@ -92,7 +93,6 @@ export default function RichTextEditor({
         style={{
           minHeight: '150px',
         }}
-        suppressContentEditableWarning={true}
         onInput={handleInput}
         onPaste={handlePaste}
       />

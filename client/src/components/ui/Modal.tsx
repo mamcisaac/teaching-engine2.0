@@ -93,17 +93,17 @@ return null;
           )}
         >
           {/* Header */}
-          {((title !== null && title !== undefined && title !== '') || showCloseButton) && (
+          {(title || showCloseButton) && (
             <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4">
-              {title !== null && title !== undefined && title !== '' && (
+              {title && (
                 <h3 className="text-lg font-medium leading-6 text-gray-900" id="modal-title">
                   {title}
                 </h3>
               )}
               {showCloseButton && (
                 <button
-                  className="ml-auto rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                   type="button"
+                  className="ml-auto rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                   onClick={onClose}
                 >
                   <span className="sr-only">Close</span>
@@ -131,7 +131,7 @@ return null;
           <div className="px-6 py-4">{children}</div>
 
           {/* Footer */}
-          {footer !== null && footer !== undefined && (
+          {footer && (
             <div className="border-t border-gray-200 bg-gray-50 px-6 py-4">
               {footer}
             </div>

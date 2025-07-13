@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import type { ReactNode, ErrorInfo } from 'react';
 
 import { errorReportingService } from '../services/errorReportingService';
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
 
 import { Alert, AlertDescription, AlertTitle } from './ui/alert';
 import { Button } from './ui/Button';
@@ -148,7 +148,8 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                     ) : null}
                     {this.state.errorInfo !== undefined && this.state.errorInfo.componentStack !== undefined && this.state.errorInfo.componentStack !== '' ? (
                       <pre className="mt-2 text-xs text-gray-600 whitespace-pre-wrap overflow-auto">
-                        Component Stack:{'\n'}{this.state.errorInfo.componentStack}
+                        Component Stack:
+{this.state.errorInfo.componentStack}
                       </pre>
                     ) : null}
                   </div>

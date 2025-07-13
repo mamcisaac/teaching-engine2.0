@@ -11,7 +11,7 @@ import { useDaybookStore } from '../stores/daybookStore';
 import { useLessonPlanStore } from '../stores/lessonPlanStore';
 import { useUnitPlanStore } from '../stores/unitPlanStore';
 import { useWeeklyPlannerStore } from '../stores/weeklyPlannerStore';
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
 
 // Type guards
 interface HasId {

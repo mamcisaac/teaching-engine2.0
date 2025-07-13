@@ -9,7 +9,7 @@ import type { Express, Request, Response, NextFunction } from 'express';
 import express, { json, urlencoded } from 'express';
 
 import { errorHandler } from './middleware/errorHandler';
-import authEndpoints from './routes/authEndpoints';
+import { router as authEndpoints } from './routes/authEndpoints';
 import { userRoutes } from './routes/user';
 
 export function createApp(prisma: PrismaClient): Express {

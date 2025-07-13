@@ -5,7 +5,7 @@
  */
 
 import type { Logger } from '../../logger.js';
-import logger from '../../logger.js';
+import { logger } from '../../logger.js';
 import { recordDatabaseQuery } from '../../middleware/metrics.js';
 import { prisma } from '../../prisma.js';
 

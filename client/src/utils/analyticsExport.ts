@@ -6,7 +6,7 @@
  */
 
 import { apiClient } from '../api/core/client';
-import logger from './logger';
+import { logger } from './logger';
 export interface ExportOptions {
   title?: string;
   subtitle?: string;

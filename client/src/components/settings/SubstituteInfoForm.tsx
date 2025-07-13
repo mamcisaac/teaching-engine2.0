@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 // import { useSubstituteInfo, useSaveSubstituteInfo } from '../../api';
 // import { useSubstitutePlans } from '../../api';
 
-export default function SubstituteInfoForm(): React.ReactElement {
+export function SubstituteInfoForm(): React.ReactElement {
   // TODO: Substitute info hooks not yet implemented
   // const { data } = useSubstituteInfo();
   // const save = useSaveSubstituteInfo();

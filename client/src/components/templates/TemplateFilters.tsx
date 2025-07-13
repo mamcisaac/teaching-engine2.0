@@ -20,7 +20,7 @@ const SORT_OPTIONS = [
   { value: 'lastUsedAt', label: 'Recently Used' },
 ];
 
-export default function TemplateFilters({
+export function TemplateFilters({
   filters,
   onFiltersChange,
   availableSubjects,

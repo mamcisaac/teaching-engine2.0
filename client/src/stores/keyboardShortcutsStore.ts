@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
 
 export interface KeyboardShortcut {
   id: string;
@@ -56,19 +56,19 @@ const isMac = typeof window !== 'undefined' && navigator.platform.toUpperCase().
 export const formatShortcut = (shortcut: KeyboardShortcut): string => {
   const parts: string[] = [];
 
-  if (shortcut.ctrl && !isMac) {
+  if (shortcut.ctrl === true && isMac === false) {
 parts.push('Ctrl');
 }
-  if (shortcut.cmd && isMac) {
+  if (shortcut.cmd === true && isMac === true) {
 parts.push('⌘');
 }
-  if (shortcut.ctrl && isMac) {
+  if (shortcut.ctrl === true && isMac === true) {
 parts.push('⌃');
 }
-  if (shortcut.alt) {
+  if (shortcut.alt === true) {
 parts.push(isMac ? '⌥' : 'Alt');
 }
-  if (shortcut.shift) {
+  if (shortcut.shift === true) {
 parts.push(isMac ? '⇧' : 'Shift');
 }
 
@@ -109,7 +109,7 @@ export const useKeyboardShortcutsStore = create<KeyboardShortcutsState>()(
       enableShortcut: (id: string): void => {
         set((state) => {
           const shortcut = state.shortcuts.find((s) => s.id === id);
-          if (shortcut) {
+          if (shortcut !== undefined) {
             shortcut.enabled = true;
           }
         });
@@ -118,7 +118,7 @@ export const useKeyboardShortcutsStore = create<KeyboardShortcutsState>()(
       disableShortcut: (id: string): void => {
         set((state) => {
           const shortcut = state.shortcuts.find((s) => s.id === id);
-          if (shortcut) {
+          if (shortcut !== undefined) {
             shortcut.enabled = false;
           }
         });
@@ -142,7 +142,7 @@ export const useKeyboardShortcutsStore = create<KeyboardShortcutsState>()(
 
       startListening: (): void => {
         const state = get();
-        if (state.isListening) {
+        if (state.isListening === true) {
 return;
 }
 
@@ -152,7 +152,7 @@ return;
 
         const handleKeyDown = (event: KeyboardEvent): void => {
           const currentState = get();
-          if (!currentState.isEnabled || !currentState.preferences.enabled) {
+          if (currentState.isEnabled === false || currentState.preferences.enabled === false) {
 return;
 }
 
@@ -166,7 +166,7 @@ return;
           ) {
             // Allow some global shortcuts even in input fields
             const allowedInInputs = ['Escape', 'F1'];
-            if (!allowedInInputs.includes(event.key)) {
+            if (allowedInInputs.includes(event.key) === false) {
               return;
             }
           }
@@ -190,13 +190,13 @@ continue;
             const ctrlKey = isMac ? event.metaKey : event.ctrlKey;
             const cmdKey = isMac ? event.metaKey : false;
 
-            if (finalShortcut.ctrl && !ctrlKey) {
+            if (finalShortcut.ctrl === true && ctrlKey === false) {
 continue;
 }
-            if (finalShortcut.cmd && !cmdKey) {
+            if (finalShortcut.cmd === true && cmdKey === false) {
 continue;
 }
-            if (finalShortcut.alt && !event.altKey) {
+            if (finalShortcut.alt === true && event.altKey === false) {
 continue;
 }
             if (finalShortcut.shift && !event.shiftKey) {
@@ -243,7 +243,7 @@ continue;
           __keyboardShortcutCleanup?: () => void;
         }
         const windowWithCleanup = window as unknown as WindowWithCleanup;
-        if (windowWithCleanup.__keyboardShortcutCleanup) {
+        if (windowWithCleanup.__keyboardShortcutCleanup !== undefined) {
           windowWithCleanup.__keyboardShortcutCleanup();
           delete windowWithCleanup.__keyboardShortcutCleanup;
         }
@@ -264,7 +264,7 @@ continue;
         isEnabled: state.isEnabled,
       }),
       onRehydrateStorage: () => (state?: KeyboardShortcutsState): void => {
-        if (state) {
+        if (state !== undefined) {
           try {
             // Auto-start listening when rehydrated if enabled
             if (state.isEnabled && state.preferences.enabled) {

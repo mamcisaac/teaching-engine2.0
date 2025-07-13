@@ -6,7 +6,7 @@ import type { Request, Response, NextFunction } from 'express';
 import type { ParsedQs } from 'qs';
 import { z } from 'zod';
 
-import logger from '../../logger';
+import { logger } from '../../logger';
 
 import { formatValidationError } from './validation.js';
 

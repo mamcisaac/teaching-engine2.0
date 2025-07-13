@@ -17,4 +17,4 @@ const mockPdfParse = jest.fn().mockImplementation(async (buffer: Buffer | Uint8A
   };
 });
 
-export default mockPdfParse;
+export { mockPdfParse };

@@ -29,7 +29,7 @@ interface TemplateApplyModalProps {
   onClose: () => void;
 }
 
-export default function TemplateApplyModal({
+export function TemplateApplyModal({
   template,
   isOpen,
   onClose,

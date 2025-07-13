@@ -37,7 +37,7 @@ interface FrenchImmersionWeeklyTemplateProps {
   };
 }
 
-export default function FrenchImmersionWeeklyTemplate({
+export function FrenchImmersionWeeklyTemplate({
   initialData,
   onSave,
   onCancel,

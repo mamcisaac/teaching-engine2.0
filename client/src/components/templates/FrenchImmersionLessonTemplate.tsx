@@ -22,7 +22,7 @@ interface FrenchImmersionLessonTemplateProps {
   };
 }
 
-export default function FrenchImmersionLessonTemplate({
+export function FrenchImmersionLessonTemplate({
   initialData,
   onSave,
   onCancel,

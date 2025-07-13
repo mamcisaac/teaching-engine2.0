@@ -9,7 +9,7 @@ import React from 'react';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { screen, waitFor } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
-import LessonPlanForm, { type LessonPlanFormData } from '../LessonPlanForm';
+import { LessonPlanForm, type LessonPlanFormData } from '../LessonPlanForm';
 import { renderWithProviders, createMockUnitPlan } from '@/test-utils';
 
 // Mock the RichTextEditor component

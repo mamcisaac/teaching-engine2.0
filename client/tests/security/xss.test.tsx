@@ -17,8 +17,8 @@ import { AuthProvider } from '../../src/contexts/AuthContext';
 import { LanguageProvider } from '../../src/contexts/LanguageContext';
 // Student-related imports removed - app does not store student data
 import { BilingualTextInput } from '../../src/components/BilingualTextInput';
-import RichTextEditor from '../../src/components/RichTextEditor';
-import TeacherOnboardingFlow from '../../src/components/TeacherOnboardingFlow';
+import { RichTextEditor } from '../../src/components/RichTextEditor';
+import { TeacherOnboardingFlow } from '../../src/components/TeacherOnboardingFlow';
 
 // Mock API calls
 vi.mock('../../src/api', () => ({

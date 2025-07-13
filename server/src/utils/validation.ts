@@ -215,7 +215,7 @@ export const isValidCanadianPostalCode = (code: string): boolean => {
 export const buildFilterSchema = <T extends z.ZodRawShape>(
   baseSchema: z.ZodObject<T>,
   additionalFields?: z.ZodRawShape
-): z.ZodObject<T & typeof commonSchemas.pagination.shape & typeof commonSchemas.dateFilter.shape & { search: z.ZodOptional<z.ZodString> } & (z.ZodRawShape | Record<string, never>)> => baseSchema.extend({
+): z.ZodObject<any> => baseSchema.extend({
     ...commonSchemas.pagination.shape,
     ...commonSchemas.dateFilter.shape,
     search: z.string().optional(),

@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 
 import { apiClient } from '../api/core/client';
 import { useLanguage } from '../contexts/LanguageContext';
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
 import { safeJsonParse } from '../utils/typeGuards';
 
-import LanguageSwitcher from './LanguageSwitcher';
-import PreferenceWizard from './onboarding/PreferenceWizard';
+import { LanguageSwitcher } from './LanguageSwitcher';
+import { PreferenceWizard } from './onboarding/PreferenceWizard';
 import { Button } from './ui/Button';
 import { Progress } from './ui/Progress';
 interface OnboardingStep {
@@ -25,7 +25,7 @@ interface TeacherOnboardingFlowProps {
   onComplete?: () => void;
 }
 
-export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingFlowProps): React.ReactElement | null {
+export function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingFlowProps): React.ReactElement | null {
   const { t } = useLanguage();
   const navigate = useNavigate();
 

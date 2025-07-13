@@ -3,7 +3,7 @@ import type { Request, Response } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
 
-import logger from '../logger';
+import { logger } from '../logger';
 import { authMiddleware } from '../middleware/auth';
 const router = Router();
 
@@ -458,4 +458,4 @@ router.get(
   },
 );
 
-export default router;
+export { router };

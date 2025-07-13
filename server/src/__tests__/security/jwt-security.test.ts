@@ -13,7 +13,7 @@ import {
   authenticate,
   checkPermissions,
 } from '../../services/auth/authService';
-import logger from '../../logger';
+import { logger } from '../../logger';
 
 // Mock logger
 jest.mock('../../logger', () => ({

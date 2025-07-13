@@ -37,7 +37,7 @@ const EVENT_TYPE_OPTIONS: { value: EventType; label: string }[] = [
   { value: 'holiday', label: 'Holiday' },
 ];
 
-export default function CalendarEventModal({
+export function CalendarEventModal({
   isOpen,
   onClose,
   selectedDate = new Date(),

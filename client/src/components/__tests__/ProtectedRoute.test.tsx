@@ -7,7 +7,7 @@
 
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { screen } from '@testing-library/react';
-import ProtectedRoute from '../ProtectedRoute';
+import { ProtectedRoute } from '../ProtectedRoute';
 import { renderWithProviders, setupTest } from '@/test-utils';
 import { useAuth } from '../../contexts/AuthContext';
 

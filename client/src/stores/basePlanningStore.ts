@@ -4,7 +4,7 @@
 import type { StateCreator } from 'zustand';
 
 import { offlineStorage } from '../services/offlineStorage';
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
 import { isOnline } from '../utils/serviceWorkerRegistration';
 import { safeJsonParse } from '../utils/typeGuards';
 export interface OfflineState {

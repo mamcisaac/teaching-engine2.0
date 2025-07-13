@@ -1,5 +1,5 @@
 import { api } from '@/api';
-import logger from '../../utils/logger';
+import { logger } from '../../utils/logger';
 export interface ExportOptions {
   type: string;
   format: 'pdf' | 'csv' | 'png';

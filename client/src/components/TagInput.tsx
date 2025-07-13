@@ -6,7 +6,7 @@ interface Props {
   placeholder?: string;
 }
 
-export default function TagInput({ tags, onChange, placeholder }: Props): React.ReactElement {
+export function TagInput({ tags, onChange, placeholder }: Props): React.ReactElement {
   const [input, setInput] = useState('');
 
   const addTag = (): void => {

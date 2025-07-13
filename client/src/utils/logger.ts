@@ -202,6 +202,5 @@ class ClientLogger {
 const logger = new ClientLogger();
 
 // Export for use throughout the application
-export default logger;
 export { logger, ClientLogger };
 export type { LogLevel, LogEntry };

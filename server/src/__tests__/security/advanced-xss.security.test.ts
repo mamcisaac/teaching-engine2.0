@@ -18,7 +18,7 @@ import {
   unicodeNormalization,
 } from '../../middleware/advancedXssProtection';
 import { generateAuthToken } from '../../services/auth/authService';
-import logger from '../../logger';
+import { logger } from '../../logger';
 
 // Mock logger
 jest.mock('../../logger', () => ({

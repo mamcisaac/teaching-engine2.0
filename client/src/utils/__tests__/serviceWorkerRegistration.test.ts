@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { register, unregister, isOnline, requestBackgroundSync, cacheUrls } from '../serviceWorkerRegistration';
-import logger from '../logger';
+import { logger } from '../logger';
 
 // Mock the logger
 vi.mock('../logger', () => ({

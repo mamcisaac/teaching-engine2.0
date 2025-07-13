@@ -130,4 +130,4 @@ export const prisma = {
   $executeRaw: jest.fn(),
 };
 
-export default prisma;
+export { prisma };

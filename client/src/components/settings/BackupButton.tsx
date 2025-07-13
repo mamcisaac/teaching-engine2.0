@@ -1,7 +1,7 @@
 import React from 'react';
 import { toast } from 'sonner';
 
-export default function BackupButton(): React.ReactElement {
+export function BackupButton(): React.ReactElement {
   const handleClick = (): void => {
     toast('Backup starting…');
     window.location.href = '/api/backup';

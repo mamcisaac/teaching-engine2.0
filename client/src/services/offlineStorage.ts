@@ -3,7 +3,8 @@
 
 import { nanoid } from 'nanoid';
 
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
+
 // Generic data type for stored entities
 export type StoredData = Record<string, unknown>;
 
@@ -88,7 +89,7 @@ class OfflineStorageService {
   }
 
   private async ensureInitialized(): Promise<void> {
-    if (!this.initPromise) {
+    if (this.initPromise === null) {
       this.initPromise = this.init();
     }
     await this.initPromise;
@@ -152,7 +153,7 @@ class OfflineStorageService {
 
       getRequest.onsuccess = (): void => {
         const change = getRequest.result as OfflineChange | undefined;
-        if (change) {
+        if (change !== undefined) {
           change.synced = true;
           const putRequest = store.put(change);
           putRequest.onsuccess = (): void => {
@@ -180,7 +181,7 @@ class OfflineStorageService {
       key,
       data,
       timestamp: Date.now(),
-      expiresAt: ttlMinutes ? Date.now() + ttlMinutes * 60 * 1000 : undefined,
+      expiresAt: ttlMinutes !== undefined ? Date.now() + ttlMinutes * 60 * 1000 : undefined,
     };
 
     const transaction = this.db!.transaction(['cache'], 'readwrite');
@@ -209,13 +210,13 @@ class OfflineStorageService {
 
       request.onsuccess = (): void => {
         const result = request.result as CachedData | undefined;
-        if (!result) {
+        if (result === undefined) {
           resolve(null);
           return;
         }
 
         // Check if expired
-        if (result.expiresAt && result.expiresAt < Date.now()) {
+        if (result.expiresAt !== undefined && result.expiresAt < Date.now()) {
           // Delete expired data
           void this.deleteCachedData(key).catch((error: unknown) => {
             console.error('Error deleting expired data:', error);
@@ -266,7 +267,7 @@ class OfflineStorageService {
     return new Promise((resolve, reject) => {
       request.onsuccess = (): void => {
         const cursor = request.result;
-        if (cursor) {
+        if (cursor !== null) {
           store.delete(cursor.primaryKey);
           cursor.continue();
         } else {
@@ -358,7 +359,7 @@ class OfflineStorageService {
 
       getRequest.onsuccess = (): void => {
         const conflict = getRequest.result as ConflictData | undefined;
-        if (conflict) {
+        if (conflict !== undefined) {
           conflict.resolved = true;
           conflict.resolution = resolution;
           conflict.resolvedData =

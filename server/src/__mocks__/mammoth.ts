@@ -43,6 +43,6 @@ L1.3 Démontrer sa compréhension d'un texte lu par des réponses orales ou écr
   };
 };
 
-export default {
+export const mammoth = {
   extractRawText,
 };

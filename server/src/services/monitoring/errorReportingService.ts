@@ -1,8 +1,9 @@
 import * as Sentry from '@sentry/node';
 import { nodeProfilingIntegration } from '@sentry/profiling-node';
 
-import logger from '../../logger';
+import { logger } from '../../logger';
 import { AppError } from '../../utils/errors';
+import { safeJsonParse } from '../../utils/type-guards.js';
 
 type Context = Record<string, unknown>;
 
@@ -325,7 +326,14 @@ export class ErrorReportingService {
 
   private sanitizeEvent(event: Sentry.Event): Sentry.Event {
     // Deep clone to avoid modifying original
-    const sanitized = safeJsonParse(JSON.stringify(event, {}));
+    const parsed = safeJsonParse(JSON.stringify(event), {});
+    
+    // Ensure we have a valid object
+    if (!parsed || typeof parsed !== 'object') {
+      return event; // Return original if parsing failed
+    }
+    
+    const sanitized = parsed as any;
 
     // Sanitize message
     if (sanitized.message) {
@@ -362,7 +370,7 @@ export class ErrorReportingService {
       }
     }
 
-    return sanitized;
+    return sanitized as Sentry.Event;
   }
 
   private sanitizeData(data: unknown): unknown {

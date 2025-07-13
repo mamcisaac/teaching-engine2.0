@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { LanguageProvider } from '../../../contexts/LanguageContext';
-import BilingualPlanView from '../BilingualPlanView';
+import { BilingualPlanView } from '../BilingualPlanView';
 
 // Mock child component
 const MockChild = ({ language }: { language?: string }) => (

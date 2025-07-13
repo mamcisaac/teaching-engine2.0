@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
-import FrenchImmersionTemplateSelector from '../FrenchImmersionTemplateSelector';
+import { FrenchImmersionTemplateSelector } from '../FrenchImmersionTemplateSelector';
 import type { PlanTemplate } from '../../../types/template';
 
 // Mock the template data

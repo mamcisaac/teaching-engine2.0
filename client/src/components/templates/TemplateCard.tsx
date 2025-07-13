@@ -12,7 +12,7 @@ interface TemplateCardProps {
   onDuplicate?: (template: PlanTemplate) => void;
 }
 
-export default function TemplateCard({
+export function TemplateCard({
   template,
   onPreview,
   onApply,

@@ -9,6 +9,7 @@ import { createClient } from 'redis';
 
 import { PerformanceLogger } from '../../utils/logger-migration';
 import { structuredLogger } from '../../utils/structuredLogger';
+import { safeJsonParse } from '../../utils/type-guards.js';
 
 export interface CacheOptions {
   ttl?: number; // Time to live in seconds
@@ -398,7 +399,11 @@ return false;
 
   private deserializeValue<T>(value: string): T {
     try {
-      return safeJsonParse(value, {});
+      const parsed = safeJsonParse(value, {});
+      if (parsed === undefined) {
+        throw new Error('Failed to parse JSON value');
+      }
+      return parsed as T;
     } catch (error) {
       structuredLogger.error('Cache deserialization error', error as Error);
       throw error;

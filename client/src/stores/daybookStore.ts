@@ -7,7 +7,7 @@ import { immer } from 'zustand/middleware/immer';
 import { apiClient } from '../api/core/client';
 import type { StoredData } from '../services/offlineStorage';
 import { offlineStorage } from '../services/offlineStorage';
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
 
 import { createOfflineSlice, createAutoSave } from './basePlanningStore';
 import type { OfflineState, BaseActions } from './basePlanningStore';

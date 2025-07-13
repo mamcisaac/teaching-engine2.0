@@ -17,4 +17,4 @@ const mockDocxParser = {
   }),
 };
 
-export default mockDocxParser;
+export { mockDocxParser };

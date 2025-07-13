@@ -7,7 +7,7 @@
 // eslint-disable-next-line import/no-named-as-default
 import OpenAI from 'openai';
 
-import logger from '../../logger';
+import { logger } from '../../logger';
 import { AppError } from '../../utils/errors';
 import { safeJsonParse } from '../../utils/type-guards';
 import { BaseService } from '../base/BaseService';
@@ -192,7 +192,7 @@ export class AIService extends BaseService {
 
       return lessonPlan;
     } catch (error: unknown) {
-      logger.error('Error generating lesson plan:', error);
+      logger.error('Error generating lesson plan:', error instanceof Error ? error.message : String(error));
       const fallback = this.createFallbackLesson(input);
       fallback.fallback = true;
       fallback.error = (error instanceof Error ? error.message : String(error));
@@ -242,7 +242,7 @@ export class AIService extends BaseService {
 
       return activity;
     } catch (error: unknown) {
-      logger.error('Error generating activity:', error);
+      logger.error('Error generating activity:', error instanceof Error ? error.message : String(error));
       return this.createFallbackActivity(input);
     }
   }
@@ -289,7 +289,7 @@ export class AIService extends BaseService {
 
       return plan;
     } catch (error: unknown) {
-      logger.error('Error generating substitute plan:', error);
+      logger.error('Error generating substitute plan:', error instanceof Error ? error.message : String(error));
       return this.createFallbackSubstitutePlan(input);
     }
   }
@@ -336,7 +336,7 @@ export class AIService extends BaseService {
 
       return newsletter;
     } catch (error: unknown) {
-      logger.error('Error generating newsletter:', error);
+      logger.error('Error generating newsletter:', error instanceof Error ? error.message : String(error));
       return this.createFallbackNewsletter(input);
     }
   }
@@ -362,7 +362,7 @@ export class AIService extends BaseService {
 
       return response.choices[0]?.message?.content !== null && response.choices[0]?.message?.content !== undefined && response.choices[0]?.message?.content !== '';
     } catch (error: unknown) {
-      logger.error('AI Service health check failed:', error);
+      logger.error('AI Service health check failed:', error instanceof Error ? error.message : String(error));
       // If we have a fallback key or test key, consider it healthy (fallback mode)
       if (this.apiKey !== null && this.apiKey !== undefined && this.apiKey !== '' && (this.apiKey.includes('test') || this.apiKey.includes('fallback'))) {
         return true;
@@ -391,7 +391,7 @@ export class AIService extends BaseService {
         response.choices[0]?.message?.content ?? this.createFallbackCurriculumAnalysis(content)
       );
     } catch (error: unknown) {
-      logger.error('Error analyzing curriculum:', error);
+      logger.error('Error analyzing curriculum:', error instanceof Error ? error.message : String(error));
       // Return fallback analysis instead of throwing
       return this.createFallbackCurriculumAnalysis(content);
     }
@@ -425,7 +425,7 @@ export class AIService extends BaseService {
       const parsed = safeJsonParse(content);
       return parsed !== undefined ? parsed : this.createFallbackEnhancedLesson(input.lesson, input.enhancementType);
     } catch (error: unknown) {
-      logger.error('Error enhancing lesson:', error);
+      logger.error('Error enhancing lesson:', error instanceof Error ? error.message : String(error));
       return this.createFallbackEnhancedLesson(input.lesson, input.enhancementType);
     }
   }
@@ -443,7 +443,7 @@ export class AIService extends BaseService {
           : (inputRecord.standards as string[]) ?? [],
       };
     } catch (error: unknown) {
-      logger.error('Error generating aligned lesson:', error);
+      logger.error('Error generating aligned lesson:', error instanceof Error ? error.message : String(error));
       throw error;
     }
   }
@@ -483,7 +483,7 @@ export class AIService extends BaseService {
         return content;
       }
     } catch (error: unknown) {
-      logger.error('Error generating questions:', error);
+      logger.error('Error generating questions:', error instanceof Error ? error.message : String(error));
       // Return fallback questions instead of throwing
       return this.createFallbackQuestions(input);
     }
@@ -607,7 +607,7 @@ Return a JSON object with the structure: { title, dateRange, sections, footer }`
       });
     }
 
-    return lessonPlan as LessonPlan;
+    return lessonPlan as unknown as LessonPlan;
   }
 
   private createFallbackLesson(input: LessonGenerationInput): LessonPlan {

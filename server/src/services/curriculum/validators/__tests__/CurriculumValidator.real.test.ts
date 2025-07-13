@@ -7,7 +7,7 @@
 import { describe, test, expect, beforeEach } from '@jest/globals';
 import { CurriculumValidator, ValidationOptions } from '../CurriculumValidator';
 import { ParsedCurriculum, ParsedExpectation } from '../../parsers/CurriculumParser';
-import logger from '../../../../logger';
+import { logger } from '../../../../logger';
 
 describe('CurriculumValidator - Real Implementation Tests', () => {
   let validator: CurriculumValidator;

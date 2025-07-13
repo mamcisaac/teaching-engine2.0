@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter } from 'react-router-dom';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { toast } from 'sonner';
-import TemplateApplyModal from '../TemplateApplyModal';
+import { TemplateApplyModal } from '../TemplateApplyModal';
 import type { PlanTemplate } from '../../../types/template';
 import { api } from '../../../api';
 

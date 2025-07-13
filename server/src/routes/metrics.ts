@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express';
 import { Router } from 'express';
 
-import logger from '../logger.js';
+import { logger } from '../logger.js';
 import { authMiddleware } from '../middleware/auth.js';
 import { metricsStore, getPerformanceSummary } from '../middleware/metrics.js';
 
@@ -214,4 +214,4 @@ router.get('/realtime', authMiddleware, (_req: Request, res: Response): void => 
   }
 });
 
-export default router;
+export { router };

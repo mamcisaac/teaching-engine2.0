@@ -1,4 +1,4 @@
-import logger from './logger';
+import { logger } from './logger';
 // Service Worker Registration and Management
 
 interface ServiceWorkerRegistrationWithSync extends ServiceWorkerRegistration {

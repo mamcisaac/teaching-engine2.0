@@ -52,10 +52,10 @@ const WithAIErrorBoundary = lazy(() =>
   import('../components/ai/AIErrorBoundary').then((m) => ({ default: m.WithAIErrorBoundary })),
 );
 import { MobileOptimizedForm } from '../components/ui/MobileOptimizedForm';
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
 import { generateUnitPlanHTML, printHTML, downloadHTML } from '../utils/printUtils';
 import { SafeHtmlRenderer } from '../utils/sanitization';
-import RichTextEditor from '../components/RichTextEditor';
+import { RichTextEditor } from '../components/RichTextEditor';
 // Extended UnitPlan type with all ETFO fields
 interface ExtendedUnitPlan extends UnitPlan {
   crossCurricularConnections?: string;
@@ -139,7 +139,7 @@ export default function UnitPlansPage(): React.ReactElement {
     longRangePlanId,
     editingId: editingUnit,
     onSave: async (data) => {
-      if (editingUnit !== null && editingUnit !== undefined) {
+      if (editingUnit !== null) {
         await updateUnit.mutateAsync({ id: editingUnit, ...data });
       }
     },
@@ -149,14 +149,14 @@ export default function UnitPlansPage(): React.ReactElement {
     e.preventDefault();
 
     const { isValid, errors } = validateForm();
-    if (!isValid) {
+    if (isValid === false) {
       logger.error('Form validation errors:', errors);
       return;
     }
 
     const cleanData = getCleanFormData();
 
-    if (editingUnit !== null && editingUnit !== undefined) {
+    if (editingUnit !== null) {
       await updateUnit.mutateAsync({ id: editingUnit, ...cleanData });
       setEditingUnit(null);
     } else {
@@ -228,7 +228,7 @@ export default function UnitPlansPage(): React.ReactElement {
     try {
       const applied = await applyTemplate.mutateAsync({ id: template.id });
 
-      if (isUnitPlanTemplate(template) && applied.appliedContent !== null && applied.appliedContent !== undefined) {
+      if (isUnitPlanTemplate(template) === true && applied.appliedContent !== null) {
         // Pre-populate form with template data
         const templateContent = applied.appliedContent as UnitPlanContent;
         updateField('title', '');
@@ -244,7 +244,7 @@ export default function UnitPlansPage(): React.ReactElement {
         updateField('crossCurricularConnections', templateContent.crossCurricularConnections ?? '');
         // Handle differentiationStrategies which might have different structure in template
         const diffStrategies = templateContent.differentiationStrategies;
-        if (diffStrategies !== null && diffStrategies !== undefined && typeof diffStrategies === 'object') {
+        if (diffStrategies !== null && typeof diffStrategies === 'object') {
           updateField('differentiationStrategies', {
             forStruggling: Array.isArray(diffStrategies.forStruggling)
               ? diffStrategies.forStruggling
@@ -274,7 +274,7 @@ export default function UnitPlansPage(): React.ReactElement {
         updateField('communityConnections', templateContent.communityConnections ?? '');
 
         // Set estimated duration if available
-        if (template.estimatedWeeks !== null && template.estimatedWeeks !== undefined && template.estimatedWeeks !== 0) {
+        if (template.estimatedWeeks !== null && template.estimatedWeeks !== undefined && template.estimatedWeeks > 0) {
           const startDate = new Date();
           const endDate = new Date();
           endDate.setDate(startDate.getDate() + template.estimatedWeeks * 7);
@@ -292,7 +292,7 @@ export default function UnitPlansPage(): React.ReactElement {
     }
   };
 
-  if (isLoading) {
+  if (isLoading === true) {
     return (
       <PlanningErrorBoundary>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

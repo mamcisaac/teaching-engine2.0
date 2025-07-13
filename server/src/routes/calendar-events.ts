@@ -5,7 +5,7 @@ import { Router } from 'express';
 import { z } from 'zod';
 // Note: Authentication is handled at the route mounting level in index.ts
 
-import logger from '../logger';
+import { logger } from '../logger';
 import { validateRequest } from '../middleware/validateRequest';
 import { prisma } from '../prisma';
 
@@ -202,4 +202,4 @@ router.delete('/:id', async (req: AuthenticatedRequest, res: Response): Promise<
 
 // Holiday import removed - teachers can add holidays manually as needed
 
-export default router;
+export { router };

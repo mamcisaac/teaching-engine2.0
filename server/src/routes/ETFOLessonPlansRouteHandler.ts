@@ -135,7 +135,7 @@ class ETFOLessonPlanService extends BaseService {
 
     const where: Prisma.ETFOLessonPlanWhereInput = { userId };
 
-    if (unitPlanId !== null && unitPlanId !== undefined && unitPlanId !== '') {
+    if (unitPlanId !== null && unitPlanId !== undefined && unitPlanId !== 0) {
 where.unitPlanId = String(unitPlanId);
 }
     if (isSubFriendly !== undefined) {

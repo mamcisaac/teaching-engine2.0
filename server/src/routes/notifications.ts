@@ -1,7 +1,7 @@
 import type { Request } from 'express';
 import { Router } from 'express';
 
-import logger from '../logger';
+import { logger } from '../logger';
 import { prisma } from '../prisma';
 const router = Router();
 
@@ -200,7 +200,7 @@ router.post('/test', (req: Request, res): void => {
         type: 'info',
         title: typeof req.body.title === 'string' ? req.body.title : 'Test Notification',
         message: typeof req.body.message === 'string' ? req.body.message : 'This is a test notification',
-        data: req.body.data as Record<string, unknown> || {},
+        data: req.body.data || {},
       },
     });
 
@@ -213,4 +213,4 @@ router.post('/test', (req: Request, res): void => {
   })();
 });
 
-export default router;
+export { router };

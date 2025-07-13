@@ -8,7 +8,7 @@
 import { describe, test, expect, beforeEach, afterEach, beforeAll } from '@jest/globals';
 import OpenAI from 'openai';
 import { AIService } from '../aiService';
-import logger from '../../../logger';
+import { logger } from '../../../logger';
 
 // Test configuration
 const REAL_API_KEY = process.env.OPENAI_API_KEY;

@@ -25,4 +25,4 @@ class MockPDFDocument {
   });
 }
 
-export default MockPDFDocument;
+export { MockPDFDocument };

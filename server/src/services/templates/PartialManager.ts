@@ -424,13 +424,13 @@ export class PartialManager extends BaseService {
 
           this.logger.debug('Partial loaded from file');
         } catch (_error) {
-          this.logger.error(`Failed to load partial file: ${file} - ${_error instanceof Error ? _(error instanceof Error ? error.message : String(error)) : _error}`);
+          this.logger.error(`Failed to load partial file: ${file} - ${_error instanceof Error ? _error.message : _error}`);
         }
       }
 
       this.logger.info(`Partials loaded from files: ${partialFiles.length} loaded from ${this.partialsDirectory}`);
     } catch (_error) {
-      this.logger.error(`Failed to load partials from files in ${this.partialsDirectory}: ${_error instanceof Error ? _(error instanceof Error ? error.message : String(error)) : _error}`);
+      this.logger.error(`Failed to load partials from files in ${this.partialsDirectory}: ${_error instanceof Error ? _error.message : _error}`);
     }
   }
 
@@ -456,7 +456,7 @@ export class PartialManager extends BaseService {
 
       this.logger.info(`Partial saved to file: ${name} -> ${filePath}`);
     } catch (_error) {
-      this.logger.error(`Failed to save partial to file ${name}: ${_error instanceof Error ? _(error instanceof Error ? error.message : String(error)) : _error}`);
+      this.logger.error(`Failed to save partial to file ${name}: ${_error instanceof Error ? _error.message : _error}`);
       throw _error;
     }
   }

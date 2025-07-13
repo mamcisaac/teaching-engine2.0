@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { prisma } from '@teaching-engine/database';
 
-import logger from '../logger';
+import { logger } from '../logger';
 import { getMetrics } from '../middleware/metrics';
 
 import { withSpan, errorCounter } from './telemetry';

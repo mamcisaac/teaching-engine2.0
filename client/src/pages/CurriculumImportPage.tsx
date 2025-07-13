@@ -22,7 +22,7 @@ import { Textarea } from '@/components/ui/Textarea';
 import { useToast } from '@/components/ui/use-toast';
 
 import { apiClient } from '../api/core/client';
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
 interface ParsedExpectation {
   code: string;
   type: 'overall' | 'specific';

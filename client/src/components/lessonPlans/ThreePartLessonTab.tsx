@@ -2,7 +2,7 @@ import React from 'react';
 
 import type { LessonPlanFormData } from '../../hooks/useETFOLessonPlanForm';
 import { LessonPlanService } from '../../services/lessonPlanService';
-import RichTextEditor from '../RichTextEditor';
+import { RichTextEditor } from '../RichTextEditor';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { Label } from '../ui/Label';
 

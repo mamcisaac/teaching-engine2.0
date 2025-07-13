@@ -23,13 +23,10 @@ export const KeyboardShortcutsHelp: React.FC<KeyboardShortcutsHelpProps> = ({
   const [activeCategory, setActiveCategory] = useState<KeyboardShortcut['category']>('global');
 
   // Group shortcuts by category
-  const shortcutsByCategory = (shortcuts || [])
+  const shortcutsByCategory = shortcuts
     .filter((s) => s.visible !== false)
     .reduce<Record<KeyboardShortcut['category'], KeyboardShortcut[]>>(
       (acc, shortcut) => {
-        if (!acc[shortcut.category]) {
-          acc[shortcut.category] = [];
-        }
         acc[shortcut.category].push(shortcut);
         return acc;
       },
@@ -198,7 +195,7 @@ return null;
             </div>
           ))}
 
-          {!shortcutsByCategory[activeCategory] && (
+          {shortcutsByCategory[activeCategory].length === 0 && (
             <div className="text-center py-8 text-gray-500">
               No shortcuts available in this category
             </div>
@@ -209,13 +206,9 @@ return null;
         <div className="border-t pt-4 mt-4">
           <p className="text-xs text-gray-500">
             <strong>Tip:</strong> Keyboard shortcuts work throughout the app except when typing in
-            text fields. Press{' '}
-            <kbd className="px-1 py-0.5 text-xs bg-gray-100 border border-gray-300 rounded">
+            text fields. Press <kbd className="px-1 py-0.5 text-xs bg-gray-100 border border-gray-300 rounded">
               Esc
-            </kbd>{' '}
-            to close dialogs or{' '}
-            <kbd className="px-1 py-0.5 text-xs bg-gray-100 border border-gray-300 rounded">?</kbd>{' '}
-            to show this help.
+            </kbd> to close dialogs or <kbd className="px-1 py-0.5 text-xs bg-gray-100 border border-gray-300 rounded">?</kbd> to show this help.
           </p>
         </div>
       </div>

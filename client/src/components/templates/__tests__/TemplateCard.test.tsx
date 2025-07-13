@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { vi } from 'vitest';
 import { format } from 'date-fns';
-import TemplateCard from '../TemplateCard';
+import { TemplateCard } from '../TemplateCard';
 import type { PlanTemplate } from '../../../types/template';
 
 describe('TemplateCard - Strict Boolean Expressions', () => {

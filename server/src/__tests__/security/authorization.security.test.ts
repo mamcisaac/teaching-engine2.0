@@ -11,7 +11,7 @@ import { PrismaClient } from '@teaching-engine/database';
 import { generateAuthToken } from '../../services/auth/authService';
 import { authMiddleware, requireAdminToken } from '../../middleware/auth';
 import { rateLimiters } from '../../middleware/rateLimit';
-import logger from '../../logger';
+import { logger } from '../../logger';
 
 // Mock logger
 jest.mock('../../logger', () => ({

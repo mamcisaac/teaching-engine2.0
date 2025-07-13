@@ -3,7 +3,7 @@ import { createContext, useContext, useEffect, useState, useCallback } from 'rea
 import { authService } from '../services/authService';
 import { errorReportingService } from '../services/errorReportingService';
 import type { User } from '../types';
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
 interface AuthContextValue {
   user: User | null;
   login: (email: string, password: string) => Promise<void>;
@@ -181,13 +181,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
 
         // Debug logging in development
         logger.debug('[AuthContext] Initial auth check:', {
-          hasStoredUser: !!storedUser,
-          hasToken: !!hasToken,
+          hasStoredUser: storedUser !== null,
+          hasToken: hasToken === true,
           storedUser,
           tokenValue: `${authService.getAccessToken()?.substring(0, 20)  }...`,
         });
 
-        if (!hasToken) {
+        if (hasToken === false) {
           // No token, definitely not authenticated
           if (isMounted) {
             updateAuthState(null);
@@ -199,7 +199,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
 
         // If we have a stored user and token, verify with server
         // Add a timeout to prevent hanging
-        if (storedUser && hasToken) {
+        if (storedUser !== null && hasToken === true) {
           const checkAuthPromise = checkAuth();
           const timeoutPromise = new Promise<void>((_, reject) =>
             setTimeout((): void => {
@@ -250,7 +250,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
     return (): void => { // Cleanup
     };
 
-    if (!isAuthenticated) {
+    if (isAuthenticated === false) {
       return (): void => {}; // Return empty cleanup function
     }
 

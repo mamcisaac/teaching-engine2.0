@@ -411,4 +411,4 @@ export const getMockData = (model: string) => unifiedPrismaClient.getMockData(mo
  */
 export { unifiedPrismaClient as PrismaClient };
 export { unifiedPrismaClient as prisma };
-export default unifiedPrismaClient;
+export { unifiedPrismaClient };

@@ -1,6 +1,6 @@
 import { useNotificationContext } from '../contexts/NotificationContext';
 
-export default function NotificationCenter(): React.ReactElement {
+export function NotificationCenter(): React.ReactElement {
   const { notifications, markRead } = useNotificationContext();
   if (notifications.length === 0) {
 return <div>No notifications</div>;

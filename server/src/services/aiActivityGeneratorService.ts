@@ -5,6 +5,7 @@
  */
 
 import type { ExternalActivity } from '@teaching-engine/database';
+import { safeJsonParse } from '../utils/type-guards.js';
 
 export interface LessonContext {
   title?: string;
@@ -123,7 +124,7 @@ prompt += `Learning Goals: ${context.learningGoals.join(', ')}\n`;
       if (context.duration !== null && context.duration !== undefined && context.duration !== 0) {
 prompt += `Duration: ${context.duration} minutes\n`;
 }
-      if (context.section !== null && context.section !== undefined && context.section !== '') {
+      if (context.section !== null && context.section !== undefined) {
 prompt += `Section: ${context.section}\n`;
 }
       prompt += '\n';
@@ -193,28 +194,38 @@ prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`
 
       const parsed = safeJsonParse(jsonMatch[0], {});
 
+      // Ensure parsed is valid and has the expected structure
+      if (!parsed || typeof parsed !== 'object') {
+        throw new Error('Invalid JSON structure in response');
+      }
+
+      // Type assertion for the parsed object
+      const activity = parsed as any;
+
       // Validate required fields
-      if ((parsed.title === null || parsed.title === undefined || parsed.title === '') || (parsed.description === null || parsed.description === undefined || parsed.description === '') || (parsed.detailedInstructions === null || parsed.detailedInstructions === undefined)) {
+      if ((activity.title === null || activity.title === undefined || activity.title === '') || 
+          (activity.description === null || activity.description === undefined || activity.description === '') || 
+          (activity.detailedInstructions === null || activity.detailedInstructions === undefined)) {
         throw new Error('Missing required fields');
       }
 
       // Apply defaults for missing optional fields
       return {
-        title: parsed.title,
-        description: parsed.description,
-        detailedInstructions: parsed.detailedInstructions ?? [],
-        duration: parsed.duration ?? 30,
-        activityType: parsed.activityType ?? 'handson',
-        materials: parsed.materials ?? [],
-        groupSize: parsed.groupSize ?? 'flexible',
-        learningGoals: parsed.learningGoals ?? [],
-        assessmentSuggestions: parsed.assessmentSuggestions ?? [],
+        title: activity.title,
+        description: activity.description,
+        detailedInstructions: activity.detailedInstructions ?? [],
+        duration: activity.duration ?? 30,
+        activityType: activity.activityType ?? 'handson',
+        materials: activity.materials ?? [],
+        groupSize: activity.groupSize ?? 'flexible',
+        learningGoals: activity.learningGoals ?? [],
+        assessmentSuggestions: activity.assessmentSuggestions ?? [],
         differentiation: {
-          support: parsed.differentiation?.support ?? [],
-          extension: parsed.differentiation?.extension ?? [],
+          support: activity.differentiation?.support ?? [],
+          extension: activity.differentiation?.extension ?? [],
         },
-        safetyConsiderations: parsed.safetyConsiderations,
-        technologyRequirements: parsed.technologyRequirements,
+        safetyConsiderations: activity.safetyConsiderations,
+        technologyRequirements: activity.technologyRequirements,
       };
     } catch (error) {
       throw new Error('Failed to parse generated activity');

@@ -50,16 +50,16 @@ export const Switch: React.FC<SwitchProps> = ({
   return (
     <label className={clsx('flex items-center', { 'cursor-pointer': !disabled })}>
       <button
+        disabled={disabled}
         aria-checked={checked}
         className={switchClasses}
-        disabled={disabled}
         role="switch"
         type="button"
         onClick={handleChange}
       >
         <span className={knobClasses} />
       </button>
-      {label !== null && label !== undefined && label !== '' && (
+      {label && (
         <span
           className={clsx('ml-3 text-sm', {
             'text-gray-900': !disabled,

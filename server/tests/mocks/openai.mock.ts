@@ -87,7 +87,7 @@ export const mockOpenAI = createMockOpenAIInstance();
 export const MockOpenAIConstructor = jest.fn().mockImplementation(() => mockOpenAI);
 
 // Export as default for module mocking
-export default MockOpenAIConstructor;
+export { MockOpenAIConstructor };
 
 // Helper functions for test setup with proper typing
 export const setupEmbeddingMock = (

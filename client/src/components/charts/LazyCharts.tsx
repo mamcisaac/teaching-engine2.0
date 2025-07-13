@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react';
 
 // Lazy load chart components to reduce initial bundle size
-const CurriculumExpectationCoverage = lazy(() => import('../CurriculumExpectationCoverage'));
+const CurriculumExpectationCoverage = lazy(() => import('../CurriculumExpectationCoverage').then(module => ({ default: module.CurriculumExpectationCoverage })));
 
 // Loading fallback for charts
 const ChartLoadingFallback = (): JSX.Element => (

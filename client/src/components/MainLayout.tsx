@@ -8,7 +8,7 @@ import { TutorialManager } from './help/TutorialManager';
 import { NavigationProvider, useNavigation } from './navigation/NavigationProvider';
 import { SidebarComponent } from './navigation/SidebarComponent';
 import { TopNavigationBar } from './navigation/TopNavigationBar';
-import TeacherOnboardingFlow from './TeacherOnboardingFlow';
+import { TeacherOnboardingFlow } from './TeacherOnboardingFlow';
 
 interface MainLayoutProps {
   children: ReactNode;

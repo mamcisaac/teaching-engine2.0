@@ -3,7 +3,7 @@ import { persist, subscribeWithSelector } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 
 import { api } from '../api';
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
 export interface WorkingHours {
   start: string;
   end: string;

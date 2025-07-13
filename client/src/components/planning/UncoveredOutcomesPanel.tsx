@@ -41,7 +41,7 @@ interface UncoveredOutcomesPanelProps {
   onSelectSuggestion: (suggestion: AISuggestedActivity) => void;
 }
 
-export function UncoveredOutcomesPanel({
+function UncoveredOutcomesPanel({
   startDate,
   endDate,
   theme,
@@ -188,4 +188,4 @@ params.append('theme', theme);
     </div>
   );
 }
-export default UncoveredOutcomesPanel;
+export { UncoveredOutcomesPanel };

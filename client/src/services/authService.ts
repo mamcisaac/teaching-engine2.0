@@ -3,8 +3,9 @@
  */
 
 import type { User } from '../types';
+
+import { logger } from '../utils/logger';
 import { safeJsonParse } from '../utils/typeGuards';
-import logger from '../utils/logger';
 
 // Dynamic import to avoid circular dependency
 interface LoginCredentials {
@@ -49,7 +50,7 @@ function isValidTokenResponse(data: unknown): data is { tokens?: AuthTokens; tok
 
 let authApiModule: AuthApiModule | undefined;
 const getAuthApi = async (): Promise<AuthApiModule['authApi']> => {
-  if (!authApiModule) {
+  if (authApiModule === undefined) {
     authApiModule = await import('../api/auth/authApi') as AuthApiModule;
   }
   return authApiModule.authApi;
@@ -101,7 +102,7 @@ class AuthService {
    */
   getTokenExpiration(): number | null {
     const expiresAt = localStorage.getItem('auth_expires_at');
-    return (expiresAt && expiresAt !== '') ? parseInt(expiresAt, 10) : null;
+    return (expiresAt !== null && expiresAt !== '') ? parseInt(expiresAt, 10) : null;
   }
 
   /**
@@ -113,7 +114,7 @@ class AuthService {
     // Refresh token is now stored as HTTP-only cookie by the server
     // No longer store it in localStorage for security
 
-    if (tokens.expiresAt) {
+    if (tokens.expiresAt !== undefined) {
       localStorage.setItem('auth_expires_at', tokens.expiresAt.toString());
     }
   }
@@ -153,7 +154,7 @@ class AuthService {
    */
   getUser(): User | null {
     const userData = localStorage.getItem(this.USER_KEY);
-    if (!userData || userData === '') {
+    if (userData === null || userData === '') {
       return null;
     }
     const parsed = safeJsonParse(userData, null);
@@ -173,7 +174,7 @@ class AuthService {
    */
   isTokenExpiringSoon(): boolean {
     const expiresAt = this.getTokenExpiration();
-    if (!expiresAt) {
+    if (expiresAt === null) {
       return false;
     }
 
@@ -189,15 +190,15 @@ class AuthService {
       const authApi = await getAuthApi();
       const data = await authApi.login({ email, password });
 
-      if (data.user) {
+      if (data.user !== undefined) {
         this.setUser(data.user);
 
-        if (data.tokens) {
+        if (data.tokens !== undefined) {
           this.setTokens(data.tokens);
-        } else if (data.accessToken) {
+        } else if (data.accessToken !== undefined) {
           // Current backend format
           this.setLegacyToken(data.accessToken);
-        } else if (data.token) {
+        } else if (data.token !== undefined) {
           // Legacy token format
           this.setLegacyToken(data.token);
         }
@@ -229,7 +230,7 @@ class AuthService {
    */
   async refreshToken(): Promise<boolean> {
     // Prevent multiple simultaneous refresh attempts
-    if (this.refreshPromise) {
+    if (this.refreshPromise !== null) {
       return this.refreshPromise;
     }
 
@@ -256,20 +257,20 @@ class AuthService {
         credentials: 'include', // This ensures cookies are sent
       });
 
-      if (!response.ok) {
+      if (response.ok === false) {
         throw new Error('Token refresh failed');
       }
 
       const data: unknown = await response.json();
 
       if (isValidTokenResponse(data)) {
-        if (data.tokens) {
+        if (data.tokens !== undefined) {
           this.setTokens(data.tokens);
           return true;
-        } else if (data.token) {
+        } else if (data.token !== undefined) {
           this.setLegacyToken(data.token);
           return true;
-        } else if (data.accessToken) {
+        } else if (data.accessToken !== undefined) {
           this.setLegacyToken(data.accessToken);
           return true;
         }
@@ -289,7 +290,7 @@ class AuthService {
   async verifyAuth(isRetry = false): Promise<User | null> {
     const token = this.getAccessToken();
 
-    if (!token) {
+    if (token === null) {
       return null;
     }
 
@@ -312,7 +313,7 @@ class AuthService {
         return null;
       }
 
-      if (!response.ok) {
+      if (response.ok === false) {
         throw new Error(`Auth verification failed: ${response.status}`);
       }
 
@@ -350,7 +351,7 @@ class AuthService {
   getAuthHeaders(): Record<string, string> {
     const token = this.getAccessToken();
 
-    if (!token) {
+    if (token === null) {
       return {};
     }
 

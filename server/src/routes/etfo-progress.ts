@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express';
 import { Router } from 'express';
 
-import logger from '../logger';
+import { logger } from '../logger';
 import { prisma } from '../prisma';
 const router = Router();
 
@@ -112,4 +112,4 @@ router.get('/progress', async (req: Request, res: Response): Promise<void> => {
   }
 });
 
-export default router;
+export { router };

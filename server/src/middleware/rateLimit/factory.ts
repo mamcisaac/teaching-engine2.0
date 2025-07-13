@@ -17,7 +17,7 @@ async function loadRedisModules() {
     }
   }
 }
-import logger from '../../logger.js';
+import { logger } from '../../logger.js';
 import {
   rateLimitConfigs,
   rateLimitTiers,

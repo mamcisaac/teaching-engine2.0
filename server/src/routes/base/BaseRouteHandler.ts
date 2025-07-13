@@ -8,7 +8,7 @@ import type { Response, NextFunction } from 'express';
 import { Router } from 'express';
 import type { z } from 'zod';
 
-import logger from '../../logger';
+import { logger } from '../../logger';
 import { prisma } from '../../prisma';
 import type { BaseService } from '../../services/base/BaseService';
 
@@ -68,7 +68,7 @@ export abstract class BaseRouteHandler<T = any> {
     next: NextFunction,
   ): void => {
     const userId = req.user?.id;
-    if (userId === null || userId === undefined || userId === '') {
+    if (userId === null || userId === undefined || userId === 0) {
       res.status(401).json({ error: 'Unauthorized' });
       return;
     }
@@ -128,7 +128,7 @@ export abstract class BaseRouteHandler<T = any> {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId === null || userId === undefined || userId === '') {
+      if (userId === null || userId === undefined || userId === 0) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }

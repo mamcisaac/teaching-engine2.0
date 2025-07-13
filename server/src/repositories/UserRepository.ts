@@ -1,6 +1,6 @@
 import type { User, Prisma, PrismaClient } from '@prisma/client';
 
-import logger from '../logger';
+import { logger } from '../logger';
 import { hashPassword } from '../utils/auth';
 
 import { BaseRepository } from './base/BaseRepository';

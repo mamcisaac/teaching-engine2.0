@@ -1,6 +1,6 @@
 import { ErrorReportingService } from '../errorReportingService';
 import { AppError } from '../../../utils/errors';
-import logger from '../../../logger';
+import { logger } from '../../../logger';
 
 /**
  * ErrorReportingService Unit Tests - Real Implementation

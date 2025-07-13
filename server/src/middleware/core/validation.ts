@@ -3,7 +3,7 @@ import type { Request, Response, NextFunction } from 'express';
 import type { ZodSchema } from 'zod';
 import { z, ZodError } from 'zod';
 
-import logger from '../../logger';
+import { logger } from '../../logger';
 import { ValidationError } from '../../utils/errors';
 
 // Extended request with validated data

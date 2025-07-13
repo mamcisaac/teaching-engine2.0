@@ -27,7 +27,7 @@ interface ExpectationSelectorProps {
 
 type GroupedExpectations = Record<string, Record<string, CurriculumExpectation[]>>;
 
-export default function ExpectationSelector({
+export function ExpectationSelector({
   selectedIds,
   onChange,
   multiSelect = true,

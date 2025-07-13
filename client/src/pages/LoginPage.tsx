@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../contexts/AuthContext';
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
+
 function LoginPage(): React.ReactElement {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -236,4 +237,5 @@ function LoginPage(): React.ReactElement {
   );
 }
 
+export { LoginPage };
 export default LoginPage;

@@ -10,7 +10,7 @@ import { NodeSDK } from '@opentelemetry/sdk-node';
 import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
 // import { BatchSpanProcessor } from '@opentelemetry/sdk-trace-base';
 
-import logger from '../logger';
+import { logger } from '../logger';
 
 // Environment configuration
 const OTEL_ENABLED = process.env.OTEL_ENABLED === 'true';

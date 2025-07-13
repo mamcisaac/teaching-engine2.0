@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import type { UnitPlan, CurriculumExpectation } from '../../hooks/useETFOPlanning';
 import { BilingualTextInput } from '../BilingualTextInput';
-import ExpectationSelector from '../planning/ExpectationSelector';
-import RichTextEditor from '../RichTextEditor';
+import { ExpectationSelector } from '../planning/ExpectationSelector';
+import { RichTextEditor } from '../RichTextEditor';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
 import { Label } from '../ui/Label';
@@ -58,7 +58,7 @@ interface LessonPlanFormProps {
   showUnitPlanSelector?: boolean;
 }
 
-export default function LessonPlanForm({
+export function LessonPlanForm({
   initialData,
   unitPlan,
   allUnitPlans = [],

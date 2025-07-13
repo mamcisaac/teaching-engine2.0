@@ -2,7 +2,7 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import LoginPage from '../../pages/LoginPage';
+import { LoginPage } from '../../pages/LoginPage';
 import { renderWithoutAuth, mockUser, mockApiResponse, mockApiError } from '../../test-utils';
 import * as api from '../../api';
 

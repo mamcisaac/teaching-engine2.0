@@ -2,7 +2,7 @@
 import { screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import ExpectationSelector from '../../components/planning/ExpectationSelector';
+import { ExpectationSelector } from '../../components/planning/ExpectationSelector';
 import { renderWithProviders } from '../../test-utils';
 import * as etfoHooks from '../../hooks/useETFOPlanning';
 

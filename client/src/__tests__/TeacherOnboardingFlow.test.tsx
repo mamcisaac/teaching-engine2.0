@@ -2,7 +2,7 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import TeacherOnboardingFlow from '../components/TeacherOnboardingFlow';
+import { TeacherOnboardingFlow } from '../components/TeacherOnboardingFlow';
 import { renderWithRouter, renderWithProviders } from '../test-utils';
 
 describe('TeacherOnboardingFlow', () => {

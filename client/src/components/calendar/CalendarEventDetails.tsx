@@ -33,7 +33,7 @@ interface CalendarEventDetailsProps {
   onUpdate?: () => void;
 }
 
-export default function CalendarEventDetails({
+export function CalendarEventDetails({
   event,
   onClose,
   onUpdate,

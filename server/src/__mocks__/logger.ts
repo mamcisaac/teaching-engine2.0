@@ -13,5 +13,5 @@ const mockLogger = {
 // child should return the same mock logger instance
 mockLogger.child = jest.fn(() => mockLogger);
 
-export default mockLogger;
+export { mockLogger };
 export { mockLogger as logger };

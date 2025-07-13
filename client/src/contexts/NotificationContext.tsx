@@ -31,7 +31,7 @@ export function NotificationProvider({ children }: { children: ReactNode }): Rea
   const markMutation = useMarkNotificationAsRead();
 
   const markRead = (id: number): void => {
-    if (isAuthenticated) {
+    if (isAuthenticated === true) {
       markMutation.mutate(id);
     }
   };
@@ -39,7 +39,7 @@ export function NotificationProvider({ children }: { children: ReactNode }): Rea
   const markAllRead = (): void => {
     if (isAuthenticated && notifications.length > 0) {
       const unreadIds = notifications
-        .filter((notification) => !notification.read)
+        .filter((notification) => notification.read === false)
         .map((notification, _index) => notification.id);
 
       unreadIds.forEach((id) => {
@@ -53,7 +53,7 @@ export function NotificationProvider({ children }: { children: ReactNode }): Rea
   };
 
   // Computed values
-  const unreadCount = notifications.filter((n) => !n.read).length;
+  const unreadCount = notifications.filter((n) => n.read === false).length;
   const hasUnread = unreadCount > 0;
 
   const contextValue: NotificationContextValue = {
@@ -74,7 +74,7 @@ export function NotificationProvider({ children }: { children: ReactNode }): Rea
 
 export const useNotificationContext = (): NotificationContextValue => {
   const context = useContext(NotificationContext);
-  if (!context) {
+  if (context === null) {
     throw new Error('useNotificationContext must be used within a NotificationProvider');
   }
   return context;

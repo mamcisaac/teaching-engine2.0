@@ -5,7 +5,7 @@ import React, { createContext, useContext } from 'react';
 import { authService } from '../services/authService';
 import { errorReportingService } from '../services/errorReportingService';
 import type { User } from '../types';
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
 
 interface LoginCredentials {
   email: string;

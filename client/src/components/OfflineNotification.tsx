@@ -48,7 +48,7 @@ export function OfflineNotification(): React.ReactElement | null {
   };
 
   // Don't show if online or dismissed
-  if (isOnlineState !== null && isOnlineState !== undefined && isOnlineState || dismissed !== null && dismissed !== undefined && dismissed) {
+  if (isOnlineState || dismissed) {
     return null;
   }
 
@@ -76,7 +76,7 @@ export function OfflineNotification(): React.ReactElement | null {
  void handleRetry(); 
 }}
               >
-                {retrying !== null && retrying !== undefined && retrying ? (
+                {retrying ? (
                   <>
                     <RefreshCw className="w-3 h-3 mr-1 animate-spin" />
                     Checking...
@@ -138,7 +138,7 @@ export function ConflictResolutionModal({
   const [_mergedData, _setMergedData] = useState<unknown>(null);
 
   const handleResolve = (): void => {
-    if (selectedResolution !== null && selectedResolution !== undefined && selectedResolution === 'merge' && _mergedData !== null && _mergedData !== undefined) {
+    if (selectedResolution === 'merge' && _mergedData !== null) {
       onResolve('merge', _mergedData);
     } else {
       onResolve(selectedResolution);
@@ -265,7 +265,7 @@ const styles = `
 `;
 
 // Inject styles
-if (typeof document !== 'undefined' && document !== null) {
+if (typeof document !== 'undefined') {
   const styleSheet = document.createElement('style');
   styleSheet.innerText = styles;
   document.head.appendChild(styleSheet);

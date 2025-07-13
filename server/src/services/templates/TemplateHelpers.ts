@@ -558,7 +558,7 @@ return '';
       return helper(...args);
     } catch (_error) {
       this.logger.error(
-        `Helper test failed: name=${name}, args=${JSON.stringify(args)}, error=${_error instanceof Error ? _(error instanceof Error ? error.message : String(error)) : _error}`,
+        `Helper test failed: name=${name}, args=${JSON.stringify(args)}, error=${_error instanceof Error ? _error.message : _error}`,
       );
       throw _error;
     }
@@ -580,7 +580,7 @@ return '';
           valid.push(name);
         }
       } catch (_error) {
-        invalid.push({ name, error: _error instanceof Error ? _(error instanceof Error ? error.message : String(error)) : String(_error) });
+        invalid.push({ name, error: _error instanceof Error ? _error.message : String(_error) });
       }
     }
 

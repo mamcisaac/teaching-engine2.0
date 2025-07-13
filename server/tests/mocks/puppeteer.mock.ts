@@ -48,7 +48,7 @@ const puppeteerMock = {
 };
 
 // Default export for ES modules
-export default puppeteerMock;
+export { puppeteerMock };
 
 // Named exports for CommonJS compatibility
 export const launch = puppeteerMock.launch;

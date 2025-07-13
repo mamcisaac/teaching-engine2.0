@@ -4,7 +4,7 @@ import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { AuthErrorBoundary, AppAuthErrorBoundary } from '../AuthErrorBoundary';
 import { authService } from '../../services/authService';
 import { errorReportingService } from '../../services/errorReportingService';
-import logger from '../../utils/logger';
+import { logger } from '../../utils/logger';
 
 // Mock dependencies
 vi.mock('../../services/authService');

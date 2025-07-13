@@ -381,4 +381,4 @@ const logger = new EnhancedLogger(baseLogger);
 export type Logger = EnhancedLogger;
 export { EnhancedLogger };
 
-export default logger;
+export { logger };

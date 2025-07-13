@@ -11,7 +11,7 @@ import { TemplateOrchestrator } from '../templates/TemplateOrchestrator';
 import { HandlebarsEngine } from '../templates/engines/HandlebarsEngine';
 import { CurriculumValidator } from '../curriculum/validators/CurriculumValidator';
 import { prisma } from '../../prisma';
-import logger from '../../logger';
+import { logger } from '../../logger';
 import * as fs from 'fs/promises';
 import * as path from 'path';
 

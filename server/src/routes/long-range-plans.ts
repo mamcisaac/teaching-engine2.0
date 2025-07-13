@@ -2,7 +2,7 @@ import type { Request } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
 
-import logger from '../logger';
+import { logger } from '../logger';
 import type { Prisma } from '../prisma';
 import { prisma } from '../prisma';
 import { generateLongRangePlanDraft, generatePlanSuggestions } from '../services/ai/aiDraftService';
@@ -159,11 +159,12 @@ router.post('/', validate(longRangePlanCreateSchema), async (req: Request, res, 
       });
 
       if (validExpectations.length !== expectationIds.length) {
-        return res.status(400).json({
+        res.status(400).json({
           error: 'One or more curriculum expectations not found',
           provided: expectationIds,
           found: validExpectations.map((e: { id: string }) => e.id),
         });
+        return;
       }
 
       await prisma.longRangePlanExpectation.createMany({
@@ -306,7 +307,7 @@ router.delete('/:id', async (req: Request, res, _next): Promise<void> => {
       where: { id: req.params.id },
     });
 
-    return res.status(204).end();
+    res.status(204).end();
   } catch (_err) {
     _next(_err); return;
   }
@@ -396,4 +397,4 @@ Expectations: ${plan.expectations.map((e: { expectation: { code: string; descrip
   }
 });
 
-export default router;
+export { router };

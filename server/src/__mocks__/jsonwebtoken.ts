@@ -62,4 +62,4 @@ const mockJwt = {
   }),
 };
 
-export default mockJwt;
+export { mockJwt };

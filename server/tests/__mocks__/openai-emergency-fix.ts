@@ -106,5 +106,5 @@ if (typeof global !== 'undefined' && global.fetch) {
 }
 
 // Export everything needed
-export default MockOpenAI;
+export { MockOpenAI };
 export { mockOpenAIInstance, mockChatResponse, mockEmbeddingResponse };

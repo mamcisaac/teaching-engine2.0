@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 
-import logger from '../../utils/logger';
+import { logger } from '../../utils/logger';
 import { Dialog } from '../Dialog';
 import { Button } from '../ui/Button';
 import { useToast } from '../ui/use-toast';
@@ -36,7 +36,7 @@ interface CurriculumImportWizardProps {
   onSuccess: () => void;
 }
 
-export function CurriculumImportWizard({
+function CurriculumImportWizard({
   isOpen,
   onClose,
   onSuccess,
@@ -540,4 +540,4 @@ return null;
   );
 }
 
-export default CurriculumImportWizard;
+export { CurriculumImportWizard };

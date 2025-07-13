@@ -26,29 +26,16 @@ export const getDateRanges = (): {
     tomorrow: new Date(today.getTime() + 24 * 60 * 60 * 1000),
 
     // Week ranges
-    startOfWeek: getStartOfWeek(now),
-    endOfWeek: getEndOfWeek(now),
-    startOfLastWeek: getStartOfWeek(new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000)),
-    endOfLastWeek: getEndOfWeek(new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000)),
+    thisWeekStart: getStartOfWeek(now),
+    thisWeekEnd: getEndOfWeek(now),
+    nextWeekStart: getStartOfWeek(new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000)),
+    nextWeekEnd: getEndOfWeek(new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000)),
 
     // Month ranges
-    startOfMonth: new Date(now.getFullYear(), now.getMonth(), 1),
-    endOfMonth: new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59, 999),
-    startOfLastMonth: new Date(now.getFullYear(), now.getMonth() - 1, 1),
-    endOfLastMonth: new Date(now.getFullYear(), now.getMonth(), 0, 23, 59, 59, 999),
-
-    // Year ranges
-    startOfYear: new Date(now.getFullYear(), 0, 1),
-    endOfYear: new Date(now.getFullYear(), 11, 31, 23, 59, 59, 999),
-
-    // Relative dates
-    oneHourAgo: new Date(now.getTime() - 60 * 60 * 1000),
-    oneDayAgo: new Date(now.getTime() - 24 * 60 * 60 * 1000),
-    oneWeekAgo: new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000),
-    oneMonthAgo: new Date(now.getFullYear(), now.getMonth() - 1, now.getDate()),
-    threeMonthsAgo: new Date(now.getFullYear(), now.getMonth() - 3, now.getDate()),
-    sixMonthsAgo: new Date(now.getFullYear(), now.getMonth() - 6, now.getDate()),
-    oneYearAgo: new Date(now.getFullYear() - 1, now.getMonth(), now.getDate()),
+    thisMonthStart: new Date(now.getFullYear(), now.getMonth(), 1),
+    thisMonthEnd: new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59, 999),
+    nextMonthStart: new Date(now.getFullYear(), now.getMonth() + 1, 1),
+    nextMonthEnd: new Date(now.getFullYear(), now.getMonth() + 2, 0, 23, 59, 59, 999),
   };
 };
 

@@ -33,7 +33,7 @@ interface PlanningLevel {
   description: string;
 }
 
-export default function ETFOPlanningCoverage(): React.ReactElement {
+export function ETFOPlanningCoverage(): React.ReactElement {
   // Fetch data for all planning levels
   const { data: longRangePlans = [] } = useLongRangePlans();
   const { data: unitPlans = [] } = useUnitPlans();

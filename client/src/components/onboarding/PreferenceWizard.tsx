@@ -24,7 +24,7 @@ interface TeacherPreferences {
   };
 }
 
-export default function PreferenceWizard({ onComplete, onSkip }: PreferenceWizardProps): React.ReactElement {
+export function PreferenceWizard({ onComplete, onSkip }: PreferenceWizardProps): React.ReactElement {
   const [preferences, setPreferences] = useState<TeacherPreferences>({
     grade: '',
     subjects: [],

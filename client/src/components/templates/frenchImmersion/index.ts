@@ -1,8 +1,8 @@
 // French Immersion Template Components
-export { default as FrenchImmersionLessonTemplate } from '../FrenchImmersionLessonTemplate';
-export { default as FrenchImmersionWeeklyTemplate } from '../FrenchImmersionWeeklyTemplate';
-export { default as PEICurriculumConnector } from '../PEICurriculumConnector';
-export { default as FrenchImmersionTemplateSelector } from '../FrenchImmersionTemplateSelector';
+export { FrenchImmersionLessonTemplate } from '../FrenchImmersionLessonTemplate';
+export { FrenchImmersionWeeklyTemplate } from '../FrenchImmersionWeeklyTemplate';
+export { PEICurriculumConnector } from '../PEICurriculumConnector';
+export { FrenchImmersionTemplateSelector } from '../FrenchImmersionTemplateSelector';
 
 // Re-export types
 export * from '../../../types/frenchImmersion';

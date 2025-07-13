@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import React, { Component } from 'react';
 
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
 interface Props {
   children: ReactNode;
   fallback?: ReactNode;
@@ -12,7 +12,7 @@ interface State {
   error?: Error;
 }
 
-export default class ErrorBoundary extends Component<Props, State> {
+export class ErrorBoundary extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = { hasError: false };

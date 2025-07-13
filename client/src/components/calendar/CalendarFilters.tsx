@@ -23,7 +23,7 @@ const EVENT_TYPE_OPTIONS = [
   { value: 'school-event', label: 'School Events' },
 ];
 
-export default function CalendarFilters({
+export function CalendarFilters({
   filters,
   onFiltersChange,
   availableSubjects,

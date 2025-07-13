@@ -559,7 +559,8 @@ export class CurriculumImportService {
   }
 
   static async searchExpectations(query: string, filters?: unknown): Promise<unknown[]> {
-    return curriculumImportOrchestrator.searchExpectations({ query, filters });
+    const result = await curriculumImportOrchestrator.searchExpectations({ query, filters });
+    return result as unknown[];
   }
 
   static async getImportStats(): Promise<unknown> {

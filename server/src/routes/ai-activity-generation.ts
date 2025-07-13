@@ -3,7 +3,7 @@ import type { Request, Response } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
 
-import logger from '../logger';
+import { logger } from '../logger';
 import { authMiddleware } from '../middleware/auth';
 import { AIActivityGeneratorService } from '../services/aiActivityGeneratorService';
 const log = debug('server:ai-activity:error');
@@ -220,4 +220,4 @@ router.post('/save', authMiddleware, async (req: Request, res: Response): Promis
   }
 });
 
-export default router;
+export { router };

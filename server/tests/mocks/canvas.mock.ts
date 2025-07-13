@@ -22,4 +22,4 @@ export const loadImage = jest.fn().mockResolvedValue({
   height: 100,
 });
 
-export default { createCanvas, loadImage };
+export const canvasMock = { createCanvas, loadImage };

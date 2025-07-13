@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
 import { safeJsonParse } from '../utils/typeGuards';
 
 interface UserProgress {

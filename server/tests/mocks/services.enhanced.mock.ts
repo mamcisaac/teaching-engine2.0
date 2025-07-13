@@ -256,4 +256,4 @@ export const setupServiceError = (serviceName: string, methodName: string, error
   return service?.[methodName];
 };
 
-export default mockServices;
+export { mockServices };

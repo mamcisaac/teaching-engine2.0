@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
-import PreferenceWizard from '../PreferenceWizard';
+import { PreferenceWizard } from '../PreferenceWizard';
 import { vi } from 'vitest';
 
 describe('PreferenceWizard', () => {

@@ -3,7 +3,7 @@ import React, { useState, memo, useMemo, useCallback } from 'react';
 
 import { useCalendarEvents } from '../../api/domains/calendar';
 import type { CalendarEvent } from '../../types';
-import logger from '../../utils/logger';
+import { logger } from '../../utils/logger';
 
 import { LoadingSkeleton } from './LoadingSkeleton';
 import { VirtualizedList } from './VirtualizedList';
@@ -346,4 +346,3 @@ grouped[dateKey] = [];
 
 OptimizedCalendarView.displayName = 'OptimizedCalendarView';
 
-export default OptimizedCalendarView;

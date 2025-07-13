@@ -214,7 +214,7 @@ class DaybookService extends BaseService {
     } else if (endDate) {
       where.date = { lte: new Date(endDate) };
     }
-    if (lessonPlanId !== null && lessonPlanId !== undefined && lessonPlanId !== '') {
+    if (lessonPlanId !== null && lessonPlanId !== undefined && lessonPlanId !== 0) {
       where.lessonPlanId = String(lessonPlanId);
     }
 
@@ -329,12 +329,12 @@ orderBy.createdAt = order;
       throw new Error('Daybook entry not found');
     }
 
-    const { expectations, ...updateData } = data as unknown as Record<string, unknown>;
+    const { expectations, ...updateData } = data;
 
     return prisma.daybookEntry.update({
       where: { id },
       data: {
-        ...updateData,
+        ...updateData as Prisma.DaybookEntryUpdateInput,
         ...(data.date && { date: new Date(data.date) }),
         ...(expectations && Array.isArray(expectations) && {
           expectations: {

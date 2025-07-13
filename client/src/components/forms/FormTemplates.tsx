@@ -81,7 +81,7 @@ interface FormTemplatesProps {
   onTemplateDownload: (templateId: string, data: Record<string, unknown>) => void;
 }
 
-export default function FormTemplates({
+export function FormTemplates({
   onTemplateGenerate,
   onTemplateDownload,
 }: FormTemplatesProps): React.ReactElement {

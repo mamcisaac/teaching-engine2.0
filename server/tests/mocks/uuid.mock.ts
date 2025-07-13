@@ -20,7 +20,7 @@ export const version = jest.fn(() => 4);
 export const NIL = '00000000-0000-0000-0000-000000000000';
 
 // Default export for compatibility
-export default {
+export const uuidMock = {
   v1,
   v3,
   v4,

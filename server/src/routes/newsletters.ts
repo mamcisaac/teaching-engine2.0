@@ -130,4 +130,4 @@ router.get('/status', (req: Request, res: Response): void => {
   })();
 });
 
-export default router;
+export { router };

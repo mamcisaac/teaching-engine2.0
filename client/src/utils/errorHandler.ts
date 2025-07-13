@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 import { toast } from 'sonner';
 
-import logger from './logger';
+import { logger } from './logger';
 
 interface ApiError {
   error: string;

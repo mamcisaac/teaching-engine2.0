@@ -6,7 +6,7 @@ import rateLimit from 'express-rate-limit';
 import DOMPurify from 'isomorphic-dompurify';
 import { z } from 'zod';
 
-import logger from '../logger';
+import { logger } from '../logger';
 import { prisma } from '../prisma';
 import { safeJsonParse } from '../utils/type-guards';
 import { cuidSchema } from '../validation';
@@ -476,4 +476,4 @@ router.post(
   },
 );
 
-export default router;
+export { router };

@@ -9,7 +9,7 @@ import { CurriculumImportOrchestrator } from '../CurriculumImportOrchestrator';
 import { prisma } from '../../../prisma';
 import * as fs from 'fs/promises';
 import * as path from 'path';
-import logger from '../../../logger';
+import { logger } from '../../../logger';
 
 // Real test data
 const REAL_CSV_CONTENT = `Code,Strand,Grade,Subject,Description

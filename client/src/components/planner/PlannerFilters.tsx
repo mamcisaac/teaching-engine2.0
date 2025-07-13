@@ -10,7 +10,7 @@ interface Props {
 const TAGS = ['HandsOn', 'Worksheet', 'Video'];
 const STORAGE_KEY = 'te:planner:filters';
 
-export default function PlannerFilters({ filters, onChange }: Props): React.ReactElement {
+export function PlannerFilters({ filters, onChange }: Props): React.ReactElement {
   useEffect(() => {
     return () => { // Cleanup
     };

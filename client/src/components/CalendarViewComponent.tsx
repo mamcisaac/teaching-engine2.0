@@ -4,9 +4,9 @@ import { useState, memo, useMemo } from 'react';
 
 import { useCalendarEvents } from '../api/domains/calendar';
 import type { CalendarEvent } from '../types';
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
 
-import EventEditorModal from './EventEditorModal';
+import { EventEditorModal } from './EventEditorModal';
 import { LoadingSkeleton } from './performance';
 interface Props {
   month: Date;
@@ -27,17 +27,17 @@ const CalendarViewComponent = memo(({ month, events }: Props): React.ReactElemen
   
   // Memoize event array processing
   const evts = useMemo(() => {
-    if (events !== null && events !== undefined) {
+    if (events) {
       return events;
     }
-    if (fetch.data !== null && fetch.data !== undefined) {
+    if (fetch.data) {
       return fetch.data;
     }
     return [];
   }, [events, fetch.data]);
 
   // Log any errors for debugging
-  if (fetch.error !== null && fetch.error !== undefined) {
+  if (fetch.error) {
     logger.error('Error loading calendar events:', fetch.error);
   }
 
@@ -51,7 +51,7 @@ const CalendarViewComponent = memo(({ month, events }: Props): React.ReactElemen
     const grouped: Record<string, CalendarEvent[]> = {};
     // Safely process events
     evts.forEach((e) => {
-      if (e.start !== null && e.start !== undefined && e.start !== '') {
+      if (e.start && e.start !== '') {
         const d = e.start.split('T')[0];
         if (grouped[d] === undefined) {
           grouped[d] = [];
@@ -73,7 +73,7 @@ const CalendarViewComponent = memo(({ month, events }: Props): React.ReactElemen
 
   return (
     <div className="border rounded p-2">
-      {(events === null || events === undefined) && (
+      {!events && (
         <button
           className="mb-2 px-2 py-1 bg-blue-500 text-white rounded"
           onClick={() => {
@@ -95,7 +95,7 @@ const CalendarViewComponent = memo(({ month, events }: Props): React.ReactElemen
           </div>
         ))}
       </div>
-      {(events === null || events === undefined) && editorOpen && (
+      {!events && editorOpen && (
         <EventEditorModal
           onClose={() => {
             setEditorOpen(false);
@@ -108,4 +108,4 @@ const CalendarViewComponent = memo(({ month, events }: Props): React.ReactElemen
 
 CalendarViewComponent.displayName = 'CalendarViewComponent';
 
-export default CalendarViewComponent;
+export { CalendarViewComponent };

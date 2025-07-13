@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 
 import { authService } from '../services/authService';
 import { errorReportingService } from '../services/errorReportingService';
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
 
 import { Alert, AlertDescription, AlertTitle } from './ui/alert';
 import { Button } from './ui/Button';
@@ -115,9 +115,9 @@ export class AuthErrorBoundary extends Component<AuthErrorBoundaryProps, AuthErr
   }
 
   private isRetryableError(error?: Error): boolean {
-    if (error === null || error === undefined) {
-return false;
-}
+    if (!error) {
+      return false;
+    }
 
     const message = (error instanceof Error ? error.message : String(error)).toLowerCase();
     const retryableMessages = [
@@ -133,9 +133,9 @@ return false;
   }
 
   private isNetworkError(error?: Error): boolean {
-    if (error === null || error === undefined) {
-return false;
-}
+    if (!error) {
+      return false;
+    }
 
     const message = (error instanceof Error ? error.message : String(error)).toLowerCase();
     return (
@@ -147,9 +147,9 @@ return false;
   }
 
   private isAuthError(error?: Error): boolean {
-    if (error === null || error === undefined) {
-return false;
-}
+    if (!error) {
+      return false;
+    }
 
     const message = (error instanceof Error ? error.message : String(error)).toLowerCase();
     return (
@@ -179,7 +179,7 @@ return;
       // Try to refresh the auth state
       const userData = await authService.verifyAuth();
 
-      if (userData !== null && userData !== undefined) {
+      if (userData) {
         // Success! Reset the error state
         this.setState({
           hasError: false,
@@ -334,16 +334,15 @@ return;
                 </Button>
               </div>
 
-              {process.env.NODE_ENV === 'development' && this.state.error !== null && this.state.error !== undefined && (
+              {process.env.NODE_ENV === 'development' && this.state.error && (
                 <details className="mt-4 bg-gray-100 p-4 rounded-md">
                   <summary className="cursor-pointer font-medium text-gray-700">
                     Error Details (Development)
                   </summary>
                   <pre className="mt-2 text-xs text-gray-600 whitespace-pre-wrap overflow-auto">
                     {this.state.error instanceof Error ? this.state.error.message : String(this.state.error)}
-                    {'\n\n'}
                     {this.state.error.stack}
-                    {this.state.errorInfo !== null && this.state.errorInfo !== undefined &&
+                    {this.state.errorInfo &&
                       `\n\nComponent Stack:\n${  this.state.errorInfo.componentStack}`}
                   </pre>
                 </details>
@@ -373,4 +372,3 @@ export const AppAuthErrorBoundary: React.FC<{ children: ReactNode }> = ({ childr
   </AuthErrorBoundary>
 );
 
-export default AuthErrorBoundary;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import TemplateFilters from '../TemplateFilters';
+import { TemplateFilters } from '../TemplateFilters';
 import type { TemplateSearchOptions } from '../../../types/template';
 
 // Mock the Select components

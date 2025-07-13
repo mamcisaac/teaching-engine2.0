@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
 
 import type { HelpState, HelpContextType } from '../types/help';
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
 import { safeJsonParse } from '../utils/typeGuards';
 // Initial state
 const initialState: HelpState = {

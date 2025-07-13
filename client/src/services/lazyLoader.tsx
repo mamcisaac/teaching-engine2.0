@@ -4,7 +4,7 @@
 import React from 'react';
 
 import { apiClient } from '../api/core/client';
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
 import { safeJsonParse } from '../utils/typeGuards';
 
 import type { StoredData } from './offlineStorage';
@@ -40,10 +40,10 @@ class LazyLoader {
       this.intersectionObserver = new IntersectionObserver(
         (entries): void => {
           entries.forEach((entry): void => {
-            if (entry.isIntersecting) {
+            if (entry.isIntersecting === true) {
               const element = entry.target as HTMLElement;
               const documentId = element.dataset.lazyDocumentId;
-              if (documentId !== null && documentId !== undefined && documentId !== '') {
+              if (documentId !== undefined && documentId !== '') {
                 void this.loadDocument(documentId);
               }
             }
@@ -70,20 +70,20 @@ class LazyLoader {
 
     // Check if already loading
     const existingLoad = this.loadingQueue.get(documentId);
-    if (existingLoad !== null && existingLoad !== undefined) {
+    if (existingLoad !== undefined) {
       return existingLoad;
     }
 
     // Check memory cache
     const cached = this.documentCache.get(documentId);
-    if (cached !== null && cached !== undefined && this.isDocumentComplete(cached)) {
+    if (cached !== undefined && this.isDocumentComplete(cached) === true) {
       return this.assembleDocument(cached);
     }
 
     // Check offline storage cache
-    if (cache) {
+    if (cache === true) {
       const storedDoc = await offlineStorage.getCachedData(`document-${documentId}`);
-      if (storedDoc !== null && storedDoc !== undefined) {
+      if (storedDoc !== null) {
         return storedDoc;
       }
     }
@@ -96,7 +96,7 @@ class LazyLoader {
       const document = await loadPromise;
       
       // Cache if requested
-      if (cache) {
+      if (cache === true) {
         await offlineStorage.cacheData(`document-${documentId}`, document as StoredData, cacheTime);
       }
       
@@ -119,7 +119,7 @@ class LazyLoader {
       // For small documents, load in one request
       if (metadata.size < 1024 * 1024) { // Less than 1MB
         const response = await apiClient.get<unknown>(`/api/documents/${documentId}`);
-        if (options.onProgress !== null && options.onProgress !== undefined) {
+        if (options.onProgress !== undefined) {
           options.onProgress(100);
         }
         return response.data;
@@ -145,7 +145,7 @@ class LazyLoader {
         // Update progress
         void chunkPromise.then((): void => {
           const progress = ((i + 1) / totalChunks) * 100;
-          if (options.onProgress !== null && options.onProgress !== undefined) {
+          if (options.onProgress !== undefined) {
             options.onProgress(progress);
           }
         }).catch((error: unknown) => {
@@ -200,7 +200,7 @@ class LazyLoader {
     const chunks: unknown[] = [];
     for (let i = 0; i < doc.totalChunks; i++) {
       const chunk = doc.chunks.get(i);
-      if (chunk === null || chunk === undefined) {
+      if (chunk === undefined) {
         throw new Error(`Missing chunk ${i} for document ${doc.id}`);
       }
       chunks.push(chunk);
@@ -220,7 +220,7 @@ class LazyLoader {
 
   // Observe element for lazy loading
   observeElement(element: HTMLElement, documentId: string): void {
-    if (this.intersectionObserver !== null && this.intersectionObserver !== undefined) {
+    if (this.intersectionObserver !== null) {
       element.dataset.lazyDocumentId = documentId;
       this.intersectionObserver.observe(element);
     }
@@ -228,7 +228,7 @@ class LazyLoader {
 
   // Stop observing element
   unobserveElement(element: HTMLElement): void {
-    if (this.intersectionObserver !== null && this.intersectionObserver !== undefined) {
+    if (this.intersectionObserver !== null) {
       this.intersectionObserver.unobserve(element);
     }
   }
@@ -242,7 +242,7 @@ class LazyLoader {
       try {
         await this.loadDocument(id, { cache: true });
         completed++;
-        if (onProgress !== null && onProgress !== undefined) {
+        if (onProgress !== undefined) {
           onProgress(completed, total);
         }
       } catch (error) {
@@ -255,7 +255,7 @@ class LazyLoader {
 
   // Clear caches
   clearCache(documentId?: string): void {
-    if (documentId !== null && documentId !== undefined && documentId !== '') {
+    if (documentId !== undefined && documentId !== '') {
       this.documentCache.delete(documentId);
       void offlineStorage.deleteCachedData(`document-${documentId}`).catch((error: unknown) => {
         console.error('Error deleting cached data:', error);
@@ -302,9 +302,9 @@ export function useLazyDocument(documentId: string | null, options?: LoadOptions
         const doc = await lazyLoader.loadDocument(documentId, {
           ...options,
           onProgress: (p) => {
-            if (!cancelled) {
+            if (cancelled === false) {
               setProgress(p);
-              if (options?.onProgress !== null && options?.onProgress !== undefined) {
+              if (options?.onProgress !== undefined) {
                 options.onProgress(p);
               }
             }

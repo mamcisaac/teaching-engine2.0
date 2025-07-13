@@ -244,7 +244,7 @@ export function createSearchFilter(
   search: string | undefined,
   fields: string[],
 ): Record<string, unknown> | undefined {
-  if (!search || !fields.length) {
+  if (search === undefined || search === '' || fields.length === 0) {
     return undefined;
   }
 

@@ -40,10 +40,10 @@ export const arrayUtils = {
         const aValue = typeof key === 'function' ? key(a) : a[key];
         const bValue = typeof key === 'function' ? key(b) : b[key];
         
-        if ((aValue) < (bValue)) {
+        if ((aValue as any) < (bValue as any)) {
           return order === 'asc' ? -1 : 1;
         }
-        if ((aValue) > (bValue)) {
+        if ((aValue as any) > (bValue as any)) {
           return order === 'asc' ? 1 : -1;
         }
       }

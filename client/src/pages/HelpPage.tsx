@@ -7,7 +7,7 @@ import { useHelp } from '../contexts/HelpContext';
 import { useHelpContent } from '../hooks/useHelp';
 import type { HelpSection } from '../types/help';
 import { HELP_SECTIONS } from '../types/help';
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
 // Mock help content - in a real app, this would come from markdown files
 const mockHelpContent: Record<string, string> = {
   'keyboard-shortcuts': `

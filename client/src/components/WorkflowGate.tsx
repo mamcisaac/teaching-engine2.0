@@ -13,7 +13,7 @@ interface WorkflowGateProps {
   children: React.ReactNode;
 }
 
-export default function WorkflowGate({ level, children }: WorkflowGateProps): React.ReactElement {
+export function WorkflowGate({ level, children }: WorkflowGateProps): React.ReactElement {
   const { workflowState, isLevelAccessible, getBlockedReason, getLevelProgress, getPreviousLevel } =
     useWorkflowState();
   const { toast } = useToast();
@@ -85,8 +85,7 @@ export default function WorkflowGate({ level, children }: WorkflowGateProps): Re
                 <div className="flex items-center justify-between">
                   <span className="font-medium">{getLevelName(previousLevel)}</span>
                   <span className="text-sm text-muted-foreground">
-                    {previousLevelProgress.completedItems} / {previousLevelProgress.totalItems}{' '}
-                    completed
+                    {previousLevelProgress.completedItems} / {previousLevelProgress.totalItems} completed
                   </span>
                 </div>
                 <div className="w-full bg-secondary rounded-full h-2">

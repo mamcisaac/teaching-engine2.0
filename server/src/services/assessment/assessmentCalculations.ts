@@ -227,20 +227,20 @@ export function generateProgressReport(data: {
   assessments: AssessmentData[];
   period: string;
 }): ProgressReport {
-  const { studentId, assessments, period } = data as Record<string, unknown>;
+  const { studentId, assessments, period } = data;
 
   // Calculate overall average
-  const ratings = assessments.map(a => a.rating);
+  const ratings = (assessments as AssessmentData[]).map((a: AssessmentData) => a.rating);
   const overallAverage = calculateAverageRating(ratings);
   
   // Determine achievement level
   const achievementLevel = determineAchievementLevel(overallAverage);
   
   // Aggregate by strand
-  const strandBreakdown = aggregateAssessmentsByStrand(assessments);
+  const strandBreakdown = aggregateAssessmentsByStrand(assessments as AssessmentData[]);
   
   // Calculate trends
-  const trends = calculateTrendAnalysis(assessments);
+  const trends = calculateTrendAnalysis(assessments as AssessmentData[]);
   
   // Generate recommendations
   const recommendations = generateRecommendations(
@@ -251,8 +251,8 @@ export function generateProgressReport(data: {
   );
 
   return {
-    studentId,
-    period,
+    studentId: studentId as number,
+    period: period as string,
     overallAverage,
     achievementLevel,
     strandBreakdown,

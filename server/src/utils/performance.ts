@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import logger from '../logger';
+import { logger } from '../logger';
 import { withSpan, dbQueryDuration, dbQueryCounter } from '../monitoring/telemetry';
 
 // Performance measurement class
@@ -325,7 +325,7 @@ export const retryWithBackoff = async <T>(
           attempt: attempt + 1,
           maxRetries,
           delay,
-          error: _error instanceof Error ? _(error instanceof Error ? error.message : String(error)) : _error,
+          error: _error instanceof Error ? _error.message : _error,
         },
         'Retrying operation after failure',
       );

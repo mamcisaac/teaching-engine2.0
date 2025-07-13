@@ -6,6 +6,7 @@
 
 import type { ParsedCurriculum, ParsedExpectation } from './CurriculumParser';
 import { CurriculumParser } from './CurriculumParser';
+import { safeJsonParse } from '../../../utils/type-guards.js';
 
 export interface JSONExpectation {
   code?: string;
@@ -55,7 +56,7 @@ export class JSONParser extends CurriculumParser {
     try {
       data = safeJsonParse(stringContent, {});
     } catch (_error) {
-      throw new Error(`Invalid JSON format: ${_error instanceof Error ? _(error instanceof Error ? error.message : String(error)) : String(_error)}`);
+      throw new Error(`Invalid JSON format: ${_error instanceof Error ? _error.message : String(_error)}`);
     }
 
     // Handle array of expectations

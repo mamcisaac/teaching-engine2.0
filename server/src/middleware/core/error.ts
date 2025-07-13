@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from 'express';
 import { ZodError } from 'zod';
 
-import logger from '../../logger';
+import { logger } from '../../logger';
 import { errorCounter } from '../../monitoring/telemetry';
 import { errorReportingService } from '../../services/monitoring/errorReportingService';
 import { AppError, handleDatabaseError, formatErrorResponse } from '../../utils/errors';

@@ -13,7 +13,7 @@ import {
   IRateLimiterOptions,
   IRateLimiterRedisOptions,
 } from 'rate-limiter-flexible';
-import logger from '../../logger';
+import { logger } from '../../logger';
 export enum UserTier {
   FREE = 'FREE',
   PREMIUM = 'PREMIUM',

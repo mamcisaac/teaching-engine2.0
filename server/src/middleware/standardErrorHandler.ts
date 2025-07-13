@@ -2,7 +2,7 @@ import type { Request, Response, NextFunction } from 'express';
 // import '../types/express.js';
 import { ZodError } from 'zod';
 
-import logger from '../logger.js';
+import { logger } from '../logger.js';
 
 import { auditFunctions } from './auditLogger.js';
 
@@ -425,23 +425,4 @@ export const responseHelpers = {
       timestamp: new Date().toISOString(),
     });
   },
-};
-
-export default {
-  StandardError,
-  ValidationError,
-  AuthenticationError,
-  AuthorizationError,
-  NotFoundError,
-  ConflictError,
-  RateLimitError,
-  DatabaseError,
-  ExternalServiceError,
-  BusinessLogicError,
-  FileUploadError,
-  AIServiceError,
-  standardErrorHandler,
-  asyncHandler,
-  errorFactory,
-  responseHelpers,
 };

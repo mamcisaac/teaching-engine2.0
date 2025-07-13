@@ -143,13 +143,15 @@ export class CurriculumExportService extends BaseService {
     }
 
     // Get headers from first row
-    const headers = Object.keys(data[0]);
+    const firstRow = data[0] as Record<string, unknown>;
+    const headers = Object.keys(firstRow);
     const rows = [headers.join(',')];
 
     // Add data rows
     for (const row of data) {
+      const rowObj = row as Record<string, unknown>;
       const values = headers.map(header => {
-        const value = row[header];
+        const value = rowObj[header];
         // Escape quotes and wrap in quotes if contains comma
         const escaped = String(value || '').replace(/"/g, '""');
         return escaped.includes(',') ? `"${escaped}"` : escaped;

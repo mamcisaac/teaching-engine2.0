@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { apiClient } from '../api/core/client';
 import { Dialog } from '../components/Dialog';
-import AISuggestionPanel from '../components/planning/AISuggestionPanel';
+import { AISuggestionPanel } from '../components/planning/AISuggestionPanel';
 import { BlankTemplateQuickActions } from '../components/printing/BlankTemplatePrinter';
 import { Button } from '../components/ui/Button';
 import { useAIPlanningAssistant } from '../hooks/useAIPlanningAssistant';

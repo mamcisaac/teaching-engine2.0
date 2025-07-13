@@ -258,7 +258,7 @@ where.endDate = { lte: new Date(String(endDate)) };
       // Add expectations relationship if provided
       ...(expectations &&
         Array.isArray(expectations) &&
-        expectations.length > 0 && {
+        expectations.length > 0 ? {
           expectations: {
             create: expectations.map((exp: unknown) => {
               const expectation = exp as { expectationId: string };
@@ -267,11 +267,11 @@ where.endDate = { lte: new Date(String(endDate)) };
               };
             }),
           },
-        }),
+        } : {}),
       // Add resources relationship if provided
       ...(resources &&
         Array.isArray(resources) &&
-        resources.length > 0 && {
+        resources.length > 0 ? {
           resources: {
             create: resources.map((resource: unknown) => {
               const res = resource as { title: string; type: string; url?: string; content?: string };
@@ -283,7 +283,7 @@ where.endDate = { lte: new Date(String(endDate)) };
               };
             }),
           },
-        }),
+        } : {}),
     };
 
     return prisma.unitPlan.create({
@@ -335,14 +335,14 @@ updateData.endDate = new Date(data.endDate);
       where: { id },
       data: {
         ...updateData,
-        ...(expectationIds && Array.isArray(expectationIds) && {
+        ...(expectationIds && Array.isArray(expectationIds) ? {
           expectations: {
             deleteMany: {},
             create: expectationIds.map((expectationId: unknown) => ({
               expectationId: String(expectationId),
             })),
           },
-        }),
+        } : {}),
       },
       include: {
         expectations: {

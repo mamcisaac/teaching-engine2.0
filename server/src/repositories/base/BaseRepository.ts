@@ -1,6 +1,6 @@
 import type { PrismaClient } from '@prisma/client';
 
-import logger from '../../logger';
+import { logger } from '../../logger';
 import type {
   PaginationOptions,
   PaginatedResponse} from '../../utils/pagination';

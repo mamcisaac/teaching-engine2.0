@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
-import FrenchImmersionWeeklyTemplate from '../FrenchImmersionWeeklyTemplate';
+import { FrenchImmersionWeeklyTemplate } from '../FrenchImmersionWeeklyTemplate';
 import type { WeeklyPlanData } from '../../../types/frenchImmersion';
 
 describe('FrenchImmersionWeeklyTemplate - Strict Boolean Expressions', () => {

@@ -3,8 +3,8 @@ import React from 'react';
 
 import type { LongRangePlan } from '../../hooks/useETFOPlanning';
 import type { UnitPlanFormData } from '../../hooks/useUnitPlanForm';
-import ExpectationSelector from '../planning/ExpectationSelector';
-import RichTextEditor from '../RichTextEditor';
+import { ExpectationSelector } from '../planning/ExpectationSelector';
+import { RichTextEditor } from '../RichTextEditor';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
 import { Label } from '../ui/Label';

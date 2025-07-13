@@ -10,7 +10,7 @@ interface BilingualPlanViewProps {
   defaultMode?: 'side-by-side' | 'toggle' | 'overlay';
 }
 
-export default function BilingualPlanView({ 
+export function BilingualPlanView({ 
   children, 
   mode: controlledMode,
   defaultMode = 'toggle' 

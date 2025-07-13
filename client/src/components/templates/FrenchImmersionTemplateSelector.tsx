@@ -61,7 +61,7 @@ const TEACHER_PERSONAS: TeacherPersona[] = [
   },
 ];
 
-export default function FrenchImmersionTemplateSelector({
+export function FrenchImmersionTemplateSelector({
   onTemplateSelect,
   grade = 1,
   filterByType,

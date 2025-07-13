@@ -8,7 +8,7 @@
 import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { screen, waitFor } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
-import LoginPage from '../LoginPage';
+import { LoginPage } from '../LoginPage';
 import { renderWithProviders, createMockUser, setupTest } from '@/test-utils';
 import * as api from '@/api';
 

@@ -19,7 +19,7 @@ import React, { useState, useCallback } from 'react';
 
 import { useAIPlanningAssistant } from '../../hooks/useAIPlanningAssistant';
 import { useAIStatus, useAIFeature } from '../../hooks/useAIStatus';
-import logger from '../../utils/logger';
+import { logger } from '../../utils/logger';
 import { getErrorMessage } from "../../utils/typeGuards";
 import { Badge } from '../ui/Badge';
 import { Button } from '../ui/Button';

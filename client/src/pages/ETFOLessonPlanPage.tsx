@@ -17,9 +17,9 @@ import { useState, lazy, Suspense } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 
 import { Dialog } from '../components/Dialog';
-import ExpectationSelector from '../components/planning/ExpectationSelector';
+import { ExpectationSelector } from '../components/planning/ExpectationSelector';
 import { BlankTemplateQuickActions } from '../components/printing/BlankTemplatePrinter';
-import RichTextEditor from '../components/RichTextEditor';
+import { RichTextEditor } from '../components/RichTextEditor';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -61,7 +61,7 @@ const WithAIErrorBoundary = lazy(() =>
 );
 import { useAutoSave, useUnsavedChangesWarning } from '../hooks/useAutoSave';
 import { MobileOptimizedForm, CollapsibleSection } from '../components/ui/MobileOptimizedForm';
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
 import { generateLessonPlanHTML, printHTML, downloadHTML } from '../utils/printUtils';
 import { SafeHtmlRenderer } from '../utils/sanitization';
 export default function ETFOLessonPlanPage(): React.ReactElement {

@@ -3,7 +3,7 @@ import type express from 'express';
 import { Router } from 'express';
 import multer, { memoryStorage } from 'multer';
 
-import logger from '../logger';
+import { logger } from '../logger';
 import { curriculumImportService } from '../services';
 // Clustering service removed - over-engineered for single-teacher use
 
@@ -450,4 +450,4 @@ router.post('/:id', async (req: Request, res: Response): Promise<void> => {
 
 // Clustering routes removed - over-engineered for single-teacher use
 
-export default router;
+export { router };

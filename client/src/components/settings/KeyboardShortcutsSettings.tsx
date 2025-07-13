@@ -148,11 +148,9 @@ export const KeyboardShortcutsSettings: React.FC = (): React.ReactElement => {
           <Alert>
             <Info className="h-4 w-4" />
             <AlertDescription>
-              Press{' '}
-              <kbd className="px-1 py-0.5 text-xs bg-gray-100 border border-gray-300 rounded">
+              Press <kbd className="px-1 py-0.5 text-xs bg-gray-100 border border-gray-300 rounded">
                 ?
-              </kbd>{' '}
-              at any time to view all available keyboard shortcuts
+              </kbd> at any time to view all available keyboard shortcuts
             </AlertDescription>
           </Alert>
 

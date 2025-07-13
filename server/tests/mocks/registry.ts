@@ -174,4 +174,4 @@ export const MockRegistry = {
   },
 };
 
-export default mockRegistry;
+export { mockRegistry };

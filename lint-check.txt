@@ -1,0 +1,24 @@
+npm warn Unknown project config "public-hoist-pattern". This will stop working in the next major version of npm.
+npm warn Unknown project config "enable-pre-post-scripts". This will stop working in the next major version of npm.
+
+> lint
+> eslint --config .eslintrc.json "**/*.{ts,tsx,js,jsx}"
+
+Multiple projects found, consider using a single `tsconfig` with `references` to speed up, or use `noWarnOnMultipleProjects` to suppress this warning
+
+Oops! Something went wrong! :(
+
+ESLint: 8.57.1
+
+Error: Error while loading rule '@typescript-eslint/no-misused-promises': You have used a rule which requires parserServices to be generated. You must therefore provide a value for the "parserOptions.project" property for @typescript-eslint/parser.
+Occurred while linting /Users/michaelmcisaac/Github/teaching-engine2.0/fix-default-exports.js
+    at throwError (/Users/michaelmcisaac/Github/teaching-engine2.0/node_modules/.pnpm/@typescript-eslint+utils@6.21.0_eslint@8.57.1_typescript@5.8.3/node_modules/@typescript-eslint/utils/dist/eslint-utils/getParserServices.js:39:11)
+    at getParserServices (/Users/michaelmcisaac/Github/teaching-engine2.0/node_modules/.pnpm/@typescript-eslint+utils@6.21.0_eslint@8.57.1_typescript@5.8.3/node_modules/@typescript-eslint/utils/dist/eslint-utils/getParserServices.js:31:9)
+    at create (/Users/michaelmcisaac/Github/teaching-engine2.0/node_modules/.pnpm/@typescript-eslint+eslint-plugin@6.21.0_@typescript-eslint+parser@6.21.0_eslint@8.57.1__568544a48dea19c14ce8955143cbe955/node_modules/@typescript-eslint/eslint-plugin/dist/rules/no-misused-promises.js:110:55)
+    at Object.create (/Users/michaelmcisaac/Github/teaching-engine2.0/node_modules/.pnpm/@typescript-eslint+utils@6.21.0_eslint@8.57.1_typescript@5.8.3/node_modules/@typescript-eslint/utils/dist/eslint-utils/RuleCreator.js:38:20)
+    at createRuleListeners (/Users/michaelmcisaac/Github/teaching-engine2.0/node_modules/.pnpm/eslint@8.57.1/node_modules/eslint/lib/linter/linter.js:895:21)
+    at /Users/michaelmcisaac/Github/teaching-engine2.0/node_modules/.pnpm/eslint@8.57.1/node_modules/eslint/lib/linter/linter.js:1066:110
+    at Array.forEach (<anonymous>)
+    at runRules (/Users/michaelmcisaac/Github/teaching-engine2.0/node_modules/.pnpm/eslint@8.57.1/node_modules/eslint/lib/linter/linter.js:1003:34)
+    at Linter._verifyWithoutProcessors (/Users/michaelmcisaac/Github/teaching-engine2.0/node_modules/.pnpm/eslint@8.57.1/node_modules/eslint/lib/linter/linter.js:1355:31)
+    at Linter._verifyWithConfigArray (/Users/michaelmcisaac/Github/teaching-engine2.0/node_modules/.pnpm/eslint@8.57.1/node_modules/eslint/lib/linter/linter.js:1807:21)

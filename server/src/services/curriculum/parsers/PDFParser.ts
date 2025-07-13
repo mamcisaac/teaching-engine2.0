@@ -5,7 +5,7 @@
 
 // Temporarily disabled to avoid startup issues
 // import * as pdfParse from 'pdf-parse';
-import pdfParse from '../../../__mocks__/pdf-parse';
+import { pdfParse } from '../../../__mocks__/pdf-parse';
 
 import type { ParsedCurriculum, ParsedExpectation } from './CurriculumParser';
 import { CurriculumParser } from './CurriculumParser';

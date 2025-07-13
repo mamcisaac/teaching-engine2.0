@@ -2,7 +2,7 @@ import { hash as bcryptHash, compare as bcryptCompare } from 'bcryptjs';
 import type { Request, Response, NextFunction } from 'express';
 import { sign, verify } from 'jsonwebtoken';
 
-import logger from '../logger.js';
+import { logger } from '../logger.js';
 import { prisma } from '../prisma.js';
 
 import { generateToken, generateRefreshToken } from './authenticate.js';

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { useToast } from '../components/ui/use-toast';
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
 interface UseAutoSaveOptions<T> {
   data: T;
   saveFn: (data: T) => Promise<void>;

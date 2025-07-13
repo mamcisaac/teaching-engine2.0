@@ -1,7 +1,7 @@
 import axios, { type AxiosError, type AxiosRequestConfig } from 'axios';
 
 import { authService } from '../services/authService';
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
 // Create axios instance with base configuration
 const api = axios.create({
   baseURL: (import.meta.env.VITE_API_URL as string | undefined) ?? 'http://localhost:3000',
@@ -71,4 +71,4 @@ api.interceptors.response.use(
   },
 );
 
-export default api;
+export { api };

@@ -275,7 +275,7 @@ export class LLMService extends BaseService {
         contextParts.push(`Duration: ${request.context.duration} minutes`);
       }
 
-      if (request.context.language !== null && request.context.language !== undefined && request.context.language !== '') {
+      if (request.context.language !== null && request.context.language !== undefined) {
         contextParts.push(`Language: ${request.context.language}`);
       }
 
@@ -371,6 +371,3 @@ export const generateContentDetailed = (
 
 // Export OpenAI client for direct access (used by tests and other services)
 export const {openai} = llmService;
-
-// Default export for ES modules
-export default llmService;

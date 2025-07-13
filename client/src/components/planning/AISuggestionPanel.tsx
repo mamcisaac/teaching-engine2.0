@@ -20,7 +20,7 @@ interface AISuggestionPanelProps {
   error?: Error | null;
 }
 
-export default function AISuggestionPanel({
+export function AISuggestionPanel({
   title,
   description,
   suggestions,

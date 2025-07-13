@@ -1,6 +1,6 @@
 import { jest } from '@jest/globals';
 
-export default {
+export const bcryptjs = {
   hash: jest.fn().mockResolvedValue('hashed-password'),
   compare: jest.fn().mockResolvedValue(true),
   hashSync: jest.fn().mockReturnValue('hashed-password-sync'),

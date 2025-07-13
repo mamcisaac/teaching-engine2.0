@@ -42,7 +42,7 @@ interface GradeCoverage {
   }[];
 }
 
-export default function CurriculumExpectationCoverage(): React.ReactElement {
+export function CurriculumExpectationCoverage(): React.ReactElement {
   // Fetch data
   const { data: expectations = [] } = useCurriculumExpectations();
   const { data: unitPlans = [] } = useUnitPlans();
@@ -74,23 +74,23 @@ export default function CurriculumExpectationCoverage(): React.ReactElement {
 
     expectations.forEach((exp) => {
       // By subject
-      if (bySubject[exp.subject] === undefined) {
+      if (!bySubject[exp.subject]) {
         bySubject[exp.subject] = [];
       }
       bySubject[exp.subject].push(exp);
 
       // By strand
-      const strand = exp.strand !== null && exp.strand !== undefined && exp.strand !== '' ? exp.strand : 'Other';
-      if (byStrand[strand] === undefined) {
+      const strand = exp.strand && exp.strand !== '' ? exp.strand : 'Other';
+      if (!byStrand[strand]) {
         byStrand[strand] = [];
       }
       byStrand[strand].push(exp);
 
       // By grade and subject
-      if (byGrade[exp.grade] === undefined) {
+      if (!byGrade[exp.grade]) {
         byGrade[exp.grade] = {};
       }
-      if (byGrade[exp.grade][exp.subject] === undefined) {
+      if (!byGrade[exp.grade][exp.subject]) {
         byGrade[exp.grade][exp.subject] = [];
       }
       byGrade[exp.grade][exp.subject].push(exp);

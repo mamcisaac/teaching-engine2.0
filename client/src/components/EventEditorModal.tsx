@@ -8,15 +8,15 @@ interface Props {
   onClose: () => void;
 }
 
-export default function EventEditorModal({ onClose }: Props): React.ReactElement {
+export function EventEditorModal({ onClose }: Props): React.ReactElement {
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
   const mutation = useAddCalendarEvent();
 
   const submit = (): void => {
-    if (date === null || date === undefined || date === '' || title === null || title === undefined || title === '') {
-return;
-}
+    if (date === '' || title === '') {
+      return;
+    }
     mutation.mutate({
       title,
       start: `${date}T00:00:00.000Z`,

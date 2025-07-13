@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
-import OralRoutineSummary from '../OralRoutineSummary';
+import { OralRoutineSummary } from '../OralRoutineSummary';
 
 // Mock the routine stats hook
 vi.mock('../../api/domains/routine/hooks', () => ({

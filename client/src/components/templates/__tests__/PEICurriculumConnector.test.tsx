@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
-import PEICurriculumConnector from '../PEICurriculumConnector';
+import { PEICurriculumConnector } from '../PEICurriculumConnector';
 
 describe('PEICurriculumConnector - Component Props', () => {
   const mockOnOutcomeSelect = vi.fn();

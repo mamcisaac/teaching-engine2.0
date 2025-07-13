@@ -3,7 +3,7 @@ import { createHash } from 'crypto';
 import axios from 'axios';
 import { JSDOM } from 'jsdom';
 
-import logger from '../logger.js';
+import { logger } from '../logger.js';
 
 interface CacheEntry {
   html: string;
@@ -133,7 +133,7 @@ export class WebFetch {
     metaTags.forEach(tag => {
       const name = tag.getAttribute('name') ?? tag.getAttribute('property');
       const content = tag.getAttribute('content');
-      if (name !== null && name !== undefined && content !== undefined) {
+      if (name !== null && name !== undefined && content !== null && content !== undefined) {
         meta[name] = content;
       }
     });

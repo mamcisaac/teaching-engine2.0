@@ -236,7 +236,7 @@ export function OnboardingProvider({ children }: { children: ReactNode }): React
   };
 
   const nextStep = (): void => {
-    if (!state.currentFlow) {
+    if (state.currentFlow === null) {
 return;
 }
     
@@ -272,7 +272,7 @@ return;
   };
 
   const completeOnboarding = (): void => {
-    if (state.currentFlow) {
+    if (state.currentFlow !== null) {
       localStorage.setItem(FIRST_TIME_KEY, 'false');
       setState(prev => ({
         ...prev,
@@ -328,7 +328,7 @@ return;
 
 export function useOnboarding(): OnboardingContextType {
   const context = useContext(OnboardingContext);
-  if (!context) {
+  if (context === undefined) {
     throw new Error('useOnboarding must be used within OnboardingProvider');
   }
   return context;

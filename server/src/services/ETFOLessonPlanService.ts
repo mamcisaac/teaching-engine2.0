@@ -1,6 +1,6 @@
 import type { Prisma, PrismaClient } from '@prisma/client';
 
-import logger from '../logger';
+import { logger } from '../logger';
 import type { ETFOLessonPlanRepository } from '../repositories/ETFOLessonPlanRepository';
 import { RepositoryFactory } from '../repositories/RepositoryFactory';
 
@@ -124,15 +124,15 @@ export class ETFOLessonPlanService extends BaseService {
     }
   }
 
-  async create(data: ETFOLessonPlanCreateData): Promise<any> {
+  async create(data: ETFOLessonPlanCreateData, userId: number): Promise<any> {
     try {
-      const { expectationIds = [], ...planData } = data as Record<string, unknown>;
+      const { expectationIds = [], ...planData } = data;
 
       // Verify unit plan belongs to user
       const unitPlan = await this.prisma.unitPlan.findFirst({
         where: {
-          id: planData.unitPlanId,
-          userId: planData.userId,
+          id: data.unitPlanId,
+          userId: userId,
         },
       });
 
@@ -145,7 +145,7 @@ export class ETFOLessonPlanService extends BaseService {
           ...planData,
           date: new Date(planData.date),
           user: {
-            connect: { id: planData.userId },
+            connect: { id: userId },
           },
           unitPlan: {
             connect: { id: planData.unitPlanId },
@@ -169,13 +169,13 @@ export class ETFOLessonPlanService extends BaseService {
         throw new Error('Lesson plan not found or unauthorized');
       }
 
-      const { expectationIds, ...updateData } = data as Record<string, unknown>;
+      const { expectationIds, ...updateData } = data;
 
       const updatedPlan = await this.repository.updateWithExpectations(
         id,
         {
           ...updateData,
-          date: updateData.date ? new Date(updateData.date) : undefined,
+          date: data.date ? new Date(data.date) : undefined,
         },
         (expectationIds || []).map((id) => String(id)),
       );
@@ -196,7 +196,6 @@ export class ETFOLessonPlanService extends BaseService {
       }
 
       await this.repository.delete(id);
-      return true;
     } catch (error) {
       logger.error('Error deleting ETFO lesson plan:', error);
       throw error;
@@ -239,7 +238,7 @@ export class ETFOLessonPlanService extends BaseService {
         expectationIds: expectationIds.map((id) => parseInt(id, 10)),
       };
 
-      return await this.create(createData);
+      return await this.create(createData, userId);
     } catch (error) {
       logger.error('Error duplicating ETFO lesson plan:', error);
       throw error;

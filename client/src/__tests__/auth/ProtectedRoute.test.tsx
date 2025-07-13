@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { screen } from '@testing-library/react';
 import { vi } from 'vitest';
-import ProtectedRoute from '../../components/ProtectedRoute';
+import { ProtectedRoute } from '../../components/ProtectedRoute';
 import { renderWithAuth, renderWithoutAuth } from '../../test-utils';
 
 // Mock Navigate component
@@ -81,7 +81,7 @@ describe('ProtectedRoute', () => {
     });
 
     // Re-import the component to get the new mock
-    const { default: ProtectedRouteWithNewMock } = await import('../../components/ProtectedRoute');
+    const { ProtectedRoute: ProtectedRouteWithNewMock } = await import('../../components/ProtectedRoute');
 
     renderWithoutAuth(
       <ProtectedRouteWithNewMock>

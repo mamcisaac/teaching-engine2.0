@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express';
 import { Router } from 'express';
 
-import logger from '../logger';
+import { logger } from '../logger';
 import { authenticate } from '../middleware/auth';
 import { getAlertStatus, triggerManualAlert } from '../monitoring/alerting';
 import { getDashboardMetrics } from '../monitoring/dashboard';
@@ -122,4 +122,4 @@ router.get('/health/detailed', (_req: Request, res: Response): void => {
   })();
 });
 
-export default router;
+export { router };

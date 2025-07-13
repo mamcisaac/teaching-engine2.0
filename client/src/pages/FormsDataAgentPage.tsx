@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import FormsDataAgent from '../components/forms/FormsDataAgent';
+import { FormsDataAgent } from '../components/forms/FormsDataAgent';
 import type { LessonPlanFormData } from '../components/forms/LessonPlanForm';
 import type { UnitPlanFormData } from '../components/forms/UnitPlanForm';
 import {
@@ -10,7 +10,7 @@ import {
   useCreateUnitPlan,
   useCreateETFOLessonPlan,
 } from '../hooks/useETFOPlanning';
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
 export default function FormsDataAgentPage(): React.ReactElement {
   // Fetch data for dropdowns and validation
   const { data: longRangePlans = [] } = useLongRangePlans();

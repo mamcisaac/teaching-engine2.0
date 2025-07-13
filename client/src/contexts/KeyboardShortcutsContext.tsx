@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useEffect, useRef, useState, useCallback } from 'react';
 
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
 import { safeJsonParse } from '../utils/typeGuards';
+
 export interface KeyboardShortcut {
   id: string;
   key: string;
@@ -44,7 +45,7 @@ const KeyboardShortcutsContext = createContext<KeyboardShortcutsContextType | un
 
 export const useKeyboardShortcuts = (): KeyboardShortcutsContextType => {
   const context = useContext(KeyboardShortcutsContext);
-  if (!context) {
+  if (context === undefined) {
     throw new Error('useKeyboardShortcuts must be used within a KeyboardShortcutsProvider');
   }
   return context;
@@ -55,19 +56,19 @@ const isMac = typeof window !== 'undefined' && navigator.platform.toUpperCase().
 export const formatShortcut = (shortcut: KeyboardShortcut): string => {
   const parts: string[] = [];
   
-  if (shortcut.ctrl && !isMac) {
+  if (shortcut.ctrl === true && isMac === false) {
 parts.push('Ctrl');
 }
-  if (shortcut.cmd && isMac) {
+  if (shortcut.cmd === true && isMac === true) {
 parts.push('⌘');
 }
-  if (shortcut.ctrl && isMac) {
+  if (shortcut.ctrl === true && isMac === true) {
 parts.push('⌃');
 }
-  if (shortcut.alt) {
+  if (shortcut.alt === true) {
 parts.push(isMac ? '⌥' : 'Alt');
 }
-  if (shortcut.shift) {
+  if (shortcut.shift === true) {
 parts.push(isMac ? '⇧' : 'Shift');
 }
   
@@ -88,10 +89,10 @@ export const KeyboardShortcutsProvider: React.FC<{ children: React.ReactNode }> 
     };
 
     const savedPrefs = localStorage.getItem('keyboard-shortcuts-preferences');
-    if (savedPrefs) {
+    if (savedPrefs !== null) {
       try {
         const parsed = safeJsonParse(savedPrefs, defaultPreferences);
-        if (parsed) {
+        if (parsed !== null && parsed !== defaultPreferences) {
           setPreferences({ ...defaultPreferences, ...parsed });
           setIsEnabled(parsed.enabled ?? true);
         }
@@ -157,7 +158,7 @@ export const KeyboardShortcutsProvider: React.FC<{ children: React.ReactNode }> 
     return () => { // Cleanup
     };
 
-    if (!isEnabled || !preferences.enabled) {
+    if (isEnabled === false || preferences.enabled === false) {
 return;
 }
 
@@ -170,7 +171,7 @@ return;
           target.contentEditable === 'true') {
         // Allow some global shortcuts even in input fields
         const allowedInInputs = ['Escape', 'F1'];
-        if (!allowedInInputs.includes(event.key)) {
+        if (allowedInInputs.includes(event.key) === false) {
           return;
         }
       }
@@ -194,21 +195,21 @@ continue;
         const ctrlKey = isMac ? event.metaKey : event.ctrlKey;
         const cmdKey = isMac ? event.metaKey : false;
 
-        if (finalShortcut.ctrl && !ctrlKey) {
+        if (finalShortcut.ctrl === true && ctrlKey === false) {
 continue;
 }
-        if (finalShortcut.cmd && !cmdKey) {
+        if (finalShortcut.cmd === true && cmdKey === false) {
 continue;
 }
-        if (finalShortcut.alt && !event.altKey) {
+        if (finalShortcut.alt === true && event.altKey === false) {
 continue;
 }
-        if (finalShortcut.shift && !event.shiftKey) {
+        if (finalShortcut.shift === true && event.shiftKey === false) {
 continue;
 }
 
         // Check for no modifiers when none are specified
-        if (!finalShortcut.ctrl && !finalShortcut.cmd && !finalShortcut.alt && !finalShortcut.shift) {
+        if (finalShortcut.ctrl !== true && finalShortcut.cmd !== true && finalShortcut.alt !== true && finalShortcut.shift !== true) {
           if (event.ctrlKey || event.metaKey || event.altKey || event.shiftKey) {
 continue;
 }

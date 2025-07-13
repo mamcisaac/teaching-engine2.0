@@ -2,7 +2,7 @@ import type { Request, Response, NextFunction } from 'express';
 import { sign, verify, JsonWebTokenError, TokenExpiredError } from 'jsonwebtoken';
 import type { JwtPayload, SignOptions } from 'jsonwebtoken';
 
-import logger from '../logger.js';
+import { logger } from '../logger.js';
 import { prisma } from '../prisma.js';
 
 // User interface is defined in /src/types/express.d.ts

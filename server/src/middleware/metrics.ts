@@ -3,7 +3,7 @@ import { performance } from 'perf_hooks';
 
 import type { Request, Response, NextFunction } from 'express';
 
-import logger from '../logger.js';
+import { logger } from '../logger.js';
 
 // Simple metrics collection without external dependencies
 interface MetricData {
@@ -462,7 +462,5 @@ export function getPerformanceSummary() {
   return summary;
 }
 
-export default metricsStore;
-
 // Named export for getMetrics function
-export const getMetrics = (): MetricsData => metricsStore.getMetrics();
+export const getMetrics = () => metricsStore.getMetrics();

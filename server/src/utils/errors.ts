@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Response } from 'express';
-import logger from '../logger';
+import { logger } from '../logger';
 import { ZodError } from 'zod';
 import { errorCounter } from '../monitoring/telemetry';
 

@@ -13,7 +13,7 @@ interface ResourceSelectorProps {
   title?: string;
 }
 
-export default function ResourceSelector({
+export function ResourceSelector({
   userId,
   onSelect,
   onClose,

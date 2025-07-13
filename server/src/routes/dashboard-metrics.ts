@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express';
 import { Router } from 'express';
 
-import logger from '../logger.js';
+import { logger } from '../logger.js';
 import { authMiddleware } from '../middleware/auth.js';
 import { getCacheStats } from '../middleware/cache.js';
 import { getPerformanceSummary, metricsStore } from '../middleware/metrics.js';
@@ -291,4 +291,4 @@ function calculateOverallCacheHitRate(cacheStats: unknown): number {
   return totalRequests > 0 ? (totalHits / totalRequests) * 100 : 0;
 }
 
-export default router;
+export { router };

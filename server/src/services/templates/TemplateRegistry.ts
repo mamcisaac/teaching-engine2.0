@@ -225,7 +225,7 @@ export class TemplateRegistry extends BaseService {
         } catch (_error) {
           this.logger.error({
             provider: info.name,
-            error: _error instanceof Error ? _(error instanceof Error ? error.message : String(error)) : _error,
+            error: _error instanceof Error ? _error.message : _error,
           }, 'Failed to list templates');
         }
       }
@@ -387,7 +387,7 @@ export class TemplateRegistry extends BaseService {
         } catch (_error) {
           this.logger.error({
             provider: info.name,
-            error: _error instanceof Error ? _(error instanceof Error ? error.message : String(error)) : _error,
+            error: _error instanceof Error ? _error.message : _error,
           }, 'Failed to count templates');
         }
       }
@@ -440,7 +440,7 @@ export class TemplateRegistry extends BaseService {
         }
       } catch (_error) {
         issues.push(
-          `Provider ${info.name} health check error: ${_error instanceof Error ? _(error instanceof Error ? error.message : String(error)) : _error}`,
+          `Provider ${info.name} health check error: ${_error instanceof Error ? _error.message : _error}`,
         );
       }
     }
@@ -456,7 +456,7 @@ export class TemplateRegistry extends BaseService {
         }
       } catch (_error) {
         issues.push(
-          `Engine ${info.name} health check error: ${_error instanceof Error ? _(error instanceof Error ? error.message : String(error)) : _error}`,
+          `Engine ${info.name} health check error: ${_error instanceof Error ? _error.message : _error}`,
         );
       }
     }

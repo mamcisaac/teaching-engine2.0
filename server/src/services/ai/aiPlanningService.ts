@@ -108,7 +108,7 @@ export class AIPlanningService extends BaseService {
       `Establish connections between curriculum and real-world applications`,
     ];
 
-    if (request.focusAreas?.length) {
+    if (request.focusAreas?.length !== undefined && request.focusAreas.length > 0) {
       request.focusAreas.forEach((area) => {
         baseGoals.push(`Strengthen understanding in ${area}`);
       });

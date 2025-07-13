@@ -8,7 +8,7 @@
 import React from 'react';
 import { renderWithProviders } from './test-providers';
 import type { CustomRenderOptions } from './test-providers';
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
 
 // Migration configuration
 export interface MigrationConfig {

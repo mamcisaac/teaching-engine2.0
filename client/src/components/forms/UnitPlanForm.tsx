@@ -5,8 +5,8 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import type { LongRangePlan, CurriculumExpectation } from '../../hooks/useETFOPlanning';
 import { AIUnitPlanPanel } from '../ai/AIUnitPlanPanel';
 import { BilingualTextInput } from '../BilingualTextInput';
-import ExpectationSelector from '../planning/ExpectationSelector';
-import RichTextEditor from '../RichTextEditor';
+import { ExpectationSelector } from '../planning/ExpectationSelector';
+import { RichTextEditor } from '../RichTextEditor';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
 import { Label } from '../ui/Label';
@@ -83,7 +83,7 @@ interface UnitPlanFormProps {
   showLongRangePlanSelector?: boolean;
 }
 
-export default function UnitPlanForm({
+export function UnitPlanForm({
   initialData,
   longRangePlan,
   allLongRangePlans = [],

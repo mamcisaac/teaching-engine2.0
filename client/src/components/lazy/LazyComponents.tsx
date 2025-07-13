@@ -9,15 +9,15 @@ const AIWeeklyPlanModal = lazy(() => import('../ai/AIWeeklyPlanModal').then(modu
 const GPTPlanningAgent = lazy(() => import('../ai/GPTPlanningAgent').then(module => ({ default: module.GPTPlanningAgent })));
 
 // Lazy load chart components
-const CurriculumExpectationCoverage = lazy(() => import('../CurriculumExpectationCoverage'));
+const CurriculumExpectationCoverage = lazy(() => import('../CurriculumExpectationCoverage').then(module => ({ default: module.CurriculumExpectationCoverage })));
 
 // Lazy load form wizards
-const CurriculumSetupWizard = lazy(() => import('../forms/CurriculumSetupWizard'));
+const CurriculumSetupWizard = lazy(() => import('../forms/CurriculumSetupWizard').then(module => ({ default: module.CurriculumSetupWizard })));
 const PlanningWizard = lazy(() => import('../planning/PlanningWizard').then(module => ({ default: module.PlanningWizard })));
 
 // Lazy load complex modals
-const TemplatePreviewModal = lazy(() => import('../templates/TemplatePreviewModal'));
-const TemplateApplyModal = lazy(() => import('../templates/TemplateApplyModal'));
+const TemplatePreviewModal = lazy(() => import('../templates/TemplatePreviewModal').then(module => ({ default: module.TemplatePreviewModal })));
+const TemplateApplyModal = lazy(() => import('../templates/TemplateApplyModal').then(module => ({ default: module.TemplateApplyModal })));
 
 // Common loading fallbacks
 const AILoadingFallback = (): React.ReactElement => (

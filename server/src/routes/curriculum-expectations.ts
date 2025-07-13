@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express';
 import { Router } from 'express';
 
-import logger from '../logger';
+import { logger } from '../logger';
 import type { Prisma } from '../prisma';
 import { prisma } from '../prisma';
 import { cache, cacheMiddleware, CacheKeys, CacheTags } from '../services/cache';
@@ -224,4 +224,4 @@ router.get(
   },
 );
 
-export default router;
+export { router };

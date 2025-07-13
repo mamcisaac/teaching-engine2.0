@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import React, { Component } from 'react';
 
 import { cn } from '../../lib/utils';
-import logger from '../../utils/logger';
+import { logger } from '../../utils/logger';
 import { Alert, AlertDescription } from '../ui/alert';
 import { Button } from '../ui/Button';
 interface Props {

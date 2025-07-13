@@ -73,4 +73,4 @@ This curriculum document contains many more expectations across different strand
   };
 };
 
-export default pdfParse;
+export { pdfParse };

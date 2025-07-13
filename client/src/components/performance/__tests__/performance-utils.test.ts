@@ -373,7 +373,7 @@ describe('performance-utils', () => {
 
       expect(mockRenderFn).toHaveBeenCalled();
       const logger = await import('../../../utils/logger');
-      expect(logger.default.debug)
+      expect(logger.logger.debug)
         .toHaveBeenCalledWith('TestComponent rendered in 10.00ms');
     });
 
@@ -387,7 +387,7 @@ describe('performance-utils', () => {
 
       expect(result).toBe('result');
       const logger = await import('../../../utils/logger');
-      expect(logger.default.debug)
+      expect(logger.logger.debug)
         .toHaveBeenCalledWith('Test Operation completed in 50.00ms');
     });
 
@@ -402,7 +402,7 @@ describe('performance-utils', () => {
         .rejects.toThrow('Async failed');
 
       const logger = await import('../../../utils/logger');
-      expect(logger.default.error)
+      expect(logger.logger.error)
         .toHaveBeenCalledWith('Failed Operation failed after 100.00ms:', mockError);
     });
 
@@ -427,7 +427,7 @@ describe('performance-utils', () => {
       
       expect(duration).toBe(0);
       const logger = await import('../../../utils/logger');
-      expect(logger.default.warn)
+      expect(logger.logger.warn)
         .toHaveBeenCalledWith('Performance measurement failed:', expect.any(Error));
     });
   });

@@ -69,7 +69,7 @@ interface CurriculumSetupWizardProps {
   onCancel: () => void;
 }
 
-export default function CurriculumSetupWizard({
+export function CurriculumSetupWizard({
   onComplete,
   onCancel,
 }: CurriculumSetupWizardProps): React.ReactElement {

@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom';
 import { ETFOLevel } from '../hooks/useWorkflowState';
 
 // Lazy load pages
-const LoginPage = lazy(() => import('../pages/LoginPage'));
+const LoginPage = lazy(() => import('../pages/LoginPage').then(module => ({ default: module.LoginPage })));
 const LongRangePlanPage = lazy(() => import('../pages/LongRangePlanPage'));
 const UnitPlansPage = lazy(() => import('../pages/UnitPlansPage'));
 const ETFOLessonPlanPage = lazy(() => import('../pages/ETFOLessonPlanPage'));

@@ -261,4 +261,4 @@ async function processWorkflow(input: Record<string, unknown>) {
   return { id: Date.now(), ...input, status: 'completed' };
 }
 
-export default router;
+export { router };

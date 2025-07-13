@@ -6,7 +6,7 @@
 
 import type { Prisma } from '@teaching-engine/database';
 
-import logger from '../../logger';
+import { logger } from '../../logger';
 /**
  * Optimized select patterns for common relationships
  */
@@ -233,7 +233,7 @@ export const optimizedQueries = {
    * Optimized search query with text search
    */
   createSearchWhere(searchTerm: string, fields: string[]): any {
-    if (!searchTerm || !fields.length) {
+    if (searchTerm === '' || searchTerm === undefined || fields.length === 0) {
 return {};
 }
 

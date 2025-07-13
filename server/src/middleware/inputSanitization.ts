@@ -4,7 +4,7 @@ import type { ParamsDictionary } from 'express-serve-static-core';
 import DOMPurify from 'isomorphic-dompurify';
 import type { ParsedQs } from 'qs';
 
-import logger from '../logger.js';
+import { logger } from '../logger.js';
 
 /**
  * Input sanitization middleware
@@ -433,9 +433,6 @@ next(err); return;
     });
   });
 }
-
-// Export default as strict sanitization
-export default strictSanitization;
 
 // Export sanitizeInput as an alias for backward compatibility
 export const sanitizeInput = strictSanitization;

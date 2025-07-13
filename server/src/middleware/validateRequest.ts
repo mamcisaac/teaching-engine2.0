@@ -1,8 +1,9 @@
 import type { Request, Response, NextFunction } from 'express';
+import type { ParsedQs } from 'qs';
 import type { ZodSchema} from 'zod';
 import { ZodError } from 'zod';
 
-import logger from '../logger.js';
+import { logger } from '../logger.js';
 
 /**
  * Validation middleware factory
@@ -89,7 +90,7 @@ export function validateQuery(schema: ZodSchema) {
       const validated = await schema.parseAsync(req.query) as unknown;
 
       // Replace query with validated/transformed data
-      req.query = validated as Record<string, unknown>;
+      req.query = validated as ParsedQs;
 
       next();
     } catch (_error) {
@@ -209,7 +210,7 @@ export function validate(options: { body?: ZodSchema; query?: ZodSchema; params?
       }
 
       if (options.query) {
-        req.query = await options.query.parseAsync(req.query) as Record<string, unknown>;
+        req.query = await options.query.parseAsync(req.query) as ParsedQs;
       }
 
       if (options.params) {

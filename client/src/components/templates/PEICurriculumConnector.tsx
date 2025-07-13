@@ -171,7 +171,7 @@ const PEI_GRADE1_OUTCOMES: Record<string, PEICurriculumAlignment> = {
   },
 };
 
-export default function PEICurriculumConnector({
+export function PEICurriculumConnector({
   grade,
   subject,
   onOutcomeSelect,

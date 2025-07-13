@@ -2,13 +2,13 @@ import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 
 import { useAuth } from '../contexts/AuthContext';
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
 }
 
-export default function ProtectedRoute({ children }: ProtectedRouteProps): React.ReactElement {
+export function ProtectedRoute({ children }: ProtectedRouteProps): React.ReactElement {
   const { isAuthenticated, isLoading, isInitialized } = useAuth();
   const location = useLocation();
 

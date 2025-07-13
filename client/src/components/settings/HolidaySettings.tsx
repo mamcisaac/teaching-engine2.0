@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 // TODO: Holiday hooks not yet implemented
 // import { useHolidays, useAddHoliday, useDeleteHoliday } from '../../api';
 
-export default function HolidaySettings(): React.ReactElement {
+export function HolidaySettings(): React.ReactElement {
   // TODO: Holiday hooks not yet implemented
   // const { data: holidays } = useHolidays();
   // const add = useAddHoliday();

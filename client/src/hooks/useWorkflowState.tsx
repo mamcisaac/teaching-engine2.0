@@ -1,7 +1,7 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { apiClient } from '../api/core/client';
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
 export interface WorkflowState {
   userId: number;
   currentLevel: ETFOLevel;

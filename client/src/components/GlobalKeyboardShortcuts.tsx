@@ -192,7 +192,7 @@ const GlobalSearch: React.FC<{ onClose: () => void }> = ({ onClose }): React.Rea
 
   const handleSearch = (e: React.FormEvent): void => {
     e.preventDefault();
-    if (query !== null && query !== undefined && query.trim() !== '') {
+    if (query.trim() !== '') {
       // Navigate to curriculum page with search query
       navigate(`/curriculum?search=${encodeURIComponent(query)}`);
       onClose();
@@ -248,11 +248,9 @@ const GlobalSearch: React.FC<{ onClose: () => void }> = ({ onClose }): React.Rea
           </form>
 
           <p className="mt-2 text-xs text-gray-500">
-            Press{' '}
-            <kbd className="px-1 py-0.5 text-xs bg-gray-100 border border-gray-300 rounded">
+            Press <kbd className="px-1 py-0.5 text-xs bg-gray-100 border border-gray-300 rounded">
               Esc
-            </kbd>{' '}
-            to close
+            </kbd> to close
           </p>
         </div>
       </div>
