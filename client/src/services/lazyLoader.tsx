@@ -38,13 +38,13 @@ class LazyLoader {
     // Set up intersection observer for lazy loading
     if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
       this.intersectionObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach(entry => {
+        (entries): void => {
+          entries.forEach((entry): void => {
             if (entry.isIntersecting) {
               const element = entry.target as HTMLElement;
               const documentId = element.dataset.lazyDocumentId;
-              if (documentId) {
-                this.loadDocument(documentId);
+              if (documentId !== null && documentId !== undefined && documentId !== '') {
+                void this.loadDocument(documentId);
               }
             }
           });
@@ -70,20 +70,20 @@ class LazyLoader {
 
     // Check if already loading
     const existingLoad = this.loadingQueue.get(documentId);
-    if (existingLoad) {
+    if (existingLoad !== null && existingLoad !== undefined) {
       return existingLoad;
     }
 
     // Check memory cache
     const cached = this.documentCache.get(documentId);
-    if (cached && this.isDocumentComplete(cached)) {
+    if (cached !== null && cached !== undefined && this.isDocumentComplete(cached)) {
       return this.assembleDocument(cached);
     }
 
     // Check offline storage cache
     if (cache) {
       const storedDoc = await offlineStorage.getCachedData(`document-${documentId}`);
-      if (storedDoc) {
+      if (storedDoc !== null && storedDoc !== undefined) {
         return storedDoc;
       }
     }
@@ -119,7 +119,9 @@ class LazyLoader {
       // For small documents, load in one request
       if (metadata.size < 1024 * 1024) { // Less than 1MB
         const response = await apiClient.get(`/api/documents/${documentId}`);
-        options.onProgress?.(100);
+        if (options.onProgress !== null && options.onProgress !== undefined) {
+          options.onProgress(100);
+        }
         return response.data;
       }
 
@@ -141,9 +143,11 @@ class LazyLoader {
         chunkPromises.push(chunkPromise);
         
         // Update progress
-        chunkPromise.then(() => {
+        chunkPromise.then((): void => {
           const progress = ((i + 1) / totalChunks) * 100;
-          options.onProgress?.(progress);
+          if (options.onProgress !== null && options.onProgress !== undefined) {
+            options.onProgress(progress);
+          }
         });
       }
 
@@ -194,7 +198,7 @@ class LazyLoader {
     const chunks: unknown[] = [];
     for (let i = 0; i < doc.totalChunks; i++) {
       const chunk = doc.chunks.get(i);
-      if (!chunk) {
+      if (chunk === null || chunk === undefined) {
         throw new Error(`Missing chunk ${i} for document ${doc.id}`);
       }
       chunks.push(chunk);
@@ -205,29 +209,30 @@ class LazyLoader {
       return safeJsonParse(chunks.join(''), {});
     } else if (doc.metadata.type === 'text') {
       return chunks.join('');
-    } 
+    } else {
       // Binary data
       return new Blob(chunks as BlobPart[]);
+    }
     
   }
 
   // Observe element for lazy loading
-  observeElement(element: HTMLElement, documentId: string) {
-    if (this.intersectionObserver) {
+  observeElement(element: HTMLElement, documentId: string): void {
+    if (this.intersectionObserver !== null && this.intersectionObserver !== undefined) {
       element.dataset.lazyDocumentId = documentId;
       this.intersectionObserver.observe(element);
     }
   }
 
   // Stop observing element
-  unobserveElement(element: HTMLElement) {
-    if (this.intersectionObserver) {
+  unobserveElement(element: HTMLElement): void {
+    if (this.intersectionObserver !== null && this.intersectionObserver !== undefined) {
       this.intersectionObserver.unobserve(element);
     }
   }
 
   // Preload documents for offline use
-  async preloadDocuments(documentIds: string[], onProgress?: (current: number, total: number) => void) {
+  async preloadDocuments(documentIds: string[], onProgress?: (current: number, total: number) => void): Promise<void> {
     let completed = 0;
     const total = documentIds.length;
 
@@ -235,7 +240,9 @@ class LazyLoader {
       try {
         await this.loadDocument(id, { cache: true });
         completed++;
-        onProgress?.(completed, total);
+        if (onProgress !== null && onProgress !== undefined) {
+          onProgress(completed, total);
+        }
       } catch (error) {
         logger.error(`Failed to preload document ${id}:`, error);
       }
@@ -245,8 +252,8 @@ class LazyLoader {
   }
 
   // Clear caches
-  clearCache(documentId?: string) {
-    if (documentId) {
+  clearCache(documentId?: string): void {
+    if (documentId !== null && documentId !== undefined && documentId !== '') {
       this.documentCache.delete(documentId);
       offlineStorage.deleteCachedData(`document-${documentId}`);
     } else {
@@ -269,23 +276,20 @@ class LazyLoader {
 export const lazyLoader = new LazyLoader();
 
 // React hook for lazy loading
-export function useLazyDocument(documentId: string | null, options?: LoadOptions) {
+export function useLazyDocument(documentId: string | null, options?: LoadOptions): { document: unknown; loading: boolean; error: Error | null; progress: number } {
   const [document, setDocument] = React.useState<unknown>(null);
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState<Error | null>(null);
   const [progress, setProgress] = React.useState(0);
 
   React.useEffect(() => {
-    return () => { // Cleanup
-    };
-
-    if (!documentId) {
-return;
-}
+    if (documentId === null || documentId === undefined || documentId === '') {
+      return;
+    }
 
     let cancelled = false;
 
-    const loadDocument = async () => {
+    const loadDocument = async (): Promise<void> => {
       setLoading(true);
       setError(null);
       setProgress(0);
@@ -296,7 +300,9 @@ return;
           onProgress: (p) => {
             if (!cancelled) {
               setProgress(p);
-              options?.onProgress?.(p);
+              if (options?.onProgress !== null && options?.onProgress !== undefined) {
+                options.onProgress(p);
+              }
             }
           }
         });
@@ -315,9 +321,9 @@ return;
       }
     };
 
-    loadDocument();
+    void loadDocument();
 
-    return () => {
+    return (): void => {
       cancelled = true;
     };
   }, [documentId, options]); // Include options in dependencies
@@ -343,33 +349,27 @@ export function LazyDocument<T = unknown>({
   const { document, loading, error } = useLazyDocument(documentId);
 
   React.useEffect(() => {
-    return () => { // Cleanup
-    };
-
     const element = elementRef.current;
-    if (element) {
+    if (element !== null && element !== undefined) {
       lazyLoader.observeElement(element, documentId);
     }
 
-    return () => {
-      if (element) {
+    return (): void => {
+      if (element !== null && element !== undefined) {
         lazyLoader.unobserveElement(element);
       }
     };
   }, [documentId]);
 
   React.useEffect(() => {
-    return () => { // Cleanup
-    };
-
-    if (error && onError) {
+    if (error !== null && error !== undefined && onError !== null && onError !== undefined) {
       onError(error);
     }
   }, [error, onError]);
 
   return (
     <div ref={elementRef}>
-      {loading && (placeholder || <div>Loading...</div>)}
+      {loading && (placeholder ?? <div>Loading...</div>)}
       {error && <div>Error loading document: {(error instanceof Error ? error.message : String(error))}</div>}
       {document !== null && document !== undefined && <>{render(document as T)}</>}
     </div>

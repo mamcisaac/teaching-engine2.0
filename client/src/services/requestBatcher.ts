@@ -48,8 +48,8 @@ class RequestBatcher {
   }
 
   // Schedule batch processing
-  private scheduleBatch() {
-    if (this.batchTimeout) {
+  private scheduleBatch(): void {
+    if (this.batchTimeout !== null && this.batchTimeout !== undefined) {
       clearTimeout(this.batchTimeout);
     }
 
@@ -66,10 +66,10 @@ class RequestBatcher {
   }
 
   // Process pending batch
-  private async processBatch() {
+  private async processBatch(): Promise<void> {
     if (this.pendingRequests.size === 0) {
-return;
-}
+      return;
+    }
 
     // Get all pending requests
     const requests = Array.from(this.pendingRequests.values());
@@ -96,7 +96,7 @@ return;
 
     for (const req of requests) {
       const key = this.getGroupKey(req.request);
-      const group = groups.get(key) || [];
+      const group = groups.get(key) ?? [];
       group.push(req);
       groups.set(key, group);
     }
@@ -113,7 +113,7 @@ return;
   }
 
   // Process single request
-  private async processSingleRequest(pending: PendingRequest) {
+  private async processSingleRequest(pending: PendingRequest): Promise<void> {
     try {
       let response;
       const { method, url, data, headers } = pending.request;
@@ -140,7 +140,7 @@ return;
   }
 
   // Process batched requests
-  private async processBatchedRequests(requests: PendingRequest[]) {
+  private async processBatchedRequests(requests: PendingRequest[]): Promise<void> {
     try {
       // Send batch request to server
       const batchData = {
@@ -154,16 +154,16 @@ return;
       };
 
       const response = await apiClient.post<{ responses: BatchResponse[] }>('/api/batch', batchData);
-      const {responses} = response.data as Record<string, unknown>;
+      const { responses } = response.data as { responses: BatchResponse[] };
 
       // Map responses back to promises
-      const responseMap = new Map<string, BatchResponse>(responses.map((r) => [r.id, r]));
+      const responseMap = new Map<string, BatchResponse>((responses as BatchResponse[]).map((r): [string, BatchResponse] => [r.id, r]));
 
       for (const pending of requests) {
         const batchResponse = responseMap.get(pending.request.id);
 
-        if (batchResponse) {
-          if ('error' in batchResponse && batchResponse.error) {
+        if (batchResponse !== null && batchResponse !== undefined) {
+          if ('error' in batchResponse && batchResponse.error !== null && batchResponse.error !== undefined && batchResponse.error !== '') {
             pending.reject(new Error(batchResponse.error));
           } else {
             pending.resolve(batchResponse.data);
@@ -183,7 +183,7 @@ return;
   }
 
   // Configure batching parameters
-  configure(options: { delay?: number; maxSize?: number }) {
+  configure(options: { delay?: number; maxSize?: number }): void {
     if (options.delay !== undefined) {
       this.batchDelay = options.delay;
     }
@@ -193,8 +193,8 @@ return;
   }
 
   // Clear pending requests
-  clear() {
-    if (this.batchTimeout) {
+  clear(): void {
+    if (this.batchTimeout !== null && this.batchTimeout !== undefined) {
       clearTimeout(this.batchTimeout);
       this.batchTimeout = null;
     }
@@ -213,16 +213,16 @@ export const requestBatcher = new RequestBatcher();
 
 // Convenience methods for common operations
 export const batchedApi = {
-  get: (url: string, headers?: Record<string, string>) =>
+  get: (url: string, headers?: Record<string, string>): Promise<unknown> =>
     requestBatcher.addRequest({ method: 'GET', url, headers }),
 
-  post: (url: string, data?: unknown, headers?: Record<string, string>) =>
+  post: (url: string, data?: unknown, headers?: Record<string, string>): Promise<unknown> =>
     requestBatcher.addRequest({ method: 'POST', url, data, headers }),
 
-  put: (url: string, data?: unknown, headers?: Record<string, string>) =>
+  put: (url: string, data?: unknown, headers?: Record<string, string>): Promise<unknown> =>
     requestBatcher.addRequest({ method: 'PUT', url, data, headers }),
 
-  delete: (url: string, headers?: Record<string, string>) =>
+  delete: (url: string, headers?: Record<string, string>): Promise<unknown> =>
     requestBatcher.addRequest({ method: 'DELETE', url, headers }),
 };
 
@@ -244,9 +244,9 @@ export function createDebouncedRequest<
 
     if (!lastPromise) {
       lastPromise = new Promise<TReturn>((resolve, reject) => {
-        timeout = setTimeout(async () => {
+        timeout = setTimeout(async (): Promise<void> => {
           try {
-            if (!lastArgs) {
+            if (lastArgs === null || lastArgs === undefined) {
               throw new Error('No arguments available');
             }
             const result = await fn(...lastArgs);
@@ -265,8 +265,8 @@ export function createDebouncedRequest<
     return lastPromise;
   };
 
-  debounced.cancel = () => {
-    if (timeout) {
+  debounced.cancel = (): void => {
+    if (timeout !== null && timeout !== undefined) {
       clearTimeout(timeout);
       timeout = null;
     }

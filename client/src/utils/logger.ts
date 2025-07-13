@@ -50,8 +50,8 @@ class ClientLogger {
 
   private shouldLog(level: LogLevel): boolean {
     if (!this.isEnabled) {
-return false;
-}
+      return false;
+    }
     
     // In production, only log errors and warnings
     if (!this.isDevelopment && (level === 'debug' || level === 'trace' || level === 'info')) {
@@ -62,7 +62,8 @@ return false;
   }
 
   error(message: string, error?: Error | unknown, data?: unknown): void {
-    const entry = this.createLogEntry('error', message, { error: error?.stack ?? error, ...data });
+    const errorData = data !== null && data !== undefined && typeof data === 'object' ? data : {};
+    const entry = this.createLogEntry('error', message, { error: (error instanceof Error ? error.stack : error) ?? error, ...errorData });
     this.addToHistory(entry);
     
     if (this.shouldLog('error')) {
@@ -153,10 +154,10 @@ return false;
   api(method: string, url: string, data?: unknown, response?: unknown): void {
     this.info(`API ${method} ${url}`, {
       request: data,
-      response: response?.status ? {
-        status: response.status,
-        statusText: response.statusText,
-        data: response.data
+      response: (response !== null && response !== undefined && typeof response === 'object' && 'status' in response) ? {
+        status: (response as { status: unknown }).status,
+        statusText: (response as { status: unknown; statusText: unknown }).statusText,
+        data: (response as { status: unknown; data: unknown }).data
       } : response
     });
   }
@@ -168,7 +169,7 @@ return false;
 
   // Get log history for debugging
   getHistory(level?: LogLevel): LogEntry[] {
-    if (level) {
+    if (level !== null && level !== undefined) {
       return this.logHistory.filter(entry => entry.level === level);
     }
     return [...this.logHistory];

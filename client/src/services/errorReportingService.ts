@@ -93,7 +93,7 @@ export class ErrorReportingService {
     }
 
     const dsn = import.meta.env.VITE_SENTRY_DSN;
-    if (!dsn) {
+    if (dsn === null || dsn === undefined || dsn === '') {
       logger.warn('VITE_SENTRY_DSN not configured, error reporting disabled');
       return;
     }
@@ -120,8 +120,8 @@ export class ErrorReportingService {
         tracesSampleRate: import.meta.env.MODE === 'production' ? 0.1 : 1.0,
         replaysSessionSampleRate: 0.1,
         replaysOnErrorSampleRate: 1.0,
-        beforeSend: (event, hint) => this.beforeSend(event, hint),
-        beforeBreadcrumb: (breadcrumb, hint) => this.beforeBreadcrumb(breadcrumb, hint),
+        beforeSend: (event, hint): Sentry.ErrorEvent | null => this.beforeSend(event, hint),
+        beforeBreadcrumb: (breadcrumb, hint): Sentry.Breadcrumb | null => this.beforeBreadcrumb(breadcrumb, hint),
         // Ignore specific errors
         ignoreErrors: [
           'ResizeObserver loop limit exceeded',
@@ -131,11 +131,11 @@ export class ErrorReportingService {
           /^Script error/,
         ],
         // Filter transactions
-        beforeSendTransaction: (transaction) => {
+        beforeSendTransaction: (transaction): Sentry.TransactionEvent | null => {
           // Don't send transactions for static assets
           if (
-            transaction.transaction?.includes('/static/') ||
-            transaction.transaction?.includes('/assets/')
+            (transaction.transaction !== null && transaction.transaction !== undefined && transaction.transaction.includes('/static/')) ||
+            (transaction.transaction !== null && transaction.transaction !== undefined && transaction.transaction.includes('/assets/'))
           ) {
             return null;
           }
@@ -181,12 +181,12 @@ export class ErrorReportingService {
       scope.setContext('category', { type: errorCategory.category });
 
       // Add custom context
-      if (sanitizedContext && Object.keys(sanitizedContext).length > 0) {
+      if (sanitizedContext !== null && sanitizedContext !== undefined && Object.keys(sanitizedContext).length > 0) {
         scope.setContext('custom', sanitizedContext);
       }
 
       // Add React error info if available
-      if (errorInfo) {
+      if (errorInfo !== null && errorInfo !== undefined) {
         scope.setContext('react', {
           componentStack: errorInfo.componentStack,
         });
@@ -222,17 +222,17 @@ export class ErrorReportingService {
       return;
     }
 
-    if (!user) {
+    if (user === null || user === undefined) {
       Sentry.setUser(null);
       return;
     }
 
     const sanitizedUser = {
       id: String(user.id),
-      email: user.email ? this.maskEmail(user.email) : undefined,
+      email: (user.email !== null && user.email !== undefined && user.email !== '') ? this.maskEmail(user.email) : undefined,
       username: user.name,
       role: user.role,
-      organizationId: user.organizationId ? String(user.organizationId) : undefined,
+      organizationId: (user.organizationId !== null && user.organizationId !== undefined && user.organizationId !== '') ? String(user.organizationId) : undefined,
     };
 
     Sentry.setUser(sanitizedUser);
@@ -289,7 +289,7 @@ export class ErrorReportingService {
       };
 
       const message = (error instanceof Error ? error.message : String(error)).toLowerCase();
-      const stack = error.stack?.toLowerCase() || '';
+      const stack = error.stack?.toLowerCase() ?? '';
 
       // Network errors
       if (
@@ -364,7 +364,7 @@ export class ErrorReportingService {
 
   private beforeSend(event: Sentry.ErrorEvent, hint: Sentry.EventHint): Sentry.ErrorEvent | null {
     // Filter out non-actionable errors
-    if (hint.originalException) {
+    if (hint.originalException !== null && hint.originalException !== undefined) {
       const error = hint.originalException as Error;
 
       // Ignore ResizeObserver errors (browser quirk)
@@ -390,25 +390,25 @@ export class ErrorReportingService {
     if (breadcrumb.category === 'console' && breadcrumb.level === 'warning') {
       // Filter out React development warnings
       if (
-        breadcrumb.message?.includes('DevTools') ||
-        breadcrumb.message?.includes('React Hook') ||
-        breadcrumb.message?.includes('StrictMode')
+        (breadcrumb.message !== null && breadcrumb.message !== undefined && breadcrumb.message.includes('DevTools')) ||
+        (breadcrumb.message !== null && breadcrumb.message !== undefined && breadcrumb.message.includes('React Hook')) ||
+        (breadcrumb.message !== null && breadcrumb.message !== undefined && breadcrumb.message.includes('StrictMode'))
       ) {
         return null;
       }
 
       // Filter out console messages with sensitive data
-      if (this.containsSensitiveData(breadcrumb.message || '')) {
+      if (this.containsSensitiveData(breadcrumb.message ?? '')) {
         return null;
       }
     }
 
     // Sanitize breadcrumb
-    if (breadcrumb.message) {
+    if (breadcrumb.message !== null && breadcrumb.message !== undefined && breadcrumb.message !== '') {
       breadcrumb.message = this.sanitizeString(breadcrumb.message);
     }
 
-    if (breadcrumb.data) {
+    if (breadcrumb.data !== null && breadcrumb.data !== undefined) {
         breadcrumb.data = this.sanitizeData(breadcrumb.data);
     }
 
@@ -420,45 +420,45 @@ export class ErrorReportingService {
     const sanitized = safeJsonParse(JSON.stringify(event), event) as Sentry.ErrorEvent;
 
     // Sanitize message
-    if (sanitized.message) {
+    if (sanitized.message !== null && sanitized.message !== undefined && sanitized.message !== '') {
       sanitized.message = this.sanitizeString(sanitized.message);
     }
 
     // Sanitize extra data
-    if (sanitized.extra) {
+    if (sanitized.extra !== null && sanitized.extra !== undefined) {
       sanitized.extra = this.sanitizeData(sanitized.extra);
     }
 
     // Sanitize request data
-    if (sanitized.request) {
-      if (sanitized.request.headers) {
+    if (sanitized.request !== null && sanitized.request !== undefined) {
+      if (sanitized.request.headers !== null && sanitized.request.headers !== undefined) {
         sanitized.request.headers = this.sanitizeHeaders(sanitized.request.headers);
       }
-      if (sanitized.request.data) {
+      if (sanitized.request.data !== null && sanitized.request.data !== undefined) {
         sanitized.request.data = this.sanitizeData(sanitized.request.data);
       }
-      if (sanitized.request.query_string) {
+      if (sanitized.request.query_string !== null && sanitized.request.query_string !== undefined && sanitized.request.query_string !== '') {
         sanitized.request.query_string = this.sanitizeString(sanitized.request.query_string);
       }
-      if (sanitized.request.cookies) {
+      if (sanitized.request.cookies !== null && sanitized.request.cookies !== undefined) {
         sanitized.request.cookies = '[REDACTED]';
       }
     }
 
     // Sanitize user data
-    if (sanitized.user?.email) {
+    if (sanitized.user?.email !== null && sanitized.user?.email !== undefined && sanitized.user?.email !== '') {
       sanitized.user.email = this.maskEmail(sanitized.user.email);
     }
 
     // Sanitize contexts
-    if (sanitized.contexts) {
+    if (sanitized.contexts !== null && sanitized.contexts !== undefined) {
       for (const key in sanitized.contexts) {
         sanitized.contexts[key] = this.sanitizeData(sanitized.contexts[key]);
       }
     }
 
     // Sanitize tags
-    if (sanitized.tags) {
+    if (sanitized.tags !== null && sanitized.tags !== undefined) {
       sanitized.tags = this.sanitizeData(sanitized.tags);
     }
 
@@ -466,9 +466,9 @@ export class ErrorReportingService {
   }
 
   private sanitizeData(data: unknown): unknown {
-    if (!data) {
-return data;
-}
+    if (data === null || data === undefined) {
+      return data;
+    }
 
     if (typeof data === 'string') {
       return this.sanitizeString(data);
@@ -488,9 +488,9 @@ return data;
         // Check if field should be redacted
         if (this.sensitiveFields.some((field) => lowerKey.includes(field))) {
           sanitized[key] = '[REDACTED]';
-        } else if (key === 'email') {
+        } else if (key === 'email' && dataObj[key] !== null && dataObj[key] !== undefined) {
           sanitized[key] = this.maskEmail(String(dataObj[key]));
-        } else if (key === 'ip' || key === 'ipAddress' || key === 'ip_address') {
+        } else if ((key === 'ip' || key === 'ipAddress' || key === 'ip_address') && dataObj[key] !== null && dataObj[key] !== undefined) {
           sanitized[key] = this.maskIP(String(dataObj[key]));
         } else {
           sanitized[key] = this.sanitizeData(dataObj[key]);
@@ -562,25 +562,25 @@ return data;
   }
 
   private maskEmail(email: string): string {
-    if (!email || typeof email !== 'string') {
-return '[INVALID_EMAIL]';
-}
+    if (email === null || email === undefined || email === '' || typeof email !== 'string') {
+      return '[INVALID_EMAIL]';
+    }
 
     const parts = email.split('@');
     if (parts.length !== 2) {
-return '[INVALID_EMAIL]';
-}
+      return '[INVALID_EMAIL]';
+    }
 
     const [local, domain] = parts;
-    const maskedLocal = local.length > 3 ? `${local.substring(0, 3)  }***` : '***';
+    const maskedLocal = local.length > 3 ? `${local.substring(0, 3)}***` : '***';
 
     return `${maskedLocal}@${domain}`;
   }
 
   private maskIP(ip: string): string {
-    if (!ip || typeof ip !== 'string') {
-return 'xxx.xxx.xxx.xxx';
-}
+    if (ip === null || ip === undefined || ip === '' || typeof ip !== 'string') {
+      return 'xxx.xxx.xxx.xxx';
+    }
 
     const parts = ip.split('.');
     if (parts.length === 4) {
