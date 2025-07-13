@@ -89,7 +89,7 @@ export abstract class TemplateProvider {
    * Get template by ID
    */
   async getTemplateById(id: string): Promise<Template | null> {
-    return this.templates.get(id) || null;
+    return this.templates.get(id) ?? null;
   }
 
   /**
@@ -104,7 +104,7 @@ export abstract class TemplateProvider {
    */
   async getDataRequirements(templateId: string): Promise<DataRequirement[]> {
     const template = await this.getTemplateById(templateId);
-    return template?.dataRequirements || [];
+    return template?.dataRequirements ?? [];
   }
 
   /**

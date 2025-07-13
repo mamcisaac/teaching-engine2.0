@@ -44,7 +44,7 @@ class ExportService {
       csv: 'text/csv',
       png: 'image/png',
     };
-    return mimeTypes[format] || 'application/octet-stream';
+    return mimeTypes[format] ?? 'application/octet-stream';
   }
 }
 

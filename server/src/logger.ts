@@ -261,7 +261,7 @@ class EnhancedLogger {
         message: obj,
         requestId: this.requestId,
         service: 'teaching-engine',
-        version: process.env.npm_package_version || 'unknown',
+        version: process.env.npm_package_version ?? 'unknown',
       };
     }
 
@@ -270,7 +270,7 @@ class EnhancedLogger {
         ...(obj as Record<string, unknown>),
         requestId: this.requestId,
         service: 'teaching-engine',
-        version: process.env.npm_package_version || 'unknown',
+        version: process.env.npm_package_version ?? 'unknown',
       };
     }
 

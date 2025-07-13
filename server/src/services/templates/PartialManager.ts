@@ -33,7 +33,7 @@ export class PartialManager extends BaseService {
 
   private constructor(partialsDirectory?: string) {
     super('PartialManager');
-    this.partialsDirectory = partialsDirectory || path.join(process.cwd(), 'templates', 'partials');
+    this.partialsDirectory = partialsDirectory ?? path.join(process.cwd(), 'templates', 'partials');
     this.initializeDefaultPartials();
   }
 
@@ -348,7 +348,7 @@ export class PartialManager extends BaseService {
    * Get partial info
    */
   public getPartialInfo(name: string): PartialInfo | null {
-    return this.partials.get(name) || null;
+    return this.partials.get(name) ?? null;
   }
 
   /**
@@ -624,14 +624,14 @@ export class PartialManager extends BaseService {
     for (const partial of this.partials.values()) {
       // Count by category
       if (partial.category) {
-        stats.byCategory[partial.category] = (stats.byCategory[partial.category] || 0) + 1;
+        stats.byCategory[partial.category] = (stats.byCategory[partial.category] ?? 0) + 1;
       }
 
       // Count by source
-      stats.bySource[partial.source] = (stats.bySource[partial.source] || 0) + 1;
+      stats.bySource[partial.source] = (stats.bySource[partial.source] ?? 0) + 1;
 
       // Count variables
-      totalVariables += partial.variables?.length || 0;
+      totalVariables += partial.variables?.length ?? 0;
     }
 
     stats.averageVariables = this.partials.size > 0 ? totalVariables / this.partials.size : 0;

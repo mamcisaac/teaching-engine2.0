@@ -39,9 +39,9 @@ export class TemplateCache extends BaseService {
 
   private constructor(options: CacheOptions = {}) {
     super('TemplateCache');
-    this.maxSize = options.maxSize || 1000;
-    this.maxAge = options.maxAge || 60 * 60 * 1000; // 1 hour default
-    this.enableCompression = options.enableCompression || false;
+    this.maxSize = options.maxSize ?? 1000;
+    this.maxAge = options.maxAge ?? 60 * 60 * 1000; // 1 hour default
+    this.enableCompression = options.enableCompression ?? false;
     
     // Start cleanup interval
     this.startCleanupInterval();
