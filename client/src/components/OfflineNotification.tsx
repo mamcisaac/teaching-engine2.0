@@ -17,12 +17,12 @@ export function OfflineNotification(): React.ReactElement | null {
     return () => { // Cleanup
     };
 
-    const handleOnline = () => {
+    const handleOnline = (): void => {
       setIsOnlineState(true);
       setDismissed(false);
     };
     
-    const handleOffline = () => {
+    const handleOffline = (): void => {
       setIsOnlineState(false);
       setDismissed(false);
     };
@@ -36,7 +36,7 @@ export function OfflineNotification(): React.ReactElement | null {
     };
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const handleRetry = async () => {
+  const handleRetry = async (): Promise<void> => {
     setRetrying(true);
     
     // Try to fetch a small resource to check connectivity
@@ -138,7 +138,7 @@ export function ConflictResolutionModal({
   const [selectedResolution, setSelectedResolution] = useState<'local' | 'remote' | 'merge'>('local');
   const [_mergedData, _setMergedData] = useState<unknown>(null);
 
-  const handleResolve = () => {
+  const handleResolve = (): void => {
     if (selectedResolution === 'merge' && _mergedData !== null && _mergedData !== undefined) {
       onResolve('merge', _mergedData);
     } else {

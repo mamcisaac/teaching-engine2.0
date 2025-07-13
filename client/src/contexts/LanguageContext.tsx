@@ -388,7 +388,7 @@ interface LanguageProviderProps {
   children: ReactNode;
 }
 
-export function LanguageProvider({ children }: LanguageProviderProps) {
+export function LanguageProvider({ children }: LanguageProviderProps): React.ReactElement {
   const [language, setLanguageState] = useState<string>('en');
 
   useEffect(() => {
@@ -402,7 +402,7 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const setLanguage = (lang: string) => {
+  const setLanguage = (lang: string): void => {
     setLanguageState(lang);
     localStorage.setItem('preferredLanguage', lang);
     // TODO: Update user preference in backend
@@ -448,7 +448,7 @@ return '';
   );
 }
 
-export function useLanguage() {
+export function useLanguage(): LanguageContextType {
   const context = useContext(LanguageContext);
   if (context === undefined) {
     throw new Error('useLanguage must be used within a LanguageProvider');
