@@ -47,7 +47,7 @@ describe('basePlanningStore - nullish coalescing behavior', () => {
 
     useTestStore = create<TestStore>((set, get) => ({
       data: 'test-data',
-      ...createOfflineSlice<{ data: string }>(mockConfig)(set, get as any),
+      ...createOfflineSlice<{ data: string }>(mockConfig)(set, get, {} as any),
     }));
   });
 
@@ -56,52 +56,52 @@ describe('basePlanningStore - nullish coalescing behavior', () => {
       const { result } = renderHook(() => useTestStore());
       
       act(() => {
-        result.current.setSyncStatus('error', undefined);
+        (result.current as TestStore).setSyncStatus('error', undefined);
       });
 
-      expect(result.current.syncError).toBe(null);
+      expect((result.current as TestStore).syncError).toBe(null);
     });
 
     it('should set syncError to null when error is null', () => {
       const { result } = renderHook(() => useTestStore());
       
       act(() => {
-        result.current.setSyncStatus('error', null);
+        (result.current as TestStore).setSyncStatus('error', null);
       });
 
-      expect(result.current.syncError).toBe(null);
+      expect((result.current as TestStore).syncError).toBe(null);
     });
 
     it('should preserve empty string as syncError', () => {
       const { result } = renderHook(() => useTestStore());
       
       act(() => {
-        result.current.setSyncStatus('error', '');
+        (result.current as TestStore).setSyncStatus('error', '');
       });
 
       // With || operator, empty string would become null
       // With ?? operator, empty string should be preserved
-      expect(result.current.syncError).toBe('');
+      expect((result.current as TestStore).syncError).toBe('');
     });
 
     it('should preserve false as syncError when passed as string', () => {
       const { result } = renderHook(() => useTestStore());
       
       act(() => {
-        result.current.setSyncStatus('error', 'false');
+        (result.current as TestStore).setSyncStatus('error', 'false');
       });
 
-      expect(result.current.syncError).toBe('false');
+      expect((result.current as TestStore).syncError).toBe('false');
     });
 
     it('should set actual error message', () => {
       const { result } = renderHook(() => useTestStore());
       
       act(() => {
-        result.current.setSyncStatus('error', 'Network error');
+        (result.current as TestStore).setSyncStatus('error', 'Network error');
       });
 
-      expect(result.current.syncError).toBe('Network error');
+      expect((result.current as TestStore).syncError).toBe('Network error');
     });
   });
 

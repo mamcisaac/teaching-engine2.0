@@ -65,7 +65,7 @@ containerStyle.width = width;
     'data-testid'?: string;
     role?: string;
     'aria-label'?: string;
-  }) => (
+  }): JSX.Element => (
     <div
       aria-label={ariaLabelProp}
       className={cn(baseClasses, animationClasses, boxClassName)}
@@ -75,7 +75,7 @@ containerStyle.width = width;
     />
   );
 
-  const renderComplexLayout = () => (
+  const renderComplexLayout = (): JSX.Element => (
     <div className="flex items-start space-x-3">
       {layout.map((item, index) => {
         switch (item.type) {

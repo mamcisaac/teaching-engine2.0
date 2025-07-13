@@ -57,9 +57,23 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
         // Create offline slice
         const offlineSlice = createOfflineSlice<DaybookState>({
           entityType: 'daybook',
-          fetchFromServer: async () => {
-            const response = await apiClient.get('/api/daybook');
-            return response.data;
+          fetchFromServer: async (): Promise<DaybookState> => {
+            const response = await apiClient.get<DaybookEntry[]>('/api/daybook');
+            return {
+              entries: response.data,
+              currentEntry: null,
+              selectedDate: new Date().toISOString().split('T')[0],
+              isLoading: false,
+              isSaving: false,
+              error: null,
+              // Add required OfflineState properties
+              isOnline: navigator.onLine,
+              isSyncing: false,
+              lastSyncedAt: new Date(),
+              unsyncedChanges: 0,
+              syncError: null,
+              // Actions will be added by the store
+            } as DaybookState;
           },
           saveToServer: async (data) => {
             // Save all modified entries
@@ -103,8 +117,8 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
             try {
               if (get().isOnline) {
                 const params = new URLSearchParams({ startDate, endDate });
-                const response = await apiClient.get(`/api/daybook?${params.toString()}`);
-                const entries = response.data as DaybookEntry[];
+                const response = await apiClient.get<DaybookEntry[]>(`/api/daybook?${params.toString()}`);
+                const entries = response.data;
 
                 set((state) => {
                   state.entries = entries;
@@ -180,8 +194,8 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
               }
 
               if (get().isOnline) {
-                const response = await apiClient.get(`/api/daybook/date/${date}`);
-                const entry = response.data as DaybookEntry;
+                const response = await apiClient.get<DaybookEntry>(`/api/daybook/date/${date}`);
+                const entry = response.data;
 
                 set((state) => {
                   state.currentEntry = entry;
@@ -231,8 +245,8 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
               } as DaybookEntry;
 
               if (get().isOnline) {
-                const response = await apiClient.post('/api/daybook', entryData);
-                const createdEntry = response.data as DaybookEntry;
+                const response = await apiClient.post<DaybookEntry>('/api/daybook', entryData);
+                const createdEntry = response.data;
 
                 set((state) => {
                   // Replace or add entry

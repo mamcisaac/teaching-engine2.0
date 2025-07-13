@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import NewsletterEditor from '../NewsletterEditor';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
+import { NewsletterEditor } from '../NewsletterEditor';
 import type { NewsletterDraft, NewsletterSection } from '../../types/newsletter';
 
 describe('NewsletterEditor', () => {
@@ -27,12 +28,12 @@ describe('NewsletterEditor', () => {
     updatedAt: new Date(),
   };
 
-  const mockOnSave = jest.fn();
-  const mockOnSend = jest.fn();
-  const mockOnRegenerate = jest.fn();
+  const mockOnSave = vi.fn();
+  const mockOnSend = vi.fn();
+  const mockOnRegenerate = vi.fn();
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe('strict boolean expressions', () => {
@@ -252,7 +253,7 @@ describe('NewsletterEditor', () => {
     });
 
     it('should handle auto-save after changes', async () => {
-      jest.useFakeTimers();
+      vi.useFakeTimers();
       
       render(
         <NewsletterEditor 
@@ -266,13 +267,13 @@ describe('NewsletterEditor', () => {
       fireEvent.change(titleInput, { target: { value: 'New Title' } });
 
       // Fast-forward time to trigger auto-save
-      jest.advanceTimersByTime(2000);
+      vi.advanceTimersByTime(2000);
 
       await waitFor(() => {
         expect(mockOnSave).toHaveBeenCalled();
       });
 
-      jest.useRealTimers();
+      vi.useRealTimers();
     });
 
     it('should handle section editing', () => {

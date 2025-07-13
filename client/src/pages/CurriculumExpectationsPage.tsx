@@ -96,7 +96,7 @@ export default function CurriculumExpectationsPage(): React.ReactElement {
     return grouped;
   }, [expectations]);
 
-  const handleEdit = (expectation: CurriculumExpectation) => {
+  const handleEdit = (expectation: CurriculumExpectation): void => {
     setEditingExpectation({
       ...expectation,
       descriptionFr: expectation.descriptionFr ?? '',
@@ -104,7 +104,7 @@ export default function CurriculumExpectationsPage(): React.ReactElement {
     setIsEditDialogOpen(true);
   };
 
-  const handleSaveEdit = async () => {
+  const handleSaveEdit = async (): Promise<void> => {
     if (!editingExpectation) {
 return;
 }
@@ -136,7 +136,7 @@ return;
     }
   };
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (id: string): Promise<void> => {
     if (
       !confirm(
         'Are you sure you want to delete this expectation? This will remove it from all linked plans.',

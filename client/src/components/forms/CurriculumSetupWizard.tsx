@@ -144,23 +144,23 @@ export default function CurriculumSetupWizard({
   const totalSteps = steps.length;
   const progressPercentage = ((currentStep + 1) / totalSteps) * 100;
 
-  const nextStep = () => {
+  const nextStep = (): void => {
     if (currentStep < totalSteps - 1) {
       setCurrentStep(currentStep + 1);
     }
   };
 
-  const prevStep = () => {
+  const prevStep = (): void => {
     if (currentStep > 0) {
       setCurrentStep(currentStep - 1);
     }
   };
 
-  const handleComplete = () => {
+  const handleComplete = (): void => {
     onComplete(formData);
   };
 
-  const addToArray = (field: keyof CurriculumSetupData, value: string) => {
+  const addToArray = (field: keyof CurriculumSetupData, value: string): void => {
     const currentArray = formData[field] as string[];
     if (!currentArray.includes(value) && value.trim() !== '') {
       setFormData({
@@ -170,7 +170,7 @@ export default function CurriculumSetupWizard({
     }
   };
 
-  const removeFromArray = (field: keyof CurriculumSetupData, value: string) => {
+  const removeFromArray = (field: keyof CurriculumSetupData, value: string): void => {
     const currentArray = formData[field] as string[];
     setFormData({
       ...formData,
@@ -178,7 +178,7 @@ export default function CurriculumSetupWizard({
     });
   };
 
-  const renderStepContent = () => {
+  const renderStepContent = (): JSX.Element => {
     switch (currentStep) {
       case 0: // Basic Information
         return (

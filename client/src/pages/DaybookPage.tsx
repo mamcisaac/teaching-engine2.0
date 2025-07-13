@@ -50,7 +50,7 @@ interface DayEntryProps {
   isToday: boolean;
 }
 
-function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEntryProps) {
+function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEntryProps): React.ReactElement {
   const [isEditing, setIsEditing] = useState(false);
 
   // Initialize all ETFO-aligned fields
@@ -434,11 +434,11 @@ export default function DaybookPage(): React.ReactElement {
     }
   };
 
-  const getDayEntry = (date: Date) => entries.find(
+  const getDayEntry = (date: Date): DaybookEntry | undefined => entries.find(
       (e) => format(new Date(e.date), 'yyyy-MM-dd') === format(date, 'yyyy-MM-dd'),
     );
 
-  const getDayLessons = (date: Date) => lessons.filter(
+  const getDayLessons = (date: Date): ETFOLessonPlan[] => lessons.filter(
       (lesson) => format(new Date(lesson.date), 'yyyy-MM-dd') === format(date, 'yyyy-MM-dd'),
     );
 

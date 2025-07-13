@@ -35,7 +35,7 @@ export function ProgressiveDataLoader<T>({
   loadingState,
   errorState,
   onLoadMore,
-}: ProgressiveDataLoaderProps<T>) {
+}: ProgressiveDataLoaderProps<T>): React.ReactElement {
   const [items, setItems] = useState<T[]>([]);
   const [loading, setLoading] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -64,7 +64,7 @@ export function ProgressiveDataLoader<T>({
 
   // Load initial data
   useEffect(() => {
-    return () => { // Cleanup
+    return (): void => { // Cleanup
     };
 
     if (isInitialLoad.current) {
@@ -95,7 +95,7 @@ return;
   }, [loadData, items.length, batchSize, hasMore, loadingMore, onLoadMore]);
 
   // Infinite scroll handler
-  const handleScroll = useCallback(() => {
+  const handleScroll = useCallback((): void => {
     if (!infiniteScroll || !containerRef.current) {
 return;
 }
@@ -110,7 +110,7 @@ return;
 
   // Attach scroll listener for infinite scroll
   useEffect(() => {
-    return () => { // Cleanup
+    return (): void => { // Cleanup
     };
 
     if (!infiniteScroll) {
@@ -123,12 +123,12 @@ return;
 }
 
     container.addEventListener('scroll', handleScroll);
-    return () => {
+    return (): void => {
  container.removeEventListener('scroll', handleScroll); 
 };
   }, [handleScroll, infiniteScroll]);
 
-  const handleRetry = () => {
+  const handleRetry = (): void => {
     setItems([]);
     setError(null);
     setHasMore(true);
@@ -219,7 +219,7 @@ return;
               className="min-w-[120px]"
               disabled={loadingMore}
               variant="outline"
-              onClick={() => void loadMoreData()}
+              onClick={(): void => { void loadMoreData(); }}
             >
               Load More
             </Button>

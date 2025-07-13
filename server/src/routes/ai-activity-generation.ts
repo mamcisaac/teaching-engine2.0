@@ -13,7 +13,7 @@ const router = Router();
 const aiGenerator = new AIActivityGeneratorService();
 
 // Simple rate limiting for AI endpoints (to avoid async issues)
-const aiRateLimit = (_req: Request, _res: Response, next: () => void) => {
+const aiRateLimit = (_req: Request, _res: Response, next: () => void): void => {
   // Simple in-memory rate limiting - production should use proper rate limiter
   next();
 };

@@ -6,8 +6,9 @@ import { prisma } from '../prisma';
 const router = Router();
 
 // Get notifications for authenticated user
-router.get('/', async (req: Request, res): Promise<void> => {
-  try {
+router.get('/', (req: Request, res): void => {
+  void (async () => {
+    try {
     const userId = req.user?.id || 0;
     if (!userId) {
       res.status(401).json({ error: 'Unauthorized' });
@@ -52,11 +53,13 @@ router.get('/', async (req: Request, res): Promise<void> => {
     logger.error('Error fetching notifications:', err instanceof Error ? err.message : String(err));
     res.status(500).json({ error: 'Failed to fetch notifications' });
   }
+  })();
 });
 
 // Mark notification as read
-router.patch('/:id/read', async (req: Request, res): Promise<void> => {
-  try {
+router.patch('/:id/read', (req: Request, res): void => {
+  void (async () => {
+    try {
     const userId = req.user?.id || 0;
     if (!userId) {
       res.status(401).json({ error: 'Unauthorized' });
@@ -91,11 +94,13 @@ router.patch('/:id/read', async (req: Request, res): Promise<void> => {
     logger.error('Error marking notification as read:', err instanceof Error ? err.message : String(err));
     res.status(500).json({ error: 'Failed to update notification' });
   }
+  })();
 });
 
 // Mark all notifications as read
-router.patch('/read-all', async (req: Request, res): Promise<void> => {
-  try {
+router.patch('/read-all', (req: Request, res): void => {
+  void (async () => {
+    try {
     const userId = req.user?.id || 0;
     if (!userId) {
       res.status(401).json({ error: 'Unauthorized' });
@@ -113,11 +118,13 @@ router.patch('/read-all', async (req: Request, res): Promise<void> => {
     logger.error('Error marking all notifications as read:', err instanceof Error ? err.message : String(err));
     res.status(500).json({ error: 'Failed to update notifications' });
   }
+  })();
 });
 
 // Delete notification
-router.delete('/:id', async (req: Request, res): Promise<void> => {
-  try {
+router.delete('/:id', (req: Request, res): void => {
+  void (async () => {
+    try {
     const userId = req.user?.id || 0;
     if (!userId) {
       res.status(401).json({ error: 'Unauthorized' });
@@ -151,11 +158,13 @@ router.delete('/:id', async (req: Request, res): Promise<void> => {
     logger.error('Error deleting notification:', err instanceof Error ? err.message : String(err));
     res.status(500).json({ error: 'Failed to delete notification' });
   }
+  })();
 });
 
 // Clear all notifications
-router.delete('/clear-all', async (req: Request, res): Promise<void> => {
-  try {
+router.delete('/clear-all', (req: Request, res): void => {
+  void (async () => {
+    try {
     const userId = req.user?.id || 0;
     if (!userId) {
       res.status(401).json({ error: 'Unauthorized' });
@@ -172,11 +181,13 @@ router.delete('/clear-all', async (req: Request, res): Promise<void> => {
     logger.error('Error clearing notifications:', err instanceof Error ? err.message : String(err));
     res.status(500).json({ error: 'Failed to clear notifications' });
   }
+  })();
 });
 
 // Create a test notification (for development)
-router.post('/test', async (req: Request, res): Promise<void> => {
-  try {
+router.post('/test', (req: Request, res): void => {
+  void (async () => {
+    try {
     const userId = req.user?.id || 0;
     if (!userId) {
       res.status(401).json({ error: 'Unauthorized' });
@@ -199,6 +210,7 @@ router.post('/test', async (req: Request, res): Promise<void> => {
     logger.error('Error creating test notification:', err instanceof Error ? err.message : String(err));
     res.status(500).json({ error: 'Failed to create notification' });
   }
+  })();
 });
 
 export default router;

@@ -77,7 +77,7 @@ interface ExtendedUnitPlan extends UnitPlan {
   communityConnections?: string;
 }
 
-export default function UnitPlansPage() {
+export default function UnitPlansPage(): React.ReactElement {
   const { longRangePlanId, unitId } = useParams();
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [editingUnit, setEditingUnit] = useState<string | null>(null);

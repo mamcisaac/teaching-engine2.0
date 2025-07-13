@@ -37,8 +37,8 @@ export const arrayUtils = {
     }[]
   ): T[] => [...array].sort((a, b) => {
       for (const { key, order = 'asc' } of fields) {
-        const aValue = typeof key === 'function' ? key(a) : (a as any)[key];
-        const bValue = typeof key === 'function' ? key(b) : (b as any)[key];
+        const aValue = typeof key === 'function' ? key(a) : a[key];
+        const bValue = typeof key === 'function' ? key(b) : b[key];
         
         if ((aValue) < (bValue)) {
           return order === 'asc' ? -1 : 1;

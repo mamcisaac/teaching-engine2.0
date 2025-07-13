@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 
-import NewsletterEditor from '../components/NewsletterEditor';
+import { NewsletterEditor } from '../components/NewsletterEditor';
 import { useAuth } from '../contexts/AuthContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { 
@@ -54,9 +54,6 @@ export default function ParentNewsletterPage(): React.ReactElement {
 
   // Effects
   useEffect(() => {
-    return () => { // Cleanup
-    };
-
     if (currentNewsletter && !showCreateForm) {
       setSelectedStudentIds(currentNewsletter.studentIds ?? []);
       setDateRange({
@@ -65,6 +62,9 @@ export default function ParentNewsletterPage(): React.ReactElement {
       });
       setTone(currentNewsletter.tone);
     }
+    
+    return () => { // Cleanup
+    };
   }, [currentNewsletter, showCreateForm]);
 
   // Handlers

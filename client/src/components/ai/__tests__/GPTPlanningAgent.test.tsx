@@ -1,25 +1,26 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
 
 import { GPTPlanningAgent } from '../GPTPlanningAgent';
 
 // Mock dependencies
-jest.mock('../../hooks/useAIStatus', () => ({
+vi.mock('../../hooks/useAIStatus', () => ({
   useAIStatus: () => ({
     canUseAI: true,
     aiDisabledReason: null,
   }),
 }));
 
-jest.mock('../../../api/core/client', () => ({
+vi.mock('../../../api/core/client', () => ({
   api: {
-    post: jest.fn(),
+    post: vi.fn(),
   },
 }));
 
-jest.mock('@tanstack/react-query', () => ({
+vi.mock('@tanstack/react-query', () => ({
   useMutation: () => ({
-    mutate: jest.fn(),
+    mutate: vi.fn(),
     isLoading: false,
     error: null,
   }),
@@ -28,7 +29,7 @@ jest.mock('@tanstack/react-query', () => ({
 describe('GPTPlanningAgent - Strict Boolean Expression Tests', () => {
   const defaultProps = {
     isOpen: true,
-    onClose: jest.fn(),
+    onClose: vi.fn(),
     context: {
       subject: 'Mathematics',
       grade: 3,
@@ -37,7 +38,7 @@ describe('GPTPlanningAgent - Strict Boolean Expression Tests', () => {
   };
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe('sessionId handling', () => {
@@ -111,7 +112,7 @@ describe('GPTPlanningAgent - Strict Boolean Expression Tests', () => {
         writable: true,
       });
       Object.defineProperty(window, 'webkitSpeechRecognition', {
-        value: jest.fn(),
+        value: vi.fn(),
         writable: true,
       });
 
@@ -124,7 +125,7 @@ describe('GPTPlanningAgent - Strict Boolean Expression Tests', () => {
     it('should handle SpeechRecognition only', () => {
       // Mock window with only standard speech recognition
       Object.defineProperty(window, 'SpeechRecognition', {
-        value: jest.fn(),
+        value: vi.fn(),
         writable: true,
       });
       Object.defineProperty(window, 'webkitSpeechRecognition', {
@@ -153,7 +154,7 @@ describe('GPTPlanningAgent - Strict Boolean Expression Tests', () => {
     });
 
     it('should call onClose when close button is clicked', () => {
-      const mockOnClose = jest.fn();
+      const mockOnClose = vi.fn();
       render(<GPTPlanningAgent {...defaultProps} onClose={mockOnClose} />);
 
       const closeButton = screen.getByRole('button', { name: /close/i });

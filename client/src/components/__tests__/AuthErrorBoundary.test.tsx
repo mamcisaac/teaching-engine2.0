@@ -1,15 +1,15 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import { vi, describe, it, expect, beforeEach, afterEach, type Mock } from 'vitest';
 import { AuthErrorBoundary, AppAuthErrorBoundary } from '../AuthErrorBoundary';
 import { authService } from '../../services/authService';
 import { errorReportingService } from '../../services/errorReportingService';
 import logger from '../../utils/logger';
 
 // Mock dependencies
-jest.mock('../../services/authService');
-jest.mock('../../services/errorReportingService');
-jest.mock('../../utils/logger');
+vi.mock('../../services/authService');
+vi.mock('../../services/errorReportingService');
+vi.mock('../../utils/logger');
 
 // Component that throws an error
 const ThrowError: React.FC<{ error: Error }> = ({ error }) => {
@@ -26,8 +26,8 @@ describe('AuthErrorBoundary', () => {
   const mockTimeoutError = new Error('Connection timeout');
   
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.useFakeTimers();
+    vi.clearAllMocks();
+    vi.useFakeTimers();
     
     // Mock navigator.onLine
     Object.defineProperty(navigator, 'onLine', {
@@ -36,20 +36,20 @@ describe('AuthErrorBoundary', () => {
     });
     
     // Mock authService
-    (authService.verifyAuth as jest.Mock).mockResolvedValue({ id: '1', name: 'Test User' });
-    (authService.clearTokens as jest.Mock).mockImplementation(() => {});
+    (authService.verifyAuth as Mock).mockResolvedValue({ id: '1', name: 'Test User' });
+    (authService.clearTokens as Mock).mockImplementation(() => {});
     
     // Mock window.location
     delete (window as Window & { location: Location }).location;
-    window.location = { href: '', reload: jest.fn() } as unknown as Location;
+    (window as any).location = { href: '', reload: vi.fn() };
     
     // Mock logger
-    (logger.error as jest.Mock).mockImplementation(() => {});
+    (logger.error as Mock).mockImplementation(() => {});
   });
 
   afterEach(() => {
-    jest.runOnlyPendingTimers();
-    jest.useRealTimers();
+    vi.runOnlyPendingTimers();
+    vi.useRealTimers();
   });
 
   describe('Error Handling', () => {
@@ -64,7 +64,7 @@ describe('AuthErrorBoundary', () => {
     });
 
     it('should catch and display error when child component throws', () => {
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
       
       render(
         <AuthErrorBoundary>
@@ -80,7 +80,7 @@ describe('AuthErrorBoundary', () => {
     });
 
     it('should display custom fallback when provided', () => {
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
       const fallback = <div>Custom error UI</div>;
       
       render(
@@ -96,8 +96,8 @@ describe('AuthErrorBoundary', () => {
     });
 
     it('should call onAuthError callback when error occurs', () => {
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
-      const onAuthError = jest.fn();
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+      const onAuthError = vi.fn();
       
       render(
         <AuthErrorBoundary onAuthError={onAuthError}>
@@ -113,7 +113,7 @@ describe('AuthErrorBoundary', () => {
 
   describe('Error Type Detection', () => {
     it('should display auth-specific UI for authentication errors', () => {
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
       
       render(
         <AuthErrorBoundary>
@@ -129,7 +129,7 @@ describe('AuthErrorBoundary', () => {
     });
 
     it('should display network-specific UI for network errors', () => {
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
       
       render(
         <AuthErrorBoundary>
@@ -144,7 +144,7 @@ describe('AuthErrorBoundary', () => {
     });
 
     it('should detect various auth-related error messages', () => {
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
       const authErrors = [
         new Error('token expired'),
         new Error('unauthorized access'),
@@ -169,7 +169,7 @@ describe('AuthErrorBoundary', () => {
 
   describe('Offline/Online Handling', () => {
     it('should display offline UI when navigator.onLine is false', () => {
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
       Object.defineProperty(navigator, 'onLine', {
         writable: true,
         value: false
@@ -189,7 +189,7 @@ describe('AuthErrorBoundary', () => {
     });
 
     it('should handle online event and retry for network errors', async () => {
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
       Object.defineProperty(navigator, 'onLine', {
         writable: true,
         value: false
@@ -216,7 +216,7 @@ describe('AuthErrorBoundary', () => {
     });
 
     it('should handle offline event', () => {
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
       
       const { rerender } = render(
         <AuthErrorBoundary>
@@ -246,7 +246,7 @@ describe('AuthErrorBoundary', () => {
 
   describe('Retry Mechanism', () => {
     it('should auto-retry for retryable errors', async () => {
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
       
       render(
         <AuthErrorBoundary>
@@ -257,7 +257,7 @@ describe('AuthErrorBoundary', () => {
       expect(screen.getByText('Try Again')).toBeInTheDocument();
       
       // Fast-forward timer to trigger auto-retry
-      jest.advanceTimersByTime(1000);
+      vi.advanceTimersByTime(1000);
       
       await waitFor(() => {
         expect(authService.verifyAuth).toHaveBeenCalled();
@@ -267,8 +267,8 @@ describe('AuthErrorBoundary', () => {
     });
 
     it('should show retry progress', async () => {
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
-      (authService.verifyAuth as jest.Mock).mockRejectedValueOnce(new Error('Still failing'));
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+      (authService.verifyAuth as Mock).mockRejectedValueOnce(new Error('Still failing'));
       
       render(
         <AuthErrorBoundary>
@@ -277,7 +277,7 @@ describe('AuthErrorBoundary', () => {
       );
       
       // Fast-forward to trigger retry
-      jest.advanceTimersByTime(1000);
+      vi.advanceTimersByTime(1000);
       
       await waitFor(() => {
         expect(screen.getByText('Reconnecting...')).toBeInTheDocument();
@@ -287,8 +287,8 @@ describe('AuthErrorBoundary', () => {
     });
 
     it('should limit retry attempts to 3', async () => {
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
-      (authService.verifyAuth as jest.Mock).mockRejectedValue(new Error('Persistent failure'));
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+      (authService.verifyAuth as Mock).mockRejectedValue(new Error('Persistent failure'));
       
       render(
         <AuthErrorBoundary>
@@ -298,7 +298,7 @@ describe('AuthErrorBoundary', () => {
       
       // Trigger multiple retries
       for (let i = 0; i < 4; i++) {
-        jest.advanceTimersByTime(10000);
+        vi.advanceTimersByTime(10000);
         await waitFor(() => {});
       }
       
@@ -308,7 +308,7 @@ describe('AuthErrorBoundary', () => {
     });
 
     it('should successfully recover on retry', async () => {
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
       
       const { rerender } = render(
         <AuthErrorBoundary>
@@ -319,7 +319,7 @@ describe('AuthErrorBoundary', () => {
       expect(screen.getByText('Connection Problem')).toBeInTheDocument();
       
       // Fast-forward to trigger retry
-      jest.advanceTimersByTime(1000);
+      vi.advanceTimersByTime(1000);
       
       await waitFor(() => {
         expect(authService.verifyAuth).toHaveBeenCalled();
@@ -340,7 +340,7 @@ describe('AuthErrorBoundary', () => {
 
   describe('Manual Actions', () => {
     it('should handle manual retry', async () => {
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
       
       render(
         <AuthErrorBoundary>
@@ -360,7 +360,7 @@ describe('AuthErrorBoundary', () => {
     });
 
     it('should handle login redirect', () => {
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
       
       render(
         <AuthErrorBoundary>
@@ -378,7 +378,7 @@ describe('AuthErrorBoundary', () => {
     });
 
     it('should handle page refresh', () => {
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
       
       render(
         <AuthErrorBoundary>
@@ -397,7 +397,7 @@ describe('AuthErrorBoundary', () => {
 
   describe('Development Mode', () => {
     it('should show error details in development mode', () => {
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
       const originalEnv = process.env.NODE_ENV;
       process.env.NODE_ENV = 'development';
       
@@ -423,7 +423,7 @@ describe('AuthErrorBoundary', () => {
     });
 
     it('should not show error details in production mode', () => {
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
       const originalEnv = process.env.NODE_ENV;
       process.env.NODE_ENV = 'production';
       
@@ -442,8 +442,8 @@ describe('AuthErrorBoundary', () => {
 
   describe('Cleanup', () => {
     it('should cleanup timers and event listeners on unmount', () => {
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
-      const removeEventListenerSpy = jest.spyOn(window, 'removeEventListener');
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+      const removeEventListenerSpy = vi.spyOn(window, 'removeEventListener');
       
       const { unmount } = render(
         <AuthErrorBoundary>
@@ -462,7 +462,7 @@ describe('AuthErrorBoundary', () => {
 
   describe('AppAuthErrorBoundary', () => {
     it('should wrap children with AuthErrorBoundary and report app-level errors', () => {
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
       
       render(
         <AppAuthErrorBoundary>

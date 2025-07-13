@@ -64,7 +64,7 @@ import { MobileOptimizedForm, CollapsibleSection } from '../components/ui/Mobile
 import logger from '../utils/logger';
 import { generateLessonPlanHTML, printHTML, downloadHTML } from '../utils/printUtils';
 import { SafeHtmlRenderer } from '../utils/sanitization';
-export default function ETFOLessonPlanPage() {
+export default function ETFOLessonPlanPage(): React.ReactElement {
   const { unitId, lessonId } = useParams();
   const navigate = useNavigate();
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);

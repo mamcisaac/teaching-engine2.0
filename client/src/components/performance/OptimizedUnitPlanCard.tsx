@@ -51,7 +51,7 @@ return null;
 
   // Memoized edit handler to prevent unnecessary re-renders
   const handleEdit = useMemo(() => 
-    () => {
+    (): void => {
  onEdit(unit); 
 },
     [onEdit, unit]

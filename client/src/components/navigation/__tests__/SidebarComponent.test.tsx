@@ -7,7 +7,7 @@ import { NavigationProvider } from '../NavigationProvider';
 
 const mockLogout = vi.fn().mockResolvedValue(undefined);
 const mockAuthContextValue = {
-  user: { id: 1, name: 'Test User', email: 'test@example.com', role: 'teacher' as const },
+  user: { id: 1, name: 'Test User', email: 'test@example.com', role: 'USER' as const },
   login: vi.fn(),
   logout: mockLogout,
   isAuthenticated: true,

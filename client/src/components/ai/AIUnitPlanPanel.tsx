@@ -140,7 +140,7 @@ export function AIUnitPlanPanel({
     setLoadingStep('analyze');
 
     try {
-      let result;
+      let result: { suggestions: string[]; rationale?: string };
       
       switch (type) {
         case 'bigIdeas':
@@ -150,7 +150,7 @@ export function AIUnitPlanPanel({
             grade: parseInt(formData.grade),
             curriculumExpectations: curriculumExpectations.map(exp => exp.description),
             duration: parseInt(formData.duration),
-          });
+          }) as { suggestions: string[]; rationale?: string };
           break;
         // Add other types as needed
         default:
@@ -161,8 +161,8 @@ export function AIUnitPlanPanel({
         ...prev.filter(s => s.type !== type),
         {
           type,
-          content: result.suggestions as string[],
-          rationale: result.rationale as string,
+          content: result.suggestions,
+          rationale: result.rationale ?? '',
         }
       ]);
 
@@ -170,7 +170,7 @@ export function AIUnitPlanPanel({
       
       toast({
         title: 'Suggestions Generated',
-        description: `Generated ${(result.suggestions as string[]).length} ${type} suggestions.`,
+        description: `Generated ${result.suggestions.length} ${type} suggestions.`,
       });
 
     } catch (_error) {

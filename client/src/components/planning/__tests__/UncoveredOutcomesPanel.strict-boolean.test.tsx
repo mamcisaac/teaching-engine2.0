@@ -2,16 +2,18 @@ import React from 'react';
 
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
+import type { Mock } from 'vitest';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { apiClient } from '@/api/core/client';
 
 import { UncoveredOutcomesPanel } from '../UncoveredOutcomesPanel';
 
-jest.mock('@/api/core/client', () => ({
+vi.mock('@/api/core/client', () => ({
   apiClient: {
-    get: jest.fn(),
-    post: jest.fn(),
+    get: vi.fn(),
+    post: vi.fn(),
   },
 }));
 
@@ -30,15 +32,15 @@ const createWrapper = () => {
 
 describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe('query parameter handling', () => {
     it('should handle undefined startDate, endDate, and theme', async () => {
-      (apiClient.get as jest.Mock).mockResolvedValue({ data: [] });
+      (apiClient.get as Mock).mockResolvedValue({ data: [] });
 
       render(
-        <UncoveredOutcomesPanel onSelectSuggestion={jest.fn()} />,
+        <UncoveredOutcomesPanel onSelectSuggestion={vi.fn()} />,
         { wrapper: createWrapper() }
       );
 
@@ -48,7 +50,7 @@ describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
     });
 
     it('should append parameters only when they are defined', async () => {
-      (apiClient.get as jest.Mock).mockResolvedValue({ data: [] });
+      (apiClient.get as Mock).mockResolvedValue({ data: [] });
       
       const startDate = new Date('2024-01-01');
       const endDate = new Date('2024-12-31');
@@ -59,13 +61,13 @@ describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
           startDate={startDate}
           endDate={endDate}
           theme={theme}
-          onSelectSuggestion={jest.fn()}
+          onSelectSuggestion={vi.fn()}
         />,
         { wrapper: createWrapper() }
       );
 
       await waitFor(() => {
-        const call = (apiClient.get as jest.Mock).mock.calls[0];
+        const call = (apiClient.get as Mock).mock.calls[0];
         const url = call[0];
         expect(url).toContain('startDate=');
         expect(url).toContain('endDate=');
@@ -74,20 +76,20 @@ describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
     });
 
     it('should handle partial parameters correctly', async () => {
-      (apiClient.get as jest.Mock).mockResolvedValue({ data: [] });
+      (apiClient.get as Mock).mockResolvedValue({ data: [] });
       
       const startDate = new Date('2024-01-01');
 
       render(
         <UncoveredOutcomesPanel
           startDate={startDate}
-          onSelectSuggestion={jest.fn()}
+          onSelectSuggestion={vi.fn()}
         />,
         { wrapper: createWrapper() }
       );
 
       await waitFor(() => {
-        const call = (apiClient.get as jest.Mock).mock.calls[0];
+        const call = (apiClient.get as Mock).mock.calls[0];
         const url = call[0];
         expect(url).toContain('startDate=');
         expect(url).not.toContain('endDate=');
@@ -98,10 +100,10 @@ describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
 
   describe('uncoveredOutcomes data handling', () => {
     it('should handle undefined data from API', async () => {
-      (apiClient.get as jest.Mock).mockResolvedValue({ data: undefined });
+      (apiClient.get as Mock).mockResolvedValue({ data: undefined });
 
       render(
-        <UncoveredOutcomesPanel onSelectSuggestion={jest.fn()} />,
+        <UncoveredOutcomesPanel onSelectSuggestion={vi.fn()} />,
         { wrapper: createWrapper() }
       );
 
@@ -111,10 +113,10 @@ describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
     });
 
     it('should handle null data from API', async () => {
-      (apiClient.get as jest.Mock).mockResolvedValue({ data: null });
+      (apiClient.get as Mock).mockResolvedValue({ data: null });
 
       render(
-        <UncoveredOutcomesPanel onSelectSuggestion={jest.fn()} />,
+        <UncoveredOutcomesPanel onSelectSuggestion={vi.fn()} />,
         { wrapper: createWrapper() }
       );
 
@@ -124,10 +126,10 @@ describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
     });
 
     it('should handle empty array', async () => {
-      (apiClient.get as jest.Mock).mockResolvedValue({ data: [] });
+      (apiClient.get as Mock).mockResolvedValue({ data: [] });
 
       render(
-        <UncoveredOutcomesPanel onSelectSuggestion={jest.fn()} />,
+        <UncoveredOutcomesPanel onSelectSuggestion={vi.fn()} />,
         { wrapper: createWrapper() }
       );
 
@@ -153,10 +155,10 @@ describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
         },
       ];
 
-      (apiClient.get as jest.Mock).mockResolvedValue({ data: mockData });
+      (apiClient.get as Mock).mockResolvedValue({ data: mockData });
 
       render(
-        <UncoveredOutcomesPanel onSelectSuggestion={jest.fn()} />,
+        <UncoveredOutcomesPanel onSelectSuggestion={vi.fn()} />,
         { wrapper: createWrapper() }
       );
 
@@ -195,10 +197,10 @@ describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
         },
       ];
 
-      (apiClient.get as jest.Mock).mockResolvedValue({ data: mockData });
+      (apiClient.get as Mock).mockResolvedValue({ data: mockData });
 
       render(
-        <UncoveredOutcomesPanel onSelectSuggestion={jest.fn()} />,
+        <UncoveredOutcomesPanel onSelectSuggestion={vi.fn()} />,
         { wrapper: createWrapper() }
       );
 
@@ -226,10 +228,10 @@ describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
         },
       ];
 
-      (apiClient.get as jest.Mock).mockResolvedValue({ data: mockData });
+      (apiClient.get as Mock).mockResolvedValue({ data: mockData });
 
       render(
-        <UncoveredOutcomesPanel onSelectSuggestion={jest.fn()} />,
+        <UncoveredOutcomesPanel onSelectSuggestion={vi.fn()} />,
         { wrapper: createWrapper() }
       );
 
@@ -256,10 +258,10 @@ describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
         },
       ];
 
-      (apiClient.get as jest.Mock).mockResolvedValue({ data: mockData });
+      (apiClient.get as Mock).mockResolvedValue({ data: mockData });
 
       render(
-        <UncoveredOutcomesPanel onSelectSuggestion={jest.fn()} />,
+        <UncoveredOutcomesPanel onSelectSuggestion={vi.fn()} />,
         { wrapper: createWrapper() }
       );
 
@@ -296,10 +298,10 @@ describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
         },
       ];
 
-      (apiClient.get as jest.Mock).mockResolvedValue({ data: mockData });
+      (apiClient.get as Mock).mockResolvedValue({ data: mockData });
 
       render(
-        <UncoveredOutcomesPanel onSelectSuggestion={jest.fn()} />,
+        <UncoveredOutcomesPanel onSelectSuggestion={vi.fn()} />,
         { wrapper: createWrapper() }
       );
 
@@ -312,7 +314,7 @@ describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
   describe('user interactions', () => {
     it('should call onSelectSuggestion when Use this activity is clicked', async () => {
       const user = userEvent.setup();
-      const onSelectSuggestion = jest.fn();
+      const onSelectSuggestion = vi.fn();
       
       const mockSuggestion = {
         id: 1,
@@ -342,7 +344,7 @@ describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
         },
       ];
 
-      (apiClient.get as jest.Mock).mockResolvedValue({ data: mockData });
+      (apiClient.get as Mock).mockResolvedValue({ data: mockData });
 
       render(
         <UncoveredOutcomesPanel onSelectSuggestion={onSelectSuggestion} />,
@@ -376,8 +378,8 @@ describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
         },
       ];
 
-      (apiClient.get as jest.Mock).mockResolvedValue({ data: mockData });
-      (apiClient.post as jest.Mock).mockResolvedValue({ 
+      (apiClient.get as Mock).mockResolvedValue({ data: mockData });
+      (apiClient.post as Mock).mockResolvedValue({ 
         data: {
           id: 2,
           expectationId: '1',
@@ -392,7 +394,7 @@ describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
       });
 
       render(
-        <UncoveredOutcomesPanel onSelectSuggestion={jest.fn()} theme="Math Focus" />,
+        <UncoveredOutcomesPanel onSelectSuggestion={vi.fn()} theme="Math Focus" />,
         { wrapper: createWrapper() }
       );
 

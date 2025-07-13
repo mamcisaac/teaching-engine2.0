@@ -7,13 +7,13 @@ interface ThemeContextValue {
 
 const ThemeContext = createContext<ThemeContextValue>({
   theme: 'light',
-  toggleTheme: () => {},
+  toggleTheme: (): void => {},
 });
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
+export function ThemeProvider({ children }: { children: React.ReactNode }): React.ReactElement {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
-  const toggleTheme = () => {
+  const toggleTheme = (): void => {
     setTheme(prev => prev === 'light' ? 'dark' : 'light');
   };
 

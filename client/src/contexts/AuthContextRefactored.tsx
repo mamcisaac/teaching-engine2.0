@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
-import { createContext, useContext } from 'react';
+import React, { createContext, useContext } from 'react';
 
 import { authService } from '../services/authService';
 import { errorReportingService } from '../services/errorReportingService';
@@ -27,7 +27,7 @@ interface AuthContextValue {
 
 const AuthContext = createContext<AuthContextValue | null>(null);
 
-export function AuthProvider({ children }: { children: ReactNode }) {
+export function AuthProvider({ children }: { children: ReactNode }): React.ReactElement {
   const queryClient = useQueryClient();
 
   // Query for current user

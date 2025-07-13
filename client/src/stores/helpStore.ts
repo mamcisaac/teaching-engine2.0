@@ -182,7 +182,7 @@ export const useHelpStore = create<HelpState>()(
         tutorialProgress: state.tutorialProgress,
       }),
       // Handle Date serialization/deserialization
-      serialize: (state) => JSON.stringify(state, (key, value) => {
+      serialize: (state) => JSON.stringify(state, (key, value: unknown) => {
           if (key === 'lastVisited' && value instanceof Date) {
             return value.toISOString();
           }

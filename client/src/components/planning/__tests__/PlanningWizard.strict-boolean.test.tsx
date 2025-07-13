@@ -2,21 +2,22 @@ import React from 'react';
 
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 
 import { ETFOLevel } from '@/hooks/useWorkflowState';
 
 import { PlanningWizard } from '../PlanningWizard';
 
-const mockNavigate = jest.fn();
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
+const mockNavigate = vi.fn();
+vi.mock('react-router-dom', () => ({
+  ...vi.importActual('react-router-dom'),
   useNavigate: () => mockNavigate,
 }));
 
 describe('PlanningWizard - Strict Boolean Expressions', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe('isAIAssisted property handling', () => {
@@ -193,7 +194,7 @@ describe('PlanningWizard - Strict Boolean Expressions', () => {
   describe('onClose callback handling', () => {
     it('should call onClose when Finish is clicked on last step', async () => {
       const user = userEvent.setup();
-      const onClose = jest.fn();
+      const onClose = vi.fn();
       
       render(
         <MemoryRouter>

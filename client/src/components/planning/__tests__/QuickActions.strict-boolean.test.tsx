@@ -2,19 +2,20 @@ import React from 'react';
 
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { vi, describe, it, expect } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 
 import { QuickActions } from '../QuickActions';
 
-const mockNavigate = jest.fn();
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
+const mockNavigate = vi.fn();
+vi.mock('react-router-dom', () => ({
+  ...vi.importActual('react-router-dom'),
   useNavigate: () => mockNavigate,
 }));
 
 describe('QuickActions - Strict Boolean Expressions', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe('isNew badge rendering', () => {
@@ -92,7 +93,7 @@ describe('QuickActions - Strict Boolean Expressions', () => {
   describe('onDuplicatePlan callback', () => {
     it('should handle onDuplicatePlan callback when provided', async () => {
       const user = userEvent.setup();
-      const onDuplicatePlan = jest.fn();
+      const onDuplicatePlan = vi.fn();
 
       render(
         <MemoryRouter>

@@ -180,7 +180,7 @@ export default function FormTemplates({
       expectationIds: [],
     }));
 
-  const handleTemplateGenerate = () => {
+  const handleTemplateGenerate = (): void => {
     if (!selectedTemplate) {
 return;
 }
@@ -208,7 +208,7 @@ return;
     });
   };
 
-  const handleTemplateDownload = () => {
+  const handleTemplateDownload = (): void => {
     if (!selectedTemplate) {
 return;
 }
@@ -247,7 +247,7 @@ return;
     onTemplateDownload(selectedTemplate.id, { data: templateData });
   };
 
-  const getDifficultyColor = (difficulty: string) => {
+  const getDifficultyColor = (difficulty: string): string => {
     switch (difficulty) {
       case 'beginner':
         return 'bg-green-100 text-green-800';

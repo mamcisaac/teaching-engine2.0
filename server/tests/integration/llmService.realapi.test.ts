@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
-import { describe, it, expect, beforeEach, afterEach } from '@jest/globals';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { MockRegistry } from '../mocks/registry';
 import { generateContent, generateBilingualContent } from '../../src/services/llmService';
+import OpenAI from 'openai';
 
 describe('LLMService Real API Integration Tests', () => {
   const originalEnv = process.env;
@@ -12,7 +13,7 @@ describe('LLMService Real API Integration Tests', () => {
 
     // Setup centralized mocks
     const mockOpenAIInstance = MockRegistry.openai.create();
-    (OpenAI as jest.MockedClass<typeof OpenAI>).mockImplementation(() => mockOpenAIInstance as unknown);
+    vi.mocked(OpenAI).mockImplementation(() => mockOpenAIInstance as any);
   });
 
   afterEach(() => {

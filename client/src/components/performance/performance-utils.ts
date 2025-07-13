@@ -32,7 +32,7 @@ const throttle = <T extends (...args: unknown[]) => unknown>(
     }
   };
 
-  throttled.cancel = () => {
+  throttled.cancel = (): void => {
     clearTimeout(timeoutId);
     inThrottle = false;
   };
@@ -127,7 +127,7 @@ export function useRenderPerformance(_componentName: string): { renderCount: num
 
   return {
     renderCount,
-    logRender: (_operation: string) => {
+    logRender: (_operation: string): void => {
       // Performance logging can be enabled here if needed
     },
   };
@@ -217,7 +217,7 @@ export const PerformanceMonitor = {
   /**
    * Measure component render time
    */
-  measureRender: (componentName: string, renderFn: () => void) => {
+  measureRender: (componentName: string, renderFn: () => void): void => {
     const start = performance.now();
     renderFn();
     const end = performance.now();
@@ -339,7 +339,7 @@ return false;
   createSelector: <TState, TResult>(
     selector: (state: TState) => TResult,
     equalityFn: (a: TResult, b: TResult) => boolean = Object.is,
-  ) => {
+  ): ((state: TState) => TResult) => {
     let lastState: TState;
     let lastResult: TResult;
     let hasResult = false;
@@ -405,7 +405,7 @@ urlObj.searchParams.set('q', quality.toString());
     useEffect(() => {
       if (isVisible && src !== '' && !isLoaded) {
         const img = new Image();
-        img.onload = () => {
+        img.onload = (): void => {
           setImageSrc(src);
           setIsLoaded(true);
         };

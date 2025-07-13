@@ -34,10 +34,10 @@ export default function AISuggestionPanel({
   const [acceptedIndices, setAcceptedIndices] = useState<Set<number>>(new Set());
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
-  const handleCopy = (suggestion: string, index: number) => {
+  const handleCopy = (suggestion: string, index: number): void => {
     void navigator.clipboard.writeText(suggestion);
     setCopiedIndex(index);
-    setTimeout(() => {
+    setTimeout((): void => {
  setCopiedIndex(null); 
 }, 2000);
     toast({
@@ -46,7 +46,7 @@ export default function AISuggestionPanel({
     });
   };
 
-  const handleAccept = (suggestion: string, index: number) => {
+  const handleAccept = (suggestion: string, index: number): void => {
     onAcceptSuggestion(suggestion);
     setAcceptedIndices(new Set([...acceptedIndices, index]));
     toast({
@@ -55,7 +55,7 @@ export default function AISuggestionPanel({
     });
   };
 
-  const handleAcceptAll = () => {
+  const handleAcceptAll = (): void => {
     if (onAcceptAll !== null && onAcceptAll !== undefined) {
       onAcceptAll();
       const allIndices = new Set(suggestions?.suggestions.map((_, i) => i) || []);

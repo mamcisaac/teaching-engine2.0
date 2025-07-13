@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import type { LongRangePlan, CurriculumExpectation } from '../../hooks/useETFOPlanning';
 import { AIUnitPlanPanel } from '../ai/AIUnitPlanPanel';
-import BilingualTextInput from '../BilingualTextInput';
+import { BilingualTextInput } from '../BilingualTextInput';
 import ExpectationSelector from '../planning/ExpectationSelector';
 import RichTextEditor from '../RichTextEditor';
 import { Button } from '../ui/Button';
@@ -168,17 +168,17 @@ export default function UnitPlanForm({
   }, [initialData]);
 
   // Array manipulation helpers
-  const addEssentialQuestion = () => {
+  const addEssentialQuestion = (): void => {
     setFormData({ ...formData, essentialQuestions: [...formData.essentialQuestions, ''] });
   };
 
-  const updateEssentialQuestion = (index: number, value: string) => {
+  const updateEssentialQuestion = (index: number, value: string): void => {
     const updated = [...formData.essentialQuestions];
     updated[index] = value;
     setFormData({ ...formData, essentialQuestions: updated });
   };
 
-  const removeEssentialQuestion = (index: number) => {
+  const removeEssentialQuestion = (index: number): void => {
     if (formData.essentialQuestions.length > 1) {
       setFormData({
         ...formData,
@@ -187,17 +187,17 @@ export default function UnitPlanForm({
     }
   };
 
-  const addSuccessCriteria = () => {
+  const addSuccessCriteria = (): void => {
     setFormData({ ...formData, successCriteria: [...formData.successCriteria, ''] });
   };
 
-  const updateSuccessCriteria = (index: number, value: string) => {
+  const updateSuccessCriteria = (index: number, value: string): void => {
     const updated = [...formData.successCriteria];
     updated[index] = value;
     setFormData({ ...formData, successCriteria: updated });
   };
 
-  const removeSuccessCriteria = (index: number) => {
+  const removeSuccessCriteria = (index: number): void => {
     if (formData.successCriteria.length > 1) {
       setFormData({
         ...formData,
@@ -206,17 +206,17 @@ export default function UnitPlanForm({
     }
   };
 
-  const addKeyVocabulary = () => {
+  const addKeyVocabulary = (): void => {
     setFormData({ ...formData, keyVocabulary: [...formData.keyVocabulary, ''] });
   };
 
-  const updateKeyVocabulary = (index: number, value: string) => {
+  const updateKeyVocabulary = (index: number, value: string): void => {
     const updated = [...formData.keyVocabulary];
     updated[index] = value;
     setFormData({ ...formData, keyVocabulary: updated });
   };
 
-  const removeKeyVocabulary = (index: number) => {
+  const removeKeyVocabulary = (index: number): void => {
     if (formData.keyVocabulary.length > 1) {
       setFormData({
         ...formData,
@@ -226,7 +226,7 @@ export default function UnitPlanForm({
   };
 
   // Differentiation strategy helpers
-  const addDifferentiationStrategy = (category: keyof typeof formData.differentiationStrategies) => {
+  const addDifferentiationStrategy = (category: keyof typeof formData.differentiationStrategies): void => {
     setFormData({
       ...formData,
       differentiationStrategies: {
@@ -240,7 +240,7 @@ export default function UnitPlanForm({
     category: keyof typeof formData.differentiationStrategies,
     index: number,
     value: string
-  ) => {
+  ): void => {
     const updated = [...formData.differentiationStrategies[category]];
     updated[index] = value;
     setFormData({
@@ -255,7 +255,7 @@ export default function UnitPlanForm({
   const removeDifferentiationStrategy = (
     category: keyof typeof formData.differentiationStrategies,
     index: number
-  ) => {
+  ): void => {
     if (formData.differentiationStrategies[category].length > 1) {
       setFormData({
         ...formData,
@@ -303,7 +303,7 @@ export default function UnitPlanForm({
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
     
     if (validateForm()) {

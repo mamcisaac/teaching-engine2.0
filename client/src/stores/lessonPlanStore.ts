@@ -57,9 +57,22 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
         // Create offline slice
         const offlineSlice = createOfflineSlice<LessonPlanState>({
           entityType: 'lesson-plan',
-          fetchFromServer: async () => {
-            const response = await apiClient.get('/api/etfo-lesson-plans');
-            return response.data;
+          fetchFromServer: async (): Promise<LessonPlanState> => {
+            const response = await apiClient.get<LessonPlan[]>('/api/etfo-lesson-plans');
+            return {
+              lessonPlans: response.data,
+              currentLesson: null,
+              isLoading: false,
+              isSaving: false,
+              error: null,
+              // Add required OfflineState properties
+              isOnline: navigator.onLine,
+              isSyncing: false,
+              lastSyncedAt: new Date(),
+              unsyncedChanges: 0,
+              syncError: null,
+              // Actions will be added by the store
+            } as LessonPlanState;
           },
           saveToServer: async (data) => {
             // Save all modified lesson plans
@@ -113,8 +126,8 @@ params.append('endDate', endDate);
 url += `?${params.toString()}`;
 }
 
-                const response = await apiClient.get(url);
-                const plans = response.data as LessonPlan[];
+                const response = await apiClient.get<LessonPlan[]>(url);
+                const plans = response.data;
 
                 set((state) => {
                   state.lessonPlans = plans;
@@ -168,8 +181,8 @@ url += `?${params.toString()}`;
 
             try {
               if (get().isOnline) {
-                const response = await apiClient.get(`/api/etfo-lesson-plans/${id}`);
-                const lesson = response.data as LessonPlan;
+                const response = await apiClient.get<LessonPlan>(`/api/etfo-lesson-plans/${id}`);
+                const lesson = response.data;
 
                 set((state) => {
                   state.currentLesson = lesson;
@@ -227,8 +240,8 @@ url += `?${params.toString()}`;
               } as LessonPlan;
 
               if (get().isOnline) {
-                const response = await apiClient.post('/api/etfo-lesson-plans', planData);
-                const createdLesson = response.data as LessonPlan;
+                const response = await apiClient.post<LessonPlan>('/api/etfo-lesson-plans', planData);
+                const createdLesson = response.data;
 
                 set((state) => {
                   state.lessonPlans.push(createdLesson);

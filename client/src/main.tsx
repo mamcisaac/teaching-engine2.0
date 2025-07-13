@@ -86,7 +86,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 
 // Unregister any existing service workers
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.getRegistrations().then((registrations) => {
+  navigator.serviceWorker.getRegistrations().then((registrations): void => {
     for(const registration of registrations) {
       registration.unregister();
     }

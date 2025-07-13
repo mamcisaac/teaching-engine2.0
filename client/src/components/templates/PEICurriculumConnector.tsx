@@ -181,7 +181,7 @@ export default function PEICurriculumConnector({
   const [searchTerm, setSearchTerm] = React.useState('');
 
   // Get relevant outcomes based on subject filter
-  const getRelevantOutcomes = () => {
+  const getRelevantOutcomes = (): Record<string, PEICurriculumAlignment> => {
     if (subject === 'All' || !subject) {
       return PEI_GRADE1_OUTCOMES;
     }
@@ -199,9 +199,9 @@ export default function PEICurriculumConnector({
 
   const relevantOutcomes = getRelevantOutcomes();
 
-  const isOutcomeSelected = (outcome: PEILearningOutcome) => selectedOutcomes.some((o) => o.code === outcome.code);
+  const isOutcomeSelected = (outcome: PEILearningOutcome): boolean => selectedOutcomes.some((o) => o.code === outcome.code);
 
-  const toggleOutcome = (outcome: PEILearningOutcome) => {
+  const toggleOutcome = (outcome: PEILearningOutcome): void => {
     if (onOutcomeSelect !== null && onOutcomeSelect !== undefined) {
       onOutcomeSelect(outcome);
     }
@@ -231,7 +231,7 @@ export default function PEICurriculumConnector({
             placeholder="Search outcomes..."
             type="text"
             value={searchTerm}
-            onChange={(e) => {
+            onChange={(e): void => {
  setSearchTerm(e.target.value); 
 }}
           />

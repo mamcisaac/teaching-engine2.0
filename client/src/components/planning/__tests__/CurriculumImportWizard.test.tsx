@@ -1,31 +1,33 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
+import type { Mock } from 'vitest';
 import { CurriculumImportWizard } from '../CurriculumImportWizard';
 
 // Mock fetch
-global.fetch = jest.fn();
+global.fetch = vi.fn();
 
 // Mock toast
-const mockToast = jest.fn();
-jest.mock('../../ui/use-toast', () => ({
+const mockToast = vi.fn();
+vi.mock('../../ui/use-toast', () => ({
   useToast: () => ({ toast: mockToast }),
 }));
 
 // Mock logger
-jest.mock('../../../utils/logger', () => ({
+vi.mock('../../../utils/logger', () => ({
   default: {
-    error: jest.fn(),
+    error: vi.fn(),
   },
 }));
 
 describe('CurriculumImportWizard', () => {
-  const mockOnClose = jest.fn();
-  const mockOnSuccess = jest.fn();
+  const mockOnClose = vi.fn();
+  const mockOnSuccess = vi.fn();
 
   beforeEach(() => {
-    jest.clearAllMocks();
-    (global.fetch as jest.Mock).mockClear();
+    vi.clearAllMocks();
+    (global.fetch as Mock).mockClear();
     localStorage.setItem('token', 'test-token');
   });
 
@@ -53,7 +55,7 @@ describe('CurriculumImportWizard', () => {
     });
 
     it('should handle file upload', async () => {
-      (global.fetch as jest.Mock).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ importId: 123 }),
       });
@@ -85,7 +87,7 @@ describe('CurriculumImportWizard', () => {
     });
 
     it('should handle upload failure', async () => {
-      (global.fetch as jest.Mock).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: false,
       });
 
@@ -107,7 +109,7 @@ describe('CurriculumImportWizard', () => {
 
     it('should show uploading state', async () => {
       let resolveUpload: any;
-      (global.fetch as jest.Mock).mockImplementationOnce(() => 
+      (global.fetch as Mock).mockImplementationOnce(() => 
         new Promise(resolve => { resolveUpload = resolve; })
       );
 
@@ -142,13 +144,13 @@ describe('CurriculumImportWizard', () => {
   describe('Processing Step', () => {
     it('should show processing state and poll for status', async () => {
       // Mock upload response
-      (global.fetch as jest.Mock).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ importId: 123 }),
       });
 
       // Mock status check - first processing, then ready
-      (global.fetch as jest.Mock)
+      (global.fetch as Mock)
         .mockResolvedValueOnce({
           ok: true,
           json: async () => ({ 
@@ -189,12 +191,12 @@ describe('CurriculumImportWizard', () => {
     });
 
     it('should handle processing failure', async () => {
-      (global.fetch as jest.Mock).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ importId: 123 }),
       });
 
-      (global.fetch as jest.Mock).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ 
           status: 'FAILED',
@@ -222,12 +224,12 @@ describe('CurriculumImportWizard', () => {
 
   describe('Review Step', () => {
     const setupReviewStep = async () => {
-      (global.fetch as jest.Mock).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ importId: 123 }),
       });
 
-      (global.fetch as jest.Mock).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ 
           status: 'READY_FOR_REVIEW',
@@ -306,12 +308,12 @@ describe('CurriculumImportWizard', () => {
   describe('Confirmation Step', () => {
     it('should confirm import and show success', async () => {
       // Setup through review step
-      (global.fetch as jest.Mock).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ importId: 123 }),
       });
 
-      (global.fetch as jest.Mock).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ 
           status: 'READY_FOR_REVIEW',
@@ -327,7 +329,7 @@ describe('CurriculumImportWizard', () => {
       });
 
       // Mock confirm response
-      (global.fetch as jest.Mock).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ expectationsCount: 1 }),
       });
@@ -363,12 +365,12 @@ describe('CurriculumImportWizard', () => {
     });
 
     it('should disable import button when data is invalid', async () => {
-      (global.fetch as jest.Mock).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ importId: 123 }),
       });
 
-      (global.fetch as jest.Mock).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ 
           status: 'READY_FOR_REVIEW',
@@ -409,12 +411,12 @@ describe('CurriculumImportWizard', () => {
 
     it('should navigate back to upload from review', async () => {
       // Setup to review step
-      (global.fetch as jest.Mock).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ importId: 123 }),
       });
 
-      (global.fetch as jest.Mock).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ 
           status: 'READY_FOR_REVIEW',
@@ -454,7 +456,7 @@ describe('CurriculumImportWizard', () => {
       expect(steps[0]).toHaveClass('bg-blue-600');
       
       // Upload a file to move to processing
-      (global.fetch as jest.Mock).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ importId: 123 }),
       });

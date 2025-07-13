@@ -18,7 +18,7 @@ import * as matchers from '@testing-library/jest-dom/matchers';
 import { expect, vi, beforeEach } from 'vitest';
 
 // Extend Vitest's expect with jest-dom matchers
-expect.extend(matchers);
+expect.extend(matchers as any);
 
 // Mock HTMLCanvasElement before any imports
 const mockCanvas = {

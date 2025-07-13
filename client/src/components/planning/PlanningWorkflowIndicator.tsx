@@ -35,7 +35,7 @@ export function PlanningWorkflowIndicator({
   currentLevel,
   className,
 }: PlanningWorkflowIndicatorProps): React.ReactElement {
-  const getStepIcon = (level: LevelProgress) => {
+  const getStepIcon = (level: LevelProgress): React.ReactElement => {
     if (level.isComplete) {
       return <CheckCircle2 className="h-5 w-5 text-green-600" />;
     } else if (!level.isAccessible) {
@@ -47,7 +47,7 @@ export function PlanningWorkflowIndicator({
     
   };
 
-  const getStepStyles = (level: LevelProgress) => {
+  const getStepStyles = (level: LevelProgress): string => {
     if (level.isComplete) {
       return 'border-green-600 bg-green-50';
     } else if (!level.isAccessible) {
@@ -59,7 +59,7 @@ export function PlanningWorkflowIndicator({
     
   };
 
-  const canNavigate = (level: LevelProgress) => level.isAccessible || level.isComplete;
+  const canNavigate = (level: LevelProgress): boolean => level.isAccessible || level.isComplete;
 
   return (
     <div className={cn('bg-white rounded-lg shadow-sm p-6', className)}>

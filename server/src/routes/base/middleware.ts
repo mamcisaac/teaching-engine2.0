@@ -143,7 +143,7 @@ export const requestLogger = (req: Request, res: Response, next: NextFunction): 
 /**
  * Rate limiting middleware factory
  */
-export const createRateLimit = (options: { windowMs: number; max: number; message?: string }) => {
+export const createRateLimit = (options: { windowMs: number; max: number; message?: string }): ((req: Request, res: Response, next: NextFunction) => void) => {
   const requests = new Map<string, { count: number; resetTime: number }>();
 
   return (req: Request, res: Response, next: NextFunction): void => {

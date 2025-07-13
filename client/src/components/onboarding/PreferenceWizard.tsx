@@ -62,7 +62,7 @@ export default function PreferenceWizard({ onComplete, onSkip }: PreferenceWizar
     'Music',
   ];
 
-  const handleSubjectChange = (subject: string, checked: boolean) => {
+  const handleSubjectChange = (subject: string, checked: boolean): void => {
     setPreferences(prev => ({
       ...prev,
       subjects: checked
@@ -71,7 +71,7 @@ export default function PreferenceWizard({ onComplete, onSkip }: PreferenceWizar
     }));
   };
 
-  const handleNotificationChange = (key: keyof typeof preferences.notifications, checked: boolean) => {
+  const handleNotificationChange = (key: keyof typeof preferences.notifications, checked: boolean): void => {
     setPreferences(prev => ({
       ...prev,
       notifications: {
@@ -81,7 +81,7 @@ export default function PreferenceWizard({ onComplete, onSkip }: PreferenceWizar
     }));
   };
 
-  const handleComplete = () => {
+  const handleComplete = (): void => {
     // Save preferences to localStorage for now
     localStorage.setItem('teacher-preferences', JSON.stringify(preferences));
     onComplete(preferences);

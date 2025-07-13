@@ -69,7 +69,7 @@ export default function FormsDataAgent({
   const addBatchOperation = (
     type: 'unit' | 'lesson',
     data: UnitPlanFormData | LessonPlanFormData,
-  ) => {
+  ): void => {
     const operation: BatchOperation = {
       id: `${type}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
       type,
@@ -81,11 +81,11 @@ export default function FormsDataAgent({
     setBatchOperations((prev) => [...prev, operation]);
   };
 
-  const removeBatchOperation = (id: string) => {
+  const removeBatchOperation = (id: string): void => {
     setBatchOperations((prev) => prev.filter((op) => op.id !== id));
   };
 
-  const clearAllOperations = () => {
+  const clearAllOperations = (): void => {
     setBatchOperations([]);
   };
 
@@ -107,7 +107,7 @@ export default function FormsDataAgent({
     return errors;
   };
 
-  const processBatchOperations = async () => {
+  const processBatchOperations = async (): Promise<void> => {
     if (batchOperations.length === 0) {
 return;
 }
@@ -179,7 +179,7 @@ return;
   };
 
   // Template generation
-  const generateTemplate = (type: 'unit' | 'lesson') => {
+  const generateTemplate = (type: 'unit' | 'lesson'): void => {
     const template =
       type === 'unit'
         ? ({
@@ -243,7 +243,7 @@ return;
   };
 
   // Import handling
-  const handleFileImport = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileImport = async (event: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
     const file = event.target.files?.[0];
     if (!file) {
 return;

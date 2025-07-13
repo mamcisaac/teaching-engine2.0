@@ -18,7 +18,7 @@ export function createBilingualSchema(
   fieldName: string,
   baseSchema: z.ZodTypeAny,
   options: BilingualSchemaOptions = {},
-) {
+): Record<string, z.ZodTypeAny> {
   const { requireBilingual = false } = options;
 
   const schema: Record<string, z.ZodTypeAny> = {
@@ -60,7 +60,7 @@ export const bilingualSchemas = {
   string: (
     fieldName: string,
     options?: BilingualSchemaOptions & { min?: number; max?: number },
-  ) => {
+  ): Record<string, z.ZodTypeAny> => {
     let schema = z.string();
     if (options?.min) {
 schema = schema.min(options.min);
@@ -75,7 +75,7 @@ schema = schema.max(options.max);
   requiredString: (
     fieldName: string,
     options?: BilingualSchemaOptions & { min?: number; max?: number },
-  ) => {
+  ): Record<string, z.ZodTypeAny> => {
     let schema = z.string().min(1, `${fieldName} is required`);
     if (options?.min) {
 schema = schema.min(options.min);
@@ -87,15 +87,15 @@ schema = schema.max(options.max);
   },
 
   // Optional text field with bilingual support
-  text: (fieldName: string, options?: BilingualSchemaOptions) => createBilingualSchema(fieldName, z.string().optional(), options),
+  text: (fieldName: string, options?: BilingualSchemaOptions): Record<string, z.ZodTypeAny> => createBilingualSchema(fieldName, z.string().optional(), options),
 
   // Email field (usually not bilingual, but included for completeness)
-  email: (fieldName = 'email') => ({
+  email: (fieldName = 'email'): Record<string, z.ZodTypeAny> => ({
     [fieldName]: z.string().email('Invalid email address'),
   }),
 
   // Date field
-  date: (fieldName: string) => ({
+  date: (fieldName: string): Record<string, z.ZodTypeAny> => ({
     [fieldName]: z
       .string()
       .datetime()
@@ -104,7 +104,7 @@ schema = schema.max(options.max);
   }),
 
   // Number field
-  number: (fieldName: string, options?: { min?: number; max?: number }) => {
+  number: (fieldName: string, options?: { min?: number; max?: number }): Record<string, z.ZodTypeAny> => {
     let schema = z.number();
     if (options?.min !== undefined) {
 schema = schema.min(options.min);
@@ -116,12 +116,12 @@ schema = schema.max(options.max);
   },
 
   // Boolean field
-  boolean: (fieldName: string) => ({
+  boolean: (fieldName: string): Record<string, z.ZodTypeAny> => ({
     [fieldName]: z.boolean(),
   }),
 
   // Enum field
-  enum: <T extends readonly [string, ...string[]]>(fieldName: string, values: T) => ({
+  enum: <T extends readonly [string, ...string[]]>(fieldName: string, values: T): Record<string, z.ZodTypeAny> => ({
     [fieldName]: z.enum(values),
   }),
 };

@@ -99,7 +99,7 @@ export const useEngagementTrends = (startDate: string, endDate: string): UseQuer
     staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
-export const useCompletionRates = (period: 'week' | 'month' | 'quarter'): UseQueryResult<{ period: string; completed: number; total: number }[]> =>
+export const useCompletionRates = (period: 'week' | 'month' | 'quarter'): UseQueryResult<{ period: string; planned: number; completed: number; rate: number }[]> =>
   useQuery({
     queryKey: ['completion-rates', period],
     queryFn: () => routineApi.stats.getCompletionRates(period),
@@ -107,7 +107,7 @@ export const useCompletionRates = (period: 'week' | 'month' | 'quarter'): UseQue
   });
 
 // Search hooks
-export const useRoutineSearch = (query: string, type: 'templates' | 'daily' | 'class' = 'templates'): UseQueryResult<OralRoutineTemplate[] | DailyOralRoutine[] | ClassRoutine[]> =>
+export const useRoutineSearch = (query: string, type: 'templates' | 'daily' | 'class' = 'templates'): UseQueryResult<(OralRoutineTemplate | DailyOralRoutine | ClassRoutine)[]> =>
   useQuery({
     queryKey: ['routine-search', query, type],
     queryFn: () => routineApi.search(query, type),
@@ -395,7 +395,7 @@ export const useUploadVisualAids = (): UseMutationResult<{ visualAids: string[] 
 };
 
 // Import/Export hooks
-export const useImportRoutines = (): UseMutationResult<{ imported: number; failed: number; errors: string[] }, Error, { file: File; format: 'csv' | 'json' }> => {
+export const useImportRoutines = (): UseMutationResult<{ imported: number; failed: number; errors?: string[] }, Error, { file: File; format: 'csv' | 'json' }> => {
   const queryClient = useQueryClient();
 
   return useMutation({

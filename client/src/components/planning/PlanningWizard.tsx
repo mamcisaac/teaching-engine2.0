@@ -120,7 +120,7 @@ export function PlanningWizard({
   const isLastStep = currentStep === WIZARD_STEPS.length - 1;
   const isStepCompleted = completedLevels.includes(currentStepData.id);
 
-  const handleNext = () => {
+  const handleNext = (): void => {
     if (isLastStep) {
       onClose?.();
     } else {
@@ -128,13 +128,13 @@ export function PlanningWizard({
     }
   };
 
-  const handlePrevious = () => {
+  const handlePrevious = (): void => {
     if (!isFirstStep) {
       setCurrentStep(currentStep - 1);
     }
   };
 
-  const handleStartStep = () => {
+  const handleStartStep = (): void => {
     navigate(currentStepData.route);
   };
 

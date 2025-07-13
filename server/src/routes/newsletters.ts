@@ -23,8 +23,9 @@ const generateNewsletterSchema = z.object({
  * Generate newsletter draft
  * POST /api/newsletters/generate
  */
-router.post('/generate', async (req: Request, res: Response): Promise<void> => {
-  try {
+router.post('/generate', (req: Request, res: Response): void => {
+  void (async () => {
+    try {
     const userId = req.user?.id;
     if (!userId) {
       res.status(401).json({ error: 'Authentication required' });
@@ -67,14 +68,16 @@ router.post('/generate', async (req: Request, res: Response): Promise<void> => {
     });
     return;
   }
+  })();
 });
 
 /**
  * Get newsletter generation status/info
  * GET /api/newsletters/status
  */
-router.get('/status', async (req: Request, res: Response): Promise<void> => {
-  try {
+router.get('/status', (req: Request, res: Response): void => {
+  void (async () => {
+    try {
     const userId = req.user?.id;
     if (!userId) {
       res.status(401).json({ error: 'Authentication required' });
@@ -124,6 +127,7 @@ router.get('/status', async (req: Request, res: Response): Promise<void> => {
     });
     return;
   }
+  })();
 });
 
 export default router;

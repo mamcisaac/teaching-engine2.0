@@ -36,7 +36,8 @@ function LoginPage(): React.ReactElement {
     }
   }, [isAuthenticated, isAuthLoading, navigate]);
 
-  const handleSubmit = async (e: React.FormEvent): Promise<void> => {
+  const handleSubmit = (e: React.FormEvent): void => {
+    void (async (): Promise<void> => {
     e.preventDefault();
 
     // Prevent multiple submissions
@@ -67,6 +68,7 @@ function LoginPage(): React.ReactElement {
     } finally {
       setIsLoading(false);
     }
+    })();
   };
 
   return (

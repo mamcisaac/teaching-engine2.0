@@ -1,5 +1,7 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, renderHook } from '@testing-library/react';
 import React from 'react';
+import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
+import type { Mock } from 'vitest';
 
 import { AIErrorBoundary, AIErrorType, isAIError, useAIErrorHandler, WithAIErrorBoundary } from '../AIErrorBoundary';
 
@@ -11,9 +13,9 @@ declare global {
 }
 
 // Mock logger
-jest.mock('../../../utils/logger', () => ({
+vi.mock('../../../utils/logger', () => ({
   default: {
-    error: jest.fn(),
+    error: vi.fn(),
   },
 }));
 
@@ -26,11 +28,11 @@ const ThrowError: React.FC<{ shouldThrow?: boolean; error?: Error }> = ({ should
 };
 
 describe('AIErrorBoundary', () => {
-  let mockGtag: jest.Mock;
+  let mockGtag: Mock;
 
   beforeEach(() => {
-    jest.clearAllMocks();
-    mockGtag = jest.fn();
+    vi.clearAllMocks();
+    mockGtag = vi.fn();
     window.gtag = mockGtag;
     // Clear sessionStorage
     sessionStorage.clear();
@@ -50,9 +52,9 @@ describe('AIErrorBoundary', () => {
       );
       expect(screen.getByText('Normal content')).toBeInTheDocument();
 
-      // Test when hasError is true but error is null
+      // Test when hasError is true but error is undefined
       const errorBoundary = new AIErrorBoundary({ children: null });
-      errorBoundary.state = { hasError: true, error: null, retryCount: 0 };
+      errorBoundary.state = { hasError: true, error: undefined, retryCount: 0 };
       expect(errorBoundary.render()).toEqual(null);
 
       // Test when hasError is true but error is undefined  
@@ -343,7 +345,7 @@ describe('AIErrorBoundary', () => {
 
   describe('Retry Functionality', () => {
     it('should limit retries to maxRetries', () => {
-      const onRetry = jest.fn();
+      const onRetry = vi.fn();
       const { rerender } = render(
         <AIErrorBoundary onRetry={onRetry}>
           <ThrowError shouldThrow={true} error={new Error('rate limit')} />
@@ -386,7 +388,7 @@ describe('AIErrorBoundary', () => {
 
   describe('Manual Fallback', () => {
     it('should set ai_disabled in sessionStorage and reload page', () => {
-      const mockReload = jest.fn();
+      const mockReload = vi.fn();
       Object.defineProperty(window, 'location', {
         value: { reload: mockReload },
         writable: true,
@@ -475,7 +477,7 @@ describe('AIErrorBoundary', () => {
     });
 
     it('should pass through props correctly', () => {
-      const onRetry = jest.fn();
+      const onRetry = vi.fn();
       render(
         <WithAIErrorBoundary onRetry={onRetry} enableManualFallback={false}>
           <ThrowError shouldThrow={true} error={new Error('rate limit')} />

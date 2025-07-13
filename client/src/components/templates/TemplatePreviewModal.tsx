@@ -1,5 +1,5 @@
 import { X, FileText, Calendar, Clock, Users, Tag, ChevronDown, ChevronRight } from 'lucide-react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import type { PlanTemplate, UnitPlanContent, LessonPlanContent } from '../../types/template';
 import { Button } from '../ui/Button';
@@ -17,7 +17,7 @@ export default function TemplatePreviewModal({
 }: TemplatePreviewModalProps): React.ReactElement {
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(['overview']));
 
-  const toggleSection = (section: string) => {
+  const toggleSection = (section: string): void => {
     setExpandedSections(prev => {
       const newSet = new Set(prev);
       if (newSet.has(section)) {
@@ -29,7 +29,7 @@ export default function TemplatePreviewModal({
     });
   };
 
-  const renderUnitPlanContent = (content: UnitPlanContent) => {
+  const renderUnitPlanContent = (content: UnitPlanContent): React.ReactElement => {
     const sections = [
       { key: 'overview', title: 'Overview', content: content.overview },
       { key: 'bigIdeas', title: 'Big Ideas', content: content.bigIdeas },
@@ -55,7 +55,7 @@ return null;
             <div key={key} className="border rounded-lg">
               <button
                 className="w-full px-4 py-3 flex items-center justify-between hover:bg-gray-50 transition-colors"
-                onClick={() => {
+                onClick={(): void => {
  toggleSection(key); 
 }}
               >
@@ -113,7 +113,7 @@ return null;
     );
   };
 
-  const renderLessonPlanContent = (content: LessonPlanContent) => {
+  const renderLessonPlanContent = (content: LessonPlanContent): React.ReactElement => {
     const sections = [
       { key: 'objectives', title: 'Learning Objectives', content: content.objectives, isList: true },
       { key: 'materials', title: 'Materials', content: content.materials, isList: true },
@@ -139,7 +139,7 @@ return null;
             <div key={key} className="border rounded-lg">
               <button
                 className="w-full px-4 py-3 flex items-center justify-between hover:bg-gray-50 transition-colors"
-                onClick={() => {
+                onClick={(): void => {
  toggleSection(key); 
 }}
               >

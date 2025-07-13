@@ -1,25 +1,27 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
+import type { Mock } from 'vitest';
 import { useParams } from 'react-router-dom';
 import { PlanAccessTracker } from '../PlanAccessTracker';
 
 // Mock react-router-dom
-jest.mock('react-router-dom', () => ({
-  useParams: jest.fn(),
+vi.mock('react-router-dom', () => ({
+  useParams: vi.fn(),
 }));
 
 // Mock the hook
-jest.mock('../../../hooks/useRecentPlans', () => ({
-  useTrackPlanAccess: jest.fn(),
+vi.mock('../../../hooks/useRecentPlans', () => ({
+  useTrackPlanAccess: vi.fn(),
 }));
 
 describe('PlanAccessTracker', () => {
-  const mockUseParams = useParams as jest.Mock;
-  const mockMutate = jest.fn();
+  const mockUseParams = useParams as Mock;
+  const mockMutate = vi.fn();
   const mockUseTrackPlanAccess = require('../../../hooks/useRecentPlans').useTrackPlanAccess;
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     mockUseTrackPlanAccess.mockReturnValue({ mutate: mockMutate });
   });
 

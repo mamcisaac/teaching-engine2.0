@@ -49,7 +49,7 @@ export function OnboardingFlowOptimized(): React.ReactElement | null {
       return;
     }
 
-    const updatePosition = () => {
+    const updatePosition = (): void => {
       if (currentStep?.targetElement === null || currentStep?.targetElement === undefined || currentStep.targetElement === '') {
         setHighlightPosition(null);
         return;
@@ -132,7 +132,7 @@ export function OnboardingFlowOptimized(): React.ReactElement | null {
 return;
 }
 
-    const handleClick = (e: MouseEvent) => {
+    const handleClick = (e: MouseEvent): void => {
       if (currentStep?.targetElement === null || currentStep?.targetElement === undefined || currentStep.targetElement === '') {
 return;
 }

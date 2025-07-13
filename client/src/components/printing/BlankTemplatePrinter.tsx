@@ -84,34 +84,34 @@ export function BlankTemplatePrinter({
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewHTML, setPreviewHTML] = useState('');
 
-  const handleSchoolInfoChange = (field: keyof ETFOSchoolInfo, value: string) => {
+  const handleSchoolInfoChange = (field: keyof ETFOSchoolInfo, value: string): void => {
     setSchoolInfo(prev => ({ ...prev, [field]: value }));
   };
 
-  const generateTemplate = (template: keyof typeof templateConfigs) => {
+  const generateTemplate = (template: keyof typeof templateConfigs): string => {
     const config = templateConfigs[template];
     return config.generator(schoolInfo);
   };
 
-  const handlePreview = (template: keyof typeof templateConfigs) => {
+  const handlePreview = (template: keyof typeof templateConfigs): void => {
     const html = generateTemplate(template);
     setPreviewHTML(html);
     setPreviewOpen(true);
   };
 
-  const handlePrint = (template: keyof typeof templateConfigs) => {
+  const handlePrint = (template: keyof typeof templateConfigs): void => {
     const config = templateConfigs[template];
     const html = generateTemplate(template);
     printHTML(html, config.filename);
   };
 
-  const handleDownload = (template: keyof typeof templateConfigs) => {
+  const handleDownload = (template: keyof typeof templateConfigs): void => {
     const config = templateConfigs[template];
     const html = generateTemplate(template);
     downloadHTML(html, config.filename);
   };
 
-  const renderTemplateCard = (key: keyof typeof templateConfigs) => {
+  const renderTemplateCard = (key: keyof typeof templateConfigs): JSX.Element => {
     const config = templateConfigs[key];
     const IconComponent = config.icon;
 
@@ -351,12 +351,12 @@ return null;
 
   const config = templateConfigs[templateType];
 
-  const handleQuickPrint = () => {
+  const handleQuickPrint = (): void => {
     const html = config.generator(schoolInfo ?? {});
     printHTML(html, config.filename);
   };
 
-  const _handleQuickDownload = () => {
+  const _handleQuickDownload = (): void => {
     const html = config.generator(schoolInfo ?? {});
     downloadHTML(html, config.filename);
   };

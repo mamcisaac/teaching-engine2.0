@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 
 import OralRoutineSummary from '../OralRoutineSummary';
 
@@ -11,7 +11,7 @@ vi.mock('../../api/domains/routine/hooks', () => ({
 import { useRoutineStats } from '../../api/domains/routine/hooks';
 
 describe('OralRoutineSummary', () => {
-  const mockUseRoutineStats = useRoutineStats as jest.MockedFunction<typeof useRoutineStats>;
+  const mockUseRoutineStats = useRoutineStats as Mock<typeof useRoutineStats>;
 
   beforeEach(() => {
     vi.clearAllMocks();

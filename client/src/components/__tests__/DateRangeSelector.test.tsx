@@ -1,9 +1,10 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import DateRangeSelector from '../DateRangeSelector';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
+import { DateRangeSelector } from '../DateRangeSelector';
 
 describe('DateRangeSelector', () => {
-  const mockOnChange = jest.fn();
+  const mockOnChange = vi.fn();
   const defaultProps = {
     startDate: new Date('2024-01-01'),
     endDate: new Date('2024-01-07'),
@@ -11,7 +12,7 @@ describe('DateRangeSelector', () => {
   };
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe('strict boolean expressions', () => {

@@ -184,7 +184,7 @@ export const TUTORIAL_FLOWS: Record<string, OnboardingFlow> = {
 
 const OnboardingContext = createContext<OnboardingContextType | undefined>(undefined);
 
-export function OnboardingProvider({ children }: { children: ReactNode }) {
+export function OnboardingProvider({ children }: { children: ReactNode }): React.ReactElement {
   const [state, setState] = useState<OnboardingState>(() => {
     // Check if first time user
     const isFirstTime = localStorage.getItem(FIRST_TIME_KEY) !== 'false';
@@ -225,7 +225,7 @@ export function OnboardingProvider({ children }: { children: ReactNode }) {
     }));
   }, [state.completedFlows, state.skippedOnboarding]);
 
-  const startOnboarding = (flowId = 'main-onboarding') => {
+  const startOnboarding = (flowId = 'main-onboarding'): void => {
     const flow = TUTORIAL_FLOWS[flowId];
     if (flow) {
       setState(prev => ({
@@ -237,7 +237,7 @@ export function OnboardingProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const nextStep = () => {
+  const nextStep = (): void => {
     if (!state.currentFlow) {
 return;
 }
@@ -252,7 +252,7 @@ return;
     }
   };
 
-  const previousStep = () => {
+  const previousStep = (): void => {
     if (state.currentStepIndex > 0) {
       setState(prev => ({
         ...prev,
@@ -261,7 +261,7 @@ return;
     }
   };
 
-  const skipOnboarding = () => {
+  const skipOnboarding = (): void => {
     localStorage.setItem(FIRST_TIME_KEY, 'false');
     setState(prev => ({
       ...prev,
@@ -273,7 +273,7 @@ return;
     }));
   };
 
-  const completeOnboarding = () => {
+  const completeOnboarding = (): void => {
     if (state.currentFlow) {
       localStorage.setItem(FIRST_TIME_KEY, 'false');
       setState(prev => ({
@@ -287,7 +287,7 @@ return;
     }
   };
 
-  const resetOnboarding = () => {
+  const resetOnboarding = (): void => {
     localStorage.removeItem(ONBOARDING_KEY);
     localStorage.removeItem(FIRST_TIME_KEY);
     setState({
@@ -328,7 +328,7 @@ return;
   );
 }
 
-export function useOnboarding() {
+export function useOnboarding(): OnboardingContextType {
   const context = useContext(OnboardingContext);
   if (!context) {
     throw new Error('useOnboarding must be used within OnboardingProvider');
@@ -337,7 +337,7 @@ export function useOnboarding() {
 }
 
 // Hook to check if a specific flow has been completed
-export function useOnboardingComplete(flowId: string) {
+export function useOnboardingComplete(flowId: string): boolean {
   const { state } = useOnboarding();
   return state.completedFlows.includes(flowId);
 }

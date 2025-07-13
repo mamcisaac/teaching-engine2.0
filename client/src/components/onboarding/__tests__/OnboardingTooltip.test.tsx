@@ -91,7 +91,7 @@ describe('OnboardingTooltip', () => {
     it('should not show skip button when showSkip is null', () => {
       const props = {
         ...defaultFlowProps,
-        currentStep: { ...defaultFlowProps.currentStep, showSkip: null },
+        currentStep: { ...defaultFlowProps.currentStep, showSkip: undefined },
       };
       
       render(<OnboardingTooltip {...props} />);
@@ -125,7 +125,7 @@ describe('OnboardingTooltip', () => {
           ...defaultFlowProps.state,
           currentFlow: { 
             ...defaultFlowProps.state.currentFlow,
-            estimatedTime: null 
+            estimatedTime: undefined 
           },
         },
       };
@@ -236,7 +236,7 @@ describe('OnboardingTooltip', () => {
     it('should not show action when actionText is null', () => {
       const props = {
         ...defaultHoverProps,
-        actionText: null,
+        actionText: undefined,
         onAction: vi.fn(),
       };
       
@@ -253,7 +253,7 @@ describe('OnboardingTooltip', () => {
       const props = {
         ...defaultHoverProps,
         actionText: 'Learn More',
-        onAction: null,
+        onAction: undefined,
       };
       
       render(<OnboardingTooltip {...props} />);

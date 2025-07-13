@@ -4,7 +4,7 @@ import { Router } from 'express';
 import logger from '../logger';
 import { aiPlanningAssistant } from '../services/ai/aiPlanningService';
 // Simple rate limiting for AI endpoints (to avoid async issues)
-const aiRateLimit = (_req: Request, _res: Response, next: () => void) => {
+const aiRateLimit = (_req: Request, _res: Response, next: () => void): void => {
   // Simple in-memory rate limiting - production should use proper rate limiter
   next();
 };

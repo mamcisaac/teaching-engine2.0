@@ -319,7 +319,7 @@ export function AILessonPlanPanel({
     setIsGenerating(true);
 
     try {
-      let result;
+      let result: { suggestions: string[]; rationale?: string };
       
       switch (type) {
         case 'materials':
@@ -328,7 +328,7 @@ export function AILessonPlanPanel({
             subject: formData.subject,
             grade: parseInt(formData.grade),
             classSize: 25,
-          });
+          }) as { suggestions: string[]; rationale?: string };
           break;
         case 'assessments':
           result = await generateAssessmentStrategies.mutateAsync({
@@ -336,7 +336,7 @@ export function AILessonPlanPanel({
             activities: [formData.lessonTitle],
             subject: formData.subject,
             grade: parseInt(formData.grade),
-          });
+          }) as { suggestions: string[]; rationale?: string };
           break;
         default:
           throw new Error(`Suggestion type ${type} not implemented for individual generation`);
@@ -346,8 +346,8 @@ export function AILessonPlanPanel({
         ...prev.filter(s => s.type !== type),
         {
           type,
-          content: result.suggestions as string[],
-          rationale: result.rationale as string,
+          content: result.suggestions,
+          rationale: result.rationale ?? '',
         }
       ]);
 

@@ -47,7 +47,7 @@ interface ImportSession {
   errors: string[];
 }
 
-export default function CurriculumImportPage() {
+export default function CurriculumImportPage(): React.ReactElement {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [importSession, setImportSession] = useState<ImportSession | null>(null);

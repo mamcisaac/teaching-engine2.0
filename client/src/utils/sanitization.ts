@@ -43,7 +43,7 @@ interface SafeHtmlRendererProps {
   className?: string;
 }
 
-export function SafeHtmlRenderer(props: SafeHtmlRendererProps) {
+export function SafeHtmlRenderer(props: SafeHtmlRendererProps): React.ReactElement {
   // Use a more secure approach - convert HTML to React elements
   const sanitizedHtml = sanitizeHtml(props.html);
   
@@ -65,7 +65,7 @@ export function SafeHtmlRenderer(props: SafeHtmlRendererProps) {
 }
 
 // Alternative: Use this for truly safe HTML rendering when needed
-export function SafeTextRenderer({ text, className }: { text: string; className?: string }) {
+export function SafeTextRenderer({ text, className }: { text: string; className?: string }): React.ReactElement {
   return React.createElement('div', {
     className
   }, text);

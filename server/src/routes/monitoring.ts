@@ -11,14 +11,17 @@ import { CacheUtils } from '../services/cache';
 const router = Router();
 
 // Dashboard metrics endpoint
-router.get('/dashboard', authenticate, async (req: Request, res: Response): Promise<void> => {
-  await withSpan('api.monitoring.dashboard', {}, async () => {
-    await getDashboardMetrics(req, res);
-  });
+router.get('/dashboard', authenticate, (req: Request, res: Response): void => {
+  void (async () => {
+    await withSpan('api.monitoring.dashboard', {}, async () => {
+      await getDashboardMetrics(req, res);
+    });
+  })();
 });
 
 // Alert status endpoint
-router.get('/alerts', authenticate, async (_req: Request, res: Response): Promise<void> => {
+router.get('/alerts', authenticate, (_req: Request, res: Response): void => {
+  void (async () => {
   await withSpan('api.monitoring.alerts', {}, async () => {
     try {
       const status = getAlertStatus();
@@ -28,11 +31,13 @@ router.get('/alerts', authenticate, async (_req: Request, res: Response): Promis
       logger.error('Failed to get alert status', _error);
       res.status(500).json({ error: 'Failed to get alert status' });
     }
-  });
+    });
+  })();
 });
 
 // Manual alert trigger (for testing)
-router.post('/alerts/:alertId/trigger', authenticate, async (req: Request, res: Response): Promise<void> => {
+router.post('/alerts/:alertId/trigger', authenticate, (req: Request, res: Response): void => {
+  void (async () => {
   await withSpan('api.monitoring.triggerAlert', {}, async (span) => {
     try {
       const { alertId } = req.params;
@@ -50,11 +55,13 @@ router.post('/alerts/:alertId/trigger', authenticate, async (req: Request, res: 
       logger.error('Failed to trigger manual alert', _error);
       res.status(500).json({ error: 'Failed to trigger alert' });
     }
-  });
+    });
+  })();
 });
 
 // Health check endpoint with detailed status
-router.get('/health/detailed', async (_req: Request, res: Response): Promise<void> => {
+router.get('/health/detailed', (_req: Request, res: Response): void => {
+  void (async () => {
   await withSpan('api.monitoring.healthDetailed', {}, async (span) => {
     try {
       const health = {
@@ -111,7 +118,8 @@ router.get('/health/detailed', async (_req: Request, res: Response): Promise<voi
         error: 'Health check failed',
       });
     }
-  });
+    });
+  })();
 });
 
 export default router;

@@ -28,21 +28,21 @@ export default function CalendarFilters({
   onFiltersChange,
   availableSubjects,
 }: CalendarFiltersProps): React.ReactElement {
-  const handleSubjectToggle = (subject: string) => {
+  const handleSubjectToggle = (subject: string): void => {
     const newSubjects = filters.subjects.includes(subject)
       ? filters.subjects.filter(s => s !== subject)
       : [...filters.subjects, subject];
     onFiltersChange({ ...filters, subjects: newSubjects });
   };
 
-  const handleEventTypeToggle = (eventType: string) => {
+  const handleEventTypeToggle = (eventType: string): void => {
     const newEventTypes = filters.eventTypes.includes(eventType)
       ? filters.eventTypes.filter(t => t !== eventType)
       : [...filters.eventTypes, eventType];
     onFiltersChange({ ...filters, eventTypes: newEventTypes });
   };
 
-  const handleClearFilters = () => {
+  const handleClearFilters = (): void => {
     onFiltersChange({
       subjects: [],
       eventTypes: [],

@@ -1,16 +1,17 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
 
 import { AIUnitPlanPanel } from '../AIUnitPlanPanel';
 
 // Mock all dependencies
-jest.mock('../../hooks/useAIPlanningAssistant', () => ({
+vi.mock('../../hooks/useAIPlanningAssistant', () => ({
   useAIPlanningAssistant: () => ({
-    generateUnitBigIdeas: { mutateAsync: jest.fn() },
+    generateUnitBigIdeas: { mutateAsync: vi.fn() },
   }),
 }));
 
-jest.mock('../../hooks/useAIStatus', () => ({
+vi.mock('../../hooks/useAIStatus', () => ({
   useAIStatus: () => ({
     canUseAI: true,
     aiDisabledReason: null,
@@ -20,21 +21,21 @@ jest.mock('../../hooks/useAIStatus', () => ({
   }),
 }));
 
-jest.mock('../../utils/logger', () => ({
+vi.mock('../../utils/logger', () => ({
   default: {
-    error: jest.fn(),
+    error: vi.fn(),
   },
 }));
 
-jest.mock('../ui/use-toast', () => ({
+vi.mock('../ui/use-toast', () => ({
   useToast: () => ({
-    toast: jest.fn(),
+    toast: vi.fn(),
   }),
 }));
 
 describe('AIUnitPlanPanel - Strict Boolean Expression Tests', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe('aiDisabledReason handling', () => {

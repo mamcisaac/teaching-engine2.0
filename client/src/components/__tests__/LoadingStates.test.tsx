@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { vi, describe, it, expect } from 'vitest';
 import { 
   LoadingSpinner, 
   PageLoader, 
@@ -149,7 +150,7 @@ describe('LoadingStates', () => {
 
   describe('RetryLoad', () => {
     it('should handle retry callback', () => {
-      const mockRetry = jest.fn();
+      const mockRetry = vi.fn();
       render(<RetryLoad onRetry={mockRetry} />);
       
       const button = screen.getByText('Try Again');

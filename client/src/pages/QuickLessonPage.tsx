@@ -11,13 +11,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../co
 import { useCreateETFOLessonPlan } from '../hooks/useETFOPlanning';
 import { useShowContextualHints } from '../hooks/useFeatureTutorial';
 import logger from '../utils/logger';
-export default function QuickLessonPage() {
+export default function QuickLessonPage(): React.ReactElement {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const createLesson = useCreateETFOLessonPlan();
   const showHints = useShowContextualHints();
 
-  const handleSubmit = async (data: LessonPlanFormData) => {
+  const handleSubmit = (data: LessonPlanFormData): void => {
+    void (async () => {
     setIsSubmitting(true);
 
     try {
@@ -40,6 +41,7 @@ export default function QuickLessonPage() {
     } finally {
       setIsSubmitting(false);
     }
+    })();
   };
 
   return (

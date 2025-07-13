@@ -62,11 +62,11 @@ export const writeOperationMiddleware = compose(
 export const readOperationMiddleware = compose(
   authenticatedApiMiddleware,
   rateLimiters.read,
-  conditional((req) => req.path.includes('/api/curriculum'), curriculumCache),
+  conditional((req): boolean => req.path.includes('/api/curriculum'), curriculumCache),
 );
 
 // File upload chain
-export const fileUploadMiddleware = (allowedTypes?: string[]) =>
+export const fileUploadMiddleware = (allowedTypes?: string[]): any =>
   compose(
     authenticatedApiMiddleware,
     rateLimiters.upload,

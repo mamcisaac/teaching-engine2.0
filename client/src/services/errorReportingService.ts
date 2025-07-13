@@ -262,7 +262,7 @@ export class ErrorReportingService {
       message: breadcrumb.message,
       category: breadcrumb.category,
       level: breadcrumb.level ?? 'info',
-      data: sanitizedData,
+      data: sanitizedData as { [key: string]: any } | undefined,
       timestamp: Date.now() / 1000,
     });
   }
@@ -279,7 +279,7 @@ export class ErrorReportingService {
     }
 
     const sanitizedContext = this.sanitizeData(context);
-    Sentry.setContext(key, sanitizedContext);
+    Sentry.setContext(key, sanitizedContext as { [key: string]: unknown } | null);
   }
 
   categorizeError(error: unknown): ErrorCategory {
@@ -414,7 +414,7 @@ export class ErrorReportingService {
     }
 
     if (breadcrumb.data) {
-      breadcrumb.data = this.sanitizeData(breadcrumb.data);
+      breadcrumb.data = this.sanitizeData(breadcrumb.data) as { [key: string]: any } | undefined;
     }
 
     return breadcrumb;
@@ -431,7 +431,7 @@ export class ErrorReportingService {
 
     // Sanitize extra data
     if (sanitized.extra) {
-      sanitized.extra = this.sanitizeData(sanitized.extra);
+      sanitized.extra = this.sanitizeData(sanitized.extra) as Sentry.Extras | undefined;
     }
 
     // Sanitize request data
@@ -446,7 +446,7 @@ export class ErrorReportingService {
         sanitized.request.query_string = this.sanitizeString(sanitized.request.query_string);
       }
       if (sanitized.request.cookies) {
-        sanitized.request.cookies = '[REDACTED]';
+        sanitized.request.cookies = {} as Record<string, string>;
       }
     }
 
@@ -458,13 +458,13 @@ export class ErrorReportingService {
     // Sanitize contexts
     if (sanitized.contexts) {
       for (const key in sanitized.contexts) {
-        sanitized.contexts[key] = this.sanitizeData(sanitized.contexts[key]);
+        sanitized.contexts[key] = this.sanitizeData(sanitized.contexts[key]) as Sentry.Context | undefined;
       }
     }
 
     // Sanitize tags
     if (sanitized.tags) {
-      sanitized.tags = this.sanitizeData(sanitized.tags);
+      sanitized.tags = this.sanitizeData(sanitized.tags) as { [key: string]: Sentry.Primitive; } | undefined;
     }
 
     return sanitized;

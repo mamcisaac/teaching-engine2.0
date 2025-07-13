@@ -1,13 +1,14 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { DuplicatePlanModal } from '../DuplicatePlanModal';
 
 // Mock API
-jest.mock('../../../api', () => ({
+vi.mock('../../../api', () => ({
   api: {
-    post: jest.fn(),
+    post: vi.fn(),
   },
 }));
 
@@ -28,11 +29,11 @@ const renderWithQueryClient = (ui: React.ReactElement) => {
 };
 
 describe('DuplicatePlanModal', () => {
-  const mockOnClose = jest.fn();
+  const mockOnClose = vi.fn();
   const mockApi = require('../../../api').api;
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   const renderModal = (props: Partial<Parameters<typeof DuplicatePlanModal>[0]> = {}) => {
@@ -214,7 +215,7 @@ describe('DuplicatePlanModal', () => {
     it('should close modal and redirect on success', async () => {
       const originalLocation = window.location;
       delete (window as any).location;
-      window.location = { ...originalLocation, href: '' };
+      (window as any).location = { ...originalLocation, href: '' };
       
       mockApi.post.mockResolvedValueOnce({ data: { id: 'new-123' } });
       
@@ -231,7 +232,7 @@ describe('DuplicatePlanModal', () => {
         expect(window.location.href).toBe('/planner/etfo-lessons/new-123');
       });
       
-      window.location = originalLocation;
+      (window as any).location = originalLocation;
     });
   });
 

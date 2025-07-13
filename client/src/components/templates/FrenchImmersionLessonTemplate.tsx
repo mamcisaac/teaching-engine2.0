@@ -56,21 +56,21 @@ export default function FrenchImmersionLessonTemplate({
     initialData?.parentCommunication?.homeActivities ?? [],
   );
 
-  const addVocabulary = () => {
+  const addVocabulary = (): void => {
     setVocabulary([...vocabulary, { english: '', french: '', pronunciation: '', context: '' }]);
   };
 
-  const updateVocabulary = (index: number, field: keyof BilingualVocabulary, value: string) => {
+  const updateVocabulary = (index: number, field: keyof BilingualVocabulary, value: string): void => {
     const updated = [...vocabulary];
     updated[index] = { ...updated[index], [field]: value };
     setVocabulary(updated);
   };
 
-  const removeVocabulary = (index: number) => {
+  const removeVocabulary = (index: number): void => {
     setVocabulary(vocabulary.filter((_, i) => i !== index));
   };
 
-  const addHomeActivity = () => {
+  const addHomeActivity = (): void => {
     setHomeActivities([
       ...homeActivities,
       {
@@ -84,7 +84,7 @@ export default function FrenchImmersionLessonTemplate({
     ]);
   };
 
-  const onSubmit = (data: FrenchImmersionLessonContent) => {
+  const onSubmit = (data: FrenchImmersionLessonContent): void => {
     const fullData = {
       ...data,
       languageFocus: {

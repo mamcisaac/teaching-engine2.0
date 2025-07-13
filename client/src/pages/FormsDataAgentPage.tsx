@@ -11,7 +11,7 @@ import {
   useCreateETFOLessonPlan,
 } from '../hooks/useETFOPlanning';
 import logger from '../utils/logger';
-export default function FormsDataAgentPage() {
+export default function FormsDataAgentPage(): React.ReactElement {
   // Fetch data for dropdowns and validation
   const { data: longRangePlans = [] } = useLongRangePlans();
   const { data: unitPlans = [] } = useUnitPlans({});

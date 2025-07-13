@@ -209,7 +209,7 @@ return;
       }, 2000);
       
       // Store timeout ID for cleanup
-      return () => {
+      return (): void => {
  clearTimeout(timeoutId); 
 };
     } catch (_error) {

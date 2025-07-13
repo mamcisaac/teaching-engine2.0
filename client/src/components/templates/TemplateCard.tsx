@@ -1,5 +1,6 @@
 import { format } from 'date-fns';
 import { Star, Calendar, Clock, Users, FileText, Copy } from 'lucide-react';
+import React from 'react';
 
 import type { PlanTemplate } from '../../types/template';
 import { Button } from '../ui/Button';
@@ -17,13 +18,13 @@ export default function TemplateCard({
   onApply,
   onDuplicate,
 }: TemplateCardProps): React.ReactElement {
-  const getTypeIcon = () => template.type === 'UNIT_PLAN' ? (
+  const getTypeIcon = (): React.ReactElement => template.type === 'UNIT_PLAN' ? (
       <FileText className="h-5 w-5 text-blue-600" />
     ) : (
       <Calendar className="h-5 w-5 text-green-600" />
     );
 
-  const getDuration = () => {
+  const getDuration = (): string => {
     if (template.type === 'UNIT_PLAN' && template.estimatedWeeks !== null && template.estimatedWeeks !== undefined && template.estimatedWeeks > 0) {
       return `${template.estimatedWeeks} week${template.estimatedWeeks > 1 ? 's' : ''}`;
     } else if (template.type === 'LESSON_PLAN' && template.estimatedMinutes !== null && template.estimatedMinutes !== undefined && template.estimatedMinutes > 0) {
@@ -32,7 +33,7 @@ export default function TemplateCard({
     return 'Duration not specified';
   };
 
-  const getGradeRange = () => {
+  const getGradeRange = (): string => {
     if (template.gradeMin !== null && template.gradeMin !== undefined && template.gradeMax !== undefined) {
       return template.gradeMin === template.gradeMax
         ? `Grade ${template.gradeMin}`

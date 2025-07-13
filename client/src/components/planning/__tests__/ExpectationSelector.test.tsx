@@ -2,11 +2,12 @@ import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
 import ExpectationSelector from '../ExpectationSelector';
 
 // Mock the hook
-jest.mock('../../../hooks/useETFOPlanning', () => ({
-  useCurriculumExpectations: jest.fn(),
+vi.mock('../../../hooks/useETFOPlanning', () => ({
+  useCurriculumExpectations: vi.fn(),
 }));
 
 const mockExpectations = [
@@ -61,11 +62,11 @@ const renderWithQueryClient = (ui: React.ReactElement) => {
 };
 
 describe('ExpectationSelector', () => {
-  const mockOnChange = jest.fn();
+  const mockOnChange = vi.fn();
   const mockUseCurriculumExpectations = require('../../../hooks/useETFOPlanning').useCurriculumExpectations;
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     mockUseCurriculumExpectations.mockReturnValue({
       data: mockExpectations,
       isLoading: false,

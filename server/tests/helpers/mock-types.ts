@@ -5,13 +5,13 @@
  * Resolves "mockImplementation is not a function" errors
  */
 
-import { jest } from '@jest/globals';
+import { vi, Mock } from 'vitest';
 
 /**
  * Proper Jest Mock Function Type
  * Ensures all Jest mock methods are available
  */
-export type MockFunction<T extends (...args: any[]) => any> = jest.MockedFunction<T>;
+export type MockFunction<T extends (...args: any[]) => any> = Mock<T>;
 
 /**
  * OpenAI API Response Types for Mocking
@@ -144,9 +144,9 @@ export const validateMockFunction = <T extends (...args: any[]) => any>(
   mockFn: any,
   functionName: string,
 ): MockFunction<T> => {
-  if (!jest.isMockFunction(mockFn)) {
+  if (!vi.isMockFunction(mockFn)) {
     throw new Error(
-      `${functionName} is not a properly configured Jest mock function. Use jest.fn() to create it.`,
+      `${functionName} is not a properly configured Vitest mock function. Use vi.fn() to create it.`,
     );
   }
   return mockFn as MockFunction<T>;
@@ -160,8 +160,8 @@ export const ensureMockFunction = <T extends (...args: any[]) => any>(
     throw new Error(`${functionName} is undefined. Ensure the mock is properly imported.`);
   }
 
-  if (!jest.isMockFunction(mockFn)) {
-    throw new Error(`${functionName} is not a Jest mock function. Current type: ${typeof mockFn}`);
+  if (!vi.isMockFunction(mockFn)) {
+    throw new Error(`${functionName} is not a Vitest mock function. Current type: ${typeof mockFn}`);
   }
 
   // Verify essential mock methods exist
@@ -184,7 +184,7 @@ export const ensureMockFunction = <T extends (...args: any[]) => any>(
  * Mock Creation Helpers
  */
 export const createTypedMockFunction = <T extends (...args: any[]) => any>(): MockFunction<T> => {
-  return jest.fn() as MockFunction<T>;
+  return vi.fn() as MockFunction<T>;
 };
 
 export const createMockOpenAI = (): MockOpenAIInstance => {
@@ -204,7 +204,7 @@ export const createMockOpenAI = (): MockOpenAIInstance => {
  * Mock Reset Utilities
  */
 export const resetMockFunction = (mockFn: MockFunction<any>) => {
-  if (jest.isMockFunction(mockFn)) {
+  if (vi.isMockFunction(mockFn)) {
     mockFn.mockClear();
     mockFn.mockReset();
   }
@@ -212,7 +212,7 @@ export const resetMockFunction = (mockFn: MockFunction<any>) => {
 
 export const resetAllMockProperties = (mockObject: Record<string, any>) => {
   Object.values(mockObject).forEach((value) => {
-    if (jest.isMockFunction(value)) {
+    if (vi.isMockFunction(value)) {
       resetMockFunction(value);
     } else if (typeof value === 'object' && value !== null) {
       resetAllMockProperties(value);
@@ -224,4 +224,4 @@ export const resetAllMockProperties = (mockObject: Record<string, any>) => {
  * Export commonly used types
  */
 export type { MockFunction };
-export { jest };
+export { vi };

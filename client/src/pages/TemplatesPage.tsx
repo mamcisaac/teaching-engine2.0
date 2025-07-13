@@ -55,7 +55,7 @@ import {
 // import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import logger from '../utils/logger';
 
-export default function TemplatesPage() {
+export default function TemplatesPage(): React.ReactElement {
   const { templateId } = useParams();
   const navigate = useNavigate();
 

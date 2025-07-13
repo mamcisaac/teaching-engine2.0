@@ -2,31 +2,32 @@ import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter } from 'react-router-dom';
+import { vi, describe, it, expect, beforeEach, Mock } from 'vitest';
 import { toast } from 'sonner';
 import TemplateApplyModal from '../TemplateApplyModal';
 import type { PlanTemplate } from '../../../types/template';
 import { api } from '../../../api';
 
 // Mock the API
-jest.mock('../../../api', () => ({
+vi.mock('../../../api', () => ({
   api: {
-    get: jest.fn(),
-    post: jest.fn(),
+    get: vi.fn(),
+    post: vi.fn(),
   },
 }));
 
 // Mock react-router-dom
-const mockNavigate = jest.fn();
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
+const mockNavigate = vi.fn();
+vi.mock('react-router-dom', () => ({
+  ...vi.importActual('react-router-dom'),
   useNavigate: () => mockNavigate,
 }));
 
 // Mock toast
-jest.mock('sonner', () => ({
+vi.mock('sonner', () => ({
   toast: {
-    success: jest.fn(),
-    error: jest.fn(),
+    success: vi.fn(),
+    error: vi.fn(),
   },
 }));
 
@@ -85,9 +86,9 @@ describe('TemplateApplyModal - Strict Boolean Expressions', () => {
   };
 
   beforeEach(() => {
-    jest.clearAllMocks();
-    (api.get as jest.Mock).mockResolvedValue({ data: [] });
-    (api.post as jest.Mock).mockResolvedValue({ data: { id: 'new-plan-id' } });
+    vi.clearAllMocks();
+    (api.get as Mock).mockResolvedValue({ data: [] });
+    (api.post as Mock).mockResolvedValue({ data: { id: 'new-plan-id' } });
   });
 
   describe('Form Validation', () => {
@@ -126,7 +127,7 @@ describe('TemplateApplyModal - Strict Boolean Expressions', () => {
       const longRangePlans = [
         { id: 'lrp1', title: 'Long Range Plan 1', subject: 'Math', grade: '5' }
       ];
-      (api.get as jest.Mock).mockResolvedValueOnce({ data: longRangePlans });
+      (api.get as Mock).mockResolvedValueOnce({ data: longRangePlans });
 
       renderWithProviders(
         <TemplateApplyModal template={template} isOpen={true} onClose={mockOnClose} />
@@ -247,8 +248,8 @@ describe('TemplateApplyModal - Strict Boolean Expressions', () => {
       const longRangePlans = [
         { id: 'lrp1', title: 'Long Range Plan 1', subject: 'Math', grade: '5' }
       ];
-      (api.get as jest.Mock).mockResolvedValueOnce({ data: longRangePlans });
-      (api.post as jest.Mock).mockResolvedValueOnce({ data: { id: 'unit-123' } });
+      (api.get as Mock).mockResolvedValueOnce({ data: longRangePlans });
+      (api.post as Mock).mockResolvedValueOnce({ data: { id: 'unit-123' } });
 
       renderWithProviders(
         <TemplateApplyModal template={template} isOpen={true} onClose={mockOnClose} />
@@ -278,8 +279,8 @@ describe('TemplateApplyModal - Strict Boolean Expressions', () => {
       const unitPlans = [
         { id: 'unit1', title: 'Unit Plan 1' }
       ];
-      (api.get as jest.Mock).mockResolvedValueOnce({ data: unitPlans });
-      (api.post as jest.Mock).mockResolvedValueOnce({ data: { id: 'lesson-456' } });
+      (api.get as Mock).mockResolvedValueOnce({ data: unitPlans });
+      (api.post as Mock).mockResolvedValueOnce({ data: { id: 'lesson-456' } });
 
       renderWithProviders(
         <TemplateApplyModal template={template} isOpen={true} onClose={mockOnClose} />

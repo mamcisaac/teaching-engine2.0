@@ -1,18 +1,19 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import DownloadPrintablesButton from '../DownloadPrintablesButton';
+import { vi, describe, it, expect, beforeEach, type Mock } from 'vitest';
+import { DownloadPrintablesButton } from '../DownloadPrintablesButton';
 import { planningApi } from '../../api/domains/planning';
 
 // Mock the planning API
-jest.mock('../../api/domains/planning', () => ({
+vi.mock('../../api/domains/planning', () => ({
   planningApi: {
-    downloadPrintables: jest.fn(),
+    downloadPrintables: vi.fn(),
   },
 }));
 
 // Mock URL methods
-const mockCreateObjectURL = jest.fn();
-const mockRevokeObjectURL = jest.fn();
+const mockCreateObjectURL = vi.fn();
+const mockRevokeObjectURL = vi.fn();
 global.URL.createObjectURL = mockCreateObjectURL;
 global.URL.revokeObjectURL = mockRevokeObjectURL;
 
@@ -21,9 +22,9 @@ describe('DownloadPrintablesButton', () => {
   const mockUrl = 'blob:mock-url';
   
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     mockCreateObjectURL.mockReturnValue(mockUrl);
-    (planningApi.downloadPrintables as jest.Mock).mockResolvedValue(mockBlob);
+    (planningApi.downloadPrintables as Mock).mockResolvedValue(mockBlob);
   });
 
   describe('strict boolean expressions', () => {
@@ -33,8 +34,8 @@ describe('DownloadPrintablesButton', () => {
       const button = screen.getByText('Download Printables');
       
       // Create a spy on document.createElement to track the anchor element
-      const createElementSpy = jest.spyOn(document, 'createElement');
-      const mockClick = jest.fn();
+      const createElementSpy = vi.spyOn(document, 'createElement');
+      const mockClick = vi.fn();
       
       // Mock the anchor element
       const mockAnchor = {
@@ -74,10 +75,10 @@ describe('DownloadPrintablesButton', () => {
     it('should handle API errors gracefully', async () => {
       // Mock API to reject
       const mockError = new Error('Download failed');
-      (planningApi.downloadPrintables as jest.Mock).mockRejectedValue(mockError);
+      (planningApi.downloadPrintables as Mock).mockRejectedValue(mockError);
       
       // Spy on console.error to suppress error output
-      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation();
+      const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation();
       
       render(<DownloadPrintablesButton weekStart="2024-01-01" />);
       

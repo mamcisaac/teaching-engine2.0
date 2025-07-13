@@ -23,7 +23,7 @@ export default function BilingualPlanView({
   // Allow controlled mode
   const activeMode = controlledMode ?? viewMode;
 
-  const renderSideBySide = () => (
+  const renderSideBySide = (): React.ReactElement => (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       <div className="space-y-4">
         <div className="flex items-center justify-between bg-blue-50 p-3 rounded-t-lg">
@@ -73,7 +73,7 @@ export default function BilingualPlanView({
     </div>
   );
 
-  const renderToggle = () => (
+  const renderToggle = (): React.ReactElement => (
     <div className="space-y-4">
       <div className="flex items-center gap-4 mb-4">
         <span className="text-sm font-medium text-gray-700">{t('teaching_language')}:</span>
@@ -106,7 +106,7 @@ export default function BilingualPlanView({
     </div>
   );
 
-  const renderOverlay = () => (
+  const renderOverlay = (): React.ReactElement => (
     <div className="relative">
       <div className="absolute top-2 right-2 z-10">
         <div className="bg-white rounded-lg shadow-sm border p-2 flex gap-2">

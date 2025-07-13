@@ -8,8 +8,9 @@ import { authMiddleware } from '../middleware/auth';
 const router = Router();
 
 // Get user's collections
-router.get('/', authMiddleware, async (req: Request, res: Response): Promise<void> => {
-  try {
+router.get('/', authMiddleware, (req: Request, res: Response): void => {
+  void (async () => {
+    try {
     if (!req.user?.id) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
@@ -53,11 +54,13 @@ router.get('/', authMiddleware, async (req: Request, res: Response): Promise<voi
     });
     return;
   }
+  })();
 });
 
 // Get collection details with activities
-router.get('/:collectionId', authMiddleware, async (req: Request, res: Response): Promise<void> => {
-  try {
+router.get('/:collectionId', authMiddleware, (req: Request, res: Response): void => {
+  void (async () => {
+    try {
     if (!req.user?.id) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
@@ -108,6 +111,7 @@ router.get('/:collectionId', authMiddleware, async (req: Request, res: Response)
     });
     return;
   }
+  })();
 });
 
 // Create a new collection
@@ -117,8 +121,9 @@ const createCollectionSchema = z.object({
   // isPublic field removed - single-teacher use only
 });
 
-router.post('/', authMiddleware, async (req: Request, res: Response): Promise<void> => {
-  try {
+router.post('/', authMiddleware, (req: Request, res: Response): void => {
+  void (async () => {
+    try {
     if (!req.user?.id) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
@@ -149,6 +154,7 @@ router.post('/', authMiddleware, async (req: Request, res: Response): Promise<vo
     });
     return;
   }
+  })();
 });
 
 // Update collection
@@ -158,8 +164,9 @@ const updateCollectionSchema = z.object({
   // isPublic field removed - single-teacher use only
 });
 
-router.put('/:collectionId', authMiddleware, async (req: Request, res: Response): Promise<void> => {
-  try {
+router.put('/:collectionId', authMiddleware, (req: Request, res: Response): void => {
+  void (async () => {
+    try {
     if (!req.user?.id) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
@@ -203,14 +210,16 @@ router.put('/:collectionId', authMiddleware, async (req: Request, res: Response)
     });
     return;
   }
+  })();
 });
 
 // Delete collection
 router.delete(
   '/:collectionId',
   authMiddleware,
-  async (req: Request, res: Response): Promise<void> => {
-    try {
+  (req: Request, res: Response): void => {
+    void (async () => {
+      try {
       if (!req.user?.id) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
@@ -252,6 +261,7 @@ router.delete(
       });
       return;
     }
+    })();
   },
 );
 
@@ -263,8 +273,9 @@ const addActivitySchema = z.object({
 router.post(
   '/:collectionId/activities',
   authMiddleware,
-  async (req: Request, res: Response): Promise<void> => {
-    try {
+  (req: Request, res: Response): void => {
+    void (async () => {
+      try {
       if (!req.user?.id) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
@@ -337,6 +348,7 @@ router.post(
       });
       return;
     }
+    })();
   },
 );
 
@@ -344,8 +356,9 @@ router.post(
 router.delete(
   '/:collectionId/activities/:activityId',
   authMiddleware,
-  async (req: Request, res: Response): Promise<void> => {
-    try {
+  (req: Request, res: Response): void => {
+    void (async () => {
+      try {
       if (!req.user?.id) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
@@ -392,6 +405,7 @@ router.delete(
       });
       return;
     }
+    })();
   },
 );
 
@@ -399,8 +413,9 @@ router.delete(
 router.get(
   '/trending/public',
   authMiddleware,
-  async (req: Request, res: Response): Promise<void> => {
-    try {
+  (req: Request, res: Response): void => {
+    void (async () => {
+      try {
       if (!req.user?.id) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
@@ -439,6 +454,7 @@ router.get(
       });
       return;
     }
+    })();
   },
 );
 

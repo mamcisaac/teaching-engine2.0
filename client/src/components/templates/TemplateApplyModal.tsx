@@ -43,10 +43,10 @@ export default function TemplateApplyModal({
   });
 
   // Fetch long-range plans for unit templates
-  const { data: longRangePlans = [] } = useQuery({
+  const { data: longRangePlans = [] } = useQuery<unknown[]>({
     queryKey: ['long-range-plans'],
     queryFn: async () => {
-      const response = await api.get('/api/long-range-plans');
+      const response = await api.get<unknown[]>('/api/long-range-plans');
       return response.data;
     },
     enabled: template.type === 'UNIT_PLAN',

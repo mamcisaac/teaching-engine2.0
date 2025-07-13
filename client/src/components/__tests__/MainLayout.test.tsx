@@ -10,7 +10,7 @@ import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import MainLayout from '../MainLayout';
+import { MainLayout } from '../MainLayout';
 import { renderWithProviders, createMockUser } from '@/test-utils';
 
 // Extend expect with jest-axe matchers

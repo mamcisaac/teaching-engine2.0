@@ -7,6 +7,7 @@ import { Request, Response } from 'express';
 import { generateToken, generateRefreshToken, verifyToken } from '../../src/middleware/authenticate';
 import { hashPassword } from '../../src/middleware/auth';
 import { prisma } from '../../src/prisma';
+import { vi, Mock } from 'vitest';
 
 export interface TestUser {
   id: number;
@@ -135,15 +136,15 @@ export function createAuthenticatedRequest(user: TestUser, overrides: Partial<Re
  */
 export function createMockResponse(): {
   res: Partial<Response>;
-  json: jest.MockedFunction<any>;
-  status: jest.MockedFunction<any>;
-  cookie: jest.MockedFunction<any>;
-  clearCookie: jest.MockedFunction<any>;
+  json: Mock<any>;
+  status: Mock<any>;
+  cookie: Mock<any>;
+  clearCookie: Mock<any>;
 } {
-  const json = jest.fn();
-  const status = jest.fn(() => ({ json }));
-  const cookie = jest.fn();
-  const clearCookie = jest.fn();
+  const json = vi.fn();
+  const status = vi.fn(() => ({ json }));
+  const cookie = vi.fn();
+  const clearCookie = vi.fn();
 
   const res = {
     json,
@@ -161,7 +162,7 @@ export function createMockResponse(): {
 export function createAuthMiddlewareTest(user: TestUser) {
   const req = createAuthenticatedRequest(user);
   const { res, json, status } = createMockResponse();
-  const next = jest.fn();
+  const next = vi.fn();
 
   return {
     req: req as Request,
@@ -215,7 +216,7 @@ export async function testAuthMiddleware(
 }> {
   const req = user ? createAuthenticatedRequest(user) : {};
   const { res, json, status } = createMockResponse();
-  const next = jest.fn();
+  const next = vi.fn();
 
   try {
     await middleware(req as Request, res as Response, next);

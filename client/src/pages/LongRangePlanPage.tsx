@@ -363,7 +363,7 @@ export default function LongRangePlanPage(): React.ReactElement {
             {showAISuggestions && formData.subject && formData.grade && (
               <AISuggestionPanel
                 description="Get AI-powered suggestions for your long-range plan goals"
-                error={generateLongRangeGoals.error}
+                error={generateLongRangeGoals.error as Error | null}
                 isGenerating={isGenerating}
                 suggestions={aiGoalSuggestions}
                 title="AI Goal Suggestions"
@@ -387,7 +387,7 @@ export default function LongRangePlanPage(): React.ReactElement {
                     grade: formData.grade,
                     termLength: formData.term === 'Full Year' ? 40 : 20,
                   });
-                  setAiGoalSuggestions(result);
+                  setAiGoalSuggestions(result as AISuggestion);
                 }}
               />
             )}

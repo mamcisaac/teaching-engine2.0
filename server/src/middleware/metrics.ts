@@ -465,4 +465,4 @@ export function getPerformanceSummary() {
 export default metricsStore;
 
 // Named export for getMetrics function
-export const getMetrics = () => metricsStore.getMetrics();
+export const getMetrics = (): MetricsData => metricsStore.getMetrics();

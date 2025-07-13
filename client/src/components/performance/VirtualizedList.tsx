@@ -7,12 +7,12 @@ const debounce = <T extends (...args: any[]) => any>(
 ): ((...args: Parameters<T>) => void) & { cancel(): void } => {
   let timeout: ReturnType<typeof setTimeout>;
 
-  const debounced = (...args: Parameters<T>) => {
+  const debounced = (...args: Parameters<T>): void => {
     clearTimeout(timeout);
     timeout = setTimeout(() => func(...args), wait);
   };
 
-  debounced.cancel = () => {
+  debounced.cancel = (): void => {
     clearTimeout(timeout);
   };
 

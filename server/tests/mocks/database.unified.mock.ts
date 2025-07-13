@@ -14,7 +14,7 @@
  * - Comprehensive error simulation
  */
 
-import { jest } from '@jest/globals';
+import { vi, Mock } from 'vitest';
 import type { PrismaClient } from '@prisma/client';
 
 /**
@@ -89,8 +89,8 @@ const globalMockStore = new MockDataStore();
 function createMockFunction<T = any>(
   operation: string,
   modelName: string,
-): jest.MockedFunction<(...args: any[]) => Promise<T>> {
-  const mockFn = jest.fn() as jest.MockedFunction<(...args: any[]) => Promise<T>>;
+): Mock<(...args: any[]) => Promise<T>> {
+  const mockFn = vi.fn() as Mock<(...args: any[]) => Promise<T>>;
 
   mockFn.mockImplementation(async (args?: any) => {
     try {
@@ -207,9 +207,9 @@ function createModelMock(modelName: string) {
  */
 export class UnifiedPrismaClientMock {
   // Core Prisma methods
-  $connect = jest.fn().mockResolvedValue(undefined);
-  $disconnect = jest.fn().mockResolvedValue(undefined);
-  $transaction = jest.fn().mockImplementation(async (args: any) => {
+  $connect = vi.fn().mockResolvedValue(undefined);
+  $disconnect = vi.fn().mockResolvedValue(undefined);
+  $transaction = vi.fn().mockImplementation(async (args: any) => {
     if (typeof args === 'function') {
       // Interactive transaction - pass this mock as the transaction client
       return args(this);
@@ -219,13 +219,13 @@ export class UnifiedPrismaClientMock {
     }
     return Promise.resolve(args);
   });
-  $queryRaw = jest.fn().mockResolvedValue([]);
-  $queryRawUnsafe = jest.fn().mockResolvedValue([]);
-  $executeRaw = jest.fn().mockResolvedValue(1);
-  $executeRawUnsafe = jest.fn().mockResolvedValue(1);
-  $use = jest.fn();
-  $on = jest.fn();
-  $extends = jest.fn();
+  $queryRaw = vi.fn().mockResolvedValue([]);
+  $queryRawUnsafe = vi.fn().mockResolvedValue([]);
+  $executeRaw = vi.fn().mockResolvedValue(1);
+  $executeRawUnsafe = vi.fn().mockResolvedValue(1);
+  $use = vi.fn();
+  $on = vi.fn();
+  $extends = vi.fn();
 
   // All database models - comprehensive coverage
   user = createModelMock('user');
@@ -309,11 +309,11 @@ export class UnifiedPrismaClientMock {
 
     // Reset all mock functions
     Object.values(this).forEach((value) => {
-      if (jest.isMockFunction(value)) {
+      if (vi.isMockFunction(value)) {
         value.mockClear();
       } else if (value && typeof value === 'object') {
         Object.values(value).forEach((nestedValue) => {
-          if (jest.isMockFunction(nestedValue)) {
+          if (vi.isMockFunction(nestedValue)) {
             nestedValue.mockClear();
           }
         });

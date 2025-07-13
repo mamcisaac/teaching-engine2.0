@@ -39,7 +39,8 @@ export const validate = <T>(
     customErrorHandler,
   } = options;
 
-  return async (req: ValidatedRequest<T>, _res: Response, next: NextFunction) => {
+  return (req: ValidatedRequest<T>, _res: Response, next: NextFunction): void => {
+    void (async () => {
     try {
       // Determine sources to validate
       const sources = Array.isArray(source) ? source : [source];
@@ -130,6 +131,7 @@ export const validate = <T>(
         next(_error as Error);
       }
     }
+    })();
   };
 };
 

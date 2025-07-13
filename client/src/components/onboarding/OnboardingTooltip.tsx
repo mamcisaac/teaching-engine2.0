@@ -65,7 +65,7 @@ function FlowTooltip({
   nextStep,
   tooltipPosition,
   isCenter,
-}: FlowTooltipProps) {
+}: FlowTooltipProps): JSX.Element {
   return (
     <motion.div
       animate={{ opacity: 1, y: 0 }}
@@ -183,7 +183,7 @@ function HoverTooltip({
   delay = 1000,
   actionText,
   onAction,
-}: HoverTooltipProps) {
+}: HoverTooltipProps): React.ReactElement {
   const { state } = useOnboarding();
   const [isVisible, setIsVisible] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
@@ -199,7 +199,7 @@ function HoverTooltip({
     return children;
   }
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = (): void => {
     if (hasBeenShown && showOnce) {
 return;
 }
@@ -210,16 +210,16 @@ return;
     }, delay);
   };
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = (): void => {
     setIsVisible(false);
   };
 
-  const handleDismiss = () => {
+  const handleDismiss = (): void => {
     setIsVisible(false);
     setIsDismissed(true);
   };
 
-  const getTooltipStyles = () => {
+  const getTooltipStyles = (): string => {
     const base = 'absolute z-50 bg-white rounded-lg shadow-xl border border-gray-200 p-4 w-72';
 
     switch (position) {
@@ -236,7 +236,7 @@ return;
     }
   };
 
-  const getArrowStyles = () => {
+  const getArrowStyles = (): string => {
     const base = 'absolute w-3 h-3 bg-white border border-gray-200 transform rotate-45';
 
     switch (position) {
@@ -269,7 +269,7 @@ return;
             exit={{ opacity: 0, scale: 0.95 }}
             initial={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            onMouseEnter={() => {
+            onMouseEnter={(): void => {
  setIsVisible(true); 
 }}
             onMouseLeave={handleMouseLeave}

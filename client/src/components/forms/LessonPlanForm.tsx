@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import { useLanguage } from '../../contexts/LanguageContext';
 import type { UnitPlan, CurriculumExpectation } from '../../hooks/useETFOPlanning';
-import BilingualTextInput from '../BilingualTextInput';
+import { BilingualTextInput } from '../BilingualTextInput';
 import ExpectationSelector from '../planning/ExpectationSelector';
 import RichTextEditor from '../RichTextEditor';
 import { Button } from '../ui/Button';
@@ -290,10 +290,10 @@ export default function LessonPlanForm({
                   placeholderFr="Entrez le titre de la leçon..."
                   valueEn={formData.title}
                   valueFr={formData.titleFr ?? ''}
-                  onChangeEn={(value) => {
+                  onChangeEn={(value: string) => {
  setFormData({ ...formData, title: value }); 
 }}
-                  onChangeFr={(value) => {
+                  onChangeFr={(value: string) => {
  setFormData({ ...formData, titleFr: value }); 
 }}
                 />

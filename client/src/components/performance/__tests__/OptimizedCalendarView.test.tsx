@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { OptimizedCalendarView } from '../OptimizedCalendarView';
 import { vi } from 'vitest';
 import { format } from 'date-fns';
+import type { CalendarEvent } from '../../../types';
 
 // Mock the API hook
 vi.mock('../../../api/domains/calendar', () => ({
@@ -26,24 +27,33 @@ const TestWrapper = ({ children }) => {
 
 describe('OptimizedCalendarView', () => {
   const mockMonth = new Date(2024, 0, 1); // January 2024
-  const mockEvents = [
+  const mockEvents: CalendarEvent[] = [
     {
-      id: '1',
+      id: 1,
       title: 'Test Event 1',
       start: '2024-01-15T10:00:00',
-      eventType: 'meeting'
+      end: '2024-01-15T11:00:00',
+      allDay: false,
+      eventType: 'CUSTOM',
+      source: 'MANUAL'
     },
     {
-      id: '2',
+      id: 2,
       title: 'Test Event 2',
       start: '2024-01-15T14:00:00',
-      eventType: 'workshop'
+      end: '2024-01-15T15:00:00',
+      allDay: false,
+      eventType: 'CUSTOM',
+      source: 'MANUAL'
     },
     {
-      id: '3',
+      id: 3,
       title: 'Test Event 3',
       start: '2024-01-20T09:00:00',
-      eventType: 'meeting'
+      end: '2024-01-20T10:00:00',
+      allDay: false,
+      eventType: 'CUSTOM',
+      source: 'MANUAL'
     }
   ];
 
@@ -67,11 +77,15 @@ describe('OptimizedCalendarView', () => {
   });
 
   it('handles events without start date gracefully', () => {
-    const eventsWithoutStart = [
+    const eventsWithoutStart: CalendarEvent[] = [
       {
-        id: '1',
+        id: 1,
         title: 'No Start Date Event',
-        start: null
+        start: null as any, // Testing edge case
+        end: '2024-01-15T11:00:00',
+        allDay: false,
+        eventType: 'CUSTOM',
+        source: 'MANUAL'
       }
     ];
 
@@ -199,16 +213,24 @@ describe('OptimizedCalendarView', () => {
   });
 
   it('correctly initializes grouped events object', () => {
-    const eventsOnDifferentDays = [
+    const eventsOnDifferentDays: CalendarEvent[] = [
       {
-        id: '1',
+        id: 1,
         title: 'Event on 5th',
-        start: '2024-01-05T10:00:00'
+        start: '2024-01-05T10:00:00',
+        end: '2024-01-05T11:00:00',
+        allDay: false,
+        eventType: 'CUSTOM',
+        source: 'MANUAL'
       },
       {
-        id: '2',
+        id: 2,
         title: 'Event on 10th',
-        start: '2024-01-10T10:00:00'
+        start: '2024-01-10T10:00:00',
+        end: '2024-01-10T11:00:00',
+        allDay: false,
+        eventType: 'CUSTOM',
+        source: 'MANUAL'
       }
     ];
 
@@ -226,16 +248,24 @@ describe('OptimizedCalendarView', () => {
   });
 
   it('handles malformed event dates gracefully', () => {
-    const eventsWithBadDates = [
+    const eventsWithBadDates: CalendarEvent[] = [
       {
-        id: '1',
+        id: 1,
         title: 'Bad Date Event',
-        start: 'not-a-date'
+        start: 'not-a-date',
+        end: 'not-a-date',
+        allDay: false,
+        eventType: 'CUSTOM',
+        source: 'MANUAL'
       },
       {
-        id: '2',
+        id: 2,
         title: 'Good Date Event',
-        start: '2024-01-15T10:00:00'
+        start: '2024-01-15T10:00:00',
+        end: '2024-01-15T11:00:00',
+        allDay: false,
+        eventType: 'CUSTOM',
+        source: 'MANUAL'
       }
     ];
 

@@ -57,11 +57,11 @@ export const applyMiddleware = (app: Application): void => {
   app.use(middleware.core);
 
   // Health check routes (before authentication)
-  app.get('/health', middleware.health, (_req: Request, res: Response) => {
+  app.get('/health', middleware.health, (_req: Request, res: Response): void => {
     res.status(200).json({ status: 'ok' });
   });
 
-  app.get('/api/health', middleware.health, (_req: Request, res: Response) => {
+  app.get('/api/health', middleware.health, (_req: Request, res: Response): void => {
     res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
   });
 };

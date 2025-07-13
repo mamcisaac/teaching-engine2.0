@@ -18,7 +18,7 @@ export function useRecentPlans(options?: UseRecentPlansOptions): ReturnType<type
       if (options?.limit) {
         params.append('limit', options.limit.toString());
       }
-      const response = await apiClient.get(`/api/recent-plans?${params.toString()}`);
+      const response = await apiClient.get<RecentPlan[]>(`/api/recent-plans?${params.toString()}`);
       return response.data;
     },
     enabled: isAuthenticated, // Only run when authenticated
@@ -31,7 +31,7 @@ export function useTrackPlanAccess(): ReturnType<typeof useMutation> {
   
   return useMutation({
     mutationFn: async ({ planType, planId }: { planType: string; planId: string }) => {
-      const response = await apiClient.post('/api/recent-plans/track', {
+      const response = await apiClient.post<unknown>('/api/recent-plans/track', {
         planType,
         planId,
       });

@@ -215,6 +215,9 @@ describe('PlanningWorkflowIndicator - Strict Boolean Expressions', () => {
           isComplete: false,
           isAccessible: false,
           requiredFields: [],
+          progressPercentage: 0,
+          completedItems: 0,
+          totalItems: 0
         },
         {
           level: ETFOLevel.DAYBOOK_ENTRIES,
@@ -223,6 +226,9 @@ describe('PlanningWorkflowIndicator - Strict Boolean Expressions', () => {
           isComplete: false,
           isAccessible: false,
           requiredFields: [],
+          progressPercentage: 0,
+          completedItems: 0,
+          totalItems: 0
         },
       ];
 

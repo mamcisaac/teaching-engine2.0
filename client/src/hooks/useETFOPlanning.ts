@@ -293,13 +293,13 @@ export function useLongRangePlan(id: string): ReturnType<typeof useQuery<LongRan
   });
 }
 
-export function useCreateLongRangePlan(): ReturnType<typeof useMutation> {
+export function useCreateLongRangePlan(): ReturnType<typeof useMutation<LongRangePlan, Error, Partial<LongRangePlan> & { expectationIds?: string[] }>> {
   const queryClient = useQueryClient();
 
-  return useMutation({
-    mutationFn: async (data: Partial<LongRangePlan> & { expectationIds?: string[] }) => {
+  return useMutation<LongRangePlan, Error, Partial<LongRangePlan> & { expectationIds?: string[] }>({
+    mutationFn: async (data) => {
       const response = await apiClient.post('/api/long-range-plans', data);
-      return response.data;
+      return response.data as LongRangePlan;
     },
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: ['long-range-plans'] });
@@ -307,16 +307,16 @@ export function useCreateLongRangePlan(): ReturnType<typeof useMutation> {
   });
 }
 
-export function useUpdateLongRangePlan(): ReturnType<typeof useMutation> {
+export function useUpdateLongRangePlan(): ReturnType<typeof useMutation<LongRangePlan, Error, Partial<LongRangePlan> & { id: string; expectationIds?: string[] }>> {
   const queryClient = useQueryClient();
 
-  return useMutation({
+  return useMutation<LongRangePlan, Error, Partial<LongRangePlan> & { id: string; expectationIds?: string[] }>({
     mutationFn: async ({
       id,
       ...data
-    }: Partial<LongRangePlan> & { id: string; expectationIds?: string[] }) => {
+    }) => {
       const response = await apiClient.put(`/api/long-range-plans/${id}`, data);
-      return response.data;
+      return response.data as LongRangePlan;
     },
     onSuccess: (_data) => {
       void queryClient.invalidateQueries({ queryKey: ['long-range-plans'] });
@@ -377,13 +377,13 @@ export function useUnitPlan(id: string): ReturnType<typeof useQuery<UnitPlan, Er
   });
 }
 
-export function useCreateUnitPlan(): ReturnType<typeof useMutation> {
+export function useCreateUnitPlan(): ReturnType<typeof useMutation<UnitPlan, Error, Partial<UnitPlan> & { expectationIds?: string[] }>> {
   const queryClient = useQueryClient();
 
-  return useMutation({
-    mutationFn: async (data: Partial<UnitPlan> & { expectationIds?: string[] }) => {
+  return useMutation<UnitPlan, Error, Partial<UnitPlan> & { expectationIds?: string[] }>({
+    mutationFn: async (data) => {
       const response = await apiClient.post('/api/unit-plans', data);
-      return response.data;
+      return response.data as UnitPlan;
     },
     onSuccess: (_data) => {
       void queryClient.invalidateQueries({ queryKey: ['unit-plans'] });
@@ -392,16 +392,16 @@ export function useCreateUnitPlan(): ReturnType<typeof useMutation> {
   });
 }
 
-export function useUpdateUnitPlan(): ReturnType<typeof useMutation> {
+export function useUpdateUnitPlan(): ReturnType<typeof useMutation<UnitPlan, Error, Partial<UnitPlan> & { id: string; expectationIds?: string[] }>> {
   const queryClient = useQueryClient();
 
-  return useMutation({
+  return useMutation<UnitPlan, Error, Partial<UnitPlan> & { id: string; expectationIds?: string[] }>({
     mutationFn: async ({
       id,
       ...data
-    }: Partial<UnitPlan> & { id: string; expectationIds?: string[] }) => {
+    }) => {
       const response = await apiClient.put(`/api/unit-plans/${id}`, data);
-      return response.data;
+      return response.data as UnitPlan;
     },
     onSuccess: (_data) => {
       void queryClient.invalidateQueries({ queryKey: ['unit-plans'] });
@@ -470,13 +470,13 @@ export function useETFOLessonPlan(id: string): ReturnType<typeof useQuery<ETFOLe
   });
 }
 
-export function useCreateETFOLessonPlan(): ReturnType<typeof useMutation> {
+export function useCreateETFOLessonPlan(): ReturnType<typeof useMutation<ETFOLessonPlan, Error, Partial<ETFOLessonPlan> & { expectationIds?: string[] }>> {
   const queryClient = useQueryClient();
 
-  return useMutation({
-    mutationFn: async (data: Partial<ETFOLessonPlan> & { expectationIds?: string[] }) => {
+  return useMutation<ETFOLessonPlan, Error, Partial<ETFOLessonPlan> & { expectationIds?: string[] }>({
+    mutationFn: async (data) => {
       const response = await apiClient.post('/api/etfo-lesson-plans', data);
-      return response.data;
+      return response.data as ETFOLessonPlan;
     },
     onSuccess: (_data) => {
       void queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans'] });
@@ -485,19 +485,16 @@ export function useCreateETFOLessonPlan(): ReturnType<typeof useMutation> {
   });
 }
 
-export function useUpdateETFOLessonPlan(): ReturnType<typeof useMutation> {
+export function useUpdateETFOLessonPlan(): ReturnType<typeof useMutation<ETFOLessonPlan, Error, { id: string; data: Partial<ETFOLessonPlan> & { expectationIds?: string[] } }>> {
   const queryClient = useQueryClient();
 
-  return useMutation({
+  return useMutation<ETFOLessonPlan, Error, { id: string; data: Partial<ETFOLessonPlan> & { expectationIds?: string[] } }>({
     mutationFn: async ({
       id,
       data,
-    }: {
-      id: string;
-      data: Partial<ETFOLessonPlan> & { expectationIds?: string[] };
     }) => {
       const response = await apiClient.put(`/api/etfo-lesson-plans/${id}`, data);
-      return response.data;
+      return response.data as ETFOLessonPlan;
     },
     onSuccess: (_data) => {
       void queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans'] });
@@ -561,17 +558,15 @@ export function useDaybookEntry(id: string): ReturnType<typeof useQuery<DaybookE
   });
 }
 
-export function useCreateDaybookEntry(): ReturnType<typeof useMutation> {
+export function useCreateDaybookEntry(): ReturnType<typeof useMutation<DaybookEntry, Error, Partial<DaybookEntry> & { expectationCoverage?: { expectationId: string; coverage: string }[] }>> {
   const queryClient = useQueryClient();
 
-  return useMutation({
+  return useMutation<DaybookEntry, Error, Partial<DaybookEntry> & { expectationCoverage?: { expectationId: string; coverage: string }[] }>({
     mutationFn: async (
-      data: Partial<DaybookEntry> & {
-        expectationCoverage?: { expectationId: string; coverage: string }[];
-      },
+      data
     ) => {
       const response = await apiClient.post('/api/daybook-entries', data);
-      return response.data;
+      return response.data as DaybookEntry;
     },
     onSuccess: (_data) => {
       void queryClient.invalidateQueries({ queryKey: ['daybook-entries'] });
@@ -582,19 +577,16 @@ export function useCreateDaybookEntry(): ReturnType<typeof useMutation> {
   });
 }
 
-export function useUpdateDaybookEntry(): ReturnType<typeof useMutation> {
+export function useUpdateDaybookEntry(): ReturnType<typeof useMutation<DaybookEntry, Error, Partial<DaybookEntry> & { id: string; expectationCoverage?: { expectationId: string; coverage: string }[] }>> {
   const queryClient = useQueryClient();
 
-  return useMutation({
+  return useMutation<DaybookEntry, Error, Partial<DaybookEntry> & { id: string; expectationCoverage?: { expectationId: string; coverage: string }[] }>({
     mutationFn: async ({
       id,
       ...data
-    }: Partial<DaybookEntry> & {
-      id: string;
-      expectationCoverage?: { expectationId: string; coverage: string }[];
     }) => {
       const response = await apiClient.put(`/api/daybook-entries/${id}`, data);
-      return response.data;
+      return response.data as DaybookEntry;
     },
     onSuccess: (_data) => {
       void queryClient.invalidateQueries({ queryKey: ['daybook-entries'] });

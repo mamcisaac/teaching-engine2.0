@@ -76,7 +76,7 @@ parts.push(isMac ? '⇧' : 'Shift');
   return parts.join(isMac ? '' : '+');
 };
 
-export const KeyboardShortcutsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const KeyboardShortcutsProvider: React.FC<{ children: React.ReactNode }> = ({ children }): React.ReactElement => {
   const [shortcuts, setShortcuts] = useState<KeyboardShortcut[]>([]);
   const [isEnabled, setIsEnabled] = useState(true);
   const [preferences, setPreferences] = useState<KeyboardShortcutPreferences>(defaultPreferences);
@@ -159,7 +159,7 @@ export const KeyboardShortcutsProvider: React.FC<{ children: React.ReactNode }> 
 return;
 }
 
-    const handleKeyDown = (event: KeyboardEvent) => {
+    const handleKeyDown = (event: KeyboardEvent): void => {
       // Don't trigger shortcuts when typing in input fields
       const target = event.target as HTMLElement;
       if (target.tagName === 'INPUT' || 

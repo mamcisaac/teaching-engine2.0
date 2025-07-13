@@ -32,19 +32,19 @@ export const templatesApi = {
       }
     });
 
-    const response = await apiClient.get(`${API_BASE}?${params.toString()}`);
+    const response = await apiClient.get<TemplateSearchResult>(`${API_BASE}?${params.toString()}`);
     return response.data;
   },
 
   // Get a single template
   getTemplate: async (id: string): Promise<PlanTemplate> => {
-    const response = await apiClient.get(`${API_BASE}/${id}`);
+    const response = await apiClient.get<PlanTemplate>(`${API_BASE}/${id}`);
     return response.data;
   },
 
   // Create a new template
   createTemplate: async (data: TemplateCreateData): Promise<PlanTemplate> => {
-    const response = await apiClient.post(API_BASE, data);
+    const response = await apiClient.post<PlanTemplate>(API_BASE, data);
     return response.data;
   },
 

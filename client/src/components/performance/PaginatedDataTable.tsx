@@ -193,7 +193,7 @@ return [];
   }, [data, currentPage]);
 
   // Render sort icon
-  const renderSortIcon = (columnKey: string) => {
+  const renderSortIcon = (columnKey: string): JSX.Element => {
     if (sortBy !== columnKey) {
       return <ArrowUpDown className="h-4 w-4 text-gray-400" />;
     }
@@ -250,7 +250,7 @@ return [];
                     column.sortable === true ? 'cursor-pointer hover:bg-gray-100' : ''
                   }`}
                   style={{ width: column.width }}
-                  onClick={column.sortable === true ? () => {
+                  onClick={column.sortable === true ? (): void => {
  handleSort(column.key as string); 
 } : undefined}
                 >

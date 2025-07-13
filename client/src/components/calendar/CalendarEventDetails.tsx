@@ -89,7 +89,7 @@ export default function CalendarEventDetails({
     },
   });
 
-  const handleSaveTitle = () => {
+  const handleSaveTitle = (): void => {
     if (editedTitle.trim() && editedTitle !== event.title) {
       updateTitleMutation.mutate(editedTitle.trim());
     } else {
@@ -97,13 +97,13 @@ export default function CalendarEventDetails({
     }
   };
 
-  const handleDelete = () => {
+  const handleDelete = (): void => {
     if (window.confirm('Are you sure you want to delete this event?')) {
       deleteMutation.mutate();
     }
   };
 
-  const handleViewDetails = () => {
+  const handleViewDetails = (): void => {
     if (event.type === 'lesson' && event.metadata?.lessonId !== null && event.metadata?.lessonId !== undefined && event.metadata.lessonId !== '') {
       navigate(`/planner/lessons/${event.metadata.lessonId}`);
     } else if (event.type === 'unit-boundary' && event.metadata?.unitId) {
@@ -111,7 +111,7 @@ export default function CalendarEventDetails({
     }
   };
 
-  const getEventTypeLabel = () => {
+  const getEventTypeLabel = (): string => {
     const typeLabels: Record<string, string> = {
       lesson: 'Lesson',
       'unit-boundary': 'Unit Milestone',

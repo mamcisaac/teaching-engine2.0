@@ -109,7 +109,7 @@ export const useUpdateTeacherReflection = (): UseMutationResult<TeacherReflectio
   });
 };
 
-export const useDeleteTeacherReflection = (): UseMutationResult<void, Error, number> => {
+export const useDeleteTeacherReflection = (): UseMutationResult<{ success: boolean }, Error, number> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -144,7 +144,7 @@ export const useTeacherProfile = (): UseQueryResult<TeacherProfile> =>
   });
 
 // Profile Mutation hooks
-export const useUpdateTeacherProfile = (): UseMutationResult<TeacherProfile, Error, UpdateProfileInput> => {
+export const useUpdateTeacherProfile = (): UseMutationResult<unknown, Error, UpdateProfileInput> => {
   const queryClient = useQueryClient();
 
   return useMutation({

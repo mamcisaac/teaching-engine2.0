@@ -99,12 +99,12 @@ export default function CalendarEventModal({
     },
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
     createEventMutation.mutate(formData);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     const { name, value, type } = e.target;
     setFormData(prev => ({
       ...prev,

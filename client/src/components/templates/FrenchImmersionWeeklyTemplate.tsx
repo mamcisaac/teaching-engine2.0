@@ -64,7 +64,7 @@ export default function FrenchImmersionWeeklyTemplate({
     parentUpdate: initialData?.parentUpdate || { english: '', french: '' },
   });
 
-  const updateDailyPlan = (dayIndex: number, field: keyof DailyPlan, value: string | string[]) => {
+  const updateDailyPlan = (dayIndex: number, field: keyof DailyPlan, value: string | string[]): void => {
     const updated = { ...weekData };
     updated.dailyPlans[dayIndex] = {
       ...updated.dailyPlans[dayIndex],
@@ -73,7 +73,7 @@ export default function FrenchImmersionWeeklyTemplate({
     setWeekData(updated);
   };
 
-  const addVocabularyToWeek = () => {
+  const addVocabularyToWeek = (): void => {
     const newVocab: BilingualVocabulary = {
       english: '',
       french: '',
@@ -89,7 +89,7 @@ export default function FrenchImmersionWeeklyTemplate({
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
     onSave(weekData);
   };

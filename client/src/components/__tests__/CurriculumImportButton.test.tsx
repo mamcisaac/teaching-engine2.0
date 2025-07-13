@@ -1,11 +1,12 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { vi, describe, it, expect } from 'vitest';
 import { CurriculumImportButton } from '../CurriculumImportButton';
 
 describe('CurriculumImportButton', () => {
   describe('strict boolean expressions', () => {
     it('should handle onImportSuccess callback with strict boolean check', () => {
-      const mockOnImportSuccess = jest.fn();
+      const mockOnImportSuccess = vi.fn();
       
       const { rerender } = render(
         <CurriculumImportButton onImportSuccess={mockOnImportSuccess} />
@@ -26,7 +27,7 @@ describe('CurriculumImportButton', () => {
     });
 
     it('should properly check if onImportSuccess exists before calling', () => {
-      const mockOnImportSuccess = jest.fn();
+      const mockOnImportSuccess = vi.fn();
       const component = render(
         <CurriculumImportButton onImportSuccess={mockOnImportSuccess} />
       );
@@ -72,7 +73,7 @@ describe('CurriculumImportButton', () => {
     });
 
     it('should call onImportSuccess when import is successful', () => {
-      const mockOnImportSuccess = jest.fn();
+      const mockOnImportSuccess = vi.fn();
       render(<CurriculumImportButton onImportSuccess={mockOnImportSuccess} />);
       
       // Open wizard

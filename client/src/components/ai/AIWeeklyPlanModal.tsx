@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 
 import { api } from '../../api';
-import Dialog from '../Dialog';
+import { Dialog } from '../Dialog';
 
 interface AIWeeklyPlanModalProps {
   isOpen: boolean;

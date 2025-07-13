@@ -57,7 +57,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
         const offlineSlice = createOfflineSlice<UnitPlanState>({
           entityType: 'unit-plan',
           fetchFromServer: async () => {
-            const response = await apiClient.get('/api/unit-plans');
+            const response = await apiClient.get<UnitPlan[]>('/api/unit-plans');
             return response.data;
           },
           saveToServer: async (data) => {
@@ -101,8 +101,8 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
             try {
               // Try to load from server if online
               if (get().isOnline) {
-                const response = await apiClient.get('/api/unit-plans');
-                const plans = response.data as UnitPlan[];
+                const response = await apiClient.get<UnitPlan[]>('/api/unit-plans');
+                const plans = response.data;
 
                 set((state) => {
                   state.unitPlans = plans;
@@ -147,8 +147,8 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
 
             try {
               if (get().isOnline) {
-                const response = await apiClient.get(`/api/unit-plans/${id}`);
-                const plan = response.data as UnitPlan;
+                const response = await apiClient.get<UnitPlan>(`/api/unit-plans/${id}`);
+                const plan = response.data;
 
                 set((state) => {
                   state.currentPlan = plan;
@@ -204,8 +204,8 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
               } as UnitPlan;
 
               if (get().isOnline) {
-                const response = await apiClient.post('/api/unit-plans', planData);
-                const createdPlan = response.data as UnitPlan;
+                const response = await apiClient.post<UnitPlan>('/api/unit-plans', planData);
+                const createdPlan = response.data;
 
                 set((state) => {
                   state.unitPlans.push(createdPlan);

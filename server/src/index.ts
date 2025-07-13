@@ -135,7 +135,7 @@ app.post(
 );
 
 // Legacy register endpoint for backward compatibility
-app.post('/api/register', authRateLimitMiddleware, async (req: Request, res: Response): Promise<void> => {
+app.post('/api/register', authRateLimitMiddleware, (req: Request, res: Response): void => {
   // Forward to the new auth endpoint
   req.url = '/register';
   authEndpoints(req, res, () => {});
@@ -253,7 +253,7 @@ app.use('/api/dashboard', dashboardMetricsRoutes);
 app.use('/api/monitoring', authenticate, monitoringRoutes);
 
 // AI status endpoint (maps to ai-planning/status for backward compatibility)
-app.get('/api/ai/status', authenticate, async (req: Request, res: Response): Promise<void> => {
+app.get('/api/ai/status', authenticate, (req: Request, res: Response): void => {
   // Forward to ai-planning routes handler
   req.url = '/status';
   aiPlanningRoutes(req, res, () => {});
@@ -397,18 +397,18 @@ if (isDirectRun || isE2ETest || isDevelopment) {
       server.headersTimeout = 66000;
 
       // Graceful shutdown
-      process.on('SIGTERM', () => gracefulShutdown('SIGTERM', server));
-      process.on('SIGINT', () => gracefulShutdown('SIGINT', server));
+      process.on('SIGTERM', () => { void gracefulShutdown('SIGTERM', server); });
+      process.on('SIGINT', () => { void gracefulShutdown('SIGINT', server); });
 
       // Handle uncaught exceptions
       process.on('uncaughtException', (err) => {
         error('Uncaught Exception:', err);
-        gracefulShutdown('UNCAUGHT_EXCEPTION', server);
+        void gracefulShutdown('UNCAUGHT_EXCEPTION', server);
       });
 
       process.on('unhandledRejection', (reason, promise) => {
         error('Unhandled Rejection at:', promise, 'reason:', reason);
-        gracefulShutdown('UNHANDLED_REJECTION', server);
+        void gracefulShutdown('UNHANDLED_REJECTION', server);
       });
       
       return server;

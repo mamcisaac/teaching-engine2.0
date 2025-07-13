@@ -1,10 +1,11 @@
 import { render, screen, act } from '@testing-library/react';
 import React from 'react';
+import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 
 import { AILoadingIndicator, AI_LOADING_PRESETS } from '../AILoadingIndicator';
 
 // Mock timers
-jest.useFakeTimers();
+vi.useFakeTimers();
 
 describe('AILoadingIndicator - Strict Boolean Expression Tests', () => {
   const defaultProps = {
@@ -18,11 +19,11 @@ describe('AILoadingIndicator - Strict Boolean Expression Tests', () => {
   };
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   afterEach(() => {
-    jest.clearAllTimers();
+    vi.clearAllTimers();
   });
 
   describe('currentStepId handling', () => {
@@ -247,7 +248,7 @@ describe('AILoadingIndicator - Strict Boolean Expression Tests', () => {
 
       // Should not crash and should not attempt to call onCancel
       act(() => {
-        jest.advanceTimersByTime(3000);
+        vi.advanceTimersByTime(3000);
       });
 
       // No errors should occur
@@ -266,7 +267,7 @@ describe('AILoadingIndicator - Strict Boolean Expression Tests', () => {
 
       // Should not crash and should not attempt to call onCancel
       act(() => {
-        jest.advanceTimersByTime(3000);
+        vi.advanceTimersByTime(3000);
       });
 
       // No errors should occur

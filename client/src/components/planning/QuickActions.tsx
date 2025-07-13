@@ -46,7 +46,7 @@ export function QuickActions({ onDuplicatePlan, className }: QuickActionsProps):
       description: 'Upload PDF/DOCX files',
       icon: <Upload className="h-5 w-5" />,
       color: 'text-purple-600 bg-purple-100 hover:bg-purple-200',
-      onClick: () => {
+      onClick: (): void => {
  navigate('/curriculum/import'); 
 },
     },
@@ -56,7 +56,7 @@ export function QuickActions({ onDuplicatePlan, className }: QuickActionsProps):
       description: 'Start from scratch or template',
       icon: <Plus className="h-5 w-5" />,
       color: 'text-blue-600 bg-blue-100 hover:bg-blue-200',
-      onClick: () => {
+      onClick: (): void => {
  navigate('/planner/units'); 
 },
     },
@@ -66,7 +66,7 @@ export function QuickActions({ onDuplicatePlan, className }: QuickActionsProps):
       description: 'Standalone lesson plan',
       icon: <GraduationCap className="h-5 w-5" />,
       color: 'text-green-600 bg-green-100 hover:bg-green-200',
-      onClick: () => {
+      onClick: (): void => {
  navigate('/planner/quick-lesson'); 
 },
       isNew: true,
@@ -77,7 +77,7 @@ export function QuickActions({ onDuplicatePlan, className }: QuickActionsProps):
       description: 'Lesson within unit plan',
       icon: <BookOpen className="h-5 w-5" />,
       color: 'text-emerald-600 bg-emerald-100 hover:bg-emerald-200',
-      onClick: () => {
+      onClick: (): void => {
  navigate('/planner/etfo-lessons'); 
 },
     },
@@ -87,7 +87,7 @@ export function QuickActions({ onDuplicatePlan, className }: QuickActionsProps):
       description: 'Copy existing plans',
       icon: <Copy className="h-5 w-5" />,
       color: 'text-indigo-600 bg-indigo-100 hover:bg-indigo-200',
-      onClick: () => onDuplicatePlan?.('select'),
+      onClick: (): void => onDuplicatePlan?.('select'),
     },
     {
       id: 'weekly-view',
@@ -95,7 +95,7 @@ export function QuickActions({ onDuplicatePlan, className }: QuickActionsProps):
       description: 'View & edit week at a glance',
       icon: <Calendar className="h-5 w-5" />,
       color: 'text-orange-600 bg-orange-100 hover:bg-orange-200',
-      onClick: () => {
+      onClick: (): void => {
  navigate('/planner/weekly'); 
 },
     },
@@ -105,7 +105,7 @@ export function QuickActions({ onDuplicatePlan, className }: QuickActionsProps):
       description: 'Community & ETFO templates',
       icon: <BookTemplate className="h-5 w-5" />,
       color: 'text-pink-600 bg-pink-100 hover:bg-pink-200',
-      onClick: () => {
+      onClick: (): void => {
  navigate('/templates'); 
 },
       isNew: true,
@@ -116,7 +116,7 @@ export function QuickActions({ onDuplicatePlan, className }: QuickActionsProps):
       description: 'Get planning suggestions',
       icon: <Sparkles className="h-5 w-5" />,
       color: 'text-yellow-600 bg-yellow-100 hover:bg-yellow-200',
-      onClick: () => {
+      onClick: (): void => {
  navigate('/planner/ai-assistant'); 
 },
     },
@@ -126,7 +126,7 @@ export function QuickActions({ onDuplicatePlan, className }: QuickActionsProps):
       description: 'Generate weekly updates',
       icon: <MessageSquare className="h-5 w-5" />,
       color: 'text-teal-600 bg-teal-100 hover:bg-teal-200',
-      onClick: () => {
+      onClick: (): void => {
  navigate('/planner/newsletter'); 
 },
     },

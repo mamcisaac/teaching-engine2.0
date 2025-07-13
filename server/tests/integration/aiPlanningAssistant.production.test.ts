@@ -11,11 +11,12 @@
  * - Real curriculum data should be seeded for comprehensive testing
  */
 
-import { describe, it, expect, jest, beforeEach, afterEach } from '@jest/globals';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { MockRegistry } from '../mocks/registry';
 import { AIPlanningAssistantService } from '../../src/services/aiPlanningAssistant';
 import { prisma } from '../../src/prisma';
 import { DatabaseTestUtils } from '../utils/DatabaseTestUtils';
+import OpenAI from 'openai';
 
 describe('AIPlanningAssistantService - Production Integration', () => {
   let service: AIPlanningAssistantService;
@@ -46,7 +47,7 @@ describe('AIPlanningAssistantService - Production Integration', () => {
 
     // Setup centralized mocks
     const mockOpenAIInstance = MockRegistry.openai.create();
-    (OpenAI as jest.MockedClass<typeof OpenAI>).mockImplementation(() => mockOpenAIInstance as unknown);
+    vi.mocked(OpenAI).mockImplementation(() => mockOpenAIInstance as any);
   });
 
   describe('Service Health and Configuration', () => {

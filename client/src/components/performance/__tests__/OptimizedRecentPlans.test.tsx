@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { OptimizedRecentPlans } from '../OptimizedRecentPlans';
+import type { RecentPlan } from '../OptimizedRecentPlans';
 import { vi } from 'vitest';
 
 // Mock date functions
@@ -16,38 +17,38 @@ const TestWrapper = ({ children }) => (
 );
 
 describe('OptimizedRecentPlans', () => {
-  const mockPlans = [
+  const mockPlans: RecentPlan[] = [
     {
       id: '1',
-      type: 'lesson',
+      type: 'lesson' as const,
       title: 'Test Lesson Plan',
       subject: 'Mathematics',
       grade: 5,
       lastAccessed: '2024-01-15T10:00:00',
       progress: 75,
-      status: 'in-progress',
+      status: 'in-progress' as const,
       parentTitle: 'Unit Plan'
     },
     {
       id: '2',
-      type: 'unit',
+      type: 'unit' as const,
       title: 'Test Unit Plan',
       subject: null,
       grade: null,
       lastAccessed: '2024-01-14T10:00:00',
       progress: 50,
-      status: 'draft',
+      status: 'draft' as const,
       parentTitle: null
     },
     {
       id: '3',
-      type: 'long-range',
+      type: 'long-range' as const,
       title: 'Year Plan',
       subject: 'Science',
       grade: 6,
       lastAccessed: '2024-01-13T10:00:00',
       progress: 100,
-      status: 'completed',
+      status: 'completed' as const,
       parentTitle: ''
     }
   ];

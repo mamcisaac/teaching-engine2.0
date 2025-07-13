@@ -4,7 +4,7 @@ import { lazy, Suspense } from 'react';
 const CurriculumExpectationCoverage = lazy(() => import('../CurriculumExpectationCoverage'));
 
 // Loading fallback for charts
-const ChartLoadingFallback = () => (
+const ChartLoadingFallback = (): JSX.Element => (
   <div className="animate-pulse space-y-4">
     <div className="h-8 bg-gray-200 rounded w-1/3" />
     <div className="h-64 bg-gray-200 rounded" />
@@ -16,7 +16,7 @@ const ChartLoadingFallback = () => (
 );
 
 // Wrapped component with suspense
-export const LazyCurriculumExpectationCoverage = () => (
+export const LazyCurriculumExpectationCoverage = (): JSX.Element => (
   <Suspense fallback={<ChartLoadingFallback />}>
     <CurriculumExpectationCoverage />
   </Suspense>

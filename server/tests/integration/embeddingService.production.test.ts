@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
-import { describe, it, expect, jest, beforeEach, afterEach } from '@jest/globals';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { MockRegistry } from '../mocks/registry';
+import OpenAI from 'openai';
 /**
  * Production-level integration tests for EmbeddingService
  *
@@ -50,7 +51,7 @@ describe('EmbeddingService - Production Integration', () => {
 
     // Setup centralized mocks
     const mockOpenAIInstance = MockRegistry.openai.create();
-    (OpenAI as jest.MockedClass<typeof OpenAI>).mockImplementation(() => mockOpenAIInstance as unknown);
+    vi.mocked(OpenAI).mockImplementation(() => mockOpenAIInstance as any);
   });
 
   describe('Service Availability and Health', () => {

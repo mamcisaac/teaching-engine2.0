@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 import { useETFOProgress } from '../../hooks/useETFOProgress';
 import LanguageSwitcher from '../LanguageSwitcher';
-import NotificationBell from '../NotificationBell';
+import { NotificationBell } from '../NotificationBell';
 
 import { secondaryNavItems } from './navigationConfig';
 import { useNavigation } from './NavigationProvider';

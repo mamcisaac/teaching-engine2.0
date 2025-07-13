@@ -2,7 +2,20 @@
 // Common date/time manipulation utilities
 
 // Date range helpers
-export const getDateRanges = () => {
+export const getDateRanges = (): {
+  now: Date;
+  today: Date;
+  tomorrow: Date;
+  yesterday: Date;
+  thisWeekStart: Date;
+  thisWeekEnd: Date;
+  nextWeekStart: Date;
+  nextWeekEnd: Date;
+  thisMonthStart: Date;
+  thisMonthEnd: Date;
+  nextMonthStart: Date;
+  nextMonthEnd: Date;
+} => {
   const now = new Date();
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 

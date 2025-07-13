@@ -120,7 +120,7 @@ const HelpContext = createContext<HelpContextType | undefined>(undefined);
 const HELP_STATE_KEY = 'teachingEngine_helpState';
 
 // Provider component
-export function HelpProvider({ children }: { children: React.ReactNode }) {
+export function HelpProvider({ children }: { children: React.ReactNode }): React.ReactElement {
   const [state, dispatch] = useReducer(helpReducer, initialState);
 
   // Load state from localStorage on mount

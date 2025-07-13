@@ -15,7 +15,7 @@ export type ErrorRequestHandler = (
 ) => void | Promise<void>;
 
 // Compose multiple middleware into a single middleware
-export const compose = (...middlewares: Middleware[]): RequestHandler => async (req: Request, res: Response, next: NextFunction) => {
+export const compose = (...middlewares: Middleware[]): RequestHandler => async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     let index = 0;
 
     const dispatch = async (err?: Error): Promise<void> => {

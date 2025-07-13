@@ -118,15 +118,15 @@ class EnhancedLogger {
     this.logger.warn(this.enhanceLogObject(obj), msg, ...args);
   }
 
-  info(obj: Record<string, unknown> | string, msg?: string, ...args: unknown[]) {
+  info(obj: Record<string, unknown> | string, msg?: string, ...args: unknown[]): void {
     this.logger.info(this.enhanceLogObject(obj), msg, ...args);
   }
 
-  debug(obj: Record<string, unknown> | string, msg?: string, ...args: unknown[]) {
+  debug(obj: Record<string, unknown> | string, msg?: string, ...args: unknown[]): void {
     this.logger.debug(this.enhanceLogObject(obj), msg, ...args);
   }
 
-  trace(obj: Record<string, unknown> | string, msg?: string, ...args: unknown[]) {
+  trace(obj: Record<string, unknown> | string, msg?: string, ...args: unknown[]): void {
     this.logger.trace(this.enhanceLogObject(obj), msg, ...args);
   }
 
@@ -146,7 +146,7 @@ class EnhancedLogger {
   }
 
   // Audit logging for sensitive operations
-  audit(operation: string, details: Record<string, unknown> = {}) {
+  audit(operation: string, details: Record<string, unknown> = {}): void {
     this.info(
       {
         audit: true,
@@ -159,7 +159,7 @@ class EnhancedLogger {
   }
 
   // Security event logging
-  security(event: string, details: Record<string, unknown> = {}) {
+  security(event: string, details: Record<string, unknown> = {}): void {
     this.warn(
       {
         security: true,
@@ -172,7 +172,7 @@ class EnhancedLogger {
   }
 
   // Business logic logging
-  business(action: string, context: Record<string, unknown> = {}) {
+  business(action: string, context: Record<string, unknown> = {}): void {
     this.info(
       {
         business: true,
@@ -185,7 +185,7 @@ class EnhancedLogger {
   }
 
   // API request/response logging
-  apiRequest(req: Record<string, unknown>, additionalData: Record<string, unknown> = {}) {
+  apiRequest(req: Record<string, unknown>, additionalData: Record<string, unknown> = {}): void {
     this.info(
       {
         api: true,
@@ -202,7 +202,7 @@ class EnhancedLogger {
     res: Record<string, unknown>,
     duration: number,
     additionalData: Record<string, unknown> = {},
-  ) {
+  ): void {
     this.info(
       {
         api: true,
@@ -217,7 +217,7 @@ class EnhancedLogger {
   }
 
   // Database operation logging
-  database(operation: string, details: Record<string, unknown> = {}) {
+  database(operation: string, details: Record<string, unknown> = {}): void {
     this.debug(
       {
         database: true,
@@ -229,7 +229,7 @@ class EnhancedLogger {
   }
 
   // AI operation logging
-  ai(operation: string, model: string, details: Record<string, unknown> = {}) {
+  ai(operation: string, model: string, details: Record<string, unknown> = {}): void {
     this.info(
       {
         ai: true,

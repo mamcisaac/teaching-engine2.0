@@ -91,8 +91,8 @@ export function GPTPlanningAgent({
   // Start session
   const startSessionMutation = useMutation({
     mutationFn: async () => {
-      const response = await api.post('/api/ai/agent/sessions');
-      return response.data.data as SessionResponse;
+      const response = await api.post<{ data: SessionResponse }>('/api/ai/agent/sessions');
+      return response.data.data;
     },
     onSuccess: (data) => {
       setSessionId(data.sessionId);
@@ -118,11 +118,11 @@ export function GPTPlanningAgent({
       if (sessionId === null || sessionId === undefined || sessionId === '') {
 throw new Error('No session');
 }
-      const response = await api.post('/api/ai/agent/messages', {
+      const response = await api.post<{ data: MessageResponse }>('/api/ai/agent/messages', {
         sessionId,
         message,
       });
-      return response.data.data as MessageResponse;
+      return response.data.data;
     },
     onSuccess: (data) => {
       setMessages((prev) => [

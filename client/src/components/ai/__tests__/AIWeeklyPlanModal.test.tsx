@@ -1,19 +1,20 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
 
 import { AIWeeklyPlanModal } from '../AIWeeklyPlanModal';
 
 // Mock dependencies
-jest.mock('../../../hooks/useAIStatus', () => ({
+vi.mock('../../../hooks/useAIStatus', () => ({
   useAIStatus: () => ({
     canUseAI: true,
     aiDisabledReason: null,
   }),
 }));
 
-jest.mock('../../../hooks/useWeeklyPlanMutation', () => ({
+vi.mock('../../../hooks/useWeeklyPlanMutation', () => ({
   useWeeklyPlanMutation: () => ({
-    mutate: jest.fn(),
+    mutate: vi.fn(),
     isLoading: false,
     error: null,
   }),
@@ -22,7 +23,7 @@ jest.mock('../../../hooks/useWeeklyPlanMutation', () => ({
 describe('AIWeeklyPlanModal - Strict Boolean Expression Tests', () => {
   const defaultProps = {
     isOpen: true,
-    onClose: jest.fn(),
+    onClose: vi.fn(),
     selectedWeek: {
       startDate: new Date('2023-01-01'),
       endDate: new Date('2023-01-07'),
@@ -36,14 +37,14 @@ describe('AIWeeklyPlanModal - Strict Boolean Expression Tests', () => {
   };
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe('error handling', () => {
     it('should handle API error with null message', () => {
       const { useWeeklyPlanMutation } = require('../../../hooks/useWeeklyPlanMutation');
       useWeeklyPlanMutation.mockReturnValue({
-        mutate: jest.fn(),
+        mutate: vi.fn(),
         isLoading: false,
         error: {
           response: {
@@ -63,7 +64,7 @@ describe('AIWeeklyPlanModal - Strict Boolean Expression Tests', () => {
     it('should handle API error with undefined message', () => {
       const { useWeeklyPlanMutation } = require('../../../hooks/useWeeklyPlanMutation');
       useWeeklyPlanMutation.mockReturnValue({
-        mutate: jest.fn(),
+        mutate: vi.fn(),
         isLoading: false,
         error: {
           response: {
@@ -83,7 +84,7 @@ describe('AIWeeklyPlanModal - Strict Boolean Expression Tests', () => {
     it('should handle API error with empty string message', () => {
       const { useWeeklyPlanMutation } = require('../../../hooks/useWeeklyPlanMutation');
       useWeeklyPlanMutation.mockReturnValue({
-        mutate: jest.fn(),
+        mutate: vi.fn(),
         isLoading: false,
         error: {
           response: {
@@ -103,7 +104,7 @@ describe('AIWeeklyPlanModal - Strict Boolean Expression Tests', () => {
     it('should handle API error with valid message', () => {
       const { useWeeklyPlanMutation } = require('../../../hooks/useWeeklyPlanMutation');
       useWeeklyPlanMutation.mockReturnValue({
-        mutate: jest.fn(),
+        mutate: vi.fn(),
         isLoading: false,
         error: {
           response: {
@@ -135,7 +136,7 @@ describe('AIWeeklyPlanModal - Strict Boolean Expression Tests', () => {
     });
 
     it('should call onClose when cancel button is clicked', () => {
-      const mockOnClose = jest.fn();
+      const mockOnClose = vi.fn();
       render(<AIWeeklyPlanModal {...defaultProps} onClose={mockOnClose} />);
 
       const cancelButton = screen.getByText('Cancel');

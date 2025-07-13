@@ -133,8 +133,8 @@ export const teacherApi = {
       school?: string;
       grade?: number;
     }): Promise<unknown> => {
-      const { data } = await apiClient.put('/api/teacher/profile', input);
-      return data as unknown;
+      const { data } = await apiClient.put<unknown>('/api/teacher/profile', input);
+      return data;
     },
   },
 };

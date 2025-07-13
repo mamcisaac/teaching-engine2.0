@@ -402,8 +402,8 @@ return;
           });
 
           try {
-            const response = await api.get('/api/planner/state');
-            const serverState = response.data as WeeklyPlannerState;
+            const response = await api.get<WeeklyPlannerState>('/api/planner/state');
+            const serverState = response.data;
 
             set((state) => {
               Object.assign(state, {

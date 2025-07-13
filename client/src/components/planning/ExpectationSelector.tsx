@@ -99,7 +99,7 @@ return expectations;
     setExpandedStrands(strandsWithSelected);
   }, [selectedExpectations]);
 
-  const toggleStrand = (strand: string) => {
+  const toggleStrand = (strand: string): void => {
     const newExpanded = new Set(expandedStrands);
     if (newExpanded.has(strand)) {
       newExpanded.delete(strand);
@@ -109,7 +109,7 @@ return expectations;
     setExpandedStrands(newExpanded);
   };
 
-  const toggleExpectation = (expectationId: string) => {
+  const toggleExpectation = (expectationId: string): void => {
     if (multiSelect) {
       if (selectedIds.includes(expectationId)) {
         onChange(selectedIds.filter((id) => id !== expectationId));
@@ -122,11 +122,11 @@ return expectations;
     }
   };
 
-  const removeExpectation = (expectationId: string) => {
+  const removeExpectation = (expectationId: string): void => {
     onChange(selectedIds.filter((id) => id !== expectationId));
   };
 
-  const clearAll = () => {
+  const clearAll = (): void => {
     onChange([]);
   };
 
