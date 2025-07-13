@@ -84,16 +84,16 @@ export const validate = <T>(
       }
 
       // Replace original data with validated data if stripUnknown is true
-      if (stripUnknown) {
-        if (sources.includes('body')) {
-req.body = validated;
-}
-        if (sources.includes('query')) {
-req.query = validated as any;
-}
-        if (sources.includes('params')) {
-req.params = validated as any;
-}
+      if (stripUnknown === true) {
+        if (sources.includes('body') === true) {
+          req.body = validated;
+        }
+        if (sources.includes('query') === true) {
+          req.query = validated as any;
+        }
+        if (sources.includes('params') === true) {
+          req.params = validated as any;
+        }
       }
 
       next();
@@ -111,7 +111,7 @@ req.params = validated as any;
         );
 
         // Use custom _error handler if provided
-        if (customErrorHandler) {
+        if (customErrorHandler !== null && customErrorHandler !== undefined) {
           const customError = customErrorHandler(_error, req);
           next(customError); return;
         }
@@ -155,7 +155,7 @@ export const validateIf = <T>(
   schema: ZodSchema<T>,
   options?: ValidationOptions,
 ) => (req: ValidatedRequest<T>, res: Response, next: NextFunction) => {
-    if (condition(req)) {
+    if (condition(req) === true) {
       validate(schema, options)(req, res, next); return;
     }
     next();
@@ -219,7 +219,7 @@ export const commonValidators = {
       to: z.string().datetime().optional(),
     })
     .refine(
-      (data) => !data.from || !data.to || new Date(data.from) <= new Date(data.to),
+      (data) => (data.from === null || data.from === undefined) || (data.to === null || data.to === undefined) || new Date(data.from) <= new Date(data.to),
       'From date must be before or equal to to date',
     ),
 
@@ -247,25 +247,25 @@ export const sanitizeRequest = (
         .trim();
 
     // Sanitize specified fields
-    if (fieldsToSanitize.body && req.body) {
+    if (fieldsToSanitize.body !== null && fieldsToSanitize.body !== undefined && req.body !== null && req.body !== undefined) {
       fieldsToSanitize.body.forEach((field) => {
-        if (req.body[field] && typeof req.body[field] === 'string') {
+        if (req.body[field] !== null && req.body[field] !== undefined && typeof req.body[field] === 'string') {
           req.body[field] = sanitizeHtml(req.body[field]);
         }
       });
     }
 
-    if (fieldsToSanitize.query && req.query) {
+    if (fieldsToSanitize.query !== null && fieldsToSanitize.query !== undefined && req.query !== null && req.query !== undefined) {
       fieldsToSanitize.query.forEach((field) => {
-        if (req.query[field] && typeof req.query[field] === 'string') {
+        if (req.query[field] !== null && req.query[field] !== undefined && typeof req.query[field] === 'string') {
           req.query[field] = sanitizeHtml(req.query[field]);
         }
       });
     }
 
-    if (fieldsToSanitize.params && req.params) {
+    if (fieldsToSanitize.params !== null && fieldsToSanitize.params !== undefined && req.params !== null && req.params !== undefined) {
       fieldsToSanitize.params.forEach((field) => {
-        if (req.params[field] && typeof req.params[field] === 'string') {
+        if (req.params[field] !== null && req.params[field] !== undefined && typeof req.params[field] === 'string') {
           req.params[field] = sanitizeHtml(req.params[field]);
         }
       });

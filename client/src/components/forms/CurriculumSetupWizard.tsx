@@ -106,13 +106,13 @@ export default function CurriculumSetupWizard({
       id: 'basic-info',
       title: 'Basic Information',
       description: 'Enter your teaching context and academic year details',
-      completed: Boolean(formData.academicYear && formData.grade && formData.subject),
+      completed: formData.academicYear !== null && formData.academicYear !== undefined && formData.academicYear !== '' && formData.grade !== null && formData.grade !== undefined && formData.grade !== 0 && formData.subject !== null && formData.subject !== undefined && formData.subject !== '',
     },
     {
       id: 'planning-preferences',
       title: 'Planning Preferences',
       description: 'Choose your preferred planning approach and structure',
-      completed: Boolean(formData.planningStyle && formData.termStructure),
+      completed: formData.planningStyle !== null && formData.planningStyle !== undefined && formData.termStructure !== null && formData.termStructure !== undefined,
     },
     {
       id: 'curriculum-expectations',
@@ -124,7 +124,7 @@ export default function CurriculumSetupWizard({
       id: 'timeline-pacing',
       title: 'Timeline & Pacing',
       description: 'Set up your academic calendar and unit pacing',
-      completed: Boolean(formData.yearStartDate && formData.yearEndDate && formData.unitCount),
+      completed: formData.yearStartDate !== null && formData.yearStartDate !== undefined && formData.yearStartDate !== '' && formData.yearEndDate !== null && formData.yearEndDate !== undefined && formData.yearEndDate !== '' && formData.unitCount !== null && formData.unitCount !== undefined && formData.unitCount !== 0,
     },
     {
       id: 'resources-materials',
@@ -162,7 +162,7 @@ export default function CurriculumSetupWizard({
 
   const addToArray = (field: keyof CurriculumSetupData, value: string) => {
     const currentArray = formData[field] as string[];
-    if (!currentArray.includes(value) && value.trim()) {
+    if (!currentArray.includes(value) && value.trim() !== '') {
       setFormData({
         ...formData,
         [field]: [...currentArray, value],
@@ -334,7 +334,7 @@ export default function CurriculumSetupWizard({
                   variant="outline"
                   onClick={(e) => {
                     const input = e.currentTarget.previousElementSibling as HTMLInputElement;
-                    if (input.value) {
+                    if (input.value !== null && input.value !== undefined && input.value !== '') {
                       addToArray('priorityStrands', input.value);
                       input.value = '';
                     }
@@ -379,7 +379,7 @@ export default function CurriculumSetupWizard({
                   variant="outline"
                   onClick={(e) => {
                     const input = e.currentTarget.previousElementSibling as HTMLInputElement;
-                    if (input.value) {
+                    if (input.value !== null && input.value !== undefined && input.value !== '') {
                       addToArray('crossCurricularConnections', input.value);
                       input.value = '';
                     }
@@ -488,7 +488,7 @@ export default function CurriculumSetupWizard({
                   variant="outline"
                   onClick={(e) => {
                     const input = e.currentTarget.previousElementSibling as HTMLInputElement;
-                    if (input.value) {
+                    if (input.value !== null && input.value !== undefined && input.value !== '') {
                       addToArray('availableResources', input.value);
                       input.value = '';
                     }
@@ -533,7 +533,7 @@ export default function CurriculumSetupWizard({
                   variant="outline"
                   onClick={(e) => {
                     const input = e.currentTarget.previousElementSibling as HTMLInputElement;
-                    if (input.value) {
+                    if (input.value !== null && input.value !== undefined && input.value !== '') {
                       addToArray('technologyAccess', input.value);
                       input.value = '';
                     }

@@ -57,9 +57,9 @@ export default function RichTextEditor({
       .replace(/'/g, '&#039;');
     
     // Insert the text at cursor position
-    if (window.getSelection) {
+    if (window.getSelection !== null && window.getSelection !== undefined) {
       const selection = window.getSelection();
-      if (selection && selection.getRangeAt && selection.rangeCount) {
+      if (selection !== null && selection !== undefined && selection.getRangeAt !== null && selection.getRangeAt !== undefined && selection.rangeCount > 0) {
         const range = selection.getRangeAt(0);
         range.deleteContents();
         range.insertNode(document.createTextNode(sanitizedText));

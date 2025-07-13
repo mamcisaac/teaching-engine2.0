@@ -106,7 +106,7 @@ export default function LessonPlanForm({
     return () => { // Cleanup
     };
 
-    if (initialData) {
+    if (initialData !== null && initialData !== undefined) {
       setFormData((prev) => ({ ...prev, ...initialData }));
     }
   }, [initialData]);
@@ -192,15 +192,15 @@ export default function LessonPlanForm({
   const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {};
 
-    if (!formData.title.trim()) {
+    if (formData.title.trim() === '') {
       newErrors.title = 'Lesson title is required';
     }
 
-    if (!formData.unitPlanId) {
+    if (formData.unitPlanId === null || formData.unitPlanId === undefined || formData.unitPlanId === '') {
       newErrors.unitPlanId = 'Unit plan selection is required';
     }
 
-    if (!formData.date) {
+    if (formData.date === null || formData.date === undefined || formData.date === '') {
       newErrors.date = 'Date is required';
     }
 
@@ -213,7 +213,7 @@ export default function LessonPlanForm({
     }
 
     // Validate that at least one of the three lesson parts has content
-    if (!formData.mindsOn?.trim() && !formData.action?.trim() && !formData.consolidation?.trim()) {
+    if ((formData.mindsOn === null || formData.mindsOn === undefined || formData.mindsOn.trim() === '') && (formData.action === null || formData.action === undefined || formData.action.trim() === '') && (formData.consolidation === null || formData.consolidation === undefined || formData.consolidation.trim() === '')) {
       newErrors.lessonStructure =
         'At least one lesson component (Minds On, Action, or Consolidation) must have content';
     }
@@ -276,7 +276,7 @@ export default function LessonPlanForm({
                       </option>
                     ))}
                   </select>
-                  {errors.unitPlanId && (
+                  {errors.unitPlanId !== undefined && (
                     <p className="mt-1 text-sm text-red-600">{errors.unitPlanId}</p>
                   )}
                 </div>
@@ -297,7 +297,7 @@ export default function LessonPlanForm({
  setFormData({ ...formData, titleFr: value }); 
 }}
                 />
-                {errors.title && <p className="mt-1 text-sm text-red-600">{errors.title}</p>}
+                {errors.title !== undefined && <p className="mt-1 text-sm text-red-600">{errors.title}</p>}
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -313,7 +313,7 @@ export default function LessonPlanForm({
  setFormData({ ...formData, date: e.target.value }); 
 }}
                   />
-                  {errors.date && <p className="mt-1 text-sm text-red-600">{errors.date}</p>}
+                  {errors.date !== undefined && <p className="mt-1 text-sm text-red-600">{errors.date}</p>}
                 </div>
                 <div>
                   <Label htmlFor="duration">Duration (minutes) *</Label>
@@ -329,7 +329,7 @@ export default function LessonPlanForm({
 }
                     }
                   />
-                  {errors.duration && (
+                  {errors.duration !== undefined && (
                     <p className="mt-1 text-sm text-red-600">{errors.duration}</p>
                   )}
                 </div>
@@ -421,10 +421,10 @@ export default function LessonPlanForm({
  setFormData({ ...formData, expectationIds: ids }); 
 }}
                 />
-                {errors.expectationIds && (
+                {errors.expectationIds !== undefined && (
                   <p className="mt-1 text-sm text-red-600">{errors.expectationIds}</p>
                 )}
-                {errors.lessonStructure && (
+                {errors.lessonStructure !== undefined && (
                   <p className="mt-1 text-sm text-red-600">{errors.lessonStructure}</p>
                 )}
               </div>
@@ -649,7 +649,7 @@ export default function LessonPlanForm({
               <option value="summative">Summative - Assessment OF Learning (After/End)</option>
             </select>
             <div className="mt-2 text-sm text-gray-600">
-              {formData.assessmentType === 'diagnostic' && (
+              {formData.assessmentType !== null && formData.assessmentType !== undefined && formData.assessmentType === 'diagnostic' && (
                 <p className="bg-blue-50 p-3 rounded-md border border-blue-200">
                   <strong>Diagnostic Assessment:</strong> Used at the beginning to determine what
                   students already know and identify learning needs.
@@ -658,7 +658,7 @@ export default function LessonPlanForm({
                   tickets, thumbs up/down checks
                 </p>
               )}
-              {formData.assessmentType === 'formative' && (
+              {formData.assessmentType !== null && formData.assessmentType !== undefined && formData.assessmentType === 'formative' && (
                 <p className="bg-green-50 p-3 rounded-md border border-green-200">
                   <strong>Formative Assessment:</strong> Ongoing assessment during learning to
                   provide feedback and adjust teaching. Students actively assess their own learning.
@@ -667,7 +667,7 @@ export default function LessonPlanForm({
                   mini-whiteboards, think-pair-share, observation checklists
                 </p>
               )}
-              {formData.assessmentType === 'summative' && (
+              {formData.assessmentType !== null && formData.assessmentType !== undefined && formData.assessmentType === 'summative' && (
                 <p className="bg-purple-50 p-3 rounded-md border border-purple-200">
                   <strong>Summative Assessment:</strong> Used at the end to evaluate student
                   achievement of learning goals and assign grades.
@@ -737,7 +737,7 @@ Stratégies d'évaluation:
                 <span className="text-sm">This lesson is suitable for a substitute teacher</span>
               </label>
 
-              {formData.isSubFriendly && (
+              {formData.isSubFriendly === true && (
                 <div>
                   <BilingualTextInput
                     multiline
@@ -763,13 +763,13 @@ Stratégies d'évaluation:
       </Tabs>
 
       <div className="flex justify-end space-x-3 mt-6 pt-6 border-t">
-        {onCancel && (
+        {onCancel !== null && onCancel !== undefined && (
           <Button aria-label="Click button" onClick={onCancel}>
             Cancel
           </Button>
         )}
         <Button disabled={isSubmitting} type="submit">
-          {isSubmitting ? 'Saving...' : initialData ? 'Update Lesson Plan' : 'Create Lesson Plan'}
+          {isSubmitting === true ? 'Saving...' : (initialData !== null && initialData !== undefined) ? 'Update Lesson Plan' : 'Create Lesson Plan'}
         </Button>
       </div>
     </form>

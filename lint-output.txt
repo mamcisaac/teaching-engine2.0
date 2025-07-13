@@ -23,5 +23,21 @@
   140:36  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
   149:72  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
-✖ 10 problems (10 errors, 0 warnings)
+/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/routes/DaybookEntriesRouteHandler.ts
+  202:14  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  263:55  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  298:71  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  322:83  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  372:53  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  444:37  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/ETFOLessonPlanService.ts
+   61:14  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  112:55  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  127:57  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  164:85  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  206:56  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  253:14  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 22 problems (22 errors, 0 warnings)
 
