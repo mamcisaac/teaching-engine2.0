@@ -6,7 +6,7 @@ import { useKeyboardShortcut } from '../hooks/useKeyboardShortcut';
 import { KeyboardShortcutsHelp } from './KeyboardShortcutsHelp';
 // import { useNotification } from '../contexts/NotificationContext';
 
-export const GlobalKeyboardShortcuts: React.FC = () => {
+export const GlobalKeyboardShortcuts: React.FC = (): React.ReactElement => {
   const navigate = useNavigate();
   const _location = useLocation();
   // const { addNotification } = useNotification();
@@ -14,14 +14,14 @@ export const GlobalKeyboardShortcuts: React.FC = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   // Wrap all handlers in useCallback to prevent infinite re-renders
-  const handleShowHelp = useCallback(() => {
+  const handleShowHelp = useCallback((): void => {
  setIsHelpOpen(true); 
 }, []) // eslint-disable-line react-hooks/exhaustive-deps
-  const handleCreateNewLesson = useCallback(() => {
+  const handleCreateNewLesson = useCallback((): void => {
     navigate('/planner/quick-lesson');
     // addNotification('info', 'Create a new lesson plan');
   }, [navigate]);
-  const handleSave = useCallback(() => {
+  const handleSave = useCallback((): void => {
     // Dispatch a custom event that components can listen to
     window.dispatchEvent(new CustomEvent('global:save'));
     // addNotification('success', 'Saved successfully');
@@ -66,7 +66,7 @@ export const GlobalKeyboardShortcuts: React.FC = () => {
   );
 
   // Global: Search/Find (Ctrl/Cmd + F)
-  const handleSearch = useCallback(() => {
+  const handleSearch = useCallback((): void => {
     setIsSearchOpen(true);
     // Dispatch event for components to handle search
     window.dispatchEvent(new CustomEvent('global:search'));
@@ -81,28 +81,28 @@ export const GlobalKeyboardShortcuts: React.FC = () => {
     preventDefault: true,
   });
 
-  const handleEscape = useCallback(() => {
+  const handleEscape = useCallback((): void => {
     // Dispatch event for components to handle escape
     window.dispatchEvent(new CustomEvent('global:escape'));
     setIsSearchOpen(false);
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const handleNavigateDashboard = useCallback(() => {
+  const handleNavigateDashboard = useCallback((): void => {
  navigate('/planner/dashboard'); 
 }, [navigate]);
-  const handleNavigatePlanning = useCallback(() => {
+  const handleNavigatePlanning = useCallback((): void => {
  navigate('/planner/long-range'); 
 }, [navigate]);
-  const handleNavigateCurriculum = useCallback(() => {
+  const handleNavigateCurriculum = useCallback((): void => {
  navigate('/curriculum'); 
 }, [navigate]);
-  const handleNavigateHelp = useCallback(() => {
+  const handleNavigateHelp = useCallback((): void => {
  navigate('/help'); 
 }, [navigate]);
-  const handleGoBack = useCallback(() => {
+  const handleGoBack = useCallback((): void => {
  window.history.back(); 
 }, []) // eslint-disable-line react-hooks/exhaustive-deps
-  const handleGoForward = useCallback(() => {
+  const handleGoForward = useCallback((): void => {
  window.history.forward(); 
 }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -167,12 +167,12 @@ export const GlobalKeyboardShortcuts: React.FC = () => {
 
   return (
     <div data-testid="keyboard-shortcuts-container">
-      <KeyboardShortcutsHelp isOpen={isHelpOpen} onClose={() => {
+      <KeyboardShortcutsHelp isOpen={isHelpOpen} onClose={(): void => {
  setIsHelpOpen(false); 
 }} />
 
       {/* Global Search Modal */}
-      {isSearchOpen && <GlobalSearch onClose={() => {
+      {isSearchOpen && <GlobalSearch onClose={(): void => {
  setIsSearchOpen(false); 
 }} />}
     </div>
@@ -180,7 +180,7 @@ export const GlobalKeyboardShortcuts: React.FC = () => {
 };
 
 // Simple global search component
-const GlobalSearch: React.FC<{ onClose: () => void }> = ({ onClose }) => {
+const GlobalSearch: React.FC<{ onClose: () => void }> = ({ onClose }): React.ReactElement => {
   const [query, setQuery] = useState('');
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
@@ -192,7 +192,7 @@ const GlobalSearch: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
   const handleSearch = (e: React.FormEvent): void => {
     e.preventDefault();
-    if (query.trim().length > 0) {
+    if (query !== null && query !== undefined && query.trim() !== '') {
       // Navigate to curriculum page with search query
       navigate(`/curriculum?search=${encodeURIComponent(query)}`);
       onClose();
@@ -225,7 +225,7 @@ const GlobalSearch: React.FC<{ onClose: () => void }> = ({ onClose }) => {
               placeholder="Search for curriculum, lessons, or resources..."
               type="text"
               value={query}
-              onChange={(e) => {
+              onChange={(e): void => {
  setQuery(e.target.value); 
 }}
             />

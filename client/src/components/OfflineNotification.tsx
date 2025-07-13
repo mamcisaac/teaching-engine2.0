@@ -1,8 +1,8 @@
 // Offline Notification Component
 // Shows a persistent notification when the app is offline
 
-import { WifiOff, X, AlertCircle, RefreshCw } from 'lucide-react';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { AlertCircle, RefreshCw, WifiOff, X } from 'lucide-react';
 
 import { isOnline } from '../utils/serviceWorkerRegistration';
 
@@ -14,9 +14,6 @@ export function OfflineNotification(): React.ReactElement | null {
   const [retrying, setRetrying] = useState(false);
 
   useEffect(() => {
-    return () => { // Cleanup
-    };
-
     const handleOnline = (): void => {
       setIsOnlineState(true);
       setDismissed(false);
@@ -34,7 +31,7 @@ export function OfflineNotification(): React.ReactElement | null {
       window.removeEventListener('online', handleOnline);
       window.removeEventListener('offline', handleOffline);
     };
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleRetry = async (): Promise<void> => {
     setRetrying(true);
@@ -51,7 +48,7 @@ export function OfflineNotification(): React.ReactElement | null {
   };
 
   // Don't show if online or dismissed
-  if (isOnlineState === true || dismissed === true) {
+  if (isOnlineState !== null && isOnlineState !== undefined && isOnlineState === true || dismissed !== null && dismissed !== undefined && dismissed === true) {
     return null;
   }
 
@@ -77,7 +74,7 @@ export function OfflineNotification(): React.ReactElement | null {
                 variant="outline"
                 onClick={handleRetry}
               >
-                {retrying === true ? (
+                {retrying !== null && retrying !== undefined && retrying === true ? (
                   <>
                     <RefreshCw className="w-3 h-3 mr-1 animate-spin" />
                     Checking...
@@ -93,7 +90,7 @@ export function OfflineNotification(): React.ReactElement | null {
                 className="text-yellow-700 hover:bg-yellow-100"
                 size="sm"
                 variant="ghost"
-                onClick={() => {
+                onClick={(): void => {
  setDismissed(true); 
 }}
               >
@@ -104,7 +101,7 @@ export function OfflineNotification(): React.ReactElement | null {
           <div className="ml-auto pl-3">
             <button
               className="inline-flex rounded-md bg-yellow-50 p-1.5 text-yellow-500 hover:bg-yellow-100 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:ring-offset-2 focus:ring-offset-yellow-50"
-              onClick={() => {
+              onClick={(): void => {
  setDismissed(true); 
 }}
             >
@@ -139,7 +136,7 @@ export function ConflictResolutionModal({
   const [_mergedData, _setMergedData] = useState<unknown>(null);
 
   const handleResolve = (): void => {
-    if (selectedResolution === 'merge' && _mergedData !== null && _mergedData !== undefined) {
+    if (selectedResolution !== null && selectedResolution !== undefined && selectedResolution === 'merge' && _mergedData !== null && _mergedData !== undefined) {
       onResolve('merge', _mergedData);
     } else {
       onResolve(selectedResolution);
@@ -171,7 +168,7 @@ export function ConflictResolutionModal({
                   className="mr-3"
                   type="radio"
                   value="local"
-                  onChange={(e) => {
+                  onChange={(e): void => {
  setSelectedResolution(e.target.value as 'local'); 
 }}
                 />
@@ -195,7 +192,7 @@ export function ConflictResolutionModal({
                   className="mr-3"
                   type="radio"
                   value="remote"
-                  onChange={(e) => {
+                  onChange={(e): void => {
  setSelectedResolution(e.target.value as 'remote'); 
 }}
                 />
@@ -219,7 +216,7 @@ export function ConflictResolutionModal({
                   className="mr-3"
                   type="radio"
                   value="merge"
-                  onChange={(e) => {
+                  onChange={(e): void => {
  setSelectedResolution(e.target.value as 'merge'); 
 }}
                 />
@@ -266,7 +263,7 @@ const styles = `
 `;
 
 // Inject styles
-if (typeof document !== 'undefined') {
+if (typeof document !== 'undefined' && document !== null) {
   const styleSheet = document.createElement('style');
   styleSheet.innerText = styles;
   document.head.appendChild(styleSheet);

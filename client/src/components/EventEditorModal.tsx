@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import { useAddCalendarEvent } from '../api/domains/calendar';
 
-import Dialog from './Dialog';
+import { Dialog } from './Dialog';
 
 interface Props {
   onClose: () => void;
@@ -13,7 +13,7 @@ export default function EventEditorModal({ onClose }: Props): React.ReactElement
   const [date, setDate] = useState('');
   const mutation = useAddCalendarEvent();
 
-  const submit = () => {
+  const submit = (): void => {
     if (date === null || date === undefined || date === '' || title === null || title === undefined || title === '') {
 return;
 }
@@ -36,7 +36,7 @@ return;
           className="border p-1 w-full"
           placeholder="Title"
           value={title}
-          onChange={(e) => {
+          onChange={(e): void => {
  setTitle(e.target.value); 
 }}
         />
@@ -44,7 +44,7 @@ return;
           className="border p-1 w-full"
           type="date"
           value={date}
-          onChange={(e) => {
+          onChange={(e): void => {
  setDate(e.target.value); 
 }}
         />

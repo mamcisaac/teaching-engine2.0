@@ -35,12 +35,20 @@ function MainLayoutContent({ children }: MainLayoutProps): React.ReactElement {
     <TutorialManager>
       <div className="flex h-screen bg-gray-100">
         {/* Mobile backdrop */}
-        {isMobile === true && isSidebarOpen === true && (
+        {isMobile && isSidebarOpen && (
           <div
             className="fixed inset-0 bg-black bg-opacity-50 z-20 md:hidden"
+            role="button"
+            tabIndex={0}
             onClick={() => {
  toggleSidebar(); 
 }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleSidebar();
+              }
+            }}
           />
         )}
 
@@ -50,7 +58,15 @@ function MainLayoutContent({ children }: MainLayoutProps): React.ReactElement {
         {/* Main content */}
         <div
           className={`flex-1 transition-all duration-300 ease-in-out ${
-            isMobile === true ? 'ml-0' : isSidebarOpen === true ? 'ml-64' : 'ml-16'
+            (() => {
+              if (isMobile) {
+                return 'ml-0';
+              }
+              if (isSidebarOpen) {
+                return 'ml-64';
+              }
+              return 'ml-16';
+            })()
           }`}
         >
           {/* Top navigation bar */}
@@ -69,7 +85,7 @@ function MainLayoutContent({ children }: MainLayoutProps): React.ReactElement {
   );
 }
 
-export default function MainLayout({ children }: MainLayoutProps): React.ReactElement {
+export function MainLayout({ children }: MainLayoutProps): React.ReactElement {
   return (
     <NavigationProvider>
       <MainLayoutContent>{children}</MainLayoutContent>

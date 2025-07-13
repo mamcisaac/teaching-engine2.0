@@ -1,5 +1,5 @@
-import { Loader2, RefreshCw } from 'lucide-react';
 import React from 'react';
+import { Loader2, RefreshCw } from 'lucide-react';
 
 import { Card, CardContent, CardHeader } from './ui/card';
 
@@ -8,7 +8,7 @@ export const LoadingSpinner: React.FC<{
   size?: 'sm' | 'md' | 'lg'; 
   message?: string;
   className?: string;
-}> = ({ size = 'md', message, className = '' }) => {
+}> = ({ size = 'md', message, className = '' }): React.ReactElement => {
   const sizeClasses = {
     sm: 'h-4 w-4',
     md: 'h-8 w-8',
@@ -26,14 +26,14 @@ export const LoadingSpinner: React.FC<{
 };
 
 // Full page loading state
-export const PageLoader: React.FC<{ message?: string }> = ({ message = 'Loading...' }) => (
+export const PageLoader: React.FC<{ message?: string }> = ({ message = 'Loading...' }): React.ReactElement => (
   <div className="min-h-screen flex items-center justify-center">
     <LoadingSpinner message={message} size="lg" />
   </div>
 );
 
 // Card skeleton for list items
-export const CardSkeleton: React.FC<{ count?: number }> = ({ count = 1 }) => (
+export const CardSkeleton: React.FC<{ count?: number }> = ({ count = 1 }): React.ReactElement => (
   <>
     {Array.from({ length: count }).map((_, _index) => (
       <Card key={_index} className="animate-pulse">
@@ -57,7 +57,7 @@ export const CardSkeleton: React.FC<{ count?: number }> = ({ count = 1 }) => (
 export const TableSkeleton: React.FC<{ rows?: number; columns?: number }> = ({ 
   rows = 5, 
   columns = 4 
-}) => (
+}): React.ReactElement => (
   <div className="bg-white shadow rounded-lg overflow-hidden">
     <div className="animate-pulse">
       {/* Header */}
@@ -92,7 +92,7 @@ export const TableSkeleton: React.FC<{ rows?: number; columns?: number }> = ({
 );
 
 // Form skeleton
-export const FormSkeleton: React.FC = () => (
+export const FormSkeleton: React.FC = (): React.ReactElement => (
   <div className="animate-pulse space-y-6">
     {/* Title field */}
     <div>
@@ -127,7 +127,7 @@ export const FormSkeleton: React.FC = () => (
 );
 
 // Tab content skeleton
-export const TabContentSkeleton: React.FC = () => (
+export const TabContentSkeleton: React.FC = (): React.ReactElement => (
   <div className="animate-pulse space-y-4 mt-4">
     <div className="h-4 bg-gray-200 rounded w-3/4" />
     <div className="h-4 bg-gray-200 rounded" />
@@ -140,7 +140,7 @@ export const TabContentSkeleton: React.FC = () => (
 );
 
 // Lesson plan skeleton
-export const LessonPlanSkeleton: React.FC = () => (
+export const LessonPlanSkeleton: React.FC = (): React.ReactElement => (
   <div className="bg-white shadow rounded-lg animate-pulse">
     <div className="px-6 py-4 border-b">
       <div className="h-6 bg-gray-200 rounded w-3/4" />
@@ -169,7 +169,7 @@ export const LessonPlanSkeleton: React.FC = () => (
 );
 
 // Unit plan skeleton
-export const UnitPlanSkeleton: React.FC = () => (
+export const UnitPlanSkeleton: React.FC = (): React.ReactElement => (
   <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
     <CardSkeleton count={6} />
   </div>
@@ -182,7 +182,7 @@ export const EmptyState: React.FC<{
   description: string;
   action?: React.ReactNode;
   className?: string;
-}> = ({ icon, title, description, action, className = '' }) => (
+}> = ({ icon, title, description, action, className = '' }): React.ReactElement => (
   <div className={`text-center py-12 bg-white rounded-lg border-2 border-dashed border-gray-300 ${className}`}>
     {icon !== null && icon !== undefined && (
       <div className="mx-auto h-12 w-12 text-gray-400">
@@ -203,7 +203,7 @@ export const EmptyState: React.FC<{
 export const RetryLoad: React.FC<{
   onRetry: () => void;
   message?: string;
-}> = ({ onRetry, message = 'Failed to load data' }) => (
+}> = ({ onRetry, message = 'Failed to load data' }): React.ReactElement => (
   <div className="text-center py-8">
     <p className="text-gray-600 mb-4">{message}</p>
     <button

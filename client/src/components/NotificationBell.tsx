@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { newsletterApi } from '../api/domains/newsletter';
 import { useAuth } from '../contexts/AuthContext';
 
-export default function NotificationBell(): React.ReactElement | null {
+export function NotificationBell(): React.ReactElement | null {
   const [suggested, setSuggested] = useState(false);
   const { isAuthenticated, isInitialized } = useAuth();
 
@@ -13,11 +13,12 @@ export default function NotificationBell(): React.ReactElement | null {
     };
 
     // Only fetch suggestions if authenticated and initialized
-    if (isAuthenticated === true && isInitialized === true) {
+    if (isAuthenticated && isInitialized) {
       newsletterApi.getSuggestions()
         .then((r) => {
- setSuggested(r.suggested); 
-})
+          setSuggested(r.suggested);
+          return r.suggested;
+        })
         .catch(() => {
           // Silently handle errors
           setSuggested(false);
@@ -25,9 +26,9 @@ export default function NotificationBell(): React.ReactElement | null {
     }
   }, [isAuthenticated, isInitialized]);
 
-  if (suggested === false) {
-return null;
-}
+  if (!suggested) {
+    return null;
+  }
   return (
     <div className="absolute top-2 right-2">
       <Link className="text-red-600 underline" to="/newsletters/new">
@@ -36,3 +37,4 @@ return null;
     </div>
   );
 }
+
