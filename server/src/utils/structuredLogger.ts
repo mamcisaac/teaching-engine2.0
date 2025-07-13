@@ -52,10 +52,10 @@ const logFormat = format.combine(
       message: info.message,
       correlationId: context?.correlationId ?? 'no-correlation-id',
       ...(context?.userId !== undefined ? { userId: context.userId } : {}),
-      ...(context?.requestId !== undefined && context.requestId !== null ? { requestId: context.requestId } : {}),
-      ...(context?.sessionId !== undefined && context.sessionId !== null ? { sessionId: context.sessionId } : {}),
-      ...(info.duration !== undefined && info.duration !== null ? { duration: info.duration } : {}),
-      ...(info.meta !== undefined && info.meta !== null ? { meta: info.meta } : {}),
+      ...(context?.requestId ? { requestId: context.requestId } : {}),
+      ...(context?.sessionId ? { sessionId: context.sessionId } : {}),
+      ...(info.duration !== undefined ? { duration: info.duration } : {}),
+      ...(info.meta !== undefined ? { meta: info.meta } : {}),
       ...(info.error !== undefined && info.error !== null && typeof info.error === 'object' && 'message' in info.error ? {
         error: {
           message: (info.error as Error).message,
@@ -66,7 +66,7 @@ const logFormat = format.combine(
     };
 
     // Add trace context if available
-    if (context?.traceId !== undefined && context.traceId !== null && context.traceId !== '') {
+    if (context?.traceId) {
       (log as Record<string, unknown>).trace = {
         traceId: context.traceId,
         spanId: context.spanId,

@@ -192,7 +192,7 @@ url += `?${params.toString()}`;
                 } else {
                   // Try to find in the list
                   const lesson = get().lessonPlans.find((p) => p.id === id);
-                  if (lesson !== undefined) {
+                  if (lesson !== null && lesson !== undefined) {
                     set((state) => {
                       state.currentLesson = lesson;
                       state.isLoading = false;
@@ -370,7 +370,7 @@ url += `?${params.toString()}`;
 
           duplicateLessonPlan: async (id: string, newDate: string) => {
             const originalLesson = get().lessonPlans.find((p) => p.id === id);
-            if (originalLesson === undefined) {
+            if (originalLesson === null || originalLesson === undefined) {
               throw new Error('Lesson not found');
             }
 

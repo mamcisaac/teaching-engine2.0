@@ -18,24 +18,24 @@ export function validateUnitPlan(data: UnitPlanFormData): ValidationResult {
   const errors: Record<string, string> = {};
 
   // Required field validation
-  if (!data.title.trim()) {
+  if (data.title.trim() === '') {
     errors.title = 'Unit title is required';
   }
 
-  if (!data.longRangePlanId) {
+  if (data.longRangePlanId === null || data.longRangePlanId === undefined || data.longRangePlanId === '') {
     errors.longRangePlanId = 'Long-range plan selection is required';
   }
 
-  if (!data.startDate) {
+  if (data.startDate === null || data.startDate === undefined || data.startDate === '') {
     errors.startDate = 'Start date is required';
   }
 
-  if (!data.endDate) {
+  if (data.endDate === null || data.endDate === undefined || data.endDate === '') {
     errors.endDate = 'End date is required';
   }
 
   // Date validation
-  if (data.startDate && data.endDate) {
+  if (data.startDate !== null && data.startDate !== undefined && data.startDate !== '' && data.endDate !== null && data.endDate !== undefined && data.endDate !== '') {
     const startDate = new Date(data.startDate);
     const endDate = new Date(data.endDate);
 
@@ -58,36 +58,36 @@ export function validateUnitPlan(data: UnitPlanFormData): ValidationResult {
   }
 
   // Expectation validation - CRITICAL for Forms & Data Agent
-  if (!data.expectationIds || data.expectationIds.length === 0) {
+  if (data.expectationIds === null || data.expectationIds === undefined || data.expectationIds.length === 0) {
     errors.expectationIds = 'At least one curriculum expectation must be selected';
   }
 
   // Duration validation
-  if (!data.estimatedHours || data.estimatedHours <= 0) {
+  if (data.estimatedHours === null || data.estimatedHours === undefined || data.estimatedHours <= 0) {
     errors.estimatedHours = 'Estimated hours must be greater than 0';
   }
 
-  if (data.estimatedHours && data.estimatedHours > 500) {
+  if (data.estimatedHours !== null && data.estimatedHours !== undefined && data.estimatedHours > 500) {
     errors.estimatedHours = 'Estimated hours seems unreasonably high (max 500)';
   }
 
   // Content validation
-  if (data.title && data.title.length > 200) {
+  if (data.title !== null && data.title !== undefined && data.title !== '' && data.title.length > 200) {
     errors.title = 'Title must be 200 characters or less';
   }
 
-  if (data.description && data.description.length > 2000) {
+  if (data.description !== null && data.description !== undefined && data.description !== '' && data.description.length > 2000) {
     errors.description = 'Description must be 2000 characters or less';
   }
 
   // Array validation - ensure at least one meaningful entry
   const hasEssentialQuestions = data.essentialQuestions.some((q) => q.trim().length > 0);
-  if (!hasEssentialQuestions) {
+  if (hasEssentialQuestions === false) {
     errors.essentialQuestions = 'At least one essential question is required';
   }
 
   const hasSuccessCriteria = data.successCriteria.some((c) => c.trim().length > 0);
-  if (!hasSuccessCriteria) {
+  if (hasSuccessCriteria === false) {
     errors.successCriteria = 'At least one success criteria is required';
   }
 
@@ -104,20 +104,20 @@ export function validateLessonPlan(data: LessonPlanFormData): ValidationResult {
   const errors: Record<string, string> = {};
 
   // Required field validation
-  if (!data.title.trim()) {
+  if (data.title.trim() === '') {
     errors.title = 'Lesson title is required';
   }
 
-  if (!data.unitPlanId) {
+  if (data.unitPlanId === null || data.unitPlanId === undefined || data.unitPlanId === '') {
     errors.unitPlanId = 'Unit plan selection is required';
   }
 
-  if (!data.date) {
+  if (data.date === null || data.date === undefined || data.date === '') {
     errors.date = 'Date is required';
   }
 
   // Date validation
-  if (data.date) {
+  if (data.date !== null && data.date !== undefined && data.date !== '') {
     const lessonDate = new Date(data.date);
     const now = new Date();
     const oneYearAgo = new Date(now.getFullYear() - 1, now.getMonth(), now.getDate());
@@ -133,17 +133,17 @@ export function validateLessonPlan(data: LessonPlanFormData): ValidationResult {
   }
 
   // Duration validation
-  if (!data.duration || data.duration <= 0) {
+  if (data.duration === null || data.duration === undefined || data.duration <= 0) {
     errors.duration = 'Duration must be greater than 0 minutes';
   }
 
-  if (data.duration && data.duration > 480) {
+  if (data.duration !== null && data.duration !== undefined && data.duration > 480) {
     // 8 hours
     errors.duration = 'Duration cannot exceed 480 minutes (8 hours)';
   }
 
   // Expectation validation - CRITICAL for Forms & Data Agent
-  if (!data.expectationIds || data.expectationIds.length === 0) {
+  if (data.expectationIds === null || data.expectationIds === undefined || data.expectationIds.length === 0) {
     errors.expectationIds = 'At least one curriculum expectation must be selected';
   }
 
@@ -152,23 +152,23 @@ export function validateLessonPlan(data: LessonPlanFormData): ValidationResult {
   const hasAction = data.action?.trim();
   const hasConsolidation = data.consolidation?.trim();
 
-  if (!hasMindsOn && !hasAction && !hasConsolidation) {
+  if ((hasMindsOn === null || hasMindsOn === undefined || hasMindsOn === '') && (hasAction === null || hasAction === undefined || hasAction === '') && (hasConsolidation === null || hasConsolidation === undefined || hasConsolidation === '')) {
     errors.lessonStructure =
       'At least one lesson component (Minds On, Action, or Consolidation) must have content';
   }
 
   // Content length validation
-  if (data.title && data.title.length > 200) {
+  if (data.title !== null && data.title !== undefined && data.title !== '' && data.title.length > 200) {
     errors.title = 'Title must be 200 characters or less';
   }
 
-  if (data.learningGoals && data.learningGoals.length > 1000) {
+  if (data.learningGoals !== null && data.learningGoals !== undefined && data.learningGoals !== '' && data.learningGoals.length > 1000) {
     errors.learningGoals = 'Learning goals must be 1000 characters or less';
   }
 
   // Materials validation - at least one meaningful material
   const hasMaterials = data.materials.some((m) => m.trim().length > 0);
-  if (!hasMaterials) {
+  if (hasMaterials === false) {
     errors.materials = 'At least one material or resource is required';
   }
 
@@ -187,11 +187,11 @@ export function validateExpectationSelection(
 ): ValidationResult {
   const errors: Record<string, string> = {};
 
-  if (!expectationIds || expectationIds.length === 0) {
+  if (expectationIds === null || expectationIds === undefined || expectationIds.length === 0) {
     errors.expectationIds = `At least one curriculum expectation must be selected for this ${context}`;
   }
 
-  if (expectationIds && expectationIds.length > 20) {
+  if (expectationIds !== null && expectationIds !== undefined && expectationIds.length > 20) {
     errors.expectationIds = `Too many expectations selected. Consider limiting to 20 or fewer for a ${context}`;
   }
 
@@ -211,7 +211,7 @@ export function validateField(
 ): string | null {
   switch (fieldName) {
     case 'title':
-      if (typeof value !== 'string' || !value.trim()) {
+      if (typeof value !== 'string' || value.trim() === '') {
 return 'Title is required';
 }
       if (value.length > 200) {
@@ -222,7 +222,7 @@ return 'Title must be 200 characters or less';
     case 'startDate':
     case 'endDate':
     case 'date': {
-      if (!value) {
+      if (value === null || value === undefined || value === '') {
 return 'Date is required';
 }
       const date = new Date(value as string | number | Date);
@@ -234,7 +234,7 @@ return 'Invalid date format';
 
     case 'estimatedHours': {
       const numValue = typeof value === 'number' ? value : Number(value);
-      if (!numValue || numValue <= 0) {
+      if (numValue === null || numValue === undefined || Number.isNaN(numValue) || numValue <= 0) {
 return 'Must be greater than 0';
 }
       if (numValue > 500) {
@@ -245,7 +245,7 @@ return 'Seems unreasonably high (max 500)';
 
     case 'duration': {
       const numValue = typeof value === 'number' ? value : Number(value);
-      if (!numValue || numValue <= 0) {
+      if (numValue === null || numValue === undefined || Number.isNaN(numValue) || numValue <= 0) {
 return 'Duration must be greater than 0';
 }
       if (numValue > 480) {
@@ -255,7 +255,7 @@ return 'Cannot exceed 480 minutes (8 hours)';
     }
 
     case 'expectationIds': {
-      if (!Array.isArray(value) || value.length === 0) {
+      if (Array.isArray(value) === false || value.length === 0) {
         return `At least one curriculum expectation must be selected for this ${context}`;
       }
       if (value.length > 20) {
@@ -306,7 +306,7 @@ export function validateFile(
 ): ValidationResult {
   const errors: Record<string, string> = {};
 
-  if (!allowedTypes.includes(file.type)) {
+  if (allowedTypes.includes(file.type) === false) {
     errors.fileType = `File type not allowed. Allowed types: ${allowedTypes.join(', ')}`;
   }
 

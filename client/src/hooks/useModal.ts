@@ -31,7 +31,7 @@ export function useModal<T = unknown>(options: UseModalOptions<T> = {}) {
   }, [onClose]);
 
   const toggle = useCallback(() => {
-    if (isOpen) {
+    if (isOpen === true) {
       close();
     } else {
       open();
@@ -99,7 +99,7 @@ export function useModals(initialModals: string[] = []): UseModalsReturn {
       const modal = prev[name] ?? { isOpen: false };
       return {
         ...prev,
-        [name]: modal.isOpen ? { ...modal, isOpen: false } : { isOpen: true, data },
+        [name]: modal.isOpen === true ? { ...modal, isOpen: false } : { isOpen: true, data },
       };
     });
   }, []);

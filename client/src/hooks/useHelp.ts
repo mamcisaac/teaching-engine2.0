@@ -451,7 +451,7 @@ const mockTutorials: Tutorial[] = [
 
 export function useHelpContent(): {
   content: HelpContent[];
-  availableFilters: Array<{ value: string; label: string; count: number }>;
+  availableFilters: { value: string; label: string; count: number }[];
   isLoading: boolean;
   totalCount: number;
   filteredCount: number;

@@ -7,27 +7,27 @@ import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 import { curriculumApi } from './api';
 
 // Subject Query Hooks
-export const useSubjects = (): UseQueryResult<Subject[], Error> =>
+export const useSubjects = (): UseQueryResult<Subject[]> =>
   useQuery({
     queryKey: queryKeys.curriculum.subjects,
     queryFn: curriculumApi.getSubjects,
   });
 
-export const useSubject = (id: number): UseQueryResult<Subject, Error> =>
+export const useSubject = (id: number): UseQueryResult<Subject> =>
   useQuery({
     queryKey: queryKeys.curriculum.subject(id),
     queryFn: () => curriculumApi.getSubject(id),
     enabled: id !== 0,
   });
 
-export const useStrands = (subjectId: number): UseQueryResult<string[], Error> =>
+export const useStrands = (subjectId: number): UseQueryResult<string[]> =>
   useQuery({
     queryKey: ['subject-strands', subjectId],
     queryFn: () => curriculumApi.getStrands(subjectId),
     enabled: subjectId !== 0,
   });
 
-export const useTopics = (subjectId: number, strand: string): UseQueryResult<string[], Error> =>
+export const useTopics = (subjectId: number, strand: string): UseQueryResult<string[]> =>
   useQuery({
     queryKey: ['subject-topics', subjectId, strand],
     queryFn: () => curriculumApi.getTopics(subjectId, strand),
@@ -40,13 +40,13 @@ export const useCurriculumExpectations = (filters?: {
   grade?: number;
   strand?: string;
   keyword?: string;
-}): UseQueryResult<CurriculumExpectation[], Error> =>
+}): UseQueryResult<CurriculumExpectation[]> =>
   useQuery({
     queryKey: queryKeys.curriculum.expectations(filters),
     queryFn: () => curriculumApi.getCurriculumExpectations(filters),
   });
 
-export const useCurriculumExpectation = (id: number): UseQueryResult<CurriculumExpectation, Error> =>
+export const useCurriculumExpectation = (id: number): UseQueryResult<CurriculumExpectation> =>
   useQuery({
     queryKey: ['curriculum-expectation', id],
     queryFn: () => curriculumApi.getCurriculumExpectation(id),
@@ -59,13 +59,13 @@ export const useThematicUnits = (filters?: {
   subject?: string;
   theme?: string;
   userId?: number;
-}): UseQueryResult<ThematicUnit[], Error> =>
+}): UseQueryResult<ThematicUnit[]> =>
   useQuery({
     queryKey: queryKeys.curriculum.thematicUnits(filters),
     queryFn: () => curriculumApi.getThematicUnits(filters),
   });
 
-export const useThematicUnit = (id: number): UseQueryResult<ThematicUnit, Error> =>
+export const useThematicUnit = (id: number): UseQueryResult<ThematicUnit> =>
   useQuery({
     queryKey: queryKeys.curriculum.thematicUnit(id),
     queryFn: () => curriculumApi.getThematicUnit(id),
@@ -83,7 +83,7 @@ export const useSearchCurriculum = (
 ): UseQueryResult<{
   expectations: CurriculumExpectation[];
   units: ThematicUnit[];
-}, Error> =>
+}> =>
   useQuery({
     queryKey: ['curriculum-search', query, options],
     queryFn: () => curriculumApi.searchCurriculum(query, options),

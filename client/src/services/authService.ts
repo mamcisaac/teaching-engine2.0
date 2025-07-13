@@ -37,7 +37,7 @@ interface AuthApiModule {
 
 let authApiModule: AuthApiModule | undefined;
 const getAuthApi = async (): Promise<AuthApiModule['authApi']> => {
-  if (!authApiModule) {
+  if (authApiModule === null || authApiModule === undefined) {
     authApiModule = await import('../api/auth/authApi') as AuthApiModule;
   }
   return authApiModule.authApi;
@@ -71,7 +71,7 @@ class AuthService {
   getAccessToken(): string | null {
     // Check if token is expired
     const expiresAt = this.getTokenExpiration();
-    if (expiresAt && Date.now() >= expiresAt) {
+    if (expiresAt !== null && expiresAt !== undefined && Date.now() >= expiresAt) {
       this.clearTokens();
       return null;
     }
@@ -93,7 +93,7 @@ class AuthService {
    */
   getTokenExpiration(): number | null {
     const expiresAt = localStorage.getItem('auth_expires_at');
-    return expiresAt ? parseInt(expiresAt, 10) : null;
+    return expiresAt !== null && expiresAt !== undefined && expiresAt !== '' ? parseInt(expiresAt, 10) : null;
   }
 
   /**
@@ -105,7 +105,7 @@ class AuthService {
     // Refresh token is now stored as HTTP-only cookie by the server
     // No longer store it in localStorage for security
 
-    if (tokens.expiresAt) {
+    if (tokens.expiresAt !== null && tokens.expiresAt !== undefined) {
       localStorage.setItem('auth_expires_at', tokens.expiresAt.toString());
     }
   }
@@ -145,7 +145,7 @@ class AuthService {
    */
   getUser(): User | null {
     const userData = localStorage.getItem(this.USER_KEY);
-    return userData ? safeJsonParse(userData, {}) : null;
+    return userData !== null && userData !== undefined && userData !== '' ? safeJsonParse(userData, {}) : null;
   }
 
   /**
@@ -153,7 +153,7 @@ class AuthService {
    */
   isAuthenticated(): boolean {
     const token = this.getAccessToken();
-    return !!token;
+    return token !== null && token !== undefined;
   }
 
   /**
@@ -161,7 +161,7 @@ class AuthService {
    */
   isTokenExpiringSoon(): boolean {
     const expiresAt = this.getTokenExpiration();
-    if (!expiresAt) {
+    if (expiresAt === null || expiresAt === undefined) {
 return false;
 }
 
@@ -177,15 +177,15 @@ return false;
       const authApi = await getAuthApi();
       const data = await authApi.login({ email, password });
 
-      if (data.user) {
+      if (data.user !== null && data.user !== undefined) {
         this.setUser(data.user);
 
-        if (data.tokens) {
+        if (data.tokens !== null && data.tokens !== undefined) {
           this.setTokens(data.tokens);
-        } else if (data.accessToken) {
+        } else if (data.accessToken !== null && data.accessToken !== undefined && data.accessToken !== '') {
           // Current backend format
           this.setLegacyToken(data.accessToken);
-        } else if (data.token) {
+        } else if (data.token !== null && data.token !== undefined && data.token !== '') {
           // Legacy token format
           this.setLegacyToken(data.token);
         }
@@ -217,7 +217,7 @@ return false;
    */
   async refreshToken(): Promise<boolean> {
     // Prevent multiple simultaneous refresh attempts
-    if (this.refreshPromise) {
+    if (this.refreshPromise !== null && this.refreshPromise !== undefined) {
       return this.refreshPromise;
     }
 
@@ -250,10 +250,10 @@ return false;
 
       const data = await response.json();
 
-      if (data.tokens) {
+      if (data.tokens !== null && data.tokens !== undefined) {
         this.setTokens(data.tokens);
         return true;
-      } else if (data.token) {
+      } else if (data.token !== null && data.token !== undefined && data.token !== '') {
         this.setLegacyToken(data.token);
         return true;
       }
@@ -272,7 +272,7 @@ return false;
   async verifyAuth(isRetry = false): Promise<User | null> {
     const token = this.getAccessToken();
 
-    if (!token) {
+    if (token === null || token === undefined || token === '') {
       return null;
     }
 
@@ -286,7 +286,7 @@ return false;
 
       if (response.status === 401) {
         // Try to refresh token if available, but only if not already retrying
-        if (!isRetry && this.hasRefreshToken() && (await this.refreshToken())) {
+        if (isRetry === false && this.hasRefreshToken() && (await this.refreshToken())) {
           // Retry with new token
           return this.verifyAuth(true);
         }
@@ -306,7 +306,7 @@ return false;
       logger.error('Auth verification failed:', error);
 
       // Try token refresh on network errors, but only if not already retrying
-      if (!isRetry && this.hasRefreshToken()) {
+      if (isRetry === false && this.hasRefreshToken()) {
         const refreshSuccess = await this.refreshToken();
         if (refreshSuccess) {
           // Retry once after successful refresh
@@ -329,7 +329,7 @@ return false;
   getAuthHeaders(): Record<string, string> {
     const token = this.getAccessToken();
 
-    if (!token) {
+    if (token === null || token === undefined || token === '') {
       return {};
     }
 
@@ -355,7 +355,7 @@ return false;
       this.clearTokens();
 
       // Only redirect if not already on login page
-      if (!window.location.pathname.includes('/login')) {
+      if (window.location.pathname.includes('/login') === false) {
         window.location.href = '/login';
       }
 
@@ -369,7 +369,7 @@ return false;
    * Auto-refresh token if it's expiring soon
    */
   async ensureValidToken(): Promise<boolean> {
-    if (!this.isAuthenticated()) {
+    if (this.isAuthenticated() === false) {
       return false;
     }
 

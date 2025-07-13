@@ -19,7 +19,7 @@ export const Switch: React.FC<SwitchProps> = ({
   label,
 }): React.ReactElement => {
   const handleChange = (): void => {
-    if (!disabled) {
+    if (disabled === false) {
       onChange(!checked);
     }
   };
@@ -27,8 +27,8 @@ export const Switch: React.FC<SwitchProps> = ({
   const switchClasses = clsx(
     'relative inline-flex flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2',
     {
-      'bg-blue-600': checked && !disabled,
-      'bg-gray-200': !checked && !disabled,
+      'bg-blue-600': checked === true && disabled === false,
+      'bg-gray-200': checked === false && disabled === false,
       'bg-gray-300 cursor-not-allowed opacity-50': disabled,
       'h-6 w-11': size === 'md',
       'h-5 w-9': size === 'sm',
@@ -39,16 +39,16 @@ export const Switch: React.FC<SwitchProps> = ({
   const knobClasses = clsx(
     'pointer-events-none inline-block transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out',
     {
-      'translate-x-5': checked && size === 'md',
-      'translate-x-0': !checked,
-      'translate-x-4': checked && size === 'sm',
+      'translate-x-5': checked === true && size === 'md',
+      'translate-x-0': checked === false,
+      'translate-x-4': checked === true && size === 'sm',
       'h-5 w-5': size === 'md',
       'h-4 w-4': size === 'sm',
     },
   );
 
   return (
-    <label className={clsx('flex items-center', { 'cursor-pointer': !disabled })}>
+    <label className={clsx('flex items-center', { 'cursor-pointer': disabled === false })}>
       <button
         aria-checked={checked}
         className={switchClasses}
@@ -59,10 +59,10 @@ export const Switch: React.FC<SwitchProps> = ({
       >
         <span className={knobClasses} />
       </button>
-      {label && (
+      {label !== null && label !== undefined && label !== '' && (
         <span
           className={clsx('ml-3 text-sm', {
-            'text-gray-900': !disabled,
+            'text-gray-900': disabled === false,
             'text-gray-500': disabled,
           })}
         >

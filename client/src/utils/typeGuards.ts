@@ -22,7 +22,7 @@ export function isString(value: unknown): value is string {
 }
 
 export function isNumber(value: unknown): value is number {
-  return typeof value === 'number' && !isNaN(value);
+  return typeof value === 'number' && Number.isNaN(value) === false;
 }
 
 export function isArray<T = unknown>(value: unknown): value is T[] {
@@ -48,7 +48,7 @@ export function getErrorMessage(error: unknown): string {
   if (isError(error)) {
     return error.message;
   }
-  if (isAxiosError(error) && error.response?.data) {
+  if (isAxiosError(error) && error.response?.data !== null && error.response?.data !== undefined) {
     if (isRecord(error.response.data) && isString(error.response.data.message)) {
       return error.response.data.message;
     }

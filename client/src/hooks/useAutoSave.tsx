@@ -45,7 +45,7 @@ export function useAutoSave<T>({
 
   // Auto-save logic
   useEffect(() => {
-    if (!enabled || !hasUnsavedChanges || isSaving) {
+    if (enabled === false || hasUnsavedChanges === false || isSaving === true) {
       return;
     }
 
@@ -94,7 +94,7 @@ export function useAutoSave<T>({
 
   // Manual save function
   const saveNow = async (): Promise<void> => {
-    if (isSaving) {
+    if (isSaving === true) {
 return;
 }
     
@@ -147,7 +147,7 @@ export function useUnsavedChangesWarning(hasUnsavedChanges: boolean): void {
   useEffect(() => {
 
     const handleBeforeUnload = (e: BeforeUnloadEvent): string | undefined => {
-      if (hasUnsavedChanges) {
+      if (hasUnsavedChanges === true) {
         e.preventDefault();
         e.returnValue = 'You have unsaved changes. Are you sure you want to leave?';
         return e.returnValue;

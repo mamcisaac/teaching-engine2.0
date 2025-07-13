@@ -270,11 +270,11 @@ export const routineApi = {
     },
 
     // Get engagement trends
-    getEngagementTrends: async (startDate: string, endDate: string): Promise<Array<{
+    getEngagementTrends: async (startDate: string, endDate: string): Promise<{
       date: string;
       engagement: number;
       routineCount: number;
-    }>> => {
+    }[]> => {
       const { data } = await apiClient.get<{
         date: string;
         engagement: number;
@@ -286,12 +286,12 @@ export const routineApi = {
     },
 
     // Get completion rates
-    getCompletionRates: async (period: 'week' | 'month' | 'quarter'): Promise<Array<{
+    getCompletionRates: async (period: 'week' | 'month' | 'quarter'): Promise<{
       period: string;
       planned: number;
       completed: number;
       rate: number;
-    }>> => {
+    }[]> => {
       const { data } = await apiClient.get<{
         period: string;
         planned: number;
@@ -363,7 +363,7 @@ export const routineApi = {
   },
 
   // Get popular tags
-  getTags: async (): Promise<Array<{ name: string; count: number }>> => {
+  getTags: async (): Promise<{ name: string; count: number }[]> => {
     const { data } = await apiClient.get<{ name: string; count: number }[]>('/api/routines/tags');
     return data;
   },

@@ -27,7 +27,7 @@ export class LessonPlanService {
   // Format lesson plan for export
   static formatForExport(lesson: ETFOLessonPlan, unitPlan?: UnitPlan): string {
     let content = `# ${lesson.title}\n`;
-    if (lesson.titleFr) {
+    if (lesson.titleFr !== null && lesson.titleFr !== undefined && lesson.titleFr !== '') {
       content += `## ${lesson.titleFr}\n`;
     }
     // Handle date formatting properly to avoid timezone issues
@@ -35,28 +35,28 @@ export class LessonPlanService {
     content += `\n**Date:** ${dateObj.toLocaleDateString('en-US')}\n`;
     content += `**Duration:** ${lesson.duration} minutes\n`;
 
-    if (unitPlan) {
+    if (unitPlan !== null && unitPlan !== undefined) {
       content += `**Unit:** ${unitPlan.title}\n`;
     }
 
     content += '\n---\n\n';
 
-    if (lesson.learningGoals) {
+    if (lesson.learningGoals !== null && lesson.learningGoals !== undefined && lesson.learningGoals !== '') {
       content += `## Learning Goals\n${lesson.learningGoals}\n\n`;
     }
 
     content += `## Three-Part Lesson\n\n`;
 
     content += `### Minds On (${this.calculateTimeAllocation(lesson.duration).mindsOn} min)\n`;
-    content += `${lesson.mindsOn || 'No content provided'}\n\n`;
+    content += `${lesson.mindsOn !== null && lesson.mindsOn !== undefined && lesson.mindsOn !== '' ? lesson.mindsOn : 'No content provided'}\n\n`;
 
     content += `### Action (${this.calculateTimeAllocation(lesson.duration).action} min)\n`;
-    content += `${lesson.action || 'No content provided'}\n\n`;
+    content += `${lesson.action !== null && lesson.action !== undefined && lesson.action !== '' ? lesson.action : 'No content provided'}\n\n`;
 
     content += `### Consolidation (${this.calculateTimeAllocation(lesson.duration).consolidation} min)\n`;
-    content += `${lesson.consolidation || 'No content provided'}\n\n`;
+    content += `${lesson.consolidation !== null && lesson.consolidation !== undefined && lesson.consolidation !== '' ? lesson.consolidation : 'No content provided'}\n\n`;
 
-    if (lesson.materials && lesson.materials.length > 0) {
+    if (lesson.materials !== null && lesson.materials !== undefined && lesson.materials.length > 0) {
       content += `## Materials Needed\n`;
       lesson.materials.forEach((material: string) => {
         content += `- ${material}\n`;
@@ -71,23 +71,23 @@ export class LessonPlanService {
   static prepareFormData(data: LessonPlanFormData, unitPlanId: string): LessonPlanFormData {
     return {
       ...data,
-      materials: data.materials.filter((m) => m.trim()),
-      accommodations: data.accommodations.filter((a) => a.trim()),
-      modifications: data.modifications.filter((m) => m.trim()),
-      extensions: data.extensions.filter((e) => e.trim()),
+      materials: data.materials.filter((m) => m.trim() !== ''),
+      accommodations: data.accommodations.filter((a) => a.trim() !== ''),
+      modifications: data.modifications.filter((m) => m.trim() !== ''),
+      extensions: data.extensions.filter((e) => e.trim() !== ''),
       unitPlanId, // Add unitPlanId separately
     } as LessonPlanFormData & { unitPlanId: string };
   }
 
   // Check if lesson is complete
   static isComplete(lesson: ETFOLessonPlan): boolean {
-    return !!(
-      lesson.title &&
-      lesson.learningGoals &&
-      lesson.mindsOn &&
-      lesson.action &&
-      lesson.consolidation &&
-      lesson.materials &&
+    return (
+      lesson.title !== null && lesson.title !== undefined && lesson.title !== '' &&
+      lesson.learningGoals !== null && lesson.learningGoals !== undefined && lesson.learningGoals !== '' &&
+      lesson.mindsOn !== null && lesson.mindsOn !== undefined && lesson.mindsOn !== '' &&
+      lesson.action !== null && lesson.action !== undefined && lesson.action !== '' &&
+      lesson.consolidation !== null && lesson.consolidation !== undefined && lesson.consolidation !== '' &&
+      lesson.materials !== null && lesson.materials !== undefined &&
       lesson.materials.length > 0
     );
   }
@@ -108,7 +108,7 @@ export class LessonPlanService {
 
   // Generate substitute teacher summary
   static generateSubSummary(lesson: ETFOLessonPlan): string {
-    if (!lesson.isSubFriendly) {
+    if (lesson.isSubFriendly === false) {
 return '';
 }
 
@@ -117,7 +117,7 @@ return '';
     summary += `Duration: ${lesson.duration} minutes\n`;
     summary += `Grouping: ${lesson.grouping}\n\n`;
 
-    if (lesson.subNotes) {
+    if (lesson.subNotes !== null && lesson.subNotes !== undefined && lesson.subNotes !== '') {
       summary += `Special Notes:\n${lesson.subNotes}\n\n`;
     }
 
@@ -145,9 +145,9 @@ return '';
     return requiredFields.every((field) => {
       const value = lesson[field];
       if (Array.isArray(value)) {
-        return value.length > 0 && value.some((item) => item.trim());
+        return value.length > 0 && value.some((item) => item.trim() !== '');
       }
-      return value?.toString().trim();
+      return value !== null && value !== undefined && value.toString().trim() !== '';
     });
   }
 }

@@ -48,7 +48,7 @@ export function handleApiError(error: unknown, customMessage?: string): void {
 
       case 422:
       case 400:
-        if (apiError.details && Array.isArray(apiError.details)) {
+        if (apiError.details !== null && apiError.details !== undefined && Array.isArray(apiError.details)) {
           // Show validation errors
           apiError.details.forEach((detail: { field: string; message: string }) => {
             toast.error(`${detail.field}: ${detail.message}`);
@@ -63,7 +63,7 @@ export function handleApiError(error: unknown, customMessage?: string): void {
       case 429: {
         const retryAfter = error.response.headers['retry-after'];
         toast.error(
-          `Too many requests. Please try again ${retryAfter ? `in ${retryAfter} seconds` : 'later'}.`,
+          `Too many requests. Please try again ${retryAfter !== null && retryAfter !== undefined && retryAfter !== '' ? `in ${retryAfter} seconds` : 'later'}.`,
         );
         break;
       }
@@ -114,7 +114,7 @@ export async function retryOperation<T>(
       // Don't retry on certain errors
       if (error instanceof AxiosError) {
         const status = error.response?.status;
-        if (status && [400, 401, 403, 404, 422].includes(status)) {
+        if (status !== null && status !== undefined && [400, 401, 403, 404, 422].includes(status)) {
           throw error;
         }
       }
