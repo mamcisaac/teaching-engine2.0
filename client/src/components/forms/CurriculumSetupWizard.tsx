@@ -106,13 +106,13 @@ export default function CurriculumSetupWizard({
       id: 'basic-info',
       title: 'Basic Information',
       description: 'Enter your teaching context and academic year details',
-      completed: formData.academicYear !== null && formData.academicYear !== undefined && formData.academicYear !== '' && formData.grade !== null && formData.grade !== undefined && formData.grade !== 0 && formData.subject !== null && formData.subject !== undefined && formData.subject !== '',
+      completed: formData.academicYear !== '' && formData.grade !== 0 && formData.subject !== '',
     },
     {
       id: 'planning-preferences',
       title: 'Planning Preferences',
       description: 'Choose your preferred planning approach and structure',
-      completed: formData.planningStyle !== null && formData.planningStyle !== undefined && formData.termStructure !== undefined,
+      completed: Boolean(formData.planningStyle) && Boolean(formData.termStructure),
     },
     {
       id: 'curriculum-expectations',
@@ -124,7 +124,7 @@ export default function CurriculumSetupWizard({
       id: 'timeline-pacing',
       title: 'Timeline & Pacing',
       description: 'Set up your academic calendar and unit pacing',
-      completed: formData.yearStartDate !== null && formData.yearStartDate !== undefined && formData.yearStartDate !== '' && formData.yearEndDate !== null && formData.yearEndDate !== undefined && formData.yearEndDate !== '' && formData.unitCount !== null && formData.unitCount !== undefined && formData.unitCount !== 0,
+      completed: formData.yearStartDate !== '' && formData.yearEndDate !== '' && formData.unitCount !== 0,
     },
     {
       id: 'resources-materials',
@@ -334,7 +334,7 @@ export default function CurriculumSetupWizard({
                   variant="outline"
                   onClick={(e) => {
                     const input = e.currentTarget.previousElementSibling as HTMLInputElement;
-                    if (input.value !== null && input.value !== undefined && input.value !== '') {
+                    if (input.value !== '') {
                       addToArray('priorityStrands', input.value);
                       input.value = '';
                     }
@@ -379,7 +379,7 @@ export default function CurriculumSetupWizard({
                   variant="outline"
                   onClick={(e) => {
                     const input = e.currentTarget.previousElementSibling as HTMLInputElement;
-                    if (input.value !== null && input.value !== undefined && input.value !== '') {
+                    if (input.value !== '') {
                       addToArray('crossCurricularConnections', input.value);
                       input.value = '';
                     }
@@ -488,7 +488,7 @@ export default function CurriculumSetupWizard({
                   variant="outline"
                   onClick={(e) => {
                     const input = e.currentTarget.previousElementSibling as HTMLInputElement;
-                    if (input.value !== null && input.value !== undefined && input.value !== '') {
+                    if (input.value !== '') {
                       addToArray('availableResources', input.value);
                       input.value = '';
                     }
@@ -533,7 +533,7 @@ export default function CurriculumSetupWizard({
                   variant="outline"
                   onClick={(e) => {
                     const input = e.currentTarget.previousElementSibling as HTMLInputElement;
-                    if (input.value !== null && input.value !== undefined && input.value !== '') {
+                    if (input.value !== '') {
                       addToArray('technologyAccess', input.value);
                       input.value = '';
                     }

@@ -161,8 +161,8 @@ export function AIUnitPlanPanel({
         ...prev.filter(s => s.type !== type),
         {
           type,
-          content: result.suggestions,
-          rationale: result.rationale,
+          content: result.suggestions as string[],
+          rationale: result.rationale as string,
         }
       ]);
 
@@ -170,7 +170,7 @@ export function AIUnitPlanPanel({
       
       toast({
         title: 'Suggestions Generated',
-        description: `Generated ${result.suggestions.length} ${type} suggestions.`,
+        description: `Generated ${(result.suggestions as string[]).length} ${type} suggestions.`,
       });
 
     } catch (_error) {
@@ -186,7 +186,7 @@ export function AIUnitPlanPanel({
     }
   }, [formData, curriculumExpectations, canUseAI, aiDisabledReason, generateUnitBigIdeas, toast]);
 
-  const generateCompleteUnit = useCallback(async () => {
+  const generateCompleteUnit = useCallback(async (): Promise<void> => {
     if (!canUseAI) {
       toast({
         title: 'AI Unavailable',
@@ -269,7 +269,7 @@ export function AIUnitPlanPanel({
     }
   }, [formData, curriculumExpectations, suggestions, canUseAI, aiDisabledReason, generateSuggestions, onUnitGenerated, toast]);
 
-  const acceptSuggestion = (suggestionType: string, content: string) => {
+  const acceptSuggestion = (suggestionType: string, content: string): void => {
     const key = `${suggestionType}-${content}`;
     setAcceptedSuggestions(prev => new Set([...prev, key]));
     
@@ -283,8 +283,8 @@ export function AIUnitPlanPanel({
     });
   };
 
-  const copySuggestion = (content: string) => {
-    navigator.clipboard.writeText(content);
+  const copySuggestion = (content: string): void => {
+    void navigator.clipboard.writeText(content);
     toast({
       title: 'Copied',
       description: 'Suggestion copied to clipboard.',
@@ -476,7 +476,7 @@ export function AIUnitPlanPanel({
                 <Button 
                   className="flex-1" 
                   disabled={isGenerating || !formData.unitTitle || !formData.subject}
-                  onClick={generateCompleteUnit}
+                  onClick={(): void => { void generateCompleteUnit(); }}
                 >
                   {isGenerating ? (
                     <>

@@ -2,11 +2,35 @@ import { AxiosError } from 'axios';
 import { toast } from 'sonner';
 
 import logger from './logger';
+
 interface ApiError {
   error: string;
   message?: string;
   code?: string;
   details?: unknown;
+}
+
+// Type guard for validation details
+interface ValidationDetail {
+  field: string;
+  message: string;
+}
+
+function isValidationDetailArray(details: unknown): details is ValidationDetail[] {
+  return Array.isArray(details) && 
+    details.every(detail => 
+      typeof detail === 'object' && 
+      detail !== null && 
+      'field' in detail && 
+      'message' in detail &&
+      typeof (detail as ValidationDetail).field === 'string' &&
+      typeof (detail as ValidationDetail).message === 'string'
+    );
+}
+
+// Type guard for API error response
+function isApiError(data: unknown): data is ApiError {
+  return typeof data === 'object' && data !== null;
 }
 
 export class ClientError extends Error {
@@ -25,7 +49,8 @@ export function handleApiError(error: unknown, customMessage?: string): void {
   logger.error('API Error:', error);
 
   if (error instanceof AxiosError) {
-    const apiError = error.response?.data as ApiError;
+    const apiErrorData = error.response?.data;
+    const apiError = isApiError(apiErrorData) ? apiErrorData as ApiError : null;
 
     // Handle specific error codes
     switch (error.response?.status) {
@@ -39,29 +64,29 @@ export function handleApiError(error: unknown, customMessage?: string): void {
         break;
 
       case 404:
-        toast.error(customMessage ?? apiError.message ?? 'Resource not found.');
+        toast.error(customMessage ?? apiError?.message ?? 'Resource not found.');
         break;
 
       case 409:
-        toast.error(customMessage ?? apiError.message ?? 'This item already exists.');
+        toast.error(customMessage ?? apiError?.message ?? 'This item already exists.');
         break;
 
       case 422:
       case 400:
-        if (Array.isArray(apiError.details)) {
+        if (apiError && isValidationDetailArray(apiError.details)) {
           // Show validation errors
-          apiError.details.forEach((detail: { field: string; message: string }) => {
+          apiError.details.forEach((detail) => {
             toast.error(`${detail.field}: ${detail.message}`);
           });
         } else {
           toast.error(
-            customMessage ?? apiError.message ?? 'Invalid request. Please check your input.',
+            customMessage ?? apiError?.message ?? 'Invalid request. Please check your input.',
           );
         }
         break;
 
       case 429: {
-        const retryAfter = error.response.headers['retry-after'];
+        const retryAfter = error.response.headers?.['retry-after'] as string | undefined;
         toast.error(
           `Too many requests. Please try again ${retryAfter ? `in ${retryAfter} seconds` : 'later'}.`,
         );
@@ -76,7 +101,7 @@ export function handleApiError(error: unknown, customMessage?: string): void {
         break;
 
       default:
-        toast.error(customMessage ?? apiError.error ?? 'An unexpected error occurred.');
+        toast.error(customMessage ?? apiError?.error ?? 'An unexpected error occurred.');
     }
   } else if (error instanceof Error) {
     // Handle network errors
@@ -114,7 +139,7 @@ export async function retryOperation<T>(
       // Don't retry on certain errors
       if (error instanceof AxiosError) {
         const status = error.response?.status;
-        if (status && [400, 401, 403, 404, 422].includes(status)) {
+        if (typeof status === 'number' && [400, 401, 403, 404, 422].includes(status)) {
           throw error;
         }
       }

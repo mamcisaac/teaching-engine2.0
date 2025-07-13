@@ -22,7 +22,7 @@ export default class ErrorBoundary extends Component<Props, State> {
     return { hasError: true, error };
   }
 
-  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
     logger.error('=== ERROR BOUNDARY CAUGHT AN ERROR ===');
     logger.error(`Error: ${error.name} - ${(error instanceof Error ? error.message : String(error))}`);
     logger.error('Error stack:', error.stack);
@@ -30,7 +30,7 @@ export default class ErrorBoundary extends Component<Props, State> {
     logger.error('======================================');
   }
 
-  render() {
+  render(): React.ReactNode {
     if (this.state.hasError) {
       if (this.props.fallback) {
         return this.props.fallback;

@@ -13,7 +13,7 @@ export default function SubPlanGenerator({ onClose }: Props): React.ReactElement
   const [days, setDays] = useState(1);
   const [url, setUrl] = useState<string>();
 
-  const generate = async () => {
+  const generate = async (): Promise<void> => {
     const res = await substituteApi.generateSubPlanPDF(date, days);
     const blob = new Blob([res.data], { type: 'application/pdf' });
 

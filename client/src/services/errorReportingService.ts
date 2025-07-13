@@ -26,6 +26,16 @@ interface BreadcrumbData {
   data?: Record<string, unknown>;
 }
 
+// Type guard for unknown error types
+function isError(error: unknown): error is Error {
+  return error instanceof Error;
+}
+
+// Type guard for objects
+function isObject(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null;
+}
+
 export class ErrorReportingService {
   private enabled = false;
   private mockMode = false;
@@ -93,7 +103,7 @@ export class ErrorReportingService {
     }
 
     const dsn = import.meta.env.VITE_SENTRY_DSN as string | undefined;
-    if (dsn === null || dsn === undefined || dsn === '') {
+    if (!dsn) {
       logger.warn('VITE_SENTRY_DSN not configured, error reporting disabled');
       return;
     }
@@ -133,10 +143,7 @@ export class ErrorReportingService {
         // Filter transactions
         beforeSendTransaction: (transaction): Sentry.TransactionEvent | null => {
           // Don't send transactions for static assets
-          if (
-            (transaction.transaction && transaction.transaction.includes('/static/')) ||
-            (transaction.transaction && transaction.transaction.includes('/assets/'))
-          ) {
+          if (transaction.transaction?.includes('/static/') || transaction.transaction?.includes('/assets/')) {
             return null;
           }
           return transaction;
@@ -181,7 +188,7 @@ export class ErrorReportingService {
       scope.setContext('category', { type: errorCategory.category });
 
       // Add custom context
-      if (sanitizedContext && Object.keys(sanitizedContext).length > 0) {
+      if (isObject(sanitizedContext) && Object.keys(sanitizedContext).length > 0) {
         scope.setContext('custom', sanitizedContext);
       }
 
@@ -254,8 +261,8 @@ export class ErrorReportingService {
     Sentry.addBreadcrumb({
       message: breadcrumb.message,
       category: breadcrumb.category,
-      level: breadcrumb.level || 'info',
-        data: sanitizedData,
+      level: breadcrumb.level ?? 'info',
+      data: sanitizedData,
       timestamp: Date.now() / 1000,
     });
   }
@@ -364,16 +371,17 @@ export class ErrorReportingService {
 
   private beforeSend(event: Sentry.ErrorEvent, hint: Sentry.EventHint): Sentry.ErrorEvent | null {
     // Filter out non-actionable errors
-    if (hint.originalException !== null && hint.originalException !== undefined) {
-      const error = hint.originalException as Error | unknown;
+    if (hint.originalException) {
+      const error = hint.originalException;
+      const errorMessage = isError(error) ? error.message : String(error);
 
       // Ignore ResizeObserver errors (browser quirk)
-      if ((error instanceof Error ? error.message : String(error)).includes('ResizeObserver')) {
+      if (errorMessage.includes('ResizeObserver')) {
         return null;
       }
 
       // Ignore generic script errors (usually from extensions)
-      if ((error instanceof Error ? error.message : String(error)) === 'Script error.' || (error instanceof Error ? error.message : String(error)) === 'Script error') {
+      if (errorMessage === 'Script error.' || errorMessage === 'Script error') {
         return null;
       }
     }
@@ -389,27 +397,24 @@ export class ErrorReportingService {
     // Filter out noisy breadcrumbs
     if (breadcrumb.category === 'console' && breadcrumb.level === 'warning') {
       // Filter out React development warnings
-      if (
-        (breadcrumb.message !== null && breadcrumb.message !== undefined && breadcrumb.message.includes('DevTools')) ||
-        (breadcrumb.message !== null && breadcrumb.message !== undefined && breadcrumb.message.includes('React Hook')) ||
-        (breadcrumb.message !== null && breadcrumb.message !== undefined && breadcrumb.message.includes('StrictMode'))
-      ) {
+      const message = breadcrumb.message;
+      if (message?.includes('DevTools') || message?.includes('React Hook') || message?.includes('StrictMode')) {
         return null;
       }
 
       // Filter out console messages with sensitive data
-      if (this.containsSensitiveData(breadcrumb.message ?? '')) {
+      if (this.containsSensitiveData(message ?? '')) {
         return null;
       }
     }
 
     // Sanitize breadcrumb
-    if (breadcrumb.message !== null && breadcrumb.message !== undefined && breadcrumb.message !== '') {
+    if (breadcrumb.message) {
       breadcrumb.message = this.sanitizeString(breadcrumb.message);
     }
 
-    if (breadcrumb.data !== null && breadcrumb.data !== undefined) {
-        breadcrumb.data = this.sanitizeData(breadcrumb.data);
+    if (breadcrumb.data) {
+      breadcrumb.data = this.sanitizeData(breadcrumb.data);
     }
 
     return breadcrumb;
@@ -417,48 +422,48 @@ export class ErrorReportingService {
 
   private sanitizeEvent(event: Sentry.ErrorEvent): Sentry.ErrorEvent {
     // Deep clone to avoid modifying original
-    const sanitized = safeJsonParse(JSON.stringify(event), event);
+    const sanitized = safeJsonParse(JSON.stringify(event), event) as Sentry.ErrorEvent;
 
     // Sanitize message
-    if (sanitized.message !== null && sanitized.message !== undefined && sanitized.message !== '') {
+    if (sanitized.message) {
       sanitized.message = this.sanitizeString(sanitized.message);
     }
 
     // Sanitize extra data
-    if (sanitized.extra !== null && sanitized.extra !== undefined) {
+    if (sanitized.extra) {
       sanitized.extra = this.sanitizeData(sanitized.extra);
     }
 
     // Sanitize request data
-    if (sanitized.request !== null && sanitized.request !== undefined) {
-      if (sanitized.request.headers !== null && sanitized.request.headers !== undefined) {
+    if (sanitized.request) {
+      if (sanitized.request.headers) {
         sanitized.request.headers = this.sanitizeHeaders(sanitized.request.headers);
       }
-      if (sanitized.request.data !== null && sanitized.request.data !== undefined) {
+      if (sanitized.request.data) {
         sanitized.request.data = this.sanitizeData(sanitized.request.data);
       }
-      if (sanitized.request.query_string !== null && sanitized.request.query_string !== undefined && sanitized.request.query_string !== '') {
+      if (sanitized.request.query_string) {
         sanitized.request.query_string = this.sanitizeString(sanitized.request.query_string);
       }
-      if (sanitized.request.cookies !== null && sanitized.request.cookies !== undefined) {
+      if (sanitized.request.cookies) {
         sanitized.request.cookies = '[REDACTED]';
       }
     }
 
     // Sanitize user data
-    if (sanitized.user?.email !== null && sanitized.user?.email !== undefined && sanitized.user.email !== '') {
+    if (sanitized.user?.email) {
       sanitized.user.email = this.maskEmail(sanitized.user.email);
     }
 
     // Sanitize contexts
-    if (sanitized.contexts !== null && sanitized.contexts !== undefined) {
+    if (sanitized.contexts) {
       for (const key in sanitized.contexts) {
         sanitized.contexts[key] = this.sanitizeData(sanitized.contexts[key]);
       }
     }
 
     // Sanitize tags
-    if (sanitized.tags !== null && sanitized.tags !== undefined) {
+    if (sanitized.tags) {
       sanitized.tags = this.sanitizeData(sanitized.tags);
     }
 
@@ -488,9 +493,9 @@ export class ErrorReportingService {
         // Check if field should be redacted
         if (this.sensitiveFields.some((field) => lowerKey.includes(field))) {
           sanitized[key] = '[REDACTED]';
-        } else if (key === 'email' && dataObj[key] !== null && dataObj[key] !== undefined) {
+        } else if (key === 'email' && dataObj[key]) {
           sanitized[key] = this.maskEmail(String(dataObj[key]));
-        } else if ((key === 'ip' || key === 'ipAddress' || key === 'ip_address') && dataObj[key] !== null && dataObj[key] !== undefined) {
+        } else if ((key === 'ip' || key === 'ipAddress' || key === 'ip_address') && dataObj[key]) {
           sanitized[key] = this.maskIP(String(dataObj[key]));
         } else {
           sanitized[key] = this.sanitizeData(dataObj[key]);
@@ -562,7 +567,7 @@ export class ErrorReportingService {
   }
 
   private maskEmail(email: string): string {
-    if (email === null || email === undefined || email === '' || typeof email !== 'string') {
+    if (!email || typeof email !== 'string') {
       return '[INVALID_EMAIL]';
     }
 
@@ -578,7 +583,7 @@ export class ErrorReportingService {
   }
 
   private maskIP(ip: string): string {
-    if (ip === null || ip === undefined || ip === '' || typeof ip !== 'string') {
+    if (!ip || typeof ip !== 'string') {
       return 'xxx.xxx.xxx.xxx';
     }
 

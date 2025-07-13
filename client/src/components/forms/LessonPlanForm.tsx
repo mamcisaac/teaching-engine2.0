@@ -106,7 +106,7 @@ export default function LessonPlanForm({
     return () => { // Cleanup
     };
 
-    if (initialData !== null && initialData !== undefined) {
+    if (initialData !== undefined) {
       setFormData((prev) => ({ ...prev, ...initialData }));
     }
   }, [initialData]);
@@ -196,11 +196,11 @@ export default function LessonPlanForm({
       newErrors.title = 'Lesson title is required';
     }
 
-    if (formData.unitPlanId === null || formData.unitPlanId === undefined || formData.unitPlanId === '') {
+    if (formData.unitPlanId === '') {
       newErrors.unitPlanId = 'Unit plan selection is required';
     }
 
-    if (formData.date === null || formData.date === undefined || formData.date === '') {
+    if (formData.date === '') {
       newErrors.date = 'Date is required';
     }
 
@@ -213,7 +213,7 @@ export default function LessonPlanForm({
     }
 
     // Validate that at least one of the three lesson parts has content
-    if ((formData.mindsOn === null || formData.mindsOn === undefined || formData.mindsOn.trim() === '') && (formData.action === null || formData.action === undefined || formData.action.trim() === '') && (formData.consolidation === null || formData.consolidation === undefined || formData.consolidation.trim() === '')) {
+    if ((formData.mindsOn?.trim() === '' || formData.mindsOn === undefined) && (formData.action?.trim() === '' || formData.action === undefined) && (formData.consolidation?.trim() === '' || formData.consolidation === undefined)) {
       newErrors.lessonStructure =
         'At least one lesson component (Minds On, Action, or Consolidation) must have content';
     }
@@ -276,7 +276,7 @@ export default function LessonPlanForm({
                       </option>
                     ))}
                   </select>
-                  {errors.unitPlanId !== undefined && (
+                  {errors.unitPlanId && (
                     <p className="mt-1 text-sm text-red-600">{errors.unitPlanId}</p>
                   )}
                 </div>
@@ -297,7 +297,7 @@ export default function LessonPlanForm({
  setFormData({ ...formData, titleFr: value }); 
 }}
                 />
-                {errors.title !== undefined && <p className="mt-1 text-sm text-red-600">{errors.title}</p>}
+                {errors.title && <p className="mt-1 text-sm text-red-600">{errors.title}</p>}
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -313,7 +313,7 @@ export default function LessonPlanForm({
  setFormData({ ...formData, date: e.target.value }); 
 }}
                   />
-                  {errors.date !== undefined && <p className="mt-1 text-sm text-red-600">{errors.date}</p>}
+                  {errors.date && <p className="mt-1 text-sm text-red-600">{errors.date}</p>}
                 </div>
                 <div>
                   <Label htmlFor="duration">Duration (minutes) *</Label>
@@ -329,7 +329,7 @@ export default function LessonPlanForm({
 }
                     }
                   />
-                  {errors.duration !== undefined && (
+                  {errors.duration && (
                     <p className="mt-1 text-sm text-red-600">{errors.duration}</p>
                   )}
                 </div>
@@ -421,10 +421,10 @@ export default function LessonPlanForm({
  setFormData({ ...formData, expectationIds: ids }); 
 }}
                 />
-                {errors.expectationIds !== undefined && (
+                {errors.expectationIds && (
                   <p className="mt-1 text-sm text-red-600">{errors.expectationIds}</p>
                 )}
-                {errors.lessonStructure !== undefined && (
+                {errors.lessonStructure && (
                   <p className="mt-1 text-sm text-red-600">{errors.lessonStructure}</p>
                 )}
               </div>
@@ -487,7 +487,7 @@ export default function LessonPlanForm({
             <div>
               <Label htmlFor="input">Consolidation (French)</Label>
               <RichTextEditor
-                value={formData.consolidationFr || ''}
+                value={formData.consolidationFr ?? ''}
                 onChange={(value) => {
  setFormData({ ...formData, consolidationFr: value }); 
 }}
@@ -649,7 +649,7 @@ export default function LessonPlanForm({
               <option value="summative">Summative - Assessment OF Learning (After/End)</option>
             </select>
             <div className="mt-2 text-sm text-gray-600">
-              {formData.assessmentType !== null && formData.assessmentType !== undefined && formData.assessmentType === 'diagnostic' && (
+              {formData.assessmentType === 'diagnostic' && (
                 <p className="bg-blue-50 p-3 rounded-md border border-blue-200">
                   <strong>Diagnostic Assessment:</strong> Used at the beginning to determine what
                   students already know and identify learning needs.
@@ -658,7 +658,7 @@ export default function LessonPlanForm({
                   tickets, thumbs up/down checks
                 </p>
               )}
-              {formData.assessmentType !== null && formData.assessmentType !== undefined && formData.assessmentType === 'formative' && (
+              {formData.assessmentType === 'formative' && (
                 <p className="bg-green-50 p-3 rounded-md border border-green-200">
                   <strong>Formative Assessment:</strong> Ongoing assessment during learning to
                   provide feedback and adjust teaching. Students actively assess their own learning.
@@ -667,7 +667,7 @@ export default function LessonPlanForm({
                   mini-whiteboards, think-pair-share, observation checklists
                 </p>
               )}
-              {formData.assessmentType !== null && formData.assessmentType !== undefined && formData.assessmentType === 'summative' && (
+              {formData.assessmentType === 'summative' && (
                 <p className="bg-purple-50 p-3 rounded-md border border-purple-200">
                   <strong>Summative Assessment:</strong> Used at the end to evaluate student
                   achievement of learning goals and assign grades.
@@ -707,8 +707,8 @@ Stratégies d'évaluation:
 • Billet de sortie avec question clé
 • Liste d'auto-évaluation"
               rows={6}
-              valueEn={formData.assessmentNotes || ''}
-              valueFr={formData.assessmentNotesFr || ''}
+              valueEn={formData.assessmentNotes ?? ''}
+              valueFr={formData.assessmentNotesFr ?? ''}
               onChangeEn={(value) => {
  setFormData({ ...formData, assessmentNotes: value }); 
 }}
@@ -746,8 +746,8 @@ Stratégies d'évaluation:
                     placeholderEn="Special instructions, classroom management tips, or additional context for a substitute teacher..."
                     placeholderFr="Instructions spéciales, conseils de gestion de classe, ou contexte additionnel pour un suppléant..."
                     rows={3}
-                    valueEn={formData.subNotes || ''}
-                    valueFr={formData.subNotesFr || ''}
+                    valueEn={formData.subNotes ?? ''}
+                    valueFr={formData.subNotesFr ?? ''}
                     onChangeEn={(value) => {
  setFormData({ ...formData, subNotes: value }); 
 }}
@@ -763,13 +763,13 @@ Stratégies d'évaluation:
       </Tabs>
 
       <div className="flex justify-end space-x-3 mt-6 pt-6 border-t">
-        {onCancel !== null && onCancel !== undefined && (
+        {onCancel && (
           <Button aria-label="Click button" onClick={onCancel}>
             Cancel
           </Button>
         )}
         <Button disabled={isSubmitting} type="submit">
-          {isSubmitting ? 'Saving...' : (initialData !== null && initialData !== undefined) ? 'Update Lesson Plan' : 'Create Lesson Plan'}
+          {isSubmitting ? 'Saving...' : initialData !== undefined ? 'Update Lesson Plan' : 'Create Lesson Plan'}
         </Button>
       </div>
     </form>

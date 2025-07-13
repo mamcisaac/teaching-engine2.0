@@ -224,13 +224,13 @@ return null;
 };
 
 // Standalone hook to show keyboard shortcuts help
-export const useKeyboardShortcutsHelp = () => {
+export const useKeyboardShortcutsHelp = (): { isOpen: boolean; showHelp: () => void; hideHelp: () => void; } => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const showHelp = () => {
+  const showHelp = (): void => {
  setIsOpen(true); 
 };
-  const hideHelp = () => {
+  const hideHelp = (): void => {
  setIsOpen(false); 
 };
 

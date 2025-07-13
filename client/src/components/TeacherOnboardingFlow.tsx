@@ -274,7 +274,7 @@ return;
       ),
       action: {
         label: t('get_started', 'Get Started'),
-        onClick: () => {
+        onClick: (): void => {
           markStepCompleted('welcome');
           nextStep();
         },
@@ -351,7 +351,7 @@ return;
       ),
       action: {
         label: t('continue', 'Continue'),
-        onClick: () => {
+        onClick: (): void => {
           markStepCompleted('etfo-workflow');
           nextStep();
         },
@@ -457,11 +457,11 @@ return;
         label: completedSteps.includes('sample-data')
           ? t('continue', 'Continue')
           : t('create_sample_data', 'Create Sample Data'),
-        onClick: () => {
+        onClick: (): void => {
           if (completedSteps.includes('sample-data')) {
             nextStep();
           } else {
-            createSampleData();
+            void createSampleData();
           }
         },
       },
@@ -577,7 +577,7 @@ return;
       ),
       action: {
         label: t('continue', 'Continue'),
-        onClick: () => {
+        onClick: (): void => {
           markStepCompleted('navigation');
           nextStep();
         },
@@ -734,7 +734,7 @@ return;
       ),
       action: {
         label: t('start_teaching', 'Start Teaching!'),
-        onClick: () => {
+        onClick: (): void => {
           markStepCompleted('features');
           completeOnboarding();
           navigate('/planner/dashboard');

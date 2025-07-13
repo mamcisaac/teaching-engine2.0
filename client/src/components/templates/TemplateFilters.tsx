@@ -38,13 +38,13 @@ export default function TemplateFilters({
   };
 
   const hasActiveFilters =
-    (filters.type !== null && filters.type !== undefined && filters.type !== '') ||
-    (filters.category !== null && filters.category !== undefined && filters.category !== '') ||
-    (filters.subject !== null && filters.subject !== undefined && filters.subject !== '') ||
+    (filters.type !== undefined && filters.type !== '') ||
+    (filters.category !== undefined && filters.category !== '') ||
+    (filters.subject !== undefined && filters.subject !== '') ||
     filters.gradeMin !== undefined ||
     filters.gradeMax !== undefined ||
-    (filters.search !== null && filters.search !== undefined && filters.search !== '') ||
-    (filters.tags !== null && filters.tags !== undefined && filters.tags.length > 0);
+    (filters.search !== undefined && filters.search !== '') ||
+    (filters.tags !== undefined && filters.tags.length > 0);
 
   return (
     <div className="bg-gray-50 rounded-lg p-4 space-y-4">
@@ -53,7 +53,7 @@ export default function TemplateFilters({
           <Filter className="h-4 w-4" />
           Filter Templates
         </h3>
-        {hasActiveFilters !== null && hasActiveFilters !== undefined && hasActiveFilters && (
+        {hasActiveFilters && (
           <Button
             className="text-gray-500 hover:text-gray-700"
             size="sm"
@@ -73,7 +73,7 @@ export default function TemplateFilters({
             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Search templates..."
             type="text"
-            value={filters.search !== null && filters.search !== undefined ? filters.search : ''}
+            value={filters.search ?? ''}
             onChange={(e): void => {
  updateFilter('search', e.target.value); 
 }}
@@ -84,7 +84,7 @@ export default function TemplateFilters({
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
           <Select
-            value={filters.type !== null && filters.type !== undefined ? filters.type : 'all'}
+            value={filters.type ?? 'all'}
             onValueChange={(value): void => {
  updateFilter('type', value === 'all' ? undefined : value); 
 }}
@@ -107,7 +107,7 @@ export default function TemplateFilters({
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
           <Select
-            value={filters.category !== null && filters.category !== undefined ? filters.category : 'all'}
+            value={filters.category ?? 'all'}
             onValueChange={(value): void => {
  updateFilter('category', value === 'all' ? undefined : (value as TemplateCategory)); 
 }
@@ -131,7 +131,7 @@ export default function TemplateFilters({
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Subject</label>
           <Select
-            value={filters.subject !== null && filters.subject !== undefined ? filters.subject : 'all'}
+            value={filters.subject ?? 'all'}
             onValueChange={(value): void => {
  updateFilter('subject', value === 'all' ? undefined : value); 
 }}
@@ -202,7 +202,7 @@ export default function TemplateFilters({
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Sort By</label>
           <Select
-            value={filters.sortBy !== null && filters.sortBy !== undefined ? filters.sortBy : 'usageCount'}
+            value={filters.sortBy ?? 'usageCount'}
             onValueChange={(value): void => {
  updateFilter(
                 'sortBy',
@@ -227,7 +227,7 @@ export default function TemplateFilters({
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Order</label>
           <Select
-            value={filters.sortOrder !== null && filters.sortOrder !== undefined ? filters.sortOrder : 'desc'}
+            value={filters.sortOrder ?? 'desc'}
             onValueChange={(value): void => {
  updateFilter('sortOrder', value as 'asc' | 'desc'); 
 }}
@@ -247,7 +247,7 @@ export default function TemplateFilters({
       <div className="flex flex-wrap gap-2">
         <label className="flex items-center space-x-2 text-sm">
           <input
-            checked={filters.isSystem !== null && filters.isSystem !== undefined && filters.isSystem}
+            checked={Boolean(filters.isSystem)}
             className="rounded border-gray-300"
             type="checkbox"
             onChange={(e): void => {
@@ -258,7 +258,7 @@ export default function TemplateFilters({
         </label>
         <label className="flex items-center space-x-2 text-sm">
           <input
-            checked={filters.isPublic !== null && filters.isPublic !== undefined && filters.isPublic}
+            checked={Boolean(filters.isPublic)}
             className="rounded border-gray-300"
             type="checkbox"
             onChange={(e): void => {

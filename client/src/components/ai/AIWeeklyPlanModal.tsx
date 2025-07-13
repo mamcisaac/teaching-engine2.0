@@ -68,9 +68,9 @@ export function AIWeeklyPlanModal({
         weekStart,
         preferences,
       });
-      return response.data.data;
+      return response.data.data as GeneratedPlan;
     },
-    onSuccess: (_data) => {
+    onSuccess: (_data: GeneratedPlan) => {
       setGeneratedPlan(_data);
       toast.success('Weekly plan generated successfully!');
     },
@@ -83,7 +83,7 @@ export function AIWeeklyPlanModal({
   const applyMutation = useMutation({
     mutationFn: async (planId: number) => {
       const response = await api.post(`/api/ai/plans/${planId}/apply`);
-      return response.data.data;
+      return response.data.data as { success: boolean; };
     },
     onSuccess: () => {
       toast.success('Plan applied to calendar!');
@@ -106,17 +106,17 @@ export function AIWeeklyPlanModal({
     },
   });
 
-  const handleGenerate = () => {
+  const handleGenerate = (): void => {
     generateMutation.mutate();
   };
 
-  const handleApply = () => {
+  const handleApply = (): void => {
     if (generatedPlan) {
       applyMutation.mutate(generatedPlan.planId);
     }
   };
 
-  const getMetricColor = (score: number) => {
+  const getMetricColor = (score: number): string => {
     if (score >= 0.8) {
 return 'text-green-600';
 }
@@ -126,7 +126,7 @@ return 'text-yellow-600';
     return 'text-red-600';
   };
 
-  const formatTime = (time: string) => {
+  const formatTime = (time: string): string => {
     const [hours, minutes] = time.split(':');
     const hour = parseInt(hours);
     const ampm = hour >= 12 ? 'PM' : 'AM';

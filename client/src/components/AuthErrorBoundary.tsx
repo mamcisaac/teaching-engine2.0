@@ -168,7 +168,7 @@ return;
     const delay = Math.min(1000 * Math.pow(2, this.state.retryCount), 10000);
 
     this.retryTimeout = setTimeout(() => {
-      this.handleRetryAuth();
+      void this.handleRetryAuth();
     }, delay);
   }
 
@@ -208,7 +208,7 @@ return;
 
   private handleManualRetry = (): void => {
     this.setState({ retryCount: 0 });
-    this.handleRetryAuth();
+    void this.handleRetryAuth();
   };
 
   private handleLoginRedirect = (): void => {

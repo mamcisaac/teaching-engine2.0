@@ -2,7 +2,9 @@
  * Centralized authentication service for managing tokens and auth state
  */
 
+import type { User } from '../types';
 import { safeJsonParse } from '../utils/typeGuards';
+import logger from '../utils/logger';
 
 // Dynamic import to avoid circular dependency
 interface LoginCredentials {
@@ -35,17 +37,23 @@ interface AuthApiModule {
   };
 }
 
+// Type guard for auth response
+function isValidAuthResponse(data: unknown): data is AuthResponse {
+  return typeof data === 'object' && data !== null && 'user' in data;
+}
+
+// Type guard for token refresh response
+function isValidTokenResponse(data: unknown): data is { tokens?: AuthTokens; token?: string; accessToken?: string } {
+  return typeof data === 'object' && data !== null;
+}
+
 let authApiModule: AuthApiModule | undefined;
 const getAuthApi = async (): Promise<AuthApiModule['authApi']> => {
-  if (authApiModule === null || authApiModule === undefined) {
+  if (!authApiModule) {
     authApiModule = await import('../api/auth/authApi') as AuthApiModule;
   }
   return authApiModule.authApi;
 };
-
-// Import User type from shared types
-import type { User } from '../types';
-import logger from '../utils/logger';
 export interface AuthTokens {
   accessToken: string;
   refreshToken?: string;
@@ -93,7 +101,7 @@ class AuthService {
    */
   getTokenExpiration(): number | null {
     const expiresAt = localStorage.getItem('auth_expires_at');
-    return expiresAt !== null && expiresAt !== undefined && expiresAt !== '' ? parseInt(expiresAt, 10) : null;
+    return (expiresAt && expiresAt !== '') ? parseInt(expiresAt, 10) : null;
   }
 
   /**
@@ -105,7 +113,7 @@ class AuthService {
     // Refresh token is now stored as HTTP-only cookie by the server
     // No longer store it in localStorage for security
 
-    if (tokens.expiresAt !== null && tokens.expiresAt !== undefined) {
+    if (tokens.expiresAt) {
       localStorage.setItem('auth_expires_at', tokens.expiresAt.toString());
     }
   }
@@ -145,7 +153,11 @@ class AuthService {
    */
   getUser(): User | null {
     const userData = localStorage.getItem(this.USER_KEY);
-    return userData !== null && userData !== undefined && userData !== '' ? safeJsonParse(userData, {}) : null;
+    if (!userData || userData === '') {
+      return null;
+    }
+    const parsed = safeJsonParse(userData, null);
+    return parsed as User | null;
   }
 
   /**
@@ -153,7 +165,7 @@ class AuthService {
    */
   isAuthenticated(): boolean {
     const token = this.getAccessToken();
-    return token !== null && token !== undefined;
+    return Boolean(token);
   }
 
   /**
@@ -161,7 +173,7 @@ class AuthService {
    */
   isTokenExpiringSoon(): boolean {
     const expiresAt = this.getTokenExpiration();
-    if (expiresAt === null || expiresAt === undefined) {
+    if (!expiresAt) {
       return false;
     }
 
@@ -177,15 +189,15 @@ class AuthService {
       const authApi = await getAuthApi();
       const data = await authApi.login({ email, password });
 
-      if (data.user !== null && data.user !== undefined) {
+      if (data.user) {
         this.setUser(data.user);
 
-        if (data.tokens !== null && data.tokens !== undefined) {
+        if (data.tokens) {
           this.setTokens(data.tokens);
-        } else if (data.accessToken !== null && data.accessToken !== undefined && data.accessToken !== '') {
+        } else if (data.accessToken) {
           // Current backend format
           this.setLegacyToken(data.accessToken);
-        } else if (data.token !== null && data.token !== undefined && data.token !== '') {
+        } else if (data.token) {
           // Legacy token format
           this.setLegacyToken(data.token);
         }
@@ -217,7 +229,7 @@ class AuthService {
    */
   async refreshToken(): Promise<boolean> {
     // Prevent multiple simultaneous refresh attempts
-    if (this.refreshPromise !== null && this.refreshPromise !== undefined) {
+    if (this.refreshPromise) {
       return this.refreshPromise;
     }
 
@@ -248,14 +260,19 @@ class AuthService {
         throw new Error('Token refresh failed');
       }
 
-      const data = await response.json();
+      const data: unknown = await response.json();
 
-      if (data.tokens !== null && data.tokens !== undefined) {
-        this.setTokens(data.tokens);
-        return true;
-      } else if (data.token !== null && data.token !== undefined && data.token !== '') {
-        this.setLegacyToken(data.token);
-        return true;
+      if (isValidTokenResponse(data)) {
+        if (data.tokens) {
+          this.setTokens(data.tokens);
+          return true;
+        } else if (data.token) {
+          this.setLegacyToken(data.token);
+          return true;
+        } else if (data.accessToken) {
+          this.setLegacyToken(data.accessToken);
+          return true;
+        }
       }
 
       throw new Error('Invalid refresh response');
@@ -272,7 +289,7 @@ class AuthService {
   async verifyAuth(isRetry = false): Promise<User | null> {
     const token = this.getAccessToken();
 
-    if (token === null || token === undefined || token === '') {
+    if (!token) {
       return null;
     }
 
@@ -299,9 +316,13 @@ class AuthService {
         throw new Error(`Auth verification failed: ${response.status}`);
       }
 
-      const userData = await response.json();
-      this.setUser(userData);
-      return userData;
+      const userData: unknown = await response.json();
+      if (typeof userData === 'object' && userData !== null && 'id' in userData) {
+        const user = userData as User;
+        this.setUser(user);
+        return user;
+      }
+      throw new Error('Invalid user data received');
     } catch (error) {
       logger.error('Auth verification failed:', error);
 
@@ -329,7 +350,7 @@ class AuthService {
   getAuthHeaders(): Record<string, string> {
     const token = this.getAccessToken();
 
-    if (token === null || token === undefined || token === '') {
+    if (!token) {
       return {};
     }
 
@@ -383,4 +404,3 @@ class AuthService {
 
 // Export singleton instance
 export const authService = new AuthService();
-export default authService;

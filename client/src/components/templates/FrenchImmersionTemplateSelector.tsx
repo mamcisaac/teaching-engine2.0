@@ -77,22 +77,22 @@ export default function FrenchImmersionTemplateSelector({
   let allTemplates = [...lessonTemplates, ...unitTemplates];
 
   // Apply type filter if provided
-  if (filterByType !== null && filterByType !== undefined) {
+  if (filterByType !== undefined) {
     allTemplates = allTemplates.filter((t) => t.type === filterByType);
   }
 
   // Apply search filter
-  if (searchTerm !== null && searchTerm !== undefined && searchTerm !== '') {
+  if (searchTerm !== '') {
     allTemplates = allTemplates.filter(
       (t) =>
         t.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (t.titleFr !== null && t.titleFr !== undefined && t.titleFr !== '' && t.titleFr.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (t.titleFr !== undefined && t.titleFr !== '' && t.titleFr.toLowerCase().includes(searchTerm.toLowerCase())) ||
         t.tags.some((tag) => tag.toLowerCase().includes(searchTerm.toLowerCase())),
     );
   }
 
   // Apply time of year filter
-  if (selectedTimeOfYear !== null && selectedTimeOfYear !== undefined) {
+  if (selectedTimeOfYear) {
     allTemplates = allTemplates.filter(
       (t) =>
         (t as PlanTemplate & { fiMetadata?: FrenchImmersionTemplateMetadata }).fiMetadata
@@ -102,32 +102,32 @@ export default function FrenchImmersionTemplateSelector({
 
   // Apply persona recommendations
   const getPersonaRecommendations = (template: PlanTemplate): boolean => {
-    if (selectedPersona === null || selectedPersona === undefined || selectedPersona === '') {
+    if (selectedPersona === null) {
 return true;
 }
 
     const persona = TEACHER_PERSONAS.find((p) => p.id === selectedPersona);
-    if (persona === null || persona === undefined) {
+    if (persona === undefined) {
 return true;
 }
 
     // Check if template matches persona preferences
     if (selectedPersona === 'jean-luc') {
       return (
-        ('culturalConnections' in template.content && template.content.culturalConnections !== null && template.content.culturalConnections !== undefined) ||
+        ('culturalConnections' in template.content && template.content.culturalConnections !== undefined) ||
         template.tags.includes('art-integration') ||
         template.tags.includes('cultural')
       );
     } else if (selectedPersona === 'sophie') {
       return (
-        ('assessments' in template.content && template.content.assessments !== null && template.content.assessments !== undefined) ||
-        ('assessmentNotes' in template.content && template.content.assessmentNotes !== null && template.content.assessmentNotes !== undefined && template.content.assessmentNotes !== '') ||
-        ('lessonStructure' in template && template.lessonStructure !== null && template.lessonStructure !== undefined)
+        ('assessments' in template.content && template.content.assessments !== undefined) ||
+        ('assessmentNotes' in template.content && template.content.assessmentNotes !== undefined && template.content.assessmentNotes !== '') ||
+        ('lessonStructure' in template && template.lessonStructure !== undefined)
       );
     } else if (selectedPersona === 'marie-claire') {
       return (
-        ('parentCommunication' in template.content && template.content.parentCommunication !== null && template.content.parentCommunication !== undefined) ||
-        (template.description !== null && template.description !== undefined && template.description !== '' && template.description.includes('structured')) ||
+        ('parentCommunication' in template.content && template.content.parentCommunication !== undefined) ||
+        (template.description !== undefined && template.description !== '' && template.description.includes('structured')) ||
         template.tags.includes('guided')
       );
     }
@@ -305,7 +305,7 @@ return true;
                       )}
                     </div>
                     <h4 className="font-semibold text-lg">{template.title}</h4>
-                    {template.titleFr !== null && template.titleFr !== undefined && template.titleFr !== '' && (
+                    {template.titleFr !== undefined && template.titleFr !== '' && (
                       <p className="text-sm text-gray-600 italic">{template.titleFr}</p>
                     )}
                   </div>

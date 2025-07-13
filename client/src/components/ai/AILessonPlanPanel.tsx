@@ -125,14 +125,14 @@ export function AILessonPlanPanel({
     generateAssessmentStrategies 
   } = useAIPlanningAssistant();
 
-  const handleInputChange = (field: string, value: string | string[]) => {
+  const handleInputChange = (field: string, value: string | string[]): void => {
     setFormData(prev => ({
       ...prev,
       [field]: value,
     }));
   };
 
-  const addLearningGoal = () => {
+  const addLearningGoal = (): void => {
     const newGoal = (document.getElementById('newLearningGoal') as HTMLInputElement).value.trim();
     if (newGoal && !formData.learningGoals.includes(newGoal)) {
       handleInputChange('learningGoals', [...formData.learningGoals, newGoal]);
@@ -140,11 +140,11 @@ export function AILessonPlanPanel({
     }
   };
 
-  const removeLearningGoal = (goal: string) => {
+  const removeLearningGoal = (goal: string): void => {
     handleInputChange('learningGoals', formData.learningGoals.filter(g => g !== goal));
   };
 
-  const addMaterial = () => {
+  const addMaterial = (): void => {
     const newMaterial = (document.getElementById('newMaterial') as HTMLInputElement).value.trim();
     if (newMaterial && !formData.materials.includes(newMaterial)) {
       handleInputChange('materials', [...formData.materials, newMaterial]);
@@ -152,11 +152,11 @@ export function AILessonPlanPanel({
     }
   };
 
-  const removeMaterial = (material: string) => {
+  const removeMaterial = (material: string): void => {
     handleInputChange('materials', formData.materials.filter(m => m !== material));
   };
 
-  const generateThreePartLesson = useCallback(async () => {
+  const generateThreePartLesson = useCallback(async (): Promise<void> => {
     if (!canUseAI) {
       toast({
         title: 'AI Unavailable',
@@ -222,9 +222,9 @@ export function AILessonPlanPanel({
       // Step 4: Generate materials list based on all activities
       setLoadingStep('materials');
       const allActivities = [
-        ...mindsOnResult.suggestions,
-        ...handsOnResult.suggestions,
-        ...reflectionResult.suggestions
+        ...(mindsOnResult.suggestions as string[]),
+        ...(handsOnResult.suggestions as string[]),
+        ...(reflectionResult.suggestions as string[])
       ];
 
       const materialsResult = await generateMaterialsList.mutateAsync({
@@ -237,17 +237,17 @@ export function AILessonPlanPanel({
       // Build three-part structure
       const structure: ThreePartStructure = {
         mindsOn: {
-          activities: mindsOnResult.suggestions,
+          activities: mindsOnResult.suggestions as string[],
           duration: mindsOnDuration,
           materials: [],
         },
         handsOn: {
-          activities: handsOnResult.suggestions,
+          activities: handsOnResult.suggestions as string[],
           duration: handsOnDuration,
           materials: [],
         },
         mindsOnReflection: {
-          activities: reflectionResult.suggestions,
+          activities: reflectionResult.suggestions as string[],
           duration: reflectionDuration,
           materials: [],
         },
@@ -259,25 +259,25 @@ export function AILessonPlanPanel({
       setSuggestions([
         {
           type: 'mindson',
-          content: mindsOnResult.suggestions,
+          content: mindsOnResult.suggestions as string[],
           rationale: 'Activities to activate prior knowledge and engage students',
           timeEstimate: mindsOnDuration,
         },
         {
           type: 'handson',
-          content: handsOnResult.suggestions,
+          content: handsOnResult.suggestions as string[],
           rationale: 'Main learning activities for skill development and practice',
           timeEstimate: handsOnDuration,
         },
         {
           type: 'mindson_reflection',
-          content: reflectionResult.suggestions,
+          content: reflectionResult.suggestions as string[],
           rationale: 'Reflection and consolidation activities',
           timeEstimate: reflectionDuration,
         },
         {
           type: 'materials',
-          content: materialsResult.suggestions,
+          content: materialsResult.suggestions as string[],
           rationale: 'Required materials and resources',
         },
       ]);
@@ -306,7 +306,7 @@ export function AILessonPlanPanel({
     }
   }, [formData, canUseAI, aiDisabledReason, generateLessonActivities, generateMaterialsList, onLessonGenerated, toast]);
 
-  const generateSuggestions = useCallback(async (type: LessonPlanSuggestion['type']) => {
+  const generateSuggestions = useCallback(async (type: LessonPlanSuggestion['type']): Promise<void> => {
     if (!canUseAI) {
       toast({
         title: 'AI Unavailable',
@@ -346,8 +346,8 @@ export function AILessonPlanPanel({
         ...prev.filter(s => s.type !== type),
         {
           type,
-          content: result.suggestions,
-          rationale: result.rationale,
+          content: result.suggestions as string[],
+          rationale: result.rationale as string,
         }
       ]);
 
@@ -355,7 +355,7 @@ export function AILessonPlanPanel({
       
       toast({
         title: 'Suggestions Generated',
-        description: `Generated ${result.suggestions.length} ${type} suggestions.`,
+        description: `Generated ${(result.suggestions as string[]).length} ${type} suggestions.`,
       });
 
     } catch (_error) {
@@ -370,7 +370,7 @@ export function AILessonPlanPanel({
     }
   }, [formData, canUseAI, aiDisabledReason, generateMaterialsList, generateAssessmentStrategies, toast]);
 
-  const acceptSuggestion = (suggestionType: string, content: string) => {
+  const acceptSuggestion = (suggestionType: string, content: string): void => {
     const key = `${suggestionType}-${content}`;
     setAcceptedSuggestions(prev => new Set([...prev, key]));
     
@@ -384,15 +384,15 @@ export function AILessonPlanPanel({
     });
   };
 
-  const copySuggestion = (content: string) => {
-    navigator.clipboard.writeText(content);
+  const copySuggestion = (content: string): void => {
+    void navigator.clipboard.writeText(content);
     toast({
       title: 'Copied',
       description: 'Suggestion copied to clipboard.',
     });
   };
 
-  const getPhaseIcon = (phase: 'mindsOn' | 'handsOn' | 'mindsOnReflection') => {
+  const getPhaseIcon = (phase: 'mindsOn' | 'handsOn' | 'mindsOnReflection'): React.ReactElement => {
     switch (phase) {
       case 'mindsOn':
         return <Play className="h-4 w-4" />;
@@ -403,7 +403,7 @@ export function AILessonPlanPanel({
     }
   };
 
-  const getPhaseTitle = (phase: 'mindsOn' | 'handsOn' | 'mindsOnReflection') => {
+  const getPhaseTitle = (phase: 'mindsOn' | 'handsOn' | 'mindsOnReflection'): string => {
     switch (phase) {
       case 'mindsOn':
         return 'Minds-On (Getting Started)';
@@ -414,7 +414,7 @@ export function AILessonPlanPanel({
     }
   };
 
-  const getPhaseDescription = (phase: 'mindsOn' | 'handsOn' | 'mindsOnReflection') => {
+  const getPhaseDescription = (phase: 'mindsOn' | 'handsOn' | 'mindsOnReflection'): string => {
     switch (phase) {
       case 'mindsOn':
         return 'Activate prior knowledge, introduce concepts, and engage students';
@@ -476,7 +476,7 @@ export function AILessonPlanPanel({
                     id="lessonTitle"
                     placeholder="e.g., Introduction to Force and Motion"
                     value={formData.lessonTitle}
-                    onChange={(e) => {
+                    onChange={(e): void => {
  handleInputChange('lessonTitle', e.target.value); 
 }}
                   />
@@ -489,7 +489,7 @@ export function AILessonPlanPanel({
                     min="15"
                     type="number"
                     value={formData.duration}
-                    onChange={(e) => {
+                    onChange={(e): void => {
  handleInputChange('duration', e.target.value); 
 }}
                   />
@@ -501,7 +501,7 @@ export function AILessonPlanPanel({
                   <Label htmlFor="lessonType">Lesson Type</Label>
                   <Select 
                     value={formData.lessonType} 
-                    onValueChange={(value: 'new_concept' | 'review' | 'assessment' | 'exploration') => {
+                    onValueChange={(value: 'new_concept' | 'review' | 'assessment' | 'exploration'): void => {
  handleInputChange('lessonType', value); 
 }
                     }
@@ -521,7 +521,7 @@ export function AILessonPlanPanel({
                   <Label htmlFor="groupingStrategy">Grouping Strategy</Label>
                   <Select 
                     value={formData.groupingStrategy} 
-                    onValueChange={(value: 'individual' | 'pairs' | 'small_groups' | 'whole_class' | 'mixed') => {
+                    onValueChange={(value: 'individual' | 'pairs' | 'small_groups' | 'whole_class' | 'mixed'): void => {
  handleInputChange('groupingStrategy', value); 
 }
                     }
@@ -546,7 +546,7 @@ export function AILessonPlanPanel({
                   <Input
                     id="newLearningGoal"
                     placeholder="Add learning goal"
-                    onKeyPress={(e) => e.key === 'Enter' && addLearningGoal()}
+                    onKeyPress={(e): void => { if (e.key === 'Enter') addLearningGoal(); }}
                   />
                   <Button aria-label="Click button" onClick={addLearningGoal}>
                     <Plus className="h-4 w-4" />
@@ -559,7 +559,7 @@ export function AILessonPlanPanel({
                       <span className="flex-1 text-sm">{goal}</span>
                       <button
                         className="text-xs text-red-500 hover:text-red-700"
-                        onClick={() => {
+                        onClick={(): void => {
  removeLearningGoal(goal); 
 }}
                       >
@@ -576,7 +576,7 @@ export function AILessonPlanPanel({
                   <Input
                     id="newMaterial"
                     placeholder="Add material or resource"
-                    onKeyPress={(e) => e.key === 'Enter' && addMaterial()}
+                    onKeyPress={(e): void => { if (e.key === 'Enter') addMaterial(); }}
                   />
                   <Button aria-label="Click button" onClick={addMaterial}>
                     <Plus className="h-4 w-4" />
@@ -588,7 +588,7 @@ export function AILessonPlanPanel({
                       {material}
                       <button
                         className="text-xs hover:text-red-500"
-                        onClick={() => {
+                        onClick={(): void => {
  removeMaterial(material); 
 }}
                       >
@@ -607,7 +607,7 @@ export function AILessonPlanPanel({
                     placeholder="What should students already know?"
                     rows={2}
                     value={formData.priorKnowledge}
-                    onChange={(e) => {
+                    onChange={(e): void => {
  handleInputChange('priorKnowledge', e.target.value); 
 }}
                   />
@@ -619,7 +619,7 @@ export function AILessonPlanPanel({
                     placeholder="Special considerations for student needs"
                     rows={2}
                     value={formData.accommodations}
-                    onChange={(e) => {
+                    onChange={(e): void => {
  handleInputChange('accommodations', e.target.value); 
 }}
                   />
@@ -659,7 +659,7 @@ export function AILessonPlanPanel({
                 <Button 
                   className="flex-1" 
                   disabled={isGenerating || !formData.lessonTitle || formData.learningGoals.length === 0}
-                  onClick={generateThreePartLesson}
+                  onClick={(): void => { void generateThreePartLesson(); }}
                 >
                   {isGenerating ? (
                     <>
@@ -679,7 +679,7 @@ export function AILessonPlanPanel({
                 <Button 
                   disabled={isGenerating} 
                   variant="outline"
-                  onClick={() => {
+                  onClick={(): void => {
  void generateSuggestions('materials'); 
 }}
                 >
@@ -689,7 +689,7 @@ export function AILessonPlanPanel({
                 <Button 
                   disabled={isGenerating} 
                   variant="outline"
-                  onClick={() => {
+                  onClick={(): void => {
  void generateSuggestions('assessments'); 
 }}
                 >
@@ -787,7 +787,7 @@ export function AILessonPlanPanel({
                                       className="h-8 w-8 p-0"
                                       size="sm"
                                       variant="ghost"
-                                      onClick={() => {
+                                      onClick={(): void => {
  copySuggestion(item); 
 }}
                                     >
@@ -798,7 +798,7 @@ export function AILessonPlanPanel({
                                         className="h-8 w-8 p-0"
                                         size="sm"
                                         variant="ghost"
-                                        onClick={() => {
+                                        onClick={(): void => {
  acceptSuggestion(suggestion.type, item); 
 }}
                                       >

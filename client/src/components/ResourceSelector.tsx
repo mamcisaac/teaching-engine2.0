@@ -41,7 +41,7 @@ export default function ResourceSelector({
     return true;
   });
 
-  const getFileIcon = (fileType: string) => {
+  const getFileIcon = (fileType: string): string => {
     switch (fileType) {
       case 'image':
         return '🖼️';
@@ -56,7 +56,7 @@ export default function ResourceSelector({
     }
   };
 
-  const formatFileSize = (bytes: number) => {
+  const formatFileSize = (bytes: number): string => {
     if (bytes === 0) {
 return '0 Bytes';
 }
@@ -66,7 +66,7 @@ return '0 Bytes';
     return `${parseFloat((bytes / Math.pow(k, i)).toFixed(2))  } ${  sizes[i]}`;
   };
 
-  const getResourceUrl = (resource: MediaResource) => resource.fileUrl || resource.thumbnailUrl || '/placeholder-image.png';
+  const getResourceUrl = (resource: MediaResource): string => resource.fileUrl || resource.thumbnailUrl || '/placeholder-image.png';
 
   return (
     <Dialog open onOpenChange={(open) => !open && onClose()}>

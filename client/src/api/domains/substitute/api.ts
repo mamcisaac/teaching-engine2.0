@@ -196,7 +196,7 @@ export const substituteApi = {
       suggestions?: string;
       completedActivities?: string[];
       substituteNotes?: string;
-    }) => {
+    }): Promise<SubstitutePlan> => {
       const { data } = await apiClient.patch<SubstitutePlan>(`/api/substitute-plans/${id}/completed`, feedback);
       return data;
     },
