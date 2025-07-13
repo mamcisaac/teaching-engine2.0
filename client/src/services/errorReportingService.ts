@@ -92,8 +92,8 @@ export class ErrorReportingService {
       return;
     }
 
-    const dsn = import.meta.env.VITE_SENTRY_DSN;
-    if (!dsn) {
+    const dsn = import.meta.env.VITE_SENTRY_DSN as string | undefined;
+    if (dsn === null || dsn === undefined || dsn === '') {
       logger.warn('VITE_SENTRY_DSN not configured, error reporting disabled');
       return;
     }
@@ -101,7 +101,7 @@ export class ErrorReportingService {
     try {
       Sentry.init({
         dsn,
-        environment: import.meta.env.MODE ?? 'production',
+        environment: (import.meta.env.MODE as string | undefined) ?? 'production',
         integrations: [
           Sentry.browserTracingIntegration(),
           new Replay({
@@ -365,7 +365,7 @@ export class ErrorReportingService {
   private beforeSend(event: Sentry.ErrorEvent, hint: Sentry.EventHint): Sentry.ErrorEvent | null {
     // Filter out non-actionable errors
     if (hint.originalException !== null && hint.originalException !== undefined) {
-      const error = hint.originalException as Error;
+      const error = hint.originalException as Error | unknown;
 
       // Ignore ResizeObserver errors (browser quirk)
       if ((error instanceof Error ? error.message : String(error)).includes('ResizeObserver')) {

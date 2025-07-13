@@ -132,6 +132,10 @@ export function useAIPlanningAssistant(): {
     },
   });
 
+  interface CurriculumResponse {
+    suggestions: string[];
+  }
+
   // Curriculum-aligned suggestions
   const getCurriculumAlignedSuggestions = useMutation({
     mutationFn: async (params: {
@@ -141,7 +145,8 @@ export function useAIPlanningAssistant(): {
       setIsGenerating(true);
       try {
         const response = await apiClient.post('/api/ai-planning/curriculum-aligned', params);
-        return response.data.suggestions as string[];
+        const data = response.data as CurriculumResponse;
+        return data.suggestions;
       } finally {
         setIsGenerating(false);
       }

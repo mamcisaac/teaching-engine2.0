@@ -6,32 +6,287 @@
 > client@ typecheck /Users/michaelmcisaac/GitHub/teaching-engine2.0/client
 > tsc --noEmit
 
-src/components/ai/AILoadingIndicator.tsx(95,9): error TS2722: Cannot invoke an object which is possibly 'undefined'.
-src/components/ai/AILoadingIndicator.tsx(185,1): error TS2322: Type 'null' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
-src/components/ai/GPTPlanningAgent.tsx(194,7): error TS18047: 'recognitionRef.current' is possibly 'null'.
-src/components/ai/GPTPlanningAgent.tsx(195,7): error TS18047: 'recognitionRef.current' is possibly 'null'.
-src/components/ai/GPTPlanningAgent.tsx(196,7): error TS18047: 'recognitionRef.current' is possibly 'null'.
-src/components/ai/GPTPlanningAgent.tsx(198,7): error TS18047: 'recognitionRef.current' is possibly 'null'.
-src/components/ai/GPTPlanningAgent.tsx(204,7): error TS18047: 'recognitionRef.current' is possibly 'null'.
-src/components/ai/GPTPlanningAgent.tsx(209,7): error TS18047: 'recognitionRef.current' is possibly 'null'.
-src/components/ai/GPTPlanningAgent.tsx(263,1): error TS2322: Type 'null' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
-src/components/MaterialChecklist.tsx(10,1): error TS2322: Type 'null' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
-src/components/navigation/__tests__/SidebarComponent.test.tsx(5,10): error TS2459: Module '"../../../contexts/AuthContext"' declares 'AuthContext' locally, but it is not exported.
-src/components/NotificationBell.tsx(29,1): error TS2322: Type 'null' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
-src/components/OfflineNotification.tsx(55,5): error TS2322: Type 'null' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
-src/components/onboarding/OnboardingFlowOptimized.tsx(53,23): error TS18047: 'currentStep' is possibly 'null'.
-src/components/onboarding/OnboardingFlowOptimized.tsx(54,34): error TS18047: 'currentStep' is possibly 'null'.
-src/components/onboarding/OnboardingFlowOptimized.tsx(62,23): error TS18047: 'currentStep' is possibly 'null'.
-src/components/onboarding/OnboardingFlowOptimized.tsx(77,15): error TS18047: 'currentStep' is possibly 'null'.
-src/components/onboarding/OnboardingFlowOptimized.tsx(128,41): error TS18047: 'currentStep' is possibly 'null'.
-src/components/onboarding/OnboardingFlowOptimized.tsx(133,46): error TS18047: 'currentStep' is possibly 'null'.
-src/components/onboarding/OnboardingFlowOptimized.tsx(146,1): error TS2322: Type 'null' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
-src/components/onboarding/OnboardingHighlight.tsx(18,1): error TS2322: Type 'null' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
-src/components/onboarding/WelcomeModal.tsx(12,5): error TS2322: Type 'null' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
-src/components/performance/performance-utils.ts(103,22): error TS2345: Argument of type 'Element | null' is not assignable to parameter of type 'Element'.
-  Type 'null' is not assignable to type 'Element'.
-src/components/performance/performance-utils.ts(106,26): error TS2345: Argument of type 'Element | null' is not assignable to parameter of type 'Element'.
-  Type 'null' is not assignable to type 'Element'.
+src/__tests__/components/ui/Button.real.test.tsx(101,14): error TS18047: 'planData' is possibly 'null'.
+src/__tests__/components/ui/Button.real.test.tsx(171,72): error TS2339: Property 'title' does not exist on type 'never'.
+src/__tests__/components/ui/Button.real.test.tsx(183,14): error TS18047: 'submissionResult' is possibly 'null'.
+src/__tests__/hooks/useETFOPlanning.real.test.tsx(202,16): error TS18046: 'createdPlan' is of type 'unknown'.
+src/__tests__/hooks/useETFOPlanning.real.test.tsx(203,16): error TS18046: 'createdPlan' is of type 'unknown'.
+src/__tests__/hooks/useETFOPlanning.real.test.tsx(204,16): error TS18046: 'createdPlan' is of type 'unknown'.
+src/__tests__/hooks/useETFOPlanning.real.test.tsx(250,16): error TS18046: 'updatedPlan' is of type 'unknown'.
+src/__tests__/hooks/useETFOPlanning.real.test.tsx(251,16): error TS18046: 'updatedPlan' is of type 'unknown'.
+src/__tests__/hooks/useETFOPlanning.real.test.tsx(341,16): error TS18046: 'createdUnit' is of type 'unknown'.
+src/__tests__/hooks/useETFOPlanning.real.test.tsx(342,16): error TS18046: 'createdUnit' is of type 'unknown'.
+src/__tests__/hooks/useETFOPlanning.real.test.tsx(397,16): error TS18046: 'createdLesson' is of type 'unknown'.
+src/__tests__/hooks/useETFOPlanning.real.test.tsx(398,16): error TS18046: 'createdLesson' is of type 'unknown'.
+src/__tests__/hooks/useETFOPlanning.real.test.tsx(451,16): error TS18046: 'createdEntry' is of type 'unknown'.
+src/__tests__/hooks/useETFOPlanning.real.test.tsx(452,16): error TS18046: 'createdEntry' is of type 'unknown'.
+src/__tests__/pages/CurriculumImportPage.test.tsx(59,49): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/__tests__/pages/QuickLessonPage.test.tsx(61,42): error TS2339: Property 'assessmentType' does not exist on type '{ title?: string | undefined; date: string; duration: number; }'.
+src/__tests__/pages/QuickLessonPage.test.tsx(62,39): error TS2339: Property 'isSubFriendly' does not exist on type '{ title?: string | undefined; date: string; duration: number; }'.
+src/api/domains/routine/hooks.ts(103,3): error TS2322: Type 'UseQueryResult<{ period: string; planned: number; completed: number; rate: number; }[], Error>' is not assignable to type 'UseQueryResult<{ period: string; completed: number; total: number; }[]>'.
+  Type 'QueryObserverRefetchErrorResult<{ period: string; planned: number; completed: number; rate: number; }[], Error>' is not assignable to type 'UseQueryResult<{ period: string; completed: number; total: number; }[]>'.
+    Type 'QueryObserverRefetchErrorResult<{ period: string; planned: number; completed: number; rate: number; }[], Error>' is not assignable to type 'QueryObserverRefetchErrorResult<{ period: string; completed: number; total: number; }[], Error>'.
+      Type '{ period: string; planned: number; completed: number; rate: number; }[]' is not assignable to type '{ period: string; completed: number; total: number; }[]'.
+        Property 'total' is missing in type '{ period: string; planned: number; completed: number; rate: number; }' but required in type '{ period: string; completed: number; total: number; }'.
+src/api/domains/routine/hooks.ts(111,3): error TS2322: Type 'UseQueryResult<(OralRoutineTemplate | DailyOralRoutine | ClassRoutine)[], Error>' is not assignable to type 'UseQueryResult<OralRoutineTemplate[] | DailyOralRoutine[] | ClassRoutine[]>'.
+  Type 'QueryObserverRefetchErrorResult<(OralRoutineTemplate | DailyOralRoutine | ClassRoutine)[], Error>' is not assignable to type 'UseQueryResult<OralRoutineTemplate[] | DailyOralRoutine[] | ClassRoutine[]>'.
+    Type 'QueryObserverRefetchErrorResult<(OralRoutineTemplate | DailyOralRoutine | ClassRoutine)[], Error>' is not assignable to type 'QueryObserverRefetchErrorResult<OralRoutineTemplate[] | DailyOralRoutine[] | ClassRoutine[], Error>'.
+      Type '(OralRoutineTemplate | DailyOralRoutine | ClassRoutine)[]' is not assignable to type 'OralRoutineTemplate[] | DailyOralRoutine[] | ClassRoutine[]'.
+        Type '(OralRoutineTemplate | DailyOralRoutine | ClassRoutine)[]' is not assignable to type 'OralRoutineTemplate[]'.
+          Type 'OralRoutineTemplate | DailyOralRoutine | ClassRoutine' is not assignable to type 'OralRoutineTemplate'.
+            Type 'DailyOralRoutine' is missing the following properties from type 'OralRoutineTemplate': name, category, difficulty, frenchContent, and 5 more.
+src/api/domains/routine/hooks.ts(401,3): error TS2322: Type 'UseMutationResult<{ imported: number; failed: number; errors?: string[] | undefined; }, Error, { file: File; format: "json" | "csv"; }, unknown>' is not assignable to type 'UseMutationResult<{ imported: number; failed: number; errors: string[]; }, Error, { file: File; format: "json" | "csv"; }>'.
+  Type 'Override<MutationObserverIdleResult<{ imported: number; failed: number; errors?: string[] | undefined; }, Error, { file: File; format: "json" | "csv"; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'UseMutationResult<{ imported: number; failed: number; errors: string[]; }, Error, { file: File; format: "json" | "csv"; }>'.
+    Type 'Override<MutationObserverIdleResult<{ imported: number; failed: number; errors?: string[] | undefined; }, Error, { file: File; format: "json" | "csv"; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<{ imported: number; failed: number; errors: string[]; }, Error, { file: File; format: "json" | "csv"; }, unknown>, { ...; }> & { ...; }'.
+      Type 'Override<MutationObserverIdleResult<{ imported: number; failed: number; errors?: string[] | undefined; }, Error, { file: File; format: "json" | "csv"; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<{ imported: number; failed: number; errors: string[]; }, Error, { file: File; format: "json" | "csv"; }, unknown>, { mutate: UseMutateFunction<...>; }>'.
+        Types of property 'mutate' are incompatible.
+          Type 'UseMutateFunction<{ imported: number; failed: number; errors?: string[] | undefined; }, Error, { file: File; format: "json" | "csv"; }, unknown>' is not assignable to type 'UseMutateFunction<{ imported: number; failed: number; errors: string[]; }, Error, { file: File; format: "json" | "csv"; }, unknown>'.
+            Types of parameters 'options' and 'options' are incompatible.
+              Type 'MutateOptions<{ imported: number; failed: number; errors: string[]; }, Error, { file: File; format: "json" | "csv"; }, unknown> | undefined' is not assignable to type 'MutateOptions<{ imported: number; failed: number; errors?: string[] | undefined; }, Error, { file: File; format: "json" | "csv"; }, unknown> | undefined'.
+                Type 'MutateOptions<{ imported: number; failed: number; errors: string[]; }, Error, { file: File; format: "json" | "csv"; }, unknown>' is not assignable to type 'MutateOptions<{ imported: number; failed: number; errors?: string[] | undefined; }, Error, { file: File; format: "json" | "csv"; }, unknown>'.
+                  Type '{ imported: number; failed: number; errors?: string[] | undefined; }' is not assignable to type '{ imported: number; failed: number; errors: string[]; }'.
+                    Types of property 'errors' are incompatible.
+                      Type 'string[] | undefined' is not assignable to type 'string[]'.
+                        Type 'undefined' is not assignable to type 'string[]'.
+src/api/domains/teacher/hooks.ts(114,3): error TS2322: Type 'UseMutationResult<unknown, Error, number, unknown>' is not assignable to type 'UseMutationResult<void, Error, number>'.
+  Type 'Override<MutationObserverIdleResult<unknown, Error, number, unknown>, { mutate: UseMutateFunction<unknown, Error, number, unknown>; }> & { ...; }' is not assignable to type 'UseMutationResult<void, Error, number>'.
+    Type 'Override<MutationObserverIdleResult<unknown, Error, number, unknown>, { mutate: UseMutateFunction<unknown, Error, number, unknown>; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<void, Error, number, unknown>, { mutate: UseMutateFunction<void, Error, number, unknown>; }> & { ...; }'.
+      Type 'Override<MutationObserverIdleResult<unknown, Error, number, unknown>, { mutate: UseMutateFunction<unknown, Error, number, unknown>; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<void, Error, number, unknown>, { mutate: UseMutateFunction<void, Error, number, unknown>; }>'.
+        Types of property 'mutate' are incompatible.
+          Type 'UseMutateFunction<unknown, Error, number, unknown>' is not assignable to type 'UseMutateFunction<void, Error, number, unknown>'.
+            Type 'unknown' is not assignable to type 'void'.
+src/api/domains/teacher/hooks.ts(149,3): error TS2322: Type 'UseMutationResult<unknown, Error, { name?: string | undefined; schoolBoard?: string | undefined; school?: string | undefined; grade?: number | undefined; }, unknown>' is not assignable to type 'UseMutationResult<TeacherProfile, Error, UpdateProfileInput>'.
+  Type 'Override<MutationObserverIdleResult<unknown, Error, { name?: string | undefined; schoolBoard?: string | undefined; school?: string | undefined; grade?: number | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'UseMutationResult<TeacherProfile, Error, UpdateProfileInput>'.
+    Type 'Override<MutationObserverIdleResult<unknown, Error, { name?: string | undefined; schoolBoard?: string | undefined; school?: string | undefined; grade?: number | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<TeacherProfile, Error, UpdateProfileInput, unknown>, { mutate: UseMutateFunction<TeacherProfile, Error, UpdateProfileInput, unknown>; }> & { ...; }'.
+      Type 'Override<MutationObserverIdleResult<unknown, Error, { name?: string | undefined; schoolBoard?: string | undefined; school?: string | undefined; grade?: number | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<TeacherProfile, Error, UpdateProfileInput, unknown>, { mutate: UseMutateFunction<TeacherProfile, Error, UpdateProfileInput, unknown>; }>'.
+        Types of property 'mutate' are incompatible.
+          Type 'UseMutateFunction<unknown, Error, { name?: string | undefined; schoolBoard?: string | undefined; school?: string | undefined; grade?: number | undefined; }, unknown>' is not assignable to type 'UseMutateFunction<TeacherProfile, Error, UpdateProfileInput, unknown>'.
+            Types of parameters 'options' and 'options' are incompatible.
+              Type 'MutateOptions<TeacherProfile, Error, UpdateProfileInput, unknown> | undefined' is not assignable to type 'MutateOptions<unknown, Error, { name?: string | undefined; schoolBoard?: string | undefined; school?: string | undefined; grade?: number | undefined; }, unknown> | undefined'.
+                Type 'MutateOptions<TeacherProfile, Error, UpdateProfileInput, unknown>' is not assignable to type 'MutateOptions<unknown, Error, { name?: string | undefined; schoolBoard?: string | undefined; school?: string | undefined; grade?: number | undefined; }, unknown>'.
+                  Type 'unknown' is not assignable to type 'TeacherProfile'.
+src/components/__tests__/AuthErrorBoundary.test.tsx(10,1): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(11,1): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(12,1): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(29,5): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(30,5): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(39,37): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/__tests__/AuthErrorBoundary.test.tsx(40,38): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/__tests__/AuthErrorBoundary.test.tsx(43,12): error TS2790: The operand of a 'delete' operator must be optional.
+src/components/__tests__/AuthErrorBoundary.test.tsx(44,5): error TS2322: Type 'Location' is not assignable to type 'string & Location'.
+  Type 'Location' is not assignable to type 'string'.
+src/components/__tests__/AuthErrorBoundary.test.tsx(44,43): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(47,27): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/__tests__/AuthErrorBoundary.test.tsx(51,5): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(52,5): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(67,26): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(83,26): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(99,26): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(100,27): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(116,26): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(132,26): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(147,26): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(172,26): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(192,26): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(219,26): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(249,26): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(260,7): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(270,26): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(271,39): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/__tests__/AuthErrorBoundary.test.tsx(280,7): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(290,26): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(291,39): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/__tests__/AuthErrorBoundary.test.tsx(301,9): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(311,26): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(322,7): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(343,26): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(363,26): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(381,26): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(400,26): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(426,26): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(445,26): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(446,38): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/AuthErrorBoundary.test.tsx(465,26): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/CurriculumImportButton.test.tsx(8,35): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/CurriculumImportButton.test.tsx(29,35): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/CurriculumImportButton.test.tsx(75,35): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/DateRangeSelector.test.tsx(3,8): error TS2613: Module '"/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/DateRangeSelector"' has no default export. Did you mean to use 'import { DateRangeSelector } from "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/DateRangeSelector"' instead?
+src/components/__tests__/DateRangeSelector.test.tsx(6,24): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/DateRangeSelector.test.tsx(14,5): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/DownloadPrintablesButton.test.tsx(3,8): error TS2613: Module '"/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/DownloadPrintablesButton"' has no default export. Did you mean to use 'import { DownloadPrintablesButton } from "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/DownloadPrintablesButton"' instead?
+src/components/__tests__/DownloadPrintablesButton.test.tsx(7,1): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/DownloadPrintablesButton.test.tsx(9,25): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/DownloadPrintablesButton.test.tsx(14,29): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/DownloadPrintablesButton.test.tsx(15,29): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/DownloadPrintablesButton.test.tsx(24,5): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/DownloadPrintablesButton.test.tsx(26,45): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/__tests__/DownloadPrintablesButton.test.tsx(36,32): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/DownloadPrintablesButton.test.tsx(37,25): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/DownloadPrintablesButton.test.tsx(77,47): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/__tests__/DownloadPrintablesButton.test.tsx(80,31): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/LoadingStates.test.tsx(152,25): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/MainLayout.test.tsx(13,8): error TS2613: Module '"/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/MainLayout"' has no default export. Did you mean to use 'import { MainLayout } from "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/MainLayout"' instead?
+src/components/__tests__/NewsletterEditor.test.tsx(3,8): error TS2613: Module '"/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/NewsletterEditor"' has no default export. Did you mean to use 'import { NewsletterEditor } from "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/NewsletterEditor"' instead?
+src/components/__tests__/NewsletterEditor.test.tsx(30,22): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/NewsletterEditor.test.tsx(31,22): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/NewsletterEditor.test.tsx(32,28): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/NewsletterEditor.test.tsx(35,5): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/NewsletterEditor.test.tsx(255,7): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/NewsletterEditor.test.tsx(269,7): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/NewsletterEditor.test.tsx(275,7): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/__tests__/OralRoutineSummary.test.tsx(14,55): error TS2694: Namespace 'global.jest' has no exported member 'MockedFunction'.
+src/components/__tests__/ResourceSelector.test.tsx(18,59): error TS2694: Namespace 'global.jest' has no exported member 'MockedFunction'.
+src/components/__tests__/RichTextEditor.test.tsx(15,49): error TS2694: Namespace 'global.jest' has no exported member 'MockedFunction'.
+src/components/ai/__tests__/AIErrorBoundary.test.tsx(14,1): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/AIErrorBoundary.test.tsx(16,12): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/AIErrorBoundary.test.tsx(29,22): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/ai/__tests__/AIErrorBoundary.test.tsx(32,5): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/AIErrorBoundary.test.tsx(33,16): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/AIErrorBoundary.test.tsx(55,47): error TS2322: Type 'null' is not assignable to type 'Error | undefined'.
+src/components/ai/__tests__/AIErrorBoundary.test.tsx(68,14): error TS2339: Property 'current' does not exist on type '{ handleAIError: (error: unknown, context?: string | undefined) => void; }'.
+src/components/ai/__tests__/AIErrorBoundary.test.tsx(72,14): error TS2339: Property 'current' does not exist on type '{ handleAIError: (error: unknown, context?: string | undefined) => void; }'.
+src/components/ai/__tests__/AIErrorBoundary.test.tsx(76,14): error TS2339: Property 'current' does not exist on type '{ handleAIError: (error: unknown, context?: string | undefined) => void; }'.
+src/components/ai/__tests__/AIErrorBoundary.test.tsx(80,14): error TS2339: Property 'current' does not exist on type '{ handleAIError: (error: unknown, context?: string | undefined) => void; }'.
+src/components/ai/__tests__/AIErrorBoundary.test.tsx(88,14): error TS2339: Property 'current' does not exist on type '{ handleAIError: (error: unknown, context?: string | undefined) => void; }'.
+src/components/ai/__tests__/AIErrorBoundary.test.tsx(97,14): error TS2339: Property 'current' does not exist on type '{ handleAIError: (error: unknown, context?: string | undefined) => void; }'.
+src/components/ai/__tests__/AIErrorBoundary.test.tsx(106,14): error TS2339: Property 'current' does not exist on type '{ handleAIError: (error: unknown, context?: string | undefined) => void; }'.
+src/components/ai/__tests__/AIErrorBoundary.test.tsx(346,23): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/AIErrorBoundary.test.tsx(389,26): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/AIErrorBoundary.test.tsx(438,14): error TS2339: Property 'current' does not exist on type '{ handleAIError: (error: unknown, context?: string | undefined) => void; }'.
+src/components/ai/__tests__/AIErrorBoundary.test.tsx(446,14): error TS2339: Property 'current' does not exist on type '{ handleAIError: (error: unknown, context?: string | undefined) => void; }'.
+src/components/ai/__tests__/AIErrorBoundary.test.tsx(461,16): error TS2339: Property 'current' does not exist on type '{ handleAIError: (error: unknown, context?: string | undefined) => void; }'.
+src/components/ai/__tests__/AIErrorBoundary.test.tsx(478,23): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/AILoadingIndicator.test.tsx(7,1): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/AILoadingIndicator.test.tsx(21,5): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/AILoadingIndicator.test.tsx(25,5): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/AILoadingIndicator.test.tsx(250,9): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/AILoadingIndicator.test.tsx(269,9): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/AIUnitPlanPanel.test.tsx(7,1): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/AIUnitPlanPanel.test.tsx(9,42): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/AIUnitPlanPanel.test.tsx(13,1): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/AIUnitPlanPanel.test.tsx(23,1): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/AIUnitPlanPanel.test.tsx(25,12): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/AIUnitPlanPanel.test.tsx(29,1): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/AIUnitPlanPanel.test.tsx(31,12): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/AIUnitPlanPanel.test.tsx(37,5): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/AIWeeklyPlanModal.test.tsx(7,1): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/AIWeeklyPlanModal.test.tsx(14,1): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/AIWeeklyPlanModal.test.tsx(16,13): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/AIWeeklyPlanModal.test.tsx(25,14): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/AIWeeklyPlanModal.test.tsx(39,5): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/AIWeeklyPlanModal.test.tsx(46,17): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/AIWeeklyPlanModal.test.tsx(57,15): error TS2741: Property 'weekStart' is missing in type '{ isOpen: boolean; onClose: any; selectedWeek: { startDate: Date; endDate: Date; }; unitContext: { id: string; title: string; subject: string; grade: number; }; }' but required in type 'AIWeeklyPlanModalProps'.
+src/components/ai/__tests__/AIWeeklyPlanModal.test.tsx(66,17): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/AIWeeklyPlanModal.test.tsx(77,15): error TS2741: Property 'weekStart' is missing in type '{ isOpen: boolean; onClose: any; selectedWeek: { startDate: Date; endDate: Date; }; unitContext: { id: string; title: string; subject: string; grade: number; }; }' but required in type 'AIWeeklyPlanModalProps'.
+src/components/ai/__tests__/AIWeeklyPlanModal.test.tsx(86,17): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/AIWeeklyPlanModal.test.tsx(97,15): error TS2741: Property 'weekStart' is missing in type '{ isOpen: boolean; onClose: any; selectedWeek: { startDate: Date; endDate: Date; }; unitContext: { id: string; title: string; subject: string; grade: number; }; }' but required in type 'AIWeeklyPlanModalProps'.
+src/components/ai/__tests__/AIWeeklyPlanModal.test.tsx(106,17): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/AIWeeklyPlanModal.test.tsx(117,15): error TS2741: Property 'weekStart' is missing in type '{ isOpen: boolean; onClose: any; selectedWeek: { startDate: Date; endDate: Date; }; unitContext: { id: string; title: string; subject: string; grade: number; }; }' but required in type 'AIWeeklyPlanModalProps'.
+src/components/ai/__tests__/AIWeeklyPlanModal.test.tsx(126,15): error TS2741: Property 'weekStart' is missing in type '{ isOpen: true; onClose: any; selectedWeek: { startDate: Date; endDate: Date; }; unitContext: { id: string; title: string; subject: string; grade: number; }; }' but required in type 'AIWeeklyPlanModalProps'.
+src/components/ai/__tests__/AIWeeklyPlanModal.test.tsx(132,15): error TS2741: Property 'weekStart' is missing in type '{ isOpen: false; onClose: any; selectedWeek: { startDate: Date; endDate: Date; }; unitContext: { id: string; title: string; subject: string; grade: number; }; }' but required in type 'AIWeeklyPlanModalProps'.
+src/components/ai/__tests__/AIWeeklyPlanModal.test.tsx(138,27): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/AIWeeklyPlanModal.test.tsx(139,15): error TS2741: Property 'weekStart' is missing in type '{ onClose: any; isOpen: boolean; selectedWeek: { startDate: Date; endDate: Date; }; unitContext: { id: string; title: string; subject: string; grade: number; }; }' but required in type 'AIWeeklyPlanModalProps'.
+src/components/ai/__tests__/AIWeeklyPlanModal.test.tsx(150,15): error TS2741: Property 'weekStart' is missing in type '{ isOpen: boolean; onClose: any; selectedWeek: { startDate: Date; endDate: Date; }; unitContext: { id: string; title: string; subject: string; grade: number; }; }' but required in type 'AIWeeklyPlanModalProps'.
+src/components/ai/__tests__/GPTPlanningAgent.test.tsx(7,1): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/GPTPlanningAgent.test.tsx(14,1): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/GPTPlanningAgent.test.tsx(16,11): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/GPTPlanningAgent.test.tsx(20,1): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/GPTPlanningAgent.test.tsx(22,13): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/GPTPlanningAgent.test.tsx(31,14): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/GPTPlanningAgent.test.tsx(40,5): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/GPTPlanningAgent.test.tsx(114,16): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/GPTPlanningAgent.test.tsx(127,16): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/__tests__/GPTPlanningAgent.test.tsx(156,27): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/ai/AILessonPlanPanel.tsx(225,12): error TS18046: 'mindsOnResult' is of type 'unknown'.
+src/components/ai/AILessonPlanPanel.tsx(226,12): error TS18046: 'handsOnResult' is of type 'unknown'.
+src/components/ai/AILessonPlanPanel.tsx(227,12): error TS18046: 'reflectionResult' is of type 'unknown'.
+src/components/ai/AILessonPlanPanel.tsx(240,23): error TS18046: 'mindsOnResult' is of type 'unknown'.
+src/components/ai/AILessonPlanPanel.tsx(245,23): error TS18046: 'handsOnResult' is of type 'unknown'.
+src/components/ai/AILessonPlanPanel.tsx(250,23): error TS18046: 'reflectionResult' is of type 'unknown'.
+src/components/ai/AILessonPlanPanel.tsx(262,20): error TS18046: 'mindsOnResult' is of type 'unknown'.
+src/components/ai/AILessonPlanPanel.tsx(268,20): error TS18046: 'handsOnResult' is of type 'unknown'.
+src/components/ai/AILessonPlanPanel.tsx(274,20): error TS18046: 'reflectionResult' is of type 'unknown'.
+src/components/ai/AILessonPlanPanel.tsx(280,20): error TS18046: 'materialsResult' is of type 'unknown'.
+src/components/ai/AIWeeklyPlanModal.tsx(7,8): error TS2613: Module '"/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/Dialog"' has no default export. Did you mean to use 'import { Dialog } from "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/Dialog"' instead?
+src/components/forms/LessonPlanForm.tsx(6,8): error TS2613: Module '"/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/BilingualTextInput"' has no default export. Did you mean to use 'import { BilingualTextInput } from "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/BilingualTextInput"' instead?
+src/components/forms/UnitPlanForm.tsx(7,8): error TS2613: Module '"/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/BilingualTextInput"' has no default export. Did you mean to use 'import { BilingualTextInput } from "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/BilingualTextInput"' instead?
+src/components/navigation/__tests__/SidebarComponent.test.tsx(25,27): error TS2322: Type '{ user: { id: number; name: string; email: string; role: "teacher"; }; login: any; logout: any; isAuthenticated: boolean; isLoading: boolean; isInitialized: boolean; checkAuth: any; getToken: () => string; refreshToken: any; error: null; clearError: any; }' is not assignable to type 'AuthContextValue'.
+  The types of 'user.role' are incompatible between these types.
+    Type '"teacher"' is not assignable to type '"USER" | "ADMIN"'.
+src/components/navigation/TopNavigationBar.tsx(6,8): error TS2613: Module '"/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/NotificationBell"' has no default export. Did you mean to use 'import { NotificationBell } from "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/NotificationBell"' instead?
+src/components/onboarding/__tests__/OnboardingTooltip.test.tsx(97,15): error TS2322: Type '{ currentStep: { showSkip: null; id: string; title: string; description: string; requiresAction: boolean; action: "none"; }; state: { currentFlow: { id: string; name: string; description: string; steps: { ...; }[]; estimatedTime: number; }; ... 4 more ...; isFirstTimeUser: boolean; }; ... 7 more ...; isCenter: boole...' is not assignable to type 'IntrinsicAttributes & OnboardingTooltipProps'.
+  Type '{ currentStep: { showSkip: null; id: string; title: string; description: string; requiresAction: boolean; action: "none"; }; state: { currentFlow: { id: string; name: string; description: string; steps: { ...; }[]; estimatedTime: number; }; ... 4 more ...; isFirstTimeUser: boolean; }; ... 7 more ...; isCenter: boole...' is not assignable to type 'FlowTooltipProps'.
+    The types of 'currentStep.showSkip' are incompatible between these types.
+      Type 'null' is not assignable to type 'boolean | undefined'.
+src/components/onboarding/__tests__/OnboardingTooltip.test.tsx(133,15): error TS2322: Type '{ state: { currentFlow: { estimatedTime: null; id: string; name: string; description: string; steps: { id: string; title: string; description: string; }[]; }; currentStepIndex: number; completedFlows: never[]; skippedOnboarding: boolean; showOnboarding: boolean; isFirstTimeUser: boolean; }; ... 8 more ...; isCenter:...' is not assignable to type 'IntrinsicAttributes & OnboardingTooltipProps'.
+  Type '{ state: { currentFlow: { estimatedTime: null; id: string; name: string; description: string; steps: { id: string; title: string; description: string; }[]; }; currentStepIndex: number; completedFlows: never[]; skippedOnboarding: boolean; showOnboarding: boolean; isFirstTimeUser: boolean; }; ... 8 more ...; isCenter:...' is not assignable to type 'FlowTooltipProps'.
+    The types of 'state.currentFlow.estimatedTime' are incompatible between these types.
+      Type 'null' is not assignable to type 'number | undefined'.
+src/components/onboarding/__tests__/OnboardingTooltip.test.tsx(243,15): error TS2322: Type '{ actionText: null; onAction: any; id: string; title: string; content: string; children: Element; position: "top"; showOnce: boolean; delay: number; }' is not assignable to type 'IntrinsicAttributes & OnboardingTooltipProps'.
+  Type '{ actionText: null; onAction: any; id: string; title: string; content: string; children: Element; position: "top"; showOnce: boolean; delay: number; }' is not assignable to type 'HoverTooltipProps'.
+    Types of property 'actionText' are incompatible.
+      Type 'null' is not assignable to type 'string | undefined'.
+src/components/onboarding/__tests__/OnboardingTooltip.test.tsx(259,15): error TS2322: Type '{ actionText: string; onAction: null; id: string; title: string; content: string; children: Element; position: "top"; showOnce: boolean; delay: number; }' is not assignable to type 'IntrinsicAttributes & OnboardingTooltipProps'.
+  Type '{ actionText: string; onAction: null; id: string; title: string; content: string; children: Element; position: "top"; showOnce: boolean; delay: number; }' is not assignable to type 'HoverTooltipProps'.
+    Types of property 'onAction' are incompatible.
+      Type 'null' is not assignable to type '(() => void) | undefined'.
+src/components/performance/__tests__/OptimizedCalendarView.test.tsx(59,11): error TS2322: Type '{ id: string; title: string; start: string; eventType: string; }[]' is not assignable to type 'CalendarEvent[]'.
+  Type '{ id: string; title: string; start: string; eventType: string; }' is missing the following properties from type 'CalendarEvent': end, allDay, source
+src/components/performance/__tests__/OptimizedCalendarView.test.tsx(82,11): error TS2322: Type '{ id: string; title: string; start: null; }[]' is not assignable to type 'CalendarEvent[]'.
+  Type '{ id: string; title: string; start: null; }' is missing the following properties from type 'CalendarEvent': end, allDay, eventType, source
+src/components/performance/__tests__/OptimizedCalendarView.test.tsx(111,11): error TS2322: Type '{ id: string; title: string; start: string; eventType: string; }[]' is not assignable to type 'CalendarEvent[]'.
+  Type '{ id: string; title: string; start: string; eventType: string; }' is missing the following properties from type 'CalendarEvent': end, allDay, source
+src/components/performance/__tests__/OptimizedCalendarView.test.tsx(140,11): error TS2322: Type '{ id: string; title: string; start: string; eventType: string; }[]' is not assignable to type 'CalendarEvent[]'.
+  Type '{ id: string; title: string; start: string; eventType: string; }' is missing the following properties from type 'CalendarEvent': end, allDay, source
+src/components/performance/__tests__/OptimizedCalendarView.test.tsx(159,11): error TS2322: Type '{ id: string; title: string; start: string; eventType: string; }[]' is not assignable to type 'CalendarEvent[]'.
+  Type '{ id: string; title: string; start: string; eventType: string; }' is missing the following properties from type 'CalendarEvent': end, allDay, source
+src/components/performance/__tests__/OptimizedCalendarView.test.tsx(175,11): error TS2322: Type '{ id: string; title: string; start: string; eventType: string; }[]' is not assignable to type 'CalendarEvent[]'.
+  Type '{ id: string; title: string; start: string; eventType: string; }' is missing the following properties from type 'CalendarEvent': end, allDay, source
+src/components/performance/__tests__/OptimizedCalendarView.test.tsx(219,11): error TS2322: Type '{ id: string; title: string; start: string; }[]' is not assignable to type 'CalendarEvent[]'.
+  Type '{ id: string; title: string; start: string; }' is missing the following properties from type 'CalendarEvent': end, allDay, eventType, source
+src/components/performance/__tests__/OptimizedCalendarView.test.tsx(246,11): error TS2322: Type '{ id: string; title: string; start: string; }[]' is not assignable to type 'CalendarEvent[]'.
+  Type '{ id: string; title: string; start: string; }' is missing the following properties from type 'CalendarEvent': end, allDay, eventType, source
+src/components/performance/__tests__/OptimizedRecentPlans.test.tsx(59,11): error TS2322: Type '({ id: string; type: string; title: string; subject: string; grade: number; lastAccessed: string; progress: number; status: string; parentTitle: string; } | { id: string; type: string; title: string; ... 5 more ...; parentTitle: null; })[]' is not assignable to type 'RecentPlan[]'.
+  Type '{ id: string; type: string; title: string; subject: string; grade: number; lastAccessed: string; progress: number; status: string; parentTitle: string; } | { id: string; type: string; title: string; ... 5 more ...; parentTitle: null; }' is not assignable to type 'RecentPlan'.
+    Type '{ id: string; type: string; title: string; subject: string; grade: number; lastAccessed: string; progress: number; status: string; parentTitle: string; }' is not assignable to type 'RecentPlan'.
+      Types of property 'type' are incompatible.
+        Type 'string' is not assignable to type '"lesson" | "long-range" | "unit" | "daybook"'.
+src/components/performance/__tests__/OptimizedRecentPlans.test.tsx(79,11): error TS2322: Type '({ id: string; type: string; title: string; subject: string; grade: number; lastAccessed: string; progress: number; status: string; parentTitle: string; } | { id: string; type: string; title: string; ... 5 more ...; parentTitle: null; })[]' is not assignable to type 'RecentPlan[]'.
+  Type '{ id: string; type: string; title: string; subject: string; grade: number; lastAccessed: string; progress: number; status: string; parentTitle: string; } | { id: string; type: string; title: string; ... 5 more ...; parentTitle: null; }' is not assignable to type 'RecentPlan'.
+    Type '{ id: string; type: string; title: string; subject: string; grade: number; lastAccessed: string; progress: number; status: string; parentTitle: string; }' is not assignable to type 'RecentPlan'.
+      Types of property 'type' are incompatible.
+        Type 'string' is not assignable to type '"lesson" | "long-range" | "unit" | "daybook"'.
+src/components/performance/__tests__/OptimizedRecentPlans.test.tsx(98,11): error TS2322: Type '({ id: string; type: string; title: string; subject: string; grade: number; lastAccessed: string; progress: number; status: string; parentTitle: string; } | { id: string; type: string; title: string; ... 5 more ...; parentTitle: null; })[]' is not assignable to type 'RecentPlan[]'.
+  Type '{ id: string; type: string; title: string; subject: string; grade: number; lastAccessed: string; progress: number; status: string; parentTitle: string; } | { id: string; type: string; title: string; ... 5 more ...; parentTitle: null; }' is not assignable to type 'RecentPlan'.
+    Type '{ id: string; type: string; title: string; subject: string; grade: number; lastAccessed: string; progress: number; status: string; parentTitle: string; }' is not assignable to type 'RecentPlan'.
+      Types of property 'type' are incompatible.
+        Type 'string' is not assignable to type '"lesson" | "long-range" | "unit" | "daybook"'.
+src/components/performance/__tests__/OptimizedRecentPlans.test.tsx(117,11): error TS2322: Type '({ id: string; type: string; title: string; subject: string; grade: number; lastAccessed: string; progress: number; status: string; parentTitle: string; } | { id: string; type: string; title: string; ... 5 more ...; parentTitle: null; })[]' is not assignable to type 'RecentPlan[]'.
+  Type '{ id: string; type: string; title: string; subject: string; grade: number; lastAccessed: string; progress: number; status: string; parentTitle: string; } | { id: string; type: string; title: string; ... 5 more ...; parentTitle: null; }' is not assignable to type 'RecentPlan'.
+    Type '{ id: string; type: string; title: string; subject: string; grade: number; lastAccessed: string; progress: number; status: string; parentTitle: string; }' is not assignable to type 'RecentPlan'.
+      Types of property 'type' are incompatible.
+        Type 'string' is not assignable to type '"lesson" | "long-range" | "unit" | "daybook"'.
+src/components/performance/__tests__/OptimizedRecentPlans.test.tsx(146,11): error TS2322: Type '({ id: string; type: string; title: string; subject: string; grade: number; lastAccessed: string; progress: number; status: string; parentTitle: string; } | { id: string; type: string; title: string; ... 5 more ...; parentTitle: null; })[]' is not assignable to type 'RecentPlan[]'.
+  Type '{ id: string; type: string; title: string; subject: string; grade: number; lastAccessed: string; progress: number; status: string; parentTitle: string; } | { id: string; type: string; title: string; ... 5 more ...; parentTitle: null; }' is not assignable to type 'RecentPlan'.
+    Type '{ id: string; type: string; title: string; subject: string; grade: number; lastAccessed: string; progress: number; status: string; parentTitle: string; }' is not assignable to type 'RecentPlan'.
+      Types of property 'type' are incompatible.
+        Type 'string' is not assignable to type '"lesson" | "long-range" | "unit" | "daybook"'.
+src/components/performance/__tests__/OptimizedRecentPlans.test.tsx(175,11): error TS2322: Type '({ id: string; type: string; title: string; subject: string; grade: number; lastAccessed: string; progress: number; status: string; parentTitle: string; } | { id: string; type: string; title: string; ... 5 more ...; parentTitle: null; })[]' is not assignable to type 'RecentPlan[]'.
+  Type '{ id: string; type: string; title: string; subject: string; grade: number; lastAccessed: string; progress: number; status: string; parentTitle: string; } | { id: string; type: string; title: string; ... 5 more ...; parentTitle: null; }' is not assignable to type 'RecentPlan'.
+    Type '{ id: string; type: string; title: string; subject: string; grade: number; lastAccessed: string; progress: number; status: string; parentTitle: string; }' is not assignable to type 'RecentPlan'.
+      Types of property 'type' are incompatible.
+        Type 'string' is not assignable to type '"lesson" | "long-range" | "unit" | "daybook"'.
+src/components/performance/__tests__/OptimizedRecentPlans.test.tsx(191,11): error TS2322: Type '({ id: string; type: string; title: string; subject: string; grade: number; lastAccessed: string; progress: number; status: string; parentTitle: string; } | { id: string; type: string; title: string; ... 5 more ...; parentTitle: null; })[]' is not assignable to type 'RecentPlan[]'.
+  Type '{ id: string; type: string; title: string; subject: string; grade: number; lastAccessed: string; progress: number; status: string; parentTitle: string; } | { id: string; type: string; title: string; ... 5 more ...; parentTitle: null; }' is not assignable to type 'RecentPlan'.
+    Type '{ id: string; type: string; title: string; subject: string; grade: number; lastAccessed: string; progress: number; status: string; parentTitle: string; }' is not assignable to type 'RecentPlan'.
+      Types of property 'type' are incompatible.
+        Type 'string' is not assignable to type '"lesson" | "long-range" | "unit" | "daybook"'.
+src/components/performance/__tests__/OptimizedRecentPlans.test.tsx(206,11): error TS2322: Type '({ id: string; type: string; title: string; subject: string; grade: number; lastAccessed: string; progress: number; status: string; parentTitle: string; } | { id: string; type: string; title: string; ... 5 more ...; parentTitle: null; })[]' is not assignable to type 'RecentPlan[]'.
+  Type '{ id: string; type: string; title: string; subject: string; grade: number; lastAccessed: string; progress: number; status: string; parentTitle: string; } | { id: string; type: string; title: string; ... 5 more ...; parentTitle: null; }' is not assignable to type 'RecentPlan'.
+    Type '{ id: string; type: string; title: string; subject: string; grade: number; lastAccessed: string; progress: number; status: string; parentTitle: string; }' is not assignable to type 'RecentPlan'.
+      Types of property 'type' are incompatible.
+        Type 'string' is not assignable to type '"lesson" | "long-range" | "unit" | "daybook"'.
+src/components/performance/__tests__/performance-utils.test.ts(469,39): error TS2345: Argument of type 'string' is not assignable to parameter of type 'number'.
 src/components/performance/ProgressiveDataLoader.tsx(125,5): error TS18047: 'container' is possibly 'null'.
 src/components/performance/ProgressiveDataLoader.tsx(127,2): error TS18047: 'container' is possibly 'null'.
 src/components/planning/__tests__/CurriculumImportWizard.test.tsx(7,16): error TS2708: Cannot use namespace 'jest' as a value.
@@ -79,17 +334,238 @@ src/components/planning/__tests__/PlanAccessTracker.test.tsx(13,23): error TS270
 src/components/planning/__tests__/PlanAccessTracker.test.tsx(17,43): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
 src/components/planning/__tests__/PlanAccessTracker.test.tsx(18,22): error TS2708: Cannot use namespace 'jest' as a value.
 src/components/planning/__tests__/PlanAccessTracker.test.tsx(22,5): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/PlanningWizard.strict-boolean.test.tsx(11,22): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/PlanningWizard.strict-boolean.test.tsx(12,1): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/PlanningWizard.strict-boolean.test.tsx(13,6): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/PlanningWizard.strict-boolean.test.tsx(19,5): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/PlanningWizard.strict-boolean.test.tsx(196,23): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/PlanningWorkflowIndicator.strict-boolean.test.tsx(13,5): error TS2739: Type '{ level: ETFOLevel.CURRICULUM_EXPECTATIONS; title: string; description: string; isComplete: false; isAccessible: true; requiredFields: string[]; }' is missing the following properties from type 'LevelProgress': progressPercentage, completedItems, totalItems
+src/components/planning/__tests__/PlanningWorkflowIndicator.strict-boolean.test.tsx(21,5): error TS2739: Type '{ level: ETFOLevel.LONG_RANGE_PLANS; title: string; description: string; isComplete: false; isAccessible: false; requiredFields: undefined; }' is missing the following properties from type 'LevelProgress': progressPercentage, completedItems, totalItems
+src/components/planning/__tests__/PlanningWorkflowIndicator.strict-boolean.test.tsx(29,5): error TS2739: Type '{ level: ETFOLevel.UNIT_PLANS; title: string; description: string; isComplete: true; isAccessible: true; requiredFields: never[]; }' is missing the following properties from type 'LevelProgress': progressPercentage, completedItems, totalItems
+src/components/planning/__tests__/PlanningWorkflowIndicator.strict-boolean.test.tsx(93,9): error TS2739: Type '{ level: ETFOLevel.LESSON_PLANS; title: string; description: string; isComplete: false; isAccessible: true; requiredFields: any; }' is missing the following properties from type 'LevelProgress': progressPercentage, completedItems, totalItems
+src/components/planning/__tests__/PlanningWorkflowIndicator.strict-boolean.test.tsx(210,9): error TS2322: Type 'LevelProgress | { level: ETFOLevel.LESSON_PLANS; title: string; description: string; isComplete: false; isAccessible: false; requiredFields: never[]; } | { level: ETFOLevel.DAYBOOK_ENTRIES; ... 4 more ...; requiredFields: never[]; }' is not assignable to type 'LevelProgress'.
+  Type '{ level: ETFOLevel.LESSON_PLANS; title: string; description: string; isComplete: false; isAccessible: false; requiredFields: never[]; }' is missing the following properties from type 'LevelProgress': progressPercentage, completedItems, totalItems
+src/components/planning/__tests__/PlanningWorkflowIndicator.strict-boolean.test.tsx(211,9): error TS2739: Type '{ level: ETFOLevel.LESSON_PLANS; title: string; description: string; isComplete: false; isAccessible: false; requiredFields: never[]; }' is missing the following properties from type 'LevelProgress': progressPercentage, completedItems, totalItems
+src/components/planning/__tests__/PlanningWorkflowIndicator.strict-boolean.test.tsx(219,9): error TS2739: Type '{ level: ETFOLevel.DAYBOOK_ENTRIES; title: string; description: string; isComplete: false; isAccessible: false; requiredFields: never[]; }' is missing the following properties from type 'LevelProgress': progressPercentage, completedItems, totalItems
+src/components/planning/__tests__/QuickActions.strict-boolean.test.tsx(9,22): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/QuickActions.strict-boolean.test.tsx(10,1): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/QuickActions.strict-boolean.test.tsx(11,6): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/QuickActions.strict-boolean.test.tsx(17,5): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/QuickActions.strict-boolean.test.tsx(95,31): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(11,1): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(13,10): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(14,11): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(33,5): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(38,30): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(41,53): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(51,30): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(62,31): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(68,45): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(77,30): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(84,31): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(90,45): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(101,30): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(104,53): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(114,30): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(117,53): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(127,30): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(130,53): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(156,30): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(159,53): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(198,30): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(201,53): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(229,30): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(232,53): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(259,30): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(262,53): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(299,30): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(302,53): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(315,34): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(345,30): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(379,30): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(380,31): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/planning/__tests__/UncoveredOutcomesPanel.strict-boolean.test.tsx(395,53): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/planning/CurriculumImportWizard.tsx(4,8): error TS2613: Module '"/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/Dialog"' has no default export. Did you mean to use 'import { Dialog } from "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/Dialog"' instead?
+src/components/planning/DuplicatePlanModal.tsx(6,8): error TS2613: Module '"/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/Dialog"' has no default export. Did you mean to use 'import { Dialog } from "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/Dialog"' instead?
 src/components/planning/index.ts(4,10): error TS2305: Module '"./AISuggestionModal"' has no exported member 'default'.
 src/components/planning/PlanAccessTracker.tsx(24,38): error TS2322: Type 'string | undefined' is not assignable to type 'string'.
   Type 'undefined' is not assignable to type 'string'.
+src/components/printing/BlankTemplatePrinter.tsx(16,8): error TS2613: Module '"/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/Dialog"' has no default export. Did you mean to use 'import { Dialog } from "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/Dialog"' instead?
 src/components/printing/BlankTemplatePrinter.tsx(349,1): error TS2322: Type 'null' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
+src/components/ResourceSelector.tsx(6,8): error TS2613: Module '"/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/Dialog"' has no default export. Did you mean to use 'import { Dialog } from "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/Dialog"' instead?
+src/components/SubPlanGenerator.tsx(5,8): error TS2613: Module '"/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/Dialog"' has no default export. Did you mean to use 'import { Dialog } from "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/Dialog"' instead?
 src/components/TeacherOnboardingFlow.tsx(747,1): error TS2322: Type 'null' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
+src/components/templates/__tests__/FrenchImmersionLessonTemplate.test.tsx(8,22): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/FrenchImmersionLessonTemplate.test.tsx(9,24): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/FrenchImmersionLessonTemplate.test.tsx(12,5): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/FrenchImmersionTemplateSelector.test.tsx(7,1): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/FrenchImmersionTemplateSelector.test.tsx(82,32): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/FrenchImmersionTemplateSelector.test.tsx(85,5): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/FrenchImmersionWeeklyTemplate.test.tsx(5,15): error TS2305: Module '"../../../types/frenchImmersion"' has no exported member 'WeeklyPlanData'.
+src/components/templates/__tests__/FrenchImmersionWeeklyTemplate.test.tsx(8,22): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/FrenchImmersionWeeklyTemplate.test.tsx(9,24): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/FrenchImmersionWeeklyTemplate.test.tsx(12,5): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/FrenchImmersionWeeklyTemplate.test.tsx(21,11): error TS2741: Property 'grade' is missing in type '{ weekNumber: any; month: any; }' but required in type '{ grade: number; month: string; weekNumber: number; }'.
+src/components/templates/__tests__/FrenchImmersionWeeklyTemplate.test.tsx(33,11): error TS2739: Type '{ weekNumber: number; }' is missing the following properties from type '{ grade: number; month: string; weekNumber: number; }': grade, month
+src/components/templates/__tests__/FrenchImmersionWeeklyTemplate.test.tsx(45,11): error TS2741: Property 'grade' is missing in type '{ weekNumber: number; month: string; }' but required in type '{ grade: number; month: string; weekNumber: number; }'.
+src/components/templates/__tests__/FrenchImmersionWeeklyTemplate.test.tsx(57,11): error TS2741: Property 'grade' is missing in type '{ weekNumber: number; month: string; }' but required in type '{ grade: number; month: string; weekNumber: number; }'.
+src/components/templates/__tests__/FrenchImmersionWeeklyTemplate.test.tsx(69,11): error TS2741: Property 'grade' is missing in type '{ weekNumber: number; month: string; }' but required in type '{ grade: number; month: string; weekNumber: number; }'.
+src/components/templates/__tests__/FrenchImmersionWeeklyTemplate.test.tsx(84,11): error TS2741: Property 'grade' is missing in type '{ weekNumber: any; month: string; }' but required in type '{ grade: number; month: string; weekNumber: number; }'.
+src/components/templates/__tests__/PEICurriculumConnector.test.tsx(4,64): error TS2307: Cannot find module '../../../types/peiCurriculum' or its corresponding type declarations.
+src/components/templates/__tests__/PEICurriculumConnector.test.tsx(7,32): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/PEICurriculumConnector.test.tsx(23,5): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/PEICurriculumConnector.test.tsx(31,11): error TS2322: Type '{ alignments: any[]; onOutcomesSelect: any; }' is not assignable to type 'IntrinsicAttributes & PEICurriculumConnectorProps'.
+  Property 'alignments' does not exist on type 'IntrinsicAttributes & PEICurriculumConnectorProps'.
+src/components/templates/__tests__/PEICurriculumConnector.test.tsx(48,11): error TS2322: Type '{ alignments: any[]; onOutcomesSelect: any; }' is not assignable to type 'IntrinsicAttributes & PEICurriculumConnectorProps'.
+  Property 'alignments' does not exist on type 'IntrinsicAttributes & PEICurriculumConnectorProps'.
+src/components/templates/__tests__/PEICurriculumConnector.test.tsx(63,11): error TS2322: Type '{ alignments: any[]; onOutcomesSelect: any; }' is not assignable to type 'IntrinsicAttributes & PEICurriculumConnectorProps'.
+  Property 'alignments' does not exist on type 'IntrinsicAttributes & PEICurriculumConnectorProps'.
+src/components/templates/__tests__/PEICurriculumConnector.test.tsx(78,11): error TS2322: Type '{ alignments: any[]; onOutcomesSelect: any; }' is not assignable to type 'IntrinsicAttributes & PEICurriculumConnectorProps'.
+  Property 'alignments' does not exist on type 'IntrinsicAttributes & PEICurriculumConnectorProps'.
+src/components/templates/__tests__/PEICurriculumConnector.test.tsx(92,11): error TS2322: Type '{ alignments: PEICurriculumAlignment[]; selectedOutcomes: never[]; onOutcomesSelect: any; }' is not assignable to type 'IntrinsicAttributes & PEICurriculumConnectorProps'.
+  Property 'alignments' does not exist on type 'IntrinsicAttributes & PEICurriculumConnectorProps'.
+src/components/templates/__tests__/PEICurriculumConnector.test.tsx(106,11): error TS2322: Type '{ alignments: PEICurriculumAlignment[]; selectedOutcomes: any[]; onOutcomesSelect: any; }' is not assignable to type 'IntrinsicAttributes & PEICurriculumConnectorProps'.
+  Property 'alignments' does not exist on type 'IntrinsicAttributes & PEICurriculumConnectorProps'.
+src/components/templates/__tests__/PEICurriculumConnector.test.tsx(121,11): error TS2322: Type '{ alignments: PEICurriculumAlignment[]; onOutcomesSelect: any; }' is not assignable to type 'IntrinsicAttributes & PEICurriculumConnectorProps'.
+  Property 'alignments' does not exist on type 'IntrinsicAttributes & PEICurriculumConnectorProps'.
+src/components/templates/__tests__/PEICurriculumConnector.test.tsx(142,11): error TS2322: Type '{ alignments: PEICurriculumAlignment[]; onOutcomesSelect: any; grade: number; }' is not assignable to type 'IntrinsicAttributes & PEICurriculumConnectorProps'.
+  Property 'alignments' does not exist on type 'IntrinsicAttributes & PEICurriculumConnectorProps'.
+src/components/templates/__tests__/PEICurriculumConnector.test.tsx(154,11): error TS2322: Type '{ alignments: PEICurriculumAlignment[]; onOutcomesSelect: any; }' is not assignable to type 'IntrinsicAttributes & PEICurriculumConnectorProps'.
+  Property 'alignments' does not exist on type 'IntrinsicAttributes & PEICurriculumConnectorProps'.
+src/components/templates/__tests__/PEICurriculumConnector.test.tsx(167,11): error TS2322: Type '{ alignments: PEICurriculumAlignment[]; onOutcomesSelect: any; theme: string; }' is not assignable to type 'IntrinsicAttributes & PEICurriculumConnectorProps'.
+  Property 'alignments' does not exist on type 'IntrinsicAttributes & PEICurriculumConnectorProps'.
+src/components/templates/__tests__/PEICurriculumConnector.test.tsx(179,11): error TS2322: Type '{ alignments: PEICurriculumAlignment[]; onOutcomesSelect: any; }' is not assignable to type 'IntrinsicAttributes & PEICurriculumConnectorProps'.
+  Property 'alignments' does not exist on type 'IntrinsicAttributes & PEICurriculumConnectorProps'.
+src/components/templates/__tests__/TemplateApplyModal.test.tsx(11,1): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/TemplateApplyModal.test.tsx(13,10): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/TemplateApplyModal.test.tsx(14,11): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/TemplateApplyModal.test.tsx(19,22): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/TemplateApplyModal.test.tsx(20,1): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/TemplateApplyModal.test.tsx(21,6): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/TemplateApplyModal.test.tsx(26,1): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/TemplateApplyModal.test.tsx(28,14): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/TemplateApplyModal.test.tsx(29,12): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/TemplateApplyModal.test.tsx(34,1): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/TemplateApplyModal.test.tsx(70,23): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/TemplateApplyModal.test.tsx(80,5): error TS2353: Object literal may only specify known properties, and 'createdById' does not exist in type 'PlanTemplate'.
+src/components/templates/__tests__/TemplateApplyModal.test.tsx(88,5): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/TemplateApplyModal.test.tsx(89,22): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/templates/__tests__/TemplateApplyModal.test.tsx(90,23): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/templates/__tests__/TemplateApplyModal.test.tsx(129,24): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/templates/__tests__/TemplateApplyModal.test.tsx(160,29): error TS2322: Type '{ type: "UNIT_PLAN"; estimatedWeeks: null; id: string; title: string; titleFr?: string; description?: string; descriptionFr?: string; category: TemplateCategory; ... 20 more ...; _count?: { ratings: number; variations: number; }; }' is not assignable to type 'PlanTemplate'.
+  Types of property 'estimatedWeeks' are incompatible.
+    Type 'null' is not assignable to type 'number | undefined'.
+src/components/templates/__tests__/TemplateApplyModal.test.tsx(196,29): error TS2322: Type '{ type: "LESSON_PLAN"; estimatedMinutes: null; id: string; title: string; titleFr?: string; description?: string; descriptionFr?: string; category: TemplateCategory; ... 20 more ...; _count?: { ratings: number; variations: number; }; }' is not assignable to type 'PlanTemplate'.
+  Types of property 'estimatedMinutes' are incompatible.
+    Type 'null' is not assignable to type 'number | undefined'.
+src/components/templates/__tests__/TemplateApplyModal.test.tsx(250,24): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/templates/__tests__/TemplateApplyModal.test.tsx(251,25): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/templates/__tests__/TemplateApplyModal.test.tsx(281,24): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/templates/__tests__/TemplateApplyModal.test.tsx(282,25): error TS2694: Namespace 'global.jest' has no exported member 'Mock'.
+src/components/templates/__tests__/TemplateCard.test.tsx(8,25): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/TemplateCard.test.tsx(9,23): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/TemplateCard.test.tsx(10,27): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/TemplateCard.test.tsx(20,5): error TS2353: Object literal may only specify known properties, and 'createdById' does not exist in type 'PlanTemplate'.
+src/components/templates/__tests__/TemplateCard.test.tsx(28,5): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/TemplateCard.test.tsx(34,28): error TS2322: Type '{ type: "UNIT_PLAN"; estimatedWeeks: null; id: string; title: string; titleFr?: string; description?: string; descriptionFr?: string; category: TemplateCategory; ... 20 more ...; _count?: { ratings: number; variations: number; }; }' is not assignable to type 'PlanTemplate'.
+  Types of property 'estimatedWeeks' are incompatible.
+    Type 'null' is not assignable to type 'number | undefined'.
+src/components/templates/__tests__/TemplateCard.test.tsx(58,28): error TS2322: Type '{ type: "LESSON_PLAN"; estimatedMinutes: null; id: string; title: string; titleFr?: string; description?: string; descriptionFr?: string; category: TemplateCategory; ... 20 more ...; _count?: { ratings: number; variations: number; }; }' is not assignable to type 'PlanTemplate'.
+  Types of property 'estimatedMinutes' are incompatible.
+    Type 'null' is not assignable to type 'number | undefined'.
+src/components/templates/__tests__/TemplateCard.test.tsx(72,28): error TS2322: Type '{ gradeMin: null; gradeMax: null; id: string; title: string; titleFr?: string; description?: string; descriptionFr?: string; type: TemplateType; category: TemplateCategory; ... 19 more ...; _count?: { ratings: number; variations: number; }; }' is not assignable to type 'PlanTemplate'.
+  Types of property 'gradeMin' are incompatible.
+    Type 'null' is not assignable to type 'number | undefined'.
+src/components/templates/__tests__/TemplateCard.test.tsx(78,28): error TS2322: Type '{ gradeMin: null; gradeMax: number; id: string; title: string; titleFr?: string; description?: string; descriptionFr?: string; type: TemplateType; category: TemplateCategory; ... 19 more ...; _count?: { ratings: number; variations: number; }; }' is not assignable to type 'PlanTemplate'.
+  Types of property 'gradeMin' are incompatible.
+    Type 'null' is not assignable to type 'number | undefined'.
+src/components/templates/__tests__/TemplateCard.test.tsx(84,28): error TS2322: Type '{ gradeMin: number; gradeMax: null; id: string; title: string; titleFr?: string; description?: string; descriptionFr?: string; type: TemplateType; category: TemplateCategory; ... 19 more ...; _count?: { ratings: number; variations: number; }; }' is not assignable to type 'PlanTemplate'.
+  Types of property 'gradeMax' are incompatible.
+    Type 'null' is not assignable to type 'number | undefined'.
+src/components/templates/__tests__/TemplateCard.test.tsx(98,28): error TS2322: Type '{ subject: null; id: string; title: string; titleFr?: string; description?: string; descriptionFr?: string; type: TemplateType; category: TemplateCategory; ... 20 more ...; _count?: { ratings: number; variations: number; }; }' is not assignable to type 'PlanTemplate'.
+  Types of property 'subject' are incompatible.
+    Type 'null' is not assignable to type 'string | undefined'.
+src/components/templates/__tests__/TemplateCard.test.tsx(125,28): error TS2322: Type '{ description: null; id: string; title: string; titleFr?: string; descriptionFr?: string; type: TemplateType; category: TemplateCategory; ... 21 more ...; _count?: { ratings: number; variations: number; }; }' is not assignable to type 'PlanTemplate'.
+  Types of property 'description' are incompatible.
+    Type 'null' is not assignable to type 'string | undefined'.
+src/components/templates/__tests__/TemplateCard.test.tsx(141,28): error TS2322: Type '{ averageRating: null; id: string; title: string; titleFr?: string; description?: string; descriptionFr?: string; type: TemplateType; category: TemplateCategory; ... 20 more ...; _count?: { ratings: number; variations: number; }; }' is not assignable to type 'PlanTemplate'.
+  Types of property 'averageRating' are incompatible.
+    Type 'null' is not assignable to type 'number | undefined'.
+src/components/templates/__tests__/TemplateCard.test.tsx(157,28): error TS2322: Type '{ averageRating: number; _count: { ratings: number; }; id: string; title: string; titleFr?: string; description?: string; descriptionFr?: string; type: TemplateType; ... 20 more ...; variations?: TemplateVariation[]; }' is not assignable to type 'PlanTemplate'.
+  Types of property '_count' are incompatible.
+    Property 'variations' is missing in type '{ ratings: number; }' but required in type '{ ratings: number; variations: number; }'.
+src/components/templates/__tests__/TemplateCard.test.tsx(167,28): error TS2322: Type '{ averageRating: number; _count: null; id: string; title: string; titleFr?: string; description?: string; descriptionFr?: string; type: TemplateType; category: TemplateCategory; ... 19 more ...; variations?: TemplateVariation[]; }' is not assignable to type 'PlanTemplate'.
+  Types of property '_count' are incompatible.
+    Type 'null' is not assignable to type '{ ratings: number; variations: number; } | undefined'.
+src/components/templates/__tests__/TemplateCard.test.tsx(211,28): error TS2322: Type '{ createdByUser: null; id: string; title: string; titleFr?: string; description?: string; descriptionFr?: string; type: TemplateType; category: TemplateCategory; ... 20 more ...; _count?: { ratings: number; variations: number; }; }' is not assignable to type 'PlanTemplate'.
+  Types of property 'createdByUser' are incompatible.
+    Type 'null' is not assignable to type 'TemplateAuthor | undefined'.
+src/components/templates/__tests__/TemplateCard.test.tsx(220,28): error TS2322: Type '{ createdByUser: { id: string; name: string; email: string; }; id: string; title: string; titleFr?: string; description?: string; descriptionFr?: string; type: TemplateType; ... 21 more ...; _count?: { ratings: number; variations: number; }; }' is not assignable to type 'PlanTemplate'.
+  The types of 'createdByUser.id' are incompatible between these types.
+    Type 'string' is not assignable to type 'number'.
+src/components/templates/__tests__/TemplateCard.test.tsx(226,28): error TS2322: Type '{ lastUsedAt: null; id: string; title: string; titleFr?: string; description?: string; descriptionFr?: string; type: TemplateType; category: TemplateCategory; ... 20 more ...; _count?: { ratings: number; variations: number; }; }' is not assignable to type 'PlanTemplate'.
+  Types of property 'lastUsedAt' are incompatible.
+    Type 'null' is not assignable to type 'string | undefined'.
+src/components/templates/__tests__/TemplateFilters.test.tsx(8,1): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/TemplateFilters.test.tsx(27,31): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/TemplateFilters.test.tsx(37,5): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/TemplateFilters.test.tsx(70,11): error TS2322: Type '{ category: "CORE"; type?: TemplateType; subject?: string; gradeMin?: number; gradeMax?: number; isSystem?: boolean; isPublic?: boolean; createdByUserId?: number; ... 5 more ...; offset?: number; }' is not assignable to type 'TemplateSearchOptions'.
+  Types of property 'category' are incompatible.
+    Type '"CORE"' is not assignable to type 'TemplateCategory | undefined'.
+src/components/templates/__tests__/TemplateFilters.test.tsx(277,11): error TS2322: Type '{ type: "UNIT_PLAN"; category: "CORE"; subject: string; gradeMin: number; gradeMax: number; search: string; tags: string[]; isSystem?: boolean; isPublic?: boolean; createdByUserId?: number; sortBy?: "title" | "usageCount" | "averageRating" | "createdAt" | "lastUsedAt"; sortOrder?: "asc" | "desc"; limit?: number; off...' is not assignable to type 'TemplateSearchOptions'.
+  Types of property 'category' are incompatible.
+    Type '"CORE"' is not assignable to type 'TemplateCategory | undefined'.
+src/components/templates/__tests__/TemplatePreviewModal.test.tsx(7,23): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/TemplatePreviewModal.test.tsx(8,23): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/TemplatePreviewModal.test.tsx(18,5): error TS2353: Object literal may only specify known properties, and 'createdById' does not exist in type 'PlanTemplate'.
+src/components/templates/__tests__/TemplatePreviewModal.test.tsx(26,5): error TS2708: Cannot use namespace 'jest' as a value.
+src/components/templates/__tests__/TemplatePreviewModal.test.tsx(32,36): error TS2322: Type '{ subject: null; id: string; title: string; titleFr?: string; description?: string; descriptionFr?: string; type: TemplateType; category: TemplateCategory; ... 20 more ...; _count?: { ratings: number; variations: number; }; }' is not assignable to type 'PlanTemplate'.
+  Types of property 'subject' are incompatible.
+    Type 'null' is not assignable to type 'string | undefined'.
+src/components/templates/__tests__/TemplatePreviewModal.test.tsx(65,36): error TS2322: Type '{ gradeMin: null; gradeMax: null; id: string; title: string; titleFr?: string; description?: string; descriptionFr?: string; type: TemplateType; category: TemplateCategory; ... 19 more ...; _count?: { ratings: number; variations: number; }; }' is not assignable to type 'PlanTemplate'.
+  Types of property 'gradeMin' are incompatible.
+    Type 'null' is not assignable to type 'number | undefined'.
+src/components/templates/__tests__/TemplatePreviewModal.test.tsx(72,36): error TS2322: Type '{ gradeMin: null; gradeMax: number; id: string; title: string; titleFr?: string; description?: string; descriptionFr?: string; type: TemplateType; category: TemplateCategory; ... 19 more ...; _count?: { ratings: number; variations: number; }; }' is not assignable to type 'PlanTemplate'.
+  Types of property 'gradeMin' are incompatible.
+    Type 'null' is not assignable to type 'number | undefined'.
+src/components/templates/__tests__/TemplatePreviewModal.test.tsx(79,36): error TS2322: Type '{ gradeMin: number; gradeMax: null; id: string; title: string; titleFr?: string; description?: string; descriptionFr?: string; type: TemplateType; category: TemplateCategory; ... 19 more ...; _count?: { ratings: number; variations: number; }; }' is not assignable to type 'PlanTemplate'.
+  Types of property 'gradeMax' are incompatible.
+    Type 'null' is not assignable to type 'number | undefined'.
+src/components/templates/__tests__/TemplatePreviewModal.test.tsx(95,36): error TS2322: Type '{ type: "UNIT_PLAN"; estimatedWeeks: null; id: string; title: string; titleFr?: string; description?: string; descriptionFr?: string; category: TemplateCategory; ... 20 more ...; _count?: { ratings: number; variations: number; }; }' is not assignable to type 'PlanTemplate'.
+  Types of property 'estimatedWeeks' are incompatible.
+    Type 'null' is not assignable to type 'number | undefined'.
+src/components/templates/__tests__/TemplatePreviewModal.test.tsx(116,36): error TS2322: Type '{ type: "LESSON_PLAN"; estimatedMinutes: null; id: string; title: string; titleFr?: string; description?: string; descriptionFr?: string; category: TemplateCategory; ... 20 more ...; _count?: { ratings: number; variations: number; }; }' is not assignable to type 'PlanTemplate'.
+  Types of property 'estimatedMinutes' are incompatible.
+    Type 'null' is not assignable to type 'number | undefined'.
+src/components/templates/__tests__/TemplatePreviewModal.test.tsx(132,36): error TS2322: Type '{ description: null; id: string; title: string; titleFr?: string; descriptionFr?: string; type: TemplateType; category: TemplateCategory; ... 21 more ...; _count?: { ratings: number; variations: number; }; }' is not assignable to type 'PlanTemplate'.
+  Types of property 'description' are incompatible.
+    Type 'null' is not assignable to type 'string | undefined'.
+src/components/templates/__tests__/TemplatePreviewModal.test.tsx(175,36): error TS2322: Type '{ type: "UNIT_PLAN"; unitStructure: null; id: string; title: string; titleFr?: string; description?: string; descriptionFr?: string; category: TemplateCategory; ... 20 more ...; _count?: { ratings: number; variations: number; }; }' is not assignable to type 'PlanTemplate'.
+  Types of property 'unitStructure' are incompatible.
+    Type 'null' is not assignable to type 'UnitStructure | undefined'.
+src/components/templates/__tests__/TemplatePreviewModal.test.tsx(221,36): error TS2322: Type '{ type: "UNIT_PLAN"; unitStructure: { phases: ({ name: string; description: string; estimatedDays: number; } | { name: string; description: null; estimatedDays: null; })[]; }; id: string; title: string; ... 24 more ...; _count?: { ratings: number; variations: number; }; }' is not assignable to type 'PlanTemplate'.
+  The types of 'unitStructure.phases' are incompatible between these types.
+    Type '({ name: string; description: string; estimatedDays: number; } | { name: string; description: null; estimatedDays: null; })[]' is not assignable to type '{ name: string; description?: string | undefined; estimatedDays?: number | undefined; learningGoals?: string[] | undefined; }[]'.
+      Type '{ name: string; description: string; estimatedDays: number; } | { name: string; description: null; estimatedDays: null; }' is not assignable to type '{ name: string; description?: string | undefined; estimatedDays?: number | undefined; learningGoals?: string[] | undefined; }'.
+        Type '{ name: string; description: null; estimatedDays: null; }' is not assignable to type '{ name: string; description?: string | undefined; estimatedDays?: number | undefined; learningGoals?: string[] | undefined; }'.
+          Types of property 'description' are incompatible.
+            Type 'null' is not assignable to type 'string | undefined'.
+src/components/templates/__tests__/TemplatePreviewModal.test.tsx(236,36): error TS2322: Type '{ createdByUser: null; id: string; title: string; titleFr?: string; description?: string; descriptionFr?: string; type: TemplateType; category: TemplateCategory; ... 20 more ...; _count?: { ratings: number; variations: number; }; }' is not assignable to type 'PlanTemplate'.
+  Types of property 'createdByUser' are incompatible.
+    Type 'null' is not assignable to type 'TemplateAuthor | undefined'.
+src/components/templates/__tests__/TemplatePreviewModal.test.tsx(246,36): error TS2322: Type '{ createdByUser: { id: string; name: string; email: string; }; id: string; title: string; titleFr?: string; description?: string; descriptionFr?: string; type: TemplateType; ... 21 more ...; _count?: { ratings: number; variations: number; }; }' is not assignable to type 'PlanTemplate'.
+  The types of 'createdByUser.id' are incompatible between these types.
+    Type 'string' is not assignable to type 'number'.
+src/components/templates/FrenchImmersionTemplateSelector.tsx(105,70): error TS2367: This comparison appears to be unintentional because the types 'PersonaType' and '""' have no overlap.
+src/components/templates/TemplateFilters.tsx(41,61): error TS2367: This comparison appears to be unintentional because the types 'TemplateType' and '""' have no overlap.
+src/components/templates/TemplateFilters.tsx(42,69): error TS2367: This comparison appears to be unintentional because the types 'TemplateCategory' and '""' have no overlap.
 src/components/weeks/WeekMaterials.tsx(10,1): error TS2322: Type 'null' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
 src/contexts/__tests__/OnboardingContext.test.tsx(33,6): error TS2786: 'OnboardingProvider' cannot be used as a JSX component.
   Its type '({ children }: { children: ReactNode; }) => Element | (() => void)' is not a valid JSX element type.
     Type '({ children }: { children: ReactNode; }) => Element | (() => void)' is not assignable to type '(props: any, deprecatedLegacyContext?: any) => ReactNode'.
       Type 'Element | (() => void)' is not assignable to type 'ReactNode'.
         Type '() => void' is not assignable to type 'ReactNode'.
+src/contexts/AuthContext.tsx(254,1): error TS2322: Type 'undefined' is not assignable to type '() => void'.
 src/contexts/HelpContext.tsx(134,43): error TS2345: Argument of type 'string | null' is not assignable to parameter of type 'string'.
   Type 'null' is not assignable to type 'string'.
 src/contexts/KeyboardShortcutsContext.tsx(93,38): error TS2345: Argument of type 'string | null' is not assignable to parameter of type 'string'.
@@ -106,33 +582,248 @@ src/hooks/__tests__/useKeyboardShortcut.test.ts(19,52): error TS2769: No overloa
   The last overload gave the following error.
     Argument of type '{}' is not assignable to parameter of type 'Attributes & { children: ReactNode; }'.
       Property 'children' is missing in type '{}' but required in type '{ children: ReactNode; }'.
-src/hooks/useAutoSave.tsx(38,5): error TS2322: Type 'Record<string, unknown>' is not assignable to type 'T'.
+src/hooks/useAIPlanningAssistant.tsx(153,5): error TS2322: Type 'UseMutationResult<AISuggestion, Error, { subject: string; grade: number; termLength: number; focusAreas?: string[] | undefined; }, unknown>' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+  Type 'Override<MutationObserverIdleResult<AISuggestion, Error, { subject: string; grade: number; termLength: number; focusAreas?: string[] | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+    Type 'Override<MutationObserverIdleResult<AISuggestion, Error, { subject: string; grade: number; termLength: number; focusAreas?: string[] | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<unknown, unknown, unknown, unknown>; }'.
+      Type 'Override<MutationObserverIdleResult<AISuggestion, Error, { subject: string; grade: number; termLength: number; focusAreas?: string[] | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }>'.
+        Types of property 'mutate' are incompatible.
+          Type 'UseMutateFunction<AISuggestion, Error, { subject: string; grade: number; termLength: number; focusAreas?: string[] | undefined; }, unknown>' is not assignable to type 'UseMutateFunction<unknown, unknown, unknown, unknown>'.
+            Types of parameters 'variables' and 'variables' are incompatible.
+              Type 'unknown' is not assignable to type '{ subject: string; grade: number; termLength: number; focusAreas?: string[] | undefined; }'.
+src/hooks/useAIPlanningAssistant.tsx(154,5): error TS2322: Type 'UseMutationResult<AISuggestion, Error, { unitTitle: string; subject: string; grade: number; curriculumExpectations: string[]; duration: number; }, unknown>' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+  Type 'Override<MutationObserverIdleResult<AISuggestion, Error, { unitTitle: string; subject: string; grade: number; curriculumExpectations: string[]; duration: number; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+    Type 'Override<MutationObserverIdleResult<AISuggestion, Error, { unitTitle: string; subject: string; grade: number; curriculumExpectations: string[]; duration: number; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<unknown, unknown, unknown, unknown>; }'.
+      Type 'Override<MutationObserverIdleResult<AISuggestion, Error, { unitTitle: string; subject: string; grade: number; curriculumExpectations: string[]; duration: number; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }>'.
+        Types of property 'mutate' are incompatible.
+          Type 'UseMutateFunction<AISuggestion, Error, { unitTitle: string; subject: string; grade: number; curriculumExpectations: string[]; duration: number; }, unknown>' is not assignable to type 'UseMutateFunction<unknown, unknown, unknown, unknown>'.
+            Types of parameters 'variables' and 'variables' are incompatible.
+              Type 'unknown' is not assignable to type '{ unitTitle: string; subject: string; grade: number; curriculumExpectations: string[]; duration: number; }'.
+src/hooks/useAIPlanningAssistant.tsx(155,5): error TS2322: Type 'UseMutationResult<AISuggestion, Error, { lessonTitle: string; learningGoals: string[]; subject: string; grade: number; duration: number; materials?: string[] | undefined; }, unknown>' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+  Type 'Override<MutationObserverIdleResult<AISuggestion, Error, { lessonTitle: string; learningGoals: string[]; subject: string; grade: number; duration: number; materials?: string[] | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+    Type 'Override<MutationObserverIdleResult<AISuggestion, Error, { lessonTitle: string; learningGoals: string[]; subject: string; grade: number; duration: number; materials?: string[] | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<unknown, unknown, unknown, unknown>; }'.
+      Type 'Override<MutationObserverIdleResult<AISuggestion, Error, { lessonTitle: string; learningGoals: string[]; subject: string; grade: number; duration: number; materials?: string[] | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }>'.
+        Types of property 'mutate' are incompatible.
+          Type 'UseMutateFunction<AISuggestion, Error, { lessonTitle: string; learningGoals: string[]; subject: string; grade: number; duration: number; materials?: string[] | undefined; }, unknown>' is not assignable to type 'UseMutateFunction<unknown, unknown, unknown, unknown>'.
+            Types of parameters 'variables' and 'variables' are incompatible.
+              Type 'unknown' is not assignable to type '{ lessonTitle: string; learningGoals: string[]; subject: string; grade: number; duration: number; materials?: string[] | undefined; }'.
+src/hooks/useAIPlanningAssistant.tsx(156,5): error TS2322: Type 'UseMutationResult<AISuggestion, Error, { activities: string[]; subject: string; grade: number; classSize?: number | undefined; }, unknown>' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+  Type 'Override<MutationObserverIdleResult<AISuggestion, Error, { activities: string[]; subject: string; grade: number; classSize?: number | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+    Type 'Override<MutationObserverIdleResult<AISuggestion, Error, { activities: string[]; subject: string; grade: number; classSize?: number | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<unknown, unknown, unknown, unknown>; }'.
+      Type 'Override<MutationObserverIdleResult<AISuggestion, Error, { activities: string[]; subject: string; grade: number; classSize?: number | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }>'.
+        Types of property 'mutate' are incompatible.
+          Type 'UseMutateFunction<AISuggestion, Error, { activities: string[]; subject: string; grade: number; classSize?: number | undefined; }, unknown>' is not assignable to type 'UseMutateFunction<unknown, unknown, unknown, unknown>'.
+            Types of parameters 'variables' and 'variables' are incompatible.
+              Type 'unknown' is not assignable to type '{ activities: string[]; subject: string; grade: number; classSize?: number | undefined; }'.
+src/hooks/useAIPlanningAssistant.tsx(157,5): error TS2322: Type 'UseMutationResult<AISuggestion, Error, { learningGoals: string[]; activities: string[]; subject: string; grade: number; }, unknown>' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+  Type 'Override<MutationObserverIdleResult<AISuggestion, Error, { learningGoals: string[]; activities: string[]; subject: string; grade: number; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+    Type 'Override<MutationObserverIdleResult<AISuggestion, Error, { learningGoals: string[]; activities: string[]; subject: string; grade: number; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<unknown, unknown, unknown, unknown>; }'.
+      Type 'Override<MutationObserverIdleResult<AISuggestion, Error, { learningGoals: string[]; activities: string[]; subject: string; grade: number; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }>'.
+        Types of property 'mutate' are incompatible.
+          Type 'UseMutateFunction<AISuggestion, Error, { learningGoals: string[]; activities: string[]; subject: string; grade: number; }, unknown>' is not assignable to type 'UseMutateFunction<unknown, unknown, unknown, unknown>'.
+            Types of parameters 'variables' and 'variables' are incompatible.
+              Type 'unknown' is not assignable to type '{ learningGoals: string[]; activities: string[]; subject: string; grade: number; }'.
+src/hooks/useAIPlanningAssistant.tsx(158,5): error TS2322: Type 'UseMutationResult<AISuggestion, Error, { date: Date; activities: string[]; subject: string; grade: number; previousReflections?: string[] | undefined; }, unknown>' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+  Type 'Override<MutationObserverIdleResult<AISuggestion, Error, { date: Date; activities: string[]; subject: string; grade: number; previousReflections?: string[] | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+    Type 'Override<MutationObserverIdleResult<AISuggestion, Error, { date: Date; activities: string[]; subject: string; grade: number; previousReflections?: string[] | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<unknown, unknown, unknown, unknown>; }'.
+      Type 'Override<MutationObserverIdleResult<AISuggestion, Error, { date: Date; activities: string[]; subject: string; grade: number; previousReflections?: string[] | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }>'.
+        Types of property 'mutate' are incompatible.
+          Type 'UseMutateFunction<AISuggestion, Error, { date: Date; activities: string[]; subject: string; grade: number; previousReflections?: string[] | undefined; }, unknown>' is not assignable to type 'UseMutateFunction<unknown, unknown, unknown, unknown>'.
+            Types of parameters 'variables' and 'variables' are incompatible.
+              Type 'unknown' is not assignable to type '{ date: Date; activities: string[]; subject: string; grade: number; previousReflections?: string[] | undefined; }'.
+src/hooks/useAIPlanningAssistant.tsx(159,5): error TS2322: Type 'UseMutationResult<string[], Error, { expectationIds: string[]; suggestionType: "resources" | "activities" | "assessments"; }, unknown>' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+  Type 'Override<MutationObserverIdleResult<string[], Error, { expectationIds: string[]; suggestionType: "resources" | "activities" | "assessments"; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+    Type 'Override<MutationObserverIdleResult<string[], Error, { expectationIds: string[]; suggestionType: "resources" | "activities" | "assessments"; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<unknown, unknown, unknown, unknown>; }'.
+      Type 'Override<MutationObserverIdleResult<string[], Error, { expectationIds: string[]; suggestionType: "resources" | "activities" | "assessments"; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }>'.
+        Types of property 'mutate' are incompatible.
+          Type 'UseMutateFunction<string[], Error, { expectationIds: string[]; suggestionType: "resources" | "activities" | "assessments"; }, unknown>' is not assignable to type 'UseMutateFunction<unknown, unknown, unknown, unknown>'.
+            Types of parameters 'variables' and 'variables' are incompatible.
+              Type 'unknown' is not assignable to type '{ expectationIds: string[]; suggestionType: "resources" | "activities" | "assessments"; }'.
+src/hooks/useAutoSave.tsx(43,5): error TS2322: Type 'Record<string, unknown>' is not assignable to type 'T'.
   'T' could be instantiated with an arbitrary type which could be unrelated to 'Record<string, unknown>'.
+src/hooks/useETFOPlanning.ts(226,3): error TS2322: Type 'UseMutationResult<any, unknown, { id: string; data: Partial<CurriculumExpectation>; }, unknown>' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+  Type 'Override<MutationObserverIdleResult<any, unknown, { id: string; data: Partial<CurriculumExpectation>; }, unknown>, { mutate: UseMutateFunction<any, unknown, { ...; }, unknown>; }> & { ...; }' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+    Type 'Override<MutationObserverIdleResult<any, unknown, { id: string; data: Partial<CurriculumExpectation>; }, unknown>, { mutate: UseMutateFunction<any, unknown, { ...; }, unknown>; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<unknown, unknown, unknown, unknown>; }'.
+      Type 'Override<MutationObserverIdleResult<any, unknown, { id: string; data: Partial<CurriculumExpectation>; }, unknown>, { mutate: UseMutateFunction<any, unknown, { ...; }, unknown>; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }>'.
+        Types of property 'mutate' are incompatible.
+          Type 'UseMutateFunction<any, unknown, { id: string; data: Partial<CurriculumExpectation>; }, unknown>' is not assignable to type 'UseMutateFunction<unknown, unknown, unknown, unknown>'.
+            Types of parameters 'variables' and 'variables' are incompatible.
+              Type 'unknown' is not assignable to type '{ id: string; data: Partial<CurriculumExpectation>; }'.
+src/hooks/useETFOPlanning.ts(244,3): error TS2322: Type 'UseMutationResult<any, unknown, string, unknown>' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+  Type 'Override<MutationObserverIdleResult<any, unknown, string, unknown>, { mutate: UseMutateFunction<any, unknown, string, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<...>; }' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+    Type 'Override<MutationObserverIdleResult<any, unknown, string, unknown>, { mutate: UseMutateFunction<any, unknown, string, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<...>; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<unknown, unknown, unknown, unknown>; }'.
+      Type 'Override<MutationObserverIdleResult<any, unknown, string, unknown>, { mutate: UseMutateFunction<any, unknown, string, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<...>; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }>'.
+        Types of property 'mutate' are incompatible.
+          Type 'UseMutateFunction<any, unknown, string, unknown>' is not assignable to type 'UseMutateFunction<unknown, unknown, unknown, unknown>'.
+            Types of parameters 'variables' and 'variables' are incompatible.
+              Type 'unknown' is not assignable to type 'string'.
+src/hooks/useETFOPlanning.ts(299,3): error TS2322: Type 'UseMutationResult<any, unknown, Partial<LongRangePlan> & { expectationIds?: string[] | undefined; }, unknown>' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+  Type 'Override<MutationObserverIdleResult<any, unknown, Partial<LongRangePlan> & { expectationIds?: string[] | undefined; }, unknown>, { mutate: UseMutateFunction<...>; }> & { ...; }' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+    Type 'Override<MutationObserverIdleResult<any, unknown, Partial<LongRangePlan> & { expectationIds?: string[] | undefined; }, unknown>, { mutate: UseMutateFunction<...>; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<unknown, unknown, unknown, unknown>; }'.
+      Type 'Override<MutationObserverIdleResult<any, unknown, Partial<LongRangePlan> & { expectationIds?: string[] | undefined; }, unknown>, { mutate: UseMutateFunction<...>; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }>'.
+        Types of property 'mutate' are incompatible.
+          Type 'UseMutateFunction<any, unknown, Partial<LongRangePlan> & { expectationIds?: string[] | undefined; }, unknown>' is not assignable to type 'UseMutateFunction<unknown, unknown, unknown, unknown>'.
+            Types of parameters 'variables' and 'variables' are incompatible.
+              Type 'unknown' is not assignable to type 'Partial<LongRangePlan> & { expectationIds?: string[] | undefined; }'.
+                Type 'unknown' is not assignable to type 'Partial<LongRangePlan>'.
+src/hooks/useETFOPlanning.ts(313,3): error TS2322: Type 'UseMutationResult<any, unknown, Partial<LongRangePlan> & { id: string; expectationIds?: string[] | undefined; }, unknown>' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+  Type 'Override<MutationObserverIdleResult<any, unknown, Partial<LongRangePlan> & { id: string; expectationIds?: string[] | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+    Type 'Override<MutationObserverIdleResult<any, unknown, Partial<LongRangePlan> & { id: string; expectationIds?: string[] | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<unknown, unknown, unknown, unknown>; }'.
+      Type 'Override<MutationObserverIdleResult<any, unknown, Partial<LongRangePlan> & { id: string; expectationIds?: string[] | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }>'.
+        Types of property 'mutate' are incompatible.
+          Type 'UseMutateFunction<any, unknown, Partial<LongRangePlan> & { id: string; expectationIds?: string[] | undefined; }, unknown>' is not assignable to type 'UseMutateFunction<unknown, unknown, unknown, unknown>'.
+            Types of parameters 'variables' and 'variables' are incompatible.
+              Type 'unknown' is not assignable to type 'Partial<LongRangePlan> & { id: string; expectationIds?: string[] | undefined; }'.
+                Type 'unknown' is not assignable to type 'Partial<LongRangePlan>'.
+src/hooks/useETFOPlanning.ts(331,3): error TS2322: Type 'UseMutationResult<any, unknown, string, unknown>' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+  Type 'Override<MutationObserverIdleResult<any, unknown, string, unknown>, { mutate: UseMutateFunction<any, unknown, string, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<...>; }' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+    Type 'Override<MutationObserverIdleResult<any, unknown, string, unknown>, { mutate: UseMutateFunction<any, unknown, string, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<...>; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<unknown, unknown, unknown, unknown>; }'.
+      Type 'Override<MutationObserverIdleResult<any, unknown, string, unknown>, { mutate: UseMutateFunction<any, unknown, string, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<...>; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }>'.
+        Types of property 'mutate' are incompatible.
+          Type 'UseMutateFunction<any, unknown, string, unknown>' is not assignable to type 'UseMutateFunction<unknown, unknown, unknown, unknown>'.
+            Types of parameters 'variables' and 'variables' are incompatible.
+              Type 'unknown' is not assignable to type 'string'.
+src/hooks/useETFOPlanning.ts(383,3): error TS2322: Type 'UseMutationResult<any, unknown, Partial<UnitPlan> & { expectationIds?: string[] | undefined; }, unknown>' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+  Type 'Override<MutationObserverIdleResult<any, unknown, Partial<UnitPlan> & { expectationIds?: string[] | undefined; }, unknown>, { mutate: UseMutateFunction<any, unknown, Partial<...> & { ...; }, unknown>; }> & { ...; }' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+    Type 'Override<MutationObserverIdleResult<any, unknown, Partial<UnitPlan> & { expectationIds?: string[] | undefined; }, unknown>, { mutate: UseMutateFunction<any, unknown, Partial<...> & { ...; }, unknown>; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<unknown, unknown, unknown, unknown>; }'.
+      Type 'Override<MutationObserverIdleResult<any, unknown, Partial<UnitPlan> & { expectationIds?: string[] | undefined; }, unknown>, { mutate: UseMutateFunction<any, unknown, Partial<...> & { ...; }, unknown>; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }>'.
+        Types of property 'mutate' are incompatible.
+          Type 'UseMutateFunction<any, unknown, Partial<UnitPlan> & { expectationIds?: string[] | undefined; }, unknown>' is not assignable to type 'UseMutateFunction<unknown, unknown, unknown, unknown>'.
+            Types of parameters 'variables' and 'variables' are incompatible.
+              Type 'unknown' is not assignable to type 'Partial<UnitPlan> & { expectationIds?: string[] | undefined; }'.
+                Type 'unknown' is not assignable to type 'Partial<UnitPlan>'.
+src/hooks/useETFOPlanning.ts(398,3): error TS2322: Type 'UseMutationResult<any, unknown, Partial<UnitPlan> & { id: string; expectationIds?: string[] | undefined; }, unknown>' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+  Type 'Override<MutationObserverIdleResult<any, unknown, Partial<UnitPlan> & { id: string; expectationIds?: string[] | undefined; }, unknown>, { mutate: UseMutateFunction<...>; }> & { ...; }' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+    Type 'Override<MutationObserverIdleResult<any, unknown, Partial<UnitPlan> & { id: string; expectationIds?: string[] | undefined; }, unknown>, { mutate: UseMutateFunction<...>; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<unknown, unknown, unknown, unknown>; }'.
+      Type 'Override<MutationObserverIdleResult<any, unknown, Partial<UnitPlan> & { id: string; expectationIds?: string[] | undefined; }, unknown>, { mutate: UseMutateFunction<...>; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }>'.
+        Types of property 'mutate' are incompatible.
+          Type 'UseMutateFunction<any, unknown, Partial<UnitPlan> & { id: string; expectationIds?: string[] | undefined; }, unknown>' is not assignable to type 'UseMutateFunction<unknown, unknown, unknown, unknown>'.
+            Types of parameters 'variables' and 'variables' are incompatible.
+              Type 'unknown' is not assignable to type 'Partial<UnitPlan> & { id: string; expectationIds?: string[] | undefined; }'.
+                Type 'unknown' is not assignable to type 'Partial<UnitPlan>'.
+src/hooks/useETFOPlanning.ts(416,3): error TS2322: Type 'UseMutationResult<any, unknown, string, unknown>' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+  Type 'Override<MutationObserverIdleResult<any, unknown, string, unknown>, { mutate: UseMutateFunction<any, unknown, string, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<...>; }' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+    Type 'Override<MutationObserverIdleResult<any, unknown, string, unknown>, { mutate: UseMutateFunction<any, unknown, string, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<...>; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<unknown, unknown, unknown, unknown>; }'.
+      Type 'Override<MutationObserverIdleResult<any, unknown, string, unknown>, { mutate: UseMutateFunction<any, unknown, string, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<...>; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }>'.
+        Types of property 'mutate' are incompatible.
+          Type 'UseMutateFunction<any, unknown, string, unknown>' is not assignable to type 'UseMutateFunction<unknown, unknown, unknown, unknown>'.
+            Types of parameters 'variables' and 'variables' are incompatible.
+              Type 'unknown' is not assignable to type 'string'.
+src/hooks/useETFOPlanning.ts(476,3): error TS2322: Type 'UseMutationResult<any, unknown, Partial<ETFOLessonPlan> & { expectationIds?: string[] | undefined; }, unknown>' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+  Type 'Override<MutationObserverIdleResult<any, unknown, Partial<ETFOLessonPlan> & { expectationIds?: string[] | undefined; }, unknown>, { mutate: UseMutateFunction<...>; }> & { ...; }' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+    Type 'Override<MutationObserverIdleResult<any, unknown, Partial<ETFOLessonPlan> & { expectationIds?: string[] | undefined; }, unknown>, { mutate: UseMutateFunction<...>; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<unknown, unknown, unknown, unknown>; }'.
+      Type 'Override<MutationObserverIdleResult<any, unknown, Partial<ETFOLessonPlan> & { expectationIds?: string[] | undefined; }, unknown>, { mutate: UseMutateFunction<...>; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }>'.
+        Types of property 'mutate' are incompatible.
+          Type 'UseMutateFunction<any, unknown, Partial<ETFOLessonPlan> & { expectationIds?: string[] | undefined; }, unknown>' is not assignable to type 'UseMutateFunction<unknown, unknown, unknown, unknown>'.
+            Types of parameters 'variables' and 'variables' are incompatible.
+              Type 'unknown' is not assignable to type 'Partial<ETFOLessonPlan> & { expectationIds?: string[] | undefined; }'.
+                Type 'unknown' is not assignable to type 'Partial<ETFOLessonPlan>'.
+src/hooks/useETFOPlanning.ts(491,3): error TS2322: Type 'UseMutationResult<any, unknown, { id: string; data: Partial<ETFOLessonPlan> & { expectationIds?: string[] | undefined; }; }, unknown>' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+  Type 'Override<MutationObserverIdleResult<any, unknown, { id: string; data: Partial<ETFOLessonPlan> & { expectationIds?: string[] | undefined; }; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+    Type 'Override<MutationObserverIdleResult<any, unknown, { id: string; data: Partial<ETFOLessonPlan> & { expectationIds?: string[] | undefined; }; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<unknown, unknown, unknown, unknown>; }'.
+      Type 'Override<MutationObserverIdleResult<any, unknown, { id: string; data: Partial<ETFOLessonPlan> & { expectationIds?: string[] | undefined; }; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }>'.
+        Types of property 'mutate' are incompatible.
+          Type 'UseMutateFunction<any, unknown, { id: string; data: Partial<ETFOLessonPlan> & { expectationIds?: string[] | undefined; }; }, unknown>' is not assignable to type 'UseMutateFunction<unknown, unknown, unknown, unknown>'.
+            Types of parameters 'variables' and 'variables' are incompatible.
+              Type 'unknown' is not assignable to type '{ id: string; data: Partial<ETFOLessonPlan> & { expectationIds?: string[] | undefined; }; }'.
+src/hooks/useETFOPlanning.ts(512,3): error TS2322: Type 'UseMutationResult<any, unknown, string, unknown>' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+  Type 'Override<MutationObserverIdleResult<any, unknown, string, unknown>, { mutate: UseMutateFunction<any, unknown, string, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<...>; }' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+    Type 'Override<MutationObserverIdleResult<any, unknown, string, unknown>, { mutate: UseMutateFunction<any, unknown, string, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<...>; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<unknown, unknown, unknown, unknown>; }'.
+      Type 'Override<MutationObserverIdleResult<any, unknown, string, unknown>, { mutate: UseMutateFunction<any, unknown, string, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<...>; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }>'.
+        Types of property 'mutate' are incompatible.
+          Type 'UseMutateFunction<any, unknown, string, unknown>' is not assignable to type 'UseMutateFunction<unknown, unknown, unknown, unknown>'.
+            Types of parameters 'variables' and 'variables' are incompatible.
+              Type 'unknown' is not assignable to type 'string'.
+src/hooks/useETFOPlanning.ts(567,3): error TS2322: Type 'UseMutationResult<any, unknown, Partial<DaybookEntry> & { expectationCoverage?: { expectationId: string; coverage: string; }[] | undefined; }, unknown>' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+  Type 'Override<MutationObserverIdleResult<any, unknown, Partial<DaybookEntry> & { expectationCoverage?: { expectationId: string; coverage: string; }[] | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+    Type 'Override<MutationObserverIdleResult<any, unknown, Partial<DaybookEntry> & { expectationCoverage?: { expectationId: string; coverage: string; }[] | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<unknown, unknown, unknown, unknown>; }'.
+      Type 'Override<MutationObserverIdleResult<any, unknown, Partial<DaybookEntry> & { expectationCoverage?: { expectationId: string; coverage: string; }[] | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }>'.
+        Types of property 'mutate' are incompatible.
+          Type 'UseMutateFunction<any, unknown, Partial<DaybookEntry> & { expectationCoverage?: { expectationId: string; coverage: string; }[] | undefined; }, unknown>' is not assignable to type 'UseMutateFunction<unknown, unknown, unknown, unknown>'.
+            Types of parameters 'variables' and 'variables' are incompatible.
+              Type 'unknown' is not assignable to type 'Partial<DaybookEntry> & { expectationCoverage?: { expectationId: string; coverage: string; }[] | undefined; }'.
+                Type 'unknown' is not assignable to type 'Partial<DaybookEntry>'.
+src/hooks/useETFOPlanning.ts(588,3): error TS2322: Type 'UseMutationResult<any, unknown, Partial<DaybookEntry> & { id: string; expectationCoverage?: { expectationId: string; coverage: string; }[] | undefined; }, unknown>' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+  Type 'Override<MutationObserverIdleResult<any, unknown, Partial<DaybookEntry> & { id: string; expectationCoverage?: { expectationId: string; coverage: string; }[] | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'UseMutationResult<unknown, unknown, unknown, unknown>'.
+    Type 'Override<MutationObserverIdleResult<any, unknown, Partial<DaybookEntry> & { id: string; expectationCoverage?: { expectationId: string; coverage: string; }[] | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }> & { mutateAsync: UseMutateAsyncFunction<unknown, unknown, unknown, unknown>; }'.
+      Type 'Override<MutationObserverIdleResult<any, unknown, Partial<DaybookEntry> & { id: string; expectationCoverage?: { expectationId: string; coverage: string; }[] | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<unknown, unknown, unknown, unknown>, { mutate: UseMutateFunction<unknown, unknown, unknown, unknown>; }>'.
+        Types of property 'mutate' are incompatible.
+          Type 'UseMutateFunction<any, unknown, Partial<DaybookEntry> & { id: string; expectationCoverage?: { expectationId: string; coverage: string; }[] | undefined; }, unknown>' is not assignable to type 'UseMutateFunction<unknown, unknown, unknown, unknown>'.
+            Types of parameters 'variables' and 'variables' are incompatible.
+              Type 'unknown' is not assignable to type 'Partial<DaybookEntry> & { id: string; expectationCoverage?: { expectationId: string; coverage: string; }[] | undefined; }'.
+                Type 'unknown' is not assignable to type 'Partial<DaybookEntry>'.
 src/hooks/useLessonPlanShortcuts.ts(183,2): error TS2722: Cannot invoke an object which is possibly 'undefined'.
 src/hooks/useOfflinePlanning.ts(151,42): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
   Type 'undefined' is not assignable to type 'string'.
+src/hooks/useTemplates.ts(144,3): error TS2322: Type 'UseMutationResult<PlanTemplate, Error, { id: string; } & Partial<TemplateCreateData>, unknown>' is not assignable to type 'UseMutationResult<PlanTemplate, Error, { id: string; data: Partial<TemplateCreateData>; }>'.
+  Type 'Override<MutationObserverIdleResult<PlanTemplate, Error, { id: string; } & Partial<TemplateCreateData>, unknown>, { ...; }> & { ...; }' is not assignable to type 'UseMutationResult<PlanTemplate, Error, { id: string; data: Partial<TemplateCreateData>; }>'.
+    Type 'Override<MutationObserverIdleResult<PlanTemplate, Error, { id: string; } & Partial<TemplateCreateData>, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<PlanTemplate, Error, { id: string; data: Partial<TemplateCreateData>; }, unknown>, { ...; }> & { ...; }'.
+      Type 'Override<MutationObserverIdleResult<PlanTemplate, Error, { id: string; } & Partial<TemplateCreateData>, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<PlanTemplate, Error, { id: string; data: Partial<TemplateCreateData>; }, unknown>, { ...; }>'.
+        Types of property 'mutate' are incompatible.
+          Type 'UseMutateFunction<PlanTemplate, Error, { id: string; } & Partial<TemplateCreateData>, unknown>' is not assignable to type 'UseMutateFunction<PlanTemplate, Error, { id: string; data: Partial<TemplateCreateData>; }, unknown>'.
+            Types of parameters 'options' and 'options' are incompatible.
+              Type 'MutateOptions<PlanTemplate, Error, { id: string; data: Partial<TemplateCreateData>; }, unknown> | undefined' is not assignable to type 'MutateOptions<PlanTemplate, Error, { id: string; } & Partial<TemplateCreateData>, unknown> | undefined'.
+                Type 'MutateOptions<PlanTemplate, Error, { id: string; data: Partial<TemplateCreateData>; }, unknown>' is not assignable to type 'MutateOptions<PlanTemplate, Error, { id: string; } & Partial<TemplateCreateData>, unknown>'.
+                  Property 'data' is missing in type '{ id: string; } & Partial<TemplateCreateData>' but required in type '{ id: string; data: Partial<TemplateCreateData>; }'.
+src/hooks/useTemplates.ts(177,3): error TS2322: Type 'UseMutationResult<PlanTemplate, Error, { id: string; title?: string | undefined; isPublic?: boolean | undefined; }, unknown>' is not assignable to type 'UseMutationResult<PlanTemplate, Error, string>'.
+  Type 'Override<MutationObserverIdleResult<PlanTemplate, Error, { id: string; title?: string | undefined; isPublic?: boolean | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'UseMutationResult<PlanTemplate, Error, string>'.
+    Type 'Override<MutationObserverIdleResult<PlanTemplate, Error, { id: string; title?: string | undefined; isPublic?: boolean | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<PlanTemplate, Error, string, unknown>, { mutate: UseMutateFunction<PlanTemplate, Error, string, unknown>; }> & { ...; }'.
+      Type 'Override<MutationObserverIdleResult<PlanTemplate, Error, { id: string; title?: string | undefined; isPublic?: boolean | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<PlanTemplate, Error, string, unknown>, { mutate: UseMutateFunction<PlanTemplate, Error, string, unknown>; }>'.
+        Types of property 'mutate' are incompatible.
+          Type 'UseMutateFunction<PlanTemplate, Error, { id: string; title?: string | undefined; isPublic?: boolean | undefined; }, unknown>' is not assignable to type 'UseMutateFunction<PlanTemplate, Error, string, unknown>'.
+            Types of parameters 'variables' and 'variables' are incompatible.
+              Type 'string' is not assignable to type '{ id: string; title?: string | undefined; isPublic?: boolean | undefined; }'.
+src/hooks/useTemplates.ts(192,3): error TS2322: Type 'UseMutationResult<AppliedTemplateData, Error, { id: string; customizations?: Record<string, unknown> | undefined; }, unknown>' is not assignable to type 'UseMutationResult<AppliedTemplateData, Error, { templateId: string; appliedData: any; }>'.
+  Type 'Override<MutationObserverIdleResult<AppliedTemplateData, Error, { id: string; customizations?: Record<string, unknown> | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'UseMutationResult<AppliedTemplateData, Error, { templateId: string; appliedData: any; }>'.
+    Type 'Override<MutationObserverIdleResult<AppliedTemplateData, Error, { id: string; customizations?: Record<string, unknown> | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<AppliedTemplateData, Error, { templateId: string; appliedData: any; }, unknown>, { mutate: UseMutateFunction<...>; }> & { ...; }'.
+      Type 'Override<MutationObserverIdleResult<AppliedTemplateData, Error, { id: string; customizations?: Record<string, unknown> | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<AppliedTemplateData, Error, { templateId: string; appliedData: any; }, unknown>, { mutate: UseMutateFunction<AppliedTemplateData, Error, { ...; }, unknown>; }>'.
+        Types of property 'mutate' are incompatible.
+          Type 'UseMutateFunction<AppliedTemplateData, Error, { id: string; customizations?: Record<string, unknown> | undefined; }, unknown>' is not assignable to type 'UseMutateFunction<AppliedTemplateData, Error, { templateId: string; appliedData: any; }, unknown>'.
+            Types of parameters 'variables' and 'variables' are incompatible.
+              Property 'id' is missing in type '{ templateId: string; appliedData: any; }' but required in type '{ id: string; customizations?: Record<string, unknown> | undefined; }'.
+src/hooks/useTemplates.ts(202,3): error TS2322: Type 'UseMutationResult<{ success: boolean; message?: string | undefined; }, Error, { id: string; rating: number; comment?: string | undefined; }, unknown>' is not assignable to type 'UseMutationResult<PlanTemplate, Error, { templateId: string; rating: number; }>'.
+  Type 'Override<MutationObserverIdleResult<{ success: boolean; message?: string | undefined; }, Error, { id: string; rating: number; comment?: string | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'UseMutationResult<PlanTemplate, Error, { templateId: string; rating: number; }>'.
+    Type 'Override<MutationObserverIdleResult<{ success: boolean; message?: string | undefined; }, Error, { id: string; rating: number; comment?: string | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<PlanTemplate, Error, { templateId: string; rating: number; }, unknown>, { mutate: UseMutateFunction<PlanTemplate, Error, { ...; }, unknown>; }> & { ...; }'.
+      Type 'Override<MutationObserverIdleResult<{ success: boolean; message?: string | undefined; }, Error, { id: string; rating: number; comment?: string | undefined; }, unknown>, { ...; }> & { ...; }' is not assignable to type 'Override<MutationObserverIdleResult<PlanTemplate, Error, { templateId: string; rating: number; }, unknown>, { mutate: UseMutateFunction<PlanTemplate, Error, { ...; }, unknown>; }>'.
+        Types of property 'mutate' are incompatible.
+          Type 'UseMutateFunction<{ success: boolean; message?: string | undefined; }, Error, { id: string; rating: number; comment?: string | undefined; }, unknown>' is not assignable to type 'UseMutateFunction<PlanTemplate, Error, { templateId: string; rating: number; }, unknown>'.
+            Types of parameters 'variables' and 'variables' are incompatible.
+              Property 'id' is missing in type '{ templateId: string; rating: number; }' but required in type '{ id: string; rating: number; comment?: string | undefined; }'.
+src/hooks/useTemplates.ts(277,5): error TS2322: Type '{ currentPage: number; totalPages: number; nextPage: () => void; prevPage: () => void; goToPage: (page: number) => void; resetPage: () => void; hasNextPage: boolean; hasPrevPage: boolean; data: TemplateSearchResult; ... 23 more ...; promise: Promise<...>; } | ... 4 more ... | { ...; }' is not assignable to type '{ query: UseQueryResult<TemplateSearchResult, Error>; currentPage: number; nextPage: () => void; prevPage: () => void; goToPage: (page: number) => void; resetPage: () => void; }'.
+  Object literal may only specify known properties, and 'totalPages' does not exist in type '{ query: UseQueryResult<TemplateSearchResult, Error>; currentPage: number; nextPage: () => void; prevPage: () => void; goToPage: (page: number) => void; resetPage: () => void; }'.
+src/pages/DaybookPage.tsx(130,93): error TS2367: This comparison appears to be unintentional because the types '"diagnostic" | "formative" | "summative"' and '""' have no overlap.
+src/pages/ETFOLessonPlanPage.tsx(19,8): error TS2613: Module '"/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/Dialog"' has no default export. Did you mean to use 'import { Dialog } from "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/Dialog"' instead?
+src/pages/ETFOLessonPlanPage.tsx(365,57): error TS2353: Object literal may only specify known properties, and 'id' does not exist in type '{ templateId: string; appliedData: any; }'.
+src/pages/LongRangePlanPage.tsx(6,8): error TS2613: Module '"/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/Dialog"' has no default export. Did you mean to use 'import { Dialog } from "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/Dialog"' instead?
+src/pages/LongRangePlanPage.tsx(366,17): error TS2322: Type 'unknown' is not assignable to type 'Error | null | undefined'.
+src/pages/LongRangePlanPage.tsx(390,40): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'SetStateAction<AISuggestion | null>'.
+src/pages/ParentNewsletterPage.tsx(11,8): error TS2613: Module '"/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/NewsletterEditor"' has no default export. Did you mean to use 'import { NewsletterEditor } from "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/NewsletterEditor"' instead?
 src/pages/ParentNewsletterPage.tsx(61,29): error TS18048: 'currentNewsletter' is possibly 'undefined'.
 src/pages/ParentNewsletterPage.tsx(63,24): error TS18048: 'currentNewsletter' is possibly 'undefined'.
 src/pages/ParentNewsletterPage.tsx(64,22): error TS18048: 'currentNewsletter' is possibly 'undefined'.
 src/pages/ParentNewsletterPage.tsx(66,15): error TS18048: 'currentNewsletter' is possibly 'undefined'.
-src/services/authService.ts(148,23): error TS2739: Type '{}' is missing the following properties from type 'User': id, email, name, role
-src/services/errorReportingService.ts(431,7): error TS2322: Type 'unknown' is not assignable to type 'Extras | undefined'.
-src/services/errorReportingService.ts(437,9): error TS2322: Type 'Record<string, unknown>' is not assignable to type '{ [key: string]: string; }'.
+src/pages/TemplatesPage.tsx(25,8): error TS2613: Module '"/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/Dialog"' has no default export. Did you mean to use 'import { Dialog } from "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/Dialog"' instead?
+src/pages/TemplatesPage.tsx(146,62): error TS2345: Argument of type '{ id: string; title: string; }' is not assignable to parameter of type 'string'.
+src/pages/TemplatesPage.tsx(175,57): error TS2353: Object literal may only specify known properties, and 'id' does not exist in type '{ templateId: string; appliedData: any; }'.
+src/pages/TemplatesPage.tsx(313,91): error TS2367: This comparison appears to be unintentional because the types 'number' and 'string' have no overlap.
+src/pages/UnitPlansPage.tsx(15,8): error TS2613: Module '"/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/Dialog"' has no default export. Did you mean to use 'import { Dialog } from "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/Dialog"' instead?
+src/pages/UnitPlansPage.tsx(228,57): error TS2353: Object literal may only specify known properties, and 'id' does not exist in type '{ templateId: string; appliedData: any; }'.
+src/routing/AppRouter.tsx(4,8): error TS2613: Module '"/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/MainLayout"' has no default export. Did you mean to use 'import { MainLayout } from "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/MainLayout"' instead?
+src/services/authService.ts(148,77): error TS2739: Type '{}' is missing the following properties from type 'User': id, email, name, role
+src/services/errorReportingService.ts(134,54): error TS2694: Namespace '"/Users/michaelmcisaac/GitHub/teaching-engine2.0/node_modules/.pnpm/@sentry+react@9.35.0_react@18.3.1/node_modules/@sentry/react/build/types/index"' has no exported member 'TransactionEvent'.
+src/services/errorReportingService.ts(185,36): error TS2345: Argument of type '{}' is not assignable to parameter of type 'Context'.
+  Index signature for type 'string' is missing in type '{}'.
+src/services/errorReportingService.ts(258,9): error TS2322: Type 'unknown' is not assignable to type '{ [key: string]: any; } | undefined'.
+src/services/errorReportingService.ts(275,28): error TS2345: Argument of type 'unknown' is not assignable to parameter of type '{ [key: string]: unknown; } | null'.
+src/services/errorReportingService.ts(412,9): error TS2322: Type 'unknown' is not assignable to type '{ [key: string]: any; } | undefined'.
+src/services/errorReportingService.ts(429,7): error TS2322: Type 'unknown' is not assignable to type 'Extras | undefined'.
+src/services/errorReportingService.ts(435,9): error TS2322: Type 'Record<string, unknown>' is not assignable to type '{ [key: string]: string; }'.
   'string' index signatures are incompatible.
     Type 'unknown' is not assignable to type 'string'.
-src/services/errorReportingService.ts(443,62): error TS2345: Argument of type 'QueryParams' is not assignable to parameter of type 'string'.
+src/services/errorReportingService.ts(441,62): error TS2345: Argument of type 'QueryParams' is not assignable to parameter of type 'string'.
   Type '[string, string][]' is not assignable to type 'string'.
-src/services/errorReportingService.ts(446,9): error TS2322: Type 'string' is not assignable to type 'Record<string, string>'.
-src/services/errorReportingService.ts(458,9): error TS2322: Type 'unknown' is not assignable to type 'Context | undefined'.
-src/services/errorReportingService.ts(464,7): error TS2322: Type 'unknown' is not assignable to type '{ [key: string]: Primitive; } | undefined'.
-src/services/lazyLoader.tsx(294,51): error TS2345: Argument of type 'string | null' is not assignable to parameter of type 'string'.
-  Type 'null' is not assignable to type 'string'.
-src/services/lazyLoader.tsx(351,33): error TS2345: Argument of type 'HTMLDivElement | null' is not assignable to parameter of type 'HTMLElement'.
-  Type 'null' is not assignable to type 'HTMLElement'.
-src/services/lazyLoader.tsx(366,7): error TS2722: Cannot invoke an object which is possibly 'undefined'.
-src/services/lazyLoader.tsx(366,15): error TS2345: Argument of type 'Error | null' is not assignable to parameter of type 'Error'.
-  Type 'null' is not assignable to type 'Error'.
-src/services/requestBatcher.ts(160,58): error TS18046: 'responses' is of type 'unknown'.
+src/services/errorReportingService.ts(444,9): error TS2322: Type 'string' is not assignable to type 'Record<string, string>'.
+src/services/errorReportingService.ts(456,9): error TS2322: Type 'unknown' is not assignable to type 'Context | undefined'.
+src/services/errorReportingService.ts(462,7): error TS2322: Type 'unknown' is not assignable to type '{ [key: string]: Primitive; } | undefined'.
 src/stores/__tests__/basePlanningStore.test.ts(37,46): error TS2344: Type 'TestStore' does not satisfy the constraint 'StoreApi<unknown>'.
   Type 'TestStore' is missing the following properties from type 'StoreApi<unknown>': setState, getState, getInitialState, subscribe, destroy
 src/stores/__tests__/basePlanningStore.test.ts(50,10): error TS2554: Expected 3 arguments, but got 2.
@@ -148,12 +839,14 @@ src/stores/__tests__/basePlanningStore.test.ts(101,9): error TS18046: 'result.cu
 src/stores/__tests__/basePlanningStore.test.ts(104,14): error TS18046: 'result.current' is of type 'unknown'.
 src/stores/__tests__/basePlanningStore.test.ts(117,12): error TS2554: Expected 3 arguments, but got 2.
 src/stores/__tests__/basePlanningStore.test.ts(133,12): error TS2554: Expected 3 arguments, but got 2.
-src/stores/__tests__/basePlanningStore.test.ts(145,35): error TS2339: Property 'lastModified' does not exist on type '{ updatedAt: Date; }'.
-src/stores/__tests__/basePlanningStore.test.ts(175,26): error TS2339: Property 'id' does not exist on type '{ data: string; }'.
-src/stores/__tests__/lessonPlanStore.test.ts(206,63): error TS2339: Property 'toISOString' does not exist on type 'never'.
-src/stores/__tests__/lessonPlanStore.test.ts(210,70): error TS2339: Property 'toISOString' does not exist on type 'never'.
-src/stores/__tests__/unitPlanStore.test.ts(135,63): error TS2339: Property 'toISOString' does not exist on type 'never'.
-src/stores/__tests__/unitPlanStore.test.ts(139,70): error TS2339: Property 'toISOString' does not exist on type 'never'.
+src/stores/basePlanningStore.ts(263,16): error TS2304: Cannot find name 'T'.
+src/stores/basePlanningStore.ts(263,24): error TS2304: Cannot find name 'T'.
+src/test-utils.tsx(267,91): error TS2304: Cannot find name 'RenderResult'.
+src/test-utils.tsx(315,80): error TS2304: Cannot find name 'RenderResult'.
+src/test-utils.tsx(325,58): error TS2304: Cannot find name 'RenderResult'.
+src/test-utils.tsx(337,86): error TS2304: Cannot find name 'RenderResult'.
+src/test-utils.tsx(353,89): error TS2304: Cannot find name 'RenderResult'.
+tests/security/xss.test.tsx(19,8): error TS2613: Module '"/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/BilingualTextInput"' has no default export. Did you mean to use 'import { BilingualTextInput } from "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/components/BilingualTextInput"' instead?
 /Users/michaelmcisaac/GitHub/teaching-engine2.0/client:
  ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  client@ typecheck: `tsc --noEmit`
 Exit status 2

@@ -68,7 +68,7 @@ export abstract class BaseRouteHandler<T = any> {
     next: NextFunction,
   ): void => {
     const userId = req.user?.id;
-    if (!userId) {
+    if (userId === null || userId === undefined || userId === '') {
       res.status(401).json({ error: 'Unauthorized' });
       return;
     }
@@ -128,7 +128,7 @@ export abstract class BaseRouteHandler<T = any> {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (!userId) {
+      if (userId === null || userId === undefined || userId === '') {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }

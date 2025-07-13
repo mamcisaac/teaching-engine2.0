@@ -377,7 +377,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
   );
 }
 
-export default function DaybookPage() {
+export default function DaybookPage(): React.ReactElement {
   const { toast } = useToast();
   const printRef = useRef<HTMLDivElement>(null);
   const [selectedWeek, setSelectedWeek] = useState(new Date());

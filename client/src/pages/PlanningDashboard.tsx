@@ -21,7 +21,7 @@ import { useHelp } from '../contexts/HelpContext';
 import { useOnboarding } from '../contexts/OnboardingContext';
 import { useRecentPlans } from '../hooks/useRecentPlans';
 
-export default function PlanningDashboard() {
+export default function PlanningDashboard(): React.ReactElement {
   const { startTutorial } = useHelp();
   const { resetOnboarding } = useOnboarding();
   const { data: recentPlans = [], isLoading: recentPlansLoading } = useRecentPlans({ limit: 3 });

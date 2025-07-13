@@ -3,10 +3,11 @@ import { startOfMonth, endOfMonth, eachDayOfInterval } from 'date-fns';
 import { useState, memo, useMemo } from 'react';
 
 import { useCalendarEvents } from '../api/domains/calendar';
-import EventEditorModal from './EventEditorModal';
-import { LoadingSkeleton } from './performance';
 import type { CalendarEvent } from '../types';
 import logger from '../utils/logger';
+
+import EventEditorModal from './EventEditorModal';
+import { LoadingSkeleton } from './performance';
 interface Props {
   month: Date;
   events?: CalendarEvent[];
@@ -26,11 +27,11 @@ const CalendarViewComponent = memo(({ month, events }: Props): React.ReactElemen
   
   // Memoize event array processing
   const evts = useMemo(() => {
-    if (events !== null && events !== undefined && Array.isArray(events)) {
+    if (events !== null && events !== undefined) {
       return events;
     }
-    if (fetch.data !== null && fetch.data !== undefined && Array.isArray(fetch.data)) {
-      return fetch.data as CalendarEvent[];
+    if (fetch.data !== null && fetch.data !== undefined) {
+      return fetch.data;
     }
     return [];
   }, [events, fetch.data]);
@@ -49,19 +50,15 @@ const CalendarViewComponent = memo(({ month, events }: Props): React.ReactElemen
     
     const grouped: Record<string, CalendarEvent[]> = {};
     // Safely process events
-    if (evts !== null && evts !== undefined && Array.isArray(evts)) {
-      evts.forEach((e) => {
-        if (e.start !== null && e.start !== undefined && e.start !== '') {
-          const d = e.start.split('T')[0];
-          if (d !== null && d !== undefined && d !== '') {
-            if (grouped[d] === null || grouped[d] === undefined) {
-              grouped[d] = [];
-            }
-            grouped[d].push(e);
-          }
+    evts.forEach((e) => {
+      if (e.start !== null && e.start !== undefined && e.start !== '') {
+        const d = e.start.split('T')[0];
+        if (grouped[d] === undefined) {
+          grouped[d] = [];
         }
-      });
-    }
+        grouped[d].push(e);
+      }
+    });
     
     return { days, grouped };
   }, [dateRange.from, dateRange.to, evts]);
@@ -90,7 +87,7 @@ const CalendarViewComponent = memo(({ month, events }: Props): React.ReactElemen
         {days.map((d, index) => (
           <div key={d.toISOString()} className="border p-1 min-h-16">
             <div className="font-bold text-xs">{d.getDate()}</div>
-            {(grouped[d.toISOString().split('T')[0]] || []).map((ev, index) => (
+            {(grouped[d.toISOString().split('T')[0]] ?? []).map((ev) => (
               <div key={ev.id} className="text-xs bg-gray-200 rounded mt-1 px-1" title={ev.title}>
                 {ev.title}
               </div>
@@ -98,7 +95,7 @@ const CalendarViewComponent = memo(({ month, events }: Props): React.ReactElemen
           </div>
         ))}
       </div>
-      {(events === null || events === undefined) && editorOpen === true && (
+      {(events === null || events === undefined) && editorOpen && (
         <EventEditorModal
           onClose={() => {
             setEditorOpen(false);

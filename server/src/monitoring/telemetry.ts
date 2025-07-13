@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { trace, metrics, context, SpanStatusCode } from '@opentelemetry/api';
 import type { Span, SpanOptions, Attributes } from '@opentelemetry/api';
 import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
@@ -56,7 +56,7 @@ export const initTelemetry = async (): Promise<void> => {
       metricReader: new PeriodicExportingMetricReader({
         exporter: metricExporter,
         exportIntervalMillis: 10000, // Export every 10 seconds
-      }) as any,
+      }),
       instrumentations: [
         getNodeAutoInstrumentations({
           '@opentelemetry/instrumentation-fs': {

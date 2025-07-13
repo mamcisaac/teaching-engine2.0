@@ -199,7 +199,7 @@ class DaybookService extends BaseService {
       order?: 'asc' | 'desc';
     },
     userId: number,
-  ) {
+  ): Promise<any> {
     const { startDate, endDate, lessonPlanId, subject, limit, offset, sort, order } = filters;
 
     const where: Prisma.DaybookEntryWhereInput = { userId };
@@ -214,9 +214,9 @@ class DaybookService extends BaseService {
     } else if (endDate) {
       where.date = { lte: new Date(endDate) };
     }
-    if (lessonPlanId) {
-where.lessonPlanId = String(lessonPlanId);
-}
+    if (lessonPlanId !== null && lessonPlanId !== undefined && lessonPlanId !== '') {
+      where.lessonPlanId = String(lessonPlanId);
+    }
 
     // Subject filtering through lesson plan relationship
     if (subject) {
@@ -260,7 +260,7 @@ orderBy.createdAt = order;
     };
   }
 
-  async findById(id: string, userId: number) {
+  async findById(id: string, userId: number): Promise<any> {
     return prisma.daybookEntry.findFirst({
       where: { id, userId },
       include: {
@@ -295,7 +295,7 @@ orderBy.createdAt = order;
     });
   }
 
-  async create(data: DaybookEntryCreateData, userId: number) {
+  async create(data: DaybookEntryCreateData, userId: number): Promise<any> {
     const { expectations, ...daybookData } = data as unknown as Record<string, unknown>;
 
     return prisma.daybookEntry.create({
@@ -319,7 +319,7 @@ orderBy.createdAt = order;
     });
   }
 
-  async update(id: string, data: DaybookEntryUpdateData, userId: number) {
+  async update(id: string, data: DaybookEntryUpdateData, userId: number): Promise<any> {
     // Verify ownership
     const entry = await prisma.daybookEntry.findFirst({
       where: { id, userId },
@@ -369,7 +369,7 @@ orderBy.createdAt = order;
     return true;
   }
 
-  async getInsightsSummary(userId: number) {
+  async getInsightsSummary(userId: number): Promise<any> {
     const recentEntries = await prisma.daybookEntry.findMany({
       where: {
         userId,
@@ -441,7 +441,7 @@ export class DaybookEntriesRouteHandler extends BaseRouteHandler {
     return this.daybookService;
   }
 
-  protected getValidationSchemas() {
+  protected getValidationSchemas(): any {
     return {
       create: daybookEntryCreateSchema,
       update: daybookEntryUpdateSchema,

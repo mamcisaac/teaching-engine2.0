@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react';
 import * as RadixDialog from '@radix-ui/react-dialog';
+import type { ReactNode } from 'react';
 
 interface DialogProps {
   open: boolean;
@@ -22,13 +22,13 @@ function Dialog({
 }: DialogProps): React.ReactElement {
   // Helper to check if string has content
   const hasContent = (value: string | undefined): boolean => 
-    value !== undefined && value !== null && value.trim() !== '';
+    value !== undefined && value.trim() !== '';
 
   const handleOpenChange = (newOpen: boolean): void => {
-    if (onOpenChange !== undefined && onOpenChange !== null) {
+    if (onOpenChange !== undefined) {
       onOpenChange(newOpen);
     }
-    if (!newOpen && onClose !== undefined && onClose !== null) {
+    if (!newOpen && onClose !== undefined) {
       onClose();
     }
   };
@@ -55,7 +55,7 @@ function Dialog({
           role="dialog"
         >
           <div
-            className={`bg-white rounded shadow w-full ${(maxWidthClasses[maxWidth as keyof typeof maxWidthClasses] ?? maxWidthClasses.lg) as string} mx-4`}
+            className={`bg-white rounded shadow w-full ${maxWidthClasses[maxWidth as keyof typeof maxWidthClasses] ?? maxWidthClasses.lg} mx-4`}
           >
             {hasContent(title) && (
               <div className="px-6 py-4 border-b">

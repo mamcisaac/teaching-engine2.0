@@ -102,11 +102,11 @@ export class AuthErrorBoundary extends Component<AuthErrorBoundaryProps, AuthErr
     }
   };
 
-  private handleOffline = () => {
+  private handleOffline = (): void => {
     this.setState({ connectionStatus: 'offline' });
   };
 
-  private startConnectionMonitoring() {
+  private startConnectionMonitoring(): void {
     this.connectionCheckInterval = setInterval(() => {
       this.setState({
         connectionStatus: navigator.onLine ? 'online' : 'offline',
@@ -160,7 +160,7 @@ return false;
     );
   }
 
-  private scheduleRetry() {
+  private scheduleRetry(): void {
     if (this.state.retryCount >= 3) {
 return;
 }
@@ -172,7 +172,7 @@ return;
     }, delay);
   }
 
-  private handleRetryAuth = async () => {
+  private handleRetryAuth = async (): Promise<void> => {
     this.setState({ isRetrying: true });
 
     try {
@@ -206,12 +206,12 @@ return;
     }
   };
 
-  private handleManualRetry = () => {
+  private handleManualRetry = (): void => {
     this.setState({ retryCount: 0 });
     this.handleRetryAuth();
   };
 
-  private handleLoginRedirect = () => {
+  private handleLoginRedirect = (): void => {
     // Clear any stored auth data and redirect to login
     authService.clearTokens();
     window.location.href = '/login';
@@ -249,7 +249,7 @@ return;
     return 'An unexpected error occurred. Please try again.';
   }
 
-  private getErrorIcon() {
+  private getErrorIcon(): React.ReactElement {
     if (this.state.connectionStatus === 'offline') {
       return <WifiOff className="h-5 w-5 text-red-500" />;
     }
@@ -261,7 +261,7 @@ return;
     return <AlertCircle className="h-5 w-5 text-red-500" />;
   }
 
-  render() {
+  render(): React.ReactNode {
     if (this.state.hasError === true) {
       if (this.props.fallback !== null && this.props.fallback !== undefined) {
         return this.props.fallback;

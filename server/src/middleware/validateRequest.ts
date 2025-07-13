@@ -12,10 +12,10 @@ export function validateRequest(schema: ZodSchema) {
   return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       // Validate request body
-      const validated = await schema.parseAsync(req.body);
+      const validated = await schema.parseAsync(req.body) as unknown;
 
       // Replace request body with validated/transformed data
-      req.body = validated;
+      req.body = validated as Record<string, unknown>;
 
       next();
     } catch (_error) {
@@ -86,10 +86,10 @@ export function validateQuery(schema: ZodSchema) {
   return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       // Validate query parameters
-      const validated = await schema.parseAsync(req.query);
+      const validated = await schema.parseAsync(req.query) as unknown;
 
       // Replace query with validated/transformed data
-      req.query = validated;
+      req.query = validated as Record<string, unknown>;
 
       next();
     } catch (_error) {
@@ -145,10 +145,10 @@ export function validateParams(schema: ZodSchema) {
   return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       // Validate route parameters
-      const validated = await schema.parseAsync(req.params);
+      const validated = await schema.parseAsync(req.params) as unknown;
 
       // Replace params with validated/transformed data
-      req.params = validated;
+      req.params = validated as Record<string, string>;
 
       next();
     } catch (_error) {
@@ -205,15 +205,15 @@ export function validate(options: { body?: ZodSchema; query?: ZodSchema; params?
     try {
       // Validate each part if schema provided
       if (options.body) {
-        req.body = await options.body.parseAsync(req.body);
+        req.body = await options.body.parseAsync(req.body) as Record<string, unknown>;
       }
 
       if (options.query) {
-        req.query = await options.query.parseAsync(req.query);
+        req.query = await options.query.parseAsync(req.query) as Record<string, unknown>;
       }
 
       if (options.params) {
-        req.params = await options.params.parseAsync(req.params);
+        req.params = await options.params.parseAsync(req.params) as Record<string, string>;
       }
 
       next();

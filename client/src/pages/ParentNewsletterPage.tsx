@@ -24,7 +24,7 @@ import {
 import { cn } from '../lib/utils';
 import type { NewsletterDraft, NewsletterTone, NewsletterGenerationParams } from '../types/newsletter';
 import logger from '../utils/logger';
-export default function ParentNewsletterPage() {
+export default function ParentNewsletterPage(): React.ReactElement {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { user: _user } = useAuth();

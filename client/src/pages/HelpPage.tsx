@@ -192,7 +192,7 @@ const mockHelpContent: Record<string, string> = {
   `,
 };
 
-export default function HelpPage() {
+export default function HelpPage(): React.ReactElement {
   const { state, setCurrentSection, markHelpPageViewed } = useHelp();
   const { filteredCount, totalCount } = useHelpContent();
   const [selectedSection, setSelectedSection] = useState<string | null>(null);

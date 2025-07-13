@@ -52,7 +52,7 @@ export function useETFOProgress(): {
     queryKey: ['etfo-progress'],
     queryFn: async () => {
       const response = await apiClient.get('/api/etfo/progress');
-      return response.data;
+      return response.data as ETFOProgressData;
     },
     staleTime: 30000, // Cache for 30 seconds
   });

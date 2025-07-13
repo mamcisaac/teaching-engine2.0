@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
 import { format, startOfWeek, endOfWeek, startOfMonth, endOfMonth, subWeeks, subMonths } from 'date-fns';
 import { Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 import { cn } from '../lib/utils';
 
@@ -76,7 +76,7 @@ export function DateRangeSelector({
     const start = new Date(customStart);
     const end = new Date(customEnd);
     
-    if (start !== null && start !== undefined && end !== null && end !== undefined && start <= end) {
+    if (start.getTime() <= end.getTime()) {
       onChange(start, end);
       setShowCustomPicker(false);
     }

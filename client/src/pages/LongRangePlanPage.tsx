@@ -32,7 +32,7 @@ interface LongRangePlan {
   };
 }
 
-export default function LongRangePlanPage() {
+export default function LongRangePlanPage(): React.ReactElement {
   const queryClient = useQueryClient();
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [selectedYear, setSelectedYear] = useState(() => {

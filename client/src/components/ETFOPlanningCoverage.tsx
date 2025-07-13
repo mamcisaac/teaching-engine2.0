@@ -48,51 +48,51 @@ export default function ETFOPlanningCoverage(): React.ReactElement {
       icon: <Calendar className="h-5 w-5" />,
       total: 8, // Assuming 8 subjects for elementary
       completed: longRangePlans.filter((p) => p.goals !== null && p.goals !== undefined && p.goals !== '' && (p.themes?.length ?? 0) > 0).length,
-      inProgress: longRangePlans.filter((p) => p.goals !== null && p.goals !== undefined && p.goals !== '' && !(p.themes?.length ?? 0)).length,
+      inProgress: longRangePlans.filter((p) => p.goals !== null && p.goals !== undefined && p.goals !== '' && (p.themes?.length ?? 0) === 0).length,
       notStarted: 8 - longRangePlans.length,
       description: 'Year-long curriculum organization by subject',
     },
     {
       name: 'Unit Plans',
       icon: <Target className="h-5 w-5" />,
-      total: longRangePlans.reduce((sum, lrp) => sum + (lrp._count?.unitPlans || 0) + 5, 0), // Expected units
+      total: longRangePlans.reduce((sum, lrp) => sum + (lrp._count?.unitPlans ?? 0) + 5, 0), // Expected units
       completed: unitPlans.filter(
-        (u) => u.bigIdeas && u.assessmentPlan && (u.successCriteria?.length || 0) > 0,
+        (u) => u.bigIdeas !== null && u.bigIdeas !== undefined && u.bigIdeas !== '' && u.assessmentPlan !== null && u.assessmentPlan !== undefined && u.assessmentPlan !== '' && (u.successCriteria?.length ?? 0) > 0,
       ).length,
       inProgress: unitPlans.filter(
-        (u) => u.bigIdeas && (!u.assessmentPlan || !(u.successCriteria?.length || 0)),
+        (u) => u.bigIdeas !== null && u.bigIdeas !== undefined && u.bigIdeas !== '' && (u.assessmentPlan === null || u.assessmentPlan === undefined || u.assessmentPlan === '' || (u.successCriteria?.length ?? 0) === 0),
       ).length,
-      notStarted: unitPlans.filter((u) => !u.bigIdeas).length,
+      notStarted: unitPlans.filter((u) => u.bigIdeas === null || u.bigIdeas === undefined || u.bigIdeas === '').length,
       description: '3-6 week thematic units with big ideas and assessments',
     },
     {
       name: 'Lesson Plans',
       icon: <Clock className="h-5 w-5" />,
-      total: unitPlans.reduce((sum, unit) => sum + (unit.estimatedHours || 20), 0), // Estimated lessons needed
-      completed: lessonPlans.filter((l) => l.mindsOn && l.action && l.consolidation).length,
+      total: unitPlans.reduce((sum, unit) => sum + (unit.estimatedHours ?? 20), 0), // Estimated lessons needed
+      completed: lessonPlans.filter((l) => l.mindsOn !== null && l.mindsOn !== undefined && l.mindsOn !== '' && l.action !== null && l.action !== undefined && l.action !== '' && l.consolidation !== null && l.consolidation !== undefined && l.consolidation !== '').length,
       inProgress: lessonPlans.filter(
         (l) =>
-          (l.mindsOn || l.action || l.consolidation) && !(l.mindsOn && l.action && l.consolidation),
+          ((l.mindsOn !== null && l.mindsOn !== undefined && l.mindsOn !== '') || (l.action !== null && l.action !== undefined && l.action !== '') || (l.consolidation !== null && l.consolidation !== undefined && l.consolidation !== '')) && !(l.mindsOn !== null && l.mindsOn !== undefined && l.mindsOn !== '' && l.action !== null && l.action !== undefined && l.action !== '' && l.consolidation !== null && l.consolidation !== undefined && l.consolidation !== ''),
       ).length,
-      notStarted: lessonPlans.filter((l) => !l.mindsOn && !l.action && !l.consolidation).length,
+      notStarted: lessonPlans.filter((l) => (l.mindsOn === null || l.mindsOn === undefined || l.mindsOn === '') && (l.action === null || l.action === undefined || l.action === '') && (l.consolidation === null || l.consolidation === undefined || l.consolidation === '')).length,
       description: 'Daily lessons with three-part structure',
     },
     {
       name: 'Daybook Reflections',
       icon: <Users className="h-5 w-5" />,
       total: lessonPlans.length, // One reflection per lesson
-      completed: daybookEntries.filter((d) => d.whatWorked && d.nextSteps).length,
+      completed: daybookEntries.filter((d) => d.whatWorked !== null && d.whatWorked !== undefined && d.whatWorked !== '' && d.nextSteps !== null && d.nextSteps !== undefined && d.nextSteps !== '').length,
       inProgress: daybookEntries.filter(
-        (d) => (d.whatWorked || d.nextSteps) && !(d.whatWorked && d.nextSteps),
+        (d) => ((d.whatWorked !== null && d.whatWorked !== undefined && d.whatWorked !== '') || (d.nextSteps !== null && d.nextSteps !== undefined && d.nextSteps !== '')) && !(d.whatWorked !== null && d.whatWorked !== undefined && d.whatWorked !== '' && d.nextSteps !== null && d.nextSteps !== undefined && d.nextSteps !== ''),
       ).length,
       notStarted: lessonPlans.length - daybookEntries.length,
       description: 'Daily reflections and student observations',
     },
   ];
 
-  const calculatePercentage = (completed: number, total: number) => total > 0 ? Math.round((completed / total) * 100) : 0;
+  const calculatePercentage = (completed: number, total: number): number => total > 0 ? Math.round((completed / total) * 100) : 0;
 
-  const getStatusColor = (percentage: number) => {
+  const getStatusColor = (percentage: number): string => {
     if (percentage >= 80) {
 return 'text-green-600';
 }
@@ -162,7 +162,11 @@ return 'text-yellow-600';
                   </div>
                   <Badge
                     variant={
-                      percentage >= 80 ? 'default' : percentage >= 50 ? 'secondary' : 'destructive'
+                      percentage >= 80
+                        ? 'default'
+                        : percentage >= 50
+                          ? 'secondary'
+                          : 'destructive'
                     }
                   >
                     {percentage}%
@@ -215,7 +219,7 @@ return 'text-yellow-600';
               {Object.entries(
                 longRangePlans.reduce<Record<string, typeof longRangePlans>>(
                   (acc, plan) => {
-                    if (!acc[plan.subject]) {
+                    if (acc[plan.subject] === undefined) {
                       acc[plan.subject] = [];
                     }
                     acc[plan.subject].push(plan);
@@ -246,7 +250,7 @@ return 'text-yellow-600';
                             <div className="text-sm">
                               <span className="text-gray-600">Units: </span>
                               <span className="font-medium">
-                                {planUnits.length}/{plan._count?.unitPlans || '?'}
+                                {planUnits.length}/{plan._count?.unitPlans ?? '?'}
                               </span>
                             </div>
                             <Progress className="w-24 h-2" value={unitPercentage} />
@@ -330,7 +334,7 @@ return 'text-yellow-600';
       </Card>
 
       {/* Progress Insights */}
-      {progressData && (
+      {progressData !== null && progressData !== undefined && (
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">

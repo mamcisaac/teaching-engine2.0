@@ -1,5 +1,5 @@
+import { AlertTriangle, Target } from 'lucide-react';
 import React, { useMemo } from 'react';
-import { Target, AlertTriangle } from 'lucide-react';
 import {
   PieChart,
   Pie,
@@ -73,23 +73,23 @@ export default function CurriculumExpectationCoverage(): React.ReactElement {
 
     expectations.forEach((exp) => {
       // By subject
-      if (bySubject[exp.subject] === null || bySubject[exp.subject] === undefined) {
+      if (bySubject[exp.subject] === undefined) {
         bySubject[exp.subject] = [];
       }
       bySubject[exp.subject].push(exp);
 
       // By strand
       const strand = exp.strand !== null && exp.strand !== undefined && exp.strand !== '' ? exp.strand : 'Other';
-      if (byStrand[strand] === null || byStrand[strand] === undefined) {
+      if (byStrand[strand] === undefined) {
         byStrand[strand] = [];
       }
       byStrand[strand].push(exp);
 
       // By grade and subject
-      if (byGrade[exp.grade] === null || byGrade[exp.grade] === undefined) {
+      if (byGrade[exp.grade] === undefined) {
         byGrade[exp.grade] = {};
       }
-      if (byGrade[exp.grade][exp.subject] === null || byGrade[exp.grade][exp.subject] === undefined) {
+      if (byGrade[exp.grade][exp.subject] === undefined) {
         byGrade[exp.grade][exp.subject] = [];
       }
       byGrade[exp.grade][exp.subject].push(exp);
@@ -146,7 +146,7 @@ export default function CurriculumExpectationCoverage(): React.ReactElement {
       totalExpectations > 0 ? Math.round((coveredExpectations / totalExpectations) * 100) : 0;
 
     // Find gaps (uncovered expectations grouped by priority)
-    const uncoveredExpectations = expectations.filter((exp) => coveredExpectationIds.has(exp.id) === false);
+    const uncoveredExpectations = expectations.filter((exp) => !coveredExpectationIds.has(exp.id));
     // For now, treat all gaps as regular priority since we don't have type classification
     const highPriorityGaps: typeof expectations = [];
     const regularGaps = uncoveredExpectations;

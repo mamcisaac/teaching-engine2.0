@@ -58,7 +58,7 @@ export class ETFOLessonPlanService extends BaseService {
     userId: number,
     filters: ETFOLessonPlanFilters = {},
     pagination: { skip?: number; take?: number } = {},
-  ) {
+  ): Promise<any> {
     try {
       const where: Prisma.ETFOLessonPlanWhereInput = {
         userId,
@@ -109,7 +109,7 @@ export class ETFOLessonPlanService extends BaseService {
     }
   }
 
-  async findById(id: string, userId: number) {
+  async findById(id: string, userId: number): Promise<any> {
     try {
       const plan = await this.repository.findByIdWithRelations(id);
 
@@ -124,7 +124,7 @@ export class ETFOLessonPlanService extends BaseService {
     }
   }
 
-  async create(data: ETFOLessonPlanCreateData) {
+  async create(data: ETFOLessonPlanCreateData): Promise<any> {
     try {
       const { expectationIds = [], ...planData } = data as Record<string, unknown>;
 
@@ -161,7 +161,7 @@ export class ETFOLessonPlanService extends BaseService {
     }
   }
 
-  async update(id: string, userId: number, data: ETFOLessonPlanUpdateData) {
+  async update(id: string, userId: number, data: ETFOLessonPlanUpdateData): Promise<any> {
     try {
       // Verify ownership
       const existingPlan = await this.repository.findById(id);
@@ -187,7 +187,7 @@ export class ETFOLessonPlanService extends BaseService {
     }
   }
 
-  async delete(id: string, userId: number) {
+  async delete(id: string, userId: number): Promise<void> {
     try {
       // Verify ownership
       const existingPlan = await this.repository.findById(id);
@@ -203,7 +203,7 @@ export class ETFOLessonPlanService extends BaseService {
     }
   }
 
-  async duplicate(id: string, userId: number) {
+  async duplicate(id: string, userId: number): Promise<any> {
     try {
       // Get the original plan
       const originalPlan = await this.repository.findByIdWithRelations(id);
@@ -250,7 +250,7 @@ export class ETFOLessonPlanService extends BaseService {
     userId: number,
     searchTerm: string,
     pagination: { skip?: number; take?: number } = {},
-  ) {
+  ): Promise<any> {
     try {
       const plans = await this.repository.searchByContent(userId, searchTerm, pagination);
       return plans;

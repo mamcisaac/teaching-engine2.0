@@ -123,7 +123,7 @@ export abstract class BaseRepository<T extends { id: number }, CreateInput, Upda
         where: { id },
         data,
       });
-      logger.info(`Updated ${this.modelName} with id: ${id}`);
+      logger.info(`Updated ${this.modelName} with id: ${String(id)}`);
       return result;
     } catch (error) {
       logger.error(`Error updating ${this.modelName}:`, error);

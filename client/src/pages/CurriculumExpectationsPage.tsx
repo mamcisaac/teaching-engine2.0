@@ -43,7 +43,7 @@ import {
 import type {
   CurriculumExpectation} from '../hooks/useETFOPlanning';
 
-export default function CurriculumExpectationsPage() {
+export default function CurriculumExpectationsPage(): React.ReactElement {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [searchTerm, setSearchTerm] = useState('');

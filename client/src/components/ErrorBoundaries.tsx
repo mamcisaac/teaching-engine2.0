@@ -1,6 +1,6 @@
+import { AlertCircle, RefreshCw, Home, Mail } from 'lucide-react';
 import React, { Component } from 'react';
 import type { ReactNode, ErrorInfo } from 'react';
-import { AlertCircle, RefreshCw, Home, Mail } from 'lucide-react';
 
 import { errorReportingService } from '../services/errorReportingService';
 import logger from '../utils/logger';
@@ -43,7 +43,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     this.setState({ errorInfo });
     
     // Call custom error handler if provided
-    if (this.props.onError !== undefined && this.props.onError !== null) {
+    if (this.props.onError !== undefined) {
       this.props.onError(error, errorInfo);
     }
     
@@ -93,7 +93,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
               <CardDescription>{errorDescription}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              {this.state.retryCount !== null && this.state.retryCount !== undefined && this.state.retryCount > 2 ? (
+              {this.state.retryCount > 2 ? (
                 <Alert variant="destructive">
                   <AlertTitle>Multiple Errors</AlertTitle>
                   <AlertDescription>
@@ -103,24 +103,28 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
               ) : null}
               
               <div className="flex flex-wrap gap-2">
-                {allowRetry !== null && allowRetry !== undefined && allowRetry ? (
+                {allowRetry ? (
                   <Button aria-label="Click button" onClick={this.handleReset}>
                     <RefreshCw className="h-4 w-4 mr-2" />
                     Try Again
                   </Button>
                 ) : null}
                 
-                {allowHome !== null && allowHome !== undefined && allowHome ? (
-                  <Button aria-label="Click button" onClick={(): void => { window.location.href = '/'; }}>
+                {allowHome ? (
+                  <Button aria-label="Click button" onClick={(): void => {
+                    window.location.href = '/';
+                  }}>
                     <Home className="h-4 w-4 mr-2" />
                     Go Home
                   </Button>
                 ) : null}
                 
-                {supportEmail !== undefined && supportEmail !== null && supportEmail !== '' ? (
+                {supportEmail !== undefined && supportEmail !== '' ? (
                   <Button 
                     variant="outline" 
-                    onClick={(): void => { window.location.href = `mailto:${supportEmail as string}?subject=Error Report`; }}
+                    onClick={(): void => {
+                      window.location.href = `mailto:${supportEmail}?subject=Error Report`;
+                    }}
                   >
                     <Mail className="h-4 w-4 mr-2" />
                     Contact Support
@@ -128,7 +132,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                 ) : null}
               </div>
 
-              {showDetails !== null && showDetails !== undefined && showDetails && this.state.error !== undefined && this.state.error !== null ? (
+              {showDetails && this.state.error !== undefined ? (
                 <details className="mt-4 bg-gray-100 p-4 rounded-md">
                   <summary className="cursor-pointer font-medium text-gray-700">
                     Error Details (Development)
@@ -137,12 +141,12 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                     <div className="text-xs text-gray-600">
                       {this.state.error instanceof Error ? this.state.error.message : String(this.state.error)}
                     </div>
-                    {this.state.error instanceof Error && this.state.error.stack !== undefined && this.state.error.stack !== null && this.state.error.stack !== '' ? (
+                    {this.state.error instanceof Error && this.state.error.stack !== undefined && this.state.error.stack !== '' ? (
                       <pre className="mt-2 text-xs text-gray-600 whitespace-pre-wrap overflow-auto">
                         {this.state.error.stack}
                       </pre>
                     ) : null}
-                    {this.state.errorInfo !== undefined && this.state.errorInfo !== null && this.state.errorInfo.componentStack !== undefined && this.state.errorInfo.componentStack !== null && this.state.errorInfo.componentStack !== '' ? (
+                    {this.state.errorInfo !== undefined && this.state.errorInfo.componentStack !== undefined && this.state.errorInfo.componentStack !== '' ? (
                       <pre className="mt-2 text-xs text-gray-600 whitespace-pre-wrap overflow-auto">
                         Component Stack:{'\n'}{this.state.errorInfo.componentStack}
                       </pre>

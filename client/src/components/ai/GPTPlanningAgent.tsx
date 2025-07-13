@@ -83,23 +83,34 @@ export function GPTPlanningAgent({
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const recognitionRef = useRef<SpeechRecognition | null>(null);
 
+  interface SessionResponse {
+    sessionId: string;
+    message: string;
+  }
+
   // Start session
   const startSessionMutation = useMutation({
     mutationFn: async () => {
       const response = await api.post('/api/ai/agent/sessions');
-      return response.data.data;
+      return response.data.data as SessionResponse;
     },
-    onSuccess: (_data) => {
-      setSessionId(_data.sessionId);
+    onSuccess: (data) => {
+      setSessionId(data.sessionId);
       setMessages([
         {
           role: 'assistant',
-          content: _data.message,
+          content: data.message,
           timestamp: new Date(),
         },
       ]);
     },
   });
+
+  interface MessageResponse {
+    message: string;
+    actions?: Action[];
+    actionResults?: ActionResult[];
+  }
 
   // Send message
   const sendMessageMutation = useMutation({
@@ -111,23 +122,23 @@ throw new Error('No session');
         sessionId,
         message,
       });
-      return response.data.data;
+      return response.data.data as MessageResponse;
     },
-    onSuccess: (_data) => {
+    onSuccess: (data) => {
       setMessages((prev) => [
         ...prev,
         {
           role: 'assistant',
-          content: _data.message,
+          content: data.message,
           timestamp: new Date(),
-          actions: _data.actions,
-          actionResults: _data.actionResults,
+          actions: data.actions,
+          actionResults: data.actionResults,
         },
       ]);
 
       // Handle action results
-      if (_data.actionResults !== null && _data.actionResults !== undefined && Array.isArray(_data.actionResults)) {
-        _data.actionResults.forEach((result: ActionResult) => {
+      if (data.actionResults !== null && data.actionResults !== undefined && Array.isArray(data.actionResults)) {
+        data.actionResults.forEach((result: ActionResult) => {
           switch (result.type) {
             case 'activities_generated':
               if (onActivityGenerated) {
@@ -160,7 +171,7 @@ throw new Error('No session');
     queryKey: ['quick-actions'],
     queryFn: async () => {
       const response = await api.get('/api/ai/agent/quick-actions');
-      return response.data.data;
+      return response.data.data as QuickAction[];
     },
   });
 

@@ -46,8 +46,8 @@ export const teacherApi = {
 
     // Delete teacher reflection
     delete: async (id: number) => {
-      const { data } = await apiClient.delete(`/api/teacher/reflections/${id}`);
-      return data as unknown;
+      const { data } = await apiClient.delete<{ success: boolean }>(`/api/teacher/reflections/${id}`);
+      return data;
     },
   },
 
