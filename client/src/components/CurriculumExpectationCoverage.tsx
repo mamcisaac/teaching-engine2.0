@@ -1,5 +1,5 @@
-import { Target, AlertTriangle } from 'lucide-react';
 import React, { useMemo } from 'react';
+import { Target, AlertTriangle } from 'lucide-react';
 import {
   PieChart,
   Pie,
@@ -18,7 +18,6 @@ import { Badge } from '@/components/ui/Badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/Progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-
 import {
   useCurriculumExpectations,
   useUnitPlans,
@@ -180,13 +179,13 @@ export default function CurriculumExpectationCoverage(): React.ReactElement {
     '#ec4899',
   ];
 
-  const getStatusColor = (percentage: number) => {
+  const getStatusColor = (percentage: number): string => {
     if (percentage >= 80) {
-return 'text-green-600';
-}
+      return 'text-green-600';
+    }
     if (percentage >= 60) {
-return 'text-yellow-600';
-}
+      return 'text-yellow-600';
+    }
     return 'text-red-600';
   };
 

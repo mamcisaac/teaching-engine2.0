@@ -47,7 +47,7 @@ export class AuthErrorBoundary extends Component<AuthErrorBoundaryProps, AuthErr
     return { hasError: true, error };
   }
 
-  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+  componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
     logger.error('AuthErrorBoundary caught an error:', error, errorInfo);
     this.setState({ errorInfo });
 
@@ -74,13 +74,13 @@ export class AuthErrorBoundary extends Component<AuthErrorBoundaryProps, AuthErr
     }
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     // Listen for online/offline events
     window.addEventListener('online', this.handleOnline);
     window.addEventListener('offline', this.handleOffline);
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     // Cleanup
     if (this.retryTimeout !== null) {
       clearTimeout(this.retryTimeout);
@@ -93,7 +93,7 @@ export class AuthErrorBoundary extends Component<AuthErrorBoundaryProps, AuthErr
     window.removeEventListener('offline', this.handleOffline);
   }
 
-  private handleOnline = () => {
+  private handleOnline = (): void => {
     this.setState({ connectionStatus: 'online' });
 
     // If we were offline and now we're online, try to recover

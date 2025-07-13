@@ -527,27 +527,27 @@ export const substituteApi = {
     });
 
     const response = await apiClient.get(`/subplan/extract/weekly?${params.toString()}`);
-    return response.data;
+    return response.data as unknown;
   },
 
   extractScenarioTemplates: async (conditions?: Record<string, string | number>) => {
     const params = new URLSearchParams();
     if (conditions) {
       Object.entries(conditions).forEach(([key, value]) => {
-        if (value != null) {
+        if (value !== null && value !== undefined) {
           params.append(key, String(value));
         }
       });
     }
 
     const response = await apiClient.get(`/subplan/extract/scenarios?${params.toString()}`);
-    return response.data;
+    return response.data as unknown;
   },
 
   autoDetectScenario: async (userId?: number) => {
     const params = userId !== undefined ? `?userId=${userId}` : '';
     const response = await apiClient.get(`/subplan/extract/scenarios/auto${params}`);
-    return response.data;
+    return response.data as unknown;
   },
 
   getScenarioById: async (
@@ -564,7 +564,7 @@ params.append('className', className);
 }
 
     const response = await apiClient.get(`/subplan/extract/scenarios/${scenarioId}?${params.toString()}`);
-    return response.data;
+    return response.data as unknown;
   },
 
   extractSchoolContacts: async (
@@ -578,7 +578,7 @@ params.append('className', className);
     params.append('format', format);
 
     const response = await apiClient.get(`/subplan/extract/contacts?${params.toString()}`);
-    return response.data;
+    return response.data as unknown;
   },
 
   extractDayMaterials: async (
@@ -591,7 +591,7 @@ params.append('className', className);
     }
 
     const response = await apiClient.get(`/subplan/extract/materials/day?${params.toString()}`);
-    return response.data;
+    return response.data as unknown;
   },
 
   extractWeeklyMaterials: async (
@@ -605,11 +605,11 @@ params.append('className', className);
     }
 
     const response = await apiClient.get(`/subplan/extract/materials/weekly?${params.toString()}`);
-    return response.data;
+    return response.data as unknown;
   },
 
   extractComprehensiveSubPlan: async (request: { startDate: string; endDate: string; userId?: number; options?: Record<string, unknown> }) => {
     const response = await apiClient.post('/subplan/extract/comprehensive', request);
-    return response.data;
+    return response.data as unknown;
   },
 };

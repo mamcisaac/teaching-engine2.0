@@ -1,6 +1,6 @@
+import { useState, useEffect } from 'react';
 import { format, startOfWeek, endOfWeek, startOfMonth, endOfMonth, subWeeks, subMonths } from 'date-fns';
 import { Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useState, useEffect } from 'react';
 
 import { cn } from '../lib/utils';
 
@@ -25,12 +25,12 @@ export function DateRangeSelector({
   const [customEnd, setCustomEnd] = useState(format(endDate, 'yyyy-MM-dd'));
 
   // Update custom dates when props change
-  useEffect(() => {
-    return () => { // Cleanup
-    };
-
+  useEffect((): (() => void) => {
     setCustomStart(format(startDate, 'yyyy-MM-dd'));
     setCustomEnd(format(endDate, 'yyyy-MM-dd'));
+    
+    return (): void => { // Cleanup
+    };
   }, [startDate, endDate]);
 
   const handlePresetChange = (newPreset: PresetRange): void => {
@@ -76,7 +76,7 @@ export function DateRangeSelector({
     const start = new Date(customStart);
     const end = new Date(customEnd);
     
-    if (start <= end) {
+    if (start !== null && start !== undefined && end !== null && end !== undefined && start <= end) {
       onChange(start, end);
       setShowCustomPicker(false);
     }
@@ -139,9 +139,9 @@ export function DateRangeSelector({
                   ? "bg-blue-600 text-white"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200"
               )}
-              onClick={() => {
- handlePresetChange(value); 
-}}
+              onClick={(): void => {
+                handlePresetChange(value); 
+              }}
             >
               {label}
             </button>
@@ -153,9 +153,9 @@ export function DateRangeSelector({
           <button
             className="p-1 hover:bg-gray-200 rounded transition-colors"
             title="Previous period"
-            onClick={() => {
- quickNavigation('prev'); 
-}}
+            onClick={(): void => {
+              quickNavigation('prev'); 
+            }}
           >
             <ChevronLeft className="w-4 h-4 text-gray-600" />
           </button>
@@ -173,9 +173,9 @@ export function DateRangeSelector({
           <button
             className="p-1 hover:bg-gray-200 rounded transition-colors"
             title="Next period"
-            onClick={() => {
- quickNavigation('next'); 
-}}
+            onClick={(): void => {
+              quickNavigation('next'); 
+            }}
           >
             <ChevronRight className="w-4 h-4 text-gray-600" />
           </button>
@@ -194,9 +194,9 @@ export function DateRangeSelector({
                   id="custom-start-date"
                   type="date"
                   value={customStart}
-                  onChange={(e) => {
- setCustomStart(e.target.value); 
-}}
+                  onChange={(e): void => {
+                    setCustomStart(e.target.value); 
+                  }}
                 />
               </div>
               <div>
@@ -209,16 +209,16 @@ export function DateRangeSelector({
                   min={customStart}
                   type="date"
                   value={customEnd}
-                  onChange={(e) => {
- setCustomEnd(e.target.value); 
-}}
+                  onChange={(e): void => {
+                    setCustomEnd(e.target.value); 
+                  }}
                 />
               </div>
             </div>
             <div className="mt-3 flex justify-end gap-2">
               <button
                 className="px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-100 rounded-md transition-colors"
-                onClick={() => {
+                onClick={(): void => {
                   setShowCustomPicker(false);
                   setPreset('thisWeek');
                   handlePresetChange('thisWeek');

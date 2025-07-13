@@ -30,7 +30,7 @@ export function setupInterceptors(apiClient: AxiosInstance): void {
       // Add authorization header if we have a token
       const authService = await getAuthService();
       const authHeaders = authService.getAuthHeaders();
-      if (authHeaders.Authorization && config.headers) {
+      if (authHeaders.Authorization !== null && authHeaders.Authorization !== undefined && authHeaders.Authorization !== '' && config.headers !== null && config.headers !== undefined) {
         config.headers.Authorization = authHeaders.Authorization;
       }
 
@@ -63,7 +63,7 @@ export function setupInterceptors(apiClient: AxiosInstance): void {
         try {
           const authService = await getAuthService();
           // Convert AxiosResponse to standard Response for compatibility
-          const response = new Response(JSON.stringify(error.response?.data || 'Unknown error'), {
+          const response = new Response(JSON.stringify(error.response?.data ?? 'Unknown error'), {
             status: error.response.status,
             statusText: error.response.statusText,
             headers: new Headers(error.response.headers as Record<string, string>),
@@ -72,7 +72,7 @@ export function setupInterceptors(apiClient: AxiosInstance): void {
           if (recovered) {
             // Update the authorization header with the new token
             const authHeaders = authService.getAuthHeaders();
-            if (authHeaders.Authorization && originalRequest.headers) {
+            if (authHeaders.Authorization !== null && authHeaders.Authorization !== undefined && authHeaders.Authorization !== '' && originalRequest.headers !== null && originalRequest.headers !== undefined) {
               originalRequest.headers.Authorization = authHeaders.Authorization;
             }
             return apiClient(originalRequest);
@@ -86,12 +86,12 @@ export function setupInterceptors(apiClient: AxiosInstance): void {
       }
 
       // Report errors to monitoring service if available
-      if (error.response && error.response.status >= 500) {
+      if (error.response !== null && error.response !== undefined && error.response.status >= 500) {
         logger.error('Server error:', {
           status: error.response.status,
           url: error.config?.url,
           method: error.config?.method,
-          data: error.response?.data || 'Unknown error',
+          data: error.response?.data ?? 'Unknown error',
         });
       }
 

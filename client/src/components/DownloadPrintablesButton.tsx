@@ -16,7 +16,7 @@ export function DownloadPrintablesButton({ weekStart }: Props): React.ReactEleme
   };
 
   return (
-    <button className="border px-2 py-1" onClick={() => {
+    <button className="border px-2 py-1" onClick={(): void => {
       void handleClick();
     }}>
       Download Printables

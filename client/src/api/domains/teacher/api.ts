@@ -47,7 +47,7 @@ export const teacherApi = {
     // Delete teacher reflection
     delete: async (id: number) => {
       const { data } = await apiClient.delete(`/api/teacher/reflections/${id}`);
-      return data;
+      return data as unknown;
     },
   },
 
@@ -109,7 +109,7 @@ export const teacherApi = {
       grade?: number;
     }) => {
       const { data } = await apiClient.put('/api/teacher/profile', input);
-      return data;
+      return data as unknown;
     },
   },
 };

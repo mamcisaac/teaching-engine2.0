@@ -3,17 +3,16 @@ import { startOfMonth, endOfMonth, eachDayOfInterval } from 'date-fns';
 import { useState, memo, useMemo } from 'react';
 
 import { useCalendarEvents } from '../api/domains/calendar';
-import type { CalendarEvent } from '../types';
-import logger from '../utils/logger';
-
 import EventEditorModal from './EventEditorModal';
 import { LoadingSkeleton } from './performance';
+import type { CalendarEvent } from '../types';
+import logger from '../utils/logger';
 interface Props {
   month: Date;
   events?: CalendarEvent[];
 }
 
-const CalendarViewComponent = memo(({ month, events }: Props) => {
+const CalendarViewComponent = memo(({ month, events }: Props): React.ReactElement => {
   const [editorOpen, setEditorOpen] = useState(false);
   
   // Memoize expensive date calculations
@@ -27,10 +26,10 @@ const CalendarViewComponent = memo(({ month, events }: Props) => {
   
   // Memoize event array processing
   const evts = useMemo(() => {
-    if (Array.isArray(events)) {
+    if (events !== null && events !== undefined && Array.isArray(events)) {
       return events;
     }
-    if (Array.isArray(fetch.data)) {
+    if (fetch.data !== null && fetch.data !== undefined && Array.isArray(fetch.data)) {
       return fetch.data as CalendarEvent[];
     }
     return [];
@@ -50,14 +49,14 @@ const CalendarViewComponent = memo(({ month, events }: Props) => {
     
     const grouped: Record<string, CalendarEvent[]> = {};
     // Safely process events
-    if (Array.isArray(evts)) {
+    if (evts !== null && evts !== undefined && Array.isArray(evts)) {
       evts.forEach((e) => {
         if (e.start !== null && e.start !== undefined && e.start !== '') {
           const d = e.start.split('T')[0];
           if (d !== null && d !== undefined && d !== '') {
             if (grouped[d] === null || grouped[d] === undefined) {
-grouped[d] = [];
-}
+              grouped[d] = [];
+            }
             grouped[d].push(e);
           }
         }
@@ -81,8 +80,8 @@ grouped[d] = [];
         <button
           className="mb-2 px-2 py-1 bg-blue-500 text-white rounded"
           onClick={() => {
- setEditorOpen(true); 
-}}
+            setEditorOpen(true);
+          }}
         >
           + Add Event
         </button>
@@ -99,9 +98,13 @@ grouped[d] = [];
           </div>
         ))}
       </div>
-      {(events === null || events === undefined) && editorOpen === true && <EventEditorModal onClose={() => {
- setEditorOpen(false); 
-}} />}
+      {(events === null || events === undefined) && editorOpen === true && (
+        <EventEditorModal
+          onClose={() => {
+            setEditorOpen(false);
+          }}
+        />
+      )}
     </div>
   );
 });
