@@ -131,9 +131,9 @@ export function HelpProvider({ children }: { children: React.ReactNode }) {
     try {
       const savedState = localStorage.getItem(HELP_STATE_KEY);
       if (savedState) {
-        const parsedState = safeJsonParse(savedState, initialState) as HelpState;
+        const parsedState = safeJsonParse(savedState, initialState);
         // Convert date strings back to Date objects
-        if (parsedState.userProgress?.lastVisited) {
+        if (parsedState.userProgress.lastVisited) {
           parsedState.userProgress.lastVisited = new Date(parsedState.userProgress.lastVisited);
         }
         dispatch({ type: 'LOAD_STATE', payload: parsedState });

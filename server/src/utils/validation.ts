@@ -141,7 +141,7 @@ export const validateDateRange = (from?: string | Date, to?: string | Date): { f
     }
   }
   
-  if (dates.from !== null && dates.from !== undefined && dates.to !== null && dates.to !== undefined && dates.from > dates.to) {
+  if (dates.from !== null && dates.from !== undefined && dates.to !== undefined && dates.from > dates.to) {
     throw new Error('From date must be before to date');
   }
   
@@ -179,21 +179,19 @@ export const transformToArray = (value: unknown): string[] => {
 };
 
 // Sanitization helpers
-export const sanitizeHtml = (html: string): string => {
+export const sanitizeHtml = (html: string): string => 
   // Basic HTML sanitization - in production, use a library like DOMPurify
-  return html
+   html
     .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
     .replace(/<iframe[^>]*>[\s\S]*?<\/iframe>/gi, '')
     .replace(/on\w+\s*=\s*["'][^"']*["']/gi, '')
-    .trim();
-};
+    .trim()
+;
 
-export const sanitizeFilename = (filename: string): string => {
-  return filename
+export const sanitizeFilename = (filename: string): string => filename
     .replace(/[^a-zA-Z0-9.-]/g, '_')
     .replace(/_{2,}/g, '_')
     .toLowerCase();
-};
 
 // Custom validators
 export const isValidGrade = (grade: number): boolean => Number.isInteger(grade) && grade >= 1 && grade <= 12;
@@ -245,15 +243,14 @@ export const buildUpdateSchema = <T extends z.ZodRawShape>(
   const shape: z.ZodRawShape = {};
   
   for (const [key, schema] of Object.entries(baseSchema.shape)) {
-    shape[key] = (schema as z.ZodTypeAny).optional();
+    shape[key] = (schema).optional();
   }
   
   return z.object(shape);
 };
 
 // Validation middleware factory
-export const createValidationMiddleware = <T>(schema: z.ZodSchema<T>): ((req: Request, res: Response, next: NextFunction) => void) => {
-  return (req: Request, res: Response, next: NextFunction): void => {
+export const createValidationMiddleware = <T>(schema: z.ZodSchema<T>): ((req: Request, res: Response, next: NextFunction) => void) => (req: Request, res: Response, next: NextFunction): void => {
     try {
       const data = {
         ...(req.body ?? {}),
@@ -279,4 +276,3 @@ export const createValidationMiddleware = <T>(schema: z.ZodSchema<T>): ((req: Re
       }
     }
   };
-};

@@ -148,7 +148,7 @@ export default function UnitPlansPage() {
     e.preventDefault();
 
     const { isValid, errors } = validateForm();
-    if (isValid === false) {
+    if (!isValid) {
       logger.error('Form validation errors:', errors);
       return;
     }
@@ -291,7 +291,7 @@ export default function UnitPlansPage() {
     }
   };
 
-  if (isLoading === true) {
+  if (isLoading) {
     return (
       <PlanningErrorBoundary>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -739,13 +739,13 @@ export default function UnitPlansPage() {
                 />
                 <Button
                   className="flex items-center gap-2"
-                  disabled={isSaving === true || hasUnsavedChanges === false}
+                  disabled={isSaving || !hasUnsavedChanges}
                   size="sm"
                   type="button"
                   variant="outline"
                   onClick={saveNow}
                 >
-                  {isSaving === true ? (
+                  {isSaving ? (
                     <RefreshCw className="h-4 w-4 animate-spin" />
                   ) : (
                     <Save className="h-4 w-4" />
@@ -850,7 +850,7 @@ export default function UnitPlansPage() {
                             className="rounded"
                             type="checkbox"
                             onChange={(e) => {
-                              if (e.target.checked === true) {
+                              if (e.target.checked) {
                                 updateField('learningSkills', [...formData.learningSkills, skill]);
                               } else {
                                 updateField(
@@ -1150,10 +1150,10 @@ export default function UnitPlansPage() {
                 </Button>
                 <Button
                   className="bg-indigo-600 hover:bg-indigo-700 text-white"
-                  disabled={createUnit.isPending === true || updateUnit.isPending === true || isSaving === true}
+                  disabled={createUnit.isPending || updateUnit.isPending || isSaving}
                   type="submit"
                 >
-                  {createUnit.isPending === true || updateUnit.isPending === true || isSaving === true
+                  {createUnit.isPending || updateUnit.isPending || isSaving
                     ? 'Saving...'
                     : editingUnit !== null && editingUnit !== undefined
                       ? 'Update Unit Plan'
@@ -1266,11 +1266,11 @@ export default function UnitPlansPage() {
             </Button>
             <Button
               className="bg-indigo-600 hover:bg-indigo-700 text-white"
-              disabled={selectedTemplate === null || selectedTemplate === undefined || applyTemplate.isPending === true}
+              disabled={selectedTemplate === null || selectedTemplate === undefined || applyTemplate.isPending}
               type="button"
               onClick={() => selectedTemplate !== null && selectedTemplate !== undefined && handleApplyTemplate(selectedTemplate)}
             >
-              {applyTemplate.isPending === true ? 'Loading...' : 'Use This Template'}
+              {applyTemplate.isPending ? 'Loading...' : 'Use This Template'}
             </Button>
           </div>
         </div>

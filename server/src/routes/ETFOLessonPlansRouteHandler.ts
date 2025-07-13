@@ -153,7 +153,7 @@ where.assessmentType = assessmentType;
 
     // Filter by lessons with curriculum expectations
     if (hasExpectations !== undefined) {
-      if (hasExpectations === true) {
+      if (hasExpectations) {
         where.expectations = { some: {} };
       } else {
         where.expectations = { none: {} };
@@ -786,7 +786,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
 
       const success = await this.lessonPlanService.removeResource(lessonPlanId, resourceId, userId);
 
-      if (success === false) {
+      if (!success) {
         res.status(404).json({ error: 'Resource not found' });
         return;
       }

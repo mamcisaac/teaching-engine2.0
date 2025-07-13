@@ -79,19 +79,19 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
   const totalDuration = lessons.reduce((sum, lesson) => sum + (lesson.duration ?? 0), 0);
 
   return (
-    <Card className={_isDayToday === true ? 'ring-2 ring-primary' : ''}>
+    <Card className={_isDayToday ? 'ring-2 ring-primary' : ''}>
       <CardHeader>
         <div className="flex items-center justify-between">
           <div>
             <CardTitle className="text-lg">{format(date, 'EEEE, MMMM d')}</CardTitle>
-            {_isDayToday === true && (
+            {_isDayToday && (
               <Badge className="mt-1" variant="default">
                 Today
               </Badge>
             )}
           </div>
           <Button aria-label="Click button" onClick={() => {
- setIsEditing(isEditing === false); 
+ setIsEditing(!isEditing); 
 }}>
             <PenTool className="h-4 w-4" />
           </Button>
@@ -139,7 +139,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
         </div>
 
         {/* ETFO Reflection Prompts */}
-        {isEditing === true ? (
+        {isEditing ? (
           <div className="space-y-4">
             {/* Overall Rating */}
             <div className="space-y-2">
@@ -359,7 +359,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
         </div>
 
         {/* Save button */}
-        {isEditing === true && (
+        {isEditing && (
           <div className="flex justify-end gap-2">
             <Button aria-label="Click button" onClick={() => {
  setIsEditing(false); 
@@ -607,10 +607,10 @@ export default function DaybookPage(): React.ReactElement {
               size="sm"
               variant="outline"
               onClick={() => {
- setShowQuickTemplates(showQuickTemplates === false); 
+ setShowQuickTemplates(!showQuickTemplates); 
 }}
             >
-              {showQuickTemplates === true ? 'Hide' : 'Show'} Templates
+              {showQuickTemplates ? 'Hide' : 'Show'} Templates
             </Button>
           </div>
         </CardHeader>

@@ -189,7 +189,7 @@ export function validateEmail(email: string): EmailValidationResult {
   const emailRegex =
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9À-ÿ](?:[a-zA-Z0-9À-ÿ-]{0,61}[a-zA-Z0-9À-ÿ])?(?:\.[a-zA-Z0-9À-ÿ](?:[a-zA-Z0-9À-ÿ-]{0,61}[a-zA-Z0-9À-ÿ])?)*$/;
 
-  if (emailRegex.test(trimmed) === false) {
+  if (!emailRegex.test(trimmed)) {
     return {
       isValid: false,
       errors: ['Invalid email format'],
@@ -225,7 +225,7 @@ export function validateContact(contact: {
   // Validate phone if provided
   if (contact.phone !== null && contact.phone !== undefined && contact.phone !== '') {
     phoneResult = validatePhoneNumber(contact.phone);
-    if (phoneResult.isValid === false && phoneResult.errors !== null && phoneResult.errors !== undefined) {
+    if (!phoneResult.isValid && phoneResult.errors !== null && phoneResult.errors !== undefined) {
       errors.push(...phoneResult.errors.map((e) => `Phone: ${e}`));
     }
   }
@@ -233,7 +233,7 @@ export function validateContact(contact: {
   // Validate email if provided
   if (contact.email !== null && contact.email !== undefined && contact.email !== '') {
     emailResult = validateEmail(contact.email);
-    if (emailResult.isValid === false && emailResult.errors !== null && emailResult.errors !== undefined) {
+    if (!emailResult.isValid && emailResult.errors !== null && emailResult.errors !== undefined) {
       errors.push(...emailResult.errors.map((e) => `Email: ${e}`));
     }
   }

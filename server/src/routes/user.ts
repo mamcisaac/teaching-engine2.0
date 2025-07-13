@@ -99,7 +99,7 @@ export function userRoutes(prisma: PrismaClient): Router {
       const { email, name, role } = req.body as { email: string; name: string; role?: string };
 
       // Sanitize input
-      const sanitizedName = (name as string).replace(/<[^>]*>/g, ''); // Remove HTML tags
+      const sanitizedName = (name).replace(/<[^>]*>/g, ''); // Remove HTML tags
 
       const user = await userRepository.createUser({
         email,

@@ -108,7 +108,7 @@ async function syncWithServer<T extends Record<string, unknown>>(
   const state = get();
   
   // Don't sync if already syncing or offline
-  if (state.syncStatus === 'syncing' || state.isOnline === false) {
+  if (state.syncStatus === 'syncing' || !state.isOnline) {
     return;
   }
 
@@ -260,7 +260,7 @@ async function resolveConflicts(
             typeof item === 'object' ? JSON.stringify(item) : item
           ))).map(item => 
             typeof item === 'string' && item.startsWith('{') ? safeJsonParse(item, {}) : item
-          ) as unknown as typeof merged[keyof typeof merged];
+          ) as unknown;
         } else if (localData[key] !== serverData[key]) {
           // For scalar values, prefer local
           merged[key] = localData[key];
@@ -304,7 +304,7 @@ export function createAutoSave(
       const performSave = async (): Promise<void> => {
         const state = store.getState();
         
-        if (state.hasOfflineChanges === true && state.isSaving !== true) {
+        if (state.hasOfflineChanges && state.isSaving !== true) {
           try {
             await saveFunction();
           } catch (error) {

@@ -192,7 +192,7 @@ export const useHelpStore = create<HelpState>()(
         try {
           const defaultValue = { state: {}, version: 0 };
           const parsed = safeJsonParse(str, defaultValue) as { state: Partial<HelpState>; version: number };
-          if (parsed.state?.userProgress?.lastVisited) {
+          if (parsed.state.userProgress?.lastVisited) {
             parsed.state.userProgress.lastVisited = new Date(parsed.state.userProgress.lastVisited);
           }
           return parsed;

@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import React, { createContext, useContext, useState, useEffect } from 'react';
+
 import { safeJsonParse } from '../utils/typeGuards';
 
 export interface OnboardingStep {
@@ -191,7 +192,7 @@ export function OnboardingProvider({ children }: { children: ReactNode }) {
     // Load saved onboarding state
     const saved = localStorage.getItem(ONBOARDING_KEY);
     const defaultSavedState = { completedFlows: [], skippedOnboarding: false };
-    const savedState = saved ? safeJsonParse(saved, defaultSavedState) as typeof defaultSavedState : defaultSavedState;
+    const savedState = saved ? safeJsonParse(saved, defaultSavedState) : defaultSavedState;
     
     return {
       isFirstTimeUser: isFirstTime,

@@ -185,8 +185,7 @@ export const auditMiddleware = (
     severity?: 'low' | 'medium' | 'high' | 'critical';
     condition?: (req: Request) => boolean;
   } = {},
-): ((req: LoggedRequest, res: Response, next: NextFunction) => void) => {
-  return (req: LoggedRequest, res: Response, next: NextFunction): void => {
+): ((req: LoggedRequest, res: Response, next: NextFunction) => void) => (req: LoggedRequest, res: Response, next: NextFunction): void => {
     // Check condition if provided
     if (options.condition !== null && options.condition !== undefined && !options.condition(req)) {
       next();
@@ -211,7 +210,6 @@ export const auditMiddleware = (
 
     next();
   };
-};
 
 // Performance logging middleware
 export const performanceLoggingMiddleware = (

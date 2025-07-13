@@ -427,7 +427,7 @@ const autoSave = createAutoSave(
 useLessonPlanStore.subscribe(
   (state) => state.hasOfflineChanges,
   (hasChanges) => {
-    if (hasChanges === true) {
+    if (hasChanges) {
       autoSave();
     }
   },

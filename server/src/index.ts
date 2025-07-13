@@ -33,27 +33,27 @@ import cacheRoutes from './routes/cache';
 import calendarEventRoutes from './routes/calendar-events';
 import curriculumExpectationRoutes from './routes/curriculum-expectations';
 import curriculumImportRoutes from './routes/curriculumImport';
+import dashboardMetricsRoutes from './routes/dashboard-metrics';
+import { router as daybookEntryRoutes } from './routes/daybook-entries';
 import { router as etfoLessonPlanRoutes } from './routes/etfo-lesson-plans';
+import etfoProgressRoutes from './routes/etfo-progress';
 import longRangePlanRoutes from './routes/long-range-plans';
+import metricsRoutes from './routes/metrics';
+import monitoringRoutes from './routes/monitoring';
 import newsletterRoutes from './routes/newsletters';
+import notificationRoutes from './routes/notifications';
+import plannerStateRoutes from './routes/planner-state';
+import recentPlansRoutes from './routes/recent-plans';
 import { router as substitutePlanRoutes } from './routes/substitute-plans';
 import { router as templateRoutes } from './routes/templates';
 import { router as unitPlanRoutes } from './routes/unit-plans';
-import { router as daybookEntryRoutes } from './routes/daybook-entries';
-import etfoProgressRoutes from './routes/etfo-progress';
-import plannerStateRoutes from './routes/planner-state';
-import recentPlansRoutes from './routes/recent-plans';
-import metricsRoutes from './routes/metrics';
-import dashboardMetricsRoutes from './routes/dashboard-metrics';
 import { userRoutes } from './routes/user';
-import notificationRoutes from './routes/notifications';
 import { errorReportingService } from './services/monitoring/errorReportingService';
 import {
   structuredLogger,
   correlationMiddleware,
   errorLoggingMiddleware as structuredErrorLoggingMiddleware,
 } from './utils/structuredLogger';
-import monitoringRoutes from './routes/monitoring';
 
 // Load environment variables
 config();

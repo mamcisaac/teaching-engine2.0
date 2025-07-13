@@ -82,12 +82,12 @@ export function validateUnitPlan(data: UnitPlanFormData): ValidationResult {
 
   // Array validation - ensure at least one meaningful entry
   const hasEssentialQuestions = data.essentialQuestions.some((q) => q.trim().length > 0);
-  if (hasEssentialQuestions === false) {
+  if (!hasEssentialQuestions) {
     errors.essentialQuestions = 'At least one essential question is required';
   }
 
   const hasSuccessCriteria = data.successCriteria.some((c) => c.trim().length > 0);
-  if (hasSuccessCriteria === false) {
+  if (!hasSuccessCriteria) {
     errors.successCriteria = 'At least one success criteria is required';
   }
 
@@ -168,7 +168,7 @@ export function validateLessonPlan(data: LessonPlanFormData): ValidationResult {
 
   // Materials validation - at least one meaningful material
   const hasMaterials = data.materials.some((m) => m.trim().length > 0);
-  if (hasMaterials === false) {
+  if (!hasMaterials) {
     errors.materials = 'At least one material or resource is required';
   }
 
@@ -255,7 +255,7 @@ return 'Cannot exceed 480 minutes (8 hours)';
     }
 
     case 'expectationIds': {
-      if (Array.isArray(value) === false || value.length === 0) {
+      if (!Array.isArray(value) || value.length === 0) {
         return `At least one curriculum expectation must be selected for this ${context}`;
       }
       if (value.length > 20) {
@@ -306,7 +306,7 @@ export function validateFile(
 ): ValidationResult {
   const errors: Record<string, string> = {};
 
-  if (allowedTypes.includes(file.type) === false) {
+  if (!allowedTypes.includes(file.type)) {
     errors.fileType = `File type not allowed. Allowed types: ${allowedTypes.join(', ')}`;
   }
 

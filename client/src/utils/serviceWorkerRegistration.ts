@@ -148,9 +148,7 @@ function checkValidServiceWorker(swUrl: string, config?: ServiceWorkerConfig) {
 export function unregister() {
   if ('serviceWorker' in navigator) {
     void navigator.serviceWorker.ready
-      .then((registration) => {
-        return registration.unregister();
-      })
+      .then((registration) => registration.unregister())
       .catch((error) => {
         logger.error((error instanceof Error ? error.message : String(error)));
       });

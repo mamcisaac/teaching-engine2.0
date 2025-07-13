@@ -140,7 +140,7 @@ router.post(
 
       if (subject === null || subject === undefined || subject === '' || 
           grade === null || grade === undefined || 
-          termLength === null || termLength === undefined) {
+          termLength === undefined) {
         res.status(400).json({
           error: 'Missing required fields: subject, grade, termLength',
         });
@@ -182,7 +182,7 @@ router.post('/unit/big-ideas', aiRateLimit, async (req: Request, res: Response):
     if (unitTitle === null || unitTitle === undefined || unitTitle === '' ||
         subject === null || subject === undefined || subject === '' ||
         grade === null || grade === undefined ||
-        curriculumExpectations === null || curriculumExpectations === undefined || curriculumExpectations.length === 0 ||
+        curriculumExpectations === undefined || curriculumExpectations.length === 0 ||
         duration === null || duration === undefined) {
       res.status(400).json({
         error:
@@ -231,7 +231,7 @@ router.post(
           learningGoals === null || learningGoals === undefined || learningGoals.length === 0 ||
           subject === null || subject === undefined || subject === '' ||
           grade === null || grade === undefined ||
-          duration === null || duration === undefined) {
+          duration === undefined) {
         res.status(400).json({
           error: 'Missing required fields: lessonTitle, learningGoals, subject, grade, duration',
         });

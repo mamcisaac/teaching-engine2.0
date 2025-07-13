@@ -209,10 +209,9 @@ class LazyLoader {
       return safeJsonParse(chunks.join(''), {});
     } else if (doc.metadata.type === 'text') {
       return chunks.join('');
-    } else {
+    } 
       // Binary data
       return new Blob(chunks as BlobPart[]);
-    }
     
   }
 
@@ -362,7 +361,7 @@ export function LazyDocument<T = unknown>({
   }, [documentId]);
 
   React.useEffect(() => {
-    if (error !== null && error !== undefined && onError !== null && onError !== undefined) {
+    if (error !== null && error !== undefined && onError !== undefined) {
       onError(error);
     }
   }, [error, onError]);

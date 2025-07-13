@@ -143,7 +143,7 @@ export const useUIStore = create<UIState>()(
       
       openModal: (modalId: string): void => {
         set((state) => {
-          if (state.activeModals.includes(modalId) === false) {
+          if (!state.activeModals.includes(modalId)) {
             state.activeModals.push(modalId);
           }
         });

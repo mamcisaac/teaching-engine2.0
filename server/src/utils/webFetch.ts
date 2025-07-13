@@ -133,7 +133,7 @@ export class WebFetch {
     metaTags.forEach(tag => {
       const name = tag.getAttribute('name') ?? tag.getAttribute('property');
       const content = tag.getAttribute('content');
-      if (name !== null && name !== undefined && content !== null && content !== undefined) {
+      if (name !== null && name !== undefined && content !== undefined) {
         meta[name] = content;
       }
     });

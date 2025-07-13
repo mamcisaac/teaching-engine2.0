@@ -221,12 +221,12 @@ return;
           </div>
 
           <div className="flex items-center gap-1">
-            {template.isSystem === true && (
+            {template.isSystem && (
               <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
                 System
               </span>
             )}
-            {template.isPublic === true && (
+            {template.isPublic && (
               <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">
                 Public
               </span>
@@ -310,7 +310,7 @@ return;
             <Copy className="h-4 w-4" />
           </Button>
 
-          {template.createdByUserId !== null && template.createdByUserId !== undefined && template.createdByUserId !== '' && template.isSystem !== true && (
+          {template.createdByUserId !== null && template.createdByUserId !== undefined && template.createdByUserId !== '' && !template.isSystem && (
             <Button
               size="sm"
               variant="ghost"
@@ -327,7 +327,7 @@ return;
     </Card>
   );
 
-  if (isLoading === true) {
+  if (isLoading) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <LoadingSpinner message="Loading templates..." size="lg" />
@@ -387,12 +387,12 @@ return;
             className="flex items-center gap-2"
             variant="outline"
             onClick={() => {
- setShowFilters(showFilters === false); 
+ setShowFilters(!showFilters); 
 }}
           >
             <Filter className="h-4 w-4" />
             Filters
-            {showFilters === true ? (
+            {showFilters ? (
               <ChevronDown className="h-4 w-4" />
             ) : (
               <ChevronRight className="h-4 w-4" />
@@ -400,7 +400,7 @@ return;
           </Button>
         </div>
 
-        {showFilters === true && (
+        {showFilters && (
           <Card>
             <CardContent className="pt-6">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -707,7 +707,7 @@ return;
                 disabled={createTemplate.isPending}
                 type="submit"
               >
-                {createTemplate.isPending === true ? 'Creating...' : 'Create Template'}
+                {createTemplate.isPending ? 'Creating...' : 'Create Template'}
               </Button>
             </div>
           </form>

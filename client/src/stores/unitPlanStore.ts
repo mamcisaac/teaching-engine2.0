@@ -100,7 +100,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
 
             try {
               // Try to load from server if online
-              if (get().isOnline === true) {
+              if (get().isOnline) {
                 const response = await apiClient.get('/api/unit-plans');
                 const plans = response.data as UnitPlan[];
 
@@ -146,7 +146,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
             });
 
             try {
-              if (get().isOnline === true) {
+              if (get().isOnline) {
                 const response = await apiClient.get(`/api/unit-plans/${id}`);
                 const plan = response.data as UnitPlan;
 
@@ -203,7 +203,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
                 updatedAt: new Date().toISOString(),
               } as UnitPlan;
 
-              if (get().isOnline === true) {
+              if (get().isOnline) {
                 const response = await apiClient.post('/api/unit-plans', planData);
                 const createdPlan = response.data as UnitPlan;
 
@@ -254,7 +254,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
                 updatedAt: new Date().toISOString(),
               };
 
-              if (get().isOnline === true) {
+              if (get().isOnline) {
                 await apiClient.put(`/api/unit-plans/${id}`, updatedPlan);
 
                 set((state) => {
@@ -306,7 +306,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
             });
 
             try {
-              if (get().isOnline === true) {
+              if (get().isOnline) {
                 await apiClient.delete(`/api/unit-plans/${id}`);
 
                 set((state) => {
@@ -376,7 +376,7 @@ const autoSave = createAutoSave(
   useUnitPlanStore,
   async () => {
     const state = useUnitPlanStore.getState();
-    if (state.hasOfflineChanges === true && state.isOnline === true) {
+    if (state.hasOfflineChanges && state.isOnline) {
       // Sync with server
       await state.loadUnitPlans();
     }
@@ -388,7 +388,7 @@ const autoSave = createAutoSave(
 useUnitPlanStore.subscribe(
   (state) => state.hasOfflineChanges,
   (hasChanges) => {
-    if (hasChanges === true) {
+    if (hasChanges) {
       autoSave();
     }
   },

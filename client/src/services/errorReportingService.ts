@@ -417,7 +417,7 @@ export class ErrorReportingService {
 
   private sanitizeEvent(event: Sentry.ErrorEvent): Sentry.ErrorEvent {
     // Deep clone to avoid modifying original
-    const sanitized = safeJsonParse(JSON.stringify(event), event) as Sentry.ErrorEvent;
+    const sanitized = safeJsonParse(JSON.stringify(event), event);
 
     // Sanitize message
     if (sanitized.message !== null && sanitized.message !== undefined && sanitized.message !== '') {
@@ -446,7 +446,7 @@ export class ErrorReportingService {
     }
 
     // Sanitize user data
-    if (sanitized.user?.email !== null && sanitized.user?.email !== undefined && sanitized.user?.email !== '') {
+    if (sanitized.user?.email !== null && sanitized.user?.email !== undefined && sanitized.user.email !== '') {
       sanitized.user.email = this.maskEmail(sanitized.user.email);
     }
 

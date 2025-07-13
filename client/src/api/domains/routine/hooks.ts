@@ -415,8 +415,7 @@ export const useImportRoutines = (): UseMutationResult<{ imported: number; faile
   });
 };
 
-export const useExportRoutines = (): UseMutationResult<Blob, Error, { filters?: RoutineFilters; format?: 'csv' | 'pdf' | 'json' }> => {
-  return useMutation({
+export const useExportRoutines = (): UseMutationResult<Blob, Error, { filters?: RoutineFilters; format?: 'csv' | 'pdf' | 'json' }> => useMutation({
     mutationFn: ({ filters, format }: { 
       filters?: RoutineFilters; 
       format?: 'csv' | 'pdf' | 'json';
@@ -436,4 +435,3 @@ export const useExportRoutines = (): UseMutationResult<Blob, Error, { filters?: 
     },
     onError: (error) => handleApiError(error, 'Failed to export routines'),
   });
-};

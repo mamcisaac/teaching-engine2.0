@@ -422,7 +422,7 @@ export class AIService extends BaseService {
         return this.createFallbackEnhancedLesson(input.lesson, input.enhancementType);
       }
 
-      const parsed = safeJsonParse<unknown>(content);
+      const parsed = safeJsonParse(content);
       return parsed !== undefined ? parsed : this.createFallbackEnhancedLesson(input.lesson, input.enhancementType);
     } catch (error: unknown) {
       logger.error('Error enhancing lesson:', error);

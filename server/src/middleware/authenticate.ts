@@ -163,10 +163,9 @@ export async function verifyToken(token: string): Promise<TokenPayload | { error
     } else if (_error instanceof JsonWebTokenError) {
       logger.debug({ error: _error instanceof Error ? _error.message : String(_error) }, 'Invalid token');
       return { error: 'invalid' };
-    } else {
+    } 
       logger.error({ error: _error }, 'Token verification error');
       return { error: 'invalid' }; // Return invalid for any other error
-    }
     
   }
 }

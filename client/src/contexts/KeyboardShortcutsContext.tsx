@@ -90,7 +90,7 @@ export const KeyboardShortcutsProvider: React.FC<{ children: React.ReactNode }> 
     const savedPrefs = localStorage.getItem('keyboard-shortcuts-preferences');
     if (savedPrefs) {
       try {
-        const parsed = safeJsonParse(savedPrefs, defaultPreferences) as KeyboardShortcutPreferences;
+        const parsed = safeJsonParse(savedPrefs, defaultPreferences);
         setPreferences({ ...defaultPreferences, ...parsed });
         setIsEnabled(parsed.enabled ?? true);
       } catch (e) {

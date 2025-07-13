@@ -391,7 +391,7 @@ return '';
 
     // Pre-process to remove standalone event handlers that DOMPurify might miss
     // This handles cases like plain text "onclick=alert('XSS')"
-    if (isXssAttempt === true) {
+    if (isXssAttempt) {
       // Remove standalone event handlers and their values
       // Handle both quoted and unquoted values, including nested quotes
       normalized = normalized.replace(/\bon\w+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]*)/gi, '');

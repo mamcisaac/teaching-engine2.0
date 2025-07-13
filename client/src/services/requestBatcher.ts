@@ -157,7 +157,7 @@ class RequestBatcher {
       const { responses } = response.data as { responses: BatchResponse[] };
 
       // Map responses back to promises
-      const responseMap = new Map<string, BatchResponse>((responses as BatchResponse[]).map((r): [string, BatchResponse] => [r.id, r]));
+      const responseMap = new Map<string, BatchResponse>((responses).map((r): [string, BatchResponse] => [r.id, r]));
 
       for (const pending of requests) {
         const batchResponse = responseMap.get(pending.request.id);

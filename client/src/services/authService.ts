@@ -286,7 +286,7 @@ class AuthService {
 
       if (response.status === 401) {
         // Try to refresh token if available, but only if not already retrying
-        if (isRetry === false && this.hasRefreshToken() && (await this.refreshToken())) {
+        if (!isRetry && this.hasRefreshToken() && (await this.refreshToken())) {
           // Retry with new token
           return this.verifyAuth(true);
         }
@@ -306,7 +306,7 @@ class AuthService {
       logger.error('Auth verification failed:', error);
 
       // Try token refresh on network errors, but only if not already retrying
-      if (isRetry === false && this.hasRefreshToken()) {
+      if (!isRetry && this.hasRefreshToken()) {
         const refreshSuccess = await this.refreshToken();
         if (refreshSuccess) {
           // Retry once after successful refresh
@@ -355,7 +355,7 @@ class AuthService {
       this.clearTokens();
 
       // Only redirect if not already on login page
-      if (window.location.pathname.includes('/login') === false) {
+      if (!window.location.pathname.includes('/login')) {
         window.location.href = '/login';
       }
 
@@ -369,7 +369,7 @@ class AuthService {
    * Auto-refresh token if it's expiring soon
    */
   async ensureValidToken(): Promise<boolean> {
-    if (this.isAuthenticated() === false) {
+    if (!this.isAuthenticated()) {
       return false;
     }
 

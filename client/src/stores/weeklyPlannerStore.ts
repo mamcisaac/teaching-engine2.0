@@ -424,7 +424,7 @@ return;
 
         saveToServer: async (): Promise<void> => {
           const state = get();
-          if (state.isSaving === true) {
+          if (state.isSaving) {
 return;
 } // Prevent concurrent saves
 
@@ -466,7 +466,7 @@ return;
         syncWithServer: async (): Promise<void> => {
           const { loadFromServer, saveToServer, hasOfflineChanges } = get();
 
-          if (hasOfflineChanges === true) {
+          if (hasOfflineChanges) {
             await saveToServer();
           } else {
             await loadFromServer();

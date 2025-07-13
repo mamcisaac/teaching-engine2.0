@@ -37,7 +37,7 @@ export function useModal<T = unknown>(options: UseModalOptions<T> = {}): {
   }, [onClose]);
 
   const toggle = useCallback(() => {
-    if (isOpen === true) {
+    if (isOpen) {
       close();
     } else {
       open();
@@ -105,7 +105,7 @@ export function useModals(initialModals: string[] = []): UseModalsReturn {
       const modal = prev[name] ?? { isOpen: false };
       return {
         ...prev,
-        [name]: modal.isOpen === true ? { ...modal, isOpen: false } : { isOpen: true, data },
+        [name]: modal.isOpen ? { ...modal, isOpen: false } : { isOpen: true, data },
       };
     });
   }, []);
@@ -132,12 +132,12 @@ export function useModals(initialModals: string[] = []): UseModalsReturn {
   }, []);
 
   const isModalOpen = useCallback(
-    (name: string) => modals[name]?.isOpen ?? false,
+    (name: string) => modals[name].isOpen ?? false,
     [modals],
   );
 
   const getModalData = useCallback(
-    <T = unknown>(name: string): T | undefined => modals[name]?.data as T,
+    <T = unknown>(name: string): T | undefined => modals[name].data as T,
     [modals],
   );
 

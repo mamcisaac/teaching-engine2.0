@@ -108,7 +108,7 @@ export class LessonPlanService {
 
   // Generate substitute teacher summary
   static generateSubSummary(lesson: ETFOLessonPlan): string {
-    if (lesson.isSubFriendly === false) {
+    if (!lesson.isSubFriendly) {
 return '';
 }
 

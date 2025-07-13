@@ -84,14 +84,14 @@ export const validate = <T>(
       }
 
       // Replace original data with validated data if stripUnknown is true
-      if (stripUnknown === true) {
-        if (sources.includes('body') === true) {
+      if (stripUnknown) {
+        if (sources.includes('body')) {
           req.body = validated;
         }
-        if (sources.includes('query') === true) {
+        if (sources.includes('query')) {
           req.query = validated as any;
         }
-        if (sources.includes('params') === true) {
+        if (sources.includes('params')) {
           req.params = validated as any;
         }
       }
@@ -155,7 +155,7 @@ export const validateIf = <T>(
   schema: ZodSchema<T>,
   options?: ValidationOptions,
 ) => (req: ValidatedRequest<T>, res: Response, next: NextFunction) => {
-    if (condition(req) === true) {
+    if (condition(req)) {
       validate(schema, options)(req, res, next); return;
     }
     next();
@@ -219,7 +219,7 @@ export const commonValidators = {
       to: z.string().datetime().optional(),
     })
     .refine(
-      (data) => (data.from === null || data.from === undefined) || (data.to === null || data.to === undefined) || new Date(data.from) <= new Date(data.to),
+      (data) => (data.from === null || data.from === undefined) || (data.to === undefined) || new Date(data.from) <= new Date(data.to),
       'From date must be before or equal to to date',
     ),
 
@@ -247,7 +247,7 @@ export const sanitizeRequest = (
         .trim();
 
     // Sanitize specified fields
-    if (fieldsToSanitize.body !== null && fieldsToSanitize.body !== undefined && req.body !== null && req.body !== undefined) {
+    if (fieldsToSanitize.body !== null && fieldsToSanitize.body !== undefined && req.body !== undefined) {
       fieldsToSanitize.body.forEach((field) => {
         if (req.body[field] !== null && req.body[field] !== undefined && typeof req.body[field] === 'string') {
           req.body[field] = sanitizeHtml(req.body[field]);
@@ -255,7 +255,7 @@ export const sanitizeRequest = (
       });
     }
 
-    if (fieldsToSanitize.query !== null && fieldsToSanitize.query !== undefined && req.query !== null && req.query !== undefined) {
+    if (fieldsToSanitize.query !== null && fieldsToSanitize.query !== undefined && req.query !== undefined) {
       fieldsToSanitize.query.forEach((field) => {
         if (req.query[field] !== null && req.query[field] !== undefined && typeof req.query[field] === 'string') {
           req.query[field] = sanitizeHtml(req.query[field]);
@@ -263,7 +263,7 @@ export const sanitizeRequest = (
       });
     }
 
-    if (fieldsToSanitize.params !== null && fieldsToSanitize.params !== undefined && req.params !== null && req.params !== undefined) {
+    if (fieldsToSanitize.params !== null && fieldsToSanitize.params !== undefined && req.params !== undefined) {
       fieldsToSanitize.params.forEach((field) => {
         if (req.params[field] !== null && req.params[field] !== undefined && typeof req.params[field] === 'string') {
           req.params[field] = sanitizeHtml(req.params[field]);

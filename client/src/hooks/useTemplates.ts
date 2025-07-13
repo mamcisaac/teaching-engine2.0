@@ -1,4 +1,5 @@
-import { useQuery, useMutation, useQueryClient, UseQueryResult, UseMutationResult } from '@tanstack/react-query';
+import type { UseQueryResult, UseMutationResult } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import React from 'react';
 
 import { apiClient } from '../api/core/client';
@@ -94,7 +95,7 @@ export const templateKeys = {
 };
 
 // Hook to search templates
-export function useTemplates(options: TemplateSearchOptions = {}): UseQueryResult<TemplateSearchResult, Error> {
+export function useTemplates(options: TemplateSearchOptions = {}): UseQueryResult<TemplateSearchResult> {
   return useQuery({
     queryKey: templateKeys.list(options),
     queryFn: () => templatesApi.searchTemplates(options),
@@ -103,7 +104,7 @@ export function useTemplates(options: TemplateSearchOptions = {}): UseQueryResul
 }
 
 // Hook to get a single template
-export function useTemplate(id: string): UseQueryResult<PlanTemplate, Error> {
+export function useTemplate(id: string): UseQueryResult<PlanTemplate> {
   return useQuery({
     queryKey: templateKeys.detail(id),
     queryFn: () => templatesApi.getTemplate(id),
@@ -113,7 +114,7 @@ export function useTemplate(id: string): UseQueryResult<PlanTemplate, Error> {
 }
 
 // Hook to get filter options
-export function useTemplateFilterOptions(): UseQueryResult<TemplateFilterOptions, Error> {
+export function useTemplateFilterOptions(): UseQueryResult<TemplateFilterOptions> {
   return useQuery({
     queryKey: templateKeys.filterOptions(),
     queryFn: templatesApi.getFilterOptions,
@@ -213,7 +214,7 @@ export function useRateTemplate(): UseMutationResult<PlanTemplate, Error, { temp
 }
 
 // Custom hook for template search with debounced input
-export function useTemplateSearch(searchTerm: string, otherOptions: Omit<TemplateSearchOptions, 'search'> = {}, debounceMs = 300): UseQueryResult<TemplateSearchResult, Error> {
+export function useTemplateSearch(searchTerm: string, otherOptions: Omit<TemplateSearchOptions, 'search'> = {}, debounceMs = 300): UseQueryResult<TemplateSearchResult> {
   const [debouncedSearchTerm, setDebouncedSearchTerm] = React.useState(searchTerm);
 
   React.useEffect(() => {
@@ -236,7 +237,7 @@ export function useTemplateSearch(searchTerm: string, otherOptions: Omit<Templat
 }
 
 // Custom hook for paginated template loading
-export function useTemplatesPaginated(options: TemplateSearchOptions = {}): UseQueryResult<TemplateSearchResult, Error> & {
+export function useTemplatesPaginated(options: TemplateSearchOptions = {}): UseQueryResult<TemplateSearchResult> & {
   currentPage: number;
   totalPages: number;
   nextPage: () => void;
@@ -287,7 +288,7 @@ export function useTemplatesPaginated(options: TemplateSearchOptions = {}): UseQ
 }
 
 // Custom hook for my templates (created by current user)
-export function useMyTemplates(options: Omit<TemplateSearchOptions, 'createdByUserId'> = {}): UseQueryResult<TemplateSearchResult, Error> {
+export function useMyTemplates(options: Omit<TemplateSearchOptions, 'createdByUserId'> = {}): UseQueryResult<TemplateSearchResult> {
   // Note: The backend will automatically filter to show user's own templates
   // when createdByUserId is not specified but user is authenticated
   return useTemplates({
@@ -297,7 +298,7 @@ export function useMyTemplates(options: Omit<TemplateSearchOptions, 'createdByUs
 }
 
 // Custom hook for system templates
-export function useSystemTemplates(options: Omit<TemplateSearchOptions, 'isSystem'> = {}): UseQueryResult<TemplateSearchResult, Error> {
+export function useSystemTemplates(options: Omit<TemplateSearchOptions, 'isSystem'> = {}): UseQueryResult<TemplateSearchResult> {
   return useTemplates({
     ...options,
     isSystem: true,
@@ -305,7 +306,7 @@ export function useSystemTemplates(options: Omit<TemplateSearchOptions, 'isSyste
 }
 
 // Custom hook for public templates
-export function usePublicTemplates(options: Omit<TemplateSearchOptions, 'isPublic'> = {}): UseQueryResult<TemplateSearchResult, Error> {
+export function usePublicTemplates(options: Omit<TemplateSearchOptions, 'isPublic'> = {}): UseQueryResult<TemplateSearchResult> {
   return useTemplates({
     ...options,
     isPublic: true,

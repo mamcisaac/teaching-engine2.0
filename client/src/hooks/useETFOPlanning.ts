@@ -190,16 +190,16 @@ export function useCurriculumExpectations(filters?: {
     queryKey: ['curriculum-expectations', filters],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (filters?.subject !== null && filters?.subject !== undefined && filters?.subject !== '') {
+      if (filters?.subject !== null && filters?.subject !== undefined && filters.subject !== '') {
         params.append('subject', filters.subject);
       }
       if (filters?.grade !== null && filters?.grade !== undefined) {
         params.append('grade', filters.grade.toString());
       }
-      if (filters?.strand !== null && filters?.strand !== undefined && filters?.strand !== '') {
+      if (filters?.strand !== null && filters?.strand !== undefined && filters.strand !== '') {
         params.append('strand', filters.strand);
       }
-      if (filters?.search !== null && filters?.search !== undefined && filters?.search !== '') {
+      if (filters?.search !== null && filters?.search !== undefined && filters.search !== '') {
         params.append('search', filters.search);
       }
 
@@ -266,10 +266,10 @@ export function useLongRangePlans(filters?: {
     queryKey: ['long-range-plans', filters],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (filters?.academicYear !== null && filters?.academicYear !== undefined && filters?.academicYear !== '') {
+      if (filters?.academicYear !== null && filters?.academicYear !== undefined && filters.academicYear !== '') {
         params.append('academicYear', filters.academicYear);
       }
-      if (filters?.subject !== null && filters?.subject !== undefined && filters?.subject !== '') {
+      if (filters?.subject !== null && filters?.subject !== undefined && filters.subject !== '') {
         params.append('subject', filters.subject);
       }
       if (filters?.grade !== null && filters?.grade !== undefined) {
@@ -350,13 +350,13 @@ export function useUnitPlans(filters?: {
     queryKey: ['unit-plans', filters],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (filters?.longRangePlanId !== null && filters?.longRangePlanId !== undefined && filters?.longRangePlanId !== '') {
+      if (filters?.longRangePlanId !== null && filters?.longRangePlanId !== undefined && filters.longRangePlanId !== '') {
         params.append('longRangePlanId', filters.longRangePlanId);
       }
-      if (filters?.startDate !== null && filters?.startDate !== undefined && filters?.startDate !== '') {
+      if (filters?.startDate !== null && filters?.startDate !== undefined && filters.startDate !== '') {
         params.append('startDate', filters.startDate);
       }
-      if (filters?.endDate !== null && filters?.endDate !== undefined && filters?.endDate !== '') {
+      if (filters?.endDate !== null && filters?.endDate !== undefined && filters.endDate !== '') {
         params.append('endDate', filters.endDate);
       }
 
@@ -440,13 +440,13 @@ export function useETFOLessonPlans(filters?: {
     queryKey: ['etfo-lesson-plans', filters],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (filters?.unitPlanId !== null && filters?.unitPlanId !== undefined && filters?.unitPlanId !== '') {
+      if (filters?.unitPlanId !== null && filters?.unitPlanId !== undefined && filters.unitPlanId !== '') {
         params.append('unitPlanId', filters.unitPlanId);
       }
-      if (filters?.startDate !== null && filters?.startDate !== undefined && filters?.startDate !== '') {
+      if (filters?.startDate !== null && filters?.startDate !== undefined && filters.startDate !== '') {
         params.append('startDate', filters.startDate);
       }
-      if (filters?.endDate !== null && filters?.endDate !== undefined && filters?.endDate !== '') {
+      if (filters?.endDate !== null && filters?.endDate !== undefined && filters.endDate !== '') {
         params.append('endDate', filters.endDate);
       }
       if (filters?.isSubFriendly !== null && filters?.isSubFriendly !== undefined) {
@@ -531,10 +531,10 @@ export function useDaybookEntries(filters?: {
     queryKey: ['daybook-entries', filters],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (filters?.startDate !== null && filters?.startDate !== undefined && filters?.startDate !== '') {
+      if (filters?.startDate !== null && filters?.startDate !== undefined && filters.startDate !== '') {
         params.append('startDate', filters.startDate);
       }
-      if (filters?.endDate !== null && filters?.endDate !== undefined && filters?.endDate !== '') {
+      if (filters?.endDate !== null && filters?.endDate !== undefined && filters.endDate !== '') {
         params.append('endDate', filters.endDate);
       }
       if (filters?.hasLessonPlan !== null && filters?.hasLessonPlan !== undefined) {

@@ -74,13 +74,13 @@ function validateAuthInputs(isRegister = false) {
 
     // Check basic email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (emailRegex.test(email) === false) {
+    if (!emailRegex.test(email)) {
       res.status(400).json({ error: 'Invalid email format' });
       return;
     }
 
     // For register, check if name is provided
-    if (isRegister === true && (req.body.name === null || req.body.name === undefined || req.body.name === '')) {
+    if (isRegister && (req.body.name === null || req.body.name === undefined || req.body.name === '')) {
       res.status(400).json({ error: 'Email, password, and name are required' });
       return;
     }
