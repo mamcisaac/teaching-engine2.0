@@ -20,9 +20,9 @@ interface LoggedRequest extends Request {
 
 // Sanitize sensitive data from logs
 const sanitizeData = (data: unknown): unknown => {
-  if (!data || typeof data !== 'object') {
-return data;
-}
+  if (data === null || data === undefined || typeof data !== 'object') {
+    return data;
+  }
 
   const sensitive = ['password', 'token', 'secret', 'authorization', 'cookie'];
   const sanitized = { ...data } as Record<string, unknown>;
@@ -46,7 +46,7 @@ export const requestLoggingMiddleware = (
   next: NextFunction,
 ): void => {
   // Generate request ID
-  req.id = req.id || uuidv4();
+  req.id = req.id ?? uuidv4();
   req.startTime = Date.now();
 
   // Add to response locals for other middleware
@@ -60,7 +60,7 @@ export const requestLoggingMiddleware = (
     'http.request_id': req.id,
     'http.method': req.method,
     'http.path': req.path,
-    'http.user_agent': req.get('user-agent') || 'unknown',
+    'http.user_agent': req.get('user-agent') ?? 'unknown',
   });
 
   // Log request
@@ -89,8 +89,8 @@ export const requestLoggingMiddleware = (
   };
 
   // Log response on finish
-  res.on('finish', () => {
-    const duration = Date.now() - (req.startTime || 0);
+  res.on('finish', (): void => {
+    const duration = Date.now() - (req.startTime ?? 0);
     const responseLog: Record<string, unknown> = {
       requestId: req.id,
       method: req.method,
@@ -102,7 +102,7 @@ export const requestLoggingMiddleware = (
 
     // Add response size if available
     const contentLength = res.get('content-length');
-    if (contentLength) {
+    if (contentLength !== null && contentLength !== undefined && contentLength !== '') {
       responseLog.responseSize = parseInt(contentLength, 10);
     }
 
@@ -149,14 +149,14 @@ export const auditLog = (req: LoggedRequest, event: AuditEvent): void => {
     timestamp: new Date().toISOString(),
     requestId: req.id,
     eventType: event.eventType,
-    userId: event.userId || req.user?.id,
-    userEmail: event.userEmail || req.user?.email,
+    userId: event.userId ?? req.user?.id,
+    userEmail: event.userEmail ?? req.user?.email,
     targetResource: event.targetResource,
     targetId: event.targetId,
     metadata: sanitizeData(event.metadata),
-    severity: event.severity || 'low',
-    ip: event.ip || req.ip,
-    userAgent: event.userAgent || req.get('user-agent'),
+    severity: event.severity ?? 'low',
+    ip: event.ip ?? req.ip,
+    userAgent: event.userAgent ?? req.get('user-agent'),
     method: req.method,
     path: req.path,
   };
@@ -185,14 +185,16 @@ export const auditMiddleware = (
     severity?: 'low' | 'medium' | 'high' | 'critical';
     condition?: (req: Request) => boolean;
   } = {},
-) => (req: LoggedRequest, res: Response, next: NextFunction): void => {
+): ((req: LoggedRequest, res: Response, next: NextFunction) => void) => {
+  return (req: LoggedRequest, res: Response, next: NextFunction): void => {
     // Check condition if provided
-    if (options.condition && !options.condition(req)) {
-      next(); return;
+    if (options.condition !== null && options.condition !== undefined && !options.condition(req)) {
+      next();
+      return;
     }
 
     // Log on response finish
-    res.on('finish', () => {
+    res.on('finish', (): void => {
       if (res.statusCode < 400) {
         auditLog(req, {
           eventType,
@@ -209,6 +211,7 @@ export const auditMiddleware = (
 
     next();
   };
+};
 
 // Performance logging middleware
 export const performanceLoggingMiddleware = (
@@ -219,25 +222,25 @@ export const performanceLoggingMiddleware = (
   const segments: { name: string; start: number; end?: number }[] = [];
 
   // Add performance tracking methods
-  res.locals.perfMark = (name: string) => {
+  res.locals.perfMark = (name: string): void => {
     segments.push({ name, start: Date.now() });
   };
 
-  res.locals.perfMeasure = (name: string) => {
-    const segment = segments.find((s) => s.name === name && !s.end);
-    if (segment) {
+  res.locals.perfMeasure = (name: string): void => {
+    const segment = segments.find((s) => s.name === name && s.end === undefined);
+    if (segment !== null && segment !== undefined) {
       segment.end = Date.now();
     }
   };
 
   // Log performance on finish
-  res.on('finish', () => {
-    const totalDuration = Date.now() - (req.startTime || 0);
+  res.on('finish', (): void => {
+    const totalDuration = Date.now() - (req.startTime ?? 0);
     const measurements = segments
-      .filter((s) => s.end !== undefined)
+      .filter((s): s is { name: string; start: number; end: number } => s.end !== undefined)
       .map((s) => ({
         name: s.name,
-        duration: (s.end ?? 0) - s.start,
+        duration: s.end - s.start,
       }));
 
     if (measurements.length > 0 || totalDuration > 1000) {
@@ -264,7 +267,8 @@ export const developmentLoggingMiddleware = (
   next: NextFunction,
 ): void => {
   if (process.env.NODE_ENV !== 'development') {
-    next(); return;
+    next();
+    return;
   }
 
   // Log all headers in development

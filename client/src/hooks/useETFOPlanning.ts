@@ -1,3 +1,4 @@
+import type { UseQueryResult, UseMutationResult } from '@tanstack/react-query';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
@@ -191,17 +192,17 @@ export function useCurriculumExpectations(filters?: {
     queryFn: async () => {
       const params = new URLSearchParams();
       if (filters?.subject) {
-params.append('subject', filters.subject);
-}
+        params.append('subject', filters.subject);
+      }
       if (filters?.grade !== undefined) {
-params.append('grade', filters.grade.toString());
-}
+        params.append('grade', filters.grade.toString());
+      }
       if (filters?.strand) {
-params.append('strand', filters.strand);
-}
+        params.append('strand', filters.strand);
+      }
       if (filters?.search) {
-params.append('search', filters.search);
-}
+        params.append('search', filters.search);
+      }
 
       const response = await apiClient.get(`/api/curriculum-expectations?${params}`);
       return response.data as CurriculumExpectation[];
@@ -216,7 +217,7 @@ export function useCurriculumExpectation(id: string): ReturnType<typeof useQuery
       const response = await apiClient.get(`/api/curriculum-expectations/${id}`);
       return response.data as CurriculumExpectation;
     },
-    enabled: !!id,
+    enabled: id !== '',
   });
 }
 
@@ -267,14 +268,14 @@ export function useLongRangePlans(filters?: {
     queryFn: async () => {
       const params = new URLSearchParams();
       if (filters?.academicYear) {
-params.append('academicYear', filters.academicYear);
-}
+        params.append('academicYear', filters.academicYear);
+      }
       if (filters?.subject) {
-params.append('subject', filters.subject);
-}
+        params.append('subject', filters.subject);
+      }
       if (filters?.grade !== undefined) {
-params.append('grade', filters.grade.toString());
-}
+        params.append('grade', filters.grade.toString());
+      }
 
       const response = await apiClient.get(`/api/long-range-plans?${params}`);
       return response.data as LongRangePlan[];
@@ -289,7 +290,7 @@ export function useLongRangePlan(id: string): ReturnType<typeof useQuery<LongRan
       const response = await apiClient.get(`/api/long-range-plans/${id}`);
       return response.data as LongRangePlan;
     },
-    enabled: !!id,
+    enabled: id !== '',
   });
 }
 
@@ -351,14 +352,14 @@ export function useUnitPlans(filters?: {
     queryFn: async () => {
       const params = new URLSearchParams();
       if (filters?.longRangePlanId) {
-params.append('longRangePlanId', filters.longRangePlanId);
-}
+        params.append('longRangePlanId', filters.longRangePlanId);
+      }
       if (filters?.startDate) {
-params.append('startDate', filters.startDate);
-}
+        params.append('startDate', filters.startDate);
+      }
       if (filters?.endDate) {
-params.append('endDate', filters.endDate);
-}
+        params.append('endDate', filters.endDate);
+      }
 
       const response = await apiClient.get(`/api/unit-plans?${params}`);
       return response.data as UnitPlan[];
@@ -373,7 +374,7 @@ export function useUnitPlan(id: string): ReturnType<typeof useQuery<UnitPlan, Er
       const response = await apiClient.get(`/api/unit-plans/${id}`);
       return response.data as UnitPlan;
     },
-    enabled: !!id,
+    enabled: id !== '',
   });
 }
 
@@ -441,17 +442,17 @@ export function useETFOLessonPlans(filters?: {
     queryFn: async () => {
       const params = new URLSearchParams();
       if (filters?.unitPlanId) {
-params.append('unitPlanId', filters.unitPlanId);
-}
+        params.append('unitPlanId', filters.unitPlanId);
+      }
       if (filters?.startDate) {
-params.append('startDate', filters.startDate);
-}
+        params.append('startDate', filters.startDate);
+      }
       if (filters?.endDate) {
-params.append('endDate', filters.endDate);
-}
+        params.append('endDate', filters.endDate);
+      }
       if (filters?.isSubFriendly !== undefined) {
-params.append('isSubFriendly', filters.isSubFriendly.toString());
-}
+        params.append('isSubFriendly', filters.isSubFriendly.toString());
+      }
 
       const response = await apiClient.get(`/api/etfo-lesson-plans?${params}`);
       return response.data as ETFOLessonPlan[];
@@ -466,7 +467,7 @@ export function useETFOLessonPlan(id: string): ReturnType<typeof useQuery<ETFOLe
       const response = await apiClient.get(`/api/etfo-lesson-plans/${id}`);
       return response.data as ETFOLessonPlan;
     },
-    enabled: !!id,
+    enabled: id !== '',
   });
 }
 
@@ -532,17 +533,17 @@ export function useDaybookEntries(filters?: {
     queryFn: async () => {
       const params = new URLSearchParams();
       if (filters?.startDate) {
-params.append('startDate', filters.startDate);
-}
+        params.append('startDate', filters.startDate);
+      }
       if (filters?.endDate) {
-params.append('endDate', filters.endDate);
-}
+        params.append('endDate', filters.endDate);
+      }
       if (filters?.hasLessonPlan !== undefined) {
-params.append('hasLessonPlan', filters.hasLessonPlan.toString());
-}
+        params.append('hasLessonPlan', filters.hasLessonPlan.toString());
+      }
       if (filters?.rating !== undefined) {
-params.append('rating', filters.rating.toString());
-}
+        params.append('rating', filters.rating.toString());
+      }
 
       const response = await apiClient.get(`/api/daybook-entries?${params}`);
       return response.data as DaybookEntry[];
@@ -557,7 +558,7 @@ export function useDaybookEntry(id: string): ReturnType<typeof useQuery<DaybookE
       const response = await apiClient.get(`/api/daybook-entries/${id}`);
       return response.data as DaybookEntry;
     },
-    enabled: !!id,
+    enabled: id !== '',
   });
 }
 

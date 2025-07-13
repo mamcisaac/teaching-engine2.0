@@ -20,7 +20,7 @@ export class WebFetch {
     const cacheKey = this.getCacheKey(url);
     const cached = this.cache.get(cacheKey);
     
-    if (cached && Date.now() - cached.timestamp < this.cacheTime) {
+    if (cached !== null && cached !== undefined && Date.now() - cached.timestamp < this.cacheTime) {
       return cached.html;
     }
     
@@ -40,7 +40,7 @@ export class WebFetch {
         validateStatus: (status) => status < 400
       });
       
-      const html = response.data as Record<string, unknown>;
+      const html = response.data as string;
       
       // Cache the result
       this.cache.set(cacheKey, {
@@ -108,9 +108,9 @@ export class WebFetch {
     const dom = new JSDOM(html);
     const {document} = dom.window;
     
-    if (selector) {
+    if (selector !== null && selector !== undefined) {
       const element = document.querySelector(selector);
-      return element?.textContent?.trim() || '';
+      return element?.textContent?.trim() ?? '';
     }
     
     // Remove script and style elements
@@ -119,7 +119,7 @@ export class WebFetch {
  el.remove(); 
 });
     
-    return document.body.textContent?.trim() || '';
+    return document.body.textContent?.trim() ?? '';
   }
   
   // Utility method to extract meta information
@@ -133,14 +133,14 @@ export class WebFetch {
     metaTags.forEach(tag => {
       const name = tag.getAttribute('name') ?? tag.getAttribute('property');
       const content = tag.getAttribute('content');
-      if (name && content) {
+      if (name !== null && name !== undefined && content !== null && content !== undefined) {
         meta[name] = content;
       }
     });
     
     // Extract title
     const title = document.querySelector('title');
-    if (title) {
+    if (title !== null && title !== undefined) {
       meta.title = title.textContent ?? '';
     }
     

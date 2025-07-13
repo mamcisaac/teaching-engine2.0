@@ -7,31 +7,31 @@ import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 import { curriculumApi } from './api';
 
 // Subject Query Hooks
-export const useSubjects = (): UseQueryResult<Subject[]> =>
+export const useSubjects = (): UseQueryResult<Subject[], Error> =>
   useQuery({
     queryKey: queryKeys.curriculum.subjects,
     queryFn: curriculumApi.getSubjects,
   });
 
-export const useSubject = (id: number): UseQueryResult<Subject> =>
+export const useSubject = (id: number): UseQueryResult<Subject, Error> =>
   useQuery({
     queryKey: queryKeys.curriculum.subject(id),
     queryFn: () => curriculumApi.getSubject(id),
-    enabled: !!id,
+    enabled: id !== 0,
   });
 
-export const useStrands = (subjectId: number): UseQueryResult<string[]> =>
+export const useStrands = (subjectId: number): UseQueryResult<string[], Error> =>
   useQuery({
     queryKey: ['subject-strands', subjectId],
     queryFn: () => curriculumApi.getStrands(subjectId),
-    enabled: !!subjectId,
+    enabled: subjectId !== 0,
   });
 
-export const useTopics = (subjectId: number, strand: string): UseQueryResult<string[]> =>
+export const useTopics = (subjectId: number, strand: string): UseQueryResult<string[], Error> =>
   useQuery({
     queryKey: ['subject-topics', subjectId, strand],
     queryFn: () => curriculumApi.getTopics(subjectId, strand),
-    enabled: !!subjectId && !!strand,
+    enabled: subjectId !== 0 && strand !== '',
   });
 
 // Curriculum Expectations Query Hooks
@@ -40,17 +40,17 @@ export const useCurriculumExpectations = (filters?: {
   grade?: number;
   strand?: string;
   keyword?: string;
-}): UseQueryResult<CurriculumExpectation[]> =>
+}): UseQueryResult<CurriculumExpectation[], Error> =>
   useQuery({
     queryKey: queryKeys.curriculum.expectations(filters),
     queryFn: () => curriculumApi.getCurriculumExpectations(filters),
   });
 
-export const useCurriculumExpectation = (id: number): UseQueryResult<CurriculumExpectation> =>
+export const useCurriculumExpectation = (id: number): UseQueryResult<CurriculumExpectation, Error> =>
   useQuery({
     queryKey: ['curriculum-expectation', id],
     queryFn: () => curriculumApi.getCurriculumExpectation(id),
-    enabled: !!id,
+    enabled: id !== 0,
   });
 
 // Thematic Units Query Hooks
@@ -59,17 +59,17 @@ export const useThematicUnits = (filters?: {
   subject?: string;
   theme?: string;
   userId?: number;
-}): UseQueryResult<ThematicUnit[]> =>
+}): UseQueryResult<ThematicUnit[], Error> =>
   useQuery({
     queryKey: queryKeys.curriculum.thematicUnits(filters),
     queryFn: () => curriculumApi.getThematicUnits(filters),
   });
 
-export const useThematicUnit = (id: number): UseQueryResult<ThematicUnit> =>
+export const useThematicUnit = (id: number): UseQueryResult<ThematicUnit, Error> =>
   useQuery({
     queryKey: queryKeys.curriculum.thematicUnit(id),
     queryFn: () => curriculumApi.getThematicUnit(id),
-    enabled: !!id,
+    enabled: id !== 0,
   });
 
 // Search Hook
@@ -83,11 +83,11 @@ export const useSearchCurriculum = (
 ): UseQueryResult<{
   expectations: CurriculumExpectation[];
   units: ThematicUnit[];
-}> =>
+}, Error> =>
   useQuery({
     queryKey: ['curriculum-search', query, options],
     queryFn: () => curriculumApi.searchCurriculum(query, options),
-    enabled: !!query && query.length > 2,
+    enabled: query.length > 2,
   });
 
 // Subject Mutation Hooks
@@ -240,7 +240,7 @@ export const useImportCurriculum = (): UseMutationResult<{
     onSuccess: (data) => {
       showSuccessToast(`Imported ${data.imported} curriculum items successfully`);
       if (data.failed > 0) {
-        showSuccessToast(`${data.failed} items failed to import`);
+        console.warn(`${data.failed} items failed to import`);
       }
       void queryClient.invalidateQueries({ queryKey: ['curriculum-expectations'] });
       void queryClient.invalidateQueries({ queryKey: queryKeys.curriculum.subjects });
@@ -263,9 +263,7 @@ export const useExportCurriculum = (): UseMutationResult<Blob, Error, {
       link.setAttribute('download', `curriculum-export.${variables.format}`);
       document.body.appendChild(link);
       link.click();
-      if (link.parentNode) {
-        link.parentNode.removeChild(link);
-      }
+      link.remove();
       window.URL.revokeObjectURL(url);
       
       showSuccessToast('Curriculum exported successfully');

@@ -11,7 +11,7 @@ export const subjectSchema = z.object({
 // Helper function to create bilingual fields
 const bilingualString = (fieldName: string, required = false, options?: { max?: number }): Record<string, z.ZodString | z.ZodOptional<z.ZodString>> => {
   const baseSchema = required ? z.string().min(1) : z.string();
-  const schema = options?.max !== undefined && options.max > 0 ? baseSchema.max(options.max) : baseSchema;
+  const schema = options?.max !== undefined && options !== null && options.max > 0 ? baseSchema.max(options.max) : baseSchema;
   return {
     [fieldName]: required ? schema : schema.optional(),
     [`${fieldName}En`]: z
@@ -38,7 +38,7 @@ const baseMilestoneSchema = z.object({
 });
 
 export const milestoneCreateSchema = baseMilestoneSchema.refine(
-  (data) => !data.startDate || !data.endDate || new Date(data.startDate) <= new Date(data.endDate),
+  (data) => data.startDate === null || data.startDate === undefined || data.endDate === null || data.endDate === undefined || new Date(data.startDate) <= new Date(data.endDate),
   {
     message: 'End date must be after or equal to start date',
     path: ['endDate'],
@@ -50,7 +50,7 @@ export const milestoneUpdateSchema = baseMilestoneSchema
   .partial()
   .refine(
     (data) =>
-      !data.startDate || !data.endDate || new Date(data.startDate) <= new Date(data.endDate),
+      data.startDate === null || data.startDate === undefined || data.endDate === null || data.endDate === undefined || new Date(data.startDate) <= new Date(data.endDate),
     {
       message: 'End date must be after or equal to start date',
       path: ['endDate'],
@@ -178,7 +178,7 @@ export const thematicUnitUpdateSchema = baseThematicUnitSchema
   .partial()
   .refine(
     (data) =>
-      !data.startDate || !data.endDate || new Date(data.startDate) <= new Date(data.endDate),
+      data.startDate === null || data.startDate === undefined || data.endDate === null || data.endDate === undefined || new Date(data.startDate) <= new Date(data.endDate),
     {
       message: 'End date must be after or equal to start date',
       path: ['endDate'],
@@ -201,7 +201,7 @@ export const classroomAnnouncementUpdateSchema = classroomAnnouncementCreateSche
 // CUID validation helper - matches Prisma @default(cuid()) format
 export const cuidSchema = (): z.ZodString => z.string().regex(/^c[0-9a-z]{24}$/, 'Invalid ID format');
 
-export function validate(schema: ZodSchema) {
+export function validate(schema: ZodSchema): (req: Request, res: Response, next: NextFunction) => void {
   return (req: Request, res: Response, next: NextFunction): void => {
     // For now, always validate req.body directly
     // The schemas should not wrap body in an object

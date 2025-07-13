@@ -29,8 +29,8 @@ export function userRoutes(prisma: PrismaClient): Router {
   // Get user profile
   router.get(
     '/profile',
-    asyncHandler(async (req, res) => {
-      if (!req.user?.id) {
+    asyncHandler(async (req, res): Promise<void> => {
+      if (req.user?.id === null || req.user?.id === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -38,7 +38,7 @@ export function userRoutes(prisma: PrismaClient): Router {
 
       const user = await userRepository.findByIdWithoutPassword(userId);
 
-      if (!user) {
+      if (user === null || user === undefined) {
         res.status(404).json({ error: 'User not found' });
         return;
       }
@@ -51,8 +51,8 @@ export function userRoutes(prisma: PrismaClient): Router {
   // Update password
   router.put(
     '/password',
-    asyncHandler(async (req, res) => {
-      if (!req.user?.id) {
+    asyncHandler(async (req, res): Promise<void> => {
+      if (req.user?.id === null || req.user?.id === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -65,14 +65,14 @@ export function userRoutes(prisma: PrismaClient): Router {
       // Get user with password
       const user = await userRepository.findById(userId);
 
-      if (!user) {
+      if (user === null || user === undefined) {
         res.status(404).json({ error: 'User not found' });
         return;
       }
 
       // Verify current password
       const isValidPassword = await compare(currentPassword, user.password);
-      if (!isValidPassword) {
+      if (isValidPassword !== true) {
         res.status(401).json({ error: 'Current password is incorrect' });
         return;
       }
@@ -88,7 +88,7 @@ export function userRoutes(prisma: PrismaClient): Router {
   // Create user (admin only)
   router.post(
     '/create',
-    asyncHandler(async (req, res) => {
+    asyncHandler(async (req, res): Promise<void> => {
       const userRole = (req as Request & { user?: { role?: string } }).user?.role;
 
       if (userRole !== 'ADMIN') {
@@ -96,15 +96,15 @@ export function userRoutes(prisma: PrismaClient): Router {
         return;
       }
 
-      const { email, name, role } = req.body;
+      const { email, name, role } = req.body as { email: string; name: string; role?: string };
 
       // Sanitize input
-      const sanitizedName = name.replace(/<[^>]*>/g, ''); // Remove HTML tags
+      const sanitizedName = (name as string).replace(/<[^>]*>/g, ''); // Remove HTML tags
 
       const user = await userRepository.createUser({
         email,
         name: sanitizedName,
-        role: role || 'USER',
+        role: role ?? 'USER',
         password: 'TempPassword123!', // Temporary password
       });
 
@@ -116,8 +116,8 @@ export function userRoutes(prisma: PrismaClient): Router {
   // Data validation endpoint
   router.post(
     '/data/validate',
-    asyncHandler(async (req, res) => {
-      const data = req.body;
+    asyncHandler(async (req, res): Promise<void> => {
+      const data = req.body as Record<string, unknown>;
 
       // Type validation
       if (data.age !== undefined && typeof data.age !== 'number') {
@@ -135,7 +135,7 @@ export function userRoutes(prisma: PrismaClient): Router {
         return;
       }
 
-      if (data.metadata !== undefined && typeof data.metadata !== 'object') {
+      if (data.metadata !== undefined && (typeof data.metadata !== 'object' || data.metadata === null)) {
         res.status(400).json({ error: 'Invalid data type: metadata must be an object' });
         return;
       }

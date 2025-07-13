@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import type { Request, Response, NextFunction } from 'express';
 import { z } from 'zod';
 
 // Common field schemas
@@ -111,7 +112,7 @@ export const validateId = (id: string | number): number => {
 export const validatePagination = (query: unknown): { page: number; pageSize: number } => {
   const defaultPagination = { page: 1, pageSize: 20 };
   
-  if (!query || typeof query !== 'object') {
+  if (query === null || query === undefined || typeof query !== 'object') {
     return defaultPagination;
   }
   
@@ -126,21 +127,21 @@ export const validatePagination = (query: unknown): { page: number; pageSize: nu
 export const validateDateRange = (from?: string | Date, to?: string | Date): { from?: Date; to?: Date } => {
   const dates: { from?: Date; to?: Date } = {};
   
-  if (from) {
+  if (from !== null && from !== undefined) {
     dates.from = new Date(from);
     if (isNaN(dates.from.getTime())) {
       throw new Error('Invalid from date');
     }
   }
   
-  if (to) {
+  if (to !== null && to !== undefined) {
     dates.to = new Date(to);
     if (isNaN(dates.to.getTime())) {
       throw new Error('Invalid to date');
     }
   }
   
-  if (dates.from && dates.to && dates.from > dates.to) {
+  if (dates.from !== null && dates.from !== undefined && dates.to !== null && dates.to !== undefined && dates.from > dates.to) {
     throw new Error('From date must be before to date');
   }
   
@@ -172,7 +173,7 @@ export const transformToArray = (value: unknown): string[] => {
 return value;
 }
   if (typeof value === 'string') {
-    return value.split(',').map(s => s.trim()).filter(Boolean);
+    return value.split(',').map(s => s.trim()).filter(s => s !== null && s !== undefined && s !== '');
   }
   return [];
 };
@@ -198,8 +199,8 @@ export const isValidGrade = (grade: number): boolean => Number.isInteger(grade) 
 export const isValidAcademicYear = (year: string): boolean => {
   const pattern = /^\d{4}-\d{4}$/;
   if (!pattern.test(year)) {
-return false;
-}
+    return false;
+  }
   
   const [start, end] = year.split('-').map(Number);
   return end === start + 1;
@@ -214,7 +215,7 @@ export const isValidCanadianPostalCode = (code: string): boolean => {
 export const buildFilterSchema = <T extends z.ZodRawShape>(
   baseSchema: z.ZodObject<T>,
   additionalFields?: z.ZodRawShape
-) => baseSchema.extend({
+): z.ZodObject<T & typeof commonSchemas.pagination.shape & typeof commonSchemas.dateFilter.shape & { search: z.ZodOptional<z.ZodString> } & (z.ZodRawShape | Record<string, never>)> => baseSchema.extend({
     ...commonSchemas.pagination.shape,
     ...commonSchemas.dateFilter.shape,
     search: z.string().optional(),
@@ -224,12 +225,12 @@ export const buildFilterSchema = <T extends z.ZodRawShape>(
 export const buildCreateSchema = <T extends z.ZodRawShape>(
   baseSchema: z.ZodObject<T>,
   requiredFields: (keyof T)[]
-) => {
+): z.ZodObject<z.ZodRawShape> => {
   const shape: z.ZodRawShape = {};
   
   for (const key of requiredFields) {
-    if (baseSchema.shape[key]) {
-      shape[key as string] = baseSchema.shape[key];
+    if (baseSchema.shape[key] !== null && baseSchema.shape[key] !== undefined) {
+      shape[key as string] = baseSchema.shape[key] as z.ZodTypeAny;
     }
   }
   
@@ -238,18 +239,18 @@ export const buildCreateSchema = <T extends z.ZodRawShape>(
 
 export const buildUpdateSchema = <T extends z.ZodRawShape>(
   baseSchema: z.ZodObject<T>
-) => {
+): z.ZodObject<z.ZodRawShape> => {
   const shape: z.ZodRawShape = {};
   
   for (const [key, schema] of Object.entries(baseSchema.shape)) {
-    shape[key] = (schema).optional();
+    shape[key] = (schema as z.ZodTypeAny).optional();
   }
   
   return z.object(shape);
 };
 
 // Validation middleware factory
-export const createValidationMiddleware = <T>(schema: z.ZodSchema<T>) => (req: Request, res: Response, next: NextFunction) => {
+export const createValidationMiddleware = <T>(schema: z.ZodSchema<T>) => (req: Request, res: Response, next: NextFunction): void => {
     try {
       const data = {
         ...(req.body ?? {}),
@@ -258,7 +259,7 @@ export const createValidationMiddleware = <T>(schema: z.ZodSchema<T>) => (req: R
       };
       
       const result = schema.parse(data);
-      req.validated = result;
+      (req as Request & { validated: T }).validated = result;
       next();
     } catch (_error) {
       if (_error instanceof z.ZodError) {

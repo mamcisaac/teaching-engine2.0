@@ -78,18 +78,18 @@ function generateCacheKey(req: Request, prefix = ''): string {
 function shouldCache(req: Request): boolean {
   // Only cache GET requests
   if (req.method !== 'GET') {
-return false;
-}
+    return false;
+  }
 
   // Don't cache authenticated endpoints by default unless explicitly enabled
-  if (req.headers.authorization && !req.cacheEnabled) {
-return false;
-}
+  if (req.headers.authorization !== null && req.headers.authorization !== undefined && !(req as Request & { cacheEnabled?: boolean }).cacheEnabled) {
+    return false;
+  }
 
   // Don't cache requests with specific headers
   if (req.headers['cache-control'] === 'no-cache') {
-return false;
-}
+    return false;
+  }
 
   return true;
 }
@@ -112,7 +112,7 @@ export function createCacheMiddleware(
   return async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
     // Check if this request should be cached
     if (!condition(req)) {
-      next(); 
+      next();
       return;
     }
 
@@ -135,7 +135,7 @@ export function createCacheMiddleware(
       // Try to get from cache
       const cachedResponse = cache.get(cacheKey);
 
-      if (cachedResponse) {
+      if (cachedResponse !== null && cachedResponse !== undefined) {
         // Cache hit
         stats[cacheType].hits++;
         cacheMetrics.recordHit(cacheType);
@@ -158,7 +158,7 @@ export function createCacheMiddleware(
       // Override json method to cache the response
       res.json = function (data: unknown) {
         // Cache the response data
-        if (res.statusCode === 200 && data) {
+        if (res.statusCode === 200 && data !== null && data !== undefined) {
           const cacheTTL = ttl ?? cache.options.stdTTL ?? DEFAULT_TTL;
           cache.set(cacheKey, data, cacheTTL);
 
@@ -221,13 +221,13 @@ export const userCache = createCacheMiddleware('user', {
 export function invalidateCache(
   patterns: string[],
   cacheTypes: (keyof typeof caches)[] = ['api', 'user'],
-) {
-  return (req: Request, res: Response, next: NextFunction) => {
+): (req: Request, res: Response, next: NextFunction) => void {
+  return (req: Request, res: Response, next: NextFunction): void => {
     // Store original methods
     const originalJson = res.json;
     const originalEnd = res.end;
 
-    function invalidateCacheEntries() {
+    function invalidateCacheEntries(): void {
       if (res.statusCode >= 200 && res.statusCode < 300) {
         cacheTypes.forEach((cacheType) => {
           const cache = caches[cacheType];
@@ -281,7 +281,7 @@ export function invalidateCache(
 /**
  * Cache warm-up for commonly accessed data
  */
-export async function warmUpCache() {
+export async function warmUpCache(): Promise<void> {
   logger.info('Starting cache warm-up...');
 
   try {
@@ -325,8 +325,8 @@ export function getCacheStats(): Record<string, CacheStats> {
  */
 export function clearAllCaches(): void {
   Object.values(caches).forEach((cache) => {
- cache.flushAll(); 
-});
+    cache.flushAll();
+  });
   Object.keys(stats).forEach((key) => {
     stats[key as keyof typeof stats] = { hits: 0, misses: 0 };
   });
@@ -345,7 +345,7 @@ export function clearCache(cacheType: keyof typeof caches): void {
 /**
  * Get cache memory usage
  */
-export function getCacheMemoryUsage() {
+export function getCacheMemoryUsage(): Record<string, { keyCount: number; hits: number; misses: number; ksize: number; vsize: number }> {
   const usage: Record<
     string,
     {

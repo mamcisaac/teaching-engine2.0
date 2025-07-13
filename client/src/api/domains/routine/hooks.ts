@@ -16,21 +16,21 @@ import type {
 } from './api';
 
 // Template query hooks
-export const useRoutineTemplates = (filters?: RoutineFilters): UseQueryResult<OralRoutineTemplate[]> =>
+export const useRoutineTemplates = (filters?: RoutineFilters): UseQueryResult<OralRoutineTemplate[], Error> =>
   useQuery({
     queryKey: queryKeys.routine.templates(filters),
     queryFn: () => routineApi.templates.getAll(filters),
     staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
-export const useRoutineTemplate = (id: number): UseQueryResult<OralRoutineTemplate> =>
+export const useRoutineTemplate = (id: number): UseQueryResult<OralRoutineTemplate, Error> =>
   useQuery({
     queryKey: ['routine-template', id],
     queryFn: () => routineApi.templates.getById(id),
-    enabled: !!id,
+    enabled: id !== 0,
   });
 
-export const usePublicRoutineTemplates = (filters?: RoutineFilters): UseQueryResult<OralRoutineTemplate[]> =>
+export const usePublicRoutineTemplates = (filters?: RoutineFilters): UseQueryResult<OralRoutineTemplate[], Error> =>
   useQuery({
     queryKey: ['public-routine-templates', filters],
     queryFn: () => routineApi.templates.getPublic(filters),
@@ -38,68 +38,68 @@ export const usePublicRoutineTemplates = (filters?: RoutineFilters): UseQueryRes
   });
 
 // Daily routine query hooks
-export const useDailyRoutines = (filters?: RoutineFilters): UseQueryResult<DailyOralRoutine[]> =>
+export const useDailyRoutines = (filters?: RoutineFilters): UseQueryResult<DailyOralRoutine[], Error> =>
   useQuery({
     queryKey: queryKeys.routine.daily(filters),
     queryFn: () => routineApi.daily.getAll(filters),
     staleTime: 2 * 60 * 1000, // 2 minutes
   });
 
-export const useDailyRoutine = (id: number): UseQueryResult<DailyOralRoutine> =>
+export const useDailyRoutine = (id: number): UseQueryResult<DailyOralRoutine, Error> =>
   useQuery({
     queryKey: ['daily-routine', id],
     queryFn: () => routineApi.daily.getById(id),
-    enabled: !!id,
+    enabled: id !== 0,
   });
 
-export const useDailyRoutinesByDate = (date: string): UseQueryResult<DailyOralRoutine[]> =>
+export const useDailyRoutinesByDate = (date: string): UseQueryResult<DailyOralRoutine[], Error> =>
   useQuery({
     queryKey: ['daily-routines-by-date', date],
     queryFn: () => routineApi.daily.getByDate(date),
-    enabled: !!date,
+    enabled: date !== '',
     staleTime: 1 * 60 * 1000, // 1 minute
   });
 
-export const useRoutineSuggestions = (date: string): UseQueryResult<OralRoutineTemplate[]> =>
+export const useRoutineSuggestions = (date: string): UseQueryResult<OralRoutineTemplate[], Error> =>
   useQuery({
     queryKey: ['routine-suggestions', date],
     queryFn: () => routineApi.daily.getSuggestions(date),
-    enabled: !!date,
+    enabled: date !== '',
     staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
 // Class routine query hooks
-export const useClassRoutines = (): UseQueryResult<ClassRoutine[]> =>
+export const useClassRoutines = (): UseQueryResult<ClassRoutine[], Error> =>
   useQuery({
     queryKey: queryKeys.routine.class,
     queryFn: routineApi.class.getAll,
     staleTime: 10 * 60 * 1000, // 10 minutes
   });
 
-export const useClassRoutine = (id: number): UseQueryResult<ClassRoutine> =>
+export const useClassRoutine = (id: number): UseQueryResult<ClassRoutine, Error> =>
   useQuery({
     queryKey: ['class-routine', id],
     queryFn: () => routineApi.class.getById(id),
-    enabled: !!id,
+    enabled: id !== 0,
   });
 
 // Statistics query hooks
-export const useRoutineStats = (filters?: { startDate?: string; endDate?: string }): UseQueryResult<OralRoutineStats> =>
+export const useRoutineStats = (filters?: { startDate?: string; endDate?: string }): UseQueryResult<OralRoutineStats, Error> =>
   useQuery({
     queryKey: queryKeys.routine.stats(filters),
     queryFn: () => routineApi.stats.getStats(filters),
     staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
-export const useEngagementTrends = (startDate: string, endDate: string): UseQueryResult<{ date: string; engagement: number }[]> =>
+export const useEngagementTrends = (startDate: string, endDate: string): UseQueryResult<Array<{ date: string; engagement: number }>, Error> =>
   useQuery({
     queryKey: ['engagement-trends', startDate, endDate],
     queryFn: () => routineApi.stats.getEngagementTrends(startDate, endDate),
-    enabled: !!startDate && !!endDate,
+    enabled: startDate !== '' && endDate !== '',
     staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
-export const useCompletionRates = (period: 'week' | 'month' | 'quarter'): UseQueryResult<{ period: string; completed: number; total: number }[]> =>
+export const useCompletionRates = (period: 'week' | 'month' | 'quarter'): UseQueryResult<Array<{ period: string; completed: number; total: number }>, Error> =>
   useQuery({
     queryKey: ['completion-rates', period],
     queryFn: () => routineApi.stats.getCompletionRates(period),
@@ -107,22 +107,22 @@ export const useCompletionRates = (period: 'week' | 'month' | 'quarter'): UseQue
   });
 
 // Search hooks
-export const useRoutineSearch = (query: string, type: 'templates' | 'daily' | 'class' = 'templates'): UseQueryResult<OralRoutineTemplate[] | DailyOralRoutine[] | ClassRoutine[]> =>
+export const useRoutineSearch = (query: string, type: 'templates' | 'daily' | 'class' = 'templates'): UseQueryResult<OralRoutineTemplate[] | DailyOralRoutine[] | ClassRoutine[], Error> =>
   useQuery({
     queryKey: ['routine-search', query, type],
     queryFn: () => routineApi.search(query, type),
-    enabled: !!query && query.length > 1,
+    enabled: query.length > 1,
     staleTime: 30 * 1000, // 30 seconds
   });
 
-export const useRoutineCategories = (): UseQueryResult<string[]> =>
+export const useRoutineCategories = (): UseQueryResult<string[], Error> =>
   useQuery({
     queryKey: ['routine-categories'],
     queryFn: routineApi.getCategories,
     staleTime: 30 * 60 * 1000, // 30 minutes
   });
 
-export const useRoutineTags = (): UseQueryResult<string[]> =>
+export const useRoutineTags = (): UseQueryResult<Array<{ name: string; count: number }>, Error> =>
   useQuery({
     queryKey: ['routine-tags'],
     queryFn: routineApi.getTags,
@@ -407,8 +407,7 @@ export const useImportRoutines = (): UseMutationResult<{ imported: number; faile
       void queryClient.invalidateQueries({ queryKey: ['routine-tags'] });
       
       showSuccessToast(
-        `${data.imported} routines imported successfully${ 
-        data.failed > 0 ? `, ${data.failed} failed` : ''}`
+        `${data.imported} routines imported successfully${data.failed > 0 ? `, ${data.failed} failed` : ''}`
       );
       return data;
     },
@@ -416,7 +415,8 @@ export const useImportRoutines = (): UseMutationResult<{ imported: number; faile
   });
 };
 
-export const useExportRoutines = (): UseMutationResult<Blob, Error, { filters?: RoutineFilters; format?: 'csv' | 'pdf' | 'json' }> => useMutation({
+export const useExportRoutines = (): UseMutationResult<Blob, Error, { filters?: RoutineFilters; format?: 'csv' | 'pdf' | 'json' }> => {
+  return useMutation({
     mutationFn: ({ filters, format }: { 
       filters?: RoutineFilters; 
       format?: 'csv' | 'pdf' | 'json';
@@ -436,3 +436,4 @@ export const useExportRoutines = (): UseMutationResult<Blob, Error, { filters?: 
     },
     onError: (error) => handleApiError(error, 'Failed to export routines'),
   });
+};

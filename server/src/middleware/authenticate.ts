@@ -74,17 +74,17 @@ export function generateRefreshToken(userId: number): string {
 function extractToken(req: Request): string | null {
   // Check Authorization header
   const authHeader = req.headers.authorization;
-  if (authHeader && authHeader.startsWith('Bearer ')) {
+  if (authHeader !== null && authHeader !== undefined && authHeader.startsWith('Bearer ')) {
     return authHeader.substring(7);
   }
 
   // Check cookies
-  if (req.cookies.token) {
-    return req.cookies.token;
+  if (req.cookies !== null && req.cookies !== undefined && req.cookies.token !== null && req.cookies.token !== undefined) {
+    return req.cookies.token as string;
   }
 
   // Check query parameter (for download links)
-  if (req.query.token && typeof req.query.token === 'string') {
+  if (req.query.token !== null && req.query.token !== undefined && typeof req.query.token === 'string') {
     return req.query.token;
   }
 
@@ -100,8 +100,8 @@ export async function verifyToken(token: string): Promise<TokenPayload | { error
     if (process.env.NODE_ENV === 'test') {
       logger.debug(
         {
-          tokenStart: `${token.substring(0, 20)  }...`,
-          jwtSecret: JWT_SECRET ? 'present' : 'missing',
+          tokenStart: `${token.substring(0, 20)}...`,
+          jwtSecret: JWT_SECRET !== null && JWT_SECRET !== undefined && JWT_SECRET !== '' ? 'present' : 'missing',
           jwtSecretLength: JWT_SECRET.length,
         },
         'Verifying token',
@@ -120,8 +120,8 @@ export async function verifyToken(token: string): Promise<TokenPayload | { error
         logger.debug(
           {
             decoded,
-            hasUserId: !!decoded.userId,
-            hasEmail: !!decoded.email,
+            hasUserId: decoded.userId !== null && decoded.userId !== undefined,
+            hasEmail: decoded.email !== null && decoded.email !== undefined,
           },
           'Token decoded successfully with issuer/audience',
         );
@@ -143,8 +143,8 @@ export async function verifyToken(token: string): Promise<TokenPayload | { error
           logger.debug(
             {
               decoded,
-              hasUserId: !!decoded.userId,
-              hasEmail: !!decoded.email,
+              hasUserId: decoded.userId !== null && decoded.userId !== undefined,
+              hasEmail: decoded.email !== null && decoded.email !== undefined,
             },
             'Token decoded successfully without issuer/audience (test mode)',
           );
@@ -163,9 +163,10 @@ export async function verifyToken(token: string): Promise<TokenPayload | { error
     } else if (_error instanceof JsonWebTokenError) {
       logger.debug({ error: _error instanceof Error ? _error.message : String(_error) }, 'Invalid token');
       return { error: 'invalid' };
-    } 
+    } else {
       logger.error({ error: _error }, 'Token verification error');
       return { error: 'invalid' }; // Return invalid for any other error
+    }
     
   }
 }
@@ -182,7 +183,7 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
       logger.debug(
         {
           path: req.path,
-          hasToken: !!token,
+          hasToken: token !== null && token !== undefined,
           authHeader: req.headers.authorization,
           tokenLength: token?.length,
         },
@@ -190,7 +191,7 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
       );
     }
 
-    if (!token) {
+    if (token === null || token === undefined) {
       // For consistency, always return the same error format
       res.status(401).json({
         error: 'Authentication required',
@@ -208,9 +209,9 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
 
     const decoded = await verifyToken(token);
 
-    if (!decoded) {
+    if (decoded === null || decoded === undefined) {
       if (process.env.NODE_ENV === 'test') {
-        logger.debug({ token: `${token.substring(0, 20)  }...` }, 'Token verification failed');
+        logger.debug({ token: `${token.substring(0, 20)}...` }, 'Token verification failed');
       }
       res.status(401).json({
         error: 'Unauthorized',
@@ -261,7 +262,7 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
       (req.baseUrl === '/api/auth' && req.path === '/me') ||
       req.baseUrl + req.path === '/api/auth/me';
 
-    if (!decoded.userId && isAuthMeEndpoint) {
+    if ((decoded.userId === null || decoded.userId === undefined || decoded.userId === '') && isAuthMeEndpoint) {
       res.status(403).json({
         error: 'Invalid token payload',
       });
@@ -324,7 +325,7 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
         },
       });
 
-      if (!user) {
+      if (user === null || user === undefined) {
         // In test mode, also check if any users exist
         if (process.env.NODE_ENV === 'test') {
           const userCount = await prisma.user.count();
@@ -421,13 +422,14 @@ export async function optionalAuthenticate(
   try {
     const token = extractToken(req);
 
-    if (!token) {
-      next(); return;
+    if (token === null || token === undefined) {
+      next();
+      return;
     }
 
     const decoded = await verifyToken(token);
 
-    if (decoded && !('error' in decoded)) {
+    if (decoded !== null && decoded !== undefined && !('error' in decoded)) {
       req.user = {
         id: parseInt(decoded.userId, 10),
         email: decoded.email,
@@ -448,9 +450,9 @@ export async function optionalAuthenticate(
 /**
  * Role-based authorization middleware
  */
-export function authorize(...allowedRoles: string[]) {
+export function authorize(...allowedRoles: string[]): (req: Request, res: Response, next: NextFunction) => void {
   return (req: Request, res: Response, next: NextFunction): void => {
-    if (!req.user) {
+    if (req.user === null || req.user === undefined) {
       res.status(401).json({
         error: 'Unauthorized',
         message: 'Authentication required',
@@ -483,9 +485,9 @@ export function authorize(...allowedRoles: string[]) {
 /**
  * Permission-based authorization middleware
  */
-export function requirePermission(...requiredPermissions: string[]) {
+export function requirePermission(...requiredPermissions: string[]): (req: Request, res: Response, next: NextFunction) => void {
   return (req: Request, res: Response, next: NextFunction): void => {
-    if (!req.user) {
+    if (req.user === null || req.user === undefined) {
       res.status(401).json({
         error: 'Unauthorized',
         message: 'Authentication required',
@@ -524,7 +526,7 @@ export function requirePermission(...requiredPermissions: string[]) {
  * Organization-based authorization middleware
  */
 export function requireOrganization(req: Request, res: Response, next: NextFunction): void {
-  if (!req.user) {
+  if (req.user === null || req.user === undefined) {
     res.status(401).json({
       error: 'Unauthorized',
       message: 'Authentication required',
@@ -532,7 +534,7 @@ export function requireOrganization(req: Request, res: Response, next: NextFunct
     return;
   }
 
-  if (!req.user.organizationId) {
+  if (req.user.organizationId === null || req.user.organizationId === undefined) {
     res.status(403).json({
       error: 'Forbidden',
       message: 'Organization membership required',
@@ -549,9 +551,9 @@ export function requireOrganization(req: Request, res: Response, next: NextFunct
 export async function refreshToken(req: Request, res: Response): Promise<void> {
   try {
     // Read refresh token from HTTP-only cookie
-    const {refreshToken} = req.cookies;
+    const { refreshToken } = req.cookies;
 
-    if (!refreshToken) {
+    if (refreshToken === null || refreshToken === undefined) {
       res.status(400).json({
         error: 'Bad Request',
         message: 'Refresh token required',
@@ -582,7 +584,7 @@ export async function refreshToken(req: Request, res: Response): Promise<void> {
       },
     });
 
-    if (!user) {
+    if (user === null || user === undefined) {
       res.status(401).json({
         error: 'Unauthorized',
         message: 'User not found',

@@ -106,7 +106,7 @@ export const routineApi = {
   // Oral routine templates
   templates: {
     // Get all templates
-    getAll: async (filters?: RoutineFilters) => {
+    getAll: async (filters?: RoutineFilters): Promise<OralRoutineTemplate[]> => {
       const { data } = await apiClient.get<OralRoutineTemplate[]>('/api/routines/templates', {
         params: filters,
       });
@@ -114,36 +114,36 @@ export const routineApi = {
     },
 
     // Get template by ID
-    getById: async (id: number) => {
+    getById: async (id: number): Promise<OralRoutineTemplate> => {
       const { data } = await apiClient.get<OralRoutineTemplate>(`/api/routines/templates/${id}`);
       return data;
     },
 
     // Create template
-    create: async (template: RoutineTemplateInput) => {
+    create: async (template: RoutineTemplateInput): Promise<OralRoutineTemplate> => {
       const { data } = await apiClient.post<OralRoutineTemplate>('/api/routines/templates', template);
       return data;
     },
 
     // Update template
-    update: async (id: number, updates: Partial<RoutineTemplateInput>) => {
+    update: async (id: number, updates: Partial<RoutineTemplateInput>): Promise<OralRoutineTemplate> => {
       const { data } = await apiClient.put<OralRoutineTemplate>(`/api/routines/templates/${id}`, updates);
       return data;
     },
 
     // Delete template
-    delete: async (id: number) => {
+    delete: async (id: number): Promise<void> => {
       await apiClient.delete(`/api/routines/templates/${id}`);
     },
 
     // Duplicate template
-    duplicate: async (id: number) => {
+    duplicate: async (id: number): Promise<OralRoutineTemplate> => {
       const { data } = await apiClient.post<OralRoutineTemplate>(`/api/routines/templates/${id}/duplicate`);
       return data;
     },
 
     // Get public templates (from other teachers)
-    getPublic: async (filters?: RoutineFilters) => {
+    getPublic: async (filters?: RoutineFilters): Promise<OralRoutineTemplate[]> => {
       const { data } = await apiClient.get<OralRoutineTemplate[]>('/api/routines/templates/public', {
         params: filters,
       });
@@ -151,7 +151,7 @@ export const routineApi = {
     },
 
     // Import template from public library
-    importFromPublic: async (templateId: number) => {
+    importFromPublic: async (templateId: number): Promise<OralRoutineTemplate> => {
       const { data } = await apiClient.post<OralRoutineTemplate>(`/api/routines/templates/import/${templateId}`);
       return data;
     },
@@ -160,7 +160,7 @@ export const routineApi = {
   // Daily oral routines
   daily: {
     // Get daily routines
-    getAll: async (filters?: RoutineFilters) => {
+    getAll: async (filters?: RoutineFilters): Promise<DailyOralRoutine[]> => {
       const { data } = await apiClient.get<DailyOralRoutine[]>('/api/routines/daily', {
         params: filters,
       });
@@ -168,13 +168,13 @@ export const routineApi = {
     },
 
     // Get routine by ID
-    getById: async (id: number) => {
+    getById: async (id: number): Promise<DailyOralRoutine> => {
       const { data } = await apiClient.get<DailyOralRoutine>(`/api/routines/daily/${id}`);
       return data;
     },
 
     // Get routines for specific date
-    getByDate: async (date: string) => {
+    getByDate: async (date: string): Promise<DailyOralRoutine[]> => {
       const { data } = await apiClient.get<DailyOralRoutine[]>('/api/routines/daily/date', {
         params: { date },
       });
@@ -182,19 +182,19 @@ export const routineApi = {
     },
 
     // Create daily routine
-    create: async (routine: DailyRoutineInput) => {
+    create: async (routine: DailyRoutineInput): Promise<DailyOralRoutine> => {
       const { data } = await apiClient.post<DailyOralRoutine>('/api/routines/daily', routine);
       return data;
     },
 
     // Update daily routine
-    update: async (id: number, updates: Partial<DailyRoutineInput>) => {
+    update: async (id: number, updates: Partial<DailyRoutineInput>): Promise<DailyOralRoutine> => {
       const { data } = await apiClient.put<DailyOralRoutine>(`/api/routines/daily/${id}`, updates);
       return data;
     },
 
     // Delete daily routine
-    delete: async (id: number) => {
+    delete: async (id: number): Promise<void> => {
       await apiClient.delete(`/api/routines/daily/${id}`);
     },
 
@@ -204,13 +204,13 @@ export const routineApi = {
       studentEngagement?: 'low' | 'medium' | 'high';
       notes?: string;
       adaptations?: string;
-    }) => {
+    }): Promise<DailyOralRoutine> => {
       const { data: result } = await apiClient.patch<DailyOralRoutine>(`/api/routines/daily/${id}/complete`, data);
       return result;
     },
 
     // Generate routine suggestions for date
-    getSuggestions: async (date: string) => {
+    getSuggestions: async (date: string): Promise<OralRoutineTemplate[]> => {
       const { data } = await apiClient.get<OralRoutineTemplate[]>('/api/routines/daily/suggestions', {
         params: { date },
       });
@@ -218,7 +218,7 @@ export const routineApi = {
     },
 
     // Bulk create routines for week
-    createWeekly: async (startDate: string, templateIds: number[]) => {
+    createWeekly: async (startDate: string, templateIds: number[]): Promise<DailyOralRoutine[]> => {
       const { data } = await apiClient.post<DailyOralRoutine[]>('/api/routines/daily/bulk', {
         startDate,
         templateIds,
@@ -230,31 +230,31 @@ export const routineApi = {
   // Class routines (non-oral)
   class: {
     // Get all class routines
-    getAll: async () => {
+    getAll: async (): Promise<ClassRoutine[]> => {
       const { data } = await apiClient.get<ClassRoutine[]>('/api/routines/class');
       return data;
     },
 
     // Get routine by ID
-    getById: async (id: number) => {
+    getById: async (id: number): Promise<ClassRoutine> => {
       const { data } = await apiClient.get<ClassRoutine>(`/api/routines/class/${id}`);
       return data;
     },
 
     // Create class routine
-    create: async (routine: Omit<ClassRoutine, 'id' | 'createdAt' | 'updatedAt'>) => {
+    create: async (routine: Omit<ClassRoutine, 'id' | 'createdAt' | 'updatedAt'>): Promise<ClassRoutine> => {
       const { data } = await apiClient.post<ClassRoutine>('/api/routines/class', routine);
       return data;
     },
 
     // Update class routine
-    update: async (id: number, updates: Partial<ClassRoutine>) => {
+    update: async (id: number, updates: Partial<ClassRoutine>): Promise<ClassRoutine> => {
       const { data } = await apiClient.put<ClassRoutine>(`/api/routines/class/${id}`, updates);
       return data;
     },
 
     // Delete class routine
-    delete: async (id: number) => {
+    delete: async (id: number): Promise<void> => {
       await apiClient.delete(`/api/routines/class/${id}`);
     },
   },
@@ -262,7 +262,7 @@ export const routineApi = {
   // Statistics and analytics
   stats: {
     // Get routine statistics
-    getStats: async (filters?: { startDate?: string; endDate?: string }) => {
+    getStats: async (filters?: { startDate?: string; endDate?: string }): Promise<OralRoutineStats> => {
       const { data } = await apiClient.get<OralRoutineStats>('/api/routines/stats', {
         params: filters,
       });
@@ -270,7 +270,11 @@ export const routineApi = {
     },
 
     // Get engagement trends
-    getEngagementTrends: async (startDate: string, endDate: string) => {
+    getEngagementTrends: async (startDate: string, endDate: string): Promise<Array<{
+      date: string;
+      engagement: number;
+      routineCount: number;
+    }>> => {
       const { data } = await apiClient.get<{
         date: string;
         engagement: number;
@@ -282,7 +286,12 @@ export const routineApi = {
     },
 
     // Get completion rates
-    getCompletionRates: async (period: 'week' | 'month' | 'quarter') => {
+    getCompletionRates: async (period: 'week' | 'month' | 'quarter'): Promise<Array<{
+      period: string;
+      planned: number;
+      completed: number;
+      rate: number;
+    }>> => {
       const { data } = await apiClient.get<{
         period: string;
         planned: number;
@@ -298,7 +307,7 @@ export const routineApi = {
   // Audio and media
   media: {
     // Upload audio for routine
-    uploadAudio: async (templateId: number, audioFile: File) => {
+    uploadAudio: async (templateId: number, audioFile: File): Promise<{ audioUrl: string }> => {
       const formData = new FormData();
       formData.append('audio', audioFile);
 
@@ -315,16 +324,16 @@ export const routineApi = {
     },
 
     // Delete audio
-    deleteAudio: async (templateId: number) => {
+    deleteAudio: async (templateId: number): Promise<void> => {
       await apiClient.delete(`/api/routines/templates/${templateId}/audio`);
     },
 
     // Upload visual aids
-    uploadVisualAids: async (templateId: number, files: File[]) => {
+    uploadVisualAids: async (templateId: number, files: File[]): Promise<{ visualAids: string[] }> => {
       const formData = new FormData();
-      files.forEach(file => {
- formData.append('visuals', file); 
-});
+      files.forEach((file) => {
+        formData.append('visuals', file);
+      });
 
       const { data } = await apiClient.post<{ visualAids: string[] }>(
         `/api/routines/templates/${templateId}/visuals`,
@@ -348,13 +357,13 @@ export const routineApi = {
   },
 
   // Get routine categories
-  getCategories: async () => {
+  getCategories: async (): Promise<string[]> => {
     const { data } = await apiClient.get<string[]>('/api/routines/categories');
     return data;
   },
 
   // Get popular tags
-  getTags: async () => {
+  getTags: async (): Promise<Array<{ name: string; count: number }>> => {
     const { data } = await apiClient.get<{ name: string; count: number }[]>('/api/routines/tags');
     return data;
   },
@@ -369,7 +378,11 @@ export const routineApi = {
   },
 
   // Import routines
-  import: async (file: File, format: 'csv' | 'json') => {
+  import: async (file: File, format: 'csv' | 'json'): Promise<{
+    imported: number;
+    failed: number;
+    errors?: string[];
+  }> => {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('format', format);
