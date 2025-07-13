@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 
 import RichTextEditor from '../RichTextEditor';
 
@@ -12,7 +12,7 @@ import { sanitizeHtml } from '../../utils/sanitization';
 
 describe('RichTextEditor', () => {
   const mockOnChange = vi.fn();
-  const mockSanitizeHtml = sanitizeHtml as Mock<typeof sanitizeHtml>;
+  const mockSanitizeHtml = sanitizeHtml as ReturnType<typeof vi.fn>;
 
   beforeEach(() => {
     vi.clearAllMocks();

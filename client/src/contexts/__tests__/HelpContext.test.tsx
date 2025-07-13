@@ -537,8 +537,8 @@ describe('HelpContext', () => {
       // Initial analytics
       expect(result.current.analytics.totalPagesViewed).toBe(0);
       expect(result.current.analytics.totalTutorialsCompleted).toBe(0);
-      expect(result.current.analytics.totalTimeSpent).toBe(0);
-      expect(result.current.analytics.completionRate).toBe(0);
+      expect((result.current.analytics as any).totalTimeSpent).toBe(0);
+      expect((result.current.analytics as any).completionRate).toBe(0);
 
       // Add some activity
       act(() => {
@@ -549,7 +549,7 @@ describe('HelpContext', () => {
 
       expect(result.current.analytics.totalPagesViewed).toBe(2);
       expect(result.current.analytics.totalTutorialsCompleted).toBe(1);
-      expect(result.current.analytics.completionRate).toBe(0.1); // 1/10
+      expect((result.current.analytics as any).completionRate).toBe(0.1); // 1/10
     });
 
     it('should track last visited date', () => {
@@ -572,10 +572,10 @@ describe('HelpContext', () => {
 
       const afterTime = new Date();
 
-      expect(result.current.analytics.lastVisited.getTime()).toBeGreaterThanOrEqual(
+      expect((result.current.analytics as any).lastVisited.getTime()).toBeGreaterThanOrEqual(
         beforeTime.getTime(),
       );
-      expect(result.current.analytics.lastVisited.getTime()).toBeLessThanOrEqual(
+      expect((result.current.analytics as any).lastVisited.getTime()).toBeLessThanOrEqual(
         afterTime.getTime(),
       );
     });

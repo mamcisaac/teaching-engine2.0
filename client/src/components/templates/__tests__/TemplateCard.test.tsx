@@ -1,36 +1,38 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { vi } from 'vitest';
 import { format } from 'date-fns';
 import TemplateCard from '../TemplateCard';
 import type { PlanTemplate } from '../../../types/template';
 
 describe('TemplateCard - Strict Boolean Expressions', () => {
-  const mockOnPreview = jest.fn();
-  const mockOnApply = jest.fn();
-  const mockOnDuplicate = jest.fn();
+  const mockOnPreview = vi.fn();
+  const mockOnApply = vi.fn();
+  const mockOnDuplicate = vi.fn();
 
   const baseTemplate: PlanTemplate = {
     id: '1',
     title: 'Test Template',
     type: 'UNIT_PLAN',
+    category: 'BY_SUBJECT',
     tags: [],
+    keywords: [],
     usageCount: 0,
     createdAt: '2024-01-01',
     updatedAt: '2024-01-01',
-    createdById: 'user1',
+    createdByUserId: 1,
     isSystem: false,
     isPublic: true,
-    visibility: 'PUBLIC',
     content: {},
   };
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe('Duration Display', () => {
     it('should handle estimatedWeeks when it is null', () => {
-      const template = { ...baseTemplate, type: 'UNIT_PLAN' as const, estimatedWeeks: null };
+      const template = { ...baseTemplate, type: 'UNIT_PLAN' as const, estimatedWeeks: undefined };
       render(<TemplateCard template={template} onPreview={mockOnPreview} onApply={mockOnApply} />);
       expect(screen.getByText('Duration not specified')).toBeInTheDocument();
     });
@@ -54,7 +56,7 @@ describe('TemplateCard - Strict Boolean Expressions', () => {
     });
 
     it('should handle estimatedMinutes when it is null', () => {
-      const template = { ...baseTemplate, type: 'LESSON_PLAN' as const, estimatedMinutes: null };
+      const template = { ...baseTemplate, type: 'LESSON_PLAN' as const, estimatedMinutes: undefined };
       render(<TemplateCard template={template} onPreview={mockOnPreview} onApply={mockOnApply} />);
       expect(screen.getByText('Duration not specified')).toBeInTheDocument();
     });
@@ -68,19 +70,19 @@ describe('TemplateCard - Strict Boolean Expressions', () => {
 
   describe('Grade Range Display', () => {
     it('should handle when both gradeMin and gradeMax are null', () => {
-      const template = { ...baseTemplate, gradeMin: null, gradeMax: null };
+      const template = { ...baseTemplate, gradeMin: undefined, gradeMax: undefined };
       render(<TemplateCard template={template} onPreview={mockOnPreview} onApply={mockOnApply} />);
       expect(screen.getByText('All grades')).toBeInTheDocument();
     });
 
     it('should handle when only gradeMin is null', () => {
-      const template = { ...baseTemplate, gradeMin: null, gradeMax: 5 };
+      const template = { ...baseTemplate, gradeMin: undefined, gradeMax: 5 };
       render(<TemplateCard template={template} onPreview={mockOnPreview} onApply={mockOnApply} />);
       expect(screen.getByText('All grades')).toBeInTheDocument();
     });
 
     it('should handle when only gradeMax is null', () => {
-      const template = { ...baseTemplate, gradeMin: 3, gradeMax: null };
+      const template = { ...baseTemplate, gradeMin: 3, gradeMax: undefined };
       render(<TemplateCard template={template} onPreview={mockOnPreview} onApply={mockOnApply} />);
       expect(screen.getByText('All grades')).toBeInTheDocument();
     });
@@ -94,7 +96,7 @@ describe('TemplateCard - Strict Boolean Expressions', () => {
 
   describe('Conditional Rendering', () => {
     it('should not render subject when null', () => {
-      const template = { ...baseTemplate, subject: null };
+      const template = { ...baseTemplate, subject: undefined };
       render(<TemplateCard template={template} onPreview={mockOnPreview} onApply={mockOnApply} />);
       const subjectElement = screen.queryByText(/capitalize/);
       expect(subjectElement).not.toBeInTheDocument();
@@ -121,7 +123,7 @@ describe('TemplateCard - Strict Boolean Expressions', () => {
     });
 
     it('should not render description when null', () => {
-      const template = { ...baseTemplate, description: null };
+      const template = { ...baseTemplate, description: undefined };
       render(<TemplateCard template={template} onPreview={mockOnPreview} onApply={mockOnApply} />);
       const descElement = screen.queryByText(/line-clamp-2/);
       expect(descElement).not.toBeInTheDocument();
@@ -137,7 +139,7 @@ describe('TemplateCard - Strict Boolean Expressions', () => {
 
   describe('Rating Display', () => {
     it('should not render rating when averageRating is null', () => {
-      const template = { ...baseTemplate, averageRating: null };
+      const template = { ...baseTemplate, averageRating: undefined };
       render(<TemplateCard template={template} onPreview={mockOnPreview} onApply={mockOnApply} />);
       expect(screen.queryByTestId('star-icon')).not.toBeInTheDocument();
     });
@@ -152,7 +154,7 @@ describe('TemplateCard - Strict Boolean Expressions', () => {
       const template = { 
         ...baseTemplate, 
         averageRating: 4.5,
-        _count: { ratings: 10 }
+        _count: { ratings: 10, variations: 2 }
       };
       render(<TemplateCard template={template} onPreview={mockOnPreview} onApply={mockOnApply} />);
       expect(screen.getByText('(10)')).toBeInTheDocument();
@@ -162,7 +164,7 @@ describe('TemplateCard - Strict Boolean Expressions', () => {
       const template = { 
         ...baseTemplate, 
         averageRating: 4.5,
-        _count: null
+        _count: undefined
       };
       render(<TemplateCard template={template} onPreview={mockOnPreview} onApply={mockOnApply} />);
       expect(screen.queryByText(/\(\d+\)/)).not.toBeInTheDocument();
@@ -207,7 +209,7 @@ describe('TemplateCard - Strict Boolean Expressions', () => {
 
   describe('Creator Info', () => {
     it('should show system template when createdByUser is null', () => {
-      const template = { ...baseTemplate, createdByUser: null };
+      const template = { ...baseTemplate, createdByUser: undefined };
       render(<TemplateCard template={template} onPreview={mockOnPreview} onApply={mockOnApply} />);
       expect(screen.getByText('System template')).toBeInTheDocument();
     });
@@ -215,14 +217,14 @@ describe('TemplateCard - Strict Boolean Expressions', () => {
     it('should show creator name when createdByUser exists', () => {
       const template = { 
         ...baseTemplate, 
-        createdByUser: { id: '1', name: 'John Doe', email: 'john@example.com' }
+        createdByUser: { id: 1, name: 'John Doe' }
       };
       render(<TemplateCard template={template} onPreview={mockOnPreview} onApply={mockOnApply} />);
       expect(screen.getByText('Created by John Doe')).toBeInTheDocument();
     });
 
     it('should not render last used date when lastUsedAt is null', () => {
-      const template = { ...baseTemplate, lastUsedAt: null };
+      const template = { ...baseTemplate, lastUsedAt: undefined };
       render(<TemplateCard template={template} onPreview={mockOnPreview} onApply={mockOnApply} />);
       expect(screen.queryByText(/Last used/)).not.toBeInTheDocument();
     });

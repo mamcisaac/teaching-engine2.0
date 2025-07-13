@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { substituteApi } from '../api/domains/substitute';
 
-import Dialog from './Dialog';
+import { Dialog } from './Dialog';
 
 interface Props {
   onClose: () => void;
@@ -14,8 +14,7 @@ export default function SubPlanGenerator({ onClose }: Props): React.ReactElement
   const [url, setUrl] = useState<string>();
 
   const generate = async (): Promise<void> => {
-    const res = await substituteApi.generateSubPlanPDF(date, days);
-    const blob = new Blob([res.data], { type: 'application/pdf' });
+    const blob = await substituteApi.generateSubPlanPDF(date, days);
 
     // Clean up previous URL if it exists
     if (url) {

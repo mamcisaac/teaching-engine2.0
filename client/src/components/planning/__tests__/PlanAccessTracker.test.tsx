@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
-import type { Mock } from 'vitest';
 import { useParams } from 'react-router-dom';
 import { PlanAccessTracker } from '../PlanAccessTracker';
 
@@ -16,7 +15,7 @@ vi.mock('../../../hooks/useRecentPlans', () => ({
 }));
 
 describe('PlanAccessTracker', () => {
-  const mockUseParams = useParams as Mock;
+  const mockUseParams = useParams as ReturnType<typeof vi.fn>;
   const mockMutate = vi.fn();
   const mockUseTrackPlanAccess = require('../../../hooks/useRecentPlans').useTrackPlanAccess;
 

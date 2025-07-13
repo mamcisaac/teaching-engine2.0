@@ -31,7 +31,7 @@ vi.mock('../../contexts/HelpContext', () => ({
 
 const createWrapper = () => {
   return ({ children }: { children: React.ReactNode }) => 
-    React.createElement(HelpProvider, {}, children);
+    React.createElement(HelpProvider, { children });
 };
 
 describe('useHelpContent', () => {

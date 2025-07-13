@@ -16,7 +16,7 @@ import {
 import { useState, lazy, Suspense } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 
-import Dialog from '../components/Dialog';
+import { Dialog } from '../components/Dialog';
 import ExpectationSelector from '../components/planning/ExpectationSelector';
 import { BlankTemplateQuickActions } from '../components/printing/BlankTemplatePrinter';
 import RichTextEditor from '../components/RichTextEditor';
@@ -152,7 +152,7 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
 
   useUnsavedChangesWarning(hasUnsavedChanges);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
 
     const cleanedData = {
@@ -202,7 +202,7 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
     });
   };
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (id: string): Promise<void> => {
     await deleteLesson.mutateAsync(id);
     setDeleteConfirmId(null);
     if (lessonId === id) {
@@ -279,7 +279,7 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
   };
 
   // AI suggestion handlers
-  const handleAISuggestionAccepted = (type: string, content: string[]) => {
+  const handleAISuggestionAccepted = (type: string, content: string[]): void => {
     switch (type) {
       case 'mindson':
         setFormData({ ...formData, mindsOn: content.join('\n\n') });
@@ -316,7 +316,7 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
     mindsOn?: { activities: string[]; duration: number; materials: string[] };
     handsOn?: { activities: string[]; duration: number; materials: string[] };
     mindsOnReflection?: { activities: string[]; duration: number; materials: string[] };
-  }) => {
+  }): void => {
     // Handle both the old interface and the new ThreePartStructure interface
     if ('mindsOn' in lessonPlan && 'handsOn' in lessonPlan && 'mindsOnReflection' in lessonPlan) {
       // ThreePartStructure format
@@ -360,7 +360,7 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
     }
   };
 
-  const handleApplyTemplate = async (template: PlanTemplate) => {
+  const handleApplyTemplate = async (template: PlanTemplate): Promise<void> => {
     try {
       const applied = await applyTemplate.mutateAsync({ id: template.id });
 
@@ -952,7 +952,7 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
                   hasUnsavedChanges={hasUnsavedChanges}
                   isSaving={isSaving}
                   lastSaved={lastSaved}
-                  onManualSave={saveNow}
+                  onManualSave={(): void => { void saveNow(); }}
                 />
                 <Button
                   className="flex items-center gap-2"
@@ -960,7 +960,7 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
                   size="sm"
                   type="button"
                   variant="outline"
-                  onClick={saveNow}
+                  onClick={(): void => { void saveNow(); }}
                 >
                   {isSaving ? (
                     <RefreshCw className="h-4 w-4 animate-spin" />
@@ -974,7 +974,7 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
           </div>
 
           <MobileOptimizedForm>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={(e): void => { void handleSubmit(e); }}>
               <Tabs className="space-y-4" defaultValue="overview">
                 <TabsList className="grid w-full grid-cols-2 sm:grid-cols-6">
                   <TabsTrigger value="overview">Overview</TabsTrigger>
@@ -1646,7 +1646,7 @@ Assessment Strategies:
               className="bg-indigo-600 hover:bg-indigo-700 text-white"
               disabled={!selectedTemplate || applyTemplate.isPending}
               type="button"
-              onClick={() => selectedTemplate && handleApplyTemplate(selectedTemplate)}
+              onClick={(): void => { selectedTemplate && void handleApplyTemplate(selectedTemplate); }}
             >
               {applyTemplate.isPending ? 'Loading...' : 'Use This Template'}
             </Button>
@@ -1669,7 +1669,7 @@ Assessment Strategies:
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction
               className="bg-red-600 hover:bg-red-700"
-              onClick={() => deleteConfirmId && handleDelete(deleteConfirmId)}
+              onClick={(): void => { deleteConfirmId && void handleDelete(deleteConfirmId); }}
             >
               Delete
             </AlertDialogAction>

@@ -3,7 +3,7 @@ import { Copy, Calendar, BookOpen, GraduationCap } from 'lucide-react';
 import React, { useState } from 'react';
 
 import { api } from '../../api';
-import Dialog from '../Dialog';
+import { Dialog } from '../Dialog';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
 import { Label } from '../ui/Label';
@@ -17,6 +17,27 @@ interface DuplicatePlanModalProps {
   planId?: string;
   planTitle?: string;
 }
+
+interface LongRangePlan {
+  id: string;
+  title: string;
+  subject: string;
+  grade: number;
+}
+
+interface UnitPlan {
+  id: string;
+  title: string;
+  parent: string;
+}
+
+interface LessonPlan {
+  id: string;
+  title: string;
+  parent: string;
+}
+
+type PlanItem = LongRangePlan | UnitPlan | LessonPlan;
 
 export function DuplicatePlanModal({ 
   isOpen, 
@@ -33,7 +54,11 @@ export function DuplicatePlanModal({
   const [includeSubItems, setIncludeSubItems] = useState(true);
 
   // Mock data - in real implementation, fetch from API
-  const availablePlans = {
+  const availablePlans: {
+    'long-range': LongRangePlan[];
+    'unit': UnitPlan[];
+    'lesson': LessonPlan[];
+  } = {
     'long-range': [
       { id: '1', title: 'Grade 3 Math 2024-2025', subject: 'Mathematics', grade: 3 },
       { id: '2', title: 'Grade 3 Science 2024-2025', subject: 'Science', grade: 3 },
@@ -48,7 +73,7 @@ export function DuplicatePlanModal({
     ],
   };
 
-  const duplicateMutation = useMutation({
+  const duplicateMutation = useMutation<{ data: { id: string } }, Error, unknown>({
     mutationFn: async (_data: unknown) => {
       const endpoint = {
         'long-range': '/api/long-range-plans/duplicate',
@@ -76,18 +101,20 @@ export function DuplicatePlanModal({
         'unit': '/planner/units',
         'lesson': '/planner/etfo-lessons',
       }[selectedType];
-      window.location.href = `${routePrefix}/${response.data.id}`;
+      if (routePrefix) {
+        window.location.href = `${routePrefix}/${response.data.id}`;
+      }
     },
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
     if (selectedType !== '' && selectedPlanId !== '' && newTitle !== '') {
       duplicateMutation.mutate({});
     }
   };
 
-  const getTypeIcon = (type: string) => {
+  const getTypeIcon = (type: string): JSX.Element => {
     switch (type) {
       case 'long-range':
         return <Calendar className="h-5 w-5" />;
@@ -155,7 +182,7 @@ export function DuplicatePlanModal({
                   <SelectValue placeholder="Choose a plan" />
                 </SelectTrigger>
                 <SelectContent>
-                  {availablePlans[selectedType as keyof typeof availablePlans].map((plan, _index) => (
+                  {(availablePlans[selectedType as keyof typeof availablePlans] ?? []).map((plan: PlanItem, _index) => (
                     <SelectItem key={plan.id} value={plan.id}>
                       <div>
                         <div className="font-medium">{plan.title}</div>

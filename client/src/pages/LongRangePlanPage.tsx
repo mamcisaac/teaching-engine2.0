@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { apiClient } from '../api/core/client';
-import Dialog from '../components/Dialog';
+import { Dialog } from '../components/Dialog';
 import AISuggestionPanel from '../components/planning/AISuggestionPanel';
 import { BlankTemplateQuickActions } from '../components/printing/BlankTemplatePrinter';
 import { Button } from '../components/ui/Button';
@@ -32,6 +32,26 @@ interface LongRangePlan {
   };
 }
 
+// API Response interfaces
+interface _LongRangePlansResponse {
+  plans: LongRangePlan[];
+}
+
+interface CreateLongRangePlanResponse {
+  id: string;
+  title: string;
+  academicYear: string;
+}
+
+// Type guards
+function isLongRangePlansArray(data: unknown): data is LongRangePlan[] {
+  return Array.isArray(data) && (data.length === 0 || (typeof data[0] === 'object' && data[0] !== null && 'id' in data[0]));
+}
+
+function isCreateLongRangePlanResponse(data: unknown): data is CreateLongRangePlanResponse {
+  return typeof data === 'object' && data !== null && 'id' in data && 'title' in data;
+}
+
 export default function LongRangePlanPage(): React.ReactElement {
   const queryClient = useQueryClient();
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -49,18 +69,24 @@ export default function LongRangePlanPage(): React.ReactElement {
   const { generateLongRangeGoals, isGenerating } = useAIPlanningAssistant();
 
   // Fetch long-range plans
-  const { data: plans = [], isLoading } = useQuery({
+  const { data: plans = [], isLoading } = useQuery<LongRangePlan[]>({
     queryKey: ['long-range-plans', selectedYear],
-    queryFn: async () => {
-      const response = await apiClient.get(`/api/long-range-plans?academicYear=${selectedYear}`);
+    queryFn: async (): Promise<LongRangePlan[]> => {
+      const response = await apiClient.get<LongRangePlan[]>(`/api/long-range-plans?academicYear=${selectedYear}`);
+      if (!isLongRangePlansArray(response.data)) {
+        throw new Error('Invalid long range plans response format');
+      }
       return response.data;
     },
   });
 
   // Create mutation
-  const createPlan = useMutation({
-    mutationFn: async (data: Partial<LongRangePlan>) => {
-      const response = await apiClient.post('/api/long-range-plans', data);
+  const createPlan = useMutation<CreateLongRangePlanResponse, Error, Partial<LongRangePlan>>({
+    mutationFn: async (data: Partial<LongRangePlan>): Promise<CreateLongRangePlanResponse> => {
+      const response = await apiClient.post<CreateLongRangePlanResponse>('/api/long-range-plans', data);
+      if (!isCreateLongRangePlanResponse(response.data)) {
+        throw new Error('Invalid create plan response format');
+      }
       return response.data;
     },
     onSuccess: () => {
@@ -85,7 +111,7 @@ export default function LongRangePlanPage(): React.ReactElement {
     professionalGoals: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
     createPlan.mutate({
       ...formData,
@@ -297,7 +323,7 @@ export default function LongRangePlanPage(): React.ReactElement {
  setFormData({ ...formData, grade: Number(e.target.value) }); 
 }}
                 >
-                  {[...Array(8)].map((_, i) => (
+                  {Array.from({ length: 8 }, (_, i) => (
                     <option key={i + 1} value={i + 1}>
                       Grade {i + 1}
                     </option>
@@ -363,7 +389,7 @@ export default function LongRangePlanPage(): React.ReactElement {
             {showAISuggestions && formData.subject && formData.grade && (
               <AISuggestionPanel
                 description="Get AI-powered suggestions for your long-range plan goals"
-                error={generateLongRangeGoals.error as Error | null}
+                error={generateLongRangeGoals.error}
                 isGenerating={isGenerating}
                 suggestions={aiGoalSuggestions}
                 title="AI Goal Suggestions"
@@ -381,13 +407,15 @@ export default function LongRangePlanPage(): React.ReactElement {
                     goals: formData.goals ? `${formData.goals}\n\n${suggestion}` : suggestion,
                   });
                 }}
-                onGenerate={async () => {
-                  const result = await generateLongRangeGoals.mutateAsync({
-                    subject: formData.subject,
-                    grade: formData.grade,
-                    termLength: formData.term === 'Full Year' ? 40 : 20,
-                  });
-                  setAiGoalSuggestions(result as AISuggestion);
+                onGenerate={(): void => {
+                  void (async (): Promise<void> => {
+                    const result = await generateLongRangeGoals.mutateAsync({
+                      subject: formData.subject,
+                      grade: formData.grade,
+                      termLength: formData.term === 'Full Year' ? 40 : 20,
+                    });
+                    setAiGoalSuggestions(result);
+                  })();
                 }}
               />
             )}

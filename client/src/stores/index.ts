@@ -24,11 +24,13 @@ export type { LessonPlan } from './lessonPlanStore';
 export const initializeStores = (): void => {
   // Auto-start keyboard shortcuts if enabled
   if (typeof window !== 'undefined') {
-    import('./keyboardShortcutsStore').then(({ useKeyboardShortcutsStore }) => {
+    void import('./keyboardShortcutsStore').then(({ useKeyboardShortcutsStore }) => {
       const keyboardStore = useKeyboardShortcutsStore.getState();
       if (keyboardStore.isEnabled && keyboardStore.preferences.enabled) {
         keyboardStore.startListening();
       }
+    }).catch((error: unknown) => {
+      console.error('Error loading keyboard shortcuts store:', error);
     });
   }
 };

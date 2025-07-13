@@ -38,8 +38,8 @@ export default function TemplateFilters({
   };
 
   const hasActiveFilters =
-    (filters.type !== undefined && filters.type !== '') ||
-    (filters.category !== undefined && filters.category !== '') ||
+    filters.type !== undefined ||
+    filters.category !== undefined ||
     (filters.subject !== undefined && filters.subject !== '') ||
     filters.gradeMin !== undefined ||
     filters.gradeMax !== undefined ||

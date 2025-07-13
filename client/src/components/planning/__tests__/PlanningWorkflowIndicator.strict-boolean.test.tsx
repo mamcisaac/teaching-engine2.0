@@ -17,6 +17,9 @@ describe('PlanningWorkflowIndicator - Strict Boolean Expressions', () => {
       isComplete: false,
       isAccessible: true,
       requiredFields: ['grade', 'subject'],
+      progressPercentage: 25,
+      completedItems: 1,
+      totalItems: 4,
     },
     {
       level: ETFOLevel.LONG_RANGE_PLANS,
@@ -25,6 +28,9 @@ describe('PlanningWorkflowIndicator - Strict Boolean Expressions', () => {
       isComplete: false,
       isAccessible: false,
       requiredFields: undefined, // Test undefined case
+      progressPercentage: 0,
+      completedItems: 0,
+      totalItems: 3,
     },
     {
       level: ETFOLevel.UNIT_PLANS,
@@ -33,6 +39,9 @@ describe('PlanningWorkflowIndicator - Strict Boolean Expressions', () => {
       isComplete: true,
       isAccessible: true,
       requiredFields: [], // Test empty array
+      progressPercentage: 100,
+      completedItems: 5,
+      totalItems: 5,
     },
   ];
 
@@ -97,6 +106,9 @@ describe('PlanningWorkflowIndicator - Strict Boolean Expressions', () => {
           isComplete: false,
           isAccessible: true,
           requiredFields: null as any, // Test null case
+          progressPercentage: 0,
+          completedItems: 0,
+          totalItems: 2,
         },
       ];
 

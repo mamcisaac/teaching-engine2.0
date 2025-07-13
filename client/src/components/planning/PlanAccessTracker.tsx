@@ -16,10 +16,7 @@ export function PlanAccessTracker({ planType, children }: PlanAccessTrackerProps
   const planId = params.unitId ?? params.lessonId ?? params.longRangePlanId ?? params.id;
   
   useEffect(() => {
-    return () => { // Cleanup
-    };
-
-    if (planId !== undefined && planId !== null && planId !== '') {
+    if (planId && planId !== '') {
       // Track access when component mounts or planId changes
       trackAccess.mutate({ planType, planId });
     }

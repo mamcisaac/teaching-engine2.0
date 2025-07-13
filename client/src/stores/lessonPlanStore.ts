@@ -72,7 +72,7 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
               unsyncedChanges: 0,
               syncError: null,
               // Actions will be added by the store
-            } as LessonPlanState;
+            } as unknown as LessonPlanState;
           },
           saveToServer: async (data) => {
             // Save all modified lesson plans

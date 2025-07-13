@@ -1,15 +1,16 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
 import FrenchImmersionLessonTemplate from '../FrenchImmersionLessonTemplate';
 import type { FrenchImmersionLessonContent } from '../../../types/frenchImmersion';
 
 describe('FrenchImmersionLessonTemplate - Strict Boolean Expressions', () => {
-  const mockOnSave = jest.fn();
-  const mockOnCancel = jest.fn();
+  const mockOnSave = vi.fn();
+  const mockOnCancel = vi.fn();
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe('Metadata Theme Display', () => {

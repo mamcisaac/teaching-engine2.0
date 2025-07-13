@@ -1,4 +1,4 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient, UseMutationResult } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { apiClient } from '../api/core/client';
@@ -203,7 +203,7 @@ export function useCurriculumExpectations(filters?: {
         params.append('search', filters.search);
       }
 
-      const response = await apiClient.get(`/api/curriculum-expectations?${params}`);
+      const response = await apiClient.get(`/api/curriculum-expectations?${params.toString()}`);
       return response.data as CurriculumExpectation[];
     },
   });
@@ -220,13 +220,13 @@ export function useCurriculumExpectation(id: string): ReturnType<typeof useQuery
   });
 }
 
-export function useUpdateCurriculumExpectation(): ReturnType<typeof useMutation> {
+export function useUpdateCurriculumExpectation(): UseMutationResult<unknown, Error, { id: string; data: Partial<CurriculumExpectation> }> {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async ({ id, data }: { id: string; data: Partial<CurriculumExpectation> }) => {
       const response = await apiClient.put(`/api/curriculum-expectations/${id}`, data);
-      return response.data;
+      return response.data as CurriculumExpectation;
     },
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: ['curriculum-expectations'] });
@@ -238,13 +238,13 @@ export function useUpdateCurriculumExpectation(): ReturnType<typeof useMutation>
   });
 }
 
-export function useDeleteCurriculumExpectation(): ReturnType<typeof useMutation> {
+export function useDeleteCurriculumExpectation(): UseMutationResult<unknown, Error, string> {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (id: string) => {
       const response = await apiClient.delete(`/api/curriculum-expectations/${id}`);
-      return response.data;
+      return response.data as { success: boolean };
     },
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: ['curriculum-expectations'] });
@@ -276,7 +276,7 @@ export function useLongRangePlans(filters?: {
         params.append('grade', filters.grade.toString());
       }
 
-      const response = await apiClient.get(`/api/long-range-plans?${params}`);
+      const response = await apiClient.get(`/api/long-range-plans?${params.toString()}`);
       return response.data as LongRangePlan[];
     },
   });
@@ -325,13 +325,13 @@ export function useUpdateLongRangePlan(): ReturnType<typeof useMutation<LongRang
   });
 }
 
-export function useDeleteLongRangePlan(): ReturnType<typeof useMutation> {
+export function useDeleteLongRangePlan(): UseMutationResult<unknown, Error, string> {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (id: string) => {
       const response = await apiClient.delete(`/api/long-range-plans/${id}`);
-      return response.data;
+      return response.data as { success: boolean };
     },
     onSuccess: (_, id) => {
       void queryClient.invalidateQueries({ queryKey: ['long-range-plans'] });
@@ -360,7 +360,7 @@ export function useUnitPlans(filters?: {
         params.append('endDate', filters.endDate);
       }
 
-      const response = await apiClient.get(`/api/unit-plans?${params}`);
+      const response = await apiClient.get(`/api/unit-plans?${params.toString()}`);
       return response.data as UnitPlan[];
     },
   });
@@ -410,13 +410,13 @@ export function useUpdateUnitPlan(): ReturnType<typeof useMutation<UnitPlan, Err
   });
 }
 
-export function useDeleteUnitPlan(): ReturnType<typeof useMutation> {
+export function useDeleteUnitPlan(): UseMutationResult<unknown, Error, string> {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (id: string) => {
       const response = await apiClient.delete(`/api/unit-plans/${id}`);
-      return response.data;
+      return response.data as { success: boolean };
     },
     onSuccess: (_, id) => {
       void queryClient.invalidateQueries({ queryKey: ['unit-plans'] });
@@ -453,7 +453,7 @@ export function useETFOLessonPlans(filters?: {
         params.append('isSubFriendly', filters.isSubFriendly.toString());
       }
 
-      const response = await apiClient.get(`/api/etfo-lesson-plans?${params}`);
+      const response = await apiClient.get(`/api/etfo-lesson-plans?${params.toString()}`);
       return response.data as ETFOLessonPlan[];
     },
   });
@@ -503,13 +503,13 @@ export function useUpdateETFOLessonPlan(): ReturnType<typeof useMutation<ETFOLes
   });
 }
 
-export function useDeleteETFOLessonPlan(): ReturnType<typeof useMutation> {
+export function useDeleteETFOLessonPlan(): UseMutationResult<unknown, Error, string> {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (id: string) => {
       const response = await apiClient.delete(`/api/etfo-lesson-plans/${id}`);
-      return response.data;
+      return response.data as { success: boolean };
     },
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans'] });
@@ -541,7 +541,7 @@ export function useDaybookEntries(filters?: {
         params.append('rating', filters.rating.toString());
       }
 
-      const response = await apiClient.get(`/api/daybook-entries?${params}`);
+      const response = await apiClient.get(`/api/daybook-entries?${params.toString()}`);
       return response.data as DaybookEntry[];
     },
   });

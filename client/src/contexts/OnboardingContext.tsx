@@ -182,7 +182,7 @@ export const TUTORIAL_FLOWS: Record<string, OnboardingFlow> = {
   }
 };
 
-const OnboardingContext = createContext<OnboardingContextType | undefined>(undefined);
+export const OnboardingContext = createContext<OnboardingContextType | undefined>(undefined);
 
 export function OnboardingProvider({ children }: { children: ReactNode }): React.ReactElement {
   const [state, setState] = useState<OnboardingState>(() => {
@@ -206,8 +206,6 @@ export function OnboardingProvider({ children }: { children: ReactNode }): React
 
   // Auto-start onboarding for first-time users - DISABLED
   // useEffect(() => {
-    return () => { // Cleanup
-    };
 
   //   if (state.isFirstTimeUser && state.showOnboarding && !state.currentFlow && !state.skippedOnboarding) {
   //     startOnboarding('main-onboarding');

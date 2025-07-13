@@ -417,7 +417,7 @@ export const testUtils = {
     },
 
     // Create test data for real implementations
-    createTestData: async (dataConfig: any) => {
+    createTestData: async (dataConfig: Record<string, unknown>) => {
       // Implementation for creating real test data
       return dataConfig;
     },

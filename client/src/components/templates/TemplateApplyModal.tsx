@@ -42,28 +42,44 @@ export default function TemplateApplyModal({
     startDate: format(new Date(), 'yyyy-MM-dd'),
   });
 
+  interface LongRangePlan {
+    id: string;
+    title: string;
+    subject: string;
+    grade: string;
+  }
+
   // Fetch long-range plans for unit templates
-  const { data: longRangePlans = [] } = useQuery<unknown[]>({
+  const { data: longRangePlans = [] } = useQuery<LongRangePlan[]>({
     queryKey: ['long-range-plans'],
     queryFn: async () => {
-      const response = await api.get<unknown[]>('/api/long-range-plans');
+      const response = await api.get<LongRangePlan[]>('/api/long-range-plans');
       return response.data;
     },
     enabled: template.type === 'UNIT_PLAN',
   });
 
+  interface UnitPlan {
+    id: string;
+    title: string;
+  }
+
   // Fetch unit plans for lesson templates
-  const { data: unitPlans = [] } = useQuery({
+  const { data: unitPlans = [] } = useQuery<UnitPlan[]>({
     queryKey: ['unit-plans'],
     queryFn: async () => {
-      const response = await api.get('/api/unit-plans');
+      const response = await api.get<UnitPlan[]>('/api/unit-plans');
       return response.data;
     },
     enabled: template.type === 'LESSON_PLAN',
   });
 
+  interface ApplyTemplateResponse {
+    id: string;
+  }
+
   // Apply template mutation
-  const applyTemplateMutation = useMutation({
+  const applyTemplateMutation = useMutation<ApplyTemplateResponse, Error, void>({
     mutationFn: async () => {
       const endpoint = `/api/templates/${template.id}/apply`;
       const payload = {
@@ -78,17 +94,17 @@ export default function TemplateApplyModal({
         }),
       };
 
-      const response = await api.post(endpoint, payload);
+      const response = await api.post<ApplyTemplateResponse>(endpoint, payload);
       return response.data;
     },
-    onSuccess: (_data) => {
+    onSuccess: (data) => {
       toast.success(`${template.type === 'UNIT_PLAN' ? 'Unit' : 'Lesson'} created from template`);
       
       // Navigate to the created plan
       if (template.type === 'UNIT_PLAN') {
-        navigate(`/planner/units/${_data.id}`);
+        navigate(`/planner/units/${data.id}`);
       } else {
-        navigate(`/planner/lessons/${_data.id}`);
+        navigate(`/planner/lessons/${data.id}`);
       }
       
       onClose();
@@ -98,7 +114,7 @@ export default function TemplateApplyModal({
     },
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
     
     // Validate required fields
@@ -161,7 +177,7 @@ export default function TemplateApplyModal({
                   <SelectValue placeholder="Select a long-range plan" />
                 </SelectTrigger>
                 <SelectContent>
-                  {longRangePlans.map((plan: { id: string; title: string; subject: string; grade: string }, _index) => (
+                  {longRangePlans.map((plan, _index) => (
                     <SelectItem key={plan.id} value={plan.id}>
                       {plan.title} - {plan.subject} (Grade {plan.grade})
                     </SelectItem>
@@ -187,7 +203,7 @@ export default function TemplateApplyModal({
                   <SelectValue placeholder="Select a unit plan" />
                 </SelectTrigger>
                 <SelectContent>
-                  {unitPlans.map((unit: { id: string; title: string }, _index) => (
+                  {unitPlans.map((unit, _index) => (
                     <SelectItem key={unit.id} value={unit.id}>
                       {unit.title}
                     </SelectItem>

@@ -221,13 +221,13 @@ export default function HelpPage(): React.ReactElement {
     }
   }, [state.searchQuery]);
 
-  const handleSectionSelect = (sectionId: string) => {
+  const handleSectionSelect = (sectionId: string): void => {
     setSelectedSection(sectionId);
     setCurrentSection(sectionId);
     markHelpPageViewed(`help-${sectionId}`);
   };
 
-  const getSectionIcon = (sectionId: string) => {
+  const getSectionIcon = (sectionId: string): JSX.Element => {
     const iconClasses = 'h-8 w-8';
 
     switch (sectionId) {
@@ -300,7 +300,7 @@ export default function HelpPage(): React.ReactElement {
     }
   };
 
-  const renderSectionContent = (sectionId: string) => {
+  const renderSectionContent = (sectionId: string): JSX.Element => {
     const sectionContent = mockHelpContent[sectionId] ?? 'Content not available.';
 
     return (

@@ -16,7 +16,7 @@ vi.mock('../../utils/logger', () => ({
 // Create a wrapper with KeyboardShortcutsProvider
 const createWrapper = () => {
   return ({ children }: { children: React.ReactNode }) => 
-    React.createElement(KeyboardShortcutsProvider, {}, children);
+    React.createElement(KeyboardShortcutsProvider, { children });
 };
 
 describe('useKeyboardShortcut', () => {

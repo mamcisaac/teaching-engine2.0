@@ -632,7 +632,7 @@ export const generateLessonPlanHTML = (lessonPlan: LessonPlan, unitPlan?: { titl
   `;
 };
 
-export const printHTML = (html: string, _filename = 'document') => {
+export const printHTML = (html: string, _filename = 'document'): void => {
   const printWindow = window.open('', '_blank');
   if (printWindow !== null && printWindow !== undefined) {
     printWindow.document.write(html);
@@ -646,7 +646,7 @@ export const printHTML = (html: string, _filename = 'document') => {
   }
 };
 
-export const downloadHTML = (html: string, filename = 'document') => {
+export const downloadHTML = (html: string, filename = 'document'): void => {
   const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
@@ -668,7 +668,7 @@ export interface ETFOSchoolInfo {
   academicYear?: string;
 }
 
-const getETFOHeaderStyles = () => `
+const getETFOHeaderStyles = (): string => `
   .etfo-header {
     border-bottom: 3px solid #1e40af;
     padding-bottom: 1rem;

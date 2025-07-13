@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 
 import ResourceSelector from '../ResourceSelector';
 
@@ -15,7 +15,7 @@ vi.mock('../Dialog', () => ({
 import { useMediaResources } from '../../api/domains/resource';
 
 describe('ResourceSelector', () => {
-  const mockUseMediaResources = useMediaResources as Mock<typeof useMediaResources>;
+  const mockUseMediaResources = useMediaResources as ReturnType<typeof vi.fn>;
   const mockOnSelect = vi.fn();
   const mockOnClose = vi.fn();
 

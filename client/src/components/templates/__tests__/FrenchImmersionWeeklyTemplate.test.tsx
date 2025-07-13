@@ -1,20 +1,21 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
 import FrenchImmersionWeeklyTemplate from '../FrenchImmersionWeeklyTemplate';
 import type { WeeklyPlanData } from '../../../types/frenchImmersion';
 
 describe('FrenchImmersionWeeklyTemplate - Strict Boolean Expressions', () => {
-  const mockOnSave = jest.fn();
-  const mockOnCancel = jest.fn();
+  const mockOnSave = vi.fn();
+  const mockOnCancel = vi.fn();
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe('Metadata Display', () => {
     it('should display default text when month is null', () => {
-      const metadata = { weekNumber: null as any, month: null as any };
+      const metadata = { grade: 1, weekNumber: null as any, month: null as any };
       render(
         <FrenchImmersionWeeklyTemplate 
           onSave={mockOnSave} 
@@ -26,7 +27,7 @@ describe('FrenchImmersionWeeklyTemplate - Strict Boolean Expressions', () => {
     });
 
     it('should display default text when month is undefined', () => {
-      const metadata = { weekNumber: 1 };
+      const metadata = { grade: 1, weekNumber: 1, month: '' };
       render(
         <FrenchImmersionWeeklyTemplate 
           onSave={mockOnSave} 
@@ -38,7 +39,7 @@ describe('FrenchImmersionWeeklyTemplate - Strict Boolean Expressions', () => {
     });
 
     it('should display default text when month is empty string', () => {
-      const metadata = { weekNumber: 1, month: '' };
+      const metadata = { grade: 1, weekNumber: 1, month: '' };
       render(
         <FrenchImmersionWeeklyTemplate 
           onSave={mockOnSave} 
@@ -50,7 +51,7 @@ describe('FrenchImmersionWeeklyTemplate - Strict Boolean Expressions', () => {
     });
 
     it('should display month and week when valid', () => {
-      const metadata = { weekNumber: 2, month: 'September' };
+      const metadata = { grade: 1, weekNumber: 2, month: 'September' };
       render(
         <FrenchImmersionWeeklyTemplate 
           onSave={mockOnSave} 
@@ -62,7 +63,7 @@ describe('FrenchImmersionWeeklyTemplate - Strict Boolean Expressions', () => {
     });
 
     it('should handle weekNumber being 0', () => {
-      const metadata = { weekNumber: 0, month: 'September' };
+      const metadata = { grade: 1, weekNumber: 0, month: 'September' };
       render(
         <FrenchImmersionWeeklyTemplate 
           onSave={mockOnSave} 
@@ -77,7 +78,7 @@ describe('FrenchImmersionWeeklyTemplate - Strict Boolean Expressions', () => {
     });
 
     it('should handle weekNumber being null', () => {
-      const metadata = { weekNumber: null as any, month: 'September' };
+      const metadata = { grade: 1, weekNumber: null as any, month: 'September' };
       render(
         <FrenchImmersionWeeklyTemplate 
           onSave={mockOnSave} 

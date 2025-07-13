@@ -68,7 +68,7 @@ export default function ParentNewsletterPage(): React.ReactElement {
   }, [currentNewsletter, showCreateForm]);
 
   // Handlers
-  const handleGenerateNewsletter = async () => {
+  const handleGenerateNewsletter = async (): Promise<void> => {
     try {
       const params: NewsletterGenerationParams = {
         studentIds: selectedStudentIds,
@@ -109,7 +109,7 @@ export default function ParentNewsletterPage(): React.ReactElement {
     }
   };
 
-  const handleRegenerateNewsletter = async (newTone?: NewsletterTone) => {
+  const handleRegenerateNewsletter = async (newTone?: NewsletterTone): Promise<void> => {
     if (!currentNewsletter) {
 return;
 }
@@ -134,7 +134,7 @@ return;
     }
   };
 
-  const handleSaveDraft = async (draft: NewsletterDraft) => {
+  const handleSaveDraft = async (draft: NewsletterDraft): Promise<void> => {
     try {
       await saveNewsletterDraft.mutateAsync(draft);
     } catch (_error) {
@@ -143,7 +143,7 @@ return;
     }
   };
 
-  const handleSendNewsletter = async (draft: NewsletterDraft) => {
+  const handleSendNewsletter = async (draft: NewsletterDraft): Promise<void> => {
     if (!draft.id) {
 return;
 }
@@ -162,7 +162,7 @@ return;
     }
   };
 
-  const handleDeleteNewsletter = async (newsletterId: string) => {
+  const handleDeleteNewsletter = async (newsletterId: string): Promise<void> => {
     try {
       await deleteNewsletter.mutateAsync(newsletterId);
       if (id === newsletterId) {
@@ -316,7 +316,11 @@ return;
               <button
                 className="flex items-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
                 disabled={generateNewsletter.isPending}
-                onClick={handleGenerateNewsletter}
+                onClick={() => {
+                  void handleGenerateNewsletter().catch((error: unknown) => {
+                    console.error('Error generating newsletter:', error);
+                  });
+                }}
               >
                 {generateNewsletter.isPending ? (
                   <RefreshCw className="w-4 h-4 animate-spin" />
@@ -371,9 +375,21 @@ return;
         <NewsletterEditor
           draft={currentNewsletter}
           isGenerating={regenerateNewsletter.isPending}
-          onRegenerate={handleRegenerateNewsletter}
-          onSave={handleSaveDraft}
-          onSend={handleSendNewsletter}
+          onRegenerate={(tone?: NewsletterTone) => {
+            void handleRegenerateNewsletter(tone).catch((error: unknown) => {
+              console.error('Error regenerating newsletter:', error);
+            });
+          }}
+          onSave={(draft: NewsletterDraft) => {
+            void handleSaveDraft(draft).catch((error: unknown) => {
+              console.error('Error saving draft:', error);
+            });
+          }}
+          onSend={(draft: NewsletterDraft) => {
+            void handleSendNewsletter(draft).catch((error: unknown) => {
+              console.error('Error sending newsletter:', error);
+            });
+          }}
         />
       </div>
     );

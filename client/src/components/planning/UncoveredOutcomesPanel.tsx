@@ -66,7 +66,7 @@ params.append('theme', theme);
 }
 
       const response = await apiClient.get<UncoveredExpectation[]>(
-        `/ai-suggestions/uncovered?${params}`,
+        `/ai-suggestions/uncovered?${params.toString()}`,
       );
       return response.data;
     },

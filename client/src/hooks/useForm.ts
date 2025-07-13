@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { FormEvent, ChangeEvent } from 'react';
 import { useState, useCallback } from 'react';
 import type { z } from 'zod';
@@ -38,7 +37,7 @@ export function useForm<T extends Record<string, unknown>>({
   validateField: (name: string, value: unknown) => string | undefined;
   getFieldProps: (name: keyof T) => {
     name: string;
-    value: any;
+    value: T[keyof T];
     onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
     onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
     'aria-invalid': boolean;
@@ -62,10 +61,9 @@ return undefined;
       try {
         // For object schemas, try to get the field schema
         if ('shape' in validationSchema && validationSchema.shape) {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const fieldSchema = (validationSchema.shape as Record<string, unknown>)[name];
-          if (fieldSchema && typeof fieldSchema === 'object' && 'parse' in fieldSchema) {
-            (fieldSchema as z.ZodSchema).parse(value);
+          const fieldSchema = (validationSchema.shape as Record<string, z.ZodSchema>)[name];
+          if (fieldSchema && 'parse' in fieldSchema) {
+            fieldSchema.parse(value);
           } else {
             // Validate entire object if can't extract field schema
             validationSchema.parse({ ...values, [name]: value });
@@ -228,7 +226,7 @@ return true;
   const getFieldProps = useCallback(
     (name: keyof T) => ({
       name: String(name),
-      value: values[name] ?? '',
+      value: values[name],
       onChange: handleChange,
       onBlur: handleBlur,
       'aria-invalid': !!errors[String(name)],

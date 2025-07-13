@@ -133,7 +133,7 @@ export function HelpProvider({ children }: { children: React.ReactNode }): React
       if (savedState) {
         const parsedState = safeJsonParse(savedState, initialState);
         // Convert date strings back to Date objects
-        if (parsedState.userProgress.lastVisited) {
+        if (parsedState.userProgress?.lastVisited) {
           parsedState.userProgress.lastVisited = new Date(parsedState.userProgress.lastVisited);
         }
         dispatch({ type: 'LOAD_STATE', payload: parsedState });
@@ -210,7 +210,7 @@ export function useHelp(): HelpContextType {
 }
 
 // Hook for checking tutorial progress
-export function useTutorialProgress(tutorialId: string) {
+export function useTutorialProgress(tutorialId: string): { currentStep: number; isActive: boolean; isCompleted: boolean; } {
   const { state } = useHelp();
   
   return {
@@ -221,14 +221,12 @@ export function useTutorialProgress(tutorialId: string) {
 }
 
 // Hook for help analytics
-export function useHelpAnalytics() {
+export function useHelpAnalytics(): { totalPagesViewed: number; totalTutorialsCompleted: number; lastActiveDate: Date | null; } {
   const { state } = useHelp();
   
   return {
     totalPagesViewed: state.userProgress.helpPagesViewed.length,
     totalTutorialsCompleted: state.userProgress.tutorialsCompleted.length,
-    totalTimeSpent: state.userProgress.totalTimeSpent,
-    lastVisited: state.userProgress.lastVisited,
-    completionRate: state.userProgress.tutorialsCompleted.length / 10 // Assuming 10 total tutorials
+    lastActiveDate: state.userProgress.lastVisited
   };
 }

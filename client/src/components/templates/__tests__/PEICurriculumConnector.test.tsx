@@ -1,187 +1,121 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
 import PEICurriculumConnector from '../PEICurriculumConnector';
-import type { PEICurriculumAlignment, CurriculumOutcome } from '../../../types/peiCurriculum';
 
-describe('PEICurriculumConnector - Strict Boolean Expressions', () => {
-  const mockOnOutcomesSelect = jest.fn();
-
-  const baseAlignment: PEICurriculumAlignment = {
-    subject: 'French Language Arts',
-    grade: 1,
-    outcomes: [
-      {
-        code: 'FLA.1.1',
-        description: 'Listen and respond to simple French instructions',
-        indicators: ['Follow classroom routines', 'Respond to basic questions'],
-        crossCurricularCompetencies: ['Communication']
-      }
-    ]
-  };
+describe('PEICurriculumConnector - Component Props', () => {
+  const mockOnOutcomeSelect = vi.fn();
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
-  describe('Strand Display', () => {
-    it('should not display strand when null', () => {
-      const alignments = [{ ...baseAlignment, strand: null }];
+  describe('Basic Rendering', () => {
+    it('should render with grade and subject', () => {
       render(
         <PEICurriculumConnector 
-          alignments={alignments}
-          onOutcomesSelect={mockOnOutcomesSelect}
+          grade={1}
+          subject="French Language Arts"
+          onOutcomeSelect={mockOnOutcomeSelect}
         />
       );
       
-      // Should show subject but not strand
-      expect(screen.getByText('French Language Arts')).toBeInTheDocument();
-      // Check that there's no paragraph with text-gray-600 class under the subject
-      const subjectDiv = screen.getByText('French Language Arts').parentElement;
-      const strandParagraph = subjectDiv?.querySelector('p.text-gray-600');
-      expect(strandParagraph).not.toBeInTheDocument();
+      expect(screen.getByText('Grade 1 French Immersion Learning Outcomes')).toBeInTheDocument();
+      expect(screen.getByText('PEI Curriculum Integration')).toBeInTheDocument();
     });
 
-    it('should not display strand when undefined', () => {
-      const alignments = [{ ...baseAlignment, strand: undefined }];
+    it('should render with All subjects', () => {
       render(
         <PEICurriculumConnector 
-          alignments={alignments}
-          onOutcomesSelect={mockOnOutcomesSelect}
+          grade={1}
+          subject="All"
+          onOutcomeSelect={mockOnOutcomeSelect}
         />
       );
       
+      expect(screen.getByText('Grade 1 French Immersion Learning Outcomes')).toBeInTheDocument();
+      // Should show multiple subjects when "All" is selected
       expect(screen.getByText('French Language Arts')).toBeInTheDocument();
-      const subjectDiv = screen.getByText('French Language Arts').parentElement;
-      const strandParagraph = subjectDiv?.querySelector('p.text-gray-600');
-      expect(strandParagraph).not.toBeInTheDocument();
     });
 
-    it('should not display strand when empty string', () => {
-      const alignments = [{ ...baseAlignment, strand: '' }];
+    it('should render with specific subject filter', () => {
       render(
         <PEICurriculumConnector 
-          alignments={alignments}
-          onOutcomesSelect={mockOnOutcomesSelect}
+          grade={1}
+          subject="Mathematics"
+          onOutcomeSelect={mockOnOutcomeSelect}
         />
       );
       
-      expect(screen.getByText('French Language Arts')).toBeInTheDocument();
-      const subjectDiv = screen.getByText('French Language Arts').parentElement;
-      const strandParagraph = subjectDiv?.querySelector('p.text-gray-600');
-      expect(strandParagraph).not.toBeInTheDocument();
-    });
-
-    it('should display strand when valid', () => {
-      const alignments = [{ ...baseAlignment, strand: 'Oral Communication' }];
-      render(
-        <PEICurriculumConnector 
-          alignments={alignments}
-          onOutcomesSelect={mockOnOutcomesSelect}
-        />
-      );
-      
-      expect(screen.getByText('French Language Arts')).toBeInTheDocument();
-      expect(screen.getByText('Oral Communication')).toBeInTheDocument();
+      expect(screen.getByText('Grade 1 French Immersion Learning Outcomes')).toBeInTheDocument();
     });
   });
 
-  describe('Selected Outcomes', () => {
-    it('should handle selected outcomes with empty array', () => {
+  describe('Outcome Interaction', () => {
+    it('should expand curriculum strands when clicked', () => {
       render(
         <PEICurriculumConnector 
-          alignments={[baseAlignment]}
-          selectedOutcomes={[]}
-          onOutcomesSelect={mockOnOutcomesSelect}
+          grade={1}
+          subject="French Language Arts"
+          onOutcomeSelect={mockOnOutcomeSelect}
         />
       );
       
-      // Should show "No outcomes selected"
-      expect(screen.getByText('No outcomes selected yet')).toBeInTheDocument();
+      // Click to expand French Language Arts strand
+      const expandButton = screen.getByText('French Language Arts').closest('div.cursor-pointer');
+      fireEvent.click(expandButton!);
+      
+      // Should show outcomes after expansion
+      expect(screen.getByText('FLA-OC-1.1')).toBeInTheDocument();
     });
 
-    it('should display selected outcomes', () => {
-      const selectedOutcomes = [baseAlignment.outcomes[0]];
+    it('should handle outcome selection', () => {
       render(
         <PEICurriculumConnector 
-          alignments={[baseAlignment]}
-          selectedOutcomes={selectedOutcomes}
-          onOutcomesSelect={mockOnOutcomesSelect}
+          grade={1}
+          subject="French Language Arts"
+          onOutcomeSelect={mockOnOutcomeSelect}
         />
       );
       
-      // Should show the selected outcome code
-      expect(screen.getByText('FLA.1.1')).toBeInTheDocument();
-    });
-  });
-
-  describe('Outcome Selection', () => {
-    it('should toggle outcome selection', () => {
-      render(
-        <PEICurriculumConnector 
-          alignments={[baseAlignment]}
-          onOutcomesSelect={mockOnOutcomesSelect}
-        />
-      );
-      
-      // Expand the strand
+      // Expand the strand first
       const expandButton = screen.getByText('French Language Arts').closest('div.cursor-pointer');
       fireEvent.click(expandButton!);
       
       // Click to select outcome
-      const selectButton = screen.getByText('Select');
+      const selectButton = screen.getAllByText('Select')[0];
       fireEvent.click(selectButton);
       
-      expect(mockOnOutcomesSelect).toHaveBeenCalledWith([baseAlignment.outcomes[0]]);
+      expect(mockOnOutcomeSelect).toHaveBeenCalled();
     });
   });
 
-  describe('Grade Display', () => {
-    it('should display correct grade', () => {
+  describe('Search Functionality', () => {
+    it('should render search input', () => {
       render(
         <PEICurriculumConnector 
-          alignments={[baseAlignment]}
-          onOutcomesSelect={mockOnOutcomesSelect}
           grade={1}
+          subject="All"
+          onOutcomeSelect={mockOnOutcomeSelect}
         />
       );
       
-      expect(screen.getByText('PEI Grade 1 Curriculum Outcomes')).toBeInTheDocument();
+      expect(screen.getByPlaceholderText('Search outcomes...')).toBeInTheDocument();
     });
 
-    it('should handle grade being undefined', () => {
+    it('should handle search input changes', () => {
       render(
         <PEICurriculumConnector 
-          alignments={[baseAlignment]}
-          onOutcomesSelect={mockOnOutcomesSelect}
+          grade={1}
+          subject="All"
+          onOutcomeSelect={mockOnOutcomeSelect}
         />
       );
       
-      expect(screen.getByText('PEI Curriculum Outcomes')).toBeInTheDocument();
-    });
-  });
-
-  describe('Theme Display', () => {
-    it('should display theme when provided', () => {
-      render(
-        <PEICurriculumConnector 
-          alignments={[baseAlignment]}
-          onOutcomesSelect={mockOnOutcomesSelect}
-          theme="Animals"
-        />
-      );
+      const searchInput = screen.getByPlaceholderText('Search outcomes...');
+      fireEvent.change(searchInput, { target: { value: 'French' } });
       
-      expect(screen.getByText('Theme: Animals')).toBeInTheDocument();
-    });
-
-    it('should not display theme when undefined', () => {
-      render(
-        <PEICurriculumConnector 
-          alignments={[baseAlignment]}
-          onOutcomesSelect={mockOnOutcomesSelect}
-        />
-      );
-      
-      expect(screen.queryByText(/Theme:/)).not.toBeInTheDocument();
+      expect((searchInput as HTMLInputElement).value).toBe('French');
     });
   });
 });

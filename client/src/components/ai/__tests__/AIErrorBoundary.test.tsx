@@ -1,7 +1,6 @@
-import { fireEvent, render, screen, renderHook } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
-import type { Mock } from 'vitest';
 
 import { AIErrorBoundary, AIErrorType, isAIError, useAIErrorHandler, WithAIErrorBoundary } from '../AIErrorBoundary';
 
@@ -28,7 +27,7 @@ const ThrowError: React.FC<{ shouldThrow?: boolean; error?: Error }> = ({ should
 };
 
 describe('AIErrorBoundary', () => {
-  let mockGtag: Mock;
+  let mockGtag: any;
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -64,30 +63,30 @@ describe('AIErrorBoundary', () => {
 
     it('should handle context parameter in useAIErrorHandler correctly', () => {
       const logger = require('../../../utils/logger').default;
-      const { result } = renderHook(() => useAIErrorHandler());
+      const handler = useAIErrorHandler();
       
       // Test with null context
-      result.current.handleAIError(new Error('Test error'), null as any);
+      handler.handleAIError(new Error('Test error'), null as any);
       expect(logger.error).toHaveBeenCalledWith('AI Error:', new Error('Test error'));
       
       // Test with undefined context
-      result.current.handleAIError(new Error('Test error'), undefined);
+      handler.handleAIError(new Error('Test error'), undefined);
       expect(logger.error).toHaveBeenCalledWith('AI Error:', new Error('Test error'));
       
       // Test with empty string context
-      result.current.handleAIError(new Error('Test error'), '');
+      handler.handleAIError(new Error('Test error'), '');
       expect(logger.error).toHaveBeenCalledWith('AI Error:', new Error('Test error'));
       
       // Test with valid context
-      result.current.handleAIError(new Error('Test error'), 'TestComponent');
+      handler.handleAIError(new Error('Test error'), 'TestComponent');
       expect(logger.error).toHaveBeenCalledWith('AI Error in TestComponent:', new Error('Test error'));
     });
 
     it('should handle gtag event_label with null/undefined/empty context', () => {
-      const { result } = renderHook(() => useAIErrorHandler());
+      const handler = useAIErrorHandler();
       
       // Test with null context
-      result.current.handleAIError(new Error('Test error'), null as any);
+      handler.handleAIError(new Error('Test error'), null as any);
       expect(mockGtag).toHaveBeenCalledWith('event', 'ai_error', {
         event_category: 'AI Integration',
         event_label: 'Unknown',
@@ -96,7 +95,7 @@ describe('AIErrorBoundary', () => {
       
       // Test with undefined context
       mockGtag.mockClear();
-      result.current.handleAIError(new Error('Test error'), undefined);
+      handler.handleAIError(new Error('Test error'), undefined);
       expect(mockGtag).toHaveBeenCalledWith('event', 'ai_error', {
         event_category: 'AI Integration',
         event_label: 'Unknown',
@@ -105,7 +104,7 @@ describe('AIErrorBoundary', () => {
       
       // Test with empty string context
       mockGtag.mockClear();
-      result.current.handleAIError(new Error('Test error'), '');
+      handler.handleAIError(new Error('Test error'), '');
       expect(mockGtag).toHaveBeenCalledWith('event', 'ai_error', {
         event_category: 'AI Integration',
         event_label: 'Unknown',
@@ -435,17 +434,17 @@ describe('AIErrorBoundary', () => {
   describe('useAIErrorHandler hook', () => {
     it('should log errors with context', () => {
       const logger = require('../../../utils/logger').default;
-      const { result } = renderHook(() => useAIErrorHandler());
+      const handler = useAIErrorHandler();
       
-      result.current.handleAIError(new Error('Test error'), 'TestComponent');
+      handler.handleAIError(new Error('Test error'), 'TestComponent');
       
       expect(logger.error).toHaveBeenCalledWith('AI Error in TestComponent:', new Error('Test error'));
     });
 
     it('should report to gtag when available', () => {
-      const { result } = renderHook(() => useAIErrorHandler());
+      const handler = useAIErrorHandler();
       
-      result.current.handleAIError(new Error('Test error'), 'TestComponent');
+      handler.handleAIError(new Error('Test error'), 'TestComponent');
       
       expect(mockGtag).toHaveBeenCalledWith('event', 'ai_error', {
         event_category: 'AI Integration',
@@ -456,11 +455,11 @@ describe('AIErrorBoundary', () => {
 
     it('should handle missing gtag gracefully', () => {
       delete window.gtag;
-      const { result } = renderHook(() => useAIErrorHandler());
+      const handler = useAIErrorHandler();
       
       // Should not throw when gtag is undefined
       expect(() => {
-        result.current.handleAIError(new Error('Test error'));
+        handler.handleAIError(new Error('Test error'));
       }).not.toThrow();
     });
   });

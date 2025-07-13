@@ -24,16 +24,7 @@ describe('AIWeeklyPlanModal - Strict Boolean Expression Tests', () => {
   const defaultProps = {
     isOpen: true,
     onClose: vi.fn(),
-    selectedWeek: {
-      startDate: new Date('2023-01-01'),
-      endDate: new Date('2023-01-07'),
-    },
-    unitContext: {
-      id: 'unit-1',
-      title: 'Test Unit',
-      subject: 'Mathematics',
-      grade: 3,
-    },
+    weekStart: '2023-01-01',
   };
 
   beforeEach(() => {

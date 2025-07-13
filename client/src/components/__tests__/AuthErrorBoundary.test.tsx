@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { vi, describe, it, expect, beforeEach, afterEach, type Mock } from 'vitest';
+import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { AuthErrorBoundary, AppAuthErrorBoundary } from '../AuthErrorBoundary';
 import { authService } from '../../services/authService';
 import { errorReportingService } from '../../services/errorReportingService';
@@ -36,15 +36,17 @@ describe('AuthErrorBoundary', () => {
     });
     
     // Mock authService
-    (authService.verifyAuth as Mock).mockResolvedValue({ id: '1', name: 'Test User' });
-    (authService.clearTokens as Mock).mockImplementation(() => {});
+    (authService.verifyAuth as ReturnType<typeof vi.fn>).mockResolvedValue({ id: '1', name: 'Test User' });
+    (authService.clearTokens as ReturnType<typeof vi.fn>).mockImplementation(() => {});
     
     // Mock window.location
-    delete (window as Window & { location: Location }).location;
-    (window as any).location = { href: '', reload: vi.fn() };
+    Object.defineProperty(window, 'location', {
+      writable: true,
+      value: { href: '', reload: vi.fn() }
+    });
     
     // Mock logger
-    (logger.error as Mock).mockImplementation(() => {});
+    (logger.error as ReturnType<typeof vi.fn>).mockImplementation(() => {});
   });
 
   afterEach(() => {
@@ -268,7 +270,7 @@ describe('AuthErrorBoundary', () => {
 
     it('should show retry progress', async () => {
       const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-      (authService.verifyAuth as Mock).mockRejectedValueOnce(new Error('Still failing'));
+      (authService.verifyAuth as ReturnType<typeof vi.fn>).mockRejectedValueOnce(new Error('Still failing'));
       
       render(
         <AuthErrorBoundary>
@@ -288,7 +290,7 @@ describe('AuthErrorBoundary', () => {
 
     it('should limit retry attempts to 3', async () => {
       const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-      (authService.verifyAuth as Mock).mockRejectedValue(new Error('Persistent failure'));
+      (authService.verifyAuth as ReturnType<typeof vi.fn>).mockRejectedValue(new Error('Persistent failure'));
       
       render(
         <AuthErrorBoundary>

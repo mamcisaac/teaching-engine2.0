@@ -53,7 +53,7 @@ export function setupInterceptors(apiClient: AxiosInstance): void {
   // Add response interceptor for error handling
   apiClient.interceptors.response.use(
     (response): typeof response => response,
-    async (error: AxiosError): Promise<any> => {
+    async (error: AxiosError): Promise<never> => {
       const originalRequest = error.config as AxiosRequestConfig & { _retry?: boolean };
 
       if (error.response?.status === 401 && originalRequest._retry !== true) {

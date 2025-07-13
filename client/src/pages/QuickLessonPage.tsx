@@ -18,7 +18,7 @@ export default function QuickLessonPage(): React.ReactElement {
   const showHints = useShowContextualHints();
 
   const handleSubmit = (data: LessonPlanFormData): void => {
-    void (async () => {
+    void (async (): Promise<void> => {
     setIsSubmitting(true);
 
     try {

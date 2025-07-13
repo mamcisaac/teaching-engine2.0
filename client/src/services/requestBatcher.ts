@@ -24,6 +24,15 @@ interface PendingRequest {
   reject: (error: unknown) => void;
 }
 
+// Type guard for API responses
+interface ApiResponse {
+  data: unknown;
+}
+
+function hasData(response: unknown): response is ApiResponse {
+  return typeof response === 'object' && response !== null && 'data' in response;
+}
+
 class RequestBatcher {
   private pendingRequests = new Map<string, PendingRequest>();
   private batchTimeout: NodeJS.Timeout | null = null;
@@ -55,13 +64,17 @@ class RequestBatcher {
 
     // If we've reached max batch size, process immediately
     if (this.pendingRequests.size >= this.maxBatchSize) {
-      this.processBatch();
+      void this.processBatch().catch((error: unknown) => {
+        console.error('Error processing batch:', error);
+      });
       return;
     }
 
     // Otherwise, wait for more requests
     this.batchTimeout = setTimeout(() => {
-      this.processBatch();
+      void this.processBatch().catch((error: unknown) => {
+        console.error('Error processing batch timeout:', error);
+      });
     }, this.batchDelay);
   }
 
@@ -133,7 +146,11 @@ class RequestBatcher {
           break;
       }
 
-      pending.resolve(response.data);
+      if (hasData(response)) {
+        pending.resolve(response.data);
+      } else {
+        pending.resolve(response);
+      }
     } catch (error) {
       pending.reject(error);
     }

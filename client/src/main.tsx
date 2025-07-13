@@ -16,7 +16,7 @@ const queryClient = new QueryClient({
     queries: {
       // Enable offline caching
       networkMode: 'offlineFirst',
-      retry: (failureCount, error: unknown) => {
+      retry: (failureCount, error: unknown): boolean => {
         // Don't retry if offline
         if (!navigator.onLine) {
 return false;
@@ -33,7 +33,7 @@ return false;
     mutations: {
       // Enable offline persistence for mutations
       networkMode: 'offlineFirst',
-      retry: (failureCount, error: unknown) => {
+      retry: (failureCount, error: unknown): boolean => {
         // Don't retry on 401 errors
         const err = error as { response?: { status?: number } };
         if (err.response?.status === 401) {
@@ -86,9 +86,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 
 // Unregister any existing service workers
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.getRegistrations().then((registrations): void => {
+  void navigator.serviceWorker.getRegistrations().then((registrations): void => {
     for(const registration of registrations) {
-      registration.unregister();
+      void registration.unregister();
     }
   });
 }

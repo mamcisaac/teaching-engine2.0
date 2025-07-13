@@ -6,7 +6,7 @@
  */
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import type { RenderOptions } from '@testing-library/react';
+import type { RenderOptions, RenderResult } from '@testing-library/react';
 import { render } from '@testing-library/react';
 import type { ReactElement } from 'react';
 import React from 'react';
@@ -58,7 +58,29 @@ export const createMockUser = (
   ...overrides,
 });
 
-export const createMockLessonPlan = (overrides: Record<string, unknown> = {}): any => ({
+export interface MockLessonPlan {
+  id: string;
+  title: string;
+  subject: string;
+  gradeLevel: string;
+  duration: number;
+  learningGoals: string[];
+  successCriteria: string[];
+  activities: Array<{
+    id: string;
+    name: string;
+    duration: number;
+    description: string;
+  }>;
+  materials: string[];
+  assessment: string;
+  differentiation: string;
+  reflection: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export const createMockLessonPlan = (overrides: Partial<MockLessonPlan> = {}): MockLessonPlan => ({
   id: 'lesson-123',
   title: 'Test Lesson Plan',
   subject: 'Mathematics',
@@ -83,7 +105,33 @@ export const createMockLessonPlan = (overrides: Record<string, unknown> = {}): a
   ...overrides,
 });
 
-export const createMockUnitPlan = (overrides: Record<string, unknown> = {}): any => ({
+export interface MockUnitPlan {
+  id: string;
+  title: string;
+  longRangePlanId: string;
+  startDate: string;
+  endDate: string;
+  bigIdeas: string;
+  essentialQuestions: string[];
+  successCriteria: string[];
+  learningSkills: string[];
+  keyVocabulary: string[];
+  assessmentPlan: string;
+  culminatingTask: string;
+  lessonPlans: unknown[];
+  _count: {
+    lessonPlans: number;
+    expectations: number;
+    resources: number;
+  };
+  progress: {
+    total: number;
+    completed: number;
+    percentage: number;
+  };
+}
+
+export const createMockUnitPlan = (overrides: Partial<MockUnitPlan> = {}): MockUnitPlan => ({
   id: 'unit-123',
   title: 'Test Unit Plan',
   longRangePlanId: 'lrp-123',
@@ -110,7 +158,17 @@ export const createMockUnitPlan = (overrides: Record<string, unknown> = {}): any
   ...overrides,
 });
 
-export const createMockCurriculumExpectation = (overrides: Record<string, unknown> = {}): any => ({
+export interface MockCurriculumExpectation {
+  id: string;
+  code: string;
+  description: string;
+  strand: string;
+  subject: string;
+  grade: number;
+  keywords: string[];
+}
+
+export const createMockCurriculumExpectation = (overrides: Partial<MockCurriculumExpectation> = {}): MockCurriculumExpectation => ({
   id: 'expectation-123',
   code: 'B1.1',
   description: 'demonstrate an understanding of addition and subtraction',
@@ -126,6 +184,32 @@ export const mockUser = createMockUser();
 export const mockLessonPlan = createMockLessonPlan();
 export const mockUnitPlan = createMockUnitPlan();
 
+export interface MockApiResponses {
+  lessonPlans: {
+    getAll: MockLessonPlan[];
+    getById: MockLessonPlan;
+    create: MockLessonPlan;
+    update: MockLessonPlan;
+    delete: { success: boolean };
+  };
+  unitPlans: {
+    getAll: MockUnitPlan[];
+    getById: MockUnitPlan;
+    create: MockUnitPlan;
+    update: MockUnitPlan;
+    delete: { success: boolean };
+  };
+  curriculumExpectations: {
+    search: MockCurriculumExpectation[];
+    getById: MockCurriculumExpectation;
+  };
+  auth: {
+    login: { user: User & { token?: string }; token: string };
+    logout: { success: boolean };
+    profile: User & { token?: string };
+  };
+}
+
 /**
  * @deprecated Use MSW (Mock Service Worker) for API mocking
  * 
@@ -135,7 +219,7 @@ export const mockUnitPlan = createMockUnitPlan();
  * 2. Test with real API calls in integration tests
  * 3. Keep API mocking close to test files, not global
  */
-export const mockApiResponses = {
+export const mockApiResponses: MockApiResponses = {
   lessonPlans: {
     getAll: [
       createMockLessonPlan(),
@@ -188,7 +272,7 @@ export const createTestQueryClient = (): QueryClient => {
 
   // Ensure proper cleanup on test completion
   const originalClear = client.clear.bind(client);
-  client.clear = () => {
+  client.clear = (): void => {
     originalClear();
     client.getQueryCache().clear();
     client.getMutationCache().clear();
@@ -214,14 +298,20 @@ export const MockAuthProvider: React.FC<{
     'MockAuthProvider is deprecated. Use real AuthProvider with test data instead.'
   );
   
+  const loginMock = (_user: User): void => {};
+  const logoutMock = (): void => {};
+  const checkAuthMock = (): Promise<void> => Promise.resolve();
+  const getTokenMock = (): string | null => null;
+  const setTokenMock = (_token: string): void => {};
+  
   const defaultAuthValue: AuthContextValue = {
     user: null,
-    login: vi.fn(),
-    logout: vi.fn(),
+    login: loginMock,
+    logout: logoutMock,
     isAuthenticated: false,
-    checkAuth: vi.fn().mockResolvedValue(undefined),
-    getToken: vi.fn().mockReturnValue(null),
-    setToken: vi.fn(),
+    checkAuth: checkAuthMock,
+    getToken: getTokenMock,
+    setToken: setTokenMock,
     ...value,
   };
 
@@ -296,7 +386,7 @@ export const renderWithProviders = (ui: ReactElement, options: CustomRenderOptio
 
   // Enhanced cleanup function
   const originalUnmount = result.unmount;
-  result.unmount = () => {
+  result.unmount = (): void => {
     // Clear QueryClient cache
     queryClient.clear();
     // Call original unmount
@@ -341,7 +431,9 @@ export const renderWithAuth = (ui: ReactElement, options: CustomRenderOptions = 
     initialAuthState: {
       user: authenticatedUser,
       isAuthenticated: true,
-      getToken: vi.fn().mockReturnValue('mock-token'),
+      getToken: ((): (() => string | null) => {
+        return (): string | null => 'mock-token';
+      })(),
       ...options.initialAuthState,
     },
   });
@@ -355,7 +447,7 @@ export const renderWithoutAuth = (ui: ReactElement, options: CustomRenderOptions
     initialAuthState: {
       user: null,
       isAuthenticated: false,
-      getToken: vi.fn().mockReturnValue(null),
+      getToken: (): string | null => null,
       ...options.initialAuthState,
     },
   });
@@ -365,18 +457,18 @@ export const mockLocalStorage = (): Storage => {
   const store: Record<string, string> = {};
 
   return {
-    getItem: vi.fn((key: string) => store[key] || null),
-    setItem: vi.fn((key: string, value: string) => {
+    getItem: (key: string): string | null => store[key] || null,
+    setItem: (key: string, value: string): void => {
       store[key] = value;
-    }),
-    removeItem: vi.fn((key: string) => {
+    },
+    removeItem: (key: string): void => {
       delete store[key];
-    }),
-    clear: vi.fn(() => {
+    },
+    clear: (): void => {
       Object.keys(store).forEach((key) => delete store[key]);
-    }),
+    },
     length: Object.keys(store).length,
-    key: vi.fn((index: number) => Object.keys(store)[index] || null),
+    key: (index: number): string | null => Object.keys(store)[index] || null,
   } as Storage;
 };
 
@@ -384,7 +476,7 @@ export const mockLocalStorage = (): Storage => {
 export const waitForLoadingToFinish = (): Promise<void> => new Promise((resolve) => setTimeout(resolve, 0));
 
 export const mockScrollIntoView = (): void => {
-  Element.prototype.scrollIntoView = vi.fn();
+  Element.prototype.scrollIntoView = (_options?: ScrollIntoViewOptions): void => {};
 };
 
 // Setup function for common test preparations
@@ -398,9 +490,11 @@ export const setupTest = (): void => {
   mockScrollIntoView();
 
   // Reset all mocks before each test
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
   vi.clearAllMocks();
 
   // Clear any existing timers
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
   vi.clearAllTimers();
 };
 

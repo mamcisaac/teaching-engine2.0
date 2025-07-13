@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 
 import logger from '../../utils/logger';
-import Dialog from '../Dialog';
+import { Dialog } from '../Dialog';
 import { Button } from '../ui/Button';
 import { useToast } from '../ui/use-toast';
 interface ParsedExpectation {
@@ -22,6 +22,12 @@ interface ImportStatus {
   parsedData?: ParsedCurriculum;
   errorMessage?: string;
   originalName: string;
+}
+
+interface ImportResult {
+  expectationsCount: number;
+  success: boolean;
+  message?: string;
 }
 
 interface CurriculumImportWizardProps {
@@ -65,7 +71,7 @@ export function CurriculumImportWizard({
       const maxAttempts = 30; // 5 minutes with 10 second intervals
       let attempts = 0;
 
-      const poll = async () => {
+      const poll = async (): Promise<void> => {
         try {
           const response = await fetch(`/api/curriculum/import/${id}/status`, {
             headers: {
@@ -77,7 +83,7 @@ export function CurriculumImportWizard({
             throw new Error('Failed to check status');
           }
 
-          const status: ImportStatus = await response.json();
+          const status = await response.json() as ImportStatus;
           setImportStatus(status);
 
           if (status.status === 'READY_FOR_REVIEW') {
@@ -99,7 +105,7 @@ export function CurriculumImportWizard({
           // Continue polling if still processing
           if (status.status === 'PROCESSING' && attempts < maxAttempts) {
             attempts++;
-            setTimeout(poll, 10000); // Poll every 10 seconds
+            setTimeout((): void => { void poll(); }, 10000); // Poll every 10 seconds
           } else if (attempts >= maxAttempts) {
             toast({
               title: 'Processing Timeout',
@@ -119,7 +125,7 @@ export function CurriculumImportWizard({
         }
       };
 
-      poll();
+      await poll();
     },
     [toast],
   );
@@ -148,12 +154,12 @@ return;
           throw new Error('Upload failed');
         }
 
-        const result = await response.json();
+        const result = await response.json() as { importId: number };
         setImportId(result.importId);
         setCurrentStep('processing');
 
         // Start polling for status
-        pollImportStatus(result.importId);
+        void pollImportStatus(result.importId);
 
         toast({
           title: 'Upload Successful',
@@ -195,7 +201,7 @@ return;
         throw new Error('Failed to confirm import');
       }
 
-      const result = await response.json();
+      const result = await response.json() as ImportResult;
       setCurrentStep('confirmation');
 
       toast({
@@ -255,7 +261,7 @@ return;
     [reviewedData],
   );
 
-  const renderUploadStep = () => (
+  const renderUploadStep = (): JSX.Element => (
     <div className="space-y-6">
       <div className="text-center">
         <h2 className="text-2xl font-bold text-gray-900 mb-2">Import Curriculum</h2>
@@ -275,7 +281,7 @@ return;
           onChange={(e) => {
             const file = e.target.files?.[0];
             if (file !== null && file !== undefined) {
-handleFileUpload(file);
+void handleFileUpload(file);
 }
           }}
         />
@@ -309,7 +315,7 @@ handleFileUpload(file);
     </div>
   );
 
-  const renderProcessingStep = () => (
+  const renderProcessingStep = (): JSX.Element => (
     <div className="text-center space-y-6">
       <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto" />
       <div>
@@ -324,7 +330,7 @@ handleFileUpload(file);
     </div>
   );
 
-  const renderReviewStep = () => {
+  const renderReviewStep = (): JSX.Element | null => {
     if (reviewedData === null) {
 return null;
 }
@@ -434,7 +440,7 @@ return null;
           </Button>
           <Button
             disabled={isConfirming || reviewedData.subject === '' || reviewedData.expectations.length === 0}
-            onClick={handleConfirmImport}
+            onClick={(): void => { void handleConfirmImport(); }}
           >
             {isConfirming
               ? 'Importing...'
@@ -445,7 +451,7 @@ return null;
     );
   };
 
-  const renderConfirmationStep = () => (
+  const renderConfirmationStep = (): JSX.Element => (
     <div className="text-center space-y-6">
       <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100">
         <svg

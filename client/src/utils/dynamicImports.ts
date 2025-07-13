@@ -79,8 +79,8 @@ export const loadFullCalendar = async (): Promise<FullCalendarModule> => {
   const moment = await import('moment');
   
   return {
-    Calendar,
-    localizer: momentLocalizer(moment.default)
+    Calendar: Calendar as unknown as React.ComponentType<Record<string, unknown>>,
+    localizer: momentLocalizer(moment.default) as unknown as Record<string, unknown>
   };
 };
 
@@ -103,54 +103,72 @@ export const loadRecharts = async (): Promise<RechartsModule> => {
   } = await import('recharts');
   
   return {
-    LineChart,
-    Line,
-    BarChart,
-    Bar,
-    PieChart,
-    Pie,
-    Cell,
-    XAxis,
-    YAxis,
-    CartesianGrid,
-    Tooltip,
-    Legend,
-    ResponsiveContainer
+    LineChart: LineChart as unknown as React.ComponentType<Record<string, unknown>>,
+    Line: Line as unknown as React.ComponentType<Record<string, unknown>>,
+    BarChart: BarChart as unknown as React.ComponentType<Record<string, unknown>>,
+    Bar: Bar as unknown as React.ComponentType<Record<string, unknown>>,
+    PieChart: PieChart as unknown as React.ComponentType<Record<string, unknown>>,
+    Pie: Pie as unknown as React.ComponentType<Record<string, unknown>>,
+    Cell: Cell as unknown as React.ComponentType<Record<string, unknown>>,
+    XAxis: XAxis as unknown as React.ComponentType<Record<string, unknown>>,
+    YAxis: YAxis as unknown as React.ComponentType<Record<string, unknown>>,
+    CartesianGrid: CartesianGrid as unknown as React.ComponentType<Record<string, unknown>>,
+    Tooltip: Tooltip as unknown as React.ComponentType<Record<string, unknown>>,
+    Legend: Legend as unknown as React.ComponentType<Record<string, unknown>>,
+    ResponsiveContainer: ResponsiveContainer as unknown as React.ComponentType<Record<string, unknown>>
   };
 };
 
 // PDF generation dynamic imports
 export const loadPDFLibraries = async (): Promise<PDFModule> => {
-  const [jsPDF, html2canvas] = await Promise.all([
-    import('jspdf').then(m => m.default as PDFModule['jsPDF']),
+  const results = await Promise.all([
+    import('jspdf').then(m => m.default as unknown as PDFModule['jsPDF']),
     import('html2canvas').then(m => m.default as PDFModule['html2canvas'])
   ]);
+  
+  const jsPDF = results[0];
+  const html2canvas = results[1];
   
   return { jsPDF, html2canvas };
 };
 
 // DND Kit dynamic imports
 export const loadDNDKit = async (): Promise<DNDKitModule> => {
-  const [
-    { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors },
-    { arrayMove, SortableContext, verticalListSortingStrategy },
-    { useSortable }
-  ] = await Promise.all([
+  const results = await Promise.all([
     import('@dnd-kit/core'),
     import('@dnd-kit/sortable'),
     import('@dnd-kit/sortable')
   ]);
   
+  const coreModule = results[0] as unknown as {
+    DndContext: React.ComponentType<Record<string, unknown>>;
+    closestCenter: Record<string, unknown>;
+    KeyboardSensor: new (...args: unknown[]) => Record<string, unknown>;
+    PointerSensor: new (...args: unknown[]) => Record<string, unknown>;
+    useSensor: (...args: unknown[]) => Record<string, unknown>;
+    useSensors: (...args: unknown[]) => Record<string, unknown>;
+  };
+  
+  const sortableModule1 = results[1] as unknown as {
+    arrayMove: <T>(array: T[], oldIndex: number, newIndex: number) => T[];
+    SortableContext: React.ComponentType<Record<string, unknown>>;
+    verticalListSortingStrategy: Record<string, unknown>;
+  };
+  
+  const sortableModule2 = results[2] as unknown as {
+    useSortable: (options: Record<string, unknown>) => Record<string, unknown>;
+  };
+  
   return {
-    DndContext,
-    closestCenter,
-    KeyboardSensor,
-    PointerSensor,
-    useSensor,
-    useSensors,
-    arrayMove,
-    SortableContext,
-    verticalListSortingStrategy,
-    useSortable
+    DndContext: coreModule.DndContext,
+    closestCenter: coreModule.closestCenter,
+    KeyboardSensor: coreModule.KeyboardSensor,
+    PointerSensor: coreModule.PointerSensor,
+    useSensor: coreModule.useSensor,
+    useSensors: coreModule.useSensors,
+    arrayMove: sortableModule1.arrayMove,
+    SortableContext: sortableModule1.SortableContext,
+    verticalListSortingStrategy: sortableModule1.verticalListSortingStrategy,
+    useSortable: sortableModule2.useSortable
   };
 };

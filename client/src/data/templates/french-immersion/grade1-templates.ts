@@ -486,7 +486,10 @@ export const GRADE1_FI_UNIT_TEMPLATES: (PlanTemplate & {
 ];
 
 // Helper function to get all Grade 1 French Immersion templates
-export function getAllGrade1FITemplates() {
+export function getAllGrade1FITemplates(): {
+  lessonTemplates: (PlanTemplate & { content: FrenchImmersionLessonContent; fiMetadata: FrenchImmersionTemplateMetadata; })[];
+  unitTemplates: (PlanTemplate & { content: FrenchImmersionUnitContent; fiMetadata: FrenchImmersionTemplateMetadata; })[];
+} {
   return {
     lessonTemplates: GRADE1_FI_LESSON_TEMPLATES,
     unitTemplates: GRADE1_FI_UNIT_TEMPLATES
@@ -494,7 +497,7 @@ export function getAllGrade1FITemplates() {
 }
 
 // Helper function to get templates by theme
-export function getTemplatesByTheme(theme: string) {
+export function getTemplatesByTheme(theme: string): (PlanTemplate & ({ content: FrenchImmersionLessonContent; fiMetadata: FrenchImmersionTemplateMetadata; } | { content: FrenchImmersionUnitContent; fiMetadata: FrenchImmersionTemplateMetadata; }))[] {
   const allTemplates = [...GRADE1_FI_LESSON_TEMPLATES, ...GRADE1_FI_UNIT_TEMPLATES];
   return allTemplates.filter(template => 
     template.fiMetadata.thematicUnit?.toLowerCase().includes(theme.toLowerCase())
@@ -502,7 +505,7 @@ export function getTemplatesByTheme(theme: string) {
 }
 
 // Helper function to get templates by time of year
-export function getTemplatesByTimeOfYear(month: string) {
+export function getTemplatesByTimeOfYear(month: string): (PlanTemplate & ({ content: FrenchImmersionLessonContent; fiMetadata: FrenchImmersionTemplateMetadata; } | { content: FrenchImmersionUnitContent; fiMetadata: FrenchImmersionTemplateMetadata; }))[] {
   const allTemplates = [...GRADE1_FI_LESSON_TEMPLATES, ...GRADE1_FI_UNIT_TEMPLATES];
   return allTemplates.filter(template => 
     template.fiMetadata.timeOfYear?.toLowerCase() === month.toLowerCase()

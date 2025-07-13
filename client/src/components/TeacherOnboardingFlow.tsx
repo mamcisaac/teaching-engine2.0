@@ -25,7 +25,7 @@ interface TeacherOnboardingFlowProps {
   onComplete?: () => void;
 }
 
-export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingFlowProps): React.ReactElement {
+export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingFlowProps): React.ReactElement | null {
   const { t } = useLanguage();
   const navigate = useNavigate();
 

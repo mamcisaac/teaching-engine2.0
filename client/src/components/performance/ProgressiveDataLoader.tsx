@@ -122,9 +122,9 @@ return;
 return;
 }
 
-    container.addEventListener('scroll', handleScroll);
+    container!.addEventListener('scroll', handleScroll);
     return (): void => {
- container.removeEventListener('scroll', handleScroll); 
+ container!.removeEventListener('scroll', handleScroll); 
 };
   }, [handleScroll, infiniteScroll]);
 
@@ -242,7 +242,7 @@ return;
       {error !== null && error !== undefined && error !== '' && items.length > 0 && (
         <div className="mt-4 text-center">
           <div className="text-red-600 text-sm mb-2">Failed to load more items</div>
-          <Button aria-label="Click button" onClick={loadMoreData}>
+          <Button aria-label="Click button" onClick={() => { void loadMoreData(); }}>
             Try Again
           </Button>
         </div>

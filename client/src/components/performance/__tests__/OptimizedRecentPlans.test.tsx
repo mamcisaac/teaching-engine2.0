@@ -33,12 +33,12 @@ describe('OptimizedRecentPlans', () => {
       id: '2',
       type: 'unit' as const,
       title: 'Test Unit Plan',
-      subject: null,
-      grade: null,
+      subject: undefined,
+      grade: undefined,
       lastAccessed: '2024-01-14T10:00:00',
       progress: 50,
       status: 'draft' as const,
-      parentTitle: null
+      parentTitle: undefined
     },
     {
       id: '3',

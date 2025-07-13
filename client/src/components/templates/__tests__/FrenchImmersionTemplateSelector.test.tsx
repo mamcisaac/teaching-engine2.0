@@ -1,10 +1,11 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
 import FrenchImmersionTemplateSelector from '../FrenchImmersionTemplateSelector';
 import type { PlanTemplate } from '../../../types/template';
 
 // Mock the template data
-jest.mock('../../../data/templates/french-immersion/grade1-templates', () => ({
+vi.mock('../../../data/templates/french-immersion/grade1-templates', () => ({
   getAllGrade1FITemplates: () => ({
     lessonTemplates: [
       {
@@ -79,10 +80,10 @@ jest.mock('../../../data/templates/french-immersion/grade1-templates', () => ({
 }));
 
 describe('FrenchImmersionTemplateSelector - Strict Boolean Expressions', () => {
-  const mockOnTemplateSelect = jest.fn();
+  const mockOnTemplateSelect = vi.fn();
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe('Search Functionality', () => {

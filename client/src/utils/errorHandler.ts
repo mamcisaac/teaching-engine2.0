@@ -49,8 +49,8 @@ export function handleApiError(error: unknown, customMessage?: string): void {
   logger.error('API Error:', error);
 
   if (error instanceof AxiosError) {
-    const apiErrorData = error.response?.data;
-    const apiError = isApiError(apiErrorData) ? apiErrorData as ApiError : null;
+    const apiErrorData: unknown = error.response?.data;
+    const apiError = isApiError(apiErrorData) ? apiErrorData : null;
 
     // Handle specific error codes
     switch (error.response?.status) {

@@ -397,8 +397,8 @@ export function LanguageProvider({ children }: LanguageProviderProps): React.Rea
 
     // Load saved language preference from localStorage
     const savedLanguage = localStorage.getItem('preferredLanguage');
-    if (savedLanguage !== null && savedLanguage !== undefined && savedLanguage !== '' && (savedLanguage === 'en' || savedLanguage === 'fr')) {
-      setLanguageState(savedLanguage);
+    if (savedLanguage && savedLanguage !== '' && (savedLanguage === 'en' || savedLanguage === 'fr')) {
+      setLanguageState(savedLanguage as 'en' | 'fr');
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 

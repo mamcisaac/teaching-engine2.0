@@ -2,7 +2,6 @@ import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
-import type { Mock } from 'vitest';
 import { CurriculumImportWizard } from '../CurriculumImportWizard';
 
 // Mock fetch
@@ -27,7 +26,7 @@ describe('CurriculumImportWizard', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    (global.fetch as Mock).mockClear();
+    (global.fetch as ReturnType<typeof vi.fn>).mockClear();
     localStorage.setItem('token', 'test-token');
   });
 
@@ -55,7 +54,7 @@ describe('CurriculumImportWizard', () => {
     });
 
     it('should handle file upload', async () => {
-      (global.fetch as Mock).mockResolvedValueOnce({
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ importId: 123 }),
       });
@@ -87,7 +86,7 @@ describe('CurriculumImportWizard', () => {
     });
 
     it('should handle upload failure', async () => {
-      (global.fetch as Mock).mockResolvedValueOnce({
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
         ok: false,
       });
 
@@ -109,7 +108,7 @@ describe('CurriculumImportWizard', () => {
 
     it('should show uploading state', async () => {
       let resolveUpload: any;
-      (global.fetch as Mock).mockImplementationOnce(() => 
+      (global.fetch as ReturnType<typeof vi.fn>).mockImplementationOnce(() => 
         new Promise(resolve => { resolveUpload = resolve; })
       );
 
@@ -144,13 +143,13 @@ describe('CurriculumImportWizard', () => {
   describe('Processing Step', () => {
     it('should show processing state and poll for status', async () => {
       // Mock upload response
-      (global.fetch as Mock).mockResolvedValueOnce({
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ importId: 123 }),
       });
 
       // Mock status check - first processing, then ready
-      (global.fetch as Mock)
+      (global.fetch as ReturnType<typeof vi.fn>)
         .mockResolvedValueOnce({
           ok: true,
           json: async () => ({ 
@@ -191,12 +190,12 @@ describe('CurriculumImportWizard', () => {
     });
 
     it('should handle processing failure', async () => {
-      (global.fetch as Mock).mockResolvedValueOnce({
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ importId: 123 }),
       });
 
-      (global.fetch as Mock).mockResolvedValueOnce({
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ 
           status: 'FAILED',
@@ -224,12 +223,12 @@ describe('CurriculumImportWizard', () => {
 
   describe('Review Step', () => {
     const setupReviewStep = async () => {
-      (global.fetch as Mock).mockResolvedValueOnce({
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ importId: 123 }),
       });
 
-      (global.fetch as Mock).mockResolvedValueOnce({
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ 
           status: 'READY_FOR_REVIEW',
@@ -308,12 +307,12 @@ describe('CurriculumImportWizard', () => {
   describe('Confirmation Step', () => {
     it('should confirm import and show success', async () => {
       // Setup through review step
-      (global.fetch as Mock).mockResolvedValueOnce({
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ importId: 123 }),
       });
 
-      (global.fetch as Mock).mockResolvedValueOnce({
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ 
           status: 'READY_FOR_REVIEW',
@@ -329,7 +328,7 @@ describe('CurriculumImportWizard', () => {
       });
 
       // Mock confirm response
-      (global.fetch as Mock).mockResolvedValueOnce({
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ expectationsCount: 1 }),
       });
@@ -365,12 +364,12 @@ describe('CurriculumImportWizard', () => {
     });
 
     it('should disable import button when data is invalid', async () => {
-      (global.fetch as Mock).mockResolvedValueOnce({
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ importId: 123 }),
       });
 
-      (global.fetch as Mock).mockResolvedValueOnce({
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ 
           status: 'READY_FOR_REVIEW',
@@ -411,12 +410,12 @@ describe('CurriculumImportWizard', () => {
 
     it('should navigate back to upload from review', async () => {
       // Setup to review step
-      (global.fetch as Mock).mockResolvedValueOnce({
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ importId: 123 }),
       });
 
-      (global.fetch as Mock).mockResolvedValueOnce({
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ 
           status: 'READY_FOR_REVIEW',
@@ -456,7 +455,7 @@ describe('CurriculumImportWizard', () => {
       expect(steps[0]).toHaveClass('bg-blue-600');
       
       // Upload a file to move to processing
-      (global.fetch as Mock).mockResolvedValueOnce({
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ importId: 123 }),
       });

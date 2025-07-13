@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useMediaResources } from '../api/domains/resource';
 import type { MediaResource } from '../api/domains/resource/api';
 
-import Dialog from './Dialog';
+import { Dialog } from './Dialog';
 
 interface ResourceSelectorProps {
   userId: number;

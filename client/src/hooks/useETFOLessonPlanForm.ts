@@ -67,16 +67,26 @@ export function useETFOLessonPlanForm({
 }: UseETFOLessonPlanFormProps = {}): {
   formData: LessonPlanFormData;
   setFormData: React.Dispatch<React.SetStateAction<LessonPlanFormData>>;
-  updateField: (field: keyof LessonPlanFormData, value: any) => void;
+  updateField: <K extends keyof LessonPlanFormData>(field: K, value: LessonPlanFormData[K]) => void;
   addArrayItem: (field: keyof LessonPlanFormData, value?: string) => void;
   updateArrayItem: (field: keyof LessonPlanFormData, index: number, value: string) => void;
   removeArrayItem: (field: keyof LessonPlanFormData, index: number) => void;
   validateForm: () => { isValid: boolean; errors: string[] };
   getCleanFormData: () => LessonPlanFormData;
   resetForm: () => void;
-  loadLessonPlan: (lesson: any) => void;
+  loadLessonPlan: (lesson: LessonPlanFormData) => void;
   applyAISuggestion: (type: string, content: string[]) => void;
-  applyAILessonPlan: (lessonPlan: any) => void;
+  applyAILessonPlan: (lessonPlan: {
+    title?: string;
+    learningGoals?: string[];
+    structure?: {
+      mindsOn?: { activities?: string[] };
+      handsOn?: { activities?: string[] };
+      mindsOnReflection?: { activities?: string[] };
+    };
+    materials?: string[];
+    duration?: number;
+  }) => void;
   lastSaved: Date | null;
   isSaving: boolean;
   hasUnsavedChanges: boolean;

@@ -73,7 +73,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
               unsyncedChanges: 0,
               syncError: null,
               // Actions will be added by the store
-            } as DaybookState;
+            } as unknown as DaybookState;
           },
           saveToServer: async (data) => {
             // Save all modified entries

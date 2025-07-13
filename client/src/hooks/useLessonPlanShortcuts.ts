@@ -180,7 +180,7 @@ return;
 }
 
     const handleGlobalSave = (): void => {
- onSave(); 
+ onSave?.(); 
 };
     window.addEventListener('global:save', handleGlobalSave);
     return () => {

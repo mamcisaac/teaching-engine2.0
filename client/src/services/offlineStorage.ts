@@ -28,6 +28,17 @@ export interface CachedData {
   expiresAt?: number;
 }
 
+export interface ConflictData {
+  id: string;
+  localData: StoredData;
+  remoteData: StoredData;
+  timestamp: number;
+  resolved?: boolean;
+  resolution?: 'local' | 'remote' | 'merge';
+  resolvedData?: StoredData;
+  resolvedAt?: number;
+}
+
 class OfflineStorageService {
   private db: IDBDatabase | null = null;
   private initPromise: Promise<void> | null = null;
@@ -40,17 +51,17 @@ class OfflineStorageService {
     return new Promise((resolve, reject) => {
       const request = indexedDB.open(DB_NAME, DB_VERSION);
 
-      request.onerror = () => {
+      request.onerror = (): void => {
         logger.error('Failed to open IndexedDB:', request.error);
         reject(request.error);
       };
 
-      request.onsuccess = () => {
+      request.onsuccess = (): void => {
         this.db = request.result;
         resolve();
       };
 
-      request.onupgradeneeded = (event) => {
+      request.onupgradeneeded = (event): void => {
         const db = (event.target as IDBOpenDBRequest).result;
 
         // Store for offline changes
@@ -101,10 +112,10 @@ class OfflineStorageService {
 
     return new Promise((resolve, reject) => {
       const request = store.add(fullChange);
-      request.onsuccess = () => {
+      request.onsuccess = (): void => {
  resolve(fullChange.id); 
 };
-      request.onerror = () => {
+      request.onerror = (): void => {
  reject(request.error); 
 };
     });
@@ -120,10 +131,10 @@ class OfflineStorageService {
 
     return new Promise((resolve, reject) => {
       const request = index.getAll(IDBKeyRange.only(false));
-      request.onsuccess = () => {
+      request.onsuccess = (): void => {
  resolve(request.result); 
 };
-      request.onerror = () => {
+      request.onerror = (): void => {
  reject(request.error); 
 };
     });
@@ -139,15 +150,15 @@ class OfflineStorageService {
     return new Promise((resolve, reject) => {
       const getRequest = store.get(changeId);
 
-      getRequest.onsuccess = () => {
-        const change = getRequest.result;
+      getRequest.onsuccess = (): void => {
+        const change = getRequest.result as OfflineChange | undefined;
         if (change) {
           change.synced = true;
           const putRequest = store.put(change);
-          putRequest.onsuccess = () => {
+          putRequest.onsuccess = (): void => {
  resolve(); 
 };
-          putRequest.onerror = () => {
+          putRequest.onerror = (): void => {
  reject(putRequest.error); 
 };
         } else {
@@ -155,7 +166,7 @@ class OfflineStorageService {
         }
       };
 
-      getRequest.onerror = () => {
+      getRequest.onerror = (): void => {
  reject(getRequest.error); 
 };
     });
@@ -177,10 +188,10 @@ class OfflineStorageService {
 
     return new Promise((resolve, reject) => {
       const request = store.put(cachedData);
-      request.onsuccess = () => {
+      request.onsuccess = (): void => {
  resolve(); 
 };
-      request.onerror = () => {
+      request.onerror = (): void => {
  reject(request.error); 
 };
     });
@@ -196,8 +207,8 @@ class OfflineStorageService {
     return new Promise((resolve, reject) => {
       const request = store.get(key);
 
-      request.onsuccess = () => {
-        const {result} = request;
+      request.onsuccess = (): void => {
+        const result = request.result as CachedData | undefined;
         if (!result) {
           resolve(null);
           return;
@@ -206,15 +217,17 @@ class OfflineStorageService {
         // Check if expired
         if (result.expiresAt && result.expiresAt < Date.now()) {
           // Delete expired data
-          this.deleteCachedData(key);
+          void this.deleteCachedData(key).catch((error: unknown) => {
+            console.error('Error deleting expired data:', error);
+          });
           resolve(null);
           return;
         }
 
-        resolve(result.data);
+        resolve(result.data as T | null);
       };
 
-      request.onerror = () => {
+      request.onerror = (): void => {
  reject(request.error); 
 };
     });
@@ -229,10 +242,10 @@ class OfflineStorageService {
 
     return new Promise((resolve, reject) => {
       const request = store.delete(key);
-      request.onsuccess = () => {
+      request.onsuccess = (): void => {
  resolve(); 
 };
-      request.onerror = () => {
+      request.onerror = (): void => {
  reject(request.error); 
 };
     });
@@ -251,7 +264,7 @@ class OfflineStorageService {
     const request = index.openCursor(range);
 
     return new Promise((resolve, reject) => {
-      request.onsuccess = () => {
+      request.onsuccess = (): void => {
         const cursor = request.result;
         if (cursor) {
           store.delete(cursor.primaryKey);
@@ -261,7 +274,7 @@ class OfflineStorageService {
         }
       };
 
-      request.onerror = () => {
+      request.onerror = (): void => {
  reject(request.error); 
 };
     });
@@ -291,10 +304,10 @@ class OfflineStorageService {
 
     return new Promise((resolve, reject) => {
       const request = store.add(conflict);
-      request.onsuccess = () => {
+      request.onsuccess = (): void => {
  resolve(conflict.id); 
 };
-      request.onerror = () => {
+      request.onerror = (): void => {
  reject(request.error); 
 };
     });
@@ -320,10 +333,10 @@ class OfflineStorageService {
 
     return new Promise((resolve, reject) => {
       const request = index.getAll(IDBKeyRange.only(false));
-      request.onsuccess = () => {
+      request.onsuccess = (): void => {
  resolve(request.result); 
 };
-      request.onerror = () => {
+      request.onerror = (): void => {
  reject(request.error); 
 };
     });
@@ -343,8 +356,8 @@ class OfflineStorageService {
     return new Promise((resolve, reject) => {
       const getRequest = store.get(conflictId);
 
-      getRequest.onsuccess = () => {
-        const conflict = getRequest.result;
+      getRequest.onsuccess = (): void => {
+        const conflict = getRequest.result as ConflictData | undefined;
         if (conflict) {
           conflict.resolved = true;
           conflict.resolution = resolution;
@@ -357,10 +370,10 @@ class OfflineStorageService {
           conflict.resolvedAt = Date.now();
 
           const putRequest = store.put(conflict);
-          putRequest.onsuccess = () => {
+          putRequest.onsuccess = (): void => {
  resolve(); 
 };
-          putRequest.onerror = () => {
+          putRequest.onerror = (): void => {
  reject(putRequest.error); 
 };
         } else {
@@ -368,7 +381,7 @@ class OfflineStorageService {
         }
       };
 
-      getRequest.onerror = () => {
+      getRequest.onerror = (): void => {
  reject(getRequest.error); 
 };
     });
@@ -385,10 +398,10 @@ class OfflineStorageService {
       transaction.objectStore('cache').clear();
       transaction.objectStore('conflicts').clear();
 
-      transaction.oncomplete = () => {
+      transaction.oncomplete = (): void => {
  resolve(); 
 };
-      transaction.onerror = () => {
+      transaction.onerror = (): void => {
  reject(transaction.error); 
 };
     });

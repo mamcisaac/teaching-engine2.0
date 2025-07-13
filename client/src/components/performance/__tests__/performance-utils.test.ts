@@ -466,7 +466,7 @@ describe('performance-utils', () => {
       });
 
       it('should handle type differences', () => {
-        expect(MemoUtils.deepEqual(1, '1')).toBe(false);
+        expect(MemoUtils.deepEqual(1, '1' as any)).toBe(false);
         expect(MemoUtils.deepEqual({}, [])).toBe(false);
         expect(MemoUtils.deepEqual(null, {})).toBe(false);
       });

@@ -14,7 +14,7 @@ import { renderWithProviders, createMockUnitPlan } from '@/test-utils';
 
 // Mock the RichTextEditor component
 vi.mock('../../RichTextEditor', () => ({
-  default: ({ value, onChange, placeholder }: { value: any; onChange: any; placeholder: any }) => (
+  default: ({ value, onChange, placeholder }: { value: string; onChange: (value: string) => void; placeholder: string }) => (
     <textarea
       data-testid="rich-text-editor"
       value={value || ''}
@@ -26,7 +26,7 @@ vi.mock('../../RichTextEditor', () => ({
 
 // Mock the ExpectationSelector component
 vi.mock('../../planning/ExpectationSelector', () => ({
-  default: ({ selectedIds, onSelectionChange }: { selectedIds: any; onSelectionChange: any }) => (
+  default: ({ selectedIds, onSelectionChange }: { selectedIds: string[]; onSelectionChange: (ids: string[]) => void }) => (
     <div data-testid="expectation-selector">
       <input
         type="checkbox"
@@ -45,7 +45,7 @@ vi.mock('../../planning/ExpectationSelector', () => ({
 
 // Mock the BilingualTextInput component
 vi.mock('../../BilingualTextInput', () => ({
-  default: ({ value, valueFr, onChange, onChangeFr, label }: { value: any; valueFr: any; onChange: any; onChangeFr: any; label: any }) => (
+  default: ({ value, valueFr, onChange, onChangeFr, label }: { value: string; valueFr: string; onChange: (value: string) => void; onChangeFr: (value: string) => void; label: string }) => (
     <div data-testid="bilingual-input">
       <label>{label}</label>
       <input
@@ -76,8 +76,7 @@ vi.mock('../../contexts/LanguageContext', () => ({
 const mockUnitPlan = createMockUnitPlan({
   id: 'unit-123',
   title: 'Test Unit Plan',
-  subject: 'Mathematics',
-  gradeLevel: 'Grade 3',
+  lessonPlans: [] as any,
 });
 
 const mockUnitExpectations = [
@@ -105,7 +104,7 @@ describe('LessonPlanForm', () => {
   const mockOnCancel = vi.fn();
 
   const defaultProps = {
-    unitPlan: mockUnitPlan,
+    unitPlan: mockUnitPlan as any,
     unitExpectations: mockUnitExpectations,
     onSubmit: mockOnSubmit,
     onCancel: mockOnCancel,
@@ -140,7 +139,7 @@ describe('LessonPlanForm', () => {
         <LessonPlanForm
           {...defaultProps}
           showUnitPlanSelector={true}
-          allUnitPlans={[mockUnitPlan]}
+          allUnitPlans={[mockUnitPlan as any]}
         />,
       );
 

@@ -150,7 +150,7 @@ export function AIUnitPlanPanel({
             grade: parseInt(formData.grade),
             curriculumExpectations: curriculumExpectations.map(exp => exp.description),
             duration: parseInt(formData.duration),
-          }) as { suggestions: string[]; rationale?: string };
+          });
           break;
         // Add other types as needed
         default:

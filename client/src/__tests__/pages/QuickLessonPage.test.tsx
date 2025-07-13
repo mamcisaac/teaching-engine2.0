@@ -50,7 +50,7 @@ vi.mock('../../components/forms/LessonPlanForm', () => ({
     onCancel: () => void; 
     isSubmitting: boolean; 
     showUnitPlanSelector: boolean; 
-    initialData: { title?: string; date: string; duration: number } 
+    initialData: { title?: string; date: string; duration: number; assessmentType?: string; isSubFriendly?: boolean } 
   }) => (
     <div data-testid="lesson-plan-form">
       <h3>Lesson Plan Form</h3>

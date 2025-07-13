@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter } from 'react-router-dom';
-import { vi, describe, it, expect, beforeEach, Mock } from 'vitest';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { toast } from 'sonner';
 import TemplateApplyModal from '../TemplateApplyModal';
 import type { PlanTemplate } from '../../../types/template';
@@ -32,7 +32,7 @@ vi.mock('sonner', () => ({
 }));
 
 // Mock the Select components
-jest.mock('../../ui/select', () => ({
+vi.mock('../../ui/select', () => ({
   Select: ({ children, value, onValueChange }: any) => (
     <div data-testid="select-container">
       <select 
@@ -68,27 +68,28 @@ const renderWithProviders = (component: React.ReactElement) => {
 };
 
 describe('TemplateApplyModal - Strict Boolean Expressions', () => {
-  const mockOnClose = jest.fn();
+  const mockOnClose = vi.fn();
   
   const baseTemplate: PlanTemplate = {
     id: '1',
     title: 'Test Template',
     type: 'UNIT_PLAN',
+    category: 'BY_SUBJECT',
     tags: [],
+    keywords: [],
     usageCount: 0,
     createdAt: '2024-01-01',
     updatedAt: '2024-01-01',
-    createdById: 'user1',
+    createdByUserId: 1,
     isSystem: false,
     isPublic: true,
-    visibility: 'PUBLIC',
     content: {},
   };
 
   beforeEach(() => {
     vi.clearAllMocks();
-    (api.get as Mock).mockResolvedValue({ data: [] });
-    (api.post as Mock).mockResolvedValue({ data: { id: 'new-plan-id' } });
+    (api.get as any).mockResolvedValue({ data: [] });
+    (api.post as any).mockResolvedValue({ data: { id: 'new-plan-id' } });
   });
 
   describe('Form Validation', () => {
@@ -127,7 +128,7 @@ describe('TemplateApplyModal - Strict Boolean Expressions', () => {
       const longRangePlans = [
         { id: 'lrp1', title: 'Long Range Plan 1', subject: 'Math', grade: '5' }
       ];
-      (api.get as Mock).mockResolvedValueOnce({ data: longRangePlans });
+      (api.get as any).mockResolvedValueOnce({ data: longRangePlans });
 
       renderWithProviders(
         <TemplateApplyModal template={template} isOpen={true} onClose={mockOnClose} />
@@ -156,7 +157,7 @@ describe('TemplateApplyModal - Strict Boolean Expressions', () => {
 
   describe('Template Duration Display', () => {
     it('should not display duration when estimatedWeeks is null', () => {
-      const template = { ...baseTemplate, type: 'UNIT_PLAN' as const, estimatedWeeks: null };
+      const template = { ...baseTemplate, type: 'UNIT_PLAN' as const, estimatedWeeks: undefined };
       renderWithProviders(
         <TemplateApplyModal template={template} isOpen={true} onClose={mockOnClose} />
       );
@@ -192,7 +193,7 @@ describe('TemplateApplyModal - Strict Boolean Expressions', () => {
     });
 
     it('should not display duration when estimatedMinutes is null', () => {
-      const template = { ...baseTemplate, type: 'LESSON_PLAN' as const, estimatedMinutes: null };
+      const template = { ...baseTemplate, type: 'LESSON_PLAN' as const, estimatedMinutes: undefined };
       renderWithProviders(
         <TemplateApplyModal template={template} isOpen={true} onClose={mockOnClose} />
       );
@@ -248,8 +249,8 @@ describe('TemplateApplyModal - Strict Boolean Expressions', () => {
       const longRangePlans = [
         { id: 'lrp1', title: 'Long Range Plan 1', subject: 'Math', grade: '5' }
       ];
-      (api.get as Mock).mockResolvedValueOnce({ data: longRangePlans });
-      (api.post as Mock).mockResolvedValueOnce({ data: { id: 'unit-123' } });
+      (api.get as any).mockResolvedValueOnce({ data: longRangePlans });
+      (api.post as any).mockResolvedValueOnce({ data: { id: 'unit-123' } });
 
       renderWithProviders(
         <TemplateApplyModal template={template} isOpen={true} onClose={mockOnClose} />
@@ -279,8 +280,8 @@ describe('TemplateApplyModal - Strict Boolean Expressions', () => {
       const unitPlans = [
         { id: 'unit1', title: 'Unit Plan 1' }
       ];
-      (api.get as Mock).mockResolvedValueOnce({ data: unitPlans });
-      (api.post as Mock).mockResolvedValueOnce({ data: { id: 'lesson-456' } });
+      (api.get as any).mockResolvedValueOnce({ data: unitPlans });
+      (api.post as any).mockResolvedValueOnce({ data: { id: 'lesson-456' } });
 
       renderWithProviders(
         <TemplateApplyModal template={template} isOpen={true} onClose={mockOnClose} />

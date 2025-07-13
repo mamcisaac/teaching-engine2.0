@@ -263,7 +263,7 @@ continue;
         preferences: state.preferences,
         isEnabled: state.isEnabled,
       }),
-      onRehydrateStorage: () => (state?: KeyboardShortcutsState | null): void => {
+      onRehydrateStorage: () => (state?: KeyboardShortcutsState): void => {
         if (state) {
           try {
             // Auto-start listening when rehydrated if enabled

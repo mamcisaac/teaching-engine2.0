@@ -61,7 +61,7 @@ class ClientLogger {
     return true;
   }
 
-  error(message: string, error?: Error | unknown, data?: unknown): void {
+  error(message: string, error?: unknown, data?: unknown): void {
     const errorData = typeof data === 'object' && data !== null ? data : {};
     const entry = this.createLogEntry('error', message, { error: error instanceof Error ? error.stack : error, ...errorData });
     this.addToHistory(entry);

@@ -98,14 +98,14 @@ describe('Button - Real Backend Integration', () => {
       await new Promise(resolve => setTimeout(resolve, 1000));
 
       expect(planData).toBeDefined();
-      expect(planData.title).toBe('Button Test Plan');
+      expect(planData!.title).toBe('Button Test Plan');
 
       await cleanup();
     });
 
     it('handles form submission with real API validation', async () => {
       let validationError: string | null = null;
-      let submissionResult: { success: boolean; data?: unknown } | null = null;
+      let submissionResult: { id: string; title: string } | null = null;
 
       const handleSubmit = async (formData: Record<string, unknown>) => {
         try {
@@ -142,7 +142,7 @@ describe('Button - Real Backend Integration', () => {
     });
 
     it('handles successful form submission with real data', async () => {
-      let submissionResult: { success: boolean; data?: unknown } | null = null;
+      let submissionResult: { id: string; title: string } | null = null;
       let isSubmitting = false;
 
       const validFormData = testDataFactory.longRangePlan({
@@ -168,7 +168,7 @@ describe('Button - Real Backend Integration', () => {
             {isSubmitting ? 'Submitting...' : 'Submit Valid Data'}
           </Button>
           {submissionResult && (
-            <div data-testid="success">Plan created: {submissionResult.title}</div>
+            <div data-testid="success">Plan created: {(submissionResult as { id: string; title: string }).title}</div>
           )}
         </div>
       );
@@ -180,7 +180,7 @@ describe('Button - Real Backend Integration', () => {
       await new Promise(resolve => setTimeout(resolve, 1000));
 
       expect(submissionResult).toBeDefined();
-      expect(submissionResult.title).toBe('Valid Test Plan');
+      expect(submissionResult!.title).toBe('Valid Test Plan');
       expect(screen.getByTestId('success')).toBeInTheDocument();
 
       await cleanup();

@@ -92,7 +92,7 @@ export function useUnitPlanForm({
   validateForm: () => { isValid: boolean; errors: string[] };
   getCleanFormData: () => UnitPlanFormData;
   resetForm: () => void;
-  loadUnitPlan: (unit: any) => void;
+  loadUnitPlan: (unit: UnitPlanFormData) => void;
   lastSaved: Date | null;
   isSaving: boolean;
   hasUnsavedChanges: boolean;

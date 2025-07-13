@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { screen, waitFor, fireEvent } from '@testing-library/react';
-import { vi, describe, it, expect, beforeEach, type Mock } from 'vitest';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import CurriculumImportPage from '../../pages/CurriculumImportPage';
 import { renderWithAuth } from '../../test-utils';
@@ -56,7 +56,7 @@ global.File = class MockFile {
 
 describe('CurriculumImportPage', () => {
   const user = userEvent.setup();
-  const mockApi = apiModule.api as { post: Mock };
+  const mockApi = apiModule.api as { post: ReturnType<typeof vi.fn> };
 
   const mockParsedSubjects = [
     {

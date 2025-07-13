@@ -113,12 +113,12 @@ class LazyLoader {
   ): Promise<unknown> {
     try {
       // Get document metadata first
-      const metaResponse = await apiClient.get(`/api/documents/${documentId}/metadata`);
+      const metaResponse = await apiClient.get<ChunkedDocument['metadata']>(`/api/documents/${documentId}/metadata`);
       const metadata = metaResponse.data;
 
       // For small documents, load in one request
       if (metadata.size < 1024 * 1024) { // Less than 1MB
-        const response = await apiClient.get(`/api/documents/${documentId}`);
+        const response = await apiClient.get<unknown>(`/api/documents/${documentId}`);
         if (options.onProgress !== null && options.onProgress !== undefined) {
           options.onProgress(100);
         }
@@ -143,11 +143,13 @@ class LazyLoader {
         chunkPromises.push(chunkPromise);
         
         // Update progress
-        chunkPromise.then((): void => {
+        void chunkPromise.then((): void => {
           const progress = ((i + 1) / totalChunks) * 100;
           if (options.onProgress !== null && options.onProgress !== undefined) {
             options.onProgress(progress);
           }
+        }).catch((error: unknown) => {
+          console.error('Error updating progress for chunk:', error);
         });
       }
 
@@ -177,7 +179,7 @@ class LazyLoader {
     chunkIndex: number, 
     totalChunks: number
   ): Promise<unknown> {
-    const response = await apiClient.get(
+    const response = await apiClient.get<unknown>(
       `/api/documents/${documentId}/chunk/${chunkIndex}`,
       {
         headers: {
@@ -209,9 +211,10 @@ class LazyLoader {
       return safeJsonParse(chunks.join(''), {});
     } else if (doc.metadata.type === 'text') {
       return chunks.join('');
-    } 
+    } else {
       // Binary data
       return new Blob(chunks as BlobPart[]);
+    }
     
   }
 
@@ -254,7 +257,9 @@ class LazyLoader {
   clearCache(documentId?: string): void {
     if (documentId !== null && documentId !== undefined && documentId !== '') {
       this.documentCache.delete(documentId);
-      offlineStorage.deleteCachedData(`document-${documentId}`);
+      void offlineStorage.deleteCachedData(`document-${documentId}`).catch((error: unknown) => {
+        console.error('Error deleting cached data:', error);
+      });
     } else {
       this.documentCache.clear();
       // Clear all document caches from storage
@@ -343,7 +348,7 @@ export function LazyDocument<T = unknown>({
   render, 
   placeholder,
   onError 
-}: LazyDocumentProps<T>) {
+}: LazyDocumentProps<T>): JSX.Element {
   const elementRef = React.useRef<HTMLDivElement>(null);
   const { document, loading, error } = useLazyDocument(documentId);
 

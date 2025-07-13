@@ -236,7 +236,7 @@ export const useUIStore = create<UIState>()(
         compactMode: state.compactMode,
         animations: state.animations,
       }),
-      onRehydrateStorage: () => (state?: UIState | null): void => {
+      onRehydrateStorage: () => (state?: UIState): void => {
         if (state !== null && state !== undefined) {
           // Apply theme on rehydration
           const effectiveTheme = calculateEffectiveTheme(state.theme);

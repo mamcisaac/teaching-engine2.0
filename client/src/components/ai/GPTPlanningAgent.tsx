@@ -171,7 +171,7 @@ throw new Error('No session');
     queryKey: ['quick-actions'],
     queryFn: async () => {
       const response = await api.get('/api/ai/agent/quick-actions');
-      return response.data.data as QuickAction[];
+      return (response.data as { data: QuickAction[] }).data;
     },
   });
 
@@ -208,18 +208,18 @@ throw new Error('No session');
       recognition.interimResults = false;
       recognition.lang = 'en-US';
 
-      recognition.onresult = (event: SpeechRecognitionEvent) => {
+      recognition.onresult = (event: SpeechRecognitionEvent): void => {
         const {transcript} = event.results[0][0];
         setInputValue(transcript);
         setIsListening(false);
       };
 
-      recognition.onerror = () => {
+      recognition.onerror = (): void => {
         setIsListening(false);
         toast.error('Voice recognition failed');
       };
 
-      recognition.onend = () => {
+      recognition.onend = (): void => {
         setIsListening(false);
       };
     }

@@ -12,7 +12,7 @@ import React, { useState, lazy, Suspense } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
 import { useCurriculumExpectations } from '../api/domains/curriculum';
-import Dialog from '../components/Dialog';
+import { Dialog } from '../components/Dialog';
 import { PlanningErrorBoundary } from '../components/ErrorBoundaries';
 import { EmptyState } from '../components/LoadingStates';
 import { OptimizedUnitPlanCard, LoadingSkeleton } from '../components/performance';
@@ -39,6 +39,7 @@ import {
 } from '../hooks/useETFOPlanning';
 import { useTemplates, useApplyTemplate } from '../hooks/useTemplates';
 import { useUnitPlanForm } from '../hooks/useUnitPlanForm';
+import type { UnitPlanFormData } from '../hooks/useUnitPlanForm';
 // import { UnitPlanService } from '../services/unitPlanService';
 import type { PlanTemplate, UnitPlanContent } from '../types/template';
 import { isUnitPlanTemplate } from '../types/template';
@@ -144,7 +145,7 @@ export default function UnitPlansPage(): React.ReactElement {
     },
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
 
     const { isValid, errors } = validateForm();
@@ -167,7 +168,7 @@ export default function UnitPlansPage(): React.ReactElement {
   };
 
   // AI suggestion handlers
-  const handleAISuggestionAccepted = (type: string, content: string[]) => {
+  const handleAISuggestionAccepted = (type: string, content: string[]): void => {
     switch (type) {
       case 'bigIdeas':
         updateField('bigIdeas', content.join('\n\n'));
@@ -199,7 +200,7 @@ export default function UnitPlansPage(): React.ReactElement {
     bigIdeas?: string[];
     learningGoals?: string[];
     vocabulary?: string[];
-  }) => {
+  }): void => {
     updateField('title', unitPlan.title ?? formData.title);
     updateField('description', unitPlan.description ?? formData.description);
     updateField('bigIdeas', unitPlan.bigIdeas?.join('\n\n') ?? formData.bigIdeas);
@@ -207,7 +208,7 @@ export default function UnitPlansPage(): React.ReactElement {
     updateField('keyVocabulary', unitPlan.vocabulary ?? formData.keyVocabulary);
   };
 
-  const handleEditUnit = (unit: UnitPlan) => {
+  const handleEditUnit = (unit: UnitPlan): void => {
     setEditingUnit(unit.id);
     // Convert UnitPlan to the form data structure
     const formDataUnit = {
@@ -219,11 +220,11 @@ export default function UnitPlansPage(): React.ReactElement {
         forIEP: unit.differentiationStrategies?.forIEP ?? [],
       },
     };
-    loadUnitPlan(formDataUnit as ExtendedUnitPlan);
+    loadUnitPlan({ ...formDataUnit, expectationIds: [] } as UnitPlanFormData);
     setIsCreateModalOpen(true);
   };
 
-  const handleApplyTemplate = async (template: PlanTemplate) => {
+  const handleApplyTemplate = async (template: PlanTemplate): Promise<void> => {
     try {
       const applied = await applyTemplate.mutateAsync({ id: template.id });
 
@@ -735,7 +736,11 @@ export default function UnitPlansPage(): React.ReactElement {
                   hasUnsavedChanges={hasUnsavedChanges}
                   isSaving={isSaving}
                   lastSaved={lastSaved}
-                  onManualSave={saveNow}
+                  onManualSave={() => {
+                    void saveNow().catch((error: unknown) => {
+                      console.error('Error during manual save:', error);
+                    });
+                  }}
                 />
                 <Button
                   className="flex items-center gap-2"
@@ -743,7 +748,11 @@ export default function UnitPlansPage(): React.ReactElement {
                   size="sm"
                   type="button"
                   variant="outline"
-                  onClick={saveNow}
+                  onClick={() => {
+                    void saveNow().catch((error: unknown) => {
+                      console.error('Error saving unit plan:', error);
+                    });
+                  }}
                 >
                   {isSaving ? (
                     <RefreshCw className="h-4 w-4 animate-spin" />
@@ -757,7 +766,11 @@ export default function UnitPlansPage(): React.ReactElement {
           </div>
 
           <MobileOptimizedForm>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={(e: React.FormEvent) => {
+              void handleSubmit(e).catch((error: unknown) => {
+                console.error('Error submitting form:', error);
+              });
+            }}>
               <Tabs className="space-y-4" defaultValue="overview">
                 <TabsList className="grid w-full grid-cols-2 sm:grid-cols-6">
                   <TabsTrigger value="overview">Overview</TabsTrigger>
@@ -1268,7 +1281,13 @@ export default function UnitPlansPage(): React.ReactElement {
               className="bg-indigo-600 hover:bg-indigo-700 text-white"
               disabled={selectedTemplate === null || selectedTemplate === undefined || applyTemplate.isPending}
               type="button"
-              onClick={() => selectedTemplate !== null && selectedTemplate !== undefined && handleApplyTemplate(selectedTemplate)}
+              onClick={() => {
+                if (selectedTemplate !== null && selectedTemplate !== undefined) {
+                  void handleApplyTemplate(selectedTemplate).catch((error: unknown) => {
+                    console.error('Error applying template:', error);
+                  });
+                }
+              }}
             >
               {applyTemplate.isPending ? 'Loading...' : 'Use This Template'}
             </Button>

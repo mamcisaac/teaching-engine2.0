@@ -141,7 +141,7 @@ export class ErrorReportingService {
           /^Script error/,
         ],
         // Filter transactions
-        beforeSendTransaction: (transaction): Sentry.TransactionEvent | null => {
+        beforeSendTransaction: (transaction) => {
           // Don't send transactions for static assets
           if (transaction.transaction?.includes('/static/') || transaction.transaction?.includes('/assets/')) {
             return null;
@@ -158,7 +158,7 @@ export class ErrorReportingService {
   }
 
   captureError(
-    error: Error | unknown,
+    error: unknown,
     context?: Record<string, unknown>,
     errorInfo?: ErrorInfo,
   ): void {
@@ -262,7 +262,7 @@ export class ErrorReportingService {
       message: breadcrumb.message,
       category: breadcrumb.category,
       level: breadcrumb.level ?? 'info',
-      data: sanitizedData as { [key: string]: any } | undefined,
+      data: sanitizedData as Record<string, unknown> | undefined,
       timestamp: Date.now() / 1000,
     });
   }
@@ -414,7 +414,7 @@ export class ErrorReportingService {
     }
 
     if (breadcrumb.data) {
-      breadcrumb.data = this.sanitizeData(breadcrumb.data) as { [key: string]: any } | undefined;
+      breadcrumb.data = this.sanitizeData(breadcrumb.data) as Record<string, unknown> | undefined;
     }
 
     return breadcrumb;
@@ -422,7 +422,7 @@ export class ErrorReportingService {
 
   private sanitizeEvent(event: Sentry.ErrorEvent): Sentry.ErrorEvent {
     // Deep clone to avoid modifying original
-    const sanitized = safeJsonParse(JSON.stringify(event), event) as Sentry.ErrorEvent;
+    const sanitized = safeJsonParse(JSON.stringify(event), event);
 
     // Sanitize message
     if (sanitized.message) {
@@ -431,7 +431,8 @@ export class ErrorReportingService {
 
     // Sanitize extra data
     if (sanitized.extra) {
-      sanitized.extra = this.sanitizeData(sanitized.extra) as Sentry.Extras | undefined;
+      const sanitizedExtra = this.sanitizeData(sanitized.extra);
+      sanitized.extra = this.isValidExtras(sanitizedExtra) ? sanitizedExtra : undefined;
     }
 
     // Sanitize request data
@@ -443,7 +444,12 @@ export class ErrorReportingService {
         sanitized.request.data = this.sanitizeData(sanitized.request.data);
       }
       if (sanitized.request.query_string) {
-        sanitized.request.query_string = this.sanitizeString(sanitized.request.query_string);
+        if (typeof sanitized.request.query_string === 'string') {
+          sanitized.request.query_string = this.sanitizeString(sanitized.request.query_string);
+        } else {
+          // Handle array case for QueryParams
+          sanitized.request.query_string = '';
+        }
       }
       if (sanitized.request.cookies) {
         sanitized.request.cookies = {} as Record<string, string>;
@@ -464,10 +470,14 @@ export class ErrorReportingService {
 
     // Sanitize tags
     if (sanitized.tags) {
-      sanitized.tags = this.sanitizeData(sanitized.tags) as { [key: string]: Sentry.Primitive; } | undefined;
+      sanitized.tags = this.sanitizeData(sanitized.tags) as { [key: string]: string; } | undefined;
     }
 
     return sanitized;
+  }
+
+  private isValidExtras(data: unknown): data is Record<string, unknown> {
+    return data !== null && data !== undefined && typeof data === 'object' && !Array.isArray(data);
   }
 
   private sanitizeData(data: unknown): unknown {
@@ -526,8 +536,8 @@ export class ErrorReportingService {
     return sanitized;
   }
 
-  private sanitizeHeaders(headers: Record<string, unknown>): Record<string, unknown> {
-    const sanitized: Record<string, unknown> = {};
+  private sanitizeHeaders(headers: Record<string, unknown>): { [key: string]: string } {
+    const sanitized: { [key: string]: string } = {};
 
     for (const key in headers) {
       const lowerKey = key.toLowerCase();
@@ -541,7 +551,7 @@ export class ErrorReportingService {
       ) {
         sanitized[key] = '[REDACTED]';
       } else {
-        sanitized[key] = headers[key];
+        sanitized[key] = String(headers[key]);
       }
     }
 

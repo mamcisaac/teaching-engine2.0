@@ -18,44 +18,77 @@ import * as matchers from '@testing-library/jest-dom/matchers';
 import { expect, vi, beforeEach } from 'vitest';
 
 // Extend Vitest's expect with jest-dom matchers
-expect.extend(matchers as any);
+interface ExpectStatic {
+  extend: (matchers: Record<string, unknown>) => void;
+}
+(expect as ExpectStatic).extend(matchers);
+
+interface MockCanvasRenderingContext2D {
+  clearRect: () => void;
+  fillRect: () => void;
+  drawImage: () => void;
+  getImageData: () => { data: Uint8ClampedArray };
+  putImageData: () => void;
+  createImageData: () => { data: Uint8ClampedArray };
+  setTransform: () => void;
+  save: () => void;
+  fillText: () => void;
+  restore: () => void;
+  beginPath: () => void;
+  moveTo: () => void;
+  lineTo: () => void;
+  closePath: () => void;
+  stroke: () => void;
+  translate: () => void;
+  scale: () => void;
+  rotate: () => void;
+  arc: () => void;
+  fill: () => void;
+  measureText: () => { width: number };
+  transform: () => void;
+  rect: () => void;
+  clip: () => void;
+  createLinearGradient: () => { addColorStop: () => void };
+  createRadialGradient: () => { addColorStop: () => void };
+  createPattern: () => Record<string, unknown>;
+}
 
 // Mock HTMLCanvasElement before any imports
 const mockCanvas = {
-  getContext: () => ({
-    clearRect: () => {},
-    fillRect: () => {},
-    drawImage: () => {},
-    getImageData: () => ({ data: new Uint8ClampedArray(4) }),
-    putImageData: () => {},
-    createImageData: () => ({ data: new Uint8ClampedArray(4) }),
-    setTransform: () => {},
-    save: () => {},
-    fillText: () => {},
-    restore: () => {},
-    beginPath: () => {},
-    moveTo: () => {},
-    lineTo: () => {},
-    closePath: () => {},
-    stroke: () => {},
-    translate: () => {},
-    scale: () => {},
-    rotate: () => {},
-    arc: () => {},
-    fill: () => {},
-    measureText: () => ({ width: 0 }),
-    transform: () => {},
-    rect: () => {},
-    clip: () => {},
-    createLinearGradient: () => ({
-      addColorStop: () => {},
+  getContext: (): MockCanvasRenderingContext2D => ({
+    clearRect: (): void => {},
+    fillRect: (): void => {},
+    drawImage: (): void => {},
+    getImageData: (): { data: Uint8ClampedArray } => ({ data: new Uint8ClampedArray(4) }),
+    putImageData: (): void => {},
+    createImageData: (): { data: Uint8ClampedArray } => ({ data: new Uint8ClampedArray(4) }),
+    setTransform: (): void => {},
+    save: (): void => {},
+    fillText: (): void => {},
+    restore: (): void => {},
+    beginPath: (): void => {},
+    moveTo: (): void => {},
+    lineTo: (): void => {},
+    closePath: (): void => {},
+    stroke: (): void => {},
+    translate: (): void => {},
+    scale: (): void => {},
+    rotate: (): void => {},
+    arc: (): void => {},
+    fill: (): void => {},
+    measureText: (): TextMetrics => ({ width: 0 } as TextMetrics),
+    transform: (): void => {},
+    rect: (): void => {},
+    clip: (): void => {},
+    createLinearGradient: (): { addColorStop: () => void } => ({
+      addColorStop: (): void => {},
     }),
-    createRadialGradient: () => ({
-      addColorStop: () => {},
+    createRadialGradient: (): { addColorStop: () => void } => ({
+      addColorStop: (): void => {},
     }),
-    createPattern: () => ({}),
+    createPattern: (): Record<string, unknown> => ({}),
   }),
-  toDataURL: () => 'data:image/png;base64,mock-data',
+  toDataURL: (): string => 'data:image/png;base64,mock-data',
   width: 800,
   height: 600,
 };
@@ -67,16 +100,16 @@ Object.defineProperty(window, 'HTMLCanvasElement', {
     constructor() {
       return mockCanvas;
     }
-    getContext() {
+    getContext(): MockCanvasRenderingContext2D {
       return mockCanvas.getContext();
     }
-    toDataURL() {
+    toDataURL(): string {
       return mockCanvas.toDataURL();
     }
-    get width() {
+    get width(): number {
       return mockCanvas.width;
     }
-    get height() {
+    get height(): number {
       return mockCanvas.height;
     }
     set width(value) {
@@ -89,42 +122,41 @@ Object.defineProperty(window, 'HTMLCanvasElement', {
 });
 
 // Mock HTMLCanvasElement.prototype.getContext
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-HTMLCanvasElement.prototype.getContext = (() => mockCanvas.getContext) as any;
-HTMLCanvasElement.prototype.toDataURL = () => mockCanvas.toDataURL();
+HTMLCanvasElement.prototype.getContext = ((): MockCanvasRenderingContext2D => mockCanvas.getContext()) as unknown as HTMLCanvasElement['getContext'];
+HTMLCanvasElement.prototype.toDataURL = (): string => mockCanvas.toDataURL();
 
 // Mock window.matchMedia for responsive components
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
-  value: (query: string) => ({
+  value: (query: string): MediaQueryList => ({
     matches: false,
     media: query,
     onchange: null,
-    addListener: () => {}, // deprecated
-    removeListener: () => {}, // deprecated
-    addEventListener: () => {},
-    removeEventListener: () => {},
-    dispatchEvent: () => {},
+    addListener: (): void => {}, // deprecated
+    removeListener: (): void => {}, // deprecated
+    addEventListener: (): void => {},
+    removeEventListener: (): void => {},
+    dispatchEvent: (): boolean => true,
   }),
 });
 
 // Mock pointer capture methods for Radix UI
 if (!Element.prototype.hasPointerCapture) {
-  Element.prototype.hasPointerCapture = () => false;
+  Element.prototype.hasPointerCapture = (): boolean => false;
 }
 if (!Element.prototype.setPointerCapture) {
-  Element.prototype.setPointerCapture = (_pointerId: number) => {};
+  Element.prototype.setPointerCapture = (_pointerId: number): void => {};
 }
 if (!Element.prototype.releasePointerCapture) {
-  Element.prototype.releasePointerCapture = (_pointerId: number) => {};
+  Element.prototype.releasePointerCapture = (_pointerId: number): void => {};
 }
 
 // Mock IntersectionObserver for lazy loading components
 class MockIntersectionObserver {
   constructor() {}
-  disconnect() {}
-  observe() {}
-  unobserve() {}
+  disconnect(): void {}
+  observe(): void {}
+  unobserve(): void {}
 }
 
 Object.defineProperty(window, 'IntersectionObserver', {
@@ -140,9 +172,9 @@ Object.defineProperty(global, 'IntersectionObserver', {
 // Mock ResizeObserver for responsive charts
 class MockResizeObserver {
   constructor() {}
-  disconnect() {}
-  observe() {}
-  unobserve() {}
+  disconnect(): void {}
+  observe(): void {}
+  unobserve(): void {}
 }
 
 Object.defineProperty(window, 'ResizeObserver', {
@@ -170,23 +202,34 @@ Object.defineProperty(global, 'ResizeObserver', {
 // No global auth mocking - violates TDD principles
 
 // Setup localStorage mock
-const localStorageMock = (() => {
+const localStorageMock = ((): Storage => {
   let store: Record<string, string> = {};
+  
+  const getItem = (key: string): string | null => store[key] || null;
+  
+  const setItem = (key: string, value: string): void => {
+    store[key] = value;
+  };
+  
+  const removeItem = (key: string): void => {
+    delete store[key];
+  };
+  
+  const clear = (): void => {
+    store = {};
+  };
+  
+  const key = (index: number): string | null => Object.keys(store)[index] || null;
+  
   return {
-    getItem: vi.fn((key: string) => store[key] || null),
-    setItem: vi.fn((key: string, value: string) => {
-      store[key] = value;
-    }),
-    removeItem: vi.fn((key: string) => {
-      delete store[key];
-    }),
-    clear: vi.fn(() => {
-      store = {};
-    }),
-    get length() {
+    getItem,
+    setItem,
+    removeItem,
+    clear,
+    get length(): number {
       return Object.keys(store).length;
     },
-    key: vi.fn((index: number) => Object.keys(store)[index] || null),
+    key,
   };
 })();
 
@@ -196,21 +239,25 @@ Object.defineProperty(window, 'localStorage', {
 });
 
 // Enhanced test cleanup for real implementations
-beforeEach(() => {
+// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+beforeEach((): void => {
   // Clear localStorage but preserve real implementation state if needed
   if (process.env.VITE_PRESERVE_TEST_STATE !== 'true') {
     localStorageMock.clear();
   }
 
   // Clear mocks but be selective to avoid breaking real implementations
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
   vi.clearAllMocks();
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
   vi.clearAllTimers();
 
   // Clear any test-specific global state
   if (typeof window !== 'undefined') {
     // Clear any test-specific window properties
-    delete (window as unknown as Record<string, unknown>).testAuthState;
-    delete (window as unknown as Record<string, unknown>).testQueryClient;
+    const windowAny = window as unknown as Record<string, unknown>;
+    delete windowAny.testAuthState;
+    delete windowAny.testQueryClient;
   }
 });
 
@@ -223,16 +270,16 @@ interface TestUtils {
 
 // Global test utilities for real implementation testing
 (global as unknown as { testUtils: TestUtils }).testUtils = {
-  isRealMode: () => process.env.VITE_TEST_MODE === 'real',
-  isUsingRealAPI: () => process.env.VITE_USE_REAL_API === 'true',
-  getAPIBaseURL: () => process.env.VITE_API_BASE_URL,
+  isRealMode: (): boolean => process.env.VITE_TEST_MODE === 'real',
+  isUsingRealAPI: (): boolean => process.env.VITE_USE_REAL_API === 'true',
+  getAPIBaseURL: (): string | undefined => process.env.VITE_API_BASE_URL,
 };
 
 // Suppress specific console errors and warnings in tests
 const originalError = console.error;
 const originalWarn = console.warn;
 
-console.error = (...args: unknown[]) => {
+console.error = (...args: unknown[]): void => {
   if (
     typeof args[0] === 'string' &&
     (args[0].includes('Warning: ReactDOM.render') ||
@@ -249,7 +296,7 @@ console.error = (...args: unknown[]) => {
   originalError.call(console, ...args);
 };
 
-console.warn = (...args: unknown[]) => {
+console.warn = (...args: unknown[]): void => {
   if (
     typeof args[0] === 'string' &&
     (args[0].includes('Warning: An update to') ||

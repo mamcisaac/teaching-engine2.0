@@ -56,9 +56,22 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
         // Create offline slice
         const offlineSlice = createOfflineSlice<UnitPlanState>({
           entityType: 'unit-plan',
-          fetchFromServer: async () => {
+          fetchFromServer: async (): Promise<UnitPlanState> => {
             const response = await apiClient.get<UnitPlan[]>('/api/unit-plans');
-            return response.data;
+            return {
+              unitPlans: response.data,
+              currentPlan: null,
+              isLoading: false,
+              isSaving: false,
+              error: null,
+              // Add required OfflineState properties
+              isOnline: navigator.onLine,
+              isSyncing: false,
+              lastSyncedAt: new Date(),
+              unsyncedChanges: 0,
+              syncError: null,
+              // Actions will be added by the store
+            } as unknown as UnitPlanState;
           },
           saveToServer: async (data) => {
             // Save all modified plans

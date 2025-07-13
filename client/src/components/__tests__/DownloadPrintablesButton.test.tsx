@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { vi, describe, it, expect, beforeEach, type Mock } from 'vitest';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { DownloadPrintablesButton } from '../DownloadPrintablesButton';
 import { planningApi } from '../../api/domains/planning';
 
@@ -24,7 +24,7 @@ describe('DownloadPrintablesButton', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockCreateObjectURL.mockReturnValue(mockUrl);
-    (planningApi.downloadPrintables as Mock).mockResolvedValue(mockBlob);
+    (planningApi.downloadPrintables as ReturnType<typeof vi.fn>).mockResolvedValue(mockBlob);
   });
 
   describe('strict boolean expressions', () => {
@@ -75,7 +75,7 @@ describe('DownloadPrintablesButton', () => {
     it('should handle API errors gracefully', async () => {
       // Mock API to reject
       const mockError = new Error('Download failed');
-      (planningApi.downloadPrintables as Mock).mockRejectedValue(mockError);
+      (planningApi.downloadPrintables as ReturnType<typeof vi.fn>).mockRejectedValue(mockError);
       
       // Spy on console.error to suppress error output
       const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation();

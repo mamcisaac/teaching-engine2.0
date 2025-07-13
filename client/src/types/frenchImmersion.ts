@@ -140,6 +140,28 @@ export interface FrenchImmersionTemplateMetadata {
   peiCurriculumAlignment?: PEICurriculumAlignment[];
 }
 
+// Weekly planning interfaces
+export interface WeeklyPlanData {
+  weekNumber: number;
+  theme: string;
+  themeFr: string;
+  weekFocus: LanguageWeekFocus;
+  dailyPlans: DailyPlan[];
+  assessmentFocus: string;
+  parentUpdate: {
+    english: string;
+    french: string;
+  };
+}
+
+export interface DailyPlan {
+  day: string;
+  languageTarget: string;
+  mainActivity: string;
+  vocabulary: string[];
+  culturalNote?: string;
+}
+
 // Helper functions
 export function createBilingualVocabulary(
   english: string,

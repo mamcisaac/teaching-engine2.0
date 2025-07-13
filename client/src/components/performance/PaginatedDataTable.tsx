@@ -1,16 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState, useMemo, useCallback } from 'react';
 
-// Simple debounce implementation
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const debounce = <T extends (...args: any[]) => any>(
-  func: T,
+// Type-safe debounce implementation
+type DebounceFunction<T extends unknown[]> = (...args: T) => void;
+
+const debounce = <T extends unknown[]>(
+  func: DebounceFunction<T>,
   wait: number,
-): ((...args: Parameters<T>) => void) => {
+): DebounceFunction<T> => {
   let timeout: ReturnType<typeof setTimeout>;
-  return (...args: Parameters<T>) => {
+  return (...args: T): void => {
     clearTimeout(timeout);
-    timeout = setTimeout(() => func(...args), wait);
+    timeout = setTimeout((): void => { func(...args); }, wait);
   };
 };
 import { Button } from '../ui/Button';
@@ -63,7 +64,7 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
   className = '',
   emptyStateMessage = 'No data available',
   enableGlobalSearch = false,
-}: PaginatedDataTableProps<T>) {
+}: PaginatedDataTableProps<T>): JSX.Element {
   const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState<string | undefined>(initialSort?.key as string);
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>(initialSort?.order || 'asc');
@@ -73,7 +74,7 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
   // Debounced filter updates
   const debouncedUpdateFilters = useMemo(
     () =>
-      debounce((newFilters: Record<string, string | number | boolean>) => {
+      debounce<[Record<string, string | number | boolean>]>((newFilters: Record<string, string | number | boolean>) => {
         setFilters(newFilters);
         setCurrentPage(1); // Reset to first page when filtering
       }, 300),
@@ -83,7 +84,7 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
   // Debounced global search
   const debouncedGlobalSearch = useMemo(
     () =>
-      debounce((search: string) => {
+      debounce<[string]>((search: string) => {
         setFilters((prev) => {
           const newFilters = { ...prev };
           if (search) {
@@ -153,7 +154,7 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
   // Handle pagination
   const handlePageChange = useCallback((page: number) => {
     setCurrentPage(page);
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [])
 
   // Generate pagination buttons
   const paginationButtons = useMemo(() => {

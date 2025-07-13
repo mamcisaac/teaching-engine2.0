@@ -21,7 +21,7 @@ export default function FormsDataAgentPage(): React.ReactElement {
   const createLesson = useCreateETFOLessonPlan();
 
   // Batch creation handlers
-  const handleBatchUnitCreate = async (units: UnitPlanFormData[]) => {
+  const handleBatchUnitCreate = async (units: UnitPlanFormData[]): Promise<void> => {
     const results = await Promise.allSettled(units.map((unit, _index) => createUnit.mutateAsync(unit)));
 
     const failures = results.filter((r) => r.status === 'rejected');
@@ -31,7 +31,7 @@ export default function FormsDataAgentPage(): React.ReactElement {
     }
   };
 
-  const handleBatchLessonCreate = async (lessons: LessonPlanFormData[]) => {
+  const handleBatchLessonCreate = async (lessons: LessonPlanFormData[]): Promise<void> => {
     const results = await Promise.allSettled(
       lessons.map((lesson, _index) => createLesson.mutateAsync(lesson)),
     );
@@ -44,7 +44,7 @@ export default function FormsDataAgentPage(): React.ReactElement {
   };
 
   // Template export handler
-  const handleTemplateExport = (type: 'unit' | 'lesson', template: unknown) => {
+  const handleTemplateExport = (type: 'unit' | 'lesson', template: unknown): void => {
     const filename = `${type}-plan-template.json`;
     const data = JSON.stringify([template], null, 2);
 
@@ -62,7 +62,7 @@ export default function FormsDataAgentPage(): React.ReactElement {
   };
 
   // Data import handler
-  const handleDataImport = (_type: 'unit' | 'lesson', _data: unknown[]) => {
+  const handleDataImport = (_type: 'unit' | 'lesson', _data: unknown[]): void => {
     // This would typically trigger batch processing
     // TODO: Implement actual data import functionality
   };

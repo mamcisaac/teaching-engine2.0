@@ -38,7 +38,7 @@ interface AuthApiModule {
 }
 
 // Type guard for auth response
-function isValidAuthResponse(data: unknown): data is AuthResponse {
+function _isValidAuthResponse(data: unknown): data is AuthResponse {
   return typeof data === 'object' && data !== null && 'user' in data;
 }
 

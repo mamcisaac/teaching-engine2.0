@@ -22,7 +22,7 @@ import {
 import React, { useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 
-import Dialog from '../components/Dialog';
+import { Dialog } from '../components/Dialog';
 import { LoadingSpinner } from '../components/LoadingStates';
 import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
@@ -63,7 +63,7 @@ export default function TemplatesPage(): React.ReactElement {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedType, setSelectedType] = useState<TemplateType | 'all'>('all');
   const [selectedCategory, setSelectedCategory] = useState<TemplateCategory | 'all'>('all');
-  const [selectedSubject, setSelectedSubject] = useState<string | 'all'>('all');
+  const [selectedSubject, setSelectedSubject] = useState<string>('all');
   const [selectedGrade, setSelectedGrade] = useState<number | 'all'>('all');
   const [showFilters, setShowFilters] = useState(false);
   const [view, setView] = useState<'all' | 'system' | 'public' | 'mine'>('all');
@@ -120,7 +120,7 @@ export default function TemplatesPage(): React.ReactElement {
   const templates = templatesResult?.templates ?? [];
 
   // Handlers
-  const handleCreateTemplate = async (e: React.FormEvent) => {
+  const handleCreateTemplate = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
     try {
       const newTemplate = await createTemplate.mutateAsync(formData as TemplateCreateData);
@@ -141,7 +141,7 @@ export default function TemplatesPage(): React.ReactElement {
     }
   };
 
-  const handleDuplicateTemplate = async (template: PlanTemplate) => {
+  const handleDuplicateTemplate = async (template: PlanTemplate): Promise<void> => {
     try {
       const duplicated = await duplicateTemplate.mutateAsync({
         id: template.id,
@@ -153,7 +153,7 @@ export default function TemplatesPage(): React.ReactElement {
     }
   };
 
-  const handleDeleteTemplate = async () => {
+  const handleDeleteTemplate = async (): Promise<void> => {
     if (selectedTemplate === null || selectedTemplate === undefined) {
 return;
 }
@@ -170,7 +170,7 @@ return;
     }
   };
 
-  const handleApplyTemplate = async (template: PlanTemplate) => {
+  const handleApplyTemplate = async (template: PlanTemplate): Promise<void> => {
     try {
       const applied = await applyTemplate.mutateAsync({ id: template.id });
 
@@ -200,7 +200,7 @@ return;
   // };
 
   // Template card component
-  const TemplateCard = ({ template }: { template: PlanTemplate }) => (
+  const TemplateCard = ({ template }: { template: PlanTemplate }): JSX.Element => (
     <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
       <CardHeader>
         <div className="flex items-start justify-between">
@@ -310,7 +310,7 @@ return;
             <Copy className="h-4 w-4" />
           </Button>
 
-          {template.createdByUserId !== null && template.createdByUserId !== undefined && template.createdByUserId !== '' && !template.isSystem && (
+          {template.createdByUserId !== null && template.createdByUserId !== undefined && !template.isSystem && (
             <Button
               size="sm"
               variant="ghost"
@@ -572,7 +572,11 @@ return;
         <div className="p-6 max-w-2xl max-h-[90vh] overflow-y-auto">
           <h3 className="text-lg font-semibold mb-4">Create New Template</h3>
 
-          <form className="space-y-4" onSubmit={handleCreateTemplate}>
+          <form className="space-y-4" onSubmit={(e: React.FormEvent) => {
+            void handleCreateTemplate(e).catch((error: unknown) => {
+              console.error('Error creating template:', error);
+            });
+          }}>
             <div>
               <Label htmlFor="input">Title</Label>
               <Input
@@ -922,7 +926,11 @@ return;
             <Button
               className="bg-red-600 hover:bg-red-700 text-white"
               disabled={deleteTemplate.isPending}
-              onClick={handleDeleteTemplate}
+              onClick={() => {
+                void handleDeleteTemplate().catch((error: unknown) => {
+                  console.error('Error deleting template:', error);
+                });
+              }}
             >
               {deleteTemplate.isPending ? 'Deleting...' : 'Delete'}
             </Button>

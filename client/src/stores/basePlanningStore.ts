@@ -134,7 +134,7 @@ async function syncWithServer<T extends Record<string, unknown>>(
         data: change.data,
         timestamp: new Date(change.timestamp).toISOString()
       }));
-      const conflicts = await detectConflicts(state, serverData, conflictChanges);
+      const conflicts = detectConflicts(state, serverData, conflictChanges);
 
       if (conflicts.length > 0) {
         // Resolve conflicts based on strategy
@@ -199,11 +199,11 @@ interface ChangeRecord {
   timestamp: string;
 }
 
-async function detectConflicts(
+function detectConflicts(
   localData: Record<string, unknown>,
   serverData: Record<string, unknown>,
   changes: ChangeRecord[]
-): Promise<ConflictData[]> {
+): ConflictData[] {
   const conflicts: ConflictData[] = [];
   
   // Simple conflict detection based on timestamps

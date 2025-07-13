@@ -199,9 +199,9 @@ describe('useETFOPlanning hooks - Real Backend Integration', () => {
 
         const createdPlan = result.current.data;
         realApiAssertions.assertValidLongRangePlan(createdPlan);
-        expect(createdPlan.title).toBe('New Plan');
-        expect(createdPlan.grade).toBe(3);
-        expect(createdPlan.subject).toBe('Mathematics');
+        expect(createdPlan!.title).toBe('New Plan');
+        expect(createdPlan!.grade).toBe(3);
+        expect(createdPlan!.subject).toBe('Mathematics');
       });
 
       it('handles validation error from real API', async () => {
@@ -247,8 +247,8 @@ describe('useETFOPlanning hooks - Real Backend Integration', () => {
         });
 
         const updatedPlan = result.current.data;
-        expect(updatedPlan.id).toBe(createdPlan.id);
-        expect(updatedPlan.title).toBe('Updated Plan Title');
+        expect(updatedPlan!.id).toBe(createdPlan.id);
+        expect(updatedPlan!.title).toBe('Updated Plan Title');
       });
     });
 
@@ -338,8 +338,8 @@ describe('useETFOPlanning hooks - Real Backend Integration', () => {
 
         const createdUnit = result.current.data;
         realApiAssertions.assertValidUnitPlan(createdUnit);
-        expect(createdUnit.title).toBe('New Unit');
-        expect(createdUnit.longRangePlanId).toBe(longRangePlan.id);
+        expect(createdUnit!.title).toBe('New Unit');
+        expect(createdUnit!.longRangePlanId).toBe(longRangePlan.id);
       });
     });
   });
@@ -394,8 +394,8 @@ describe('useETFOPlanning hooks - Real Backend Integration', () => {
 
         const createdLesson = result.current.data;
         realApiAssertions.assertValidETFOLessonPlan(createdLesson);
-        expect(createdLesson.title).toBe('New Lesson');
-        expect(createdLesson.unitPlanId).toBe(unitPlan.id);
+        expect(createdLesson!.title).toBe('New Lesson');
+        expect(createdLesson!.unitPlanId).toBe(unitPlan.id);
       });
     });
   });
@@ -448,8 +448,8 @@ describe('useETFOPlanning hooks - Real Backend Integration', () => {
 
         const createdEntry = result.current.data;
         realApiAssertions.assertValidDaybookEntry(createdEntry);
-        expect(createdEntry.date).toBe('2024-01-15');
-        expect(createdEntry.morningReflection).toBe('New reflection');
+        expect(createdEntry!.date).toBe('2024-01-15');
+        expect((createdEntry as any).morningReflection).toBe('New reflection');
       });
     });
   });

@@ -91,8 +91,10 @@ export const KeyboardShortcutsProvider: React.FC<{ children: React.ReactNode }> 
     if (savedPrefs) {
       try {
         const parsed = safeJsonParse(savedPrefs, defaultPreferences);
-        setPreferences({ ...defaultPreferences, ...parsed });
-        setIsEnabled(parsed.enabled ?? true);
+        if (parsed) {
+          setPreferences({ ...defaultPreferences, ...parsed });
+          setIsEnabled(parsed.enabled ?? true);
+        }
       } catch (e) {
         logger.error('Failed to parse keyboard shortcuts preferences:', e);
       }

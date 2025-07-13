@@ -156,7 +156,7 @@ describe('unitPlanStore - nullish coalescing behavior', () => {
         updatedAt: '2024-01-01T01:00:00Z',
       };
 
-      const data: any = { unitPlans: [plan] };
+      const data: { unitPlans: UnitPlan[]; lastSyncedAt?: Date } = { unitPlans: [plan] };
       
       // Test the comparison logic
       const comparison = plan.updatedAt > (data.lastSyncedAt?.toISOString() || '');

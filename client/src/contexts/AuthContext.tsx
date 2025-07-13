@@ -27,7 +27,7 @@ const AuthContext = createContext<AuthContextValue>({
   isInitialized: false,
   checkAuth: async () => {},
   getToken: () => null,
-  refreshToken: async () => false,
+  refreshToken: () => Promise.resolve(false),
   error: null,
   clearError: () => {},
 });
@@ -236,7 +236,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
       }
     };
 
-    performInitialAuthCheck();
+    void performInitialAuthCheck();
 
     return (): void => {
       isMounted = false;
@@ -251,8 +251,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
     };
 
     if (!isAuthenticated) {
-return;
-}
+      return (): void => {}; // Return empty cleanup function
+    }
 
     const interval = setInterval((): void => {
       void (async (): Promise<void> => {
@@ -277,7 +277,7 @@ return;
     if (error && retryCount > 0 && retryCount < 3) {
       const retryDelay = Math.min(1000 * Math.pow(2, retryCount - 1), 5000);
       const timeoutId = setTimeout((): void => {
-        checkAuth();
+        void checkAuth();
       }, retryDelay);
 
       return (): void => {

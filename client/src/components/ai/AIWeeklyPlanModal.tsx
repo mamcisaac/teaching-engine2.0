@@ -68,7 +68,7 @@ export function AIWeeklyPlanModal({
         weekStart,
         preferences,
       });
-      return response.data.data as GeneratedPlan;
+      return (response.data as { data: GeneratedPlan }).data;
     },
     onSuccess: (_data: GeneratedPlan) => {
       setGeneratedPlan(_data);
@@ -83,7 +83,7 @@ export function AIWeeklyPlanModal({
   const applyMutation = useMutation({
     mutationFn: async (planId: number) => {
       const response = await api.post(`/api/ai/plans/${planId}/apply`);
-      return response.data.data as { success: boolean; };
+      return (response.data as { data: { success: boolean } }).data;
     },
     onSuccess: () => {
       toast.success('Plan applied to calendar!');

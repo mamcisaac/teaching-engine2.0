@@ -5,7 +5,7 @@ import TemplateFilters from '../TemplateFilters';
 import type { TemplateSearchOptions } from '../../../types/template';
 
 // Mock the Select components
-jest.mock('../../ui/select', () => ({
+vi.mock('../../ui/select', () => ({
   Select: ({ children, value, onValueChange }: any) => (
     <div data-testid="select-container">
       <select 
@@ -24,7 +24,7 @@ jest.mock('../../ui/select', () => ({
 }));
 
 describe('TemplateFilters - Strict Boolean Expressions', () => {
-  const mockOnFiltersChange = jest.fn();
+  const mockOnFiltersChange = vi.fn();
   const defaultFilters: TemplateSearchOptions = {
     sortBy: 'usageCount',
     sortOrder: 'desc',
@@ -34,7 +34,7 @@ describe('TemplateFilters - Strict Boolean Expressions', () => {
   const availableGrades = [1, 2, 3, 4, 5];
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe('Active Filters Check', () => {
@@ -64,7 +64,7 @@ describe('TemplateFilters - Strict Boolean Expressions', () => {
     });
 
     it('should show clear button when category filter is set', () => {
-      const filters = { ...defaultFilters, category: 'CORE' as const };
+      const filters = { ...defaultFilters, category: 'BY_SUBJECT' as const };
       render(
         <TemplateFilters
           filters={filters}
@@ -265,7 +265,7 @@ describe('TemplateFilters - Strict Boolean Expressions', () => {
       const filters = { 
         ...defaultFilters, 
         type: 'UNIT_PLAN' as const,
-        category: 'CORE' as const,
+        category: 'BY_SUBJECT' as const,
         subject: 'Math',
         gradeMin: 2,
         gradeMax: 4,

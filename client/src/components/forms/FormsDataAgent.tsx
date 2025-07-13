@@ -251,11 +251,11 @@ return;
 
     try {
       const text = await file.text();
-      const data = safeJsonParse(text, {});
+      const data = safeJsonParse<(UnitPlanFormData | LessonPlanFormData)[]>(text, []);
 
       if (Array.isArray(data)) {
         // Determine type based on data structure
-        const type = data[0]?.unitPlanId ? 'lesson' : 'unit';
+        const type = (data[0] && 'unitPlanId' in data[0]) ? 'lesson' : 'unit';
         onDataImport?.(type, data);
       }
     } catch (_error) {
@@ -350,7 +350,7 @@ return;
                 <Button
                   className="bg-indigo-600 hover:bg-indigo-700"
                   disabled={isProcessing || totalOperations === 0}
-                  onClick={processBatchOperations}
+                  onClick={(): void => { void processBatchOperations(); }}
                 >
                   {isProcessing ? 'Processing...' : 'Process All'}
                 </Button>
@@ -527,7 +527,7 @@ return;
                   className="mt-2"
                   id="file-import"
                   type="file"
-                  onChange={handleFileImport}
+                  onChange={(e): void => { void handleFileImport(e); }}
                 />
                 <p className="text-sm text-gray-600 mt-1">
                   Upload a JSON file containing unit plans or lesson plans

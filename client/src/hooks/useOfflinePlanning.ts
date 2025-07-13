@@ -12,6 +12,47 @@ import { useLessonPlanStore } from '../stores/lessonPlanStore';
 import { useUnitPlanStore } from '../stores/unitPlanStore';
 import { useWeeklyPlannerStore } from '../stores/weeklyPlannerStore';
 import logger from '../utils/logger';
+
+// Type guards
+interface HasId {
+  id: string;
+}
+
+interface ApiResponse {
+  data: unknown;
+}
+
+function isApiResponse(value: unknown): value is ApiResponse {
+  return typeof value === 'object' && value !== null && 'data' in value;
+}
+
+function hasId(value: unknown): value is HasId {
+  return typeof value === 'object' && value !== null && 'id' in value && typeof (value as { id: unknown }).id === 'string';
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+// Store interfaces with proper typing
+interface UnitPlanStoreActions {
+  loadUnitPlan: (id: string) => Promise<void>;
+  updateUnitPlan: (id: string, updates: Record<string, unknown>) => Promise<void>;
+  deleteUnitPlan: (id: string) => Promise<void>;
+}
+
+interface UnitPlanStoreState {
+  currentPlan: HasId | null;
+  isLoading: boolean;
+  isSaving: boolean;
+  error: Error | null;
+  isOnline: boolean;
+  hasOfflineChanges: boolean;
+  pendingChanges: number;
+  syncStatus: 'idle' | 'syncing' | 'error';
+}
+
+type UnitPlanStoreType = UnitPlanStoreActions & UnitPlanStoreState;
 // Combined offline planning hook
 export function useOfflinePlanning(): {
   unitPlanStore: ReturnType<typeof useUnitPlanStore>;
@@ -41,7 +82,7 @@ export function useOfflinePlanning(): {
       const unresolvedConflicts = await offlineStorage.getUnresolvedConflicts();
       setConflicts(unresolvedConflicts);
     };
-    checkConflicts();
+    void checkConflicts();
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Sync all stores when coming online
@@ -52,19 +93,19 @@ export function useOfflinePlanning(): {
     const handleOnline = (): void => {
       // Sync all stores
       if (unitPlanStore.hasOfflineChanges) {
-        unitPlanStore.loadUnitPlans();
+        void unitPlanStore.loadUnitPlans();
       }
       if (lessonPlanStore.hasOfflineChanges) {
-        lessonPlanStore.loadLessonPlans();
+        void lessonPlanStore.loadLessonPlans();
       }
       if (daybookStore.hasOfflineChanges) {
         const today = new Date();
         const startDate = new Date(today.getFullYear(), today.getMonth(), 1).toISOString().split('T')[0];
         const endDate = new Date(today.getFullYear(), today.getMonth() + 1, 0).toISOString().split('T')[0];
-        daybookStore.loadEntries(startDate, endDate);
+        void daybookStore.loadEntries(startDate, endDate);
       }
       if (weeklyPlannerStore.hasOfflineChanges) {
-        weeklyPlannerStore.syncWithServer();
+        void weeklyPlannerStore.syncWithServer();
       }
     };
 
@@ -142,18 +183,36 @@ return 'syncing';
   };
 }
 
+interface UnitPlan {
+  id: string;
+  [key: string]: unknown;
+}
+
+interface _UnitPlanStore {
+  currentPlan: UnitPlan | null;
+  isLoading: boolean;
+  isSaving: boolean;
+  error: Error | null;
+  isOnline: boolean;
+  hasOfflineChanges: boolean;
+  loadUnitPlan: (id: string) => Promise<void>;
+  updateUnitPlan: (id: string, updates: Record<string, unknown>) => Promise<void>;
+  deleteUnitPlan: (id: string) => Promise<void>;
+}
+
 // Example usage in a component:
 export function useUnitPlanWithOffline(unitPlanId?: string): {
-  unitPlan: any;
+  unitPlan: UnitPlan | null;
   loading: boolean;
   saving: boolean;
-  error: any;
+  error: Error | null;
   isOnline: boolean;
   hasOfflineChanges: boolean;
   updateUnitPlan: (updates: unknown) => Promise<void>;
-  deleteUnitPlan: any;
+  deleteUnitPlan: (id: string) => Promise<void>;
 } {
-  const { unitPlanStore } = useOfflinePlanning();
+  const offlinePlanning = useOfflinePlanning();
+  const unitPlanStore = offlinePlanning.unitPlanStore;
   const [loading, setLoading] = useState(false);
 
   // Load unit plan with offline support
@@ -166,9 +225,11 @@ return;
 }
 
     const loadPlan = async (): Promise<void> => {
+      if (!unitPlanId) return;
       setLoading(true);
       try {
-        await unitPlanStore.loadUnitPlan(unitPlanId);
+        const typedStore = unitPlanStore as UnitPlanStoreType;
+        await typedStore.loadUnitPlan(unitPlanId);
       } catch (_error) {
         logger.error('Failed to load unit plan:', _error);
       } finally {
@@ -176,7 +237,7 @@ return;
       }
     };
 
-    loadPlan();
+    void loadPlan();
   }, [unitPlanId, unitPlanStore]);
 
   // Create debounced update function with proper typing
@@ -191,8 +252,9 @@ clearTimeout(timeout);
       return new Promise<void>((resolve) => {
         timeout = setTimeout(() => {
           void (async (): Promise<void> => {
-            if (unitPlanStore.currentPlan) {
-              await unitPlanStore.updateUnitPlan(unitPlanStore.currentPlan.id, updates as Record<string, unknown>);
+            const typedStore = unitPlanStore as UnitPlanStoreType;
+            if (typedStore.currentPlan && hasId(typedStore.currentPlan) && isRecord(updates)) {
+              await typedStore.updateUnitPlan(typedStore.currentPlan.id, updates);
             }
             resolve();
           })();
@@ -203,15 +265,16 @@ clearTimeout(timeout);
     return debounced;
   }, [unitPlanStore]);
 
+  const typedStore = unitPlanStore as UnitPlanStoreType;
   return {
-    unitPlan: unitPlanStore.currentPlan,
-    loading: loading || unitPlanStore.isLoading,
-    saving: unitPlanStore.isSaving,
-    error: unitPlanStore.error,
-    isOnline: unitPlanStore.isOnline,
-    hasOfflineChanges: unitPlanStore.hasOfflineChanges,
+    unitPlan: typedStore.currentPlan as UnitPlan | null,
+    loading: loading || typedStore.isLoading,
+    saving: typedStore.isSaving,
+    error: typedStore.error,
+    isOnline: typedStore.isOnline,
+    hasOfflineChanges: typedStore.hasOfflineChanges,
     updateUnitPlan: debouncedUpdate,
-    deleteUnitPlan: unitPlanStore.deleteUnitPlan,
+    deleteUnitPlan: typedStore.deleteUnitPlan,
   };
 }
 
@@ -228,7 +291,12 @@ export function useBatchedRequests(): {
       // Use batched API for multiple requests
       const promises = urls.map(url => batchedApi.get(url));
       const results = await Promise.all(promises);
-      return results.map((r: unknown) => (r as { data: unknown }).data);
+      return results.map((r: unknown) => {
+        if (isApiResponse(r)) {
+          return r.data;
+        }
+        return r;
+      });
     } catch (_error) {
       logger.error('Batch request failed:', _error);
       throw _error;

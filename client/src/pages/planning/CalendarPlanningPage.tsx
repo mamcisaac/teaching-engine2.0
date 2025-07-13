@@ -63,12 +63,12 @@ const SUBJECT_COLORS: Record<string, string> = {
 };
 
 // Loading component for calendar
-const CalendarLoadingFallback = () => (
+const CalendarLoadingFallback = (): JSX.Element => (
   <div className="bg-white rounded-lg shadow-lg p-6">
     <div className="animate-pulse">
       <div className="h-8 bg-gray-200 rounded w-1/3 mb-4" />
       <div className="grid grid-cols-7 gap-2">
-        {[...Array(35)].map((_, i) => (
+        {Array.from({ length: 35 }, (_, i) => (
           <div key={i} className="h-20 bg-gray-100 rounded" />
         ))}
       </div>
@@ -76,15 +76,15 @@ const CalendarLoadingFallback = () => (
   </div>
 );
 
-export default function CalendarPlanningPage() {
+export default function CalendarPlanningPage(): JSX.Element {
   const [localizerReady, setLocalizerReady] = useState(false);
 
   // Load the localizer asynchronously
   useEffect(() => {
-    return () => { // Cleanup
+    return (): void => { // Cleanup
     };
 
-    createMomentLocalizer().then((loc) => {
+    void createMomentLocalizer().then((loc) => {
       localizer = loc;
       setLocalizerReady(true);
     });
@@ -104,14 +104,14 @@ export default function CalendarPlanningPage() {
   });
 
   // Fetch calendar events
-  const { data: calendarEvents = [] } = useQuery({
+  const { data: calendarEvents = [] } = useQuery<CalendarEvent[]>({
     queryKey: [
       'calendar-events',
       format(startOfMonth(currentDate), 'yyyy-MM-dd'),
       format(endOfMonth(currentDate), 'yyyy-MM-dd'),
     ],
-    queryFn: async () => {
-      const response = await apiClient.get('/api/calendar-events', {
+    queryFn: async (): Promise<CalendarEvent[]> => {
+      const response = await apiClient.get<CalendarEvent[]>('/api/calendar-events', {
         params: {
           start: format(startOfMonth(currentDate), 'yyyy-MM-dd'),
           end: format(endOfMonth(currentDate), 'yyyy-MM-dd'),
@@ -122,10 +122,10 @@ export default function CalendarPlanningPage() {
   });
 
   // Fetch lessons for the current month
-  const { data: lessons = [] } = useQuery({
+  const { data: lessons = [] } = useQuery<ETFOLessonPlan[]>({
     queryKey: ['lessons', format(currentDate, 'yyyy-MM')],
-    queryFn: async () => {
-      const response = await apiClient.get('/api/etfo-lesson-plans', {
+    queryFn: async (): Promise<ETFOLessonPlan[]> => {
+      const response = await apiClient.get<ETFOLessonPlan[]>('/api/etfo-lesson-plans', {
         params: {
           startDate: format(startOfMonth(currentDate), 'yyyy-MM-dd'),
           endDate: format(endOfMonth(currentDate), 'yyyy-MM-dd'),
@@ -136,18 +136,18 @@ export default function CalendarPlanningPage() {
   });
 
   // Fetch unit boundaries
-  const { data: units = [] } = useQuery({
+  const { data: units = [] } = useQuery<UnitPlan[]>({
     queryKey: ['unit-plans'],
-    queryFn: async () => {
-      const response = await apiClient.get('/api/unit-plans');
+    queryFn: async (): Promise<UnitPlan[]> => {
+      const response = await apiClient.get<UnitPlan[]>('/api/unit-plans');
       return response.data;
     },
   });
 
   // Update lesson date mutation
-  const updateLessonMutation = useMutation({
-    mutationFn: async ({ lessonId, newDate }: { lessonId: string; newDate: Date }) => {
-      const response = await apiClient.put(`/api/etfo-lesson-plans/${lessonId}/reschedule`, {
+  const updateLessonMutation = useMutation<ETFOLessonPlan, Error, { lessonId: string; newDate: Date }>({
+    mutationFn: async ({ lessonId, newDate }: { lessonId: string; newDate: Date }): Promise<ETFOLessonPlan> => {
+      const response = await apiClient.put<ETFOLessonPlan>(`/api/etfo-lesson-plans/${lessonId}/reschedule`, {
         newDate: format(newDate, 'yyyy-MM-dd'),
       });
       return response.data;
@@ -305,8 +305,8 @@ return false;
 
   // Custom toolbar component
   const CustomToolbar = useCallback(
-    ({ date, onNavigate }: { date: Date; onNavigate: (date: Date) => void }) => {
-      const goToBack = () => {
+    ({ date, onNavigate }: { date: Date; onNavigate: (date: Date) => void }): JSX.Element => {
+      const goToBack = (): void => {
         const newDate = new Date(date);
         if (view === 'month') {
           newDate.setMonth(date.getMonth() - 1);
@@ -318,7 +318,7 @@ return false;
         onNavigate(newDate);
       };
 
-      const goToNext = () => {
+      const goToNext = (): void => {
         const newDate = new Date(date);
         if (view === 'month') {
           newDate.setMonth(date.getMonth() + 1);
@@ -330,7 +330,7 @@ return false;
         onNavigate(newDate);
       };
 
-      const goToToday = () => {
+      const goToToday = (): void => {
         onNavigate(new Date());
       };
 
@@ -439,7 +439,7 @@ return false;
               ...new Set(
                 lessons
                   .map((l: ETFOLessonPlan, _index) => (l as { subject?: string }).subject)
-                  .filter(Boolean),
+                  .filter((subject): subject is string => Boolean(subject)),
               ),
             ].map((s, _index) => String(s))}
             filters={filters}

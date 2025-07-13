@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import React from 'react';
-import { OnboardingProvider, useOnboarding } from '../../../contexts/OnboardingContext';
+import { OnboardingProvider, useOnboarding, OnboardingContext, type OnboardingStep } from '../../../contexts/OnboardingContext';
 import { OnboardingFlowOptimized } from '../OnboardingFlowOptimized';
 import { vi } from 'vitest';
 
@@ -22,26 +22,43 @@ vi.mock('../../../contexts/OnboardingContext', async () => {
 });
 
 // Helper to render component with context
-const renderWithOnboarding = (ui: React.ReactElement, contextValue?: any) => {
-  const defaultContext = {
-    isOnboardingActive: true,
-    currentStep: null,
-    progress: 0,
-    nextStep: vi.fn(),
-    previousStep: vi.fn(),
-    skipOnboarding: vi.fn(),
-    canGoBack: false,
-    canGoForward: true,
-    state: {
-      currentFlow: null,
-      currentStepIndex: 0,
-    },
+const defaultContext = {
+  isOnboardingActive: true,
+  currentStep: null as OnboardingStep | null,
+  progress: 0,
+  nextStep: vi.fn(),
+  previousStep: vi.fn(),
+  skipOnboarding: vi.fn(),
+  canGoBack: false,
+  canGoForward: true,
+  startOnboarding: vi.fn(),
+  completeOnboarding: vi.fn(),
+  resetOnboarding: vi.fn(),
+  state: {
+    isFirstTimeUser: true,
+    currentFlow: null as any,
+    currentStepIndex: 0,
+    showOnboarding: true,
+    completedFlows: [],
+    skippedOnboarding: false,
+  },
+};
+
+const renderWithOnboarding = (ui: React.ReactElement, contextValue?: Partial<typeof defaultContext>) => {
+  const context = {
+    ...defaultContext,
     ...contextValue,
+    state: {
+      ...defaultContext.state,
+      ...contextValue?.state,
+    },
   };
 
-  (useOnboarding as any).mockReturnValue(defaultContext);
-
-  return render(ui);
+  return render(
+    <OnboardingContext.Provider value={context}>
+      {ui}
+    </OnboardingContext.Provider>
+  );
 };
 
 describe('OnboardingFlowOptimized', () => {
@@ -72,7 +89,7 @@ describe('OnboardingFlowOptimized', () => {
     it('should not render when isOnboardingActive is null', () => {
       const { container } = renderWithOnboarding(
         <OnboardingFlowOptimized />,
-        { isOnboardingActive: null }
+        { isOnboardingActive: false }
       );
       expect(container.firstChild).toBeNull();
     });
@@ -105,6 +122,7 @@ describe('OnboardingFlowOptimized', () => {
       const currentStep = {
         id: 'step1',
         title: 'Test Step',
+        description: 'Test description',
         content: 'Test content',
         targetElement: '.test-element',
       };
@@ -124,8 +142,9 @@ describe('OnboardingFlowOptimized', () => {
       const currentStep = {
         id: 'step1',
         title: 'Test Step',
+        description: 'Test description',
         content: 'Test content',
-        targetElement: null,
+        targetElement: undefined,
       };
 
       renderWithOnboarding(
@@ -140,6 +159,7 @@ describe('OnboardingFlowOptimized', () => {
       const currentStep = {
         id: 'step1',
         title: 'Test Step',
+        description: 'Test description',
         content: 'Test content',
         targetElement: undefined,
       };
@@ -156,6 +176,7 @@ describe('OnboardingFlowOptimized', () => {
       const currentStep = {
         id: 'step1',
         title: 'Test Step',
+        description: 'Test description',
         content: 'Test content',
         targetElement: '',
       };
@@ -187,6 +208,7 @@ describe('OnboardingFlowOptimized', () => {
       const currentStep = {
         id: 'step1',
         title: 'Test Step',
+        description: 'Test description',
         content: 'Test content',
         targetElement: '.test-element',
       };
@@ -210,6 +232,7 @@ describe('OnboardingFlowOptimized', () => {
       const currentStep = {
         id: 'step1',
         title: 'Test Step',
+        description: 'Test description',
         content: 'Test content',
         targetElement: '.test-element',
         requiresAction: false,
@@ -228,9 +251,10 @@ describe('OnboardingFlowOptimized', () => {
       const currentStep = {
         id: 'step1',
         title: 'Test Step',
+        description: 'Test description',
         content: 'Test content',
         targetElement: '.test-element',
-        requiresAction: null,
+        requiresAction: undefined,
       };
 
       renderWithOnboarding(
@@ -245,6 +269,7 @@ describe('OnboardingFlowOptimized', () => {
       const currentStep = {
         id: 'step1',
         title: 'Test Step',
+        description: 'Test description',
         content: 'Test content',
         targetElement: '.test-element',
         requiresAction: undefined,
@@ -263,6 +288,7 @@ describe('OnboardingFlowOptimized', () => {
       const currentStep = {
         id: 'step1',
         title: 'Test Step',
+        description: 'Test description',
         content: 'Test content',
         targetElement: '.test-element',
         requiresAction: true,
@@ -293,6 +319,7 @@ describe('OnboardingFlowOptimized', () => {
       const currentStep = {
         id: 'step1',
         title: 'Test Step',
+        description: 'Test description',
         content: 'Test content',
         targetElement: '.test-element',
         position: 'center' as const,
@@ -312,8 +339,9 @@ describe('OnboardingFlowOptimized', () => {
       const currentStep = {
         id: 'step1',
         title: 'Test Step',
+        description: 'Test description',
         content: 'Test content',
-        targetElement: null,
+        targetElement: undefined,
         position: 'top' as const,
       };
 
@@ -329,6 +357,7 @@ describe('OnboardingFlowOptimized', () => {
       const currentStep = {
         id: 'step1',
         title: 'Test Step',
+        description: 'Test description',
         content: 'Test content',
         targetElement: undefined,
         position: 'bottom' as const,
@@ -348,8 +377,9 @@ describe('OnboardingFlowOptimized', () => {
       const currentStep = {
         id: 'step1',
         title: 'Test Step',
+        description: 'Test description',
         content: 'Test content',
-        targetElement: null,
+        targetElement: undefined,
       };
 
       renderWithOnboarding(
@@ -379,6 +409,7 @@ describe('OnboardingFlowOptimized', () => {
       const currentStep = {
         id: 'step1',
         title: 'Test Step',
+        description: 'Test description',
         content: 'Test content',
         targetElement: '.test-element',
         requiresAction: true,
@@ -397,6 +428,10 @@ describe('OnboardingFlowOptimized', () => {
   describe('Completion message handling', () => {
     it('should not show completion message when completionMessage is null', () => {
       const state = {
+        isFirstTimeUser: true,
+        showOnboarding: true,
+        completedFlows: [],
+        skippedOnboarding: false,
         currentFlow: {
           id: 'flow1',
           steps: [{ id: 'step1' }],
@@ -408,6 +443,7 @@ describe('OnboardingFlowOptimized', () => {
       const currentStep = {
         id: 'step1',
         title: 'Test Step',
+        description: 'Test description',
         content: 'Test content',
       };
 
@@ -421,6 +457,10 @@ describe('OnboardingFlowOptimized', () => {
 
     it('should not show completion message when completionMessage is undefined', () => {
       const state = {
+        isFirstTimeUser: true,
+        showOnboarding: true,
+        completedFlows: [],
+        skippedOnboarding: false,
         currentFlow: {
           id: 'flow1',
           steps: [{ id: 'step1' }],
@@ -432,6 +472,7 @@ describe('OnboardingFlowOptimized', () => {
       const currentStep = {
         id: 'step1',
         title: 'Test Step',
+        description: 'Test description',
         content: 'Test content',
       };
 
@@ -445,6 +486,10 @@ describe('OnboardingFlowOptimized', () => {
 
     it('should not show completion message when completionMessage is empty string', () => {
       const state = {
+        isFirstTimeUser: true,
+        showOnboarding: true,
+        completedFlows: [],
+        skippedOnboarding: false,
         currentFlow: {
           id: 'flow1',
           steps: [{ id: 'step1' }],
@@ -456,6 +501,7 @@ describe('OnboardingFlowOptimized', () => {
       const currentStep = {
         id: 'step1',
         title: 'Test Step',
+        description: 'Test description',
         content: 'Test content',
       };
 
@@ -469,6 +515,10 @@ describe('OnboardingFlowOptimized', () => {
 
     it('should show completion message on last step when message exists', () => {
       const state = {
+        isFirstTimeUser: true,
+        showOnboarding: true,
+        completedFlows: [],
+        skippedOnboarding: false,
         currentFlow: {
           id: 'flow1',
           steps: [{ id: 'step1' }],
@@ -480,6 +530,7 @@ describe('OnboardingFlowOptimized', () => {
       const currentStep = {
         id: 'step1',
         title: 'Test Step',
+        description: 'Test description',
         content: 'Test content',
       };
 

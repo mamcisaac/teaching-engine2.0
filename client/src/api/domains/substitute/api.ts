@@ -508,7 +508,7 @@ export const substituteApi = {
     return data;
   },
 
-  generateSubPlanPDF: async (date: string, days: number): Promise<any> => {
+  generateSubPlanPDF: async (date: string, days: number): Promise<Blob> => {
     const response = await apiClient.post(
       `/subplan/generate?date=${date}&days=${days}`,
       {},
@@ -516,14 +516,14 @@ export const substituteApi = {
         responseType: 'blob',
       },
     );
-    return response;
+    return response.data as Blob;
   },
 
-  generateSubPlanWithOptions: async (options: { startDate: string; endDate?: string; includeResources?: boolean; format?: string }): Promise<any> => {
+  generateSubPlanWithOptions: async (options: { startDate: string; endDate?: string; includeResources?: boolean; format?: string }): Promise<Blob> => {
     const response = await apiClient.post(`/subplan/generate`, options, {
       responseType: 'blob',
     });
-    return response;
+    return response.data as Blob;
   },
 
   getSubPlanRecords: async (userId?: number): Promise<SubstitutePlan[]> => {

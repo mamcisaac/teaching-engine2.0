@@ -13,7 +13,7 @@ import {
   printHTML,
   downloadHTML
 } from '../../utils/printUtils';
-import Dialog from '../Dialog';
+import { Dialog } from '../Dialog';
 import { Button } from '../ui/Button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { Input } from '../ui/Input';
@@ -342,7 +342,7 @@ export function BlankTemplateQuickActions({
 }: {
   templateType?: keyof typeof templateConfigs;
   schoolInfo?: Partial<ETFOSchoolInfo>;
-}): React.ReactElement {
+}): React.ReactElement | null {
   const [printerOpen, setPrinterOpen] = useState(false);
 
   if (!templateType) {

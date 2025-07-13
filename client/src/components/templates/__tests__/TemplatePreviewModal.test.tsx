@@ -1,34 +1,36 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { vi } from 'vitest';
 import TemplatePreviewModal from '../TemplatePreviewModal';
 import type { PlanTemplate, UnitPlanContent, LessonPlanContent } from '../../../types/template';
 
 describe('TemplatePreviewModal - Strict Boolean Expressions', () => {
-  const mockOnClose = jest.fn();
-  const mockOnApply = jest.fn();
+  const mockOnClose = vi.fn();
+  const mockOnApply = vi.fn();
 
   const baseTemplate: PlanTemplate = {
     id: '1',
     title: 'Test Template',
     type: 'UNIT_PLAN',
+    category: 'BY_SUBJECT',
     tags: [],
+    keywords: [],
     usageCount: 0,
     createdAt: '2024-01-01',
     updatedAt: '2024-01-01',
-    createdById: 'user1',
+    createdByUserId: 1,
     isSystem: false,
     isPublic: true,
-    visibility: 'PUBLIC',
     content: {},
   };
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe('Metadata Display', () => {
     it('should not display subject when null', () => {
-      const template = { ...baseTemplate, subject: null };
+      const template = { ...baseTemplate, subject: undefined };
       render(<TemplatePreviewModal template={template} onClose={mockOnClose} onApply={mockOnApply} />);
       
       const subjectElement = screen.queryByText(/capitalize/);
@@ -61,21 +63,21 @@ describe('TemplatePreviewModal - Strict Boolean Expressions', () => {
 
   describe('Grade Range Display', () => {
     it('should display "All grades" when both gradeMin and gradeMax are null', () => {
-      const template = { ...baseTemplate, gradeMin: null, gradeMax: null };
+      const template = { ...baseTemplate, gradeMin: undefined, gradeMax: undefined };
       render(<TemplatePreviewModal template={template} onClose={mockOnClose} onApply={mockOnApply} />);
       
       expect(screen.getByText('All grades')).toBeInTheDocument();
     });
 
     it('should display "All grades" when only gradeMin is null', () => {
-      const template = { ...baseTemplate, gradeMin: null, gradeMax: 5 };
+      const template = { ...baseTemplate, gradeMin: undefined, gradeMax: 5 };
       render(<TemplatePreviewModal template={template} onClose={mockOnClose} onApply={mockOnApply} />);
       
       expect(screen.getByText('All grades')).toBeInTheDocument();
     });
 
     it('should display "All grades" when only gradeMax is null', () => {
-      const template = { ...baseTemplate, gradeMin: 3, gradeMax: null };
+      const template = { ...baseTemplate, gradeMin: 3, gradeMax: undefined };
       render(<TemplatePreviewModal template={template} onClose={mockOnClose} onApply={mockOnApply} />);
       
       expect(screen.getByText('All grades')).toBeInTheDocument();
@@ -91,7 +93,7 @@ describe('TemplatePreviewModal - Strict Boolean Expressions', () => {
 
   describe('Duration Display', () => {
     it('should display "Duration varies" when unit plan has no estimatedWeeks', () => {
-      const template = { ...baseTemplate, type: 'UNIT_PLAN' as const, estimatedWeeks: null };
+      const template = { ...baseTemplate, type: 'UNIT_PLAN' as const, estimatedWeeks: undefined };
       render(<TemplatePreviewModal template={template} onClose={mockOnClose} onApply={mockOnApply} />);
       
       expect(screen.getByText('Duration varies')).toBeInTheDocument();
@@ -112,7 +114,7 @@ describe('TemplatePreviewModal - Strict Boolean Expressions', () => {
     });
 
     it('should display "Duration varies" when lesson plan has no estimatedMinutes', () => {
-      const template = { ...baseTemplate, type: 'LESSON_PLAN' as const, estimatedMinutes: null };
+      const template = { ...baseTemplate, type: 'LESSON_PLAN' as const, estimatedMinutes: undefined };
       render(<TemplatePreviewModal template={template} onClose={mockOnClose} onApply={mockOnApply} />);
       
       expect(screen.getByText('Duration varies')).toBeInTheDocument();
@@ -128,7 +130,7 @@ describe('TemplatePreviewModal - Strict Boolean Expressions', () => {
 
   describe('Description Display', () => {
     it('should not display description section when null', () => {
-      const template = { ...baseTemplate, description: null };
+      const template = { ...baseTemplate, description: undefined };
       render(<TemplatePreviewModal template={template} onClose={mockOnClose} onApply={mockOnApply} />);
       
       expect(screen.queryByText('Description')).not.toBeInTheDocument();
@@ -171,7 +173,7 @@ describe('TemplatePreviewModal - Strict Boolean Expressions', () => {
 
   describe('Unit Structure Display', () => {
     it('should not display unit structure when null', () => {
-      const template = { ...baseTemplate, type: 'UNIT_PLAN' as const, unitStructure: null };
+      const template = { ...baseTemplate, type: 'UNIT_PLAN' as const, unitStructure: undefined };
       render(<TemplatePreviewModal template={template} onClose={mockOnClose} onApply={mockOnApply} />);
       
       expect(screen.queryByText('Unit Structure')).not.toBeInTheDocument();
@@ -214,7 +216,7 @@ describe('TemplatePreviewModal - Strict Boolean Expressions', () => {
         unitStructure: { 
           phases: [
             { name: 'Introduction', description: 'Intro phase', estimatedDays: 2 },
-            { name: 'Development', description: null, estimatedDays: null }
+            { name: 'Development', description: undefined, estimatedDays: undefined }
           ] 
         } 
       };
@@ -226,13 +228,13 @@ describe('TemplatePreviewModal - Strict Boolean Expressions', () => {
       expect(screen.getByText('Estimated: 2 days')).toBeInTheDocument();
       expect(screen.getByText('Development')).toBeInTheDocument();
       // Null description and estimatedDays should not be displayed
-      expect(screen.queryByText('Estimated: null days')).not.toBeInTheDocument();
+      expect(screen.queryByText('No estimated days')).not.toBeInTheDocument();
     });
   });
 
   describe('Creator Info Display', () => {
     it('should display system template when createdByUser is null', () => {
-      const template = { ...baseTemplate, createdByUser: null };
+      const template = { ...baseTemplate, createdByUser: undefined };
       render(<TemplatePreviewModal template={template} onClose={mockOnClose} onApply={mockOnApply} />);
       
       expect(screen.getByText('System template')).toBeInTheDocument();
@@ -241,7 +243,7 @@ describe('TemplatePreviewModal - Strict Boolean Expressions', () => {
     it('should display creator name when createdByUser exists', () => {
       const template = { 
         ...baseTemplate, 
-        createdByUser: { id: '1', name: 'John Doe', email: 'john@example.com' } 
+        createdByUser: { id: 1, name: 'John Doe' } 
       };
       render(<TemplatePreviewModal template={template} onClose={mockOnClose} onApply={mockOnApply} />);
       
@@ -266,7 +268,7 @@ describe('TemplatePreviewModal - Strict Boolean Expressions', () => {
   describe('Content Section Rendering', () => {
     it('should not render sections with null content in unit plan', () => {
       const content: UnitPlanContent = {
-        overview: null as any,
+        overview: undefined,
         bigIdeas: 'Big ideas here',
         learningGoals: [],
         essentialQuestions: ['Question 1'],
@@ -299,7 +301,7 @@ describe('TemplatePreviewModal - Strict Boolean Expressions', () => {
       const content: UnitPlanContent = {
         overview: 'Overview',
         assessments: [
-          { type: 'Formative', description: 'Test', timing: null as any },
+          { type: 'Formative', description: 'Test', timing: undefined },
           { type: 'Summative', description: 'Final', timing: 'End of unit' }
         ]
       };
@@ -310,7 +312,7 @@ describe('TemplatePreviewModal - Strict Boolean Expressions', () => {
       fireEvent.click(screen.getByText('Assessments'));
       
       // First assessment should not show timing
-      expect(screen.queryByText('Timing: null')).not.toBeInTheDocument();
+      expect(screen.queryByText('No timing specified')).not.toBeInTheDocument();
       // Second assessment should show timing
       expect(screen.getByText('Timing: End of unit')).toBeInTheDocument();
     });
@@ -318,12 +320,12 @@ describe('TemplatePreviewModal - Strict Boolean Expressions', () => {
     it('should not render sections with null content in lesson plan', () => {
       const content: LessonPlanContent = {
         objectives: ['Objective 1'],
-        materials: null as any,
+        materials: undefined,
         mindsOn: 'Minds on activity',
-        action: null as any,
+        action: undefined,
         consolidation: 'Consolidation activity',
         assessmentType: 'formative',
-        assessmentNotes: null as any,
+        assessmentNotes: undefined,
       };
       const template = { ...baseTemplate, type: 'LESSON_PLAN' as const, content };
       render(<TemplatePreviewModal template={template} onClose={mockOnClose} onApply={mockOnApply} />);
@@ -339,7 +341,7 @@ describe('TemplatePreviewModal - Strict Boolean Expressions', () => {
     it('should not display assessment type when null in lesson plan', () => {
       const content: LessonPlanContent = {
         objectives: ['Objective 1'],
-        assessmentType: null as any,
+        assessmentType: undefined,
         assessmentNotes: 'Assessment notes here',
       };
       const template = { ...baseTemplate, type: 'LESSON_PLAN' as const, content };

@@ -160,11 +160,11 @@ return;
     }
   };
 
-  const handleImportCurriculum = () => {
+  const handleImportCurriculum = (): void => {
     navigate('/curriculum-import');
   };
 
-  const ExpectationRow = ({ expectation }: { expectation: CurriculumExpectation }) => (
+  const ExpectationRow = ({ expectation }: { expectation: CurriculumExpectation }): JSX.Element => (
     <TableRow>
       <TableCell className="font-mono text-sm">{expectation.code}</TableCell>
       <TableCell>
@@ -467,7 +467,11 @@ return;
 }}>
               Cancel
             </Button>
-            <Button aria-label="Click button" onClick={handleSaveEdit}>Save Changes</Button>
+            <Button aria-label="Click button" onClick={() => { 
+              void handleSaveEdit().catch((error: unknown) => {
+                console.error('Error saving edit:', error);
+              }); 
+            }}>Save Changes</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

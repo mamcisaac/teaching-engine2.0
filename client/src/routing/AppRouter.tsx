@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { Routes, Route, Outlet } from 'react-router-dom';
 
-import MainLayout from '../components/MainLayout';
+import { MainLayout } from '../components/MainLayout';
 import ProtectedRoute from '../components/ProtectedRoute';
 import WorkflowGate from '../components/WorkflowGate';
 import { useAuth } from '../contexts/AuthContext';
@@ -10,7 +10,7 @@ import type { RouteConfig } from './routesConfig';
 import { publicRoutes, protectedRoutes } from './routesConfig';
 
 // Common suspense fallback
-const SuspenseFallback = () => (
+const SuspenseFallback = (): JSX.Element => (
   <div className="flex items-center justify-center min-h-screen">
     <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500" />
   </div>
@@ -56,7 +56,7 @@ function renderRoute(route: RouteConfig, index: number): JSX.Element {
   return <Route key={path || index} element={content} index={isIndex} path={path} />;
 }
 
-export function AppRouter() {
+export function AppRouter(): JSX.Element {
   const { isLoading, isInitialized, error } = useAuth();
 
   // Add debug logging

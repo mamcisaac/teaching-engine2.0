@@ -47,6 +47,37 @@ interface ImportSession {
   errors: string[];
 }
 
+// API Response interfaces
+interface UploadResponse {
+  sessionId: string;
+  message?: string;
+}
+
+interface ParseResponse {
+  subjects: ParsedSubject[];
+  errors: string[];
+  sessionId: string;
+}
+
+interface PresetImportResponse {
+  sessionId: string;
+  subjects: ParsedSubject[];
+  message?: string;
+}
+
+// Type guards
+function isUploadResponse(data: unknown): data is UploadResponse {
+  return typeof data === 'object' && data !== null && 'sessionId' in data && typeof (data as { sessionId: unknown }).sessionId === 'string';
+}
+
+function isParseResponse(data: unknown): data is ParseResponse {
+  return typeof data === 'object' && data !== null && 'subjects' in data && 'errors' in data && 'sessionId' in data;
+}
+
+function isPresetImportResponse(data: unknown): data is PresetImportResponse {
+  return typeof data === 'object' && data !== null && 'sessionId' in data && 'subjects' in data;
+}
+
 export default function CurriculumImportPage(): React.ReactElement {
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -76,7 +107,11 @@ return;
           },
         });
 
-        const {sessionId} = uploadResponse.data;
+        if (!isUploadResponse(uploadResponse.data)) {
+          throw new Error('Invalid upload response format');
+        }
+        
+        const { sessionId } = uploadResponse.data;
 
         // Start parsing
         setImportSession({
@@ -98,7 +133,7 @@ return;
           });
         }, 500);
 
-        const parseResponse = await apiClient.post('/api/curriculum/import/parse', {
+        const parseResponse = await apiClient.post<ParseResponse>('/api/curriculum/import/parse', {
           sessionId,
           useAiExtraction: true,
         });
@@ -108,17 +143,21 @@ return;
         }
         setParseProgress(100);
 
+        if (!isParseResponse(parseResponse.data)) {
+          throw new Error('Invalid parse response format');
+        }
+
         setImportSession({
           id: sessionId,
           status: 'parsed',
           originalFilename: file.name,
-          parsedSubjects: parseResponse.data.subjects ?? [],
-          errors: parseResponse.data.errors ?? [],
+          parsedSubjects: parseResponse.data.subjects,
+          errors: parseResponse.data.errors,
         });
 
         toast({
           title: 'Success',
-          description: `Parsed ${parseResponse.data.subjects?.length ?? 0} subjects from ${file.name}`,
+          description: `Parsed ${parseResponse.data.subjects.length} subjects from ${file.name}`,
         });
       } catch (_error) {
         logger.error('Import error:', _error);
@@ -146,28 +185,32 @@ return;
     [toast],
   );
 
-  const handlePresetSelection = async (presetId: string) => {
+  const handlePresetSelection = async (presetId: string): Promise<void> => {
     if (!presetId) {
 return;
 }
 
     setIsUploading(true);
     try {
-      const response = await apiClient.post('/api/curriculum/import/import-preset', {
+      const response = await apiClient.post<PresetImportResponse>('/api/curriculum/import/import-preset', {
         presetId,
       });
+
+      if (!isPresetImportResponse(response.data)) {
+        throw new Error('Invalid preset import response format');
+      }
 
       setImportSession({
         id: response.data.sessionId,
         status: 'parsed',
         originalFilename: `${presetId} (Preset)`,
-        parsedSubjects: response.data.subjects ?? [],
+        parsedSubjects: response.data.subjects,
         errors: [],
       });
 
       toast({
         title: 'Success',
-        description: `Loaded ${response.data.subjects?.length ?? 0} subjects from preset`,
+        description: `Loaded ${response.data.subjects.length} subjects from preset`,
       });
     } catch (_error) {
       toast({
@@ -180,11 +223,11 @@ return;
     }
   };
 
-  const handleEditExpectation = (expectation: ParsedExpectation) => {
+  const handleEditExpectation = (expectation: ParsedExpectation): void => {
     setEditingExpectation({ ...expectation });
   };
 
-  const handleSaveExpectation = () => {
+  const handleSaveExpectation = (): void => {
     if (!editingExpectation || !importSession) {
 return;
 }
@@ -213,7 +256,7 @@ return;
     });
   };
 
-  const handleDeleteExpectation = (expectation: ParsedExpectation) => {
+  const handleDeleteExpectation = (expectation: ParsedExpectation): void => {
     if (!importSession) {
 return;
 }
@@ -239,7 +282,7 @@ return;
     });
   };
 
-  const handleFinalImport = async () => {
+  const handleFinalImport = async (): Promise<void> => {
     if (!importSession) {
 return;
 }
@@ -265,7 +308,11 @@ return;
   };
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
+    onDrop: (files: File[]) => {
+      void onDrop(files).catch((error: unknown) => {
+        console.error('Error handling file drop:', error);
+      });
+    },
     accept: {
       'application/pdf': ['.pdf'],
       'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'],
@@ -514,7 +561,11 @@ return;
 }}>
                     Start Over
                   </Button>
-                  <Button aria-label="Click button" onClick={handleFinalImport}>
+                  <Button aria-label="Click button" onClick={() => {
+                    void handleFinalImport().catch((error: unknown) => {
+                      console.error('Error during final import:', error);
+                    });
+                  }}>
                     <Sparkles className="h-4 w-4" />
                     Import Curriculum
                   </Button>

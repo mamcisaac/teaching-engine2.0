@@ -28,13 +28,15 @@ vi.mock('../../utils/serviceWorkerRegistration', () => ({
 }));
 
 // Test interface
-interface TestStore extends OfflineState, BaseActions {
+interface TestStoreState extends OfflineState, BaseActions {
   data: string;
   lastModified?: Date;
 }
 
+type TestStore = TestStoreState;
+
 describe('basePlanningStore - nullish coalescing behavior', () => {
-  let useTestStore: ReturnType<typeof create<TestStore>>;
+  let useTestStore: any;
   let mockConfig: SyncConfig<{ data: string }>;
 
   beforeEach(() => {
@@ -48,7 +50,7 @@ describe('basePlanningStore - nullish coalescing behavior', () => {
     useTestStore = create<TestStore>((set, get) => ({
       data: 'test-data',
       ...createOfflineSlice<{ data: string }>(mockConfig)(set, get, {} as any),
-    }));
+    }) as TestStore);
   });
 
   describe('setSyncStatus with error parameter', () => {
@@ -66,7 +68,7 @@ describe('basePlanningStore - nullish coalescing behavior', () => {
       const { result } = renderHook(() => useTestStore());
       
       act(() => {
-        (result.current as TestStore).setSyncStatus('error', null);
+        (result.current as TestStore).setSyncStatus('error', undefined);
       });
 
       expect((result.current as TestStore).syncError).toBe(null);
@@ -114,8 +116,8 @@ describe('basePlanningStore - nullish coalescing behavior', () => {
 
       const testStore = create<TestStore>((set, get) => ({
         data: 'test-data',
-        ...createOfflineSlice<{ data: string }>(configWithoutStrategy)(set, get as any),
-      }));
+        ...createOfflineSlice<{ data: string }>(configWithoutStrategy)(set, get, {} as any),
+      }) as TestStore);
 
       // The default value 'local-wins' should be used
       // This test verifies the behavior is preserved when switching from || to ??
@@ -130,8 +132,8 @@ describe('basePlanningStore - nullish coalescing behavior', () => {
 
       const testStore = create<TestStore>((set, get) => ({
         data: 'test-data',
-        ...createOfflineSlice<{ data: string }>(configWithNullStrategy)(set, get as any),
-      }));
+        ...createOfflineSlice<{ data: string }>(configWithNullStrategy)(set, get, {} as any),
+      }) as TestStore);
 
       expect(configWithNullStrategy.mergingStrategy ?? 'local-wins').toBe('local-wins');
     });

@@ -670,7 +670,7 @@ describe('XSS Prevention Tests', () => {
       localStorage.setItem('userPreferences', maliciousData);
 
       const ComponentUsingStorage = () => {
-        const [userData, setUserData] = React.useState<any>(null);
+        const [userData, setUserData] = React.useState<Record<string, unknown> | null>(null);
 
         React.useEffect(() => {
           try {
@@ -698,9 +698,9 @@ describe('XSS Prevention Tests', () => {
 
         return (
           <div data-testid="user-data">
-            <p>Name: {userData.name}</p>
-            <p>Theme: {userData.preferences.theme}</p>
-            <p>Language: {userData.preferences.language}</p>
+            <p>Name: {userData.name as React.ReactNode}</p>
+            <p>Theme: {(userData.preferences as any)?.theme}</p>
+            <p>Language: {(userData.preferences as any)?.language}</p>
           </div>
         );
       };

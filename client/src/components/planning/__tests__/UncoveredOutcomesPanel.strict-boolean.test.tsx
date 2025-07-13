@@ -3,7 +3,6 @@ import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
-import type { Mock } from 'vitest';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { apiClient } from '@/api/core/client';
@@ -37,7 +36,7 @@ describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
 
   describe('query parameter handling', () => {
     it('should handle undefined startDate, endDate, and theme', async () => {
-      (apiClient.get as Mock).mockResolvedValue({ data: [] });
+      (apiClient.get as ReturnType<typeof vi.fn>).mockResolvedValue({ data: [] });
 
       render(
         <UncoveredOutcomesPanel onSelectSuggestion={vi.fn()} />,
@@ -50,7 +49,7 @@ describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
     });
 
     it('should append parameters only when they are defined', async () => {
-      (apiClient.get as Mock).mockResolvedValue({ data: [] });
+      (apiClient.get as ReturnType<typeof vi.fn>).mockResolvedValue({ data: [] });
       
       const startDate = new Date('2024-01-01');
       const endDate = new Date('2024-12-31');
@@ -67,7 +66,7 @@ describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
       );
 
       await waitFor(() => {
-        const call = (apiClient.get as Mock).mock.calls[0];
+        const call = (apiClient.get as ReturnType<typeof vi.fn>).mock.calls[0];
         const url = call[0];
         expect(url).toContain('startDate=');
         expect(url).toContain('endDate=');
@@ -76,7 +75,7 @@ describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
     });
 
     it('should handle partial parameters correctly', async () => {
-      (apiClient.get as Mock).mockResolvedValue({ data: [] });
+      (apiClient.get as ReturnType<typeof vi.fn>).mockResolvedValue({ data: [] });
       
       const startDate = new Date('2024-01-01');
 
@@ -89,7 +88,7 @@ describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
       );
 
       await waitFor(() => {
-        const call = (apiClient.get as Mock).mock.calls[0];
+        const call = (apiClient.get as ReturnType<typeof vi.fn>).mock.calls[0];
         const url = call[0];
         expect(url).toContain('startDate=');
         expect(url).not.toContain('endDate=');
@@ -100,7 +99,7 @@ describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
 
   describe('uncoveredOutcomes data handling', () => {
     it('should handle undefined data from API', async () => {
-      (apiClient.get as Mock).mockResolvedValue({ data: undefined });
+      (apiClient.get as ReturnType<typeof vi.fn>).mockResolvedValue({ data: undefined });
 
       render(
         <UncoveredOutcomesPanel onSelectSuggestion={vi.fn()} />,
@@ -113,7 +112,7 @@ describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
     });
 
     it('should handle null data from API', async () => {
-      (apiClient.get as Mock).mockResolvedValue({ data: null });
+      (apiClient.get as ReturnType<typeof vi.fn>).mockResolvedValue({ data: null });
 
       render(
         <UncoveredOutcomesPanel onSelectSuggestion={vi.fn()} />,
@@ -126,7 +125,7 @@ describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
     });
 
     it('should handle empty array', async () => {
-      (apiClient.get as Mock).mockResolvedValue({ data: [] });
+      (apiClient.get as ReturnType<typeof vi.fn>).mockResolvedValue({ data: [] });
 
       render(
         <UncoveredOutcomesPanel onSelectSuggestion={vi.fn()} />,
@@ -155,7 +154,7 @@ describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
         },
       ];
 
-      (apiClient.get as Mock).mockResolvedValue({ data: mockData });
+      (apiClient.get as ReturnType<typeof vi.fn>).mockResolvedValue({ data: mockData });
 
       render(
         <UncoveredOutcomesPanel onSelectSuggestion={vi.fn()} />,
@@ -197,7 +196,7 @@ describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
         },
       ];
 
-      (apiClient.get as Mock).mockResolvedValue({ data: mockData });
+      (apiClient.get as ReturnType<typeof vi.fn>).mockResolvedValue({ data: mockData });
 
       render(
         <UncoveredOutcomesPanel onSelectSuggestion={vi.fn()} />,
@@ -228,7 +227,7 @@ describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
         },
       ];
 
-      (apiClient.get as Mock).mockResolvedValue({ data: mockData });
+      (apiClient.get as ReturnType<typeof vi.fn>).mockResolvedValue({ data: mockData });
 
       render(
         <UncoveredOutcomesPanel onSelectSuggestion={vi.fn()} />,
@@ -258,7 +257,7 @@ describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
         },
       ];
 
-      (apiClient.get as Mock).mockResolvedValue({ data: mockData });
+      (apiClient.get as ReturnType<typeof vi.fn>).mockResolvedValue({ data: mockData });
 
       render(
         <UncoveredOutcomesPanel onSelectSuggestion={vi.fn()} />,
@@ -298,7 +297,7 @@ describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
         },
       ];
 
-      (apiClient.get as Mock).mockResolvedValue({ data: mockData });
+      (apiClient.get as ReturnType<typeof vi.fn>).mockResolvedValue({ data: mockData });
 
       render(
         <UncoveredOutcomesPanel onSelectSuggestion={vi.fn()} />,
@@ -344,7 +343,7 @@ describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
         },
       ];
 
-      (apiClient.get as Mock).mockResolvedValue({ data: mockData });
+      (apiClient.get as ReturnType<typeof vi.fn>).mockResolvedValue({ data: mockData });
 
       render(
         <UncoveredOutcomesPanel onSelectSuggestion={onSelectSuggestion} />,
@@ -378,8 +377,8 @@ describe('UncoveredOutcomesPanel - Strict Boolean Expressions', () => {
         },
       ];
 
-      (apiClient.get as Mock).mockResolvedValue({ data: mockData });
-      (apiClient.post as Mock).mockResolvedValue({ 
+      (apiClient.get as ReturnType<typeof vi.fn>).mockResolvedValue({ data: mockData });
+      (apiClient.post as ReturnType<typeof vi.fn>).mockResolvedValue({ 
         data: {
           id: 2,
           expectationId: '1',

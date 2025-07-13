@@ -127,7 +127,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
                   </div>
                 </div>
                 <div className="flex gap-1">
-                  {lesson.assessmentType !== null && lesson.assessmentType !== undefined && lesson.assessmentType !== '' && (
+                  {lesson.assessmentType !== null && lesson.assessmentType !== undefined && (
                     <Badge className="text-xs" variant="secondary">
                       {lesson.assessmentType}
                     </Badge>
@@ -406,7 +406,8 @@ export default function DaybookPage(): React.ReactElement {
     documentTitle: `Daybook - Week of ${format(weekStart, 'MMM d, yyyy')}`,
   });
 
-  const handleSaveEntry = async (date: Date, data: Partial<DaybookEntry>): Promise<void> => {
+  const handleSaveEntry = (date: Date, data: Partial<DaybookEntry>): void => {
+    void (async (): Promise<void> => {
     try {
       const existingEntry = entries.find(
         (e) => format(new Date(e.date), 'yyyy-MM-dd') === format(date, 'yyyy-MM-dd'),
@@ -432,6 +433,7 @@ export default function DaybookPage(): React.ReactElement {
         variant: 'destructive',
       });
     }
+    })();
   };
 
   const getDayEntry = (date: Date): DaybookEntry | undefined => entries.find(
@@ -444,7 +446,7 @@ export default function DaybookPage(): React.ReactElement {
 
   const weekDays = Array.from({ length: 5 }, (_, i) => addDays(weekStart, i));
 
-  const generateInsights = (): {totalLessons: number; totalReflections: number; assessmentTypes: {diagnostic: number; formative: number; summative: number}; averageRating: number} => {
+  const generateInsights = (): {totalLessons: number; totalReflections: number; assessmentTypes: {diagnostic: number; formative: number; summative: number}; reflectionRate: number} => {
     const totalLessons = lessons.length;
     const totalReflections = entries.filter((e) => e.notes).length;
     const assessmentTypes = {

@@ -143,11 +143,11 @@ return '';
     ];
 
     return requiredFields.every((field) => {
-      const value = lesson[field];
+      const value = lesson[field as keyof ETFOLessonPlan];
       if (Array.isArray(value)) {
-        return value.length > 0 && value.some((item) => item.trim() !== '');
+        return value.length > 0 && value.some((item) => String(item).trim() !== '');
       }
-      return value !== null && value !== undefined && value.toString().trim() !== '';
+      return value !== null && value !== undefined && String(value).trim() !== '';
     });
   }
 }

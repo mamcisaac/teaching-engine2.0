@@ -1,15 +1,19 @@
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-// Simple debounce implementation
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const debounce = <T extends (...args: any[]) => any>(
-  func: T,
+// Type-safe debounce implementation with cancel
+type DebounceFunction<T extends unknown[]> = {
+  (...args: T): void;
+  cancel(): void;
+};
+
+const debounce = <T extends unknown[]>(
+  func: (...args: T) => void,
   wait: number,
-): ((...args: Parameters<T>) => void) & { cancel(): void } => {
+): DebounceFunction<T> => {
   let timeout: ReturnType<typeof setTimeout>;
 
-  const debounced = (...args: Parameters<T>): void => {
+  const debounced = (...args: T): void => {
     clearTimeout(timeout);
-    timeout = setTimeout(() => func(...args), wait);
+    timeout = setTimeout((): void => { func(...args); }, wait);
   };
 
   debounced.cancel = (): void => {
@@ -39,7 +43,7 @@ export function VirtualizedList<T>({
   overscan = 5,
   className = '',
   estimatedItemHeight,
-}: VirtualizedListProps<T>) {
+}: VirtualizedListProps<T>): JSX.Element {
   const [scrollTop, setScrollTop] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -85,7 +89,7 @@ export function VirtualizedList<T>({
   // Debounced scroll end handler
   const debouncedScrollEnd = useMemo(
     () =>
-      debounce((scrollTop: number) => {
+      debounce<[number]>((scrollTop: number) => {
         onScrollEnd?.(scrollTop);
       }, 150),
     [onScrollEnd],
@@ -102,7 +106,7 @@ export function VirtualizedList<T>({
   );
 
   // Cleanup debounced function
-  useEffect(() => () => {
+  useEffect((): (() => void) => () => {
       debouncedScrollEnd.cancel();
     }, [debouncedScrollEnd]);
 
@@ -166,7 +170,7 @@ return;
 // HOC for memoizing items
 export function withVirtualizedMemo<T>(
   Component: React.ComponentType<{ item: T; index: number; style: React.CSSProperties }>,
-) {
+): React.ComponentType<{ item: T; index: number; style: React.CSSProperties }> {
   return React.memo(Component, (prevProps, nextProps) => (
       prevProps.index === nextProps.index &&
       prevProps.item === nextProps.item &&

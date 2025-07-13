@@ -1,6 +1,7 @@
-import { apiClient } from '../api/core/client';
-
+import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
+
+import { apiClient } from '../api/core/client';
 export interface AIStatusInfo {
   available: boolean;
   hasApiKey: boolean;
@@ -66,8 +67,9 @@ export function useAIStatus(): AIStatusHookReturn {
     queryFn: async () => {
       try {
         const response = await apiClient.get('/api/ai/status');
+        const data = response.data as Omit<AIStatusInfo, 'lastChecked'>;
         return {
-          ...response.data,
+          ...data,
           lastChecked: new Date(),
         };
       } catch (error: unknown) {
@@ -139,7 +141,7 @@ export function useAIStatus(): AIStatusHookReturn {
     setUserDisabledAI(false);
     sessionStorage.removeItem('ai_disabled');
     // Refetch status to get current availability
-    refetch();
+    void refetch();
   };
 
   const disableAI = (): void => {
@@ -152,7 +154,7 @@ export function useAIStatus(): AIStatusHookReturn {
     isLoading,
     isError,
     error,
-    refetch,
+    refetch: (): void => { void refetch(); },
     isAIEnabled,
     canUseAI,
     aiDisabledReason: getAIDisabledReason(),
@@ -280,7 +282,7 @@ return 'Limited';
 
 // Provider for AI status context
 import type { ReactNode } from 'react';
-import React, { useState , createContext, useContext } from 'react';
+import React, { createContext, useContext } from 'react';
 
 const AIStatusContext = createContext<AIStatusHookReturn | null>(null);
 

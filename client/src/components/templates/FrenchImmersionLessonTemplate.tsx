@@ -13,7 +13,7 @@ import { Card } from '../ui/card';
 
 interface FrenchImmersionLessonTemplateProps {
   initialData?: Partial<FrenchImmersionLessonContent>;
-  onSave: (data: FrenchImmersionLessonContent) => void;
+  onSave: (data: FrenchImmersionLessonContent) => void | Promise<void>;
   onCancel?: () => void;
   metadata?: {
     grade: number;
@@ -84,7 +84,7 @@ export default function FrenchImmersionLessonTemplate({
     ]);
   };
 
-  const onSubmit = (data: FrenchImmersionLessonContent): void => {
+  const onSubmit = async (data: FrenchImmersionLessonContent): Promise<void> => {
     const fullData = {
       ...data,
       languageFocus: {
@@ -96,11 +96,13 @@ export default function FrenchImmersionLessonTemplate({
         homeActivities,
       },
     };
-    onSave(fullData);
+    await onSave(fullData);
   };
 
   return (
-    <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+    <form className="space-y-6" onSubmit={(e) => {
+      void handleSubmit(onSubmit)(e);
+    }}>
       {/* Header with Grade 1 French Immersion context */}
       <Card className="bg-gradient-to-r from-blue-50 to-red-50 p-6">
         <div className="flex items-center justify-between">

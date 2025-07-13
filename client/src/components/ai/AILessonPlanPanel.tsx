@@ -187,7 +187,7 @@ export function AILessonPlanPanel({
       // Generate all activities in parallel for 70% speed improvement
       setLoadingStep('activities');
       
-      const [mindsOnResult, handsOnResult, reflectionResult] = await Promise.all([
+      const activityResults = await Promise.all([
         // Step 1: Generate Minds-On activities
         generateLessonActivities.mutateAsync({
           lessonTitle: formData.lessonTitle,
@@ -221,10 +221,11 @@ export function AILessonPlanPanel({
 
       // Step 4: Generate materials list based on all activities
       setLoadingStep('materials');
+      const [mindsOnResult, handsOnResult, reflectionResult] = activityResults;
       const allActivities = [
-        ...(mindsOnResult.suggestions as string[]),
-        ...(handsOnResult.suggestions as string[]),
-        ...(reflectionResult.suggestions as string[])
+        ...(mindsOnResult.suggestions ?? []),
+        ...(handsOnResult.suggestions ?? []),
+        ...(reflectionResult.suggestions ?? [])
       ];
 
       const materialsResult = await generateMaterialsList.mutateAsync({
@@ -237,17 +238,17 @@ export function AILessonPlanPanel({
       // Build three-part structure
       const structure: ThreePartStructure = {
         mindsOn: {
-          activities: mindsOnResult.suggestions as string[],
+          activities: (mindsOnResult.suggestions ?? []),
           duration: mindsOnDuration,
           materials: [],
         },
         handsOn: {
-          activities: handsOnResult.suggestions as string[],
+          activities: (handsOnResult.suggestions ?? []),
           duration: handsOnDuration,
           materials: [],
         },
         mindsOnReflection: {
-          activities: reflectionResult.suggestions as string[],
+          activities: (reflectionResult.suggestions ?? []),
           duration: reflectionDuration,
           materials: [],
         },
@@ -259,25 +260,25 @@ export function AILessonPlanPanel({
       setSuggestions([
         {
           type: 'mindson',
-          content: mindsOnResult.suggestions as string[],
+          content: (mindsOnResult.suggestions ?? []),
           rationale: 'Activities to activate prior knowledge and engage students',
           timeEstimate: mindsOnDuration,
         },
         {
           type: 'handson',
-          content: handsOnResult.suggestions as string[],
+          content: (handsOnResult.suggestions ?? []),
           rationale: 'Main learning activities for skill development and practice',
           timeEstimate: handsOnDuration,
         },
         {
           type: 'mindson_reflection',
-          content: reflectionResult.suggestions as string[],
+          content: (reflectionResult.suggestions ?? []),
           rationale: 'Reflection and consolidation activities',
           timeEstimate: reflectionDuration,
         },
         {
           type: 'materials',
-          content: materialsResult.suggestions as string[],
+          content: (materialsResult.suggestions ?? []),
           rationale: 'Required materials and resources',
         },
       ]);
@@ -328,7 +329,7 @@ export function AILessonPlanPanel({
             subject: formData.subject,
             grade: parseInt(formData.grade),
             classSize: 25,
-          }) as { suggestions: string[]; rationale?: string };
+          });
           break;
         case 'assessments':
           result = await generateAssessmentStrategies.mutateAsync({
@@ -336,7 +337,7 @@ export function AILessonPlanPanel({
             activities: [formData.lessonTitle],
             subject: formData.subject,
             grade: parseInt(formData.grade),
-          }) as { suggestions: string[]; rationale?: string };
+          });
           break;
         default:
           throw new Error(`Suggestion type ${type} not implemented for individual generation`);
@@ -355,7 +356,7 @@ export function AILessonPlanPanel({
       
       toast({
         title: 'Suggestions Generated',
-        description: `Generated ${(result.suggestions as string[]).length} ${type} suggestions.`,
+        description: `Generated ${result.suggestions.length} ${type} suggestions.`,
       });
 
     } catch (_error) {

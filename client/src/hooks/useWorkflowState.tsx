@@ -63,7 +63,7 @@ export function useWorkflowState(): {
   } = useQuery<WorkflowState>({
     queryKey: ['workflow-state'],
     queryFn: async () => {
-      const response = await apiClient.get('/api/workflow/state');
+      const response = await apiClient.get<WorkflowState>('/api/workflow/state');
       return response.data;
     },
     staleTime: 30000, // Cache for 30 seconds
@@ -73,7 +73,7 @@ export function useWorkflowState(): {
     level: ETFOLevel,
   ): Promise<{ canAccess: boolean; reason?: string }> => {
     try {
-      const response = await apiClient.get(`/api/workflow/access/${level}`);
+      const response = await apiClient.get<{ canAccess: boolean; reason?: string }>(`/api/workflow/access/${level}`);
       return response.data;
     } catch (_error) {
       logger.error('Error checking level access:', _error);
@@ -86,7 +86,7 @@ export function useWorkflowState(): {
     entityId: string,
   ): Promise<{ isValid: boolean; missingFields: string[] }> => {
     try {
-      const response = await apiClient.post('/api/workflow/validate', {
+      const response = await apiClient.post<{ isValid: boolean; missingFields: string[] }>('/api/workflow/validate', {
         level,
         entityId,
       });

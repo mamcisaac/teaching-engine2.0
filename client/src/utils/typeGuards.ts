@@ -36,8 +36,9 @@ export function hasProperty<K extends string>(
   return isRecord(obj) && key in obj;
 }
 
-export function safeJsonParse<T = unknown>(json: string, fallback: T): T {
+export function safeJsonParse<T = unknown>(json: string | null, fallback: T): T {
   try {
+    if (!json) return fallback;
     return JSON.parse(json) as T;
   } catch {
     return fallback;

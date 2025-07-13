@@ -50,7 +50,7 @@ export const templatesApi = {
 
   // Update a template
   updateTemplate: async (id: string, data: Partial<TemplateCreateData>): Promise<PlanTemplate> => {
-    const response = await apiClient.put(`${API_BASE}/${id}`, data);
+    const response = await apiClient.put<PlanTemplate>(`${API_BASE}/${id}`, data);
     return response.data;
   },
 
@@ -61,25 +61,25 @@ export const templatesApi = {
 
   // Duplicate a template
   duplicateTemplate: async (id: string, title?: string, isPublic?: boolean): Promise<PlanTemplate> => {
-    const response = await apiClient.post(`${API_BASE}/${id}/duplicate`, { title, isPublic });
+    const response = await apiClient.post<PlanTemplate>(`${API_BASE}/${id}/duplicate`, { title, isPublic });
     return response.data;
   },
 
   // Apply a template
   applyTemplate: async (id: string, customizations?: Record<string, unknown>): Promise<AppliedTemplateData> => {
-    const response = await apiClient.post(`${API_BASE}/${id}/apply`, { customizations });
+    const response = await apiClient.post<AppliedTemplateData>(`${API_BASE}/${id}/apply`, { customizations });
     return response.data;
   },
 
   // Rate a template
   rateTemplate: async (id: string, rating: number, comment?: string): Promise<{ success: boolean; message?: string }> => {
-    const response = await apiClient.post(`${API_BASE}/${id}/rate`, { rating, comment });
+    const response = await apiClient.post<{ success: boolean; message?: string }>(`${API_BASE}/${id}/rate`, { rating, comment });
     return response.data;
   },
 
   // Get filter options
   getFilterOptions: async (): Promise<TemplateFilterOptions> => {
-    const response = await apiClient.get(`${API_BASE}/metadata/options`);
+    const response = await apiClient.get<TemplateFilterOptions>(`${API_BASE}/metadata/options`);
     return response.data;
   },
 };
@@ -143,7 +143,7 @@ export function useUpdateTemplate(): UseMutationResult<PlanTemplate, Error, { id
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ id, ...data }: { id: string } & Partial<TemplateCreateData>) =>
+    mutationFn: ({ id, data }: { id: string; data: Partial<TemplateCreateData> }) =>
       templatesApi.updateTemplate(id, data),
     onSuccess: (updatedTemplate) => {
       // Update cache
@@ -172,7 +172,7 @@ export function useDeleteTemplate(): UseMutationResult<void, Error, string> {
 }
 
 // Hook to duplicate a template
-export function useDuplicateTemplate(): UseMutationResult<PlanTemplate, Error, string> {
+export function useDuplicateTemplate(): UseMutationResult<PlanTemplate, Error, { id: string; title?: string; isPublic?: boolean }> {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -189,7 +189,7 @@ export function useDuplicateTemplate(): UseMutationResult<PlanTemplate, Error, s
 }
 
 // Hook to apply a template
-export function useApplyTemplate(): UseMutationResult<AppliedTemplateData, Error, { templateId: string; appliedData: any }> {
+export function useApplyTemplate(): UseMutationResult<AppliedTemplateData, Error, { id: string; customizations?: Record<string, unknown> }> {
   return useMutation({
     mutationFn: ({ id, customizations }: { id: string; customizations?: Record<string, unknown> }) =>
       templatesApi.applyTemplate(id, customizations),
@@ -197,7 +197,7 @@ export function useApplyTemplate(): UseMutationResult<AppliedTemplateData, Error
 }
 
 // Hook to rate a template
-export function useRateTemplate(): UseMutationResult<PlanTemplate, Error, { templateId: string; rating: number }> {
+export function useRateTemplate(): UseMutationResult<{ success: boolean; message?: string }, Error, { id: string; rating: number; comment?: string }> {
   const queryClient = useQueryClient();
 
   return useMutation({

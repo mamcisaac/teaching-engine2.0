@@ -40,7 +40,7 @@ export function useAutoSave<T>({
       setHasUnsavedChanges(true);
     }
     
-    lastDataRef.current = data as Record<string, unknown>;
+    lastDataRef.current = data;
   }, [data, lastSaved]);
 
   // Auto-save logic
@@ -151,9 +151,11 @@ export function useUnsavedChangesWarning(hasUnsavedChanges: boolean): void {
     const handleBeforeUnload = (e: BeforeUnloadEvent): string | undefined => {
       if (hasUnsavedChanges) {
         e.preventDefault();
-        e.returnValue = 'You have unsaved changes. Are you sure you want to leave?';
-        return e.returnValue;
+        const message = 'You have unsaved changes. Are you sure you want to leave?';
+        e.returnValue = message;
+        return message;
       }
+      return undefined;
     };
 
     window.addEventListener('beforeunload', handleBeforeUnload);

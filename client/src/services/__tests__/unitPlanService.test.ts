@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * @file unitPlanService.test.ts
  * @description Comprehensive tests for UnitPlanService including progress calculations,
@@ -93,10 +93,15 @@ const createMockFormData = (overrides: Partial<UnitPlanFormData> = {}): UnitPlan
   ...overrides,
 });
 
-const createMockLessonPlan = (id: number, hasEntry = false): any => ({
+const createMockLessonPlan = (id: string, hasEntry = false): Partial<ETFOLessonPlan> => ({
   id,
   title: `Lesson ${id}`,
-  daybookEntry: hasEntry ? { id, reflections: 'Good lesson' } : null,
+  daybookEntry: hasEntry ? { 
+    id, 
+    date: '2024-01-01',
+    lessonPlanId: id,
+    whatWorked: 'Good lesson'
+  } : undefined,
 });
 
 describe('UnitPlanService', () => {
@@ -105,11 +110,11 @@ describe('UnitPlanService', () => {
       const unit = createMockUnitPlan({
         _count: { lessonPlans: 5, expectations: 3, resources: 0 },
         lessonPlans: [
-          createMockLessonPlan(1, true), // completed
-          createMockLessonPlan(2, false), // not completed
-          createMockLessonPlan(3, true), // completed
-          createMockLessonPlan(4, false), // not completed
-          createMockLessonPlan(5, true), // completed
+          createMockLessonPlan('1', true), // completed
+          createMockLessonPlan('2', false), // not completed
+          createMockLessonPlan('3', true), // completed
+          createMockLessonPlan('4', false), // not completed
+          createMockLessonPlan('5', true), // completed
         ] as any,
       });
 
@@ -141,9 +146,9 @@ describe('UnitPlanService', () => {
       const unit = createMockUnitPlan({
         _count: { lessonPlans: 3, expectations: 3, resources: 0 },
         lessonPlans: [
-          createMockLessonPlan(1, true),
-          createMockLessonPlan(2, true),
-          createMockLessonPlan(3, true),
+          createMockLessonPlan('1', true),
+          createMockLessonPlan('2', true),
+          createMockLessonPlan('3', true),
         ] as any,
       });
 
@@ -155,9 +160,9 @@ describe('UnitPlanService', () => {
       const unit = createMockUnitPlan({
         _count: { lessonPlans: 3, expectations: 3, resources: 0 },
         lessonPlans: [
-          createMockLessonPlan(1, false),
-          createMockLessonPlan(2, false),
-          createMockLessonPlan(3, false),
+          createMockLessonPlan('1', false),
+          createMockLessonPlan('2', false),
+          createMockLessonPlan('3', false),
         ] as any,
       });
 
@@ -179,9 +184,9 @@ describe('UnitPlanService', () => {
       const unit = createMockUnitPlan({
         _count: { lessonPlans: 3, expectations: 3, resources: 0 },
         lessonPlans: [
-          createMockLessonPlan(1, true), // completed
-          createMockLessonPlan(2, false), // not completed
-          createMockLessonPlan(3, false), // not completed
+          createMockLessonPlan('1', true), // completed
+          createMockLessonPlan('2', false), // not completed
+          createMockLessonPlan('3', false), // not completed
         ] as any,
       });
 
@@ -605,7 +610,7 @@ describe('UnitPlanService', () => {
     it('should handle very small progress calculations', () => {
       const unit = createMockUnitPlan({
         _count: { lessonPlans: 1000, expectations: 3, resources: 0 },
-        lessonPlans: [createMockLessonPlan(1, true)] as any, // 1 out of 1000
+        lessonPlans: [createMockLessonPlan('1', true)] as any, // 1 out of 1000
       });
 
       const result = UnitPlanService.calculateProgress(unit);
