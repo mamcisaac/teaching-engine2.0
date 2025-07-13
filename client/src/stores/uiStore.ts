@@ -143,7 +143,7 @@ export const useUIStore = create<UIState>()(
       
       openModal: (modalId: string) => {
         set((state) => {
-          if (!state.activeModals.includes(modalId)) {
+          if (state.activeModals.includes(modalId) === false) {
             state.activeModals.push(modalId);
           }
         });
@@ -171,7 +171,7 @@ export const useUIStore = create<UIState>()(
         });
         
         // Auto-hide toast after duration
-        if (duration > 0) {
+        if (duration !== null && duration !== undefined && duration > 0) {
           setTimeout(() => {
             get().hideToast(id);
           }, duration);
@@ -237,7 +237,7 @@ export const useUIStore = create<UIState>()(
         animations: state.animations,
       }),
       onRehydrateStorage: () => (state) => {
-        if (state) {
+        if (state !== null && state !== undefined) {
           // Apply theme on rehydration
           const effectiveTheme = calculateEffectiveTheme(state.theme);
           state.effectiveTheme = effectiveTheme;

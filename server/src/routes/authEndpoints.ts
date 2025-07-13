@@ -61,7 +61,9 @@ function validateAuthInputs(isRegister = false) {
     const { password } = req.body;
 
     // Check for missing or non-string email/password
-    if (!email || !password || typeof email !== 'string' || typeof password !== 'string') {
+    if (email === null || email === undefined || email === '' || 
+        password === null || password === undefined || password === '' || 
+        typeof email !== 'string' || typeof password !== 'string') {
       res.status(400).json({ error: 'Email and password are required' });
       return;
     }
@@ -72,13 +74,13 @@ function validateAuthInputs(isRegister = false) {
 
     // Check basic email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+    if (emailRegex.test(email) === false) {
       res.status(400).json({ error: 'Invalid email format' });
       return;
     }
 
     // For register, check if name is provided
-    if (isRegister && !req.body.name) {
+    if (isRegister === true && (req.body.name === null || req.body.name === undefined || req.body.name === '')) {
       res.status(400).json({ error: 'Email, password, and name are required' });
       return;
     }
@@ -132,7 +134,7 @@ function createAuthRouter(prisma = defaultPrisma) {
   router.get('/me', authenticate, async (req: Request, res: Response): Promise<void> => {
     try {
       // Always fetch fresh user data from database for /me endpoint
-      if (!req.user?.id) {
+      if (req.user?.id === null || req.user?.id === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -148,7 +150,7 @@ function createAuthRouter(prisma = defaultPrisma) {
         },
       });
 
-      if (!user) {
+      if (user === null) {
         // This shouldn't happen as authenticate middleware already checked
         res.status(404).json({
           error: 'User not found',
@@ -178,7 +180,7 @@ function createAuthRouter(prisma = defaultPrisma) {
   // Simple auth check endpoint - returns userId if authenticated
   router.get('/check', authenticate, (req: Request, res: Response): void => {
     const userId = req.user?.id;
-    if (!userId) {
+    if (userId === null || userId === undefined) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }

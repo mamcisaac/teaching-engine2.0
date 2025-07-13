@@ -291,7 +291,7 @@ export const useWeeklyPlannerStore = create<WeeklyPlannerState>()(
               startOfWeek: state.startOfWeek,
               workingHours: { ...state.workingHours },
               currentWeekStart: state.currentWeekStart,
-              draftChanges: state.draftChanges ? { ...state.draftChanges } : undefined,
+              draftChanges: state.draftChanges !== null && state.draftChanges !== undefined ? { ...state.draftChanges } : undefined,
             };
 
             const historyEntry: UndoRedoState = {
@@ -331,7 +331,7 @@ return;
               startOfWeek: state.startOfWeek,
               workingHours: { ...state.workingHours },
               currentWeekStart: state.currentWeekStart,
-              draftChanges: state.draftChanges ? { ...state.draftChanges } : undefined,
+              draftChanges: state.draftChanges !== null && state.draftChanges !== undefined ? { ...state.draftChanges } : undefined,
             };
 
             // Limit redo history size
@@ -370,7 +370,7 @@ return;
               startOfWeek: state.startOfWeek,
               workingHours: { ...state.workingHours },
               currentWeekStart: state.currentWeekStart,
-              draftChanges: state.draftChanges ? { ...state.draftChanges } : undefined,
+              draftChanges: state.draftChanges !== null && state.draftChanges !== undefined ? { ...state.draftChanges } : undefined,
             };
 
             state.undoHistory.push({
@@ -424,7 +424,7 @@ return;
 
         saveToServer: async () => {
           const state = get();
-          if (state.isSaving) {
+          if (state.isSaving === true) {
 return;
 } // Prevent concurrent saves
 
@@ -466,7 +466,7 @@ return;
         syncWithServer: async () => {
           const { loadFromServer, saveToServer, hasOfflineChanges } = get();
 
-          if (hasOfflineChanges) {
+          if (hasOfflineChanges === true) {
             await saveToServer();
           } else {
             await loadFromServer();

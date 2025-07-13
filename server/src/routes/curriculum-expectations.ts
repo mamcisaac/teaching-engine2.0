@@ -23,9 +23,8 @@ router.get('/search', async (req: Request, res: Response): Promise<void> => {
     const { q, limit = '10' } = req.query as Record<string, string>;
     const limitNumber = Math.min(parseInt(limit, 10), 50); // Cap at 50 for autocomplete
 
-    if (!q || q.length < 2) {
+    if (q === null || q === undefined || q === '' || q.length < 2) {
       res.json({ results: [] });
-      return;
       return;
     }
 
@@ -70,17 +69,17 @@ router.get('/', validatePagination, async (req: Request, res: Response): Promise
   try {
     const pagination = getPaginationParams(req);
     const { subject, grade, strand } = req.query as Record<string, string>;
-    const gradeNumber = grade ? parseInt(grade, 10) : undefined;
+    const gradeNumber = grade !== null && grade !== undefined && grade !== '' ? parseInt(grade, 10) : undefined;
 
     // Build filters
     const baseFilter: Prisma.CurriculumExpectationWhereInput = {};
-    if (subject) {
+    if (subject !== null && subject !== undefined && subject !== '') {
 baseFilter.subject = subject;
 }
-    if (gradeNumber) {
+    if (gradeNumber !== null && gradeNumber !== undefined) {
 baseFilter.grade = gradeNumber;
 }
-    if (strand) {
+    if (strand !== null && strand !== undefined && strand !== '') {
 baseFilter.strand = strand;
 }
 
@@ -99,7 +98,7 @@ baseFilter.strand = strand;
     const orderBy: Prisma.CurriculumExpectationOrderByWithRelationInput = {};
     const sortBy = pagination.sortBy as keyof Prisma.CurriculumExpectationOrderByWithRelationInput;
     if (
-      sortBy &&
+      sortBy !== null && sortBy !== undefined &&
       sortBy in
         { code: true, description: true, strand: true, substrand: true, grade: true, subject: true }
     ) {
@@ -174,7 +173,7 @@ router.get('/:id', async (req: Request, res: Response): Promise<void> => {
       },
     });
 
-    if (!expectation) {
+    if (expectation === null) {
       res.status(404).json({ error: 'Curriculum expectation not found' });
       return;
     }

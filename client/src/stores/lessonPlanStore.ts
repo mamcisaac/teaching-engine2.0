@@ -103,13 +103,13 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
               if (get().isOnline) {
                 let url = '/api/etfo-lesson-plans';
                 const params = new URLSearchParams();
-                if (startDate) {
+                if (startDate !== null && startDate !== undefined && startDate !== '') {
 params.append('startDate', startDate);
 }
-                if (endDate) {
+                if (endDate !== null && endDate !== undefined && endDate !== '') {
 params.append('endDate', endDate);
 }
-                if (params.toString()) {
+                if (params.toString() !== '') {
 url += `?${params.toString()}`;
 }
 
@@ -130,7 +130,7 @@ url += `?${params.toString()}`;
                 const cacheKey = `lesson-plans-${startDate ?? 'all'}-${endDate ?? 'all'}`;
                 const cachedPlans = await offlineStorage.getCachedData<LessonPlan[]>(cacheKey);
 
-                if (cachedPlans) {
+                if (cachedPlans !== null && cachedPlans !== undefined) {
                   set((state) => {
                     state.lessonPlans = cachedPlans;
                     state.isLoading = false;
@@ -184,7 +184,7 @@ url += `?${params.toString()}`;
                   `lesson-plan-${id}`,
                 );
 
-                if (cachedLesson) {
+                if (cachedLesson !== null && cachedLesson !== undefined) {
                   set((state) => {
                     state.currentLesson = cachedLesson;
                     state.isLoading = false;
@@ -192,7 +192,7 @@ url += `?${params.toString()}`;
                 } else {
                   // Try to find in the list
                   const lesson = get().lessonPlans.find((p) => p.id === id);
-                  if (lesson) {
+                  if (lesson !== undefined) {
                     set((state) => {
                       state.currentLesson = lesson;
                       state.isLoading = false;
@@ -370,7 +370,7 @@ url += `?${params.toString()}`;
 
           duplicateLessonPlan: async (id: string, newDate: string) => {
             const originalLesson = get().lessonPlans.find((p) => p.id === id);
-            if (!originalLesson) {
+            if (originalLesson === undefined) {
               throw new Error('Lesson not found');
             }
 
@@ -427,7 +427,7 @@ const autoSave = createAutoSave(
 useLessonPlanStore.subscribe(
   (state) => state.hasOfflineChanges,
   (hasChanges) => {
-    if (hasChanges) {
+    if (hasChanges === true) {
       autoSave();
     }
   },

@@ -74,7 +74,7 @@ return expectations;
       if (grouped[exp.strand] === undefined) {
         grouped[exp.strand] = {};
       }
-      const substrand = exp.substrand ?? 'General';
+      const substrand = exp.substrand !== null && exp.substrand !== undefined && exp.substrand !== '' ? exp.substrand : 'General';
       if (grouped[exp.strand][substrand] === undefined) {
         grouped[exp.strand][substrand] = [];
       }
@@ -324,7 +324,7 @@ return expectations;
       ) : null}
 
       {/* Error display */}
-      {error !== undefined && error !== null ? (
+      {error !== undefined && error !== null && error !== '' ? (
         <p className="mt-1 text-sm text-red-600">{error}</p>
       ) : null}
     </div>
