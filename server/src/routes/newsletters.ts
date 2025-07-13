@@ -23,7 +23,7 @@ const generateNewsletterSchema = z.object({
  * Generate newsletter draft
  * POST /api/newsletters/generate
  */
-router.post('/generate', async (req: Request, res: Response) => {
+router.post('/generate', async (req: Request, res: Response): Promise<void> => {
   try {
     const userId = req.user?.id;
     if (!userId) {
@@ -73,7 +73,7 @@ router.post('/generate', async (req: Request, res: Response) => {
  * Get newsletter generation status/info
  * GET /api/newsletters/status
  */
-router.get('/status', async (req: Request, res: Response) => {
+router.get('/status', async (req: Request, res: Response): Promise<void> => {
   try {
     const userId = req.user?.id;
     if (!userId) {

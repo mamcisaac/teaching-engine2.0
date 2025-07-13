@@ -40,7 +40,14 @@ export interface ETFOLevel {
 /**
  * Hook to track ETFO planning progress across all 5 levels
  */
-export function useETFOProgress() {
+export function useETFOProgress(): {
+  progressData: ETFOProgressData | undefined;
+  isLoading: boolean;
+  isLevelComplete: (level: string) => boolean;
+  isLevelAccessible: (level: string) => boolean;
+  getLevelProgress: (level: string) => number;
+  getETFOLevels: () => ETFOLevel[];
+} {
   const { data: progressData, isLoading } = useQuery<ETFOProgressData>({
     queryKey: ['etfo-progress'],
     queryFn: async () => {

@@ -175,7 +175,7 @@ export default function ETFOLessonPlanPage() {
     resetForm();
   };
 
-  const resetForm = () => {
+  const resetForm = (): void => {
     setFormData({
       title: '',
       titleFr: '',
@@ -210,68 +210,68 @@ export default function ETFOLessonPlanPage() {
     }
   };
 
-  const addMaterial = () => {
+  const addMaterial = (): void => {
     setFormData({ ...formData, materials: [...formData.materials, ''] });
   };
 
-  const updateMaterial = (index: number, value: string) => {
+  const updateMaterial = (index: number, value: string): void => {
     const updated = [...formData.materials];
     updated[index] = value;
     setFormData({ ...formData, materials: updated });
   };
 
-  const removeMaterial = (index: number) => {
+  const removeMaterial = (index: number): void => {
     setFormData({
       ...formData,
       materials: formData.materials.filter((_, i) => i !== index),
     });
   };
 
-  const addAccommodation = () => {
+  const addAccommodation = (): void => {
     setFormData({ ...formData, accommodations: [...formData.accommodations, ''] });
   };
 
-  const updateAccommodation = (index: number, value: string) => {
+  const updateAccommodation = (index: number, value: string): void => {
     const updated = [...formData.accommodations];
     updated[index] = value;
     setFormData({ ...formData, accommodations: updated });
   };
 
-  const removeAccommodation = (index: number) => {
+  const removeAccommodation = (index: number): void => {
     setFormData({
       ...formData,
       accommodations: formData.accommodations.filter((_, i) => i !== index),
     });
   };
 
-  const addModification = () => {
+  const addModification = (): void => {
     setFormData({ ...formData, modifications: [...formData.modifications, ''] });
   };
 
-  const updateModification = (index: number, value: string) => {
+  const updateModification = (index: number, value: string): void => {
     const updated = [...formData.modifications];
     updated[index] = value;
     setFormData({ ...formData, modifications: updated });
   };
 
-  const removeModification = (index: number) => {
+  const removeModification = (index: number): void => {
     setFormData({
       ...formData,
       modifications: formData.modifications.filter((_, i) => i !== index),
     });
   };
 
-  const addExtension = () => {
+  const addExtension = (): void => {
     setFormData({ ...formData, extensions: [...formData.extensions, ''] });
   };
 
-  const updateExtension = (index: number, value: string) => {
+  const updateExtension = (index: number, value: string): void => {
     const updated = [...formData.extensions];
     updated[index] = value;
     setFormData({ ...formData, extensions: updated });
   };
 
-  const removeExtension = (index: number) => {
+  const removeExtension = (index: number): void => {
     setFormData({
       ...formData,
       extensions: formData.extensions.filter((_, i) => i !== index),

@@ -10,7 +10,7 @@ import { apiClient } from '../../core/client';
 // API endpoints
 export const planningApi = {
   // Year Plan
-  getYearPlan: async (teacherId: number, year: number) => {
+  getYearPlan: async (teacherId: number, year: number): Promise<YearPlanEntry[]> => {
     const { data } = await apiClient.get<YearPlanEntry[]>(`/api/year-plan/${teacherId}/${year}`);
     return data;
   },
@@ -21,23 +21,23 @@ export const planningApi = {
   },
 
   // Daily Plans
-  getDailyPlan: async (date: string) => {
+  getDailyPlan: async (date: string): Promise<DailyPlan> => {
     const { data } = await apiClient.get<DailyPlan>(`/api/daily-plans/${date}`);
     return data;
   },
 
-  updateDailyPlan: async (input: DailyPlan) => {
+  updateDailyPlan: async (input: DailyPlan): Promise<DailyPlan> => {
     const { data } = await apiClient.put<DailyPlan>(`/api/daily-plans/${input.date}`, input);
     return data;
   },
 
-  generateDailyPlan: async (input: { date: string; subjects: string[]; duration: number }) => {
+  generateDailyPlan: async (input: { date: string; subjects: string[]; duration: number }): Promise<DailyPlan> => {
     const { data } = await apiClient.post<DailyPlan>('/api/daily-plans/generate', input);
     return data;
   },
 
   // Lesson Plans
-  getLessonPlan: async (weekStart: string) => {
+  getLessonPlan: async (weekStart: string): Promise<LessonPlan> => {
     const { data } = await apiClient.get<LessonPlan>(`/api/lesson-plans/${weekStart}`);
     return data;
   },
@@ -46,18 +46,18 @@ export const planningApi = {
     weekStart: string; 
     subjects: string[]; 
     theme?: string 
-  }) => {
+  }): Promise<LessonPlan> => {
     const { data } = await apiClient.post<LessonPlan>('/api/lesson-plans/generate', input);
     return data;
   },
 
   // Materials
-  getMaterialList: async (weekStart: string) => {
+  getMaterialList: async (weekStart: string): Promise<MaterialList> => {
     const { data } = await apiClient.get<MaterialList>(`/api/materials/${weekStart}`);
     return data;
   },
 
-  getMaterialDetails: async (weekStart: string) => {
+  getMaterialDetails: async (weekStart: string): Promise<{ items: { category: string; items: string[] }[] }> => {
     const { data } = await apiClient.get<{ items: { category: string; items: string[] }[] }>(
       `/api/materials/${weekStart}/details`
     );
@@ -65,7 +65,7 @@ export const planningApi = {
   },
 
   // Planner Suggestions
-  getPlannerSuggestions: async (weekStart: string, filters?: Record<string, boolean>) => {
+  getPlannerSuggestions: async (weekStart: string, filters?: Record<string, boolean>): Promise<PlannerSuggestion[]> => {
     const { data } = await apiClient.get<PlannerSuggestion[]>('/api/planner-suggestions', {
       params: { weekStart, ...filters },
     });
@@ -73,7 +73,7 @@ export const planningApi = {
   },
 
   // Resources (deprecated - using ETFO lesson plans now)
-  deleteResource: async (id: number) => {
+  deleteResource: async (id: number): Promise<void> => {
     await apiClient.delete(`/api/resources/${id}`);
   },
 

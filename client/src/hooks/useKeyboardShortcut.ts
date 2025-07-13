@@ -35,7 +35,7 @@ export const useKeyboardShortcut = (
   handler: (event: KeyboardEvent) => void,
   options: UseKeyboardShortcutOptions,
   deps: React.DependencyList = [],
-) => {
+): void => {
   const { registerShortcut, unregisterShortcut } = useKeyboardShortcutsContext();
   
   // Use a ref to always have access to the latest handler without triggering re-registration
@@ -100,7 +100,7 @@ export const useMultipleKeyboardShortcuts = (
     options: UseKeyboardShortcutOptions;
   }[] = [],
   deps: React.DependencyList = [],
-) => {
+): void => {
   // This implementation violates Rules of Hooks because the number of hooks
   // called can change between renders. Don't use this.
   logger.warn(

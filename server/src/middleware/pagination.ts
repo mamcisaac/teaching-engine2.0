@@ -29,7 +29,7 @@ declare global {
 /**
  * Middleware to parse and validate pagination parameters
  */
-export function parsePagination(req: Request, res: Response, next: NextFunction) {
+export function parsePagination(req: Request, res: Response, next: NextFunction): void {
   try {
     // Get and validate pagination params
     const pagination = getPaginationParams(req);
@@ -38,7 +38,7 @@ export function parsePagination(req: Request, res: Response, next: NextFunction)
     req.pagination = pagination;
 
     // Helper function to create paginated response
-    req.paginatedResponse = <T>(data: T[], total: number) => {
+    req.paginatedResponse = <T>(data: T[], total: number): PaginatedResponse<T> => {
       const response = createPaginatedResponse(
         data,
         {
@@ -85,7 +85,17 @@ export function withPagination<T extends { id: number }>(
     }) => Promise<{ data: T[]; nextCursor?: number }>;
   },
   defaultSearchFields: string[] = [],
-) {
+): {
+  findPaginated: (req: Request, options?: {
+    where?: Record<string, unknown>;
+    include?: Record<string, boolean>;
+    searchFields?: string[];
+  }) => Promise<PaginatedResponse<T>>;
+  findCursorPaginated: (req: Request, options?: {
+    where?: Record<string, unknown>;
+    include?: Record<string, boolean>;
+  }) => Promise<{ data: T[]; nextCursor?: number }>;
+} {
   return {
     async findPaginated(
       req: Request,
@@ -111,7 +121,7 @@ export function withPagination<T extends { id: number }>(
         where?: Record<string, unknown>;
         include?: Record<string, boolean>;
       },
-    ) {
+    ): Promise<{ data: T[]; nextCursor?: number }> {
       const { cursor, limit = '20' } = req.query;
 
       return repository.findManyCursor({
@@ -127,7 +137,7 @@ export function withPagination<T extends { id: number }>(
 /**
  * Express router wrapper that automatically adds pagination to GET list endpoints
  */
-export function paginatedRouter() {
+export function paginatedRouter(): any {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const express = require('express');
   const router = express.Router();
@@ -136,7 +146,7 @@ export function paginatedRouter() {
   const originalGet = router.get.bind(router);
 
   // Override get method to add pagination middleware
-  router.get = function (path: string, ...handlers: RequestHandler[]) {
+  router.get = function (path: string, ...handlers: RequestHandler[]): any {
     // Only add pagination to list endpoints (root or ending with 's')
     if (path === '/' || path.match(/s$/)) {
       return originalGet(path, parsePagination, ...handlers);
@@ -152,8 +162,8 @@ export function paginatedRouter() {
  */
 export function paginatedHandler<T>(
   handler: (req: Request, pagination: PaginationOptions) => Promise<{ data: T[]; total: number }>,
-) {
-  return async (req: Request, res: Response, next: NextFunction) => {
+): (req: Request, res: Response, next: NextFunction) => Promise<void> {
+  return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       const pagination = req.pagination || getPaginationParams(req);
       const result = await handler(req, pagination);
@@ -179,8 +189,8 @@ export function paginatedHandler<T>(
 /**
  * Cache-aware pagination middleware
  */
-export function cachedPagination(_cacheKeyPrefix: string, _ttl = 60) {
-  return async (_req: Request, res: Response, next: NextFunction) => {
+export function cachedPagination(_cacheKeyPrefix: string, _ttl = 60): (req: Request, res: Response, next: NextFunction) => Promise<void> {
+  return async (_req: Request, res: Response, next: NextFunction): Promise<void> => {
     // const _pagination = getPaginationParams(req);
     // const _cacheKey = `${cacheKeyPrefix}:${JSON.stringify({ ...req.query, ...pagination })}`;
 
@@ -194,7 +204,7 @@ export function cachedPagination(_cacheKeyPrefix: string, _ttl = 60) {
     const originalJson = res.json.bind(res);
 
     // Override json to cache the response
-    res.json = function (data: unknown) {
+    res.json = function (data: unknown): Response {
       // Cache the response
       // cacheService.set(cacheKey, data, ttl);
 
@@ -208,13 +218,13 @@ export function cachedPagination(_cacheKeyPrefix: string, _ttl = 60) {
 /**
  * Performance monitoring for paginated endpoints
  */
-export function monitorPagination(metricPrefix: string) {
-  return (req: Request, res: Response, next: NextFunction) => {
+export function monitorPagination(metricPrefix: string): (req: Request, res: Response, next: NextFunction) => void {
+  return (req: Request, res: Response, next: NextFunction): void => {
     const start = Date.now();
     const pagination = req.pagination || getPaginationParams(req);
 
     // Monitor response
-    res.on('finish', () => {
+    res.on('finish', (): void => {
       const duration = Date.now() - start;
       logger.info(
         `Pagination metrics - ${metricPrefix}.pagination: page=${pagination.page} limit=${pagination.limit} duration=${duration}ms status=${res.statusCode}`,

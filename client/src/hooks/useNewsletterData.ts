@@ -1,4 +1,4 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient, UseQueryResult, UseMutationResult } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { apiClient } from '../api/core/client';
@@ -11,7 +11,7 @@ import type {
 } from '../types/newsletter';
 
 // Hook for fetching all students
-export function useStudents() {
+export function useStudents(): UseQueryResult<Student[], Error> {
   return useQuery<Student[]>({
     queryKey: ['students'],
     queryFn: async () => {
@@ -22,7 +22,7 @@ export function useStudents() {
 }
 
 // Hook for generating newsletter content with AI
-export function useGenerateNewsletter() {
+export function useGenerateNewsletter(): UseMutationResult<GeneratedNewsletter, Error, NewsletterGenerationParams> {
   const queryClient = useQueryClient();
 
   return useMutation<GeneratedNewsletter, Error, NewsletterGenerationParams>({
@@ -52,7 +52,10 @@ export function useGenerateNewsletter() {
 }
 
 // Hook for regenerating newsletter content with variations
-export function useRegenerateNewsletter() {
+export function useRegenerateNewsletter(): UseMutationResult<GeneratedNewsletter, Error, {
+    draft: NewsletterDraft;
+    tone?: 'friendly' | 'formal' | 'informative';
+  }> {
   return useMutation<GeneratedNewsletter, Error, {
     draft: NewsletterDraft;
     tone?: 'friendly' | 'formal' | 'informative';
@@ -77,7 +80,7 @@ export function useRegenerateNewsletter() {
 }
 
 // Hook for saving newsletter draft
-export function useSaveNewsletterDraft() {
+export function useSaveNewsletterDraft(): UseMutationResult<NewsletterDraft, Error, NewsletterDraft> {
   const queryClient = useQueryClient();
 
   return useMutation<NewsletterDraft, Error, NewsletterDraft>({
@@ -103,7 +106,7 @@ export function useSaveNewsletterDraft() {
 }
 
 // Hook for fetching newsletter drafts
-export function useNewsletterDrafts() {
+export function useNewsletterDrafts(): UseQueryResult<NewsletterDraft[], Error> {
   return useQuery<NewsletterDraft[]>({
     queryKey: ['newsletter-drafts'],
     queryFn: async () => {
@@ -114,7 +117,7 @@ export function useNewsletterDrafts() {
 }
 
 // Hook for fetching a specific newsletter
-export function useNewsletter(id: string | undefined) {
+export function useNewsletter(id: string | undefined): UseQueryResult<NewsletterDraft, Error> {
   return useQuery<NewsletterDraft>({
     queryKey: ['newsletter', id],
     queryFn: async () => {
@@ -129,7 +132,7 @@ throw new Error('Newsletter ID is required');
 }
 
 // Hook for sending newsletter to parents
-export function useSendNewsletter() {
+export function useSendNewsletter(): UseMutationResult<void, Error, { newsletterId: string; recipientEmails?: string[] }> {
   const queryClient = useQueryClient();
 
   return useMutation<void, Error, { newsletterId: string; recipientEmails?: string[] }>({
@@ -150,7 +153,7 @@ export function useSendNewsletter() {
 }
 
 // Hook for deleting a newsletter
-export function useDeleteNewsletter() {
+export function useDeleteNewsletter(): UseMutationResult<void, Error, string> {
   const queryClient = useQueryClient();
 
   return useMutation<void, Error, string>({
@@ -168,7 +171,7 @@ export function useDeleteNewsletter() {
 }
 
 // Hook for fetching parent summaries for a student (legacy support)
-export function useParentSummaries(studentId: number | undefined) {
+export function useParentSummaries(studentId: number | undefined): UseQueryResult<ParentSummary[], Error> {
   return useQuery<ParentSummary[]>({
     queryKey: ['parent-summaries', studentId],
     queryFn: async () => {

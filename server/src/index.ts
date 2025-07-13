@@ -135,7 +135,7 @@ app.post(
 );
 
 // Legacy register endpoint for backward compatibility
-app.post('/api/register', authRateLimitMiddleware, async (req: Request, res: Response) => {
+app.post('/api/register', authRateLimitMiddleware, async (req: Request, res: Response): Promise<void> => {
   // Forward to the new auth endpoint
   req.url = '/register';
   authEndpoints(req, res, () => {});
@@ -143,12 +143,12 @@ app.post('/api/register', authRateLimitMiddleware, async (req: Request, res: Res
 
 // Auth check endpoint is handled by authEndpoints router at /api/auth/me
 
-app.get('/api/auth/check', authenticate, (req: Request, res: Response) => {
+app.get('/api/auth/check', authenticate, (req: Request, res: Response): void => {
   res.json({ userId: req.user?.id });
 });
 
 // Legacy logout endpoint for backward compatibility
-app.post('/api/logout', (req: Request, res: Response) => {
+app.post('/api/logout', (req: Request, res: Response): void => {
   // Forward to the new auth endpoint
   req.url = '/logout';
   authEndpoints(req, res, () => {});
@@ -253,7 +253,7 @@ app.use('/api/dashboard', dashboardMetricsRoutes);
 app.use('/api/monitoring', authenticate, monitoringRoutes);
 
 // AI status endpoint (maps to ai-planning/status for backward compatibility)
-app.get('/api/ai/status', authenticate, async (req: Request, res: Response) => {
+app.get('/api/ai/status', authenticate, async (req: Request, res: Response): Promise<void> => {
   // Forward to ai-planning routes handler
   req.url = '/status';
   aiPlanningRoutes(req, res, () => {});

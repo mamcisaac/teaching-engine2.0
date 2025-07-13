@@ -125,7 +125,7 @@ const WeeklyPlannerStateSchema = z
 // Use global Express.Request type extended with user property
 
 // GET /api/planner/state - Get user's planner state
-router.get('/state', async (req: express.Request, res: express.Response) => {
+router.get('/state', async (req: express.Request, res: express.Response): Promise<void> => {
   try {
     if (!req.user?.id) {
       res.status(401).json({ error: 'Unauthorized' });
@@ -291,7 +291,7 @@ router.put(
 );
 
 // GET /api/planner/week/:weekStart/state - Get state for specific week
-router.get('/week/:weekStart/state', async (req: express.Request, res: Response) => {
+router.get('/week/:weekStart/state', async (req: express.Request, res: Response): Promise<void> => {
   try {
     if (!req.user?.id) {
       res.status(401).json({ error: 'Unauthorized' });

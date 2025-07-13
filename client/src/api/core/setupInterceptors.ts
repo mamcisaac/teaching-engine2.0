@@ -23,7 +23,7 @@ const getAuthService = async (): Promise<AuthServiceModule['authService']> => {
 export function setupInterceptors(apiClient: AxiosInstance): void {
   // Add request interceptor for authentication
   apiClient.interceptors.request.use(
-    async (config) => {
+    async (config): Promise<typeof config> => {
       // Ensure credentials are included for cookie-based auth
       config.withCredentials = true;
 
@@ -52,8 +52,8 @@ export function setupInterceptors(apiClient: AxiosInstance): void {
 
   // Add response interceptor for error handling
   apiClient.interceptors.response.use(
-    (response) => response,
-    async (error: AxiosError) => {
+    (response): typeof response => response,
+    async (error: AxiosError): Promise<any> => {
       const originalRequest = error.config as AxiosRequestConfig & { _retry?: boolean };
 
       if (error.response?.status === 401 && originalRequest._retry !== true) {

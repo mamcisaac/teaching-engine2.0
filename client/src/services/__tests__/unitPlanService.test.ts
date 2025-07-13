@@ -93,7 +93,7 @@ const createMockFormData = (overrides: Partial<UnitPlanFormData> = {}): UnitPlan
   ...overrides,
 });
 
-const createMockLessonPlan = (id: number, hasEntry = false) => ({
+const createMockLessonPlan = (id: number, hasEntry = false): any => ({
   id,
   title: `Lesson ${id}`,
   daybookEntry: hasEntry ? { id, reflections: 'Good lesson' } : null,

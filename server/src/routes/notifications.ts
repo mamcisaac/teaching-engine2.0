@@ -6,7 +6,7 @@ import { prisma } from '../prisma';
 const router = Router();
 
 // Get notifications for authenticated user
-router.get('/', async (req: Request, res) => {
+router.get('/', async (req: Request, res): Promise<void> => {
   try {
     const userId = req.user?.id || 0;
     if (!userId) {
@@ -55,7 +55,7 @@ router.get('/', async (req: Request, res) => {
 });
 
 // Mark notification as read
-router.patch('/:id/read', async (req: Request, res) => {
+router.patch('/:id/read', async (req: Request, res): Promise<void> => {
   try {
     const userId = req.user?.id || 0;
     if (!userId) {
@@ -94,7 +94,7 @@ router.patch('/:id/read', async (req: Request, res) => {
 });
 
 // Mark all notifications as read
-router.patch('/read-all', async (req: Request, res) => {
+router.patch('/read-all', async (req: Request, res): Promise<void> => {
   try {
     const userId = req.user?.id || 0;
     if (!userId) {
@@ -116,7 +116,7 @@ router.patch('/read-all', async (req: Request, res) => {
 });
 
 // Delete notification
-router.delete('/:id', async (req: Request, res) => {
+router.delete('/:id', async (req: Request, res): Promise<void> => {
   try {
     const userId = req.user?.id || 0;
     if (!userId) {
@@ -154,7 +154,7 @@ router.delete('/:id', async (req: Request, res) => {
 });
 
 // Clear all notifications
-router.delete('/clear-all', async (req: Request, res) => {
+router.delete('/clear-all', async (req: Request, res): Promise<void> => {
   try {
     const userId = req.user?.id || 0;
     if (!userId) {
@@ -175,7 +175,7 @@ router.delete('/clear-all', async (req: Request, res) => {
 });
 
 // Create a test notification (for development)
-router.post('/test', async (req: Request, res) => {
+router.post('/test', async (req: Request, res): Promise<void> => {
   try {
     const userId = req.user?.id || 0;
     if (!userId) {

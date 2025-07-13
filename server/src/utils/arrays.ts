@@ -10,7 +10,7 @@ export const arrayUtils = {
     }
     
     const seen = new Set();
-    return array.filter(item => {
+    return array.filter((item): boolean => {
       const value = item[key];
       if (seen.has(value)) {
 return false;
@@ -60,7 +60,7 @@ return order === 'asc' ? 1 : -1;
   },
   
   // Flatten nested arrays
-  flattenDeep: <T>(array: unknown[]): T[] => array.reduce<T[]>((flat, item) => flat.concat(Array.isArray(item) ? arrayUtils.flattenDeep<T>(item) : [item as T]), []),
+  flattenDeep: <T>(array: unknown[]): T[] => array.reduce<T[]>((flat, item): T[] => flat.concat(Array.isArray(item) ? arrayUtils.flattenDeep<T>(item) : [item as T]), []),
   
   // Intersection of arrays
   intersection: <T>(...arrays: T[][]): T[] => {
@@ -88,7 +88,7 @@ return arrays[0];
     const truthy: T[] = [];
     const falsy: T[] = [];
     
-    array.forEach((item, index) => {
+    array.forEach((item, index): void => {
       if (predicate(item, index)) {
         truthy.push(item);
       } else {
@@ -108,7 +108,7 @@ export const objectUtils = {
     keys: K[]
   ): Pick<T, K> => {
     const result = {} as Pick<T, K>;
-    keys.forEach(key => {
+    keys.forEach((key): void => {
       if (key in obj) {
         result[key] = obj[key];
       }
@@ -122,7 +122,7 @@ export const objectUtils = {
     keys: K[]
   ): Omit<T, K> => {
     const result = { ...obj };
-    keys.forEach(key => {
+    keys.forEach((key): void => {
       delete result[key];
     });
     return result as Omit<T, K>;
@@ -185,7 +185,7 @@ export const stringUtils = {
   titleCase: (str: string): string => str
       .toLowerCase()
       .split(' ')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .map((word): string => word.charAt(0).toUpperCase() + word.slice(1))
       .join(' '),
   
   // Convert to slug
@@ -256,7 +256,7 @@ export const transformUtils = {
     items: T[],
     labelKey: keyof T,
     valueKey: keyof T
-  ): { label: string; value: string }[] => items.map(item => ({
+  ): { label: string; value: string }[] => items.map((item): { label: string; value: string } => ({
       label: String(item[labelKey]),
       value: String(item[valueKey]),
     })),
@@ -278,7 +278,7 @@ export const transformUtils = {
     const byId: Record<string | number, T> = {};
     const allIds: (string | number)[] = [];
     
-    items.forEach(item => {
+    items.forEach((item): void => {
       byId[item.id] = item;
       allIds.push(item.id);
     });
@@ -293,7 +293,7 @@ export const transformUtils = {
   ): T[] => {
     const result: T[] = [];
     
-    const processItem = (item: T) => {
+    const processItem = (item: T): void => {
       const { [childrenKey]: children, ...rest } = item;
       result.push(rest as T);
       

@@ -33,7 +33,7 @@ const longRangePlanCreateSchema = z.object({
 const longRangePlanUpdateSchema = longRangePlanCreateSchema.partial();
 
 // Get all long-range plans for the authenticated user
-router.get('/', async (req: Request, res, _next) => {
+router.get('/', async (req: Request, res, _next): Promise<void> => {
   try {
     const userId = req.user?.id || 0;
     if (!userId) {
@@ -75,7 +75,7 @@ where.grade = Number(grade);
 });
 
 // Get a single long-range plan
-router.get('/:id', async (req: Request, res, _next) => {
+router.get('/:id', async (req: Request, res, _next): Promise<void> => {
   try {
     const userId = req.user?.id || 0;
     if (!userId) {
@@ -124,7 +124,7 @@ router.get('/:id', async (req: Request, res, _next) => {
 });
 
 // Create a new long-range plan
-router.post('/', validate(longRangePlanCreateSchema), async (req: Request, res, _next) => {
+router.post('/', validate(longRangePlanCreateSchema), async (req: Request, res, _next): Promise<void> => {
   try {
     const userId = req.user?.id || 0;
     if (!userId) {
@@ -198,7 +198,7 @@ router.post('/', validate(longRangePlanCreateSchema), async (req: Request, res, 
 });
 
 // Update a long-range plan
-router.put('/:id', validate(longRangePlanUpdateSchema), async (req: Request, res, _next) => {
+router.put('/:id', validate(longRangePlanUpdateSchema), async (req: Request, res, _next): Promise<void> => {
   try {
     const userId = req.user?.id || 0;
     if (!userId) {
@@ -274,7 +274,7 @@ router.put('/:id', validate(longRangePlanUpdateSchema), async (req: Request, res
 });
 
 // Delete a long-range plan
-router.delete('/:id', async (req: Request, res, _next) => {
+router.delete('/:id', async (req: Request, res, _next): Promise<void> => {
   try {
     const userId = req.user?.id || 0;
     if (!userId) {
@@ -313,7 +313,7 @@ router.delete('/:id', async (req: Request, res, _next) => {
 });
 
 // Generate AI draft for long-range plan
-router.post('/ai-draft', async (req: Request, res, _next) => {
+router.post('/ai-draft', async (req: Request, res, _next): Promise<void> => {
   try {
     const userId = req.user?.id || 0;
     if (!userId) {
@@ -356,7 +356,7 @@ router.post('/ai-draft', async (req: Request, res, _next) => {
 });
 
 // Generate AI suggestions for existing plan
-router.post('/:id/ai-suggestions', async (req: Request, res, _next) => {
+router.post('/:id/ai-suggestions', async (req: Request, res, _next): Promise<void> => {
   try {
     const userId = req.user?.id || 0;
     if (!userId) {

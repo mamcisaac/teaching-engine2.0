@@ -58,7 +58,7 @@ export const createMockUser = (
   ...overrides,
 });
 
-export const createMockLessonPlan = (overrides: Record<string, unknown> = {}) => ({
+export const createMockLessonPlan = (overrides: Record<string, unknown> = {}): any => ({
   id: 'lesson-123',
   title: 'Test Lesson Plan',
   subject: 'Mathematics',
@@ -83,7 +83,7 @@ export const createMockLessonPlan = (overrides: Record<string, unknown> = {}) =>
   ...overrides,
 });
 
-export const createMockUnitPlan = (overrides: Record<string, unknown> = {}) => ({
+export const createMockUnitPlan = (overrides: Record<string, unknown> = {}): any => ({
   id: 'unit-123',
   title: 'Test Unit Plan',
   longRangePlanId: 'lrp-123',
@@ -110,7 +110,7 @@ export const createMockUnitPlan = (overrides: Record<string, unknown> = {}) => (
   ...overrides,
 });
 
-export const createMockCurriculumExpectation = (overrides: Record<string, unknown> = {}) => ({
+export const createMockCurriculumExpectation = (overrides: Record<string, unknown> = {}): any => ({
   id: 'expectation-123',
   code: 'B1.1',
   description: 'demonstrate an understanding of addition and subtraction',
@@ -172,7 +172,7 @@ export const mockApiResponse = mockApiResponses;
 export const mockApiError = { message: 'Mock API Error', status: 500 };
 
 // Create a test QueryClient with default options optimized for testing
-export const createTestQueryClient = () => {
+export const createTestQueryClient = (): QueryClient => {
   const client = new QueryClient({
     defaultOptions: {
       queries: {
@@ -264,7 +264,7 @@ const AllProviders: React.FC<{
  * - Mock API calls at the network level (MSW) instead of context level
  * - Test complete user flows with real implementations
  */
-export const renderWithProviders = (ui: ReactElement, options: CustomRenderOptions = {}) => {
+export const renderWithProviders = (ui: ReactElement, options: CustomRenderOptions = {}): RenderResult & { queryClient: QueryClient } => {
   const {
     initialEntries,
     withRouter = true,
@@ -312,7 +312,7 @@ export const renderWithProviders = (ui: ReactElement, options: CustomRenderOptio
 /**
  * Render with only Router (no Auth or QueryClient)
  */
-export const renderWithRouter = (ui: ReactElement, initialEntries?: string[]) => {
+export const renderWithRouter = (ui: ReactElement, initialEntries?: string[]): RenderResult => {
   const RouterComponent = initialEntries ? MemoryRouter : BrowserRouter;
   const routerProps = initialEntries ? { initialEntries } : {};
 
@@ -322,7 +322,7 @@ export const renderWithRouter = (ui: ReactElement, initialEntries?: string[]) =>
 /**
  * Render with only QueryClient (no Router or Auth)
  */
-export const renderWithQueryClient = (ui: ReactElement) => {
+export const renderWithQueryClient = (ui: ReactElement): RenderResult & { queryClient: QueryClient } => {
   const queryClient = createTestQueryClient();
 
   return {
@@ -334,7 +334,7 @@ export const renderWithQueryClient = (ui: ReactElement) => {
 /**
  * Render with authentication context (authenticated user)
  */
-export const renderWithAuth = (ui: ReactElement, options: CustomRenderOptions = {}) => {
+export const renderWithAuth = (ui: ReactElement, options: CustomRenderOptions = {}): RenderResult & { queryClient: QueryClient } => {
   const authenticatedUser = createMockUser();
   return renderWithProviders(ui, {
     ...options,
@@ -350,7 +350,7 @@ export const renderWithAuth = (ui: ReactElement, options: CustomRenderOptions = 
 /**
  * Render without authentication context (unauthenticated)
  */
-export const renderWithoutAuth = (ui: ReactElement, options: CustomRenderOptions = {}) => renderWithProviders(ui, {
+export const renderWithoutAuth = (ui: ReactElement, options: CustomRenderOptions = {}): RenderResult & { queryClient: QueryClient } => renderWithProviders(ui, {
     ...options,
     initialAuthState: {
       user: null,
@@ -361,7 +361,7 @@ export const renderWithoutAuth = (ui: ReactElement, options: CustomRenderOptions
   });
 
 // Mock localStorage for tests
-export const mockLocalStorage = () => {
+export const mockLocalStorage = (): Storage => {
   const store: Record<string, string> = {};
 
   return {
@@ -377,18 +377,18 @@ export const mockLocalStorage = () => {
     }),
     length: Object.keys(store).length,
     key: vi.fn((index: number) => Object.keys(store)[index] || null),
-  };
+  } as Storage;
 };
 
 // Common test helpers
-export const waitForLoadingToFinish = () => new Promise((resolve) => setTimeout(resolve, 0));
+export const waitForLoadingToFinish = (): Promise<void> => new Promise((resolve) => setTimeout(resolve, 0));
 
-export const mockScrollIntoView = () => {
+export const mockScrollIntoView = (): void => {
   Element.prototype.scrollIntoView = vi.fn();
 };
 
 // Setup function for common test preparations
-export const setupTest = () => {
+export const setupTest = (): void => {
   // Mock localStorage
   Object.defineProperty(window, 'localStorage', {
     value: mockLocalStorage(),

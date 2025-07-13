@@ -6,7 +6,7 @@ import { prisma } from '../prisma';
 const router = Router();
 
 // Track plan access
-router.post('/track', async (req: Request, res, _next) => {
+router.post('/track', async (req: Request, res, _next): Promise<void> => {
   try {
     const userId = req.user?.id || 0;
     if (!userId) {
@@ -52,7 +52,7 @@ router.post('/track', async (req: Request, res, _next) => {
 });
 
 // Get recent plans for user
-router.get('/', async (req: Request, res, _next) => {
+router.get('/', async (req: Request, res, _next): Promise<void> => {
   try {
     const userId = req.user?.id || 0;
     if (!userId) {
@@ -224,7 +224,7 @@ return null;
 });
 
 // Clear recent plans history
-router.delete('/clear', async (req: Request, res, _next) => {
+router.delete('/clear', async (req: Request, res, _next): Promise<void> => {
   try {
     const userId = req.user?.id || 0;
     if (!userId) {

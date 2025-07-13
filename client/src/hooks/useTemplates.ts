@@ -1,4 +1,4 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient, UseQueryResult, UseMutationResult } from '@tanstack/react-query';
 import React from 'react';
 
 import { apiClient } from '../api/core/client';
@@ -94,7 +94,7 @@ export const templateKeys = {
 };
 
 // Hook to search templates
-export function useTemplates(options: TemplateSearchOptions = {}) {
+export function useTemplates(options: TemplateSearchOptions = {}): UseQueryResult<TemplateSearchResult, Error> {
   return useQuery({
     queryKey: templateKeys.list(options),
     queryFn: () => templatesApi.searchTemplates(options),
@@ -103,7 +103,7 @@ export function useTemplates(options: TemplateSearchOptions = {}) {
 }
 
 // Hook to get a single template
-export function useTemplate(id: string) {
+export function useTemplate(id: string): UseQueryResult<PlanTemplate, Error> {
   return useQuery({
     queryKey: templateKeys.detail(id),
     queryFn: () => templatesApi.getTemplate(id),
@@ -113,7 +113,7 @@ export function useTemplate(id: string) {
 }
 
 // Hook to get filter options
-export function useTemplateFilterOptions() {
+export function useTemplateFilterOptions(): UseQueryResult<TemplateFilterOptions, Error> {
   return useQuery({
     queryKey: templateKeys.filterOptions(),
     queryFn: templatesApi.getFilterOptions,
@@ -122,7 +122,7 @@ export function useTemplateFilterOptions() {
 }
 
 // Hook to create a template
-export function useCreateTemplate() {
+export function useCreateTemplate(): UseMutationResult<PlanTemplate, Error, TemplateCreateData> {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -138,7 +138,7 @@ export function useCreateTemplate() {
 }
 
 // Hook to update a template
-export function useUpdateTemplate() {
+export function useUpdateTemplate(): UseMutationResult<PlanTemplate, Error, { id: string; data: Partial<TemplateCreateData> }> {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -155,7 +155,7 @@ export function useUpdateTemplate() {
 }
 
 // Hook to delete a template
-export function useDeleteTemplate() {
+export function useDeleteTemplate(): UseMutationResult<void, Error, string> {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -171,7 +171,7 @@ export function useDeleteTemplate() {
 }
 
 // Hook to duplicate a template
-export function useDuplicateTemplate() {
+export function useDuplicateTemplate(): UseMutationResult<PlanTemplate, Error, string> {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -188,7 +188,7 @@ export function useDuplicateTemplate() {
 }
 
 // Hook to apply a template
-export function useApplyTemplate() {
+export function useApplyTemplate(): UseMutationResult<AppliedTemplateData, Error, { templateId: string; appliedData: any }> {
   return useMutation({
     mutationFn: ({ id, customizations }: { id: string; customizations?: Record<string, unknown> }) =>
       templatesApi.applyTemplate(id, customizations),
@@ -196,7 +196,7 @@ export function useApplyTemplate() {
 }
 
 // Hook to rate a template
-export function useRateTemplate() {
+export function useRateTemplate(): UseMutationResult<PlanTemplate, Error, { templateId: string; rating: number }> {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -213,7 +213,7 @@ export function useRateTemplate() {
 }
 
 // Custom hook for template search with debounced input
-export function useTemplateSearch(searchTerm: string, otherOptions: Omit<TemplateSearchOptions, 'search'> = {}, debounceMs = 300) {
+export function useTemplateSearch(searchTerm: string, otherOptions: Omit<TemplateSearchOptions, 'search'> = {}, debounceMs = 300): UseQueryResult<TemplateSearchResult, Error> {
   const [debouncedSearchTerm, setDebouncedSearchTerm] = React.useState(searchTerm);
 
   React.useEffect(() => {
@@ -236,7 +236,14 @@ export function useTemplateSearch(searchTerm: string, otherOptions: Omit<Templat
 }
 
 // Custom hook for paginated template loading
-export function useTemplatesPaginated(options: TemplateSearchOptions = {}) {
+export function useTemplatesPaginated(options: TemplateSearchOptions = {}): {
+  query: UseQueryResult<TemplateSearchResult, Error>;
+  currentPage: number;
+  nextPage: () => void;
+  prevPage: () => void;
+  goToPage: (page: number) => void;
+  resetPage: () => void;
+} {
   const [currentPage, setCurrentPage] = React.useState(0);
   const limit = options.limit ?? 20;
   
@@ -278,7 +285,7 @@ export function useTemplatesPaginated(options: TemplateSearchOptions = {}) {
 }
 
 // Custom hook for my templates (created by current user)
-export function useMyTemplates(options: Omit<TemplateSearchOptions, 'createdByUserId'> = {}) {
+export function useMyTemplates(options: Omit<TemplateSearchOptions, 'createdByUserId'> = {}): UseQueryResult<TemplateSearchResult, Error> {
   // Note: The backend will automatically filter to show user's own templates
   // when createdByUserId is not specified but user is authenticated
   return useTemplates({
@@ -288,7 +295,7 @@ export function useMyTemplates(options: Omit<TemplateSearchOptions, 'createdByUs
 }
 
 // Custom hook for system templates
-export function useSystemTemplates(options: Omit<TemplateSearchOptions, 'isSystem'> = {}) {
+export function useSystemTemplates(options: Omit<TemplateSearchOptions, 'isSystem'> = {}): UseQueryResult<TemplateSearchResult, Error> {
   return useTemplates({
     ...options,
     isSystem: true,
@@ -296,7 +303,7 @@ export function useSystemTemplates(options: Omit<TemplateSearchOptions, 'isSyste
 }
 
 // Custom hook for public templates
-export function usePublicTemplates(options: Omit<TemplateSearchOptions, 'isPublic'> = {}) {
+export function usePublicTemplates(options: Omit<TemplateSearchOptions, 'isPublic'> = {}): UseQueryResult<TemplateSearchResult, Error> {
   return useTemplates({
     ...options,
     isPublic: true,

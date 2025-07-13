@@ -34,33 +34,32 @@ export function NewsletterEditor({
   const editorRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   // Update local draft when prop changes
-  useEffect(() => {
-    return () => { // Cleanup
-    };
-
+  useEffect((): (() => void) => {
     setLocalDraft(draft);
     setUnsavedChanges(false);
+    
+    return (): void => { // Cleanup
+    };
   }, [draft]);
 
   // Auto-save functionality
-  useEffect(() => {
-    return () => { // Cleanup
-    };
-
+  useEffect((): (() => void) | undefined => {
     if (unsavedChanges) {
-      const timer = setTimeout(() => {
+      const timer = setTimeout((): void => {
         onSave(localDraft);
         setUnsavedChanges(false);
       }, 2000); // Auto-save after 2 seconds of inactivity
 
-      return () => {
+      return (): void => {
  clearTimeout(timer); 
 };
     }
+    
+    return undefined;
   }, [localDraft, unsavedChanges, onSave]);
 
   const updateSection = (sectionId: string, field: 'content' | 'contentFr' | 'title' | 'titleFr', value: string): void => {
-    const updatedSections = localDraft.sections.map(section =>
+    const updatedSections = localDraft.sections.map((section): NewsletterSection =>
       section.id === sectionId
         ? { ...section, [field]: value }
         : section
@@ -80,7 +79,7 @@ export function NewsletterEditor({
   };
 
   const removeSection = (sectionId: string): void => {
-    const updatedSections = localDraft.sections.filter(section => section.id !== sectionId);
+    const updatedSections = localDraft.sections.filter((section): boolean => section.id !== sectionId);
     setLocalDraft({ ...localDraft, sections: updatedSections });
     setUnsavedChanges(true);
   };
@@ -133,7 +132,7 @@ export function NewsletterEditor({
       <button
         className="p-1.5 hover:bg-gray-200 rounded"
         title="Bold (Ctrl+B)"
-        onClick={() => {
+        onClick={(): void => {
  formatText('bold'); 
 }}
       >
@@ -142,7 +141,7 @@ export function NewsletterEditor({
       <button
         className="p-1.5 hover:bg-gray-200 rounded"
         title="Italic (Ctrl+I)"
-        onClick={() => {
+        onClick={(): void => {
  formatText('italic'); 
 }}
       >
@@ -151,7 +150,7 @@ export function NewsletterEditor({
       <button
         className="p-1.5 hover:bg-gray-200 rounded"
         title="Underline (Ctrl+U)"
-        onClick={() => {
+        onClick={(): void => {
  formatText('underline'); 
 }}
       >
@@ -163,7 +162,7 @@ export function NewsletterEditor({
       <button
         className="p-1.5 hover:bg-gray-200 rounded"
         title="Bullet List"
-        onClick={() => {
+        onClick={(): void => {
  formatText('insertUnorderedList'); 
 }}
       >
@@ -172,7 +171,7 @@ export function NewsletterEditor({
       <button
         className="p-1.5 hover:bg-gray-200 rounded"
         title="Numbered List"
-        onClick={() => {
+        onClick={(): void => {
  formatText('insertOrderedList'); 
 }}
       >
@@ -184,7 +183,7 @@ export function NewsletterEditor({
       <button
         className="p-1.5 hover:bg-gray-200 rounded"
         title="Undo"
-        onClick={() => {
+        onClick={(): void => {
  formatText('undo'); 
 }}
       >
@@ -193,7 +192,7 @@ export function NewsletterEditor({
       <button
         className="p-1.5 hover:bg-gray-200 rounded"
         title="Redo"
-        onClick={() => {
+        onClick={(): void => {
  formatText('redo'); 
 }}
       >
@@ -204,7 +203,7 @@ export function NewsletterEditor({
       
       <button
         className="p-1.5 text-blue-600 hover:bg-blue-100 rounded text-sm font-medium"
-        onClick={() => {
+        onClick={(): void => {
  setEditingSection(null); 
 }}
       >
@@ -229,7 +228,7 @@ export function NewsletterEditor({
                 placeholder="Section title..."
                 type="text"
                 value={title}
-                onChange={(e) => {
+                onChange={(e): void => {
  updateSection(
                   section.id, 
                   language === 'en' ? 'title' : 'titleFr', 
@@ -248,7 +247,7 @@ export function NewsletterEditor({
                 <button
                   className="p-1.5 text-gray-600 hover:text-gray-800 hover:bg-gray-200 rounded"
                   title={isEditing ? "Stop editing" : "Edit section"}
-                  onClick={() => {
+                  onClick={(): void => {
  setEditingSection(isEditing ? null : section.id); 
 }}
                 >
@@ -257,7 +256,7 @@ export function NewsletterEditor({
                 <button
                   className="p-1.5 text-red-600 hover:text-red-800 hover:bg-red-100 rounded"
                   title="Remove section"
-                  onClick={() => {
+                  onClick={(): void => {
  removeSection(section.id); 
 }}
                 >
@@ -273,7 +272,7 @@ export function NewsletterEditor({
           <div>
             {renderToolbar(section.id)}
             <div
-              ref={(el) => {
+              ref={(el): void => {
                 editorRefs.current[section.id] = el;
               }}
               contentEditable
@@ -282,14 +281,14 @@ export function NewsletterEditor({
               role="textbox"
               style={{ whiteSpace: 'pre-wrap' }}
               tabIndex={0}
-              onBlur={(e) => {
+              onBlur={(e): void => {
                 updateSection(
                   section.id,
                   language === 'en' ? 'content' : 'contentFr',
                   e.currentTarget.innerHTML
                 );
               }}
-              onKeyDown={(e) => {
+              onKeyDown={(e): void => {
                 handleKeyDown(e, section.id, language === 'en' ? 'content' : 'contentFr');
               }}
             />
@@ -324,7 +323,7 @@ export function NewsletterEditor({
               "flex items-center gap-2 px-3 py-2 rounded-lg transition-colors",
               "border border-gray-300 hover:bg-gray-50"
             )}
-            onClick={() => {
+            onClick={(): void => {
  setLanguage(language === 'en' ? 'fr' : 'en'); 
 }}
           >
@@ -342,7 +341,7 @@ export function NewsletterEditor({
                 ? "bg-blue-600 text-white"
                 : "border border-gray-300 hover:bg-gray-50"
             )}
-            onClick={() => {
+            onClick={(): void => {
  setPreviewMode(!previewMode); 
 }}
           >
@@ -359,7 +358,7 @@ export function NewsletterEditor({
                 <button
                   className="flex items-center gap-2 px-3 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:opacity-50"
                   disabled={isGenerating}
-                  onClick={() => {
+                  onClick={(): void => {
  onRegenerate(); 
 }}
                 >
@@ -370,7 +369,7 @@ export function NewsletterEditor({
               
               <button
                 className="flex items-center gap-2 px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
-                onClick={() => {
+                onClick={(): void => {
                   onSave(localDraft);
                   setUnsavedChanges(false);
                 }}
@@ -383,7 +382,7 @@ export function NewsletterEditor({
                 <button
                   className="flex items-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
                   disabled={localDraft.isDraft}
-                  onClick={() => {
+                  onClick={(): void => {
  onSend(localDraft); 
 }}
                 >
@@ -404,7 +403,7 @@ export function NewsletterEditor({
             placeholder="Newsletter title..."
             type="text"
             value={language === 'en' ? localDraft.title : localDraft.titleFr}
-            onChange={(e) => {
+            onChange={(e): void => {
  updateTitle(
               language === 'en' ? 'title' : 'titleFr',
               e.target.value
