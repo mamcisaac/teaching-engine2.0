@@ -18,7 +18,7 @@ export class ExcelParser extends CurriculumParser {
     // Read workbook
     const workbook = XLSX.read(content, { type: 'buffer' });
 
-    if (!workbook.SheetNames || workbook.SheetNames.length === 0) {
+    if (workbook.SheetNames === null || workbook.SheetNames === undefined || workbook.SheetNames.length === 0) {
       throw new Error('No sheets found in Excel file');
     }
 
@@ -29,7 +29,7 @@ export class ExcelParser extends CurriculumParser {
 
     const worksheet = workbook.Sheets[sheetName];
 
-    if (!worksheet) {
+    if (worksheet === null || worksheet === undefined) {
       throw new Error(`Worksheet ${sheetName} not found`);
     }
 
@@ -39,7 +39,7 @@ export class ExcelParser extends CurriculumParser {
       defval: '',
     });
 
-    if (!rows || rows.length === 0) {
+    if (rows === null || rows === undefined || rows.length === 0) {
       throw new Error('No data found in Excel file');
     }
 
@@ -61,8 +61,8 @@ export class ExcelParser extends CurriculumParser {
     const organized = this.organizeExpectations(expectations);
 
     const curriculum: ParsedCurriculum = {
-      subject: subject || 'Unknown',
-      grade: grade || 0,
+      subject: subject ?? 'Unknown',
+      grade: grade ?? 0,
       expectations: organized,
       metadata: {
         source: 'Excel Import',
@@ -97,19 +97,19 @@ export class ExcelParser extends CurriculumParser {
       version?: string;
     } = {};
 
-    if (props) {
-      metadata.version = props.Title || props.Subject;
+    if (props !== null && props !== undefined) {
+      metadata.version = props.Title ?? props.Subject;
     }
 
     // Try to extract from first few rows
     const firstRow = rows[0];
-    if (firstRow) {
+    if (firstRow !== null && firstRow !== undefined) {
       metadata.grade = this.extractGrade(firstRow);
       metadata.subject = this.extractSubject(firstRow);
     }
 
     // Try to find metadata in sheet names or cell values
-    if (!metadata.grade || !metadata.subject) {
+    if ((metadata.grade === null || metadata.grade === undefined) || (metadata.subject === null || metadata.subject === undefined || metadata.subject === '')) {
       for (const sheetName of workbook.SheetNames) {
         const gradeMatch = sheetName.match(/Grade\s*(\d+)/i);
         if (gradeMatch) {
@@ -142,9 +142,9 @@ export class ExcelParser extends CurriculumParser {
     const codeKeys = ['Code', 'code', 'Expectation Code', 'expectation_code', 'ID', 'Reference'];
     const code = this.findValue(row, codeKeys);
 
-    if (!code) {
-return null;
-}
+    if (code === null || code === undefined || code === '') {
+      return null;
+    }
 
     // Find description column
     const descKeys = [
@@ -157,16 +157,16 @@ return null;
     ];
     const description = this.findValue(row, descKeys);
 
-    if (!description) {
-return null;
-}
+    if (description === null || description === undefined || description === '') {
+      return null;
+    }
 
     // Find other fields
     const typeKeys = ['Type', 'type', 'Category', 'Level'];
-    const type = this.parseType(this.findValue(row, typeKeys) || '', code, description);
+    const type = this.parseType(this.findValue(row, typeKeys) ?? '', code, description);
 
     const strandKeys = ['Strand', 'strand', 'Domain', 'Area'];
-    const strand = this.findValue(row, strandKeys) || this.extractStrandFromCode(code);
+    const strand = this.findValue(row, strandKeys) ?? this.extractStrandFromCode(code);
 
     const substrandKeys = ['Substrand', 'substrand', 'Topic', 'Subtopic'];
     const substrand = this.findValue(row, substrandKeys);
@@ -176,9 +176,9 @@ return null;
       description: this.cleanText(description),
       type,
       strand: this.cleanText(strand),
-      substrand: substrand ? this.cleanText(substrand) : undefined,
-      grade: this.extractGrade(row) || defaultGrade,
-      subject: this.extractSubject(row) || defaultSubject,
+      substrand: substrand !== null && substrand !== undefined && substrand !== '' ? this.cleanText(substrand) : undefined,
+      grade: this.extractGrade(row) ?? defaultGrade,
+      subject: this.extractSubject(row) ?? defaultSubject,
     };
 
     if (this.options.extractKeywords) {
@@ -204,14 +204,14 @@ return null;
    * Parse expectation type
    */
   private parseType(typeValue: string, code: string, description: string): 'overall' | 'specific' {
-    if (typeValue) {
+    if (typeValue !== null && typeValue !== undefined && typeValue !== '') {
       const normalized = typeValue.toLowerCase();
       if (normalized.includes('overall')) {
-return 'overall';
-}
+        return 'overall';
+      }
       if (normalized.includes('specific')) {
-return 'specific';
-}
+        return 'specific';
+      }
     }
 
     return this.parseExpectationType(code, description);
@@ -224,7 +224,7 @@ return 'specific';
     const gradeKeys = ['Grade', 'grade', 'Level', 'Year'];
     const gradeValue = this.findValue(row, gradeKeys);
 
-    if (gradeValue) {
+    if (gradeValue !== null && gradeValue !== undefined && gradeValue !== '') {
       const numericGrade = parseInt(gradeValue.replace(/\D/g, ''));
       if (!isNaN(numericGrade) && numericGrade >= 1 && numericGrade <= 12) {
         return numericGrade;
@@ -294,7 +294,9 @@ return 'specific';
    * Validate parsed curriculum
    */
   validate(data: ParsedCurriculum): boolean {
-    if (!data.subject || !data.grade || !data.expectations) {
+    if ((data.subject === null || data.subject === undefined || data.subject === '') || 
+        (data.grade === null || data.grade === undefined) || 
+        (data.expectations === null || data.expectations === undefined)) {
       return false;
     }
 

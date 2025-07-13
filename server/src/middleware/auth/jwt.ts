@@ -72,9 +72,9 @@ export function verifyToken(token: string): TokenPayload {
  * Extract token from Authorization header
  */
 export function extractTokenFromHeader(authHeader?: string): string | null {
-  if (!authHeader) {
-return null;
-}
+  if (authHeader === null || authHeader === undefined || authHeader === '') {
+    return null;
+  }
 
   const parts = authHeader.split(' ');
   if (parts.length !== 2 || parts[0] !== 'Bearer') {
@@ -93,7 +93,7 @@ export function generateTokenPair(user: {
   role: string;
   organizationId?: number;
   permissions?: string[];
-}) {
+}): { accessToken: string; refreshToken: string } {
   return {
     accessToken: generateAccessToken(user),
     refreshToken: generateRefreshToken(user.id),

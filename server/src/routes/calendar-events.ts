@@ -43,7 +43,7 @@ router.get('/', async (req: AuthenticatedRequest, res: Response): Promise<void> 
     }
     const { start, end, eventType } = queryValidation.data;
     const userId = req.user?.id;
-    if (!userId) {
+    if (userId === null || userId === undefined) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
@@ -55,11 +55,11 @@ router.get('/', async (req: AuthenticatedRequest, res: Response): Promise<void> 
       ],
     };
 
-    if (start) {
+    if (start !== null && start !== undefined && start !== '') {
       where.start = { gte: parseISO(start) };
     }
 
-    if (end) {
+    if (end !== null && end !== undefined && end !== '') {
       where.end = { lte: endOfDay(parseISO(end)) };
     }
 
@@ -90,7 +90,7 @@ router.post(
     try {
       const data = req.body as z.infer<typeof calendarEventSchema>;
       const userId = req.user?.id;
-      if (!userId) {
+      if (userId === null || userId === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -123,7 +123,7 @@ router.patch('/:id', async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
     const userId = req.user?.id;
-    if (!userId) {
+    if (userId === null || userId === undefined) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
@@ -143,12 +143,12 @@ router.patch('/:id', async (req: Request, res: Response): Promise<void> => {
     }
 
     // Convert date strings to Date objects if present
-    if (updates.start) {
-updates.start = new Date(updates.start);
-}
-    if (updates.end) {
-updates.end = new Date(updates.end);
-}
+    if (updates.start !== null && updates.start !== undefined) {
+      updates.start = new Date(updates.start);
+    }
+    if (updates.end !== null && updates.end !== undefined) {
+      updates.end = new Date(updates.end);
+    }
 
     const updatedEvent = await prisma.calendarEvent.update({
       where: { id: parseInt(id) },
@@ -169,7 +169,7 @@ router.delete('/:id', async (req: AuthenticatedRequest, res: Response): Promise<
   try {
     const { id } = req.params;
     const userId = req.user?.id;
-    if (!userId) {
+    if (userId === null || userId === undefined) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
