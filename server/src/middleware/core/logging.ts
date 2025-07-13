@@ -237,7 +237,7 @@ export const performanceLoggingMiddleware = (
       .filter((s) => s.end !== undefined)
       .map((s) => ({
         name: s.name,
-        duration: (s.end!) - s.start,
+        duration: (s.end ?? 0) - s.start,
       }));
 
     if (measurements.length > 0 || totalDuration > 1000) {

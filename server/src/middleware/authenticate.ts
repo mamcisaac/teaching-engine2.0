@@ -364,7 +364,7 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
 
       // Update request with fresh user data
       // TypeScript type narrowing: user is non-null here due to the check above
-      const validUser = user!;
+      const validUser = user;
       req.user = {
         id: validUser.id,
         email: validUser.email,
