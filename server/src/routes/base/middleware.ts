@@ -44,7 +44,7 @@ export const optionalAuth = (
   next: NextFunction,
 ): void => {
   const userId = req.user?.id;
-  if (userId) {
+  if (userId !== null && userId !== undefined) {
     req.userId = userId;
   }
   next();
@@ -147,7 +147,7 @@ export const createRateLimit = (options: { windowMs: number; max: number; messag
   const requests = new Map<string, { count: number; resetTime: number }>();
 
   return (req: Request, res: Response, next: NextFunction): void => {
-    const key = req.ip || 'unknown';
+    const key = req.ip ?? 'unknown';
     const now = Date.now();
     const windowStart = now - options.windowMs;
 
@@ -168,7 +168,7 @@ export const createRateLimit = (options: { windowMs: number; max: number; messag
     // Check if limit exceeded
     if (entry.count >= options.max) {
       res.status(429).json({
-        error: options.message || 'Too many requests',
+        error: options.message ?? 'Too many requests',
         retryAfter: Math.ceil((entry.resetTime - now) / 1000),
       });
       return;
@@ -206,10 +206,10 @@ export const sanitizeInput = (req: Request, _res: Response, next: NextFunction):
     return value;
   };
 
-  if (req.body) {
+  if (req.body !== null && req.body !== undefined) {
     req.body = sanitizeValue(req.body);
   }
-  if (req.query) {
+  if (req.query !== null && req.query !== undefined) {
     req.query = sanitizeValue(req.query) as ParsedQs;
   }
 
@@ -271,7 +271,7 @@ export const errorHandler = (
  */
 export const corsMiddleware = (allowedOrigins: string[]) => (req: Request, res: Response, next: NextFunction): void => {
     const {origin} = req.headers;
-    if (origin && allowedOrigins.includes(origin)) {
+    if (origin !== null && origin !== undefined && origin !== '' && allowedOrigins.includes(origin)) {
       res.setHeader('Access-Control-Allow-Origin', origin);
     }
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');

@@ -391,7 +391,7 @@ return '';
 
     // Pre-process to remove standalone event handlers that DOMPurify might miss
     // This handles cases like plain text "onclick=alert('XSS')"
-    if (isXssAttempt) {
+    if (isXssAttempt === true) {
       // Remove standalone event handlers and their values
       // Handle both quoted and unquoted values, including nested quotes
       normalized = normalized.replace(/\bon\w+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]*)/gi, '');
@@ -522,7 +522,7 @@ return '';
 
     // First, try to preserve the email structure
     const emailParts = sanitized.match(/^([^@]+)@(.+)$/);
-    if (!emailParts) {
+    if (emailParts === null || emailParts === undefined) {
       return ''; // Not a valid email structure
     }
 
@@ -756,7 +756,7 @@ export function advancedXssProtection(req: Request, res: Response, next: NextFun
           path: req.path,
           method: req.method,
           duration,
-          bodySize: JSON.stringify(req.body || {}).length,
+          bodySize: JSON.stringify(req.body ?? {}).length,
         },
         'XSS sanitization took longer than expected',
       );

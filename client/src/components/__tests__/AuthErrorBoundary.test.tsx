@@ -40,8 +40,8 @@ describe('AuthErrorBoundary', () => {
     (authService.clearTokens as jest.Mock).mockImplementation(() => {});
     
     // Mock window.location
-    delete (window as any).location;
-    window.location = { href: '', reload: jest.fn() } as any;
+    delete (window as Window & { location: Location }).location;
+    window.location = { href: '', reload: jest.fn() } as unknown as Location;
     
     // Mock logger
     (logger.error as jest.Mock).mockImplementation(() => {});
@@ -170,7 +170,10 @@ describe('AuthErrorBoundary', () => {
   describe('Offline/Online Handling', () => {
     it('should display offline UI when navigator.onLine is false', () => {
       const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
-      (navigator as any).onLine = false;
+      Object.defineProperty(navigator, 'onLine', {
+        writable: true,
+        value: false
+      });
       
       render(
         <AuthErrorBoundary>
@@ -187,7 +190,10 @@ describe('AuthErrorBoundary', () => {
 
     it('should handle online event and retry for network errors', async () => {
       const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
-      (navigator as any).onLine = false;
+      Object.defineProperty(navigator, 'onLine', {
+        writable: true,
+        value: false
+      });
       
       render(
         <AuthErrorBoundary>
@@ -196,7 +202,10 @@ describe('AuthErrorBoundary', () => {
       );
       
       // Simulate going back online
-      (navigator as any).onLine = true;
+      Object.defineProperty(navigator, 'onLine', {
+        writable: true,
+        value: true
+      });
       window.dispatchEvent(new Event('online'));
       
       await waitFor(() => {
@@ -216,7 +225,10 @@ describe('AuthErrorBoundary', () => {
       );
       
       // Simulate going offline
-      (navigator as any).onLine = false;
+      Object.defineProperty(navigator, 'onLine', {
+        writable: true,
+        value: false
+      });
       window.dispatchEvent(new Event('offline'));
       
       // Trigger an error while offline

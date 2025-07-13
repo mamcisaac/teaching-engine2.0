@@ -22,10 +22,10 @@ const DialogWrapper: React.FC<DialogProps> = ({
 }): React.ReactElement => {
   const isOpenValue = isOpen ?? open ?? false;
   const handleOpenChange = (newOpen: boolean): void => {
-    if (!newOpen && onClose) {
+    if (newOpen === false && onClose !== null && onClose !== undefined) {
       onClose();
     }
-    if (onOpenChange) {
+    if (onOpenChange !== null && onOpenChange !== undefined) {
       onOpenChange(newOpen);
     }
   };

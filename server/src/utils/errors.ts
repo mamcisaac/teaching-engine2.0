@@ -88,7 +88,7 @@ export const formatErrorResponse = (
   let details: any = undefined;
 
   if (error instanceof AppError) {
-    code = error.code || 'APP_ERROR';
+    code = error.code ?? 'APP_ERROR';
     message = (error instanceof Error ? error.message : String(error));
     details = error.details;
   } else if (error instanceof ZodError) {
@@ -139,7 +139,7 @@ export const asyncHandler = <T extends (...args: unknown[]) => Promise<unknown>>
       if (_error instanceof AppError) {
         errorCounter.add(1, {
           type: 'app_error',
-          code: _error.code || 'unknown',
+          code: _error.code ?? 'unknown',
           status: _error.statusCode.toString(),
         });
       } else {

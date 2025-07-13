@@ -360,7 +360,7 @@ export class SimpleCache<T> {
   }
 
   set(key: string, value: T, customTtl?: number): void {
-    const expiry = Date.now() + (customTtl || this.ttl);
+    const expiry = Date.now() + (customTtl ?? this.ttl);
     this.cache.set(key, { value, expiry });
   }
 

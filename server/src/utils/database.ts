@@ -254,7 +254,7 @@ export const getSumByField = async (
 
   return results.map((r: any) => ({
     field: r[groupByField],
-    sum: r._sum[sumField] || 0,
+    sum: r._sum[sumField] ?? 0,
   }));
 };
 
@@ -289,7 +289,7 @@ export const findOrCreate = async <T>(
 // Query optimization helpers
 export const optimizedCount = async (model: PrismaModel, where: any = {}): Promise<number> => {
   // Use raw query for better performance on large tables
-  const tableName = (model as any).name || model.constructor.name;
+  const tableName = (model as any).name ?? model.constructor.name;
   const whereClause =
     Object.keys(where).length > 0
       ? `WHERE ${Object.entries(where)
@@ -301,7 +301,7 @@ export const optimizedCount = async (model: PrismaModel, where: any = {}): Promi
     SELECT COUNT(*) as count FROM ${Prisma.sql([tableName])} ${Prisma.sql([whereClause])}
   `;
 
-  return Number(result[0]?.count || 0);
+  return Number(result[0]?.count ?? 0);
 };
 
 // Connection helpers
@@ -325,6 +325,6 @@ export const getConnectionInfo = async (prisma: PrismaClientLike): Promise<unkno
   return {
     version: version[0]?.version,
     tableCount: tables.length,
-    sizeBytes: size[0]?.size || 0,
+    sizeBytes: size[0]?.size ?? 0,
   };
 };

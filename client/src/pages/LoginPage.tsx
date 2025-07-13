@@ -31,7 +31,7 @@ export default function LoginPage() {
     };
 
     // Only redirect if we're done checking auth and the user is authenticated
-    if (!isAuthLoading && isAuthenticated) {
+    if (isAuthLoading === false && isAuthenticated === true) {
       navigate('/planner/dashboard', { replace: true });
     }
   }, [isAuthenticated, isAuthLoading, navigate]);
@@ -40,7 +40,7 @@ export default function LoginPage() {
     e.preventDefault();
 
     // Prevent multiple submissions
-    if (isLoading) {
+    if (isLoading === true) {
 return;
 }
 
@@ -77,7 +77,7 @@ return;
             Sign in to your account
           </h2>
         </div>
-        {(authError || localError) && (
+        {(authError !== null && authError !== undefined && authError !== '' || localError !== null && localError !== undefined && localError !== '') && (
           <div className="bg-red-50 border-l-4 border-red-400 p-4">
             <div className="flex">
               <div className="flex-shrink-0">
@@ -100,7 +100,7 @@ return;
             </div>
           </div>
         )}
-        {isSuccess && (
+        {isSuccess === true && (
           <div className="bg-green-50 border-l-4 border-green-400 p-4">
             <div className="flex">
               <div className="flex-shrink-0">
@@ -179,10 +179,10 @@ return;
                       : 'bg-indigo-400'
                     : 'bg-indigo-600 hover:bg-indigo-700 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
                 } focus:outline-none`}
-                disabled={isLoading || isSuccess}
+                disabled={isLoading === true || isSuccess === true}
                 type="submit"
               >
-                {isSuccess ? (
+                {isSuccess === true ? (
                   <>
                     <svg
                       className="-ml-1 mr-3 h-5 w-5 text-white"
@@ -198,7 +198,7 @@ return;
                     </svg>
                     Success!
                   </>
-                ) : isLoading ? (
+                ) : isLoading === true ? (
                   <>
                     <svg
                       className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"

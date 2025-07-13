@@ -49,7 +49,7 @@ router.get('/', async (req: Request, res) => {
     });
     return;
   } catch (err) {
-    logger.error('Error fetching notifications:', err);
+    logger.error('Error fetching notifications:', err instanceof Error ? err.message : String(err));
     res.status(500).json({ error: 'Failed to fetch notifications' });
   }
 });
@@ -88,7 +88,7 @@ router.patch('/:id/read', async (req: Request, res) => {
     res.json(updated);
     return;
   } catch (err) {
-    logger.error('Error marking notification as read:', err);
+    logger.error('Error marking notification as read:', err instanceof Error ? err.message : String(err));
     res.status(500).json({ error: 'Failed to update notification' });
   }
 });
@@ -110,7 +110,7 @@ router.patch('/read-all', async (req: Request, res) => {
     res.json({ updated: result.count });
     return;
   } catch (err) {
-    logger.error('Error marking all notifications as read:', err);
+    logger.error('Error marking all notifications as read:', err instanceof Error ? err.message : String(err));
     res.status(500).json({ error: 'Failed to update notifications' });
   }
 });
@@ -148,7 +148,7 @@ router.delete('/:id', async (req: Request, res) => {
     res.json({ success: true });
     return;
   } catch (err) {
-    logger.error('Error deleting notification:', err);
+    logger.error('Error deleting notification:', err instanceof Error ? err.message : String(err));
     res.status(500).json({ error: 'Failed to delete notification' });
   }
 });
@@ -169,7 +169,7 @@ router.delete('/clear-all', async (req: Request, res) => {
     res.json({ deleted: result.count });
     return;
   } catch (err) {
-    logger.error('Error clearing notifications:', err);
+    logger.error('Error clearing notifications:', err instanceof Error ? err.message : String(err));
     res.status(500).json({ error: 'Failed to clear notifications' });
   }
 });
@@ -187,16 +187,16 @@ router.post('/test', async (req: Request, res) => {
       data: {
         userId,
         type: 'info',
-        title: req.body.title || 'Test Notification',
-        message: req.body.message || 'This is a test notification',
-        data: req.body.data || {},
+        title: typeof req.body.title === 'string' ? req.body.title : 'Test Notification',
+        message: typeof req.body.message === 'string' ? req.body.message : 'This is a test notification',
+        data: req.body.data as Record<string, unknown> || {},
       },
     });
 
     res.json(notification);
     return;
   } catch (err) {
-    logger.error('Error creating test notification:', err);
+    logger.error('Error creating test notification:', err instanceof Error ? err.message : String(err));
     res.status(500).json({ error: 'Failed to create notification' });
   }
 });

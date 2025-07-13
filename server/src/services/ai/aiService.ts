@@ -133,7 +133,7 @@ export class AIService extends BaseService {
     this.timeout = options.timeout ?? 30000;
 
     this.openAIClient =
-      options.openAIClient ||
+      options.openAIClient ??
       new OpenAI({
         apiKey: this.apiKey,
         timeout: this.timeout,
@@ -162,13 +162,13 @@ export class AIService extends BaseService {
           });
 
           const content = response.choices[0]?.message?.content;
-          if (!content) {
+          if (content === null || content === undefined || content === '') {
             throw new AppError(500, 'No response from AI service');
           }
 
           let lessonPlan = safeJsonParse<LessonPlan>(content);
           
-          if (!lessonPlan) {
+          if (lessonPlan === null || lessonPlan === undefined) {
             logger.warn('Failed to parse AI response, using fallback');
             lessonPlan = this.createFallbackLesson(input);
             lessonPlan.fallback = true;
@@ -222,13 +222,13 @@ export class AIService extends BaseService {
           });
 
           const content = response.choices[0]?.message?.content;
-          if (!content) {
+          if (content === null || content === undefined || content === '') {
             throw new AppError(500, 'No response from AI service');
           }
 
           let activity = safeJsonParse<Activity>(content);
           
-          if (!activity) {
+          if (activity === null || activity === undefined) {
             activity = this.createFallbackActivity(input);
           }
 
@@ -269,13 +269,13 @@ export class AIService extends BaseService {
           });
 
           const content = response.choices[0]?.message?.content;
-          if (!content) {
+          if (content === null || content === undefined || content === '') {
             throw new AppError(500, 'No response from AI service');
           }
 
           let parsedPlan = safeJsonParse<SubstitutePlan>(content);
           
-          if (!parsedPlan) {
+          if (parsedPlan === null || parsedPlan === undefined) {
             parsedPlan = this.createFallbackSubstitutePlan(input);
           }
 
@@ -316,13 +316,13 @@ export class AIService extends BaseService {
           });
 
           const content = response.choices[0]?.message?.content;
-          if (!content) {
+          if (content === null || content === undefined || content === '') {
             throw new AppError(500, 'No response from AI service');
           }
 
           let parsedNewsletter = safeJsonParse<Newsletter>(content);
           
-          if (!parsedNewsletter) {
+          if (parsedNewsletter === null || parsedNewsletter === undefined) {
             parsedNewsletter = this.createFallbackNewsletter(input);
           }
 
@@ -360,11 +360,11 @@ export class AIService extends BaseService {
         temperature: 0,
       });
 
-      return !!response.choices[0]?.message?.content;
+      return response.choices[0]?.message?.content !== null && response.choices[0]?.message?.content !== undefined && response.choices[0]?.message?.content !== '';
     } catch (error: unknown) {
       logger.error('AI Service health check failed:', error);
       // If we have a fallback key or test key, consider it healthy (fallback mode)
-      if (this.apiKey && (this.apiKey.includes('test') || this.apiKey.includes('fallback'))) {
+      if (this.apiKey !== null && this.apiKey !== undefined && this.apiKey !== '' && (this.apiKey.includes('test') || this.apiKey.includes('fallback'))) {
         return true;
       }
       return false;
@@ -418,7 +418,7 @@ export class AIService extends BaseService {
       });
 
       const content = response.choices[0]?.message?.content;
-      if (!content) {
+      if (content === null || content === undefined || content === '') {
         return this.createFallbackEnhancedLesson(input.lesson, input.enhancementType);
       }
 
@@ -471,7 +471,7 @@ export class AIService extends BaseService {
       });
 
       const content = response.choices[0]?.message?.content;
-      if (!content) {
+      if (content === null || content === undefined || content === '') {
         return this.createFallbackQuestions(input);
       }
 
@@ -571,19 +571,19 @@ Return a JSON object with the structure: { title, dateRange, sections, footer }`
     const lessonPlan = (typeof plan === 'object' && plan !== null ? plan : {}) as Record<string, unknown>;
     
     // Ensure required fields exist
-    if (!lessonPlan.title) {
+    if (lessonPlan.title === null || lessonPlan.title === undefined || lessonPlan.title === '') {
       lessonPlan.title = `${input.topic} - Grade ${input.grade} ${input.subject}`;
     }
-    if (!lessonPlan.objectives || !Array.isArray(lessonPlan.objectives)) {
+    if (lessonPlan.objectives === null || lessonPlan.objectives === undefined || !Array.isArray(lessonPlan.objectives)) {
       lessonPlan.objectives = ['Understand key concepts'];
     }
-    if (!lessonPlan.activities || !Array.isArray(lessonPlan.activities)) {
+    if (lessonPlan.activities === null || lessonPlan.activities === undefined || !Array.isArray(lessonPlan.activities)) {
       lessonPlan.activities = [];
     }
-    if (!lessonPlan.materials || !Array.isArray(lessonPlan.materials)) {
+    if (lessonPlan.materials === null || lessonPlan.materials === undefined || !Array.isArray(lessonPlan.materials)) {
       lessonPlan.materials = [];
     }
-    if (!lessonPlan.duration) {
+    if (lessonPlan.duration === null || lessonPlan.duration === undefined) {
       lessonPlan.duration = input.duration;
     }
 

@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { startOfMonth, endOfMonth, eachDayOfInterval } from 'date-fns';
 import { useState, memo, useMemo } from 'react';
 
@@ -26,7 +26,15 @@ const CalendarViewComponent = memo(({ month, events }: Props) => {
   const fetch = useCalendarEvents(dateRange.from, dateRange.to);
   
   // Memoize event array processing
-  const evts = useMemo(() => Array.isArray(events) ? events : Array.isArray(fetch.data) ? fetch.data : [], [events, fetch.data]);
+  const evts = useMemo(() => {
+    if (Array.isArray(events)) {
+      return events;
+    }
+    if (Array.isArray(fetch.data)) {
+      return fetch.data as CalendarEvent[];
+    }
+    return [];
+  }, [events, fetch.data]);
 
   // Log any errors for debugging
   if (fetch.error !== null && fetch.error !== undefined) {

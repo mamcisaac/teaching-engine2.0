@@ -99,11 +99,11 @@ export function createRateLimiter(
       if (config.keyGenerator === 'user' && (req as any).user?.id) {
         return `user:${(req as any).user.id}`;
       }
-      return req.ip || 'unknown';
+      return req.ip ?? 'unknown';
     },
 
     // Skip successful requests if configured
-    skipSuccessfulRequests: config.skipSuccessful || false,
+    skipSuccessfulRequests: config.skipSuccessful ?? false,
 
     // Skip rate limiting for certain paths or in development
     skip: (req: Request) => {
@@ -125,7 +125,7 @@ export function createRateLimiter(
 
       res.status(429).json({
         error: 'Too Many Requests',
-        message: config.message || 'Rate limit exceeded. Please try again later.',
+        message: config.message ?? 'Rate limit exceeded. Please try again later.',
         retryAfter: (req as any).rateLimit?.resetTime,
         limit: config.max,
         windowMs: config.windowMs,
@@ -176,7 +176,7 @@ export function createDynamicRateLimiter(
       if (config.keyGenerator === 'user' && (req as any).user?.id) {
         return `user:${(req as any).user.id}`;
       }
-      return req.ip || 'unknown';
+      return req.ip ?? 'unknown';
     },
 
     // Skip rate limiting for certain paths or in development
@@ -202,7 +202,7 @@ export function createDynamicRateLimiter(
 
       res.status(429).json({
         error: 'Too Many Requests',
-        message: config.message || 'Rate limit exceeded. Please try again later.',
+        message: config.message ?? 'Rate limit exceeded. Please try again later.',
         retryAfter: (req as any).rateLimit?.resetTime,
         limit: config.max,
         windowMs: config.windowMs,
@@ -221,7 +221,7 @@ export function createEndpointRateLimiter(
   endpoint: string,
   baseConfig: keyof typeof rateLimitConfigs = 'general',
 ): RateLimitRequestHandler {
-  const overrides = endpointOverrides[endpoint] || {};
+  const overrides = endpointOverrides[endpoint] ?? {};
   const config = { ...rateLimitConfigs[baseConfig], ...overrides };
 
   return createRateLimiter(baseConfig, {

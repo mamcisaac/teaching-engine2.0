@@ -8,7 +8,7 @@ const OnboardingFlowOptimized = lazy(() =>
 );
 
 // Loading fallback for lazy loading
-const OnboardingLoadingFallback = () => (
+const OnboardingLoadingFallback = (): React.ReactElement => (
   <div className="fixed inset-0 z-[9999] bg-black/50 flex items-center justify-center">
     <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500" />
   </div>

@@ -55,7 +55,7 @@ export function CollapsibleSection({
             size="sm"
             variant="ghost"
             onClick={(): void => {
- setIsExpanded(!isExpanded); 
+ setIsExpanded(isExpanded === false); 
 }}
           >
             {isExpanded ? (
@@ -170,7 +170,7 @@ export function FormPreview({ data, onEdit, className }: FormPreviewProps): Reac
               size="sm"
               variant="ghost"
               onClick={(): void => {
- setShowAll(!showAll); 
+ setShowAll(showAll === false); 
 }}
             >
               {showAll === true ? (

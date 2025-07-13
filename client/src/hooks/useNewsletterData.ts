@@ -16,7 +16,7 @@ export function useStudents() {
     queryKey: ['students'],
     queryFn: async () => {
       const response = await apiClient.get('/students');
-      return response.data;
+      return response.data as Student[];
     },
   });
 }
@@ -39,7 +39,7 @@ export function useGenerateNewsletter() {
         includeLearningGoals: params.includeLearningGoals ?? true,
         includeUpcomingEvents: params.includeUpcomingEvents ?? true,
       });
-      return response.data;
+      return response.data as GeneratedNewsletter;
     },
     onSuccess: () => {
       toast.success('Newsletter content generated successfully!');
@@ -63,9 +63,9 @@ export function useRegenerateNewsletter() {
         studentIds: draft.studentIds,
         from: draft.dateFrom,
         to: draft.dateTo,
-        tone: tone || draft.tone,
+        tone: tone ?? draft.tone,
       });
-      return response.data;
+      return response.data as GeneratedNewsletter;
     },
     onSuccess: () => {
       toast.success('Newsletter regenerated with new variations!');
@@ -89,7 +89,7 @@ export function useSaveNewsletterDraft() {
       const method = draft.id ? 'put' : 'post';
       
       const response = await apiClient[method](endpoint, draft);
-      return response.data;
+      return response.data as NewsletterDraft;
     },
     onSuccess: (_data) => {
       toast.success(_data.isDraft ? 'Draft saved!' : 'Newsletter finalized!');
@@ -108,7 +108,7 @@ export function useNewsletterDrafts() {
     queryKey: ['newsletter-drafts'],
     queryFn: async () => {
       const response = await apiClient.get('/newsletters?isDraft=true');
-      return response.data;
+      return response.data as NewsletterDraft[];
     },
   });
 }
@@ -118,13 +118,13 @@ export function useNewsletter(id: string | undefined) {
   return useQuery<NewsletterDraft>({
     queryKey: ['newsletter', id],
     queryFn: async () => {
-      if (!id) {
+      if (id === null || id === undefined || id === '') {
 throw new Error('Newsletter ID is required');
 }
       const response = await apiClient.get(`/newsletters/${id}`);
-      return response.data;
+      return response.data as NewsletterDraft;
     },
-    enabled: !!id,
+    enabled: id !== null && id !== undefined && id !== '',
   });
 }
 
@@ -172,13 +172,13 @@ export function useParentSummaries(studentId: number | undefined) {
   return useQuery<ParentSummary[]>({
     queryKey: ['parent-summaries', studentId],
     queryFn: async () => {
-      if (!studentId) {
+      if (studentId === null || studentId === undefined) {
 throw new Error('Student ID is required');
 }
       const response = await apiClient.get(`/parent-summaries/student/${studentId}`);
-      return response.data;
+      return response.data as ParentSummary[];
     },
-    enabled: !!studentId,
+    enabled: studentId !== null && studentId !== undefined,
   });
 }
 

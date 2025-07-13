@@ -8,7 +8,16 @@ export interface AISuggestion {
   rationale?: string;
 }
 
-export function useAIPlanningAssistant() {
+export function useAIPlanningAssistant(): {
+  isGenerating: boolean;
+  generateLongRangeGoals: ReturnType<typeof useMutation>;
+  generateUnitBigIdeas: ReturnType<typeof useMutation>;
+  generateLessonActivities: ReturnType<typeof useMutation>;
+  generateMaterialsList: ReturnType<typeof useMutation>;
+  generateAssessmentStrategies: ReturnType<typeof useMutation>;
+  generateReflectionPrompts: ReturnType<typeof useMutation>;
+  getCurriculumAlignedSuggestions: ReturnType<typeof useMutation>;
+} {
   const [isGenerating, setIsGenerating] = useState(false);
 
   // Long-range goals generation

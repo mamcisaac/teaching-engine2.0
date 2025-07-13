@@ -514,11 +514,11 @@ export const generateLessonPlanHTML = (lessonPlan: LessonPlan, unitPlan?: { titl
         </div>
         <div class="info-item">
           <div class="info-label">Grouping</div>
-          <div class="info-value">${escapeHtml(lessonPlan.grouping || 'Not specified')}</div>
+          <div class="info-value">${escapeHtml(lessonPlan.grouping ?? 'Not specified')}</div>
         </div>
         <div class="info-item">
           <div class="info-label">Assessment</div>
-          <div class="info-value">${escapeHtml(lessonPlan.assessmentType || 'Not specified')}</div>
+          <div class="info-value">${escapeHtml(lessonPlan.assessmentType ?? 'Not specified')}</div>
         </div>
         ${lessonPlan.isSubFriendly ? `
           <div class="info-item">

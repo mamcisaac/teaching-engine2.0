@@ -45,11 +45,11 @@ export const ButtonWithShortcut = React.forwardRef<HTMLButtonElement, ButtonWith
       // eslint-disable-next-line react-hooks/rules-of-hooks
       useKeyboardShortcut(
         (_e): void => {
-          if (!disabled) {
+          if (disabled !== true) {
             // Call the shortcut handler or the regular onClick
-            if (onShortcutTrigger) {
+            if (onShortcutTrigger !== null && onShortcutTrigger !== undefined) {
               onShortcutTrigger();
-            } else if (onClick) {
+            } else if (onClick !== null && onClick !== undefined) {
               const syntheticEvent = new MouseEvent(
                 'click',
               ) as unknown as React.MouseEvent<HTMLButtonElement>;
@@ -74,7 +74,7 @@ export const ButtonWithShortcut = React.forwardRef<HTMLButtonElement, ButtonWith
       <Button ref={ref} aria-label="Click button" onClick={onClick} {...props}>
         <span className="flex items-center gap-2">
           {children}
-          {shortcut && showShortcutHint && (
+          {shortcut !== null && shortcut !== undefined && showShortcutHint === true && (
             <ShortcutHint className="ml-1" position="inline" shortcut={shortcut} size="xs" />
           )}
         </span>

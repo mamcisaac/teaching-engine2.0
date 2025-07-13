@@ -56,7 +56,7 @@ export default function AISuggestionPanel({
   };
 
   const handleAcceptAll = () => {
-    if (onAcceptAll) {
+    if (onAcceptAll !== null && onAcceptAll !== undefined) {
       onAcceptAll();
       const allIndices = new Set(suggestions?.suggestions.map((_, i) => i) || []);
       setAcceptedIndices(allIndices);
@@ -76,7 +76,7 @@ export default function AISuggestionPanel({
               <Sparkles className="h-5 w-5 text-purple-500" />
               {title}
             </CardTitle>
-            {description && <CardDescription>{description}</CardDescription>}
+            {description !== null && description !== undefined && description !== '' && <CardDescription>{description}</CardDescription>}
           </div>
           <Button
             className="gap-2"
@@ -162,7 +162,7 @@ export default function AISuggestionPanel({
               ))}
             </div>
 
-            {onAcceptAll && acceptedIndices.size < suggestions.suggestions.length && (
+            {onAcceptAll !== null && onAcceptAll !== undefined && acceptedIndices.size < suggestions.suggestions.length && (
               <Button aria-label="Click button" onClick={handleAcceptAll}>
                 Accept All Suggestions
               </Button>
@@ -170,7 +170,7 @@ export default function AISuggestionPanel({
           </div>
         )}
 
-        {suggestions && suggestions.suggestions.length === 0 && (
+        {suggestions !== null && suggestions !== undefined && suggestions.suggestions.length === 0 && (
           <div className="text-center py-8 text-muted-foreground">
             <Sparkles className="h-8 w-8 mx-auto mb-2 opacity-20" />
             <p className="text-sm">No suggestions generated. Try adjusting your input.</p>

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 /**
  * Client-side logger utility for Teaching Engine 2.0
@@ -13,7 +12,7 @@ interface LogEntry {
   level: LogLevel;
   message: string;
   timestamp: string;
-  data?: any;
+  data?: unknown;
   context?: Record<string, unknown>;
 }
 
@@ -28,7 +27,7 @@ class ClientLogger {
     this.isEnabled = this.isDevelopment || import.meta.env.VITE_ENABLE_LOGGING === 'true';
   }
 
-  private createLogEntry(level: LogLevel, message: string, data?: any): LogEntry {
+  private createLogEntry(level: LogLevel, message: string, data?: unknown): LogEntry {
     return {
       level,
       message,
@@ -62,8 +61,8 @@ return false;
     return true;
   }
 
-  error(message: string, error?: Error | any, data?: any): void {
-    const entry = this.createLogEntry('error', message, { error: error?.stack || error, ...data });
+  error(message: string, error?: Error | unknown, data?: unknown): void {
+    const entry = this.createLogEntry('error', message, { error: error?.stack ?? error, ...data });
     this.addToHistory(entry);
     
     if (this.shouldLog('error')) {
@@ -75,12 +74,13 @@ return false;
     }
     
     // Send to error reporting service in production
-    if (!this.isDevelopment && typeof window !== 'undefined' && (window as any).errorReporter) {
-      (window as any).errorReporter.report(entry);
+    if (!this.isDevelopment && typeof window !== 'undefined' && 'errorReporter' in window && 
+        typeof (window as { errorReporter?: { report: (entry: LogEntry) => void } }).errorReporter?.report === 'function') {
+      (window as { errorReporter: { report: (entry: LogEntry) => void } }).errorReporter.report(entry);
     }
   }
 
-  warn(message: string, data?: any): void {
+  warn(message: string, data?: unknown): void {
     const entry = this.createLogEntry('warn', message, data);
     this.addToHistory(entry);
     
@@ -90,7 +90,7 @@ return false;
     }
   }
 
-  info(message: string, data?: any): void {
+  info(message: string, data?: unknown): void {
     const entry = this.createLogEntry('info', message, data);
     this.addToHistory(entry);
     
@@ -100,7 +100,7 @@ return false;
     }
   }
 
-  debug(message: string, data?: any): void {
+  debug(message: string, data?: unknown): void {
     const entry = this.createLogEntry('debug', message, data);
     this.addToHistory(entry);
     
@@ -110,7 +110,7 @@ return false;
     }
   }
 
-  trace(message: string, data?: any): void {
+  trace(message: string, data?: unknown): void {
     const entry = this.createLogEntry('trace', message, data);
     this.addToHistory(entry);
     
@@ -150,7 +150,7 @@ return false;
   }
 
   // API logging
-  api(method: string, url: string, data?: any, response?: any): void {
+  api(method: string, url: string, data?: unknown, response?: unknown): void {
     this.info(`API ${method} ${url}`, {
       request: data,
       response: response?.status ? {
@@ -162,7 +162,7 @@ return false;
   }
 
   // User action logging
-  userAction(action: string, details?: any): void {
+  userAction(action: string, details?: unknown): void {
     this.info(`User Action: ${action}`, details);
   }
 

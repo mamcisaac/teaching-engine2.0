@@ -449,7 +449,13 @@ const mockTutorials: Tutorial[] = [
   }
 ];
 
-export function useHelpContent() {
+export function useHelpContent(): {
+  content: HelpContent[];
+  availableFilters: Array<{ value: string; label: string; count: number }>;
+  isLoading: boolean;
+  totalCount: number;
+  filteredCount: number;
+} {
   const { state } = useHelpContext();
   const [_isLoading, _setIsLoading] = useState(false);
 
@@ -510,7 +516,13 @@ export function useHelpContent() {
   };
 }
 
-export function useTutorials() {
+export function useTutorials(): {
+  availableTutorials: Tutorial[];
+  completedTutorials: string[];
+  activeTutorials: string[];
+  getTutorial: (tutorialId: string) => Tutorial | undefined;
+  getTutorialProgress: (tutorialId: string) => number;
+} {
   const { state } = useHelpContext();
 
   // Get available tutorials
@@ -525,16 +537,16 @@ export function useTutorials() {
     }), [state.completedTutorials]);
 
   // Get tutorial by ID
-  const getTutorial = (tutorialId: string) => mockTutorials.find(tutorial => tutorial.id === tutorialId);
+  const getTutorial = (tutorialId: string): Tutorial | undefined => mockTutorials.find(tutorial => tutorial.id === tutorialId);
 
   // Get tutorial progress
-  const getTutorialProgress = (tutorialId: string) => {
+  const getTutorialProgress = (tutorialId: string): number => {
     const tutorial = getTutorial(tutorialId);
     if (!tutorial) {
 return 0;
 }
 
-    const currentStep = state.tutorialProgress[tutorialId] || 0;
+    const currentStep = state.tutorialProgress[tutorialId] ?? 0;
     return (currentStep / tutorial.steps.length) * 100;
   };
 
@@ -547,7 +559,15 @@ return 0;
   };
 }
 
-export function useHelpAnalytics() {
+export function useHelpAnalytics(): {
+  totalPagesViewed: number;
+  totalTutorialsCompleted: number;
+  totalTimeSpent: number;
+  engagementScore: number;
+  completionRate: number;
+  lastVisited: Date | null;
+  streak: number;
+} {
   const { state } = useHelpContext();
 
   const analytics = useMemo(() => {
@@ -585,7 +605,12 @@ function calculateHelpStreak(viewedPages: string[]): number {
   return Math.min(viewedPages.length, 30);
 }
 
-export function useHelpSearch() {
+export function useHelpSearch(): {
+  query: string;
+  setQuery: (query: string) => void;
+  suggestions: string[];
+  popularSearches: string[];
+} {
   const { setSearchQuery, state } = useHelpContext();
   const [suggestions, setSuggestions] = useState<string[]>([]);
 

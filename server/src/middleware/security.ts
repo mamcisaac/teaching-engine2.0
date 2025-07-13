@@ -124,7 +124,7 @@ export function validateFileUpload(allowedTypes: string[] = ALLOWED_FILE_TYPES) 
       return;
     }
 
-    const files = req.file ? [req.file] : Object.values(req.files || {}).flat();
+    const files = req.file ? [req.file] : Object.values(req.files ?? {}).flat();
 
     for (const file of files as Express.Multer.File[]) {
       // Check file size
@@ -243,7 +243,7 @@ export function csrfProtection(req: Request, res: Response, next: NextFunction):
     return;
   }
 
-  const token = req.headers['x-csrf-token'] || req.body?._csrf;
+  const token = req.headers['x-csrf-token'] ?? req.body?._csrf;
   const sessionToken = (req as { session?: { csrfToken?: string } }).session?.csrfToken;
 
   if (!token || !sessionToken || token !== sessionToken) {

@@ -116,19 +116,19 @@ class TemplateService extends BaseService {
     // Build where clause using optimized ownership filter
     const where = optimizedQueries.createOwnershipWhere(userId);
 
-    if (type) {
+    if (type !== null && type !== undefined) {
 where.AND.push({ type });
 }
-    if (category) {
+    if (category !== null && category !== undefined) {
 where.AND.push({ category });
 }
-    if (subject) {
+    if (subject !== null && subject !== undefined && subject !== '') {
 where.AND.push({ subject: { contains: subject, mode: 'insensitive' } });
 }
-    if (gradeMin) {
+    if (gradeMin !== null && gradeMin !== undefined && gradeMin !== 0) {
 where.AND.push({ gradeMin: { gte: gradeMin } });
 }
-    if (gradeMax) {
+    if (gradeMax !== null && gradeMax !== undefined && gradeMax !== 0) {
 where.AND.push({ gradeMax: { lte: gradeMax } });
 }
     if (isSystem !== undefined) {
@@ -136,7 +136,7 @@ where.AND.push({ isSystem });
 }
 
     // Search functionality using optimized search utility
-    if (search) {
+    if (search !== null && search !== undefined && search !== '') {
       const searchWhere = optimizedQueries.createSearchWhere(String(search), [
         'title',
         'description',
@@ -146,7 +146,7 @@ where.AND.push({ isSystem });
     }
 
     // Tag filtering
-    if (tags && Array.isArray(tags) && tags.length > 0) {
+    if (tags !== null && tags !== undefined && Array.isArray(tags) && tags.length > 0) {
       where.AND.push({
         tags: {
           path: [],
@@ -232,7 +232,7 @@ where.AND.push({ isSystem });
       },
     });
 
-    if (!template) {
+    if (template === null || template === undefined) {
       throw new Error('Template not found or access denied');
     }
 
@@ -273,7 +273,7 @@ where.AND.push({ isSystem });
       },
     });
 
-    if (!template) {
+    if (template === null || template === undefined) {
       return false;
     }
 
@@ -326,10 +326,10 @@ where.AND.push({ isSystem });
 
     const gradeRange = grades.reduce(
       (range: { min: number; max: number }, template: { gradeMin: number | null; gradeMax: number | null }) => {
-        if (template.gradeMin) {
+        if (template.gradeMin !== null && template.gradeMin !== undefined && template.gradeMin !== 0) {
 range.min = Math.min(range.min, template.gradeMin);
 }
-        if (template.gradeMax) {
+        if (template.gradeMax !== null && template.gradeMax !== undefined && template.gradeMax !== 0) {
 range.max = Math.max(range.max, template.gradeMax);
 }
         return range;

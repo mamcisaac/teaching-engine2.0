@@ -20,7 +20,7 @@ const TemplatePreviewModal = lazy(() => import('../templates/TemplatePreviewModa
 const TemplateApplyModal = lazy(() => import('../templates/TemplateApplyModal'));
 
 // Common loading fallbacks
-const AILoadingFallback = () => (
+const AILoadingFallback = (): React.ReactElement => (
   <div className="animate-pulse p-6 space-y-4">
     <div className="flex items-center gap-2">
       <div className="w-6 h-6 bg-blue-200 rounded" />
@@ -35,7 +35,7 @@ const AILoadingFallback = () => (
   </div>
 );
 
-const ChartLoadingFallback = () => (
+const ChartLoadingFallback = (): React.ReactElement => (
   <div className="animate-pulse space-y-4 p-6">
     <div className="h-8 bg-gray-200 rounded w-1/3" />
     <div className="h-64 bg-gray-200 rounded" />
@@ -46,7 +46,7 @@ const ChartLoadingFallback = () => (
   </div>
 );
 
-const FormLoadingFallback = () => (
+const FormLoadingFallback = (): React.ReactElement => (
   <div className="animate-pulse space-y-6 p-6">
     <div className="h-8 bg-gray-200 rounded w-1/4" />
     <div className="space-y-4">
@@ -64,7 +64,7 @@ const FormLoadingFallback = () => (
   </div>
 );
 
-const ModalLoadingFallback = () => (
+const ModalLoadingFallback = (): React.ReactElement => (
   <div className="animate-pulse p-6 space-y-4">
     <div className="h-6 bg-gray-200 rounded w-1/2" />
     <div className="h-32 bg-gray-200 rounded" />
@@ -78,7 +78,7 @@ const ModalLoadingFallback = () => (
 // Higher-order component for creating lazy wrapped components
 function createLazyComponent<T = any>(
   LazyComponent: ComponentType<T>, 
-  fallback: ComponentType = () => <div>Loading...</div>
+  fallback: ComponentType = (): React.ReactElement => <div>Loading...</div>
 ): ComponentType<T> {
   return function LazyWrapper(props: T) {
     const FallbackComponent = fallback;

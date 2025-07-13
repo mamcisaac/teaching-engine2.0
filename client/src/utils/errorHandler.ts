@@ -35,15 +35,15 @@ export function handleApiError(error: unknown, customMessage?: string): void {
         break;
 
       case 403:
-        toast.error(customMessage || 'You do not have permission to perform this action.');
+        toast.error(customMessage ?? 'You do not have permission to perform this action.');
         break;
 
       case 404:
-        toast.error(customMessage || apiError.message || 'Resource not found.');
+        toast.error(customMessage ?? apiError.message ?? 'Resource not found.');
         break;
 
       case 409:
-        toast.error(customMessage || apiError.message || 'This item already exists.');
+        toast.error(customMessage ?? apiError.message ?? 'This item already exists.');
         break;
 
       case 422:
@@ -55,7 +55,7 @@ export function handleApiError(error: unknown, customMessage?: string): void {
           });
         } else {
           toast.error(
-            customMessage || apiError.message || 'Invalid request. Please check your input.',
+            customMessage ?? apiError.message ?? 'Invalid request. Please check your input.',
           );
         }
         break;
@@ -72,21 +72,21 @@ export function handleApiError(error: unknown, customMessage?: string): void {
       case 502:
       case 503:
       case 504:
-        toast.error(customMessage || 'Server error. Please try again later.');
+        toast.error(customMessage ?? 'Server error. Please try again later.');
         break;
 
       default:
-        toast.error(customMessage || apiError.error || 'An unexpected error occurred.');
+        toast.error(customMessage ?? apiError.error ?? 'An unexpected error occurred.');
     }
   } else if (error instanceof Error) {
     // Handle network errors
     if ((error instanceof Error ? error.message : String(error)) === 'Network Error') {
       toast.error('Network error. Please check your internet connection.');
     } else {
-      toast.error(customMessage || (error instanceof Error ? error.message : String(error)));
+      toast.error(customMessage ?? (error instanceof Error ? error.message : String(error)));
     }
   } else {
-    toast.error(customMessage || 'An unexpected error occurred.');
+    toast.error(customMessage ?? 'An unexpected error occurred.');
   }
 }
 

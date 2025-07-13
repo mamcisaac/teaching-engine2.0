@@ -10,7 +10,7 @@ interface ThemeContextValue {
 
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
-export function useTheme() {
+export function useTheme(): ThemeContextValue {
   const context = useContext(ThemeContext);
   if (!context) {
     throw new Error('useTheme must be used within ThemeProvider');
@@ -22,7 +22,7 @@ interface ThemeProviderProps {
   children: React.ReactNode;
 }
 
-export function ThemeProvider({ children }: ThemeProviderProps) {
+export function ThemeProvider({ children }: ThemeProviderProps): React.ReactElement {
   const [theme, setTheme] = useState<Theme>(() => {
     const savedTheme = localStorage.getItem('theme') as Theme;
     return savedTheme ?? 'light';
@@ -41,7 +41,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
-  const toggleTheme = () => {
+  const toggleTheme = (): void => {
     setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
   };
 

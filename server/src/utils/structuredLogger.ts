@@ -168,7 +168,7 @@ export class StructuredLogger {
    */
   child(additionalContext: Partial<LogContext>): StructuredLogger {
     const childLogger = new StructuredLogger();
-    const parentContext = asyncLocalStorage.getStore() || {};
+    const parentContext = asyncLocalStorage.getStore() ?? {};
 
     // Merge contexts
     const childContext = { ...parentContext, ...additionalContext };

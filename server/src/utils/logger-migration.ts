@@ -195,7 +195,7 @@ export function extractCorrelationId(source: {
 }): string | undefined {
   // From Express request
   if (source.headers) {
-    return source.headers['x-correlation-id'] || source.headers['x-request-id'] || source.id;
+    return source.headers['x-correlation-id'] ?? source.headers['x-request-id'] ?? source.id;
   }
 
   // From context object

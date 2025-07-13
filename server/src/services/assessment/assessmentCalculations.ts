@@ -57,9 +57,9 @@ export function calculateGPA(grades: AssessmentWithRating[]): number {
     return 0;
   }
 
-  const totalWeight = grades.reduce((sum, grade) => sum + (grade.weight || 1), 0);
+  const totalWeight = grades.reduce((sum, grade) => sum + (grade.weight ?? 1), 0);
   const weightedSum = grades.reduce((sum, grade) => 
-    sum + (grade.rating * (grade.weight || 1)), 0
+    sum + (grade.rating * (grade.weight ?? 1)), 0
   );
 
   return weightedSum / totalWeight;
@@ -139,7 +139,7 @@ export function aggregateAssessmentsByStrand(
   const aggregated: Record<string, StrandAggregation> = {};
 
   for (const assessment of assessments) {
-    const strand = assessment.strand || 'General';
+    const strand = assessment.strand ?? 'General';
     
     if (!aggregated[strand]) {
       aggregated[strand] = {

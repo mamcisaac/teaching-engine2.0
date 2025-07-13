@@ -202,7 +202,7 @@ export default function PEICurriculumConnector({
   const isOutcomeSelected = (outcome: PEILearningOutcome) => selectedOutcomes.some((o) => o.code === outcome.code);
 
   const toggleOutcome = (outcome: PEILearningOutcome) => {
-    if (onOutcomeSelect) {
+    if (onOutcomeSelect !== null && onOutcomeSelect !== undefined) {
       onOutcomeSelect(outcome);
     }
   };

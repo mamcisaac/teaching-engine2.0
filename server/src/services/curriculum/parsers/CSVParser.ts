@@ -54,7 +54,8 @@ export class CSVParser extends CurriculumParser {
           skip_records_with_error: true,
         }) as CSVRow[];
       } catch (fallbackError) {
-        throw new Error(`Failed to parse CSV: ${fallbackError.message}`);
+        const errorMessage = fallbackError instanceof Error ? fallbackError.message : 'Unknown error';
+        throw new Error(`Failed to parse CSV: ${errorMessage}`);
       }
     }
 

@@ -86,7 +86,7 @@ export function validateDataAccess(
 export function sanitizeUserDataForExport(users: Record<string, unknown>[]): Record<string, unknown>[] {
   return users.map(user => ({
     userId: getUserIdentifier(user),
-    role: user.role || 'teacher',
+    role: user.role ?? 'teacher',
     // Only include non-sensitive fields
     name: user.name,
     preferredLanguage: user.preferredLanguage,

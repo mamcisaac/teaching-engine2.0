@@ -65,7 +65,7 @@ describe('Button - Real Backend Integration', () => {
   describe('Real Backend Integration Scenarios', () => {
     it('handles API call on button click with loading state', async () => {
       let isLoading = false;
-      let planData: any = null;
+      let planData: { id: string; title: string } | null = null;
 
       const handleCreatePlan = async () => {
         isLoading = true;
@@ -105,9 +105,9 @@ describe('Button - Real Backend Integration', () => {
 
     it('handles form submission with real API validation', async () => {
       let validationError: string | null = null;
-      let submissionResult: any = null;
+      let submissionResult: { success: boolean; data?: unknown } | null = null;
 
-      const handleSubmit = async (formData: any) => {
+      const handleSubmit = async (formData: Record<string, unknown>) => {
         try {
           submissionResult = await realApiHelpers.createLongRangePlan(authContext, formData);
           validationError = null;
@@ -142,7 +142,7 @@ describe('Button - Real Backend Integration', () => {
     });
 
     it('handles successful form submission with real data', async () => {
-      let submissionResult: any = null;
+      let submissionResult: { success: boolean; data?: unknown } | null = null;
       let isSubmitting = false;
 
       const validFormData = testDataFactory.longRangePlan({

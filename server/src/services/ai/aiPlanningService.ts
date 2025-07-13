@@ -211,7 +211,7 @@ export class AIPlanningService extends BaseService {
       ],
     };
 
-    return suggestions[suggestionType] || [];
+    return suggestions[suggestionType] ?? [];
   }
 }
 

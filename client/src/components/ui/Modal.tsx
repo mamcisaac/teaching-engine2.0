@@ -31,12 +31,12 @@ export const Modal: React.FC<ModalProps> = ({
 
   useEffect((): (() => void) => {
     const handleEscape = (event: KeyboardEvent): void => {
-      if (closeOnEscape && event.key === 'Escape') {
+      if (closeOnEscape === true && event.key === 'Escape') {
         onClose();
       }
     };
 
-    if (isOpen) {
+    if (isOpen === true) {
       document.addEventListener('keydown', handleEscape);
       document.body.style.overflow = 'hidden';
     }
@@ -48,7 +48,7 @@ export const Modal: React.FC<ModalProps> = ({
   }, [isOpen, onClose, closeOnEscape]);
 
   const handleOverlayClick = (event: React.MouseEvent): void => {
-    if (closeOnOverlayClick && event.target === event.currentTarget) {
+    if (closeOnOverlayClick === true && event.target === event.currentTarget) {
       onClose();
     }
   };
@@ -60,7 +60,7 @@ export const Modal: React.FC<ModalProps> = ({
     xl: 'max-w-4xl'
   };
 
-  if (!isOpen) {
+  if (isOpen === false) {
 return null;
 }
 

@@ -64,7 +64,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
           saveToServer: async (data) => {
             // Save all modified entries
             const modifiedEntries = data.entries.filter(
-              (entry) => entry.updatedAt > (data.lastSyncedAt?.toISOString() || ''),
+              (entry) => entry.updatedAt > (data.lastSyncedAt?.toISOString() ?? ''),
             );
 
             for (const entry of modifiedEntries) {

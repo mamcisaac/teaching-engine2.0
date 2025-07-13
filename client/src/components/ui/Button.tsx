@@ -47,13 +47,13 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           baseStyles,
           variants[variant],
           sizes[size],
-          fullWidth && 'w-full',
+          fullWidth === true && 'w-full',
           className,
         )}
         disabled={disabled || loading}
         {...props}
       >
-        {loading ? (
+        {loading === true ? (
           <>
             <svg
               className="animate-spin -ml-1 mr-2 h-4 w-4"
@@ -89,8 +89,8 @@ Button.displayName = 'Button';
 
 // Export a function that returns button classes for use in other components
 export const buttonVariants = (props?: { variant?: ButtonProps['variant']; size?: ButtonProps['size'] }): string => {
-  const variant = props?.variant || 'primary';
-  const size = props?.size || 'md';
+  const variant = props?.variant ?? 'primary';
+  const size = props?.size ?? 'md';
   
   const baseStyles =
     'inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';

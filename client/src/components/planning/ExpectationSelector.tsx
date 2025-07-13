@@ -110,7 +110,7 @@ return expectations;
   };
 
   const toggleExpectation = (expectationId: string) => {
-    if (multiSelect) {
+    if (multiSelect === true) {
       if (selectedIds.includes(expectationId)) {
         onChange(selectedIds.filter((id) => id !== expectationId));
       } else {
@@ -132,7 +132,7 @@ return expectations;
 
   return (
     <div className={className}>
-      {label && (
+      {label !== null && label !== undefined && label !== '' && (
         <Label className={cn("mb-2", required === true ? "after:content-['*'] after:ml-1 after:text-red-500" : "")}>
           {label}
         </Label>

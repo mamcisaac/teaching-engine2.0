@@ -23,7 +23,7 @@ return false;
   // Group by key
   groupBy: <T>(array: T[], key: keyof T | ((item: T) => string)): Record<string, T[]> => array.reduce<Record<string, T[]>>((groups, item) => {
       const groupKey = typeof key === 'function' ? key(item) : String(item[key]);
-      groups[groupKey] = groups[groupKey] || [];
+      groups[groupKey] = groups[groupKey] ?? [];
       groups[groupKey].push(item);
       return groups;
     }, {}),
@@ -136,7 +136,7 @@ export const objectUtils = {
       for (const [key, value] of Object.entries(obj)) {
         if (value && typeof value === 'object' && !Array.isArray(value)) {
           (result as any)[key] = objectUtils.deepMerge(
-            (result as any)[key] || {},
+            (result as any)[key] ?? {},
             value
           );
         } else {

@@ -91,9 +91,9 @@ export function useWorkflowState() {
 
   const getLevelProgress = (level: ETFOLevel): LevelProgress | undefined => workflowState?.progress.find((p) => p.level === level);
 
-  const isLevelComplete = (level: ETFOLevel): boolean => workflowState?.completedLevels.includes(level) || false;
+  const isLevelComplete = (level: ETFOLevel): boolean => workflowState?.completedLevels.includes(level) ?? false;
 
-  const isLevelAccessible = (level: ETFOLevel): boolean => workflowState?.accessibleLevels.includes(level) || false;
+  const isLevelAccessible = (level: ETFOLevel): boolean => workflowState?.accessibleLevels.includes(level) ?? false;
 
   const getBlockedReason = (level: ETFOLevel): string | undefined => {
     const progress = getLevelProgress(level);

@@ -131,7 +131,7 @@ export class WebFetch {
     // Extract common meta tags
     const metaTags = document.querySelectorAll('meta[name], meta[property]');
     metaTags.forEach(tag => {
-      const name = tag.getAttribute('name') || tag.getAttribute('property');
+      const name = tag.getAttribute('name') ?? tag.getAttribute('property');
       const content = tag.getAttribute('content');
       if (name && content) {
         meta[name] = content;
@@ -141,7 +141,7 @@ export class WebFetch {
     // Extract title
     const title = document.querySelector('title');
     if (title) {
-      meta.title = title.textContent || '';
+      meta.title = title.textContent ?? '';
     }
     
     return meta;

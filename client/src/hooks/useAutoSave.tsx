@@ -18,7 +18,12 @@ export function useAutoSave<T>({
   enabled = true,
   onSaveSuccess,
   onSaveError
-}: UseAutoSaveOptions<T>) {
+}: UseAutoSaveOptions<T>): {
+  lastSaved: Date | null;
+  isSaving: boolean;
+  hasUnsavedChanges: boolean;
+  saveNow: () => Promise<void>;
+} {
   const { toast } = useToast();
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
   const [isSaving, setIsSaving] = useState(false);
@@ -80,7 +85,7 @@ export function useAutoSave<T>({
       }
     }, delay);
 
-    return () => {
+    return (): void => {
       if (timeoutRef.current !== null) {
         clearTimeout(timeoutRef.current);
       }
@@ -88,7 +93,7 @@ export function useAutoSave<T>({
   }, [data, hasUnsavedChanges, enabled, delay, isSaving, saveFn, toast, onSaveSuccess, onSaveError]);
 
   // Manual save function
-  const saveNow = async () => {
+  const saveNow = async (): Promise<void> => {
     if (isSaving) {
 return;
 }
@@ -123,7 +128,7 @@ return;
   };
 
   // Cleanup on unmount
-  useEffect(() => () => {
+  useEffect(() => (): void => {
       if (timeoutRef.current !== null) {
         clearTimeout(timeoutRef.current);
       }
@@ -138,10 +143,10 @@ return;
 }
 
 // Hook for warning about unsaved changes before leaving
-export function useUnsavedChangesWarning(hasUnsavedChanges: boolean) {
+export function useUnsavedChangesWarning(hasUnsavedChanges: boolean): void {
   useEffect(() => {
 
-    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent): string | undefined => {
       if (hasUnsavedChanges) {
         e.preventDefault();
         e.returnValue = 'You have unsaved changes. Are you sure you want to leave?';
@@ -151,7 +156,7 @@ export function useUnsavedChangesWarning(hasUnsavedChanges: boolean) {
 
     window.addEventListener('beforeunload', handleBeforeUnload);
 
-    return () => {
+    return (): void => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
   }, [hasUnsavedChanges]);

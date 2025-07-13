@@ -231,14 +231,14 @@ export function useTemplateSearch(searchTerm: string, otherOptions: Omit<Templat
 
   return useTemplates({
     ...otherOptions,
-    search: debouncedSearchTerm || undefined,
+    search: debouncedSearchTerm ?? undefined,
   });
 }
 
 // Custom hook for paginated template loading
 export function useTemplatesPaginated(options: TemplateSearchOptions = {}) {
   const [currentPage, setCurrentPage] = React.useState(0);
-  const limit = options.limit || 20;
+  const limit = options.limit ?? 20;
   
   const query = useTemplates({
     ...options,
@@ -272,7 +272,7 @@ export function useTemplatesPaginated(options: TemplateSearchOptions = {}) {
     prevPage,
     goToPage,
     resetPage,
-    hasNextPage: query.data?.pagination.hasMore || false,
+    hasNextPage: query.data?.pagination.hasMore ?? false,
     hasPrevPage: currentPage > 0,
   };
 }

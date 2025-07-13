@@ -140,7 +140,7 @@ export class ErrorReportingService {
     }
 
     const errorCategory = this.categorizeError(error);
-    const sanitizedContext = this.sanitizeData(context || {});
+    const sanitizedContext = this.sanitizeData(context ?? {});
 
     Sentry.withScope((scope) => {
       // Set error category and severity
@@ -207,12 +207,12 @@ export class ErrorReportingService {
       return;
     }
 
-    const sanitizedData = this.sanitizeData(breadcrumb.data || {});
+    const sanitizedData = this.sanitizeData(breadcrumb.data ?? {});
 
     Sentry.addBreadcrumb({
       message: breadcrumb.message,
       category: breadcrumb.category,
-      level: breadcrumb.level || 'info',
+      level: breadcrumb.level ?? 'info',
       data: sanitizedData as Record<string, unknown>,
       timestamp: Date.now() / 1000,
     });
@@ -246,7 +246,7 @@ export class ErrorReportingService {
       const errorCode = error.code;
 
       category.tags = {
-        error_code: errorCode || 'UNKNOWN',
+        error_code: errorCode ?? 'UNKNOWN',
         status_code: String(statusCode),
       };
 

@@ -135,13 +135,13 @@ class ETFOLessonPlanService extends BaseService {
 
     const where: Prisma.ETFOLessonPlanWhereInput = { userId };
 
-    if (unitPlanId) {
+    if (unitPlanId !== null && unitPlanId !== undefined && unitPlanId !== '') {
 where.unitPlanId = String(unitPlanId);
 }
     if (isSubFriendly !== undefined) {
 where.isSubFriendly = isSubFriendly;
 }
-    if (assessmentType) {
+    if (assessmentType !== null && assessmentType !== undefined && assessmentType !== '') {
 where.assessmentType = assessmentType;
 }
 
@@ -153,7 +153,7 @@ where.assessmentType = assessmentType;
 
     // Filter by lessons with curriculum expectations
     if (hasExpectations !== undefined) {
-      if (hasExpectations) {
+      if (hasExpectations === true) {
         where.expectations = { some: {} };
       } else {
         where.expectations = { none: {} };
@@ -208,7 +208,7 @@ where.assessmentType = assessmentType;
       },
     });
 
-    if (!unitPlan) {
+    if (unitPlan === null || unitPlan === undefined) {
       throw new Error('Unit plan not found or access denied');
     }
 
@@ -272,7 +272,7 @@ where.assessmentType = assessmentType;
       where: { id, userId },
     });
 
-    if (!lessonPlan) {
+    if (lessonPlan === null || lessonPlan === undefined) {
       throw new Error('Lesson plan not found or access denied');
     }
 
@@ -355,7 +355,7 @@ baseUpdateData.subNotes = updateData.subNotes;
 }
 
     // Handle date conversion
-    if (data.date) {
+    if (data.date !== null && data.date !== undefined && data.date !== '') {
       baseUpdateData.date = new Date(data.date);
     }
 
@@ -391,7 +391,7 @@ baseUpdateData.subNotes = updateData.subNotes;
       where: { id, userId },
     });
 
-    if (!lessonPlan) {
+    if (lessonPlan === null || lessonPlan === undefined) {
       return false;
     }
 
@@ -412,7 +412,7 @@ baseUpdateData.subNotes = updateData.subNotes;
       where: { id: lessonPlanId, userId },
     });
 
-    if (!lessonPlan) {
+    if (lessonPlan === null || lessonPlan === undefined) {
       throw new Error('Lesson plan not found or access denied');
     }
 
@@ -442,7 +442,7 @@ baseUpdateData.subNotes = updateData.subNotes;
       },
     });
 
-    if (!resource) {
+    if (resource === null || resource === undefined) {
       return false;
     }
 
@@ -462,7 +462,7 @@ baseUpdateData.subNotes = updateData.subNotes;
       },
     });
 
-    if (!originalLesson) {
+    if (originalLesson === null || originalLesson === undefined) {
       throw new Error('Lesson plan not found or access denied');
     }
 
@@ -520,7 +520,7 @@ baseUpdateData.subNotes = updateData.subNotes;
       where: { id: lessonPlanId, userId },
     });
 
-    if (!lessonPlan) {
+    if (lessonPlan === null || lessonPlan === undefined) {
       throw new Error('Lesson plan not found or access denied');
     }
 
@@ -531,7 +531,7 @@ baseUpdateData.subNotes = updateData.subNotes;
     });
 
     // If requested, update related daybook entries
-    if (updateRelated) {
+    if (updateRelated === true) {
       await prisma.daybookEntry.updateMany({
         where: {
           lessonPlanId,
@@ -683,7 +683,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (!userId) {
+      if (userId === null || userId === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -756,7 +756,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (!userId) {
+      if (userId === null || userId === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -778,7 +778,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (!userId) {
+      if (userId === null || userId === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -786,7 +786,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
 
       const success = await this.lessonPlanService.removeResource(lessonPlanId, resourceId, userId);
 
-      if (!success) {
+      if (success === false) {
         res.status(404).json({ error: 'Resource not found' });
         return;
       }
@@ -805,7 +805,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (!userId) {
+      if (userId === null || userId === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -826,7 +826,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (!userId) {
+      if (userId === null || userId === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -853,7 +853,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (!userId) {
+      if (userId === null || userId === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }

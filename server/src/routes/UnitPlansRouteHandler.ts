@@ -308,7 +308,7 @@ where.endDate = { lte: new Date(String(endDate)) };
       },
     });
 
-    if (!unitPlan) {
+    if (unitPlan === null || unitPlan === undefined) {
       throw new Error('Unit plan not found or access denied');
     }
 
@@ -324,10 +324,10 @@ where.endDate = { lte: new Date(String(endDate)) };
     });
 
     // Handle date conversion
-    if (data.startDate) {
+    if (data.startDate !== null && data.startDate !== undefined && data.startDate !== '') {
 updateData.startDate = new Date(data.startDate);
 }
-    if (data.endDate) {
+    if (data.endDate !== null && data.endDate !== undefined && data.endDate !== '') {
 updateData.endDate = new Date(data.endDate);
 }
 
@@ -362,7 +362,7 @@ updateData.endDate = new Date(data.endDate);
       },
     });
 
-    if (!unitPlan) {
+    if (unitPlan === null || unitPlan === undefined) {
       return false;
     }
 
@@ -382,7 +382,7 @@ updateData.endDate = new Date(data.endDate);
       },
     });
 
-    if (!unitPlan) {
+    if (unitPlan === null || unitPlan === undefined) {
       throw new Error('Unit plan not found or access denied');
     }
 

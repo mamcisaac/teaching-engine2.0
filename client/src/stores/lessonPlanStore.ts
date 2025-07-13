@@ -64,7 +64,7 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
           saveToServer: async (data) => {
             // Save all modified lesson plans
             const modifiedPlans = data.lessonPlans.filter(
-              (plan) => plan.updatedAt > (data.lastSyncedAt?.toISOString() || ''),
+              (plan) => plan.updatedAt > (data.lastSyncedAt?.toISOString() ?? ''),
             );
 
             for (const plan of modifiedPlans) {

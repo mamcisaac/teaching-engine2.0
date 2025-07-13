@@ -504,7 +504,7 @@ export class CurriculumImportOrchestrator extends BaseService {
     return [
       {
         id: `import_${Date.now()}`,
-        userId: userId || 1,
+        userId: userId ?? 1,
         filename: 'curriculum.csv',
         status: 'completed',
         createdAt: new Date(),

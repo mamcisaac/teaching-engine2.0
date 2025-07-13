@@ -67,7 +67,7 @@ class AuditLogger {
         if (res.statusCode >= 400) {
           success = false;
           const errorData = data as { error?: string; message?: string };
-          errorMessage = typeof data === 'string' ? data : errorData.error || errorData.message;
+          errorMessage = typeof data === 'string' ? data : errorData.error ?? errorData.message;
         }
         return originalSend.call(res, data);
       };
@@ -77,7 +77,7 @@ class AuditLogger {
         if (res.statusCode >= 400) {
           success = false;
           const errorData = data as { error?: string; message?: string };
-          errorMessage = errorData.error || errorData.message;
+          errorMessage = errorData.error ?? errorData.message;
         }
         return originalJson.call(res, data);
       };
@@ -87,10 +87,10 @@ class AuditLogger {
         const duration = Date.now() - start;
 
         const entry: AuditLogEntry = {
-          userId: req.user?.id.toString() || 'anonymous',
+          userId: req.user?.id.toString() ?? 'anonymous',
           action,
           resource,
-          resourceId: req.params.id || req.body?.id,
+          resourceId: req.params.id ?? req.body?.id,
           metadata: {
             method: req.method,
             path: req.path,
@@ -99,7 +99,7 @@ class AuditLogger {
             duration,
             statusCode: res.statusCode,
           },
-          ip: req.ip || req.socket.remoteAddress,
+          ip: req.ip ?? req.socket.remoteAddress,
           userAgent: req.headers['user-agent'],
           timestamp: new Date(),
           success,
@@ -137,7 +137,7 @@ class AuditLogger {
       resource,
       resourceId: options?.resourceId,
       metadata: options?.metadata,
-      ip: options?.req?.ip || options?.req?.socket.remoteAddress,
+      ip: options?.req?.ip ?? options?.req?.socket.remoteAddress,
       userAgent: options?.req?.headers['user-agent'],
       timestamp: new Date(),
       success: options?.success ?? true,

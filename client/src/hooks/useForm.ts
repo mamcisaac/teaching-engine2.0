@@ -58,7 +58,7 @@ return undefined;
           'errors' in error &&
           Array.isArray((error as { errors: unknown[] }).errors)
         ) {
-          return ((error as { errors: { message: string }[] }).errors[0]?.message) || 'Invalid value';
+          return ((error as { errors: { message: string }[] }).errors[0]?.message) ?? 'Invalid value';
         }
         return 'Validation error';
       }
@@ -204,7 +204,7 @@ return true;
   const getFieldProps = useCallback(
     (name: keyof T) => ({
       name: String(name),
-      value: values[name] || '',
+      value: values[name] ?? '',
       onChange: handleChange,
       onBlur: handleBlur,
       'aria-invalid': !!errors[String(name)],

@@ -182,7 +182,7 @@ export class ErrorReportingService {
 
       // Add custom context
       if (sanitizedContext && Object.keys(sanitizedContext).length > 0) {
-        scope.setContext('custom', sanitizedContext as Record<string, unknown>);
+        scope.setContext('custom', sanitizedContext);
       }
 
       // Add React error info if available
@@ -255,8 +255,7 @@ export class ErrorReportingService {
       message: breadcrumb.message,
       category: breadcrumb.category,
       level: breadcrumb.level || 'info',
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      data: sanitizedData as Record<string, unknown>,
+        data: sanitizedData,
       timestamp: Date.now() / 1000,
     });
   }
@@ -273,7 +272,7 @@ export class ErrorReportingService {
     }
 
     const sanitizedContext = this.sanitizeData(context);
-    Sentry.setContext(key, sanitizedContext as Record<string, unknown>);
+    Sentry.setContext(key, sanitizedContext);
   }
 
   categorizeError(error: unknown): ErrorCategory {
@@ -410,8 +409,7 @@ export class ErrorReportingService {
     }
 
     if (breadcrumb.data) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      breadcrumb.data = this.sanitizeData(breadcrumb.data) as Record<string, unknown>;
+        breadcrumb.data = this.sanitizeData(breadcrumb.data);
     }
 
     return breadcrumb;

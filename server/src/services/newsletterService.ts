@@ -63,7 +63,7 @@ I hope this newsletter finds you well! Here's a summary of what we've been worki
       const lessonsBySubject: Record<string, LessonPlan[]> = {};
 
       lessonPlans.forEach((lesson) => {
-        const subject = lesson.subject || lesson.unitPlan?.title || 'General Studies';
+        const subject = lesson.subject ?? lesson.unitPlan?.title ?? 'General Studies';
         if (!lessonsBySubject[subject]) {
           lessonsBySubject[subject] = [];
         }

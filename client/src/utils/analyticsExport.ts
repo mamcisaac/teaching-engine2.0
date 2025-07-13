@@ -102,7 +102,7 @@ export async function exportDomainRadar(
   options: ExportOptions = {},
 ): Promise<void> {
   return exportAnalyticsData('domain-radar', format, data, {
-    title: `Domain Strength Analysis - ${(data as { studentName?: string }).studentName || 'Student'}`,
+    title: `Domain Strength Analysis - ${(data as { studentName?: string }).studentName ?? 'Student'}`,
     ...options,
   });
 }
@@ -130,7 +130,7 @@ export async function exportVocabularyGrowth(
   options: ExportOptions = {},
 ): Promise<void> {
   return exportAnalyticsData('vocabulary-growth', format, data, {
-    title: `Vocabulary Growth - ${(data as { studentName?: string }).studentName || 'Student'}`,
+    title: `Vocabulary Growth - ${(data as { studentName?: string }).studentName ?? 'Student'}`,
     ...options,
   });
 }

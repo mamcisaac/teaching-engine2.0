@@ -135,14 +135,14 @@ export function useAIStatus(): AIStatusHookReturn {
     return undefined;
   };
 
-  const enableAI = () => {
+  const enableAI = (): void => {
     setUserDisabledAI(false);
     sessionStorage.removeItem('ai_disabled');
     // Refetch status to get current availability
     refetch();
   };
 
-  const disableAI = () => {
+  const disableAI = (): void => {
     setUserDisabledAI(true);
     sessionStorage.setItem('ai_disabled', 'true');
   };
@@ -162,7 +162,11 @@ export function useAIStatus(): AIStatusHookReturn {
 }
 
 // Hook for checking specific AI features
-export function useAIFeature(feature: keyof AIStatusInfo['features']) {
+export function useAIFeature(feature: keyof AIStatusInfo['features']): {
+  available: boolean;
+  status: 'healthy' | 'degraded' | 'unavailable';
+  limitations: AIStatusInfo['limitations'];
+} {
   const { aiStatus, canUseAI } = useAIStatus();
   
   return {
@@ -173,7 +177,15 @@ export function useAIFeature(feature: keyof AIStatusInfo['features']) {
 }
 
 // Hook for AI quota management
-export function useAIQuota() {
+export function useAIQuota(): {
+  quotaUsed: number;
+  quotaLimit: number;
+  quotaPercentage: number;
+  requestsRemaining: number;
+  requestsPerHour: number;
+  isNearQuotaLimit: boolean;
+  isQuotaExceeded: boolean;
+} {
   const { aiStatus } = useAIStatus();
   
   const quotaPercentage = (aiStatus.limitations?.quotaLimit !== null && aiStatus.limitations?.quotaLimit !== undefined && aiStatus.limitations.quotaLimit > 0)
@@ -205,10 +217,10 @@ export function AIStatusIndicator({
   showDetails = false, 
   compact = false,
   className = '' 
-}: AIStatusIndicatorProps) {
+}: AIStatusIndicatorProps): React.ReactElement {
   const { aiStatus, canUseAI, aiDisabledReason } = useAIStatus();
 
-  const getStatusColor = () => {
+  const getStatusColor = (): string => {
     if (!canUseAI) {
 return 'text-red-500 bg-red-100';
 }
@@ -218,7 +230,7 @@ return 'text-yellow-500 bg-yellow-100';
     return 'text-green-500 bg-green-100';
   };
 
-  const getStatusText = () => {
+  const getStatusText = (): string => {
     if (!canUseAI) {
 return 'Unavailable';
 }
@@ -276,7 +288,7 @@ interface AIStatusProviderProps {
   children: ReactNode;
 }
 
-export function AIStatusProvider({ children }: AIStatusProviderProps) {
+export function AIStatusProvider({ children }: AIStatusProviderProps): React.ReactElement {
   const aiStatusData = useAIStatus();
   
   return (
@@ -286,7 +298,7 @@ export function AIStatusProvider({ children }: AIStatusProviderProps) {
   );
 }
 
-export function useAIStatusContext() {
+export function useAIStatusContext(): AIStatusHookReturn {
   const context = useContext(AIStatusContext);
   if (!context) {
     throw new Error('useAIStatusContext must be used within AIStatusProvider');

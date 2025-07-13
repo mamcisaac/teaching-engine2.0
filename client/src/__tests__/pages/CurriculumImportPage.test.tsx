@@ -56,7 +56,7 @@ global.File = class MockFile {
 
 describe('CurriculumImportPage', () => {
   const user = userEvent.setup();
-  const mockApi = apiModule.api as { post: any };
+  const mockApi = apiModule.api as { post: jest.Mock };
 
   const mockParsedSubjects = [
     {

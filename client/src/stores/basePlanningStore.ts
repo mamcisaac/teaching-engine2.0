@@ -87,7 +87,7 @@ export const createOfflineSlice = <T extends Record<string, unknown>>(
  set((state) => ({
     ...state,
     syncStatus: status,
-    syncError: error || null
+    syncError: error ?? null
   })); 
 },
 
@@ -108,7 +108,7 @@ async function syncWithServer<T extends Record<string, unknown>>(
   const state = get();
   
   // Don't sync if already syncing or offline
-  if (state.syncStatus === 'syncing' || !state.isOnline) {
+  if (state.syncStatus === 'syncing' || state.isOnline === false) {
     return;
   }
 
@@ -207,10 +207,10 @@ async function detectConflicts(
   const conflicts: ConflictData[] = [];
   
   // Simple conflict detection based on timestamps
-  const localTimestamp = localData.lastModified || localData.updatedAt;
-  const serverTimestamp = serverData.lastModified || serverData.updatedAt;
+  const localTimestamp = localData.lastModified ?? localData.updatedAt;
+  const serverTimestamp = serverData.lastModified ?? serverData.updatedAt;
   
-  if (localTimestamp && serverTimestamp) {
+  if (localTimestamp !== null && localTimestamp !== undefined && serverTimestamp !== null && serverTimestamp !== undefined) {
     const localTime = new Date(localTimestamp as string | number | Date).getTime();
     const serverTime = new Date(serverTimestamp as string | number | Date).getTime();
     
@@ -253,12 +253,14 @@ return localData;
       for (const key in localData) {
         if (Array.isArray(localData[key]) && Array.isArray(serverData[key])) {
           // Merge arrays by combining unique items
-          const combined = [...localData[key], ...serverData[key]];
+          const localArray = localData[key] as unknown[];
+          const serverArray = serverData[key] as unknown[];
+          const combined = [...localArray, ...serverArray];
           merged[key] = Array.from(new Set(combined.map(item => 
             typeof item === 'object' ? JSON.stringify(item) : item
           ))).map(item => 
             typeof item === 'string' && item.startsWith('{') ? safeJsonParse(item, {}) : item
-          );
+          ) as T[keyof T];
         } else if (localData[key] !== serverData[key]) {
           // For scalar values, prefer local
           merged[key] = localData[key];
@@ -270,7 +272,7 @@ return localData;
         localData,
         serverData,
         'planning-data',
-        (merged.id || 'unknown') as string
+        (merged.id ?? 'unknown') as string
       );
       
       return merged;
@@ -294,7 +296,7 @@ export function createAutoSave(
   let timeout: NodeJS.Timeout | null = null;
   
   return () => {
-    if (timeout) {
+    if (timeout !== null) {
 clearTimeout(timeout);
 }
     
@@ -302,7 +304,7 @@ clearTimeout(timeout);
       const performSave = async () => {
         const state = store.getState();
         
-        if (state.hasOfflineChanges && !state.isSaving) {
+        if (state.hasOfflineChanges === true && state.isSaving !== true) {
           try {
             await saveFunction();
           } catch (error) {

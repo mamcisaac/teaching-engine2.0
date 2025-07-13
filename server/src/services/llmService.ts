@@ -144,25 +144,25 @@ export class LLMService extends BaseService {
         messages: [
           {
             role: 'system',
-            content: this.getSystemPrompt(request.type || 'general'),
+            content: this.getSystemPrompt(request.type ?? 'general'),
           },
           {
             role: 'user',
             content: enhancedPrompt,
           },
         ],
-        max_tokens: request.maxTokens || 2000,
-        temperature: request.temperature || 0.7,
+        max_tokens: request.maxTokens ?? 2000,
+        temperature: request.temperature ?? 0.7,
       });
 
-      const content = response.choices[0]?.message?.content || '';
+      const content = response.choices[0]?.message?.content ?? '';
 
       if (!content) {
         throw new Error('No content generated from OpenAI');
       }
 
       this.logger.debug(
-        `Content generated successfully - length: ${content.length}, tokens: ${response.usage?.total_tokens || 'unknown'}`,
+        `Content generated successfully - length: ${content.length}, tokens: ${response.usage?.total_tokens ?? 'unknown'}`,
       );
 
       return content;
@@ -223,18 +223,18 @@ export class LLMService extends BaseService {
         messages: [
           {
             role: 'system',
-            content: this.getSystemPrompt(request.type || 'general'),
+            content: this.getSystemPrompt(request.type ?? 'general'),
           },
           {
             role: 'user',
             content: enhancedPrompt,
           },
         ],
-        max_tokens: request.maxTokens || 2000,
-        temperature: request.temperature || 0.7,
+        max_tokens: request.maxTokens ?? 2000,
+        temperature: request.temperature ?? 0.7,
       });
 
-      const content = response.choices[0]?.message?.content || '';
+      const content = response.choices[0]?.message?.content ?? '';
 
       if (!content) {
         throw new Error('No content generated from OpenAI');
@@ -243,12 +243,12 @@ export class LLMService extends BaseService {
       return {
         content,
         tokensUsed: {
-          prompt: response.usage?.prompt_tokens || 0,
-          completion: response.usage?.completion_tokens || 0,
-          total: response.usage?.total_tokens || 0,
+          prompt: response.usage?.prompt_tokens ?? 0,
+          completion: response.usage?.completion_tokens ?? 0,
+          total: response.usage?.total_tokens ?? 0,
         },
         model: response.model,
-        finishReason: response.choices[0]?.finish_reason || 'unknown',
+        finishReason: response.choices[0]?.finish_reason ?? 'unknown',
       };
     }, 'generateContentDetailed');
   }
@@ -301,7 +301,7 @@ export class LLMService extends BaseService {
       general: basePrompt,
     };
 
-    return typePrompts[type] || typePrompts.general;
+    return typePrompts[type] ?? typePrompts.general;
   }
 
   /**

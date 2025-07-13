@@ -23,7 +23,7 @@ export function useToast(): { toasts: Toast[]; toast: (options: ToastOptions) =>
     return () => { // Cleanup
     };
 
-    const listener = (toast: Toast) => {
+    const listener = (toast: Toast): void => {
       setToasts((prev) => [...prev, toast]);
 
       // Auto-dismiss after 5 seconds

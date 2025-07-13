@@ -22,7 +22,7 @@ interface NotificationContextValue {
 
 const NotificationContext = createContext<NotificationContextValue | null>(null);
 
-export function NotificationProvider({ children }: { children: ReactNode }) {
+export function NotificationProvider({ children }: { children: ReactNode }): React.ReactElement {
   const { isAuthenticated } = useAuth();
 
   // Only fetch notifications if user is authenticated and auth is initialized
@@ -30,13 +30,13 @@ export function NotificationProvider({ children }: { children: ReactNode }) {
 
   const markMutation = useMarkNotificationAsRead();
 
-  const markRead = (id: number) => {
+  const markRead = (id: number): void => {
     if (isAuthenticated) {
       markMutation.mutate(id);
     }
   };
 
-  const markAllRead = () => {
+  const markAllRead = (): void => {
     if (isAuthenticated && notifications.length > 0) {
       const unreadIds = notifications
         .filter((notification) => !notification.read)
@@ -48,7 +48,7 @@ export function NotificationProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const deleteNotification = (_id: number) => {
+  const deleteNotification = (_id: number): void => {
     // TODO: Implement delete notification mutation
   };
 

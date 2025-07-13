@@ -63,7 +63,7 @@ export function setupInterceptors(apiClient: AxiosInstance): void {
         try {
           const authService = await getAuthService();
           // Convert AxiosResponse to standard Response for compatibility
-          const response = new Response(JSON.stringify(error.response?.data || "Unknown error"), {
+          const response = new Response(JSON.stringify(error.response?.data ?? "Unknown error"), {
             status: error.response.status,
             statusText: error.response.statusText,
             headers: new Headers(error.response.headers as Record<string, string>),
@@ -91,7 +91,7 @@ export function setupInterceptors(apiClient: AxiosInstance): void {
           status: error.response.status,
           url: error.config?.url,
           method: error.config?.method,
-          data: error.response?.data || "Unknown error",
+          data: error.response?.data ?? "Unknown error",
         });
       }
 

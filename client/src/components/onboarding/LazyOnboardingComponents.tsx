@@ -20,7 +20,10 @@ export const OnboardingProgress = lazy(() =>
 );
 
 // Export motion components for use
-export const loadMotionComponents = async () => {
+export const loadMotionComponents = async (): Promise<{
+  motion: typeof import('framer-motion').motion;
+  AnimatePresence: typeof import('framer-motion').AnimatePresence;
+}> => {
   const { motion, AnimatePresence } = await import('framer-motion');
   return { motion, AnimatePresence };
 };

@@ -81,7 +81,7 @@ export abstract class BaseRouteHandler<T = any> {
    */
   protected asyncHandler = (
     fn: (req: AuthenticatedRequest, res: Response, next: NextFunction) => Promise<void>,
-  ) => (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+  ): ((req: AuthenticatedRequest, res: Response, next: NextFunction) => void) => (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
       // eslint-disable-next-line promise/no-callback-in-promise
       Promise.resolve(fn(req, res, next)).catch(next);
     };

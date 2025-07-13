@@ -274,7 +274,7 @@ return;
           type="file"
           onChange={(e) => {
             const file = e.target.files?.[0];
-            if (file) {
+            if (file !== null && file !== undefined) {
 handleFileUpload(file);
 }
           }}

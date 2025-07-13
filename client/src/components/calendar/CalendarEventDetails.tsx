@@ -120,7 +120,7 @@ export default function CalendarEventDetails({
       assessment: 'Assessment',
       'school-event': 'School Event',
     };
-    return typeLabels[event.type] || 'Event';
+    return typeLabels[event.type] ?? 'Event';
   };
 
   return (
@@ -128,7 +128,7 @@ export default function CalendarEventDetails({
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
         <div
           className="p-4 rounded-t-lg flex justify-between items-center"
-          style={{ backgroundColor: event.metadata?.color || '#6B7280' }}
+          style={{ backgroundColor: event.metadata?.color ?? '#6B7280' }}
         >
           <h3 className="text-white font-semibold flex items-center gap-2">
             <Calendar className="h-5 w-5" />
@@ -218,7 +218,7 @@ export default function CalendarEventDetails({
             {event.originalData?.description ? (
               <div className="mt-4">
                 <h4 className="font-medium text-gray-700 mb-1">Description</h4>
-                <p className="text-gray-600 text-sm">{String(event.originalData.description || '')}</p>
+                <p className="text-gray-600 text-sm">{String(event.originalData.description ?? '')}</p>
               </div>
             ) : null}
           </div>

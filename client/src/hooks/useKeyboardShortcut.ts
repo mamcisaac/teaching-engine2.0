@@ -43,7 +43,7 @@ export const useKeyboardShortcut = (
   handlerRef.current = handler;
 
   useEffect(() => {
-    const id = `${options.category || 'other'}-${options.key}-${Date.now()}`;
+    const id = `${options.category ?? 'other'}-${options.key}-${Date.now()}`;
 
     const shortcut: KeyboardShortcut = {
       id,
@@ -53,7 +53,7 @@ export const useKeyboardShortcut = (
       alt: options.alt,
       shift: options.shift,
       description: options.description,
-      category: options.category || 'other',
+      category: options.category ?? 'other',
       handler: (event) => {
         if (options.preventDefault !== false) {
           event.preventDefault();

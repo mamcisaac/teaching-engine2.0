@@ -77,12 +77,12 @@ export default function FrenchImmersionTemplateSelector({
   let allTemplates = [...lessonTemplates, ...unitTemplates];
 
   // Apply type filter if provided
-  if (filterByType) {
+  if (filterByType !== null && filterByType !== undefined) {
     allTemplates = allTemplates.filter((t) => t.type === filterByType);
   }
 
   // Apply search filter
-  if (searchTerm) {
+  if (searchTerm !== null && searchTerm !== undefined && searchTerm !== '') {
     allTemplates = allTemplates.filter(
       (t) =>
         t.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -92,7 +92,7 @@ export default function FrenchImmersionTemplateSelector({
   }
 
   // Apply time of year filter
-  if (selectedTimeOfYear) {
+  if (selectedTimeOfYear !== null && selectedTimeOfYear !== undefined) {
     allTemplates = allTemplates.filter(
       (t) =>
         (t as PlanTemplate & { fiMetadata?: FrenchImmersionTemplateMetadata }).fiMetadata
@@ -102,12 +102,12 @@ export default function FrenchImmersionTemplateSelector({
 
   // Apply persona recommendations
   const getPersonaRecommendations = (template: PlanTemplate): boolean => {
-    if (!selectedPersona) {
+    if (selectedPersona === null || selectedPersona === undefined || selectedPersona === '') {
 return true;
 }
 
     const persona = TEACHER_PERSONAS.find((p) => p.id === selectedPersona);
-    if (!persona) {
+    if (persona === null || persona === undefined) {
 return true;
 }
 
