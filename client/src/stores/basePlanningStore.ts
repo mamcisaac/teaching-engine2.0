@@ -50,53 +50,53 @@ export const createOfflineSlice = <T extends Record<string, unknown>>(
   syncError: null,
 
   // Base actions
-  setOnlineStatus: (isOnline) => {
- set((state) => ({
-    ...state,
-    isOnline,
-    ...(isOnline && state.hasOfflineChanges && (() => {
-      // Trigger sync when coming back online
-      setTimeout(() => {
-        const currentState = get();
-        if (currentState.syncStatus === 'idle') {
-          void syncWithServer(config, set, get);
-        }
-      }, 1000);
-      return {};
-    })())
-  })); 
-},
+  setOnlineStatus: (isOnline): void => {
+    set((state) => ({
+      ...state,
+      isOnline,
+      ...(isOnline && state.hasOfflineChanges && (() => {
+        // Trigger sync when coming back online
+        setTimeout(() => {
+          const currentState = get();
+          if (currentState.syncStatus === 'idle') {
+            void syncWithServer(config, set, get);
+          }
+        }, 1000);
+        return {};
+      })())
+    }));
+  },
 
-  markOfflineChange: () => {
- set((state) => ({
-    ...state,
-    hasOfflineChanges: true,
-    pendingChanges: state.pendingChanges + 1
-  })); 
-},
+  markOfflineChange: (): void => {
+    set((state) => ({
+      ...state,
+      hasOfflineChanges: true,
+      pendingChanges: state.pendingChanges + 1
+    }));
+  },
 
-  clearOfflineChanges: () => {
- set((state) => ({
-    ...state,
-    hasOfflineChanges: false,
-    pendingChanges: 0
-  })); 
-},
+  clearOfflineChanges: (): void => {
+    set((state) => ({
+      ...state,
+      hasOfflineChanges: false,
+      pendingChanges: 0
+    }));
+  },
 
-  setSyncStatus: (status, error) => {
- set((state) => ({
-    ...state,
-    syncStatus: status,
-    syncError: error ?? null
-  })); 
-},
+  setSyncStatus: (status, error): void => {
+    set((state) => ({
+      ...state,
+      syncStatus: status,
+      syncError: error ?? null
+    }));
+  },
 
-  updateLastSynced: () => {
- set((state) => ({
-    ...state,
-    lastSyncedAt: new Date()
-  })); 
-},
+  updateLastSynced: (): void => {
+    set((state) => ({
+      ...state,
+      lastSyncedAt: new Date()
+    }));
+  },
 });
 
 // Sync with server function
@@ -236,8 +236,8 @@ async function resolveConflicts(
   strategy: 'local-wins' | 'remote-wins' | 'merge'
 ): Promise<Record<string, unknown>> {
   if (conflicts.length === 0) {
-return localData;
-}
+    return localData;
+  }
   
   switch (strategy) {
     case 'local-wins':
@@ -260,7 +260,7 @@ return localData;
             typeof item === 'object' ? JSON.stringify(item) : item
           ))).map(item => 
             typeof item === 'string' && item.startsWith('{') ? safeJsonParse(item, {}) : item
-          ) as T[keyof T];
+          ) as unknown as typeof merged[keyof typeof merged];
         } else if (localData[key] !== serverData[key]) {
           // For scalar values, prefer local
           merged[key] = localData[key];
@@ -297,8 +297,8 @@ export function createAutoSave(
   
   return () => {
     if (timeout !== null) {
-clearTimeout(timeout);
-}
+      clearTimeout(timeout);
+    }
     
     timeout = setTimeout(() => {
       const performSave = async () => {

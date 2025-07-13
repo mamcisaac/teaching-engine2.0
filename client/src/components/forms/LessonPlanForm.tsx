@@ -112,17 +112,17 @@ export default function LessonPlanForm({
   }, [initialData]);
 
   // Array manipulation helpers
-  const addMaterial = () => {
+  const addMaterial = (): void => {
     setFormData({ ...formData, materials: [...formData.materials, ''] });
   };
 
-  const updateMaterial = (index: number, value: string) => {
+  const updateMaterial = (index: number, value: string): void => {
     const updated = [...formData.materials];
     updated[index] = value;
     setFormData({ ...formData, materials: updated });
   };
 
-  const removeMaterial = (index: number) => {
+  const removeMaterial = (index: number): void => {
     if (formData.materials.length > 1) {
       setFormData({
         ...formData,
@@ -131,17 +131,17 @@ export default function LessonPlanForm({
     }
   };
 
-  const addAccommodation = () => {
+  const addAccommodation = (): void => {
     setFormData({ ...formData, accommodations: [...formData.accommodations, ''] });
   };
 
-  const updateAccommodation = (index: number, value: string) => {
+  const updateAccommodation = (index: number, value: string): void => {
     const updated = [...formData.accommodations];
     updated[index] = value;
     setFormData({ ...formData, accommodations: updated });
   };
 
-  const removeAccommodation = (index: number) => {
+  const removeAccommodation = (index: number): void => {
     if (formData.accommodations.length > 1) {
       setFormData({
         ...formData,
@@ -150,17 +150,17 @@ export default function LessonPlanForm({
     }
   };
 
-  const addModification = () => {
+  const addModification = (): void => {
     setFormData({ ...formData, modifications: [...formData.modifications, ''] });
   };
 
-  const updateModification = (index: number, value: string) => {
+  const updateModification = (index: number, value: string): void => {
     const updated = [...formData.modifications];
     updated[index] = value;
     setFormData({ ...formData, modifications: updated });
   };
 
-  const removeModification = (index: number) => {
+  const removeModification = (index: number): void => {
     if (formData.modifications.length > 1) {
       setFormData({
         ...formData,
@@ -169,17 +169,17 @@ export default function LessonPlanForm({
     }
   };
 
-  const addExtension = () => {
+  const addExtension = (): void => {
     setFormData({ ...formData, extensions: [...formData.extensions, ''] });
   };
 
-  const updateExtension = (index: number, value: string) => {
+  const updateExtension = (index: number, value: string): void => {
     const updated = [...formData.extensions];
     updated[index] = value;
     setFormData({ ...formData, extensions: updated });
   };
 
-  const removeExtension = (index: number) => {
+  const removeExtension = (index: number): void => {
     if (formData.extensions.length > 1) {
       setFormData({
         ...formData,
@@ -222,7 +222,7 @@ export default function LessonPlanForm({
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
 
     if (validateForm()) {

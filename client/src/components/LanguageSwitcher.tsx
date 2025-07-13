@@ -13,7 +13,7 @@ export default function LanguageSwitcher(): React.ReactElement {
 
   const currentLanguage = languages.find((lang) => lang.code === language) ?? languages[0];
 
-  const handleLanguageChange = (langCode: string) => {
+  const handleLanguageChange = (langCode: string): void => {
     setLanguage(langCode);
     setIsOpen(false);
   };

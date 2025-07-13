@@ -97,14 +97,14 @@ export function AIUnitPlanPanel({
   // AI hooks
   const { generateUnitBigIdeas } = useAIPlanningAssistant();
 
-  const handleInputChange = (field: string, value: string | string[]) => {
+  const handleInputChange = (field: string, value: string | string[]): void => {
     setFormData(prev => ({
       ...prev,
       [field]: value,
     }));
   };
 
-  const addFocusArea = () => {
+  const addFocusArea = (): void => {
     const newArea = (document.getElementById('newFocusArea') as HTMLInputElement).value.trim();
     if (newArea && !formData.focusAreas.includes(newArea)) {
       handleInputChange('focusAreas', [...formData.focusAreas, newArea]);
@@ -112,11 +112,11 @@ export function AIUnitPlanPanel({
     }
   };
 
-  const removeFocusArea = (area: string) => {
+  const removeFocusArea = (area: string): void => {
     handleInputChange('focusAreas', formData.focusAreas.filter(a => a !== area));
   };
 
-  const generateSuggestions = useCallback(async (type: UnitPlanSuggestion['type']) => {
+  const generateSuggestions = useCallback(async (type: UnitPlanSuggestion['type']): Promise<void> => {
     if (!canUseAI) {
       toast({
         title: 'AI Unavailable',

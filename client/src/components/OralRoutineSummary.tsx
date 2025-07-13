@@ -40,7 +40,7 @@ export default function OralRoutineSummary({ className = '' }: OralRoutineSummar
     ? `${Math.round(stats.averageEngagement * 100)}% avg`
     : 'No data';
 
-  const getCompletionColor = () => {
+  const getCompletionColor = (): string => {
     if (completionRate >= 80) {
 return 'text-green-600';
 }
@@ -50,7 +50,7 @@ return 'text-yellow-600';
     return 'text-red-600';
   };
 
-  const getCompletionIcon = () => {
+  const getCompletionIcon = (): string => {
     if (completionRate >= 80) {
 return '🔥';
 }

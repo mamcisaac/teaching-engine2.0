@@ -103,8 +103,8 @@ export function verifyRefreshToken(token: string): JWTPayload {
  */
 export function extractTokenFromHeader(authHeader?: string): string | null {
   if (!authHeader) {
-return null;
-}
+    return null;
+  }
 
   const parts = authHeader.split(' ');
   if (parts.length !== 2 || parts[0] !== 'Bearer') {

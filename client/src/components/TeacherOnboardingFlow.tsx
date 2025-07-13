@@ -52,7 +52,7 @@ export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingF
   const [isCreatingSampleData, setIsCreatingSampleData] = useState(false);
 
   // Define completeOnboarding first
-  const completeOnboarding = useCallback(() => {
+  const completeOnboarding = useCallback((): void => {
     localStorage.setItem('onboarded', 'true');
     setVisible(false);
     onComplete?.();
@@ -81,7 +81,7 @@ export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingF
 return;
 }
 
-    const handleEscape = (event: KeyboardEvent) => {
+    const handleEscape = (event: KeyboardEvent): void => {
       if (event.key === 'Escape') {
         completeOnboarding();
       }
@@ -93,13 +93,13 @@ return;
     };
   }, [visible, completeOnboarding]);
 
-  const markStepCompleted = (stepId: string) => {
+  const markStepCompleted = (stepId: string): void => {
     if (!completedSteps.includes(stepId)) {
       setCompletedSteps((prev) => [...prev, stepId]);
     }
   };
 
-  const createSampleData = async () => {
+  const createSampleData = async (): Promise<void> => {
     setIsCreatingSampleData(true);
     try {
       // Create sample curriculum expectations
@@ -152,18 +152,18 @@ return;
     }
   };
 
-  const skipToStep = (stepIndex: number) => {
+  const skipToStep = (stepIndex: number): void => {
     setCurrentStep(stepIndex);
   };
 
-  const nextStep = () => {
+  const nextStep = (): void => {
     const nextStepIndex = currentStep + 1;
     if (nextStepIndex < steps.length) {
       setCurrentStep(nextStepIndex);
     }
   };
 
-  const previousStep = () => {
+  const previousStep = (): void => {
     const prevStepIndex = currentStep - 1;
     if (prevStepIndex >= 0) {
       setCurrentStep(prevStepIndex);

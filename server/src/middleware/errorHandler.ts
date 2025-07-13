@@ -75,7 +75,7 @@ export class RateLimitError extends AppError {
  */
 export function asyncHandler(
   fn: (req: Request, res: Response, next: NextFunction) => Promise<unknown>,
-) {
+): (req: Request, res: Response, next: NextFunction) => void {
   return (req: Request, res: Response, next: NextFunction) => {
     // eslint-disable-next-line promise/no-callback-in-promise
     Promise.resolve(fn(req, res, next)).catch(next);
@@ -93,7 +93,7 @@ export function notFoundHandler(req: Request, _res: Response, next: NextFunction
 /**
  * Development error response with stack trace
  */
-function sendErrorDev(err: ErrorLike, req: Request, res: Response) {
+function sendErrorDev(err: ErrorLike, req: Request, res: Response): void {
   const statusCode = err.statusCode || 500;
 
   logger.error(
@@ -125,7 +125,7 @@ function sendErrorDev(err: ErrorLike, req: Request, res: Response) {
 /**
  * Production error response without sensitive details
  */
-function sendErrorProd(err: ErrorLike, req: Request, res: Response) {
+function sendErrorProd(err: ErrorLike, req: Request, res: Response): void {
   const statusCode = err.statusCode || 500;
 
   // Operational, trusted error: send message to client

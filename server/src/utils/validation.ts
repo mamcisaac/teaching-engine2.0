@@ -160,8 +160,8 @@ export const transformToNumber = (value: unknown): number | undefined => {
 
 export const transformToBoolean = (value: unknown): boolean => {
   if (typeof value === 'boolean') {
-return value;
-}
+    return value;
+  }
   if (typeof value === 'string') {
     return value.toLowerCase() === 'true' || value === '1';
   }
@@ -170,8 +170,8 @@ return value;
 
 export const transformToArray = (value: unknown): string[] => {
   if (Array.isArray(value)) {
-return value;
-}
+    return value;
+  }
   if (typeof value === 'string') {
     return value.split(',').map(s => s.trim()).filter(s => s !== null && s !== undefined && s !== '');
   }
@@ -179,19 +179,21 @@ return value;
 };
 
 // Sanitization helpers
-export const sanitizeHtml = (html: string): string => 
+export const sanitizeHtml = (html: string): string => {
   // Basic HTML sanitization - in production, use a library like DOMPurify
-   html
+  return html
     .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
     .replace(/<iframe[^>]*>[\s\S]*?<\/iframe>/gi, '')
     .replace(/on\w+\s*=\s*["'][^"']*["']/gi, '')
-    .trim()
-;
+    .trim();
+};
 
-export const sanitizeFilename = (filename: string): string => filename
+export const sanitizeFilename = (filename: string): string => {
+  return filename
     .replace(/[^a-zA-Z0-9.-]/g, '_')
     .replace(/_{2,}/g, '_')
     .toLowerCase();
+};
 
 // Custom validators
 export const isValidGrade = (grade: number): boolean => Number.isInteger(grade) && grade >= 1 && grade <= 12;
@@ -250,7 +252,8 @@ export const buildUpdateSchema = <T extends z.ZodRawShape>(
 };
 
 // Validation middleware factory
-export const createValidationMiddleware = <T>(schema: z.ZodSchema<T>) => (req: Request, res: Response, next: NextFunction): void => {
+export const createValidationMiddleware = <T>(schema: z.ZodSchema<T>): ((req: Request, res: Response, next: NextFunction) => void) => {
+  return (req: Request, res: Response, next: NextFunction): void => {
     try {
       const data = {
         ...(req.body ?? {}),
@@ -276,3 +279,4 @@ export const createValidationMiddleware = <T>(schema: z.ZodSchema<T>) => (req: R
       }
     }
   };
+};

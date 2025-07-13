@@ -225,7 +225,7 @@ throw new Error('No session');
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const handleSend = () => {
+  const handleSend = (): void => {
     if (!inputValue.trim() || sendMessageMutation.isPending) {
 return;
 }
@@ -245,7 +245,7 @@ return;
     sendMessageMutation.mutate(userMessage);
   };
 
-  const handleQuickAction = (action: QuickAction) => {
+  const handleQuickAction = (action: QuickAction): void => {
     const message = action.label;
     setMessages((prev) => [
       ...prev,
@@ -258,7 +258,7 @@ return;
     sendMessageMutation.mutate(message);
   };
 
-  const toggleVoiceRecognition = () => {
+  const toggleVoiceRecognition = (): void => {
     if (!recognitionRef.current) {
       toast.error('Voice recognition not supported');
       return;

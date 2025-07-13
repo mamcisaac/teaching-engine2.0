@@ -162,8 +162,8 @@ class AuthService {
   isTokenExpiringSoon(): boolean {
     const expiresAt = this.getTokenExpiration();
     if (expiresAt === null || expiresAt === undefined) {
-return false;
-}
+      return false;
+    }
 
     const fiveMinutesFromNow = Date.now() + 5 * 60 * 1000;
     return expiresAt <= fiveMinutesFromNow;

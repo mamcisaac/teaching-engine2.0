@@ -67,7 +67,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
     wouldReuseLesson: entry?.wouldReuseLesson ?? true,
   });
 
-  const handleSave = () => {
+  const handleSave = (): void => {
     onSave({
       date: date.toISOString(),
       ...formData,
@@ -406,7 +406,7 @@ export default function DaybookPage(): React.ReactElement {
     documentTitle: `Daybook - Week of ${format(weekStart, 'MMM d, yyyy')}`,
   });
 
-  const handleSaveEntry = async (date: Date, data: Partial<DaybookEntry>) => {
+  const handleSaveEntry = async (date: Date, data: Partial<DaybookEntry>): Promise<void> => {
     try {
       const existingEntry = entries.find(
         (e) => format(new Date(e.date), 'yyyy-MM-dd') === format(date, 'yyyy-MM-dd'),
@@ -444,7 +444,7 @@ export default function DaybookPage(): React.ReactElement {
 
   const weekDays = Array.from({ length: 5 }, (_, i) => addDays(weekStart, i));
 
-  const generateInsights = () => {
+  const generateInsights = (): {totalLessons: number; totalReflections: number; assessmentTypes: {diagnostic: number; formative: number; summative: number}; averageRating: number} => {
     const totalLessons = lessons.length;
     const totalReflections = entries.filter((e) => e.notes).length;
     const assessmentTypes = {

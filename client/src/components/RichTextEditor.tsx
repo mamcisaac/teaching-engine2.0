@@ -24,7 +24,7 @@ export default function RichTextEditor({
     setHtml(value);
   }, [value]);
 
-  const handleInput = (e: React.FormEvent<HTMLDivElement>) => {
+  const handleInput = (e: React.FormEvent<HTMLDivElement>): void => {
     const target = e.currentTarget;
     const rawHTML = target.innerHTML;
     
@@ -43,7 +43,7 @@ export default function RichTextEditor({
     }
   };
 
-  const handlePaste = (e: React.ClipboardEvent<HTMLDivElement>) => {
+  const handlePaste = (e: React.ClipboardEvent<HTMLDivElement>): void => {
     e.preventDefault();
     
     // Get plain text from clipboard and insert it safely

@@ -13,8 +13,8 @@ export const arrayUtils = {
     return array.filter((item): boolean => {
       const value = item[key];
       if (seen.has(value)) {
-return false;
-}
+        return false;
+      }
       seen.add(value);
       return true;
     });
@@ -41,11 +41,11 @@ return false;
         const bValue = typeof key === 'function' ? key(b) : (b as any)[key];
         
         if ((aValue) < (bValue)) {
-return order === 'asc' ? -1 : 1;
-}
+          return order === 'asc' ? -1 : 1;
+        }
         if ((aValue) > (bValue)) {
-return order === 'asc' ? 1 : -1;
-}
+          return order === 'asc' ? 1 : -1;
+        }
       }
       return 0;
     }),
@@ -65,11 +65,11 @@ return order === 'asc' ? 1 : -1;
   // Intersection of arrays
   intersection: <T>(...arrays: T[][]): T[] => {
     if (arrays.length === 0) {
-return [];
-}
+      return [];
+    }
     if (arrays.length === 1) {
-return arrays[0];
-}
+      return arrays[0];
+    }
     
     return arrays.reduce((result, array) => result.filter(item => array.includes(item)));
   },
@@ -199,8 +199,8 @@ export const stringUtils = {
   // Truncate with ellipsis
   truncate: (str: string, maxLength: number, suffix = '...'): string => {
     if (str.length <= maxLength) {
-return str;
-}
+      return str;
+    }
     return str.slice(0, maxLength - suffix.length) + suffix;
   },
   
@@ -240,8 +240,8 @@ export const numberUtils = {
   // Calculate average
   average: (numbers: number[]): number => {
     if (numbers.length === 0) {
-return 0;
-}
+      return 0;
+    }
     return numbers.reduce((sum, num) => sum + num, 0) / numbers.length;
   },
   

@@ -9,7 +9,7 @@ interface Props {
 export default function TagInput({ tags, onChange, placeholder }: Props): React.ReactElement {
   const [input, setInput] = useState('');
 
-  const addTag = () => {
+  const addTag = (): void => {
     const val = input.trim();
     if (val && !tags.includes(val)) {
       onChange([...tags, val]);

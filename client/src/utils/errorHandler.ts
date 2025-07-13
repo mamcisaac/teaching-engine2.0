@@ -90,10 +90,10 @@ export function handleApiError(error: unknown, customMessage?: string): void {
   }
 }
 
-export function createErrorHandler(defaultMessage?: string) {
-  return (error: unknown) => {
- handleApiError(error, defaultMessage); 
-};
+export function createErrorHandler(defaultMessage?: string): (error: unknown) => void {
+  return (error: unknown): void => {
+    handleApiError(error, defaultMessage);
+  };
 }
 
 // Retry logic for transient failures

@@ -126,7 +126,7 @@ export function AILoadingIndicator({
   const currentStepIndex = currentStepId !== null && currentStepId !== undefined && currentStepId !== '' ? steps.findIndex((step) => step.id === currentStepId) : -1;
   const displayProgress = progress > 0 ? progress : localProgress;
 
-  const formatElapsedTime = (ms: number) => {
+  const formatElapsedTime = (ms: number): string => {
     const seconds = Math.floor(ms / 1000);
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
@@ -137,7 +137,7 @@ export function AILoadingIndicator({
     return `${seconds}s`;
   };
 
-  const getStateIcon = () => {
+  const getStateIcon = (): React.ReactElement => {
     switch (state) {
       case 'waiting':
         return <Loader2 className="h-5 w-5 text-blue-500" />;
@@ -154,7 +154,7 @@ export function AILoadingIndicator({
     }
   };
 
-  const getStateColor = () => {
+  const getStateColor = (): string => {
     switch (state) {
       case 'waiting':
       case 'processing':
@@ -169,7 +169,7 @@ export function AILoadingIndicator({
     }
   };
 
-  const getProgressColor = () => {
+  const getProgressColor = (): string => {
     switch (state) {
       case 'success':
       case 'completing':

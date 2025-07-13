@@ -345,17 +345,17 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
             }
           },
 
-          setCurrentPlan: (plan: UnitPlan | null) => {
- set((state) => {
+          setCurrentPlan: (plan: UnitPlan | null): void => {
+            set((state) => {
               state.currentPlan = plan;
-            }); 
-},
+            });
+          },
 
-          clearError: () => {
- set((state) => {
+          clearError: (): void => {
+            set((state) => {
               state.error = null;
-            }); 
-},
+            });
+          },
         };
       }),
       {
