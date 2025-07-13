@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import { Button } from './ui/Button';
 import { CurriculumImportWizard } from './planning/CurriculumImportWizard';
+import { Button } from './ui/Button';
 
 interface CurriculumImportButtonProps {
   onImportSuccess?: () => void;

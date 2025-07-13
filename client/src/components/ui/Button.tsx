@@ -47,13 +47,13 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           baseStyles,
           variants[variant],
           sizes[size],
-          fullWidth === true && 'w-full',
+          fullWidth && 'w-full',
           className,
         )}
         disabled={disabled || loading}
         {...props}
       >
-        {loading === true ? (
+        {loading ? (
           <>
             <svg
               className="animate-spin -ml-1 mr-2 h-4 w-4"

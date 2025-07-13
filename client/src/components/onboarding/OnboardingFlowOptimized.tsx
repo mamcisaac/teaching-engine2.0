@@ -50,7 +50,7 @@ export function OnboardingFlowOptimized(): React.ReactElement | null {
     }
 
     const updatePosition = () => {
-      if (currentStep?.targetElement === null || currentStep?.targetElement === undefined || currentStep?.targetElement === '') {
+      if (currentStep?.targetElement === null || currentStep?.targetElement === undefined || currentStep.targetElement === '') {
         setHighlightPosition(null);
         return;
       }
@@ -77,7 +77,7 @@ export function OnboardingFlowOptimized(): React.ReactElement | null {
       let top = rect.top + window.scrollY;
       let left = rect.left + window.scrollX;
 
-      switch (currentStep?.position) {
+      switch (currentStep.position) {
         case 'top':
           top -= tooltipHeight + 20;
           left += rect.width / 2 - tooltipWidth / 2;
@@ -133,7 +133,9 @@ return;
 }
 
     const handleClick = (e: MouseEvent) => {
-      if (currentStep?.targetElement === null || currentStep?.targetElement === undefined || currentStep?.targetElement === '') return;
+      if (currentStep?.targetElement === null || currentStep?.targetElement === undefined || currentStep.targetElement === '') {
+return;
+}
       const element = document.querySelector(currentStep.targetElement);
       if (element !== null && element !== undefined && element.contains(e.target as Node)) {
         nextStep();
@@ -146,7 +148,7 @@ return;
 };
   }, [currentStep, nextStep]);
 
-  if (isOnboardingActive !== true || currentStep === null || currentStep === undefined) {
+  if (!isOnboardingActive || currentStep === null || currentStep === undefined) {
 return null;
 }
 
@@ -192,7 +194,7 @@ return null;
           {/* Completion message */}
           {state.currentFlow?.completionMessage !== null &&
             state.currentFlow?.completionMessage !== undefined &&
-            state.currentFlow?.completionMessage !== '' &&
+            state.currentFlow.completionMessage !== '' &&
             state.currentStepIndex === state.currentFlow.steps.length - 1 ? (
               <OnboardingProgress completionMessage={state.currentFlow.completionMessage} />
             ) : null}

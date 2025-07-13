@@ -44,7 +44,7 @@ export function NewsletterEditor({
 
   // Auto-save functionality
   useEffect((): (() => void) | undefined => {
-    if (unsavedChanges === true) {
+    if (unsavedChanges) {
       const timer = setTimeout((): void => {
         onSave(localDraft);
         setUnsavedChanges(false);
@@ -222,7 +222,7 @@ export function NewsletterEditor({
         {/* Section header */}
         <div className="flex items-center justify-between p-3 bg-gray-50 border-b">
           <div className="flex-1">
-            {isEditing === true && section.isEditable === true ? (
+            {isEditing && section.isEditable ? (
               <input
                 className="w-full px-2 py-1 text-sm font-medium bg-white border border-gray-300 rounded"
                 placeholder="Section title..."
@@ -242,7 +242,7 @@ export function NewsletterEditor({
           </div>
           
           <div className="flex items-center gap-1">
-            {section.isEditable === true && (
+            {section.isEditable && (
               <>
                 <button
                   className="p-1.5 text-gray-600 hover:text-gray-800 hover:bg-gray-200 rounded"
@@ -268,7 +268,7 @@ export function NewsletterEditor({
         </div>
 
         {/* Section content */}
-        {isEditing === true && section.isEditable === true ? (
+        {isEditing && section.isEditable ? (
           <div>
             {renderToolbar(section.id)}
             <div
@@ -309,7 +309,7 @@ export function NewsletterEditor({
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-4">
           <h1 className="text-2xl font-bold text-gray-900">Newsletter Editor</h1>
-          {unsavedChanges === true && (
+          {unsavedChanges && (
             <span className="text-sm text-orange-600 font-medium">
               Unsaved changes...
             </span>
@@ -352,7 +352,7 @@ export function NewsletterEditor({
           </button>
 
           {/* Action buttons */}
-          {previewMode === false && (
+          {!previewMode && (
             <>
               {onRegenerate !== null && onRegenerate !== undefined && (
                 <button
@@ -362,7 +362,7 @@ export function NewsletterEditor({
  onRegenerate(); 
 }}
                 >
-                  <RefreshCw className={cn("w-4 h-4", isGenerating === true && "animate-spin")} />
+                  <RefreshCw className={cn("w-4 h-4", isGenerating && "animate-spin")} />
                   <span className="text-sm font-medium">Regenerate</span>
                 </button>
               )}

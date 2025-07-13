@@ -23,7 +23,7 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps): React
   }
 
   // Don't render anything until auth is initialized
-  if (isInitialized !== null && isInitialized !== undefined && isInitialized === false || isInitialized === null || isInitialized === undefined || isLoading !== null && isLoading !== undefined && isLoading === true) {
+  if (isInitialized !== null && isInitialized !== undefined && !isInitialized || isInitialized === null || isInitialized === undefined || isLoading !== null && isLoading !== undefined && isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500" />
@@ -31,7 +31,7 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps): React
     );
   }
 
-  if (isAuthenticated !== null && isAuthenticated !== undefined && isAuthenticated === false || isAuthenticated === null || isAuthenticated === undefined) {
+  if (isAuthenticated !== null && isAuthenticated !== undefined && !isAuthenticated || isAuthenticated === null || isAuthenticated === undefined) {
     // Redirect them to the /login page, but save the current location they were
     // trying to go to when they were redirected. This allows us to send them
     // along to that page after they log in, which is a nicer user experience

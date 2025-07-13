@@ -194,7 +194,7 @@ export const TUTORIAL_FLOWS: Record<string, OnboardingFlow> = {
 export const useOnboardingStore = create<OnboardingState>()(
   persist(
     immer<OnboardingState>((set, get) => {
-      const updateComputedValues = (state: Draft<OnboardingState>) => {
+      const updateComputedValues = (state: Draft<OnboardingState>): void => {
         state.isOnboardingActive = !!state.currentFlow;
         state.currentStep = state.currentFlow?.steps[state.currentStepIndex] ?? null;
         state.progress = state.currentFlow
@@ -220,7 +220,7 @@ export const useOnboardingStore = create<OnboardingState>()(
         canGoForward: false,
 
         // Actions
-        startOnboarding: (flowId = 'main-onboarding') => {
+        startOnboarding: (flowId = 'main-onboarding'): void => {
           const flow = TUTORIAL_FLOWS[flowId];
           if (flow) {
             set((state) => {
@@ -232,7 +232,7 @@ export const useOnboardingStore = create<OnboardingState>()(
           }
         },
 
-        nextStep: () => {
+        nextStep: (): void => {
           const state = get();
           if (!state.currentFlow) {
 return;
@@ -248,7 +248,7 @@ return;
           }
         },
 
-        previousStep: () => {
+        previousStep: (): void => {
           const state = get();
           if (state.currentStepIndex > 0) {
             set((draft) => {
@@ -258,7 +258,7 @@ return;
           }
         },
 
-        skipOnboarding: () => {
+        skipOnboarding: (): void => {
           set((state) => {
             state.currentFlow = null;
             state.currentStepIndex = 0;
@@ -269,7 +269,7 @@ return;
           });
         },
 
-        completeOnboarding: () => {
+        completeOnboarding: (): void => {
           const state = get();
           if (state.currentFlow) {
             set((draft) => {
@@ -285,7 +285,7 @@ return;
           }
         },
 
-        resetOnboarding: () => {
+        resetOnboarding: (): void => {
           set((state) => {
             state.isFirstTimeUser = true;
             state.currentFlow = null;
@@ -298,7 +298,7 @@ return;
           get().startOnboarding('main-onboarding');
         },
 
-        setShowOnboarding: (show: boolean) => {
+        setShowOnboarding: (show: boolean): void => {
           set((state) => {
             state.showOnboarding = show;
             updateComputedValues(state);
@@ -318,7 +318,7 @@ return;
 );
 
 // Hook to check if a specific flow has been completed
-export const useOnboardingComplete = (flowId: string) => useOnboardingStore((state) => state.completedFlows.includes(flowId));
+export const useOnboardingComplete = (flowId: string): boolean => useOnboardingStore((state) => state.completedFlows.includes(flowId));
 
 // Selector hooks for performance
 export const useOnboardingActive = (): boolean => useOnboardingStore((state) => state.isOnboardingActive);

@@ -169,35 +169,35 @@ export const useWeeklyPlannerStore = create<WeeklyPlannerState>()(
         isSaving: false,
 
         // View preference setters
-        setDefaultView: (view) => {
+        setDefaultView: (view): void => {
  set((state) => {
             state.defaultView = view;
             state.lastSyncedAt = new Date();
           }); 
 },
 
-        setTimeSlotDuration: (duration) => {
+        setTimeSlotDuration: (duration): void => {
  set((state) => {
             state.timeSlotDuration = duration;
             state.lastSyncedAt = new Date();
           }); 
 },
 
-        setShowWeekends: (show) => {
+        setShowWeekends: (show): void => {
  set((state) => {
             state.showWeekends = show;
             state.lastSyncedAt = new Date();
           }); 
 },
 
-        setStartOfWeek: (day) => {
+        setStartOfWeek: (day): void => {
  set((state) => {
             state.startOfWeek = day;
             state.lastSyncedAt = new Date();
           }); 
 },
 
-        setWorkingHours: (hours) => {
+        setWorkingHours: (hours): void => {
  set((state) => {
             state.workingHours = hours;
             state.lastSyncedAt = new Date();
@@ -205,75 +205,75 @@ export const useWeeklyPlannerStore = create<WeeklyPlannerState>()(
 },
 
         // UI preference setters
-        setSidebarExpanded: (expanded) => {
+        setSidebarExpanded: (expanded): void => {
  set((state) => {
             state.sidebarExpanded = expanded;
           }); 
 },
 
-        setShowMiniCalendar: (show) => {
+        setShowMiniCalendar: (show): void => {
  set((state) => {
             state.showMiniCalendar = show;
           }); 
 },
 
-        setShowResourcePanel: (show) => {
+        setShowResourcePanel: (show): void => {
  set((state) => {
             state.showResourcePanel = show;
           }); 
 },
 
-        setCompactMode: (compact) => {
+        setCompactMode: (compact): void => {
  set((state) => {
             state.compactMode = compact;
           }); 
 },
 
-        setTheme: (theme) => {
+        setTheme: (theme): void => {
  set((state) => {
             state.theme = theme;
           }); 
 },
 
         // Planning preference setters
-        setAutoSave: (autoSave) => {
+        setAutoSave: (autoSave): void => {
  set((state) => {
             state.autoSave = autoSave;
           }); 
 },
 
-        setAutoSaveInterval: (interval) => {
+        setAutoSaveInterval: (interval): void => {
  set((state) => {
             state.autoSaveInterval = interval;
           }); 
 },
 
-        setShowUncoveredOutcomes: (show) => {
+        setShowUncoveredOutcomes: (show): void => {
  set((state) => {
             state.showUncoveredOutcomes = show;
           }); 
 },
 
-        setDefaultLessonDuration: (duration) => {
+        setDefaultLessonDuration: (duration): void => {
  set((state) => {
             state.defaultLessonDuration = duration;
           }); 
 },
 
         // Current state setters
-        setCurrentWeekStart: (date) => {
+        setCurrentWeekStart: (date): void => {
  set((state) => {
             state.currentWeekStart = date;
           }); 
 },
 
-        setLastActiveView: (view) => {
+        setLastActiveView: (view): void => {
  set((state) => {
             state.lastActiveView = view;
           }); 
 },
 
-        setDraftChanges: (changes) => {
+        setDraftChanges: (changes): void => {
  set((state) => {
             state.draftChanges = changes;
             state.hasOfflineChanges = !!changes;
@@ -281,7 +281,7 @@ export const useWeeklyPlannerStore = create<WeeklyPlannerState>()(
 },
 
         // History management with memory optimization
-        saveToHistory: (description) => {
+        saveToHistory: (description): void => {
  set((state) => {
             // Only save minimal state to prevent memory leaks
             const stateSnapshot = {
@@ -315,7 +315,7 @@ export const useWeeklyPlannerStore = create<WeeklyPlannerState>()(
           }); 
 },
 
-        undo: () => {
+        undo: (): void => {
  set((state) => {
             if (state.undoHistory.length === 0) {
 return;
@@ -354,7 +354,7 @@ return;
           }); 
 },
 
-        redo: () => {
+        redo: (): void => {
  set((state) => {
             if (state.redoHistory.length === 0) {
 return;
@@ -388,7 +388,7 @@ return;
           }); 
 },
 
-        clearHistory: () => {
+        clearHistory: (): void => {
  set((state) => {
             state.undoHistory = [];
             state.redoHistory = [];
@@ -396,7 +396,7 @@ return;
 },
 
         // Server persistence
-        loadFromServer: async () => {
+        loadFromServer: async (): Promise<void> => {
           set((state) => {
             state.isLoading = true;
           });
@@ -422,7 +422,7 @@ return;
           }
         },
 
-        saveToServer: async () => {
+        saveToServer: async (): Promise<void> => {
           const state = get();
           if (state.isSaving === true) {
 return;
@@ -457,13 +457,13 @@ return;
           }
         },
 
-        markOfflineChanges: (hasChanges) => {
+        markOfflineChanges: (hasChanges): void => {
  set((state) => {
             state.hasOfflineChanges = hasChanges;
           }); 
 },
 
-        syncWithServer: async () => {
+        syncWithServer: async (): Promise<void> => {
           const { loadFromServer, saveToServer, hasOfflineChanges } = get();
 
           if (hasOfflineChanges === true) {
@@ -474,7 +474,7 @@ return;
         },
 
         // Reset to defaults
-        resetToDefaults: () => {
+        resetToDefaults: (): void => {
  set((state) => {
             Object.assign(state, defaultState);
             state.lastSyncedAt = new Date();
@@ -507,7 +507,7 @@ let autoSaveTimeout: NodeJS.Timeout | null = null;
 let lastAutoSaveAttempt = 0;
 const MIN_SAVE_INTERVAL = 5000; // Minimum 5 seconds between saves
 
-const debouncedAutoSave = () => {
+const debouncedAutoSave = (): void => {
   const now = Date.now();
   const timeSinceLastSave = now - lastAutoSaveAttempt;
 

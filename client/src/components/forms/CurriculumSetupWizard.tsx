@@ -112,7 +112,7 @@ export default function CurriculumSetupWizard({
       id: 'planning-preferences',
       title: 'Planning Preferences',
       description: 'Choose your preferred planning approach and structure',
-      completed: formData.planningStyle !== null && formData.planningStyle !== undefined && formData.termStructure !== null && formData.termStructure !== undefined,
+      completed: formData.planningStyle !== null && formData.planningStyle !== undefined && formData.termStructure !== undefined,
     },
     {
       id: 'curriculum-expectations',

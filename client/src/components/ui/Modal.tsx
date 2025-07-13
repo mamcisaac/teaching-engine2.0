@@ -31,12 +31,12 @@ export const Modal: React.FC<ModalProps> = ({
 
   useEffect((): (() => void) => {
     const handleEscape = (event: KeyboardEvent): void => {
-      if (closeOnEscape === true && event.key === 'Escape') {
+      if (closeOnEscape && event.key === 'Escape') {
         onClose();
       }
     };
 
-    if (isOpen === true) {
+    if (isOpen) {
       document.addEventListener('keydown', handleEscape);
       document.body.style.overflow = 'hidden';
     }
@@ -48,7 +48,7 @@ export const Modal: React.FC<ModalProps> = ({
   }, [isOpen, onClose, closeOnEscape]);
 
   const handleOverlayClick = (event: React.MouseEvent): void => {
-    if (closeOnOverlayClick === true && event.target === event.currentTarget) {
+    if (closeOnOverlayClick && event.target === event.currentTarget) {
       onClose();
     }
   };
@@ -60,7 +60,7 @@ export const Modal: React.FC<ModalProps> = ({
     xl: 'max-w-4xl'
   };
 
-  if (isOpen === false) {
+  if (!isOpen) {
 return null;
 }
 
@@ -93,7 +93,7 @@ return null;
           )}
         >
           {/* Header */}
-          {((title !== null && title !== undefined && title !== '') || showCloseButton === true) && (
+          {((title !== null && title !== undefined && title !== '') || showCloseButton) && (
             <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4">
               {title !== null && title !== undefined && title !== '' && (
                 <h3 className="text-lg font-medium leading-6 text-gray-900" id="modal-title">
@@ -162,10 +162,10 @@ export const ModalFooter: React.FC<ModalFooterProps> = ({
   loading = false,
 }): React.ReactElement => (
     <div className="flex justify-end space-x-3">
-      <Button aria-label="Click button" onClick={onCancel} disabled={loading}>
+      <Button aria-label="Click button" disabled={loading} onClick={onCancel}>
         {cancelText}
       </Button>
-      <Button aria-label="Click button" onClick={onConfirm} variant={confirmVariant} disabled={loading}>
+      <Button aria-label="Click button" disabled={loading} variant={confirmVariant} onClick={onConfirm}>
         {confirmText}
       </Button>
     </div>

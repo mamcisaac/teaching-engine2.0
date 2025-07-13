@@ -737,7 +737,7 @@ Stratégies d'évaluation:
                 <span className="text-sm">This lesson is suitable for a substitute teacher</span>
               </label>
 
-              {formData.isSubFriendly === true && (
+              {formData.isSubFriendly && (
                 <div>
                   <BilingualTextInput
                     multiline
@@ -769,7 +769,7 @@ Stratégies d'évaluation:
           </Button>
         )}
         <Button disabled={isSubmitting} type="submit">
-          {isSubmitting === true ? 'Saving...' : (initialData !== null && initialData !== undefined) ? 'Update Lesson Plan' : 'Create Lesson Plan'}
+          {isSubmitting ? 'Saving...' : (initialData !== null && initialData !== undefined) ? 'Update Lesson Plan' : 'Create Lesson Plan'}
         </Button>
       </div>
     </form>

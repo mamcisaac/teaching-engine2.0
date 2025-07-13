@@ -73,7 +73,7 @@ export function CurriculumImportWizard({
             },
           });
 
-          if (response.ok !== true) {
+          if (!response.ok) {
             throw new Error('Failed to check status');
           }
 
@@ -300,7 +300,7 @@ handleFileUpload(file);
         </label>
       </div>
 
-      {isUploading === true ? (
+      {isUploading ? (
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto" />
           <p className="mt-2 text-sm text-gray-600">Uploading document...</p>
@@ -433,10 +433,10 @@ return null;
             Back to Upload
           </Button>
           <Button
-            disabled={isConfirming === true || reviewedData.subject === '' || reviewedData.expectations.length === 0}
+            disabled={isConfirming || reviewedData.subject === '' || reviewedData.expectations.length === 0}
             onClick={handleConfirmImport}
           >
-            {isConfirming === true
+            {isConfirming
               ? 'Importing...'
               : `Import ${reviewedData.expectations.length} Expectations`}
           </Button>

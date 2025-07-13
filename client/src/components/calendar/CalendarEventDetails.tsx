@@ -46,7 +46,7 @@ export default function CalendarEventDetails({
   // Delete mutation
   const deleteMutation = useMutation({
     mutationFn: async () => {
-      if (event.type === 'lesson' && event.metadata?.lessonId !== null && event.metadata?.lessonId !== undefined && event.metadata?.lessonId !== '') {
+      if (event.type === 'lesson' && event.metadata?.lessonId !== null && event.metadata?.lessonId !== undefined && event.metadata.lessonId !== '') {
         return apiClient.delete(`/api/etfo-lesson-plans/${event.metadata.lessonId}`);
       } else if (event.originalData?.id) {
         return apiClient.delete(`/api/calendar-events/${event.originalData.id}`);
@@ -67,7 +67,7 @@ export default function CalendarEventDetails({
   // Update title mutation
   const updateTitleMutation = useMutation({
     mutationFn: async (newTitle: string) => {
-      if (event.type === 'lesson' && event.metadata?.lessonId !== null && event.metadata?.lessonId !== undefined && event.metadata?.lessonId !== '') {
+      if (event.type === 'lesson' && event.metadata?.lessonId !== null && event.metadata?.lessonId !== undefined && event.metadata.lessonId !== '') {
         return apiClient.patch(`/api/etfo-lesson-plans/${event.metadata.lessonId}`, {
           title: newTitle,
         });
@@ -104,7 +104,7 @@ export default function CalendarEventDetails({
   };
 
   const handleViewDetails = () => {
-    if (event.type === 'lesson' && event.metadata?.lessonId !== null && event.metadata?.lessonId !== undefined && event.metadata?.lessonId !== '') {
+    if (event.type === 'lesson' && event.metadata?.lessonId !== null && event.metadata?.lessonId !== undefined && event.metadata.lessonId !== '') {
       navigate(`/planner/lessons/${event.metadata.lessonId}`);
     } else if (event.type === 'unit-boundary' && event.metadata?.unitId) {
       navigate(`/planner/units/${event.metadata.unitId}`);

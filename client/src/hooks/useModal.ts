@@ -6,7 +6,13 @@ export interface UseModalOptions<T = unknown> {
   onClose?: () => void;
 }
 
-export function useModal<T = unknown>(options: UseModalOptions<T> = {}) {
+export function useModal<T = unknown>(options: UseModalOptions<T> = {}): {
+  isOpen: boolean;
+  data: T | undefined;
+  open: (modalData?: T) => void;
+  close: () => void;
+  toggle: () => void;
+} {
   const { defaultOpen = false, onOpen, onClose } = options;
 
   const [isOpen, setIsOpen] = useState(defaultOpen);

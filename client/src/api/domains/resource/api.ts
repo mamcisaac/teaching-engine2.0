@@ -92,7 +92,11 @@ export const resourceApi = {
   // Media resources
   media: {
     // Get all media resources
-    getAll: async (filters?: ResourceFilters) => {
+    getAll: async (filters?: ResourceFilters): Promise<{
+        resources: MediaResource[];
+        total: number;
+        hasMore: boolean;
+      }> => {
       const { data } = await apiClient.get<{
         resources: MediaResource[];
         total: number;
@@ -104,13 +108,13 @@ export const resourceApi = {
     },
 
     // Get single media resource
-    getById: async (id: number) => {
+    getById: async (id: number): Promise<MediaResource> => {
       const { data } = await apiClient.get<MediaResource>(`/api/resources/media/${id}`);
       return data;
     },
 
     // Upload single file
-    upload: async (file: File, metadata: MediaResourceInput) => {
+    upload: async (file: File, metadata: MediaResourceInput): Promise<MediaResource> => {
       const formData = new FormData();
       formData.append('file', file);
       formData.append('metadata', JSON.stringify(metadata));
@@ -124,7 +128,7 @@ export const resourceApi = {
     },
 
     // Upload multiple files
-    uploadMultiple: async (files: File[], metadata: MediaResourceInput[]) => {
+    uploadMultiple: async (files: File[], metadata: MediaResourceInput[]): Promise<MediaResource[]> => {
       const formData = new FormData();
       
       files.forEach(file => {
@@ -141,18 +145,18 @@ export const resourceApi = {
     },
 
     // Update resource metadata
-    update: async (id: number, updates: Partial<MediaResourceInput>) => {
+    update: async (id: number, updates: Partial<MediaResourceInput>): Promise<MediaResource> => {
       const { data } = await apiClient.put<MediaResource>(`/api/resources/media/${id}`, updates);
       return data;
     },
 
     // Delete resource
-    delete: async (id: number) => {
+    delete: async (id: number): Promise<void> => {
       await apiClient.delete(`/api/resources/media/${id}`);
     },
 
     // Bulk delete resources
-    bulkDelete: async (ids: number[]) => {
+    bulkDelete: async (ids: number[]): Promise<{ deleted: number; failed: number }> => {
       const { data } = await apiClient.post<{ deleted: number; failed: number }>(
         '/api/resources/media/bulk-delete',
         { ids }
@@ -169,7 +173,7 @@ export const resourceApi = {
     },
 
     // Get download URL
-    getDownloadUrl: async (id: number) => {
+    getDownloadUrl: async (id: number): Promise<{ url: string; expiresAt: string }> => {
       const { data } = await apiClient.get<{ url: string; expiresAt: string }>(
         `/api/resources/media/${id}/download-url`
       );
@@ -177,7 +181,7 @@ export const resourceApi = {
     },
 
     // Generate thumbnail
-    generateThumbnail: async (id: number, options?: { width?: number; height?: number }) => {
+    generateThumbnail: async (id: number, options?: { width?: number; height?: number }): Promise<{ thumbnailUrl: string }> => {
       const { data } = await apiClient.post<{ thumbnailUrl: string }>(
         `/api/resources/media/${id}/thumbnail`,
         options
@@ -186,11 +190,11 @@ export const resourceApi = {
     },
 
     // Track view/download
-    trackView: async (id: number) => {
+    trackView: async (id: number): Promise<void> => {
       await apiClient.post(`/api/resources/media/${id}/view`);
     },
 
-    trackDownload: async (id: number) => {
+    trackDownload: async (id: number): Promise<void> => {
       await apiClient.post(`/api/resources/media/${id}/download-track`);
     },
   },
@@ -198,7 +202,7 @@ export const resourceApi = {
   // Collections
   collections: {
     // Get all collections
-    getAll: async (includeResources = false) => {
+    getAll: async (includeResources = false): Promise<ResourceCollection[]> => {
       const { data } = await apiClient.get<ResourceCollection[]>('/api/resources/collections', {
         params: { includeResources },
       });
@@ -206,7 +210,7 @@ export const resourceApi = {
     },
 
     // Get single collection
-    getById: async (id: number, includeResources = true) => {
+    getById: async (id: number, includeResources = true): Promise<ResourceCollection> => {
       const { data } = await apiClient.get<ResourceCollection>(`/api/resources/collections/${id}`, {
         params: { includeResources },
       });
@@ -214,24 +218,24 @@ export const resourceApi = {
     },
 
     // Create collection
-    create: async (collection: Omit<ResourceCollection, 'id' | 'userId' | 'createdAt' | 'updatedAt'>) => {
+    create: async (collection: Omit<ResourceCollection, 'id' | 'userId' | 'createdAt' | 'updatedAt'>): Promise<ResourceCollection> => {
       const { data } = await apiClient.post<ResourceCollection>('/api/resources/collections', collection);
       return data;
     },
 
     // Update collection
-    update: async (id: number, updates: Partial<ResourceCollection>) => {
+    update: async (id: number, updates: Partial<ResourceCollection>): Promise<ResourceCollection> => {
       const { data } = await apiClient.put<ResourceCollection>(`/api/resources/collections/${id}`, updates);
       return data;
     },
 
     // Delete collection
-    delete: async (id: number) => {
+    delete: async (id: number): Promise<void> => {
       await apiClient.delete(`/api/resources/collections/${id}`);
     },
 
     // Add resources to collection
-    addResources: async (collectionId: number, resourceIds: number[]) => {
+    addResources: async (collectionId: number, resourceIds: number[]): Promise<ResourceCollection> => {
       const { data } = await apiClient.post<ResourceCollection>(
         `/api/resources/collections/${collectionId}/resources`,
         { resourceIds }
@@ -248,7 +252,7 @@ export const resourceApi = {
     },
 
     // Share collection
-    share: async (collectionId: number, userIds: number[]) => {
+    share: async (collectionId: number, userIds: number[]): Promise<ResourceCollection> => {
       const { data } = await apiClient.post<ResourceCollection>(
         `/api/resources/collections/${collectionId}/share`,
         { userIds }
@@ -258,7 +262,11 @@ export const resourceApi = {
   },
 
   // Search and discovery
-  search: async (query: string, filters?: ResourceFilters) => {
+  search: async (query: string, filters?: ResourceFilters): Promise<{
+      resources: MediaResource[];
+      collections: ResourceCollection[];
+      total: number;
+    }> => {
     const { data } = await apiClient.get<{
       resources: MediaResource[];
       collections: ResourceCollection[];
@@ -270,7 +278,7 @@ export const resourceApi = {
   },
 
   // Get popular/trending resources
-  getPopular: async (timeframe: 'day' | 'week' | 'month' = 'week', limit = 20) => {
+  getPopular: async (timeframe: 'day' | 'week' | 'month' = 'week', limit = 20): Promise<MediaResource[]> => {
     const { data } = await apiClient.get<MediaResource[]>('/api/resources/popular', {
       params: { timeframe, limit },
     });
@@ -278,7 +286,7 @@ export const resourceApi = {
   },
 
   // Get recently added resources
-  getRecent: async (limit = 20, category?: string) => {
+  getRecent: async (limit = 20, category?: string): Promise<MediaResource[]> => {
     const { data } = await apiClient.get<MediaResource[]>('/api/resources/recent', {
       params: { limit, category },
     });
@@ -286,30 +294,34 @@ export const resourceApi = {
   },
 
   // Get shared resources
-  getSharedWithMe: async () => {
+  getSharedWithMe: async (): Promise<MediaResource[]> => {
     const { data } = await apiClient.get<MediaResource[]>('/api/resources/shared-with-me');
     return data;
   },
 
   // Statistics
-  getStats: async () => {
+  getStats: async (): Promise<ResourceStats> => {
     const { data } = await apiClient.get<ResourceStats>('/api/resources/stats');
     return data;
   },
 
   // Tags and categories
-  getTags: async () => {
+  getTags: async (): Promise<{ name: string; count: number }[]> => {
     const { data } = await apiClient.get<{ name: string; count: number }[]>('/api/resources/tags');
     return data;
   },
 
-  getCategories: async () => {
+  getCategories: async (): Promise<{ name: string; count: number }[]> => {
     const { data } = await apiClient.get<{ name: string; count: number }[]>('/api/resources/categories');
     return data;
   },
 
   // Import/Export
-  import: async (source: 'google-drive' | 'dropbox' | 'onedrive', authToken: string) => {
+  import: async (source: 'google-drive' | 'dropbox' | 'onedrive', authToken: string): Promise<{
+      imported: number;
+      failed: number;
+      errors?: string[];
+    }> => {
     const { data } = await apiClient.post<{
       imported: number;
       failed: number;
@@ -340,13 +352,22 @@ export const resourceApi = {
       description?: string;
       category: string;
       tags?: string[];
-    }) => {
+    }): Promise<MediaResource> => {
       const { data } = await apiClient.post<MediaResource>('/api/resources/links', linkData);
       return data;
     },
 
     // Validate link and extract metadata
-    validate: async (url: string) => {
+    validate: async (url: string): Promise<{
+        isValid: boolean;
+        metadata?: {
+          title?: string;
+          description?: string;
+          imageUrl?: string;
+          siteName?: string;
+        };
+        error?: string;
+      }> => {
       const { data } = await apiClient.post<{
         isValid: boolean;
         metadata?: {
@@ -361,7 +382,10 @@ export const resourceApi = {
     },
 
     // Bulk import links
-    importBulk: async (urls: string[], defaultCategory: string) => {
+    importBulk: async (urls: string[], defaultCategory: string): Promise<{
+        imported: MediaResource[];
+        failed: { url: string; error: string }[];
+      }> => {
       const { data } = await apiClient.post<{
         imported: MediaResource[];
         failed: { url: string; error: string }[];
@@ -376,7 +400,12 @@ export const resourceApi = {
   // Storage management
   storage: {
     // Get storage usage
-    getUsage: async () => {
+    getUsage: async (): Promise<{
+        used: number;
+        limit: number;
+        percentage: number;
+        breakdown: Record<string, number>;
+      }> => {
       const { data } = await apiClient.get<{
         used: number;
         limit: number;
@@ -387,7 +416,10 @@ export const resourceApi = {
     },
 
     // Clean up unused files
-    cleanup: async () => {
+    cleanup: async (): Promise<{
+        cleaned: number;
+        freed: number;
+      }> => {
       const { data } = await apiClient.post<{
         cleaned: number;
         freed: number; // bytes
@@ -396,7 +428,10 @@ export const resourceApi = {
     },
 
     // Optimize storage (compress images, etc.)
-    optimize: async (resourceIds?: number[]) => {
+    optimize: async (resourceIds?: number[]): Promise<{
+        optimized: number;
+        saved: number;
+      }> => {
       const { data } = await apiClient.post<{
         optimized: number;
         saved: number; // bytes
@@ -408,7 +443,7 @@ export const resourceApi = {
   // Sharing and permissions
   sharing: {
     // Share resource with users
-    shareWithUsers: async (resourceId: number, userIds: number[], permission: 'view' | 'download' | 'edit') => {
+    shareWithUsers: async (resourceId: number, userIds: number[], permission: 'view' | 'download' | 'edit'): Promise<MediaResource> => {
       const { data } = await apiClient.post<MediaResource>(
         `/api/resources/media/${resourceId}/share`,
         { userIds, permission }
@@ -417,7 +452,10 @@ export const resourceApi = {
     },
 
     // Generate public sharing link
-    generatePublicLink: async (resourceId: number, expiresInDays?: number) => {
+    generatePublicLink: async (resourceId: number, expiresInDays?: number): Promise<{
+        link: string;
+        expiresAt?: string;
+      }> => {
       const { data } = await apiClient.post<{
         link: string;
         expiresAt?: string;
@@ -428,12 +466,21 @@ export const resourceApi = {
     },
 
     // Revoke public link
-    revokePublicLink: async (resourceId: number) => {
+    revokePublicLink: async (resourceId: number): Promise<void> => {
       await apiClient.delete(`/api/resources/media/${resourceId}/public-link`);
     },
 
     // Get sharing status
-    getSharingStatus: async (resourceId: number) => {
+    getSharingStatus: async (resourceId: number): Promise<{
+        isPublic: boolean;
+        publicLink?: string;
+        sharedWith: {
+          userId: number;
+          userName: string;
+          permission: string;
+          sharedAt: string;
+        }[];
+      }> => {
       const { data } = await apiClient.get<{
         isPublic: boolean;
         publicLink?: string;

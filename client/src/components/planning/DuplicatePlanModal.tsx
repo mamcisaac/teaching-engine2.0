@@ -253,7 +253,7 @@ export function DuplicatePlanModal({
               </Button>
               <Button
                 className="bg-indigo-600 hover:bg-indigo-700 text-white"
-                disabled={selectedType === '' || selectedPlanId === '' || newTitle === '' || duplicateMutation.isPending === true}
+                disabled={selectedType === '' || selectedPlanId === '' || newTitle === '' || duplicateMutation.isPending}
                 type="submit"
               >
                 {duplicateMutation.isPending ? 'Duplicating...' : 'Duplicate Plan'}

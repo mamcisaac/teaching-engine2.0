@@ -370,7 +370,7 @@ return [];
       )}
 
       {/* Loading overlay for data fetching */}
-      {isLoading === true && data !== null && data !== undefined && (
+      {isLoading && data !== null && data !== undefined && (
         <div
           className="absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center"
           data-testid="loading-skeleton"

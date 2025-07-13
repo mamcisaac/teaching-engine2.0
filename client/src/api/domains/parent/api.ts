@@ -13,25 +13,25 @@ export const parentApi = {
   // Parent Messages
   messages: {
     // Get all parent messages
-    getAll: async () => {
+    getAll: async (): Promise<ParentMessage[]> => {
       const { data } = await apiClient.get<ParentMessage[]>('/api/parent-messages');
       return data;
     },
 
     // Get parent message by ID
-    getById: async (id: number) => {
+    getById: async (id: number): Promise<ParentMessage> => {
       const { data } = await apiClient.get<ParentMessage>(`/api/parent-messages/${id}`);
       return data;
     },
 
     // Create parent message
-    create: async (input: ParentMessageInput) => {
+    create: async (input: ParentMessageInput): Promise<ParentMessage> => {
       const { data } = await apiClient.post<ParentMessage>('/api/parent-messages', input);
       return data;
     },
 
     // Update parent message
-    update: async (id: number, input: Partial<ParentMessageInput>) => {
+    update: async (id: number, input: Partial<ParentMessageInput>): Promise<ParentMessage> => {
       const { data } = await apiClient.put<ParentMessage>(`/api/parent-messages/${id}`, input);
       return data;
     },
@@ -45,7 +45,7 @@ export const parentApi = {
   // Parent Summaries
   summaries: {
     // Get all parent summaries for a student
-    getByStudent: async (studentId: number) => {
+    getByStudent: async (studentId: number): Promise<ParentSummary[]> => {
       const { data } = await apiClient.get<ParentSummary[]>(
         `/api/students/${studentId}/parent-summaries`
       );
@@ -53,7 +53,7 @@ export const parentApi = {
     },
 
     // Get parent summary by ID
-    getById: async (studentId: number, summaryId: number) => {
+    getById: async (studentId: number, summaryId: number): Promise<ParentSummary> => {
       const { data } = await apiClient.get<ParentSummary>(
         `/api/students/${studentId}/parent-summaries/${summaryId}`
       );
@@ -61,7 +61,7 @@ export const parentApi = {
     },
 
     // Generate parent summary
-    generate: async (request: GenerateParentSummaryRequest) => {
+    generate: async (request: GenerateParentSummaryRequest): Promise<ParentSummaryGeneration> => {
       const { data } = await apiClient.post<ParentSummaryGeneration>(
         `/api/students/${request.studentId}/parent-summaries/generate`,
         {
@@ -74,7 +74,7 @@ export const parentApi = {
     },
 
     // Save parent summary
-    save: async (request: SaveParentSummaryRequest) => {
+    save: async (request: SaveParentSummaryRequest): Promise<ParentSummary> => {
       const { data } = await apiClient.post<ParentSummary>(
         `/api/students/${request.studentId}/parent-summaries`,
         {
@@ -90,7 +90,7 @@ export const parentApi = {
     },
 
     // Update parent summary
-    update: async (studentId: number, summaryId: number, input: Partial<SaveParentSummaryRequest>) => {
+    update: async (studentId: number, summaryId: number, input: Partial<SaveParentSummaryRequest>): Promise<ParentSummary> => {
       const { data } = await apiClient.put<ParentSummary>(
         `/api/students/${studentId}/parent-summaries/${summaryId}`,
         input

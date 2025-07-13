@@ -97,7 +97,7 @@ export class AuthErrorBoundary extends Component<AuthErrorBoundaryProps, AuthErr
     this.setState({ connectionStatus: 'online' });
 
     // If we were offline and now we're online, try to recover
-    if (this.state.hasError === true && this.isNetworkError(this.state.error)) {
+    if (this.state.hasError && this.isNetworkError(this.state.error)) {
       void this.handleRetryAuth();
     }
   };
@@ -262,7 +262,7 @@ return;
   }
 
   render(): React.ReactNode {
-    if (this.state.hasError === true) {
+    if (this.state.hasError) {
       if (this.props.fallback !== null && this.props.fallback !== undefined) {
         return this.props.fallback;
       }
@@ -313,7 +313,7 @@ return;
                 {showRetryButton && (
                   <Button aria-label="Click button" onClick={this.handleManualRetry}>
                     <RefreshCw
-                      className={`h-4 w-4 mr-2 ${this.state.isRetrying === true ? 'animate-spin' : ''}`}
+                      className={`h-4 w-4 mr-2 ${this.state.isRetrying ? 'animate-spin' : ''}`}
                     />
                     {this.state.isRetrying ? 'Retrying...' : 'Try Again'}
                   </Button>
@@ -342,7 +342,7 @@ return;
                   <pre className="mt-2 text-xs text-gray-600 whitespace-pre-wrap overflow-auto">
                     {this.state.error instanceof Error ? this.state.error.message : String(this.state.error)}
                     {'\n\n'}
-                    {this.state.error?.stack}
+                    {this.state.error.stack}
                     {this.state.errorInfo !== null && this.state.errorInfo !== undefined &&
                       `\n\nComponent Stack:\n${  this.state.errorInfo.componentStack}`}
                   </pre>

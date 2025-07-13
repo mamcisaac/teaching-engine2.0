@@ -70,19 +70,19 @@ export const useHelpStore = create<HelpState>()(
       },
       
       // Actions
-      setCurrentSection: (section: string | null) => {
+      setCurrentSection: (section: string | null): void => {
         set((state) => {
           state.currentSection = section;
         });
       },
       
-      setSearchQuery: (query: string) => {
+      setSearchQuery: (query: string): void => {
         set((state) => {
           state.searchQuery = query;
         });
       },
       
-      addFilter: (filter: string) => {
+      addFilter: (filter: string): void => {
         set((state) => {
           if (!state.activeFilters.includes(filter)) {
             state.activeFilters.push(filter);
@@ -90,32 +90,32 @@ export const useHelpStore = create<HelpState>()(
         });
       },
       
-      removeFilter: (filter: string) => {
+      removeFilter: (filter: string): void => {
         set((state) => {
           state.activeFilters = state.activeFilters.filter(f => f !== filter);
         });
       },
       
-      clearFilters: () => {
+      clearFilters: (): void => {
         set((state) => {
           state.activeFilters = [];
         });
       },
       
-      startTutorial: (tutorialId: string) => {
+      startTutorial: (tutorialId: string): void => {
         set((state) => {
           state.tutorialProgress[tutorialId] = 0;
         });
       },
       
-      nextTutorialStep: (tutorialId: string) => {
+      nextTutorialStep: (tutorialId: string): void => {
         set((state) => {
           const currentStep = state.tutorialProgress[tutorialId] ?? 0;
           state.tutorialProgress[tutorialId] = currentStep + 1;
         });
       },
       
-      completeTutorial: (tutorialId: string) => {
+      completeTutorial: (tutorialId: string): void => {
         set((state) => {
           delete state.tutorialProgress[tutorialId];
           if (!state.completedTutorials.includes(tutorialId)) {
@@ -125,7 +125,7 @@ export const useHelpStore = create<HelpState>()(
         });
       },
       
-      markHelpPageViewed: (pageId: string) => {
+      markHelpPageViewed: (pageId: string): void => {
         set((state) => {
           if (!state.userProgress.helpPagesViewed.includes(pageId)) {
             state.userProgress.helpPagesViewed.push(pageId);
@@ -134,26 +134,26 @@ export const useHelpStore = create<HelpState>()(
         });
       },
       
-      toggleOnboarding: () => {
+      toggleOnboarding: (): void => {
         set((state) => {
           state.showOnboarding = !state.showOnboarding;
         });
       },
       
-      toggleContextualHints: () => {
+      toggleContextualHints: (): void => {
         set((state) => {
           state.contextualHints = !state.contextualHints;
         });
       },
       
-      updateTimeSpent: (seconds: number) => {
+      updateTimeSpent: (seconds: number): void => {
         set((state) => {
           state.userProgress.totalTimeSpent += seconds;
         });
       },
       
       // Computed values
-      getTutorialProgress: (tutorialId: string) => {
+      getTutorialProgress: (tutorialId: string): { currentStep: number; isActive: boolean; isCompleted: boolean } => {
         const state = get();
         return {
           currentStep: state.tutorialProgress[tutorialId] ?? 0,
@@ -162,7 +162,7 @@ export const useHelpStore = create<HelpState>()(
         };
       },
       
-      getAnalytics: () => {
+      getAnalytics: (): { totalPagesViewed: number; totalTutorialsCompleted: number; totalTimeSpent: number; lastVisited: Date; completionRate: number } => {
         const state = get();
         return {
           totalPagesViewed: state.userProgress.helpPagesViewed.length,
@@ -212,7 +212,7 @@ export const useActiveFilters = (): string[] => useHelpStore(state => state.acti
 export const useContextualHints = (): boolean => useHelpStore(state => state.contextualHints);
 
 // Tutorial progress hook
-export const useTutorialProgress = (tutorialId: string) => useHelpStore(state => state.getTutorialProgress(tutorialId));
+export const useTutorialProgress = (tutorialId: string): { currentStep: number; isActive: boolean; isCompleted: boolean } => useHelpStore(state => state.getTutorialProgress(tutorialId));
 
 // Analytics hook
-export const useHelpAnalytics = () => useHelpStore(state => state.getAnalytics());
+export const useHelpAnalytics = (): { totalPagesViewed: number; totalTutorialsCompleted: number; totalTimeSpent: number; lastVisited: Date; completionRate: number } => useHelpStore(state => state.getAnalytics());

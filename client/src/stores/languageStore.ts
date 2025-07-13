@@ -392,7 +392,7 @@ interface LanguageState {
 export const useLanguageStore = create<LanguageState>()(
   persist(
     immer<LanguageState>((set, get) => {
-      const updateComputedValues = (state: Draft<LanguageState>) => {
+      const updateComputedValues = (state: Draft<LanguageState>): void => {
         state.isEnglish = state.language === 'en';
         state.isFrench = state.language === 'fr';
         state.currentTranslations = translations[state.language] ?? translations.en;
@@ -406,7 +406,7 @@ export const useLanguageStore = create<LanguageState>()(
         currentTranslations: translations.en,
 
         // Actions
-        setLanguage: (lang: string) => {
+        setLanguage: (lang: string): void => {
           if (lang === 'en' || lang === 'fr') {
             set((state) => {
               state.language = lang;
@@ -455,7 +455,7 @@ return '';
 
 // Selector hooks for performance
 export const useCurrentLanguage = (): string => useLanguageStore((state) => state.language);
-export const useTranslation = () => useLanguageStore((state) => state.t);
-export const useLocalizedField = () => useLanguageStore((state) => state.getLocalizedField);
+export const useTranslation = (): ((key: string, fallback?: string, substitutions?: string[]) => string) => useLanguageStore((state) => state.t);
+export const useLocalizedField = (): ((obj: Record<string, unknown>, field: string) => string) => useLanguageStore((state) => state.getLocalizedField);
 export const useIsEnglish = (): boolean => useLanguageStore((state) => state.isEnglish);
 export const useIsFrench = (): boolean => useLanguageStore((state) => state.isFrench);

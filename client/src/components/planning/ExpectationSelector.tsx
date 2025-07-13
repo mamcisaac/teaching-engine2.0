@@ -110,7 +110,7 @@ return expectations;
   };
 
   const toggleExpectation = (expectationId: string) => {
-    if (multiSelect === true) {
+    if (multiSelect) {
       if (selectedIds.includes(expectationId)) {
         onChange(selectedIds.filter((id) => id !== expectationId));
       } else {
@@ -133,7 +133,7 @@ return expectations;
   return (
     <div className={className}>
       {label !== null && label !== undefined && label !== '' && (
-        <Label className={cn("mb-2", required === true ? "after:content-['*'] after:ml-1 after:text-red-500" : "")}>
+        <Label className={cn("mb-2", required ? "after:content-['*'] after:ml-1 after:text-red-500" : "")}>
           {label}
         </Label>
       )}
@@ -176,7 +176,7 @@ return expectations;
 
           <ScrollArea className="h-[400px]">
             <div className="p-4">
-              {isLoading === true ? (
+              {isLoading ? (
                 <div className="text-center py-8 text-muted-foreground">
                   Loading expectations...
                 </div>
@@ -200,7 +200,7 @@ return expectations;
                       {strand}
                     </button>
 
-                    {expandedStrands.has(strand) === true ? (
+                    {expandedStrands.has(strand) ? (
                       <div className="ml-6 space-y-3">
                         {Object.entries(substrands).map(([substrand, expectations]) => (
                           <div key={substrand}>
@@ -222,7 +222,7 @@ return expectations;
 }}
                                 >
                                   <div className="mt-0.5">
-                                    {multiSelect === true ? (
+                                    {multiSelect ? (
                                       <div
                                         className={cn(
                                           'h-4 w-4 rounded border',
@@ -231,7 +231,7 @@ return expectations;
                                             : 'border-input',
                                         )}
                                       >
-                                        {selectedIds.includes(exp.id) === true ? (
+                                        {selectedIds.includes(exp.id) ? (
                                           <Check className="h-3 w-3 text-primary-foreground" />
                                         ) : null}
                                       </div>
@@ -244,7 +244,7 @@ return expectations;
                                             : 'border-input',
                                         )}
                                       >
-                                        {selectedIds.includes(exp.id) === true ? (
+                                        {selectedIds.includes(exp.id) ? (
                                           <div className="h-2 w-2 rounded-full bg-primary m-0.5" />
                                         ) : null}
                                       </div>
@@ -276,7 +276,7 @@ return expectations;
             </div>
           </ScrollArea>
 
-          {multiSelect === true && selectedIds.length > 0 ? (
+          {multiSelect && selectedIds.length > 0 ? (
             <div className="p-4 border-t">
               <div className="flex items-center justify-between">
                 <span className="text-sm text-muted-foreground">{selectedIds.length} selected</span>
@@ -306,7 +306,7 @@ return expectations;
                 </div>
                 <p className="text-sm mt-1">{exp.description}</p>
               </div>
-              {multiSelect === true ? (
+              {multiSelect ? (
                 <Button
                   className="h-auto p-1"
                   size="sm"

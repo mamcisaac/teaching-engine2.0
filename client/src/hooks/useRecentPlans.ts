@@ -8,7 +8,7 @@ interface UseRecentPlansOptions {
   limit?: number;
 }
 
-export function useRecentPlans(options?: UseRecentPlansOptions) {
+export function useRecentPlans(options?: UseRecentPlansOptions): ReturnType<typeof useQuery<RecentPlan[]>> {
   const { isAuthenticated } = useAuth();
   
   return useQuery<RecentPlan[]>({
@@ -26,7 +26,7 @@ export function useRecentPlans(options?: UseRecentPlansOptions) {
   });
 }
 
-export function useTrackPlanAccess() {
+export function useTrackPlanAccess(): ReturnType<typeof useMutation> {
   const queryClient = useQueryClient();
   
   return useMutation({
@@ -44,7 +44,7 @@ export function useTrackPlanAccess() {
   });
 }
 
-export function useClearRecentPlans() {
+export function useClearRecentPlans(): ReturnType<typeof useMutation> {
   const queryClient = useQueryClient();
   
   return useMutation({
@@ -59,7 +59,7 @@ export function useClearRecentPlans() {
 }
 
 // Hook to duplicate plans
-export function useDuplicatePlan() {
+export function useDuplicatePlan(): ReturnType<typeof useMutation> {
   const queryClient = useQueryClient();
   
   return useMutation({

@@ -42,7 +42,7 @@ describe('basePlanningStore - nullish coalescing behavior', () => {
       entityType: 'unit-plan',
       fetchFromServer: vi.fn(() => Promise.resolve({ data: 'server-data' })),
       saveToServer: vi.fn(() => Promise.resolve()),
-      getCacheKey: () => 'test-key',
+      getCacheKey: (): string => 'test-key',
     };
 
     useTestStore = create<TestStore>((set, get) => ({
@@ -215,7 +215,7 @@ describe('basePlanningStore - nullish coalescing behavior', () => {
 
     it('should use default debounce time when not provided', () => {
       const mockStore = {
-        getState: () => ({ hasOfflineChanges: true, isSaving: false }),
+        getState: (): { hasOfflineChanges: boolean; isSaving: boolean } => ({ hasOfflineChanges: true, isSaving: false }),
       };
       const mockSave = vi.fn(() => Promise.resolve());
       
@@ -233,7 +233,7 @@ describe('basePlanningStore - nullish coalescing behavior', () => {
 
     it('should use provided debounce time', () => {
       const mockStore = {
-        getState: () => ({ hasOfflineChanges: true, isSaving: false }),
+        getState: (): { hasOfflineChanges: boolean; isSaving: boolean } => ({ hasOfflineChanges: true, isSaving: false }),
       };
       const mockSave = vi.fn(() => Promise.resolve());
       

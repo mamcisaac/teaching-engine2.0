@@ -6,7 +6,7 @@ import { useOnboarding } from '../contexts/OnboardingContext';
 /**
  * Hook to automatically start feature-specific tutorials when navigating to new pages
  */
-export function useFeatureTutorial() {
+export function useFeatureTutorial(): void {
   const { state, startOnboarding } = useOnboarding();
   const location = useLocation();
 
@@ -44,7 +44,7 @@ export function useFeatureTutorial() {
 /**
  * Hook to check if we should show contextual hints on a page
  */
-export function useShowContextualHints() {
+export function useShowContextualHints(): boolean {
   const { state } = useOnboarding();
 
   // Show hints if:

@@ -94,7 +94,7 @@ return null;
                             {key.replace(/([A-Z])/g, ' $1').trim()}:
                           </div>
                           <ul className="list-disc list-inside ml-4">
-                            {(strategies as string[]).map((strategy, _index) => (
+                            {(strategies).map((strategy, _index) => (
                               <li key={_index} className="text-gray-700 text-sm">{strategy}</li>
                             ))}
                           </ul>

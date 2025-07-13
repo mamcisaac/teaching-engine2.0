@@ -236,13 +236,15 @@ export function useTemplateSearch(searchTerm: string, otherOptions: Omit<Templat
 }
 
 // Custom hook for paginated template loading
-export function useTemplatesPaginated(options: TemplateSearchOptions = {}): {
-  query: UseQueryResult<TemplateSearchResult, Error>;
+export function useTemplatesPaginated(options: TemplateSearchOptions = {}): UseQueryResult<TemplateSearchResult, Error> & {
   currentPage: number;
+  totalPages: number;
   nextPage: () => void;
   prevPage: () => void;
   goToPage: (page: number) => void;
   resetPage: () => void;
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
 } {
   const [currentPage, setCurrentPage] = React.useState(0);
   const limit = options.limit ?? 20;

@@ -25,7 +25,7 @@ export const ShortcutHint: React.FC<ShortcutHintProps> = ({
   const { preferences } = useKeyboardShortcuts();
 
   // Don't show if hints are disabled (unless showAlways is true)
-  if (showAlways === false && preferences.showHints !== true) {
+  if (!showAlways && !preferences.showHints) {
     return null;
   }
 

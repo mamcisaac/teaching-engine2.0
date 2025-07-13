@@ -29,7 +29,7 @@ export const useLessonPlanShortcuts = ({
   onUndo,
   onRedo,
   enabled = true
-}: UseLessonPlanShortcutsProps) => {
+}: UseLessonPlanShortcutsProps): void => {
   // Save and continue (Ctrl/Cmd + Enter)
   useKeyboardShortcut(
     () => onSave?.(),
@@ -148,7 +148,7 @@ export const useLessonPlanShortcuts = ({
 return;
 }
 
-    const handleKeyDown = (e: KeyboardEvent) => {
+    const handleKeyDown = (e: KeyboardEvent): void => {
       // Only handle Tab in form contexts
       const target = e.target as HTMLElement;
       const isInForm = target.closest('form') || target.closest('[role="form"]');
@@ -179,7 +179,7 @@ return;
 return;
 }
 
-    const handleGlobalSave = () => {
+    const handleGlobalSave = (): void => {
  onSave(); 
 };
     window.addEventListener('global:save', handleGlobalSave);

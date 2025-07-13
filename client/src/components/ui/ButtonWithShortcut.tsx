@@ -74,7 +74,7 @@ export const ButtonWithShortcut = React.forwardRef<HTMLButtonElement, ButtonWith
       <Button ref={ref} aria-label="Click button" onClick={onClick} {...props}>
         <span className="flex items-center gap-2">
           {children}
-          {shortcut !== null && shortcut !== undefined && showShortcutHint === true && (
+          {shortcut !== null && shortcut !== undefined && showShortcutHint && (
             <ShortcutHint className="ml-1" position="inline" shortcut={shortcut} size="xs" />
           )}
         </span>

@@ -33,7 +33,7 @@ export default function TemplateCard({
   };
 
   const getGradeRange = () => {
-    if (template.gradeMin !== null && template.gradeMin !== undefined && template.gradeMax !== null && template.gradeMax !== undefined) {
+    if (template.gradeMin !== null && template.gradeMin !== undefined && template.gradeMax !== undefined) {
       return template.gradeMin === template.gradeMax
         ? `Grade ${template.gradeMin}`
         : `Grades ${template.gradeMin}-${template.gradeMax}`;
@@ -54,7 +54,7 @@ export default function TemplateCard({
             )}
           </div>
         </div>
-        {template.isSystem === true && (
+        {template.isSystem && (
           <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full">
             System
           </span>

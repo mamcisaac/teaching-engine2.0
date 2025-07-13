@@ -97,7 +97,7 @@ export const useUIStore = create<UIState>()(
       animations: true,
       
       // Actions
-      setTheme: (theme: 'light' | 'dark' | 'system') => {
+      setTheme: (theme: 'light' | 'dark' | 'system'): void => {
         set((state) => {
           state.theme = theme;
           state.effectiveTheme = calculateEffectiveTheme(theme);
@@ -109,7 +109,7 @@ export const useUIStore = create<UIState>()(
         document.documentElement.classList.add(effectiveTheme);
       },
       
-      toggleTheme: () => {
+      toggleTheme: (): void => {
         const currentTheme = get().theme;
         let newTheme: 'light' | 'dark' | 'system';
         
@@ -124,24 +124,24 @@ export const useUIStore = create<UIState>()(
         get().setTheme(newTheme);
       },
       
-      setSidebarCollapsed: (collapsed: boolean) => {
+      setSidebarCollapsed: (collapsed: boolean): void => {
         set((state) => {
           state.sidebarCollapsed = collapsed;
         });
       },
       
-      toggleSidebar: () => {
+      toggleSidebar: (): void => {
         const currentCollapsed = get().sidebarCollapsed;
         get().setSidebarCollapsed(!currentCollapsed);
       },
       
-      setSidebarWidth: (width: number) => {
+      setSidebarWidth: (width: number): void => {
         set((state) => {
           state.sidebarWidth = Math.max(200, Math.min(400, width)); // Clamp between 200-400px
         });
       },
       
-      openModal: (modalId: string) => {
+      openModal: (modalId: string): void => {
         set((state) => {
           if (state.activeModals.includes(modalId) === false) {
             state.activeModals.push(modalId);
@@ -149,21 +149,21 @@ export const useUIStore = create<UIState>()(
         });
       },
       
-      closeModal: (modalId: string) => {
+      closeModal: (modalId: string): void => {
         set((state) => {
           state.activeModals = state.activeModals.filter(id => id !== modalId);
         });
       },
       
-      closeAllModals: () => {
+      closeAllModals: (): void => {
         set((state) => {
           state.activeModals = [];
         });
       },
       
-      isModalOpen: (modalId: string) => get().activeModals.includes(modalId),
+      isModalOpen: (modalId: string): boolean => get().activeModals.includes(modalId),
       
-      showToast: (message: string, type: 'success' | 'error' | 'warning' | 'info' = 'info', duration = 5000) => {
+      showToast: (message: string, type: 'success' | 'error' | 'warning' | 'info' = 'info', duration = 5000): void => {
         const id = `toast-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
         
         set((state) => {
@@ -178,37 +178,37 @@ export const useUIStore = create<UIState>()(
         }
       },
       
-      hideToast: (id: string) => {
+      hideToast: (id: string): void => {
         set((state) => {
           state.activeToasts = state.activeToasts.filter(toast => toast.id !== id);
         });
       },
       
-      clearAllToasts: () => {
+      clearAllToasts: (): void => {
         set((state) => {
           state.activeToasts = [];
         });
       },
       
-      setGlobalLoading: (loading: boolean) => {
+      setGlobalLoading: (loading: boolean): void => {
         set((state) => {
           state.globalLoading = loading;
         });
       },
       
-      setLoadingOverlay: (message: string | null) => {
+      setLoadingOverlay: (message: string | null): void => {
         set((state) => {
           state.loadingOverlay = message;
         });
       },
       
-      setActiveNavSection: (section: string | null) => {
+      setActiveNavSection: (section: string | null): void => {
         set((state) => {
           state.activeNavSection = section;
         });
       },
       
-      setBreadcrumbs: (breadcrumbs: { label: string; href?: string }[]) => {
+      setBreadcrumbs: (breadcrumbs: { label: string; href?: string }[]): void => {
         set((state) => {
           state.breadcrumbs = breadcrumbs;
         });
@@ -219,7 +219,7 @@ export const useUIStore = create<UIState>()(
         autoSave: boolean;
         compactMode: boolean;
         animations: boolean;
-      }>) => {
+      }>): void => {
         set((state) => {
           Object.assign(state, prefs);
         });
@@ -236,7 +236,7 @@ export const useUIStore = create<UIState>()(
         compactMode: state.compactMode,
         animations: state.animations,
       }),
-      onRehydrateStorage: () => (state) => {
+      onRehydrateStorage: () => (state?: UIState | null): void => {
         if (state !== null && state !== undefined) {
           // Apply theme on rehydration
           const effectiveTheme = calculateEffectiveTheme(state.theme);
@@ -264,14 +264,14 @@ if (typeof window !== 'undefined') {
 }
 
 // Selector hooks for performance
-export const useTheme = () => useUIStore(state => ({ 
+export const useTheme = (): { theme: 'light' | 'dark' | 'system'; effectiveTheme: 'light' | 'dark'; setTheme: (theme: 'light' | 'dark' | 'system') => void; toggleTheme: () => void } => useUIStore(state => ({ 
   theme: state.theme, 
   effectiveTheme: state.effectiveTheme,
   setTheme: state.setTheme,
   toggleTheme: state.toggleTheme
 }));
 
-export const useSidebar = () => useUIStore(state => ({
+export const useSidebar = (): { collapsed: boolean; width: number; setCollapsed: (collapsed: boolean) => void; toggle: () => void; setWidth: (width: number) => void } => useUIStore(state => ({
   collapsed: state.sidebarCollapsed,
   width: state.sidebarWidth,
   setCollapsed: state.setSidebarCollapsed,
@@ -279,7 +279,7 @@ export const useSidebar = () => useUIStore(state => ({
   setWidth: state.setSidebarWidth
 }));
 
-export const useModals = () => useUIStore(state => ({
+export const useModals = (): { activeModals: string[]; openModal: (modalId: string) => void; closeModal: (modalId: string) => void; closeAllModals: () => void; isModalOpen: (modalId: string) => boolean } => useUIStore(state => ({
   activeModals: state.activeModals,
   openModal: state.openModal,
   closeModal: state.closeModal,
@@ -287,28 +287,28 @@ export const useModals = () => useUIStore(state => ({
   isModalOpen: state.isModalOpen
 }));
 
-export const useToasts = () => useUIStore(state => ({
+export const useToasts = (): { toasts: { id: string; message: string; type: 'success' | 'error' | 'warning' | 'info'; duration?: number }[]; showToast: (message: string, type?: 'success' | 'error' | 'warning' | 'info', duration?: number) => void; hideToast: (id: string) => void; clearAllToasts: () => void } => useUIStore(state => ({
   toasts: state.activeToasts,
   showToast: state.showToast,
   hideToast: state.hideToast,
   clearAllToasts: state.clearAllToasts
 }));
 
-export const useLoading = () => useUIStore(state => ({
+export const useLoading = (): { globalLoading: boolean; loadingOverlay: string | null; setGlobalLoading: (loading: boolean) => void; setLoadingOverlay: (message: string | null) => void } => useUIStore(state => ({
   globalLoading: state.globalLoading,
   loadingOverlay: state.loadingOverlay,
   setGlobalLoading: state.setGlobalLoading,
   setLoadingOverlay: state.setLoadingOverlay
 }));
 
-export const useNavigation = () => useUIStore(state => ({
+export const useNavigation = (): { activeSection: string | null; breadcrumbs: { label: string; href?: string }[]; setActiveSection: (section: string | null) => void; setBreadcrumbs: (breadcrumbs: { label: string; href?: string }[]) => void } => useUIStore(state => ({
   activeSection: state.activeNavSection,
   breadcrumbs: state.breadcrumbs,
   setActiveSection: state.setActiveNavSection,
   setBreadcrumbs: state.setBreadcrumbs
 }));
 
-export const useUIPreferences = () => useUIStore(state => ({
+export const useUIPreferences = (): { showTips: boolean; autoSave: boolean; compactMode: boolean; animations: boolean; updatePreferences: (prefs: Partial<{ showTips: boolean; autoSave: boolean; compactMode: boolean; animations: boolean }>) => void } => useUIStore(state => ({
   showTips: state.showTips,
   autoSave: state.autoSave,
   compactMode: state.compactMode,

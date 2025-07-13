@@ -21,7 +21,7 @@ export type { KeyboardShortcut } from './keyboardShortcutsStore';
 export type { LessonPlan } from './lessonPlanStore';
 
 // Store initialization utilities
-export const initializeStores = () => {
+export const initializeStores = (): void => {
   // Auto-start keyboard shortcuts if enabled
   if (typeof window !== 'undefined') {
     import('./keyboardShortcutsStore').then(({ useKeyboardShortcutsStore }) => {

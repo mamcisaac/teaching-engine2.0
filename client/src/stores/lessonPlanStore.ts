@@ -93,7 +93,7 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
           ...offlineSlice(set, get, {} as never),
 
           // Actions
-          loadLessonPlans: async (startDate?: string, endDate?: string) => {
+          loadLessonPlans: async (startDate?: string, endDate?: string): Promise<void> => {
             set((state) => {
               state.isLoading = true;
               state.error = null;
@@ -160,7 +160,7 @@ url += `?${params.toString()}`;
             }
           },
 
-          loadLessonPlan: async (id: string) => {
+          loadLessonPlan: async (id: string): Promise<void> => {
             set((state) => {
               state.isLoading = true;
               state.error = null;
@@ -211,7 +211,7 @@ url += `?${params.toString()}`;
             }
           },
 
-          createLessonPlan: async (planData: Partial<LessonPlan>) => {
+          createLessonPlan: async (planData: Partial<LessonPlan>): Promise<LessonPlan> => {
             set((state) => {
               state.isSaving = true;
               state.error = null;
@@ -265,7 +265,7 @@ url += `?${params.toString()}`;
             }
           },
 
-          updateLessonPlan: async (id: string, updates: Partial<LessonPlan>) => {
+          updateLessonPlan: async (id: string, updates: Partial<LessonPlan>): Promise<void> => {
             set((state) => {
               state.isSaving = true;
               state.error = null;
@@ -322,7 +322,7 @@ url += `?${params.toString()}`;
             }
           },
 
-          deleteLessonPlan: async (id: string) => {
+          deleteLessonPlan: async (id: string): Promise<void> => {
             set((state) => {
               state.isSaving = true;
               state.error = null;
@@ -368,7 +368,7 @@ url += `?${params.toString()}`;
             }
           },
 
-          duplicateLessonPlan: async (id: string, newDate: string) => {
+          duplicateLessonPlan: async (id: string, newDate: string): Promise<LessonPlan> => {
             const originalLesson = get().lessonPlans.find((p) => p.id === id);
             if (originalLesson === null || originalLesson === undefined) {
               throw new Error('Lesson not found');
@@ -384,13 +384,13 @@ url += `?${params.toString()}`;
             return get().createLessonPlan(duplicatedData);
           },
 
-          setCurrentLesson: (lesson: LessonPlan | null) => {
+          setCurrentLesson: (lesson: LessonPlan | null): void => {
  set((state) => {
               state.currentLesson = lesson;
             }); 
 },
 
-          clearError: () => {
+          clearError: (): void => {
  set((state) => {
               state.error = null;
             }); 

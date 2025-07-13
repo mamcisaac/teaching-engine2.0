@@ -56,7 +56,7 @@ export function useAutoSave<T>({
 
     // Set new timeout
     timeoutRef.current = setTimeout(() => {
-      void (async () => {
+      void (async (): Promise<void> => {
         try {
           setIsSaving(true);
           await saveFn(data);

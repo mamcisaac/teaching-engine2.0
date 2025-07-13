@@ -53,7 +53,7 @@ export default function TemplateFilters({
           <Filter className="h-4 w-4" />
           Filter Templates
         </h3>
-        {hasActiveFilters !== null && hasActiveFilters !== undefined && hasActiveFilters === true && (
+        {hasActiveFilters !== null && hasActiveFilters !== undefined && hasActiveFilters && (
           <Button
             className="text-gray-500 hover:text-gray-700"
             size="sm"
@@ -247,7 +247,7 @@ export default function TemplateFilters({
       <div className="flex flex-wrap gap-2">
         <label className="flex items-center space-x-2 text-sm">
           <input
-            checked={filters.isSystem !== null && filters.isSystem !== undefined && filters.isSystem === true}
+            checked={filters.isSystem !== null && filters.isSystem !== undefined && filters.isSystem}
             className="rounded border-gray-300"
             type="checkbox"
             onChange={(e): void => {
@@ -258,7 +258,7 @@ export default function TemplateFilters({
         </label>
         <label className="flex items-center space-x-2 text-sm">
           <input
-            checked={filters.isPublic !== null && filters.isPublic !== undefined && filters.isPublic === true}
+            checked={filters.isPublic !== null && filters.isPublic !== undefined && filters.isPublic}
             className="rounded border-gray-300"
             type="checkbox"
             onChange={(e): void => {

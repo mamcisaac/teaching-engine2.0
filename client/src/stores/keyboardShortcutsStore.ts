@@ -87,7 +87,7 @@ export const useKeyboardShortcutsStore = create<KeyboardShortcutsState>()(
       isListening: false,
 
       // Actions
-      registerShortcut: (shortcut: KeyboardShortcut) => {
+      registerShortcut: (shortcut: KeyboardShortcut): void => {
         set((state) => {
           const existingIndex = state.shortcuts.findIndex((s) => s.id === shortcut.id);
           if (existingIndex >= 0) {
@@ -100,13 +100,13 @@ export const useKeyboardShortcutsStore = create<KeyboardShortcutsState>()(
         });
       },
 
-      unregisterShortcut: (id: string) => {
+      unregisterShortcut: (id: string): void => {
         set((state) => {
           state.shortcuts = state.shortcuts.filter((s) => s.id !== id);
         });
       },
 
-      enableShortcut: (id: string) => {
+      enableShortcut: (id: string): void => {
         set((state) => {
           const shortcut = state.shortcuts.find((s) => s.id === id);
           if (shortcut) {
@@ -115,7 +115,7 @@ export const useKeyboardShortcutsStore = create<KeyboardShortcutsState>()(
         });
       },
 
-      disableShortcut: (id: string) => {
+      disableShortcut: (id: string): void => {
         set((state) => {
           const shortcut = state.shortcuts.find((s) => s.id === id);
           if (shortcut) {
@@ -124,14 +124,14 @@ export const useKeyboardShortcutsStore = create<KeyboardShortcutsState>()(
         });
       },
 
-      setIsEnabled: (enabled: boolean) => {
+      setIsEnabled: (enabled: boolean): void => {
         set((state) => {
           state.isEnabled = enabled;
           state.preferences.enabled = enabled;
         });
       },
 
-      updatePreferences: (prefs: Partial<KeyboardShortcutPreferences>) => {
+      updatePreferences: (prefs: Partial<KeyboardShortcutPreferences>): void => {
         set((state) => {
           state.preferences = { ...state.preferences, ...prefs };
           if (prefs.enabled !== undefined) {
@@ -140,7 +140,7 @@ export const useKeyboardShortcutsStore = create<KeyboardShortcutsState>()(
         });
       },
 
-      startListening: () => {
+      startListening: (): void => {
         const state = get();
         if (state.isListening) {
 return;
@@ -150,7 +150,7 @@ return;
           draft.isListening = true;
         });
 
-        const handleKeyDown = (event: KeyboardEvent) => {
+        const handleKeyDown = (event: KeyboardEvent): void => {
           const currentState = get();
           if (!currentState.isEnabled || !currentState.preferences.enabled) {
 return;
@@ -229,12 +229,12 @@ continue;
         interface WindowWithCleanup extends Window {
           __keyboardShortcutCleanup?: () => void;
         }
-        (window as unknown as WindowWithCleanup).__keyboardShortcutCleanup = () => {
+        (window as unknown as WindowWithCleanup).__keyboardShortcutCleanup = (): void => {
           window.removeEventListener('keydown', handleKeyDown);
         };
       },
 
-      stopListening: () => {
+      stopListening: (): void => {
         set((state) => {
           state.isListening = false;
         });
@@ -250,12 +250,12 @@ continue;
       },
 
       // Computed values
-      getShortcutsByCategory: (category: string) => {
+      getShortcutsByCategory: (category: string): KeyboardShortcut[] => {
         const state = get();
         return state.shortcuts.filter((s) => s.category === category);
       },
 
-      getFormattedShortcut: (shortcut: KeyboardShortcut) => formatShortcut(shortcut),
+      getFormattedShortcut: (shortcut: KeyboardShortcut): string => formatShortcut(shortcut),
     })),
     {
       name: 'keyboard-shortcuts-storage',
@@ -263,7 +263,7 @@ continue;
         preferences: state.preferences,
         isEnabled: state.isEnabled,
       }),
-      onRehydrateStorage: () => (state) => {
+      onRehydrateStorage: () => (state?: KeyboardShortcutsState | null): void => {
         if (state) {
           try {
             // Auto-start listening when rehydrated if enabled
@@ -289,7 +289,7 @@ if (typeof window !== 'undefined') {
 
 // Selector hooks for performance
 export const useKeyboardShortcuts = (): KeyboardShortcutsState => useKeyboardShortcutsStore();
-export const useShortcutsByCategory = (category: string) =>
+export const useShortcutsByCategory = (category: string): KeyboardShortcut[] =>
   useKeyboardShortcutsStore((state) => state.getShortcutsByCategory(category));
 export const useShortcutsEnabled = (): boolean => useKeyboardShortcutsStore((state) => state.isEnabled);
 export const useKeyboardPreferences = (): KeyboardShortcutPreferences => useKeyboardShortcutsStore((state) => state.preferences);

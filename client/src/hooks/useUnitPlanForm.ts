@@ -79,7 +79,25 @@ export function useUnitPlanForm({
   onSave,
   editingId,
   longRangePlanId,
-}: UseUnitPlanFormProps = {}) {
+}: UseUnitPlanFormProps = {}): {
+  formData: UnitPlanFormData;
+  setFormData: React.Dispatch<React.SetStateAction<UnitPlanFormData>>;
+  updateField: <K extends keyof UnitPlanFormData>(field: K, value: UnitPlanFormData[K]) => void;
+  addArrayItem: (field: keyof UnitPlanFormData, value?: string) => void;
+  updateArrayItem: (field: keyof UnitPlanFormData, index: number, value: string) => void;
+  removeArrayItem: (field: keyof UnitPlanFormData, index: number) => void;
+  updateDifferentiationStrategy: (type: keyof UnitPlanFormData['differentiationStrategies'], index: number, value: string) => void;
+  addDifferentiationStrategy: (type: keyof UnitPlanFormData['differentiationStrategies']) => void;
+  removeDifferentiationStrategy: (type: keyof UnitPlanFormData['differentiationStrategies'], index: number) => void;
+  validateForm: () => { isValid: boolean; errors: string[] };
+  getCleanFormData: () => UnitPlanFormData;
+  resetForm: () => void;
+  loadUnitPlan: (unit: any) => void;
+  lastSaved: Date | null;
+  isSaving: boolean;
+  hasUnsavedChanges: boolean;
+  saveNow: () => Promise<void>;
+} {
   const [formData, setFormData] = useState<UnitPlanFormData>(() => ({
     ...initialFormData,
     ...initialData,

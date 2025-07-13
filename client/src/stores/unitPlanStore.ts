@@ -92,7 +92,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
           ...offlineSlice(set, get, {} as never),
 
           // Actions
-          loadUnitPlans: async () => {
+          loadUnitPlans: async (): Promise<void> => {
             set((state) => {
               state.isLoading = true;
               state.error = null;
@@ -139,7 +139,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
             }
           },
 
-          loadUnitPlan: async (id: string) => {
+          loadUnitPlan: async (id: string): Promise<void> => {
             set((state) => {
               state.isLoading = true;
               state.error = null;
@@ -188,7 +188,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
             }
           },
 
-          createUnitPlan: async (planData: Partial<UnitPlan>) => {
+          createUnitPlan: async (planData: Partial<UnitPlan>): Promise<UnitPlan> => {
             set((state) => {
               state.isSaving = true;
               state.error = null;
@@ -242,7 +242,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
             }
           },
 
-          updateUnitPlan: async (id: string, updates: Partial<UnitPlan>) => {
+          updateUnitPlan: async (id: string, updates: Partial<UnitPlan>): Promise<void> => {
             set((state) => {
               state.isSaving = true;
               state.error = null;
@@ -299,7 +299,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
             }
           },
 
-          deleteUnitPlan: async (id: string) => {
+          deleteUnitPlan: async (id: string): Promise<void> => {
             set((state) => {
               state.isSaving = true;
               state.error = null;

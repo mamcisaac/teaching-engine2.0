@@ -13,7 +13,18 @@ import { useUnitPlanStore } from '../stores/unitPlanStore';
 import { useWeeklyPlannerStore } from '../stores/weeklyPlannerStore';
 import logger from '../utils/logger';
 // Combined offline planning hook
-export function useOfflinePlanning() {
+export function useOfflinePlanning(): {
+  unitPlanStore: ReturnType<typeof useUnitPlanStore>;
+  lessonPlanStore: ReturnType<typeof useLessonPlanStore>;
+  daybookStore: ReturnType<typeof useDaybookStore>;
+  weeklyPlannerStore: ReturnType<typeof useWeeklyPlannerStore>;
+  conflicts: { id: string; [key: string]: unknown }[];
+  resolveConflict: (conflictId: string, resolution: 'local' | 'remote' | 'merge', mergedData?: unknown) => Promise<void>;
+  preloadCurriculum: (documentIds: string[]) => Promise<void>;
+  isOnline: boolean;
+  syncStatus: 'error' | 'syncing' | 'idle';
+  totalPendingChanges: number;
+} {
   const unitPlanStore = useUnitPlanStore();
   const lessonPlanStore = useLessonPlanStore();
   const daybookStore = useDaybookStore();
@@ -26,7 +37,7 @@ export function useOfflinePlanning() {
     return () => { // Cleanup
     };
 
-    const checkConflicts = async () => {
+    const checkConflicts = async (): Promise<void> => {
       const unresolvedConflicts = await offlineStorage.getUnresolvedConflicts();
       setConflicts(unresolvedConflicts);
     };
@@ -38,7 +49,7 @@ export function useOfflinePlanning() {
     return () => { // Cleanup
     };
 
-    const handleOnline = () => {
+    const handleOnline = (): void => {
       // Sync all stores
       if (unitPlanStore.hasOfflineChanges) {
         unitPlanStore.loadUnitPlans();
@@ -68,14 +79,14 @@ export function useOfflinePlanning() {
     conflictId: string, 
     resolution: 'local' | 'remote' | 'merge', 
     mergedData?: unknown
-  ) => {
+  ): Promise<void> => {
     await offlineStorage.resolveConflict(conflictId, resolution, mergedData as StoredData | undefined);
     setConflicts(conflicts.filter(c => c.id !== conflictId));
   };
 
   // Preload curriculum documents for offline use
-  const preloadCurriculum = async (documentIds: string[]) => {
-    await lazyLoader.preloadDocuments(documentIds, (current, total) => {
+  const preloadCurriculum = async (documentIds: string[]): Promise<void> => {
+    await lazyLoader.preloadDocuments(documentIds, (current, total): void => {
       logger.info(`Preloading curriculum: ${current}/${total}`);
     });
   };
@@ -103,7 +114,7 @@ return 'syncing';
   };
 
   // Get total pending changes
-  const getTotalPendingChanges = () => (
+  const getTotalPendingChanges = (): number => (
       unitPlanStore.pendingChanges +
       lessonPlanStore.pendingChanges +
       daybookStore.pendingChanges +
@@ -132,7 +143,16 @@ return 'syncing';
 }
 
 // Example usage in a component:
-export function useUnitPlanWithOffline(unitPlanId?: string) {
+export function useUnitPlanWithOffline(unitPlanId?: string): {
+  unitPlan: any;
+  loading: boolean;
+  saving: boolean;
+  error: any;
+  isOnline: boolean;
+  hasOfflineChanges: boolean;
+  updateUnitPlan: (updates: unknown) => Promise<void>;
+  deleteUnitPlan: any;
+} {
   const { unitPlanStore } = useOfflinePlanning();
   const [loading, setLoading] = useState(false);
 
@@ -145,7 +165,7 @@ export function useUnitPlanWithOffline(unitPlanId?: string) {
 return;
 }
 
-    const loadPlan = async () => {
+    const loadPlan = async (): Promise<void> => {
       setLoading(true);
       try {
         await unitPlanStore.loadUnitPlan(unitPlanId);
@@ -163,14 +183,14 @@ return;
   const debouncedUpdate = React.useMemo(() => {
     let timeout: NodeJS.Timeout | null = null;
     
-    const debounced = (updates: unknown) => {
+    const debounced = (updates: unknown): Promise<void> => {
       if (timeout) {
 clearTimeout(timeout);
 }
       
       return new Promise<void>((resolve) => {
         timeout = setTimeout(() => {
-          void (async () => {
+          void (async (): Promise<void> => {
             if (unitPlanStore.currentPlan) {
               await unitPlanStore.updateUnitPlan(unitPlanStore.currentPlan.id, updates as Record<string, unknown>);
             }
@@ -196,10 +216,13 @@ clearTimeout(timeout);
 }
 
 // Hook for batched API requests
-export function useBatchedRequests() {
+export function useBatchedRequests(): {
+  fetchMultipleResources: (urls: string[]) => Promise<unknown[]>;
+  loading: boolean;
+} {
   const [loading, setLoading] = useState(false);
 
-  const fetchMultipleResources = async (urls: string[]) => {
+  const fetchMultipleResources = async (urls: string[]): Promise<unknown[]> => {
     setLoading(true);
     try {
       // Use batched API for multiple requests

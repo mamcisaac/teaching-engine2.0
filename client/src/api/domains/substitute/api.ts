@@ -144,7 +144,7 @@ export const substituteApi = {
   // Substitute plans
   plans: {
     // Get all plans
-    getAll: async (filters?: SubstituteFilters) => {
+    getAll: async (filters?: SubstituteFilters): Promise<SubstitutePlan[]> => {
       const { data } = await apiClient.get<SubstitutePlan[]>('/api/substitute-plans', {
         params: filters,
       });
@@ -152,30 +152,30 @@ export const substituteApi = {
     },
 
     // Get plan by ID
-    getById: async (id: number) => {
+    getById: async (id: number): Promise<SubstitutePlan> => {
       const { data } = await apiClient.get<SubstitutePlan>(`/api/substitute-plans/${id}`);
       return data;
     },
 
     // Create plan
-    create: async (plan: SubstitutePlanInput) => {
+    create: async (plan: SubstitutePlanInput): Promise<SubstitutePlan> => {
       const { data } = await apiClient.post<SubstitutePlan>('/api/substitute-plans', plan);
       return data;
     },
 
     // Update plan
-    update: async (id: number, updates: Partial<SubstitutePlanInput>) => {
+    update: async (id: number, updates: Partial<SubstitutePlanInput>): Promise<SubstitutePlan> => {
       const { data } = await apiClient.put<SubstitutePlan>(`/api/substitute-plans/${id}`, updates);
       return data;
     },
 
     // Delete plan
-    delete: async (id: number) => {
+    delete: async (id: number): Promise<void> => {
       await apiClient.delete(`/api/substitute-plans/${id}`);
     },
 
     // Duplicate plan
-    duplicate: async (id: number, newDate?: string) => {
+    duplicate: async (id: number, newDate?: string): Promise<SubstitutePlan> => {
       const { data } = await apiClient.post<SubstitutePlan>(`/api/substitute-plans/${id}/duplicate`, {
         newDate,
       });
@@ -183,7 +183,7 @@ export const substituteApi = {
     },
 
     // Mark plan as in use
-    markInUse: async (id: number) => {
+    markInUse: async (id: number): Promise<SubstitutePlan> => {
       const { data } = await apiClient.patch<SubstitutePlan>(`/api/substitute-plans/${id}/in-use`);
       return data;
     },
@@ -202,7 +202,7 @@ export const substituteApi = {
     },
 
     // Get plans for specific date
-    getByDate: async (date: string) => {
+    getByDate: async (date: string): Promise<SubstitutePlan[]> => {
       const { data } = await apiClient.get<SubstitutePlan[]>('/api/substitute-plans/by-date', {
         params: { date },
       });
@@ -214,7 +214,7 @@ export const substituteApi = {
       title: string;
       date: string;
       customizations?: Partial<SubstitutePlanInput>;
-    }) => {
+    }): Promise<SubstitutePlan> => {
       const { data } = await apiClient.post<SubstitutePlan>('/api/substitute-plans/from-template', {
         templateId,
         ...planData,
@@ -231,7 +231,7 @@ export const substituteApi = {
     },
 
     // Share plan with substitute
-    share: async (id: number, email: string, message?: string) => {
+    share: async (id: number, email: string, message?: string): Promise<{ shared: boolean; link: string }> => {
       const { data } = await apiClient.post<{ shared: boolean; link: string }>(
         `/api/substitute-plans/${id}/share`,
         { email, message }
@@ -243,7 +243,7 @@ export const substituteApi = {
   // Templates
   templates: {
     // Get all templates
-    getAll: async (includePublic = true) => {
+    getAll: async (includePublic = true): Promise<SubstituteTemplate[]> => {
       const { data } = await apiClient.get<SubstituteTemplate[]>('/api/substitute-plans/templates', {
         params: { includePublic },
       });
@@ -251,36 +251,36 @@ export const substituteApi = {
     },
 
     // Get template by ID
-    getById: async (id: number) => {
+    getById: async (id: number): Promise<SubstituteTemplate> => {
       const { data } = await apiClient.get<SubstituteTemplate>(`/api/substitute-plans/templates/${id}`);
       return data;
     },
 
     // Create template
-    create: async (template: Omit<SubstituteTemplate, 'id' | 'userId' | 'usageCount' | 'rating' | 'createdAt' | 'updatedAt'>) => {
+    create: async (template: Omit<SubstituteTemplate, 'id' | 'userId' | 'usageCount' | 'rating' | 'createdAt' | 'updatedAt'>): Promise<SubstituteTemplate> => {
       const { data } = await apiClient.post<SubstituteTemplate>('/api/substitute-plans/templates', template);
       return data;
     },
 
     // Update template
-    update: async (id: number, updates: Partial<SubstituteTemplate>) => {
+    update: async (id: number, updates: Partial<SubstituteTemplate>): Promise<SubstituteTemplate> => {
       const { data } = await apiClient.put<SubstituteTemplate>(`/api/substitute-plans/templates/${id}`, updates);
       return data;
     },
 
     // Delete template
-    delete: async (id: number) => {
+    delete: async (id: number): Promise<void> => {
       await apiClient.delete(`/api/substitute-plans/templates/${id}`);
     },
 
     // Duplicate template
-    duplicate: async (id: number) => {
+    duplicate: async (id: number): Promise<SubstituteTemplate> => {
       const { data } = await apiClient.post<SubstituteTemplate>(`/api/substitute-plans/templates/${id}/duplicate`);
       return data;
     },
 
     // Rate template
-    rate: async (id: number, rating: number, comment?: string) => {
+    rate: async (id: number, rating: number, comment?: string): Promise<SubstituteTemplate> => {
       const { data } = await apiClient.post<SubstituteTemplate>(`/api/substitute-plans/templates/${id}/rate`, {
         rating,
         comment,
@@ -289,7 +289,7 @@ export const substituteApi = {
     },
 
     // Get popular templates
-    getPopular: async (limit = 10) => {
+    getPopular: async (limit = 10): Promise<SubstituteTemplate[]> => {
       const { data } = await apiClient.get<SubstituteTemplate[]>('/api/substitute-plans/templates/popular', {
         params: { limit },
       });
@@ -297,7 +297,7 @@ export const substituteApi = {
     },
 
     // Search templates
-    search: async (query: string, filters?: { grade?: number; subject?: string; tags?: string[] }) => {
+    search: async (query: string, filters?: { grade?: number; subject?: string; tags?: string[] }): Promise<SubstituteTemplate[]> => {
       const { data } = await apiClient.get<SubstituteTemplate[]>('/api/substitute-plans/templates/search', {
         params: { q: query, ...filters },
       });
@@ -305,14 +305,14 @@ export const substituteApi = {
     },
 
     // Import template from public library
-    importFromPublic: async (templateId: number) => {
+    importFromPublic: async (templateId: number): Promise<SubstituteTemplate> => {
       const { data } = await apiClient.post<SubstituteTemplate>(`/api/substitute-plans/templates/import/${templateId}`);
       return data;
     },
   },
 
   // Statistics and analytics
-  getStats: async () => {
+  getStats: async (): Promise<SubstituteStats> => {
     const { data } = await apiClient.get<SubstituteStats>('/api/substitute-plans/stats');
     return data;
   },
@@ -320,7 +320,7 @@ export const substituteApi = {
   // Quick actions
   quickActions: {
     // Create emergency plan
-    createEmergencyPlan: async (grade: number, subject?: string) => {
+    createEmergencyPlan: async (grade: number, subject?: string): Promise<SubstitutePlan> => {
       const { data } = await apiClient.post<SubstitutePlan>('/api/substitute-plans/emergency', {
         grade,
         subject,
@@ -329,7 +329,12 @@ export const substituteApi = {
     },
 
     // Get suggested activities for grade/subject
-    getSuggestedActivities: async (grade: number, subject?: string, duration?: number) => {
+    getSuggestedActivities: async (grade: number, subject?: string, duration?: number): Promise<{
+        title: string;
+        description: string;
+        duration: number;
+        materials: string[];
+      }[]> => {
       const { data } = await apiClient.get<{
         title: string;
         description: string;
@@ -347,7 +352,16 @@ export const substituteApi = {
       subject?: string;
       date: string;
       duration: number;
-    }) => {
+    }): Promise<{
+        suggestedActivities: {
+          activity: string;
+          time: string;
+          materials: string[];
+          notes: string;
+        }[];
+        generalInstructions: string;
+        materials: string[];
+      }> => {
       const { data } = await apiClient.post<{
         suggestedActivities: {
           activity: string;
@@ -363,7 +377,11 @@ export const substituteApi = {
   },
 
   // Import/Export
-  import: async (file: File, format: 'csv' | 'json') => {
+  import: async (file: File, format: 'csv' | 'json'): Promise<{
+      imported: number;
+      failed: number;
+      errors?: string[];
+    }> => {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('format', format);
@@ -391,7 +409,15 @@ export const substituteApi = {
   // Feedback and collaboration
   feedback: {
     // Get feedback for plans
-    getFeedback: async (planId: number) => {
+    getFeedback: async (planId: number): Promise<{
+        id: number;
+        rating: number;
+        comments: string;
+        issues?: string;
+        suggestions?: string;
+        date: string;
+        substituteName?: string;
+      }[]> => {
       const { data } = await apiClient.get<{
         id: number;
         rating: number;
@@ -411,7 +437,7 @@ export const substituteApi = {
       issues?: string;
       suggestions?: string;
       workingConditions?: string;
-    }) => {
+    }): Promise<{ success: boolean }> => {
       const { data } = await apiClient.post<{ success: boolean }>(`/api/substitute-plans/${planId}/feedback`, feedback);
       return data;
     },
@@ -420,7 +446,12 @@ export const substituteApi = {
   // Classroom management helpers
   classroom: {
     // Get classroom layout suggestions
-    getLayoutSuggestions: async (grade: number, classSize: number) => {
+    getLayoutSuggestions: async (grade: number, classSize: number): Promise<{
+        name: string;
+        description: string;
+        benefits: string[];
+        setup: string[];
+      }[]> => {
       const { data } = await apiClient.get<{
         name: string;
         description: string;
@@ -433,7 +464,12 @@ export const substituteApi = {
     },
 
     // Get behavior management strategies
-    getBehaviorStrategies: async (grade: number, issues?: string[]) => {
+    getBehaviorStrategies: async (grade: number, issues?: string[]): Promise<{
+        strategy: string;
+        description: string;
+        implementation: string[];
+        ageAppropriate: boolean;
+      }[]> => {
       const { data } = await apiClient.get<{
         strategy: string;
         description: string;
@@ -446,7 +482,14 @@ export const substituteApi = {
     },
 
     // Get emergency procedures
-    getEmergencyProcedures: async () => {
+    getEmergencyProcedures: async (): Promise<{
+        type: string;
+        procedure: string[];
+        contacts: {
+          role: string;
+          number: string;
+        }[];
+      }[]> => {
       const { data } = await apiClient.get<{
         type: string;
         procedure: string[];
@@ -465,7 +508,7 @@ export const substituteApi = {
     return data;
   },
 
-  generateSubPlanPDF: async (date: string, days: number) => {
+  generateSubPlanPDF: async (date: string, days: number): Promise<any> => {
     const response = await apiClient.post(
       `/subplan/generate?date=${date}&days=${days}`,
       {},
@@ -476,7 +519,7 @@ export const substituteApi = {
     return response;
   },
 
-  generateSubPlanWithOptions: async (options: { startDate: string; endDate?: string; includeResources?: boolean; format?: string }) => {
+  generateSubPlanWithOptions: async (options: { startDate: string; endDate?: string; includeResources?: boolean; format?: string }): Promise<any> => {
     const response = await apiClient.post(`/subplan/generate`, options, {
       responseType: 'blob',
     });
@@ -513,7 +556,7 @@ export const substituteApi = {
       anonymize?: boolean;
       userId?: number;
     } = {},
-  ) => {
+  ): Promise<unknown> => {
     const params = new URLSearchParams({
       startDate,
       days: days.toString(),
@@ -530,7 +573,7 @@ export const substituteApi = {
     return response.data as unknown;
   },
 
-  extractScenarioTemplates: async (conditions?: Record<string, string | number>) => {
+  extractScenarioTemplates: async (conditions?: Record<string, string | number>): Promise<unknown> => {
     const params = new URLSearchParams();
     if (conditions) {
       Object.entries(conditions).forEach(([key, value]) => {
@@ -544,7 +587,7 @@ export const substituteApi = {
     return response.data as unknown;
   },
 
-  autoDetectScenario: async (userId?: number) => {
+  autoDetectScenario: async (userId?: number): Promise<unknown> => {
     const params = userId !== undefined ? `?userId=${userId}` : '';
     const response = await apiClient.get(`/subplan/extract/scenarios/auto${params}`);
     return response.data as unknown;
@@ -554,7 +597,7 @@ export const substituteApi = {
     scenarioId: string,
     teacherName?: string,
     className?: string,
-  ) => {
+  ): Promise<unknown> => {
     const params = new URLSearchParams();
     if (teacherName !== undefined && teacherName !== '') {
 params.append('teacherName', teacherName);
@@ -570,7 +613,7 @@ params.append('className', className);
   extractSchoolContacts: async (
     userId?: number,
     format: 'organized' | 'emergency' | 'card' | 'formatted' = 'organized',
-  ) => {
+  ): Promise<unknown> => {
     const params = new URLSearchParams();
     if (userId !== undefined) {
       params.append('userId', userId.toString());
@@ -584,7 +627,7 @@ params.append('className', className);
   extractDayMaterials: async (
     date: string,
     userId?: number,
-  ) => {
+  ): Promise<unknown> => {
     const params = new URLSearchParams({ date });
     if (userId !== undefined) {
       params.append('userId', userId.toString());
@@ -598,7 +641,7 @@ params.append('className', className);
     startDate: string,
     days = 5,
     userId?: number,
-  ) => {
+  ): Promise<unknown> => {
     const params = new URLSearchParams({ startDate, days: days.toString() });
     if (userId !== undefined) {
       params.append('userId', userId.toString());
@@ -608,7 +651,7 @@ params.append('className', className);
     return response.data as unknown;
   },
 
-  extractComprehensiveSubPlan: async (request: { startDate: string; endDate: string; userId?: number; options?: Record<string, unknown> }) => {
+  extractComprehensiveSubPlan: async (request: { startDate: string; endDate: string; userId?: number; options?: Record<string, unknown> }): Promise<unknown> => {
     const response = await apiClient.post('/subplan/extract/comprehensive', request);
     return response.data as unknown;
   },

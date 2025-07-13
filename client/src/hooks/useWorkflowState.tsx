@@ -40,7 +40,20 @@ export const ETFO_LEVEL_PATHS = {
   [ETFOLevel.DAYBOOK_ENTRIES]: '/planner/daybook',
 };
 
-export function useWorkflowState() {
+export function useWorkflowState(): {
+  workflowState: WorkflowState | undefined;
+  isLoading: boolean;
+  error: Error | null;
+  checkLevelAccess: (level: ETFOLevel) => Promise<{ canAccess: boolean; reason?: string }>;
+  validateLevel: (level: ETFOLevel, entityId: string) => Promise<{ isValid: boolean; missingFields: string[] }>;
+  refreshWorkflowState: () => void;
+  getLevelProgress: (level: ETFOLevel) => LevelProgress | undefined;
+  isLevelComplete: (level: ETFOLevel) => boolean;
+  isLevelAccessible: (level: ETFOLevel) => boolean;
+  getBlockedReason: (level: ETFOLevel) => string | undefined;
+  getNextLevel: () => ETFOLevel | null;
+  getPreviousLevel: (level: ETFOLevel) => ETFOLevel | null;
+} {
   const queryClient = useQueryClient();
 
   const {
@@ -84,7 +97,7 @@ export function useWorkflowState() {
     }
   };
 
-  const refreshWorkflowState = () => {
+  const refreshWorkflowState = (): void => {
     void queryClient.invalidateQueries({ queryKey: ['workflow-state'] });
     void queryClient.invalidateQueries({ queryKey: ['etfo-progress'] });
   };

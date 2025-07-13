@@ -121,7 +121,7 @@ export function PlanningWizard({
   const isStepCompleted = completedLevels.includes(currentStepData.id);
 
   const handleNext = () => {
-    if (isLastStep === true) {
+    if (isLastStep) {
       onClose?.();
     } else {
       setCurrentStep(currentStep + 1);
@@ -129,7 +129,7 @@ export function PlanningWizard({
   };
 
   const handlePrevious = () => {
-    if (isFirstStep === false) {
+    if (!isFirstStep) {
       setCurrentStep(currentStep - 1);
     }
   };
@@ -226,7 +226,7 @@ export function PlanningWizard({
                   </div>
                 </div>
                 
-                {isStepCompleted === true && (
+                {isStepCompleted && (
                   <div className="mt-4 p-3 bg-green-50 rounded-lg flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
                     <p className="text-sm text-green-800">

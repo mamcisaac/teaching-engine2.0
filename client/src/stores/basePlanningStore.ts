@@ -54,7 +54,7 @@ export const createOfflineSlice = <T extends Record<string, unknown>>(
     set((state) => ({
       ...state,
       isOnline,
-      ...(isOnline && state.hasOfflineChanges && (() => {
+      ...(isOnline && state.hasOfflineChanges && ((): Record<string, unknown> => {
         // Trigger sync when coming back online
         setTimeout(() => {
           const currentState = get();
@@ -301,7 +301,7 @@ export function createAutoSave(
     }
     
     timeout = setTimeout(() => {
-      const performSave = async () => {
+      const performSave = async (): Promise<void> => {
         const state = store.getState();
         
         if (state.hasOfflineChanges === true && state.isSaving !== true) {

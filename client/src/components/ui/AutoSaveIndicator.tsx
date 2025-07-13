@@ -52,7 +52,7 @@ export function AutoSaveIndicator({
 
   const getStatus = (): { icon: React.ReactElement; text: string; variant: 'outline' | 'secondary' | 'destructive'; tooltip: string } => {
     // Offline status takes priority
-    if (isOnlineState === false) {
+    if (!isOnlineState) {
       return {
         icon: <WifiOff className="w-3 h-3" />,
         text: pendingChanges > 0 ? `Offline (${pendingChanges} pending)` : 'Offline mode',
@@ -82,7 +82,7 @@ export function AutoSaveIndicator({
     }
 
     // Regular save states
-    if (isSaving === true) {
+    if (isSaving) {
       return {
         icon: <Clock className="w-3 h-3 animate-spin" />,
         text: 'Saving...',
@@ -91,7 +91,7 @@ export function AutoSaveIndicator({
       };
     }
 
-    if (hasUnsavedChanges === true) {
+    if (hasUnsavedChanges) {
       return {
         icon: <AlertCircle className="w-3 h-3" />,
         text: 'Unsaved changes',

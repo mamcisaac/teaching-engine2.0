@@ -94,7 +94,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
           ...offlineSlice(set, get, {} as never),
 
           // Actions
-          loadEntries: async (startDate: string, endDate: string) => {
+          loadEntries: async (startDate: string, endDate: string): Promise<void> => {
             set((state) => {
               state.isLoading = true;
               state.error = null;
@@ -161,7 +161,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
             }
           },
 
-          loadEntry: async (date: string) => {
+          loadEntry: async (date: string): Promise<void> => {
             set((state) => {
               state.isLoading = true;
               state.error = null;
@@ -215,7 +215,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
             }
           },
 
-          createEntry: async (entryData: Partial<DaybookEntry>) => {
+          createEntry: async (entryData: Partial<DaybookEntry>): Promise<DaybookEntry> => {
             set((state) => {
               state.isSaving = true;
               state.error = null;
@@ -283,7 +283,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
             }
           },
 
-          updateEntry: async (id: string, updates: Partial<DaybookEntry>) => {
+          updateEntry: async (id: string, updates: Partial<DaybookEntry>): Promise<void> => {
             set((state) => {
               state.isSaving = true;
               state.error = null;
@@ -340,7 +340,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
             }
           },
 
-          deleteEntry: async (id: string) => {
+          deleteEntry: async (id: string): Promise<void> => {
             set((state) => {
               state.isSaving = true;
               state.error = null;
@@ -386,19 +386,19 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
             }
           },
 
-          setSelectedDate: (date: string) => {
+          setSelectedDate: (date: string): void => {
  set((state) => {
               state.selectedDate = date;
             }); 
 },
 
-          setCurrentEntry: (entry: DaybookEntry | null) => {
+          setCurrentEntry: (entry: DaybookEntry | null): void => {
  set((state) => {
               state.currentEntry = entry;
             }); 
 },
 
-          clearError: () => {
+          clearError: (): void => {
  set((state) => {
               state.error = null;
             }); 

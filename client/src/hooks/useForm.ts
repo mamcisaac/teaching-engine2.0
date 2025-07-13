@@ -21,7 +21,31 @@ export function useForm<T extends Record<string, unknown>>({
   onSubmit,
   validateOnChange = false,
   validateOnBlur = true,
-}: UseFormOptions<T>) {
+}: UseFormOptions<T>): {
+  values: T;
+  errors: FormError;
+  touched: FormTouched;
+  isSubmitting: boolean;
+  isDirty: boolean;
+  handleChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
+  handleBlur: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
+  handleSubmit: (e?: FormEvent) => Promise<void>;
+  setFieldValue: (name: keyof T, value: T[keyof T]) => void;
+  setFieldError: (name: string, error: string | undefined) => void;
+  setFieldTouched: (name: string, isTouched?: boolean) => void;
+  reset: (newValues?: Partial<T>) => void;
+  validate: () => boolean;
+  validateField: (name: string, value: unknown) => string | undefined;
+  getFieldProps: (name: keyof T) => {
+    name: string;
+    value: any;
+    onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
+    onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
+    'aria-invalid': boolean;
+    'aria-describedby': string | undefined;
+  };
+  getFieldError: (name: string) => string | undefined;
+} {
   const [values, setValues] = useState<T>(initialValues);
   const [errors, setErrors] = useState<FormError>({});
   const [touched, setTouched] = useState<FormTouched>({});

@@ -1,8 +1,8 @@
 // Offline Notification Component
 // Shows a persistent notification when the app is offline
 
-import React, { useEffect, useState } from 'react';
 import { AlertCircle, RefreshCw, WifiOff, X } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 
 import { isOnline } from '../utils/serviceWorkerRegistration';
 
@@ -48,7 +48,7 @@ export function OfflineNotification(): React.ReactElement | null {
   };
 
   // Don't show if online or dismissed
-  if (isOnlineState !== null && isOnlineState !== undefined && isOnlineState === true || dismissed !== null && dismissed !== undefined && dismissed === true) {
+  if (isOnlineState !== null && isOnlineState !== undefined && isOnlineState || dismissed !== null && dismissed !== undefined && dismissed) {
     return null;
   }
 
@@ -72,9 +72,11 @@ export function OfflineNotification(): React.ReactElement | null {
                 disabled={retrying}
                 size="sm"
                 variant="outline"
-                onClick={() => { void handleRetry(); }}
+                onClick={() => {
+ void handleRetry(); 
+}}
               >
-                {retrying !== null && retrying !== undefined && retrying === true ? (
+                {retrying !== null && retrying !== undefined && retrying ? (
                   <>
                     <RefreshCw className="w-3 h-3 mr-1 animate-spin" />
                     Checking...

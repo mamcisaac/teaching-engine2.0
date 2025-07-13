@@ -138,7 +138,7 @@ function FlowTooltip({
         {/* Navigation buttons */}
         <div className="flex items-center justify-between pt-2">
           <div className="flex items-center gap-2">
-            {canGoBack === true ? (
+            {canGoBack ? (
               <Button aria-label="Click button" onClick={previousStep}>
                 <ChevronLeft className="h-4 w-4" />
                 Previous
@@ -163,7 +163,7 @@ function FlowTooltip({
               onClick={nextStep}
             >
               {currentStep.nextButtonText ?? 'Next'}
-              {canGoForward === true ? <ChevronRight className="h-4 w-4" /> : null}
+              {canGoForward ? <ChevronRight className="h-4 w-4" /> : null}
             </Button>
           ) : null}
         </div>
@@ -190,17 +190,17 @@ function HoverTooltip({
   const [hasBeenShown, setHasBeenShown] = useState(false);
 
   // Don't show if onboarding is active or user isn't new
-  if ((state.currentFlow !== null && state.currentFlow !== undefined) || state.isFirstTimeUser !== true) {
+  if ((state.currentFlow !== null && state.currentFlow !== undefined) || !state.isFirstTimeUser) {
     return children;
   }
 
   // Don't show if already dismissed or shown (when showOnce is true)
-  if (isDismissed === true || (showOnce === true && hasBeenShown === true)) {
+  if (isDismissed || (showOnce && hasBeenShown)) {
     return children;
   }
 
   const handleMouseEnter = () => {
-    if (hasBeenShown === true && showOnce === true) {
+    if (hasBeenShown && showOnce) {
 return;
 }
 
@@ -258,11 +258,11 @@ return;
       {cloneElement(children, {
         onMouseEnter: handleMouseEnter,
         onMouseLeave: handleMouseLeave,
-        className: `${children.props.className ?? ''} ${isVisible === true ? 'z-40' : ''}`,
+        className: `${children.props.className ?? ''} ${isVisible ? 'z-40' : ''}`,
       })}
 
       <AnimatePresence>
-        {isVisible === true ? (
+        {isVisible ? (
           <motion.div
             animate={{ opacity: 1, scale: 1 }}
             className={getTooltipStyles()}
