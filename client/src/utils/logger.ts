@@ -62,8 +62,8 @@ class ClientLogger {
   }
 
   error(message: string, error?: Error | unknown, data?: unknown): void {
-    const errorData = data !== null && data !== undefined && typeof data === 'object' ? data : {};
-    const entry = this.createLogEntry('error', message, { error: (error instanceof Error ? error.stack : error) ?? error, ...errorData });
+    const errorData = typeof data === 'object' && data !== null ? data : {};
+    const entry = this.createLogEntry('error', message, { error: error instanceof Error ? error.stack : error, ...errorData });
     this.addToHistory(entry);
     
     if (this.shouldLog('error')) {
@@ -154,7 +154,7 @@ class ClientLogger {
   api(method: string, url: string, data?: unknown, response?: unknown): void {
     this.info(`API ${method} ${url}`, {
       request: data,
-      response: (response !== null && response !== undefined && typeof response === 'object' && 'status' in response) ? {
+      response: (typeof response === 'object' && response !== null && 'status' in response) ? {
         status: (response as { status: unknown }).status,
         statusText: (response as { status: unknown; statusText: unknown }).statusText,
         data: (response as { status: unknown; data: unknown }).data
@@ -169,7 +169,7 @@ class ClientLogger {
 
   // Get log history for debugging
   getHistory(level?: LogLevel): LogEntry[] {
-    if (level !== null && level !== undefined) {
+    if (level) {
       return this.logHistory.filter(entry => entry.level === level);
     }
     return [...this.logHistory];

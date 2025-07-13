@@ -179,7 +179,7 @@ async function syncWithServer<T extends Record<string, unknown>>(
     set((s) => ({
       ...s,
       syncStatus: 'error',
-      syncError: error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Sync failed'
+      syncError: error instanceof Error ? error.message : 'Sync failed'
     }));
   }
 }
@@ -210,7 +210,7 @@ async function detectConflicts(
   const localTimestamp = localData.lastModified ?? localData.updatedAt;
   const serverTimestamp = serverData.lastModified ?? serverData.updatedAt;
   
-  if (localTimestamp !== null && localTimestamp !== undefined && serverTimestamp !== null && serverTimestamp !== undefined) {
+  if (localTimestamp && serverTimestamp) {
     const localTime = new Date(localTimestamp as string | number | Date).getTime();
     const serverTime = new Date(serverTimestamp as string | number | Date).getTime();
     

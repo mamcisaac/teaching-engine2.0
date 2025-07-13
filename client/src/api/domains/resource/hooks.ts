@@ -19,7 +19,7 @@ export const useMediaResources = (filters?: ResourceFilters): UseQueryResult<{
   hasMore: boolean;
 }> =>
   useQuery({
-    queryKey: queryKeys.resource.media(filters?.userId ?? 0),
+    queryKey: queryKeys.resource.media(filters?.userId || 0),
     queryFn: () => resourceApi.media.getAll(filters),
     staleTime: 2 * 60 * 1000, // 2 minutes
   });

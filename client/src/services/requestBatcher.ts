@@ -49,7 +49,7 @@ class RequestBatcher {
 
   // Schedule batch processing
   private scheduleBatch(): void {
-    if (this.batchTimeout !== null && this.batchTimeout !== undefined) {
+    if (this.batchTimeout) {
       clearTimeout(this.batchTimeout);
     }
 
@@ -96,7 +96,7 @@ class RequestBatcher {
 
     for (const req of requests) {
       const key = this.getGroupKey(req.request);
-      const group = groups.get(key) ?? [];
+      const group = groups.get(key) || [];
       group.push(req);
       groups.set(key, group);
     }
@@ -162,8 +162,8 @@ class RequestBatcher {
       for (const pending of requests) {
         const batchResponse = responseMap.get(pending.request.id);
 
-        if (batchResponse !== null && batchResponse !== undefined) {
-          if ('error' in batchResponse && batchResponse.error !== null && batchResponse.error !== undefined && batchResponse.error !== '') {
+        if (batchResponse) {
+          if ('error' in batchResponse && batchResponse.error) {
             pending.reject(new Error(batchResponse.error));
           } else {
             pending.resolve(batchResponse.data);
@@ -194,7 +194,7 @@ class RequestBatcher {
 
   // Clear pending requests
   clear(): void {
-    if (this.batchTimeout !== null && this.batchTimeout !== undefined) {
+    if (this.batchTimeout) {
       clearTimeout(this.batchTimeout);
       this.batchTimeout = null;
     }
@@ -246,7 +246,7 @@ export function createDebouncedRequest<
       lastPromise = new Promise<TReturn>((resolve, reject) => {
         timeout = setTimeout(async (): Promise<void> => {
           try {
-            if (lastArgs === null || lastArgs === undefined) {
+            if (!lastArgs) {
               throw new Error('No arguments available');
             }
             const result = await fn(...lastArgs);
@@ -266,7 +266,7 @@ export function createDebouncedRequest<
   };
 
   debounced.cancel = (): void => {
-    if (timeout !== null && timeout !== undefined) {
+    if (timeout) {
       clearTimeout(timeout);
       timeout = null;
     }

@@ -93,7 +93,7 @@ export class ErrorReportingService {
     }
 
     const dsn = import.meta.env.VITE_SENTRY_DSN;
-    if (dsn === null || dsn === undefined || dsn === '') {
+    if (!dsn) {
       logger.warn('VITE_SENTRY_DSN not configured, error reporting disabled');
       return;
     }
@@ -134,8 +134,8 @@ export class ErrorReportingService {
         beforeSendTransaction: (transaction): Sentry.TransactionEvent | null => {
           // Don't send transactions for static assets
           if (
-            (transaction.transaction !== null && transaction.transaction !== undefined && transaction.transaction.includes('/static/')) ||
-            (transaction.transaction !== null && transaction.transaction !== undefined && transaction.transaction.includes('/assets/'))
+            (transaction.transaction && transaction.transaction.includes('/static/')) ||
+            (transaction.transaction && transaction.transaction.includes('/assets/'))
           ) {
             return null;
           }
@@ -163,7 +163,7 @@ export class ErrorReportingService {
     if (this.mockMode) {
       // eslint-disable-next-line no-console
       console.info('[MOCK] Would capture error:', {
-        error: error instanceof Error ? (error instanceof Error ? error.message : String(error)) : String(error),
+        error: error instanceof Error ? error.message : String(error),
         stack: error instanceof Error ? error.stack : undefined,
         context: this.sanitizeData(context || {}),
         errorInfo: errorInfo?.componentStack,
@@ -181,12 +181,12 @@ export class ErrorReportingService {
       scope.setContext('category', { type: errorCategory.category });
 
       // Add custom context
-      if (sanitizedContext !== null && sanitizedContext !== undefined && Object.keys(sanitizedContext).length > 0) {
+      if (sanitizedContext && Object.keys(sanitizedContext).length > 0) {
         scope.setContext('custom', sanitizedContext);
       }
 
       // Add React error info if available
-      if (errorInfo !== null && errorInfo !== undefined) {
+      if (errorInfo) {
         scope.setContext('react', {
           componentStack: errorInfo.componentStack,
         });
@@ -222,17 +222,17 @@ export class ErrorReportingService {
       return;
     }
 
-    if (user === null || user === undefined) {
+    if (!user) {
       Sentry.setUser(null);
       return;
     }
 
     const sanitizedUser = {
       id: String(user.id),
-      email: (user.email !== null && user.email !== undefined && user.email !== '') ? this.maskEmail(user.email) : undefined,
+      email: user.email ? this.maskEmail(user.email) : undefined,
       username: user.name,
       role: user.role,
-      organizationId: (user.organizationId !== null && user.organizationId !== undefined && user.organizationId !== '') ? String(user.organizationId) : undefined,
+      organizationId: user.organizationId ? String(user.organizationId) : undefined,
     };
 
     Sentry.setUser(sanitizedUser);
