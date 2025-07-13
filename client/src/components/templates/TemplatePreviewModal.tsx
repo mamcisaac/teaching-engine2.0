@@ -45,7 +45,7 @@ export default function TemplatePreviewModal({
     return (
       <div className="space-y-4">
         {sections.map(({ key, title, content, isList, isAssessments, isDiff }) => {
-          if (content === null || content === undefined || (Array.isArray(content) && content.length === 0)) {
+          if (!content || (Array.isArray(content) && content.length === 0)) {
 return null;
 }
 
@@ -80,7 +80,7 @@ return null;
                         <div key={_index} className="bg-gray-50 p-3 rounded">
                           <div className="font-medium">{assessment.type}</div>
                           <div className="text-gray-700">{assessment.description}</div>
-                          {assessment.timing !== null && assessment.timing !== undefined && assessment.timing !== '' && (
+                          {assessment.timing && (
                             <div className="text-sm text-gray-500 mt-1">Timing: {assessment.timing}</div>
                           )}
                         </div>
@@ -129,7 +129,7 @@ return null;
     return (
       <div className="space-y-4">
         {sections.map(({ key, title, content, isList, assessmentType }) => {
-          if (content === null || content === undefined || (Array.isArray(content) && content.length === 0)) {
+          if (!content || (Array.isArray(content) && content.length === 0)) {
 return null;
 }
 
@@ -160,7 +160,7 @@ return null;
                     </ul>
                   ) : key === 'assessment' ? (
                     <div>
-                      {assessmentType !== null && assessmentType !== undefined && assessmentType !== '' && (
+                      {assessmentType && (
                         <div className="mb-2">
                           <span className="font-medium">Type:</span>{' '}
                           <span className="capitalize">{assessmentType}</span>
@@ -210,7 +210,7 @@ return null;
         <div className="flex-1 overflow-y-auto p-6">
           {/* Metadata */}
           <div className="mb-6 grid grid-cols-2 md:grid-cols-4 gap-4">
-            {template.subject !== null && template.subject !== undefined && template.subject !== '' && (
+            {template.subject && (
               <div className="flex items-center gap-2 text-sm">
                 <Tag className="h-4 w-4 text-gray-400" />
                 <span className="capitalize">{template.subject}</span>
@@ -219,7 +219,7 @@ return null;
             <div className="flex items-center gap-2 text-sm">
               <Users className="h-4 w-4 text-gray-400" />
               <span>
-                {template.gradeMin !== null && template.gradeMin !== undefined && template.gradeMax !== null && template.gradeMax !== undefined
+                {template.gradeMin !== undefined && template.gradeMax !== undefined
                   ? template.gradeMin === template.gradeMax
                     ? `Grade ${template.gradeMin}`
                     : `Grades ${template.gradeMin}-${template.gradeMax}`
@@ -229,9 +229,9 @@ return null;
             <div className="flex items-center gap-2 text-sm">
               <Clock className="h-4 w-4 text-gray-400" />
               <span>
-                {template.type === 'UNIT_PLAN' && template.estimatedWeeks !== null && template.estimatedWeeks !== undefined && template.estimatedWeeks > 0
+                {template.type === 'UNIT_PLAN' && template.estimatedWeeks && template.estimatedWeeks > 0
                   ? `${template.estimatedWeeks} weeks`
-                  : template.type === 'LESSON_PLAN' && template.estimatedMinutes !== null && template.estimatedMinutes !== undefined && template.estimatedMinutes > 0
+                  : template.type === 'LESSON_PLAN' && template.estimatedMinutes && template.estimatedMinutes > 0
                   ? `${template.estimatedMinutes} minutes`
                   : 'Duration varies'}
               </span>
@@ -239,7 +239,7 @@ return null;
           </div>
 
           {/* Description */}
-          {template.description !== null && template.description !== undefined && template.description !== '' && (
+          {template.description && (
             <div className="mb-6">
               <h3 className="font-medium mb-2">Description</h3>
               <p className="text-gray-700">{template.description}</p>
@@ -272,18 +272,18 @@ return null;
           </div>
 
           {/* Structure */}
-          {template.type === 'UNIT_PLAN' && template.unitStructure !== null && template.unitStructure !== undefined && (
+          {template.type === 'UNIT_PLAN' && template.unitStructure && (
             <div className="mt-6">
               <h3 className="font-medium mb-3">Unit Structure</h3>
-              {template.unitStructure.phases !== null && template.unitStructure.phases !== undefined && template.unitStructure.phases.length > 0 && (
+              {template.unitStructure.phases && template.unitStructure.phases.length > 0 && (
                 <div className="space-y-3">
                   {template.unitStructure.phases.map((phase, _index) => (
                     <div key={_index} className="bg-gray-50 p-4 rounded-lg">
                       <div className="font-medium">{phase.name}</div>
-                      {phase.description !== null && phase.description !== undefined && phase.description !== '' && (
+                      {phase.description && (
                         <p className="text-gray-700 text-sm mt-1">{phase.description}</p>
                       )}
-                      {phase.estimatedDays !== null && phase.estimatedDays !== undefined && phase.estimatedDays > 0 && (
+                      {phase.estimatedDays && phase.estimatedDays > 0 && (
                         <p className="text-gray-500 text-sm mt-1">
                           Estimated: {phase.estimatedDays} days
                         </p>
@@ -299,7 +299,7 @@ return null;
         {/* Footer */}
         <div className="px-6 py-4 border-t flex justify-between items-center">
           <div className="text-sm text-gray-500">
-            {template.createdByUser !== null && template.createdByUser !== undefined ? (
+            {template.createdByUser ? (
               <span>Created by {template.createdByUser.name}</span>
             ) : (
               <span>System template</span>

@@ -38,13 +38,13 @@ export default function TemplateFilters({
   };
 
   const hasActiveFilters =
-    (filters.type !== null && filters.type !== undefined) ||
-    (filters.category !== null && filters.category !== undefined) ||
-    (filters.subject !== null && filters.subject !== undefined && filters.subject !== '') ||
-    (filters.gradeMin !== null && filters.gradeMin !== undefined) ||
-    (filters.gradeMax !== null && filters.gradeMax !== undefined) ||
-    (filters.search !== null && filters.search !== undefined && filters.search !== '') ||
-    (filters.tags !== null && filters.tags !== undefined && filters.tags.length > 0);
+    !!filters.type ||
+    !!filters.category ||
+    !!filters.subject ||
+    filters.gradeMin !== undefined ||
+    filters.gradeMax !== undefined ||
+    !!filters.search ||
+    (filters.tags && filters.tags.length > 0);
 
   return (
     <div className="bg-gray-50 rounded-lg p-4 space-y-4">
@@ -73,7 +73,7 @@ export default function TemplateFilters({
             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Search templates..."
             type="text"
-            value={filters.search !== null && filters.search !== undefined ? filters.search : ''}
+            value={filters.search || ''}
             onChange={(e) => {
  updateFilter('search', e.target.value); 
 }}
@@ -84,7 +84,7 @@ export default function TemplateFilters({
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
           <Select
-            value={filters.type !== null && filters.type !== undefined ? filters.type : 'all'}
+            value={filters.type || 'all'}
             onValueChange={(value) => {
  updateFilter('type', value === 'all' ? undefined : value); 
 }}
@@ -107,7 +107,7 @@ export default function TemplateFilters({
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
           <Select
-            value={filters.category !== null && filters.category !== undefined ? filters.category : 'all'}
+            value={filters.category || 'all'}
             onValueChange={(value) => {
  updateFilter('category', value === 'all' ? undefined : (value as TemplateCategory)); 
 }
@@ -131,7 +131,7 @@ export default function TemplateFilters({
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Subject</label>
           <Select
-            value={filters.subject !== null && filters.subject !== undefined ? filters.subject : 'all'}
+            value={filters.subject || 'all'}
             onValueChange={(value) => {
  updateFilter('subject', value === 'all' ? undefined : value); 
 }}
@@ -155,7 +155,7 @@ export default function TemplateFilters({
           <label className="block text-sm font-medium text-gray-700 mb-1">Grade Level</label>
           <div className="flex gap-2 items-center">
             <Select
-              value={filters.gradeMin !== null && filters.gradeMin !== undefined ? filters.gradeMin.toString() : 'all'}
+              value={filters.gradeMin !== undefined ? filters.gradeMin.toString() : 'all'}
               onValueChange={(value) => {
  updateFilter('gradeMin', value === 'all' ? undefined : parseInt(value)); 
 }
@@ -175,7 +175,7 @@ export default function TemplateFilters({
             </Select>
             <span className="text-gray-500">to</span>
             <Select
-              value={filters.gradeMax !== null && filters.gradeMax !== undefined ? filters.gradeMax.toString() : 'all'}
+              value={filters.gradeMax !== undefined ? filters.gradeMax.toString() : 'all'}
               onValueChange={(value) => {
  updateFilter('gradeMax', value === 'all' ? undefined : parseInt(value)); 
 }
@@ -202,7 +202,7 @@ export default function TemplateFilters({
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Sort By</label>
           <Select
-            value={filters.sortBy !== null && filters.sortBy !== undefined ? filters.sortBy : 'usageCount'}
+            value={filters.sortBy || 'usageCount'}
             onValueChange={(value) => {
  updateFilter(
                 'sortBy',
@@ -227,7 +227,7 @@ export default function TemplateFilters({
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Order</label>
           <Select
-            value={filters.sortOrder !== null && filters.sortOrder !== undefined ? filters.sortOrder : 'desc'}
+            value={filters.sortOrder || 'desc'}
             onValueChange={(value) => {
  updateFilter('sortOrder', value as 'asc' | 'desc'); 
 }}

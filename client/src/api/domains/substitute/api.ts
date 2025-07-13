@@ -534,7 +534,7 @@ export const substituteApi = {
     const params = new URLSearchParams();
     if (conditions) {
       Object.entries(conditions).forEach(([key, value]) => {
-        if (value !== undefined && value !== null) {
+        if (value != null) {
           params.append(key, String(value));
         }
       });
