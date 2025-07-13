@@ -47,8 +47,8 @@ export default function ETFOPlanningCoverage(): React.ReactElement {
       name: 'Long-Range Plans',
       icon: <Calendar className="h-5 w-5" />,
       total: 8, // Assuming 8 subjects for elementary
-      completed: longRangePlans.filter((p) => p.goals && (p.themes?.length || 0) > 0).length,
-      inProgress: longRangePlans.filter((p) => p.goals && !(p.themes?.length || 0)).length,
+      completed: longRangePlans.filter((p) => p.goals !== null && p.goals !== undefined && p.goals !== '' && (p.themes?.length ?? 0) > 0).length,
+      inProgress: longRangePlans.filter((p) => p.goals !== null && p.goals !== undefined && p.goals !== '' && !(p.themes?.length ?? 0)).length,
       notStarted: 8 - longRangePlans.length,
       description: 'Year-long curriculum organization by subject',
     },

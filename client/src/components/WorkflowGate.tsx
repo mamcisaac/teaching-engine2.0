@@ -31,7 +31,7 @@ export default function WorkflowGate({ level, children }: WorkflowGateProps): Re
         const blockedReason = getBlockedReason(level);
         toast({
           title: 'Access Restricted',
-          description: blockedReason || 'You must complete previous levels first',
+          description: blockedReason ?? 'You must complete previous levels first',
           variant: 'destructive',
         });
       }
