@@ -184,7 +184,7 @@ export class TestMigrationHelper {
         const result = await apiCall();
         const duration = performance.now() - start;
 
-        if (duration > (this.config.maxResponseTime || 5000)) {
+        if (duration > (this.config.maxResponseTime ?? 5000)) {
           console.warn(`Slow API call in ${testName}: ${duration}ms`);
         }
 

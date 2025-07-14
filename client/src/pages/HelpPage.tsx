@@ -407,7 +407,7 @@ export default function HelpPage(): React.ReactElement {
 
           {/* Main Content */}
           <div className="flex-1">
-            {selectedSection ? (
+            {(selectedSection !== null && selectedSection !== undefined && selectedSection !== '') ? (
               <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
                 {renderSectionContent(selectedSection)}
 

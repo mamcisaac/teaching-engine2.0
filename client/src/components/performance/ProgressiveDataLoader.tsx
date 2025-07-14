@@ -137,7 +137,7 @@ return;
   };
 
   // Error state
-  if (error && items.length === 0) {
+  if ((error !== null && error !== undefined && error !== '') && items.length === 0) {
     return (
       <div className={`text-center py-8 ${className}`}>
         {errorState ?? (
@@ -241,7 +241,7 @@ return;
       )}
 
       {/* Error state for load more */}
-      {error && items.length > 0 && (
+      {(error !== null && error !== undefined && error !== '') && items.length > 0 && (
         <div className="mt-4 text-center">
           <div className="text-red-600 text-sm mb-2">Failed to load more items</div>
           <Button aria-label="Click button" onClick={() => {

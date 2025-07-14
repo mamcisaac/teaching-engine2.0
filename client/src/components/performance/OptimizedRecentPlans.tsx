@@ -133,7 +133,7 @@ const PlanItem = memo(
                   <span className={cn('text-xs text-gray-500', compact && 'text-xs')}>
                     {config.label}
                   </span>
-                  {plan.subject && (
+                  {(plan.subject !== null && plan.subject !== undefined && plan.subject !== '') && (
                     <>
                       <span className="text-xs text-gray-400">•</span>
                       <span className="text-xs text-gray-500">{plan.subject}</span>
@@ -146,7 +146,7 @@ const PlanItem = memo(
                     </>
                   )}
                 </div>
-                {plan.parentTitle && (
+                {(plan.parentTitle !== null && plan.parentTitle !== undefined && plan.parentTitle !== '') && (
                   <p className="text-xs text-gray-500 mt-0.5">in {plan.parentTitle}</p>
                 )}
               </div>

@@ -86,11 +86,11 @@ export function useSaveNewsletterDraft(): UseMutationResult<NewsletterDraft, Err
 
   return useMutation<NewsletterDraft, Error, NewsletterDraft>({
     mutationFn: async (draft) => {
-      const endpoint = draft.id 
+      const endpoint = (draft.id !== null && draft.id !== undefined && draft.id !== '') 
         ? `/newsletters/${draft.id}` 
         : '/newsletters';
       
-      const method = draft.id ? 'put' : 'post';
+      const method = (draft.id !== null && draft.id !== undefined && draft.id !== '') ? 'put' : 'post';
       
       const response = await apiClient[method](endpoint, draft);
       return response.data as NewsletterDraft;
@@ -122,13 +122,13 @@ export function useNewsletter(id: string | undefined): UseQueryResult<Newsletter
   return useQuery<NewsletterDraft, Error, NewsletterDraft>({
     queryKey: ['newsletter', id],
     queryFn: async () => {
-      if (!id || id === '') {
+      if (id === null || id === undefined || id === '') {
 throw new Error('Newsletter ID is required');
 }
       const response = await apiClient.get(`/newsletters/${id}`);
       return response.data as NewsletterDraft;
     },
-    enabled: Boolean(id && id !== ''),
+    enabled: Boolean(id !== null && id !== undefined && id !== ''),
   });
 }
 

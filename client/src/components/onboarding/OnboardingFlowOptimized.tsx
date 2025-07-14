@@ -44,13 +44,13 @@ export function OnboardingFlowOptimized(): React.ReactElement | null {
     return () => { // Cleanup
     };
 
-    if (!currentStep?.targetElement) {
+    if (currentStep?.targetElement === null || currentStep?.targetElement === undefined || currentStep?.targetElement === '') {
       setHighlightPosition(null);
       return;
     }
 
     const updatePosition = (): void => {
-      if (!currentStep?.targetElement) {
+      if (currentStep?.targetElement === null || currentStep?.targetElement === undefined || currentStep?.targetElement === '') {
         setHighlightPosition(null);
         return;
       }
@@ -128,12 +128,12 @@ export function OnboardingFlowOptimized(): React.ReactElement | null {
     return () => { // Cleanup
     };
 
-    if (!currentStep?.targetElement || !currentStep?.requiresAction) {
+    if ((currentStep?.targetElement === null || currentStep?.targetElement === undefined || currentStep?.targetElement === '') || !currentStep?.requiresAction) {
 return;
 }
 
     const handleClick = (e: MouseEvent): void => {
-      if (!currentStep?.targetElement) {
+      if (currentStep?.targetElement === null || currentStep?.targetElement === undefined || currentStep?.targetElement === '') {
 return;
 }
       const element = document.querySelector(currentStep.targetElement);
@@ -152,7 +152,7 @@ return;
 return null;
 }
 
-  const isCenter = currentStep.position === 'center' || !currentStep.targetElement;
+  const isCenter = currentStep.position === 'center' || (currentStep.targetElement === null || currentStep.targetElement === undefined || currentStep.targetElement === '');
 
   return createPortal(
     <Suspense fallback={<OnboardingLoadingFallback />}>
@@ -192,7 +192,7 @@ return null;
           />
 
           {/* Completion message */}
-          {state.currentFlow?.completionMessage &&
+          {(state.currentFlow?.completionMessage !== null && state.currentFlow?.completionMessage !== undefined && state.currentFlow?.completionMessage !== '') &&
             state.currentStepIndex === state.currentFlow.steps.length - 1 ? (
               <OnboardingProgress completionMessage={state.currentFlow.completionMessage} />
             ) : null}

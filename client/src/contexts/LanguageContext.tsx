@@ -409,7 +409,7 @@ export function LanguageProvider({ children }: LanguageProviderProps): React.Rea
   };
 
   const t = (key: string, fallback?: string, substitutions?: string[]): string => {
-    let translation = translations[language][key] || fallback || key;
+    let translation = (translations[language][key] !== null && translations[language][key] !== undefined && translations[language][key] !== '') ? translations[language][key] : ((fallback !== null && fallback !== undefined && fallback !== '') ? fallback : key);
 
     // Handle string interpolation for placeholders like {0}, {1}, etc.
     if (substitutions && substitutions.length > 0) {

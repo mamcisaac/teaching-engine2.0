@@ -55,7 +55,7 @@ export function AuthProvider({ children }: { children: ReactNode }): React.React
             id: String(userData.id),
             email: userData.email,
             name: userData.name,
-            role: userData.role || 'teacher',
+            role: userData.role ?? 'teacher',
             organizationId: userData.organizationId !== 0 && !isNaN(userData.organizationId) ? String(userData.organizationId) : undefined,
           });
         }
@@ -98,13 +98,13 @@ export function AuthProvider({ children }: { children: ReactNode }): React.React
           message?: string;
         };
         
-        if (err.response?.data?.error) {
+        if (err.response?.data?.error !== null && err.response?.data?.error !== undefined && err.response?.data?.error !== '') {
           errorMessage = err.response.data.error;
         } else if (err.response?.status === 401) {
           errorMessage = 'Invalid email or password';
         } else if (err.response?.status !== undefined && err.response.status >= 500) {
           errorMessage = 'Server error. Please try again later.';
-        } else if (err.message) {
+        } else if (err.message !== null && err.message !== undefined && err.message !== '') {
           errorMessage = err.message;
         }
         

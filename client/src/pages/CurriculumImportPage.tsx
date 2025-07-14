@@ -510,7 +510,7 @@ return;
                               <span className="font-mono text-sm">{expectation.code}</span>
                               <span className="text-sm text-muted-foreground">
                                 {expectation.strand}
-                                {expectation.substrand && ` / ${expectation.substrand}`}
+                                {(expectation.substrand !== null && expectation.substrand !== undefined && expectation.substrand !== '') && ` / ${expectation.substrand}`}
                               </span>
                             </div>
                             <p className="text-sm">{expectation.description}</p>

@@ -253,9 +253,9 @@ export const buildUpdateSchema = <T extends z.ZodRawShape>(
 export const createValidationMiddleware = <T>(schema: z.ZodSchema<T>): ((req: Request, res: Response, next: NextFunction) => void) => (req: Request, res: Response, next: NextFunction): void => {
     try {
       const data = {
-        ...(req.body ?? {}),
-        ...(req.query ?? {}),
-        ...(req.params ?? {}),
+        ...(req.body || {}),
+        ...(req.query || {}),
+        ...(req.params || {}),
       };
       
       const result = schema.parse(data);

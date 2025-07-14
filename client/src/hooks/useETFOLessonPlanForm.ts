@@ -106,7 +106,7 @@ export function useETFOLessonPlanForm({
         await onSave(data);
       }
     },
-    enabled: !!editingId && !!autoSaveData && !!onSave,
+    enabled: (editingId !== null && editingId !== undefined && editingId !== '') && (autoSaveData !== null && autoSaveData !== undefined) && (onSave !== null && onSave !== undefined),
     delay: 30000, // 30 seconds
   });
 
@@ -173,7 +173,7 @@ export function useETFOLessonPlanForm({
     if (formData.duration < 15 || formData.duration > 300) {
       errors.push('Duration must be between 15 and 300 minutes');
     }
-    if (!unitPlanId || unitPlanId === 0) {
+    if (unitPlanId === null || unitPlanId === undefined || unitPlanId === 0) {
       errors.push('Unit plan is required');
     }
 

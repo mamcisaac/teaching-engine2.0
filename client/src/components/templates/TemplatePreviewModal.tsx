@@ -280,7 +280,7 @@ return null;
                   {template.unitStructure.phases.map((phase, _index) => (
                     <div key={_index} className="bg-gray-50 p-4 rounded-lg">
                       <div className="font-medium">{phase.name}</div>
-                      {phase.description && (
+                      {(phase.description !== null && phase.description !== undefined && phase.description !== '') && (
                         <p className="text-gray-700 text-sm mt-1">{phase.description}</p>
                       )}
                       {phase.estimatedDays !== null && phase.estimatedDays !== undefined && phase.estimatedDays > 0 && (

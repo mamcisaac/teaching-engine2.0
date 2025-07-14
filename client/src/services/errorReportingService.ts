@@ -237,7 +237,7 @@ export class ErrorReportingService {
       email: user.email !== undefined ? this.maskEmail(user.email) : undefined,
       username: user.name,
       role: user.role,
-      organizationId: user.organizationId ? String(user.organizationId) : undefined,
+      organizationId: (user.organizationId !== null && user.organizationId !== undefined && user.organizationId !== '') ? String(user.organizationId) : undefined,
     };
 
     Sentry.setUser(sanitizedUser);
@@ -453,7 +453,7 @@ export class ErrorReportingService {
     }
 
     // Sanitize user data
-    if (sanitized.user?.email) {
+    if (sanitized.user?.email !== null && sanitized.user?.email !== undefined && sanitized.user?.email !== '') {
       sanitized.user.email = this.maskEmail(sanitized.user.email);
     }
 

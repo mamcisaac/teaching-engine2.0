@@ -546,7 +546,7 @@ describe('LessonPlanForm', () => {
 
       expect(titleInput).toHaveAttribute(
         'aria-describedby',
-        expect.stringContaining(errorMessage.id || 'error'),
+        expect.stringContaining(errorMessage.id ?? 'error'),
       );
     });
   });

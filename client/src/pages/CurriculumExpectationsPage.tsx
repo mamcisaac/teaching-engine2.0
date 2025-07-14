@@ -101,7 +101,7 @@ export default function CurriculumExpectationsPage(): React.ReactElement {
   const handleEdit = (expectation: CurriculumExpectation): void => {
     setEditingExpectation({
       ...expectation,
-      descriptionFr: expectation.descriptionFr || '',
+      descriptionFr: (expectation.descriptionFr !== null && expectation.descriptionFr !== undefined && expectation.descriptionFr !== '') ? expectation.descriptionFr : '',
     });
     setIsEditDialogOpen(true);
   };
@@ -177,7 +177,7 @@ return;
       <TableCell className="max-w-md">
         <div className="space-y-1">
           <p className="text-sm">{expectation.description}</p>
-          {expectation.descriptionFr && (
+          {(expectation.descriptionFr !== null && expectation.descriptionFr !== undefined && expectation.descriptionFr !== '') && (
             <p className="text-sm text-muted-foreground italic">{expectation.descriptionFr}</p>
           )}
         </div>
@@ -185,7 +185,7 @@ return;
       <TableCell>
         <div className="text-sm">
           <div>{expectation.strand}</div>
-          {expectation.substrand && (
+          {(expectation.substrand !== null && expectation.substrand !== undefined && expectation.substrand !== '') && (
             <div className="text-muted-foreground">{expectation.substrand}</div>
           )}
         </div>
@@ -422,7 +422,7 @@ return;
                 <Textarea
                   placeholder="Optional French translation"
                   rows={3}
-                  value={editingExpectation.descriptionFr || ''}
+                  value={(editingExpectation.descriptionFr !== null && editingExpectation.descriptionFr !== undefined && editingExpectation.descriptionFr !== '') ? editingExpectation.descriptionFr : ''}
                   onChange={(e) => {
  setEditingExpectation({
                       ...editingExpectation,
@@ -450,7 +450,7 @@ return;
                 <div>
                   <Label htmlFor="input">Substrand (Optional)</Label>
                   <Input
-                    value={editingExpectation.substrand || ''}
+                    value={(editingExpectation.substrand !== null && editingExpectation.substrand !== undefined && editingExpectation.substrand !== '') ? editingExpectation.substrand : ''}
                     onChange={(e) => {
  setEditingExpectation({
                         ...editingExpectation,

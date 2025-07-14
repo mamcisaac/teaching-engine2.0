@@ -101,13 +101,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
           response?: { data?: { error?: string }; status?: number };
           message?: string;
         };
-        if (err.response?.data?.error) {
+        if (err.response?.data?.error !== null && err.response?.data?.error !== undefined && err.response?.data?.error !== '') {
           errorMessage = err.response.data.error;
         } else if (err.response?.status === 401) {
           errorMessage = 'Invalid email or password';
         } else if (err.response?.status !== null && err.response?.status !== undefined && err.response.status >= 500) {
           errorMessage = 'Server error. Please try again later.';
-        } else if (err.message) {
+        } else if (err.message !== null && err.message !== undefined && err.message !== '') {
           errorMessage = err.message;
         }
 

@@ -113,7 +113,7 @@ export function useUnitPlanForm({
         await onSave(data);
       }
     },
-    enabled: !!editingId && !!autoSaveData && !!onSave,
+    enabled: (editingId !== null && editingId !== undefined && editingId !== '') && (autoSaveData !== null && autoSaveData !== undefined) && (onSave !== null && onSave !== undefined),
     delay: 30000, // 30 seconds
   });
 
@@ -217,7 +217,7 @@ export function useUnitPlanForm({
     if (new Date(formData.startDate) > new Date(formData.endDate)) {
       errors.push('End date must be after start date');
     }
-    if (!formData.longRangePlanId && !longRangePlanId) {
+    if ((formData.longRangePlanId === null || formData.longRangePlanId === undefined || formData.longRangePlanId === '') && (longRangePlanId === null || longRangePlanId === undefined || longRangePlanId === '')) {
       errors.push('Long-range plan is required');
     }
 

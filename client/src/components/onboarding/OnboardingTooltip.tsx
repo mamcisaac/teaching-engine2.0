@@ -299,7 +299,7 @@ return;
                 </div>
               </div>
 
-              {actionText && onAction ? (
+              {(actionText !== null && actionText !== undefined && actionText !== '') && onAction ? (
                 <button
                   className="mt-3 text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
                   onClick={() => {

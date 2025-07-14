@@ -144,7 +144,7 @@ describe('basePlanningStore - nullish coalescing behavior', () => {
       const localData: { updatedAt: Date; lastModified?: Date } = { updatedAt: new Date('2024-01-01') };
       
       // Test current behavior with ||
-      const timestamp = localData.lastModified || localData.updatedAt;
+      const timestamp = localData.lastModified ?? localData.updatedAt;
       expect(timestamp).toBe(localData.updatedAt);
     });
 
@@ -161,7 +161,7 @@ describe('basePlanningStore - nullish coalescing behavior', () => {
       
       // With ||, empty string would trigger fallback to updatedAt
       // With ??, empty string should be preserved (which might cause issues)
-      const timestampWithOr = localData.lastModified || localData.updatedAt;
+      const timestampWithOr = localData.lastModified ?? localData.updatedAt;
       const timestampWithNullish = localData.lastModified ?? localData.updatedAt;
       
       expect(timestampWithOr).toBe(localData.updatedAt);
@@ -190,7 +190,7 @@ describe('basePlanningStore - nullish coalescing behavior', () => {
       
       // With ||, empty string would become 'unknown'
       // With ??, empty string should be preserved
-      const idWithOr = (merged.id || 'unknown') as string;
+      const idWithOr = (merged.id ?? 'unknown') as string;
       const idWithNullish = (merged.id ?? 'unknown') as string;
       
       expect(idWithOr).toBe('unknown');
@@ -202,7 +202,7 @@ describe('basePlanningStore - nullish coalescing behavior', () => {
       
       // With ||, 0 would become 'unknown'
       // With ??, 0 should be preserved
-      const idWithOr = (merged.id || 'unknown');
+      const idWithOr = (merged.id ?? 'unknown');
       const idWithNullish = (merged.id ?? 'unknown');
       
       expect(idWithOr).toBe('unknown');

@@ -46,10 +46,10 @@ export function LoadingSkeleton({
   };
 
   const containerStyle: React.CSSProperties = {};
-  if (height) {
+  if (height !== null && height !== undefined && height !== '') {
 containerStyle.height = height;
 }
-  if (width) {
+  if (width !== null && width !== undefined && width !== '') {
 containerStyle.width = width;
 }
 

@@ -55,7 +55,7 @@ vi.mock('../../components/forms/LessonPlanForm', () => ({
     <div data-testid="lesson-plan-form">
       <h3>Lesson Plan Form</h3>
       <div>Show Unit Plan Selector: {showUnitPlanSelector ? 'Yes' : 'No'}</div>
-      <div>Initial Title: {initialData.title || 'Empty'}</div>
+      <div>Initial Title: {initialData.title ?? 'Empty'}</div>
       <div>Initial Date: {initialData.date}</div>
       <div>Duration: {initialData.duration} minutes</div>
       <div>Assessment Type: {initialData.assessmentType}</div>

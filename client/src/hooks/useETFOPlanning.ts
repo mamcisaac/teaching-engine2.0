@@ -191,16 +191,16 @@ export function useCurriculumExpectations(filters?: {
     queryKey: ['curriculum-expectations', filters],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (filters?.subject && filters.subject !== '') {
+      if (filters?.subject !== null && filters?.subject !== undefined && filters.subject !== '') {
         params.append('subject', filters.subject);
       }
       if (filters?.grade !== undefined) {
         params.append('grade', filters.grade.toString());
       }
-      if (filters?.strand && filters.strand !== '') {
+      if (filters?.strand !== null && filters?.strand !== undefined && filters.strand !== '') {
         params.append('strand', filters.strand);
       }
-      if (filters?.search && filters.search !== '') {
+      if (filters?.search !== null && filters?.search !== undefined && filters.search !== '') {
         params.append('search', filters.search);
       }
 
@@ -571,7 +571,7 @@ export function useCreateDaybookEntry(): ReturnType<typeof useMutation<DaybookEn
     },
     onSuccess: (_data) => {
       void queryClient.invalidateQueries({ queryKey: ['daybook-entries'] });
-      if (_data.lessonPlanId && _data.lessonPlanId !== '') {
+      if (_data.lessonPlanId !== null && _data.lessonPlanId !== undefined && _data.lessonPlanId !== '') {
         void queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans', _data.lessonPlanId] });
       }
     },

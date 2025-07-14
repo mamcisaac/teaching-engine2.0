@@ -113,7 +113,7 @@ describe('Button - Real Backend Integration', () => {
           validationError = null;
         } catch (error: unknown) {
           const axiosError = error as { response?: { data?: { message?: string } } };
-          validationError = axiosError.response?.data?.message || 'Validation failed';
+          validationError = axiosError.response?.data?.message ?? 'Validation failed';
           submissionResult = null;
         }
       };
@@ -284,7 +284,7 @@ describe('Button - Real Backend Integration', () => {
         } catch (error: unknown) {
           hasError = true;
           const axiosError = error as { response?: { data?: { message?: string } } };
-          errorMessage = axiosError.response?.data?.message || 'API Error';
+          errorMessage = axiosError.response?.data?.message ?? 'API Error';
         }
       };
 
