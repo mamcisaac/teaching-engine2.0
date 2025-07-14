@@ -16,7 +16,7 @@ import pino, { stdSerializers } from 'pino';
 
 // Base logger configuration
 const pinoConfig: pino.LoggerOptions = {
-  level: process.env.LOG_LEVEL ?? (process.env.NODE_ENV === 'production' ? 'info' : 'debug'),
+  level: (process.env.LOG_LEVEL !== null && process.env.LOG_LEVEL !== undefined && process.env.LOG_LEVEL !== '') ? process.env.LOG_LEVEL : (process.env.NODE_ENV === 'production' ? 'info' : 'debug'),
 
   // Custom serializers for better structured logging
   serializers: {
@@ -66,7 +66,7 @@ const pinoConfig: pino.LoggerOptions = {
       return {
         id: userData.id,
         email:
-          userData.email && typeof userData.email === 'string'
+          (userData.email !== null && userData.email !== undefined && userData.email !== '') && typeof userData.email === 'string'
             ? `${userData.email.substring(0, 3)  }***`
             : undefined,
         role: userData.role,
@@ -261,7 +261,7 @@ class EnhancedLogger {
         message: obj,
         requestId: this.requestId,
         service: 'teaching-engine',
-        version: process.env.npm_package_version ?? 'unknown',
+        version: (process.env.npm_package_version !== null && process.env.npm_package_version !== undefined && process.env.npm_package_version !== '') ? process.env.npm_package_version : 'unknown',
       };
     }
 
@@ -270,7 +270,7 @@ class EnhancedLogger {
         ...(obj as Record<string, unknown>),
         requestId: this.requestId,
         service: 'teaching-engine',
-        version: process.env.npm_package_version ?? 'unknown',
+        version: (process.env.npm_package_version !== null && process.env.npm_package_version !== undefined && process.env.npm_package_version !== '') ? process.env.npm_package_version : 'unknown',
       };
     }
 

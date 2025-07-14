@@ -27,7 +27,7 @@ export async function authenticate(
     // Extract token from Authorization header
     const token = extractTokenFromHeader(req.headers.authorization);
 
-    if (token === null || token === '') {
+    if (token === null || token === undefined || token === '') {
       throw new AuthenticationError('No authentication token provided');
     }
 
@@ -53,7 +53,7 @@ export async function authenticate(
     (req as AuthRequest).user = {
       id: user.id,
       email: user.email,
-      name: user.name || '',
+      name: (user.name !== null && user.name !== undefined && user.name !== '') ? user.name : '',
       role: user.role as UserRole,
     };
 

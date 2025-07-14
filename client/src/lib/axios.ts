@@ -4,7 +4,7 @@ import { authService } from '../services/authService';
 import { logger } from '../utils/logger';
 // Create axios instance with base configuration
 const api = axios.create({
-  baseURL: (import.meta.env.VITE_API_URL as string | undefined) ?? 'http://localhost:3000',
+  baseURL: ((import.meta.env.VITE_API_URL as string | undefined) !== null && (import.meta.env.VITE_API_URL as string | undefined) !== undefined && (import.meta.env.VITE_API_URL as string | undefined) !== '') ? (import.meta.env.VITE_API_URL as string) : 'http://localhost:3000',
   timeout: 10000,
   withCredentials: true, // Include cookies in requests
 });
@@ -14,7 +14,7 @@ api.interceptors.request.use(
   async (config) => {
     // Add authorization header if we have a token
     const authHeaders = authService.getAuthHeaders();
-    if (authHeaders.Authorization) {
+    if (authHeaders.Authorization !== null && authHeaders.Authorization !== undefined && authHeaders.Authorization !== '') {
       config.headers.Authorization = authHeaders.Authorization;
     }
 
@@ -58,7 +58,7 @@ api.interceptors.response.use(
       if (shouldRetry) {
         // Update the authorization header with the new token
         const authHeaders = authService.getAuthHeaders();
-        if (authHeaders.Authorization && originalRequest.headers) {
+        if ((authHeaders.Authorization !== null && authHeaders.Authorization !== undefined && authHeaders.Authorization !== '') && originalRequest.headers) {
           originalRequest.headers.Authorization = authHeaders.Authorization;
         }
 

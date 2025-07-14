@@ -74,16 +74,20 @@ export function CurriculumExpectationCoverage(): React.ReactElement {
 
     expectations.forEach((exp) => {
       // By subject
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       bySubject[exp.subject] = bySubject[exp.subject] ?? [];
       bySubject[exp.subject].push(exp);
 
       // By strand
       const strand = exp.strand && exp.strand !== '' ? exp.strand : 'Other';
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       byStrand[strand] = byStrand[strand] ?? [];
       byStrand[strand].push(exp);
 
       // By grade and subject
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       byGrade[exp.grade] = byGrade[exp.grade] ?? {};
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       byGrade[exp.grade][exp.subject] = byGrade[exp.grade][exp.subject] ?? [];
       byGrade[exp.grade][exp.subject].push(exp);
     });

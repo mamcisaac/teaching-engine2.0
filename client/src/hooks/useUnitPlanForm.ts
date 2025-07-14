@@ -101,15 +101,15 @@ export function useUnitPlanForm({
   const [formData, setFormData] = useState<UnitPlanFormData>(() => ({
     ...initialFormData,
     ...initialData,
-    longRangePlanId: longRangePlanId ?? (initialData?.longRangePlanId ?? ''),
+    longRangePlanId: (longRangePlanId !== null && longRangePlanId !== undefined && longRangePlanId !== '') ? longRangePlanId : (initialData?.longRangePlanId !== null && initialData?.longRangePlanId !== undefined && initialData?.longRangePlanId !== '' ? initialData.longRangePlanId : ''),
   }));
 
   // Auto-save functionality
-  const autoSaveData = editingId ? formData : null;
+  const autoSaveData = (editingId !== null && editingId !== undefined && editingId !== '') ? formData : null;
   const { lastSaved, isSaving, hasUnsavedChanges, saveNow } = useAutoSave({
     data: autoSaveData,
     saveFn: async (data) => {
-      if (editingId && data && onSave) {
+      if ((editingId !== null && editingId !== undefined && editingId !== '') && data && onSave) {
         await onSave(data);
       }
     },

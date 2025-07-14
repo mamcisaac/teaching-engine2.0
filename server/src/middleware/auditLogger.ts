@@ -124,10 +124,10 @@ class AuditLogger {
       userRole: req.user?.role,
       action,
       details,
-      ipAddress: req.ip ?? req.connection.remoteAddress,
-      userAgent: req.get('User-Agent'),
+      ipAddress: (req.ip !== null && req.ip !== undefined && req.ip !== '') ? req.ip : req.connection.remoteAddress,
+      userAgent: req.get('User-Agent') ?? undefined,
       sessionId:
-        (req as Request & { sessionID?: string; requestId?: string }).sessionID ??
+        ((req as Request & { sessionID?: string; requestId?: string }).sessionID !== null && (req as Request & { sessionID?: string; requestId?: string }).sessionID !== undefined && (req as Request & { sessionID?: string; requestId?: string }).sessionID !== '') ? (req as Request & { sessionID?: string; requestId?: string }).sessionID :
         (req as Request & { sessionID?: string; requestId?: string }).requestId,
       timestamp: new Date().toISOString(),
       success,
@@ -136,7 +136,7 @@ class AuditLogger {
   }
 
   private redactEmail(email?: string): string | undefined {
-    if (!email) {
+    if (email === null || email === undefined || email === '') {
 return undefined;
 }
     const [local, domain] = email.split('@');

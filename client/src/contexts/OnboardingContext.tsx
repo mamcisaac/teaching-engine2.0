@@ -192,7 +192,7 @@ export function OnboardingProvider({ children }: { children: ReactNode }): React
     // Load saved onboarding state
     const saved = localStorage.getItem(ONBOARDING_KEY);
     const defaultSavedState = { completedFlows: [], skippedOnboarding: false };
-    const savedState = saved ? safeJsonParse(saved, defaultSavedState) : defaultSavedState;
+    const savedState = (saved !== null && saved !== undefined && saved !== '') ? safeJsonParse(saved, defaultSavedState) : defaultSavedState;
     
     return {
       isFirstTimeUser: isFirstTime,

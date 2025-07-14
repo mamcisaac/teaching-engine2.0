@@ -52,7 +52,7 @@ const CalendarViewComponent = memo(({ month, events }: Props): React.ReactElemen
     const grouped: Record<string, CalendarEvent[]> = {};
     // Safely process events
     evts.forEach((e) => {
-      if (e.start && e.start !== '') {
+      if (e.start !== '') {
         const [d] = e.start.split('T');
         grouped[d] = grouped[d] ?? [];
         grouped[d].push(e);

@@ -109,7 +109,7 @@ class RequestBatcher {
 
     for (const req of requests) {
       const key = this.getGroupKey(req.request);
-      const group = groups.get(key) ?? [];
+      const group = (groups.get(key) !== null && groups.get(key) !== undefined) ? groups.get(key)! : [];
       group.push(req);
       groups.set(key, group);
     }

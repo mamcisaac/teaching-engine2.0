@@ -554,9 +554,9 @@ export function UnitPlanForm({
             onUnitGenerated={(plan) => {
               setFormData({
                 ...formData,
-                title: plan.title ?? formData.title,
-                bigIdeas: plan.bigIdeas.join('\n\n') ?? formData.bigIdeas,
-                essentialQuestions: plan.learningGoals ?? formData.essentialQuestions,
+                title: plan.title || formData.title,
+                bigIdeas: plan.bigIdeas.join('\n\n') || formData.bigIdeas,
+                essentialQuestions: plan.learningGoals || formData.essentialQuestions,
               });
             }}
           />

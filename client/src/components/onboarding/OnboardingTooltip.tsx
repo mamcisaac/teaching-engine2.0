@@ -103,7 +103,7 @@ function FlowTooltip({
           <span className="text-sm text-gray-500">
             Step {state.currentStepIndex + 1} of {state.currentFlow?.steps.length ?? 0}
           </span>
-          {state.currentFlow?.estimatedTime !== null && state.currentFlow?.estimatedTime !== undefined ? (
+          {state.currentFlow?.estimatedTime ? (
             <span className="text-sm text-gray-500">
               ~{state.currentFlow.estimatedTime} min
             </span>
@@ -191,7 +191,7 @@ function HoverTooltip({
   const [hasBeenShown, setHasBeenShown] = useState(false);
 
   // Don't show if onboarding is active or user isn't new
-  if ((state.currentFlow !== null && state.currentFlow !== undefined) || !state.isFirstTimeUser) {
+  if (state.currentFlow || !state.isFirstTimeUser) {
     return children;
   }
 
@@ -299,7 +299,7 @@ return;
                 </div>
               </div>
 
-              {actionText !== null && actionText !== undefined && actionText !== '' && onAction !== null && onAction !== undefined ? (
+              {actionText && onAction ? (
                 <button
                   className="mt-3 text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
                   onClick={() => {

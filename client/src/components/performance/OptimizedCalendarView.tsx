@@ -132,7 +132,7 @@ const EventListItem = memo(({
   onClick?: (event: CalendarEvent) => void;
 }) => {
   const handleClick = useCallback(() => {
-    onClick?.(event);
+    if (onClick) onClick(event);
   }, [event, onClick]);
 
   const eventDate = useMemo(() => {

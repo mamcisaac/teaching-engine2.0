@@ -98,11 +98,11 @@ export function useETFOLessonPlanForm({
   }));
 
   // Auto-save functionality
-  const autoSaveData = editingId ? formData : null;
+  const autoSaveData = (editingId !== null && editingId !== undefined && editingId !== '') ? formData : null;
   const { lastSaved, isSaving, hasUnsavedChanges, saveNow } = useAutoSave({
     data: autoSaveData,
     saveFn: async (data) => {
-      if (editingId && data && onSave) {
+      if ((editingId !== null && editingId !== undefined && editingId !== '') && data && onSave) {
         await onSave(data);
       }
     },

@@ -116,7 +116,7 @@ export function GPTPlanningAgent({
   // Send message
   const sendMessageMutation = useMutation({
     mutationFn: async (message: string) => {
-      if (sessionId === null || sessionId.length === 0) {
+      if (!sessionId || sessionId.length === 0) {
 throw new Error('No session');
 }
       const response = await api.post<{ data: MessageResponse }>('/api/ai/agent/messages', {
@@ -138,7 +138,7 @@ throw new Error('No session');
       ]);
 
       // Handle action results
-      if (data.actionResults && Array.isArray(data.actionResults)) {
+      if (data.actionResults) {
         data.actionResults.forEach((result: ActionResult) => {
           switch (result.type) {
             case 'activities_generated':
@@ -181,7 +181,7 @@ throw new Error('No session');
     return () => { // Cleanup
     };
 
-    if (isOpen && (sessionId === null || sessionId?.length === 0)) {
+    if (isOpen && (!sessionId || sessionId.length === 0)) {
       startSessionMutation.mutate();
     }
   }, [isOpen, sessionId, startSessionMutation]);
@@ -201,7 +201,7 @@ throw new Error('No session');
 
     if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
       const SpeechRecognitionConstructor =
-        'SpeechRecognition' in window ? window.SpeechRecognition : window.webkitSpeechRecognition;
+        window.SpeechRecognition || window.webkitSpeechRecognition;
       const recognition = new SpeechRecognitionConstructor();
       recognitionRef.current = recognition;
       

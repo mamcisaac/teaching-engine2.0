@@ -93,9 +93,9 @@ return null;
           )}
         >
           {/* Header */}
-          {((title !== undefined && title !== '') || showCloseButton) && (
+          {((title !== null && title !== undefined && title !== '') || showCloseButton) && (
             <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4">
-              {(title !== undefined && title !== '') && (
+              {(title !== null && title !== undefined && title !== '') && (
                 <h3 className="text-lg font-medium leading-6 text-gray-900" id="modal-title">
                   {title}
                 </h3>

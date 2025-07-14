@@ -47,8 +47,8 @@ export function DuplicatePlanModal({
   planTitle 
 }: DuplicatePlanModalProps): React.ReactElement {
   const queryClient = useQueryClient();
-  const [selectedType, setSelectedType] = useState(planType ?? '');
-  const [selectedPlanId, setSelectedPlanId] = useState(planId ?? '');
+  const [selectedType, setSelectedType] = useState((planType !== null && planType !== undefined && planType !== '') ? planType : '');
+  const [selectedPlanId, setSelectedPlanId] = useState((planId !== null && planId !== undefined && planId !== '') ? planId : '');
   const [newTitle, setNewTitle] = useState('');
   const [notes, setNotes] = useState('');
   const [includeSubItems, setIncludeSubItems] = useState(true);
@@ -109,7 +109,7 @@ export function DuplicatePlanModal({
 
   const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
-    if (selectedType !== '' && selectedPlanId !== '' && newTitle !== '') {
+    if ((selectedType !== null && selectedType !== undefined && selectedType !== '') && (selectedPlanId !== null && selectedPlanId !== undefined && selectedPlanId !== '') && (newTitle !== null && newTitle !== undefined && newTitle !== '')) {
       duplicateMutation.mutate({});
     }
   };
@@ -174,7 +174,7 @@ export function DuplicatePlanModal({
             </div>
           ) : null}
 
-          {(selectedType !== '' || planType !== undefined) && planId === undefined ? (
+          {((selectedType !== null && selectedType !== undefined && selectedType !== '') || planType !== undefined) && planId === undefined ? (
             <div>
               <Label htmlFor="input">Select Plan to Duplicate</Label>
               <Select value={selectedPlanId} onValueChange={setSelectedPlanId}>
@@ -280,7 +280,7 @@ export function DuplicatePlanModal({
               </Button>
               <Button
                 className="bg-indigo-600 hover:bg-indigo-700 text-white"
-                disabled={selectedType === '' || selectedPlanId === '' || newTitle === '' || duplicateMutation.isPending}
+                disabled={(selectedType === null || selectedType === undefined || selectedType === '') || (selectedPlanId === null || selectedPlanId === undefined || selectedPlanId === '') || (newTitle === null || newTitle === undefined || newTitle === '') || duplicateMutation.isPending}
                 type="submit"
               >
                 {duplicateMutation.isPending ? 'Duplicating...' : 'Duplicate Plan'}
