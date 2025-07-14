@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 import type { LongRangePlan } from '../../hooks/useETFOPlanning';
@@ -20,7 +21,7 @@ export const UnitPlanOverviewTab: React.FC<UnitPlanOverviewTabProps> = ({
     <div className="space-y-6">
       <CollapsibleSection defaultExpanded required title="Basic Information">
         <div className="space-y-4">
-          {(longRangePlanId === null || longRangePlanId === undefined || longRangePlanId === '') && (
+          {(!longRangePlanId || longRangePlanId === '') && (
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Long-Range Plan *

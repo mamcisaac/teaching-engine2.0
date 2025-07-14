@@ -1,4 +1,5 @@
-import { useQuery, useMutation, useQueryClient, UseMutationResult } from '@tanstack/react-query';
+import type { UseMutationResult } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { apiClient } from '../api/core/client';
@@ -570,7 +571,7 @@ export function useCreateDaybookEntry(): ReturnType<typeof useMutation<DaybookEn
     },
     onSuccess: (_data) => {
       void queryClient.invalidateQueries({ queryKey: ['daybook-entries'] });
-      if (_data.lessonPlanId !== null && _data.lessonPlanId !== undefined && _data.lessonPlanId !== '') {
+      if (_data.lessonPlanId && _data.lessonPlanId !== '') {
         void queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans', _data.lessonPlanId] });
       }
     },

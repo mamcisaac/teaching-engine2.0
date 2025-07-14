@@ -41,7 +41,7 @@ class PerformanceTestRunner {
       const paintEntries = performance.getEntriesByType('paint');
 
       const fcp =
-        paintEntries.find((entry) => entry.name === 'first-contentful-paint')?.startTime || 0;
+        paintEntries.find((entry) => entry.name === 'first-contentful-paint')?.startTime ?? 0;
 
       return {
         ttfb: navigation.responseStart - navigation.requestStart,
@@ -121,7 +121,7 @@ class PerformanceTestRunner {
 
       const memory = await this.page.evaluate(() => {
         // @ts-ignore
-        return (performance as any).memory?.usedJSHeapSize || 0;
+        return (performance as any).memory?.usedJSHeapSize ?? 0;
       });
 
       memoryMeasurements.push(memory);
@@ -149,7 +149,7 @@ class PerformanceTestRunner {
         totalSize: totalSize,
         averageTime: totalTime / resources.length,
         slowestResource: resources.reduce((slowest: any, current: any) => {
-          return current.duration > (slowest?.duration || 0) ? current : slowest;
+          return current.duration > (slowest?.duration ?? 0) ? current : slowest;
         }, null),
       };
     });
@@ -357,7 +357,7 @@ test.describe('Planning Operations Performance Tests', () => {
       const memoryBefore = await page.evaluate(
         () =>
           // @ts-ignore
-          (performance as any).memory?.usedJSHeapSize || 0,
+          (performance as any).memory?.usedJSHeapSize ?? 0,
       );
 
       await stateOperation();
@@ -370,7 +370,7 @@ test.describe('Planning Operations Performance Tests', () => {
       const memoryAfter = await page.evaluate(
         () =>
           // @ts-ignore
-          (performance as any).memory?.usedJSHeapSize || 0,
+          (performance as any).memory?.usedJSHeapSize ?? 0,
       );
 
       const memoryIncrease = memoryAfter - memoryBefore;

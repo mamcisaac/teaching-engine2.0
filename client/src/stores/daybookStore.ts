@@ -1,5 +1,6 @@
 // Daybook Store with Offline Support
 
+
 import { create } from 'zustand';
 import { persist, subscribeWithSelector } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
@@ -9,8 +10,9 @@ import type { StoredData } from '../services/offlineStorage';
 import { offlineStorage } from '../services/offlineStorage';
 import { logger } from '../utils/logger';
 
-import { createOfflineSlice, createAutoSave } from './basePlanningStore';
 import type { OfflineState, BaseActions } from './basePlanningStore';
+import { createOfflineSlice, createAutoSave } from './basePlanningStore';
+
 export interface DaybookEntry {
   id: string;
   date: string;
@@ -134,7 +136,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
                 const cacheKey = `daybook-${startDate}-${endDate}`;
                 const cachedEntries = await offlineStorage.getCachedData<DaybookEntry[]>(cacheKey);
 
-                if (cachedEntries !== null && cachedEntries !== undefined) {
+                if (cachedEntries) {
                   set((state) => {
                     state.entries = cachedEntries;
                     state.isLoading = false;
@@ -143,7 +145,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
                   // Try to load any cached data
                   const allEntries =
                     await offlineStorage.getCachedData<DaybookEntry[]>('daybook-cache');
-                  if (allEntries !== null && allEntries !== undefined) {
+                  if (allEntries) {
                     // Filter by date range
                     const filtered = allEntries.filter(
                       (entry) => entry.date >= startDate && entry.date <= endDate,
@@ -199,14 +201,14 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
 
                 set((state) => {
                   state.currentEntry = entry;
-                  if (entry !== null && entry !== undefined && state.entries.find((e) => e.id === entry.id) === undefined) {
+                  if (entry && state.entries.find((e) => e.id === entry.id) === undefined) {
                     state.entries.push(entry);
                   }
                   state.isLoading = false;
                 });
 
                 // Cache individual entry
-                if (entry !== null && entry !== undefined) {
+                if (entry) {
                   await offlineStorage.cacheData(`daybook-entry-${date}`, entry as unknown as StoredData, 60);
                 }
               } else {

@@ -8,7 +8,7 @@ const router = Router();
 // Track plan access
 router.post('/track', async (req: Request, res, _next): Promise<void> => {
   try {
-    const userId = req.user?.id || 0;
+    const userId = req.user?.id ?? 0;
     if (!userId) {
       res.status(401).json({ error: 'Unauthorized' });
       return;
@@ -54,7 +54,7 @@ router.post('/track', async (req: Request, res, _next): Promise<void> => {
 // Get recent plans for user
 router.get('/', async (req: Request, res, _next): Promise<void> => {
   try {
-    const userId = req.user?.id || 0;
+    const userId = req.user?.id ?? 0;
     if (!userId) {
       res.status(401).json({ error: 'Unauthorized' });
       return;
@@ -226,7 +226,7 @@ return null;
 // Clear recent plans history
 router.delete('/clear', async (req: Request, res, _next): Promise<void> => {
   try {
-    const userId = req.user?.id || 0;
+    const userId = req.user?.id ?? 0;
     if (!userId) {
       res.status(401).json({ error: 'Unauthorized' });
       return;

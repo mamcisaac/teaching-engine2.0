@@ -184,14 +184,14 @@ export const EmptyState: React.FC<{
   className?: string;
 }> = ({ icon, title, description, action, className = '' }): React.ReactElement => (
   <div className={`text-center py-12 bg-white rounded-lg border-2 border-dashed border-gray-300 ${className}`}>
-    {icon !== null && icon !== undefined && (
+    {icon && (
       <div className="mx-auto h-12 w-12 text-gray-400">
         {icon}
       </div>
     )}
     <h3 className="mt-4 text-lg font-medium text-gray-900">{title}</h3>
     <p className="mt-2 text-sm text-gray-600">{description}</p>
-    {action !== null && action !== undefined && (
+    {action && (
       <div className="mt-6">
         {action}
       </div>

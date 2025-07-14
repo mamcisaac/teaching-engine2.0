@@ -1,3 +1,4 @@
+
 import { Check, ChevronDown, ChevronRight, Search, X } from 'lucide-react';
 import React, { useState, useMemo, useEffect } from 'react';
 
@@ -62,7 +63,7 @@ return expectations;
         exp.code.toLowerCase().includes(query) ||
         exp.description.toLowerCase().includes(query) ||
         exp.strand.toLowerCase().includes(query) ||
-        (exp.substrand !== null && exp.substrand !== undefined ? exp.substrand.toLowerCase().includes(query) : false),
+        (exp.substrand ? exp.substrand.toLowerCase().includes(query) : false),
     );
   }, [expectations, searchQuery]);
 
@@ -74,7 +75,7 @@ return expectations;
       if (grouped[exp.strand] === undefined) {
         grouped[exp.strand] = {};
       }
-      const substrand = exp.substrand !== null && exp.substrand !== undefined && exp.substrand !== '' ? exp.substrand : 'General';
+      const substrand = exp.substrand && exp.substrand !== '' ? exp.substrand : 'General';
       if (grouped[exp.strand][substrand] === undefined) {
         grouped[exp.strand][substrand] = [];
       }
@@ -132,7 +133,7 @@ return expectations;
 
   return (
     <div className={className}>
-      {label !== null && label !== undefined && label !== '' && (
+      {label && (
         <Label className={cn("mb-2", required ? "after:content-['*'] after:ml-1 after:text-red-500" : "")}>
           {label}
         </Label>
@@ -255,7 +256,7 @@ return expectations;
                                       <Badge className="text-xs" variant="outline">
                                         {exp.code}
                                       </Badge>
-                                      {exp.type !== null && exp.type !== undefined ? (
+                                      {exp.type ? (
                                         <Badge className="text-xs" variant="secondary">
                                           {exp.type}
                                         </Badge>

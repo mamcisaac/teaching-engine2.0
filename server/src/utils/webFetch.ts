@@ -20,7 +20,7 @@ export class WebFetch {
     const cacheKey = this.getCacheKey(url);
     const cached = this.cache.get(cacheKey);
     
-    if (cached !== null && cached !== undefined && Date.now() - cached.timestamp < this.cacheTime) {
+    if (cached && Date.now() - cached.timestamp < this.cacheTime) {
       return cached.html;
     }
     
@@ -108,7 +108,7 @@ export class WebFetch {
     const dom = new JSDOM(html);
     const {document} = dom.window;
     
-    if (selector !== null && selector !== undefined) {
+    if (selector) {
       const element = document.querySelector(selector);
       return element?.textContent?.trim() ?? '';
     }
@@ -133,15 +133,15 @@ export class WebFetch {
     metaTags.forEach(tag => {
       const name = tag.getAttribute('name') ?? tag.getAttribute('property');
       const content = tag.getAttribute('content');
-      if (name !== null && name !== undefined && content !== null && content !== undefined) {
+      if (name && content) {
         meta[name] = content;
       }
     });
     
     // Extract title
     const title = document.querySelector('title');
-    if (title !== null && title !== undefined) {
-      meta.title = title.textContent ?? '';
+    if (title) {
+      meta.title = title.textContent || '';
     }
     
     return meta;

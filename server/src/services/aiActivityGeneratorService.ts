@@ -5,6 +5,7 @@
  */
 
 import type { ExternalActivity } from '@teaching-engine/database';
+
 import { safeJsonParse } from '../utils/type-guards.js';
 
 export interface LessonContext {
@@ -106,52 +107,52 @@ export class AIActivityGeneratorService {
   private _buildGenerationPrompt(params: GenerationParams): string {
     let prompt = 'Generate an engaging educational activity.\n\n';
 
-    if (params.lessonContext !== null && params.lessonContext !== undefined) {
+    if (params.lessonContext) {
       const context = params.lessonContext;
       prompt += 'Lesson Context:\n';
-      if (context.title !== null && context.title !== undefined && context.title !== '') {
+      if (context.title && context.title !== '') {
 prompt += `Title: ${context.title}\n`;
 }
-      if (context.grade !== null && context.grade !== undefined && context.grade !== 0) {
+      if (context.grade && context.grade !== 0) {
 prompt += `Grade: ${context.grade}\n`;
 }
-      if (context.subject !== null && context.subject !== undefined && context.subject !== '') {
+      if (context.subject && context.subject !== '') {
 prompt += `Subject: ${context.subject}\n`;
 }
-      if (context.learningGoals !== null && context.learningGoals !== undefined && context.learningGoals.length > 0) {
+      if (context.learningGoals && context.learningGoals.length > 0) {
 prompt += `Learning Goals: ${context.learningGoals.join(', ')}\n`;
 }
-      if (context.duration !== null && context.duration !== undefined && context.duration !== 0) {
+      if (context.duration && context.duration !== 0) {
 prompt += `Duration: ${context.duration} minutes\n`;
 }
-      if (context.section !== null && context.section !== undefined) {
+      if (context.section) {
 prompt += `Section: ${context.section}\n`;
 }
       prompt += '\n';
     }
 
-    if (params.specificRequirements !== null && params.specificRequirements !== undefined) {
+    if (params.specificRequirements) {
       const reqs = params.specificRequirements;
       prompt += 'Requirements:\n';
-      if (reqs.activityType !== null && reqs.activityType !== undefined && reqs.activityType !== '') {
+      if (reqs.activityType && reqs.activityType !== '') {
 prompt += `Activity Type: ${reqs.activityType}\n`;
 }
-      if (reqs.materials !== null && reqs.materials !== undefined && reqs.materials.length > 0) {
+      if (reqs.materials && reqs.materials.length > 0) {
 prompt += `Materials Available: ${reqs.materials.join(', ')}\n`;
 }
-      if (reqs.groupSize !== null && reqs.groupSize !== undefined && reqs.groupSize !== '') {
+      if (reqs.groupSize && reqs.groupSize !== '') {
 prompt += `Group Size: ${reqs.groupSize}\n`;
 }
-      if (reqs.language !== null && reqs.language !== undefined && reqs.language !== '') {
+      if (reqs.language && reqs.language !== '') {
 prompt += `Language: ${reqs.language}\n`;
 }
-      if (reqs.curriculumExpectations !== null && reqs.curriculumExpectations !== undefined && reqs.curriculumExpectations.length > 0) {
+      if (reqs.curriculumExpectations && reqs.curriculumExpectations.length > 0) {
 prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`;
 }
       prompt += '\n';
     }
 
-    if (params.searchResults !== null && params.searchResults !== undefined && params.searchResults.length > 0) {
+    if (params.searchResults && params.searchResults.length > 0) {
       prompt += 'Consider these similar activities for inspiration:\n';
       const limitedResults = params.searchResults.slice(0, 3);
       limitedResults.forEach((result) => {
@@ -188,7 +189,7 @@ prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`
     try {
       // Extract JSON from response
       const jsonMatch = response.match(/\{[\s\S]*\}/);
-      if (jsonMatch === null || jsonMatch === undefined) {
+      if (!jsonMatch) {
         throw new Error('No JSON found in response');
       }
 
@@ -203,9 +204,9 @@ prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`
       const activity = parsed as any;
 
       // Validate required fields
-      if ((activity.title === null || activity.title === undefined || activity.title === '') || 
-          (activity.description === null || activity.description === undefined || activity.description === '') || 
-          (activity.detailedInstructions === null || activity.detailedInstructions === undefined)) {
+      if ((!activity.title || activity.title === '') || 
+          (!activity.description || activity.description === '') || 
+          (!activity.detailedInstructions)) {
         throw new Error('Missing required fields');
       }
 

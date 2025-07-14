@@ -1,27 +1,11 @@
+import type { User } from '../../types';
+import type { 
+  LoginCredentials, 
+  RegisterData, 
+  AuthResponse,
+  TokenRefreshResponse
+} from '../../types/auth';
 import { apiClient } from '../core/client';
-
-export interface LoginCredentials {
-  email: string;
-  password: string;
-}
-
-export interface RegisterData {
-  email: string;
-  password: string;
-  name?: string;
-  role?: string;
-}
-
-export interface AuthResponse {
-  user: {
-    id: number;
-    email: string;
-    name?: string;
-    role?: string;
-  };
-  accessToken: string;
-  refreshToken?: string;
-}
 
 export const authApi = {
   login: async (credentials: LoginCredentials): Promise<AuthResponse> => {
@@ -38,15 +22,15 @@ export const authApi = {
     await apiClient.post('/api/auth/logout');
   },
 
-  refreshToken: async (refreshToken: string): Promise<{ accessToken: string }> => {
-    const { data } = await apiClient.post<{ accessToken: string }>('/api/auth/refresh', {
+  refreshToken: async (refreshToken: string): Promise<TokenRefreshResponse> => {
+    const { data } = await apiClient.post<TokenRefreshResponse>('/api/auth/refresh', {
       refreshToken,
     });
     return data;
   },
 
-  checkAuth: async (): Promise<AuthResponse['user']> => {
-    const { data } = await apiClient.get<AuthResponse['user']>('/api/auth/me');
+  checkAuth: async (): Promise<User> => {
+    const { data } = await apiClient.get<User>('/api/auth/me');
     return data;
   },
 

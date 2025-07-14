@@ -56,7 +56,7 @@ export function OnboardingFlowOptimized(): React.ReactElement | null {
       }
       
       const element = document.querySelector(currentStep.targetElement);
-      if (element === null || element === undefined) {
+      if (!element) {
         setHighlightPosition(null);
         return;
       }
@@ -137,7 +137,7 @@ return;
 return;
 }
       const element = document.querySelector(currentStep.targetElement);
-      if (element !== null && element !== undefined && element.contains(e.target as Node)) {
+      if (element && element.contains(e.target as Node)) {
         nextStep();
       }
     };
@@ -148,11 +148,11 @@ return;
 };
   }, [currentStep, nextStep]);
 
-  if (!isOnboardingActive || currentStep === null || currentStep === undefined) {
+  if (!isOnboardingActive || !currentStep) {
 return null;
 }
 
-  const isCenter = currentStep.position === 'center' || currentStep.targetElement === null || currentStep.targetElement === undefined || currentStep.targetElement === '';
+  const isCenter = currentStep.position === 'center' || !currentStep.targetElement || currentStep.targetElement === '';
 
   return createPortal(
     <Suspense fallback={<OnboardingLoadingFallback />}>
@@ -166,13 +166,13 @@ return null;
             initial={{ opacity: 0 }}
             onClick={(e) => {
               // Allow clicking through to highlighted element
-              if (highlightPosition !== null && highlightPosition !== undefined && currentStep.requiresAction === true) {
+              if (highlightPosition && currentStep.requiresAction === true) {
                 e.stopPropagation();
               }
             }}
           >
             {/* Spotlight cutout */}
-            {highlightPosition !== null && highlightPosition !== undefined ? (
+            {highlightPosition ? (
               <OnboardingHighlight highlightPosition={highlightPosition} />
             ) : null}
           </motion.div>

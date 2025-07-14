@@ -5,7 +5,7 @@
 export const arrayUtils = {
   // Remove duplicates
   unique: <T>(array: T[], key?: keyof T): T[] => {
-    if (!key) {
+    if (key === undefined || key === null) {
       return [...new Set(array)];
     }
     
@@ -153,7 +153,7 @@ export const objectUtils = {
     const result: Partial<T> = {};
     
     for (const [key, value] of Object.entries(obj)) {
-      if (value !== null && value !== undefined) {
+      if (value) {
         (result as any)[key] = value;
       }
     }

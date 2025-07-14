@@ -1,3 +1,4 @@
+
 import React, { Suspense } from 'react';
 import { Routes, Route, Outlet } from 'react-router-dom';
 
@@ -5,6 +6,7 @@ import { MainLayout } from '../components/MainLayout';
 import { ProtectedRoute } from '../components/ProtectedRoute';
 import { WorkflowGate } from '../components/WorkflowGate';
 import { useAuth } from '../contexts/AuthContext';
+import { logger } from '../utils/logger';
 
 import type { RouteConfig } from './routesConfig';
 import { publicRoutes, protectedRoutes } from './routesConfig';
@@ -45,7 +47,7 @@ function renderRoute(route: RouteConfig, index: number): JSX.Element {
     content = null;
   }
 
-  if (children) {
+  if (children != null && children.length > 0) {
     return (
       <Route key={path || index} element={<Outlet />} path={path}>
         {children.map((child, childIndex) => renderRoute(child, childIndex))}
@@ -60,8 +62,7 @@ export function AppRouter(): JSX.Element {
   const { isLoading, isInitialized, error } = useAuth();
 
   // Add debug logging
-  // eslint-disable-next-line no-console
-  console.log('[AppRouter] Auth state:', { isLoading, isInitialized, error });
+  logger.debug('[AppRouter] Auth state:', { isLoading, isInitialized, error });
 
   // Show loading spinner only during initial auth check
   // But add a timeout to prevent infinite loading

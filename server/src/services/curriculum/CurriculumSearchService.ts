@@ -1,10 +1,19 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Curriculum Search Service
  * Handles searching and filtering curriculum expectations
  */
 
 import { prisma } from '../../prisma';
+import {
+  isValidString,
+  isValidNumber
+} from '../../types/prisma-types';
+import type {
+  CurriculumExpectation,
+  CurriculumExpectationWhereInput,
+  CurriculumExpectationQueryResult,
+  AutoCompleteEntry
+} from '../../types/prisma-types';
 import { BaseService } from '../base/BaseService';
 
 export interface SearchFilters {
@@ -23,7 +32,7 @@ export interface SearchOptions {
 }
 
 export interface SearchResult {
-  expectations: unknown[];
+  expectations: CurriculumExpectationQueryResult[];
   total: number;
   hasMore: boolean;
 }
@@ -72,30 +81,20 @@ export class CurriculumSearchService extends BaseService {
       async () => {
         const { query, filters = {}, limit = 50, offset = 0 } = options;
 
-        const where: any = {
-          isActive: filters.includeInactive ? undefined : true,
+        const where: CurriculumExpectationWhereInput = {
           OR: [
             { code: { contains: query, mode: 'insensitive' } },
             { description: { contains: query, mode: 'insensitive' } },
-            { keywords: { has: query.toLowerCase() } },
           ],
         };
 
         // Apply filters
-        if (filters.subjectId) {
-          where.subjectId = filters.subjectId;
-        }
-        
-        if (filters.grade) {
+        if (filters.grade !== undefined) {
           where.grade = filters.grade;
         }
         
-        if (filters.strand) {
-          where.strand = filters.strand;
-        }
-        
-        if (filters.type) {
-          where.type = filters.type;
+        if (filters.strand && isValidString(filters.strand)) {
+          where.strand = { contains: filters.strand, mode: 'insensitive' };
         }
 
         // Get total count
@@ -127,12 +126,12 @@ export class CurriculumSearchService extends BaseService {
   /**
    * Search by keywords
    */
-  public async searchByKeywords(keywords: string[], filters?: SearchFilters): Promise<unknown[]> {
+  public async searchByKeywords(keywords: string[], filters?: SearchFilters): Promise<CurriculumExpectationQueryResult[]> {
     return this.executeWithMetrics(
       async () => {
-        const where: any = {};
+        const where: CurriculumExpectationWhereInput = {};
         
-        // Note: keywords field doesn't exist in schema - use description search instead
+        // Use description search for keywords
         if (keywords.length > 0) {
           where.description = {
             contains: keywords.join(' '),
@@ -141,17 +140,12 @@ export class CurriculumSearchService extends BaseService {
         }
 
         // Apply filters
-        if (filters?.subjectId) {
-          // Note: subject is a string field, not a relation
-          where.subject = filters.subjectId.toString();
-        }
-        
-        if (filters?.grade) {
+        if (filters?.grade !== undefined && isValidNumber(filters.grade)) {
           where.grade = filters.grade;
         }
         
-        if (filters?.strand) {
-          where.strand = filters.strand;
+        if (filters?.strand !== undefined && isValidString(filters.strand)) {
+          where.strand = { contains: filters.strand, mode: 'insensitive' };
         }
         
         // Note: type field doesn't exist in schema
@@ -176,12 +170,10 @@ export class CurriculumSearchService extends BaseService {
   /**
    * Search by code pattern
    */
-  public async searchByCodePattern(pattern: string, filters?: SearchFilters): Promise<unknown[]> {
+  public async searchByCodePattern(pattern: string, filters?: SearchFilters): Promise<CurriculumExpectationQueryResult[]> {
     return this.executeWithMetrics(
       async () => {
-        const where: any = {
-          // Note: isActive field doesn't exist in schema
-          // isActive: filters?.includeInactive ? undefined : true,
+        const where: CurriculumExpectationWhereInput = {
           code: {
             contains: pattern,
             mode: 'insensitive',
@@ -189,17 +181,12 @@ export class CurriculumSearchService extends BaseService {
         };
 
         // Apply filters
-        if (filters?.subjectId) {
-          // Note: subjectId doesn't exist, using subject string field
-          where.subject = filters.subjectId.toString();
-        }
-        
-        if (filters?.grade) {
+        if (filters?.grade !== undefined && isValidNumber(filters.grade)) {
           where.grade = filters.grade;
         }
         
-        if (filters?.strand) {
-          where.strand = filters.strand;
+        if (filters?.strand !== undefined && isValidString(filters.strand)) {
+          where.strand = { contains: filters.strand, mode: 'insensitive' };
         }
         
         // Note: type field doesn't exist in schema
@@ -224,7 +211,7 @@ export class CurriculumSearchService extends BaseService {
   /**
    * Get similar expectations
    */
-  public async getSimilarExpectations(expectationId: string, limit = 10): Promise<unknown[]> {
+  public async getSimilarExpectations(expectationId: string, limit = 10): Promise<CurriculumExpectationQueryResult[]> {
     return this.executeWithMetrics(
       async () => {
         // Get the reference expectation
@@ -278,10 +265,7 @@ export class CurriculumSearchService extends BaseService {
   ): Promise<string[]> {
     return this.executeWithMetrics(
       async () => {
-        const where: any = {
-          // Note: isActive field doesn't exist in schema
-          // isActive: true,
-        };
+        const where: CurriculumExpectationWhereInput = {};
 
         if (field === 'code') {
           where.code = { startsWith: query, mode: 'insensitive' };
@@ -296,7 +280,7 @@ export class CurriculumSearchService extends BaseService {
         });
 
         return expectations
-          .map((e: { code?: string; description?: string }) => field === 'code' ? e.code : e.description)
+          .map((e: AutoCompleteEntry) => field === 'code' ? e.code : e.description)
           .filter((value: string | undefined): value is string => typeof value === 'string' && Boolean(value));
       },
       'getAutoCompleteSuggestions'

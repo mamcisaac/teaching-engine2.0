@@ -70,7 +70,7 @@ class ResponseTimeMonitoringSystem {
 
       // Check for alerts
       const threshold =
-        PERFORMANCE_BASELINES[`${endpoint.method} ${endpoint.path}`]?.maxResponseTime || 2000;
+        PERFORMANCE_BASELINES[`${endpoint.method} ${endpoint.path}`]?.maxResponseTime ?? 2000;
       const averageTime =
         results.responseTimes.reduce((sum, time) => sum + time, 0) / results.responseTimes.length;
 

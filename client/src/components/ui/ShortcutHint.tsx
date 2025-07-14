@@ -1,3 +1,4 @@
+
 import { clsx } from 'clsx';
 import React from 'react';
 
@@ -30,7 +31,7 @@ export const ShortcutHint: React.FC<ShortcutHintProps> = ({
   }
 
   // Don't show if no shortcut key is provided
-  if (shortcut.key === null || shortcut.key === undefined || shortcut.key === '') {
+  if (!shortcut.key || shortcut.key === '') {
     return null;
   }
 
@@ -91,7 +92,7 @@ export const ButtonWithShortcut: React.FC<ButtonWithShortcutProps> = ({
       {...props}
     >
       {children}
-      {shortcut !== null && shortcut !== undefined && (
+      {shortcut && (
         <ShortcutHint 
           className="ml-auto" 
           position="inline" 
@@ -120,7 +121,7 @@ export const TooltipWithShortcut: React.FC<TooltipWithShortcutProps> = ({
       {children}
       <div className="invisible group-hover:visible absolute z-10 w-max max-w-xs px-3 py-2 text-sm text-white bg-gray-900 rounded-lg shadow-lg -top-10 left-1/2 transform -translate-x-1/2">
         <div>{content}</div>
-        {shortcut !== null && shortcut !== undefined && (
+        {shortcut && (
           <div className="mt-1 text-xs text-gray-400">
             Shortcut: <ShortcutHint position="tooltip" shortcut={shortcut} size="xs" />
           </div>
@@ -159,10 +160,10 @@ export const MenuItemWithShortcut: React.FC<MenuItemWithShortcutProps> = ({
       onClick={onClick}
     >
       <div className="flex items-center gap-3">
-        {icon !== null && icon !== undefined && <span className="text-gray-500">{icon}</span>}
+        {icon && <span className="text-gray-500">{icon}</span>}
         <span>{label}</span>
       </div>
-      {shortcut !== null && shortcut !== undefined && (
+      {shortcut && (
         <ShortcutHint 
           className="ml-8" 
           position="badge" 

@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
+
 import React, { memo, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 import type { UnitPlan } from '../../hooks/useETFOPlanning';
+
 
 interface UnitPlanCardProps {
   unitPlan: UnitPlan;
@@ -34,7 +36,7 @@ export const UnitPlanCard: React.FC<UnitPlanCardProps> = memo(({ unitPlan: unit,
           </span>
         </div>
 
-        {unit.bigIdeas !== null && unit.bigIdeas !== undefined && unit.bigIdeas !== '' && (
+        {unit.bigIdeas && (
           <div className="mb-4">
             <h4 className="text-sm font-medium text-gray-700 mb-1">Big Ideas</h4>
             <p className="text-sm text-gray-600 line-clamp-2">{unit.bigIdeas}</p>
@@ -51,7 +53,7 @@ export const UnitPlanCard: React.FC<UnitPlanCardProps> = memo(({ unitPlan: unit,
             <span>{counts.expectations} expectations</span>
           </div>
 
-          {unit.progress !== null && unit.progress !== undefined && (
+          {unit.progress && (
             <div className="text-right">
               <div className="text-sm font-medium text-gray-900">
                 {unit.progress.percentage}%

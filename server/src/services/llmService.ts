@@ -75,7 +75,7 @@ export class LLMService extends BaseService {
   }
 
   public static getInstance(): LLMService {
-    if (LLMService.instance === null || LLMService.instance === undefined) {
+    if (!LLMService.instance) {
       LLMService.instance = new LLMService();
     }
     return LLMService.instance;
@@ -88,7 +88,7 @@ export class LLMService extends BaseService {
     try {
       const apiKey = process.env.OPENAI_API_KEY;
 
-      if (apiKey === null || apiKey === undefined || apiKey === '') {
+      if (!apiKey || apiKey === '') {
         this.logger.warn('OpenAI API key not provided. LLM features will be disabled.');
         return;
       }
@@ -135,7 +135,7 @@ export class LLMService extends BaseService {
         `Generating content with prompt - type: ${request.type}, promptLength: ${enhancedPrompt.length}`,
       );
 
-      if (this.openaiClient === null || this.openaiClient === undefined) {
+      if (!this.openaiClient) {
         throw new Error('OpenAI client is not available');
       }
       
@@ -155,9 +155,9 @@ export class LLMService extends BaseService {
         temperature: request.temperature ?? 0.7,
       });
 
-      const content = response.choices[0]?.message?.content ?? '';
+      const content = response.choices[0]?.message?.content || '';
 
-      if (content === null || content === undefined || content === '') {
+      if (!content || content === '') {
         throw new Error('No content generated from OpenAI');
       }
 
@@ -214,7 +214,7 @@ export class LLMService extends BaseService {
 
       const enhancedPrompt = this.enhancePrompt(request);
 
-      if (this.openaiClient === null || this.openaiClient === undefined) {
+      if (!this.openaiClient) {
         throw new Error('OpenAI client is not available');
       }
       
@@ -234,9 +234,9 @@ export class LLMService extends BaseService {
         temperature: request.temperature ?? 0.7,
       });
 
-      const content = response.choices[0]?.message?.content ?? '';
+      const content = response.choices[0]?.message?.content || '';
 
-      if (content === null || content === undefined || content === '') {
+      if (!content || content === '') {
         throw new Error('No content generated from OpenAI');
       }
 
@@ -260,22 +260,22 @@ export class LLMService extends BaseService {
     let {prompt} = request;
 
     // Add context if provided
-    if (request.context !== null && request.context !== undefined) {
+    if (request.context) {
       const contextParts: string[] = [];
 
-      if (request.context.subject !== null && request.context.subject !== undefined && request.context.subject !== '') {
+      if (request.context.subject && request.context.subject !== '') {
         contextParts.push(`Subject: ${request.context.subject}`);
       }
 
-      if (request.context.grade !== null && request.context.grade !== undefined && request.context.grade !== 0) {
+      if (request.context.grade && request.context.grade !== 0) {
         contextParts.push(`Grade Level: ${request.context.grade}`);
       }
 
-      if (request.context.duration !== null && request.context.duration !== undefined && request.context.duration !== 0) {
+      if (request.context.duration && request.context.duration !== 0) {
         contextParts.push(`Duration: ${request.context.duration} minutes`);
       }
 
-      if (request.context.language !== null && request.context.language !== undefined) {
+      if (request.context.language) {
         contextParts.push(`Language: ${request.context.language}`);
       }
 
@@ -332,15 +332,15 @@ export class LLMService extends BaseService {
    */
   // @ts-expect-error Method reserved for future request validation
   private _validateRequest(request: ContentGenerationRequest): void {
-    if (request.prompt === null || request.prompt === undefined || request.prompt.trim().length === 0) {
+    if (!request.prompt || request.prompt.trim().length === 0) {
       throw new Error('Prompt is required and cannot be empty');
     }
 
-    if (request.maxTokens !== null && request.maxTokens !== undefined && (request.maxTokens < 1 || request.maxTokens > 4000)) {
+    if (request.maxTokens && (request.maxTokens < 1 || request.maxTokens > 4000)) {
       throw new Error('Max tokens must be between 1 and 4000');
     }
 
-    if (request.temperature !== null && request.temperature !== undefined && (request.temperature < 0 || request.temperature > 2)) {
+    if (request.temperature && (request.temperature < 0 || request.temperature > 2)) {
       throw new Error('Temperature must be between 0 and 2');
     }
   }

@@ -2,9 +2,11 @@ import type { UseQueryResult, UseMutationResult } from '@tanstack/react-query';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 import type { Subject, CurriculumExpectation, ThematicUnit } from '../../../types';
+import { logger } from '../../../utils/logger';
 import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 
 import { curriculumApi } from './api';
+
 
 // Subject Query Hooks
 export const useSubjects = (): UseQueryResult<Subject[]> =>
@@ -240,7 +242,7 @@ export const useImportCurriculum = (): UseMutationResult<{
     onSuccess: (data) => {
       showSuccessToast(`Imported ${data.imported} curriculum items successfully`);
       if (data.failed > 0) {
-        console.warn(`${data.failed} items failed to import`);
+        logger.warn(`${data.failed} items failed to import`);
       }
       void queryClient.invalidateQueries({ queryKey: ['curriculum-expectations'] });
       void queryClient.invalidateQueries({ queryKey: queryKeys.curriculum.subjects });

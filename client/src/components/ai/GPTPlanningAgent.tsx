@@ -1,3 +1,4 @@
+
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { Send, MessageSquare, X, Sparkles, Mic, MicOff } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
@@ -115,7 +116,7 @@ export function GPTPlanningAgent({
   // Send message
   const sendMessageMutation = useMutation({
     mutationFn: async (message: string) => {
-      if (sessionId === null || sessionId === undefined || sessionId === '') {
+      if (sessionId == null || sessionId.length === 0) {
 throw new Error('No session');
 }
       const response = await api.post<{ data: MessageResponse }>('/api/ai/agent/messages', {
@@ -137,7 +138,7 @@ throw new Error('No session');
       ]);
 
       // Handle action results
-      if (data.actionResults !== null && data.actionResults !== undefined && Array.isArray(data.actionResults)) {
+      if (data.actionResults && Array.isArray(data.actionResults)) {
         data.actionResults.forEach((result: ActionResult) => {
           switch (result.type) {
             case 'activities_generated':
@@ -180,7 +181,7 @@ throw new Error('No session');
     return () => { // Cleanup
     };
 
-    if (isOpen && (sessionId === null || sessionId === undefined || sessionId === '')) {
+    if (isOpen && (sessionId == null || sessionId.length === 0)) {
       startSessionMutation.mutate();
     }
   }, [isOpen, sessionId, startSessionMutation]);
@@ -200,7 +201,7 @@ throw new Error('No session');
 
     if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
       const SpeechRecognitionConstructor =
-        window.SpeechRecognition !== null && window.SpeechRecognition !== undefined ? window.SpeechRecognition : window.webkitSpeechRecognition;
+        'SpeechRecognition' in window ? window.SpeechRecognition : window.webkitSpeechRecognition;
       const recognition = new SpeechRecognitionConstructor();
       recognitionRef.current = recognition;
       

@@ -1,3 +1,4 @@
+
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { format, startOfMonth, endOfMonth } from 'date-fns';
 import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, Plus, Filter } from 'lucide-react';
@@ -15,6 +16,7 @@ import {
 } from '../../components/calendar/LazyCalendarComponents';
 import { Button } from '../../components/ui/Button';
 import { useAuth } from '../../contexts/AuthContext';
+
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import '../../styles/calendar.css';
 import type { CalendarEvent, ETFOLessonPlan, UnitPlan } from '../../types';
@@ -185,7 +187,7 @@ export default function CalendarPlanningPage(): JSX.Element {
 
     // Add lessons
     lessons.forEach((lesson: ETFOLessonPlan) => {
-      if (lesson.date) {
+      if (lesson.date != null && lesson.date.length > 0) {
         allEvents.push({
           id: `lesson-${lesson.id}`,
           title: lesson.title ?? 'Untitled Lesson',
@@ -208,7 +210,7 @@ export default function CalendarPlanningPage(): JSX.Element {
 
     // Add unit boundaries
     units.forEach((unit: UnitPlan) => {
-      if (unit.startDate) {
+      if (unit.startDate != null && unit.startDate.length > 0) {
         allEvents.push({
           id: `unit-start-${unit.id}`,
           title: `${unit.title} - Start`,
@@ -223,7 +225,7 @@ export default function CalendarPlanningPage(): JSX.Element {
           originalData: unit,
         });
       }
-      if (unit.endDate) {
+      if (unit.endDate != null && unit.endDate.length > 0) {
         allEvents.push({
           id: `unit-end-${unit.id}`,
           title: `${unit.title} - End`,

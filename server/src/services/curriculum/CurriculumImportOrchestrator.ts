@@ -1,10 +1,17 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Curriculum Import Orchestrator
  * Coordinates curriculum import operations using specialized services
  */
 
 import { prisma } from '../../prisma';
+import type {
+  PrismaTransactionClient,
+  CurriculumExpectation,
+  Subject,
+  CurriculumImport,
+  ImportStatus,
+  ValidationError
+} from '../../types/prisma-types';
 import { BaseService } from '../base/BaseService';
 
 import { CurriculumExportService } from './CurriculumExportService';
@@ -44,12 +51,12 @@ export interface ImportResult {
   totalExpectations?: number;
   validation?: {
     isValid: boolean;
-    errors: unknown[];
-    warnings: unknown[];
+    errors: ValidationError[];
+    warnings: ValidationError[];
   };
   subjectId?: number;
-  subjects?: unknown[];
-  errors?: unknown[];
+  subjects?: Subject[];
+  errors?: ValidationError[];
   sessionId?: string;
   importId?: string;
   created?: number;
@@ -259,7 +266,7 @@ export class CurriculumImportOrchestrator extends BaseService {
     };
 
     // Start transaction
-    const result = await prisma.$transaction(async (tx: any) => {
+    const result = await prisma.$transaction(async (tx: PrismaTransactionClient) => {
       // Find or create subject
       let subject = await tx.subject.findFirst({
         where: {
@@ -384,23 +391,23 @@ export class CurriculumImportOrchestrator extends BaseService {
   }
 
   // Delegate to specialized services
-  public async export(options: any): Promise<Buffer> {
+  public async export(options: Record<string, unknown>): Promise<Buffer> {
     return this.exportService.export(options);
   }
 
-  public async searchExpectations(options: any): Promise<unknown> {
+  public async searchExpectations(options: Record<string, unknown>): Promise<unknown> {
     return this.searchService.searchExpectations(options);
   }
 
-  public async getImportStats(): Promise<unknown> {
+  public async getImportStats(): Promise<Record<string, unknown>> {
     return this.statsService.getOverallStats();
   }
 
-  public async getSubjectStats(subjectId: number): Promise<unknown> {
+  public async getSubjectStats(subjectId: number): Promise<Record<string, unknown>> {
     return this.statsService.getSubjectStats(subjectId);
   }
 
-  public async getCoverageStats(): Promise<unknown> {
+  public async getCoverageStats(): Promise<Record<string, unknown>> {
     return this.statsService.getCoverageStats();
   }
 
@@ -499,21 +506,14 @@ export class CurriculumImportOrchestrator extends BaseService {
   /**
    * Get import history
    */
-  public async getImportHistory(userId?: number, _limit?: number): Promise<unknown[]> {
-    // Mock history data
-    return [
-      {
-        id: `import_${Date.now()}`,
-        userId: userId ?? 1,
-        filename: 'curriculum.csv',
-        status: 'completed',
-        createdAt: new Date(),
-        stats: {
-          totalExpectations: 0,
-          processedExpectations: 0,
-        },
-      },
-    ];
+  public async getImportHistory(userId?: number, _limit?: number): Promise<CurriculumImport[]> {
+    // Get actual import history from database
+    const whereClause = userId ? { userId } : {};
+    return await prisma.curriculumImport.findMany({
+      where: whereClause,
+      orderBy: { createdAt: 'desc' },
+      take: _limit ?? 50,
+    });
   }
 
   /**
@@ -554,16 +554,16 @@ export class CurriculumImportService {
     return curriculumImportOrchestrator.importFromFile(fileContent, options);
   }
 
-  static async export(options: unknown): Promise<Buffer> {
+  static async export(options: Record<string, unknown>): Promise<Buffer> {
     return curriculumImportOrchestrator.export(options);
   }
 
-  static async searchExpectations(query: string, filters?: unknown): Promise<unknown[]> {
+  static async searchExpectations(query: string, filters?: Record<string, unknown>): Promise<unknown[]> {
     const result = await curriculumImportOrchestrator.searchExpectations({ query, filters });
-    return result as unknown[];
+    return Array.isArray(result) ? result : [];
   }
 
-  static async getImportStats(): Promise<unknown> {
+  static async getImportStats(): Promise<Record<string, unknown>> {
     return curriculumImportOrchestrator.getImportStats();
   }
 }

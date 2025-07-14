@@ -1,5 +1,6 @@
 // Unit Plan Store with Offline Support
 
+
 import { create } from 'zustand';
 import { persist, subscribeWithSelector } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
@@ -9,8 +10,9 @@ import type { StoredData } from '../services/offlineStorage';
 import { offlineStorage } from '../services/offlineStorage';
 import { logger } from '../utils/logger';
 
-import { createOfflineSlice, createAutoSave } from './basePlanningStore';
 import type { OfflineState, BaseActions } from './basePlanningStore';
+import { createOfflineSlice, createAutoSave } from './basePlanningStore';
+
 export interface UnitPlan {
   id: string;
   title: string;
@@ -129,7 +131,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
                 // Load from cache if offline
                 const cachedPlans = await offlineStorage.getCachedData<UnitPlan[]>('unit-plans');
 
-                if (cachedPlans !== null && cachedPlans !== undefined) {
+                if (cachedPlans) {
                   set((state) => {
                     state.unitPlans = cachedPlans;
                     state.isLoading = false;
@@ -174,7 +176,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
                 // Load from cache if offline
                 const cachedPlan = await offlineStorage.getCachedData<UnitPlan>(`unit-plan-${id}`);
 
-                if (cachedPlan !== null && cachedPlan !== undefined) {
+                if (cachedPlan) {
                   set((state) => {
                     state.currentPlan = cachedPlan;
                     state.isLoading = false;
@@ -182,7 +184,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
                 } else {
                   // Try to find in the list
                   const plan = get().unitPlans.find((p) => p.id === id);
-                  if (plan !== null && plan !== undefined) {
+                  if (plan) {
                     set((state) => {
                       state.currentPlan = plan;
                       state.isLoading = false;

@@ -1,3 +1,4 @@
+
 import * as Sentry from '@sentry/react';
 import { Replay } from '@sentry/replay';
 import type { ErrorInfo } from 'react';
@@ -168,8 +169,7 @@ export class ErrorReportingService {
     }
 
     if (this.mockMode === true) {
-      // eslint-disable-next-line no-console
-      console.info('[MOCK] Would capture error:', {
+      logger.info('[MOCK] Would capture error:', {
         error: error instanceof Error ? error.message : String(error),
         stack: error instanceof Error ? error.stack : undefined,
         context: this.sanitizeData(context ?? {}),
@@ -210,8 +210,7 @@ export class ErrorReportingService {
     }
 
     if (this.mockMode === true) {
-      // eslint-disable-next-line no-console
-      console.info('[MOCK] Would capture message:', { message, level });
+      logger.info('[MOCK] Would capture message:', { message, level });
       return;
     }
 
@@ -224,8 +223,7 @@ export class ErrorReportingService {
     }
 
     if (this.mockMode === true) {
-      // eslint-disable-next-line no-console
-      console.info('[MOCK] Would set user context:', user);
+      logger.info('[MOCK] Would set user context:', user);
       return;
     }
 
@@ -251,8 +249,7 @@ export class ErrorReportingService {
     }
 
     if (this.mockMode === true) {
-      // eslint-disable-next-line no-console
-      console.info('[MOCK] Would add breadcrumb:', breadcrumb);
+      logger.info('[MOCK] Would add breadcrumb:', breadcrumb);
       return;
     }
 
@@ -273,8 +270,7 @@ export class ErrorReportingService {
     }
 
     if (this.mockMode === true) {
-      // eslint-disable-next-line no-console
-      console.info('[MOCK] Would set error context:', { key, context });
+      logger.info('[MOCK] Would set error context:', { key, context });
       return;
     }
 
@@ -403,7 +399,7 @@ export class ErrorReportingService {
       }
 
       // Filter out console messages with sensitive data
-      if (this.containsSensitiveData(message ?? '')) {
+      if (this.containsSensitiveData(message || '')) {
         return null;
       }
     }
@@ -477,11 +473,11 @@ export class ErrorReportingService {
   }
 
   private isValidExtras(data: unknown): data is Record<string, unknown> {
-    return data !== null && data !== undefined && typeof data === 'object' && !Array.isArray(data);
+    return data && typeof data === 'object' && !Array.isArray(data);
   }
 
   private sanitizeData(data: unknown): unknown {
-    if (data === null || data === undefined) {
+    if (!data) {
       return data;
     }
 

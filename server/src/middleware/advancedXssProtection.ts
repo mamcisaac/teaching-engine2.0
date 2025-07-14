@@ -522,7 +522,7 @@ return '';
 
     // First, try to preserve the email structure
     const emailParts = sanitized.match(/^([^@]+)@(.+)$/);
-    if (emailParts === null || emailParts === undefined) {
+    if (!emailParts) {
       return ''; // Not a valid email structure
     }
 
@@ -656,7 +656,7 @@ return '';
  */
 function sanitizeObjectAdvanced(obj: unknown, depth = 0, parentKey = ''): unknown {
   // Prevent infinite recursion and very deep objects
-  if (depth > 20 || obj === null || obj === undefined) {
+  if (depth > 20 || !obj) {
     return obj;
   }
 

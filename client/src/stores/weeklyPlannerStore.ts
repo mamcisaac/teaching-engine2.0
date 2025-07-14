@@ -291,7 +291,7 @@ export const useWeeklyPlannerStore = create<WeeklyPlannerState>()(
               startOfWeek: state.startOfWeek,
               workingHours: { ...state.workingHours },
               currentWeekStart: state.currentWeekStart,
-              draftChanges: state.draftChanges !== null && state.draftChanges !== undefined ? { ...state.draftChanges } : undefined,
+              draftChanges: state.draftChanges ? { ...state.draftChanges } : undefined,
             };
 
             const historyEntry: UndoRedoState = {
@@ -331,7 +331,7 @@ return;
               startOfWeek: state.startOfWeek,
               workingHours: { ...state.workingHours },
               currentWeekStart: state.currentWeekStart,
-              draftChanges: state.draftChanges !== null && state.draftChanges !== undefined ? { ...state.draftChanges } : undefined,
+              draftChanges: state.draftChanges ? { ...state.draftChanges } : undefined,
             };
 
             // Limit redo history size
@@ -370,7 +370,7 @@ return;
               startOfWeek: state.startOfWeek,
               workingHours: { ...state.workingHours },
               currentWeekStart: state.currentWeekStart,
-              draftChanges: state.draftChanges !== null && state.draftChanges !== undefined ? { ...state.draftChanges } : undefined,
+              draftChanges: state.draftChanges ? { ...state.draftChanges } : undefined,
             };
 
             state.undoHistory.push({
@@ -513,7 +513,7 @@ const debouncedAutoSave = (): void => {
 
   if (timeSinceLastSave < MIN_SAVE_INTERVAL) {
     // Too soon, reschedule
-    if (autoSaveTimeout) {
+    if (autoSaveTimeout != null) {
 clearTimeout(autoSaveTimeout);
 }
     autoSaveTimeout = setTimeout(debouncedAutoSave, MIN_SAVE_INTERVAL - timeSinceLastSave);
@@ -537,7 +537,7 @@ useWeeklyPlannerStore.subscribe(
     isSaving: state.isSaving,
   }),
   ({ autoSave, autoSaveInterval, hasOfflineChanges, isSaving }) => {
-    if (autoSaveTimeout) {
+    if (autoSaveTimeout != null) {
       clearTimeout(autoSaveTimeout);
       autoSaveTimeout = null;
     }
@@ -554,6 +554,6 @@ useWeeklyPlannerStore.subscribe(
 // Load initial state from server on app start
 if (typeof window !== 'undefined') {
   void useWeeklyPlannerStore.getState().loadFromServer().catch((error: unknown) => {
-    console.error('Error loading weekly planner from server:', error);
+    logger.error('Error loading weekly planner from server:', error);
   });
 }

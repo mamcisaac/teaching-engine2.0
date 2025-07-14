@@ -22,7 +22,7 @@ const ALLOWED_FILE_TYPES = [
 export const corsOptions: cors.CorsOptions = {
   origin: (origin, callback) => {
     // Allow requests with no origin (mobile apps, Postman)
-    if (!origin || ALLOWED_ORIGINS.includes(origin)) {
+    if (origin === undefined || origin === null || origin === '' || ALLOWED_ORIGINS.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));

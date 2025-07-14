@@ -4,9 +4,11 @@
  * Parses curriculum expectations from JSON files
  */
 
+import { safeJsonParse } from '../../../utils/type-guards.js';
+
 import type { ParsedCurriculum, ParsedExpectation } from './CurriculumParser';
 import { CurriculumParser } from './CurriculumParser';
-import { safeJsonParse } from '../../../utils/type-guards.js';
+
 
 export interface JSONExpectation {
   code?: string;

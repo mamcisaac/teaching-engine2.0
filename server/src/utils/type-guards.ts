@@ -127,7 +127,7 @@ export function isRequestLike(value: unknown): value is RequestLike {
  * Extract typed body from request
  */
 export function getTypedBody<T>(req: RequestLike): T | undefined {
-  if (req.body !== null && req.body !== undefined) {
+  if (req.body) {
     return req.body as T;
   }
   return undefined;

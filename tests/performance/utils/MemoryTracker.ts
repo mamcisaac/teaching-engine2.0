@@ -85,8 +85,8 @@ export class MemoryTracker {
       startTime: entry.startTime,
       endTime: entry.startTime + entry.duration,
       duration: entry.duration,
-      heapBefore: entry.detail?.before || 0,
-      heapAfter: entry.detail?.after || 0,
+      heapBefore: entry.detail?.before ?? 0,
+      heapAfter: entry.detail?.after ?? 0,
       efficiency:
         entry.detail?.before > 0
           ? ((entry.detail.before - entry.detail.after) / entry.detail.before) * 100

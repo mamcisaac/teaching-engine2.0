@@ -1,3 +1,4 @@
+
 import React, { memo, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -81,7 +82,7 @@ return null;
         </div>
 
         {/* Big Ideas - only show if not compact and exists */}
-        {!compact && unit.bigIdeas !== null && unit.bigIdeas !== undefined && unit.bigIdeas !== '' && (
+        {!compact && unit.bigIdeas && (
           <div>
             <h4 className="text-sm font-medium text-gray-700 mb-1">Big Ideas</h4>
             <p className="text-sm text-gray-600 line-clamp-2">{unit.bigIdeas}</p>

@@ -1,3 +1,4 @@
+
 import { Plus, Trash2 } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 
@@ -72,7 +73,7 @@ export function LessonPlanForm({
   const [formData, setFormData] = useState<LessonPlanFormData>({
     title: '',
     titleFr: '',
-    unitPlanId: unitPlan?.id ?? '',
+    unitPlanId: unitPlan?.id || '',
     date: new Date().toISOString().split('T')[0],
     duration: 60,
     mindsOn: '',
@@ -289,7 +290,7 @@ export function LessonPlanForm({
                   placeholderEn="Enter lesson title..."
                   placeholderFr="Entrez le titre de la leçon..."
                   valueEn={formData.title}
-                  valueFr={formData.titleFr ?? ''}
+                  valueFr={formData.titleFr || ''}
                   onChangeEn={(value: string) => {
  setFormData({ ...formData, title: value }); 
 }}
@@ -338,7 +339,7 @@ export function LessonPlanForm({
                   <select
                     className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                     id="grouping"
-                    value={formData.grouping ?? ''}
+                    value={formData.grouping || ''}
                     onChange={(e) => {
  setFormData({ ...formData, grouping: e.target.value }); 
 }}
@@ -359,8 +360,8 @@ export function LessonPlanForm({
                   placeholderEn="What will students learn in this lesson?"
                   placeholderFr="Que vont apprendre les élèves dans cette leçon?"
                   rows={3}
-                  valueEn={formData.learningGoals ?? ''}
-                  valueFr={formData.learningGoalsFr ?? ''}
+                  valueEn={formData.learningGoals || ''}
+                  valueFr={formData.learningGoalsFr || ''}
                   onChangeEn={(value) => {
  setFormData({ ...formData, learningGoals: value }); 
 }}
@@ -437,7 +438,7 @@ export function LessonPlanForm({
             <div>
               <Label htmlFor="input">Minds On (Introduction/Hook)</Label>
               <RichTextEditor
-                value={formData.mindsOn ?? ''}
+                value={formData.mindsOn || ''}
                 onChange={(value) => {
  setFormData({ ...formData, mindsOn: value }); 
 }}
@@ -447,7 +448,7 @@ export function LessonPlanForm({
             <div>
               <Label htmlFor="input">Minds On (French)</Label>
               <RichTextEditor
-                value={formData.mindsOnFr ?? ''}
+                value={formData.mindsOnFr || ''}
                 onChange={(value) => {
  setFormData({ ...formData, mindsOnFr: value }); 
 }}
@@ -457,7 +458,7 @@ export function LessonPlanForm({
             <div>
               <Label htmlFor="input">Action (Main Learning Activities)</Label>
               <RichTextEditor
-                value={formData.action ?? ''}
+                value={formData.action || ''}
                 onChange={(value) => {
  setFormData({ ...formData, action: value }); 
 }}
@@ -467,7 +468,7 @@ export function LessonPlanForm({
             <div>
               <Label htmlFor="input">Action (French)</Label>
               <RichTextEditor
-                value={formData.actionFr ?? ''}
+                value={formData.actionFr || ''}
                 onChange={(value) => {
  setFormData({ ...formData, actionFr: value }); 
 }}
@@ -477,7 +478,7 @@ export function LessonPlanForm({
             <div>
               <Label htmlFor="input">Consolidation (Closure/Assessment)</Label>
               <RichTextEditor
-                value={formData.consolidation ?? ''}
+                value={formData.consolidation || ''}
                 onChange={(value) => {
  setFormData({ ...formData, consolidation: value }); 
 }}
@@ -487,7 +488,7 @@ export function LessonPlanForm({
             <div>
               <Label htmlFor="input">Consolidation (French)</Label>
               <RichTextEditor
-                value={formData.consolidationFr ?? ''}
+                value={formData.consolidationFr || ''}
                 onChange={(value) => {
  setFormData({ ...formData, consolidationFr: value }); 
 }}
@@ -707,8 +708,8 @@ Stratégies d'évaluation:
 • Billet de sortie avec question clé
 • Liste d'auto-évaluation"
               rows={6}
-              valueEn={formData.assessmentNotes ?? ''}
-              valueFr={formData.assessmentNotesFr ?? ''}
+              valueEn={formData.assessmentNotes || ''}
+              valueFr={formData.assessmentNotesFr || ''}
               onChangeEn={(value) => {
  setFormData({ ...formData, assessmentNotes: value }); 
 }}
@@ -746,8 +747,8 @@ Stratégies d'évaluation:
                     placeholderEn="Special instructions, classroom management tips, or additional context for a substitute teacher..."
                     placeholderFr="Instructions spéciales, conseils de gestion de classe, ou contexte additionnel pour un suppléant..."
                     rows={3}
-                    valueEn={formData.subNotes ?? ''}
-                    valueFr={formData.subNotesFr ?? ''}
+                    valueEn={formData.subNotes || ''}
+                    valueFr={formData.subNotesFr || ''}
                     onChangeEn={(value) => {
  setFormData({ ...formData, subNotes: value }); 
 }}

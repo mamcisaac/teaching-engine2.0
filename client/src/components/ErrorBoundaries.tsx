@@ -1,6 +1,6 @@
 import { AlertCircle, RefreshCw, Home, Mail } from 'lucide-react';
-import React, { Component } from 'react';
 import type { ReactNode, ErrorInfo } from 'react';
+import React, { Component } from 'react';
 
 import { errorReportingService } from '../services/errorReportingService';
 import { logger } from '../utils/logger';

@@ -272,7 +272,7 @@ test.describe('Working UI Tests', () => {
 
       console.log(`   Final URL: ${currentURL}`);
       console.log(`   Page blank: ${isBlank}`);
-      console.log(`   Content length: ${bodyContent?.length || 0} chars`);
+      console.log(`   Content length: ${bodyContent?.length ?? 0} chars`);
 
       if (!isBlank && bodyContent) {
         console.log(`   Content preview: ${bodyContent.substring(0, 100).replace(/\s+/g, ' ')}...`);

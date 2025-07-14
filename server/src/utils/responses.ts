@@ -116,7 +116,7 @@ export const sendCreated = <T>(
     ...meta,
   });
   
-  if (location !== null && location !== undefined && location !== '') {
+  if (location && location !== '') {
     res.setHeader('Location', location);
   }
   

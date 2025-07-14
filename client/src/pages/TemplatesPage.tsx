@@ -1,3 +1,4 @@
+
 import {
   Search,
   Filter,
@@ -93,7 +94,7 @@ export default function TemplatesPage(): React.ReactElement {
 
   // Build search options
   const searchOptions: TemplateSearchOptions = {
-    search: searchTerm !== null && searchTerm !== undefined && searchTerm !== '' ? searchTerm : undefined,
+    search: searchTerm || undefined,
     type: selectedType !== 'all' ? selectedType : undefined,
     category: selectedCategory !== 'all' ? selectedCategory : undefined,
     subject: selectedSubject !== 'all' ? selectedSubject : undefined,
@@ -154,7 +155,7 @@ export default function TemplatesPage(): React.ReactElement {
   };
 
   const handleDeleteTemplate = async (): Promise<void> => {
-    if (selectedTemplate === null || selectedTemplate === undefined) {
+    if (!selectedTemplate) {
 return;
 }
 
@@ -210,10 +211,10 @@ return;
               <CardTitle className="text-lg">{template.title}</CardTitle>
               <CardDescription className="text-sm">
                 {template.type === 'UNIT_PLAN' ? 'Unit Plan' : 'Lesson Plan'}
-                {template.subject !== null && template.subject !== undefined && template.subject !== '' && ` • ${template.subject}`}
+                {template.subject && ` • ${template.subject}`}
                 {template.gradeMin === template.gradeMax
                   ? ` • Grade ${template.gradeMin}`
-                  : template.gradeMin && template.gradeMax
+                  : template.gradeMin != null && template.gradeMax != null
                     ? ` • Grades ${template.gradeMin}-${template.gradeMax}`
                     : ''}
               </CardDescription>
@@ -253,7 +254,7 @@ return;
 
         <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
           <div className="flex items-center gap-4">
-            {template.averageRating !== null && template.averageRating !== undefined && template.averageRating !== 0 && (
+            {template.averageRating && template.averageRating !== 0 && (
               <div className="flex items-center gap-1">
                 <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                 <span>{template.averageRating.toFixed(1)}</span>
@@ -265,13 +266,13 @@ return;
             </div>
           </div>
 
-          {template.estimatedWeeks !== null && template.estimatedWeeks !== undefined && template.estimatedWeeks !== 0 && (
+          {template.estimatedWeeks && template.estimatedWeeks !== 0 && (
             <div className="flex items-center gap-1">
               <Calendar className="h-4 w-4" />
               <span>{template.estimatedWeeks}w</span>
             </div>
           )}
-          {template.estimatedMinutes !== null && template.estimatedMinutes !== undefined && template.estimatedMinutes !== 0 && (
+          {template.estimatedMinutes && template.estimatedMinutes !== 0 && (
             <div className="flex items-center gap-1">
               <Clock className="h-4 w-4" />
               <span>{template.estimatedMinutes}m</span>
@@ -310,7 +311,7 @@ return;
             <Copy className="h-4 w-4" />
           </Button>
 
-          {template.createdByUserId !== null && template.createdByUserId !== undefined && !template.isSystem && (
+          {template.createdByUserId && !template.isSystem && (
             <Button
               size="sm"
               variant="ghost"
@@ -531,7 +532,7 @@ return;
       </div>
 
       {/* Templates Grid */}
-      {error !== null && error !== undefined ? (
+      {error ? (
         <Card>
           <CardContent className="text-center py-8">
             <p className="text-red-600">Failed to load templates. Please try again.</p>
@@ -547,7 +548,7 @@ return;
                 ? 'Try adjusting your search or filters'
                 : 'Get started by creating your first template'}
             </p>
-            {(searchTerm === null || searchTerm === undefined || searchTerm === '') && (
+            {!searchTerm && (
               <Button
                 data-testid="create-template-empty-state-button"
                 onClick={() => {
@@ -574,7 +575,7 @@ return;
 
           <form className="space-y-4" onSubmit={(e: React.FormEvent) => {
             void handleCreateTemplate(e).catch((error: unknown) => {
-              console.error('Error creating template:', error);
+              logger.error('Error creating template:', error);
             });
           }}>
             <div>
@@ -642,7 +643,7 @@ return;
               <Label htmlFor="input">Subject (optional)</Label>
               <Input
                 placeholder="Mathematics, Language Arts, etc."
-                value={formData.subject ?? ''}
+                value={formData.subject || ''}
                 onChange={(e) => {
  setFormData({ ...formData, subject: e.target.value }); 
 }}
@@ -656,7 +657,7 @@ return;
                   max="12"
                   min="1"
                   type="number"
-                  value={formData.gradeMin ?? ''}
+                  value={formData.gradeMin || ''}
                   onChange={(e) => {
  setFormData({
                       ...formData,
@@ -673,7 +674,7 @@ return;
                   max="12"
                   min="1"
                   type="number"
-                  value={formData.gradeMax ?? ''}
+                  value={formData.gradeMax || ''}
                   onChange={(e) => {
  setFormData({
                       ...formData,
@@ -928,7 +929,7 @@ return;
               disabled={deleteTemplate.isPending}
               onClick={() => {
                 void handleDeleteTemplate().catch((error: unknown) => {
-                  console.error('Error deleting template:', error);
+                  logger.error('Error deleting template:', error);
                 });
               }}
             >

@@ -100,7 +100,7 @@ export function AIWeeklyPlanModal({
       }
       const errorMessage =
         error instanceof Error && 'response' in error
-          ? (error as ApiError).response?.data?.error !== null && (error as ApiError).response?.data?.error !== undefined && (error as ApiError).response?.data?.error !== '' ? (error as ApiError).response?.data?.error : 'Failed to apply plan'
+          ? (error as ApiError).response?.data?.error || 'Failed to apply plan'
           : 'Failed to apply plan';
       toast.error(errorMessage);
     },

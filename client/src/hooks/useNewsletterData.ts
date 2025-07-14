@@ -122,13 +122,13 @@ export function useNewsletter(id: string | undefined): UseQueryResult<Newsletter
   return useQuery<NewsletterDraft>({
     queryKey: ['newsletter', id],
     queryFn: async () => {
-      if (id === null || id === undefined || id === '') {
+      if (!id || id === '') {
 throw new Error('Newsletter ID is required');
 }
       const response = await apiClient.get(`/newsletters/${id}`);
       return response.data as NewsletterDraft;
     },
-    enabled: id !== null && id !== undefined && id !== '',
+    enabled: id && id !== '',
   });
 }
 
@@ -176,13 +176,13 @@ export function useParentSummaries(studentId: number | undefined): UseQueryResul
   return useQuery<ParentSummary[]>({
     queryKey: ['parent-summaries', studentId],
     queryFn: async () => {
-      if (studentId === null || studentId === undefined) {
+      if (!studentId) {
 throw new Error('Student ID is required');
 }
       const response = await apiClient.get(`/parent-summaries/student/${studentId}`);
       return response.data as ParentSummary[];
     },
-    enabled: studentId !== null && studentId !== undefined,
+    enabled: studentId,
   });
 }
 

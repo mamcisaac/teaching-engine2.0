@@ -86,7 +86,7 @@ export function handleApiError(error: unknown, customMessage?: string): void {
         break;
 
       case 429: {
-        const retryAfter = error.response.headers?.['retry-after'] as string | undefined;
+        const retryAfter = error.response.headers['retry-after'] as string | undefined;
         toast.error(
           `Too many requests. Please try again ${retryAfter ? `in ${retryAfter} seconds` : 'later'}.`,
         );

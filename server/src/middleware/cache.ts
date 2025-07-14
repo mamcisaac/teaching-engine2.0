@@ -82,7 +82,7 @@ function shouldCache(req: Request): boolean {
   }
 
   // Don't cache authenticated endpoints by default unless explicitly enabled
-  if (req.headers.authorization !== null && req.headers.authorization !== undefined && !(req as Request & { cacheEnabled?: boolean }).cacheEnabled) {
+  if (req.headers.authorization && !(req as Request & { cacheEnabled?: boolean }).cacheEnabled) {
     return false;
   }
 
@@ -135,7 +135,7 @@ export function createCacheMiddleware(
       // Try to get from cache
       const cachedResponse = cache.get(cacheKey);
 
-      if (cachedResponse !== null && cachedResponse !== undefined) {
+      if (cachedResponse) {
         // Cache hit
         stats[cacheType].hits++;
         cacheMetrics.recordHit(cacheType);
@@ -158,7 +158,7 @@ export function createCacheMiddleware(
       // Override json method to cache the response
       res.json = function (data: unknown) {
         // Cache the response data
-        if (res.statusCode === 200 && data !== null && data !== undefined) {
+        if (res.statusCode === 200 && data) {
           const cacheTTL = ttl ?? cache.options.stdTTL ?? DEFAULT_TTL;
           cache.set(cacheKey, data, cacheTTL);
 

@@ -37,7 +37,7 @@ export const errorLoggingMiddleware = (
     requestId: req.id,
     ip: req.ip,
     userAgent: req.get('user-agent'),
-    duration: req.startTime ? Date.now() - req.startTime : undefined,
+    duration: req.startTime !== undefined && req.startTime !== null && req.startTime > 0 ? Date.now() - req.startTime : undefined,
   };
 
   // Determine log level based on error type and status

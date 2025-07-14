@@ -1,3 +1,4 @@
+
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -7,8 +8,8 @@ import { Dialog } from '../components/Dialog';
 import { AISuggestionPanel } from '../components/planning/AISuggestionPanel';
 import { BlankTemplateQuickActions } from '../components/printing/BlankTemplatePrinter';
 import { Button } from '../components/ui/Button';
-import { useAIPlanningAssistant } from '../hooks/useAIPlanningAssistant';
 import type { AISuggestion } from '../hooks/useAIPlanningAssistant';
+import { useAIPlanningAssistant } from '../hooks/useAIPlanningAssistant';
 
 interface LongRangePlan {
   id: string;
@@ -394,7 +395,7 @@ export default function LongRangePlanPage(): React.ReactElement {
                 suggestions={aiGoalSuggestions}
                 title="AI Goal Suggestions"
                 onAcceptAll={() => {
-                  if (aiGoalSuggestions?.suggestions) {
+                  if (aiGoalSuggestions?.suggestions != null && aiGoalSuggestions.suggestions.length > 0) {
                     setFormData({
                       ...formData,
                       goals: aiGoalSuggestions.suggestions.join('\n\n'),

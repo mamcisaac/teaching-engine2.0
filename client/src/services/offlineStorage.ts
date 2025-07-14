@@ -219,7 +219,7 @@ class OfflineStorageService {
         if (result.expiresAt !== undefined && result.expiresAt < Date.now()) {
           // Delete expired data
           void this.deleteCachedData(key).catch((error: unknown) => {
-            console.error('Error deleting expired data:', error);
+            logger.error('Error deleting expired data:', error);
           });
           resolve(null);
           return;

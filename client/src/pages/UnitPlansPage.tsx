@@ -1,3 +1,4 @@
+
 import {
   Plus,
   Sparkles,
@@ -18,17 +19,18 @@ import { EmptyState } from '../components/LoadingStates';
 import { OptimizedUnitPlanCard, LoadingSkeleton } from '../components/performance';
 import { PlanAccessTracker } from '../components/planning/PlanAccessTracker';
 import { BlankTemplateQuickActions } from '../components/printing/BlankTemplatePrinter';
+import { RichTextEditor } from '../components/RichTextEditor';
 import { AutoSaveIndicator } from '../components/ui/AutoSaveIndicator';
 import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Input } from '../components/ui/Input';
 import { Label } from '../components/ui/Label';
+import { MobileOptimizedForm } from '../components/ui/MobileOptimizedForm';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import { Textarea } from '../components/ui/Textarea';
 import { UnitPlanOverviewTab } from '../components/unitPlans/UnitPlanOverviewTab';
 import { UnitPlanPlanningTab } from '../components/unitPlans/UnitPlanPlanningTab';
-import type {
-  UnitPlan} from '../hooks/useETFOPlanning';
+import type { UnitPlan } from '../hooks/useETFOPlanning';
 import {
   useLongRangePlan,
   useLongRangePlans,
@@ -38,11 +40,14 @@ import {
   useUpdateUnitPlan
 } from '../hooks/useETFOPlanning';
 import { useTemplates, useApplyTemplate } from '../hooks/useTemplates';
-import { useUnitPlanForm } from '../hooks/useUnitPlanForm';
 import type { UnitPlanFormData } from '../hooks/useUnitPlanForm';
-// import { UnitPlanService } from '../services/unitPlanService';
+import { useUnitPlanForm } from '../hooks/useUnitPlanForm';
 import type { PlanTemplate, UnitPlanContent } from '../types/template';
+// import { UnitPlanService } from '../services/unitPlanService';
 import { isUnitPlanTemplate } from '../types/template';
+import { logger } from '../utils/logger';
+import { generateUnitPlanHTML, printHTML, downloadHTML } from '../utils/printUtils';
+import { SafeHtmlRenderer } from '../utils/sanitization';
 
 // Lazy load AI components for better performance
 const AIUnitPlanPanel = lazy(() =>
@@ -51,11 +56,6 @@ const AIUnitPlanPanel = lazy(() =>
 const WithAIErrorBoundary = lazy(() =>
   import('../components/ai/AIErrorBoundary').then((m) => ({ default: m.WithAIErrorBoundary })),
 );
-import { MobileOptimizedForm } from '../components/ui/MobileOptimizedForm';
-import { logger } from '../utils/logger';
-import { generateUnitPlanHTML, printHTML, downloadHTML } from '../utils/printUtils';
-import { SafeHtmlRenderer } from '../utils/sanitization';
-import { RichTextEditor } from '../components/RichTextEditor';
 // Extended UnitPlan type with all ETFO fields
 interface ExtendedUnitPlan extends UnitPlan {
   crossCurricularConnections?: string;
@@ -86,12 +86,12 @@ export default function UnitPlansPage(): React.ReactElement {
   const [selectedTemplate, setSelectedTemplate] = useState<PlanTemplate | null>(null);
 
   // Fetch data
-  const { data: longRangePlan } = useLongRangePlan(longRangePlanId ?? '');
+  const { data: longRangePlan } = useLongRangePlan(longRangePlanId != null && longRangePlanId !== '' ? longRangePlanId : '');
   const { data: allLongRangePlans = [] } = useLongRangePlans();
   const { data: unitPlans = [], isLoading } = useUnitPlans(
-    longRangePlanId ? { longRangePlanId } : {},
+    longRangePlanId != null && longRangePlanId !== '' ? { longRangePlanId } : {},
   );
-  const { data: selectedUnit } = useUnitPlan(unitId ?? '');
+  const { data: selectedUnit } = useUnitPlan(unitId != null && unitId !== '' ? unitId : '');
 
   // Curriculum expectations for AI assistance
   const { data: curriculumExpectations = [] } = useCurriculumExpectations({
@@ -228,12 +228,12 @@ export default function UnitPlansPage(): React.ReactElement {
     try {
       const applied = await applyTemplate.mutateAsync({ id: template.id });
 
-      if (isUnitPlanTemplate(template) === true && applied.appliedContent !== null) {
+      if (isUnitPlanTemplate(template) && applied.appliedContent) {
         // Pre-populate form with template data
         const templateContent = applied.appliedContent as UnitPlanContent;
         updateField('title', '');
-        updateField('description', templateContent.overview ?? '');
-        updateField('bigIdeas', templateContent.bigIdeas ?? '');
+        updateField('description', templateContent.overview != null && templateContent.overview !== '' ? templateContent.overview : '');
+        updateField('bigIdeas', templateContent.bigIdeas != null && templateContent.bigIdeas !== '' ? templateContent.bigIdeas : '');
         updateField('essentialQuestions', templateContent.essentialQuestions ?? []);
         updateField('keyVocabulary', templateContent.keyVocabulary ?? []);
         updateField(
@@ -241,10 +241,10 @@ export default function UnitPlansPage(): React.ReactElement {
           templateContent.assessments ? JSON.stringify(templateContent.assessments) : '',
         );
         updateField('successCriteria', templateContent.successCriteria ?? []);
-        updateField('crossCurricularConnections', templateContent.crossCurricularConnections ?? '');
+        updateField('crossCurricularConnections', templateContent.crossCurricularConnections != null && templateContent.crossCurricularConnections !== '' ? templateContent.crossCurricularConnections : '');
         // Handle differentiationStrategies which might have different structure in template
         const diffStrategies = templateContent.differentiationStrategies;
-        if (diffStrategies !== null && typeof diffStrategies === 'object') {
+        if (diffStrategies && typeof diffStrategies === 'object') {
           updateField('differentiationStrategies', {
             forStruggling: Array.isArray(diffStrategies.forStruggling)
               ? diffStrategies.forStruggling
@@ -263,18 +263,18 @@ export default function UnitPlansPage(): React.ReactElement {
             forIEP: [],
           });
         }
-        updateField('culminatingTask', templateContent.culminatingTask ?? '');
-        updateField('priorKnowledge', templateContent.priorKnowledge ?? '');
-        updateField('parentCommunicationPlan', templateContent.parentCommunicationPlan ?? '');
-        updateField('fieldTripsAndGuestSpeakers', templateContent.fieldTripsAndGuestSpeakers ?? '');
-        updateField('indigenousPerspectives', templateContent.indigenousPerspectives ?? '');
-        updateField('environmentalEducation', templateContent.environmentalEducation ?? '');
-        updateField('socialJusticeConnections', templateContent.socialJusticeConnections ?? '');
-        updateField('technologyIntegration', templateContent.technologyIntegration ?? '');
-        updateField('communityConnections', templateContent.communityConnections ?? '');
+        updateField('culminatingTask', templateContent.culminatingTask != null && templateContent.culminatingTask !== '' ? templateContent.culminatingTask : '');
+        updateField('priorKnowledge', templateContent.priorKnowledge != null && templateContent.priorKnowledge !== '' ? templateContent.priorKnowledge : '');
+        updateField('parentCommunicationPlan', templateContent.parentCommunicationPlan != null && templateContent.parentCommunicationPlan !== '' ? templateContent.parentCommunicationPlan : '');
+        updateField('fieldTripsAndGuestSpeakers', templateContent.fieldTripsAndGuestSpeakers != null && templateContent.fieldTripsAndGuestSpeakers !== '' ? templateContent.fieldTripsAndGuestSpeakers : '');
+        updateField('indigenousPerspectives', templateContent.indigenousPerspectives != null && templateContent.indigenousPerspectives !== '' ? templateContent.indigenousPerspectives : '');
+        updateField('environmentalEducation', templateContent.environmentalEducation != null && templateContent.environmentalEducation !== '' ? templateContent.environmentalEducation : '');
+        updateField('socialJusticeConnections', templateContent.socialJusticeConnections != null && templateContent.socialJusticeConnections !== '' ? templateContent.socialJusticeConnections : '');
+        updateField('technologyIntegration', templateContent.technologyIntegration != null && templateContent.technologyIntegration !== '' ? templateContent.technologyIntegration : '');
+        updateField('communityConnections', templateContent.communityConnections != null && templateContent.communityConnections !== '' ? templateContent.communityConnections : '');
 
         // Set estimated duration if available
-        if (template.estimatedWeeks !== null && template.estimatedWeeks !== undefined && template.estimatedWeeks > 0) {
+        if (template.estimatedWeeks && template.estimatedWeeks > 0) {
           const startDate = new Date();
           const endDate = new Date();
           endDate.setDate(startDate.getDate() + template.estimatedWeeks * 7);
@@ -311,7 +311,7 @@ export default function UnitPlansPage(): React.ReactElement {
   }
 
   // Detail view for a specific unit
-  if (unitId !== null && unitId !== undefined && unitId !== '' && selectedUnit !== null && selectedUnit !== undefined) {
+  if (unitId && selectedUnit) {
     const unit = selectedUnit as ExtendedUnitPlan;
     return (
       <PlanAccessTracker planType="unit">
@@ -335,7 +335,7 @@ export default function UnitPlansPage(): React.ReactElement {
               <div className="flex justify-between items-start">
                 <div>
                   <h1 className="text-2xl font-bold text-gray-900">{unit.title}</h1>
-                  {unit.titleFr !== null && unit.titleFr !== undefined && unit.titleFr !== '' && <p className="text-sm text-gray-600 mt-1">{unit.titleFr}</p>}
+                  {unit.titleFr && <p className="text-sm text-gray-600 mt-1">{unit.titleFr}</p>}
                   <div className="flex gap-4 mt-2 text-sm text-gray-600">
                     <span>
                       {new Date(unit.startDate).toLocaleDateString()} -{' '}
@@ -400,21 +400,21 @@ export default function UnitPlansPage(): React.ReactElement {
 
             {/* Unit Detail Content */}
             <div className="p-6 space-y-6">
-              {unit.description !== null && unit.description !== undefined && unit.description !== '' && (
+              {unit.description && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Description</h3>
                   <p className="text-gray-700">{unit.description}</p>
                 </div>
               )}
 
-              {unit.bigIdeas !== null && unit.bigIdeas !== undefined && unit.bigIdeas !== '' && (
+              {unit.bigIdeas && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Big Ideas</h3>
                   <SafeHtmlRenderer className="prose max-w-none" html={unit.bigIdeas} />
                 </div>
               )}
 
-              {unit.essentialQuestions !== null && unit.essentialQuestions !== undefined && unit.essentialQuestions.length > 0 && (
+              {unit.essentialQuestions && unit.essentialQuestions.length > 0 && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Essential Questions</h3>
                   <ul className="list-disc list-inside space-y-1">
@@ -427,7 +427,7 @@ export default function UnitPlansPage(): React.ReactElement {
                 </div>
               )}
 
-              {unit.successCriteria !== null && unit.successCriteria !== undefined && unit.successCriteria.length > 0 && (
+              {unit.successCriteria && unit.successCriteria.length > 0 && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Success Criteria</h3>
                   <ul className="list-disc list-inside space-y-1">
@@ -440,14 +440,14 @@ export default function UnitPlansPage(): React.ReactElement {
                 </div>
               )}
 
-              {unit.assessmentPlan !== null && unit.assessmentPlan !== undefined && unit.assessmentPlan !== '' && (
+              {unit.assessmentPlan && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Assessment Plan</h3>
                   <SafeHtmlRenderer className="prose max-w-none" html={unit.assessmentPlan} />
                 </div>
               )}
 
-              {unit.keyVocabulary !== null && unit.keyVocabulary !== undefined && unit.keyVocabulary.length > 0 && (
+              {unit.keyVocabulary && unit.keyVocabulary.length > 0 && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Key Vocabulary</h3>
                   <div className="flex flex-wrap gap-2">
@@ -461,7 +461,7 @@ export default function UnitPlansPage(): React.ReactElement {
               )}
 
               {/* ETFO-specific sections */}
-              {unit.crossCurricularConnections !== null && unit.crossCurricularConnections !== undefined && unit.crossCurricularConnections !== '' && (
+              {unit.crossCurricularConnections && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">
                     Cross-Curricular Connections
@@ -471,14 +471,13 @@ export default function UnitPlansPage(): React.ReactElement {
               )}
 
               {/* Differentiation Strategies */}
-              {unit.differentiationStrategies !== null && unit.differentiationStrategies !== undefined && (
+              {unit.differentiationStrategies && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">
                     Differentiation Strategies
                   </h3>
                   <div className="grid gap-4 md:grid-cols-2">
-                    {unit.differentiationStrategies.forStruggling !== null &&
-                      unit.differentiationStrategies.forStruggling !== undefined &&
+                    {unit.differentiationStrategies.forStruggling &&
                       unit.differentiationStrategies.forStruggling.length > 0 && (
                         <Card>
                           <CardHeader>
@@ -652,8 +651,8 @@ export default function UnitPlansPage(): React.ReactElement {
             <BlankTemplateQuickActions
               schoolInfo={{
                 grade: longRangePlan !== null && longRangePlan !== undefined ? `Grade ${longRangePlan.grade}` : '',
-                subject: longRangePlan?.subject ?? '',
-                academicYear: longRangePlan?.academicYear ?? '',
+                subject: longRangePlan?.subject || '',
+                academicYear: longRangePlan?.academicYear || '',
               }}
               templateType="unit"
             />
@@ -738,7 +737,7 @@ export default function UnitPlansPage(): React.ReactElement {
                   lastSaved={lastSaved}
                   onManualSave={() => {
                     void saveNow().catch((error: unknown) => {
-                      console.error('Error during manual save:', error);
+                      logger.error('Error during manual save:', error);
                     });
                   }}
                 />
@@ -750,7 +749,7 @@ export default function UnitPlansPage(): React.ReactElement {
                   variant="outline"
                   onClick={() => {
                     void saveNow().catch((error: unknown) => {
-                      console.error('Error saving unit plan:', error);
+                      logger.error('Error saving unit plan:', error);
                     });
                   }}
                 >
@@ -768,7 +767,7 @@ export default function UnitPlansPage(): React.ReactElement {
           <MobileOptimizedForm>
             <form onSubmit={(e: React.FormEvent) => {
               void handleSubmit(e).catch((error: unknown) => {
-                console.error('Error submitting form:', error);
+                logger.error('Error submitting form:', error);
               });
             }}>
               <Tabs className="space-y-4" defaultValue="overview">
@@ -815,7 +814,7 @@ export default function UnitPlansPage(): React.ReactElement {
                           }))}
                         duration={2} // Default 2 weeks
                         grade={longRangePlan?.grade ?? 1}
-                        subject={longRangePlan?.subject ?? ''}
+                        subject={longRangePlan?.subject || ''}
                         unitTitle={formData.title}
                         onSuggestionAccepted={handleAISuggestionAccepted}
                         onUnitGenerated={handleAIUnitGenerated}
@@ -1284,7 +1283,7 @@ export default function UnitPlansPage(): React.ReactElement {
               onClick={() => {
                 if (selectedTemplate !== null && selectedTemplate !== undefined) {
                   void handleApplyTemplate(selectedTemplate).catch((error: unknown) => {
-                    console.error('Error applying template:', error);
+                    logger.error('Error applying template:', error);
                   });
                 }
               }}

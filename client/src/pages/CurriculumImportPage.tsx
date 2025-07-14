@@ -138,7 +138,7 @@ return;
           useAiExtraction: true,
         });
 
-        if (progressInterval) {
+        if (progressInterval != null) {
           clearInterval(progressInterval);
         }
         setParseProgress(100);
@@ -310,7 +310,7 @@ return;
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: (files: File[]) => {
       void onDrop(files).catch((error: unknown) => {
-        console.error('Error handling file drop:', error);
+        logger.error('Error handling file drop:', error);
       });
     },
     accept: {
@@ -563,7 +563,7 @@ return;
                   </Button>
                   <Button aria-label="Click button" onClick={() => {
                     void handleFinalImport().catch((error: unknown) => {
-                      console.error('Error during final import:', error);
+                      logger.error('Error during final import:', error);
                     });
                   }}>
                     <Sparkles className="h-4 w-4" />
@@ -654,7 +654,7 @@ return;
                 <div className="space-y-2">
                   <Label htmlFor="input">Substrand (Optional)</Label>
                   <Input
-                    value={editingExpectation.substrand ?? ''}
+                    value={editingExpectation.substrand || ''}
                     onChange={(e) => {
  setEditingExpectation({
                         ...editingExpectation,

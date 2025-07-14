@@ -1,3 +1,4 @@
+
 import { Search, Upload, Edit2, Trash2, CheckCircle, AlertCircle } from 'lucide-react';
 import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -35,13 +36,14 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Textarea } from '@/components/ui/Textarea';
 import { useToast } from '@/components/ui/use-toast';
 
+import type {
+  CurriculumExpectation} from '../hooks/useETFOPlanning';
 import {
   useCurriculumExpectations,
   useUpdateCurriculumExpectation,
   useDeleteCurriculumExpectation
 } from '../hooks/useETFOPlanning';
-import type {
-  CurriculumExpectation} from '../hooks/useETFOPlanning';
+import { logger } from '../utils/logger';
 
 export default function CurriculumExpectationsPage(): React.ReactElement {
   const navigate = useNavigate();
@@ -99,7 +101,7 @@ export default function CurriculumExpectationsPage(): React.ReactElement {
   const handleEdit = (expectation: CurriculumExpectation): void => {
     setEditingExpectation({
       ...expectation,
-      descriptionFr: expectation.descriptionFr ?? '',
+      descriptionFr: expectation.descriptionFr || '',
     });
     setIsEditDialogOpen(true);
   };
@@ -420,7 +422,7 @@ return;
                 <Textarea
                   placeholder="Optional French translation"
                   rows={3}
-                  value={editingExpectation.descriptionFr ?? ''}
+                  value={editingExpectation.descriptionFr || ''}
                   onChange={(e) => {
  setEditingExpectation({
                       ...editingExpectation,
@@ -448,7 +450,7 @@ return;
                 <div>
                   <Label htmlFor="input">Substrand (Optional)</Label>
                   <Input
-                    value={editingExpectation.substrand ?? ''}
+                    value={editingExpectation.substrand || ''}
                     onChange={(e) => {
  setEditingExpectation({
                         ...editingExpectation,
@@ -469,7 +471,7 @@ return;
             </Button>
             <Button aria-label="Click button" onClick={() => { 
               void handleSaveEdit().catch((error: unknown) => {
-                console.error('Error saving edit:', error);
+                logger.error('Error saving edit:', error);
               }); 
             }}>Save Changes</Button>
           </DialogFooter>

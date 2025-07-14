@@ -143,13 +143,13 @@ class PerformanceBenchmarkSuite {
         // First Contentful Paint
         new PerformanceObserver((list) => {
           const entries = list.getEntries();
-          vitals.fcp = entries[entries.length - 1]?.startTime || 0;
+          vitals.fcp = entries[entries.length - 1]?.startTime ?? 0;
         }).observe({ entryTypes: ['paint'] });
 
         // Largest Contentful Paint
         new PerformanceObserver((list) => {
           const entries = list.getEntries();
-          vitals.lcp = entries[entries.length - 1]?.startTime || 0;
+          vitals.lcp = entries[entries.length - 1]?.startTime ?? 0;
         }).observe({ entryTypes: ['largest-contentful-paint'] });
 
         // Cumulative Layout Shift
@@ -166,7 +166,7 @@ class PerformanceBenchmarkSuite {
         // First Input Delay
         new PerformanceObserver((list) => {
           const entries = list.getEntries();
-          vitals.fid = entries[0]?.processingStart - entries[0]?.startTime || 0;
+          vitals.fid = entries[0]?.processingStart - entries[0]?.startTime ?? 0;
         }).observe({ entryTypes: ['first-input'] });
 
         // Time to Interactive (approximation)

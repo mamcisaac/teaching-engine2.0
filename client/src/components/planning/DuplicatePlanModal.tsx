@@ -47,8 +47,8 @@ export function DuplicatePlanModal({
   planTitle 
 }: DuplicatePlanModalProps): React.ReactElement {
   const queryClient = useQueryClient();
-  const [selectedType, setSelectedType] = useState(planType ?? '');
-  const [selectedPlanId, setSelectedPlanId] = useState(planId ?? '');
+  const [selectedType, setSelectedType] = useState(planType || '');
+  const [selectedPlanId, setSelectedPlanId] = useState(planId || '');
   const [newTitle, setNewTitle] = useState('');
   const [notes, setNotes] = useState('');
   const [includeSubItems, setIncludeSubItems] = useState(true);

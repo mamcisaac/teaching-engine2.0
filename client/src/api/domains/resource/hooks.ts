@@ -3,7 +3,6 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 
-import { resourceApi } from './api';
 import type {
   MediaResource,
   MediaResourceInput,
@@ -11,6 +10,7 @@ import type {
   ResourceCollection,
   ResourceStats,
 } from './api';
+import { resourceApi } from './api';
 
 // Media resource query hooks
 export const useMediaResources = (filters?: ResourceFilters): UseQueryResult<{
@@ -19,7 +19,7 @@ export const useMediaResources = (filters?: ResourceFilters): UseQueryResult<{
   hasMore: boolean;
 }> =>
   useQuery({
-    queryKey: queryKeys.resource.media(filters?.userId || 0),
+    queryKey: queryKeys.resource.media(filters?.userId ?? 0),
     queryFn: () => resourceApi.media.getAll(filters),
     staleTime: 2 * 60 * 1000, // 2 minutes
   });

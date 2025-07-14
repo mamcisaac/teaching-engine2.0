@@ -38,7 +38,7 @@ export function userRoutes(prisma: PrismaClient): Router {
 
       const user = await userRepository.findByIdWithoutPassword(userId);
 
-      if (user === null || user === undefined) {
+      if (!user) {
         res.status(404).json({ error: 'User not found' });
         return;
       }
@@ -65,7 +65,7 @@ export function userRoutes(prisma: PrismaClient): Router {
       // Get user with password
       const user = await userRepository.findById(userId);
 
-      if (user === null || user === undefined) {
+      if (!user) {
         res.status(404).json({ error: 'User not found' });
         return;
       }

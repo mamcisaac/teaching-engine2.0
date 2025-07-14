@@ -112,7 +112,7 @@ export const validate = <T>(
         );
 
         // Use custom _error handler if provided
-        if (customErrorHandler !== null && customErrorHandler !== undefined) {
+        if (customErrorHandler) {
           const customError = customErrorHandler(_error, req);
           next(customError); return;
         }
@@ -221,7 +221,7 @@ export const commonValidators = {
       to: z.string().datetime().optional(),
     })
     .refine(
-      (data) => (data.from === null || data.from === undefined) || (data.to === undefined) || new Date(data.from) <= new Date(data.to),
+      (data) => (!data.from) || (data.to === undefined) || new Date(data.from) <= new Date(data.to),
       'From date must be before or equal to to date',
     ),
 
@@ -249,7 +249,7 @@ export const sanitizeRequest = (
         .trim();
 
     // Sanitize specified fields
-    if (fieldsToSanitize.body !== null && fieldsToSanitize.body !== undefined && req.body !== undefined) {
+    if (fieldsToSanitize.body && req.body !== undefined) {
       fieldsToSanitize.body.forEach((field) => {
         if (req.body[field] !== null && req.body[field] !== undefined && typeof req.body[field] === 'string') {
           req.body[field] = sanitizeHtml(req.body[field]);
@@ -257,7 +257,7 @@ export const sanitizeRequest = (
       });
     }
 
-    if (fieldsToSanitize.query !== null && fieldsToSanitize.query !== undefined && req.query !== undefined) {
+    if (fieldsToSanitize.query && req.query !== undefined) {
       fieldsToSanitize.query.forEach((field) => {
         if (req.query[field] !== null && req.query[field] !== undefined && typeof req.query[field] === 'string') {
           req.query[field] = sanitizeHtml(req.query[field]);
@@ -265,7 +265,7 @@ export const sanitizeRequest = (
       });
     }
 
-    if (fieldsToSanitize.params !== null && fieldsToSanitize.params !== undefined && req.params !== undefined) {
+    if (fieldsToSanitize.params && req.params !== undefined) {
       fieldsToSanitize.params.forEach((field) => {
         if (req.params[field] !== null && req.params[field] !== undefined && typeof req.params[field] === 'string') {
           req.params[field] = sanitizeHtml(req.params[field]);

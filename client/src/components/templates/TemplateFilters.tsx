@@ -73,7 +73,7 @@ export function TemplateFilters({
             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Search templates..."
             type="text"
-            value={filters.search ?? ''}
+            value={filters.search || ''}
             onChange={(e): void => {
  updateFilter('search', e.target.value); 
 }}

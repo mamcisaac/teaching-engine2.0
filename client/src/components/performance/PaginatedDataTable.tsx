@@ -1,5 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
+import { ChevronLeft, ChevronRight, ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
 import React, { useState, useMemo, useCallback } from 'react';
+
+import { Button } from '../ui/Button';
+import { Input } from '../ui/Input';
+
+import { LoadingSkeleton } from './LoadingSkeleton';
 
 // Type-safe debounce implementation
 type DebounceFunction<T extends unknown[]> = (...args: T) => void;
@@ -14,12 +20,6 @@ const debounce = <T extends unknown[]>(
     timeout = setTimeout((): void => { func(...args); }, wait);
   };
 };
-import { Button } from '../ui/Button';
-import { Input } from '../ui/Input';
-
-import { LoadingSkeleton } from './LoadingSkeleton';
-
-import { ChevronLeft, ChevronRight, ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
 
 interface Column<T> {
   key: keyof T;
@@ -67,7 +67,7 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
 }: PaginatedDataTableProps<T>): JSX.Element {
   const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState<string | undefined>(initialSort?.key as string);
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>(initialSort?.order || 'asc');
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>(initialSort?.order ?? 'asc');
   const [filters, setFilters] = useState<Record<string, string | number | boolean>>({});
   const [globalSearch, setGlobalSearch] = useState('');
 
@@ -158,7 +158,7 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
 
   // Generate pagination buttons
   const paginationButtons = useMemo(() => {
-    if (data === null || data === undefined) {
+    if (!data) {
 return [];
 }
 
@@ -371,7 +371,7 @@ return [];
       )}
 
       {/* Loading overlay for data fetching */}
-      {isLoading && data !== null && data !== undefined && (
+      {isLoading && data && (
         <div
           className="absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center"
           data-testid="loading-skeleton"

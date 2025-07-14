@@ -55,13 +55,13 @@ function UncoveredOutcomesPanel({
     queryKey: ['uncovered-outcomes', startDate, endDate, theme],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (startDate !== null && startDate !== undefined) {
+      if (startDate) {
 params.append('startDate', startDate.toISOString());
 }
-      if (endDate !== null && endDate !== undefined) {
+      if (endDate) {
 params.append('endDate', endDate.toISOString());
 }
-      if (theme !== null && theme !== undefined && theme !== '') {
+      if (theme && theme !== '') {
 params.append('theme', theme);
 }
 
@@ -99,7 +99,7 @@ params.append('theme', theme);
     );
   }
 
-  if (uncoveredOutcomes === null || uncoveredOutcomes === undefined || uncoveredOutcomes.length === 0) {
+  if (!uncoveredOutcomes || uncoveredOutcomes.length === 0) {
     return (
       <div className="text-center p-8 bg-green-50 rounded-lg">
         <div className="text-4xl mx-auto mb-4">🎯</div>

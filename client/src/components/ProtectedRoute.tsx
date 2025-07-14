@@ -13,7 +13,7 @@ export function ProtectedRoute({ children }: ProtectedRouteProps): React.ReactEl
   const location = useLocation();
 
   // Debug logging in development
-  if (process.env.NODE_ENV !== null && process.env.NODE_ENV !== undefined && process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === 'development') {
     logger.info('[ProtectedRoute] Auth state:', {
       isAuthenticated,
       isLoading,
@@ -23,7 +23,7 @@ export function ProtectedRoute({ children }: ProtectedRouteProps): React.ReactEl
   }
 
   // Don't render anything until auth is initialized
-  if (isInitialized !== null && isInitialized !== undefined && !isInitialized || isInitialized === null || isInitialized === undefined || isLoading !== null && isLoading !== undefined && isLoading) {
+  if (!isInitialized || isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500" />
@@ -31,7 +31,7 @@ export function ProtectedRoute({ children }: ProtectedRouteProps): React.ReactEl
     );
   }
 
-  if (isAuthenticated !== null && isAuthenticated !== undefined && !isAuthenticated || isAuthenticated === null || isAuthenticated === undefined) {
+  if (!isAuthenticated) {
     // Redirect them to the /login page, but save the current location they were
     // trying to go to when they were redirected. This allows us to send them
     // along to that page after they log in, which is a nicer user experience

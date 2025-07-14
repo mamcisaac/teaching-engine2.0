@@ -4,7 +4,6 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 
-import { routineApi } from './api';
 import type {
   DailyOralRoutine,
   ClassRoutine,
@@ -14,6 +13,7 @@ import type {
   OralRoutineTemplate,
   OralRoutineStats,
 } from './api';
+import { routineApi } from './api';
 
 // Template query hooks
 export const useRoutineTemplates = (filters?: RoutineFilters): UseQueryResult<OralRoutineTemplate[]> =>

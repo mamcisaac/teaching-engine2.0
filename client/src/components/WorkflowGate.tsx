@@ -182,5 +182,5 @@ function getUnlockSteps(level: ETFOLevel): string[] {
       'Save the lesson plan with all required fields',
     ],
   };
-  return steps[level] || ['Complete the previous planning level'];
+  return steps[level];
 }

@@ -205,28 +205,28 @@ export const generateUnitPlanHTML = (unitPlan: UnitPlan, longRangePlan?: { title
     <body>
       <div class="header">
         <div class="title">${escapeHtml(unitPlan.title)}</div>
-        ${unitPlan.titleFr !== null && unitPlan.titleFr !== undefined && unitPlan.titleFr !== '' ? `<div class="subtitle">Français: ${escapeHtml(unitPlan.titleFr)}</div>` : ''}
-        ${longRangePlan !== null && longRangePlan !== undefined ? `<div class="subtitle">Long-Range Plan: ${escapeHtml(longRangePlan.title)}</div>` : ''}
+        ${unitPlan.titleFr && unitPlan.titleFr !== '' ? `<div class="subtitle">Français: ${escapeHtml(unitPlan.titleFr)}</div>` : ''}
+        ${longRangePlan ? `<div class="subtitle">Long-Range Plan: ${escapeHtml(longRangePlan.title)}</div>` : ''}
         <div class="subtitle">
           ${format(new Date(unitPlan.startDate), 'MMMM d, yyyy')} - 
           ${format(new Date(unitPlan.endDate), 'MMMM d, yyyy')}
-          ${unitPlan.estimatedHours !== null && unitPlan.estimatedHours !== undefined ? ` • ${unitPlan.estimatedHours} hours` : ''}
+          ${unitPlan.estimatedHours ? ` • ${unitPlan.estimatedHours} hours` : ''}
         </div>
       </div>
 
       <div class="metadata no-break">
         <div class="section-title">Unit Overview</div>
-        ${unitPlan.description !== null && unitPlan.description !== undefined && unitPlan.description !== '' ? `<p>${escapeHtml(unitPlan.description)}</p>` : ''}
+        ${unitPlan.description && unitPlan.description !== '' ? `<p>${escapeHtml(unitPlan.description)}</p>` : ''}
       </div>
 
-      ${unitPlan.bigIdeas !== null && unitPlan.bigIdeas !== undefined && unitPlan.bigIdeas !== '' ? `
+      ${unitPlan.bigIdeas && unitPlan.bigIdeas !== '' ? `
         <div class="section no-break">
           <div class="section-title">Big Ideas</div>
           <div>${escapeHtml(unitPlan.bigIdeas)}</div>
         </div>
       ` : ''}
 
-      ${unitPlan.essentialQuestions !== null && unitPlan.essentialQuestions !== undefined && unitPlan.essentialQuestions.length > 0 ? `
+      ${unitPlan.essentialQuestions && unitPlan.essentialQuestions.length > 0 ? `
         <div class="section no-break">
           <div class="section-title">Essential Questions</div>
           <ul>
@@ -235,7 +235,7 @@ export const generateUnitPlanHTML = (unitPlan: UnitPlan, longRangePlan?: { title
         </div>
       ` : ''}
 
-      ${unitPlan.successCriteria !== null && unitPlan.successCriteria !== undefined && unitPlan.successCriteria.length > 0 ? `
+      ${unitPlan.successCriteria && unitPlan.successCriteria.length > 0 ? `
         <div class="section no-break">
           <div class="section-title">Success Criteria</div>
           <ul>
@@ -244,14 +244,14 @@ export const generateUnitPlanHTML = (unitPlan: UnitPlan, longRangePlan?: { title
         </div>
       ` : ''}
 
-      ${unitPlan.assessmentPlan !== null && unitPlan.assessmentPlan !== undefined && unitPlan.assessmentPlan !== '' ? `
+      ${unitPlan.assessmentPlan && unitPlan.assessmentPlan !== '' ? `
         <div class="section no-break">
           <div class="section-title">Assessment Plan</div>
           <div>${escapeHtml(unitPlan.assessmentPlan)}</div>
         </div>
       ` : ''}
 
-      ${unitPlan.keyVocabulary !== null && unitPlan.keyVocabulary !== undefined && unitPlan.keyVocabulary.length > 0 ? `
+      ${unitPlan.keyVocabulary && unitPlan.keyVocabulary.length > 0 ? `
         <div class="section no-break">
           <div class="section-title">Key Vocabulary</div>
           <div class="vocab-grid">
@@ -260,7 +260,7 @@ export const generateUnitPlanHTML = (unitPlan: UnitPlan, longRangePlan?: { title
         </div>
       ` : ''}
 
-      ${unitPlan.expectations !== null && unitPlan.expectations !== undefined && unitPlan.expectations.length > 0 ? `
+      ${unitPlan.expectations && unitPlan.expectations.length > 0 ? `
         <div class="section">
           <div class="section-title">Curriculum Expectations</div>
           ${unitPlan.expectations.map(exp => `
@@ -272,11 +272,11 @@ export const generateUnitPlanHTML = (unitPlan: UnitPlan, longRangePlan?: { title
         </div>
       ` : ''}
 
-      ${unitPlan.differentiationStrategies !== null && unitPlan.differentiationStrategies !== undefined ? `
+      ${unitPlan.differentiationStrategies ? `
         <div class="section page-break">
           <div class="section-title">Differentiation Strategies</div>
           <div class="diff-grid">
-            ${unitPlan.differentiationStrategies.forStruggling !== null && unitPlan.differentiationStrategies.forStruggling !== undefined && unitPlan.differentiationStrategies.forStruggling.length > 0 ? `
+            ${unitPlan.differentiationStrategies.forStruggling && unitPlan.differentiationStrategies.forStruggling.length > 0 ? `
               <div class="diff-section">
                 <div class="diff-title">For Struggling Learners</div>
                 <ul>
@@ -285,7 +285,7 @@ export const generateUnitPlanHTML = (unitPlan: UnitPlan, longRangePlan?: { title
               </div>
             ` : ''}
             
-            ${unitPlan.differentiationStrategies.forAdvanced !== null && unitPlan.differentiationStrategies.forAdvanced !== undefined && unitPlan.differentiationStrategies.forAdvanced.length > 0 ? `
+            ${unitPlan.differentiationStrategies.forAdvanced && unitPlan.differentiationStrategies.forAdvanced.length > 0 ? `
               <div class="diff-section">
                 <div class="diff-title">For Advanced Learners</div>
                 <ul>
@@ -294,7 +294,7 @@ export const generateUnitPlanHTML = (unitPlan: UnitPlan, longRangePlan?: { title
               </div>
             ` : ''}
             
-            ${unitPlan.differentiationStrategies.forELL !== null && unitPlan.differentiationStrategies.forELL !== undefined && unitPlan.differentiationStrategies.forELL.length > 0 ? `
+            ${unitPlan.differentiationStrategies.forELL && unitPlan.differentiationStrategies.forELL.length > 0 ? `
               <div class="diff-section">
                 <div class="diff-title">For English Language Learners</div>
                 <ul>
@@ -303,7 +303,7 @@ export const generateUnitPlanHTML = (unitPlan: UnitPlan, longRangePlan?: { title
               </div>
             ` : ''}
             
-            ${unitPlan.differentiationStrategies.forIEP !== null && unitPlan.differentiationStrategies.forIEP !== undefined && unitPlan.differentiationStrategies.forIEP.length > 0 ? `
+            ${unitPlan.differentiationStrategies.forIEP && unitPlan.differentiationStrategies.forIEP.length > 0 ? `
               <div class="diff-section">
                 <div class="diff-title">For Students with IEPs</div>
                 <ul>
@@ -315,7 +315,7 @@ export const generateUnitPlanHTML = (unitPlan: UnitPlan, longRangePlan?: { title
         </div>
       ` : ''}
 
-      ${unitPlan.crossCurricularConnections !== null && unitPlan.crossCurricularConnections !== undefined && unitPlan.crossCurricularConnections !== '' ? `
+      ${unitPlan.crossCurricularConnections && unitPlan.crossCurricularConnections !== '' ? `
         <div class="section no-break">
           <div class="section-title">Cross-Curricular Connections</div>
           <p>${escapeHtml(unitPlan.crossCurricularConnections)}</p>
@@ -503,7 +503,7 @@ export const generateLessonPlanHTML = (lessonPlan: LessonPlan, unitPlan?: { titl
     <body>
       <div class="header">
         <div class="title">${escapeHtml(lessonPlan.title)}</div>
-        ${unitPlan !== null && unitPlan !== undefined ? `<div class="subtitle">Unit: ${escapeHtml(unitPlan.title)}</div>` : ''}
+        ${unitPlan ? `<div class="subtitle">Unit: ${escapeHtml(unitPlan.title)}</div>` : ''}
         <div class="subtitle">${format(new Date(lessonPlan.date), 'EEEE, MMMM d, yyyy')}</div>
       </div>
 
@@ -528,7 +528,7 @@ export const generateLessonPlanHTML = (lessonPlan: LessonPlan, unitPlan?: { titl
         ` : ''}
       </div>
 
-      ${lessonPlan.learningGoals !== null && lessonPlan.learningGoals !== undefined && lessonPlan.learningGoals !== '' ? `
+      ${lessonPlan.learningGoals && lessonPlan.learningGoals !== '' ? `
         <div class="section no-break">
           <div class="section-title">Learning Goals</div>
           <div>${escapeHtml(lessonPlan.learningGoals)}</div>
@@ -543,7 +543,7 @@ export const generateLessonPlanHTML = (lessonPlan: LessonPlan, unitPlan?: { titl
               Minds On (${mindsOnTime} min)
             </div>
             <div class="part-content">
-              ${lessonPlan.mindsOn !== null && lessonPlan.mindsOn !== undefined && lessonPlan.mindsOn !== '' ? escapeHtml(lessonPlan.mindsOn) : 'Not specified'}
+              ${lessonPlan.mindsOn && lessonPlan.mindsOn !== '' ? escapeHtml(lessonPlan.mindsOn) : 'Not specified'}
             </div>
           </div>
           
@@ -552,7 +552,7 @@ export const generateLessonPlanHTML = (lessonPlan: LessonPlan, unitPlan?: { titl
               Action (${actionTime} min)
             </div>
             <div class="part-content">
-              ${lessonPlan.action !== null && lessonPlan.action !== undefined && lessonPlan.action !== '' ? escapeHtml(lessonPlan.action) : 'Not specified'}
+              ${lessonPlan.action && lessonPlan.action !== '' ? escapeHtml(lessonPlan.action) : 'Not specified'}
             </div>
           </div>
           
@@ -561,13 +561,13 @@ export const generateLessonPlanHTML = (lessonPlan: LessonPlan, unitPlan?: { titl
               Consolidation (${consolidationTime} min)
             </div>
             <div class="part-content">
-              ${lessonPlan.consolidation !== null && lessonPlan.consolidation !== undefined && lessonPlan.consolidation !== '' ? escapeHtml(lessonPlan.consolidation) : 'Not specified'}
+              ${lessonPlan.consolidation && lessonPlan.consolidation !== '' ? escapeHtml(lessonPlan.consolidation) : 'Not specified'}
             </div>
           </div>
         </div>
       </div>
 
-      ${lessonPlan.materials !== null && lessonPlan.materials !== undefined && lessonPlan.materials.length > 0 ? `
+      ${lessonPlan.materials && lessonPlan.materials.length > 0 ? `
         <div class="section no-break">
           <div class="section-title">Materials Needed</div>
           <ul>
@@ -576,11 +576,11 @@ export const generateLessonPlanHTML = (lessonPlan: LessonPlan, unitPlan?: { titl
         </div>
       ` : ''}
 
-      ${((lessonPlan.accommodations !== null && lessonPlan.accommodations !== undefined && lessonPlan.accommodations.length > 0) || (lessonPlan.modifications !== null && lessonPlan.modifications !== undefined && lessonPlan.modifications.length > 0) || (lessonPlan.extensions !== null && lessonPlan.extensions !== undefined && lessonPlan.extensions.length > 0)) ? `
+      ${((lessonPlan.accommodations && lessonPlan.accommodations.length > 0) || (lessonPlan.modifications && lessonPlan.modifications.length > 0) || (lessonPlan.extensions && lessonPlan.extensions.length > 0)) ? `
         <div class="section page-break">
           <div class="section-title">Differentiation</div>
           <div class="diff-grid">
-            ${lessonPlan.accommodations !== null && lessonPlan.accommodations !== undefined && lessonPlan.accommodations.length > 0 ? `
+            ${lessonPlan.accommodations && lessonPlan.accommodations.length > 0 ? `
               <div class="diff-section">
                 <div class="diff-title">Accommodations</div>
                 <ul>
@@ -589,7 +589,7 @@ export const generateLessonPlanHTML = (lessonPlan: LessonPlan, unitPlan?: { titl
               </div>
             ` : ''}
             
-            ${lessonPlan.modifications !== null && lessonPlan.modifications !== undefined && lessonPlan.modifications.length > 0 ? `
+            ${lessonPlan.modifications && lessonPlan.modifications.length > 0 ? `
               <div class="diff-section">
                 <div class="diff-title">Modifications</div>
                 <ul>
@@ -598,7 +598,7 @@ export const generateLessonPlanHTML = (lessonPlan: LessonPlan, unitPlan?: { titl
               </div>
             ` : ''}
             
-            ${lessonPlan.extensions !== null && lessonPlan.extensions !== undefined && lessonPlan.extensions.length > 0 ? `
+            ${lessonPlan.extensions && lessonPlan.extensions.length > 0 ? `
               <div class="diff-section">
                 <div class="diff-title">Extensions</div>
                 <ul>
@@ -610,14 +610,14 @@ export const generateLessonPlanHTML = (lessonPlan: LessonPlan, unitPlan?: { titl
         </div>
       ` : ''}
 
-      ${lessonPlan.isSubFriendly === true && lessonPlan.subNotes !== null && lessonPlan.subNotes !== undefined && lessonPlan.subNotes !== '' ? `
+      ${lessonPlan.isSubFriendly === true && lessonPlan.subNotes && lessonPlan.subNotes !== '' ? `
         <div class="sub-friendly no-break">
           <div class="sub-title">Notes for Substitute Teacher</div>
           <p>${escapeHtml(lessonPlan.subNotes)}</p>
         </div>
       ` : ''}
 
-      ${lessonPlan.assessmentNotes !== null && lessonPlan.assessmentNotes !== undefined && lessonPlan.assessmentNotes !== '' ? `
+      ${lessonPlan.assessmentNotes && lessonPlan.assessmentNotes !== '' ? `
         <div class="section no-break">
           <div class="section-title">Assessment Notes</div>
           <p>${escapeHtml(lessonPlan.assessmentNotes)}</p>
@@ -634,7 +634,7 @@ export const generateLessonPlanHTML = (lessonPlan: LessonPlan, unitPlan?: { titl
 
 export const printHTML = (html: string, _filename = 'document'): void => {
   const printWindow = window.open('', '_blank');
-  if (printWindow !== null && printWindow !== undefined) {
+  if (printWindow) {
     printWindow.document.write(html);
     printWindow.document.close();
     printWindow.focus();

@@ -1,3 +1,4 @@
+
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import { Calendar, FileText } from 'lucide-react';
@@ -118,12 +119,12 @@ export function TemplateApplyModal({
     e.preventDefault();
     
     // Validate required fields
-    if (template.type === 'UNIT_PLAN' && (formData.longRangePlanId === null || formData.longRangePlanId === undefined || formData.longRangePlanId === '')) {
+    if (template.type === 'UNIT_PLAN' && (!formData.longRangePlanId || formData.longRangePlanId === '')) {
       toast.error('Please select a long-range plan');
       return;
     }
     
-    if (template.type === 'LESSON_PLAN' && (formData.unitPlanId === null || formData.unitPlanId === undefined || formData.unitPlanId === '')) {
+    if (template.type === 'LESSON_PLAN' && (!formData.unitPlanId || formData.unitPlanId === '')) {
       toast.error('Please select a unit plan');
       return;
     }
@@ -241,12 +242,12 @@ export function TemplateApplyModal({
               )}
               <span>{template.type === 'UNIT_PLAN' ? 'Unit Plan' : 'Lesson Plan'} Template</span>
             </div>
-            {template.estimatedWeeks !== null && template.estimatedWeeks !== undefined && template.estimatedWeeks > 0 && (
+            {template.estimatedWeeks && template.estimatedWeeks > 0 && (
               <p className="text-sm text-gray-600">
                 Duration: {template.estimatedWeeks} weeks
               </p>
             )}
-            {template.estimatedMinutes !== null && template.estimatedMinutes !== undefined && template.estimatedMinutes > 0 && (
+            {template.estimatedMinutes && template.estimatedMinutes > 0 && (
               <p className="text-sm text-gray-600">
                 Duration: {template.estimatedMinutes} minutes
               </p>

@@ -1,3 +1,4 @@
+
 import { Calendar, BookOpen, Target, Users, Lightbulb } from 'lucide-react';
 import React from 'react';
 
@@ -198,7 +199,7 @@ export function FrenchImmersionWeeklyTemplate({
                     className="p-2 border rounded"
                     placeholder="Pronunciation"
                     type="text"
-                    value={vocab.pronunciation !== null && vocab.pronunciation !== undefined ? vocab.pronunciation : ''}
+                    value={vocab.pronunciation ? vocab.pronunciation : ''}
                     onChange={(e) => {
                       const updated = [...weekData.weekFocus.vocabulary];
                       updated[index].pronunciation = e.target.value;
@@ -212,7 +213,7 @@ export function FrenchImmersionWeeklyTemplate({
                     className="p-2 border rounded"
                     placeholder="Context"
                     type="text"
-                    value={vocab.context !== null && vocab.context !== undefined ? vocab.context : ''}
+                    value={vocab.context ? vocab.context : ''}
                     onChange={(e) => {
                       const updated = [...weekData.weekFocus.vocabulary];
                       updated[index].context = e.target.value;
@@ -355,7 +356,7 @@ Use possessive adjectives correctly"
                     className="w-full p-2 border rounded"
                     placeholder="Explore French-Canadian family traditions"
                     type="text"
-                    value={dayPlan.culturalNote !== null && dayPlan.culturalNote !== undefined ? dayPlan.culturalNote : ''}
+                    value={dayPlan.culturalNote ? dayPlan.culturalNote : ''}
                     onChange={(e) => {
  updateDailyPlan(index, 'culturalNote', e.target.value); 
 }}

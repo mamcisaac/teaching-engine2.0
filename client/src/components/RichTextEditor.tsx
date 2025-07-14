@@ -57,16 +57,14 @@ export function RichTextEditor({
       .replace(/'/g, '&#039;');
     
     // Insert the text at cursor position
-    if (window.getSelection !== null && window.getSelection !== undefined) {
-      const selection = window.getSelection();
-      if (selection !== null && selection !== undefined && selection.getRangeAt !== null && selection.getRangeAt !== undefined && selection.rangeCount > 0) {
-        const range = selection.getRangeAt(0);
-        range.deleteContents();
-        range.insertNode(document.createTextNode(sanitizedText));
-        range.collapse(false);
-        selection.removeAllRanges();
-        selection.addRange(range);
-      }
+    const selection = window.getSelection();
+    if (selection !== null && selection.rangeCount > 0) {
+      const range = selection.getRangeAt(0);
+      range.deleteContents();
+      range.insertNode(document.createTextNode(sanitizedText));
+      range.collapse(false);
+      selection.removeAllRanges();
+      selection.addRange(range);
     }
     
     // Trigger change event by creating a proper FormEvent

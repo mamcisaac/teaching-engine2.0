@@ -2,6 +2,9 @@ import type { UseQueryResult, UseMutationResult } from '@tanstack/react-query';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 import type { TeacherReflectionInput, TeacherReflection, TeacherPreferencesInput } from '../../../types';
+import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
+
+import { teacherApi } from './api';
 
 // Types for dashboard and profile
 interface DashboardStats {
@@ -41,9 +44,6 @@ interface UpdateProfileInput {
   school?: string;
   grade?: number;
 }
-import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
-
-import { teacherApi } from './api';
 
 // Preferences Query hooks
 export const useTeacherPreferences = (): UseQueryResult<TeacherPreferencesInput> =>

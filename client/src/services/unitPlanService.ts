@@ -10,7 +10,7 @@ export class UnitPlanService {
     }
 
     const completedLessons =
-      unit.lessonPlans?.filter((lesson) => lesson.daybookEntry !== null).length || 0;
+      unit.lessonPlans?.filter((lesson) => lesson.daybookEntry !== null).length ?? 0;
 
     return Math.round((completedLessons / unit._count.lessonPlans) * 100);
   }
@@ -50,11 +50,11 @@ export class UnitPlanService {
   static formatForExport(unit: UnitPlan): string {
     let content = `# ${unit.title}\n\n`;
 
-    if (unit.description) {
+    if (unit.description != null && unit.description.length > 0) {
       content += `## Description\n${unit.description}\n\n`;
     }
 
-    if (unit.bigIdeas) {
+    if (unit.bigIdeas != null && unit.bigIdeas.length > 0) {
       content += `## Big Ideas\n${unit.bigIdeas}\n\n`;
     }
 
@@ -110,7 +110,7 @@ export class UnitPlanService {
 
   // Get status color
   static getStatusColor(unit: UnitPlan): string {
-    const progress = unit.progress?.percentage || 0;
+    const progress = unit.progress?.percentage ?? 0;
     if (progress === 100) {
 return 'text-green-600';
 }
@@ -126,8 +126,8 @@ return 'text-orange-600';
   // Generate summary
   static generateSummary(unit: UnitPlan): string {
     const weeks = this.calculateEstimatedWeeks(unit.startDate, unit.endDate);
-    const lessonCount = unit._count?.lessonPlans || 0;
-    const expectationCount = unit._count?.expectations || 0;
+    const lessonCount = unit._count?.lessonPlans ?? 0;
+    const expectationCount = unit._count?.expectations ?? 0;
 
     return `${weeks} weeks • ${lessonCount} lessons • ${expectationCount} expectations`;
   }

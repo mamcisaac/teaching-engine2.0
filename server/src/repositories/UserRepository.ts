@@ -2,6 +2,7 @@ import type { User, Prisma, PrismaClient } from '@prisma/client';
 
 import { logger } from '../logger';
 import { hashPassword } from '../utils/auth';
+import type { PrismaModelDelegate, isRepositoryError } from '../types/repository';
 
 import { BaseRepository } from './base/BaseRepository';
 
@@ -18,8 +19,11 @@ export class UserRepository extends BaseRepository<
   Prisma.UserCreateInput,
   Prisma.UserUpdateInput
 > {
+  protected modelDelegate: PrismaModelDelegate<User, Prisma.UserCreateInput, Prisma.UserUpdateInput>;
+
   constructor(prisma: PrismaClient) {
     super(prisma, 'user');
+    this.modelDelegate = prisma.user;
   }
 
   async findByEmail(email: string): Promise<User | null> {
@@ -28,8 +32,9 @@ export class UserRepository extends BaseRepository<
         where: { email: email.toLowerCase() },
       });
       return user;
-    } catch (error) {
-      logger.error('Error finding user by email:', error);
+    } catch (error: unknown) {
+      const errorMessage = isRepositoryError(error) ? error.message : String(error);
+      logger.error('Error finding user by email:', errorMessage);
       throw error;
     }
   }
@@ -47,8 +52,9 @@ export class UserRepository extends BaseRepository<
         },
       });
       return user;
-    } catch (error) {
-      logger.error('Error finding user by id without password:', error);
+    } catch (error: unknown) {
+      const errorMessage = isRepositoryError(error) ? error.message : String(error);
+      logger.error('Error finding user by id without password:', errorMessage);
       throw error;
     }
   }
@@ -78,8 +84,9 @@ export class UserRepository extends BaseRepository<
       });
       logger.info(`Created user with email: ${user.email}`);
       return user;
-    } catch (error) {
-      logger.error('Error creating user:', error);
+    } catch (error: unknown) {
+      const errorMessage = isRepositoryError(error) ? error.message : String(error);
+      logger.error('Error creating user:', errorMessage);
       throw error;
     }
   }
@@ -91,9 +98,10 @@ export class UserRepository extends BaseRepository<
         where: { id: userId },
         data: { password: hashedPassword },
       });
-      logger.info(`Updated password for user id: ${userId}`);
-    } catch (error) {
-      logger.error('Error updating password:', error);
+      logger.info(`Updated password for user id: ${String(userId)}`);
+    } catch (error: unknown) {
+      const errorMessage = isRepositoryError(error) ? error.message : String(error);
+      logger.error('Error updating password:', errorMessage);
       throw error;
     }
   }
@@ -116,8 +124,9 @@ export class UserRepository extends BaseRepository<
         orderBy: { id: 'desc' },
       });
       return users;
-    } catch (error) {
-      logger.error('Error finding active users:', error);
+    } catch (error: unknown) {
+      const errorMessage = isRepositoryError(error) ? error.message : String(error);
+      logger.error('Error finding active users:', errorMessage);
       throw error;
     }
   }

@@ -85,6 +85,7 @@
     "@typescript-eslint/require-await": "error",
     "@typescript-eslint/no-floating-promises": "error",
     "@typescript-eslint/no-unnecessary-condition": "error",
+    "@typescript-eslint/strict-boolean-expressions": "error",
     "@typescript-eslint/no-unused-vars": [
       "error",
       {

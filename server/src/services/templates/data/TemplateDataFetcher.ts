@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Template Data Fetcher
  * Fetches and aggregates data for templates
@@ -6,6 +5,29 @@
 
 import { prisma } from '../../../prisma';
 import type { DataRequirement } from '../providers/TemplateProvider';
+import type {
+  User,
+  UserTemplateData,
+  UserPreferences,
+  Student,
+  LessonTemplateData,
+  ExpectationReference,
+  CurriculumExpectation,
+  GroupedExpectations,
+  AssessmentData,
+  ReportPeriodData,
+  AttendanceData,
+  SubjectSummary,
+  NewsletterData,
+  DaybookEntry,
+  LessonFilterOptions,
+  StudentFilterOptions,
+  CurriculumFilterOptions,
+  CustomDataFilters,
+  LessonWhereInput,
+  StudentWhereInput,
+  CurriculumWhereInput,
+} from '../../../types/template-data';
 
 export interface FetchContext {
   userId: number;
@@ -80,7 +102,7 @@ export class TemplateDataFetcher {
   /**
    * Fetch user data
    */
-  private async fetchUserData(userId: number): Promise<unknown> {
+  private async fetchUserData(userId: number): Promise<UserTemplateData> {
     const user = await prisma.user.findUnique({
       where: { id: userId },
       select: {
@@ -97,17 +119,17 @@ export class TemplateDataFetcher {
     }
 
     // Use available user data
-    const preferences = {} as any; // TODO: Add preferences to schema if needed
+    const preferences: UserPreferences = {}; // TODO: Add preferences to schema if needed
 
     return {
       id: user.id,
       name: user.name,
       email: user.email,
       role: user.role,
-      className: (preferences)?.className || `Grade ${(preferences)?.grade || ''}`,
-      schoolName: (preferences)?.schoolName || 'School',
-      schoolPhone: (preferences)?.schoolPhone,
-      classWebsite: (preferences)?.classWebsite,
+      className: preferences.className || `Grade ${preferences.grade || ''}`,
+      schoolName: preferences.schoolName || 'School',
+      schoolPhone: preferences.schoolPhone,
+      classWebsite: preferences.classWebsite,
       preferredLanguage: user.preferredLanguage,
     };
   }
@@ -115,22 +137,23 @@ export class TemplateDataFetcher {
   /**
    * Fetch student data
    */
-  private async fetchStudentData(context: FetchContext): Promise<unknown> {
-    const where: any = {
+  private async fetchStudentData(context: FetchContext): Promise<Student[]> {
+    const filters = context.filters as StudentFilterOptions | undefined;
+    const where: StudentWhereInput = {
       userId: context.userId,
       active: true,
     };
 
-    if (context.filters?.studentId) {
-      where.id = context.filters.studentId;
+    if (filters?.studentId) {
+      where.id = filters.studentId;
     }
 
-    if (context.filters?.grade) {
-      where.grade = context.filters.grade;
+    if (filters?.grade) {
+      where.grade = filters.grade;
     }
 
     // TODO: Update when student model is available
-    const students = [] as any; 
+    const students: Student[] = []; 
     /*
     await prisma.student.findMany({
       where,
@@ -156,20 +179,21 @@ export class TemplateDataFetcher {
   /**
    * Fetch lesson data
    */
-  private async fetchLessonData(context: FetchContext): Promise<unknown> {
-    const where: any = {
+  private async fetchLessonData(context: FetchContext): Promise<LessonTemplateData[]> {
+    const filters = context.filters as LessonFilterOptions | undefined;
+    const where: LessonWhereInput = {
       userId: context.userId,
     };
 
-    if (context.filters?.startDate && context.filters.endDate) {
+    if (filters?.startDate && filters.endDate) {
       where.date = {
-        gte: new Date(context.filters.startDate as string | number | Date),
-        lte: new Date(context.filters.endDate as string | number | Date),
+        gte: new Date(filters.startDate),
+        lte: new Date(filters.endDate),
       };
     }
 
-    if (context.filters?.subject) {
-      where.subject = context.filters.subject;
+    if (filters?.subject) {
+      where.subject = filters.subject;
     }
 
     const lessons = await prisma.eTFOLessonPlan.findMany({
@@ -191,7 +215,7 @@ export class TemplateDataFetcher {
     });
 
     // Transform to template-friendly format
-    return lessons.map((lesson: any) => ({
+    return lessons.map((lesson): LessonTemplateData => ({
       id: lesson.id,
       title: lesson.title,
       date: lesson.date,
@@ -216,10 +240,10 @@ export class TemplateDataFetcher {
       accommodations: lesson.accommodations,
       modifications: lesson.modifications,
       extensions: lesson.extensions,
-      expectations: lesson.expectations?.map((e: any) => ({
-        code: e.expectationId,
+      expectations: lesson.expectations?.map((e): ExpectationReference => ({
+        code: e.expectationId as string,
         description: '',
-        type: 'specific',
+        type: 'specific' as const,
       })),
     }));
   }
@@ -227,7 +251,7 @@ export class TemplateDataFetcher {
   /**
    * Fetch assessment data
    */
-  private async fetchAssessmentData(_context: FetchContext): Promise<unknown> {
+  private async fetchAssessmentData(_context: FetchContext): Promise<AssessmentData> {
     // This would fetch from assessment tables
     // For now, return mock data
     return {
@@ -239,21 +263,22 @@ export class TemplateDataFetcher {
   /**
    * Fetch curriculum data
    */
-  private async fetchCurriculumData(context: FetchContext): Promise<unknown> {
-    const where: any = {
+  private async fetchCurriculumData(context: FetchContext): Promise<GroupedExpectations> {
+    const filters = context.filters as CurriculumFilterOptions | undefined;
+    const where: CurriculumWhereInput = {
       isActive: true,
     };
 
-    if (context.filters?.subjectId) {
-      where.subjectId = context.filters.subjectId;
+    if (filters?.subjectId) {
+      where.subjectId = filters.subjectId;
     }
 
-    if (context.filters?.grade) {
-      where.grade = context.filters.grade;
+    if (filters?.grade) {
+      where.grade = filters.grade;
     }
 
-    if (context.filters?.strand) {
-      where.strand = context.filters.strand;
+    if (filters?.strand) {
+      where.strand = filters.strand;
     }
 
     const expectations = await prisma.curriculumExpectation.findMany({
@@ -264,9 +289,9 @@ export class TemplateDataFetcher {
     });
 
     // Group by code pattern (e.g., A1 is overall, A1.1 is specific)
-    const grouped = {
-      overall: expectations.filter((e: { code: string }) => !e.code.includes('.')),
-      specific: expectations.filter((e: { code: string }) => e.code.includes('.')),
+    const grouped: GroupedExpectations = {
+      overall: expectations.filter((e) => !e.code.includes('.')),
+      specific: expectations.filter((e) => e.code.includes('.')),
     };
 
     return grouped;
@@ -281,29 +306,34 @@ export class TemplateDataFetcher {
   ): Promise<unknown> {
     // Handle specific custom data requirements
     switch (key) {
-      case 'reportPeriod':
-        return {
-          name: context.filters?.periodName || 'Progress Report',
-          startDate: context.filters?.startDate || new Date(),
-          endDate: context.filters?.endDate || new Date(),
-          totalDays: context.filters?.totalDays || 0,
+      case 'reportPeriod': {
+        const filters = context.filters as CustomDataFilters | undefined;
+        const reportData: ReportPeriodData = {
+          name: filters?.periodName || 'Progress Report',
+          startDate: filters?.startDate ? new Date(filters.startDate) : new Date(),
+          endDate: filters?.endDate ? new Date(filters.endDate) : new Date(),
+          totalDays: filters?.totalDays ?? 0,
         };
+        return reportData;
+      }
 
-      case 'attendance':
+      case 'attendance': {
         // Fetch from attendance records
-        return {
+        const attendanceData: AttendanceData = {
           absent: 0,
           late: 0,
           present: 0,
         };
+        return attendanceData;
+      }
 
       case 'achievements':
         // Fetch student achievements
-        return [];
+        return [] as string[];
 
       case 'upcomingEvents':
         // Fetch calendar events
-        return [];
+        return [] as unknown[];
 
       case 'weekStart':
       case 'weekEnd': {
@@ -330,7 +360,7 @@ export class TemplateDataFetcher {
     userId: number,
     startDate: Date,
     endDate: Date
-  ): Promise<unknown> {
+  ): Promise<NewsletterData> {
     const lessons = await this.fetchLessonData({
       userId,
       filters: { startDate, endDate },
@@ -338,7 +368,7 @@ export class TemplateDataFetcher {
     });
 
     // Group lessons by subject
-    const subjectSummaries = this.groupLessonsBySubject(lessons as any[]);
+    const subjectSummaries = this.groupLessonsBySubject(lessons);
 
     // Fetch achievements from daybook
     const achievements = await this.fetchAchievements(userId, startDate, endDate);
@@ -353,7 +383,7 @@ export class TemplateDataFetcher {
       upcomingEvents,
       weekStart: startDate,
       weekEnd: endDate,
-      openingMessage: this.generateOpeningMessage((lessons as any[]).length, (achievements as any[]).length),
+      openingMessage: this.generateOpeningMessage(lessons.length, achievements.length),
       nextWeekPreview: this.generateNextWeekPreview(),
       parentInfo: {
         suggestions: this.generateParentSuggestions(subjectSummaries),
@@ -364,11 +394,15 @@ export class TemplateDataFetcher {
   /**
    * Group lessons by subject
    */
-  private groupLessonsBySubject(lessons: unknown[]): unknown[] {
-    const grouped = new Map<string, any>();
+  private groupLessonsBySubject(lessons: LessonTemplateData[]): SubjectSummary[] {
+    const grouped = new Map<string, {
+      subject: string;
+      summary: string;
+      highlights: string[];
+    }>();
 
     for (const lesson of lessons) {
-      const subject = (lesson as any).subject || 'General';
+      const subject = lesson.subject || 'General';
       
       if (!grouped.has(subject)) {
         grouped.set(subject, {
@@ -380,14 +414,14 @@ export class TemplateDataFetcher {
 
       const group = grouped.get(subject);
       if (group) {
-        group.highlights.push((lesson as any).title);
+        group.highlights.push(lesson.title);
       }
     }
 
     // Generate summaries
     return Array.from(grouped.values()).map(group => ({
       ...group,
-      summary: `This week in ${group.subject}, we explored ${group.highlights.length} topics including ${group.highlights[0]}.`,
+      summary: `This week in ${group.subject}, we explored ${group.highlights.length} topics including ${group.highlights[0] || 'various concepts'}.`,
       highlights: group.highlights.slice(0, 3),
     }));
   }
@@ -417,8 +451,8 @@ export class TemplateDataFetcher {
     });
 
     return entries
-      .map((e: { notableAchievements: string | null }) => e.notableAchievements)
-      .filter(Boolean) as string[];
+      .map((e) => e.notableAchievements)
+      .filter((achievement): achievement is string => Boolean(achievement));
   }
 
   /**
@@ -454,18 +488,18 @@ export class TemplateDataFetcher {
   /**
    * Generate parent suggestions
    */
-  private generateParentSuggestions(subjectSummaries: unknown[]): string[] {
+  private generateParentSuggestions(subjectSummaries: SubjectSummary[]): string[] {
     const suggestions: string[] = [
       'Ask your child about their favorite lesson from this week',
       'Practice reading together for 20 minutes each evening',
     ];
 
     // Add subject-specific suggestions
-    if ((subjectSummaries as any[]).some(s => (s).subject === 'Mathematics')) {
+    if (subjectSummaries.some(s => s.subject === 'Mathematics')) {
       suggestions.push('Review math facts using everyday situations like cooking or shopping');
     }
 
-    if ((subjectSummaries as any[]).some(s => (s).subject === 'Science')) {
+    if (subjectSummaries.some(s => s.subject === 'Science')) {
       suggestions.push('Encourage questions about the natural world during outdoor time');
     }
 

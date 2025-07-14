@@ -1,8 +1,38 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * AIService - Main AI service for Teaching Engine
  * Coordinates AI operations across different providers with real OpenAI integration
  */
+
+// Type definitions for better type safety
+type JSONValue = string | number | boolean | null | JSONObject | JSONValue[];
+
+interface JSONObject {
+  [key: string]: JSONValue;
+}
+
+interface LessonInput {
+  lesson: LessonPlan;
+  enhancementType: string;
+  userId?: number;
+}
+
+interface QuestionGenerationInput {
+  topic: string;
+  difficulty?: string;
+  count?: number;
+  gradeLevel?: string;
+}
+
+interface FallbackProviderConfig {
+  provider: string;
+  apiKey: string;
+}
+
+interface CostBreakdown {
+  openai: number;
+  anthropic: number;
+  total: number;
+}
 
 // eslint-disable-next-line import/no-named-as-default
 import OpenAI from 'openai';
@@ -162,13 +192,13 @@ export class AIService extends BaseService {
           });
 
           const content = response.choices[0]?.message?.content;
-          if (content === null || content === undefined || content === '') {
+          if (!content || content === '') {
             throw new AppError(500, 'No response from AI service');
           }
 
           let lessonPlan = safeJsonParse<LessonPlan>(content);
           
-          if (lessonPlan === null || lessonPlan === undefined) {
+          if (!lessonPlan) {
             logger.warn('Failed to parse AI response, using fallback');
             lessonPlan = this.createFallbackLesson(input);
             lessonPlan.fallback = true;
@@ -222,13 +252,13 @@ export class AIService extends BaseService {
           });
 
           const content = response.choices[0]?.message?.content;
-          if (content === null || content === undefined || content === '') {
+          if (!content || content === '') {
             throw new AppError(500, 'No response from AI service');
           }
 
           let activity = safeJsonParse<Activity>(content);
           
-          if (activity === null || activity === undefined) {
+          if (!activity) {
             activity = this.createFallbackActivity(input);
           }
 
@@ -269,13 +299,13 @@ export class AIService extends BaseService {
           });
 
           const content = response.choices[0]?.message?.content;
-          if (content === null || content === undefined || content === '') {
+          if (!content || content === '') {
             throw new AppError(500, 'No response from AI service');
           }
 
           let parsedPlan = safeJsonParse<SubstitutePlan>(content);
           
-          if (parsedPlan === null || parsedPlan === undefined) {
+          if (!parsedPlan) {
             parsedPlan = this.createFallbackSubstitutePlan(input);
           }
 
@@ -316,13 +346,13 @@ export class AIService extends BaseService {
           });
 
           const content = response.choices[0]?.message?.content;
-          if (content === null || content === undefined || content === '') {
+          if (!content || content === '') {
             throw new AppError(500, 'No response from AI service');
           }
 
           let parsedNewsletter = safeJsonParse<Newsletter>(content);
           
-          if (parsedNewsletter === null || parsedNewsletter === undefined) {
+          if (!parsedNewsletter) {
             parsedNewsletter = this.createFallbackNewsletter(input);
           }
 
@@ -364,7 +394,7 @@ export class AIService extends BaseService {
     } catch (error: unknown) {
       logger.error('AI Service health check failed:', error instanceof Error ? error.message : String(error));
       // If we have a fallback key or test key, consider it healthy (fallback mode)
-      if (this.apiKey !== null && this.apiKey !== undefined && this.apiKey !== '' && (this.apiKey.includes('test') || this.apiKey.includes('fallback'))) {
+      if (this.apiKey && (this.apiKey.includes('test') || this.apiKey.includes('fallback'))) {
         return true;
       }
       return false;
@@ -397,11 +427,7 @@ export class AIService extends BaseService {
     }
   }
 
-  async enhanceLesson(input: {
-    lesson: any;
-    enhancementType: string;
-    userId?: number;
-  }): Promise<unknown> {
+  async enhanceLesson(input: LessonInput): Promise<JSONValue> {
     try {
       const systemPrompt =
         'You are an expert educator who enhances lesson plans with differentiation strategies, accommodations, and improvements.';
@@ -418,7 +444,7 @@ export class AIService extends BaseService {
       });
 
       const content = response.choices[0]?.message?.content;
-      if (content === null || content === undefined || content === '') {
+      if (!content || content === '') {
         return this.createFallbackEnhancedLesson(input.lesson, input.enhancementType);
       }
 
@@ -430,17 +456,20 @@ export class AIService extends BaseService {
     }
   }
 
-  async generateAlignedLesson(input: unknown): Promise<unknown> {
+  async generateAlignedLesson(input: Record<string, unknown>): Promise<JSONValue> {
     try {
-      const inputObj = input as LessonGenerationInput;
-      const lessonPlan = await this.generateLesson(inputObj);
+      // Validate input structure
+      if (!this.isValidLessonGenerationInput(input)) {
+        throw new Error('Invalid lesson generation input');
+      }
+      
+      const lessonPlan = await this.generateLesson(input);
       // Add aligned standards
-      const inputRecord = input as Record<string, unknown>;
       return {
         ...lessonPlan,
-        alignedStandards: inputRecord.curriculumExpectationIds
+        alignedStandards: Array.isArray(input.curriculumExpectationIds)
           ? ['MA3.NF.1', 'MA3.NF.2'] // Mock standards for testing
-          : (inputRecord.standards as string[]) ?? [],
+          : (Array.isArray(input.standards) ? input.standards : []),
       };
     } catch (error: unknown) {
       logger.error('Error generating aligned lesson:', error instanceof Error ? error.message : String(error));
@@ -448,12 +477,7 @@ export class AIService extends BaseService {
     }
   }
 
-  async generateQuestions(input: {
-    topic: string;
-    difficulty?: string;
-    count?: number;
-    gradeLevel?: string;
-  }): Promise<unknown> {
+  async generateQuestions(input: QuestionGenerationInput): Promise<JSONValue> {
     try {
       const systemPrompt =
         'You are an expert educator who creates assessment questions. Generate educational assessment questions based on the provided topic and difficulty level.';
@@ -471,7 +495,7 @@ export class AIService extends BaseService {
       });
 
       const content = response.choices[0]?.message?.content;
-      if (content === null || content === undefined || content === '') {
+      if (!content || content === '') {
         return this.createFallbackQuestions(input);
       }
 
@@ -490,7 +514,7 @@ export class AIService extends BaseService {
   }
 
   // Provider management methods
-  configureFallbackProvider(config: { provider: string; apiKey: string }): void {
+  configureFallbackProvider(config: FallbackProviderConfig): void {
     // Implementation for fallback provider configuration
     logger.info(`Configured fallback provider: ${config.provider}`);
   }
@@ -499,7 +523,7 @@ export class AIService extends BaseService {
     logger.info(`Set preferred provider: ${provider}`);
   }
 
-  getCostBreakdown(): { openai: number; anthropic: number; total: number } {
+  getCostBreakdown(): CostBreakdown {
     // Mock implementation - would track actual costs in production
     return { openai: 0.1, anthropic: 0.05, total: 0.15 };
   }
@@ -566,32 +590,32 @@ Return a JSON object with the structure: { title, dateRange, sections, footer }`
     return cleaned.trim() || 'Safe topic';
   }
 
-  private validateAndFixLessonPlan(plan: unknown, input: LessonGenerationInput): LessonPlan {
+  private validateAndFixLessonPlan(plan: JSONValue, input: LessonGenerationInput): LessonPlan {
     // Type guard to ensure plan is an object
-    const lessonPlan = (typeof plan === 'object' && plan !== null ? plan : {}) as Record<string, unknown>;
+    const lessonPlan = this.ensureRecordObject(plan);
     
     // Ensure required fields exist
-    if (lessonPlan.title === null || lessonPlan.title === undefined || lessonPlan.title === '') {
+    if (!lessonPlan.title || lessonPlan.title === '') {
       lessonPlan.title = `${input.topic} - Grade ${input.grade} ${input.subject}`;
     }
-    if (lessonPlan.objectives === null || lessonPlan.objectives === undefined || !Array.isArray(lessonPlan.objectives)) {
+    if (!lessonPlan.objectives || !Array.isArray(lessonPlan.objectives)) {
       lessonPlan.objectives = ['Understand key concepts'];
     }
-    if (lessonPlan.activities === null || lessonPlan.activities === undefined || !Array.isArray(lessonPlan.activities)) {
+    if (!lessonPlan.activities || !Array.isArray(lessonPlan.activities)) {
       lessonPlan.activities = [];
     }
-    if (lessonPlan.materials === null || lessonPlan.materials === undefined || !Array.isArray(lessonPlan.materials)) {
+    if (!lessonPlan.materials || !Array.isArray(lessonPlan.materials)) {
       lessonPlan.materials = [];
     }
-    if (lessonPlan.duration === null || lessonPlan.duration === undefined) {
+    if (!lessonPlan.duration) {
       lessonPlan.duration = input.duration;
     }
 
     // Validate activity durations sum correctly
     const activities = Array.isArray(lessonPlan.activities) ? lessonPlan.activities : [];
     const totalActivityDuration = activities.reduce(
-      (sum: number, activity: unknown) => {
-        const activityObj = activity as Record<string, unknown>;
+      (sum: number, activity: JSONValue) => {
+        const activityObj = this.ensureRecordObject(activity);
         return sum + (typeof activityObj.duration === 'number' ? activityObj.duration : 0);
       },
       0,
@@ -599,15 +623,15 @@ Return a JSON object with the structure: { title, dateRange, sections, footer }`
     if (totalActivityDuration > input.duration) {
       // Adjust activities to fit duration
       const ratio = input.duration / totalActivityDuration;
-      activities.forEach((activity: unknown) => {
-        const activityObj = activity as Record<string, unknown>;
+      activities.forEach((activity: JSONValue) => {
+        const activityObj = this.ensureRecordObject(activity);
         if (typeof activityObj.duration === 'number') {
           activityObj.duration = Math.round(activityObj.duration * ratio);
         }
       });
     }
 
-    return lessonPlan as unknown as LessonPlan;
+    return lessonPlan as LessonPlan;
   }
 
   private createFallbackLesson(input: LessonGenerationInput): LessonPlan {
@@ -721,12 +745,7 @@ Assessment Recommendations:
 This is a fallback analysis. For more detailed analysis, please ensure AI service is properly configured.`;
   }
 
-  private createFallbackQuestions(input: {
-    topic: string;
-    difficulty?: string;
-    count?: number;
-    gradeLevel?: string;
-  }): any {
+  private createFallbackQuestions(input: QuestionGenerationInput): JSONValue {
     const count = input.count ?? 5;
     const difficulty = input.difficulty ?? 'medium';
     const questions = [];
@@ -749,9 +768,9 @@ This is a fallback analysis. For more detailed analysis, please ensure AI servic
     };
   }
 
-  private createFallbackEnhancedLesson(lesson: unknown, enhancementType: string): unknown {
-    const lessonObj = typeof lesson === 'object' && lesson !== null ? lesson : {};
-    const enhanced = { ...lessonObj } as Record<string, unknown>;
+  private createFallbackEnhancedLesson(lesson: JSONValue, enhancementType: string): JSONValue {
+    const lessonObj = this.ensureRecordObject(lesson);
+    const enhanced = { ...lessonObj };
 
     if (enhancementType === 'differentiation') {
       enhanced.differentiation = {
@@ -775,5 +794,21 @@ This is a fallback analysis. For more detailed analysis, please ensure AI servic
 
     enhanced.fallback = true;
     return enhanced;
+  }
+
+  // Helper methods for type safety
+  private ensureRecordObject(value: JSONValue): Record<string, unknown> {
+    return (typeof value === 'object' && value !== null && !Array.isArray(value)) 
+      ? value as Record<string, unknown> 
+      : {};
+  }
+
+  private isValidLessonGenerationInput(input: Record<string, unknown>): input is LessonGenerationInput {
+    return (
+      typeof input.grade === 'string' &&
+      typeof input.subject === 'string' &&
+      typeof input.topic === 'string' &&
+      typeof input.duration === 'number'
+    );
   }
 }

@@ -62,10 +62,10 @@ export const bilingualSchemas = {
     options?: BilingualSchemaOptions & { min?: number; max?: number },
   ): Record<string, z.ZodTypeAny> => {
     let schema = z.string();
-    if (options?.min) {
+    if (options?.min !== undefined && options.min !== null && options.min > 0) {
 schema = schema.min(options.min);
 }
-    if (options?.max) {
+    if (options?.max !== undefined && options.max !== null && options.max > 0) {
 schema = schema.max(options.max);
 }
     return createBilingualSchema(fieldName, schema, options);
@@ -77,10 +77,10 @@ schema = schema.max(options.max);
     options?: BilingualSchemaOptions & { min?: number; max?: number },
   ): Record<string, z.ZodTypeAny> => {
     let schema = z.string().min(1, `${fieldName} is required`);
-    if (options?.min) {
+    if (options?.min !== undefined && options.min !== null && options.min > 0) {
 schema = schema.min(options.min);
 }
-    if (options?.max) {
+    if (options?.max !== undefined && options.max !== null && options.max > 0) {
 schema = schema.max(options.max);
 }
     return createBilingualSchema(fieldName, schema, options);

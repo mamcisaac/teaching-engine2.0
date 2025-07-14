@@ -1,3 +1,4 @@
+
 import { motion, AnimatePresence } from 'framer-motion';
 import { HelpCircle, X, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 import type { ReactElement} from 'react';
@@ -258,7 +259,7 @@ return;
       {cloneElement(children, {
         onMouseEnter: handleMouseEnter,
         onMouseLeave: handleMouseLeave,
-        className: `${(children.props as { className?: string }).className ?? ''} ${isVisible ? 'z-40' : ''}`,
+        className: `${(children.props as { className?: string }).className || ''} ${isVisible ? 'z-40' : ''}`,
       })}
 
       <AnimatePresence>

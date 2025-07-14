@@ -112,7 +112,7 @@ export const validateId = (id: string | number): number => {
 export const validatePagination = (query: unknown): { page: number; pageSize: number } => {
   const defaultPagination = { page: 1, pageSize: 20 };
   
-  if (query === null || query === undefined || typeof query !== 'object') {
+  if (!query || typeof query !== 'object') {
     return defaultPagination;
   }
   
@@ -127,21 +127,21 @@ export const validatePagination = (query: unknown): { page: number; pageSize: nu
 export const validateDateRange = (from?: string | Date, to?: string | Date): { from?: Date; to?: Date } => {
   const dates: { from?: Date; to?: Date } = {};
   
-  if (from !== null && from !== undefined) {
+  if (from) {
     dates.from = new Date(from);
     if (isNaN(dates.from.getTime())) {
       throw new Error('Invalid from date');
     }
   }
   
-  if (to !== null && to !== undefined) {
+  if (to) {
     dates.to = new Date(to);
     if (isNaN(dates.to.getTime())) {
       throw new Error('Invalid to date');
     }
   }
   
-  if (dates.from !== null && dates.from !== undefined && dates.to !== undefined && dates.from > dates.to) {
+  if (dates.from && dates.to !== undefined && dates.from > dates.to) {
     throw new Error('From date must be before to date');
   }
   
@@ -173,7 +173,7 @@ export const transformToArray = (value: unknown): string[] => {
     return value;
   }
   if (typeof value === 'string') {
-    return value.split(',').map(s => s.trim()).filter(s => s !== null && s !== undefined && s !== '');
+    return value.split(',').map(s => s.trim()).filter(s => s && s !== '');
   }
   return [];
 };

@@ -1,8 +1,41 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Standardized OpenAI Mock for Testing Infrastructure
  * This provides a consistent mock across all test types with proper Jest typing
  */
+
+// Type definitions for OpenAI API
+interface OpenAIEmbeddingParams {
+  input: string | string[];
+  model: string;
+  encoding_format?: string;
+  dimensions?: number;
+  user?: string;
+}
+
+interface OpenAIChatParams {
+  model: string;
+  messages: Array<{
+    role: 'system' | 'user' | 'assistant';
+    content: string;
+  }>;
+  temperature?: number;
+  max_tokens?: number;
+  [key: string]: unknown;
+}
+
+type OpenAIErrorObject = {
+  status: number;
+  response: {
+    status: number;
+    data: {
+      error: {
+        message: string;
+        type: string;
+        code: string;
+      };
+    };
+  };
+} & Error;
 
 import { jest } from '@jest/globals';
 import {
@@ -64,11 +97,11 @@ export const createMockChatResponse = (content: string = 'Mock AI response'): Mo
 export const createMockOpenAIInstance = (): MockOpenAIInstance => {
   const mockInstance: MockOpenAIInstance = {
     embeddings: {
-      create: createTypedMockFunction<(params: any) => Promise<MockEmbeddingResponse>>(),
+      create: createTypedMockFunction<(params: OpenAIEmbeddingParams) => Promise<MockEmbeddingResponse>>(),
     },
     chat: {
       completions: {
-        create: createTypedMockFunction<(params: any) => Promise<MockChatResponse>>(),
+        create: createTypedMockFunction<(params: OpenAIChatParams) => Promise<MockChatResponse>>(),
       },
     },
   };
@@ -92,7 +125,7 @@ export { MockOpenAIConstructor };
 // Helper functions for test setup with proper typing
 export const setupEmbeddingMock = (
   responses: MockEmbeddingResponse[] = [createMockEmbeddingResponse()],
-): MockFunction<(params: any) => Promise<MockEmbeddingResponse>> => {
+): MockFunction<(params: OpenAIEmbeddingParams) => Promise<MockEmbeddingResponse>> => {
   const mockFn = ensureMockFunction(mockOpenAI.embeddings.create, 'mockOpenAI.embeddings.create');
   mockFn.mockClear();
   responses.forEach((response) => {
@@ -103,7 +136,7 @@ export const setupEmbeddingMock = (
 
 export const setupChatMock = (
   responses: MockChatResponse[] = [createMockChatResponse()],
-): MockFunction<(params: any) => Promise<MockChatResponse>> => {
+): MockFunction<(params: OpenAIChatParams) => Promise<MockChatResponse>> => {
   const mockFn = ensureMockFunction(
     mockOpenAI.chat.completions.create,
     'mockOpenAI.chat.completions.create',
@@ -124,8 +157,8 @@ export const resetOpenAIMocks = () => {
 };
 
 // Error response helpers
-export const createMockErrorResponse = (status: number = 401, message: string = 'API Error') => {
-  const error = new Error(message) as any;
+export const createMockErrorResponse = (status: number = 401, message: string = 'API Error'): OpenAIErrorObject => {
+  const error = new Error(message) as OpenAIErrorObject;
   error.status = status;
   error.response = {
     status,
@@ -142,7 +175,7 @@ export const createMockErrorResponse = (status: number = 401, message: string = 
 
 export const setupEmbeddingError = (
   error = createMockErrorResponse(),
-): MockFunction<(params: any) => Promise<MockEmbeddingResponse>> => {
+): MockFunction<(params: OpenAIEmbeddingParams) => Promise<MockEmbeddingResponse>> => {
   const mockFn = ensureMockFunction(mockOpenAI.embeddings.create, 'mockOpenAI.embeddings.create');
   mockFn.mockRejectedValueOnce(error);
   return mockFn;
@@ -150,7 +183,7 @@ export const setupEmbeddingError = (
 
 export const setupChatError = (
   error = createMockErrorResponse(),
-): MockFunction<(params: any) => Promise<MockChatResponse>> => {
+): MockFunction<(params: OpenAIChatParams) => Promise<MockChatResponse>> => {
   const mockFn = ensureMockFunction(
     mockOpenAI.chat.completions.create,
     'mockOpenAI.chat.completions.create',

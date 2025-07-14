@@ -463,7 +463,7 @@ export function cacheMiddleware(keyPattern: string, options: CacheOptions = {}) 
 
   return async (req: Request, res: Response, next: NextFunction) => {
     const key = keyPattern
-      .replace(':id', req.params.id ?? '')
+      .replace(':id', req.params.id || '')
       .replace(':userId', (req as Request & { user?: { id: string } }).user?.id ?? 'anonymous');
 
     // Try to get from cache

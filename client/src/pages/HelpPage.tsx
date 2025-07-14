@@ -1,3 +1,4 @@
+
 import { clsx } from 'clsx';
 import React, { useState, useEffect } from 'react';
 
@@ -209,7 +210,7 @@ export default function HelpPage(): React.ReactElement {
     return () => { // Cleanup
     };
 
-    if (state.searchQuery) {
+    if (state.searchQuery.length > 0) {
       const filtered = HELP_SECTIONS.filter(
         (section) =>
           section.title.toLowerCase().includes(state.searchQuery.toLowerCase()) ||

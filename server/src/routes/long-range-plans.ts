@@ -35,7 +35,7 @@ const longRangePlanUpdateSchema = longRangePlanCreateSchema.partial();
 // Get all long-range plans for the authenticated user
 router.get('/', async (req: Request, res, _next): Promise<void> => {
   try {
-    const userId = req.user?.id || 0;
+    const userId = req.user?.id ?? 0;
     if (!userId) {
       res.status(401).json({ error: 'Unauthorized' });
       return;
@@ -77,7 +77,7 @@ where.grade = Number(grade);
 // Get a single long-range plan
 router.get('/:id', async (req: Request, res, _next): Promise<void> => {
   try {
-    const userId = req.user?.id || 0;
+    const userId = req.user?.id ?? 0;
     if (!userId) {
       res.status(401).json({ error: 'Unauthorized' });
       return;
@@ -126,7 +126,7 @@ router.get('/:id', async (req: Request, res, _next): Promise<void> => {
 // Create a new long-range plan
 router.post('/', validate(longRangePlanCreateSchema), async (req: Request, res, _next): Promise<void> => {
   try {
-    const userId = req.user?.id || 0;
+    const userId = req.user?.id ?? 0;
     if (!userId) {
       res.status(401).json({ error: 'Unauthorized' });
       return;
@@ -201,7 +201,7 @@ router.post('/', validate(longRangePlanCreateSchema), async (req: Request, res, 
 // Update a long-range plan
 router.put('/:id', validate(longRangePlanUpdateSchema), async (req: Request, res, _next): Promise<void> => {
   try {
-    const userId = req.user?.id || 0;
+    const userId = req.user?.id ?? 0;
     if (!userId) {
       res.status(401).json({ error: 'Unauthorized' });
       return;
@@ -277,7 +277,7 @@ router.put('/:id', validate(longRangePlanUpdateSchema), async (req: Request, res
 // Delete a long-range plan
 router.delete('/:id', async (req: Request, res, _next): Promise<void> => {
   try {
-    const userId = req.user?.id || 0;
+    const userId = req.user?.id ?? 0;
     if (!userId) {
       res.status(401).json({ error: 'Unauthorized' });
       return;
@@ -316,7 +316,7 @@ router.delete('/:id', async (req: Request, res, _next): Promise<void> => {
 // Generate AI draft for long-range plan
 router.post('/ai-draft', async (req: Request, res, _next): Promise<void> => {
   try {
-    const userId = req.user?.id || 0;
+    const userId = req.user?.id ?? 0;
     if (!userId) {
       res.status(401).json({ error: 'Unauthorized' });
       return;
@@ -359,7 +359,7 @@ router.post('/ai-draft', async (req: Request, res, _next): Promise<void> => {
 // Generate AI suggestions for existing plan
 router.post('/:id/ai-suggestions', async (req: Request, res, _next): Promise<void> => {
   try {
-    const userId = req.user?.id || 0;
+    const userId = req.user?.id ?? 0;
     if (!userId) {
       res.status(401).json({ error: 'Unauthorized' });
       return;

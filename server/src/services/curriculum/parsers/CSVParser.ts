@@ -94,22 +94,22 @@ export class CSVParser extends CurriculumParser {
     let finalSubject = subject;
     let finalGrade = grade;
     
-    if (!finalSubject || !finalGrade) {
+    if ((finalSubject == null || finalSubject === '') || (finalGrade == null || finalGrade === 0)) {
       for (const expectation of expectations) {
-        if (!finalSubject && expectation.subject) {
+        if ((finalSubject == null || finalSubject === '') && (expectation.subject != null && expectation.subject !== '')) {
           finalSubject = expectation.subject;
         }
         if (!finalGrade && expectation.grade) {
           finalGrade = expectation.grade;
         }
-        if (finalSubject && finalGrade) {
+        if ((finalSubject != null && finalSubject !== '') && (finalGrade != null && finalGrade !== 0)) {
 break;
 }
       }
     }
 
     const curriculum: ParsedCurriculum = {
-      subject: finalSubject || 'Unknown',
+      subject: finalSubject != null && finalSubject !== '' ? finalSubject : 'Unknown',
       grade: finalGrade || 1,
       expectations,
       metadata: {
@@ -136,30 +136,35 @@ break;
   private parseRow(row: CSVRow, defaultGrade?: number, defaultSubject?: string): ParsedExpectation | null {
     // Try different column name variations
     const code = this.cleanText(
-      this.ensureString(row.code || row.expectation_code || row.Code || row['Expectation Code'] || '')
+      this.ensureString(row.code != null && row.code !== '' ? row.code : 
+        row.expectation_code != null && row.expectation_code !== '' ? row.expectation_code :
+        row.Code != null && row.Code !== '' ? row.Code : 
+        row['Expectation Code'] != null && row['Expectation Code'] !== '' ? row['Expectation Code'] : '')
     );
     
     const description = this.cleanText(
-      this.ensureString(row.description || row.expectation_description || 
-      row.Description || row['Expectation Description'] || '')
+      this.ensureString(row.description != null && row.description !== '' ? row.description :
+        row.expectation_description != null && row.expectation_description !== '' ? row.expectation_description :
+        row.Description != null && row.Description !== '' ? row.Description :
+        row['Expectation Description'] != null && row['Expectation Description'] !== '' ? row['Expectation Description'] : '')
     );
 
-    if (!code || !description) {
+    if ((code == null || code === '') || (description == null || description === '')) {
       return null;
     }
 
     const type = this.parseType(row);
-    const strand = this.cleanText(this.ensureString(row.strand || row.Strand || ''));
-    const substrand = this.cleanText(this.ensureString(row.substrand || row.Substrand || ''));
+    const strand = this.cleanText(this.ensureString(row.strand != null && row.strand !== '' ? row.strand : row.Strand != null && row.Strand !== '' ? row.Strand : ''));
+    const substrand = this.cleanText(this.ensureString(row.substrand != null && row.substrand !== '' ? row.substrand : row.Substrand != null && row.Substrand !== '' ? row.Substrand : ''));
 
     const expectation: ParsedExpectation = {
       code,
       description,
       type,
-      strand: strand || this.extractStrandFromCode(code),
+      strand: strand != null && strand !== '' ? strand : this.extractStrandFromCode(code),
       substrand: substrand || undefined,
       grade: this.extractGrade(row) || defaultGrade,
-      subject: this.extractSubject(row) || defaultSubject,
+      subject: this.extractSubject(row) != null && this.extractSubject(row) !== '' ? this.extractSubject(row) : defaultSubject,
     };
 
     if (this.options.extractKeywords) {
@@ -173,9 +178,9 @@ break;
    * Parse expectation type
    */
   private parseType(row: CSVRow): 'overall' | 'specific' {
-    const typeValue = row.type || row.expectation_type || row.Type || row['Expectation Type'] || '';
+    const typeValue = row.type != null && row.type !== '' ? row.type : row.expectation_type != null && row.expectation_type !== '' ? row.expectation_type : row.Type != null && row.Type !== '' ? row.Type : row['Expectation Type'] != null && row['Expectation Type'] !== '' ? row['Expectation Type'] : '';
     
-    if (typeValue) {
+    if (typeValue != null && typeValue !== '') {
       const normalizedType = typeValue.toString().toLowerCase();
       if (normalizedType.includes('overall')) {
 return 'overall';
@@ -186,8 +191,8 @@ return 'specific';
     }
 
     // Fall back to code analysis
-    const code = row.code || row.expectation_code || '';
-    const description = row.description || row.expectation_description || '';
+    const code = row.code != null && row.code !== '' ? row.code : row.expectation_code != null && row.expectation_code !== '' ? row.expectation_code : '';
+    const description = row.description != null && row.description !== '' ? row.description : row.expectation_description != null && row.expectation_description !== '' ? row.expectation_description : '';
     
     return this.parseExpectationType(code, description);
   }
@@ -215,7 +220,7 @@ return 'specific';
    * Extract subject from row
    */
   private extractSubject(row: CSVRow): string | undefined {
-    const subjectValue = row.subject || row.Subject || row.subject_area || row['Subject Area'];
+    const subjectValue = row.subject != null && row.subject !== '' ? row.subject : row.Subject != null && row.Subject !== '' ? row.Subject : row.subject_area != null && row.subject_area !== '' ? row.subject_area : row['Subject Area'] != null && row['Subject Area'] !== '' ? row['Subject Area'] : undefined;
     return subjectValue ? this.cleanText(subjectValue.toString()) : undefined;
   }
 
@@ -234,7 +239,7 @@ return 'specific';
    * Ensure value is a string
    */
   private ensureString(value: unknown): string {
-    if (value === null || value === undefined) {
+    if (!value) {
       return '';
     }
     return String(value);

@@ -72,7 +72,7 @@ export function AutoSaveIndicator({
     }
 
     // Sync error
-    if (syncStatus === 'error' && syncError !== null && syncError !== undefined && syncError !== '') {
+    if (syncStatus === 'error' && syncError && syncError !== '') {
       return {
         icon: <CloudOff className="w-3 h-3" />,
         text: 'Sync failed',

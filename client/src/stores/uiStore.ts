@@ -171,7 +171,7 @@ export const useUIStore = create<UIState>()(
         });
         
         // Auto-hide toast after duration
-        if (duration !== null && duration !== undefined && duration > 0) {
+        if (duration && duration > 0) {
           setTimeout(() => {
             get().hideToast(id);
           }, duration);
@@ -237,7 +237,7 @@ export const useUIStore = create<UIState>()(
         animations: state.animations,
       }),
       onRehydrateStorage: () => (state?: UIState): void => {
-        if (state !== null && state !== undefined) {
+        if (state) {
           // Apply theme on rehydration
           const effectiveTheme = calculateEffectiveTheme(state.theme);
           state.effectiveTheme = effectiveTheme;

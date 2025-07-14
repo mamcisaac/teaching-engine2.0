@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 
 import { useMediaResources } from '../api/domains/resource';
@@ -156,7 +157,7 @@ return '0 Bytes';
                   <div className="text-sm text-gray-500 mb-2">
                     <div className="flex items-center gap-2">
                       <span className="capitalize">{resource.type}</span>
-                      {resource.fileSize && (
+                      {resource.fileSize && resource.fileSize > 0 && (
                         <>
                           <span>•</span>
                           <span>{formatFileSize(resource.fileSize)}</span>

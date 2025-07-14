@@ -141,7 +141,7 @@ async function calculateKeyMetrics(reports: any[]): Promise<any> {
     const visualReports = reports.filter((r) => r.type === 'visual');
     if (visualReports.length > 0) {
       metrics.visualRegressions = visualReports.reduce(
-        (sum, r) => sum + (r.summary?.failed || 0),
+        (sum, r) => sum + (r.summary?.failed ?? 0),
         0,
       );
     }
@@ -153,7 +153,7 @@ async function calculateKeyMetrics(reports: any[]): Promise<any> {
 
     const monitoringReports = reports.filter((r) => r.type === 'monitoring');
     metrics.alertsGenerated = monitoringReports.reduce(
-      (sum, r) => sum + (r.summary?.totalAlerts || 0),
+      (sum, r) => sum + (r.summary?.totalAlerts ?? 0),
       0,
     );
   } catch (_error) {

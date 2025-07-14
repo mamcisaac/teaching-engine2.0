@@ -74,25 +74,17 @@ export function CurriculumExpectationCoverage(): React.ReactElement {
 
     expectations.forEach((exp) => {
       // By subject
-      if (!bySubject[exp.subject]) {
-        bySubject[exp.subject] = [];
-      }
+      bySubject[exp.subject] = bySubject[exp.subject] ?? [];
       bySubject[exp.subject].push(exp);
 
       // By strand
       const strand = exp.strand && exp.strand !== '' ? exp.strand : 'Other';
-      if (!byStrand[strand]) {
-        byStrand[strand] = [];
-      }
+      byStrand[strand] = byStrand[strand] ?? [];
       byStrand[strand].push(exp);
 
       // By grade and subject
-      if (!byGrade[exp.grade]) {
-        byGrade[exp.grade] = {};
-      }
-      if (!byGrade[exp.grade][exp.subject]) {
-        byGrade[exp.grade][exp.subject] = [];
-      }
+      byGrade[exp.grade] = byGrade[exp.grade] ?? {};
+      byGrade[exp.grade][exp.subject] = byGrade[exp.grade][exp.subject] ?? [];
       byGrade[exp.grade][exp.subject].push(exp);
     });
 

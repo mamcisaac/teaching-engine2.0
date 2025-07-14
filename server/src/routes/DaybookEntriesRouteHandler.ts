@@ -214,7 +214,7 @@ class DaybookService extends BaseService {
     } else if (endDate) {
       where.date = { lte: new Date(endDate) };
     }
-    if (lessonPlanId !== null && lessonPlanId !== undefined && lessonPlanId !== 0) {
+    if (lessonPlanId && lessonPlanId !== 0) {
       where.lessonPlanId = String(lessonPlanId);
     }
 

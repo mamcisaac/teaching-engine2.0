@@ -493,7 +493,7 @@ test.describe('Memory Usage Tracking', () => {
         track: function () {
           const measurement = {
             timestamp: Date.now(),
-            heapUsed: (performance as any).memory?.usedJSHeapSize || 0,
+            heapUsed: (performance as any).memory?.usedJSHeapSize ?? 0,
           };
           this.measurements.push(measurement);
         },
@@ -567,10 +567,10 @@ test.describe('Memory Leak Detection', () => {
         initialMemory: 0,
         measurements: [],
         startDetection: function () {
-          this.initialMemory = (performance as any).memory?.usedJSHeapSize || 0;
+          this.initialMemory = (performance as any).memory?.usedJSHeapSize ?? 0;
 
           const interval = setInterval(() => {
-            const currentMemory = (performance as any).memory?.usedJSHeapSize || 0;
+            const currentMemory = (performance as any).memory?.usedJSHeapSize ?? 0;
             this.measurements.push({
               timestamp: Date.now(),
               memory: currentMemory,

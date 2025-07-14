@@ -4,6 +4,28 @@ import { sign, verify } from 'jsonwebtoken';
 
 import { logger } from '../logger.js';
 import { prisma } from '../prisma.js';
+import type {
+  LoginRequestBody,
+  RegisterRequestBody,
+  ChangePasswordRequestBody,
+  ForgotPasswordRequestBody,
+  ResetPasswordRequestBody,
+  AuthUserResponse,
+  LoginResponse,
+  RegisterResponse,
+  ForgotPasswordResponse,
+  MessageResponse,
+  DatabaseUser,
+  TokenPayload,
+  ResetTokenPayload,
+  PasswordValidationResult,
+  PrismaError,
+  isLoginRequestBody,
+  isRegisterRequestBody,
+  isChangePasswordRequestBody,
+  isForgotPasswordRequestBody,
+  isResetPasswordRequestBody,
+} from '../types/auth-data.js';
 
 import { generateToken, generateRefreshToken } from './authenticate.js';
 import { AuthenticationError, ValidationError, ConflictError, AppError } from './errorHandler.js';
@@ -18,7 +40,7 @@ import { AuthenticationError, ValidationError, ConflictError, AppError } from '.
 
 // Environment validation
 const {JWT_SECRET} = process.env;
-if (JWT_SECRET === null || JWT_SECRET === undefined || JWT_SECRET === '') {
+if (!JWT_SECRET) {
   throw new Error('JWT_SECRET environment variable is required');
 }
 // TypeScript now knows JWT_SECRET is defined, but we need to help it
@@ -46,7 +68,7 @@ export async function verifyPassword(password: string, hash: string): Promise<bo
 /**
  * Validate password strength
  */
-export function validatePasswordStrength(password: string): { isValid: boolean; errors: string[] } {
+export function validatePasswordStrength(password: string): PasswordValidationResult {
   const errors: string[] = [];
 
   if (password.length < PASSWORD_MIN_LENGTH) {
@@ -70,19 +92,19 @@ export function validatePasswordStrength(password: string): { isValid: boolean; 
  */
 export async function login(req: Request, res: Response, next: NextFunction): Promise<void> {
   try {
-    const { email, password } = req.body;
-
-    // Validate input
-    if (!email || !password) {
+    // Validate and extract request body
+    if (!isLoginRequestBody(req.body)) {
       throw new ValidationError('Email and password are required');
     }
+
+    const { email, password } = req.body;
 
     // Find user
     const user = await prisma.user.findUnique({
       where: { email: email.toLowerCase() },
     });
 
-    if (user === null || user === undefined) {
+    if (!user) {
       // Don't reveal whether email exists
       throw new AuthenticationError('Invalid email or password');
     }
@@ -136,7 +158,7 @@ export async function login(req: Request, res: Response, next: NextFunction): Pr
       'User logged in successfully',
     );
 
-    res.json({
+    const response: LoginResponse = {
       user: {
         id: user.id,
         email: user.email,
@@ -144,7 +166,9 @@ export async function login(req: Request, res: Response, next: NextFunction): Pr
         role: user.role,
       },
       accessToken,
-    });
+    };
+    
+    res.json(response);
   } catch (_error) {
     next(_error);
   }
@@ -157,19 +181,24 @@ export async function register(req: Request, res: Response, next: NextFunction):
   try {
     logger.info(
       {
-        bodyKeys: Object.keys(req.body ?? {}),
+        bodyKeys: req.body ? Object.keys(req.body) : [],
         bodyType: typeof req.body,
         hasBody: !!req.body,
       },
       'Registration function entry',
     );
 
+    // Validate and extract request body
+    if (!isRegisterRequestBody(req.body)) {
+      throw new ValidationError('Email, password, and name are required');
+    }
+
     const { email, password, name, organizationId: _organizationId } = req.body;
 
     // Log registration attempt for debugging
     logger.info(
       {
-        email: email?.toLowerCase(),
+        email: email.toLowerCase(),
         hasPassword: !!password,
         hasName: !!name,
         extractedData: { email: !!email, password: !!password, name: !!name },
@@ -181,19 +210,11 @@ export async function register(req: Request, res: Response, next: NextFunction):
     logger.info(
       {
         emailCheck: { exists: !!email, type: typeof email, value: email },
-        passwordCheck: { exists: !!password, type: typeof password, length: password?.length },
+        passwordCheck: { exists: !!password, type: typeof password, length: password.length },
         nameCheck: { exists: !!name, type: typeof name, value: name },
       },
       'Input validation checks',
     );
-
-    if (!email || !password || !name) {
-      logger.warn(
-        { email: !!email, password: !!password, name: !!name },
-        'Missing required fields',
-      );
-      throw new ValidationError('Email, password, and name are required');
-    }
 
     // Validate email format - more strict regex that doesn't allow consecutive dots
     const emailRegex =
@@ -218,7 +239,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
         where: { email: email.toLowerCase() },
       });
 
-      if (existingUser !== null && existingUser !== undefined) {
+      if (existingUser) {
         // Use ConflictError for duplicate email instead of ValidationError
         throw new ConflictError('Email already registered');
       }
@@ -240,7 +261,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
     }
 
     // Create user
-    let user: { id: number; email: string; name: string; role: string };
+    let user: DatabaseUser;
     try {
       logger.info(
         {
@@ -270,14 +291,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
         'User created successfully',
       );
     } catch (error: unknown) {
-      const errorObj = error as {
-        message?: string;
-        code?: string;
-        name?: string;
-        stack?: string;
-        meta?: unknown;
-        toString?: () => string;
-      };
+      const errorObj = error as PrismaError;
       logger.error(
         {
           error: {
@@ -367,7 +381,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
       'New user registered',
     );
 
-    res.status(201).json({
+    const response: RegisterResponse = {
       user: {
         id: user.id,
         email: user.email,
@@ -375,7 +389,9 @@ export async function register(req: Request, res: Response, next: NextFunction):
         role: user.role,
       },
       accessToken,
-    });
+    };
+    
+    res.status(201).json(response);
   } catch (_error) {
     next(_error);
   }
@@ -390,7 +406,7 @@ export async function logout(req: Request, res: Response, next: NextFunction): P
     res.clearCookie('refreshToken');
 
     // Log logout
-    if (req.user !== null && req.user !== undefined) {
+    if (req.user) {
       logger.info(
         {
           userId: req.user.id,
@@ -400,7 +416,8 @@ export async function logout(req: Request, res: Response, next: NextFunction): P
       );
     }
 
-    res.json({ message: 'Logged out successfully' });
+    const response: MessageResponse = { message: 'Logged out successfully' };
+    res.json(response);
   } catch (_error) {
     next(_error);
   }
@@ -415,16 +432,16 @@ export async function changePassword(
   next: NextFunction,
 ): Promise<void> {
   try {
-    if (req.user === null || req.user === undefined) {
+    if (!req.user) {
       throw new AuthenticationError('Authentication required');
     }
 
-    const { currentPassword, newPassword } = req.body;
-
-    // Validate input
-    if (!currentPassword || !newPassword) {
+    // Validate and extract request body
+    if (!isChangePasswordRequestBody(req.body)) {
       throw new ValidationError('Current password and new password are required');
     }
+
+    const { currentPassword, newPassword } = req.body;
 
     // Validate new password strength
     const passwordValidation = validatePasswordStrength(newPassword);
@@ -437,7 +454,7 @@ export async function changePassword(
       where: { id: req.user.id },
     });
 
-    if (user === null || user === undefined) {
+    if (!user) {
       throw new AuthenticationError('User not found');
     }
 
@@ -473,7 +490,8 @@ export async function changePassword(
       'Password changed successfully',
     );
 
-    res.json({ message: 'Password changed successfully' });
+    const response: MessageResponse = { message: 'Password changed successfully' };
+    res.json(response);
   } catch (_error) {
     next(_error);
   }
@@ -488,19 +506,21 @@ export async function forgotPassword(
   next: NextFunction,
 ): Promise<void> {
   try {
-    const { email } = req.body;
-
-    if (email === null || email === undefined || email === '') {
+    // Validate and extract request body
+    if (!isForgotPasswordRequestBody(req.body)) {
       throw new ValidationError('Email is required');
     }
+
+    const { email } = req.body;
 
     const user = await prisma.user.findUnique({
       where: { email: email.toLowerCase() },
     });
 
     // Always return success to prevent email enumeration
-    if (user === null || user === undefined) {
-      res.json({ message: 'If the email exists, a reset link has been sent' });
+    if (!user) {
+      const response: MessageResponse = { message: 'If the email exists, a reset link has been sent' };
+      res.json(response);
       return;
     }
 
@@ -525,13 +545,15 @@ export async function forgotPassword(
     // In production, send email with reset link
     // For development, return token
     if (process.env.NODE_ENV === 'development') {
-      res.json({
+      const response: ForgotPasswordResponse = {
         message: 'Password reset token generated',
         resetToken, // Don't include in production!
-      });
+      };
+      res.json(response);
     } else {
       // TODO: Send email with reset link
-      res.json({ message: 'If the email exists, a reset link has been sent' });
+      const response: MessageResponse = { message: 'If the email exists, a reset link has been sent' };
+      res.json(response);
     }
   } catch (_error) {
     next(_error);
@@ -547,20 +569,21 @@ export async function resetPassword(
   next: NextFunction,
 ): Promise<void> {
   try {
-    const { token, newPassword } = req.body;
-
-    if (!token || !newPassword) {
+    // Validate and extract request body
+    if (!isResetPasswordRequestBody(req.body)) {
       throw new ValidationError('Token and new password are required');
     }
 
+    const { token, newPassword } = req.body;
+
     // Verify reset token
-    let decoded: { userId: string; exp: number; type?: string };
+    let decoded: ResetTokenPayload;
     try {
       const verifyResult = verify(token, jwtSecret);
       if (typeof verifyResult === 'string') {
         throw new ValidationError('Invalid token format');
       }
-      decoded = verifyResult as unknown as { userId: string; exp: number; type?: string };
+      decoded = verifyResult as ResetTokenPayload;
     } catch (_error) {
       throw new ValidationError('Invalid or expired reset token');
     }
@@ -594,7 +617,8 @@ export async function resetPassword(
       'Password reset successfully',
     );
 
-    res.json({ message: 'Password reset successfully' });
+    const response: MessageResponse = { message: 'Password reset successfully' };
+    res.json(response);
   } catch (_error) {
     next(_error);
   }
@@ -609,7 +633,7 @@ export async function validateSession(
   next: NextFunction,
 ): Promise<void> {
   try {
-    if (req.user === null || req.user === undefined) {
+    if (!req.user) {
       throw new AuthenticationError('Session invalid');
     }
 

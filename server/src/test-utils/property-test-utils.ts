@@ -13,6 +13,8 @@ import type {
   CurriculumExpectation
 } from '@teaching-engine/database';
 
+import { logger } from '../logger';
+
 // Local type definitions for property testing
 interface Assessment {
   id: string;
@@ -359,9 +361,9 @@ export function runPropertyTest(
     fc.assert(property, defaultOptions);
   } catch (error) {
     if (error instanceof Error) {
-      console.error('Property test failed:', (error instanceof Error ? error.message : String(error)));
+      logger.error({ error: error instanceof Error ? error : String(error) }, 'Property test failed');
       if (error.stack) {
-        console.error('Stack trace:', error.stack);
+        logger.error({ stack: error.stack }, 'Stack trace');
       }
     }
     throw error;

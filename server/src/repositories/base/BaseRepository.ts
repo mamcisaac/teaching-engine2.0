@@ -11,24 +11,34 @@ import {
   combineFilters,
   fetchPaginatedData,
 } from '../../utils/pagination';
+import type {
+  PrismaModelDelegate,
+  RepositoryError,
+  isRepositoryError,
+  BaseModel,
+  FindManyOptions,
+  FindFirstOptions,
+  CursorPaginationOptions,
+  CursorPaginationResult,
+  ModelWithId,
+} from '../../types/repository';
 
 import type { IRepository } from './IRepository';
 
-export abstract class BaseRepository<T extends { id: number }, CreateInput, UpdateInput>
+export abstract class BaseRepository<T extends BaseModel, CreateInput, UpdateInput>
   implements IRepository<T, CreateInput, UpdateInput> {
   protected prisma: PrismaClient;
   protected modelName: string;
+  protected abstract modelDelegate: PrismaModelDelegate<T, CreateInput, UpdateInput>;
 
   constructor(prisma: PrismaClient, modelName: string) {
     this.prisma = prisma;
     this.modelName = modelName;
   }
 
-  // Use any for Prisma model delegate access - this is necessary for dynamic model access
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  protected get model(): any {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return (this.prisma as any)[this.modelName];
+  // Type-safe model access - subclasses must implement this
+  protected get model(): PrismaModelDelegate<T, CreateInput, UpdateInput> {
+    return this.modelDelegate;
   }
 
   async findById(id: number): Promise<T | null> {
@@ -37,18 +47,14 @@ export abstract class BaseRepository<T extends { id: number }, CreateInput, Upda
         where: { id },
       });
       return result;
-    } catch (error) {
-      logger.error(`Error finding ${this.modelName} by id:`, error);
+    } catch (error: unknown) {
+      const errorMessage = isRepositoryError(error) ? error.message : String(error);
+      logger.error(`Error finding ${this.modelName} by id:`, errorMessage);
       throw error;
     }
   }
 
-  async findMany(options?: {
-    where?: Record<string, unknown>;
-    include?: Record<string, boolean>;
-    pagination?: PaginationOptions;
-    searchFields?: string[];
-  }): Promise<PaginatedResponse<T>> {
+  async findMany(options?: FindManyOptions): Promise<PaginatedResponse<T>> {
     try {
       const {
         where = {},
@@ -76,21 +82,19 @@ export abstract class BaseRepository<T extends { id: number }, CreateInput, Upda
         pagination,
       );
 
-      return createPaginatedResponse(data as T[], {
+      return createPaginatedResponse(data, {
         page: pagination.page,
         limit: pagination.limit,
         total,
       });
-    } catch (error) {
-      logger.error(`Error finding many ${this.modelName}:`, error);
+    } catch (error: unknown) {
+      const errorMessage = isRepositoryError(error) ? error.message : String(error);
+      logger.error(`Error finding many ${this.modelName}:`, errorMessage);
       throw error;
     }
   }
 
-  async findFirst(options?: {
-    where?: Record<string, unknown>;
-    include?: Record<string, boolean>;
-  }): Promise<T | null> {
+  async findFirst(options?: FindFirstOptions): Promise<T | null> {
     try {
       const { where = {}, include = {} } = options || {};
       const result = await this.model.findFirst({
@@ -98,8 +102,9 @@ export abstract class BaseRepository<T extends { id: number }, CreateInput, Upda
         include,
       });
       return result;
-    } catch (error) {
-      logger.error(`Error finding first ${this.modelName}:`, error);
+    } catch (error: unknown) {
+      const errorMessage = isRepositoryError(error) ? error.message : String(error);
+      logger.error(`Error finding first ${this.modelName}:`, errorMessage);
       throw error;
     }
   }
@@ -109,10 +114,11 @@ export abstract class BaseRepository<T extends { id: number }, CreateInput, Upda
       const result = await this.model.create({
         data,
       });
-      logger.info(`Created ${this.modelName} with id: ${result.id}`);
+      logger.info(`Created ${this.modelName} with id: ${String(result.id)}`);
       return result;
-    } catch (error) {
-      logger.error(`Error creating ${this.modelName}:`, error);
+    } catch (error: unknown) {
+      const errorMessage = isRepositoryError(error) ? error.message : String(error);
+      logger.error(`Error creating ${this.modelName}:`, errorMessage);
       throw error;
     }
   }
@@ -125,8 +131,9 @@ export abstract class BaseRepository<T extends { id: number }, CreateInput, Upda
       });
       logger.info(`Updated ${this.modelName} with id: ${String(id)}`);
       return result;
-    } catch (error) {
-      logger.error(`Error updating ${this.modelName}:`, error);
+    } catch (error: unknown) {
+      const errorMessage = isRepositoryError(error) ? error.message : String(error);
+      logger.error(`Error updating ${this.modelName}:`, errorMessage);
       throw error;
     }
   }
@@ -136,10 +143,11 @@ export abstract class BaseRepository<T extends { id: number }, CreateInput, Upda
       const result = await this.model.delete({
         where: { id },
       });
-      logger.info(`Deleted ${this.modelName} with id: ${id}`);
+      logger.info(`Deleted ${this.modelName} with id: ${String(id)}`);
       return result;
-    } catch (error) {
-      logger.error(`Error deleting ${this.modelName}:`, error);
+    } catch (error: unknown) {
+      const errorMessage = isRepositoryError(error) ? error.message : String(error);
+      logger.error(`Error deleting ${this.modelName}:`, errorMessage);
       throw error;
     }
   }
@@ -148,8 +156,9 @@ export abstract class BaseRepository<T extends { id: number }, CreateInput, Upda
     try {
       const result = await this.model.count({ where });
       return result;
-    } catch (error) {
-      logger.error(`Error counting ${this.modelName}:`, error);
+    } catch (error: unknown) {
+      const errorMessage = isRepositoryError(error) ? error.message : String(error);
+      logger.error(`Error counting ${this.modelName}:`, errorMessage);
       throw error;
     }
   }
@@ -160,8 +169,9 @@ export abstract class BaseRepository<T extends { id: number }, CreateInput, Upda
         where: { id },
       });
       return count > 0;
-    } catch (error) {
-      logger.error(`Error checking existence of ${this.modelName}:`, error);
+    } catch (error: unknown) {
+      const errorMessage = isRepositoryError(error) ? error.message : String(error);
+      logger.error(`Error checking existence of ${this.modelName}:`, errorMessage);
       throw error;
     }
   }
@@ -179,13 +189,7 @@ export abstract class BaseRepository<T extends { id: number }, CreateInput, Upda
   }
 
   // Cursor-based pagination for real-time data
-  async findManyCursor(options?: {
-    where?: Record<string, unknown>;
-    include?: Record<string, boolean>;
-    cursor?: number;
-    limit?: number;
-    orderBy?: Record<string, 'asc' | 'desc'>;
-  }): Promise<{ data: T[]; nextCursor?: number }> {
+  async findManyCursor(options?: CursorPaginationOptions): Promise<CursorPaginationResult<T>> {
     try {
       const {
         where = {},
@@ -228,8 +232,9 @@ export abstract class BaseRepository<T extends { id: number }, CreateInput, Upda
         data: items,
         nextCursor,
       };
-    } catch (error) {
-      logger.error(`Error finding many with cursor ${this.modelName}:`, error);
+    } catch (error: unknown) {
+      const errorMessage = isRepositoryError(error) ? error.message : String(error);
+      logger.error(`Error finding many with cursor ${this.modelName}:`, errorMessage);
       throw error;
     }
   }

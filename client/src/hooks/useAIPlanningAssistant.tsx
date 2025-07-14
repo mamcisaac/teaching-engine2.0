@@ -1,4 +1,5 @@
-import { useMutation, UseMutationResult } from '@tanstack/react-query';
+import type { UseMutationResult } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
 
 import { apiClient } from '../api/core/client';

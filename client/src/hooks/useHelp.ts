@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useMemo } from 'react';
 
 import { useHelp as useHelpContext } from '../contexts/HelpContext';
@@ -464,7 +465,7 @@ export function useHelpContent(): {
     let content = mockHelpContent;
 
     // Apply section filter
-    if (state.currentSection !== null && state.currentSection !== undefined && state.currentSection !== '') {
+    if (state.currentSection && state.currentSection !== '') {
       content = content.filter(item => item.section === state.currentSection);
     }
 
@@ -479,7 +480,7 @@ export function useHelpContent(): {
     }
 
     // Apply search query
-    if (state.searchQuery !== null && state.searchQuery !== undefined && state.searchQuery !== '') {
+    if (state.searchQuery && state.searchQuery !== '') {
       const query = state.searchQuery.toLowerCase();
       content = content.filter(item =>
         item.title.toLowerCase().includes(query) ||
@@ -616,7 +617,7 @@ export function useHelpSearch(): {
 
   // Get search suggestions based on current query
   useEffect(() => {
-    if (state.searchQuery !== null && state.searchQuery !== undefined && state.searchQuery.length > 1) {
+    if (state.searchQuery && state.searchQuery.length > 1) {
       const query = state.searchQuery.toLowerCase();
       const allSearchTerms = mockHelpContent.flatMap(item => item.searchTerms);
       const matchingSuggestions = allSearchTerms

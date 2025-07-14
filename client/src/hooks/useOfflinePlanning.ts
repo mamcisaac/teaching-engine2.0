@@ -1,6 +1,7 @@
 // Hook for using offline-capable planning stores
 // Example of how to integrate offline functionality into components
 
+
 import React, { useEffect, useState } from 'react';
 
 import { lazyLoader } from '../services/lazyLoader';

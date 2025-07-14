@@ -1,3 +1,4 @@
+
 import { format, addDays, startOfWeek, endOfWeek, isToday } from 'date-fns';
 import {
   Clock,
@@ -32,15 +33,15 @@ import { Textarea } from '@/components/ui/Textarea';
 import { useToast } from '@/components/ui/use-toast';
 
 import { BlankTemplateQuickActions } from '../components/printing/BlankTemplatePrinter';
+import type {
+  DaybookEntry,
+  ETFOLessonPlan} from '../hooks/useETFOPlanning';
 import {
   useDaybookEntries,
   useETFOLessonPlans,
   useCreateDaybookEntry,
   useUpdateDaybookEntry
 } from '../hooks/useETFOPlanning';
-import type {
-  DaybookEntry,
-  ETFOLessonPlan} from '../hooks/useETFOPlanning';
 
 interface DayEntryProps {
   date: Date;
@@ -55,14 +56,14 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
 
   // Initialize all ETFO-aligned fields
   const [formData, setFormData] = useState({
-    notes: entry?.notes ?? '',
-    privateNotes: entry?.privateNotes ?? '',
-    whatWorked: entry?.whatWorked ?? '',
-    whatDidntWork: entry?.whatDidntWork ?? '',
-    nextSteps: entry?.nextSteps ?? '',
-    studentEngagement: entry?.studentEngagement ?? '',
-    studentChallenges: entry?.studentChallenges ?? '',
-    studentSuccesses: entry?.studentSuccesses ?? '',
+    notes: entry?.notes || '',
+    privateNotes: entry?.privateNotes || '',
+    whatWorked: entry?.whatWorked || '',
+    whatDidntWork: entry?.whatDidntWork || '',
+    nextSteps: entry?.nextSteps || '',
+    studentEngagement: entry?.studentEngagement || '',
+    studentChallenges: entry?.studentChallenges || '',
+    studentSuccesses: entry?.studentSuccesses || '',
     overallRating: entry?.overallRating ?? 3,
     wouldReuseLesson: entry?.wouldReuseLesson ?? true,
   });
@@ -118,7 +119,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
                       <Clock className="h-3 w-3" />
                       {lesson.duration} min
                     </span>
-                    {lesson.unitPlan !== null && lesson.unitPlan !== undefined && (
+                    {lesson.unitPlan && (
                       <span className="flex items-center gap-1">
                         <BookOpen className="h-3 w-3" />
                         {lesson.unitPlan.title}
@@ -127,7 +128,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
                   </div>
                 </div>
                 <div className="flex gap-1">
-                  {lesson.assessmentType !== null && lesson.assessmentType !== undefined && (
+                  {lesson.assessmentType && (
                     <Badge className="text-xs" variant="secondary">
                       {lesson.assessmentType}
                     </Badge>
@@ -308,7 +309,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
         ) : (
           <div className="space-y-2">
             {/* Display saved reflections */}
-            {formData.overallRating !== null && formData.overallRating !== undefined && formData.overallRating !== 0 && (
+            {formData.overallRating && formData.overallRating !== 0 && (
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-sm font-medium">Day Rating:</span>
                 <div className="flex items-center gap-1">
@@ -326,28 +327,28 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
               </div>
             )}
 
-            {formData.whatWorked !== null && formData.whatWorked !== undefined && formData.whatWorked !== '' && (
+            {formData.whatWorked && (
               <div>
                 <p className="text-sm font-medium text-green-700">What Worked:</p>
                 <p className="text-sm text-muted-foreground">{formData.whatWorked}</p>
               </div>
             )}
 
-            {formData.whatDidntWork !== null && formData.whatDidntWork !== undefined && formData.whatDidntWork !== '' && (
+            {formData.whatDidntWork && (
               <div>
                 <p className="text-sm font-medium text-orange-700">Challenges:</p>
                 <p className="text-sm text-muted-foreground">{formData.whatDidntWork}</p>
               </div>
             )}
 
-            {formData.nextSteps !== null && formData.nextSteps !== undefined && formData.nextSteps !== '' && (
+            {formData.nextSteps && (
               <div>
                 <p className="text-sm font-medium text-blue-700">Next Steps:</p>
                 <p className="text-sm text-muted-foreground">{formData.nextSteps}</p>
               </div>
             )}
 
-            {(formData.whatWorked === null || formData.whatWorked === undefined || formData.whatWorked === '') && (formData.whatDidntWork === null || formData.whatDidntWork === undefined || formData.whatDidntWork === '') && (formData.nextSteps === null || formData.nextSteps === undefined || formData.nextSteps === '') && (
+            {(!formData.whatWorked || formData.whatWorked === '') && (!formData.whatDidntWork || formData.whatDidntWork === '') && (!formData.nextSteps || formData.nextSteps === '') && (
               <p className="text-sm text-muted-foreground italic">No reflection yet</p>
             )}
           </div>
@@ -413,7 +414,7 @@ export default function DaybookPage(): React.ReactElement {
         (e) => format(new Date(e.date), 'yyyy-MM-dd') === format(date, 'yyyy-MM-dd'),
       );
 
-      if (existingEntry !== null && existingEntry !== undefined) {
+      if (existingEntry) {
         await updateMutation.mutateAsync({
           id: existingEntry.id,
           ...data,

@@ -200,7 +200,7 @@ export function FormPreview({ data, onEdit, className }: FormPreviewProps): Reac
       <CardContent>
         <div className="space-y-4">
           {Object.entries(data)
-            .filter(([key, value]) => value !== null && value !== undefined && (showAll || key === 'title' || key === 'description'))
+            .filter(([key, value]) => value && (showAll || key === 'title' || key === 'description'))
             .map(([key, value]) => (
               <div key={key}>
                 <h4 className="font-medium text-sm text-gray-700 capitalize mb-1">

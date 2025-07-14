@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
 import type { RefObject } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { logger as defaultLogger } from '../../utils/logger';
 
@@ -398,7 +398,7 @@ urlObj.searchParams.set('q', quality.toString());
     imageSrc: string;
     isLoaded: boolean;
   } => {
-    const [imageSrc, setImageSrc] = useState(placeholder ?? '');
+    const [imageSrc, setImageSrc] = useState(placeholder || '');
     const [isLoaded, setIsLoaded] = useState(false);
     const [elementRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
 

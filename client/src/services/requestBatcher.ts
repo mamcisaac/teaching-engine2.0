@@ -65,7 +65,7 @@ class RequestBatcher {
     // If we've reached max batch size, process immediately
     if (this.pendingRequests.size >= this.maxBatchSize) {
       void this.processBatch().catch((error: unknown) => {
-        console.error('Error processing batch:', error);
+        logger.error('Error processing batch:', error);
       });
       return;
     }
@@ -73,7 +73,7 @@ class RequestBatcher {
     // Otherwise, wait for more requests
     this.batchTimeout = setTimeout(() => {
       void this.processBatch().catch((error: unknown) => {
-        console.error('Error processing batch timeout:', error);
+        logger.error('Error processing batch timeout:', error);
       });
     }, this.batchDelay);
   }

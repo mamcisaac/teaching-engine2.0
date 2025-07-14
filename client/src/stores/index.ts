@@ -1,6 +1,8 @@
 // State Management Exports
 // Following the standardized state management patterns for Teaching Engine 2.0
 
+import { logger } from '../utils/logger';
+
 // Zustand Stores (Global State)
 export * from './lessonPlanStore';
 export * from './unitPlanStore';
@@ -30,7 +32,7 @@ export const initializeStores = (): void => {
         keyboardStore.startListening();
       }
     }).catch((error: unknown) => {
-      console.error('Error loading keyboard shortcuts store:', error);
+      logger.error('Error loading keyboard shortcuts store:', error);
     });
   }
 };

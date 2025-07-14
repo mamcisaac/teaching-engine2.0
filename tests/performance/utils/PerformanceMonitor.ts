@@ -269,8 +269,8 @@ export class PerformanceMonitor {
     }
 
     // Calculate memory growth rate
-    const initialMemory = measurements[0]?.heapUsed || 0;
-    const finalMemory = measurements[measurements.length - 1]?.heapUsed || 0;
+    const initialMemory = measurements[0]?.heapUsed ?? 0;
+    const finalMemory = measurements[measurements.length - 1]?.heapUsed ?? 0;
     const growthRate = (finalMemory - initialMemory) / 1024 / 1024 / (totalDuration / 60000); // MB per minute
 
     const detected = growthRate > 5; // More than 5MB growth per minute

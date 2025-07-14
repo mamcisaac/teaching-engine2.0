@@ -1,3 +1,4 @@
+
 import { format } from 'date-fns';
 import { Star, Calendar, Clock, Users, FileText, Copy } from 'lucide-react';
 import React from 'react';
@@ -25,16 +26,16 @@ export function TemplateCard({
     );
 
   const getDuration = (): string => {
-    if (template.type === 'UNIT_PLAN' && template.estimatedWeeks !== null && template.estimatedWeeks !== undefined && template.estimatedWeeks > 0) {
+    if (template.type === 'UNIT_PLAN' && template.estimatedWeeks && template.estimatedWeeks > 0) {
       return `${template.estimatedWeeks} week${template.estimatedWeeks > 1 ? 's' : ''}`;
-    } else if (template.type === 'LESSON_PLAN' && template.estimatedMinutes !== null && template.estimatedMinutes !== undefined && template.estimatedMinutes > 0) {
+    } else if (template.type === 'LESSON_PLAN' && template.estimatedMinutes && template.estimatedMinutes > 0) {
       return `${template.estimatedMinutes} minutes`;
     }
     return 'Duration not specified';
   };
 
   const getGradeRange = (): string => {
-    if (template.gradeMin !== null && template.gradeMin !== undefined && template.gradeMax !== undefined) {
+    if (template.gradeMin && template.gradeMax !== undefined) {
       return template.gradeMin === template.gradeMax
         ? `Grade ${template.gradeMin}`
         : `Grades ${template.gradeMin}-${template.gradeMax}`;
@@ -50,7 +51,7 @@ export function TemplateCard({
           {getTypeIcon()}
           <div>
             <h3 className="font-semibold text-lg">{template.title}</h3>
-            {template.subject !== null && template.subject !== undefined && template.subject !== '' && (
+            {template.subject && (
               <p className="text-sm text-gray-600 capitalize">{template.subject}</p>
             )}
           </div>
@@ -63,7 +64,7 @@ export function TemplateCard({
       </div>
 
       {/* Description */}
-      {template.description !== null && template.description !== undefined && template.description !== '' && (
+      {template.description && (
         <p className="text-gray-700 text-sm mb-4 line-clamp-2">
           {template.description}
         </p>
@@ -84,7 +85,7 @@ export function TemplateCard({
       {/* Stats */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-4 text-sm">
-          {template.averageRating !== null && template.averageRating !== undefined && template.averageRating > 0 && (
+          {template.averageRating && template.averageRating > 0 && (
             <div className="flex items-center gap-1">
               <Star className="h-4 w-4 text-yellow-500 fill-current" />
               <span className="font-medium">{template.averageRating.toFixed(1)}</span>
@@ -155,12 +156,12 @@ export function TemplateCard({
 
       {/* Created info */}
       <div className="mt-4 pt-4 border-t text-xs text-gray-500">
-        {template.createdByUser !== null && template.createdByUser !== undefined ? (
+        {template.createdByUser ? (
           <span>Created by {template.createdByUser.name}</span>
         ) : (
           <span>System template</span>
         )}
-        {template.lastUsedAt !== null && template.lastUsedAt !== undefined && template.lastUsedAt !== '' && (
+        {template.lastUsedAt && (
           <span className="ml-2">
             • Last used {format(new Date(template.lastUsedAt), 'MMM d, yyyy')}
           </span>

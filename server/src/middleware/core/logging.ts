@@ -20,7 +20,7 @@ interface LoggedRequest extends Request {
 
 // Sanitize sensitive data from logs
 const sanitizeData = (data: unknown): unknown => {
-  if (data === null || data === undefined || typeof data !== 'object') {
+  if (!data || typeof data !== 'object') {
     return data;
   }
 
@@ -102,7 +102,7 @@ export const requestLoggingMiddleware = (
 
     // Add response size if available
     const contentLength = res.get('content-length');
-    if (contentLength !== null && contentLength !== undefined && contentLength !== '') {
+    if (contentLength && contentLength !== '') {
       responseLog.responseSize = parseInt(contentLength, 10);
     }
 
@@ -187,7 +187,7 @@ export const auditMiddleware = (
   } = {},
 ): ((req: LoggedRequest, res: Response, next: NextFunction) => void) => (req: LoggedRequest, res: Response, next: NextFunction): void => {
     // Check condition if provided
-    if (options.condition !== null && options.condition !== undefined && !options.condition(req)) {
+    if (options.condition && !options.condition(req)) {
       next();
       return;
     }
@@ -226,7 +226,7 @@ export const performanceLoggingMiddleware = (
 
   res.locals.perfMeasure = (name: string): void => {
     const segment = segments.find((s) => s.name === name && s.end === undefined);
-    if (segment !== null && segment !== undefined) {
+    if (segment) {
       segment.end = Date.now();
     }
   };

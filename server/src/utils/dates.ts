@@ -114,7 +114,7 @@ return `${Math.floor(diffDays / 30)} month${Math.floor(diffDays / 30) > 1 ? 's' 
 
 // Date validation
 export const isValidDate = (date: unknown): boolean => {
-  if (!date) {
+  if (date === undefined || date === null || date === '') {
 return false;
 }
   const d = date instanceof Date ? date : new Date(date as string | number);

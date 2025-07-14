@@ -160,7 +160,7 @@ export function AILessonPlanPanel({
     if (!canUseAI) {
       toast({
         title: 'AI Unavailable',
-        description: aiDisabledReason !== null && aiDisabledReason !== undefined && aiDisabledReason !== '' ? aiDisabledReason : 'AI features are currently unavailable.',
+        description: aiDisabledReason ?? 'AI features are currently unavailable.',
         variant: 'destructive',
       });
       return;
@@ -223,9 +223,9 @@ export function AILessonPlanPanel({
       setLoadingStep('materials');
       const [mindsOnResult, handsOnResult, reflectionResult] = activityResults;
       const allActivities = [
-        ...(mindsOnResult.suggestions ?? []),
-        ...(handsOnResult.suggestions ?? []),
-        ...(reflectionResult.suggestions ?? [])
+        ...mindsOnResult.suggestions,
+        ...handsOnResult.suggestions,
+        ...reflectionResult.suggestions
       ];
 
       const materialsResult = await generateMaterialsList.mutateAsync({
@@ -238,17 +238,17 @@ export function AILessonPlanPanel({
       // Build three-part structure
       const structure: ThreePartStructure = {
         mindsOn: {
-          activities: (mindsOnResult.suggestions ?? []),
+          activities: mindsOnResult.suggestions,
           duration: mindsOnDuration,
           materials: [],
         },
         handsOn: {
-          activities: (handsOnResult.suggestions ?? []),
+          activities: handsOnResult.suggestions,
           duration: handsOnDuration,
           materials: [],
         },
         mindsOnReflection: {
-          activities: (reflectionResult.suggestions ?? []),
+          activities: reflectionResult.suggestions,
           duration: reflectionDuration,
           materials: [],
         },
@@ -260,25 +260,25 @@ export function AILessonPlanPanel({
       setSuggestions([
         {
           type: 'mindson',
-          content: (mindsOnResult.suggestions ?? []),
+          content: mindsOnResult.suggestions,
           rationale: 'Activities to activate prior knowledge and engage students',
           timeEstimate: mindsOnDuration,
         },
         {
           type: 'handson',
-          content: (handsOnResult.suggestions ?? []),
+          content: handsOnResult.suggestions,
           rationale: 'Main learning activities for skill development and practice',
           timeEstimate: handsOnDuration,
         },
         {
           type: 'mindson_reflection',
-          content: (reflectionResult.suggestions ?? []),
+          content: reflectionResult.suggestions,
           rationale: 'Reflection and consolidation activities',
           timeEstimate: reflectionDuration,
         },
         {
           type: 'materials',
-          content: (materialsResult.suggestions ?? []),
+          content: materialsResult.suggestions,
           rationale: 'Required materials and resources',
         },
       ]);
@@ -311,7 +311,7 @@ export function AILessonPlanPanel({
     if (!canUseAI) {
       toast({
         title: 'AI Unavailable',
-        description: aiDisabledReason !== null && aiDisabledReason !== undefined && aiDisabledReason !== '' ? aiDisabledReason : 'AI features are currently unavailable.',
+        description: aiDisabledReason ?? 'AI features are currently unavailable.',
         variant: 'destructive',
       });
       return;
@@ -756,13 +756,13 @@ export function AILessonPlanPanel({
                           {suggestion.type.includes('mindson') && <Play className="h-4 w-4" />}
                           {suggestion.type === 'handson' && <Activity className="h-4 w-4" />}
                           {suggestion.type.replace(/_/g, ' ').replace(/([A-Z])/g, ' $1').trim()}
-                          {suggestion.timeEstimate !== null && suggestion.timeEstimate !== undefined && suggestion.timeEstimate > 0 && !isNaN(suggestion.timeEstimate) && (
+                          {suggestion.timeEstimate != null && suggestion.timeEstimate > 0 && !isNaN(suggestion.timeEstimate) && (
                             <Badge className="ml-auto" variant="outline">
                               {suggestion.timeEstimate} min
                             </Badge>
                           )}
                         </CardTitle>
-                        {suggestion.rationale !== null && suggestion.rationale !== undefined && suggestion.rationale !== '' && (
+                        {suggestion.rationale != null && suggestion.rationale !== '' && (
                           <CardDescription>{suggestion.rationale}</CardDescription>
                         )}
                       </CardHeader>

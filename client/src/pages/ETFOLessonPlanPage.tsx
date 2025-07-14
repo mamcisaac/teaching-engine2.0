@@ -1,3 +1,4 @@
+
 import { format } from 'date-fns';
 import {
   Plus,
@@ -37,9 +38,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../co
 import { Checkbox } from '../components/ui/checkbox';
 import { Input } from '../components/ui/Input';
 import { Label } from '../components/ui/Label';
+import { MobileOptimizedForm, CollapsibleSection } from '../components/ui/MobileOptimizedForm';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import { Textarea } from '../components/ui/Textarea';
 import { InfoTooltip } from '../components/ui/Tooltip';
+import { useAutoSave, useUnsavedChangesWarning } from '../hooks/useAutoSave';
 import {
   useUnitPlan,
   useETFOLessonPlans,
@@ -51,6 +54,9 @@ import {
 import { useTemplates, useApplyTemplate } from '../hooks/useTemplates';
 import type { PlanTemplate, LessonPlanContent } from '../types/template';
 import { isLessonPlanTemplate } from '../types/template';
+import { logger } from '../utils/logger';
+import { generateLessonPlanHTML, printHTML, downloadHTML } from '../utils/printUtils';
+import { SafeHtmlRenderer } from '../utils/sanitization';
 
 // Lazy load AI components for better performance
 const AILessonPlanPanel = lazy(() =>
@@ -59,11 +65,6 @@ const AILessonPlanPanel = lazy(() =>
 const WithAIErrorBoundary = lazy(() =>
   import('../components/ai/AIErrorBoundary').then((m) => ({ default: m.WithAIErrorBoundary })),
 );
-import { useAutoSave, useUnsavedChangesWarning } from '../hooks/useAutoSave';
-import { MobileOptimizedForm, CollapsibleSection } from '../components/ui/MobileOptimizedForm';
-import { logger } from '../utils/logger';
-import { generateLessonPlanHTML, printHTML, downloadHTML } from '../utils/printUtils';
-import { SafeHtmlRenderer } from '../utils/sanitization';
 export default function ETFOLessonPlanPage(): React.ReactElement {
   const { unitId, lessonId } = useParams();
   const navigate = useNavigate();
@@ -74,11 +75,11 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
   const [selectedTemplate, setSelectedTemplate] = useState<PlanTemplate | null>(null);
 
   // Fetch data
-  const { data: unitPlan } = useUnitPlan(unitId || '');
+  const { data: unitPlan } = useUnitPlan(unitId != null && unitId !== '' ? unitId : '');
   const { data: lessonPlans = [], isLoading: isLoadingLessons } = useETFOLessonPlans(
-    unitId ? { unitPlanId: unitId } : {},
+    unitId != null && unitId !== '' ? { unitPlanId: unitId } : {},
   );
-  const { data: selectedLesson } = useETFOLessonPlan(lessonId || '');
+  const { data: selectedLesson } = useETFOLessonPlan(lessonId != null && lessonId !== '' ? lessonId : '');
 
   // Mutations
   const createLesson = useCreateETFOLessonPlan();
@@ -124,7 +125,7 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
   });
 
   // Auto-save functionality for existing lessons
-  const autoSaveData = editingLesson
+  const autoSaveData = editingLesson != null && editingLesson !== ''
     ? {
         ...formData,
         expectationIds: formData.expectationIds,
@@ -134,19 +135,19 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
   const { lastSaved, isSaving, hasUnsavedChanges, saveNow } = useAutoSave({
     data: autoSaveData,
     saveFn: async (data) => {
-      if (editingLesson && data) {
+      if (editingLesson != null && editingLesson !== '' && data) {
         const cleanedData = {
           ...data,
-          unitPlanId: unitId || '',
-          materials: data.materials.filter((m: string) => m.trim()),
-          accommodations: data.accommodations.filter((a: string) => a.trim()),
-          modifications: data.modifications.filter((m: string) => m.trim()),
-          extensions: data.extensions.filter((e: string) => e.trim()),
+          unitPlanId: unitId != null && unitId !== '' ? unitId : '',
+          materials: data.materials.filter((m: string) => m.trim() !== ''),
+          accommodations: data.accommodations.filter((a: string) => a.trim() !== ''),
+          modifications: data.modifications.filter((m: string) => m.trim() !== ''),
+          extensions: data.extensions.filter((e: string) => e.trim() !== ''),
         };
         await updateLesson.mutateAsync({ id: editingLesson, data: cleanedData });
       }
     },
-    enabled: !!editingLesson && !!autoSaveData,
+    enabled: editingLesson != null && editingLesson !== '' && autoSaveData != null,
     delay: 30000, // 30 seconds
   });
 
@@ -157,14 +158,14 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
 
     const cleanedData = {
       ...formData,
-      unitPlanId: unitId || '',
-      materials: formData.materials.filter((m) => m.trim()),
-      accommodations: formData.accommodations.filter((a) => a.trim()),
-      modifications: formData.modifications.filter((m) => m.trim()),
-      extensions: formData.extensions.filter((e) => e.trim()),
+      unitPlanId: unitId != null && unitId !== '' ? unitId : '',
+      materials: formData.materials.filter((m) => m.trim() !== ''),
+      accommodations: formData.accommodations.filter((a) => a.trim() !== ''),
+      modifications: formData.modifications.filter((m) => m.trim() !== ''),
+      extensions: formData.extensions.filter((e) => e.trim() !== ''),
     };
 
-    if (editingLesson) {
+    if (editingLesson != null) {
       await updateLesson.mutateAsync({ id: editingLesson, data: cleanedData });
       setEditingLesson(null);
     } else {
@@ -374,11 +375,11 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
           duration: templateContent.duration ?? 60,
           learningGoals: '',
           learningGoalsFr: '',
-          mindsOn: templateContent.mindsOn ?? '',
+          mindsOn: templateContent.mindsOn != null && templateContent.mindsOn !== '' ? templateContent.mindsOn : '',
           mindsOnFr: '',
-          action: templateContent.action ?? '',
+          action: templateContent.action != null && templateContent.action !== '' ? templateContent.action : '',
           actionFr: '',
-          consolidation: templateContent.consolidation ?? '',
+          consolidation: templateContent.consolidation != null && templateContent.consolidation !== '' ? templateContent.consolidation : '',
           consolidationFr: '',
           materials: templateContent.materials ?? [''],
           grouping: templateContent.grouping ?? 'whole',
@@ -388,7 +389,7 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
           assessmentType:
             (templateContent.assessmentType as 'diagnostic' | 'formative' | 'summative') ??
             'formative',
-          assessmentNotes: templateContent.assessmentNotes ?? '',
+          assessmentNotes: templateContent.assessmentNotes != null && templateContent.assessmentNotes !== '' ? templateContent.assessmentNotes : '',
           isSubFriendly: false,
           subNotes: '',
         });
@@ -403,7 +404,7 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
   };
 
   // If we're in detail mode (lessonId provided), show the detail view
-  if (lessonId && selectedLesson) {
+  if (lessonId != null && lessonId !== '' && selectedLesson) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Breadcrumb */}
@@ -437,7 +438,7 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
             <div className="flex justify-between items-start">
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">{selectedLesson.title}</h1>
-                {selectedLesson.titleFr && (
+                {selectedLesson.titleFr != null && selectedLesson.titleFr !== '' && (
                   <p className="text-sm text-gray-600 mt-1">{selectedLesson.titleFr}</p>
                 )}
                 <div className="flex gap-4 mt-2 text-sm text-gray-600">
@@ -501,26 +502,26 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
                     setEditingLesson(selectedLesson.id);
                     setFormData({
                       title: selectedLesson.title,
-                      titleFr: selectedLesson.titleFr ?? '',
+                      titleFr: selectedLesson.titleFr != null && selectedLesson.titleFr !== '' ? selectedLesson.titleFr : '',
                       date: selectedLesson.date.split('T')[0],
                       duration: selectedLesson.duration,
-                      mindsOn: selectedLesson.mindsOn ?? '',
-                      mindsOnFr: selectedLesson.mindsOnFr ?? '',
-                      action: selectedLesson.action ?? '',
-                      actionFr: selectedLesson.actionFr ?? '',
-                      consolidation: selectedLesson.consolidation ?? '',
-                      consolidationFr: selectedLesson.consolidationFr ?? '',
-                      learningGoals: selectedLesson.learningGoals ?? '',
-                      learningGoalsFr: selectedLesson.learningGoalsFr ?? '',
+                      mindsOn: selectedLesson.mindsOn != null && selectedLesson.mindsOn !== '' ? selectedLesson.mindsOn : '',
+                      mindsOnFr: selectedLesson.mindsOnFr != null && selectedLesson.mindsOnFr !== '' ? selectedLesson.mindsOnFr : '',
+                      action: selectedLesson.action != null && selectedLesson.action !== '' ? selectedLesson.action : '',
+                      actionFr: selectedLesson.actionFr != null && selectedLesson.actionFr !== '' ? selectedLesson.actionFr : '',
+                      consolidation: selectedLesson.consolidation != null && selectedLesson.consolidation !== '' ? selectedLesson.consolidation : '',
+                      consolidationFr: selectedLesson.consolidationFr != null && selectedLesson.consolidationFr !== '' ? selectedLesson.consolidationFr : '',
+                      learningGoals: selectedLesson.learningGoals != null && selectedLesson.learningGoals !== '' ? selectedLesson.learningGoals : '',
+                      learningGoalsFr: selectedLesson.learningGoalsFr != null && selectedLesson.learningGoalsFr !== '' ? selectedLesson.learningGoalsFr : '',
                       materials: selectedLesson.materials ?? [''],
                       grouping: selectedLesson.grouping ?? 'whole',
                       accommodations: selectedLesson.accommodations ?? [''],
                       modifications: selectedLesson.modifications ?? [''],
                       extensions: selectedLesson.extensions ?? [''],
                       assessmentType: selectedLesson.assessmentType ?? 'formative',
-                      assessmentNotes: selectedLesson.assessmentNotes ?? '',
+                      assessmentNotes: selectedLesson.assessmentNotes != null && selectedLesson.assessmentNotes !== '' ? selectedLesson.assessmentNotes : '',
                       isSubFriendly: selectedLesson.isSubFriendly,
-                      subNotes: selectedLesson.subNotes ?? '',
+                      subNotes: selectedLesson.subNotes != null && selectedLesson.subNotes !== '' ? selectedLesson.subNotes : '',
                       expectationIds:
                         selectedLesson.expectations?.map((e, _index) => e.expectation.id) ?? [],
                     });
@@ -761,8 +762,8 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
             <BlankTemplateQuickActions
               schoolInfo={{
                 grade: unitPlan?.longRangePlan ? `Grade ${unitPlan.longRangePlan.grade}` : '',
-                subject: unitPlan?.longRangePlan?.subject ?? '',
-                academicYear: unitPlan?.longRangePlan?.academicYear ?? '',
+                subject: unitPlan?.longRangePlan?.subject || '',
+                academicYear: unitPlan?.longRangePlan?.academicYear || '',
               }}
               templateType="lesson"
             />
@@ -893,26 +894,26 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
                           setEditingLesson(lesson.id);
                           setFormData({
                             title: lesson.title,
-                            titleFr: lesson.titleFr ?? '',
+                            titleFr: lesson.titleFr || '',
                             date: lesson.date.split('T')[0],
                             duration: lesson.duration,
-                            mindsOn: lesson.mindsOn ?? '',
-                            mindsOnFr: lesson.mindsOnFr ?? '',
-                            action: lesson.action ?? '',
-                            actionFr: lesson.actionFr ?? '',
-                            consolidation: lesson.consolidation ?? '',
-                            consolidationFr: lesson.consolidationFr ?? '',
-                            learningGoals: lesson.learningGoals ?? '',
-                            learningGoalsFr: lesson.learningGoalsFr ?? '',
+                            mindsOn: lesson.mindsOn || '',
+                            mindsOnFr: lesson.mindsOnFr || '',
+                            action: lesson.action || '',
+                            actionFr: lesson.actionFr || '',
+                            consolidation: lesson.consolidation || '',
+                            consolidationFr: lesson.consolidationFr || '',
+                            learningGoals: lesson.learningGoals || '',
+                            learningGoalsFr: lesson.learningGoalsFr || '',
                             materials: lesson.materials ?? [''],
                             grouping: lesson.grouping ?? 'whole',
                             accommodations: lesson.accommodations ?? [''],
                             modifications: lesson.modifications ?? [''],
                             extensions: lesson.extensions ?? [''],
                             assessmentType: lesson.assessmentType ?? 'formative',
-                            assessmentNotes: lesson.assessmentNotes ?? '',
+                            assessmentNotes: lesson.assessmentNotes || '',
                             isSubFriendly: lesson.isSubFriendly,
-                            subNotes: lesson.subNotes ?? '',
+                            subNotes: lesson.subNotes || '',
                             expectationIds: lesson.expectations?.map((e, _index) => e.expectation.id) ?? [],
                           });
                           setIsCreateModalOpen(true);
@@ -1147,7 +1148,7 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
                         grade={unitPlan?.longRangePlan?.grade ?? 1}
                         learningGoals={formData.learningGoals ? [formData.learningGoals] : []}
                         lessonTitle={formData.title}
-                        subject={unitPlan?.longRangePlan?.subject ?? ''}
+                        subject={unitPlan?.longRangePlan?.subject || ''}
                         unitContext={
                           unitPlan
                             ? {

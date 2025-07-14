@@ -61,8 +61,8 @@ function validateAuthInputs(isRegister = false) {
     const { password } = req.body;
 
     // Check for missing or non-string email/password
-    if (email === null || email === undefined || email === '' || 
-        password === null || password === undefined || password === '' || 
+    if (!email || email === '' || 
+        !password || password === '' || 
         typeof email !== 'string' || typeof password !== 'string') {
       res.status(400).json({ error: 'Email and password are required' });
       return;
@@ -80,7 +80,7 @@ function validateAuthInputs(isRegister = false) {
     }
 
     // For register, check if name is provided
-    if (isRegister && (req.body.name === null || req.body.name === undefined || req.body.name === '')) {
+    if (isRegister && (!req.body.name || req.body.name === '')) {
       res.status(400).json({ error: 'Email, password, and name are required' });
       return;
     }
@@ -182,7 +182,7 @@ function createAuthRouter(prisma = defaultPrisma) {
   // Simple auth check endpoint - returns userId if authenticated
   router.get('/check', authenticate, (req: Request, res: Response): void => {
     const userId = req.user?.id;
-    if (userId === null || userId === undefined) {
+    if (!userId) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }

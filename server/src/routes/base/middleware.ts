@@ -44,7 +44,7 @@ export const optionalAuth = (
   next: NextFunction,
 ): void => {
   const userId = req.user?.id;
-  if (userId !== null && userId !== undefined) {
+  if (userId) {
     req.userId = userId;
   }
   next();
@@ -206,10 +206,10 @@ export const sanitizeInput = (req: Request, _res: Response, next: NextFunction):
     return value;
   };
 
-  if (req.body !== null && req.body !== undefined) {
+  if (req.body) {
     req.body = sanitizeValue(req.body);
   }
-  if (req.query !== null && req.query !== undefined) {
+  if (req.query) {
     req.query = sanitizeValue(req.query) as ParsedQs;
   }
 
@@ -271,7 +271,7 @@ export const errorHandler = (
  */
 export const corsMiddleware = (allowedOrigins: string[]) => (req: Request, res: Response, next: NextFunction): void => {
     const {origin} = req.headers;
-    if (origin !== null && origin !== undefined && origin !== '' && allowedOrigins.includes(origin)) {
+    if (origin && allowedOrigins.includes(origin)) {
       res.setHeader('Access-Control-Allow-Origin', origin);
     }
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');

@@ -47,9 +47,9 @@ export const ButtonWithShortcut = React.forwardRef<HTMLButtonElement, ButtonWith
         (_e): void => {
           if (disabled !== true) {
             // Call the shortcut handler or the regular onClick
-            if (onShortcutTrigger !== null && onShortcutTrigger !== undefined) {
+            if (onShortcutTrigger) {
               onShortcutTrigger();
-            } else if (onClick !== null && onClick !== undefined) {
+            } else if (onClick) {
               const syntheticEvent = new MouseEvent(
                 'click',
               ) as unknown as React.MouseEvent<HTMLButtonElement>;
@@ -74,7 +74,7 @@ export const ButtonWithShortcut = React.forwardRef<HTMLButtonElement, ButtonWith
       <Button ref={ref} aria-label="Click button" onClick={onClick} {...props}>
         <span className="flex items-center gap-2">
           {children}
-          {shortcut !== null && shortcut !== undefined && showShortcutHint && (
+          {shortcut && showShortcutHint && (
             <ShortcutHint className="ml-1" position="inline" shortcut={shortcut} size="xs" />
           )}
         </span>

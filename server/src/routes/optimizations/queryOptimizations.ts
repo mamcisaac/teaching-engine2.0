@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Database Query Optimizations
  * Centralized optimizations for common query patterns
@@ -7,6 +6,28 @@
 import type { Prisma } from '@teaching-engine/database';
 
 import { logger } from '../../logger';
+
+// Type definitions for query optimization
+type PrismaModel = {
+  findMany(args: Record<string, unknown>): Promise<unknown[]>;
+  count(args: Record<string, unknown>): Promise<number>;
+};
+
+type PaginationOptions = {
+  limit: number;
+  offset: number;
+  orderBy?: Record<string, 'asc' | 'desc'>;
+  include?: Record<string, unknown>;
+  select?: Record<string, boolean>;
+};
+
+type PaginatedResult<T> = {
+  items: T[];
+  total: number;
+};
+
+type WhereCondition = Record<string, unknown>;
+type SortOrder = 'asc' | 'desc';
 /**
  * Optimized select patterns for common relationships
  */
@@ -201,16 +222,10 @@ export const optimizedQueries = {
    * Get paginated results with count optimization
    */
   async paginatedQuery<T>(
-    model: any,
-    where: any,
-    options: {
-      limit: number;
-      offset: number;
-      orderBy?: any;
-      include?: any;
-      select?: any;
-    }
-  ): Promise<{ items: T[]; total: number }> {
+    model: PrismaModel,
+    where: WhereCondition,
+    options: PaginationOptions
+  ): Promise<PaginatedResult<T>> {
     const { limit, offset, orderBy, include, select } = options;
 
     // Use transaction for consistency
@@ -232,7 +247,7 @@ export const optimizedQueries = {
   /**
    * Optimized search query with text search
    */
-  createSearchWhere(searchTerm: string, fields: string[]): any {
+  createSearchWhere(searchTerm: string, fields: string[]): WhereCondition {
     if (searchTerm === '' || searchTerm === undefined || fields.length === 0) {
 return {};
 }
@@ -254,17 +269,17 @@ return {};
     dateField: string,
     startDate?: string | Date,
     endDate?: string | Date
-  ): any {
-    const where: any = {};
+  ): WhereCondition {
+    const where: WhereCondition = {};
 
     if (startDate || endDate) {
       where[dateField] = {};
       if (startDate) {
-where[dateField].gte = new Date(startDate);
-}
+        (where[dateField] as Record<string, unknown>).gte = new Date(startDate);
+      }
       if (endDate) {
-where[dateField].lte = new Date(endDate);
-}
+        (where[dateField] as Record<string, unknown>).lte = new Date(endDate);
+      }
     }
 
     return where;
@@ -273,7 +288,7 @@ where[dateField].lte = new Date(endDate);
   /**
    * Ownership filter for user-specific data
    */
-  createOwnershipWhere(userId: number, additionalWhere?: any): any {
+  createOwnershipWhere(userId: number, additionalWhere?: WhereCondition): WhereCondition {
     return {
       AND: [
         {
@@ -322,9 +337,9 @@ export const queryPerformance = {
    */
   createOptimizedSort(
     sortBy: string,
-    sortOrder: 'asc' | 'desc',
+    sortOrder: SortOrder,
     allowedFields: string[]
-  ): any {
+  ): Record<string, SortOrder> {
     if (!allowedFields.includes(sortBy)) {
       return { createdAt: 'desc' }; // Default safe sort
     }
@@ -374,18 +389,19 @@ export const queryUtils = {
   /**
    * Limit the depth of includes to prevent N+1 queries
    */
-  limitIncludeDepth(include: any, maxDepth = 3): any {
+  limitIncludeDepth(include: Record<string, unknown>, maxDepth = 3): Record<string, unknown> | undefined {
     if (maxDepth <= 0) {
-return undefined;
-}
+      return undefined;
+    }
 
-    const limited: any = {};
+    const limited: Record<string, unknown> = {};
     for (const [key, value] of Object.entries(include)) {
       if (typeof value === 'object' && value !== null) {
-        if ('include' in value) {
+        if (typeof value === 'object' && value !== null && 'include' in value) {
+          const valueObj = value as Record<string, unknown>;
           limited[key] = {
-            ...value,
-            include: queryUtils.limitIncludeDepth(value.include, maxDepth - 1),
+            ...valueObj,
+            include: queryUtils.limitIncludeDepth(valueObj.include as Record<string, unknown>, maxDepth - 1),
           };
         } else {
           limited[key] = value;
@@ -400,7 +416,7 @@ return undefined;
   /**
    * Create efficient pagination cursor
    */
-  createCursor(id: string, sortField: string, sortValue: any): any {
+  createCursor(id: string, sortField: string, sortValue: unknown): Record<string, unknown> {
     return {
       id,
       [sortField]: sortValue,

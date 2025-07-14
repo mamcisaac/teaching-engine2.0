@@ -3,8 +3,8 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 
-import { cognateApi } from './api';
 import type { CognatePair, CognateInput, CognateFilters, CognateStats } from './api';
+import { cognateApi } from './api';
 
 // Query hooks
 export const useCognates = (userId?: number, filters?: CognateFilters): UseQueryResult<CognatePair[]> =>

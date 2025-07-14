@@ -1,5 +1,6 @@
 // Lesson Plan Store with Offline Support
 
+
 import { create } from 'zustand';
 import { persist, subscribeWithSelector } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
@@ -9,8 +10,9 @@ import type { StoredData } from '../services/offlineStorage';
 import { offlineStorage } from '../services/offlineStorage';
 import { logger } from '../utils/logger';
 
-import { createOfflineSlice, createAutoSave } from './basePlanningStore';
 import type { OfflineState, BaseActions } from './basePlanningStore';
+import { createOfflineSlice, createAutoSave } from './basePlanningStore';
+
 export interface LessonPlan {
   id: string;
   title: string;
@@ -116,10 +118,10 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
               if (get().isOnline) {
                 let url = '/api/etfo-lesson-plans';
                 const params = new URLSearchParams();
-                if (startDate !== null && startDate !== undefined && startDate !== '') {
+                if (startDate && startDate !== '') {
 params.append('startDate', startDate);
 }
-                if (endDate !== null && endDate !== undefined && endDate !== '') {
+                if (endDate && endDate !== '') {
 params.append('endDate', endDate);
 }
                 if (params.toString() !== '') {
@@ -143,7 +145,7 @@ url += `?${params.toString()}`;
                 const cacheKey = `lesson-plans-${startDate ?? 'all'}-${endDate ?? 'all'}`;
                 const cachedPlans = await offlineStorage.getCachedData<LessonPlan[]>(cacheKey);
 
-                if (cachedPlans !== null && cachedPlans !== undefined) {
+                if (cachedPlans) {
                   set((state) => {
                     state.lessonPlans = cachedPlans;
                     state.isLoading = false;
@@ -197,7 +199,7 @@ url += `?${params.toString()}`;
                   `lesson-plan-${id}`,
                 );
 
-                if (cachedLesson !== null && cachedLesson !== undefined) {
+                if (cachedLesson) {
                   set((state) => {
                     state.currentLesson = cachedLesson;
                     state.isLoading = false;
@@ -205,7 +207,7 @@ url += `?${params.toString()}`;
                 } else {
                   // Try to find in the list
                   const lesson = get().lessonPlans.find((p) => p.id === id);
-                  if (lesson !== null && lesson !== undefined) {
+                  if (lesson) {
                     set((state) => {
                       state.currentLesson = lesson;
                       state.isLoading = false;
@@ -383,7 +385,7 @@ url += `?${params.toString()}`;
 
           duplicateLessonPlan: async (id: string, newDate: string): Promise<LessonPlan> => {
             const originalLesson = get().lessonPlans.find((p) => p.id === id);
-            if (originalLesson === null || originalLesson === undefined) {
+            if (!originalLesson) {
               throw new Error('Lesson not found');
             }
 

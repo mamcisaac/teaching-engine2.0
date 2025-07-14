@@ -52,8 +52,8 @@ const logFormat = format.combine(
       message: info.message,
       correlationId: context?.correlationId ?? 'no-correlation-id',
       ...(context?.userId !== undefined ? { userId: context.userId } : {}),
-      ...(context?.requestId ? { requestId: context.requestId } : {}),
-      ...(context?.sessionId ? { sessionId: context.sessionId } : {}),
+      ...(context?.requestId !== undefined && context.requestId !== null && context.requestId !== '' ? { requestId: context.requestId } : {}),
+      ...(context?.sessionId !== undefined && context.sessionId !== null && context.sessionId !== '' ? { sessionId: context.sessionId } : {}),
       ...(info.duration !== undefined ? { duration: info.duration } : {}),
       ...(info.meta !== undefined ? { meta: info.meta } : {}),
       ...(info.error !== undefined && info.error !== null && typeof info.error === 'object' && 'message' in info.error ? {
@@ -291,7 +291,7 @@ export function correlationMiddleware(req: Request, res: Response, next: NextFun
  * Sanitize request body to remove sensitive data
  */
 function sanitizeBody(body: unknown): unknown {
-  if (body === null || body === undefined || typeof body !== 'object') {
+  if (!body || typeof body !== 'object') {
     return body;
   }
 
@@ -311,7 +311,7 @@ function sanitizeBody(body: unknown): unknown {
  * Sanitize headers to remove sensitive data
  */
 function sanitizeHeaders(headers: unknown): unknown {
-  if (headers === null || headers === undefined || typeof headers !== 'object') {
+  if (!headers || typeof headers !== 'object') {
     return headers;
   }
 

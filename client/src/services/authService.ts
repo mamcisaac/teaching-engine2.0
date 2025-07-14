@@ -2,73 +2,23 @@
  * Centralized authentication service for managing tokens and auth state
  */
 
+import { authClient } from '../api/auth/authClient';
 import type { User } from '../types';
-
+import type { 
+  AuthTokens,
+  LoginResponse,
+  TokenRefreshResponse,
+  AuthServiceInterface
+} from '../types/auth';
 import { logger } from '../utils/logger';
 import { safeJsonParse } from '../utils/typeGuards';
 
-// Dynamic import to avoid circular dependency
-interface LoginCredentials {
-  email: string;
-  password: string;
-}
-
-interface RegisterData {
-  email: string;
-  password: string;
-  name: string;
-}
-
-interface AuthResponse {
-  user: User;
-  accessToken?: string;
-  token?: string;
-  tokens?: AuthTokens;
-}
-
-interface AuthApiModule {
-  authApi: {
-    login: (credentials: LoginCredentials) => Promise<AuthResponse>;
-    register: (userData: RegisterData) => Promise<AuthResponse>;
-    logout: () => Promise<void>;
-    refreshToken: (refreshToken: string) => Promise<{ accessToken: string }>;
-    checkAuth: () => Promise<User>;
-    forgotPassword: (email: string) => Promise<{ message: string }>;
-    resetPassword: (token: string, newPassword: string) => Promise<{ message: string }>;
-  };
-}
-
-// Type guard for auth response
-function _isValidAuthResponse(data: unknown): data is AuthResponse {
-  return typeof data === 'object' && data !== null && 'user' in data;
-}
-
 // Type guard for token refresh response
-function isValidTokenResponse(data: unknown): data is { tokens?: AuthTokens; token?: string; accessToken?: string } {
+function isValidTokenResponse(data: unknown): data is TokenRefreshResponse {
   return typeof data === 'object' && data !== null;
 }
 
-let authApiModule: AuthApiModule | undefined;
-const getAuthApi = async (): Promise<AuthApiModule['authApi']> => {
-  if (authApiModule === undefined) {
-    authApiModule = await import('../api/auth/authApi') as AuthApiModule;
-  }
-  return authApiModule.authApi;
-};
-export interface AuthTokens {
-  accessToken: string;
-  refreshToken?: string;
-  expiresAt?: number;
-}
-
-export interface LoginResponse {
-  user: User;
-  tokens?: AuthTokens;
-  token?: string; // Legacy support
-  accessToken?: string; // Current backend format
-}
-
-class AuthService {
+class AuthService implements AuthServiceInterface {
   private readonly ACCESS_TOKEN_KEY = 'auth_access_token';
   private readonly REFRESH_TOKEN_KEY = 'auth_refresh_token';
   private readonly USER_KEY = 'auth_user';
@@ -80,7 +30,7 @@ class AuthService {
   getAccessToken(): string | null {
     // Check if token is expired
     const expiresAt = this.getTokenExpiration();
-    if (expiresAt !== null && expiresAt !== undefined && Date.now() >= expiresAt) {
+    if (expiresAt && Date.now() >= expiresAt) {
       this.clearTokens();
       return null;
     }
@@ -187,8 +137,7 @@ class AuthService {
    */
   async login(email: string, password: string): Promise<LoginResponse> {
     try {
-      const authApi = await getAuthApi();
-      const data = await authApi.login({ email, password });
+      const data = await authClient.login({ email, password });
 
       if (data.user !== undefined) {
         this.setUser(data.user);
@@ -216,8 +165,7 @@ class AuthService {
    */
   async logout(): Promise<void> {
     try {
-      const authApi = await getAuthApi();
-      await authApi.logout();
+      await authClient.logout();
     } catch (error) {
       logger.warn('Logout request failed:', error);
     } finally {
@@ -294,15 +242,15 @@ class AuthService {
       return null;
     }
 
-    const baseURL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:3000';
-
     try {
-      const response = await fetch(`${baseURL}/api/auth/me`, {
-        headers: this.getAuthHeaders(),
-        credentials: 'include',
-      });
-
-      if (response.status === 401) {
+      const user = await authClient.checkAuth(this.getAuthHeaders());
+      this.setUser(user);
+      return user;
+    } catch (error) {
+      // Check if it's a 401 error (could be determined from error message or type)
+      const isUnauthorized = error instanceof Error && error.message.includes('401');
+      
+      if (isUnauthorized) {
         // Try to refresh token if available, but only if not already retrying
         if (!isRetry && this.hasRefreshToken() && (await this.refreshToken())) {
           // Retry with new token
@@ -313,24 +261,12 @@ class AuthService {
         return null;
       }
 
-      if (response.ok === false) {
-        throw new Error(`Auth verification failed: ${response.status}`);
-      }
-
-      const userData: unknown = await response.json();
-      if (typeof userData === 'object' && userData !== null && 'id' in userData) {
-        const user = userData as User;
-        this.setUser(user);
-        return user;
-      }
-      throw new Error('Invalid user data received');
-    } catch (error) {
       logger.error('Auth verification failed:', error);
 
       // Try token refresh on network errors, but only if not already retrying
       if (!isRetry && this.hasRefreshToken()) {
         const refreshSuccess = await this.refreshToken();
-        if (refreshSuccess) {
+        if (refreshSuccess === true) {
           // Retry once after successful refresh
           try {
             return await this.verifyAuth(true);
@@ -368,7 +304,7 @@ class AuthService {
       // If we have a refresh token, try to refresh
       if (this.hasRefreshToken()) {
         const refreshSuccess = await this.refreshToken();
-        if (refreshSuccess) {
+        if (refreshSuccess === true) {
           return true; // Indicate that the request should be retried
         }
       }

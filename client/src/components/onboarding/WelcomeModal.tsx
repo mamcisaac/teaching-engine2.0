@@ -8,7 +8,7 @@ import { Button } from '../ui/Button';
 export function WelcomeModal(): React.ReactElement | null {
   const { state, startOnboarding, skipOnboarding } = useOnboarding();
 
-  if (!state.isFirstTimeUser || state.skippedOnboarding || (state.currentFlow !== null && state.currentFlow !== undefined)) {
+  if (!state.isFirstTimeUser || state.skippedOnboarding || state.currentFlow) {
     return null;
   }
 

@@ -1,15 +1,11 @@
 import type { AxiosInstance, AxiosRequestConfig, AxiosError } from 'axios';
 
+import type { AuthServiceInterface } from '../../types/auth';
 import { logger } from '../../utils/logger';
 
 // Import auth service dynamically to avoid circular dependency
 interface AuthServiceModule {
-  authService: {
-    getAuthHeaders: () => { Authorization?: string };
-    ensureValidToken: () => Promise<boolean>;
-    handleAuthError: (response: Response) => Promise<boolean>;
-    clearTokens: () => void;
-  };
+  authService: AuthServiceInterface;
 }
 
 let authServiceModule: AuthServiceModule | undefined;

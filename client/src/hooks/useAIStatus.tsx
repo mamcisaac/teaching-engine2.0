@@ -1,5 +1,6 @@
-import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import type { ReactNode } from 'react';
+import React, { useState, createContext, useContext } from 'react';
 
 import { apiClient } from '../api/core/client';
 export interface AIStatusInfo {
@@ -281,8 +282,6 @@ return 'Limited';
 }
 
 // Provider for AI status context
-import type { ReactNode } from 'react';
-import React, { createContext, useContext } from 'react';
 
 const AIStatusContext = createContext<AIStatusHookReturn | null>(null);
 

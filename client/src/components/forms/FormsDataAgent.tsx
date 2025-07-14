@@ -1,3 +1,4 @@
+
 import {
   Database,
   FileUp,
@@ -25,11 +26,10 @@ import { Label } from '../ui/Label';
 import { Progress } from '../ui/Progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 
-// import { Textarea } from '../ui/Textarea';
-import type { LessonPlanFormData } from './LessonPlanForm';
 import { LessonPlanForm } from './LessonPlanForm';
-import type { UnitPlanFormData } from './UnitPlanForm';
+import type { LessonPlanFormData } from './LessonPlanForm';
 import { UnitPlanForm } from './UnitPlanForm';
+import type { UnitPlanFormData } from './UnitPlanForm';
 
 interface BatchOperation {
   id: string;
@@ -97,7 +97,7 @@ export function FormsDataAgent({
       if (!result.isValid) {
         errors.push(...Object.values(result.errors));
       }
-    } else if (operation.type === 'lesson') {
+    } else {
       const result = validateLessonPlan(operation.data as LessonPlanFormData);
       if (!result.isValid) {
         errors.push(...Object.values(result.errors));
@@ -255,7 +255,7 @@ return;
 
       if (Array.isArray(data)) {
         // Determine type based on data structure
-        const type = (data[0] && 'unitPlanId' in data[0]) ? 'lesson' : 'unit';
+        const type = (data.length > 0 && 'unitPlanId' in data[0]) ? 'lesson' : 'unit';
         onDataImport?.(type, data);
       }
     } catch (_error) {

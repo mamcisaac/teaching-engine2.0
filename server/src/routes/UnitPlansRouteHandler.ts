@@ -130,7 +130,7 @@ class UnitPlanService extends BaseService {
     } = filtersObj;
 
     const longRangePlanFilter: Prisma.LongRangePlanWhereInput = { userId };
-    if (subject) {
+    if (subject !== undefined) {
       longRangePlanFilter.subject = { contains: String(subject) };
     }
 
@@ -138,18 +138,18 @@ class UnitPlanService extends BaseService {
       longRangePlan: longRangePlanFilter,
     };
 
-    if (longRangePlanId) {
+    if (longRangePlanId !== undefined) {
 where.longRangePlanId = longRangePlanId;
 }
-    if (startDate) {
+    if (startDate !== undefined) {
 where.startDate = { gte: new Date(String(startDate)) };
 }
-    if (endDate) {
+    if (endDate !== undefined) {
 where.endDate = { lte: new Date(String(endDate)) };
 }
 
     // Search functionality using optimized search utility
-    if (search) {
+    if (search !== undefined) {
       where.OR = [
         ...optimizedQueries.createSearchWhere(String(search), ['title', 'description', 'bigIdeas'])
           .OR,
@@ -159,8 +159,8 @@ where.endDate = { lte: new Date(String(endDate)) };
     // Date range filtering
     const dateWhere = optimizedQueries.createDateRangeWhere(
       'startDate',
-      startDate ? String(startDate) : undefined,
-      endDate ? String(endDate) : undefined,
+      startDate !== undefined ? String(startDate) : undefined,
+      endDate !== undefined ? String(endDate) : undefined,
     );
     if (Object.keys(dateWhere).length > 0) {
       Object.assign(where, dateWhere);
@@ -168,15 +168,15 @@ where.endDate = { lte: new Date(String(endDate)) };
 
     // Sorting with validation
     const orderBy = queryPerformance.createOptimizedSort(
-      String(sortBy || 'startDate'),
-      (sortOrder || 'asc') as 'asc' | 'desc',
+      String(sortBy !== undefined ? sortBy : 'startDate'),
+      (sortOrder !== undefined ? sortOrder : 'asc') as 'asc' | 'desc',
       ['title', 'startDate', 'endDate', 'createdAt'],
     );
 
     const result = await queryPerformance.monitorQuery('unitPlan.findMany', () =>
       optimizedQueries.paginatedQuery(prisma.unitPlan, where, {
-        limit: Number(limit || 20),
-        offset: Number(offset || 0),
+        limit: Number(limit !== undefined ? limit : 20),
+        offset: Number(offset !== undefined ? offset : 0),
         orderBy,
         include: optimizedIncludes.unitPlan,
       }),
@@ -188,9 +188,9 @@ where.endDate = { lte: new Date(String(endDate)) };
       unitPlans,
       pagination: {
         total,
-        limit: Number(limit || 20),
-        offset: Number(offset || 0),
-        hasMore: Number(offset || 0) + Number(limit || 20) < total,
+        limit: Number(limit !== undefined ? limit : 20),
+        offset: Number(offset !== undefined ? offset : 0),
+        hasMore: Number(offset !== undefined ? offset : 0) + Number(limit !== undefined ? limit : 20) < total,
       },
     };
   }
@@ -256,7 +256,7 @@ where.endDate = { lte: new Date(String(endDate)) };
       technologyIntegration: data.technologyIntegration,
       communityConnections: data.communityConnections,
       // Add expectations relationship if provided
-      ...(expectations &&
+      ...(expectations !== undefined &&
         Array.isArray(expectations) &&
         expectations.length > 0 ? {
           expectations: {
@@ -269,7 +269,7 @@ where.endDate = { lte: new Date(String(endDate)) };
           },
         } : {}),
       // Add resources relationship if provided
-      ...(resources &&
+      ...(resources !== undefined &&
         Array.isArray(resources) &&
         resources.length > 0 ? {
           resources: {
@@ -308,7 +308,7 @@ where.endDate = { lte: new Date(String(endDate)) };
       },
     });
 
-    if (unitPlan === null || unitPlan === undefined) {
+    if (!unitPlan) {
       throw new Error('Unit plan not found or access denied');
     }
 
@@ -324,10 +324,10 @@ where.endDate = { lte: new Date(String(endDate)) };
     });
 
     // Handle date conversion
-    if (data.startDate !== null && data.startDate !== undefined && data.startDate !== '') {
+    if (data.startDate && data.startDate !== '') {
 updateData.startDate = new Date(data.startDate);
 }
-    if (data.endDate !== null && data.endDate !== undefined && data.endDate !== '') {
+    if (data.endDate && data.endDate !== '') {
 updateData.endDate = new Date(data.endDate);
 }
 
@@ -335,7 +335,7 @@ updateData.endDate = new Date(data.endDate);
       where: { id },
       data: {
         ...updateData,
-        ...(expectationIds && Array.isArray(expectationIds) ? {
+        ...(expectationIds !== undefined && Array.isArray(expectationIds) ? {
           expectations: {
             deleteMany: {},
             create: expectationIds.map((expectationId: unknown) => ({
@@ -362,7 +362,7 @@ updateData.endDate = new Date(data.endDate);
       },
     });
 
-    if (unitPlan === null || unitPlan === undefined) {
+    if (!unitPlan) {
       return false;
     }
 
@@ -382,7 +382,7 @@ updateData.endDate = new Date(data.endDate);
       },
     });
 
-    if (unitPlan === null || unitPlan === undefined) {
+    if (!unitPlan) {
       throw new Error('Unit plan not found or access denied');
     }
 
@@ -482,9 +482,9 @@ updateData.endDate = new Date(data.endDate);
         resources: {
           create: sourceUnitPlan.resources.map((resource: { title: string; url: string | null; type: string; notes: string | null }) => ({
             title: resource.title,
-            url: resource.url ?? '',
+            url: resource.url || '',
             type: resource.type,
-            notes: resource.notes ?? '',
+            notes: resource.notes || '',
           })),
         },
       },
@@ -647,7 +647,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
       const duplicateData = {
         unitPlanId: parsedData.unitPlanId,
         longRangePlanId: parsedData.longRangePlanId,
-        title: parsedData.title ?? '', // Will use default in the duplicate method if empty
+        title: parsedData.title || '', // Will use default in the duplicate method if empty
       };
 
       const duplicatedUnitPlan = await this.unitPlanService.duplicate(duplicateData, userId);

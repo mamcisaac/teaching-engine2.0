@@ -1,6 +1,7 @@
 // Lazy Loading Service for Large Documents
 // Provides efficient loading of curriculum documents with caching
 
+
 import React from 'react';
 
 import { apiClient } from '../api/core/client';
@@ -149,7 +150,7 @@ class LazyLoader {
             options.onProgress(progress);
           }
         }).catch((error: unknown) => {
-          console.error('Error updating progress for chunk:', error);
+          logger.error('Error updating progress for chunk:', error);
         });
       }
 
@@ -258,7 +259,7 @@ class LazyLoader {
     if (documentId !== undefined && documentId !== '') {
       this.documentCache.delete(documentId);
       void offlineStorage.deleteCachedData(`document-${documentId}`).catch((error: unknown) => {
-        console.error('Error deleting cached data:', error);
+        logger.error('Error deleting cached data:', error);
       });
     } else {
       this.documentCache.clear();
@@ -287,7 +288,7 @@ export function useLazyDocument(documentId: string | null, options?: LoadOptions
   const [progress, setProgress] = React.useState(0);
 
   React.useEffect(() => {
-    if (documentId === null || documentId === undefined || documentId === '') {
+    if (!documentId || documentId === '') {
       return;
     }
 
@@ -354,19 +355,19 @@ export function LazyDocument<T = unknown>({
 
   React.useEffect(() => {
     const element = elementRef.current;
-    if (element !== null && element !== undefined) {
+    if (element) {
       lazyLoader.observeElement(element, documentId);
     }
 
     return (): void => {
-      if (element !== null && element !== undefined) {
+      if (element) {
         lazyLoader.unobserveElement(element);
       }
     };
   }, [documentId]);
 
   React.useEffect(() => {
-    if (error !== null && error !== undefined && onError !== undefined) {
+    if (error && onError !== undefined) {
       onError(error);
     }
   }, [error, onError]);
@@ -375,7 +376,7 @@ export function LazyDocument<T = unknown>({
     <div ref={elementRef}>
       {loading && (placeholder ?? <div>Loading...</div>)}
       {error && <div>Error loading document: {(error instanceof Error ? error.message : String(error))}</div>}
-      {document !== null && document !== undefined && <>{render(document as T)}</>}
+      {document && <>{render(document as T)}</>}
     </div>
   );
 }

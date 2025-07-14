@@ -1,3 +1,4 @@
+
 import { format, startOfMonth, endOfMonth } from 'date-fns';
 import { 
   PlusCircle, Mail, Calendar, Users,
@@ -31,7 +32,7 @@ export default function ParentNewsletterPage(): React.ReactElement {
   const { t: _t, language } = useLanguage();
   
   // State
-  const [showCreateForm, setShowCreateForm] = useState(!id);
+  const [showCreateForm, setShowCreateForm] = useState(id == null);
   const [selectedStudentIds, setSelectedStudentIds] = useState<number[]>([]);
   const [dateRange, setDateRange] = useState({
     from: startOfMonth(new Date()),
@@ -318,7 +319,7 @@ return;
                 disabled={generateNewsletter.isPending}
                 onClick={() => {
                   void handleGenerateNewsletter().catch((error: unknown) => {
-                    console.error('Error generating newsletter:', error);
+                    logger.error('Error generating newsletter:', error);
                   });
                 }}
               >
@@ -337,7 +338,7 @@ return;
   }
 
   // Newsletter editor view
-  if (currentNewsletter) {
+  if (currentNewsletter != null) {
     return (
       <div className="max-w-6xl mx-auto p-6">
         <div className="mb-6">
@@ -377,17 +378,17 @@ return;
           isGenerating={regenerateNewsletter.isPending}
           onRegenerate={(tone?: NewsletterTone) => {
             void handleRegenerateNewsletter(tone).catch((error: unknown) => {
-              console.error('Error regenerating newsletter:', error);
+              logger.error('Error regenerating newsletter:', error);
             });
           }}
           onSave={(draft: NewsletterDraft) => {
             void handleSaveDraft(draft).catch((error: unknown) => {
-              console.error('Error saving draft:', error);
+              logger.error('Error saving draft:', error);
             });
           }}
           onSend={(draft: NewsletterDraft) => {
             void handleSendNewsletter(draft).catch((error: unknown) => {
-              console.error('Error sending newsletter:', error);
+              logger.error('Error sending newsletter:', error);
             });
           }}
         />

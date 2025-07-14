@@ -14,7 +14,7 @@ interface OnboardingHighlightProps {
 }
 
 export function OnboardingHighlight({ highlightPosition, onClick }: OnboardingHighlightProps): React.ReactElement | null {
-  if (highlightPosition === null || highlightPosition === undefined) {
+  if (!highlightPosition) {
 return null;
 }
 

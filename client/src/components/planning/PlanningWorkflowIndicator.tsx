@@ -1,3 +1,4 @@
+
 import { CheckCircle2, Circle, Lock } from 'lucide-react';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -76,7 +77,7 @@ export function PlanningWorkflowIndicator({
                 <h4 className="font-medium text-gray-900">{level.title}</h4>
                 <p className="text-sm text-gray-600">{level.description}</p>
 
-                {level.requiredFields !== null && level.requiredFields !== undefined && level.requiredFields.length > 0 && (
+                {level.requiredFields && level.requiredFields.length > 0 && (
                   <div className="mt-2">
                     <p className="text-xs text-gray-500 mb-1">Required:</p>
                     <div className="flex flex-wrap gap-1">

@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { startOfMonth, endOfMonth, eachDayOfInterval } from 'date-fns';
 import { useState, memo, useMemo } from 'react';
 
@@ -53,9 +54,7 @@ const CalendarViewComponent = memo(({ month, events }: Props): React.ReactElemen
     evts.forEach((e) => {
       if (e.start && e.start !== '') {
         const d = e.start.split('T')[0];
-        if (grouped[d] === undefined) {
-          grouped[d] = [];
-        }
+        grouped[d] = grouped[d] ?? [];
         grouped[d].push(e);
       }
     });

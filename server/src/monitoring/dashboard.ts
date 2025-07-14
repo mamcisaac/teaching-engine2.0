@@ -478,7 +478,7 @@ export const dashboardWebSocketHandler = (ws: any): void => {
       const realtimeData = {
         timestamp: new Date().toISOString(),
         requests_per_second: metrics.counters.http_requests_total || 0,
-        active_connections: ws.clients?.size || 0,
+        active_connections: ws.clients?.size ?? 0,
         memory_usage: process.memoryUsage().heapUsed,
         cpu_usage: getCpuUsage(),
       };

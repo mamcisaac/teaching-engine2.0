@@ -37,7 +37,7 @@ test.describe('Debug React Rendering', () => {
       return {
         exists: !!root,
         innerHTML: root?.innerHTML || 'No root element',
-        childNodes: root?.childNodes.length || 0,
+        childNodes: root?.childNodes.length ?? 0,
       };
     });
     console.log('\n=== REACT ROOT ===');
