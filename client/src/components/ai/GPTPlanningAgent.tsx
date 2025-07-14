@@ -116,7 +116,7 @@ export function GPTPlanningAgent({
   // Send message
   const sendMessageMutation = useMutation({
     mutationFn: async (message: string) => {
-      if (sessionId == null || sessionId.length === 0) {
+      if (sessionId === null || sessionId.length === 0) {
 throw new Error('No session');
 }
       const response = await api.post<{ data: MessageResponse }>('/api/ai/agent/messages', {
@@ -181,7 +181,7 @@ throw new Error('No session');
     return () => { // Cleanup
     };
 
-    if (isOpen && (sessionId == null || sessionId.length === 0)) {
+    if (isOpen && (sessionId === null || sessionId?.length === 0)) {
       startSessionMutation.mutate();
     }
   }, [isOpen, sessionId, startSessionMutation]);
@@ -210,7 +210,7 @@ throw new Error('No session');
       recognition.lang = 'en-US';
 
       recognition.onresult = (event: SpeechRecognitionEvent): void => {
-        const {transcript} = event.results[0][0];
+        const transcript = event.results[0][0].transcript;
         setInputValue(transcript);
         setIsListening(false);
       };

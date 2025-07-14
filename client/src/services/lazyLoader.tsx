@@ -376,7 +376,7 @@ export function LazyDocument<T = unknown>({
     <div ref={elementRef}>
       {loading && (placeholder ?? <div>Loading...</div>)}
       {error && <div>Error loading document: {(error instanceof Error ? error.message : String(error))}</div>}
-      {document && <>{render(document as T)}</>}
+      {document ? render(document as T) : null}
     </div>
   );
 }

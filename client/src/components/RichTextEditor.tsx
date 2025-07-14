@@ -80,12 +80,12 @@ export function RichTextEditor({
   return (
     <div className={`relative ${className}`}>
       <div
-        dangerouslySetInnerHTML={{ __html: sanitizeHtml(html) }}
         contentEditable
         suppressContentEditableWarning
         aria-label="Rich text editor"
         aria-multiline="true"
         className="border border-gray-300 rounded-md p-3 min-h-[150px] focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+        dangerouslySetInnerHTML={{ __html: sanitizeHtml(html) }}
         data-placeholder={placeholder}
         role="textbox"
         style={{

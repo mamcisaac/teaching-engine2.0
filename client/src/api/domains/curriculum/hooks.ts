@@ -7,7 +7,6 @@ import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 
 import { curriculumApi } from './api';
 
-
 // Subject Query Hooks
 export const useSubjects = (): UseQueryResult<Subject[]> =>
   useQuery({

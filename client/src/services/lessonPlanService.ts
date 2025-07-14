@@ -81,7 +81,7 @@ export class LessonPlanService {
 
   // Check if lesson is complete
   static isComplete(lesson: ETFOLessonPlan): boolean {
-    return (
+    return Boolean(
       lesson.title &&
       lesson.learningGoals &&
       lesson.mindsOn &&

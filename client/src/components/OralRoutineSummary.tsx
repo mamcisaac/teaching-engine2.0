@@ -4,6 +4,16 @@ interface OralRoutineSummaryProps {
   className?: string;
 }
 
+function getProgressBarColor(completionRate: number): string {
+  if (completionRate >= 80) {
+    return 'bg-green-500';
+  }
+  if (completionRate >= 60) {
+    return 'bg-yellow-500';
+  }
+  return 'bg-red-500';
+}
+
 export function OralRoutineSummary({ className = '' }: OralRoutineSummaryProps): React.ReactElement {
   // Get current week
   const today = new Date();
@@ -87,13 +97,7 @@ return '👍';
       <div className="mt-3">
         <div className="w-full bg-gray-200 rounded-full h-2">
           <div
-            className={`h-2 rounded-full transition-all duration-300 ${
-              completionRate >= 80
-                ? 'bg-green-500'
-                : completionRate >= 60
-                  ? 'bg-yellow-500'
-                  : 'bg-red-500'
-            }`}
+            className={`h-2 rounded-full transition-all duration-300 ${getProgressBarColor(completionRate)}`}
             style={{ width: `${completionRate}%` }}
           />
         </div>

@@ -46,9 +46,9 @@ export function CalendarEventDetails({
   // Delete mutation
   const deleteMutation = useMutation({
     mutationFn: async () => {
-      if (event.type === 'lesson' && event.metadata?.lessonId) {
+      if (event.type === 'lesson' && event.metadata?.lessonId != null) {
         return apiClient.delete(`/api/etfo-lesson-plans/${event.metadata.lessonId}`);
-      } else if (event.originalData?.id) {
+      } else if (event.originalData?.id != null) {
         return apiClient.delete(`/api/calendar-events/${event.originalData.id}`);
       }
     },
@@ -67,11 +67,11 @@ export function CalendarEventDetails({
   // Update title mutation
   const updateTitleMutation = useMutation({
     mutationFn: async (newTitle: string) => {
-      if (event.type === 'lesson' && event.metadata?.lessonId) {
+      if (event.type === 'lesson' && event.metadata?.lessonId != null) {
         return apiClient.patch(`/api/etfo-lesson-plans/${event.metadata.lessonId}`, {
           title: newTitle,
         });
-      } else if (event.originalData?.id) {
+      } else if (event.originalData?.id != null) {
         return apiClient.patch(`/api/calendar-events/${event.originalData.id}`, {
           title: newTitle,
         });
@@ -98,15 +98,17 @@ export function CalendarEventDetails({
   };
 
   const handleDelete = (): void => {
-    if (window.confirm('Are you sure you want to delete this event?')) {
+    // Use a more accessible confirmation method
+    const userConfirmed = window.confirm('Are you sure you want to delete this event?');
+    if (userConfirmed) {
       deleteMutation.mutate();
     }
   };
 
   const handleViewDetails = (): void => {
-    if (event.type === 'lesson' && event.metadata?.lessonId) {
+    if (event.type === 'lesson' && event.metadata?.lessonId != null) {
       navigate(`/planner/lessons/${event.metadata.lessonId}`);
-    } else if (event.type === 'unit-boundary' && event.metadata?.unitId) {
+    } else if (event.type === 'unit-boundary' && event.metadata?.unitId != null) {
       navigate(`/planner/units/${event.metadata.unitId}`);
     }
   };
@@ -148,7 +150,6 @@ export function CalendarEventDetails({
             {isEditing ? (
               <div className="flex gap-2">
                 <input
-                  autoFocus
                   className="flex-1 px-2 py-1 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                   type="text"
                   value={editedTitle}
@@ -178,7 +179,7 @@ export function CalendarEventDetails({
             ) : (
               <div className="flex justify-between items-start">
                 <h2 className="text-xl font-semibold">{event.title}</h2>
-                {event.metadata?.isEditable && (
+                {event.metadata?.isEditable === true && (
                   <button
                     className="text-gray-500 hover:text-gray-700"
                     onClick={() => {
@@ -199,7 +200,7 @@ export function CalendarEventDetails({
               <span>{format(event.start, 'EEEE, MMMM d, yyyy')}</span>
             </div>
 
-            {!event.originalData?.allDay && event.start.getTime() !== event.end.getTime() && (
+            {!(event.originalData?.allDay === true) && event.start.getTime() !== event.end.getTime() && (
               <div className="flex items-center gap-2 text-gray-600">
                 <Clock className="h-4 w-4" />
                 <span>
@@ -208,14 +209,14 @@ export function CalendarEventDetails({
               </div>
             )}
 
-            {event.metadata?.subject && (
+            {event.metadata?.subject != null && (
               <div className="flex items-center gap-2 text-gray-600">
                 <Book className="h-4 w-4" />
                 <span className="capitalize">{event.metadata.subject}</span>
               </div>
             )}
 
-            {event.originalData?.description ? (
+            {event.originalData?.description != null ? (
               <div className="mt-4">
                 <h4 className="font-medium text-gray-700 mb-1">Description</h4>
                 <p className="text-gray-600 text-sm">{String(event.originalData.description ?? '')}</p>
@@ -230,7 +231,7 @@ export function CalendarEventDetails({
                 View Details
               </Button>
             )}
-            {event.metadata?.isEditable && (
+            {event.metadata?.isEditable === true && (
               <Button
                 className="flex items-center gap-2"
                 disabled={deleteMutation.isPending}

@@ -101,7 +101,7 @@ export function useUnitPlanForm({
   const [formData, setFormData] = useState<UnitPlanFormData>(() => ({
     ...initialFormData,
     ...initialData,
-    longRangePlanId: longRangePlanId ?? initialData?.longRangePlanId || '',
+    longRangePlanId: longRangePlanId ?? (initialData?.longRangePlanId || ''),
   }));
 
   // Auto-save functionality

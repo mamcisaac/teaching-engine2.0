@@ -54,7 +54,7 @@ export function WorkflowGate({ level, children }: WorkflowGateProps): React.Reac
   // Otherwise, show blocked message
   const blockedReason = getBlockedReason(level);
   const previousLevel = getPreviousLevel(level);
-  const previousLevelProgress = (previousLevel != null) ? getLevelProgress(previousLevel) : null;
+  const previousLevelProgress = (previousLevel !== null) ? getLevelProgress(previousLevel) : null;
 
   return (
     <div className="container mx-auto py-8 max-w-2xl">
@@ -73,12 +73,12 @@ export function WorkflowGate({ level, children }: WorkflowGateProps): React.Reac
             <AlertCircle className="h-4 w-4" />
             <AlertTitle>Why is this locked?</AlertTitle>
             <AlertDescription>
-              {blockedReason ||
+              {blockedReason ??
                 'You must complete the previous planning levels before accessing this one.'}
             </AlertDescription>
           </Alert>
 
-          {(previousLevel != null) && previousLevelProgress && (
+          {(previousLevel !== null) && previousLevelProgress && (
             <div className="space-y-3">
               <h3 className="font-semibold">Previous Level Progress</h3>
               <div className="bg-muted rounded-lg p-4 space-y-2">
@@ -120,7 +120,7 @@ export function WorkflowGate({ level, children }: WorkflowGateProps): React.Reac
           </div>
 
           <div className="flex gap-3">
-            {(previousLevel != null) && (
+            {(previousLevel !== null) && (
               <Button
                 className="flex-1"
                 onClick={() => (window.location.href = ETFO_LEVEL_PATHS[previousLevel])}

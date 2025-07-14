@@ -119,7 +119,7 @@ export function useNewsletterDrafts(): UseQueryResult<NewsletterDraft[]> {
 
 // Hook for fetching a specific newsletter
 export function useNewsletter(id: string | undefined): UseQueryResult<NewsletterDraft> {
-  return useQuery<NewsletterDraft>({
+  return useQuery<NewsletterDraft, Error, NewsletterDraft>({
     queryKey: ['newsletter', id],
     queryFn: async () => {
       if (!id || id === '') {
@@ -128,7 +128,7 @@ throw new Error('Newsletter ID is required');
       const response = await apiClient.get(`/newsletters/${id}`);
       return response.data as NewsletterDraft;
     },
-    enabled: id && id !== '',
+    enabled: Boolean(id && id !== ''),
   });
 }
 
@@ -173,7 +173,7 @@ export function useDeleteNewsletter(): UseMutationResult<void, Error, string> {
 
 // Hook for fetching parent summaries for a student (legacy support)
 export function useParentSummaries(studentId: number | undefined): UseQueryResult<ParentSummary[]> {
-  return useQuery<ParentSummary[]>({
+  return useQuery<ParentSummary[], Error, ParentSummary[]>({
     queryKey: ['parent-summaries', studentId],
     queryFn: async () => {
       if (!studentId) {
@@ -182,7 +182,7 @@ throw new Error('Student ID is required');
       const response = await apiClient.get(`/parent-summaries/student/${studentId}`);
       return response.data as ParentSummary[];
     },
-    enabled: studentId,
+    enabled: Boolean(studentId),
   });
 }
 

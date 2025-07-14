@@ -40,5 +40,5 @@ export function ProtectedRoute({ children }: ProtectedRouteProps): React.ReactEl
     return <Navigate replace state={{ from: location }} to="/login" />;
   }
 
-  return <>{children}</>;
+  return children as React.ReactElement;
 }

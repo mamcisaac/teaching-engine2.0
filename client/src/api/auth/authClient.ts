@@ -64,7 +64,7 @@ class AuthClient {
   }
 
   async logout(): Promise<void> {
-    await this.makeRequest<void>({
+    await this.makeRequest({
       method: 'POST',
       url: '/api/auth/logout',
     });

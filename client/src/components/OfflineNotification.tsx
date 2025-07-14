@@ -166,6 +166,8 @@ export function ConflictResolutionModal({
             <div className="border rounded-lg p-4">
               <label className="flex items-center cursor-pointer">
                 <input
+                  id="resolution-local"
+                  name="conflict-resolution"
                   checked={selectedResolution === 'local'}
                   className="mr-3"
                   type="radio"
@@ -190,6 +192,8 @@ export function ConflictResolutionModal({
             <div className="border rounded-lg p-4">
               <label className="flex items-center cursor-pointer">
                 <input
+                  id="resolution-remote"
+                  name="conflict-resolution"
                   checked={selectedResolution === 'remote'}
                   className="mr-3"
                   type="radio"
@@ -214,6 +218,8 @@ export function ConflictResolutionModal({
             <div className="border rounded-lg p-4">
               <label className="flex items-center cursor-pointer">
                 <input
+                  id="resolution-merge"
+                  name="conflict-resolution"
                   checked={selectedResolution === 'merge'}
                   className="mr-3"
                   type="radio"

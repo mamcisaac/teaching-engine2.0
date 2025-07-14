@@ -120,7 +120,7 @@ export function AIUnitPlanPanel({
     if (!canUseAI) {
       toast({
         title: 'AI Unavailable',
-        description: aiDisabledReason || 'AI features are currently unavailable.',
+        description: aiDisabledReason ?? 'AI features are currently unavailable.',
         variant: 'destructive',
       });
       return;
@@ -162,7 +162,7 @@ export function AIUnitPlanPanel({
         {
           type,
           content: result.suggestions,
-          rationale: result.rationale || '',
+          rationale: result.rationale ?? '',
         }
       ]);
 
@@ -177,7 +177,7 @@ export function AIUnitPlanPanel({
       logger.error('Error generating suggestions:', _error);
       toast({
         title: 'Generation Failed',
-        description: getErrorMessage(_error) || 'Failed to generate suggestions. Please try again.',
+        description: getErrorMessage(_error) ?? 'Failed to generate suggestions. Please try again.',
         variant: 'destructive',
       });
     } finally {
@@ -190,7 +190,7 @@ export function AIUnitPlanPanel({
     if (!canUseAI) {
       toast({
         title: 'AI Unavailable',
-        description: aiDisabledReason || 'AI features are currently unavailable.',
+        description: aiDisabledReason ?? 'AI features are currently unavailable.',
         variant: 'destructive',
       });
       return;
@@ -203,10 +203,10 @@ export function AIUnitPlanPanel({
       // Generate all components sequentially
       const {steps} = AI_LOADING_PRESETS.GENERATING_UNIT_PLAN;
       
-      for (let i = 0; i < steps.length; i++) {
-        setLoadingStep(steps[i].id);
+      for (const step of steps) {
+        setLoadingStep(step.id);
         
-        switch (steps[i].id) {
+        switch (step.id) {
           case 'analyze':
             // Analyze curriculum expectations
             await new Promise(resolve => setTimeout(resolve, 1000));
@@ -260,7 +260,7 @@ export function AIUnitPlanPanel({
       logger.error('Error generating complete unit:', _error);
       toast({
         title: 'Generation Failed',
-        description: getErrorMessage(_error) || 'Failed to generate complete unit plan.',
+        description: getErrorMessage(_error) ?? 'Failed to generate complete unit plan.',
         variant: 'destructive',
       });
     } finally {
@@ -300,7 +300,7 @@ export function AIUnitPlanPanel({
             AI Unit Plan Assistant
           </CardTitle>
           <CardDescription>
-            AI features are currently unavailable. {aiDisabledReason}
+            AI features are currently unavailable. {aiDisabledReason ?? ''}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -533,7 +533,7 @@ export function AIUnitPlanPanel({
                           {suggestion.type === 'assessments' && <Target className="h-4 w-4" />}
                           {suggestion.type.replace(/([A-Z])/g, ' $1').trim()}
                         </CardTitle>
-                        {suggestion.rationale && (
+                        {suggestion.rationale != null && (
                           <CardDescription>{suggestion.rationale}</CardDescription>
                         )}
                       </CardHeader>

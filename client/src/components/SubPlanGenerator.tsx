@@ -17,7 +17,7 @@ export function SubPlanGenerator({ onClose }: Props): React.ReactElement {
     const blob = await substituteApi.generateSubPlanPDF(date, days);
 
     // Clean up previous URL if it exists
-    if (url) {
+    if (url != null) {
       URL.revokeObjectURL(url);
     }
 
@@ -26,7 +26,7 @@ export function SubPlanGenerator({ onClose }: Props): React.ReactElement {
 
   // Clean up URL when component unmounts
   useEffect(() => () => {
-      if (url) {
+      if (url != null) {
         URL.revokeObjectURL(url);
       }
     }, [url]);
@@ -59,7 +59,7 @@ export function SubPlanGenerator({ onClose }: Props): React.ReactElement {
 }}>
           Generate
         </button>
-        {url && <iframe className="w-full h-64 border" src={url} />}
+        {url != null && <iframe className="w-full h-64 border" src={url} title="Generated substitute plan PDF preview" />}
       </div>
     </Dialog>
   );

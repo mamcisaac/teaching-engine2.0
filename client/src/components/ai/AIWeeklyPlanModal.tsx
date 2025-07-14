@@ -100,7 +100,7 @@ export function AIWeeklyPlanModal({
       }
       const errorMessage =
         error instanceof Error && 'response' in error
-          ? (error as ApiError).response?.data?.error || 'Failed to apply plan'
+          ? (error as ApiError).response?.data?.error ?? 'Failed to apply plan'
           : 'Failed to apply plan';
       toast.error(errorMessage);
     },
@@ -146,10 +146,11 @@ return 'text-yellow-600';
 
                 <div className="space-y-3">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="activity-complexity" className="block text-sm font-medium text-gray-700">
                       Activity Complexity
                     </label>
                     <select
+                      id="activity-complexity"
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
                       value={preferences.preferredComplexity}
                       onChange={(e) => {
@@ -185,10 +186,11 @@ return 'text-yellow-600';
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="buffer-time" className="block text-sm font-medium text-gray-700">
                       Buffer time between activities (minutes)
                     </label>
                     <input
+                      id="buffer-time"
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
                       max="30"
                       min="0"

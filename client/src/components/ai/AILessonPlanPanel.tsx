@@ -547,7 +547,11 @@ export function AILessonPlanPanel({
                   <Input
                     id="newLearningGoal"
                     placeholder="Add learning goal"
-                    onKeyPress={(e): void => { if (e.key === 'Enter') addLearningGoal(); }}
+                    onKeyPress={(e): void => {
+                      if (e.key === 'Enter') {
+                        addLearningGoal();
+                      }
+                    }}
                   />
                   <Button aria-label="Click button" onClick={addLearningGoal}>
                     <Plus className="h-4 w-4" />
@@ -561,8 +565,8 @@ export function AILessonPlanPanel({
                       <button
                         className="text-xs text-red-500 hover:text-red-700"
                         onClick={(): void => {
- removeLearningGoal(goal); 
-}}
+                          removeLearningGoal(goal);
+                        }}
                       >
                         Remove
                       </button>
@@ -577,7 +581,11 @@ export function AILessonPlanPanel({
                   <Input
                     id="newMaterial"
                     placeholder="Add material or resource"
-                    onKeyPress={(e): void => { if (e.key === 'Enter') addMaterial(); }}
+                    onKeyPress={(e): void => {
+                      if (e.key === 'Enter') {
+                        addMaterial();
+                      }
+                    }}
                   />
                   <Button aria-label="Click button" onClick={addMaterial}>
                     <Plus className="h-4 w-4" />
@@ -590,8 +598,8 @@ export function AILessonPlanPanel({
                       <button
                         className="text-xs hover:text-red-500"
                         onClick={(): void => {
- removeMaterial(material); 
-}}
+                          removeMaterial(material);
+                        }}
                       >
                         ×
                       </button>
@@ -660,7 +668,9 @@ export function AILessonPlanPanel({
                 <Button 
                   className="flex-1" 
                   disabled={isGenerating || !formData.lessonTitle || formData.learningGoals.length === 0}
-                  onClick={(): void => { void generateThreePartLesson(); }}
+                  onClick={(): void => {
+                    void generateThreePartLesson();
+                  }}
                 >
                   {isGenerating ? (
                     <>

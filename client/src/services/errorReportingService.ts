@@ -473,7 +473,7 @@ export class ErrorReportingService {
   }
 
   private isValidExtras(data: unknown): data is Record<string, unknown> {
-    return data && typeof data === 'object' && !Array.isArray(data);
+    return Boolean(data && typeof data === 'object' && !Array.isArray(data));
   }
 
   private sanitizeData(data: unknown): unknown {

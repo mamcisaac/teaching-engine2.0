@@ -263,7 +263,7 @@ return;
 
   render(): React.ReactNode {
     if (this.state.hasError) {
-      if (this.props.fallback) {
+      if (this.props.fallback != null) {
         return this.props.fallback;
       }
 

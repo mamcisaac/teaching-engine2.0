@@ -161,13 +161,11 @@ return 'text-yellow-600';
                     <CardTitle className="text-lg">{level.name}</CardTitle>
                   </div>
                   <Badge
-                    variant={
-                      percentage >= 80
-                        ? 'default'
-                        : percentage >= 50
-                          ? 'secondary'
-                          : 'destructive'
-                    }
+                    variant={((): 'default' | 'secondary' | 'destructive' => {
+                      if (percentage >= 80) return 'default';
+                      if (percentage >= 50) return 'secondary';
+                      return 'destructive';
+                    })()}
                   >
                     {percentage}%
                   </Badge>

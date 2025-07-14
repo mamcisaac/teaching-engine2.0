@@ -319,13 +319,11 @@ export function CurriculumExpectationCoverage(): React.ReactElement {
                           <div className="flex justify-between items-center mb-2">
                             <span className="font-medium text-sm">{subject.subject}</span>
                             <Badge
-                              variant={
-                                subject.percentage >= 80
-                                  ? 'default'
-                                  : subject.percentage >= 60
-                                    ? 'secondary'
-                                    : 'destructive'
-                              }
+                              variant={((): 'default' | 'secondary' | 'destructive' => {
+                                if (subject.percentage >= 80) return 'default';
+                                if (subject.percentage >= 60) return 'secondary';
+                                return 'destructive';
+                              })()}
                             >
                               {subject.percentage}%
                             </Badge>
