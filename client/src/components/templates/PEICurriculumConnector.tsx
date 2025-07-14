@@ -245,8 +245,9 @@ export function PEICurriculumConnector({
       {/* Curriculum Outcomes by Subject */}
       {Object.entries(relevantOutcomes).map(([strandName, alignment]) => (
         <Card key={strandName} className="overflow-hidden">
-          <div
-            className="p-4 bg-gray-50 cursor-pointer hover:bg-gray-100 transition-colors"
+          <button
+            className="w-full p-4 bg-gray-50 cursor-pointer hover:bg-gray-100 transition-colors text-left"
+            type="button"
             onClick={() => {
  setExpandedStrand(expandedStrand === strandName ? null : strandName); 
 }}
@@ -264,7 +265,7 @@ export function PEICurriculumConnector({
                 <span className="text-gray-400">{expandedStrand === strandName ? '▼' : '▶'}</span>
               </div>
             </div>
-          </div>
+          </button>
 
           {expandedStrand === strandName && (
             <div className="p-4 space-y-4">

@@ -201,15 +201,16 @@ return;
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <div className="space-y-6">
             {/* Date Range */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+            <fieldset>
+              <legend className="block text-sm font-medium text-gray-700 mb-2">
                 Date Range
-              </label>
+              </legend>
               <div className="flex items-center gap-4">
                 <div>
-                  <label className="block text-xs text-gray-500 mb-1">From</label>
+                  <label className="block text-xs text-gray-500 mb-1" htmlFor="date-from">From</label>
                   <input
                     className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    id="date-from"
                     type="date"
                     value={format(dateRange.from, 'yyyy-MM-dd')}
                     onChange={(e) => {
@@ -221,9 +222,10 @@ return;
                   />
                 </div>
                 <div>
-                  <label className="block text-xs text-gray-500 mb-1">To</label>
+                  <label className="block text-xs text-gray-500 mb-1" htmlFor="date-to">To</label>
                   <input
                     className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    id="date-to"
                     type="date"
                     value={format(dateRange.to, 'yyyy-MM-dd')}
                     onChange={(e) => {
@@ -235,13 +237,13 @@ return;
                   />
                 </div>
               </div>
-            </div>
+            </fieldset>
 
             {/* Tone Selection */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+            <fieldset>
+              <legend className="block text-sm font-medium text-gray-700 mb-2">
                 Newsletter Tone
-              </label>
+              </legend>
               <div className="flex gap-3">
                 {(['friendly', 'formal', 'informative'] as NewsletterTone[]).map((toneOption, _index) => (
                   <button
@@ -260,18 +262,19 @@ return;
                   </button>
                 ))}
               </div>
-            </div>
+            </fieldset>
 
             {/* Options */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+            <fieldset>
+              <legend className="block text-sm font-medium text-gray-700 mb-2">
                 Include
-              </label>
+              </legend>
               <div className="space-y-2">
-                <label className="flex items-center">
+                <label className="flex items-center" htmlFor="include-upcoming-events">
                   <input
                     checked={includeUpcomingEvents}
                     className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                    id="include-upcoming-events"
                     type="checkbox"
                     onChange={(e) => {
  setIncludeUpcomingEvents(e.target.checked); 
@@ -280,15 +283,16 @@ return;
                   <span className="ml-2 text-sm text-gray-700">Upcoming events and important dates</span>
                 </label>
               </div>
-            </div>
+            </fieldset>
 
             {/* Focus Areas */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+            <fieldset>
+              <legend className="block text-sm font-medium text-gray-700 mb-2">
                 Focus Areas (Optional)
-              </label>
+              </legend>
               <input
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                id="focus-areas"
                 placeholder="e.g., Math progress, Reading milestones, Science projects"
                 type="text"
                 value={focusAreas.join(', ')}
@@ -301,7 +305,7 @@ return;
               <p className="text-xs text-gray-500 mt-1">
                 Comma-separated list of topics to emphasize
               </p>
-            </div>
+            </fieldset>
 
             {/* Action buttons */}
             <div className="flex items-center justify-between pt-6 border-t">

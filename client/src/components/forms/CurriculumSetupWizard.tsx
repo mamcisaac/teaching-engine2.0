@@ -260,7 +260,7 @@ export function CurriculumSetupWizard({
                   { value: 'subject-based', label: 'Subject-Based', desc: 'Traditional subject-focused approach' },
                   { value: 'inquiry-based', label: 'Inquiry-Based', desc: 'Student-driven questions and investigations' },
                 ].map((option, _index) => (
-                  <label key={option.value} className="flex items-start gap-3 p-3 border rounded-lg cursor-pointer hover:bg-gray-50" htmlFor={`planning-style-${option.value}`}>
+                  <label key={option.value} aria-label={option.label} className="flex items-start gap-3 p-3 border rounded-lg cursor-pointer hover:bg-gray-50" htmlFor={`planning-style-${option.value}`}>
                     <input
                       checked={formData.planningStyle === option.value}
                       className="mt-1"
@@ -587,7 +587,7 @@ export function CurriculumSetupWizard({
                   { key: 'includeAssessments', label: 'Assessment Plans', desc: 'Assessment strategies and rubrics' },
                   { key: 'includeDifferentiation', label: 'Differentiation Strategies', desc: 'Support for diverse learners' },
                 ].map((option, _index) => (
-                  <label key={option.key} className="flex items-start gap-3 p-3 border rounded-lg cursor-pointer hover:bg-gray-50" htmlFor={`option-${option.key}`}>
+                  <label key={option.key} aria-label={option.label} className="flex items-start gap-3 p-3 border rounded-lg cursor-pointer hover:bg-gray-50" htmlFor={`option-${option.key}`}>
                     <input
                       checked={formData[option.key as keyof CurriculumSetupData] as boolean}
                       className="mt-1"

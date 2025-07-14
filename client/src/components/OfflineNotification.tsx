@@ -164,7 +164,7 @@ export function ConflictResolutionModal({
           <div className="space-y-4">
             {/* Local version */}
             <div className="border rounded-lg p-4">
-              <label className="flex items-center cursor-pointer" htmlFor="resolution-local">
+              <label aria-label="Keep your version" className="flex items-center cursor-pointer" htmlFor="resolution-local">
                 <input
                   checked={selectedResolution === 'local'}
                   className="mr-3"
@@ -190,7 +190,7 @@ export function ConflictResolutionModal({
 
             {/* Remote version */}
             <div className="border rounded-lg p-4">
-              <label className="flex items-center cursor-pointer" htmlFor="resolution-remote">
+              <label aria-label="Keep server version" className="flex items-center cursor-pointer" htmlFor="resolution-remote">
                 <input
                   checked={selectedResolution === 'remote'}
                   className="mr-3"
@@ -216,7 +216,7 @@ export function ConflictResolutionModal({
 
             {/* Merge option (if applicable) */}
             <div className="border rounded-lg p-4">
-              <label className="flex items-center cursor-pointer" htmlFor="resolution-merge">
+              <label aria-label="Merge both versions" className="flex items-center cursor-pointer" htmlFor="resolution-merge">
                 <input
                   checked={selectedResolution === 'merge'}
                   className="mr-3"
