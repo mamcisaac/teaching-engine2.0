@@ -222,7 +222,7 @@ export const useOnboardingStore = create<OnboardingState>()(
         // Actions
         startOnboarding: (flowId = 'main-onboarding'): void => {
           const flow = TUTORIAL_FLOWS[flowId];
-          if (flow != null) {
+          if (flow !== null) {
             set((state) => {
               state.currentFlow = flow;
               state.currentStepIndex = 0;

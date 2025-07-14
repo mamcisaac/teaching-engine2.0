@@ -252,7 +252,7 @@ export class TestMigrationHelper {
     // Type comparison
     if (typeof mock !== typeof real) {
       differences.push({
-        path: path || 'root',
+        path: path ?? 'root',
         mockValue: mock,
         realValue: real,
       });
@@ -419,7 +419,7 @@ export const migrationUtils = {
    */
   skipIfNotReal: (testFn: () => void, reason?: string) => {
     if (detectMigrationPhase() !== 'real') {
-      return test.skip(`Skipped - not in real mode: ${reason || 'requires real implementation'}`);
+      return test.skip(`Skipped - not in real mode: ${reason ?? 'requires real implementation'}`);
     }
     return testFn();
   },

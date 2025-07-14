@@ -4,7 +4,6 @@
  */
 
 import { prisma } from '../../../prisma';
-import type { DataRequirement } from '../providers/TemplateProvider';
 import type {
   User,
   UserTemplateData,
@@ -28,6 +27,7 @@ import type {
   StudentWhereInput,
   CurriculumWhereInput,
 } from '../../../types/template-data';
+import type { DataRequirement } from '../providers/TemplateProvider';
 
 export interface FetchContext {
   userId: number;
@@ -126,8 +126,8 @@ export class TemplateDataFetcher {
       name: user.name,
       email: user.email,
       role: user.role,
-      className: preferences.className || `Grade ${preferences.grade || ''}`,
-      schoolName: preferences.schoolName || 'School',
+      className: preferences.className ?? `Grade ${preferences.grade ?? ''}`,
+      schoolName: preferences.schoolName ?? 'School',
       schoolPhone: preferences.schoolPhone,
       classWebsite: preferences.classWebsite,
       preferredLanguage: user.preferredLanguage,
@@ -168,7 +168,7 @@ export class TemplateDataFetcher {
           take: 5,
         } : false,
       },
-      orderBy: context.options?.orderBy || { lastName: 'asc' },
+      orderBy: context.options?.orderBy ?? { lastName: 'asc' },
       take: context.options?.limit,
     });
     */
@@ -210,7 +210,7 @@ export class TemplateDataFetcher {
           },
         } : false,
       },
-      orderBy: context.options?.orderBy || { date: 'desc' },
+      orderBy: context.options?.orderBy ?? { date: 'desc' },
       take: context.options?.limit,
     });
 
@@ -219,8 +219,8 @@ export class TemplateDataFetcher {
       id: lesson.id,
       title: lesson.title,
       date: lesson.date,
-      subject: lesson.unitPlan?.longRangePlan?.subject || lesson.subject,
-      grade: lesson.unitPlan?.longRangePlan?.grade,
+      subject: lesson.unitPlan.longRangePlan.subject || lesson.subject,
+      grade: lesson.unitPlan.longRangePlan.grade,
       duration: lesson.duration,
       unit: lesson.unitPlan ? {
         title: lesson.unitPlan.title,
@@ -240,8 +240,8 @@ export class TemplateDataFetcher {
       accommodations: lesson.accommodations,
       modifications: lesson.modifications,
       extensions: lesson.extensions,
-      expectations: lesson.expectations?.map((e): ExpectationReference => ({
-        code: e.expectationId as string,
+      expectations: lesson.expectations.map((e): ExpectationReference => ({
+        code: e.expectationId,
         description: '',
         type: 'specific' as const,
       })),
@@ -309,7 +309,7 @@ export class TemplateDataFetcher {
       case 'reportPeriod': {
         const filters = context.filters as CustomDataFilters | undefined;
         const reportData: ReportPeriodData = {
-          name: filters?.periodName || 'Progress Report',
+          name: filters?.periodName ?? 'Progress Report',
           startDate: filters?.startDate ? new Date(filters.startDate) : new Date(),
           endDate: filters?.endDate ? new Date(filters.endDate) : new Date(),
           totalDays: filters?.totalDays ?? 0,
@@ -402,7 +402,7 @@ export class TemplateDataFetcher {
     }>();
 
     for (const lesson of lessons) {
-      const subject = lesson.subject || 'General';
+      const subject = lesson.subject ?? 'General';
       
       if (!grouped.has(subject)) {
         grouped.set(subject, {
@@ -421,7 +421,7 @@ export class TemplateDataFetcher {
     // Generate summaries
     return Array.from(grouped.values()).map(group => ({
       ...group,
-      summary: `This week in ${group.subject}, we explored ${group.highlights.length} topics including ${group.highlights[0] || 'various concepts'}.`,
+      summary: `This week in ${group.subject}, we explored ${group.highlights.length} topics including ${group.highlights[0] ?? 'various concepts'}.`,
       highlights: group.highlights.slice(0, 3),
     }));
   }

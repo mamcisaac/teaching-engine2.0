@@ -3,7 +3,7 @@ import { chromium } from '@playwright/test';
 import * as fs from 'fs/promises';
 import * as path from 'path';
 
-export default async function globalSetupCI() {
+export default async function globalSetupCI(): Promise<void> {
   console.log('Running CI-specific global setup...');
   
   // Create a minimal auth.json for CI tests

@@ -114,7 +114,7 @@ export function UnitPlanForm({
     successCriteria: [''],
     successCriteriaFr: [''],
     expectationIds: [],
-    longRangePlanId: longRangePlan?.id || '',
+    longRangePlanId: longRangePlan?.id ?? '',
     // Additional ETFO fields
     crossCurricularConnections: '',
     crossCurricularConnectionsFr: '',
@@ -348,7 +348,7 @@ export function UnitPlanForm({
             <div className="space-y-4">
               {showLongRangePlanSelector && (
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="long-range-plan-select">
                     Long-Range Plan *
                   </label>
                   <select
@@ -356,6 +356,7 @@ export function UnitPlanForm({
                     className={`w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ${
                       errors.longRangePlanId ? 'border-red-500' : ''
                     }`}
+                    id="long-range-plan-select"
                     value={formData.longRangePlanId}
                     onChange={(e) => {
  setFormData({ ...formData, longRangePlanId: e.target.value }); 
@@ -382,7 +383,7 @@ export function UnitPlanForm({
                   placeholderEn="Enter unit title..."
                   placeholderFr="Entrez le titre de l'unité..."
                   valueEn={formData.title}
-                  valueFr={formData.titleFr || ''}
+                  valueFr={formData.titleFr ?? ''}
                   onChangeEn={(value) => {
  setFormData({ ...formData, title: value }); 
 }}
@@ -455,7 +456,7 @@ export function UnitPlanForm({
                   placeholderFr="Fournissez un aperçu de ce que cette unité couvrira..."
                   rows={3}
                   valueEn={formData.description}
-                  valueFr={formData.descriptionFr || ''}
+                  valueFr={formData.descriptionFr ?? ''}
                   onChangeEn={(value) => {
  setFormData({ ...formData, description: value }); 
 }}
@@ -531,8 +532,8 @@ export function UnitPlanForm({
                 strand: exp.strand,
               }))}
             duration={2}
-            grade={longRangePlan?.grade || 1}
-            subject={longRangePlan?.subject || ''}
+            grade={longRangePlan?.grade !== null && longRangePlan?.grade !== undefined && !isNaN(longRangePlan.grade) && longRangePlan.grade > 0 ? longRangePlan.grade : 1}
+            subject={longRangePlan?.subject ?? ''}
             unitTitle={formData.title}
             onSuggestionAccepted={(type, content) => {
               // Handle AI suggestions
@@ -553,9 +554,9 @@ export function UnitPlanForm({
             onUnitGenerated={(plan) => {
               setFormData({
                 ...formData,
-                title: plan.title || formData.title,
-                bigIdeas: plan.bigIdeas.join('\n\n') || formData.bigIdeas,
-                essentialQuestions: plan.learningGoals || formData.essentialQuestions,
+                title: plan.title ?? formData.title,
+                bigIdeas: plan.bigIdeas.join('\n\n') ?? formData.bigIdeas,
+                essentialQuestions: plan.learningGoals ?? formData.essentialQuestions,
               });
             }}
           />

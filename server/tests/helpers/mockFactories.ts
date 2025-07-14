@@ -7,7 +7,7 @@
 import { jest } from '@jest/globals';
 
 // OpenAI Mock Factory
-export const createOpenAIMock = () => {
+export const createOpenAIMock = (): jest.MockedClass<any> => {
   const mockChatCompletion = {
     id: 'chatcmpl-test',
     object: 'chat.completion',
@@ -151,7 +151,7 @@ export const createServiceRegistryMock = () => ({
 });
 
 // Cleanup function for all mocks
-export const cleanupMocks = () => {
+export const cleanupMocks = (): void => {
   jest.clearAllMocks();
   jest.restoreAllMocks();
 };

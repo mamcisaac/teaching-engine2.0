@@ -290,7 +290,7 @@ describe('XSS Prevention Tests', () => {
       
       // Get the sanitized content from the last call
       const lastCall = mockOnChange.mock.calls[mockOnChange.mock.calls.length - 1];
-      const sanitizedContent = lastCall?.[0] || '';
+      const sanitizedContent = lastCall?.[0] ?? '';
       
       // Should remove dangerous elements but keep safe content
       expect(sanitizedContent).not.toContain('<script>');

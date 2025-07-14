@@ -203,14 +203,14 @@ export const createMockOpenAI = (): MockOpenAIInstance => {
 /**
  * Mock Reset Utilities
  */
-export const resetMockFunction = (mockFn: MockFunction<any>) => {
+export const resetMockFunction = (mockFn: MockFunction<any>): void => {
   if (vi.isMockFunction(mockFn)) {
     mockFn.mockClear();
     mockFn.mockReset();
   }
 };
 
-export const resetAllMockProperties = (mockObject: Record<string, any>) => {
+export const resetAllMockProperties = (mockObject: Record<string, any>): void => {
   Object.values(mockObject).forEach((value) => {
     if (vi.isMockFunction(value)) {
       resetMockFunction(value);

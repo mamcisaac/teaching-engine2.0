@@ -2,7 +2,7 @@
 /**
  * Global teardown for E2E tests
  */
-export default async function globalTeardown() {
+export default async function globalTeardown(): Promise<void> {
   console.log('\n🧹 Starting E2E global teardown...\n');
 
   try {

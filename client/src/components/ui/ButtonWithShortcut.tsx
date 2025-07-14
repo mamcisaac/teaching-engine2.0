@@ -41,7 +41,7 @@ export const ButtonWithShortcut = React.forwardRef<HTMLButtonElement, ButtonWith
     ref,
   ): React.ReactElement => {
     // Register keyboard shortcut if provided
-    if (shortcut?.key) {
+    if (shortcut?.key !== null && shortcut?.key !== undefined && shortcut.key !== '') {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       useKeyboardShortcut(
         (_e): void => {
@@ -63,9 +63,9 @@ export const ButtonWithShortcut = React.forwardRef<HTMLButtonElement, ButtonWith
           cmd: shortcut.cmd,
           alt: shortcut.alt,
           shift: shortcut.shift,
-          description: shortcutDescription || shortcut.description || 'Button action',
-          category: shortcut.category || 'other',
-          enabled: !disabled,
+          description: shortcutDescription ?? shortcut.description ?? 'Button action',
+          category: shortcut.category ?? 'other',
+          enabled: disabled !== true,
         },
       );
     }

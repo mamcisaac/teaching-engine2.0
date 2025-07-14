@@ -330,9 +330,9 @@ export class BilingualFactory extends BaseFactory<any> {
     subject?: string;
     immersionLevel?: 'early' | 'middle' | 'late';
   }): any {
-    const grade = options?.grade || this.faker.number.int({ min: 1, max: 8 });
-    const subject = options?.subject || 'mathematics';
-    const level = options?.immersionLevel || 'middle';
+    const grade = options?.grade ?? this.faker.number.int({ min: 1, max: 8 });
+    const subject = options?.subject ?? 'mathematics';
+    const level = options?.immersionLevel ?? 'middle';
     
     const languageSupport = {
       early: {
@@ -485,8 +485,8 @@ export class BilingualFactory extends BaseFactory<any> {
     domaine?: string;
     cycle?: number;
   }): any {
-    const level = options?.level || 'primaire';
-    const cycle = options?.cycle || 1;
+    const level = options?.level ?? 'primaire';
+    const cycle = options?.cycle ?? 1;
     
     const domaines = {
       primaire: [
@@ -525,7 +525,7 @@ export class BilingualFactory extends BaseFactory<any> {
       ],
     };
 
-    const domaine = options?.domaine || 
+    const domaine = options?.domaine ?? 
       this.faker.helpers.arrayElement(domaines[level]);
 
     return {

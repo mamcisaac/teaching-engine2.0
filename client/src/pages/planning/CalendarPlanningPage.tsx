@@ -187,7 +187,7 @@ export default function CalendarPlanningPage(): JSX.Element {
 
     // Add lessons
     lessons.forEach((lesson: ETFOLessonPlan) => {
-      if (lesson.date != null && lesson.date.length > 0) {
+      if (lesson.date !== null && lesson.date.length > 0) {
         allEvents.push({
           id: `lesson-${lesson.id}`,
           title: lesson.title ?? 'Untitled Lesson',
@@ -210,7 +210,7 @@ export default function CalendarPlanningPage(): JSX.Element {
 
     // Add unit boundaries
     units.forEach((unit: UnitPlan) => {
-      if (unit.startDate != null && unit.startDate.length > 0) {
+      if (unit.startDate !== null && unit.startDate.length > 0) {
         allEvents.push({
           id: `unit-start-${unit.id}`,
           title: `${unit.title} - Start`,
@@ -225,7 +225,7 @@ export default function CalendarPlanningPage(): JSX.Element {
           originalData: unit,
         });
       }
-      if (unit.endDate != null && unit.endDate.length > 0) {
+      if (unit.endDate !== null && unit.endDate.length > 0) {
         allEvents.push({
           id: `unit-end-${unit.id}`,
           title: `${unit.title} - End`,

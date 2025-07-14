@@ -66,12 +66,12 @@ export interface MockLessonPlan {
   duration: number;
   learningGoals: string[];
   successCriteria: string[];
-  activities: Array<{
+  activities: {
     id: string;
     name: string;
     duration: number;
     description: string;
-  }>;
+  }[];
   materials: string[];
   assessment: string;
   differentiation: string;
@@ -431,9 +431,7 @@ export const renderWithAuth = (ui: ReactElement, options: CustomRenderOptions = 
     initialAuthState: {
       user: authenticatedUser,
       isAuthenticated: true,
-      getToken: ((): (() => string | null) => {
-        return (): string | null => 'mock-token';
-      })(),
+      getToken: ((): (() => string | null) => (): string | null => 'mock-token')(),
       ...options.initialAuthState,
     },
   });
@@ -457,7 +455,7 @@ export const mockLocalStorage = (): Storage => {
   const store: Record<string, string> = {};
 
   return {
-    getItem: (key: string): string | null => store[key] || null,
+    getItem: (key: string): string | null => store[key] ?? null,
     setItem: (key: string, value: string): void => {
       store[key] = value;
     },
@@ -468,7 +466,7 @@ export const mockLocalStorage = (): Storage => {
       Object.keys(store).forEach((key) => delete store[key]);
     },
     length: Object.keys(store).length,
-    key: (index: number): string | null => Object.keys(store)[index] || null,
+    key: (index: number): string | null => Object.keys(store)[index] ?? null,
   } as Storage;
 };
 

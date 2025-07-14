@@ -57,20 +57,20 @@ const resetPasswordSchema = z.object({
 // Middleware to validate auth inputs with test-compatible error messages
 function validateAuthInputs(isRegister = false) {
   return (req: Request, res: Response, next: NextFunction): void => {
-    let { email } = req.body;
-    const { password } = req.body;
+    let { email } = req.body as { email?: unknown; password?: unknown; name?: unknown };
+    const { password } = req.body as { email?: unknown; password?: unknown; name?: unknown };
 
     // Check for missing or non-string email/password
-    if (!email || email === '' || 
-        !password || password === '' || 
+    if (!email || (typeof email === 'string' && email === '') || 
+        !password || (typeof password === 'string' && password === '') || 
         typeof email !== 'string' || typeof password !== 'string') {
       res.status(400).json({ error: 'Email and password are required' });
       return;
     }
 
     // Trim email whitespace
-    email = email.trim();
-    req.body.email = email;
+    email = (email).trim();
+    (req.body as { email: string }).email = email;
 
     // Check basic email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -80,7 +80,7 @@ function validateAuthInputs(isRegister = false) {
     }
 
     // For register, check if name is provided
-    if (isRegister && (!req.body.name || req.body.name === '')) {
+    if (isRegister && (!(req.body as { name?: unknown }).name || (req.body as { name?: string }).name === '')) {
       res.status(400).json({ error: 'Email, password, and name are required' });
       return;
     }

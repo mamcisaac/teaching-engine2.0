@@ -78,7 +78,7 @@ export function RealProviders({
   initialEntries = ['/'],
   enableAllContexts = true,
 }: RealProvidersProps) {
-  const testQueryClient = queryClient || createTestQueryClient(testConfig);
+  const testQueryClient = queryClient ?? createTestQueryClient(testConfig);
 
   // Setup authentication if provided
   useEffect(() => {
@@ -172,7 +172,7 @@ export function AllProviders({
 
   // If explicitly using mock providers (legacy mode)
   if (useMockProviders) {
-    const legacyQueryClient = queryClient || createTestQueryClient({ useRealApi: false });
+    const legacyQueryClient = queryClient ?? createTestQueryClient({ useRealApi: false });
 
     return (
       <QueryClientProvider client={legacyQueryClient}>
@@ -235,7 +235,7 @@ export function renderWithProviders(
       <AllProviders
         queryClient={queryClient}
         initialRoute={initialRoute}
-        useRealAuth={useRealAuth || authenticated}
+        useRealAuth={useRealAuth ?? authenticated}
         authContext={authContext}
         testConfig={testConfig}
         useMemoryRouter={useMemoryRouter}

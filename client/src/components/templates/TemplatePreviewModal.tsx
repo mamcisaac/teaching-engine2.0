@@ -46,7 +46,7 @@ export function TemplatePreviewModal({
     return (
       <div className="space-y-4">
         {sections.map(({ key, title, content, isList, isAssessments, isDiff }) => {
-          if (!content || (Array.isArray(content) && content.length === 0)) {
+          if (content === null || content === undefined || content === '' || (Array.isArray(content) && content.length === 0)) {
 return null;
 }
 
@@ -81,7 +81,7 @@ return null;
                         <div key={_index} className="bg-gray-50 p-3 rounded">
                           <div className="font-medium">{assessment.type}</div>
                           <div className="text-gray-700">{assessment.description}</div>
-                          {assessment.timing && (
+                          {assessment.timing !== null && assessment.timing !== undefined && assessment.timing !== '' && (
                             <div className="text-sm text-gray-500 mt-1">Timing: {assessment.timing}</div>
                           )}
                         </div>
@@ -130,7 +130,7 @@ return null;
     return (
       <div className="space-y-4">
         {sections.map(({ key, title, content, isList, assessmentType }) => {
-          if (!content || (Array.isArray(content) && content.length === 0)) {
+          if (content === null || content === undefined || content === '' || (Array.isArray(content) && content.length === 0)) {
 return null;
 }
 
@@ -161,7 +161,7 @@ return null;
                     </ul>
                   ) : key === 'assessment' ? (
                     <div>
-                      {assessmentType && (
+                      {assessmentType !== null && assessmentType !== undefined && assessmentType !== '' && (
                         <div className="mb-2">
                           <span className="font-medium">Type:</span> <span className="capitalize">{assessmentType}</span>
                         </div>
@@ -210,7 +210,7 @@ return null;
         <div className="flex-1 overflow-y-auto p-6">
           {/* Metadata */}
           <div className="mb-6 grid grid-cols-2 md:grid-cols-4 gap-4">
-            {template.subject && (
+            {template.subject !== null && template.subject !== undefined && template.subject !== '' && (
               <div className="flex items-center gap-2 text-sm">
                 <Tag className="h-4 w-4 text-gray-400" />
                 <span className="capitalize">{template.subject}</span>
@@ -229,9 +229,9 @@ return null;
             <div className="flex items-center gap-2 text-sm">
               <Clock className="h-4 w-4 text-gray-400" />
               <span>
-                {template.type === 'UNIT_PLAN' && template.estimatedWeeks && template.estimatedWeeks > 0
+                {template.type === 'UNIT_PLAN' && template.estimatedWeeks !== null && template.estimatedWeeks !== undefined && template.estimatedWeeks > 0
                   ? `${template.estimatedWeeks} weeks`
-                  : template.type === 'LESSON_PLAN' && template.estimatedMinutes && template.estimatedMinutes > 0
+                  : template.type === 'LESSON_PLAN' && template.estimatedMinutes !== null && template.estimatedMinutes !== undefined && template.estimatedMinutes > 0
                   ? `${template.estimatedMinutes} minutes`
                   : 'Duration varies'}
               </span>
@@ -239,7 +239,7 @@ return null;
           </div>
 
           {/* Description */}
-          {template.description && (
+          {template.description !== null && template.description !== undefined && template.description !== '' && (
             <div className="mb-6">
               <h3 className="font-medium mb-2">Description</h3>
               <p className="text-gray-700">{template.description}</p>
@@ -283,7 +283,7 @@ return null;
                       {phase.description && (
                         <p className="text-gray-700 text-sm mt-1">{phase.description}</p>
                       )}
-                      {phase.estimatedDays && phase.estimatedDays > 0 && (
+                      {phase.estimatedDays !== null && phase.estimatedDays !== undefined && phase.estimatedDays > 0 && (
                         <p className="text-gray-500 text-sm mt-1">
                           Estimated: {phase.estimatedDays} days
                         </p>

@@ -32,7 +32,7 @@ export default function ParentNewsletterPage(): React.ReactElement {
   const { t: _t, language } = useLanguage();
   
   // State
-  const [showCreateForm, setShowCreateForm] = useState(id == null);
+  const [showCreateForm, setShowCreateForm] = useState(id === null);
   const [selectedStudentIds, setSelectedStudentIds] = useState<number[]>([]);
   const [dateRange, setDateRange] = useState({
     from: startOfMonth(new Date()),
@@ -338,7 +338,7 @@ return;
   }
 
   // Newsletter editor view
-  if (currentNewsletter != null) {
+  if (currentNewsletter !== null) {
     return (
       <div className="max-w-6xl mx-auto p-6">
         <div className="mb-6">

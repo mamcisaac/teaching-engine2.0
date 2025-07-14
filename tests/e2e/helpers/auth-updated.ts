@@ -7,7 +7,7 @@ let apiContext: APIRequestContext;
 // Initialize API context
 type PlaywrightType = typeof import('@playwright/test');
 export async function initApiContext(playwright: PlaywrightType) {
-  const baseURL = global.__TEST_SERVER_URL__ || process.env.API_BASE || 'http://localhost:3000';
+  const baseURL = global.__TEST_SERVER_URL__ ?? process.env.API_BASE ?? 'http://localhost:3000';
   console.log(`Initializing API context with base URL: ${baseURL}`);
 
   apiContext = await playwright.request.newContext({
@@ -38,7 +38,7 @@ export function getAuthenticatedApiContext(token: string): APIRequestContext {
       return baseContext.post(url, {
         ...options,
         headers: {
-          ...(options?.headers || {}),
+          ...(options?.headers ?? {}),
           Authorization: `Bearer ${token}`,
         },
       });
@@ -47,7 +47,7 @@ export function getAuthenticatedApiContext(token: string): APIRequestContext {
       return baseContext.get(url, {
         ...options,
         headers: {
-          ...(options?.headers || {}),
+          ...(options?.headers ?? {}),
           Authorization: `Bearer ${token}`,
         },
       });
@@ -56,7 +56,7 @@ export function getAuthenticatedApiContext(token: string): APIRequestContext {
       return baseContext.put(url, {
         ...options,
         headers: {
-          ...(options?.headers || {}),
+          ...(options?.headers ?? {}),
           Authorization: `Bearer ${token}`,
         },
       });
@@ -65,7 +65,7 @@ export function getAuthenticatedApiContext(token: string): APIRequestContext {
       return baseContext.delete(url, {
         ...options,
         headers: {
-          ...(options?.headers || {}),
+          ...(options?.headers ?? {}),
           Authorization: `Bearer ${token}`,
         },
       });
@@ -74,7 +74,7 @@ export function getAuthenticatedApiContext(token: string): APIRequestContext {
       return baseContext.patch(url, {
         ...options,
         headers: {
-          ...(options?.headers || {}),
+          ...(options?.headers ?? {}),
           Authorization: `Bearer ${token}`,
         },
       });
@@ -114,7 +114,7 @@ export async function createTestUser(
 
   const user: TestUser = {
     email: `e2e-${role}-${timestamp}-${random}@example.com`,
-    password: customData?.password || `E2ePass@${timestamp}`, // Meets security requirements
+    password: customData?.password ?? `E2ePass@${timestamp}`, // Meets security requirements
     name: `E2E ${role} ${timestamp}`,
     role,
     ...customData,

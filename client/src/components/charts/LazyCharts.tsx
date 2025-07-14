@@ -22,6 +22,3 @@ export const LazyCurriculumExpectationCoverage = (): JSX.Element => (
   </Suspense>
 );
 
-export default {
-  CurriculumExpectationCoverage: LazyCurriculumExpectationCoverage,
-};

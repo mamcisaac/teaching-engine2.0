@@ -249,7 +249,7 @@ export function isLessonPlanTemplate(
 
 export function isUnitPlanContent(content: unknown): content is UnitPlanContent {
   return (
-    content != null &&
+    content !== null &&
     typeof content === 'object' &&
     ((content as Record<string, unknown>).overview !== undefined ||
       (content as Record<string, unknown>).bigIdeas !== undefined ||
@@ -259,7 +259,7 @@ export function isUnitPlanContent(content: unknown): content is UnitPlanContent 
 
 export function isLessonPlanContent(content: unknown): content is LessonPlanContent {
   return (
-    content != null &&
+    content !== null &&
     typeof content === 'object' &&
     ((content as Record<string, unknown>).objectives !== undefined ||
       (content as Record<string, unknown>).mindsOn !== undefined ||

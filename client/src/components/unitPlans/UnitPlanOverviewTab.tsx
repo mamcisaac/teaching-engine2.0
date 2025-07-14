@@ -21,14 +21,15 @@ export const UnitPlanOverviewTab: React.FC<UnitPlanOverviewTabProps> = ({
     <div className="space-y-6">
       <CollapsibleSection defaultExpanded required title="Basic Information">
         <div className="space-y-4">
-          {(!longRangePlanId || longRangePlanId === '') && (
+          {(longRangePlanId === null || longRangePlanId === undefined || longRangePlanId === '') && (
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="unit-lrp-select">
                 Long-Range Plan *
               </label>
               <select
                 required
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                id="unit-lrp-select"
                 value={formData.longRangePlanId}
                 onChange={(e) => {
  updateField('longRangePlanId', e.target.value); 
@@ -45,12 +46,13 @@ export const UnitPlanOverviewTab: React.FC<UnitPlanOverviewTabProps> = ({
           )}
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="unit-title">
               Unit Title *
             </label>
             <input
               required
               className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              id="unit-title"
               placeholder="e.g., Living Things in Our Environment"
               type="text"
               value={formData.title}
@@ -61,11 +63,12 @@ export const UnitPlanOverviewTab: React.FC<UnitPlanOverviewTabProps> = ({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="unit-description">
               Description
             </label>
             <textarea
               className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              id="unit-description"
               placeholder="Brief overview of the unit..."
               rows={3}
               value={formData.description}
@@ -77,12 +80,13 @@ export const UnitPlanOverviewTab: React.FC<UnitPlanOverviewTabProps> = ({
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="unit-start-date">
                 Start Date *
               </label>
               <input
                 required
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                id="unit-start-date"
                 type="date"
                 value={formData.startDate}
                 onChange={(e) => {
@@ -92,12 +96,13 @@ export const UnitPlanOverviewTab: React.FC<UnitPlanOverviewTabProps> = ({
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="unit-end-date">
                 End Date *
               </label>
               <input
                 required
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                id="unit-end-date"
                 type="date"
                 value={formData.endDate}
                 onChange={(e) => {
@@ -107,11 +112,12 @@ export const UnitPlanOverviewTab: React.FC<UnitPlanOverviewTabProps> = ({
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="unit-hours">
                 Estimated Hours
               </label>
               <input
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                id="unit-hours"
                 min="1"
                 type="number"
                 value={formData.estimatedHours}

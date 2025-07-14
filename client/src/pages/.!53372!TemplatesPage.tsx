@@ -214,7 +214,7 @@ return;
                 {template.subject && ` • ${template.subject}`}
                 {template.gradeMin === template.gradeMax
                   ? ` • Grade ${template.gradeMin}`
-                  : template.gradeMin != null && template.gradeMax != null
+                  : template.gradeMin !== null && template.gradeMax !== null
                     ? ` • Grades ${template.gradeMin}-${template.gradeMax}`
                     : ''}
               </CardDescription>

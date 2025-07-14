@@ -87,7 +87,7 @@ export class DatabaseTestHelper {
 /**
  * Creates a database helper for testing
  */
-export const createDatabaseHelper = (testName?: string) => {
+export const createDatabaseHelper = (testName?: string): DatabaseTestHelper => {
   return new DatabaseTestHelper(testName);
 };
 
@@ -171,7 +171,7 @@ export const setupTestDatabaseIsolation = async () => {
 /**
  * Mock database transaction helper
  */
-export const createMockTransaction = () => {
+export const createMockTransaction = (): { mockClient: Record<string, unknown>; commit: () => Promise<void>; rollback: () => Promise<void> } => {
   const mockClient = {
     // Add mock methods as needed
   };

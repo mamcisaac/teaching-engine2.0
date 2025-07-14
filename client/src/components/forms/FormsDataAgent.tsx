@@ -350,7 +350,9 @@ return;
                 <Button
                   className="bg-indigo-600 hover:bg-indigo-700"
                   disabled={isProcessing || totalOperations === 0}
-                  onClick={(): void => { void processBatchOperations(); }}
+                  onClick={(): void => {
+ void processBatchOperations(); 
+}}
                 >
                   {isProcessing ? 'Processing...' : 'Process All'}
                 </Button>
@@ -376,7 +378,7 @@ return;
                           {operation.type}
                         </Badge>
                         <div>
-                          <p className="font-medium">{operation.data.title || 'Untitled'}</p>
+                          <p className="font-medium">{operation.data.title ?? 'Untitled'}</p>
                           {operation.errors && operation.errors.length > 0 && (
                             <p className="text-sm text-red-600">
                               {operation.errors.length} validation error(s)
@@ -527,7 +529,9 @@ return;
                   className="mt-2"
                   id="file-import"
                   type="file"
-                  onChange={(e): void => { void handleFileImport(e); }}
+                  onChange={(e): void => {
+ void handleFileImport(e); 
+}}
                 />
                 <p className="text-sm text-gray-600 mt-1">
                   Upload a JSON file containing unit plans or lesson plans

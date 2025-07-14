@@ -176,7 +176,7 @@ export function useParentSummaries(studentId: number | undefined): UseQueryResul
   return useQuery<ParentSummary[], Error, ParentSummary[]>({
     queryKey: ['parent-summaries', studentId],
     queryFn: async () => {
-      if (!studentId) {
+      if (studentId === null || studentId === undefined || studentId === 0 || isNaN(studentId)) {
 throw new Error('Student ID is required');
 }
       const response = await apiClient.get(`/parent-summaries/student/${studentId}`);

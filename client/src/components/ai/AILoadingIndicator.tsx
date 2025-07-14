@@ -123,7 +123,7 @@ export function AILoadingIndicator({
   }, [state]);
 
   const currentStep = steps.find((step) => step.id === currentStepId);
-  const currentStepIndex = currentStepId != null ? steps.findIndex((step) => step.id === currentStepId) : -1;
+  const currentStepIndex = (currentStepId !== null && currentStepId !== undefined && currentStepId !== '') ? steps.findIndex((step) => step.id === currentStepId) : -1;
   const displayProgress = progress > 0 ? progress : localProgress;
 
   const formatElapsedTime = (ms: number): string => {
@@ -205,7 +205,7 @@ return null;
               >
                 {title}
               </h3>
-              {subtitle && (
+              {subtitle !== undefined && subtitle !== '' && (
                 <p 
                   className="text-sm text-gray-500"
                   id="ai-loading-description"
@@ -215,7 +215,7 @@ return null;
               )}
             </div>
           </div>
-          {canCancel && onCancel != null && state !== 'success' && (
+          {canCancel && onCancel && state !== 'success' && (
             <Button
               aria-label="Cancel AI generation"
               className="h-8 w-8 p-0 hover:bg-gray-100"
@@ -268,7 +268,7 @@ return null;
               aria-live="polite" 
               className="sr-only"
             >
-              {state === 'processing' && currentStep != null && 
+              {state === 'processing' && currentStep && 
                 `${currentStep.description} - ${Math.round(displayProgress)}% complete`
               }
               {state === 'success' && 'AI generation completed successfully'}
@@ -283,12 +283,12 @@ return null;
             aria-live="assertive" 
             className="sr-only"
           >
-            AI generation failed{error != null ? `: ${error}` : ''}
+            AI generation failed{(error !== null && error !== undefined && error !== '') ? `: ${error}` : ''}
           </div>
         )}
 
         {/* Current Step */}
-        {currentStep != null && (
+        {currentStep && (
           <div className="mb-4">
             <div className="flex items-center gap-2 mb-2">
               <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
@@ -340,14 +340,14 @@ return null;
         )}
 
         {/* Error Message */}
-        {state === 'error' && error != null && (
+        {state === 'error' && (error !== null && error !== undefined && error !== '') && (
           <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
             <p className="text-sm text-red-700">{error}</p>
           </div>
         )}
 
         {/* Success Message */}
-        {state === 'success' && successMessage != null && (
+        {state === 'success' && (successMessage !== null && successMessage !== undefined && successMessage !== '') && (
           <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-md">
             <p className="text-sm text-green-700">{successMessage}</p>
           </div>
@@ -370,7 +370,7 @@ return null;
         )}
 
         {/* Cancel Button for Processing */}
-        {state === 'processing' && canCancel && onCancel != null && (
+        {state === 'processing' && canCancel && onCancel && (
           <div className="flex justify-end mt-4">
             <Button aria-label="Click button" onClick={onCancel}>
               Cancel

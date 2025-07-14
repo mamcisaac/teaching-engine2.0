@@ -117,7 +117,7 @@ export class LLMService extends BaseService {
    * Check if the service is ready for content generation
    */
   public isReady(): boolean {
-    return this.openaiClient !== null;
+    return !!this.openaiClient;
   }
 
   /**
@@ -155,7 +155,7 @@ export class LLMService extends BaseService {
         temperature: request.temperature ?? 0.7,
       });
 
-      const content = response.choices[0]?.message?.content || '';
+      const content = response.choices[0]?.message?.content ?? '';
 
       if (!content || content === '') {
         throw new Error('No content generated from OpenAI');
@@ -234,7 +234,7 @@ export class LLMService extends BaseService {
         temperature: request.temperature ?? 0.7,
       });
 
-      const content = response.choices[0]?.message?.content || '';
+      const content = response.choices[0]?.message?.content ?? '';
 
       if (!content || content === '') {
         throw new Error('No content generated from OpenAI');
@@ -267,11 +267,11 @@ export class LLMService extends BaseService {
         contextParts.push(`Subject: ${request.context.subject}`);
       }
 
-      if (request.context.grade && request.context.grade !== 0) {
+      if (request.context.grade !== undefined && request.context.grade !== 0 && !isNaN(request.context.grade)) {
         contextParts.push(`Grade Level: ${request.context.grade}`);
       }
 
-      if (request.context.duration && request.context.duration !== 0) {
+      if (request.context.duration !== undefined && request.context.duration !== 0 && !isNaN(request.context.duration)) {
         contextParts.push(`Duration: ${request.context.duration} minutes`);
       }
 
@@ -336,11 +336,11 @@ export class LLMService extends BaseService {
       throw new Error('Prompt is required and cannot be empty');
     }
 
-    if (request.maxTokens && (request.maxTokens < 1 || request.maxTokens > 4000)) {
+    if (request.maxTokens !== undefined && !isNaN(request.maxTokens) && (request.maxTokens < 1 || request.maxTokens > 4000)) {
       throw new Error('Max tokens must be between 1 and 4000');
     }
 
-    if (request.temperature && (request.temperature < 0 || request.temperature > 2)) {
+    if (request.temperature !== undefined && !isNaN(request.temperature) && (request.temperature < 0 || request.temperature > 2)) {
       throw new Error('Temperature must be between 0 and 2');
     }
   }

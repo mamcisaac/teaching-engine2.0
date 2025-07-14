@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { chromium } from '@playwright/test';
 
-export default async function globalSetup() {
+export default async function globalSetup(): Promise<void> {
   // For now, let's manually create the auth state by making a login API call
   // This bypasses the problematic UI login that's having issues with 401 errors
   const browser = await chromium.launch();

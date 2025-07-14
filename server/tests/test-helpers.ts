@@ -52,7 +52,7 @@ export function getAuthHeaders(userId: number = 1): Record<string, string> {
  * Create a test JWT token
  */
 export function createTestJWT(userId: number): string {
-  const secret = process.env.JWT_SECRET || 'test-secret-key';
+  const secret = process.env.JWT_SECRET ?? 'test-secret-key';
   return jwt.sign({ userId: String(userId) }, secret, { expiresIn: '1h' });
 }
 

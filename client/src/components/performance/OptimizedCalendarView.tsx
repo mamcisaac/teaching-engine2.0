@@ -56,10 +56,19 @@ const DayCell = memo(({
 
   return (
     <div
+      aria-label={`Select date ${dayNumber}`}
       className={`border p-1 min-h-16 cursor-pointer hover:bg-gray-50 transition-colors ${
         !isCurrentMonth ? 'bg-gray-100 text-gray-400' : ''
       } ${isToday ? 'bg-blue-50 border-blue-200' : ''}`}
+      role="button"
+      tabIndex={0}
       onClick={handleDateClick}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleDateClick();
+        }
+      }}
     >
       <div className={`font-bold text-xs mb-1 ${isToday ? 'text-blue-600' : ''}`}>
         {dayNumber}
@@ -69,11 +78,21 @@ const DayCell = memo(({
         {visibleEvents.map((event, _index) => (
           <div
             key={event.id}
+            aria-label={`Event: ${event.title}`}
             className="text-xs bg-gray-200 rounded px-1 py-0.5 cursor-pointer hover:bg-gray-300 transition-colors truncate"
+            role="button"
+            tabIndex={0}
             title={event.title}
             onClick={(e) => {
               e.stopPropagation();
               onEventClick?.(event);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                e.stopPropagation();
+                onEventClick?.(event);
+              }
             }}
           >
             {event.title}
@@ -126,8 +145,17 @@ const EventListItem = memo(({
 
   return (
     <div
+      aria-label={`Event: ${event.title}`}
       className="flex items-center justify-between p-3 border-b hover:bg-gray-50 cursor-pointer"
+      role="button"
+      tabIndex={0}
       onClick={handleClick}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleClick();
+        }
+      }}
     >
       <div className="flex-1 min-w-0">
         <h4 className="font-medium text-gray-900 truncate">{event.title}</h4>
@@ -181,7 +209,7 @@ export const OptimizedCalendarView = memo(({
 
   // Memoize event array processing
   const events = useMemo(() => {
-    const evts = externalEvents || fetchedEvents || [];
+    const evts = externalEvents ?? fetchedEvents ?? [];
     return Array.isArray(evts) ? evts : [];
   }, [externalEvents, fetchedEvents]);
 

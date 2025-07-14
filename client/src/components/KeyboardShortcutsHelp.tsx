@@ -129,8 +129,8 @@ export const KeyboardShortcutsHelp: React.FC<KeyboardShortcutsHelpProps> = ({
         <div className="border-b pb-4 mb-4">
           <div className="flex items-center justify-between">
             <Switch
-              label="Enable Keyboard Shortcuts"
               checked={preferences.enabled}
+              label="Enable Keyboard Shortcuts"
               onChange={(enabled) => {
  updatePreferences({ enabled }); 
 }}
@@ -138,8 +138,8 @@ export const KeyboardShortcutsHelp: React.FC<KeyboardShortcutsHelpProps> = ({
           </div>
           <div className="flex items-center justify-between mt-3">
             <Switch
-              label="Show Shortcut Hints"
               checked={preferences.showHints}
+              label="Show Shortcut Hints"
               onChange={(showHints) => {
  updatePreferences({ showHints }); 
 }}

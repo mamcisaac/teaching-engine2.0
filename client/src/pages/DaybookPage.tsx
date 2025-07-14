@@ -56,14 +56,14 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
 
   // Initialize all ETFO-aligned fields
   const [formData, setFormData] = useState({
-    notes: entry?.notes || '',
-    privateNotes: entry?.privateNotes || '',
-    whatWorked: entry?.whatWorked || '',
-    whatDidntWork: entry?.whatDidntWork || '',
-    nextSteps: entry?.nextSteps || '',
-    studentEngagement: entry?.studentEngagement || '',
-    studentChallenges: entry?.studentChallenges || '',
-    studentSuccesses: entry?.studentSuccesses || '',
+    notes: entry?.notes ?? '',
+    privateNotes: entry?.privateNotes ?? '',
+    whatWorked: entry?.whatWorked ?? '',
+    whatDidntWork: entry?.whatDidntWork ?? '',
+    nextSteps: entry?.nextSteps ?? '',
+    studentEngagement: entry?.studentEngagement ?? '',
+    studentChallenges: entry?.studentChallenges ?? '',
+    studentSuccesses: entry?.studentSuccesses ?? '',
     overallRating: entry?.overallRating ?? 3,
     wouldReuseLesson: entry?.wouldReuseLesson ?? true,
   });
@@ -593,7 +593,9 @@ export default function DaybookPage(): React.ReactElement {
             entry={getDayEntry(day)}
             isToday={isToday(day)}
             lessons={getDayLessons(day)}
-            onSave={(data) => handleSaveEntry(day, data)}
+            onSave={(data) => {
+ handleSaveEntry(day, data); 
+}}
           />
         ))}
       </div>

@@ -73,7 +73,7 @@ export function TemplateFilters({
             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Search templates..."
             type="text"
-            value={filters.search || ''}
+            value={(filters.search !== null && filters.search !== undefined) ? filters.search : ''}
             onChange={(e): void => {
  updateFilter('search', e.target.value); 
 }}
@@ -82,14 +82,14 @@ export function TemplateFilters({
 
         {/* Template Type */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="filter-type">Type</label>
           <Select
             value={filters.type ?? 'all'}
             onValueChange={(value): void => {
  updateFilter('type', value === 'all' ? undefined : value); 
 }}
           >
-            <SelectTrigger>
+            <SelectTrigger id="filter-type">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -105,7 +105,7 @@ export function TemplateFilters({
 
         {/* Category */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="filter-category">Category</label>
           <Select
             value={filters.category ?? 'all'}
             onValueChange={(value): void => {
@@ -113,7 +113,7 @@ export function TemplateFilters({
 }
             }
           >
-            <SelectTrigger>
+            <SelectTrigger id="filter-category">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -129,14 +129,14 @@ export function TemplateFilters({
 
         {/* Subject */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="filter-subject">Subject</label>
           <Select
             value={filters.subject ?? 'all'}
             onValueChange={(value): void => {
  updateFilter('subject', value === 'all' ? undefined : value); 
 }}
           >
-            <SelectTrigger>
+            <SelectTrigger id="filter-subject">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -152,7 +152,7 @@ export function TemplateFilters({
 
         {/* Grade Range */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Grade Level</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="filter-grade-min">Grade Level</label>
           <div className="flex gap-2 items-center">
             <Select
               value={filters.gradeMin !== undefined ? filters.gradeMin.toString() : 'all'}
@@ -161,7 +161,7 @@ export function TemplateFilters({
 }
               }
             >
-              <SelectTrigger className="flex-1">
+              <SelectTrigger className="flex-1" id="filter-grade-min">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -200,7 +200,7 @@ export function TemplateFilters({
       {/* Sort Options */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 border-t">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Sort By</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="filter-sort-by">Sort By</label>
           <Select
             value={filters.sortBy ?? 'usageCount'}
             onValueChange={(value): void => {
@@ -211,7 +211,7 @@ export function TemplateFilters({
 }
             }
           >
-            <SelectTrigger>
+            <SelectTrigger id="filter-sort-by">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -225,14 +225,14 @@ export function TemplateFilters({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Order</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="filter-sort-order">Order</label>
           <Select
             value={filters.sortOrder ?? 'desc'}
             onValueChange={(value): void => {
  updateFilter('sortOrder', value as 'asc' | 'desc'); 
 }}
           >
-            <SelectTrigger>
+            <SelectTrigger id="filter-sort-order">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>

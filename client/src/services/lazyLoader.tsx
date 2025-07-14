@@ -1,7 +1,6 @@
 // Lazy Loading Service for Large Documents
 // Provides efficient loading of curriculum documents with caching
 
-
 import React from 'react';
 
 import { apiClient } from '../api/core/client';
@@ -41,7 +40,7 @@ class LazyLoader {
       this.intersectionObserver = new IntersectionObserver(
         (entries): void => {
           entries.forEach((entry): void => {
-            if (entry.isIntersecting === true) {
+            if (entry.isIntersecting) {
               const element = entry.target as HTMLElement;
               const documentId = element.dataset.lazyDocumentId;
               if (documentId !== undefined && documentId !== '') {
@@ -77,12 +76,12 @@ class LazyLoader {
 
     // Check memory cache
     const cached = this.documentCache.get(documentId);
-    if (cached !== undefined && this.isDocumentComplete(cached) === true) {
+    if (cached !== undefined && this.isDocumentComplete(cached)) {
       return this.assembleDocument(cached);
     }
 
     // Check offline storage cache
-    if (cache === true) {
+    if (cache) {
       const storedDoc = await offlineStorage.getCachedData(`document-${documentId}`);
       if (storedDoc !== null) {
         return storedDoc;
@@ -97,7 +96,7 @@ class LazyLoader {
       const document = await loadPromise;
       
       // Cache if requested
-      if (cache === true) {
+      if (cache) {
         await offlineStorage.cacheData(`document-${documentId}`, document as StoredData, cacheTime);
       }
       
@@ -212,10 +211,9 @@ class LazyLoader {
       return safeJsonParse(chunks.join(''), {});
     } else if (doc.metadata.type === 'text') {
       return chunks.join('');
-    } else {
+    } 
       // Binary data
       return new Blob(chunks as BlobPart[]);
-    }
     
   }
 
@@ -303,7 +301,7 @@ export function useLazyDocument(documentId: string | null, options?: LoadOptions
         const doc = await lazyLoader.loadDocument(documentId, {
           ...options,
           onProgress: (p) => {
-            if (cancelled === false) {
+            if (!cancelled) {
               setProgress(p);
               if (options?.onProgress !== undefined) {
                 options.onProgress(p);

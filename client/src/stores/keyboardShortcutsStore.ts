@@ -56,13 +56,13 @@ const isMac = typeof window !== 'undefined' && navigator.platform.toUpperCase().
 export const formatShortcut = (shortcut: KeyboardShortcut): string => {
   const parts: string[] = [];
 
-  if (shortcut.ctrl === true && isMac === false) {
+  if (shortcut.ctrl === true && !isMac) {
 parts.push('Ctrl');
 }
-  if (shortcut.cmd === true && isMac === true) {
+  if (shortcut.cmd === true && isMac) {
 parts.push('⌘');
 }
-  if (shortcut.ctrl === true && isMac === true) {
+  if (shortcut.ctrl === true && isMac) {
 parts.push('⌃');
 }
   if (shortcut.alt === true) {
@@ -142,7 +142,7 @@ export const useKeyboardShortcutsStore = create<KeyboardShortcutsState>()(
 
       startListening: (): void => {
         const state = get();
-        if (state.isListening === true) {
+        if (state.isListening) {
 return;
 }
 
@@ -152,7 +152,7 @@ return;
 
         const handleKeyDown = (event: KeyboardEvent): void => {
           const currentState = get();
-          if (currentState.isEnabled === false || currentState.preferences.enabled === false) {
+          if (!currentState.isEnabled || !currentState.preferences.enabled) {
 return;
 }
 
@@ -166,7 +166,7 @@ return;
           ) {
             // Allow some global shortcuts even in input fields
             const allowedInInputs = ['Escape', 'F1'];
-            if (allowedInInputs.includes(event.key) === false) {
+            if (!allowedInInputs.includes(event.key)) {
               return;
             }
           }
@@ -190,13 +190,13 @@ continue;
             const ctrlKey = isMac ? event.metaKey : event.ctrlKey;
             const cmdKey = isMac ? event.metaKey : false;
 
-            if (finalShortcut.ctrl === true && ctrlKey === false) {
+            if (finalShortcut.ctrl === true && !ctrlKey) {
 continue;
 }
-            if (finalShortcut.cmd === true && cmdKey === false) {
+            if (finalShortcut.cmd === true && !cmdKey) {
 continue;
 }
-            if (finalShortcut.alt === true && event.altKey === false) {
+            if (finalShortcut.alt === true && !event.altKey) {
 continue;
 }
             if (finalShortcut.shift && !event.shiftKey) {

@@ -137,7 +137,7 @@ return;
   };
 
   // Error state
-  if (error && items.length === 0) {
+  if ((error !== null && error !== undefined && error !== '') && items.length === 0) {
     return (
       <div className={`text-center py-8 ${className}`}>
         {errorState ?? (
@@ -192,7 +192,7 @@ return;
       style={infiniteScroll ? { maxHeight: '600px' } : undefined}
     >
       {/* Progress indicator */}
-      {total && total > 0 && (
+      {(total !== null && total !== undefined && !isNaN(total) && total > 0) && (
         <div className="mb-4 text-sm text-gray-500">
           Showing {items.length} of {total} items
           {items.length < total && ` (${((items.length / total) * 100).toFixed(1)}% loaded)`}
@@ -219,7 +219,9 @@ return;
               className="min-w-[120px]"
               disabled={loadingMore}
               variant="outline"
-              onClick={(): void => { void loadMoreData(); }}
+              onClick={(): void => {
+ void loadMoreData(); 
+}}
             >
               Load More
             </Button>
@@ -233,16 +235,18 @@ return;
       {!hasMore && items.length > 0 && (
         <div className="mt-6 text-center">
           <div className="text-sm text-gray-500 py-4 border-t">
-            {total && total > 0 ? `All ${total} items loaded` : 'All items loaded'}
+            {(total !== null && total !== undefined && !isNaN(total) && total > 0) ? `All ${total} items loaded` : 'All items loaded'}
           </div>
         </div>
       )}
 
       {/* Error state for load more */}
-      {error && items.length > 0 && (
+      {(error !== null && error !== undefined && error !== '') && items.length > 0 && (
         <div className="mt-4 text-center">
           <div className="text-red-600 text-sm mb-2">Failed to load more items</div>
-          <Button aria-label="Click button" onClick={() => { void loadMoreData(); }}>
+          <Button aria-label="Click button" onClick={() => {
+ void loadMoreData(); 
+}}>
             Try Again
           </Button>
         </div>

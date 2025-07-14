@@ -20,7 +20,7 @@ api.interceptors.request.use(
 
     // Also support legacy token for backward compatibility
     const legacyToken = localStorage.getItem('token');
-    if (legacyToken && (authHeaders.Authorization === undefined || authHeaders.Authorization === null || authHeaders.Authorization === '')) {
+    if ((legacyToken !== null && legacyToken !== undefined && legacyToken !== '') && (authHeaders.Authorization === undefined || authHeaders.Authorization === null || authHeaders.Authorization === '')) {
       config.headers.Authorization = `Bearer ${legacyToken}`;
     }
 

@@ -94,7 +94,7 @@ export default function TemplatesPage(): React.ReactElement {
 
   // Build search options
   const searchOptions: TemplateSearchOptions = {
-    search: searchTerm || undefined,
+    search: searchTerm ?? undefined,
     type: selectedType !== 'all' ? selectedType : undefined,
     category: selectedCategory !== 'all' ? selectedCategory : undefined,
     subject: selectedSubject !== 'all' ? selectedSubject : undefined,
@@ -214,7 +214,7 @@ return;
                 {template.subject && ` • ${template.subject}`}
                 {template.gradeMin === template.gradeMax
                   ? ` • Grade ${template.gradeMin}`
-                  : template.gradeMin != null && template.gradeMax != null
+                  : template.gradeMin !== null && template.gradeMax !== null
                     ? ` • Grades ${template.gradeMin}-${template.gradeMax}`
                     : ''}
               </CardDescription>
@@ -254,7 +254,7 @@ return;
 
         <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
           <div className="flex items-center gap-4">
-            {template.averageRating && template.averageRating !== 0 && (
+            {template.averageRating !== null && template.averageRating !== undefined && template.averageRating !== 0 && !isNaN(template.averageRating) && (
               <div className="flex items-center gap-1">
                 <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                 <span>{template.averageRating.toFixed(1)}</span>
@@ -266,13 +266,13 @@ return;
             </div>
           </div>
 
-          {template.estimatedWeeks && template.estimatedWeeks !== 0 && (
+          {template.estimatedWeeks !== null && template.estimatedWeeks !== undefined && template.estimatedWeeks !== 0 && !isNaN(template.estimatedWeeks) && (
             <div className="flex items-center gap-1">
               <Calendar className="h-4 w-4" />
               <span>{template.estimatedWeeks}w</span>
             </div>
           )}
-          {template.estimatedMinutes && template.estimatedMinutes !== 0 && (
+          {template.estimatedMinutes !== null && template.estimatedMinutes !== undefined && template.estimatedMinutes !== 0 && !isNaN(template.estimatedMinutes) && (
             <div className="flex items-center gap-1">
               <Clock className="h-4 w-4" />
               <span>{template.estimatedMinutes}m</span>
@@ -311,7 +311,7 @@ return;
             <Copy className="h-4 w-4" />
           </Button>
 
-          {template.createdByUserId && !template.isSystem && (
+          {template.createdByUserId !== null && template.createdByUserId !== undefined && template.createdByUserId !== 0 && !isNaN(template.createdByUserId) && !template.isSystem && (
             <Button
               size="sm"
               variant="ghost"
@@ -657,7 +657,7 @@ return;
                   max="12"
                   min="1"
                   type="number"
-                  value={formData.gradeMin || ''}
+                  value={(formData.gradeMin !== null && formData.gradeMin !== undefined && formData.gradeMin !== 0 && !isNaN(formData.gradeMin)) ? formData.gradeMin : ''}
                   onChange={(e) => {
  setFormData({
                       ...formData,
@@ -674,7 +674,7 @@ return;
                   max="12"
                   min="1"
                   type="number"
-                  value={formData.gradeMax || ''}
+                  value={(formData.gradeMax !== null && formData.gradeMax !== undefined && formData.gradeMax !== 0 && !isNaN(formData.gradeMax)) ? formData.gradeMax : ''}
                   onChange={(e) => {
  setFormData({
                       ...formData,
@@ -768,7 +768,7 @@ return;
                         <div>{selectedTemplate.subject}</div>
                       </div>
                     )}
-                    {(selectedTemplate.gradeMin || selectedTemplate.gradeMax) && (
+                    {((selectedTemplate.gradeMin !== null && selectedTemplate.gradeMin !== undefined && selectedTemplate.gradeMin !== 0 && !isNaN(selectedTemplate.gradeMin)) || (selectedTemplate.gradeMax !== null && selectedTemplate.gradeMax !== undefined && selectedTemplate.gradeMax !== 0 && !isNaN(selectedTemplate.gradeMax))) && (
                       <div>
                         <span className="font-medium">Grade:</span>
                         <div>

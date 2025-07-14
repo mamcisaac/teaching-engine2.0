@@ -7,7 +7,7 @@ let apiContext: APIRequestContext;
 // Initialize API context
 type PlaywrightType = typeof import('@playwright/test');
 export async function initApiContext(playwright: PlaywrightType) {
-  const baseURL = process.env.API_BASE || 'http://localhost:3000';
+  const baseURL = process.env.API_BASE ?? 'http://localhost:3000';
   console.log(`Initializing API context with base URL: ${baseURL}`);
 
   apiContext = await playwright.request.newContext({
@@ -39,35 +39,35 @@ export function getApiContext() {
       ...apiContext,
       post: async (url: string, options?: HttpOptions) => {
         const headers = {
-          ...(options?.headers || {}),
+          ...(options?.headers ?? {}),
           Authorization: `Bearer ${token}`,
         };
         return apiContext.post(url, { ...options, headers });
       },
       get: async (url: string, options?: Omit<HttpOptions, 'data'>) => {
         const headers = {
-          ...(options?.headers || {}),
+          ...(options?.headers ?? {}),
           Authorization: `Bearer ${token}`,
         };
         return apiContext.get(url, { ...options, headers });
       },
       delete: async (url: string, options?: Omit<HttpOptions, 'data'>) => {
         const headers = {
-          ...(options?.headers || {}),
+          ...(options?.headers ?? {}),
           Authorization: `Bearer ${token}`,
         };
         return apiContext.delete(url, { ...options, headers });
       },
       put: async (url: string, options?: HttpOptions) => {
         const headers = {
-          ...(options?.headers || {}),
+          ...(options?.headers ?? {}),
           Authorization: `Bearer ${token}`,
         };
         return apiContext.put(url, { ...options, headers });
       },
       patch: async (url: string, options?: HttpOptions) => {
         const headers = {
-          ...(options?.headers || {}),
+          ...(options?.headers ?? {}),
           Authorization: `Bearer ${token}`,
         };
         return apiContext.patch(url, { ...options, headers });
@@ -197,7 +197,7 @@ export async function login(page: Page) {
       const errorMessages = await page.$$eval('*', (elements) =>
         elements
           .filter((el) => {
-            const text = el.textContent?.trim() || '';
+            const text = el.textContent?.trim() ?? '';
             return (
               text.length > 0 &&
               text.length < 200 &&

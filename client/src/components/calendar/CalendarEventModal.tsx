@@ -122,11 +122,11 @@ export function CalendarEventModal({
         </DialogHeader>
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
-            <label className="block text-sm font-medium mb-1">Event Type</label>
+            <label className="block text-sm font-medium mb-1" htmlFor="event-type-select">Event Type</label>
             <Select value={eventType} onValueChange={(value) => {
  setEventType(value as EventType); 
 }}>
-              <SelectTrigger>
+              <SelectTrigger id="event-type-select">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>

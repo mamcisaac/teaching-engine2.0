@@ -2,7 +2,7 @@ import DOMPurify from 'dompurify';
 import React from 'react';
 
 export const sanitizeHtml = (dirty: string | undefined | null): string => {
-  if (!dirty) {
+  if (dirty === undefined || dirty === null || dirty === '') {
 return '';
 }
   
@@ -26,7 +26,7 @@ return '';
 };
 
 export const escapeHtml = (unsafe: string | undefined | null): string => {
-  if (!unsafe) {
+  if (unsafe === undefined || unsafe === null || unsafe === '') {
 return '';
 }
   

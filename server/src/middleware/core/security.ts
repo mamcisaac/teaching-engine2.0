@@ -90,7 +90,7 @@ export const inputSanitizationMiddleware = (
     }
 
     if (data && typeof data === 'object') {
-      const sanitized: any = {};
+      const sanitized: Record<string, unknown> = {};
       for (const [key, value] of Object.entries(data)) {
         sanitized[key] = sanitize(value);
       }
@@ -106,11 +106,11 @@ export const inputSanitizationMiddleware = (
   }
 
   if (req.query) {
-    req.query = sanitize(req.query) as any;
+    req.query = sanitize(req.query) as Record<string, unknown>;
   }
 
   if (req.params) {
-    req.params = sanitize(req.params) as any;
+    req.params = sanitize(req.params) as Record<string, string>;
   }
 
   next();
@@ -138,7 +138,7 @@ export const xssProtectionMiddleware = (_req: Request, res: Response, next: Next
         return obj.map(escapeData);
       }
       if (obj && typeof obj === 'object') {
-        const escaped: any = {};
+        const escaped: Record<string, unknown> = {};
         for (const [key, value] of Object.entries(obj)) {
           escaped[key] = escapeData(value);
         }
@@ -190,7 +190,7 @@ return;
             value,
             ip: req.ip,
             path: req.path,
-            userId: (req as any).user?.id,
+            userId: (req as Request & { user?: { id: number } }).user?.id,
           },
           'Potential SQL injection attempt detected',
         );
@@ -215,7 +215,7 @@ checkObject(req.query);
     if (req.params) {
 checkObject(req.params);
 }
-  } catch (_error) {
+  } catch (_error: unknown) {
     next(_error); return;
   }
 

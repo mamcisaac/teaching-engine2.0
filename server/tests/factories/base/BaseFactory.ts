@@ -221,8 +221,8 @@ export abstract class BaseFactory<T> {
     const defaultMax = new Date(currentYear + 1, 5, 30); // June 30
     
     let date = this.faker.date.between({
-      from: options?.minDate || defaultMin,
-      to: options?.maxDate || defaultMax,
+      from: options?.minDate ?? defaultMin,
+      to: options?.maxDate ?? defaultMax,
     });
     
     // Exclude weekends if requested

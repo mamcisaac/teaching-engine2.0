@@ -70,7 +70,7 @@ router.get('/health/detailed', (_req: Request, res: Response): void => {
         uptime: process.uptime(),
         memory: process.memoryUsage(),
         pid: process.pid,
-        version: process.env.npm_package_version || 'unknown',
+        version: process.env.npm_package_version ?? 'unknown',
         node: process.version,
         environment: process.env.NODE_ENV ?? 'development',
         services: {

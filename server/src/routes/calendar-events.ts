@@ -6,6 +6,7 @@ import { z } from 'zod';
 // Note: Authentication is handled at the route mounting level in index.ts
 
 import { logger } from '../logger';
+import { asyncHandler } from '../middleware/errorHandler';
 import { validateRequest } from '../middleware/validateRequest';
 import { prisma } from '../prisma';
 
@@ -30,7 +31,7 @@ const querySchema = z.object({
 });
 
 // Get calendar events for a date range
-router.get('/', async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+router.get('/', asyncHandler(async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
     // Validate query parameters
     const queryValidation = querySchema.safeParse(req.query);
@@ -80,13 +81,13 @@ router.get('/', async (req: AuthenticatedRequest, res: Response): Promise<void> 
     res.status(500).json({ error: 'Failed to fetch calendar events' });
     return;
   }
-});
+}));
 
 // Create a new calendar event
 router.post(
   '/',
   validateRequest(calendarEventSchema),
-  async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  asyncHandler(async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       const data = req.body as z.infer<typeof calendarEventSchema>;
       const userId = req.user?.id;
@@ -115,11 +116,11 @@ router.post(
       res.status(500).json({ error: 'Failed to create calendar event' });
       return;
     }
-  },
+  }),
 );
 
 // Update a calendar event
-router.patch('/:id', async (req: Request, res: Response): Promise<void> => {
+router.patch('/:id', asyncHandler(async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
     const userId = req.user?.id;
@@ -162,10 +163,10 @@ router.patch('/:id', async (req: Request, res: Response): Promise<void> => {
     res.status(500).json({ error: 'Failed to update calendar event' });
     return;
   }
-});
+}));
 
 // Delete a calendar event
-router.delete('/:id', async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+router.delete('/:id', asyncHandler(async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
     const userId = req.user?.id;
@@ -198,7 +199,7 @@ router.delete('/:id', async (req: AuthenticatedRequest, res: Response): Promise<
     res.status(500).json({ error: 'Failed to delete calendar event' });
     return;
   }
-});
+}));
 
 // Holiday import removed - teachers can add holidays manually as needed
 

@@ -38,7 +38,7 @@ export class MailHogTestProvider implements TestEmailProvider {
       }
       
       const data = await response.json();
-      return data.items?.map(this.parseMailHogMessage) || [];
+      return data.items?.map(this.parseMailHogMessage) ?? [];
     } catch (_error) {
       if (error instanceof Error && error.message.includes('ECONNREFUSED')) {
         throw new Error('MailHog server not running. Start with: docker run -p 1025:1025 -p 8025:8025 mailhog/mailhog');
@@ -85,12 +85,12 @@ export class MailHogTestProvider implements TestEmailProvider {
     
     return {
       id: msg.ID,
-      from: this.parseEmailAddress(headers.From?.[0] || ''),
-      to: (headers.To || []).map(this.parseEmailAddress),
-      subject: headers.Subject?.[0] || '',
-      text: content.Body || '',
+      from: this.parseEmailAddress(headers.From?.[0] ?? ''),
+      to: (headers.To ?? []).map(this.parseEmailAddress),
+      subject: headers.Subject?.[0] ?? '',
+      text: content.Body ?? '',
       html: content.MIME?.Parts?.find((part: unknown) => (part as { Headers: Record<string, string[]> }).Headers['Content-Type']?.[0]?.includes('text/html'))?.Body,
-      attachments: this.parseAttachments(content.MIME?.Parts || []),
+      attachments: this.parseAttachments(content.MIME?.Parts ?? []),
       createdAt: new Date(msg.Created),
     };
   }
@@ -107,7 +107,7 @@ export class MailHogTestProvider implements TestEmailProvider {
       .map(part => ({
         filename: this.extractFilename(part.Headers['Content-Disposition'][0]),
         content: Buffer.from(part.Body, 'base64'),
-        contentType: part.Headers['Content-Type']?.[0] || 'application/octet-stream',
+        contentType: part.Headers['Content-Type']?.[0] ?? 'application/octet-stream',
       }));
   }
 

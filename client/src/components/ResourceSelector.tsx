@@ -67,7 +67,15 @@ return '0 Bytes';
     return `${parseFloat((bytes / Math.pow(k, i)).toFixed(2))  } ${  sizes[i]}`;
   };
 
-  const getResourceUrl = (resource: MediaResource): string => resource.fileUrl ?? resource.thumbnailUrl ?? '/placeholder-image.png';
+  const getResourceUrl = (resource: MediaResource): string => {
+    if (resource.fileUrl !== '') {
+      return resource.fileUrl;
+    }
+    if (resource.thumbnailUrl !== undefined && resource.thumbnailUrl !== '') {
+      return resource.thumbnailUrl;
+    }
+    return '/placeholder-image.png';
+  };
 
   return (
     <Dialog open onOpenChange={(open) => !open && onClose()}>
@@ -84,10 +92,10 @@ return '0 Bytes';
         <div className="p-6 border-b bg-gray-50">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label htmlFor="resource-search" className="block text-sm font-medium mb-1">Search</label>
+              <label className="block text-sm font-medium mb-1" htmlFor="resource-search">Search</label>
               <input
-                id="resource-search"
                 className="w-full border rounded px-3 py-2"
+                id="resource-search"
                 placeholder="Search resources..."
                 type="text"
                 value={search}
@@ -97,11 +105,11 @@ return '0 Bytes';
               />
             </div>
             <div>
-              <label htmlFor="file-type-select" className="block text-sm font-medium mb-1">File Type</label>
+              <label className="block text-sm font-medium mb-1" htmlFor="file-type-select">File Type</label>
               <select
-                id="file-type-select"
                 className="w-full border rounded px-3 py-2"
-                disabled={fileTypeFilter != null} // Disable if filtered from props
+                disabled={!!((fileTypeFilter !== undefined && fileTypeFilter !== ''))} // Disable if filtered from props
+                id="file-type-select"
                 value={selectedFileType}
                 onChange={(e) => {
  setSelectedFileType(e.target.value); 
@@ -130,7 +138,10 @@ return '0 Bytes';
               {filteredResources.map((resource, _index) => (
                 <div
                   key={resource.id}
+                  aria-label={`Select resource: ${resource.title}`}
                   className="border rounded-lg p-4 hover:shadow-md hover:bg-blue-50 cursor-pointer transition-all"
+                  role="button"
+                  tabIndex={0}
                   onClick={() => {
  onSelect(resource); 
 }}
@@ -140,9 +151,6 @@ return '0 Bytes';
                       onSelect(resource);
                     }
                   }}
-                  role="button"
-                  tabIndex={0}
-                  aria-label={`Select resource: ${resource.title}`}
                 >
                   {/* Thumbnail */}
                   <div className="w-full h-32 mb-3 flex items-center justify-center bg-gray-100 rounded">
@@ -168,7 +176,7 @@ return '0 Bytes';
                   <div className="text-sm text-gray-500 mb-2">
                     <div className="flex items-center gap-2">
                       <span className="capitalize">{resource.type}</span>
-                      {resource.fileSize != null && resource.fileSize > 0 && (
+                      {resource.fileSize !== undefined && resource.fileSize > 0 && (
                         <>
                           <span>•</span>
                           <span>{formatFileSize(resource.fileSize)}</span>

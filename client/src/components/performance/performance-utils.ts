@@ -293,14 +293,14 @@ export const MemoUtils = {
 return true;
 }
     // eslint-disable-next-line eqeqeq
-    if (a == null || b == null) {
+    if (a === null || b === null) {
 return false;
 }
     if (typeof a !== typeof b) {
 return false;
 }
 
-    if (typeof a === 'object') {
+    if (typeof a === 'object' && a !== null && b !== null) {
       const keysA = Object.keys(a);
       const keysB = Object.keys(b);
 
@@ -398,7 +398,7 @@ urlObj.searchParams.set('q', quality.toString());
     imageSrc: string;
     isLoaded: boolean;
   } => {
-    const [imageSrc, setImageSrc] = useState(placeholder || '');
+    const [imageSrc, setImageSrc] = useState(placeholder ?? '');
     const [isLoaded, setIsLoaded] = useState(false);
     const [elementRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
 

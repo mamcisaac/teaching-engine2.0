@@ -31,9 +31,6 @@ export const KeyboardShortcutsSettings: React.FC = (): React.ReactElement => {
     .filter((s) => s.visible !== false)
     .reduce<Record<KeyboardShortcut['category'], KeyboardShortcut[]>>(
       (acc, shortcut) => {
-        if (!acc[shortcut.category]) {
-          acc[shortcut.category] = [];
-        }
         acc[shortcut.category].push(shortcut);
         return acc;
       },
@@ -166,7 +163,7 @@ export const KeyboardShortcutsSettings: React.FC = (): React.ReactElement => {
                   {(categoryShortcuts).map((shortcut, _index) => {
                     const customShortcut = preferences.customShortcuts[shortcut.id];
                     const isEditing = editingShortcut === shortcut.id;
-                    const hasCustom = !!customShortcut;
+                    const hasCustom = customShortcut !== undefined && customShortcut !== null;
                     const displayShortcut = customShortcut
                       ? { ...shortcut, ...customShortcut }
                       : shortcut;

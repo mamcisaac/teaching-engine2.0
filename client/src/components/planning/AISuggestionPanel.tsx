@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 
 import type { AISuggestion } from '@/hooks/useAIPlanningAssistant';
 
-
 import { Alert, AlertDescription } from '../ui/alert';
 import { Badge } from '../ui/Badge';
 import { Button } from '../ui/Button';
@@ -60,7 +59,7 @@ export function AISuggestionPanel({
   const handleAcceptAll = (): void => {
     if (onAcceptAll) {
       onAcceptAll();
-      const allIndices = new Set(suggestions?.suggestions.map((_, i) => i) || []);
+      const allIndices = new Set(suggestions?.suggestions.map((_, i) => i) ?? []);
       setAcceptedIndices(allIndices);
       toast({
         title: 'All Accepted',
@@ -78,7 +77,7 @@ export function AISuggestionPanel({
               <Sparkles className="h-5 w-5 text-purple-500" />
               {title}
             </CardTitle>
-            {description && <CardDescription>{description}</CardDescription>}
+            {(description !== null && description !== undefined && description !== '') && <CardDescription>{description}</CardDescription>}
           </div>
           <Button
             className="gap-2"
@@ -110,7 +109,7 @@ export function AISuggestionPanel({
 
         {suggestions && suggestions.suggestions.length > 0 && (
           <div className="space-y-3">
-            {suggestions.rationale && (
+            {(suggestions.rationale !== null && suggestions.rationale !== undefined && suggestions.rationale !== '') && (
               <p className="text-sm text-muted-foreground italic">{suggestions.rationale}</p>
             )}
 

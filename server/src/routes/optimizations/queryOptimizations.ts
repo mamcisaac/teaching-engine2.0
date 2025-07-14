@@ -8,23 +8,23 @@ import type { Prisma } from '@teaching-engine/database';
 import { logger } from '../../logger';
 
 // Type definitions for query optimization
-type PrismaModel = {
+interface PrismaModel {
   findMany(args: Record<string, unknown>): Promise<unknown[]>;
   count(args: Record<string, unknown>): Promise<number>;
-};
+}
 
-type PaginationOptions = {
+interface PaginationOptions {
   limit: number;
   offset: number;
   orderBy?: Record<string, 'asc' | 'desc'>;
   include?: Record<string, unknown>;
   select?: Record<string, boolean>;
-};
+}
 
-type PaginatedResult<T> = {
+interface PaginatedResult<T> {
   items: T[];
   total: number;
-};
+}
 
 type WhereCondition = Record<string, unknown>;
 type SortOrder = 'asc' | 'desc';

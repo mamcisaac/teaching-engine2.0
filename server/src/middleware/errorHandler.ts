@@ -76,7 +76,7 @@ export class RateLimitError extends AppError {
 export function asyncHandler(
   fn: (req: Request, res: Response, next: NextFunction) => Promise<unknown>,
 ): (req: Request, res: Response, next: NextFunction) => void {
-  return (req: Request, res: Response, next: NextFunction) => {
+  return (req: Request, res: Response, next: NextFunction): void => {
     // eslint-disable-next-line promise/no-callback-in-promise
     Promise.resolve(fn(req, res, next)).catch(next);
   };
@@ -94,7 +94,7 @@ export function notFoundHandler(req: Request, _res: Response, next: NextFunction
  * Development error response with stack trace
  */
 function sendErrorDev(err: ErrorLike, req: Request, res: Response): void {
-  const statusCode = err.statusCode || 500;
+  const statusCode = (err.statusCode !== null && err.statusCode !== undefined && err.statusCode !== 0 && !isNaN(err.statusCode)) ? err.statusCode : 500;
 
   logger.error(
     {
@@ -126,7 +126,7 @@ function sendErrorDev(err: ErrorLike, req: Request, res: Response): void {
  * Production error response without sensitive details
  */
 function sendErrorProd(err: ErrorLike, req: Request, res: Response): void {
-  const statusCode = err.statusCode || 500;
+  const statusCode = (err.statusCode !== null && err.statusCode !== undefined && err.statusCode !== 0 && !isNaN(err.statusCode)) ? err.statusCode : 500;
 
   // Operational, trusted error: send message to client
   if (err.isOperational) {
@@ -284,7 +284,7 @@ function handleSpecificErrors(
   if (!(err instanceof AppError)) {
     return new AppError(
       err.message || 'Internal server error',
-      (err as { statusCode?: number }).statusCode || 500,
+      ((err as { statusCode?: number }).statusCode !== null && (err as { statusCode?: number }).statusCode !== undefined && (err as { statusCode?: number }).statusCode !== 0 && !isNaN((err as { statusCode?: number }).statusCode!)) ? (err as { statusCode?: number }).statusCode : 500,
       (err as { code?: string }).code || 'INTERNAL_ERROR',
     );
   }
@@ -382,24 +382,24 @@ export function handleUnhandledRejection(): void {
  * Graceful shutdown handler
  */
 export function handleGracefulShutdown(server: { close: (callback: () => void) => void }): void {
-  const shutdown = (signal: string) => {
+  const shutdown = (signal: string): void => {
     logger.info(`${signal} received. Starting graceful shutdown...`);
 
-    server.close(() => {
+    server.close((): void => {
       logger.info('HTTP server closed');
 
       // Close database connections
-      (async () => {
+      (async (): Promise<void> => {
         try {
           // eslint-disable-next-line @typescript-eslint/no-var-requires
           const { prisma } = await import('../prisma.js');
           prisma
             .$disconnect()
-            .then(() => {
+            .then((): number => {
               logger.info('Database connections closed');
               return process.exit(0);
             })
-            .catch((err: unknown) => {
+            .catch((err: unknown): number => {
               logger.error({ error: err }, 'Error closing database connections');
               return process.exit(1);
             });
@@ -411,16 +411,16 @@ export function handleGracefulShutdown(server: { close: (callback: () => void) =
     });
 
     // Force shutdown after 30 seconds
-    setTimeout(() => {
+    setTimeout((): void => {
       logger.error('Could not close connections in time, forcefully shutting down');
       process.exit(1);
     }, 30000);
   };
 
-  process.on('SIGTERM', () => {
+  process.on('SIGTERM', (): void => {
  shutdown('SIGTERM'); 
 });
-  process.on('SIGINT', () => {
+  process.on('SIGINT', (): void => {
  shutdown('SIGINT'); 
 });
 }
@@ -428,9 +428,9 @@ export function handleGracefulShutdown(server: { close: (callback: () => void) =
 /**
  * Request timeout middleware
  */
-export function requestTimeout(timeoutMs = 30000) {
-  return (req: Request, res: Response, next: NextFunction) => {
-    const timeout = setTimeout(() => {
+export function requestTimeout(timeoutMs = 30000): (req: Request, res: Response, next: NextFunction) => void {
+  return (req: Request, res: Response, next: NextFunction): void => {
+    const timeout = setTimeout((): void => {
       logger.warn(
         {
           method: req.method,
@@ -448,10 +448,10 @@ export function requestTimeout(timeoutMs = 30000) {
       });
     }, timeoutMs);
 
-    res.on('finish', () => {
+    res.on('finish', (): void => {
  clearTimeout(timeout); 
 });
-    res.on('close', () => {
+    res.on('close', (): void => {
  clearTimeout(timeout); 
 });
 

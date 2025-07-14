@@ -63,7 +63,7 @@ return expectations;
         exp.code.toLowerCase().includes(query) ||
         exp.description.toLowerCase().includes(query) ||
         exp.strand.toLowerCase().includes(query) ||
-        (exp.substrand ? exp.substrand.toLowerCase().includes(query) : false),
+        (exp.substrand !== null && exp.substrand !== undefined && exp.substrand !== '') ? exp.substrand.toLowerCase().includes(query) : false,
     );
   }, [expectations, searchQuery]);
 
@@ -75,7 +75,7 @@ return expectations;
       if (grouped[exp.strand] === undefined) {
         grouped[exp.strand] = {};
       }
-      const substrand = exp.substrand && exp.substrand !== '' ? exp.substrand : 'General';
+      const substrand = (exp.substrand !== null && exp.substrand !== undefined && exp.substrand !== '') ? exp.substrand : 'General';
       if (grouped[exp.strand][substrand] === undefined) {
         grouped[exp.strand][substrand] = [];
       }
@@ -214,13 +214,22 @@ return expectations;
                               {expectations.map((exp, _index) => (
                                 <div
                                   key={exp.id}
+                                  aria-label={`Toggle expectation: ${exp.expectation}`}
                                   className={cn(
                                     'flex items-start gap-2 p-2 rounded-md hover:bg-accent cursor-pointer',
                                     selectedIds.includes(exp.id) && 'bg-accent',
                                   )}
+                                  role="button"
+                                  tabIndex={0}
                                   onClick={() => {
  toggleExpectation(exp.id); 
 }}
+                                  onKeyDown={(e) => {
+                                    if (e.key === 'Enter' || e.key === ' ') {
+                                      e.preventDefault();
+                                      toggleExpectation(exp.id);
+                                    }
+                                  }}
                                 >
                                   <div className="mt-0.5">
                                     {multiSelect ? (

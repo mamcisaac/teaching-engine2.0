@@ -30,7 +30,7 @@ class AuthService implements AuthServiceInterface {
   getAccessToken(): string | null {
     // Check if token is expired
     const expiresAt = this.getTokenExpiration();
-    if (expiresAt && Date.now() >= expiresAt) {
+    if (expiresAt !== null && expiresAt !== undefined && expiresAt !== 0 && !isNaN(expiresAt) && Date.now() >= expiresAt) {
       this.clearTokens();
       return null;
     }
@@ -205,7 +205,7 @@ class AuthService implements AuthServiceInterface {
         credentials: 'include', // This ensures cookies are sent
       });
 
-      if (response.ok === false) {
+      if (!response.ok) {
         throw new Error('Token refresh failed');
       }
 
@@ -266,7 +266,7 @@ class AuthService implements AuthServiceInterface {
       // Try token refresh on network errors, but only if not already retrying
       if (!isRetry && this.hasRefreshToken()) {
         const refreshSuccess = await this.refreshToken();
-        if (refreshSuccess === true) {
+        if (refreshSuccess) {
           // Retry once after successful refresh
           try {
             return await this.verifyAuth(true);
@@ -304,7 +304,7 @@ class AuthService implements AuthServiceInterface {
       // If we have a refresh token, try to refresh
       if (this.hasRefreshToken()) {
         const refreshSuccess = await this.refreshToken();
-        if (refreshSuccess === true) {
+        if (refreshSuccess) {
           return true; // Indicate that the request should be retried
         }
       }

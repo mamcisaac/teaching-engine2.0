@@ -62,7 +62,7 @@ async function generateCoverageReport(): Promise<void> {
     summary: coverageData.total,
     files: Object.entries(coverageData)
       .filter(([key]) => key !== 'total')
-      .map(([path, data]: [string, any]) => ({
+      .map(([path, data]: [string, { statements: { pct: number }, branches: { pct: number }, functions: { pct: number }, lines: { pct: number } }]) => ({
         path,
         statements: data.statements.pct,
         branches: data.branches.pct,
@@ -93,7 +93,7 @@ async function generateCoverageReport(): Promise<void> {
   console.log(`- JSON: ${jsonFile}`);
 }
 
-function generateHTMLReport(data: any): string {
+function generateHTMLReport(data: { timestamp: string; summary: unknown; files: unknown }): string {
   return `
 <!DOCTYPE html>
 <html>
@@ -128,7 +128,7 @@ function generateHTMLReport(data: any): string {
   `;
 }
 
-function generateMarkdownReport(data: any): string {
+function generateMarkdownReport(data: { timestamp: string; summary: unknown; files: unknown }): string {
   return `# Test Coverage Report
 
 Generated: ${new Date().toLocaleString()}

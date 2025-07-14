@@ -26,16 +26,16 @@ export function TemplateCard({
     );
 
   const getDuration = (): string => {
-    if (template.type === 'UNIT_PLAN' && template.estimatedWeeks && template.estimatedWeeks > 0) {
+    if (template.type === 'UNIT_PLAN' && template.estimatedWeeks !== undefined && template.estimatedWeeks > 0) {
       return `${template.estimatedWeeks} week${template.estimatedWeeks > 1 ? 's' : ''}`;
-    } else if (template.type === 'LESSON_PLAN' && template.estimatedMinutes && template.estimatedMinutes > 0) {
+    } else if (template.type === 'LESSON_PLAN' && template.estimatedMinutes !== undefined && template.estimatedMinutes > 0) {
       return `${template.estimatedMinutes} minutes`;
     }
     return 'Duration not specified';
   };
 
   const getGradeRange = (): string => {
-    if (template.gradeMin && template.gradeMax !== undefined) {
+    if (template.gradeMin !== undefined && template.gradeMin !== 0 && !isNaN(template.gradeMin) && template.gradeMax !== undefined) {
       return template.gradeMin === template.gradeMax
         ? `Grade ${template.gradeMin}`
         : `Grades ${template.gradeMin}-${template.gradeMax}`;
@@ -51,7 +51,7 @@ export function TemplateCard({
           {getTypeIcon()}
           <div>
             <h3 className="font-semibold text-lg">{template.title}</h3>
-            {template.subject && (
+            {template.subject !== null && template.subject !== undefined && template.subject !== '' && (
               <p className="text-sm text-gray-600 capitalize">{template.subject}</p>
             )}
           </div>
@@ -64,7 +64,7 @@ export function TemplateCard({
       </div>
 
       {/* Description */}
-      {template.description && (
+      {template.description !== null && template.description !== undefined && template.description !== '' && (
         <p className="text-gray-700 text-sm mb-4 line-clamp-2">
           {template.description}
         </p>
@@ -85,11 +85,11 @@ export function TemplateCard({
       {/* Stats */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-4 text-sm">
-          {template.averageRating && template.averageRating > 0 && (
+          {template.averageRating !== undefined && template.averageRating > 0 && (
             <div className="flex items-center gap-1">
               <Star className="h-4 w-4 text-yellow-500 fill-current" />
               <span className="font-medium">{template.averageRating.toFixed(1)}</span>
-              {template._count?.ratings !== null && template._count?.ratings !== undefined && template._count.ratings > 0 && (
+              {template._count?.ratings !== undefined && template._count.ratings > 0 && (
                 <span className="text-gray-500">({template._count.ratings})</span>
               )}
             </div>
@@ -161,7 +161,7 @@ export function TemplateCard({
         ) : (
           <span>System template</span>
         )}
-        {template.lastUsedAt && (
+        {template.lastUsedAt !== null && template.lastUsedAt !== undefined && template.lastUsedAt !== '' && (
           <span className="ml-2">
             • Last used {format(new Date(template.lastUsedAt), 'MMM d, yyyy')}
           </span>

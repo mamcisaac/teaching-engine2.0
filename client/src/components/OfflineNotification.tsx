@@ -164,12 +164,12 @@ export function ConflictResolutionModal({
           <div className="space-y-4">
             {/* Local version */}
             <div className="border rounded-lg p-4">
-              <label className="flex items-center cursor-pointer">
+              <label className="flex items-center cursor-pointer" htmlFor="resolution-local">
                 <input
-                  id="resolution-local"
-                  name="conflict-resolution"
                   checked={selectedResolution === 'local'}
                   className="mr-3"
+                  id="resolution-local"
+                  name="conflict-resolution"
                   type="radio"
                   value="local"
                   onChange={(e): void => {
@@ -190,12 +190,12 @@ export function ConflictResolutionModal({
 
             {/* Remote version */}
             <div className="border rounded-lg p-4">
-              <label className="flex items-center cursor-pointer">
+              <label className="flex items-center cursor-pointer" htmlFor="resolution-remote">
                 <input
-                  id="resolution-remote"
-                  name="conflict-resolution"
                   checked={selectedResolution === 'remote'}
                   className="mr-3"
+                  id="resolution-remote"
+                  name="conflict-resolution"
                   type="radio"
                   value="remote"
                   onChange={(e): void => {
@@ -216,12 +216,12 @@ export function ConflictResolutionModal({
 
             {/* Merge option (if applicable) */}
             <div className="border rounded-lg p-4">
-              <label className="flex items-center cursor-pointer">
+              <label className="flex items-center cursor-pointer" htmlFor="resolution-merge">
                 <input
-                  id="resolution-merge"
-                  name="conflict-resolution"
                   checked={selectedResolution === 'merge'}
                   className="mr-3"
+                  id="resolution-merge"
+                  name="conflict-resolution"
                   type="radio"
                   value="merge"
                   onChange={(e): void => {

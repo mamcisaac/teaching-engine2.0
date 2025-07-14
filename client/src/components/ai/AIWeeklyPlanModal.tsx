@@ -146,12 +146,12 @@ return 'text-yellow-600';
 
                 <div className="space-y-3">
                   <div>
-                    <label htmlFor="activity-complexity" className="block text-sm font-medium text-gray-700">
+                    <label className="block text-sm font-medium text-gray-700" htmlFor="activity-complexity">
                       Activity Complexity
                     </label>
                     <select
-                      id="activity-complexity"
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                      id="activity-complexity"
                       value={preferences.preferredComplexity}
                       onChange={(e) => {
  setPreferences({
@@ -186,12 +186,12 @@ return 'text-yellow-600';
                   </div>
 
                   <div>
-                    <label htmlFor="buffer-time" className="block text-sm font-medium text-gray-700">
+                    <label className="block text-sm font-medium text-gray-700" htmlFor="buffer-time">
                       Buffer time between activities (minutes)
                     </label>
                     <input
-                      id="buffer-time"
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                      id="buffer-time"
                       max="30"
                       min="0"
                       type="number"

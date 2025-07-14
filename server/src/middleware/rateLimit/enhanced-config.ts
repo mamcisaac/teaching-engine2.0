@@ -162,7 +162,7 @@ export async function createEnhancedRateLimiter(
       // Generate key
       const key = customConfig?.keyGenerator
         ? customConfig.keyGenerator(req)
-        : (req as any)?.user?.userId || req.ip;
+        : (req as any)?.user?.userId ?? req.ip;
 
       // Check if should skip
       if (customConfig?.skip?.(req)) {
@@ -184,18 +184,18 @@ export async function createEnhancedRateLimiter(
       next();
     } catch (rejRes: any) {
       // Rate limit exceeded
-      const retryAfter = Math.floor((rejRes?.msBeforeNext || config.windowMs) / 1000);
+      const retryAfter = Math.floor((rejRes?.msBeforeNext ?? config.windowMs) / 1000);
 
       (res as any).setHeader('Retry-After', retryAfter);
       (res as any).setHeader('X-RateLimit-Limit', config.tierLimits[getUserTier(req)]);
       (res as any).setHeader('X-RateLimit-Remaining', 0);
       (res as any).setHeader(
         'X-RateLimit-Reset',
-        new Date(Date.now() + (rejRes?.msBeforeNext || config.windowMs)).toISOString(),
+        new Date(Date.now() + (rejRes?.msBeforeNext ?? config.windowMs)).toISOString(),
       );
 
       (res as any).status(429).json({
-        error: customConfig?.message || 'Too many requests, please try again later.',
+        error: customConfig?.message ?? 'Too many requests, please try again later.',
         retryAfter,
         tier: getUserTier(req),
       });

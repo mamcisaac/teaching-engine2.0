@@ -49,10 +49,10 @@ export function AISuggestionModal({
   const [editedSuggestion, setEditedSuggestion] = useState({
     title: suggestion.title,
     descriptionFr: suggestion.descriptionFr,
-    descriptionEn: suggestion.descriptionEn || '',
+    descriptionEn: suggestion.descriptionEn ?? '',
     materials: suggestion.materials.join(', '),
     duration: suggestion.duration,
-    theme: suggestion.theme || '',
+    theme: suggestion.theme ?? '',
   });
 
   // Delete suggestion mutation

@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 import type { UnitPlan } from '../../hooks/useETFOPlanning';
 
-
 interface UnitPlanCardProps {
   unitPlan: UnitPlan;
   onEdit: (unit: UnitPlan) => void;

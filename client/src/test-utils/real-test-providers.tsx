@@ -33,7 +33,7 @@ export function RealTestProviders({
   // authenticated = false,
   authContext,
 }: RealTestProvidersProps) {
-  const [testQueryClient] = React.useState(() => queryClient || createRealTestQueryClient());
+  const [testQueryClient] = React.useState(() => queryClient ?? createRealTestQueryClient());
 
   React.useEffect(() => {
     return () => { // Cleanup

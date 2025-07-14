@@ -418,7 +418,7 @@ class BuildOptimizer {
   async getVersion() {
     try {
       const pkg = await fs.readJson('package.json');
-      return pkg.version || 'unknown';
+      return pkg.version ?? 'unknown';
     } catch {
       return 'unknown';
     }

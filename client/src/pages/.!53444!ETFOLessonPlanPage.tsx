@@ -165,7 +165,7 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
       extensions: formData.extensions.filter((e) => e.trim()),
     };
 
-    if (editingLesson != null) {
+    if (editingLesson !== null) {
       await updateLesson.mutateAsync({ id: editingLesson, data: cleanedData });
       setEditingLesson(null);
     } else {

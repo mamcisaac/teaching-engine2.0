@@ -86,12 +86,12 @@ export default function UnitPlansPage(): React.ReactElement {
   const [selectedTemplate, setSelectedTemplate] = useState<PlanTemplate | null>(null);
 
   // Fetch data
-  const { data: longRangePlan } = useLongRangePlan(longRangePlanId || '');
+  const { data: longRangePlan } = useLongRangePlan(longRangePlanId ?? '');
   const { data: allLongRangePlans = [] } = useLongRangePlans();
   const { data: unitPlans = [], isLoading } = useUnitPlans(
     longRangePlanId ? { longRangePlanId } : {},
   );
-  const { data: selectedUnit } = useUnitPlan(unitId || '');
+  const { data: selectedUnit } = useUnitPlan(unitId ?? '');
 
   // Curriculum expectations for AI assistance
   const { data: curriculumExpectations = [] } = useCurriculumExpectations({
@@ -232,8 +232,8 @@ export default function UnitPlansPage(): React.ReactElement {
         // Pre-populate form with template data
         const templateContent = applied.appliedContent as UnitPlanContent;
         updateField('title', '');
-        updateField('description', templateContent.overview || '');
-        updateField('bigIdeas', templateContent.bigIdeas || '');
+        updateField('description', templateContent.overview ?? '');
+        updateField('bigIdeas', templateContent.bigIdeas ?? '');
         updateField('essentialQuestions', templateContent.essentialQuestions ?? []);
         updateField('keyVocabulary', templateContent.keyVocabulary ?? []);
         updateField(
@@ -241,7 +241,7 @@ export default function UnitPlansPage(): React.ReactElement {
           templateContent.assessments ? JSON.stringify(templateContent.assessments) : '',
         );
         updateField('successCriteria', templateContent.successCriteria ?? []);
-        updateField('crossCurricularConnections', templateContent.crossCurricularConnections || '');
+        updateField('crossCurricularConnections', templateContent.crossCurricularConnections ?? '');
         // Handle differentiationStrategies which might have different structure in template
         const diffStrategies = templateContent.differentiationStrategies;
         if (diffStrategies && typeof diffStrategies === 'object') {
@@ -263,15 +263,15 @@ export default function UnitPlansPage(): React.ReactElement {
             forIEP: [],
           });
         }
-        updateField('culminatingTask', templateContent.culminatingTask || '');
-        updateField('priorKnowledge', templateContent.priorKnowledge || '');
-        updateField('parentCommunicationPlan', templateContent.parentCommunicationPlan || '');
-        updateField('fieldTripsAndGuestSpeakers', templateContent.fieldTripsAndGuestSpeakers || '');
-        updateField('indigenousPerspectives', templateContent.indigenousPerspectives || '');
-        updateField('environmentalEducation', templateContent.environmentalEducation || '');
-        updateField('socialJusticeConnections', templateContent.socialJusticeConnections || '');
-        updateField('technologyIntegration', templateContent.technologyIntegration || '');
-        updateField('communityConnections', templateContent.communityConnections || '');
+        updateField('culminatingTask', templateContent.culminatingTask ?? '');
+        updateField('priorKnowledge', templateContent.priorKnowledge ?? '');
+        updateField('parentCommunicationPlan', templateContent.parentCommunicationPlan ?? '');
+        updateField('fieldTripsAndGuestSpeakers', templateContent.fieldTripsAndGuestSpeakers ?? '');
+        updateField('indigenousPerspectives', templateContent.indigenousPerspectives ?? '');
+        updateField('environmentalEducation', templateContent.environmentalEducation ?? '');
+        updateField('socialJusticeConnections', templateContent.socialJusticeConnections ?? '');
+        updateField('technologyIntegration', templateContent.technologyIntegration ?? '');
+        updateField('communityConnections', templateContent.communityConnections ?? '');
 
         // Set estimated duration if available
         if (template.estimatedWeeks && template.estimatedWeeks > 0) {

@@ -43,7 +43,10 @@ export function LanguageSwitcher(): React.ReactElement {
         <>
           {/* Backdrop */}
           <div 
-            className="fixed inset-0 z-10" 
+            aria-label="Close language selector" 
+            className="fixed inset-0 z-10"
+            role="button"
+            tabIndex={0}
             onClick={() => {
  setIsOpen(false); 
 }}
@@ -52,9 +55,6 @@ export function LanguageSwitcher(): React.ReactElement {
                 setIsOpen(false);
               }
             }}
-            role="button"
-            tabIndex={0}
-            aria-label="Close language selector"
           />
 
           {/* Dropdown */}

@@ -1,7 +1,6 @@
 // Hook for using offline-capable planning stores
 // Example of how to integrate offline functionality into components
 
-
 import React, { useEffect, useState } from 'react';
 
 import { lazyLoader } from '../services/lazyLoader';
@@ -213,7 +212,7 @@ export function useUnitPlanWithOffline(unitPlanId?: string): {
   deleteUnitPlan: (id: string) => Promise<void>;
 } {
   const offlinePlanning = useOfflinePlanning();
-  const unitPlanStore = offlinePlanning.unitPlanStore;
+  const {unitPlanStore} = offlinePlanning;
   const [loading, setLoading] = useState(false);
 
   // Load unit plan with offline support
@@ -226,7 +225,9 @@ return;
 }
 
     const loadPlan = async (): Promise<void> => {
-      if (!unitPlanId) return;
+      if (!unitPlanId) {
+return;
+}
       setLoading(true);
       try {
         const typedStore = unitPlanStore as UnitPlanStoreType;

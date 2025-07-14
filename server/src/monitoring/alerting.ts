@@ -7,10 +7,32 @@ import { getMetrics } from '../middleware/metrics';
 import { withSpan, errorCounter } from './telemetry';
 
 // Optional nodemailer import - alerting works without email
-let nodemailer: any;
+interface NodemailerTransport {
+  sendMail(options: {
+    from: string;
+    to: string;
+    subject: string;
+    text: string;
+    html?: string;
+  }): Promise<unknown>;
+}
+
+interface NodemailerModule {
+  createTransport(options: {
+    host?: string;
+    port?: number;
+    secure?: boolean;
+    auth?: {
+      user: string;
+      pass: string;
+    };
+  }): NodemailerTransport;
+}
+
+let nodemailer: NodemailerModule | undefined;
 try {
-  nodemailer = require('nodemailer');
-} catch (error) {
+  nodemailer = require('nodemailer') as NodemailerModule;
+} catch (error: unknown) {
   logger.warn('Nodemailer not available - email alerts disabled');
 }
 
@@ -44,7 +66,7 @@ interface AlertContext {
   heapTotal?: number;
   hits?: number;
   misses?: number;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 // Alert configuration from environment
@@ -61,7 +83,7 @@ const alertState: AlertState = {
 };
 
 // Email transporter (if enabled)
-let emailTransporter: any = null;
+let emailTransporter: NodemailerTransport | null = null;
 
 if (ALERT_EMAIL_ENABLED && nodemailer) {
   emailTransporter = nodemailer.createTransport({
@@ -113,7 +135,7 @@ const alerts: Alert[] = [
       try {
         await prisma.$queryRaw`SELECT 1`;
         return false;
-      } catch (_error) {
+      } catch (_error: unknown) {
         return true;
       }
     },
@@ -219,7 +241,7 @@ return false;
 
         // Alert if more than 100 entries in 5 minutes (potential abuse)
         return recentActivity > 100;
-      } catch (error) {
+      } catch (error: unknown) {
         // Silently fail if database is not ready
         logger.debug('Failed to check unusual user activity', error);
         return false;
@@ -282,7 +304,7 @@ const sendAlert = async (alert: Alert, context: AlertContext): Promise<void> => 
           `,
         });
         logger.info(`Email alert sent for ${alert.name}`);
-      } catch (_error) {
+      } catch (_error: unknown) {
         logger.error('Failed to send email alert', _error);
       }
     }
@@ -309,7 +331,7 @@ const sendAlert = async (alert: Alert, context: AlertContext): Promise<void> => 
         }
 
         logger.info(`Webhook alert sent for ${alert.name}`);
-      } catch (_error) {
+      } catch (_error: unknown) {
         logger.error('Failed to send webhook alert', _error);
       }
     }
@@ -342,7 +364,7 @@ const checkAlerts = async (): Promise<void> => {
     for (const alert of alerts) {
       try {
         const shouldAlert = await alert.condition();
-        const wasActive = alertState.active.get(alert.id) || false;
+        const wasActive = alertState.active.get(alert.id) ?? false;
 
         if (shouldAlert && !wasActive) {
           // New alert
@@ -366,7 +388,7 @@ const checkAlerts = async (): Promise<void> => {
             alert_id: alert.id,
           });
         }
-      } catch (_error) {
+      } catch (_error: unknown) {
         logger.error(`Failed to check alert ${alert.name}`, _error);
       }
     }
@@ -457,7 +479,7 @@ const gatherAlertContext = async (alert: Alert): Promise<AlertContext> => {
             },
           },
         });
-      } catch (error) {
+      } catch (error: unknown) {
         // Provide default value if database query fails
         context.count = 0;
         logger.debug('Failed to gather unusual user activity context', error);
@@ -488,13 +510,13 @@ export const startAlertMonitoring = (): void => {
   );
 
   // Initial check
-  checkAlerts().catch((error) => {
+  checkAlerts().catch((error: unknown) => {
     logger.error('Initial alert check failed', error);
   });
 
   // Set up recurring checks
   alertInterval = setInterval(() => {
-    checkAlerts().catch((error) => {
+    checkAlerts().catch((error: unknown) => {
       logger.error('Alert check failed', error);
     });
   }, ALERT_CHECK_INTERVAL);
@@ -526,7 +548,7 @@ export const getAlertStatus = (): unknown => ({
       id: alert.id,
       name: alert.name,
       severity: alert.severity,
-      active: alertState.active.get(alert.id) || false,
+      active: alertState.active.get(alert.id) ?? false,
       lastTriggered: alertState.lastTriggered.get(alert.id) || null,
       cooldown: alert.cooldown,
     })),

@@ -395,7 +395,7 @@ export default function LongRangePlanPage(): React.ReactElement {
                 suggestions={aiGoalSuggestions}
                 title="AI Goal Suggestions"
                 onAcceptAll={() => {
-                  if (aiGoalSuggestions?.suggestions != null && aiGoalSuggestions.suggestions.length > 0) {
+                  if (aiGoalSuggestions?.suggestions !== null && aiGoalSuggestions.suggestions.length > 0) {
                     setFormData({
                       ...formData,
                       goals: aiGoalSuggestions.suggestions.join('\n\n'),

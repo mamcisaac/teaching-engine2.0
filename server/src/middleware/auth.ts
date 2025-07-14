@@ -4,6 +4,12 @@ import { sign, verify } from 'jsonwebtoken';
 
 import { logger } from '../logger.js';
 import { prisma } from '../prisma.js';
+import {
+  isLoginRequestBody,
+  isRegisterRequestBody,
+  isChangePasswordRequestBody,
+  isForgotPasswordRequestBody,
+  isResetPasswordRequestBody} from '../types/auth-data.js';
 import type {
   LoginRequestBody,
   RegisterRequestBody,
@@ -19,12 +25,7 @@ import type {
   TokenPayload,
   ResetTokenPayload,
   PasswordValidationResult,
-  PrismaError,
-  isLoginRequestBody,
-  isRegisterRequestBody,
-  isChangePasswordRequestBody,
-  isForgotPasswordRequestBody,
-  isResetPasswordRequestBody,
+  PrismaError
 } from '../types/auth-data.js';
 
 import { generateToken, generateRefreshToken } from './authenticate.js';
@@ -169,7 +170,7 @@ export async function login(req: Request, res: Response, next: NextFunction): Pr
     };
     
     res.json(response);
-  } catch (_error) {
+  } catch (_error: unknown) {
     next(_error);
   }
 }
@@ -181,7 +182,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
   try {
     logger.info(
       {
-        bodyKeys: req.body ? Object.keys(req.body) : [],
+        bodyKeys: req.body ? Object.keys(req.body as Record<string, unknown>) : [],
         bodyType: typeof req.body,
         hasBody: !!req.body,
       },
@@ -392,7 +393,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
     };
     
     res.status(201).json(response);
-  } catch (_error) {
+  } catch (_error: unknown) {
     next(_error);
   }
 }
@@ -418,7 +419,7 @@ export async function logout(req: Request, res: Response, next: NextFunction): P
 
     const response: MessageResponse = { message: 'Logged out successfully' };
     res.json(response);
-  } catch (_error) {
+  } catch (_error: unknown) {
     next(_error);
   }
 }
@@ -492,7 +493,7 @@ export async function changePassword(
 
     const response: MessageResponse = { message: 'Password changed successfully' };
     res.json(response);
-  } catch (_error) {
+  } catch (_error: unknown) {
     next(_error);
   }
 }
@@ -555,7 +556,7 @@ export async function forgotPassword(
       const response: MessageResponse = { message: 'If the email exists, a reset link has been sent' };
       res.json(response);
     }
-  } catch (_error) {
+  } catch (_error: unknown) {
     next(_error);
   }
 }
@@ -619,7 +620,7 @@ export async function resetPassword(
 
     const response: MessageResponse = { message: 'Password reset successfully' };
     res.json(response);
-  } catch (_error) {
+  } catch (_error: unknown) {
     next(_error);
   }
 }
@@ -640,7 +641,7 @@ export async function validateSession(
     // Skip password change check as passwordChangedAt field doesn't exist in schema
 
     next();
-  } catch (_error) {
+  } catch (_error: unknown) {
     next(_error);
   }
 }

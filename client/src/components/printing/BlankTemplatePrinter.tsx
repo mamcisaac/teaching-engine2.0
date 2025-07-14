@@ -200,7 +200,7 @@ export function BlankTemplatePrinter({
                   <Input
                     id="schoolName"
                     placeholder="e.g., Maple Leaf Elementary"
-                    value={schoolInfo.schoolName || ''}
+                    value={schoolInfo.schoolName ?? ''}
                     onChange={(e) => {
  handleSchoolInfoChange('schoolName', e.target.value); 
 }}
@@ -211,7 +211,7 @@ export function BlankTemplatePrinter({
                   <Input
                     id="teacherName"
                     placeholder="e.g., Ms. Johnson"
-                    value={schoolInfo.teacherName || ''}
+                    value={schoolInfo.teacherName ?? ''}
                     onChange={(e) => {
  handleSchoolInfoChange('teacherName', e.target.value); 
 }}
@@ -222,7 +222,7 @@ export function BlankTemplatePrinter({
                   <Input
                     id="grade"
                     placeholder="e.g., Grade 3"
-                    value={schoolInfo.grade || ''}
+                    value={schoolInfo.grade ?? ''}
                     onChange={(e) => {
  handleSchoolInfoChange('grade', e.target.value); 
 }}
@@ -233,7 +233,7 @@ export function BlankTemplatePrinter({
                   <Input
                     id="subject"
                     placeholder="e.g., Mathematics"
-                    value={schoolInfo.subject || ''}
+                    value={schoolInfo.subject ?? ''}
                     onChange={(e) => {
  handleSchoolInfoChange('subject', e.target.value); 
 }}
@@ -244,7 +244,7 @@ export function BlankTemplatePrinter({
                   <Input
                     id="academicYear"
                     placeholder="e.g., 2024-2025"
-                    value={schoolInfo.academicYear || ''}
+                    value={schoolInfo.academicYear ?? ''}
                     onChange={(e) => {
  handleSchoolInfoChange('academicYear', e.target.value); 
 }}

@@ -259,7 +259,7 @@ return;
       {cloneElement(children, {
         onMouseEnter: handleMouseEnter,
         onMouseLeave: handleMouseLeave,
-        className: `${(children.props as { className?: string }).className || ''} ${isVisible ? 'z-40' : ''}`,
+        className: `${((children.props as { className?: string }).className !== null && (children.props as { className?: string }).className !== undefined && (children.props as { className?: string }).className !== '') ? (children.props as { className?: string }).className : ''} ${isVisible ? 'z-40' : ''}`,
       })}
 
       <AnimatePresence>

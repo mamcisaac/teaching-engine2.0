@@ -62,7 +62,7 @@ export default function CurriculumExpectationsPage(): React.ReactElement {
   } = useCurriculumExpectations({
     subject: selectedSubject === 'all' ? undefined : selectedSubject,
     grade: selectedGrade === 'all' ? undefined : selectedGrade,
-    search: searchTerm || undefined,
+    search: searchTerm ?? undefined,
   });
 
   const updateMutation = useUpdateCurriculumExpectation();

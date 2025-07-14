@@ -101,8 +101,8 @@ export function FormTemplates({
       description: '',
       bigIdeas: '',
       essentialQuestions: [''],
-      startDate: customConfig.dateRange.start || '',
-      endDate: customConfig.dateRange.end || '',
+      startDate: customConfig.dateRange.start ?? '',
+      endDate: customConfig.dateRange.end ?? '',
       estimatedHours: 20,
       assessmentPlan: '',
       successCriteria: [''],
@@ -278,14 +278,23 @@ return;
             {TEMPLATE_LIBRARY.map((template, _index) => (
               <div
                 key={template.id}
+                aria-label={`Select template: ${template.name}`}
                 className={`p-4 border rounded-lg cursor-pointer transition-all ${
                   selectedTemplate?.id === template.id
                     ? 'border-indigo-500 bg-indigo-50'
                     : 'border-gray-200 hover:border-gray-300'
                 }`}
+                role="button"
+                tabIndex={0}
                 onClick={() => {
  setSelectedTemplate(template); 
 }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setSelectedTemplate(template);
+                  }
+                }}
               >
                 <div className="flex items-start gap-3">
                   <div className="flex-shrink-0 text-indigo-600">

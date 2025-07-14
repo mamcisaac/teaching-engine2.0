@@ -95,12 +95,12 @@ interface MockAxiosError extends Error {
 }
 
 // Helper to create a mock error response
-export const createMockErrorResponse = (status: number, message?: string) => {
-  const error = new Error(message || `Request failed with status ${status}`) as MockAxiosError;
+export const createMockErrorResponse = (status: number, message?: string): MockAxiosError => {
+  const error = new Error(message ?? `Request failed with status ${status}`) as MockAxiosError;
   error.response = {
     status,
-    statusText: message || 'Error',
-    data: { message: message || `Request failed with status ${status}` },
+    statusText: message ?? 'Error',
+    data: { message: message ?? `Request failed with status ${status}` },
     headers: {},
     config: { headers: {} } as InternalAxiosRequestConfig,
   };
@@ -109,7 +109,7 @@ export const createMockErrorResponse = (status: number, message?: string) => {
 };
 
 // Mock the entire api module for tests that need it
-export const mockApiModule = () => {
+export const mockApiModule = (): AxiosInstance => {
   const mockAxios = createMockAxiosInstance();
 
   vi.mock('../api/legacy/api', () => ({
@@ -132,7 +132,7 @@ export const mockApiModule = () => {
 };
 
 // Setup function to be called in test files
-export const setupApiMocks = () => {
+export const setupApiMocks = (): AxiosInstance => {
   // Clear any existing mocks
   vi.clearAllMocks();
 

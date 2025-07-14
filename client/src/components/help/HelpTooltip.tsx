@@ -5,7 +5,6 @@ import { createPortal } from 'react-dom';
 
 import type { HelpTooltipProps } from '../../types/help';
 
-
 export const HelpTooltip: React.FC<HelpTooltipProps> = ({
   content,
   position = 'top',

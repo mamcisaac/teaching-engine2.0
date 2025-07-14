@@ -2,6 +2,7 @@ import type { Request, Response } from 'express';
 import { Router } from 'express';
 
 import { logger } from '../logger';
+import { asyncHandler } from '../middleware/errorHandler';
 import { aiPlanningAssistant } from '../services/ai/aiPlanningService';
 // Simple rate limiting for AI endpoints (to avoid async issues)
 const aiRateLimit = (_req: Request, _res: Response, next: () => void): void => {

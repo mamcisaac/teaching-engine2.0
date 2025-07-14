@@ -76,7 +76,7 @@ export class PdfEngine extends RenderEngine {
       });
 
       // Get PDF options from context or use defaults
-      const pdfOptions: PdfOptions = context.options?.pdf || {
+      const pdfOptions: PdfOptions = context.options?.pdf ?? {
         format: 'Letter',
         printBackground: true,
         margin: {

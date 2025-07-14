@@ -98,7 +98,7 @@ class TestDatabaseManager {
       // For SQLite, we need to create the schema explicitly
       // Run Prisma push to create tables
       const { execSync } = await import('child_process');
-      const workerId = process.env.JEST_WORKER_ID || 'default';
+      const workerId = process.env.JEST_WORKER_ID ?? 'default';
       const dbPath = this.getTestDatabasePath(workerId);
       
       console.log(`[TestDB] Creating schema for database: ${dbPath}`);
@@ -140,7 +140,7 @@ class TestDatabaseManager {
    * Start a transaction for test isolation
    */
   async startTransaction(testId: string): Promise<PrismaClient> {
-    const workerId = process.env.JEST_WORKER_ID || 'default';
+    const workerId = process.env.JEST_WORKER_ID ?? 'default';
     const baseClient = this.getPrismaClient(workerId);
 
     // For SQLite, we can't use interactive transactions in the same way as PostgreSQL
@@ -148,7 +148,7 @@ class TestDatabaseManager {
     this.transactionClients.set(testId, baseClient);
 
     // Increment connection count
-    const count = this.connectionCounts.get(workerId) || 0;
+    const count = this.connectionCounts.get(workerId) ?? 0;
     this.connectionCounts.set(workerId, count + 1);
 
     return baseClient;
@@ -163,8 +163,8 @@ class TestDatabaseManager {
       this.transactionClients.delete(testId);
 
       // Decrement connection count
-      const workerId = process.env.JEST_WORKER_ID || 'default';
-      const count = this.connectionCounts.get(workerId) || 0;
+      const workerId = process.env.JEST_WORKER_ID ?? 'default';
+      const count = this.connectionCounts.get(workerId) ?? 0;
       this.connectionCounts.set(workerId, Math.max(0, count - 1));
     }
   }

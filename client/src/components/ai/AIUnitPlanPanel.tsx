@@ -177,7 +177,7 @@ export function AIUnitPlanPanel({
       logger.error('Error generating suggestions:', _error);
       toast({
         title: 'Generation Failed',
-        description: getErrorMessage(_error) ?? 'Failed to generate suggestions. Please try again.',
+        description: getErrorMessage(_error) || 'Failed to generate suggestions. Please try again.',
         variant: 'destructive',
       });
     } finally {
@@ -260,7 +260,7 @@ export function AIUnitPlanPanel({
       logger.error('Error generating complete unit:', _error);
       toast({
         title: 'Generation Failed',
-        description: getErrorMessage(_error) ?? 'Failed to generate complete unit plan.',
+        description: getErrorMessage(_error) || 'Failed to generate complete unit plan.',
         variant: 'destructive',
       });
     } finally {
@@ -476,7 +476,9 @@ export function AIUnitPlanPanel({
                 <Button 
                   className="flex-1" 
                   disabled={isGenerating || !formData.unitTitle || !formData.subject}
-                  onClick={(): void => { void generateCompleteUnit(); }}
+                  onClick={(): void => {
+ void generateCompleteUnit(); 
+}}
                 >
                   {isGenerating ? (
                     <>
@@ -533,7 +535,7 @@ export function AIUnitPlanPanel({
                           {suggestion.type === 'assessments' && <Target className="h-4 w-4" />}
                           {suggestion.type.replace(/([A-Z])/g, ' $1').trim()}
                         </CardTitle>
-                        {suggestion.rationale != null && (
+                        {(suggestion.rationale !== null && suggestion.rationale !== undefined && suggestion.rationale !== '') && (
                           <CardDescription>{suggestion.rationale}</CardDescription>
                         )}
                       </CardHeader>

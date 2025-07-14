@@ -33,7 +33,7 @@ function renderRoute(route: RouteConfig, index: number): JSX.Element {
 
     content = (
       <Suspense fallback={<SuspenseFallback />}>
-        {(workflowLevel != null) ? (
+        {(workflowLevel !== null) ? (
           <WorkflowGate level={workflowLevel}>
             <Component />
           </WorkflowGate>
@@ -47,7 +47,7 @@ function renderRoute(route: RouteConfig, index: number): JSX.Element {
     content = null;
   }
 
-  if (children != null && children.length > 0) {
+  if (children !== null && children.length > 0) {
     return (
       <Route key={path || index} element={<Outlet />} path={path}>
         {children.map((child, childIndex) => renderRoute(child, childIndex))}

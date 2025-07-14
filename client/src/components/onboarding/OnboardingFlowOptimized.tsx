@@ -152,7 +152,7 @@ return;
 return null;
 }
 
-  const isCenter = currentStep.position === 'center' || !currentStep.targetElement || currentStep.targetElement === '';
+  const isCenter = currentStep.position === 'center' || (currentStep.targetElement === null || currentStep.targetElement === undefined || currentStep.targetElement === '');
 
   return createPortal(
     <Suspense fallback={<OnboardingLoadingFallback />}>

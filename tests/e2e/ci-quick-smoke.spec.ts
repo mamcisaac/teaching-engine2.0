@@ -9,7 +9,7 @@ import {
   CI_CONFIG
 } from './helpers/ci-stability';
 
-const API_BASE = process.env.API_BASE || 'http://localhost:3000';
+const API_BASE = process.env.API_BASE ?? 'http://localhost:3000';
 
 test.describe('CI Quick Smoke Tests', () => {
   test.setTimeout(CI_CONFIG.mediumTimeout);

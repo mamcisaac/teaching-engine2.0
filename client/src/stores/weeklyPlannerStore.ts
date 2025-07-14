@@ -513,7 +513,7 @@ const debouncedAutoSave = (): void => {
 
   if (timeSinceLastSave < MIN_SAVE_INTERVAL) {
     // Too soon, reschedule
-    if (autoSaveTimeout != null) {
+    if (autoSaveTimeout !== null) {
 clearTimeout(autoSaveTimeout);
 }
     autoSaveTimeout = setTimeout(debouncedAutoSave, MIN_SAVE_INTERVAL - timeSinceLastSave);
@@ -537,7 +537,7 @@ useWeeklyPlannerStore.subscribe(
     isSaving: state.isSaving,
   }),
   ({ autoSave, autoSaveInterval, hasOfflineChanges, isSaving }) => {
-    if (autoSaveTimeout != null) {
+    if (autoSaveTimeout !== null) {
       clearTimeout(autoSaveTimeout);
       autoSaveTimeout = null;
     }

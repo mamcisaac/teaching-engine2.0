@@ -121,7 +121,7 @@ async function createE2ETestUsers(serverUrl: string): Promise<void> {
 /**
  * Global setup for E2E tests
  */
-export default async function globalSetup() {
+export default async function globalSetup(): Promise<void> {
   console.log('\n🚀 Starting E2E global setup...\n');
 
   // Use the server URL from environment or default

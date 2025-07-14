@@ -38,7 +38,7 @@ const pinoConfig: pino.LoggerOptions = {
           authorization: request.headers?.authorization ? '[REDACTED]' : undefined,
         },
         remoteAddress: request.remoteAddress || request.connection?.remoteAddress,
-        remotePort: request.remotePort || request.connection?.remotePort,
+        remotePort: (request.remotePort !== null && request.remotePort !== undefined && request.remotePort !== 0 && !isNaN(request.remotePort)) ? request.remotePort : request.connection?.remotePort,
       };
     },
 
@@ -278,7 +278,7 @@ class EnhancedLogger {
       data: obj,
       requestId: this.requestId,
       service: 'teaching-engine',
-      version: process.env.npm_package_version || 'unknown',
+      version: process.env.npm_package_version ?? 'unknown',
     };
   }
 

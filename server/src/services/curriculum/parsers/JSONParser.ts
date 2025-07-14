@@ -9,7 +9,6 @@ import { safeJsonParse } from '../../../utils/type-guards.js';
 import type { ParsedCurriculum, ParsedExpectation } from './CurriculumParser';
 import { CurriculumParser } from './CurriculumParser';
 
-
 export interface JSONExpectation {
   code?: string;
   id?: string;

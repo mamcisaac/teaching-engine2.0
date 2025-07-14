@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { test, expect } from '@playwright/test';
 
-const API_BASE = process.env.API_BASE || 'http://localhost:3000';
+const API_BASE = process.env.API_BASE ?? 'http://localhost:3000';
 
 test.describe('Simple Smoke Tests', () => {
   test('can access the main page', async ({ page }) => {

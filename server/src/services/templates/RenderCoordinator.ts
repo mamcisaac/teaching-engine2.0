@@ -444,7 +444,7 @@ export class RenderCoordinator extends BaseService {
       report: ['formatGrade', 'percentage', 'formatDate'],
     };
 
-    const required = requiredHelpers[templateType] || [];
+    const required = requiredHelpers[templateType] ?? [];
     
     for (const helper of required) {
       if (!this.helpers.getHelper(helper)) {
@@ -468,7 +468,7 @@ export class RenderCoordinator extends BaseService {
       report: ['header', 'footer', 'studentInfo'],
     };
 
-    const required = requiredPartials[templateType] || [];
+    const required = requiredPartials[templateType] ?? [];
     
     for (const partial of required) {
       if (!this.partialManager.getPartial(partial)) {

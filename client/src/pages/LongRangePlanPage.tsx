@@ -235,7 +235,7 @@ export default function LongRangePlanPage(): React.ReactElement {
                   </span>
                 </div>
 
-                {plan.description && (
+                {(plan.description !== null && plan.description !== undefined && plan.description !== '') && (
                   <p className="text-sm text-gray-600 mb-4 line-clamp-2">{plan.description}</p>
                 )}
 
@@ -287,10 +287,11 @@ export default function LongRangePlanPage(): React.ReactElement {
 
           <form className="space-y-4" onSubmit={handleSubmit}>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Plan Title *</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="plan-title">Plan Title *</label>
               <input
                 required
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                id="plan-title"
                 placeholder="e.g., Grade 3 Mathematics Year Plan"
                 type="text"
                 value={formData.title}
@@ -302,10 +303,11 @@ export default function LongRangePlanPage(): React.ReactElement {
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Subject *</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="plan-subject">Subject *</label>
                 <input
                   required
                   className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  id="plan-subject"
                   placeholder="e.g., Mathematics"
                   type="text"
                   value={formData.subject}
@@ -316,9 +318,10 @@ export default function LongRangePlanPage(): React.ReactElement {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Grade *</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="plan-grade">Grade *</label>
                 <select
                   className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  id="plan-grade"
                   value={formData.grade}
                   onChange={(e) => {
  setFormData({ ...formData, grade: Number(e.target.value) }); 
@@ -334,9 +337,10 @@ export default function LongRangePlanPage(): React.ReactElement {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Term</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="plan-term">Term</label>
               <select
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                id="plan-term"
                 value={formData.term}
                 onChange={(e) => {
  setFormData({ ...formData, term: e.target.value }); 
@@ -351,9 +355,10 @@ export default function LongRangePlanPage(): React.ReactElement {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="plan-description">Description</label>
               <textarea
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                id="plan-description"
                 placeholder="Brief overview of the year plan..."
                 rows={3}
                 value={formData.description}
@@ -364,9 +369,10 @@ export default function LongRangePlanPage(): React.ReactElement {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Learning Goals</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="plan-goals">Learning Goals</label>
               <textarea
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                id="plan-goals"
                 placeholder="Overall learning goals for the year..."
                 rows={3}
                 value={formData.goals}
@@ -395,7 +401,7 @@ export default function LongRangePlanPage(): React.ReactElement {
                 suggestions={aiGoalSuggestions}
                 title="AI Goal Suggestions"
                 onAcceptAll={() => {
-                  if (aiGoalSuggestions?.suggestions != null && aiGoalSuggestions.suggestions.length > 0) {
+                  if (aiGoalSuggestions?.suggestions !== null && aiGoalSuggestions.suggestions.length > 0) {
                     setFormData({
                       ...formData,
                       goals: aiGoalSuggestions.suggestions.join('\n\n'),
@@ -422,11 +428,12 @@ export default function LongRangePlanPage(): React.ReactElement {
             )}
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="plan-themes">
                 Key Themes (press Enter to add)
               </label>
               <input
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                id="plan-themes"
                 placeholder="Type a theme and press Enter..."
                 type="text"
                 onKeyDown={(e) => {
@@ -466,11 +473,12 @@ export default function LongRangePlanPage(): React.ReactElement {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="plan-questions">
                 Overarching Questions
               </label>
               <textarea
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                id="plan-questions"
                 placeholder="Big questions that will guide the year..."
                 rows={2}
                 value={formData.overarchingQuestions}
@@ -481,11 +489,12 @@ export default function LongRangePlanPage(): React.ReactElement {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="plan-assessment">
                 Assessment Overview
               </label>
               <textarea
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                id="plan-assessment"
                 placeholder="Overall assessment strategy for the year..."
                 rows={2}
                 value={formData.assessmentOverview}
@@ -496,9 +505,10 @@ export default function LongRangePlanPage(): React.ReactElement {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Resource Needs</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="plan-resources">Resource Needs</label>
               <textarea
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                id="plan-resources"
                 placeholder="Materials, technology, and resources needed..."
                 rows={2}
                 value={formData.resourceNeeds}
@@ -509,11 +519,12 @@ export default function LongRangePlanPage(): React.ReactElement {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="plan-professional-goals">
                 Professional Learning Goals
               </label>
               <textarea
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                id="plan-professional-goals"
                 placeholder="Your professional development goals for this year..."
                 rows={2}
                 value={formData.professionalGoals}

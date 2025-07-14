@@ -130,7 +130,7 @@ export function HelpProvider({ children }: { children: React.ReactNode }): React
 
     try {
       const savedState = localStorage.getItem(HELP_STATE_KEY);
-      if (savedState) {
+      if (savedState !== null && savedState !== undefined && savedState !== '') {
         const parsedState = safeJsonParse(savedState, initialState);
         // Convert date strings back to Date objects
         if (parsedState.userProgress.lastVisited) {

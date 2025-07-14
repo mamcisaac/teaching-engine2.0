@@ -96,7 +96,7 @@ class LegacyCodeCleaner {
     this.archivedModels.forEach(model => {
       // Remove single-line comments
       const singleLineRegex = new RegExp(`\\s*//.*${model}.*\\n`, 'g');
-      const singleLineMatches = content.match(singleLineRegex) || [];
+      const singleLineMatches = content.match(singleLineRegex) ?? [];
       removedComments.push(...singleLineMatches);
       
       if (!dryRun) {
@@ -105,7 +105,7 @@ class LegacyCodeCleaner {
       
       // Remove multi-line comments
       const multiLineRegex = new RegExp(`/\\*[^*]*${model}[^*]*\\*/`, 'gs');
-      const multiLineMatches = content.match(multiLineRegex) || [];
+      const multiLineMatches = content.match(multiLineRegex) ?? [];
       removedComments.push(...multiLineMatches);
       
       if (!dryRun) {

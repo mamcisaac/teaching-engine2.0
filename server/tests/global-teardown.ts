@@ -7,7 +7,7 @@ import { existsSync, rmSync } from 'fs';
 
 export default async function globalTeardown() {
   // Clean up test database if using SQLite
-  const dbUrl = process.env.DATABASE_URL || 'file:../packages/database/prisma/test.db';
+  const dbUrl = process.env.DATABASE_URL ?? 'file:../packages/database/prisma/test.db';
   if (dbUrl.startsWith('file:') && process.env.KEEP_TEST_DB !== 'true') {
     const dbPath = dbUrl.replace('file:', '');
     

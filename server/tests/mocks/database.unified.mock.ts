@@ -26,7 +26,7 @@ class MockDataStore {
   private idCounters = new Map<string, number>();
 
   get(model: string, id: string): any {
-    return this.stores.get(model)?.get(id) || null;
+    return this.stores.get(model)?.get(id) ?? null;
   }
 
   set(model: string, id: string, data: any): void {
@@ -37,11 +37,11 @@ class MockDataStore {
   }
 
   getAll(model: string): any[] {
-    return Array.from(this.stores.get(model)?.values() || []);
+    return Array.from(this.stores.get(model)?.values() ?? []);
   }
 
   delete(model: string, id: string): boolean {
-    return this.stores.get(model)?.delete(id) || false;
+    return this.stores.get(model)?.delete(id) ?? false;
   }
 
   clear(model?: string): void {
@@ -54,7 +54,7 @@ class MockDataStore {
   }
 
   generateId(model: string): string {
-    const counter = (this.idCounters.get(model) || 0) + 1;
+    const counter = (this.idCounters.get(model) ?? 0) + 1;
     this.idCounters.set(model, counter);
 
     // Use CUID format for specific models
@@ -74,7 +74,7 @@ class MockDataStore {
   }
 
   count(model: string): number {
-    return this.stores.get(model)?.size || 0;
+    return this.stores.get(model)?.size ?? 0;
   }
 }
 
@@ -97,7 +97,7 @@ function createMockFunction<T = any>(
       switch (operation) {
         case 'findUnique':
         case 'findFirst':
-          const foundItem = globalMockStore.get(modelName, args?.where?.id || 'default');
+          const foundItem = globalMockStore.get(modelName, args?.where?.id ?? 'default');
           return foundItem as T;
 
         case 'findMany':
@@ -116,7 +116,7 @@ function createMockFunction<T = any>(
           return record as T;
 
         case 'createMany':
-          const records = (args?.data || []).map((item: any) => {
+          const records = (args?.data ?? []).map((item: any) => {
             const id = item.id || globalMockStore.generateId(modelName);
             const record = {
               id,
@@ -131,7 +131,7 @@ function createMockFunction<T = any>(
 
         case 'update':
         case 'upsert':
-          const updateId = args?.where?.id || 'default';
+          const updateId = args?.where?.id ?? 'default';
           const existing = globalMockStore.get(modelName, updateId);
           if (!existing && operation === 'update') {
             throw new Error(`Record not found for ${modelName} with id ${updateId}`);
@@ -146,7 +146,7 @@ function createMockFunction<T = any>(
           return updated as T;
 
         case 'delete':
-          const deleteId = args?.where?.id || 'default';
+          const deleteId = args?.where?.id ?? 'default';
           const toDelete = globalMockStore.get(modelName, deleteId);
           if (!toDelete) {
             throw new Error(`Record not found for ${modelName} with id ${deleteId}`);

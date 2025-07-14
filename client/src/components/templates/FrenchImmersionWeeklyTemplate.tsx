@@ -45,24 +45,24 @@ export function FrenchImmersionWeeklyTemplate({
   metadata,
 }: FrenchImmersionWeeklyTemplateProps): React.ReactElement {
   const [weekData, setWeekData] = React.useState<WeeklyPlanData>({
-    weekNumber: metadata?.weekNumber !== null && metadata?.weekNumber !== undefined && metadata.weekNumber !== 0 ? metadata.weekNumber : 1,
-    theme: initialData?.theme !== null && initialData?.theme !== undefined ? initialData.theme : '',
-    themeFr: initialData?.themeFr !== null && initialData?.themeFr !== undefined ? initialData.themeFr : '',
-    weekFocus: initialData?.weekFocus || {
+    weekNumber: metadata?.weekNumber !== undefined && metadata.weekNumber !== 0 ? metadata.weekNumber : 1,
+    theme: initialData?.theme !== undefined ? initialData.theme : '',
+    themeFr: initialData?.themeFr !== undefined ? initialData.themeFr : '',
+    weekFocus: initialData?.weekFocus ?? {
       vocabulary: [],
       structures: [],
       communicationGoals: [],
       culturalElements: [],
     },
-    dailyPlans: initialData?.dailyPlans || [
+    dailyPlans: initialData?.dailyPlans ?? [
       { day: 'Monday', languageTarget: '', mainActivity: '', vocabulary: [] },
       { day: 'Tuesday', languageTarget: '', mainActivity: '', vocabulary: [] },
       { day: 'Wednesday', languageTarget: '', mainActivity: '', vocabulary: [] },
       { day: 'Thursday', languageTarget: '', mainActivity: '', vocabulary: [] },
       { day: 'Friday', languageTarget: '', mainActivity: '', vocabulary: [] },
     ],
-    assessmentFocus: initialData?.assessmentFocus !== null && initialData?.assessmentFocus !== undefined ? initialData.assessmentFocus : '',
-    parentUpdate: initialData?.parentUpdate || { english: '', french: '' },
+    assessmentFocus: initialData?.assessmentFocus !== undefined ? initialData.assessmentFocus : '',
+    parentUpdate: initialData?.parentUpdate ?? { english: '', french: '' },
   });
 
   const updateDailyPlan = (dayIndex: number, field: keyof DailyPlan, value: string | string[]): void => {
@@ -108,7 +108,7 @@ export function FrenchImmersionWeeklyTemplate({
               Grade 1 French Immersion Weekly Plan
             </h2>
             <p className="text-gray-600 mt-1">
-              {metadata?.month !== null && metadata?.month !== undefined && metadata.month !== ''
+              {metadata?.month !== undefined && metadata.month !== ''
                 ? `${metadata.month} - Week ${metadata.weekNumber}`
                 : 'Structured weekly planning template'}
             </p>
@@ -126,9 +126,10 @@ export function FrenchImmersionWeeklyTemplate({
 
         <div className="grid md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Theme (English)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="weekly-theme-en">Theme (English)</label>
             <input
               className="w-full p-3 border rounded-lg"
+              id="weekly-theme-en"
               placeholder="e.g., My Family"
               type="text"
               value={weekData.theme}
@@ -139,9 +140,10 @@ export function FrenchImmersionWeeklyTemplate({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Thème (français)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="weekly-theme-fr">Thème (français)</label>
             <input
               className="w-full p-3 border rounded-lg"
+              id="weekly-theme-fr"
               placeholder="ex: Ma famille"
               type="text"
               value={weekData.themeFr}
@@ -199,7 +201,7 @@ export function FrenchImmersionWeeklyTemplate({
                     className="p-2 border rounded"
                     placeholder="Pronunciation"
                     type="text"
-                    value={vocab.pronunciation ? vocab.pronunciation : ''}
+                    value={(vocab.pronunciation !== undefined && vocab.pronunciation !== '') ? vocab.pronunciation : ''}
                     onChange={(e) => {
                       const updated = [...weekData.weekFocus.vocabulary];
                       updated[index].pronunciation = e.target.value;
@@ -213,7 +215,7 @@ export function FrenchImmersionWeeklyTemplate({
                     className="p-2 border rounded"
                     placeholder="Context"
                     type="text"
-                    value={vocab.context ? vocab.context : ''}
+                    value={(vocab.context !== undefined && vocab.context !== '') ? vocab.context : ''}
                     onChange={(e) => {
                       const updated = [...weekData.weekFocus.vocabulary];
                       updated[index].context = e.target.value;
@@ -233,11 +235,12 @@ export function FrenchImmersionWeeklyTemplate({
 
           {/* Language Structures */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="weekly-language-structures">
               Key Language Structures
             </label>
             <textarea
               className="w-full p-3 border rounded-lg"
+              id="weekly-language-structures"
               placeholder="C'est mon/ma...
 J'ai...
 Il/Elle s'appelle..."
@@ -258,11 +261,12 @@ Il/Elle s'appelle..."
 
           {/* Communication Goals */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="weekly-communication-goals">
               Communication Goals
             </label>
             <textarea
               className="w-full p-3 border rounded-lg"
+              id="weekly-communication-goals"
               placeholder="Introduce family members in French
 Ask and answer simple questions about family
 Use possessive adjectives correctly"
@@ -300,9 +304,10 @@ Use possessive adjectives correctly"
 
               <div className="grid md:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-sm text-gray-600 mb-1">Daily Language Target</label>
+                  <label className="block text-sm text-gray-600 mb-1" htmlFor={`language-target-${index}`}>Daily Language Target</label>
                   <input
                     className="w-full p-2 border rounded"
+                    id={`language-target-${index}`}
                     placeholder="Introduce 'maman' and 'papa'"
                     type="text"
                     value={dayPlan.languageTarget}
@@ -313,9 +318,10 @@ Use possessive adjectives correctly"
                 </div>
 
                 <div>
-                  <label className="block text-sm text-gray-600 mb-1">Main Activity</label>
+                  <label className="block text-sm text-gray-600 mb-1" htmlFor={`main-activity-${index}`}>Main Activity</label>
                   <input
                     className="w-full p-2 border rounded"
+                    id={`main-activity-${index}`}
                     placeholder="Family photo sharing circle"
                     type="text"
                     value={dayPlan.mainActivity}
@@ -327,9 +333,10 @@ Use possessive adjectives correctly"
               </div>
 
               <div className="mt-3">
-                <label className="block text-sm text-gray-600 mb-1">Focus Vocabulary</label>
+                <label className="block text-sm text-gray-600 mb-1" htmlFor={`focus-vocabulary-${index}`}>Focus Vocabulary</label>
                 <input
                   className="w-full p-2 border rounded"
+                  id={`focus-vocabulary-${index}`}
                   placeholder="maman, papa, famille"
                   type="text"
                   value={dayPlan.vocabulary.join(', ')}
@@ -349,14 +356,15 @@ Use possessive adjectives correctly"
 
               {index === 2 && ( // Wednesday - Cultural Wednesday
                 <div className="mt-3 p-3 bg-purple-50 rounded">
-                  <label className="block text-sm font-medium text-purple-800 mb-1">
+                  <label className="block text-sm font-medium text-purple-800 mb-1" htmlFor="cultural-wednesday">
                     Cultural Wednesday Special
                   </label>
                   <input
                     className="w-full p-2 border rounded"
+                    id="cultural-wednesday"
                     placeholder="Explore French-Canadian family traditions"
                     type="text"
-                    value={dayPlan.culturalNote ? dayPlan.culturalNote : ''}
+                    value={(dayPlan.culturalNote !== undefined && dayPlan.culturalNote !== '') ? dayPlan.culturalNote : ''}
                     onChange={(e) => {
  updateDailyPlan(index, 'culturalNote', e.target.value); 
 }}
@@ -385,33 +393,36 @@ Use possessive adjectives correctly"
         <div className="grid md:grid-cols-2 gap-4">
           <div className="space-y-3">
             <div>
-              <label className="flex items-center gap-2 font-medium text-sm">
+              <label className="flex items-center gap-2 font-medium text-sm" htmlFor="cross-math">
                 <span className="text-xl">🔢</span> Mathematics
               </label>
               <input
                 className="w-full mt-1 p-2 border rounded"
+                id="cross-math"
                 placeholder="Count family members in French (1-10)"
                 type="text"
               />
             </div>
 
             <div>
-              <label className="flex items-center gap-2 font-medium text-sm">
+              <label className="flex items-center gap-2 font-medium text-sm" htmlFor="cross-science">
                 <span className="text-xl">🔬</span> Science
               </label>
               <input
                 className="w-full mt-1 p-2 border rounded"
+                id="cross-science"
                 placeholder="Describe family traits in French (grand/petit)"
                 type="text"
               />
             </div>
 
             <div>
-              <label className="flex items-center gap-2 font-medium text-sm">
+              <label className="flex items-center gap-2 font-medium text-sm" htmlFor="cross-arts">
                 <span className="text-xl">🎨</span> Arts
               </label>
               <input
                 className="w-full mt-1 p-2 border rounded"
+                id="cross-arts"
                 placeholder="Create family portraits with French labels"
                 type="text"
               />
@@ -420,33 +431,36 @@ Use possessive adjectives correctly"
 
           <div className="space-y-3">
             <div>
-              <label className="flex items-center gap-2 font-medium text-sm">
+              <label className="flex items-center gap-2 font-medium text-sm" htmlFor="cross-literacy">
                 <span className="text-xl">📚</span> Literacy
               </label>
               <input
                 className="w-full mt-1 p-2 border rounded"
+                id="cross-literacy"
                 placeholder="Read 'Ma famille' picture books"
                 type="text"
               />
             </div>
 
             <div>
-              <label className="flex items-center gap-2 font-medium text-sm">
+              <label className="flex items-center gap-2 font-medium text-sm" htmlFor="cross-social-studies">
                 <span className="text-xl">🌍</span> Social Studies
               </label>
               <input
                 className="w-full mt-1 p-2 border rounded"
+                id="cross-social-studies"
                 placeholder="Compare families in PEI and Quebec"
                 type="text"
               />
             </div>
 
             <div>
-              <label className="flex items-center gap-2 font-medium text-sm">
+              <label className="flex items-center gap-2 font-medium text-sm" htmlFor="cross-phys-ed">
                 <span className="text-xl">🏃</span> Phys Ed
               </label>
               <input
                 className="w-full mt-1 p-2 border rounded"
+                id="cross-phys-ed"
                 placeholder="Play 'Jacques a dit' (Simon Says)"
                 type="text"
               />
@@ -508,9 +522,10 @@ Document comfort level with French instructions"
 
         <div className="grid md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">English Version</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="parent-update-en">English Version</label>
             <textarea
               className="w-full p-3 border rounded-lg"
+              id="parent-update-en"
               placeholder="This week we are learning about families in French! 
 Your child will learn to say family member names...
 At home, you can practice by..."
@@ -527,11 +542,12 @@ At home, you can practice by..."
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="parent-update-fr">
               Version française
             </label>
             <textarea
               className="w-full p-3 border rounded-lg"
+              id="parent-update-fr"
               placeholder="Cette semaine, nous apprenons sur les familles en français!
 Votre enfant apprendra à dire les noms des membres de la famille...
 À la maison, vous pouvez pratiquer en..."

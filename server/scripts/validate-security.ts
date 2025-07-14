@@ -244,7 +244,7 @@ async function validateSecurity() {
   const mediumIssues = securityIssues.filter(issue => issue.severity === 'medium');
   const lowIssues = securityIssues.filter(issue => issue.severity === 'low');
   
-  const printIssues = (issues: SecurityIssue[], emoji: string, title: string) => {
+  const printIssues = (issues: SecurityIssue[], emoji: string, title: string): void => {
     if (issues.length > 0) {
       console.log(`${emoji} ${title} (${issues.length}):`);
       issues.forEach(issue => {

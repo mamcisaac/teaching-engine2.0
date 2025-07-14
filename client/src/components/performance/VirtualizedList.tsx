@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 // Type-safe debounce implementation with cancel
-type DebounceFunction<T extends unknown[]> = {
+interface DebounceFunction<T extends unknown[]> {
   (...args: T): void;
   cancel(): void;
-};
+}
 
 const debounce = <T extends unknown[]>(
   func: (...args: T) => void,
@@ -13,7 +13,9 @@ const debounce = <T extends unknown[]>(
 
   const debounced = (...args: T): void => {
     clearTimeout(timeout);
-    timeout = setTimeout((): void => { func(...args); }, wait);
+    timeout = setTimeout((): void => {
+ func(...args); 
+}, wait);
   };
 
   debounced.cancel = (): void => {

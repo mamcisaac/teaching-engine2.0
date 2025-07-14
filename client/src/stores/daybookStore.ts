@@ -1,6 +1,5 @@
 // Daybook Store with Offline Support
 
-
 import { create } from 'zustand';
 import { persist, subscribeWithSelector } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';

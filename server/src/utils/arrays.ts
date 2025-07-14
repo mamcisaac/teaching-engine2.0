@@ -40,10 +40,12 @@ export const arrayUtils = {
         const aValue = typeof key === 'function' ? key(a) : a[key];
         const bValue = typeof key === 'function' ? key(b) : b[key];
         
-        if ((aValue as any) < (bValue as any)) {
+        const aComp = aValue as string | number;
+        const bComp = bValue as string | number;
+        if (aComp < bComp) {
           return order === 'asc' ? -1 : 1;
         }
-        if ((aValue as any) > (bValue as any)) {
+        if (aComp > bComp) {
           return order === 'asc' ? 1 : -1;
         }
       }
@@ -135,12 +137,12 @@ export const objectUtils = {
     for (const obj of objects) {
       for (const [key, value] of Object.entries(obj)) {
         if (value && typeof value === 'object' && !Array.isArray(value)) {
-          (result as any)[key] = objectUtils.deepMerge(
-            (result as any)[key] ?? {},
+          (result as Record<string, unknown>)[key] = objectUtils.deepMerge(
+            (result as Record<string, unknown>)[key] ?? {},
             value
           );
         } else {
-          (result as any)[key] = value;
+          (result as Record<string, unknown>)[key] = value;
         }
       }
     }
@@ -154,7 +156,7 @@ export const objectUtils = {
     
     for (const [key, value] of Object.entries(obj)) {
       if (value) {
-        (result as any)[key] = value;
+        (result as Record<string, unknown>)[key] = value;
       }
     }
     

@@ -31,8 +31,9 @@ export const UnitPlanPlanningTab: React.FC<UnitPlanPlanningTabProps> = ({
     <div className="space-y-6">
       <CollapsibleSection defaultExpanded title="Big Ideas">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Big Ideas</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="unit-big-ideas">Big Ideas</label>
           <RichTextEditor
+            id="unit-big-ideas"
             value={formData.bigIdeas}
             onChange={(value) => {
  updateField('bigIdeas', value); 
@@ -43,7 +44,7 @@ export const UnitPlanPlanningTab: React.FC<UnitPlanPlanningTabProps> = ({
 
       <CollapsibleSection defaultExpanded title="Essential Questions">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="unit-questions">
             Essential Questions
           </label>
           <div className="space-y-2">
@@ -83,7 +84,7 @@ export const UnitPlanPlanningTab: React.FC<UnitPlanPlanningTabProps> = ({
       </CollapsibleSection>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="unit-success-criteria">
           Success Criteria
         </label>
         <div className="space-y-2">

@@ -121,7 +121,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                 
                 {supportEmail !== undefined && supportEmail !== '' ? (
                   <Button 
-                    variant="outline" 
+                    variant="outline"
                     onClick={(): void => {
                       window.location.href = `mailto:${supportEmail}?subject=Error Report`;
                     }}
@@ -214,7 +214,6 @@ export const GlobalErrorBoundary: React.FC<{ children: ReactNode }> = ({ childre
     allowRetry
     errorDescription="Something went wrong with the application. Don't worry, your data is safe."
     errorTitle="Application Error"
-    supportEmail="support@teachingengine.com"
     onError={(error, errorInfo): void => {
       // Log to console in development
       if (process.env.NODE_ENV === 'development') {

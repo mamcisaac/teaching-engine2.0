@@ -8,7 +8,7 @@ import { jest } from '@jest/globals';
 /**
  * Creates a mock Prisma model with all standard CRUD operations
  */
-export const createModelMock = () => ({
+export const createModelMock = (): Record<string, jest.MockedFunction<any>> => ({
   findUnique: jest.fn(),
   findMany: jest.fn(),
   findFirst: jest.fn(),
@@ -38,7 +38,7 @@ export const createMockLogger = () => ({
 /**
  * Creates a comprehensive mock Prisma client instance
  */
-export const createMockPrismaClient = () => {
+export const createMockPrismaClient = (): Record<string, any> => {
   const client = {
     $connect: jest.fn().mockResolvedValue(undefined),
     $disconnect: jest.fn().mockResolvedValue(undefined),

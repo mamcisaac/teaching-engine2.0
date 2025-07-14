@@ -48,15 +48,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
   const updateAuthState = useCallback((userData: User | null): void => {
     setUser(userData);
     setIsAuthenticated(!!userData);
-    if (userData) {
+    if (userData !== null) {
       setError(null); // Clear errors on successful auth
       // Set user context for error reporting
       errorReportingService.setUserContext({
         id: String(userData.id),
         email: userData.email,
         name: userData.name,
-        role: userData.role ?? 'teacher',
-        organizationId: userData.organizationId ? String(userData.organizationId) : undefined,
+        role: userData.role,
+        organizationId: userData.organizationId !== undefined && userData.organizationId !== 0 && !isNaN(userData.organizationId) ? String(userData.organizationId) : undefined,
       });
     } else {
       // Clear user context when logged out
@@ -105,7 +105,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
           errorMessage = err.response.data.error;
         } else if (err.response?.status === 401) {
           errorMessage = 'Invalid email or password';
-        } else if (err.response?.status && err.response.status >= 500) {
+        } else if (err.response?.status !== null && err.response?.status !== undefined && err.response.status >= 500) {
           errorMessage = 'Server error. Please try again later.';
         } else if (err.message) {
           errorMessage = err.message;
@@ -183,12 +183,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
         // Debug logging in development
         logger.debug('[AuthContext] Initial auth check:', {
           hasStoredUser: storedUser !== null,
-          hasToken: hasToken === true,
+          hasToken,
           storedUser,
           tokenValue: `${authService.getAccessToken()?.substring(0, 20)  }...`,
         });
 
-        if (hasToken === false) {
+        if (!hasToken) {
           // No token, definitely not authenticated
           if (isMounted) {
             updateAuthState(null);
@@ -200,7 +200,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
 
         // If we have a stored user and token, verify with server
         // Add a timeout to prevent hanging
-        if (storedUser !== null && hasToken === true) {
+        if (storedUser !== null && hasToken) {
           const checkAuthPromise = checkAuth();
           const timeoutPromise = new Promise<void>((_, reject) =>
             setTimeout((): void => {
@@ -213,7 +213,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
           } catch (timeoutError) {
             logger.warn('Auth verification timed out, using cached user');
             // Use cached user data if server check times out
-            if (isMounted && storedUser) {
+            if (isMounted && storedUser !== null) {
               updateAuthState(storedUser);
             }
           }
@@ -251,7 +251,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
     return (): void => { // Cleanup
     };
 
-    if (isAuthenticated === false) {
+    if (!isAuthenticated) {
       return (): void => {}; // Return empty cleanup function
     }
 
@@ -275,7 +275,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
     return (): void => { // Cleanup
     };
 
-    if (error && retryCount > 0 && retryCount < 3) {
+    if (error !== null && error !== '' && retryCount > 0 && retryCount < 3) {
       const retryDelay = Math.min(1000 * Math.pow(2, retryCount - 1), 5000);
       const timeoutId = setTimeout((): void => {
         void checkAuth();

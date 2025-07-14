@@ -162,8 +162,12 @@ return 'text-yellow-600';
                   </div>
                   <Badge
                     variant={((): 'default' | 'secondary' | 'destructive' => {
-                      if (percentage >= 80) return 'default';
-                      if (percentage >= 50) return 'secondary';
+                      if (percentage >= 80) {
+return 'default';
+}
+                      if (percentage >= 50) {
+return 'secondary';
+}
                       return 'destructive';
                     })()}
                   >

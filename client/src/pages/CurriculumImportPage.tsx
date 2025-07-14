@@ -138,7 +138,7 @@ return;
           useAiExtraction: true,
         });
 
-        if (progressInterval != null) {
+        if (progressInterval !== null) {
           clearInterval(progressInterval);
         }
         setParseProgress(100);
@@ -654,7 +654,7 @@ return;
                 <div className="space-y-2">
                   <Label htmlFor="input">Substrand (Optional)</Label>
                   <Input
-                    value={editingExpectation.substrand || ''}
+                    value={editingExpectation.substrand ?? ''}
                     onChange={(e) => {
  setEditingExpectation({
                         ...editingExpectation,

@@ -4,6 +4,7 @@ import { Router } from 'express';
 import multer, { memoryStorage } from 'multer';
 
 import { logger } from '../logger';
+import { asyncHandler } from '../middleware/errorHandler';
 import { curriculumImportService } from '../services';
 // Clustering service removed - over-engineered for single-teacher use
 
@@ -126,7 +127,7 @@ router.post(
 );
 
 // POST /api/curriculum/import/parse - Parse uploaded file
-router.post('/parse', async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+router.post('/parse', asyncHandler(async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
     const { sessionId, useAiExtraction } = req.body;
 
@@ -163,10 +164,10 @@ router.post('/parse', async (req: AuthenticatedRequest, res: Response): Promise<
       error: _error instanceof Error ? _error.message : 'Failed to parse file',
     });
   }
-});
+}));
 
 // POST /api/curriculum/import/import-preset - Load preset curriculum
-router.post('/import-preset', async (req: Request, res: Response): Promise<void> => {
+router.post('/import-preset', asyncHandler(async (req: Request, res: Response): Promise<void> => {
   try {
     const { presetId } = req.body;
 
@@ -202,7 +203,7 @@ router.post('/import-preset', async (req: Request, res: Response): Promise<void>
 });
 
 // GET /api/curriculum/import/:id/status - Check import status
-router.get('/:id/status', async (req: Request, res: Response): Promise<void> => {
+router.get('/:id/status', asyncHandler(async (req: Request, res: Response): Promise<void> => {
   try {
     const importId = req.params.id;
 
@@ -233,7 +234,7 @@ router.get('/:id/status', async (req: Request, res: Response): Promise<void> => 
 });
 
 // POST /api/curriculum/import/:id/confirm - Confirm and finalize import
-router.post('/:id/confirm', async (req: Request, res: Response): Promise<void> => {
+router.post('/:id/confirm', asyncHandler(async (req: Request, res: Response): Promise<void> => {
   try {
     const importId = req.params.id;
 

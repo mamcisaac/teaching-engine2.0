@@ -20,7 +20,7 @@ export const TutorialOverlay: React.FC<TutorialOverlayProps> = ({
 
   // Highlight target element
   useEffect((): (() => void) | void => {
-    if (!isActive || !currentStep?.targetElement) {
+    if (!isActive || !currentStep || currentStep.targetElement === null || currentStep.targetElement === undefined || currentStep.targetElement === '') {
 return;
 }
 
@@ -127,7 +127,7 @@ return;
           )}
 
           {/* Optional step indicator */}
-          {currentStep.optional && (
+          {(currentStep.optional === true) && (
             <div className="mb-4 p-2 bg-yellow-50 border border-yellow-200 rounded-md">
               <p className="text-sm text-yellow-800">
                 <span className="font-medium">Optional step:</span> You can skip this if needed.

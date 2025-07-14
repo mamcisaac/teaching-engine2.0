@@ -107,8 +107,8 @@ class AuditLogger {
         };
 
         // Log asynchronously, don't block response
-        this.log(entry).catch((error) => {
-          logger.error({ error }, 'Failed to create audit log');
+        this.log(entry).catch((error: unknown) => {
+          logger.error({ error: error as Error }, 'Failed to create audit log');
         });
       });
 

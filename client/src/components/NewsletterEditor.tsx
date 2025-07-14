@@ -273,12 +273,12 @@ export function NewsletterEditor({
           <div>
             {renderToolbar(section.id)}
             <div
+              dangerouslySetInnerHTML={{ __html: content }}
               ref={(el): void => {
                 editorRefs.current[section.id] = el;
               }}
               contentEditable
               className="p-4 min-h-[100px] focus:outline-none prose prose-sm max-w-none"
-              dangerouslySetInnerHTML={{ __html: content }}
               role="textbox"
               style={{ whiteSpace: 'pre-wrap' }}
               tabIndex={0}

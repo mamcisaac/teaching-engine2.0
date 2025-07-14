@@ -47,8 +47,8 @@ export function DuplicatePlanModal({
   planTitle 
 }: DuplicatePlanModalProps): React.ReactElement {
   const queryClient = useQueryClient();
-  const [selectedType, setSelectedType] = useState(planType || '');
-  const [selectedPlanId, setSelectedPlanId] = useState(planId || '');
+  const [selectedType, setSelectedType] = useState(planType ?? '');
+  const [selectedPlanId, setSelectedPlanId] = useState(planId ?? '');
   const [newTitle, setNewTitle] = useState('');
   const [notes, setNotes] = useState('');
   const [includeSubItems, setIncludeSubItems] = useState(true);
@@ -101,7 +101,7 @@ export function DuplicatePlanModal({
         'unit': '/planner/units',
         'lesson': '/planner/etfo-lessons',
       }[selectedType];
-      if (routePrefix) {
+      if (routePrefix !== null && routePrefix !== undefined && routePrefix !== '') {
         window.location.href = `${routePrefix}/${response.data.id}`;
       }
     },
@@ -218,7 +218,7 @@ export function DuplicatePlanModal({
               required
               className="mt-1"
               id="newTitle"
-              placeholder={planTitle ? `Copy of ${planTitle}` : 'Enter new title'}
+              placeholder={(planTitle !== null && planTitle !== undefined && planTitle !== '') ? `Copy of ${planTitle}` : 'Enter new title'}
               value={newTitle}
               onChange={(e) => {
  setNewTitle(e.target.value); 

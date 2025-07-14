@@ -485,8 +485,8 @@ async function extractPEICurriculumDocuments() {
         }
       });
       createdCount++;
-    } catch (error: any) {
-      if (error.code === 'P2002') {
+    } catch (error) {
+      if ((error as { code?: string }).code === 'P2002') {
         console.log(`Skipping existing expectation: ${expectation.code}`);
       } else {
         console.error(`Error creating expectation ${expectation.code}:`, error);

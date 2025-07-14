@@ -75,7 +75,7 @@ export interface CursorPaginationResult<T> {
 export type ModelWithId<T> = T & { id: number };
 
 // Type-safe model accessor helper
-export type SafeModelAccess<T extends BaseModel, CreateInput, UpdateInput> = {
+export interface SafeModelAccess<T extends BaseModel, CreateInput, UpdateInput> {
   readonly model: PrismaModelDelegate<T, CreateInput, UpdateInput>;
   readonly modelName: string;
-};
+}

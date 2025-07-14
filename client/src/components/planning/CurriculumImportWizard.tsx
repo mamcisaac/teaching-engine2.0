@@ -105,7 +105,9 @@ function CurriculumImportWizard({
           // Continue polling if still processing
           if (status.status === 'PROCESSING' && attempts < maxAttempts) {
             attempts++;
-            setTimeout((): void => { void poll(); }, 10000); // Poll every 10 seconds
+            setTimeout((): void => {
+ void poll(); 
+}, 10000); // Poll every 10 seconds
           } else if (attempts >= maxAttempts) {
             toast({
               title: 'Processing Timeout',
@@ -132,7 +134,7 @@ function CurriculumImportWizard({
 
   const handleFileUpload = useCallback(
     async (file: File) => {
-      if (!file) {
+      if (file === null || file === undefined) {
 return;
 }
 
@@ -346,9 +348,10 @@ return null;
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="curriculum-subject">Subject</label>
             <input
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              id="curriculum-subject"
               type="text"
               value={reviewedData.subject}
               onChange={(e) => {
@@ -357,9 +360,10 @@ return null;
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Grade Level</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="curriculum-grade">Grade Level</label>
             <input
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              id="curriculum-grade"
               max="12"
               min="1"
               type="number"
@@ -419,7 +423,7 @@ return null;
                         className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
                         placeholder="Optional"
                         type="text"
-                        value={expectation.strand || ''}
+                        value={(expectation.strand !== null && expectation.strand !== undefined) ? expectation.strand : ''}
                         onChange={(e) => {
  handleExpectationEdit(index, 'strand', e.target.value); 
 }}
@@ -440,7 +444,9 @@ return null;
           </Button>
           <Button
             disabled={isConfirming || reviewedData.subject === '' || reviewedData.expectations.length === 0}
-            onClick={(): void => { void handleConfirmImport(); }}
+            onClick={(): void => {
+ void handleConfirmImport(); 
+}}
           >
             {isConfirming
               ? 'Importing...'

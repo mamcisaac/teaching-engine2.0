@@ -124,7 +124,7 @@ export function createCacheMiddleware(
               path: req.path,
               method: req.method,
               query: req.query,
-              body: req.body,
+              body: req.body as Record<string, unknown>,
               headers: req.headers,
               user: undefined,
             } as Request,
@@ -181,7 +181,7 @@ export function createCacheMiddleware(
       };
 
       next();
-    } catch (_error) {
+    } catch (_error: unknown) {
       logger.error('Cache middleware error:', _error);
       // Continue without caching on error
       next();
@@ -293,7 +293,7 @@ export async function warmUpCache(): Promise<void> {
     // - System templates
 
     logger.info('Cache warm-up completed');
-  } catch (_error) {
+  } catch (_error: unknown) {
     logger.error('Cache warm-up failed:', _error);
   }
 }
@@ -388,7 +388,7 @@ export function isCacheHealthy(): boolean {
       cache.del(testKey);
     });
     return true;
-  } catch (_error) {
+  } catch (_error: unknown) {
     logger.error('Cache health check failed:', _error);
     return false;
   }

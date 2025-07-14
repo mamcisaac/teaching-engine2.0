@@ -148,7 +148,7 @@ export default defineConfig(({ mode }) => {
           manualChunks,
           // Asset naming for better caching
           assetFileNames: (assetInfo) => {
-            const info = (assetInfo.name || 'asset').split('.');
+            const info = (assetInfo.name ?? 'asset').split('.');
             let extType = info[info.length - 1];
             if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
               extType = 'img';

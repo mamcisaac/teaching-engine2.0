@@ -3,7 +3,7 @@ import { Page, expect, APIRequestContext } from '@playwright/test';
 
 // API base URL configuration
 export const API_BASE =
-  process.env.TEST_SERVER_URL || process.env.API_BASE || 'http://127.0.0.1:3000';
+  process.env.TEST_SERVER_URL ?? process.env.API_BASE ?? 'http://127.0.0.1:3000';
 export const FRONTEND_BASE = 'http://localhost:5173';
 
 // Default test credentials
@@ -214,9 +214,9 @@ export async function createTestUser(
   const random = Math.random().toString(36).substring(7);
 
   const user = {
-    email: customData?.email || `e2e-${role}-${timestamp}-${random}@example.com`,
-    password: customData?.password || `E2ePass@${timestamp}`,
-    name: customData?.name || `E2E ${role} ${timestamp}`,
+    email: customData?.email ?? `e2e-${role}-${timestamp}-${random}@example.com`,
+    password: customData?.password ?? `E2ePass@${timestamp}`,
+    name: customData?.name ?? `E2E ${role} ${timestamp}`,
     role,
   };
 
@@ -365,7 +365,7 @@ export function getAuthenticatedApiContext(token: string): APIRequestContext {
       return baseContext.post(url, {
         ...options,
         headers: {
-          ...(options?.headers || {}),
+          ...(options?.headers ?? {}),
           Authorization: `Bearer ${token}`,
         },
       });
@@ -374,7 +374,7 @@ export function getAuthenticatedApiContext(token: string): APIRequestContext {
       return baseContext.get(url, {
         ...options,
         headers: {
-          ...(options?.headers || {}),
+          ...(options?.headers ?? {}),
           Authorization: `Bearer ${token}`,
         },
       });
@@ -383,7 +383,7 @@ export function getAuthenticatedApiContext(token: string): APIRequestContext {
       return baseContext.put(url, {
         ...options,
         headers: {
-          ...(options?.headers || {}),
+          ...(options?.headers ?? {}),
           Authorization: `Bearer ${token}`,
         },
       });
@@ -392,7 +392,7 @@ export function getAuthenticatedApiContext(token: string): APIRequestContext {
       return baseContext.delete(url, {
         ...options,
         headers: {
-          ...(options?.headers || {}),
+          ...(options?.headers ?? {}),
           Authorization: `Bearer ${token}`,
         },
       });
@@ -401,7 +401,7 @@ export function getAuthenticatedApiContext(token: string): APIRequestContext {
       return baseContext.patch(url, {
         ...options,
         headers: {
-          ...(options?.headers || {}),
+          ...(options?.headers ?? {}),
           Authorization: `Bearer ${token}`,
         },
       });

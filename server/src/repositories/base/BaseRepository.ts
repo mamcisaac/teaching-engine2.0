@@ -1,6 +1,18 @@
 import type { PrismaClient } from '@prisma/client';
 
 import { logger } from '../../logger';
+import {
+  isRepositoryError} from '../../types/repository';
+import type {
+  PrismaModelDelegate,
+  RepositoryError,
+  BaseModel,
+  FindManyOptions,
+  FindFirstOptions,
+  CursorPaginationOptions,
+  CursorPaginationResult,
+  ModelWithId,
+} from '../../types/repository';
 import type {
   PaginationOptions,
   PaginatedResponse} from '../../utils/pagination';
@@ -11,17 +23,6 @@ import {
   combineFilters,
   fetchPaginatedData,
 } from '../../utils/pagination';
-import type {
-  PrismaModelDelegate,
-  RepositoryError,
-  isRepositoryError,
-  BaseModel,
-  FindManyOptions,
-  FindFirstOptions,
-  CursorPaginationOptions,
-  CursorPaginationResult,
-  ModelWithId,
-} from '../../types/repository';
 
 import type { IRepository } from './IRepository';
 
@@ -61,7 +62,7 @@ export abstract class BaseRepository<T extends BaseModel, CreateInput, UpdateInp
         include = {},
         pagination = { page: 1, limit: 20 },
         searchFields = [],
-      } = options || {};
+      } = options ?? {};
 
       // Build search filter if search term provided
       const searchFilter = createSearchFilter(pagination.search, searchFields);
@@ -197,7 +198,7 @@ export abstract class BaseRepository<T extends BaseModel, CreateInput, UpdateInp
         cursor,
         limit = 20,
         orderBy = { id: 'desc' },
-      } = options || {};
+      } = options ?? {};
 
       const queryArgs: {
         where: Record<string, unknown>;

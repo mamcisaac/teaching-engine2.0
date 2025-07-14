@@ -23,7 +23,7 @@ test('rejects drop when activity longer than slot', async ({ page }) => {
     const hasWeekDays = document.querySelector('[data-testid*="day-"]') !== null;
     const hasTimeSlots = document.querySelector('[data-testid*="time-slot"]') !== null;
     const hasWeekSelector = document.querySelector('input[type="date"]') !== null;
-    const hasTitle = document.querySelector('h1')?.textContent?.includes('Planner') || false;
+    const hasTitle = document.querySelector('h1')?.textContent?.includes('Planner') ?? false;
 
     return hasWeekDays || hasTimeSlots || hasWeekSelector || hasTitle;
   });

@@ -21,9 +21,9 @@ function AsyncFormComponent({ onSubmit }: { onSubmit: (data: { name: string }) =
 // Test component with improper async handler (the error case)
 function ImproperAsyncForm({ onSubmit }: { onSubmit: (data: { name: string }) => Promise<void> }) {
   return (
-    <form onSubmit={async (e) => {
+    <form onSubmit={(e) => {
       e.preventDefault();
-      await onSubmit({ name: 'test' });
+      void onSubmit({ name: 'test' });
     }}>
       <input name="name" />
       <button type="submit">Submit</button>

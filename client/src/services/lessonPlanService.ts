@@ -27,7 +27,7 @@ export class LessonPlanService {
   // Format lesson plan for export
   static formatForExport(lesson: ETFOLessonPlan, unitPlan?: UnitPlan): string {
     let content = `# ${lesson.title}\n`;
-    if (lesson.titleFr && lesson.titleFr !== '') {
+    if (lesson.titleFr !== undefined && lesson.titleFr !== '') {
       content += `## ${lesson.titleFr}\n`;
     }
     // Handle date formatting properly to avoid timezone issues
@@ -35,26 +35,26 @@ export class LessonPlanService {
     content += `\n**Date:** ${dateObj.toLocaleDateString('en-US')}\n`;
     content += `**Duration:** ${lesson.duration} minutes\n`;
 
-    if (unitPlan) {
+    if (unitPlan !== undefined) {
       content += `**Unit:** ${unitPlan.title}\n`;
     }
 
     content += '\n---\n\n';
 
-    if (lesson.learningGoals && lesson.learningGoals !== '') {
+    if (lesson.learningGoals !== undefined && lesson.learningGoals !== '') {
       content += `## Learning Goals\n${lesson.learningGoals}\n\n`;
     }
 
     content += `## Three-Part Lesson\n\n`;
 
     content += `### Minds On (${this.calculateTimeAllocation(lesson.duration).mindsOn} min)\n`;
-    content += `${lesson.mindsOn && lesson.mindsOn !== '' ? lesson.mindsOn : 'No content provided'}\n\n`;
+    content += `${(lesson.mindsOn !== undefined && lesson.mindsOn !== '') ? lesson.mindsOn : 'No content provided'}\n\n`;
 
     content += `### Action (${this.calculateTimeAllocation(lesson.duration).action} min)\n`;
-    content += `${lesson.action && lesson.action !== '' ? lesson.action : 'No content provided'}\n\n`;
+    content += `${(lesson.action !== undefined && lesson.action !== '') ? lesson.action : 'No content provided'}\n\n`;
 
     content += `### Consolidation (${this.calculateTimeAllocation(lesson.duration).consolidation} min)\n`;
-    content += `${lesson.consolidation && lesson.consolidation !== '' ? lesson.consolidation : 'No content provided'}\n\n`;
+    content += `${(lesson.consolidation !== undefined && lesson.consolidation !== '') ? lesson.consolidation : 'No content provided'}\n\n`;
 
     if (lesson.materials && lesson.materials.length > 0) {
       content += `## Materials Needed\n`;

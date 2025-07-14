@@ -13,7 +13,7 @@ import { logger } from './logger.js';
 import { authenticate } from './middleware/authenticate';
 import { curriculumCache, staticCache, userCache } from './middleware/cache';
 import { errorContextMiddleware, authErrorMiddleware } from './middleware/errorContext';
-import { errorHandler, notFoundHandler } from './middleware/errorHandler';
+import { errorHandler, notFoundHandler, asyncHandler } from './middleware/errorHandler';
 import { httpMetricsMiddleware, startSystemMetricsCollection } from './middleware/metrics';
 import { rateLimiters } from './middleware/rateLimit/index';
 import { requestLoggingMiddleware, errorLoggingMiddleware } from './middleware/requestLogger';
@@ -100,18 +100,18 @@ app.use(httpMetricsMiddleware);
 // Performance monitoring removed - adds unnecessary complexity for single-teacher use
 
 // Health check endpoints
-app.get('/health', (_req, res) => {
+app.get('/health', (_req, res): void => {
   res.status(200).json({ status: 'ok' });
 });
 
-app.get('/api/health', (_req, res) => {
+app.get('/api/health', (_req, res): void => {
   res.status(200).json({
     status: 'ok',
   });
 });
 
 // Detailed health endpoint for debugging
-app.get('/api/health/detailed', (_req, res) => {
+app.get('/api/health/detailed', (_req, res): void => {
   res.status(200).json({
     status: 'ok',
     services: {
@@ -126,8 +126,8 @@ app.get('/api/health/detailed', (_req, res) => {
 // Legacy login endpoint for backward compatibility
 app.post(
   '/api/login',
-  authRateLimitMiddleware,
-  (req: Request, _res: Response, next: NextFunction) => {
+  asyncHandler(authRateLimitMiddleware),
+  (req: Request, _res: Response, next: NextFunction): void => {
     // Forward to the auth router
     req.url = '/auth/login';
     next();
@@ -135,7 +135,7 @@ app.post(
 );
 
 // Legacy register endpoint for backward compatibility
-app.post('/api/register', authRateLimitMiddleware, (req: Request, res: Response): void => {
+app.post('/api/register', asyncHandler(authRateLimitMiddleware), (req: Request, res: Response): void => {
   // Forward to the new auth endpoint
   req.url = '/register';
   authEndpoints(req, res, () => {});
@@ -143,7 +143,7 @@ app.post('/api/register', authRateLimitMiddleware, (req: Request, res: Response)
 
 // Auth check endpoint is handled by authEndpoints router at /api/auth/me
 
-app.get('/api/auth/check', authenticate, (req: Request, res: Response): void => {
+app.get('/api/auth/check', asyncHandler(authenticate), (req: Request, res: Response): void => {
   res.json({ userId: req.user?.id });
 });
 
@@ -169,10 +169,10 @@ if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development') {
 // Mount auth routes (no authentication required, but rate limited)
 log('Mounting auth routes...');
 // Apply strict rate limiting to auth endpoints
-app.use('/api/auth/login', authRateLimitMiddleware);
-app.use('/api/auth/register', authRateLimitMiddleware);
-app.use('/api/auth/forgot-password', authRateLimitMiddleware);
-app.use('/api/auth/reset-password', authRateLimitMiddleware);
+app.use('/api/auth/login', asyncHandler(authRateLimitMiddleware));
+app.use('/api/auth/register', asyncHandler(authRateLimitMiddleware));
+app.use('/api/auth/forgot-password', asyncHandler(authRateLimitMiddleware));
+app.use('/api/auth/reset-password', asyncHandler(authRateLimitMiddleware));
 
 // Mount auth endpoints (new auth middleware)
 app.use('/api/auth', authEndpoints);
@@ -182,23 +182,23 @@ app.use('/api/auth', authEndpoints);
 
 // Mount user routes (authenticated)
 log('Mounting user routes...');
-app.use('/api/user', authenticate, rateLimiters.api, userRoutes(prisma));
+app.use('/api/user', asyncHandler(authenticate), rateLimiters.api, userRoutes(prisma));
 
 // Notification routes
 log('Mounting notification routes...');
-app.use('/api/notifications', authenticate, rateLimiters.api, notificationRoutes);
+app.use('/api/notifications', asyncHandler(authenticate), rateLimiters.api, notificationRoutes);
 
 // Apply authentication and rate limiting to all API routes
 log('Mounting ETFO-aligned API routes...');
 // Student endpoints removed - app does not store student data
 
 // Key Teacher Features
-app.use('/api/newsletters', authenticate, rateLimiters.write, newsletterRoutes);
-app.use('/api/substitute-plans', authenticate, rateLimiters.write, substitutePlanRoutes);
+app.use('/api/newsletters', asyncHandler(authenticate), rateLimiters.write, newsletterRoutes);
+app.use('/api/substitute-plans', asyncHandler(authenticate), rateLimiters.write, substitutePlanRoutes);
 
 app.use(
   '/api/curriculum-import',
-  authenticate,
+  asyncHandler(authenticate),
   rateLimiters.upload,
   validateFileUpload(['application/pdf', 'text/csv']),
   curriculumImportRoutes,
@@ -208,36 +208,36 @@ app.use(
 // ETFO-aligned Planning Routes
 app.use(
   '/api/curriculum-expectations',
-  authenticate,
+  asyncHandler(authenticate),
   rateLimiters.read,
   curriculumCache, // Cache curriculum data for 30 minutes
   curriculumExpectationRoutes,
 );
-app.use('/api/long-range-plans', authenticate, rateLimiters.write, userCache, longRangePlanRoutes);
-app.use('/api/unit-plans', authenticate, rateLimiters.write, userCache, unitPlanRoutes);
+app.use('/api/long-range-plans', asyncHandler(authenticate), rateLimiters.write, userCache, longRangePlanRoutes);
+app.use('/api/unit-plans', asyncHandler(authenticate), rateLimiters.write, userCache, unitPlanRoutes);
 app.use(
   '/api/etfo-lesson-plans',
-  authenticate,
+  asyncHandler(authenticate),
   rateLimiters.write,
   userCache,
   etfoLessonPlanRoutes,
 );
-app.use('/api/daybook-entries', authenticate, rateLimiters.write, userCache, daybookEntryRoutes);
-app.use('/api/etfo', authenticate, rateLimiters.read, etfoProgressRoutes);
+app.use('/api/daybook-entries', asyncHandler(authenticate), rateLimiters.write, userCache, daybookEntryRoutes);
+app.use('/api/etfo', asyncHandler(authenticate), rateLimiters.read, etfoProgressRoutes);
 
 // State Management Routes
-app.use('/api/planner', authenticate, rateLimiters.api, plannerStateRoutes);
+app.use('/api/planner', asyncHandler(authenticate), rateLimiters.api, plannerStateRoutes);
 // Workflow state routes removed - over-engineered for single-teacher use
-app.use('/api/ai-planning', authenticate, rateLimiters.ai, aiPlanningRoutes);
+app.use('/api/ai-planning', asyncHandler(authenticate), rateLimiters.ai, aiPlanningRoutes);
 
 // Template System Routes
-app.use('/api/templates', authenticate, rateLimiters.api, staticCache, templateRoutes);
+app.use('/api/templates', asyncHandler(authenticate), rateLimiters.api, staticCache, templateRoutes);
 
 // Calendar Routes
-app.use('/api/calendar-events', authenticate, rateLimiters.api, userCache, calendarEventRoutes);
+app.use('/api/calendar-events', asyncHandler(authenticate), rateLimiters.api, userCache, calendarEventRoutes);
 
 // Recent Plans Routes
-app.use('/api/recent-plans', authenticate, rateLimiters.api, userCache, recentPlansRoutes);
+app.use('/api/recent-plans', asyncHandler(authenticate), rateLimiters.api, userCache, recentPlansRoutes);
 
 // Cache Management Routes
 app.use('/api/cache', cacheRoutes);
@@ -250,21 +250,21 @@ app.use('/api/metrics', metricsRoutes);
 app.use('/api/dashboard', dashboardMetricsRoutes);
 
 // Monitoring Routes (includes enhanced dashboard and alerting)
-app.use('/api/monitoring', authenticate, monitoringRoutes);
+app.use('/api/monitoring', asyncHandler(authenticate), monitoringRoutes);
 
 // AI status endpoint (maps to ai-planning/status for backward compatibility)
-app.get('/api/ai/status', authenticate, (req: Request, res: Response): void => {
+app.get('/api/ai/status', asyncHandler(authenticate), (req: Request, res: Response): void => {
   // Forward to ai-planning routes handler
   req.url = '/status';
   aiPlanningRoutes(req, res, () => {});
 });
 
 // Planner State Routes
-app.use('/api/planner', authenticate, plannerStateRoutes);
+app.use('/api/planner', asyncHandler(authenticate), plannerStateRoutes);
 
 // Activity Discovery Routes
-app.use('/api/activity-collections', authenticate, rateLimiters.write, activityCollectionsRoutes);
-app.use('/api/ai-activities', authenticate, rateLimiters.ai, aiActivityGenerationRoutes);
+app.use('/api/activity-collections', asyncHandler(authenticate), rateLimiters.write, activityCollectionsRoutes);
+app.use('/api/ai-activities', asyncHandler(authenticate), rateLimiters.ai, aiActivityGenerationRoutes);
 
 // Batch Processing Routes
 
@@ -309,7 +309,7 @@ app.use('/uploads', expressStatic(path.join(__dirname_index, '../uploads')));
 log('Configuring static file serving for client distribution...');
 app.use(expressStatic(clientDist));
 log('Configuring catch-all route for client-side routing...');
-app.get('*', (_req, res) => {
+app.get('*', (_req, res): void => {
   res.sendFile(path.join(clientDist, 'index.html'));
 });
 
@@ -322,7 +322,7 @@ log(`Starting server on port ${PORT}...`);
 export { app };
 
 // Initialize app asynchronously
-async function initializeApp() {
+async function initializeApp(): Promise<express.Application> {
   // Initialize error reporting service first
   log('Initializing error reporting service...');
   errorReportingService.init();
@@ -341,7 +341,7 @@ async function initializeApp() {
 }
 
 // Graceful shutdown handler
-async function gracefulShutdown(signal: string, server?: Server) {
+async function gracefulShutdown(signal: string, server?: Server): Promise<void> {
   structuredLogger.info(`${signal} received, shutting down gracefully...`, { signal });
 
   try {
@@ -397,8 +397,12 @@ if (isDirectRun || isE2ETest || isDevelopment) {
       server.headersTimeout = 66000;
 
       // Graceful shutdown
-      process.on('SIGTERM', () => { void gracefulShutdown('SIGTERM', server); });
-      process.on('SIGINT', () => { void gracefulShutdown('SIGINT', server); });
+      process.on('SIGTERM', () => {
+ void gracefulShutdown('SIGTERM', server); 
+});
+      process.on('SIGINT', () => {
+ void gracefulShutdown('SIGINT', server); 
+});
 
       // Handle uncaught exceptions
       process.on('uncaughtException', (err) => {

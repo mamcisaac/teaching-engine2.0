@@ -326,10 +326,10 @@ where.AND.push({ isSystem });
 
     const gradeRange = grades.reduce(
       (range: { min: number; max: number }, template: { gradeMin: number | null; gradeMax: number | null }) => {
-        if (template.gradeMin && template.gradeMin !== 0) {
+        if (template.gradeMin !== null && template.gradeMin !== undefined && template.gradeMin !== 0 && !isNaN(template.gradeMin)) {
 range.min = Math.min(range.min, template.gradeMin);
 }
-        if (template.gradeMax && template.gradeMax !== 0) {
+        if (template.gradeMax !== null && template.gradeMax !== undefined && template.gradeMax !== 0 && !isNaN(template.gradeMax)) {
 range.max = Math.max(range.max, template.gradeMax);
 }
         return range;

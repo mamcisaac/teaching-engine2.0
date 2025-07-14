@@ -76,7 +76,7 @@ export const requestLoggingMiddleware = (
 
   // Don't log body for GET requests or file uploads
   if (req.method !== 'GET' && !req.is('multipart/form-data')) {
-    requestLog.body = sanitizeData(req.body);
+    requestLog.body = sanitizeData(req.body as Record<string, unknown>);
   }
 
   logger.info(requestLog, 'Incoming request');
@@ -202,7 +202,7 @@ export const auditMiddleware = (
           severity: options.severity,
           metadata: {
             statusCode: res.statusCode,
-            body: sanitizeData(req.body),
+            body: sanitizeData(req.body as Record<string, unknown>),
           },
         });
       }

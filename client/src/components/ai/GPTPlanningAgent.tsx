@@ -210,7 +210,7 @@ throw new Error('No session');
       recognition.lang = 'en-US';
 
       recognition.onresult = (event: SpeechRecognitionEvent): void => {
-        const transcript = event.results[0][0].transcript;
+        const {transcript} = event.results[0][0];
         setInputValue(transcript);
         setIsListening(false);
       };

@@ -86,12 +86,12 @@ export default function UnitPlansPage(): React.ReactElement {
   const [selectedTemplate, setSelectedTemplate] = useState<PlanTemplate | null>(null);
 
   // Fetch data
-  const { data: longRangePlan } = useLongRangePlan(longRangePlanId != null && longRangePlanId !== '' ? longRangePlanId : '');
+  const { data: longRangePlan } = useLongRangePlan(longRangePlanId ?? '');
   const { data: allLongRangePlans = [] } = useLongRangePlans();
   const { data: unitPlans = [], isLoading } = useUnitPlans(
-    longRangePlanId != null && longRangePlanId !== '' ? { longRangePlanId } : {},
+    longRangePlanId !== null && longRangePlanId !== '' ? { longRangePlanId } : {},
   );
-  const { data: selectedUnit } = useUnitPlan(unitId != null && unitId !== '' ? unitId : '');
+  const { data: selectedUnit } = useUnitPlan(unitId ?? '');
 
   // Curriculum expectations for AI assistance
   const { data: curriculumExpectations = [] } = useCurriculumExpectations({
@@ -149,7 +149,7 @@ export default function UnitPlansPage(): React.ReactElement {
     e.preventDefault();
 
     const { isValid, errors } = validateForm();
-    if (isValid === false) {
+    if (!isValid) {
       logger.error('Form validation errors:', errors);
       return;
     }
@@ -232,8 +232,8 @@ export default function UnitPlansPage(): React.ReactElement {
         // Pre-populate form with template data
         const templateContent = applied.appliedContent as UnitPlanContent;
         updateField('title', '');
-        updateField('description', templateContent.overview != null && templateContent.overview !== '' ? templateContent.overview : '');
-        updateField('bigIdeas', templateContent.bigIdeas != null && templateContent.bigIdeas !== '' ? templateContent.bigIdeas : '');
+        updateField('description', templateContent.overview !== null && templateContent.overview !== '' ? templateContent.overview : '');
+        updateField('bigIdeas', templateContent.bigIdeas !== null && templateContent.bigIdeas !== '' ? templateContent.bigIdeas : '');
         updateField('essentialQuestions', templateContent.essentialQuestions ?? []);
         updateField('keyVocabulary', templateContent.keyVocabulary ?? []);
         updateField(
@@ -241,7 +241,7 @@ export default function UnitPlansPage(): React.ReactElement {
           templateContent.assessments ? JSON.stringify(templateContent.assessments) : '',
         );
         updateField('successCriteria', templateContent.successCriteria ?? []);
-        updateField('crossCurricularConnections', templateContent.crossCurricularConnections != null && templateContent.crossCurricularConnections !== '' ? templateContent.crossCurricularConnections : '');
+        updateField('crossCurricularConnections', templateContent.crossCurricularConnections !== null && templateContent.crossCurricularConnections !== '' ? templateContent.crossCurricularConnections : '');
         // Handle differentiationStrategies which might have different structure in template
         const diffStrategies = templateContent.differentiationStrategies;
         if (diffStrategies && typeof diffStrategies === 'object') {
@@ -263,18 +263,18 @@ export default function UnitPlansPage(): React.ReactElement {
             forIEP: [],
           });
         }
-        updateField('culminatingTask', templateContent.culminatingTask != null && templateContent.culminatingTask !== '' ? templateContent.culminatingTask : '');
-        updateField('priorKnowledge', templateContent.priorKnowledge != null && templateContent.priorKnowledge !== '' ? templateContent.priorKnowledge : '');
-        updateField('parentCommunicationPlan', templateContent.parentCommunicationPlan != null && templateContent.parentCommunicationPlan !== '' ? templateContent.parentCommunicationPlan : '');
-        updateField('fieldTripsAndGuestSpeakers', templateContent.fieldTripsAndGuestSpeakers != null && templateContent.fieldTripsAndGuestSpeakers !== '' ? templateContent.fieldTripsAndGuestSpeakers : '');
-        updateField('indigenousPerspectives', templateContent.indigenousPerspectives != null && templateContent.indigenousPerspectives !== '' ? templateContent.indigenousPerspectives : '');
-        updateField('environmentalEducation', templateContent.environmentalEducation != null && templateContent.environmentalEducation !== '' ? templateContent.environmentalEducation : '');
-        updateField('socialJusticeConnections', templateContent.socialJusticeConnections != null && templateContent.socialJusticeConnections !== '' ? templateContent.socialJusticeConnections : '');
-        updateField('technologyIntegration', templateContent.technologyIntegration != null && templateContent.technologyIntegration !== '' ? templateContent.technologyIntegration : '');
-        updateField('communityConnections', templateContent.communityConnections != null && templateContent.communityConnections !== '' ? templateContent.communityConnections : '');
+        updateField('culminatingTask', templateContent.culminatingTask !== null && templateContent.culminatingTask !== '' ? templateContent.culminatingTask : '');
+        updateField('priorKnowledge', templateContent.priorKnowledge !== null && templateContent.priorKnowledge !== '' ? templateContent.priorKnowledge : '');
+        updateField('parentCommunicationPlan', templateContent.parentCommunicationPlan !== null && templateContent.parentCommunicationPlan !== '' ? templateContent.parentCommunicationPlan : '');
+        updateField('fieldTripsAndGuestSpeakers', templateContent.fieldTripsAndGuestSpeakers !== null && templateContent.fieldTripsAndGuestSpeakers !== '' ? templateContent.fieldTripsAndGuestSpeakers : '');
+        updateField('indigenousPerspectives', templateContent.indigenousPerspectives !== null && templateContent.indigenousPerspectives !== '' ? templateContent.indigenousPerspectives : '');
+        updateField('environmentalEducation', templateContent.environmentalEducation !== null && templateContent.environmentalEducation !== '' ? templateContent.environmentalEducation : '');
+        updateField('socialJusticeConnections', templateContent.socialJusticeConnections !== null && templateContent.socialJusticeConnections !== '' ? templateContent.socialJusticeConnections : '');
+        updateField('technologyIntegration', templateContent.technologyIntegration !== null && templateContent.technologyIntegration !== '' ? templateContent.technologyIntegration : '');
+        updateField('communityConnections', templateContent.communityConnections !== null && templateContent.communityConnections !== '' ? templateContent.communityConnections : '');
 
         // Set estimated duration if available
-        if (template.estimatedWeeks && template.estimatedWeeks > 0) {
+        if (template.estimatedWeeks !== null && template.estimatedWeeks !== undefined && template.estimatedWeeks > 0) {
           const startDate = new Date();
           const endDate = new Date();
           endDate.setDate(startDate.getDate() + template.estimatedWeeks * 7);
@@ -292,7 +292,7 @@ export default function UnitPlansPage(): React.ReactElement {
     }
   };
 
-  if (isLoading === true) {
+  if (isLoading) {
     return (
       <PlanningErrorBoundary>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -651,8 +651,8 @@ export default function UnitPlansPage(): React.ReactElement {
             <BlankTemplateQuickActions
               schoolInfo={{
                 grade: longRangePlan !== null && longRangePlan !== undefined ? `Grade ${longRangePlan.grade}` : '',
-                subject: longRangePlan?.subject || '',
-                academicYear: longRangePlan?.academicYear || '',
+                subject: longRangePlan?.subject ?? '',
+                academicYear: longRangePlan?.academicYear ?? '',
               }}
               templateType="unit"
             />
@@ -814,7 +814,7 @@ export default function UnitPlansPage(): React.ReactElement {
                           }))}
                         duration={2} // Default 2 weeks
                         grade={longRangePlan?.grade ?? 1}
-                        subject={longRangePlan?.subject || ''}
+                        subject={longRangePlan?.subject ?? ''}
                         unitTitle={formData.title}
                         onSuggestionAccepted={handleAISuggestionAccepted}
                         onUnitGenerated={handleAIUnitGenerated}
@@ -1221,7 +1221,7 @@ export default function UnitPlansPage(): React.ReactElement {
                           <CardTitle className="text-base">{template.title}</CardTitle>
                           <CardDescription className="mt-1">
                             {template.category} • Grade {template.gradeMin}
-                            {template.gradeMax &&
+                            {template.gradeMax !== null && template.gradeMax !== undefined && template.gradeMax !== 0 && !isNaN(template.gradeMax) &&
                               template.gradeMax !== template.gradeMin &&
                               `-${template.gradeMax}`}
                             {template.estimatedWeeks !== null && template.estimatedWeeks !== undefined && template.estimatedWeeks !== 0 && ` • ${template.estimatedWeeks} weeks`}

@@ -65,7 +65,7 @@ router.get('/', async (_req: Request, res: Response): Promise<void> => {
           env: process.env.NODE_ENV,
         },
         application: {
-          version: process.env.npm_package_version || '0.0.0',
+          version: process.env.npm_package_version ?? '0.0.0',
           startTime: new Date(Date.now() - process.uptime() * 1000).toISOString(),
         },
       },

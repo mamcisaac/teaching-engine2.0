@@ -155,7 +155,9 @@ export function useAIStatus(): AIStatusHookReturn {
     isLoading,
     isError,
     error,
-    refetch: (): void => { void refetch(); },
+    refetch: (): void => {
+ void refetch(); 
+},
     isAIEnabled,
     canUseAI,
     aiDisabledReason: getAIDisabledReason(),

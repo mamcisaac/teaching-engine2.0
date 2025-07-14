@@ -13,7 +13,7 @@ const prisma = new PrismaClient();
 app.use(cors());
 app.use(express.json());
 
-const JWT_SECRET = process.env.JWT_SECRET || 'teaching-engine-demo-secret-key-2024';
+const JWT_SECRET = process.env.JWT_SECRET ?? 'teaching-engine-demo-secret-key-2024';
 
 // Login endpoint
 app.post('/api/login', async (req, res) => {
@@ -82,7 +82,7 @@ app.all('/api/*', (req, res) => {
   res.json({ message: 'Feature in progress', path: req.path });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT ?? 3000;
 
 // Actually start the server
 console.log('Starting simple server...');

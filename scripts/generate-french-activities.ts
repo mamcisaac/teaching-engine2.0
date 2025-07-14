@@ -295,8 +295,8 @@ async function generateFrenchImmersionActivities() {
         data: activity,
       });
       createdActivities++;
-    } catch (error: any) {
-      if (error.code === 'P2002') {
+    } catch (error) {
+      if ((error as { code?: string }).code === 'P2002') {
         console.log(`Skipping existing activity: ${activity.title}`);
       } else {
         console.error(`Error creating activity ${activity.title}:`, error);
@@ -346,7 +346,7 @@ async function generateFrenchImmersionActivities() {
       await prisma.activityCollection.create({
         data: collection,
       });
-    } catch (error: any) {
+    } catch (error) {
       console.log(`Collection may already exist: ${collection.name}`);
     }
   }
@@ -374,7 +374,7 @@ async function generateFrenchImmersionActivities() {
           challenges: 'Some students needed extra support with pronunciation initially'
         }
       });
-    } catch (error: any) {
+    } catch (error) {
       // Rating may already exist
     }
   }

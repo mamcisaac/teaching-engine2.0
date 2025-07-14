@@ -45,8 +45,8 @@ return null;
     
     return {
       percentage: Math.min(100, Math.max(0, unit.progress.percentage)),
-      completed: unit.progress.completed ?? 0,
-      total: unit.progress.total ?? 0,
+      completed: unit.progress.completed,
+      total: unit.progress.total,
     };
   }, [unit.progress]);
 
@@ -82,7 +82,7 @@ return null;
         </div>
 
         {/* Big Ideas - only show if not compact and exists */}
-        {!compact && unit.bigIdeas && (
+        {!compact && (unit.bigIdeas !== null && unit.bigIdeas !== undefined && unit.bigIdeas !== '') && (
           <div>
             <h4 className="text-sm font-medium text-gray-700 mb-1">Big Ideas</h4>
             <p className="text-sm text-gray-600 line-clamp-2">{unit.bigIdeas}</p>

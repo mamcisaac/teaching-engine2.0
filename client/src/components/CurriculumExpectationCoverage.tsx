@@ -320,8 +320,12 @@ export function CurriculumExpectationCoverage(): React.ReactElement {
                             <span className="font-medium text-sm">{subject.subject}</span>
                             <Badge
                               variant={((): 'default' | 'secondary' | 'destructive' => {
-                                if (subject.percentage >= 80) return 'default';
-                                if (subject.percentage >= 60) return 'secondary';
+                                if (subject.percentage >= 80) {
+return 'default';
+}
+                                if (subject.percentage >= 60) {
+return 'secondary';
+}
                                 return 'destructive';
                               })()}
                             >

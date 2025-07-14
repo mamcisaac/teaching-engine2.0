@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { Request, Response, NextFunction } from 'express';
 import type { ZodSchema } from 'zod';
 import { z, ZodError } from 'zod';
@@ -7,7 +7,7 @@ import { logger } from '../../logger';
 import { ValidationError } from '../../utils/errors';
 
 // Extended request with validated data
-export interface ValidatedRequest<T = any> extends Request {
+export interface ValidatedRequest<T = unknown> extends Request {
   validated?: T;
   validatedBody?: T;
   validatedQuery?: unknown;
@@ -40,29 +40,29 @@ export const validate = <T>(
   } = options;
 
   return (req: ValidatedRequest<T>, _res: Response, next: NextFunction): void => {
-    void (async () => {
+    void (async (): Promise<void> => {
     try {
       // Determine sources to validate
       const sources = Array.isArray(source) ? source : [source];
-      let dataToValidate: any = {};
+      let dataToValidate: Record<string, unknown> = {};
 
       // Collect data from specified sources
       for (const src of sources) {
         switch (src) {
           case 'body':
-            dataToValidate = { ...dataToValidate, ...req.body };
+            dataToValidate = { ...dataToValidate, ...(req.body as Record<string, unknown>) };
             break;
           case 'query':
-            dataToValidate = { ...dataToValidate, ...req.query };
+            dataToValidate = { ...dataToValidate, ...(req.query as Record<string, unknown>) };
             break;
           case 'params':
-            dataToValidate = { ...dataToValidate, ...req.params };
+            dataToValidate = { ...dataToValidate, ...(req.params as Record<string, unknown>) };
             break;
           case 'headers':
-            dataToValidate = { ...dataToValidate, ...req.headers };
+            dataToValidate = { ...dataToValidate, ...(req.headers as Record<string, unknown>) };
             break;
           case 'cookies':
-            dataToValidate = { ...dataToValidate, ...req.cookies };
+            dataToValidate = { ...dataToValidate, ...(req.cookies as Record<string, unknown>) };
             break;
         }
       }
@@ -90,15 +90,15 @@ export const validate = <T>(
           req.body = validated;
         }
         if (sources.includes('query')) {
-          req.query = validated as any;
+          req.query = validated as typeof req.query;
         }
         if (sources.includes('params')) {
-          req.params = validated as any;
+          req.params = validated as typeof req.params;
         }
       }
 
       next();
-    } catch (_error) {
+    } catch (_error: unknown) {
       if (_error instanceof ZodError) {
         // Log validation failure
         logger.warn(
@@ -106,7 +106,7 @@ export const validate = <T>(
             path: req.path,
             method: req.method,
             errors: _error.errors,
-            data: { body: req.body, query: req.query, params: req.params },
+            data: { body: req.body as Record<string, unknown>, query: req.query as Record<string, unknown>, params: req.params as Record<string, unknown> },
           },
           'Validation failed',
         );
@@ -122,8 +122,8 @@ export const validate = <T>(
           field: err.path.join('.'),
           message: err.message,
           code: err.code,
-          ...((err as any).expected !== undefined && { expected: (err as any).expected }),
-          ...((err as any).received !== undefined && { received: (err as any).received }),
+          ...('expected' in err && err.expected !== undefined && { expected: err.expected }),
+          ...('received' in err && err.received !== undefined && { received: err.received }),
         }));
 
         next(new ValidationError('Validation failed', formattedErrors));
@@ -131,7 +131,7 @@ export const validate = <T>(
         next(_error as Error);
       }
     }
-    })();
+    })().catch(next);
   };
 };
 
@@ -139,24 +139,24 @@ export const validate = <T>(
 export const validateBody = <T>(
   schema: ZodSchema<T>,
   options?: Omit<ValidationOptions, 'source'>,
-) => validate(schema, { ...options, source: 'body' });
+): ReturnType<typeof validate> => validate(schema, { ...options, source: 'body' });
 
 export const validateQuery = <T>(
   schema: ZodSchema<T>,
   options?: Omit<ValidationOptions, 'source'>,
-) => validate(schema, { ...options, source: 'query' });
+): ReturnType<typeof validate> => validate(schema, { ...options, source: 'query' });
 
 export const validateParams = <T>(
   schema: ZodSchema<T>,
   options?: Omit<ValidationOptions, 'source'>,
-) => validate(schema, { ...options, source: 'params' });
+): ReturnType<typeof validate> => validate(schema, { ...options, source: 'params' });
 
 // Conditional validation
 export const validateIf = <T>(
   condition: (req: Request) => boolean,
   schema: ZodSchema<T>,
   options?: ValidationOptions,
-) => (req: ValidatedRequest<T>, res: Response, next: NextFunction) => {
+): ((req: ValidatedRequest<T>, res: Response, next: NextFunction) => void) => (req: ValidatedRequest<T>, res: Response, next: NextFunction): void => {
     if (condition(req)) {
       validate(schema, options)(req, res, next); return;
     }
@@ -167,14 +167,14 @@ export const validateIf = <T>(
 export const validateOneOf = <T extends ZodSchema<unknown>[]>(
   schemas: T,
   options?: ValidationOptions,
-) => async (req: ValidatedRequest, res: Response, next: NextFunction) => {
+): ((req: ValidatedRequest, res: Response, next: NextFunction) => Promise<void>) => async (req: ValidatedRequest, res: Response, next: NextFunction): Promise<void> => {
     const errors: ZodError[] = [];
 
     for (const schema of schemas) {
       try {
         await validate(schema, options)(req, res, () => {});
         next(); return; // Success on first valid schema
-      } catch (_error) {
+      } catch (_error: unknown) {
         if (_error instanceof ZodError) {
           errors.push(_error);
         }
@@ -221,7 +221,7 @@ export const commonValidators = {
       to: z.string().datetime().optional(),
     })
     .refine(
-      (data) => (!data.from) || (data.to === undefined) || new Date(data.from) <= new Date(data.to),
+      (data) => (data.from === null || data.from === undefined || data.from === '') || (data.to === undefined) || new Date(data.from) <= new Date(data.to),
       'From date must be before or equal to to date',
     ),
 
@@ -242,7 +242,7 @@ export const sanitizeRequest = (
     query?: string[];
     params?: string[];
   } = {},
-) => (req: Request, _res: Response, next: NextFunction) => {
+): ((req: Request, _res: Response, next: NextFunction) => void) => (req: Request, _res: Response, next: NextFunction): void => {
     const sanitizeHtml = (str: string): string => str
         .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
         .replace(/<[^>]+>/g, '')
@@ -279,23 +279,23 @@ export const sanitizeRequest = (
 // Type coercion middleware for query parameters
 export const coerceQueryParams = (
   coercions: Record<string, 'number' | 'boolean' | 'array' | 'date'>,
-) => (req: Request, _res: Response, next: NextFunction) => {
+): ((req: Request, _res: Response, next: NextFunction) => void) => (req: Request, _res: Response, next: NextFunction): void => {
     for (const [param, type] of Object.entries(coercions)) {
       if (req.query[param] !== undefined) {
         const value = req.query[param] as string;
 
         switch (type) {
           case 'number':
-            (req.query as any)[param] = parseFloat(value);
+            (req.query as Record<string, unknown>)[param] = parseFloat(value);
             break;
           case 'boolean':
-            (req.query as any)[param] = value === 'true' || value === '1';
+            (req.query as Record<string, unknown>)[param] = value === 'true' || value === '1';
             break;
           case 'array':
-            (req.query as any)[param] = value.split(',');
+            (req.query as Record<string, unknown>)[param] = value.split(',');
             break;
           case 'date':
-            (req.query as any)[param] = new Date(value);
+            (req.query as Record<string, unknown>)[param] = new Date(value);
             break;
         }
       }

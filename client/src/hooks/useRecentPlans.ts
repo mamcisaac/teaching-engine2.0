@@ -16,7 +16,7 @@ export function useRecentPlans(options?: UseRecentPlansOptions): ReturnType<type
     queryKey: ['recent-plans', options?.limit],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (options?.limit) {
+      if (options?.limit !== null && options?.limit !== undefined && options.limit !== 0 && !isNaN(options.limit)) {
         params.append('limit', options.limit.toString());
       }
       const response = await apiClient.get<RecentPlan[]>(`/api/recent-plans?${params.toString()}`);
@@ -63,7 +63,7 @@ interface ClearRecentPlansResponse {
 export function useClearRecentPlans(): UseMutationResult<ClearRecentPlansResponse, Error, void> {
   const queryClient = useQueryClient();
   
-  return useMutation<ClearRecentPlansResponse, Error, void>({
+  return useMutation<ClearRecentPlansResponse>({
     mutationFn: async (): Promise<ClearRecentPlansResponse> => {
       const response = await apiClient.delete<ClearRecentPlansResponse>('/api/recent-plans/clear');
       return response.data;

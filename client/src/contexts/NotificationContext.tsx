@@ -31,7 +31,7 @@ export function NotificationProvider({ children }: { children: ReactNode }): Rea
   const markMutation = useMarkNotificationAsRead();
 
   const markRead = (id: number): void => {
-    if (isAuthenticated === true) {
+    if (isAuthenticated) {
       markMutation.mutate(id);
     }
   };
@@ -39,7 +39,7 @@ export function NotificationProvider({ children }: { children: ReactNode }): Rea
   const markAllRead = (): void => {
     if (isAuthenticated && notifications.length > 0) {
       const unreadIds = notifications
-        .filter((notification) => notification.read === false)
+        .filter((notification) => !notification.read)
         .map((notification, _index) => notification.id);
 
       unreadIds.forEach((id) => {
@@ -53,7 +53,7 @@ export function NotificationProvider({ children }: { children: ReactNode }): Rea
   };
 
   // Computed values
-  const unreadCount = notifications.filter((n) => n.read === false).length;
+  const unreadCount = notifications.filter((n) => !n.read).length;
   const hasUnread = unreadCount > 0;
 
   const contextValue: NotificationContextValue = {

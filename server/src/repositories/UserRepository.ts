@@ -1,8 +1,9 @@
 import type { User, Prisma, PrismaClient } from '@prisma/client';
 
 import { logger } from '../logger';
+import { isRepositoryError } from '../types/repository';
+import type { PrismaModelDelegate } from '../types/repository';
 import { hashPassword } from '../utils/auth';
-import type { PrismaModelDelegate, isRepositoryError } from '../types/repository';
 
 import { BaseRepository } from './base/BaseRepository';
 
@@ -72,7 +73,7 @@ export class UserRepository extends BaseRepository<
           email: data.email.toLowerCase(),
           password: hashedPassword,
           name: data.name,
-          role: data.role || 'teacher',
+          role: data.role ?? 'teacher',
         },
         select: {
           id: true,

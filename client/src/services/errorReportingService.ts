@@ -92,7 +92,7 @@ export class ErrorReportingService {
   }
 
   init(): void {
-    if (this.mockMode === true) {
+    if (this.mockMode) {
       logger.info('Using mock error reporting service');
       this.enabled = true;
       return;
@@ -163,12 +163,12 @@ export class ErrorReportingService {
     context?: Record<string, unknown>,
     errorInfo?: ErrorInfo,
   ): void {
-    if (this.enabled === false) {
+    if (!this.enabled) {
       logger.debug('Error reporting disabled, skipping:', { error, context });
       return;
     }
 
-    if (this.mockMode === true) {
+    if (this.mockMode) {
       logger.info('[MOCK] Would capture error:', {
         error: error instanceof Error ? error.message : String(error),
         stack: error instanceof Error ? error.stack : undefined,
@@ -205,11 +205,11 @@ export class ErrorReportingService {
   }
 
   captureMessage(message: string, level: Sentry.SeverityLevel = 'info'): void {
-    if (this.enabled === false) {
+    if (!this.enabled) {
       return;
     }
 
-    if (this.mockMode === true) {
+    if (this.mockMode) {
       logger.info('[MOCK] Would capture message:', { message, level });
       return;
     }
@@ -218,11 +218,11 @@ export class ErrorReportingService {
   }
 
   setUserContext(user: UserContext | null): void {
-    if (this.enabled === false) {
+    if (!this.enabled) {
       return;
     }
 
-    if (this.mockMode === true) {
+    if (this.mockMode) {
       logger.info('[MOCK] Would set user context:', user);
       return;
     }
@@ -244,11 +244,11 @@ export class ErrorReportingService {
   }
 
   addBreadcrumb(breadcrumb: BreadcrumbData): void {
-    if (this.enabled === false) {
+    if (!this.enabled) {
       return;
     }
 
-    if (this.mockMode === true) {
+    if (this.mockMode) {
       logger.info('[MOCK] Would add breadcrumb:', breadcrumb);
       return;
     }
@@ -265,17 +265,17 @@ export class ErrorReportingService {
   }
 
   setErrorContext(key: string, context: Record<string, unknown>): void {
-    if (this.enabled === false) {
+    if (!this.enabled) {
       return;
     }
 
-    if (this.mockMode === true) {
+    if (this.mockMode) {
       logger.info('[MOCK] Would set error context:', { key, context });
       return;
     }
 
     const sanitizedContext = this.sanitizeData(context);
-    Sentry.setContext(key, sanitizedContext as { [key: string]: unknown } | null);
+    Sentry.setContext(key, sanitizedContext as Record<string, unknown> | null);
   }
 
   categorizeError(error: unknown): ErrorCategory {
@@ -393,13 +393,13 @@ export class ErrorReportingService {
     // Filter out noisy breadcrumbs
     if (breadcrumb.category === 'console' && breadcrumb.level === 'warning') {
       // Filter out React development warnings
-      const message = breadcrumb.message;
+      const {message} = breadcrumb;
       if (message?.includes('DevTools') || message?.includes('React Hook') || message?.includes('StrictMode')) {
         return null;
       }
 
       // Filter out console messages with sensitive data
-      if (this.containsSensitiveData(message || '')) {
+      if (this.containsSensitiveData(message ?? '')) {
         return null;
       }
     }
@@ -466,7 +466,7 @@ export class ErrorReportingService {
 
     // Sanitize tags
     if (sanitized.tags !== undefined) {
-      sanitized.tags = this.sanitizeData(sanitized.tags) as { [key: string]: string; } | undefined;
+      sanitized.tags = this.sanitizeData(sanitized.tags) as Record<string, string> | undefined;
     }
 
     return sanitized;
@@ -532,8 +532,8 @@ export class ErrorReportingService {
     return sanitized;
   }
 
-  private sanitizeHeaders(headers: Record<string, unknown>): { [key: string]: string } {
-    const sanitized: { [key: string]: string } = {};
+  private sanitizeHeaders(headers: Record<string, unknown>): Record<string, string> {
+    const sanitized: Record<string, string> = {};
 
     for (const key in headers) {
       const lowerKey = key.toLowerCase();

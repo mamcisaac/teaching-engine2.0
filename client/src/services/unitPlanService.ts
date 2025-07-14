@@ -5,12 +5,12 @@ import type { UnitPlanFormData } from '../hooks/useUnitPlanForm';
 export class UnitPlanService {
   // Calculate progress percentage
   static calculateProgress(unit: UnitPlan): number {
-    if (!unit._count?.lessonPlans || unit._count.lessonPlans === 0) {
+    if (unit._count?.lessonPlans === undefined || unit._count.lessonPlans === 0) {
       return 0;
     }
 
     const completedLessons =
-      unit.lessonPlans?.filter((lesson) => lesson.daybookEntry !== null).length ?? 0;
+      unit.lessonPlans?.filter((lesson) => lesson.daybookEntry).length ?? 0;
 
     return Math.round((completedLessons / unit._count.lessonPlans) * 100);
   }
@@ -50,15 +50,15 @@ export class UnitPlanService {
   static formatForExport(unit: UnitPlan): string {
     let content = `# ${unit.title}\n\n`;
 
-    if (unit.description != null && unit.description.length > 0) {
+    if (unit.description !== undefined && unit.description !== '' && unit.description.length > 0) {
       content += `## Description\n${unit.description}\n\n`;
     }
 
-    if (unit.bigIdeas != null && unit.bigIdeas.length > 0) {
+    if (unit.bigIdeas !== undefined && unit.bigIdeas !== '' && unit.bigIdeas.length > 0) {
       content += `## Big Ideas\n${unit.bigIdeas}\n\n`;
     }
 
-    if (unit.essentialQuestions && unit.essentialQuestions.length > 0) {
+    if (unit.essentialQuestions !== undefined && unit.essentialQuestions.length > 0) {
       content += `## Essential Questions\n`;
       unit.essentialQuestions.forEach((q) => {
         content += `- ${q}\n`;
@@ -66,7 +66,7 @@ export class UnitPlanService {
       content += '\n';
     }
 
-    if (unit.successCriteria && unit.successCriteria.length > 0) {
+    if (unit.successCriteria !== undefined && unit.successCriteria.length > 0) {
       content += `## Success Criteria\n`;
       unit.successCriteria.forEach((c) => {
         content += `- ${c}\n`;
@@ -96,14 +96,14 @@ export class UnitPlanService {
   // Check if unit is complete
   static isComplete(unit: UnitPlan): boolean {
     return !!(
-      unit.title &&
-      unit.bigIdeas &&
-      unit.essentialQuestions &&
+      (unit.title !== undefined && unit.title !== '') &&
+      (unit.bigIdeas !== undefined && unit.bigIdeas !== '') &&
+      (unit.essentialQuestions !== undefined) &&
       unit.essentialQuestions.length > 0 &&
-      unit.successCriteria &&
+      (unit.successCriteria !== undefined) &&
       unit.successCriteria.length > 0 &&
-      unit.assessmentPlan &&
-      unit.expectations &&
+      (unit.assessmentPlan !== undefined && unit.assessmentPlan !== '') &&
+      (unit.expectations !== undefined) &&
       unit.expectations.length > 0
     );
   }

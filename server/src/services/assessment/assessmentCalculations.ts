@@ -251,8 +251,8 @@ export function generateProgressReport(data: {
   );
 
   return {
-    studentId: studentId,
-    period: period,
+    studentId,
+    period,
     overallAverage,
     achievementLevel,
     strandBreakdown,

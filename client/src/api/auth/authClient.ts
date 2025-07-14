@@ -37,7 +37,7 @@ class AuthClient {
         ...config.headers,
       },
       credentials: 'include',
-      body: config.data !== undefined ? JSON.stringify(config.data) : undefined,
+      body: config.data !== undefined && config.data !== null ? JSON.stringify(config.data) : undefined,
     });
 
     if (!response.ok) {

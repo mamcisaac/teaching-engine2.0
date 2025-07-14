@@ -50,7 +50,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           fullWidth && 'w-full',
           className,
         )}
-        disabled={disabled || loading}
+        disabled={disabled === true || loading}
         {...props}
       >
         {loading ? (

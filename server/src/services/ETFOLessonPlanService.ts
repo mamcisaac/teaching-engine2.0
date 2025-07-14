@@ -132,7 +132,7 @@ export class ETFOLessonPlanService extends BaseService {
       const unitPlan = await this.prisma.unitPlan.findFirst({
         where: {
           id: data.unitPlanId,
-          userId: userId,
+          userId,
         },
       });
 

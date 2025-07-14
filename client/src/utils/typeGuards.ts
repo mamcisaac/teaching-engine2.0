@@ -38,7 +38,9 @@ export function hasProperty<K extends string>(
 
 export function safeJsonParse<T = unknown>(json: string | null, fallback: T): T {
   try {
-    if (!json) return fallback;
+    if (json === null || json === '') {
+return fallback;
+}
     return JSON.parse(json) as T;
   } catch {
     return fallback;
@@ -49,7 +51,7 @@ export function getErrorMessage(error: unknown): string {
   if (isError(error)) {
     return error.message;
   }
-  if (isAxiosError(error) && error.response?.data !== null && error.response?.data !== undefined) {
+  if (isAxiosError(error) && error.response?.data !== undefined) {
     if (isRecord(error.response.data) && isString(error.response.data.message)) {
       return error.response.data.message;
     }

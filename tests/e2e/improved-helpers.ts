@@ -2,7 +2,7 @@
 import { Page, expect } from '@playwright/test';
 
 export const API_BASE =
-  process.env.TEST_SERVER_URL || process.env.API_BASE || 'http://127.0.0.1:3000';
+  process.env.TEST_SERVER_URL ?? process.env.API_BASE ?? 'http://127.0.0.1:3000';
 export const FRONTEND_BASE = 'http://localhost:5173';
 
 /**
@@ -515,8 +515,8 @@ export class TestDataFactory {
       title,
       start: start.toISOString(),
       end: end.toISOString(),
-      allDay: options.allDay || false,
-      eventType: options.eventType || 'CUSTOM',
+      allDay: options.allDay ?? false,
+      eventType: options.eventType ?? 'CUSTOM',
       source: 'MANUAL',
     };
 

@@ -109,8 +109,8 @@ async function runPerformanceRegressionTests(): Promise<void> {
 
   const results = {
     timestamp: new Date().toISOString(),
-    commit: process.env.GITHUB_SHA || 'local',
-    branch: process.env.GITHUB_REF || 'local',
+    commit: process.env.GITHUB_SHA ?? 'local',
+    branch: process.env.GITHUB_REF ?? 'local',
     benchmarks,
     summary: {
       totalDuration: benchmarks.reduce((sum, b) => sum + (b.duration > 0 ? b.duration : 0), 0),

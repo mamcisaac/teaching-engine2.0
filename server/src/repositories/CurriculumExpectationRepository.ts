@@ -22,7 +22,13 @@ export class CurriculumExpectationRepository {
     this.model = prisma.curriculumExpectation;
   }
 
-  async search(options: SearchOptions) {
+  async search(options: SearchOptions): Promise<{
+    data: CurriculumExpectation[];
+    total: number;
+    skip: number;
+    take: number;
+    hasMore: boolean;
+  }> {
     try {
       const {
         query,
@@ -142,7 +148,12 @@ export class CurriculumExpectationRepository {
     }
   }
 
-  async getUniqueValues() {
+  async getUniqueValues(): Promise<{
+    subjects: string[];
+    grades: string[];
+    strands: string[];
+    categories: string[];
+  }> {
     try {
       const [subjects, grades, strands, categories] = await Promise.all([
         this.prisma.$queryRaw<{ subject: string }[]>`

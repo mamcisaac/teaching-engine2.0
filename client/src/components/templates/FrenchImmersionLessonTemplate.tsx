@@ -133,10 +133,11 @@ export function FrenchImmersionLessonTemplate({
 
         <div className="grid md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="objectives-en-0">
               English Objectives
             </label>
             <textarea
+              id="objectives-en-0"
               {...register('objectivesEn.0')}
               className="w-full p-3 border rounded-lg"
               placeholder="Students will be able to..."
@@ -145,10 +146,11 @@ export function FrenchImmersionLessonTemplate({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="objectives-fr-0">
               Objectifs en français
             </label>
             <textarea
+              id="objectives-fr-0"
               {...register('objectivesFr.0')}
               className="w-full p-3 border rounded-lg"
               placeholder="Les élèves seront capables de..."
@@ -238,10 +240,11 @@ export function FrenchImmersionLessonTemplate({
 
         <div className="mt-4 grid md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="sentence-structures-0">
               Sentence Structures
             </label>
             <textarea
+              id="sentence-structures-0"
               {...register('languageFocus.sentenceStructures.0')}
               className="w-full p-3 border rounded-lg"
               placeholder="Je vois un/une... / C'est..."
@@ -250,10 +253,11 @@ export function FrenchImmersionLessonTemplate({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="grammar-focus-0">
               Grammar Focus (if applicable)
             </label>
             <input
+              id="grammar-focus-0"
               {...register('languageFocus.grammarPoints.0')}
               className="w-full p-3 border rounded-lg"
               placeholder="un/une, les couleurs"
@@ -271,10 +275,11 @@ export function FrenchImmersionLessonTemplate({
 
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="transition-en-to-fr">
               Transitioning from English to French
             </label>
             <textarea
+              id="transition-en-to-fr"
               {...register('languageTransitions.fromEnglishToFrench.0')}
               className="w-full p-3 border rounded-lg"
               placeholder='Use visual cues, "En français, on dit...", gesture signals'
@@ -283,10 +288,11 @@ export function FrenchImmersionLessonTemplate({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="codeswitching-strategies">
               Code-switching Strategies
             </label>
             <textarea
+              id="codeswitching-strategies"
               {...register('languageTransitions.codeswitchingStrategies.0')}
               className="w-full p-3 border rounded-lg"
               placeholder="Use cognates, allow 'franglais' during transition, praise attempts"
@@ -305,10 +311,11 @@ export function FrenchImmersionLessonTemplate({
 
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="minds-on">
               Minds On / Activation (10-15 minutes)
             </label>
             <textarea
+              id="minds-on"
               {...register('mindsOn')}
               className="w-full p-3 border rounded-lg"
               placeholder="Begin with a French song or chant. Review previous vocabulary with flashcards..."
@@ -317,10 +324,11 @@ export function FrenchImmersionLessonTemplate({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="action-application">
               Action / Application (30-40 minutes)
             </label>
             <textarea
+              id="action-application"
               {...register('action')}
               className="w-full p-3 border rounded-lg"
               placeholder="Introduce new vocabulary with visuals. Practice through games and activities..."
@@ -329,10 +337,11 @@ export function FrenchImmersionLessonTemplate({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="consolidation-debrief">
               Consolidation / Debrief (10-15 minutes)
             </label>
             <textarea
+              id="consolidation-debrief"
               {...register('consolidation')}
               className="w-full p-3 border rounded-lg"
               placeholder="Review key vocabulary. Students share one new word they learned..."
@@ -351,10 +360,11 @@ export function FrenchImmersionLessonTemplate({
 
         <div className="grid md:grid-cols-3 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="francophone-culture">
               Francophone Culture
             </label>
             <textarea
+              id="francophone-culture"
               {...register('culturalConnections.francophoneCulture.0')}
               className="w-full p-3 border rounded-lg"
               placeholder="French Canadian traditions, Acadian culture..."
@@ -363,8 +373,9 @@ export function FrenchImmersionLessonTemplate({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Canadian Content</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="canadian-content">Canadian Content</label>
             <textarea
+              id="canadian-content"
               {...register('culturalConnections.canadianContent.0')}
               className="w-full p-3 border rounded-lg"
               placeholder="PEI specific content, Maritime themes..."
@@ -373,10 +384,11 @@ export function FrenchImmersionLessonTemplate({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="global-perspectives">
               Global Perspectives
             </label>
             <textarea
+              id="global-perspectives"
               {...register('culturalConnections.globalPerspectives.0')}
               className="w-full p-3 border rounded-lg"
               placeholder="Francophone countries, cultural comparisons..."
@@ -440,8 +452,9 @@ export function FrenchImmersionLessonTemplate({
         </div>
 
         <div className="mt-4">
-          <label className="block text-sm font-medium text-gray-700 mb-2">Assessment Notes</label>
+          <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="assessment-notes">Assessment Notes</label>
           <textarea
+            id="assessment-notes"
             {...register('assessmentNotes')}
             className="w-full p-3 border rounded-lg"
             placeholder="Observations about individual student progress, language development milestones..."
@@ -460,10 +473,11 @@ export function FrenchImmersionLessonTemplate({
         <div className="space-y-4">
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="parent-message-en">
                 Message to Parents (English)
               </label>
               <textarea
+                id="parent-message-en"
                 {...register('parentCommunication.englishMessage')}
                 className="w-full p-3 border rounded-lg"
                 placeholder="Today your child learned..."
@@ -472,10 +486,11 @@ export function FrenchImmersionLessonTemplate({
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="parent-message-fr">
                 Message aux parents (français)
               </label>
               <textarea
+                id="parent-message-fr"
                 {...register('parentCommunication.frenchMessage')}
                 className="w-full p-3 border rounded-lg"
                 placeholder="Aujourd'hui, votre enfant a appris..."

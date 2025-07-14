@@ -191,7 +191,7 @@ export class TemplateRegistry extends BaseService {
    * Get providers by type
    */
   public getProvidersByType(type: string): TemplateProvider[] {
-    const providerNames = this.providersByType.get(type) || [];
+    const providerNames = this.providersByType.get(type) ?? [];
     return providerNames
       .map((name) => this.getProvider(name))
       .filter((provider) => provider !== null);
@@ -283,7 +283,7 @@ export class TemplateRegistry extends BaseService {
       }
 
       if (criteria.tags && criteria.tags.length > 0) {
-        const templateTags = template.metadata?.tags || [];
+        const templateTags = template.metadata?.tags ?? [];
         if (!criteria.tags.some((tag) => templateTags.includes(tag))) {
           return false;
         }

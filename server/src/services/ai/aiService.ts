@@ -6,9 +6,7 @@
 // Type definitions for better type safety
 type JSONValue = string | number | boolean | null | JSONObject | JSONValue[];
 
-interface JSONObject {
-  [key: string]: JSONValue;
-}
+type JSONObject = Record<string, JSONValue>;
 
 interface LessonInput {
   lesson: LessonPlan;

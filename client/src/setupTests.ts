@@ -205,7 +205,7 @@ Object.defineProperty(global, 'ResizeObserver', {
 const localStorageMock = ((): Storage => {
   let store: Record<string, string> = {};
   
-  const getItem = (key: string): string | null => store[key] || null;
+  const getItem = (key: string): string | null => store[key] ?? null;
   
   const setItem = (key: string, value: string): void => {
     store[key] = value;
@@ -219,7 +219,7 @@ const localStorageMock = ((): Storage => {
     store = {};
   };
   
-  const key = (index: number): string | null => Object.keys(store)[index] || null;
+  const key = (index: number): string | null => Object.keys(store)[index] ?? null;
   
   return {
     getItem,

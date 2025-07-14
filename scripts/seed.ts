@@ -7,12 +7,12 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // Get environment (default to 'development')
-const env = process.env.NODE_ENV || 'development';
+const env = process.env.NODE_ENV ?? 'development';
 const isTest = env === 'test';
 
 // Use DATABASE_URL from environment if available, otherwise use default path
 const databaseUrl =
-  process.env.DATABASE_URL ||
+  process.env.DATABASE_URL ??
   `file:${path.resolve(
     process.cwd(),
     'packages/database/prisma',

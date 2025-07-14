@@ -56,7 +56,7 @@ export function parsePagination(req: Request, res: Response, next: NextFunction)
     };
 
     next();
-  } catch (error) {
+  } catch (error: unknown) {
     logger.error('Pagination parsing error:', error);
     res.status(400).json({
       error: 'Invalid pagination parameters',
@@ -111,7 +111,7 @@ export function withPagination<T extends { id: number }>(
         where: options?.where,
         include: options?.include,
         pagination,
-        searchFields: options?.searchFields || defaultSearchFields,
+        searchFields: options?.searchFields ?? defaultSearchFields,
       });
     },
 
@@ -122,13 +122,13 @@ export function withPagination<T extends { id: number }>(
         include?: Record<string, boolean>;
       },
     ): Promise<{ data: T[]; nextCursor?: number }> {
-      const { cursor, limit = '20' } = req.query;
+      const { cursor, limit = '20' } = req.query as { cursor?: string; limit?: string };
 
       return repository.findManyCursor({
         where: options?.where,
         include: options?.include,
-        cursor: cursor ? parseInt(cursor as string) : undefined,
-        limit: parseInt(limit as string),
+        cursor: cursor ? parseInt(cursor) : undefined,
+        limit: parseInt(limit),
       });
     },
   };
@@ -137,16 +137,18 @@ export function withPagination<T extends { id: number }>(
 /**
  * Express router wrapper that automatically adds pagination to GET list endpoints
  */
-export function paginatedRouter(): any {
+import type { Router } from 'express';
+
+export function paginatedRouter(): Router {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const express = require('express');
+  const express = require('express') as { Router: () => Router };
   const router = express.Router();
 
   // Store original get method
   const originalGet = router.get.bind(router);
 
   // Override get method to add pagination middleware
-  router.get = function (path: string, ...handlers: RequestHandler[]): any {
+  router.get = function (path: string, ...handlers: RequestHandler[]): Router {
     // Only add pagination to list endpoints (root or ending with 's')
     if (path === '/' || path.match(/s$/)) {
       return originalGet(path, parsePagination, ...handlers);
@@ -180,7 +182,7 @@ export function paginatedHandler<T>(
 
       setPaginationHeaders(res, response.pagination);
       res.json(response);
-    } catch (error) {
+    } catch (error: unknown) {
       next(error);
     }
   };

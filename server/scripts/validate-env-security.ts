@@ -205,8 +205,8 @@ function checkForExposedSecrets(): void {
  * Validate required variables for current environment
  */
 function validateRequiredVars(): void {
-  const currentEnv = (process.env.NODE_ENV || 'development') as keyof typeof requiredVars;
-  const required = requiredVars[currentEnv] || requiredVars.development;
+  const currentEnv = (process.env.NODE_ENV ?? 'development') as keyof typeof requiredVars;
+  const required = requiredVars[currentEnv] ?? requiredVars.development;
 
   for (const varName of required) {
     if (!process.env[varName]) {
@@ -290,7 +290,7 @@ async function validateEnvironmentSecurity(): Promise<void> {
   const mediumIssues = envIssues.filter(issue => issue.severity === 'medium');
   const lowIssues = envIssues.filter(issue => issue.severity === 'low');
 
-  const printIssues = (issues: EnvIssue[], emoji: string, title: string) => {
+  const printIssues = (issues: EnvIssue[], emoji: string, title: string): void => {
     if (issues.length > 0) {
       console.log(`${emoji} ${title} (${issues.length}):`);
       issues.forEach(issue => {

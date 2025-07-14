@@ -76,8 +76,8 @@ export const TableSkeleton: React.FC<{ rows?: number; columns?: number }> = ({
             <div className="flex gap-4">
               {Array.from({ length: columns }).map((_, colIndex) => (
                 <div 
-                  key={colIndex} 
-                  className="h-4 bg-gray-200 rounded flex-1"
+                  key={colIndex}
+                  className="h-4 bg-gray-200 rounded flex-1" 
                   style={{ 
                     width: `${Math.random() * 30 + 70}%` 
                   }}
@@ -184,14 +184,14 @@ export const EmptyState: React.FC<{
   className?: string;
 }> = ({ icon, title, description, action, className = '' }): React.ReactElement => (
   <div className={`text-center py-12 bg-white rounded-lg border-2 border-dashed border-gray-300 ${className}`}>
-    {icon && (
+    {icon !== undefined && (
       <div className="mx-auto h-12 w-12 text-gray-400">
         {icon}
       </div>
     )}
     <h3 className="mt-4 text-lg font-medium text-gray-900">{title}</h3>
     <p className="mt-2 text-sm text-gray-600">{description}</p>
-    {action && (
+    {action !== undefined && (
       <div className="mt-6">
         {action}
       </div>

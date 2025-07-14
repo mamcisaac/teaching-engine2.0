@@ -56,7 +56,7 @@ export function AuthProvider({ children }: { children: ReactNode }): React.React
             email: userData.email,
             name: userData.name,
             role: userData.role ?? 'teacher',
-            organizationId: userData.organizationId ? String(userData.organizationId) : undefined,
+            organizationId: userData.organizationId !== null && userData.organizationId !== undefined && userData.organizationId !== 0 && !isNaN(userData.organizationId) ? String(userData.organizationId) : undefined,
           });
         }
         
@@ -102,7 +102,7 @@ export function AuthProvider({ children }: { children: ReactNode }): React.React
           errorMessage = err.response.data.error;
         } else if (err.response?.status === 401) {
           errorMessage = 'Invalid email or password';
-        } else if (err.response?.status && err.response.status >= 500) {
+        } else if (err.response?.status !== null && err.response?.status !== undefined && err.response.status >= 500) {
           errorMessage = 'Server error. Please try again later.';
         } else if (err.message) {
           errorMessage = err.message;
@@ -121,7 +121,7 @@ export function AuthProvider({ children }: { children: ReactNode }): React.React
         email: userData.email,
         name: userData.name,
         role: userData.role ?? 'teacher',
-        organizationId: userData.organizationId ? String(userData.organizationId) : undefined,
+        organizationId: userData.organizationId !== null && userData.organizationId !== undefined && userData.organizationId !== 0 && !isNaN(userData.organizationId) ? String(userData.organizationId) : undefined,
       });
       
       // Invalidate other queries that depend on auth
