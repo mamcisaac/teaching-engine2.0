@@ -532,7 +532,7 @@ export function UnitPlanForm({
                 strand: exp.strand,
               }))}
             duration={2}
-            grade={longRangePlan?.grade !== null && longRangePlan?.grade !== undefined && !isNaN(longRangePlan.grade) && longRangePlan.grade > 0 ? longRangePlan.grade : 1}
+            grade={longRangePlan?.grade !== undefined && !isNaN(longRangePlan.grade) && longRangePlan.grade > 0 ? longRangePlan.grade : 1}
             subject={longRangePlan?.subject ?? ''}
             unitTitle={formData.title}
             onSuggestionAccepted={(type, content) => {
@@ -556,7 +556,7 @@ export function UnitPlanForm({
                 ...formData,
                 title: plan.title || formData.title,
                 bigIdeas: plan.bigIdeas.join('\n\n') || formData.bigIdeas,
-                essentialQuestions: plan.learningGoals || formData.essentialQuestions,
+                essentialQuestions: plan.learningGoals,
               });
             }}
           />

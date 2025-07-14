@@ -90,7 +90,7 @@ class AuditLogger {
           userId: req.user?.id.toString() ?? 'anonymous',
           action,
           resource,
-          resourceId: req.params.id ?? req.body?.id,
+          resourceId: req.params.id ?? (req.body as Record<string, unknown>).id as string,
           metadata: {
             method: req.method,
             path: req.path,

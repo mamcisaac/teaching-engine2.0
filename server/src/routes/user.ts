@@ -30,7 +30,7 @@ export function userRoutes(prisma: PrismaClient): Router {
   router.get(
     '/profile',
     asyncHandler(async (req, res): Promise<void> => {
-      if (req.user?.id === null || req.user?.id === undefined) {
+      if (!req.user?.id) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -52,7 +52,7 @@ export function userRoutes(prisma: PrismaClient): Router {
   router.put(
     '/password',
     asyncHandler(async (req, res): Promise<void> => {
-      if (req.user?.id === null || req.user?.id === undefined) {
+      if (!req.user?.id) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }

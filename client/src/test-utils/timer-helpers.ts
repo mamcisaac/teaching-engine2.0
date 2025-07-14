@@ -33,7 +33,7 @@ export interface TimerOptions {
  * @param options Timer configuration options
  * @returns Cleanup function to restore real timers
  */
-export function useFakeTimers(options: TimerOptions = {}) {
+export function useFakeTimers(options: TimerOptions = {}): () => void {
   const { shouldAdvanceTimers = false, now = new Date(), shouldMockNextTick = true } = options;
 
   // Setup fake timers
@@ -63,7 +63,7 @@ export function useFakeTimers(options: TimerOptions = {}) {
  *
  * @param ms Time to advance in milliseconds
  */
-export async function advanceTimersByTimeAsync(ms: number) {
+export async function advanceTimersByTimeAsync(ms: number): Promise<void> {
   vi.advanceTimersByTime(ms);
 
   // Flush any pending promises
@@ -73,14 +73,14 @@ export async function advanceTimersByTimeAsync(ms: number) {
 /**
  * Flush all pending promises
  */
-export async function flushPromises() {
+export async function flushPromises(): Promise<void> {
   await new Promise((resolve) => process.nextTick(resolve));
 }
 
 /**
  * Run all pending timers and flush promises
  */
-export async function runAllTimersAsync() {
+export async function runAllTimersAsync(): Promise<void> {
   vi.runAllTimers();
   await flushPromises();
 }
@@ -88,7 +88,7 @@ export async function runAllTimersAsync() {
 /**
  * Run only pending timers (not recurring) and flush promises
  */
-export async function runOnlyPendingTimersAsync() {
+export async function runOnlyPendingTimersAsync(): Promise<void> {
   vi.runOnlyPendingTimers();
   await flushPromises();
 }
@@ -96,7 +96,7 @@ export async function runOnlyPendingTimersAsync() {
 /**
  * Advance timers to next timer and flush promises
  */
-export async function advanceTimersToNextTimerAsync() {
+export async function advanceTimersToNextTimerAsync(): Promise<void> {
   vi.advanceTimersToNextTimer();
   await flushPromises();
 }
@@ -106,7 +106,7 @@ export async function advanceTimersToNextTimerAsync() {
  *
  * @param options Timer configuration options
  */
-export function setupFakeTimers(options: TimerOptions = {}) {
+export function setupFakeTimers(options: TimerOptions = {}): void {
   let cleanup: (() => void) | null = null;
 
   beforeEach(() => {
@@ -154,7 +154,7 @@ export async function waitForCondition(
  * @param initialTime Initial timestamp
  * @returns Object with methods to control time
  */
-export function mockDateNow(initialTime = Date.now()) {
+export function mockDateNow(initialTime = Date.now()): { advance: (ms: number) => void; set: (time: number) => void; restore: () => void } {
   let currentTime = initialTime;
 
   const originalDateNow = Date.now;
@@ -180,7 +180,7 @@ export class TestScheduler {
   private tasks: Array<{ time: number; callback: () => void }> = [];
   private currentTime = 0;
 
-  schedule(callback: () => void, delay: number) {
+  schedule(callback: () => void, delay: number): void {
     this.tasks.push({
       time: this.currentTime + delay,
       callback,
@@ -188,7 +188,7 @@ export class TestScheduler {
     this.tasks.sort((a, b) => a.time - b.time);
   }
 
-  async advance(ms: number) {
+  async advance(ms: number): Promise<void> {
     const targetTime = this.currentTime + ms;
 
     while (this.tasks.length > 0 && this.tasks[0].time <= targetTime) {
@@ -201,7 +201,7 @@ export class TestScheduler {
     this.currentTime = targetTime;
   }
 
-  async runAll() {
+  async runAll(): Promise<void> {
     while (this.tasks.length > 0) {
       const task = this.tasks.shift()!;
       this.currentTime = task.time;
@@ -210,7 +210,7 @@ export class TestScheduler {
     }
   }
 
-  clear() {
+  clear(): void {
     this.tasks = [];
     this.currentTime = 0;
   }
@@ -222,7 +222,7 @@ export class TestScheduler {
  * @param fn Debounced function to test
  * @param delay Debounce delay
  */
-export async function testDebounce(fn: (...args: unknown[]) => void, delay: number) {
+export async function testDebounce(fn: (...args: unknown[]) => void, delay: number): Promise<void> {
   const spy = vi.fn();
   const debounced = vi.fn(fn);
 
@@ -247,7 +247,7 @@ export async function testDebounce(fn: (...args: unknown[]) => void, delay: numb
  * @param fn Throttled function to test
  * @param delay Throttle delay
  */
-export async function testThrottle(fn: (...args: unknown[]) => void, delay: number) {
+export async function testThrottle(fn: (...args: unknown[]) => void, delay: number): Promise<void> {
   const spy = vi.fn();
   const throttled = vi.fn(fn);
 

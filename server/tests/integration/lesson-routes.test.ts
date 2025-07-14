@@ -39,7 +39,7 @@ describe('Lesson Planning Routes', () => {
     userId = testUser.id;
 
     // Create auth token
-    const secret = process.env.JWT_SECRET || 'test-secret-key';
+    const secret = process.env.JWT_SECRET ?? 'test-secret-key';
     authToken = jwt.sign({ 
       userId: String(userId), 
       email: testUser.email,

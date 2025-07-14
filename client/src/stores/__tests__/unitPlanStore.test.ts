@@ -132,7 +132,7 @@ describe('unitPlanStore - nullish coalescing behavior', () => {
       const data: { lastSyncedAt: Date | null; unitPlans: UnitPlan[] } = { lastSyncedAt: null, unitPlans: [plan] };
       
       // Test the comparison logic
-      const comparison = plan.updatedAt > ((data.lastSyncedAt && data.lastSyncedAt.toISOString()) || '');
+      const comparison = plan.updatedAt > ((data.lastSyncedAt && data.lastSyncedAt.toISOString()) ?? '');
       expect(comparison).toBe(true);
       
       // With ??, null would remain null and comparison would fail
@@ -159,7 +159,7 @@ describe('unitPlanStore - nullish coalescing behavior', () => {
       const data: { unitPlans: UnitPlan[]; lastSyncedAt?: Date } = { unitPlans: [plan] };
       
       // Test the comparison logic
-      const comparison = plan.updatedAt > (data.lastSyncedAt?.toISOString() || '');
+      const comparison = plan.updatedAt > (data.lastSyncedAt?.toISOString() ?? '');
       expect(comparison).toBe(true);
     });
   });

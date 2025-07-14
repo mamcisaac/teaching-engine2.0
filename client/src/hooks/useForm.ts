@@ -54,7 +54,7 @@ export function useForm<T extends Record<string, unknown>>({
   // Validate a single field
   const validateField = useCallback(
     (name: string, value: unknown): string | undefined => {
-      if (!validationSchema) {
+      if (validationSchema === undefined) {
 return undefined;
 }
 
@@ -62,7 +62,7 @@ return undefined;
         // For object schemas, try to get the field schema
         if ('shape' in validationSchema && validationSchema.shape) {
           const fieldSchema = (validationSchema.shape as Record<string, z.ZodSchema>)[name];
-          if (fieldSchema && 'parse' in fieldSchema) {
+          if (fieldSchema !== undefined && 'parse' in fieldSchema) {
             fieldSchema.parse(value);
           } else {
             // Validate entire object if can't extract field schema
@@ -90,7 +90,7 @@ return undefined;
 
   // Validate all fields
   const validate = useCallback((): boolean => {
-    if (!validationSchema) {
+    if (validationSchema === undefined) {
 return true;
 }
 

@@ -160,7 +160,7 @@ export function retryTest(testFn: () => void | Promise<void>, options: RetryOpti
  *
  * @param options Retry configuration
  */
-export function flakyTest(options: RetryOptions = {}) {
+export function flakyTest(options: RetryOptions = {}): { expect: <T>(actual: T) => { toBe: (expected: T) => Promise<void>; toEqual: (expected: T) => Promise<void>; toContain: (expected: unknown) => Promise<void>; toHaveBeenCalled: () => Promise<void>; toHaveBeenCalledWith: (...args: unknown[]) => Promise<void> } } {
   return {
     /**
      * Expect with retry logic

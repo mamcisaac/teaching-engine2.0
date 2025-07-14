@@ -10,7 +10,7 @@ export class UnitPlanService {
     }
 
     const completedLessons =
-      unit.lessonPlans?.filter((lesson) => lesson.daybookEntry).length ?? 0;
+      unit.lessonPlans?.filter((lesson) => lesson.daybookEntry != null).length ?? 0;
 
     return Math.round((completedLessons / unit._count.lessonPlans) * 100);
   }
@@ -82,20 +82,20 @@ export class UnitPlanService {
     return {
       ...data,
       essentialQuestions: data.essentialQuestions.filter((q) => q.trim()),
-      successCriteria: data.successCriteria.filter((c) => c.trim()),
-      keyVocabulary: data.keyVocabulary.filter((v) => v.trim()),
+      successCriteria: data.successCriteria.filter((c) => c.trim() !== ''),
+      keyVocabulary: data.keyVocabulary.filter((v) => v.trim() !== ''),
       differentiationStrategies: {
-        forStruggling: data.differentiationStrategies.forStruggling.filter((s) => s.trim()),
-        forAdvanced: data.differentiationStrategies.forAdvanced.filter((s) => s.trim()),
-        forELL: data.differentiationStrategies.forELL.filter((s) => s.trim()),
-        forIEP: data.differentiationStrategies.forIEP.filter((s) => s.trim()),
+        forStruggling: data.differentiationStrategies.forStruggling.filter((s) => s.trim() !== ''),
+        forAdvanced: data.differentiationStrategies.forAdvanced.filter((s) => s.trim() !== ''),
+        forELL: data.differentiationStrategies.forELL.filter((s) => s.trim() !== ''),
+        forIEP: data.differentiationStrategies.forIEP.filter((s) => s.trim() !== ''),
       },
     };
   }
 
   // Check if unit is complete
   static isComplete(unit: UnitPlan): boolean {
-    return !!(
+    return (
       (unit.title !== undefined && unit.title !== '') &&
       (unit.bigIdeas !== undefined && unit.bigIdeas !== '') &&
       (unit.essentialQuestions !== undefined) &&

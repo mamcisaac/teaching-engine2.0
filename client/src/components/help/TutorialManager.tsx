@@ -29,7 +29,7 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }): R
       completeTutorial(activeTutorialId);
 
       // Show completion message
-      if (activeTutorial?.completionMessage !== null && activeTutorial?.completionMessage !== undefined && activeTutorial.completionMessage !== '') {
+      if (activeTutorial?.completionMessage !== undefined && activeTutorial.completionMessage !== '') {
         alert(activeTutorial.completionMessage); // In production, use a proper notification system
       }
     }

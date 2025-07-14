@@ -132,7 +132,9 @@ const EventListItem = memo(({
   onClick?: (event: CalendarEvent) => void;
 }) => {
   const handleClick = useCallback(() => {
-    if (onClick) onClick(event);
+    if (onClick) {
+onClick(event);
+}
   }, [event, onClick]);
 
   const eventDate = useMemo(() => {
@@ -161,11 +163,9 @@ const EventListItem = memo(({
         <h4 className="font-medium text-gray-900 truncate">{event.title}</h4>
         <p className="text-sm text-gray-500">{eventDate}</p>
       </div>
-      {event.eventType && (
-        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-          {event.eventType}
-        </span>
-      )}
+      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+        {event.eventType}
+      </span>
     </div>
   );
 }, (prevProps, nextProps) => (
@@ -228,7 +228,7 @@ export const OptimizedCalendarView = memo(({
         if (event.start) {
           const dateKey = event.start.split('T')[0];
           if (dateKey) {
-            if (grouped[dateKey] === undefined) {
+            if (!(dateKey in grouped)) {
 grouped[dateKey] = [];
 }
             grouped[dateKey].push(event);

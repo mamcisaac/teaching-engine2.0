@@ -72,14 +72,14 @@ async function checkTestPerformance(testFiles: string[]): Promise<void> {
   console.log('\n📊 Performance Summary:\n');
   
   const grouped = results.reduce((acc, result) => {
-    acc[result.status] = (acc[result.status] || 0) + 1;
+    acc[result.status] = (acc[result.status] ?? 0) + 1;
     return acc;
   }, {} as Record<string, number>);
 
-  console.log(`🚀 Fast (<100ms): ${grouped.fast || 0}`);
-  console.log(`✅ Acceptable (<500ms): ${grouped.acceptable || 0}`);
-  console.log(`⚠️  Slow (<2s): ${grouped.slow || 0}`);
-  console.log(`❌ Very Slow (>2s): ${grouped['very-slow'] || 0}`);
+  console.log(`🚀 Fast (<100ms): ${grouped.fast ?? 0}`);
+  console.log(`✅ Acceptable (<500ms): ${grouped.acceptable ?? 0}`);
+  console.log(`⚠️  Slow (<2s): ${grouped.slow ?? 0}`);
+  console.log(`❌ Very Slow (>2s): ${grouped['very-slow'] ?? 0}`);
 
   const slowTests = results.filter(r => r.status === 'slow' || r.status === 'very-slow');
   

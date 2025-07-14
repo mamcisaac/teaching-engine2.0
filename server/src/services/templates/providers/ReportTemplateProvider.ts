@@ -45,7 +45,7 @@ export class ReportTemplateProvider extends TemplateProvider {
    * Validate context
    */
   validateContext(context: TemplateContext): boolean {
-    return !!context.userId && !!context.parameters?.type;
+    return (context.userId != null && context.userId !== 0) && (context.parameters?.type && context.parameters.type !== '');
   }
 
   /**

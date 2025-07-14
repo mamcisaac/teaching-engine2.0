@@ -32,7 +32,7 @@ if (!process.env.JWT_EXPIRES_IN) {
 
 // Optional: Set a flag to detect CI environment
 if (!process.env.IS_CI) {
-  process.env.IS_CI = process.env.CI || 'false';
+  process.env.IS_CI = process.env.CI ?? 'false';
 }
 
 // Set OpenAI API key for tests (should be mocked) - only if not set

@@ -274,14 +274,14 @@ export function applyRateLimitGroup(
  * Get user tier from request
  */
 function getUserTier(req: Request): keyof typeof rateLimitTiers | undefined {
-  if (!(req as any).user) return undefined;
+  if ((req as any).user === null || (req as any).user === undefined) return undefined;
 
   // Check user role
-  if ((req as any).user.role === 'ADMIN') return 'admin';
-  if ((req as any).user.role === 'PREMIUM') return 'premium';
+  if ((req as any).user && (req as any).user.role === 'ADMIN') return 'admin';
+  if ((req as any).user && (req as any).user.role === 'PREMIUM') return 'premium';
 
   // Check for API token
-  if (req.headers.authorization?.startsWith('Bearer ')) {
+  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer ')) {
     return 'api';
   }
 

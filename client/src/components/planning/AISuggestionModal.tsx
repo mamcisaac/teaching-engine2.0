@@ -80,7 +80,7 @@ export function AISuggestionModal({
   };
 
   const handleAddToWeek = (): void => {
-    if (onAddToWeek !== null && onAddToWeek !== undefined) {
+    if (onAddToWeek !== undefined) {
       // If editing, create a modified version
       const activityToAdd = isEditing
         ? {
@@ -91,7 +91,7 @@ export function AISuggestionModal({
             materials: editedSuggestion.materials
               .split(',')
               .map((m) => m.trim())
-              .filter((m): m is string => m !== null && m !== undefined && m !== ''),
+              .filter((m): m is string => m !== ''),
             duration: editedSuggestion.duration,
             theme: editedSuggestion.theme,
           }

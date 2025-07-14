@@ -300,7 +300,7 @@ return false;
 return false;
 }
 
-    if (typeof a === 'object' && a !== null && b !== null) {
+    if (typeof a === 'object' && a !== null) {
       const keysA = Object.keys(a);
       const keysB = Object.keys(b);
 

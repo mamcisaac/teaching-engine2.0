@@ -286,7 +286,7 @@ export abstract class BaseRouteHandler<T = any> {
           OR: [{ isSystem: true }, { createdByUserId: userId }, { userId }],
         },
       });
-      return !!record;
+      return record !== null && record !== undefined;
     } catch (error) {
       this.logger.error(`Error validating ownership for ${tableName}:`, error);
       return false;

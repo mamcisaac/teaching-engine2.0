@@ -61,7 +61,7 @@ export class LessonTemplateProvider extends TemplateProvider {
    * Validate context
    */
   validateContext(context: TemplateContext): boolean {
-    return !!context.userId;
+    return context.userId != null && context.userId !== 0;
   }
 
   /**

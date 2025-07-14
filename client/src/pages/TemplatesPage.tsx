@@ -109,7 +109,7 @@ export default function TemplatesPage(): React.ReactElement {
 
   // Hooks
   const { data: templatesResult, isLoading, error } = useTemplates(searchOptions);
-  // const { data: selectedTemplateData } = useTemplate(templateId || '');
+  // const { data: selectedTemplateData } = useTemplate(templateId ?? '');
   const { data: filterOptions } = useTemplateFilterOptions();
   const createTemplate = useCreateTemplate();
   // const updateTemplate = useUpdateTemplate();
@@ -643,7 +643,7 @@ return;
               <Label htmlFor="input">Subject (optional)</Label>
               <Input
                 placeholder="Mathematics, Language Arts, etc."
-                value={formData.subject || ''}
+                value={formData.subject ?? ''}
                 onChange={(e) => {
  setFormData({ ...formData, subject: e.target.value }); 
 }}

@@ -124,7 +124,7 @@ export abstract class BaseService {
   protected checkDatabaseConnection(): boolean {
     try {
       // Simple check - if prisma is available
-      return !!prisma;
+      return prisma != null;
     } catch (_error) {
       this.logger.error({ error: _error }, 'Database connection check failed');
       return false;

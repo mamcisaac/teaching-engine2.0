@@ -63,7 +63,7 @@ return expectations;
         exp.code.toLowerCase().includes(query) ||
         exp.description.toLowerCase().includes(query) ||
         exp.strand.toLowerCase().includes(query) ||
-        (exp.substrand !== null && exp.substrand !== undefined && exp.substrand !== '') ? exp.substrand.toLowerCase().includes(query) : false,
+        (exp.substrand !== undefined && exp.substrand !== '') && exp.substrand.toLowerCase().includes(query),
     );
   }, [expectations, searchQuery]);
 
@@ -72,11 +72,11 @@ return expectations;
     const grouped: GroupedExpectations = {};
 
     filteredExpectations.forEach((exp) => {
-      if (grouped[exp.strand] === undefined) {
+      if (!(exp.strand in grouped)) {
         grouped[exp.strand] = {};
       }
-      const substrand = (exp.substrand !== null && exp.substrand !== undefined && exp.substrand !== '') ? exp.substrand : 'General';
-      if (grouped[exp.strand][substrand] === undefined) {
+      const substrand = (exp.substrand !== undefined && exp.substrand !== '') ? exp.substrand : 'General';
+      if (!(substrand in grouped[exp.strand])) {
         grouped[exp.strand][substrand] = [];
       }
       grouped[exp.strand][substrand].push(exp);

@@ -114,7 +114,7 @@ const logger = createLogger({
 
 // Add structured logging methods
 export class StructuredLogger {
-  private static instance: StructuredLogger;
+  private static instance: StructuredLogger | undefined;
 
   static getInstance(): StructuredLogger {
     if (StructuredLogger.instance === undefined) {

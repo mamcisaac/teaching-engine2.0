@@ -38,7 +38,7 @@ export interface SearchResult {
 }
 
 export class CurriculumSearchService extends BaseService {
-  private static instance: CurriculumSearchService;
+  private static instance: CurriculumSearchService | undefined;
 
   private constructor() {
     super('CurriculumSearchService');

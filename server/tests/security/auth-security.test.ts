@@ -54,7 +54,7 @@ describe('Authentication Security - REAL Testing', () => {
   let prisma: ReturnType<typeof getTestPrismaClient>;
 
   // Use the JWT secret that's already set in jest.setup.js
-  const TEST_JWT_SECRET = process.env.JWT_SECRET || 'test-secret-key';
+  const TEST_JWT_SECRET = process.env.JWT_SECRET ?? 'test-secret-key';
 
   beforeAll(async () => {
     // Test environment is already set up by jest.setup.js

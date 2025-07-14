@@ -4,7 +4,7 @@ import { hash, compare } from 'bcryptjs';
 import { BaseService } from '../base/BaseService';
 
 export class AuthService extends BaseService {
-  private static instance: AuthService;
+  private static instance: AuthService | undefined;
   private readonly saltRounds = 12;
 
   private constructor() {

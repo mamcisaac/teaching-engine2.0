@@ -294,7 +294,7 @@ export class ActivityPageObject {
     await activities.first().waitFor({ state: 'visible', timeout: 15000 });
 
     return await activities.evaluateAll((elements) =>
-      elements.map((el) => el.textContent?.trim() || ''),
+      elements.map((el) => el.textContent?.trim() ?? ''),
     );
   }
 

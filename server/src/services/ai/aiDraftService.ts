@@ -23,7 +23,7 @@ interface DraftResult {
 }
 
 export class AIDraftService extends BaseService {
-  private static instance: AIDraftService;
+  private static instance: AIDraftService | undefined;
 
   private constructor() {
     super('AIDraftService');

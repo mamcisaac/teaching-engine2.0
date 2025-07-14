@@ -13,7 +13,7 @@ let currentTransactionClient: PrismaClient | null = null;
  * Global setup for all tests
  */
 beforeAll(async () => {
-  const workerId = process.env.JEST_WORKER_ID || 'default';
+  const workerId = process.env.JEST_WORKER_ID ?? 'default';
 
   try {
     // Create a unique test database for this worker
@@ -72,7 +72,7 @@ beforeEach(async () => {
  */
 function clearPreviousAuthState() {
   // Clear any JWT tokens or session data that might leak between tests
-  process.env.TEST_JWT_SECRET = process.env.TEST_JWT_SECRET || 'test-secret-key';
+  process.env.TEST_JWT_SECRET = process.env.TEST_JWT_SECRET ?? 'test-secret-key';
   
   // Clear any cached authentication state
   const globalForAuth = globalThis as unknown as {
@@ -102,7 +102,7 @@ afterEach(async () => {
   if (currentTestId) {
     try {
       // Reset the database after each test
-      const workerId = process.env.JEST_WORKER_ID || 'default';
+      const workerId = process.env.JEST_WORKER_ID ?? 'default';
       await testDb.resetDatabase(workerId);
 
       // Reset the global test client
@@ -126,7 +126,7 @@ afterAll(async () => {
   try {
     // Get connection stats for debugging if tests are in debug mode
     if (process.env.DEBUG_TESTS === 'true') {
-      const workerId = process.env.JEST_WORKER_ID || 'default';
+      const workerId = process.env.JEST_WORKER_ID ?? 'default';
       const stats = await testDb.getConnectionStats(workerId);
       console.log('Final connection stats:', stats);
     }
@@ -148,7 +148,7 @@ export function getTestPrismaClient(): PrismaClient {
   }
 
   // Otherwise, return the base client for the worker
-  const workerId = process.env.JEST_WORKER_ID || 'default';
+  const workerId = process.env.JEST_WORKER_ID ?? 'default';
   return testDb.getPrismaClient(workerId);
 }
 
@@ -164,7 +164,7 @@ export async function executeWithRetry<T>(fn: () => Promise<T>, retries = 3): Pr
  * Clean test database (for legacy compatibility)
  */
 export async function cleanTestDatabase() {
-  const workerId = process.env.JEST_WORKER_ID || 'default';
+  const workerId = process.env.JEST_WORKER_ID ?? 'default';
   await testDb.resetDatabase(workerId);
 }
 

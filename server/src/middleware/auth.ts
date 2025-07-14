@@ -56,14 +56,16 @@ const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@
  */
 export async function hashPassword(password: string): Promise<string> {
   const saltRounds = parseInt(process.env.BCRYPT_SALT_ROUNDS ?? '10', 10);
-  return bcryptHash(password, saltRounds);
+  const result = (await bcryptHash(password, saltRounds)) as string;
+  return result;
 }
 
 /**
  * Verify password against hash
  */
 export async function verifyPassword(password: string, hash: string): Promise<boolean> {
-  return bcryptCompare(password, hash);
+  const result = (await bcryptCompare(password, hash)) as boolean;
+  return result;
 }
 
 /**

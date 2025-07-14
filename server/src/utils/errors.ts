@@ -224,7 +224,7 @@ export const assertExists = <T>(
   resource: string,
   id?: string | number,
 ): T => {
-  if (!value) {
+  if (value == null) {
     throw new NotFoundError(resource, id);
   }
   return value;
@@ -234,13 +234,13 @@ export const assertAuthorized = (
   condition: boolean,
   message: string = 'You do not have permission to perform this action',
 ): void => {
-  if (!condition) {
+  if (condition === false) {
     throw new ForbiddenError(message);
   }
 };
 
 export const assertAuthenticated = (userId?: number | null): void => {
-  if (!userId) {
+  if (!userId || userId === 0) {
     throw new UnauthorizedError('Authentication required');
   }
 };

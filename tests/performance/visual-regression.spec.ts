@@ -117,13 +117,13 @@ class VisualRegressionSuite {
   }
 
   private extractDiffPixels(error: any): number | undefined {
-    const message = error?.message || '';
+    const message = error?.message ?? '';
     const match = message.match(/(\d+) pixels? different/);
     return match ? parseInt(match[1]) : undefined;
   }
 
   private extractDiffPercentage(error: any): number | undefined {
-    const message = error?.message || '';
+    const message = error?.message ?? '';
     const match = message.match(/(\d+\.?\d*)% different/);
     return match ? parseFloat(match[1]) : undefined;
   }

@@ -267,7 +267,7 @@ describe('AIService', () => {
 
       // Activities should reasonably fit within duration
       const totalDuration = result.activities.reduce(
-        (sum: number, a: any) => sum + (a.duration || 0),
+        (sum: number, a: any) => sum + (a.duration ?? 0),
         0,
       );
 

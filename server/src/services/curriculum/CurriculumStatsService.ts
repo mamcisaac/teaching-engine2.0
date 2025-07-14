@@ -35,7 +35,7 @@ export interface GradeStats {
 }
 
 export class CurriculumStatsService extends BaseService {
-  private static instance: CurriculumStatsService;
+  private static instance: CurriculumStatsService | undefined;
 
   private constructor() {
     super('CurriculumStatsService');

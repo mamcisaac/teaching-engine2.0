@@ -127,7 +127,7 @@ export default async function globalSetup(): Promise<void> {
   // Use the server URL from environment or default
   // In CI, use 127.0.0.1 instead of localhost to avoid IPv6 issues
   const defaultUrl = process.env.CI ? 'http://127.0.0.1:3000' : 'http://localhost:3000';
-  const serverUrl = process.env.VITE_API_URL || defaultUrl;
+  const serverUrl = process.env.VITE_API_URL ?? defaultUrl;
 
   try {
     // Store server URL globally
@@ -148,7 +148,7 @@ export default async function globalSetup(): Promise<void> {
 
     try {
       // Navigate to the app
-      const clientUrl = process.env.CLIENT_URL || 'http://localhost:5173';
+      const clientUrl = process.env.CLIENT_URL ?? 'http://localhost:5173';
       await page.goto(clientUrl);
 
       // Set authentication data in localStorage

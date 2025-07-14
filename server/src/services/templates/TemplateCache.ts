@@ -29,7 +29,7 @@ interface CacheEntry {
 }
 
 export class TemplateCache extends BaseService {
-  private static instance: TemplateCache;
+  private static instance: TemplateCache | undefined;
   private cache = new Map<string, CacheEntry>();
   private maxSize: number;
   private maxAge: number;

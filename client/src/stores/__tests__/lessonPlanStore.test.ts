@@ -203,7 +203,7 @@ describe('lessonPlanStore - nullish coalescing behavior', () => {
       const data: { lastSyncedAt: Date | null; lessonPlans: LessonPlan[] } = { lastSyncedAt: null, lessonPlans: [plan] };
       
       // Test the comparison logic
-      const comparison = plan.updatedAt > ((data.lastSyncedAt && data.lastSyncedAt.toISOString()) || '');
+      const comparison = plan.updatedAt > ((data.lastSyncedAt && data.lastSyncedAt.toISOString()) ?? '');
       expect(comparison).toBe(true);
       
       // With ??, null would remain null and comparison would fail
@@ -236,7 +236,7 @@ describe('lessonPlanStore - nullish coalescing behavior', () => {
       const data: { lessonPlans: LessonPlan[]; lastSyncedAt?: Date } = { lessonPlans: [plan] };
       
       // Test the comparison logic
-      const comparison = plan.updatedAt > (data.lastSyncedAt?.toISOString() || '');
+      const comparison = plan.updatedAt > (data.lastSyncedAt?.toISOString() ?? '');
       expect(comparison).toBe(true);
     });
   });

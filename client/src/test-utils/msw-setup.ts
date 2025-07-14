@@ -30,10 +30,10 @@ afterAll(() => {
 });
 
 // Mock setup functions
-export function setupTests() {
+export function setupTests(): void {
   // Test setup - logging removed to comply with ESLint
 }
 
-export function teardownTests() {
+export function teardownTests(): void {
   // Test teardown - logging removed to comply with ESLint
 }

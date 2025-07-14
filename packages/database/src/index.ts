@@ -12,12 +12,12 @@ const globalForPrisma = globalThis as unknown as {
 
 // In test environment, use test client if available
 export const prisma = 
-  (process.env.NODE_ENV === 'test' && globalForPrisma.testPrismaClient) ?
+  process.env.NODE_ENV === 'test' && globalForPrisma.testPrismaClient !== undefined ?
   globalForPrisma.testPrismaClient :
-  globalForPrisma.prisma ??
+  (globalForPrisma.prisma ??
   new PrismaClient({
     log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
-  });
+  }));
 
 if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
   globalForPrisma.prisma = prisma;

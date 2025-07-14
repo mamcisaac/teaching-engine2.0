@@ -96,7 +96,7 @@ export const mockAuthHeaders = {
 /**
  * Setup authenticated user for tests
  */
-export function setupAuthenticatedUser() {
+export function setupAuthenticatedUser(): { user: typeof mockUser; token: string; headers: typeof mockAuthHeaders } {
   // Set up localStorage
   localStorage.setItem('authToken', mockAuthToken);
   localStorage.setItem('user', JSON.stringify(mockUser));
@@ -111,7 +111,7 @@ export function setupAuthenticatedUser() {
 /**
  * Clear auth data from localStorage
  */
-export function clearAuthData() {
+export function clearAuthData(): void {
   localStorage.removeItem('authToken');
   localStorage.removeItem('user');
   localStorage.clear();
@@ -152,7 +152,7 @@ export const mockUnauthenticatedContextValue = {
 /**
  * Create a custom auth context value
  */
-export function createAuthContextValue(overrides?: Partial<typeof mockAuthContextValue>) {
+export function createAuthContextValue(overrides?: Partial<typeof mockAuthContextValue>): typeof mockAuthContextValue {
   return {
     ...mockAuthContextValue,
     ...overrides,
@@ -202,7 +202,7 @@ export const mockRegisterResponse = {
 /**
  * Wait for authentication to complete
  */
-export async function waitForAuth() {
+export async function waitForAuth(): Promise<void> {
   // Wait for next tick
   await new Promise((resolve) => setTimeout(resolve, 0));
 }
@@ -210,7 +210,7 @@ export async function waitForAuth() {
 /**
  * Create mock auth API handlers
  */
-export function createMockAuthHandlers() {
+export function createMockAuthHandlers(): { login: ReturnType<typeof vi.fn>; register: ReturnType<typeof vi.fn>; logout: ReturnType<typeof vi.fn>; getCurrentUser: ReturnType<typeof vi.fn>; updateProfile: ReturnType<typeof vi.fn> } {
   return {
     login: vi.fn().mockResolvedValue(mockLoginResponse),
     register: vi.fn().mockResolvedValue(mockRegisterResponse),
@@ -250,5 +250,5 @@ export async function setupAuthTest(): Promise<AuthTestContext> {
  * Verify test authentication
  */
 export async function verifyTestAuth(context: AuthTestContext): Promise<boolean> {
-  return context.user && context.token ? true : false;
+  return context.user !== null && context.user !== undefined && context.token !== null && context.token !== undefined && context.token !== '';
 }

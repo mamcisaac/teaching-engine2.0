@@ -418,10 +418,10 @@ export const useLanguageStore = create<LanguageState>()(
 
         t: (key: string, fallback?: string, substitutions?: string[]): string => {
           const state = get();
-          let translation = translations[state.language][key] ?? fallback ?? key;
+          let translation = translations[state.language][key] || fallback || key;
 
           // Handle string interpolation for placeholders like {0}, {1}, etc.
-          if (substitutions !== null && substitutions.length > 0) {
+          if (substitutions && substitutions.length > 0) {
             substitutions.forEach((sub, index) => {
               translation = translation.replace(`{${index}}`, sub);
             });
@@ -431,10 +431,6 @@ export const useLanguageStore = create<LanguageState>()(
         },
 
         getLocalizedField: (obj: Record<string, unknown>, field: string): string => {
-          if (!obj) {
-return '';
-}
-
           const state = get();
           const localizedFieldName = `${field}${state.language.charAt(0).toUpperCase() + state.language.slice(1)}`;
           const localizedValue = obj[localizedFieldName];

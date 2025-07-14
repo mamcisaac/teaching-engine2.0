@@ -117,7 +117,7 @@ export function useETFOLessonPlanForm({
     return () => { // Cleanup
     };
 
-    if (initialData) {
+    if (initialData !== null && initialData !== undefined) {
       setFormData(prev => ({
         ...prev,
         ...initialData,
@@ -173,7 +173,7 @@ export function useETFOLessonPlanForm({
     if (formData.duration < 15 || formData.duration > 300) {
       errors.push('Duration must be between 15 and 300 minutes');
     }
-    if (!unitPlanId) {
+    if (!unitPlanId || unitPlanId === 0) {
       errors.push('Unit plan is required');
     }
 

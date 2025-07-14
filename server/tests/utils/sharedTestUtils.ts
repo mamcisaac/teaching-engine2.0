@@ -26,7 +26,7 @@ export const mockNext = (): NextFunction => jest.fn();
 
 // JWT utilities
 export const generateTestToken = (payload: any, options: any = {}) => {
-  const secret = process.env.JWT_SECRET || 'test-secret';
+  const secret = process.env.JWT_SECRET ?? 'test-secret';
   return jwt.sign(payload, secret, {
     expiresIn: '1h',
     ...options

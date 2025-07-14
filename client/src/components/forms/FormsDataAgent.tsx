@@ -378,7 +378,7 @@ return;
                           {operation.type}
                         </Badge>
                         <div>
-                          <p className="font-medium">{operation.data.title ?? 'Untitled'}</p>
+                          <p className="font-medium">{operation.data.title}</p>
                           {operation.errors && operation.errors.length > 0 && (
                             <p className="text-sm text-red-600">
                               {operation.errors.length} validation error(s)

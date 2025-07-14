@@ -112,7 +112,7 @@ export const validate = <T>(
         );
 
         // Use custom _error handler if provided
-        if (customErrorHandler) {
+        if (customErrorHandler !== null && customErrorHandler !== undefined) {
           const customError = customErrorHandler(_error, req);
           next(customError); return;
         }
@@ -189,7 +189,7 @@ export const validateOneOf = <T extends ZodSchema<unknown>[]>(
 // Schema composition helpers
 export const mergeSchemas = <T extends ZodSchema<unknown>[]>(...schemas: T): ZodSchema => schemas.reduce((merged, schema) => {
     if ('merge' in merged && typeof merged.merge === 'function') {
-      return merged.merge(schema);
+      return merged.merge(schema) as ZodSchema;
     }
     return schema;
   }, z.object({}));
@@ -221,7 +221,7 @@ export const commonValidators = {
       to: z.string().datetime().optional(),
     })
     .refine(
-      (data) => (data.from === null || data.from === undefined || data.from === '') || (data.to === undefined) || new Date(data.from) <= new Date(data.to),
+      (data) => !data.from || data.from === '' || (data.to === undefined) || new Date(data.from) <= new Date(data.to),
       'From date must be before or equal to to date',
     ),
 
@@ -251,24 +251,27 @@ export const sanitizeRequest = (
     // Sanitize specified fields
     if (fieldsToSanitize.body && req.body !== undefined) {
       fieldsToSanitize.body.forEach((field) => {
-        if (req.body[field] !== null && req.body[field] !== undefined && typeof req.body[field] === 'string') {
-          req.body[field] = sanitizeHtml(req.body[field]);
+        const bodyValue = (req.body as Record<string, unknown>)[field];
+        if (bodyValue !== null && bodyValue !== undefined && typeof bodyValue === 'string') {
+          (req.body as Record<string, unknown>)[field] = sanitizeHtml(bodyValue);
         }
       });
     }
 
     if (fieldsToSanitize.query && req.query !== undefined) {
       fieldsToSanitize.query.forEach((field) => {
-        if (req.query[field] !== null && req.query[field] !== undefined && typeof req.query[field] === 'string') {
-          req.query[field] = sanitizeHtml(req.query[field]);
+        const queryValue = (req.query as Record<string, unknown>)[field];
+        if (queryValue !== null && queryValue !== undefined && typeof queryValue === 'string') {
+          (req.query as Record<string, unknown>)[field] = sanitizeHtml(queryValue);
         }
       });
     }
 
     if (fieldsToSanitize.params && req.params !== undefined) {
       fieldsToSanitize.params.forEach((field) => {
-        if (req.params[field] !== null && req.params[field] !== undefined && typeof req.params[field] === 'string') {
-          req.params[field] = sanitizeHtml(req.params[field]);
+        const paramValue = (req.params as Record<string, unknown>)[field];
+        if (paramValue !== null && paramValue !== undefined && typeof paramValue === 'string') {
+          (req.params as Record<string, unknown>)[field] = sanitizeHtml(paramValue);
         }
       });
     }

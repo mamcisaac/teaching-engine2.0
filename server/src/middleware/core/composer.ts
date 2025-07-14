@@ -19,7 +19,7 @@ export const compose = (...middlewares: Middleware[]): RequestHandler => async (
     let index = 0;
 
     const dispatch = async (err?: Error): Promise<void> => {
-      if (err) {
+      if (err !== null && err !== undefined) {
         next(err); return;
       }
 
@@ -98,11 +98,11 @@ export const withTimeout = (
     const middlewarePromise = new Promise<void>((resolve, reject) => {
       (middleware as RequestHandler)(req, res, (err?: unknown) => {
         completed = true;
-        if (timeoutId) {
+        if (timeoutId !== null) {
 clearTimeout(timeoutId);
 }
         
-        if (err) {
+        if (err !== null && err !== undefined) {
           reject(err);
         } else {
           resolve();
@@ -122,7 +122,7 @@ clearTimeout(timeoutId);
 export const parallel = (...middlewares: Middleware[]): RequestHandler => async (req: Request, res: Response, next: NextFunction) => {
     const promises = middlewares.map(middleware => new Promise<void>((resolve, reject) => {
         (middleware as RequestHandler)(req, res, (err?: unknown) => {
-          if (err) {
+          if (err !== null && err !== undefined) {
 reject(err);
 } else {
 resolve();

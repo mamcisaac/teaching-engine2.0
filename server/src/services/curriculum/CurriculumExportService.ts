@@ -18,7 +18,7 @@ export interface ExportOptions {
 }
 
 export class CurriculumExportService extends BaseService {
-  private static instance: CurriculumExportService;
+  private static instance: CurriculumExportService | undefined;
 
   private constructor() {
     super('CurriculumExportService');

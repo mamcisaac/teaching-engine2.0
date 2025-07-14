@@ -30,7 +30,7 @@ export interface TemplateServiceOptions {
 }
 
 export class TemplateOrchestrator extends BaseService {
-  private static instance: TemplateOrchestrator;
+  private static instance: TemplateOrchestrator | undefined;
   private registry: TemplateRegistry;
   private cache: TemplateCache;
   private helpers: TemplateHelpers;

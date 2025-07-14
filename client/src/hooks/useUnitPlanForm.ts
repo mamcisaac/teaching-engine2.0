@@ -101,7 +101,7 @@ export function useUnitPlanForm({
   const [formData, setFormData] = useState<UnitPlanFormData>(() => ({
     ...initialFormData,
     ...initialData,
-    longRangePlanId: (longRangePlanId !== null && longRangePlanId !== undefined && longRangePlanId !== '') ? longRangePlanId : (initialData?.longRangePlanId !== null && initialData?.longRangePlanId !== undefined && initialData?.longRangePlanId !== '' ? initialData.longRangePlanId : ''),
+    longRangePlanId: (longRangePlanId !== null && longRangePlanId !== undefined && longRangePlanId !== '') ? longRangePlanId : (initialData?.longRangePlanId !== null && initialData?.longRangePlanId !== undefined && initialData.longRangePlanId !== '' ? initialData.longRangePlanId : ''),
   }));
 
   // Auto-save functionality
@@ -242,7 +242,7 @@ export function useUnitPlanForm({
   const resetForm = useCallback(() => {
     setFormData({
       ...initialFormData,
-      longRangePlanId: longRangePlanId || '',
+      longRangePlanId: longRangePlanId ?? '',
     });
   }, [longRangePlanId]);
 
@@ -280,34 +280,34 @@ export function useUnitPlanForm({
   }) => {
     setFormData({
       title: unit.title,
-      description: unit.description || '',
-      bigIdeas: unit.bigIdeas || '',
+      description: unit.description ?? '',
+      bigIdeas: unit.bigIdeas ?? '',
       essentialQuestions: unit.essentialQuestions ?? [''],
       startDate: unit.startDate.split('T')[0],
       endDate: unit.endDate.split('T')[0],
       estimatedHours: unit.estimatedHours ?? 20,
-      assessmentPlan: unit.assessmentPlan || '',
+      assessmentPlan: unit.assessmentPlan ?? '',
       successCriteria: unit.successCriteria ?? [''],
       expectationIds: unit.expectations?.map((e) => e.expectation.id) ?? [],
       longRangePlanId: unit.longRangePlanId,
-      crossCurricularConnections: unit.crossCurricularConnections || '',
+      crossCurricularConnections: unit.crossCurricularConnections ?? '',
       learningSkills: unit.learningSkills ?? [],
-      culminatingTask: unit.culminatingTask || '',
+      culminatingTask: unit.culminatingTask ?? '',
       keyVocabulary: unit.keyVocabulary ?? [''],
-      priorKnowledge: unit.priorKnowledge || '',
-      parentCommunicationPlan: unit.parentCommunicationPlan || '',
-      fieldTripsAndGuestSpeakers: unit.fieldTripsAndGuestSpeakers || '',
+      priorKnowledge: unit.priorKnowledge ?? '',
+      parentCommunicationPlan: unit.parentCommunicationPlan ?? '',
+      fieldTripsAndGuestSpeakers: unit.fieldTripsAndGuestSpeakers ?? '',
       differentiationStrategies: unit.differentiationStrategies ?? {
         forStruggling: [''],
         forAdvanced: [''],
         forELL: [''],
         forIEP: [''],
       },
-      indigenousPerspectives: unit.indigenousPerspectives || '',
-      environmentalEducation: unit.environmentalEducation || '',
-      socialJusticeConnections: unit.socialJusticeConnections || '',
-      technologyIntegration: unit.technologyIntegration || '',
-      communityConnections: unit.communityConnections || '',
+      indigenousPerspectives: unit.indigenousPerspectives ?? '',
+      environmentalEducation: unit.environmentalEducation ?? '',
+      socialJusticeConnections: unit.socialJusticeConnections ?? '',
+      technologyIntegration: unit.technologyIntegration ?? '',
+      communityConnections: unit.communityConnections ?? '',
     });
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 

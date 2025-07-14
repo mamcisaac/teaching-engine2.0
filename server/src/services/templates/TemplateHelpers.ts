@@ -21,7 +21,7 @@ export interface HelperCategory {
 }
 
 export class TemplateHelpers extends BaseService {
-  private static instance: TemplateHelpers;
+  private static instance: TemplateHelpers | undefined;
   private helpers = new Map<string, HelperFunction>();
   private categories = new Map<string, HelperCategory>();
 
@@ -346,7 +346,7 @@ return 'Grade 12';
     this.registerHelper('first', {
       fn: (...args: unknown[]) => {
         const [array] = args as [unknown[]];
-        return array && array.length > 0 ? array[0] : null;
+        return array !== null && array !== undefined && array.length > 0 ? array[0] : null;
       },
       description: 'Get first item from array',
       category: 'array',
@@ -356,7 +356,7 @@ return 'Grade 12';
     this.registerHelper('last', {
       fn: (...args: unknown[]) => {
         const [array] = args as [unknown[]];
-        return array && array.length > 0 ? array[array.length - 1] : null;
+        return array !== null && array !== undefined && array.length > 0 ? array[array.length - 1] : null;
       },
       description: 'Get last item from array',
       category: 'array',
@@ -366,7 +366,7 @@ return 'Grade 12';
     this.registerHelper('length', {
       fn: (...args: unknown[]) => {
         const [array] = args as [unknown[]];
-        return array ? array.length : 0;
+        return array !== null && array !== undefined ? array.length : 0;
       },
       description: 'Get array length',
       category: 'array',

@@ -198,7 +198,7 @@ export class CurriculumTransformer {
           code: e.code,
           description: e.description,
           strand: e.strand,
-          substrand: e.substrand || '',
+          substrand: e.substrand ?? '',
           grade: e.grade,
           subject: e.subject,
           // Note: type and keywords fields don't exist in schema
@@ -212,7 +212,7 @@ export class CurriculumTransformer {
             e.code,
             e.description,
             e.strand,
-            e.substrand || '',
+            e.substrand ?? '',
             e.grade,
             e.subject,
           ]),

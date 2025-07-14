@@ -477,7 +477,7 @@ export class ErrorReportingService {
   }
 
   private sanitizeData(data: unknown): unknown {
-    if (!data) {
+    if (data === null || data === undefined) {
       return data;
     }
 

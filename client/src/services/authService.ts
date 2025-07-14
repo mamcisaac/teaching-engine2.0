@@ -30,7 +30,7 @@ class AuthService implements AuthServiceInterface {
   getAccessToken(): string | null {
     // Check if token is expired
     const expiresAt = this.getTokenExpiration();
-    if (expiresAt !== null && expiresAt !== undefined && expiresAt !== 0 && !isNaN(expiresAt) && Date.now() >= expiresAt) {
+    if (expiresAt !== null && expiresAt !== 0 && !isNaN(expiresAt) && Date.now() >= expiresAt) {
       this.clearTokens();
       return null;
     }
@@ -139,7 +139,7 @@ class AuthService implements AuthServiceInterface {
     try {
       const data = await authClient.login({ email, password });
 
-      if (data.user !== undefined) {
+      if (data.user) {
         this.setUser(data.user);
 
         if (data.tokens !== undefined) {

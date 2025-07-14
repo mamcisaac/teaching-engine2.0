@@ -58,7 +58,7 @@ class RequestBatcher {
 
   // Schedule batch processing
   private scheduleBatch(): void {
-    if (this.batchTimeout) {
+    if (this.batchTimeout !== null) {
       clearTimeout(this.batchTimeout);
     }
 
@@ -179,7 +179,7 @@ class RequestBatcher {
       for (const pending of requests) {
         const batchResponse = responseMap.get(pending.request.id);
 
-        if (batchResponse) {
+        if (batchResponse !== null && batchResponse !== undefined) {
           if ('error' in batchResponse && batchResponse.error) {
             pending.reject(new Error(batchResponse.error));
           } else {
@@ -211,7 +211,7 @@ class RequestBatcher {
 
   // Clear pending requests
   clear(): void {
-    if (this.batchTimeout) {
+    if (this.batchTimeout !== null) {
       clearTimeout(this.batchTimeout);
       this.batchTimeout = null;
     }
@@ -255,16 +255,16 @@ export function createDebouncedRequest<
   const debounced = (...args: TArgs): Promise<TReturn> => {
     lastArgs = args;
 
-    if (timeout) {
+    if (timeout !== null) {
       clearTimeout(timeout);
     }
 
-    if (!lastPromise) {
+    if (lastPromise === null) {
       lastPromise = new Promise<TReturn>((resolve, reject) => {
         timeout = setTimeout((): void => {
           void (async (): Promise<void> => {
             try {
-              if (!lastArgs) {
+              if (lastArgs === null) {
                 throw new Error('No arguments available');
               }
               const result = await fn(...lastArgs);
@@ -285,7 +285,7 @@ export function createDebouncedRequest<
   };
 
   debounced.cancel = (): void => {
-    if (timeout) {
+    if (timeout !== null) {
       clearTimeout(timeout);
       timeout = null;
     }

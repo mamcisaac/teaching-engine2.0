@@ -134,7 +134,7 @@ function CurriculumImportWizard({
 
   const handleFileUpload = useCallback(
     async (file: File) => {
-      if (file === null || file === undefined) {
+      if (!file) {
 return;
 }
 
@@ -423,7 +423,7 @@ return null;
                         className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
                         placeholder="Optional"
                         type="text"
-                        value={(expectation.strand !== null && expectation.strand !== undefined) ? expectation.strand : ''}
+                        value={expectation.strand ?? ''}
                         onChange={(e) => {
  handleExpectationEdit(index, 'strand', e.target.value); 
 }}

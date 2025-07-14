@@ -45,8 +45,8 @@ async function updatePerformanceBaseline(): Promise<void> {
   const baseline = {
     ...data,
     baselineTimestamp: new Date().toISOString(),
-    baselineCommit: process.env.GITHUB_SHA || 'local',
-    baselineBranch: process.env.GITHUB_REF || 'main'
+    baselineCommit: process.env.GITHUB_SHA ?? 'local',
+    baselineBranch: process.env.GITHUB_REF ?? 'main'
   };
 
   fs.writeFileSync(baselineFile, JSON.stringify(baseline, null, 2));

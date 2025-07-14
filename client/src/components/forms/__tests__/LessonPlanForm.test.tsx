@@ -17,7 +17,7 @@ vi.mock('../../RichTextEditor', () => ({
   default: ({ value, onChange, placeholder }: { value: string; onChange: (value: string) => void; placeholder: string }) => (
     <textarea
       data-testid="rich-text-editor"
-      value={value || ''}
+      value={value ?? ''}
       onChange={(e) => onChange?.(e.target.value)}
       placeholder={placeholder}
     />
@@ -50,13 +50,13 @@ vi.mock('../../BilingualTextInput', () => ({
       <label>{label}</label>
       <input
         data-testid={`${label}-en`}
-        value={value || ''}
+        value={value ?? ''}
         onChange={(e) => onChange?.(e.target.value)}
         placeholder={`${label} (English)`}
       />
       <input
         data-testid={`${label}-fr`}
-        value={valueFr || ''}
+        value={valueFr ?? ''}
         onChange={(e) => onChangeFr?.(e.target.value)}
         placeholder={`${label} (French)`}
       />

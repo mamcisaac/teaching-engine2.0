@@ -8,7 +8,7 @@ import { prisma } from '../prisma';
  *
  * A notification record is created for each unit plan found.
  */
-export async function runProgressCheck() {
+export async function runProgressCheck(): Promise<void> {
   const today = new Date();
   const soon = new Date();
   soon.setDate(today.getDate() + 7);
@@ -35,6 +35,6 @@ export async function runProgressCheck() {
  * This sets up a cron job using `node-cron` so the periodic check continues
  * to run without manual intervention.
  */
-export function scheduleProgressCheck() {
+export function scheduleProgressCheck(): void {
   schedule('0 6 * * *', runProgressCheck);
 }

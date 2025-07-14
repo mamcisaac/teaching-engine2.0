@@ -58,7 +58,7 @@ export function RichTextEditor({
     
     // Insert the text at cursor position
     const selection = window.getSelection();
-    if (selection && selection.rangeCount > 0) {
+    if (selection.rangeCount > 0) {
       const range = selection.getRangeAt(0);
       range.deleteContents();
       range.insertNode(document.createTextNode(sanitizedText));

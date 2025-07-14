@@ -69,7 +69,7 @@ export const helmetConfig = helmet({
  * Create rate limiter instance
  */
 // @ts-expect-error TS6133
-function _createRateLimiter() {
+function _createRateLimiter(): RateLimiterRedis | RateLimiterMemory {
   // Use Redis in production for distributed rate limiting
   if (process.env.REDIS_URL && process.env.NODE_ENV === 'production') {
     const redis = new Redis(process.env.REDIS_URL);
@@ -101,7 +101,7 @@ function _createRateLimiter() {
 /**
  * General rate limiting middleware
  */
-export async function rateLimitMiddleware(_req: Request, _res: Response, next: NextFunction) {
+export async function rateLimitMiddleware(_req: Request, _res: Response, next: NextFunction): Promise<void> {
   // SINGLE USER APP - Skip all rate limiting
   next();
 }
@@ -109,7 +109,7 @@ export async function rateLimitMiddleware(_req: Request, _res: Response, next: N
 /**
  * Strict rate limiting for authentication endpoints
  */
-export async function authRateLimitMiddleware(_req: Request, _res: Response, next: NextFunction) {
+export async function authRateLimitMiddleware(_req: Request, _res: Response, next: NextFunction): Promise<void> {
   // SINGLE USER APP - Skip all rate limiting
   next();
 }
@@ -117,7 +117,7 @@ export async function authRateLimitMiddleware(_req: Request, _res: Response, nex
 /**
  * File upload validation middleware
  */
-export function validateFileUpload(allowedTypes: string[] = ALLOWED_FILE_TYPES) {
+export function validateFileUpload(allowedTypes: string[] = ALLOWED_FILE_TYPES): (req: Request, res: Response, next: NextFunction) => Response | void {
   return (req: Request, res: Response, next: NextFunction): Response | void => {
     if (!req.file && !req.files) {
       next(); 
@@ -163,7 +163,7 @@ export function validateFileUpload(allowedTypes: string[] = ALLOWED_FILE_TYPES) 
 /**
  * Security headers middleware for enhanced protection
  */
-export function securityHeaders(_req: Request, res: Response, next: NextFunction) {
+export function securityHeaders(_req: Request, res: Response, next: NextFunction): void {
   // Set additional security headers not covered by Helmet
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
@@ -186,10 +186,10 @@ export function securityHeaders(_req: Request, res: Response, next: NextFunction
 /**
  * Input sanitization middleware
  */
-export function sanitizeInput(req: Request, _res: Response, next: NextFunction) {
+export function sanitizeInput(req: Request, _res: Response, next: NextFunction): void {
   // Sanitize request body
   if (req.body && typeof req.body === 'object') {
-    sanitizeObject(req.body);
+    sanitizeObject(req.body as Record<string, unknown>);
   }
 
   // Sanitize query parameters
@@ -243,7 +243,7 @@ export function csrfProtection(req: Request, res: Response, next: NextFunction):
     return;
   }
 
-  const token = req.headers['x-csrf-token'] ?? req.body?._csrf;
+  const token = req.headers['x-csrf-token'] ?? (req.body as Record<string, unknown>)._csrf as string;
   const sessionToken = (req as { session?: { csrfToken?: string } }).session?.csrfToken;
 
   if (!token || !sessionToken || token !== sessionToken) {
@@ -261,7 +261,8 @@ export function csrfProtection(req: Request, res: Response, next: NextFunction):
  */
 export function generateCSRFToken(): string {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  return require('crypto').randomBytes(32).toString('hex');
+  const crypto = require('crypto') as { randomBytes: (size: number) => { toString: (encoding: string) => string } };
+  return crypto.randomBytes(32).toString('hex');
 }
 
 /**
@@ -273,7 +274,7 @@ export function applySecurityMiddleware(app: { use: (middleware: unknown) => voi
 
   // Apply CORS
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  app.use(cors.default ? cors.default(corsOptions) : (cors as any)(corsOptions));
+  app.use(cors.default ? cors.default(corsOptions) : (cors as typeof cors.default)(corsOptions));
 
   // Apply custom security headers
   app.use(securityHeaders);

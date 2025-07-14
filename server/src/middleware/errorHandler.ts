@@ -129,7 +129,7 @@ function sendErrorProd(err: ErrorLike, req: Request, res: Response): void {
   const statusCode = (err.statusCode !== null && err.statusCode !== undefined && err.statusCode !== 0 && !isNaN(err.statusCode)) ? err.statusCode : 500;
 
   // Operational, trusted error: send message to client
-  if (err.isOperational) {
+  if (err.isOperational === true) {
     logger.warn(
       {
         error: {
@@ -249,11 +249,11 @@ function handleSpecificErrors(
   }
 
   // File upload errors
-  if (err.message && err.message.includes('File too large')) {
+  if (err.message !== null && err.message !== undefined && err.message !== '' && err.message.includes('File too large')) {
     return new ValidationError('File size exceeds maximum allowed size');
   }
 
-  if (err.message && err.message.includes('Invalid file type')) {
+  if (err.message !== null && err.message !== undefined && err.message !== '' && err.message.includes('Invalid file type')) {
     return new ValidationError('File type not allowed');
   }
 
@@ -272,7 +272,7 @@ function handleSpecificErrors(
 
   if (err.name === 'ValidationError') {
     const errorWithValidation = err as unknown as { errors?: Record<string, { message: string }> };
-    if (errorWithValidation.errors) {
+    if (errorWithValidation.errors !== null && errorWithValidation.errors !== undefined) {
       const errors = Object.values(errorWithValidation.errors).map(
         (e: { message: string }) => e.message,
       );
@@ -340,7 +340,7 @@ export function errorHandler(err: Error, req: Request, res: Response, _next: Nex
   const error = handleSpecificErrors(err);
 
   // Set default values if not set
-  error.statusCode = error.statusCode || 500;
+  error.statusCode = error.statusCode ?? 500;
 
   // Send appropriate error response
   if (process.env.NODE_ENV === 'development') {

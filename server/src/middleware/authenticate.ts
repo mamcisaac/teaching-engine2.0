@@ -560,7 +560,7 @@ export async function refreshToken(req: Request, res: Response): Promise<void> {
       return;
     }
 
-    const decoded = verify(refreshToken, JWT_SECRET) as JwtPayload & {
+    const decoded = verify(refreshToken as string, JWT_SECRET) as JwtPayload & {
       type: string;
       userId: string;
     };

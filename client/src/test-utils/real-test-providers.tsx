@@ -188,7 +188,7 @@ export const realTestUtils = {
 };
 
 // Hooks for real backend testing
-export function useRealTestSetup() {
+export function useRealTestSetup(): { queryClient: QueryClient; cleanup: () => Promise<void> } | null {
   const [setup, setSetup] = React.useState<{
     queryClient: QueryClient;
     cleanup: () => Promise<void>;
@@ -211,7 +211,7 @@ export function useRealTestSetup() {
 }
 
 // Hook for authenticated test setup
-export function useAuthenticatedTestSetup() {
+export function useAuthenticatedTestSetup(): { authContext: AuthTestContext; queryClient: QueryClient; cleanup: () => Promise<void> } | null {
   const [authSetup, setAuthSetup] = React.useState<{
     authContext: AuthTestContext;
     queryClient: QueryClient;
@@ -222,7 +222,7 @@ export function useAuthenticatedTestSetup() {
     return () => { // Cleanup
     };
 
-    async function setup() {
+    async function setup(): Promise<void> {
       const backendSetup = await setupRealBackendTest();
       const authContext = await createAuthenticatedTestUser();
 
@@ -257,7 +257,7 @@ interface TestWrapperProps {
   route?: string;
 }
 
-export function TestWrapper({ children, authenticated = false, route = '/' }: TestWrapperProps) {
+export function TestWrapper({ children, authenticated = false, route = '/' }: TestWrapperProps): React.ReactElement {
   const setup = useRealTestSetup();
   const authSetup = useAuthenticatedTestSetup();
 

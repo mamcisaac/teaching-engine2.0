@@ -4,6 +4,15 @@ import type { Application, Request, Response, NextFunction } from 'express';
 import helmet from 'helmet';
 import DOMPurify from 'isomorphic-dompurify';
 
+// Multer file interface
+interface UploadedFile {
+  mimetype: string;
+  size: number;
+  originalname: string;
+  path?: string;
+  [key: string]: unknown;
+}
+
 import { logger } from '../../logger';
 import { AppError } from '../../utils/errors';
 
@@ -89,7 +98,7 @@ export const inputSanitizationMiddleware = (
       return data.map(sanitize);
     }
 
-    if (data && typeof data === 'object') {
+    if (data !== null && data !== undefined && typeof data === 'object') {
       const sanitized: Record<string, unknown> = {};
       for (const [key, value] of Object.entries(data)) {
         sanitized[key] = sanitize(value);
@@ -101,15 +110,15 @@ export const inputSanitizationMiddleware = (
   };
 
   // Sanitize different parts of the request
-  if (req.body) {
+  if (req.body !== null && req.body !== undefined) {
     req.body = sanitize(req.body);
   }
 
-  if (req.query) {
+  if (req.query !== null && req.query !== undefined) {
     req.query = sanitize(req.query) as Record<string, unknown>;
   }
 
-  if (req.params) {
+  if (req.params !== null && req.params !== undefined) {
     req.params = sanitize(req.params) as Record<string, string>;
   }
 
@@ -206,13 +215,13 @@ return;
 
   // Check all input sources
   try {
-    if (req.body) {
+    if (req.body !== null && req.body !== undefined) {
 checkObject(req.body);
 }
-    if (req.query) {
+    if (req.query !== null && req.query !== undefined) {
 checkObject(req.query);
 }
-    if (req.params) {
+    if (req.params !== null && req.params !== undefined) {
 checkObject(req.params);
 }
   } catch (_error: unknown) {
@@ -233,19 +242,20 @@ export const fileUploadSecurityMiddleware = (
     const files = req.file ? [req.file] : Object.values(req.files ?? {}).flat();
 
     for (const file of files) {
+      const uploadedFile = file as UploadedFile;
       // Check file type
-      if (!allowedTypes.includes(file.mimetype)) {
+      if (!allowedTypes.includes(uploadedFile.mimetype)) {
         next(new AppError(400, 'Invalid file type', 'INVALID_FILE_TYPE')); return;
       }
 
       // Check file size (10MB default)
       const maxSize = parseInt(process.env.MAX_FILE_SIZE ?? '10485760', 10);
-      if (file.size > maxSize) {
+      if (uploadedFile.size > maxSize) {
         next(new AppError(400, 'File size too large', 'FILE_TOO_LARGE')); return;
       }
 
       // Check file extension
-      const ext = file.originalname.split('.').pop()?.toLowerCase();
+      const ext = uploadedFile.originalname.split('.').pop()?.toLowerCase();
       const allowedExtensions = allowedTypes.map((type) => {
         const parts = type.split('/');
         return parts[1] ?? parts[0];

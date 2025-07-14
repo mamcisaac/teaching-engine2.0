@@ -465,7 +465,7 @@ describe('Authentication Security Tests', () => {
       expect(decoded.email).toBe(testUserEmail);
       
       // Verify token can be verified with the correct secret
-      const verified = jwt.verify(validToken, process.env.JWT_SECRET || 'test-secret-key');
+      const verified = jwt.verify(validToken, process.env.JWT_SECRET ?? 'test-secret-key');
       expect(verified).toBeDefined();
     });
 

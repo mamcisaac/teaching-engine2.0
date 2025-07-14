@@ -265,7 +265,7 @@ class EnhancedLogger {
       };
     }
 
-    if (obj && typeof obj === 'object') {
+    if (obj !== null && obj !== undefined && typeof obj === 'object') {
       return {
         ...(obj as Record<string, unknown>),
         requestId: this.requestId,
@@ -293,7 +293,7 @@ class EnhancedLogger {
     delete sanitized.apiKey;
 
     // Redact email addresses
-    if (sanitized.email) {
+    if (sanitized.email !== null && sanitized.email !== undefined) {
       sanitized.email = this.redactEmail(sanitized.email);
     }
 
@@ -304,7 +304,7 @@ class EnhancedLogger {
     const sanitized = { ...details };
 
     // Keep only necessary security info
-    if (sanitized.ip) {
+    if (sanitized.ip !== null && sanitized.ip !== undefined) {
       sanitized.ip = this.maskIP(sanitized.ip);
     }
 

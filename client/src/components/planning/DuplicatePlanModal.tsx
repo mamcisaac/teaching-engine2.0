@@ -47,8 +47,8 @@ export function DuplicatePlanModal({
   planTitle 
 }: DuplicatePlanModalProps): React.ReactElement {
   const queryClient = useQueryClient();
-  const [selectedType, setSelectedType] = useState((planType !== null && planType !== undefined && planType !== '') ? planType : '');
-  const [selectedPlanId, setSelectedPlanId] = useState((planId !== null && planId !== undefined && planId !== '') ? planId : '');
+  const [selectedType, setSelectedType] = useState(planType ?? '');
+  const [selectedPlanId, setSelectedPlanId] = useState(planId ?? '');
   const [newTitle, setNewTitle] = useState('');
   const [notes, setNotes] = useState('');
   const [includeSubItems, setIncludeSubItems] = useState(true);
@@ -101,7 +101,7 @@ export function DuplicatePlanModal({
         'unit': '/planner/units',
         'lesson': '/planner/etfo-lessons',
       }[selectedType];
-      if (routePrefix !== null && routePrefix !== undefined && routePrefix !== '') {
+      if (routePrefix !== undefined && routePrefix !== '') {
         window.location.href = `${routePrefix}/${response.data.id}`;
       }
     },
@@ -109,7 +109,7 @@ export function DuplicatePlanModal({
 
   const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
-    if ((selectedType !== null && selectedType !== undefined && selectedType !== '') && (selectedPlanId !== null && selectedPlanId !== undefined && selectedPlanId !== '') && (newTitle !== null && newTitle !== undefined && newTitle !== '')) {
+    if (selectedType !== '' && selectedPlanId !== '' && newTitle !== '') {
       duplicateMutation.mutate({});
     }
   };
@@ -174,7 +174,7 @@ export function DuplicatePlanModal({
             </div>
           ) : null}
 
-          {((selectedType !== null && selectedType !== undefined && selectedType !== '') || planType !== undefined) && planId === undefined ? (
+          {(selectedType !== '' || planType !== undefined) && planId === undefined ? (
             <div>
               <Label htmlFor="input">Select Plan to Duplicate</Label>
               <Select value={selectedPlanId} onValueChange={setSelectedPlanId}>
@@ -182,7 +182,7 @@ export function DuplicatePlanModal({
                   <SelectValue placeholder="Choose a plan" />
                 </SelectTrigger>
                 <SelectContent>
-                  {(availablePlans[selectedType as keyof typeof availablePlans] ?? []).map((plan: PlanItem, _index) => (
+                  {(availablePlans[selectedType as keyof typeof availablePlans] || []).map((plan: PlanItem, _index) => (
                     <SelectItem key={plan.id} value={plan.id}>
                       <div>
                         <div className="font-medium">{plan.title}</div>
@@ -218,7 +218,7 @@ export function DuplicatePlanModal({
               required
               className="mt-1"
               id="newTitle"
-              placeholder={(planTitle !== null && planTitle !== undefined && planTitle !== '') ? `Copy of ${planTitle}` : 'Enter new title'}
+              placeholder={(planTitle !== undefined && planTitle !== '') ? `Copy of ${planTitle}` : 'Enter new title'}
               value={newTitle}
               onChange={(e) => {
  setNewTitle(e.target.value); 
@@ -280,7 +280,7 @@ export function DuplicatePlanModal({
               </Button>
               <Button
                 className="bg-indigo-600 hover:bg-indigo-700 text-white"
-                disabled={(selectedType === null || selectedType === undefined || selectedType === '') || (selectedPlanId === null || selectedPlanId === undefined || selectedPlanId === '') || (newTitle === null || newTitle === undefined || newTitle === '') || duplicateMutation.isPending}
+                disabled={selectedType === '' || selectedPlanId === '' || newTitle === '' || duplicateMutation.isPending}
                 type="submit"
               >
                 {duplicateMutation.isPending ? 'Duplicating...' : 'Duplicate Plan'}

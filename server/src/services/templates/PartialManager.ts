@@ -26,7 +26,7 @@ export interface PartialCategory {
 }
 
 export class PartialManager extends BaseService {
-  private static instance: PartialManager;
+  private static instance: PartialManager | undefined;
   private partials = new Map<string, PartialInfo>();
   private categories = new Map<string, PartialCategory>();
   private partialsDirectory: string;

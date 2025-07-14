@@ -54,7 +54,7 @@ export interface BilingualGenerationResult {
  * LLM Service for content generation using OpenAI
  */
 export class LLMService extends BaseService {
-  private static instance: LLMService;
+  private static instance: LLMService | undefined;
   private openaiClient: OpenAI | null = null;
   private readonly defaultModel = 'gpt-4o-mini';
   private readonly maxRetries = 3;
@@ -117,7 +117,7 @@ export class LLMService extends BaseService {
    * Check if the service is ready for content generation
    */
   public isReady(): boolean {
-    return !!this.openaiClient;
+    return this.openaiClient !== null && this.openaiClient !== undefined;
   }
 
   /**

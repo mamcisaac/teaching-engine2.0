@@ -308,7 +308,7 @@ export function preventSQLInjection(req: Request, res: Response, next: NextFunct
     // Check body
     if (req.body && typeof req.body === 'object') {
       for (const key in req.body) {
-        if (checkValue(req.body[key], `body.${key}`)) {
+        if (checkValue((req.body as Record<string, unknown>)[key], `body.${key}`)) {
           res.status(400).json({
             error: 'Invalid Input',
             message: 'Request contains potentially dangerous patterns',

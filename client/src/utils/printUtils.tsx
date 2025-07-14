@@ -244,7 +244,7 @@ export const generateUnitPlanHTML = (unitPlan: UnitPlan, longRangePlan?: { title
         </div>
       ` : ''}
 
-      ${(unitPlan.assessmentPlan !== undefined && unitPlan.assessmentPlan !== null && unitPlan.assessmentPlan !== '') ? `
+      ${(unitPlan.assessmentPlan !== undefined && unitPlan.assessmentPlan !== '') ? `
         <div class="section no-break">
           <div class="section-title">Assessment Plan</div>
           <div>${escapeHtml(unitPlan.assessmentPlan)}</div>
@@ -315,7 +315,7 @@ export const generateUnitPlanHTML = (unitPlan: UnitPlan, longRangePlan?: { title
         </div>
       ` : ''}
 
-      ${(unitPlan.crossCurricularConnections !== undefined && unitPlan.crossCurricularConnections !== null && unitPlan.crossCurricularConnections !== '') ? `
+      ${(unitPlan.crossCurricularConnections !== undefined && unitPlan.crossCurricularConnections !== '') ? `
         <div class="section no-break">
           <div class="section-title">Cross-Curricular Connections</div>
           <p>${escapeHtml(unitPlan.crossCurricularConnections)}</p>
@@ -528,7 +528,7 @@ export const generateLessonPlanHTML = (lessonPlan: LessonPlan, unitPlan?: { titl
         ` : ''}
       </div>
 
-      ${(lessonPlan.learningGoals !== undefined && lessonPlan.learningGoals !== null && lessonPlan.learningGoals !== '') ? `
+      ${(lessonPlan.learningGoals !== undefined && lessonPlan.learningGoals !== '') ? `
         <div class="section no-break">
           <div class="section-title">Learning Goals</div>
           <div>${escapeHtml(lessonPlan.learningGoals)}</div>
@@ -543,7 +543,7 @@ export const generateLessonPlanHTML = (lessonPlan: LessonPlan, unitPlan?: { titl
               Minds On (${mindsOnTime} min)
             </div>
             <div class="part-content">
-              ${(lessonPlan.mindsOn !== undefined && lessonPlan.mindsOn !== null && lessonPlan.mindsOn !== '') ? escapeHtml(lessonPlan.mindsOn) : 'Not specified'}
+              ${(lessonPlan.mindsOn !== undefined && lessonPlan.mindsOn !== '') ? escapeHtml(lessonPlan.mindsOn) : 'Not specified'}
             </div>
           </div>
           
@@ -552,7 +552,7 @@ export const generateLessonPlanHTML = (lessonPlan: LessonPlan, unitPlan?: { titl
               Action (${actionTime} min)
             </div>
             <div class="part-content">
-              ${(lessonPlan.action !== undefined && lessonPlan.action !== null && lessonPlan.action !== '') ? escapeHtml(lessonPlan.action) : 'Not specified'}
+              ${(lessonPlan.action !== undefined && lessonPlan.action !== '') ? escapeHtml(lessonPlan.action) : 'Not specified'}
             </div>
           </div>
           
@@ -561,7 +561,7 @@ export const generateLessonPlanHTML = (lessonPlan: LessonPlan, unitPlan?: { titl
               Consolidation (${consolidationTime} min)
             </div>
             <div class="part-content">
-              ${(lessonPlan.consolidation !== undefined && lessonPlan.consolidation !== null && lessonPlan.consolidation !== '') ? escapeHtml(lessonPlan.consolidation) : 'Not specified'}
+              ${(lessonPlan.consolidation !== undefined && lessonPlan.consolidation !== '') ? escapeHtml(lessonPlan.consolidation) : 'Not specified'}
             </div>
           </div>
         </div>
@@ -610,14 +610,14 @@ export const generateLessonPlanHTML = (lessonPlan: LessonPlan, unitPlan?: { titl
         </div>
       ` : ''}
 
-      ${lessonPlan.isSubFriendly === true && (lessonPlan.subNotes !== undefined && lessonPlan.subNotes !== null && lessonPlan.subNotes !== '') ? `
+      ${lessonPlan.isSubFriendly === true && (lessonPlan.subNotes !== undefined && lessonPlan.subNotes !== '') ? `
         <div class="sub-friendly no-break">
           <div class="sub-title">Notes for Substitute Teacher</div>
           <p>${escapeHtml(lessonPlan.subNotes)}</p>
         </div>
       ` : ''}
 
-      ${(lessonPlan.assessmentNotes !== undefined && lessonPlan.assessmentNotes !== null && lessonPlan.assessmentNotes !== '') ? `
+      ${(lessonPlan.assessmentNotes !== undefined && lessonPlan.assessmentNotes !== '') ? `
         <div class="section no-break">
           <div class="section-title">Assessment Notes</div>
           <p>${escapeHtml(lessonPlan.assessmentNotes)}</p>

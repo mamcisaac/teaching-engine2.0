@@ -35,7 +35,7 @@ export interface RenderResponse extends RenderResult {
 }
 
 export class RenderCoordinator extends BaseService {
-  private static instance: RenderCoordinator;
+  private static instance: RenderCoordinator | undefined;
   private registry: TemplateRegistry;
   private cache: TemplateCache;
   private helpers: TemplateHelpers;

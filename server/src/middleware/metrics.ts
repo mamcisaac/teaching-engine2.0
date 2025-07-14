@@ -221,7 +221,7 @@ export const metricsStore = new MetricsStore();
 /**
  * HTTP request metrics middleware
  */
-export function httpMetricsMiddleware(req: Request, res: Response, next: NextFunction) {
+export function httpMetricsMiddleware(req: Request, res: Response, next: NextFunction): void {
   const startTime = performance.now();
 
   // Increment request counter
@@ -240,7 +240,7 @@ export function httpMetricsMiddleware(req: Request, res: Response, next: NextFun
     metricsStore.observeHistogram('http_request_duration_ms', duration, {
       method: req.method,
       status_code: res.statusCode.toString(),
-      path: req.route?.path ?? req.path,
+      path: (req.route as Record<string, unknown>).path as string ?? req.path,
     });
 
     // Record errors
@@ -248,7 +248,7 @@ export function httpMetricsMiddleware(req: Request, res: Response, next: NextFun
       metricsStore.incrementCounter('http_errors_total', {
         method: req.method,
         status_code: res.statusCode.toString(),
-        path: req.route?.path ?? req.path,
+        path: (req.route as Record<string, unknown>).path as string ?? req.path,
       });
     }
 
@@ -301,7 +301,7 @@ export const cacheMetrics = {
 /**
  * System metrics collector
  */
-export function collectSystemMetrics() {
+export function collectSystemMetrics(): void {
   try {
     const memoryUsage = process.memoryUsage();
     const cpuUsage = process.cpuUsage();
@@ -315,15 +315,15 @@ export function collectSystemMetrics() {
     // CPU metrics (convert microseconds to percentage)
     const cpuPercent = (cpuUsage.user + cpuUsage.system) / 1000000; // Convert to seconds
     metricsStore.setGauge('cpu_usage_percent', cpuPercent);
-  } catch (_error) {
-    logger.error('Error collecting system metrics:', _error);
+  } catch (_error: unknown) {
+    logger.error('Error collecting system metrics:', _error as Error);
   }
 }
 
 /**
  * Start system metrics collection
  */
-export function startSystemMetricsCollection(intervalMs = 30000) {
+export function startSystemMetricsCollection(intervalMs = 30000): NodeJS.Timeout {
   // Collect initial metrics
   collectSystemMetrics();
 
@@ -351,13 +351,13 @@ export function withMetrics<T extends any[], R>(
   labels: Record<string, string> = {},
 ) {
   return function (_target: unknown, propertyKey: string, descriptor: PropertyDescriptor) {
-    const originalMethod = descriptor.value;
+    const originalMethod = descriptor.value as (...args: T) => Promise<R>;
 
     descriptor.value = async function (...args: T): Promise<R> {
       const startTime = performance.now();
 
       try {
-        const result = await originalMethod.apply(this, args);
+        const result = await originalMethod.apply(this as any, args);
         const duration = performance.now() - startTime;
 
         metricsStore.observeHistogram(metricName, duration, {
@@ -366,7 +366,7 @@ export function withMetrics<T extends any[], R>(
           status: 'success',
         });
 
-        return result;
+        return result as R;
       } catch (_error) {
         const duration = performance.now() - startTime;
 
@@ -413,7 +413,7 @@ export function calculatePercentiles(
 /**
  * Get performance summary
  */
-export function getPerformanceSummary() {
+export function getPerformanceSummary(): { http: { totalRequests: number; totalErrors: number; errorRate: number; responseTime: Record<string, number> }; database: { totalQueries: number; totalErrors: number; errorRate: number; queryTime: Record<string, number> }; cache: { totalHits: number; totalMisses: number; hitRate: number }; system: { memoryUsage: number; cpuUsage: number } } {
   const metrics = metricsStore.getMetrics();
 
   const summary = {

@@ -201,14 +201,14 @@ return input;
 
     // Decode HTML entities to prevent double-encoding bypasses
     normalized = normalized
-      .replace(/&#x([0-9a-fA-F]+);/g, (_, hex) => {
+      .replace(/&#x([0-9a-fA-F]+);/g, (_, hex: string) => {
         try {
           return String.fromCharCode(parseInt(hex, 16));
         } catch {
           return '';
         }
       })
-      .replace(/&#(\d+);/g, (_, dec) => {
+      .replace(/&#(\d+);/g, (_, dec: string) => {
         try {
           return String.fromCharCode(parseInt(dec, 10));
         } catch {

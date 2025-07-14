@@ -136,7 +136,7 @@ class AuditLogger {
   }
 
   private redactEmail(email?: string): string | undefined {
-    if (email === null || email === undefined || email === '') {
+    if (!email || email === '') {
 return undefined;
 }
     const [local, domain] = email.split('@');
@@ -144,7 +144,7 @@ return undefined;
   }
 
   private maskIP(ip?: string): string | undefined {
-    if (!ip) {
+    if (!ip || ip === '') {
 return undefined;
 }
     const parts = ip.split('.');
@@ -174,7 +174,7 @@ return undefined;
     ];
 
     sensitiveFields.forEach((field) => {
-      if (sanitized[field]) {
+      if (sanitized[field] !== null && sanitized[field] !== undefined) {
         sanitized[field] = '[REDACTED]';
       }
     });
@@ -365,7 +365,7 @@ export const auditFunctions = {
       req,
       success ? AuditEventType.LOGIN_SUCCESS : AuditEventType.LOGIN_FAILURE,
       'User login attempt',
-      { email: req.body.email },
+      { email: (req.body as Record<string, unknown>).email as string },
       success,
       errorMessage,
     );

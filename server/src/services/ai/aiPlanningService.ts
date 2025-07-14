@@ -54,7 +54,7 @@ interface ReflectionPromptsRequest {
 }
 
 export class AIPlanningService extends BaseService {
-  private static instance: AIPlanningService;
+  private static instance: AIPlanningService | undefined;
 
   private constructor() {
     super('AIPlanningService');

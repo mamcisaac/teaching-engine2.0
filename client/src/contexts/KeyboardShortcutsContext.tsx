@@ -92,9 +92,9 @@ export const KeyboardShortcutsProvider: React.FC<{ children: React.ReactNode }> 
     if (savedPrefs !== null) {
       try {
         const parsed = safeJsonParse(savedPrefs, defaultPreferences);
-        if (parsed !== null && parsed !== defaultPreferences) {
+        if (parsed !== defaultPreferences) {
           setPreferences({ ...defaultPreferences, ...parsed });
-          setIsEnabled(parsed.enabled ?? true);
+          setIsEnabled(parsed.enabled !== undefined ? parsed.enabled : true);
         }
       } catch (e) {
         logger.error('Failed to parse keyboard shortcuts preferences:', e);
@@ -184,7 +184,7 @@ continue;
 
         // Apply custom shortcuts from preferences
         const customShortcut = preferences.customShortcuts[shortcut.id];
-        const finalShortcut = customShortcut ? { ...shortcut, ...customShortcut } : shortcut;
+        const finalShortcut = customShortcut !== undefined ? { ...shortcut, ...customShortcut } : shortcut;
 
         // Check if key matches
         if (event.key.toLowerCase() !== finalShortcut.key.toLowerCase()) {

@@ -48,7 +48,7 @@ export interface RegistryStats {
 }
 
 export class TemplateRegistry extends BaseService {
-  private static instance: TemplateRegistry;
+  private static instance: TemplateRegistry | undefined;
   private providers = new Map<string, ProviderInfo>();
   private engines = new Map<string, EngineInfo>();
   private providersByType = new Map<string, string[]>();

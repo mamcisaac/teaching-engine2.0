@@ -27,7 +27,7 @@ process.env.JWT_SECRET = 'integration-test-secret';
 process.env.OPENAI_API_KEY = 'test-api-key';
 
 // Use unique test database per worker and session to avoid conflicts
-const workerId = process.env.JEST_WORKER_ID || '1';
+const workerId = process.env.JEST_WORKER_ID ?? '1';
 const sessionId = Date.now();
 const testDbPath = path.join(
   process.cwd(),

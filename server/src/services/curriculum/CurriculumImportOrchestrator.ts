@@ -63,7 +63,7 @@ export interface ImportResult {
 }
 
 export class CurriculumImportOrchestrator extends BaseService {
-  private static instance: CurriculumImportOrchestrator;
+  private static instance: CurriculumImportOrchestrator | undefined;
   private validator: CurriculumValidator;
   private transformer: CurriculumTransformer;
   private exportService: CurriculumExportService;

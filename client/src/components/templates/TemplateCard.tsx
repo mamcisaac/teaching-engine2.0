@@ -51,7 +51,7 @@ export function TemplateCard({
           {getTypeIcon()}
           <div>
             <h3 className="font-semibold text-lg">{template.title}</h3>
-            {template.subject !== null && template.subject !== undefined && template.subject !== '' && (
+            {template.subject !== undefined && template.subject !== '' && (
               <p className="text-sm text-gray-600 capitalize">{template.subject}</p>
             )}
           </div>
@@ -64,7 +64,7 @@ export function TemplateCard({
       </div>
 
       {/* Description */}
-      {template.description !== null && template.description !== undefined && template.description !== '' && (
+      {template.description !== undefined && template.description !== '' && (
         <p className="text-gray-700 text-sm mb-4 line-clamp-2">
           {template.description}
         </p>
@@ -161,7 +161,7 @@ export function TemplateCard({
         ) : (
           <span>System template</span>
         )}
-        {template.lastUsedAt !== null && template.lastUsedAt !== undefined && template.lastUsedAt !== '' && (
+        {template.lastUsedAt !== undefined && template.lastUsedAt !== '' && (
           <span className="ml-2">
             • Last used {format(new Date(template.lastUsedAt), 'MMM d, yyyy')}
           </span>

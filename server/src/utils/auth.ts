@@ -18,14 +18,16 @@ export interface TokenPair {
  * Hash a password using bcrypt
  */
 export async function hashPassword(password: string): Promise<string> {
-  return hash(password, SALT_ROUNDS);
+  const result = (await hash(password, SALT_ROUNDS)) as string;
+  return result;
 }
 
 /**
  * Compare a plain text password with a hashed password
  */
 export async function comparePassword(password: string, hash: string): Promise<boolean> {
-  return compare(password, hash);
+  const result = (await compare(password, hash)) as boolean;
+  return result;
 }
 
 /**
@@ -33,7 +35,7 @@ export async function comparePassword(password: string, hash: string): Promise<b
  */
 export function generateAccessToken(payload: JWTPayload): string {
   const secret = process.env.JWT_SECRET;
-  if (!secret) {
+  if (!secret || secret === '') {
     throw new Error('JWT_SECRET is not defined');
   }
 
@@ -48,7 +50,7 @@ export function generateAccessToken(payload: JWTPayload): string {
  */
 export function generateRefreshToken(payload: JWTPayload): string {
   const secret = process.env.JWT_REFRESH_SECRET;
-  if (!secret) {
+  if (!secret || secret === '') {
     throw new Error('JWT_REFRESH_SECRET is not defined');
   }
 
@@ -72,7 +74,7 @@ export function generateTokenPair(payload: JWTPayload): TokenPair {
  * Verify JWT access token
  */
 export function verifyAccessToken(token: string): JWTPayload {
-  if (!process.env.JWT_SECRET) {
+  if (!process.env.JWT_SECRET || process.env.JWT_SECRET === '') {
     throw new Error('JWT_SECRET is not defined');
   }
 
@@ -87,7 +89,7 @@ export function verifyAccessToken(token: string): JWTPayload {
  * Verify JWT refresh token
  */
 export function verifyRefreshToken(token: string): JWTPayload {
-  if (!process.env.JWT_REFRESH_SECRET) {
+  if (!process.env.JWT_REFRESH_SECRET || process.env.JWT_REFRESH_SECRET === '') {
     throw new Error('JWT_REFRESH_SECRET is not defined');
   }
 
@@ -102,7 +104,7 @@ export function verifyRefreshToken(token: string): JWTPayload {
  * Extract token from Authorization header
  */
 export function extractTokenFromHeader(authHeader?: string): string | null {
-  if (!authHeader) {
+  if (!authHeader || authHeader === '') {
     return null;
   }
 

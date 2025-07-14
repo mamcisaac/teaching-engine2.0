@@ -286,7 +286,7 @@ export function useLazyDocument(documentId: string | null, options?: LoadOptions
   const [progress, setProgress] = React.useState(0);
 
   React.useEffect(() => {
-    if (!documentId || documentId === '') {
+    if (documentId === null || documentId === '' || documentId === undefined) {
       return;
     }
 
@@ -353,12 +353,12 @@ export function LazyDocument<T = unknown>({
 
   React.useEffect(() => {
     const element = elementRef.current;
-    if (element) {
+    if (element !== null) {
       lazyLoader.observeElement(element, documentId);
     }
 
     return (): void => {
-      if (element) {
+      if (element !== null) {
         lazyLoader.unobserveElement(element);
       }
     };

@@ -27,7 +27,7 @@ let workerId: string;
  * Creates a test database and initializes the client
  */
 beforeAll(async () => {
-  workerId = process.env.JEST_WORKER_ID || 'integration-default';
+  workerId = process.env.JEST_WORKER_ID ?? 'integration-default';
 
   try {
     console.log(`[Integration Setup] Setting up database for worker ${workerId}`);

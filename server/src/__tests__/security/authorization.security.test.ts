@@ -126,7 +126,7 @@ describe('Authorization Security Tests', () => {
     // Moderator or admin endpoint
     app.get('/api/moderator', authMiddleware, (req: Request, res: Response) => {
       // Check if user is moderator or admin
-      if (!['MODERATOR', 'ADMIN'].includes(req.user?.role || '')) {
+      if (!['MODERATOR', 'ADMIN'].includes(req.user?.role ?? '')) {
         return res.status(403).json({ error: 'Moderator access required' });
       }
       res.json({ message: 'moderator endpoint', user: req.user });

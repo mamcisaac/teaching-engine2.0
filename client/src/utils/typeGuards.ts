@@ -38,7 +38,7 @@ export function hasProperty<K extends string>(
 
 export function safeJsonParse<T = unknown>(json: string | null, fallback: T): T {
   try {
-    if (json === null || json === undefined || json === '') {
+    if (json === null || json === '') {
 return fallback;
 }
     return JSON.parse(json) as T;

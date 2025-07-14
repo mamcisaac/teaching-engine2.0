@@ -191,16 +191,16 @@ export function useCurriculumExpectations(filters?: {
     queryKey: ['curriculum-expectations', filters],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (filters?.subject !== null && filters?.subject !== undefined && filters.subject !== '') {
+      if (filters?.subject && filters.subject !== '') {
         params.append('subject', filters.subject);
       }
-      if (filters?.grade !== null && filters?.grade !== undefined) {
+      if (filters?.grade !== undefined) {
         params.append('grade', filters.grade.toString());
       }
-      if (filters?.strand !== null && filters?.strand !== undefined && filters.strand !== '') {
+      if (filters?.strand && filters.strand !== '') {
         params.append('strand', filters.strand);
       }
-      if (filters?.search !== null && filters?.search !== undefined && filters.search !== '') {
+      if (filters?.search && filters.search !== '') {
         params.append('search', filters.search);
       }
 

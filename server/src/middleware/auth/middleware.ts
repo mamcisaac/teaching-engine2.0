@@ -45,7 +45,7 @@ export async function authenticate(
       },
     });
 
-    if (!user) {
+    if (user === null || user === undefined) {
       throw new AuthenticationError('User not found');
     }
 
@@ -53,17 +53,17 @@ export async function authenticate(
     (req as AuthRequest).user = {
       id: user.id,
       email: user.email,
-      name: (user.name !== null && user.name !== undefined && user.name !== '') ? user.name : '',
+      name: user.name ?? '',
       role: user.role as UserRole,
     };
 
     logger.debug(`User ${user.email} authenticated successfully`);
     next();
-  } catch (_error) {
+  } catch (_error: unknown) {
     if (_error instanceof AuthenticationError) {
       next(_error);
     } else {
-      logger.error('Authentication error:', _error);
+      logger.error('Authentication error:', _error as Error);
       next(new AuthenticationError('Authentication failed'));
     }
   }
@@ -108,7 +108,7 @@ export async function optionalAuthenticate(
   try {
     const token = extractTokenFromHeader(req.headers.authorization);
 
-    if (token === null || token === '') {
+    if (token === null || token === undefined || token === '') {
       next(); return;
     }
 
@@ -123,19 +123,19 @@ export async function optionalAuthenticate(
       },
     });
 
-    if (user) {
+    if (user !== null && user !== undefined) {
       (req as AuthRequest).user = {
         id: user.id,
         email: user.email,
-        name: user.name || '',
+        name: (user.name !== null && user.name !== undefined && user.name !== '') ? user.name : '',
         role: user.role as UserRole,
       };
     }
 
     next();
-  } catch (_error) {
+  } catch (_error: unknown) {
     // Log error but continue without authentication
-    logger.debug('Optional authentication failed:', _error);
+    logger.debug('Optional authentication failed:', _error as Error);
     next();
   }
 }
@@ -150,7 +150,7 @@ export function requireOrganization(req: Request, _res: Response, next: NextFunc
     next(new AuthenticationError('User not authenticated')); return;
   }
 
-  if (!authReq.user.organizationId) {
+  if (authReq.user.organizationId === null || authReq.user.organizationId === undefined) {
     next(new ForbiddenError('Organization membership required')); return;
   }
 

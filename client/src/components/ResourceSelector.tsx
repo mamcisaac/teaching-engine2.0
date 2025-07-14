@@ -22,7 +22,7 @@ export function ResourceSelector({
   title = 'Select Resource',
 }: ResourceSelectorProps): React.ReactElement {
   const [search, setSearch] = useState('');
-  const [selectedFileType, setSelectedFileType] = useState((fileTypeFilter !== null && fileTypeFilter !== undefined && fileTypeFilter !== '') ? fileTypeFilter : '');
+  const [selectedFileType, setSelectedFileType] = useState((fileTypeFilter !== undefined && fileTypeFilter !== '') ? fileTypeFilter : '');
 
   const { data: mediaData, isLoading } = useMediaResources({ userId });
   const resources = mediaData?.resources ?? [];
@@ -35,7 +35,7 @@ export function ResourceSelector({
     }
 
     // Search filter
-    if ((search !== null && search !== undefined && search !== '') && !resource.title.toLowerCase().includes(search.toLowerCase())) {
+    if (search !== '' && !resource.title.toLowerCase().includes(search.toLowerCase())) {
       return false;
     }
 
@@ -68,10 +68,10 @@ return '0 Bytes';
   };
 
   const getResourceUrl = (resource: MediaResource): string => {
-    if (resource.fileUrl !== null && resource.fileUrl !== undefined && resource.fileUrl !== '') {
+    if (resource.fileUrl !== undefined && resource.fileUrl !== '') {
       return resource.fileUrl;
     }
-    if (resource.thumbnailUrl !== null && resource.thumbnailUrl !== undefined && resource.thumbnailUrl !== '') {
+    if (resource.thumbnailUrl !== undefined && resource.thumbnailUrl !== '') {
       return resource.thumbnailUrl;
     }
     return '/placeholder-image.png';
@@ -100,7 +100,7 @@ return '0 Bytes';
                 type="text"
                 value={search}
                 onChange={(e) => {
- setSearch(e.target.value ?? ''); 
+ setSearch(e.target.value); 
 }}
               />
             </div>
@@ -108,7 +108,7 @@ return '0 Bytes';
               <label className="block text-sm font-medium mb-1" htmlFor="file-type-select">File Type</label>
               <select
                 className="w-full border rounded px-3 py-2"
-                disabled={!!(fileTypeFilter !== null && fileTypeFilter !== undefined && fileTypeFilter !== '')} // Disable if filtered from props
+                disabled={!!(fileTypeFilter !== undefined && fileTypeFilter !== '')} // Disable if filtered from props
                 id="file-type-select"
                 value={selectedFileType}
                 onChange={(e) => {

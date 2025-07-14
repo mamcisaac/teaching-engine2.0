@@ -71,9 +71,9 @@ export async function validateApiKey(
 
     // API key is valid, proceed to next middleware
     next();
-  } catch (error) {
+  } catch (error: unknown) {
     // Handle unexpected errors
-    logger.error(error, 'Authentication error');
+    logger.error(error as Error, 'Authentication error');
 
     res.status(500).json({
       error: 'Internal server error during authentication',

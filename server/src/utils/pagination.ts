@@ -142,7 +142,7 @@ export function createPaginatedResponse<T>(
 /**
  * Prisma pagination helper
  */
-export function getPrismaArgs(options: PaginationOptions) {
+export function getPrismaArgs(options: PaginationOptions): { skip: number; take: number; orderBy?: Record<string, 'asc' | 'desc'> } {
   const skip = calculateOffset(options.page, options.limit);
 
   const args: {

@@ -22,20 +22,20 @@ export function validateUnitPlan(data: UnitPlanFormData): ValidationResult {
     errors.title = 'Unit title is required';
   }
 
-  if (!data.longRangePlanId) {
+  if (data.longRangePlanId === 0) {
     errors.longRangePlanId = 'Long-range plan selection is required';
   }
 
-  if (!data.startDate) {
+  if (data.startDate === '') {
     errors.startDate = 'Start date is required';
   }
 
-  if (!data.endDate) {
+  if (data.endDate === '') {
     errors.endDate = 'End date is required';
   }
 
   // Date validation
-  if (data.startDate && data.endDate) {
+  if (data.startDate !== '' && data.endDate !== '') {
     const startDate = new Date(data.startDate);
     const endDate = new Date(data.endDate);
 
@@ -58,7 +58,7 @@ export function validateUnitPlan(data: UnitPlanFormData): ValidationResult {
   }
 
   // Expectation validation - CRITICAL for Forms & Data Agent
-  if (!data.expectationIds || data.expectationIds.length === 0) {
+  if (data.expectationIds.length === 0) {
     errors.expectationIds = 'At least one curriculum expectation must be selected';
   }
 
@@ -72,7 +72,7 @@ export function validateUnitPlan(data: UnitPlanFormData): ValidationResult {
   }
 
   // Content validation
-  if (data.title && data.title.length > 200) {
+  if (data.title !== '' && data.title.length > 200) {
     errors.title = 'Title must be 200 characters or less';
   }
 
@@ -108,16 +108,16 @@ export function validateLessonPlan(data: LessonPlanFormData): ValidationResult {
     errors.title = 'Lesson title is required';
   }
 
-  if (!data.unitPlanId) {
+  if (data.unitPlanId === 0) {
     errors.unitPlanId = 'Unit plan selection is required';
   }
 
-  if (!data.date) {
+  if (data.date === '') {
     errors.date = 'Date is required';
   }
 
   // Date validation
-  if (data.date) {
+  if (data.date !== '') {
     const lessonDate = new Date(data.date);
     const now = new Date();
     const oneYearAgo = new Date(now.getFullYear() - 1, now.getMonth(), now.getDate());
@@ -133,17 +133,17 @@ export function validateLessonPlan(data: LessonPlanFormData): ValidationResult {
   }
 
   // Duration validation
-  if (!data.duration || data.duration <= 0) {
+  if (data.duration <= 0) {
     errors.duration = 'Duration must be greater than 0 minutes';
   }
 
-  if (data.duration && data.duration > 480) {
+  if (data.duration > 480) {
     // 8 hours
     errors.duration = 'Duration cannot exceed 480 minutes (8 hours)';
   }
 
   // Expectation validation - CRITICAL for Forms & Data Agent
-  if (!data.expectationIds || data.expectationIds.length === 0) {
+  if (data.expectationIds.length === 0) {
     errors.expectationIds = 'At least one curriculum expectation must be selected';
   }
 
@@ -152,17 +152,17 @@ export function validateLessonPlan(data: LessonPlanFormData): ValidationResult {
   const hasAction = data.action?.trim();
   const hasConsolidation = data.consolidation?.trim();
 
-  if (!hasMindsOn && !hasAction && !hasConsolidation) {
+  if ((hasMindsOn === null || hasMindsOn === undefined || hasMindsOn === '') && (hasAction === null || hasAction === undefined || hasAction === '') && (hasConsolidation === null || hasConsolidation === undefined || hasConsolidation === '')) {
     errors.lessonStructure =
       'At least one lesson component (Minds On, Action, or Consolidation) must have content';
   }
 
   // Content length validation
-  if (data.title && data.title.length > 200) {
+  if (data.title !== '' && data.title.length > 200) {
     errors.title = 'Title must be 200 characters or less';
   }
 
-  if (data.learningGoals && data.learningGoals.length > 1000) {
+  if (data.learningGoals && data.learningGoals !== '' && data.learningGoals.length > 1000) {
     errors.learningGoals = 'Learning goals must be 1000 characters or less';
   }
 

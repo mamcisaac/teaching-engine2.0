@@ -159,11 +159,11 @@ export function createBilingualValidation(
         const fr = data[`${fieldName}Fr`];
 
         if (options?.requireAll) {
-          return !!(base && en && fr);
+          return (base && base !== '') && (en && en !== '') && (fr && fr !== '');
         }
 
         if (options?.requireAtLeastOne) {
-          return !!(base || en || fr);
+          return (base && base !== '') || (en && en !== '') || (fr && fr !== '');
         }
 
         return true;

@@ -373,7 +373,7 @@ return [];
       )}
 
       {/* Loading overlay for data fetching */}
-      {isLoading && data && (
+      {isLoading && (
         <div
           className="absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center"
           data-testid="loading-skeleton"

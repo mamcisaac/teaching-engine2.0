@@ -18,7 +18,7 @@ interface ExtendedRequest extends Request {
 /**
  * Request logging middleware that provides structured logging for all requests
  */
-export function requestLoggingMiddleware(req: Request, res: Response, next: NextFunction) {
+export function requestLoggingMiddleware(req: Request, res: Response, next: NextFunction): void {
   const extendedReq = req as ExtendedRequest;
   // Generate unique request ID
   const requestId = randomUUID();
@@ -55,7 +55,7 @@ export function requestLoggingMiddleware(req: Request, res: Response, next: Next
   // Track if response has been logged to avoid duplicates
   let responseLogged = false;
 
-  function logResponse() {
+  function logResponse(): void {
     if (responseLogged) {
 return;
 }
@@ -114,7 +114,7 @@ return;
   res.end = function (this: Response, ...args: unknown[]): Response {
     logResponse();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return originalEnd.apply(this, args as any);
+    return originalEnd.apply(this, args as [chunk?: any, encoding?: BufferEncoding, cb?: (() => void) | undefined]);
   };
 
   // Handle request completion
@@ -232,7 +232,7 @@ export function errorLoggingMiddleware(
   req: Request,
   _res: Response,
   next: NextFunction,
-) {
+): void {
   const extendedReq = req as ExtendedRequest;
   const requestLogger = extendedReq.logger || logger;
 
@@ -264,7 +264,7 @@ export function logSecurityEvent(
   req: Request,
   event: string,
   details: Record<string, unknown> = {},
-) {
+): void {
   const extendedReq = req as ExtendedRequest;
   const requestLogger = extendedReq.logger || logger;
 
@@ -285,7 +285,7 @@ export function logBusinessOperation(
   req: Request,
   operation: string,
   context: Record<string, unknown> = {},
-) {
+): void {
   const extendedReq = req as ExtendedRequest;
   const requestLogger = extendedReq.logger || logger;
 
@@ -303,7 +303,7 @@ export function logAuditEvent(
   req: Request,
   operation: string,
   details: Record<string, unknown> = {},
-) {
+): void {
   const extendedReq = req as ExtendedRequest;
   const requestLogger = extendedReq.logger || logger;
 

@@ -83,7 +83,7 @@ export async function createTestUser(
   // Generate real JWT token
   const token = jwt.sign(
     { userId: user.id, email: user.email },
-    process.env.JWT_SECRET || 'test-secret',
+    process.env.JWT_SECRET ?? 'test-secret',
     { expiresIn: '1h' }
   );
 

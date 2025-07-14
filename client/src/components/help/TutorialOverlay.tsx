@@ -20,7 +20,7 @@ export const TutorialOverlay: React.FC<TutorialOverlayProps> = ({
 
   // Highlight target element
   useEffect((): (() => void) | void => {
-    if (!isActive || !currentStep || currentStep.targetElement === null || currentStep.targetElement === undefined || currentStep.targetElement === '') {
+    if (!isActive || currentStep?.targetElement === undefined || currentStep.targetElement === '') {
 return;
 }
 

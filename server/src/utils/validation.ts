@@ -165,7 +165,7 @@ export const transformToBoolean = (value: unknown): boolean => {
   if (typeof value === 'string') {
     return value.toLowerCase() === 'true' || value === '1';
   }
-  return !!value;
+  return value !== null && value !== undefined && value !== false && value !== 0 && value !== '';
 };
 
 export const transformToArray = (value: unknown): string[] => {
@@ -173,7 +173,7 @@ export const transformToArray = (value: unknown): string[] => {
     return value;
   }
   if (typeof value === 'string') {
-    return value.split(',').map(s => s.trim()).filter(s => s && s !== '');
+    return value.split(',').map(s => s.trim()).filter(s => s !== null && s !== undefined && s !== '');
   }
   return [];
 };

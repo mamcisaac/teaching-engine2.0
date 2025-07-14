@@ -14,7 +14,7 @@ api.interceptors.request.use(
   async (config) => {
     // Add authorization header if we have a token
     const authHeaders = authService.getAuthHeaders();
-    if (authHeaders.Authorization !== null && authHeaders.Authorization !== undefined && authHeaders.Authorization !== '') {
+    if (authHeaders.Authorization !== undefined && authHeaders.Authorization !== '') {
       config.headers.Authorization = authHeaders.Authorization;
     }
 
@@ -58,7 +58,7 @@ api.interceptors.response.use(
       if (shouldRetry) {
         // Update the authorization header with the new token
         const authHeaders = authService.getAuthHeaders();
-        if ((authHeaders.Authorization !== null && authHeaders.Authorization !== undefined && authHeaders.Authorization !== '') && originalRequest.headers) {
+        if ((authHeaders.Authorization !== undefined && authHeaders.Authorization !== '') && originalRequest.headers) {
           originalRequest.headers.Authorization = authHeaders.Authorization;
         }
 

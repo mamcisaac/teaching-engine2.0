@@ -104,7 +104,7 @@ export async function setupRealBackend(
 /**
  * Teardown real backend after tests
  */
-export async function teardownRealBackend() {
+export async function teardownRealBackend(): Promise<void> {
   // Clean up test data
   await cleanupTestDatabase();
 

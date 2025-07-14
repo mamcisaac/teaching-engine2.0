@@ -55,7 +55,7 @@ const resetPasswordSchema = z.object({
 });
 
 // Middleware to validate auth inputs with test-compatible error messages
-function validateAuthInputs(isRegister = false) {
+function validateAuthInputs(isRegister = false): (req: Request, res: Response, next: NextFunction) => void {
   return (req: Request, res: Response, next: NextFunction): void => {
     let { email } = req.body as { email?: unknown; password?: unknown; name?: unknown };
     const { password } = req.body as { email?: unknown; password?: unknown; name?: unknown };
@@ -90,7 +90,7 @@ function validateAuthInputs(isRegister = false) {
 }
 
 // Create router with optional prisma instance for testing
-function createAuthRouter(prisma = defaultPrisma) {
+function createAuthRouter(prisma = defaultPrisma): Router {
   const router = Router();
 
   // Public endpoints with rate limiting and custom validation
