@@ -218,7 +218,7 @@ export function DuplicatePlanModal({
               required
               className="mt-1"
               id="newTitle"
-              placeholder={(planTitle !== undefined && planTitle !== '') ? `Copy of ${planTitle}` : 'Enter new title'}
+              placeholder={planTitle ? `Copy of ${planTitle}` : 'Enter new title'}
               value={newTitle}
               onChange={(e) => {
  setNewTitle(e.target.value); 

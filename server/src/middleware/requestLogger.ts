@@ -114,7 +114,7 @@ return;
   res.end = function (this: Response, ...args: unknown[]): Response {
     logResponse();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return originalEnd.apply(this, args as [chunk?: any, encoding?: BufferEncoding, cb?: (() => void) | undefined]);
+    return originalEnd.apply(this, args as [chunk: any, encoding: BufferEncoding, cb?: (() => void) | undefined]);
   };
 
   // Handle request completion

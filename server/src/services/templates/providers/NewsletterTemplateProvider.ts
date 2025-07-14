@@ -49,7 +49,7 @@ export class NewsletterTemplateProvider extends TemplateProvider {
    * Validate context
    */
   validateContext(context: TemplateContext): boolean {
-    return context.userId != null && context.userId !== 0;
+    return context.userId !== null && context.userId !== 0;
   }
 
   /**

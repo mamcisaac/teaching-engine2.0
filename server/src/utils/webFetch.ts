@@ -108,7 +108,7 @@ export class WebFetch {
     const dom = new JSDOM(html);
     const {document} = dom.window;
     
-    if (selector !== null && selector !== undefined && selector !== '') {
+    if (selector) {
       const element = document.querySelector(selector);
       return element?.textContent?.trim() ?? '';
     }

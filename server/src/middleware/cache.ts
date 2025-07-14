@@ -182,7 +182,7 @@ export function createCacheMiddleware(
 
       next();
     } catch (_error: unknown) {
-      logger.error('Cache middleware error:', _error);
+      logger.error('Cache middleware error:', _error as string | undefined);
       // Continue without caching on error
       next();
     }
@@ -294,7 +294,7 @@ export async function warmUpCache(): Promise<void> {
 
     logger.info('Cache warm-up completed');
   } catch (_error: unknown) {
-    logger.error('Cache warm-up failed:', _error);
+    logger.error('Cache warm-up failed:', _error as string | undefined);
   }
 }
 
@@ -389,7 +389,7 @@ export function isCacheHealthy(): boolean {
     });
     return true;
   } catch (_error: unknown) {
-    logger.error('Cache health check failed:', _error);
+    logger.error('Cache health check failed:', _error as string | undefined);
     return false;
   }
 }

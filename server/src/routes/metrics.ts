@@ -18,7 +18,7 @@ router.get('/', (_req: Request, res: Response): void => {
     res.set('Content-Type', 'text/plain; version=0.0.4; charset=utf-8');
     res.send(prometheusFormat);
   } catch (_error) {
-    logger.error('Error generating Prometheus metrics:', _error);
+    logger.error('Error generating Prometheus metrics:', _error as string | undefined);
     res.status(500).send('Error generating metrics');
   }
 });
@@ -38,7 +38,7 @@ router.get('/json', authMiddleware, (_req: Request, res: Response): void => {
     });
     return;
   } catch (_error) {
-    logger.error('Error getting JSON metrics:', _error);
+    logger.error('Error getting JSON metrics:', _error as string | undefined);
     res.status(500).json({
       success: false,
       message: 'Failed to get metrics',
@@ -62,7 +62,7 @@ router.get('/summary', authMiddleware, (_req: Request, res: Response): void => {
     });
     return;
   } catch (_error) {
-    logger.error('Error getting performance summary:', _error);
+    logger.error('Error getting performance summary:', _error as string | undefined);
     res.status(500).json({
       success: false,
       message: 'Failed to get performance summary',
@@ -123,7 +123,7 @@ router.get('/health', authMiddleware, (_req: Request, res: Response): void => {
     });
     return;
   } catch (_error) {
-    logger.error('Error getting health metrics:', _error);
+    logger.error('Error getting health metrics:', _error as string | undefined);
     res.status(500).json({
       success: false,
       message: 'Failed to get health metrics',
@@ -158,7 +158,7 @@ router.delete('/reset', authMiddleware, (req: Request, res: Response): void => {
     });
     return;
   } catch (_error) {
-    logger.error('Error resetting metrics:', _error);
+    logger.error('Error resetting metrics:', _error as string | undefined);
     res.status(500).json({
       success: false,
       message: 'Failed to reset metrics',
@@ -205,7 +205,7 @@ router.get('/realtime', authMiddleware, (_req: Request, res: Response): void => 
     });
     return;
   } catch (_error) {
-    logger.error('Error getting realtime metrics:', _error);
+    logger.error('Error getting realtime metrics:', _error as string | undefined);
     res.status(500).json({
       success: false,
       message: 'Failed to get realtime metrics',

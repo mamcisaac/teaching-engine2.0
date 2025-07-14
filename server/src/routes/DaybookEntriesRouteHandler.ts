@@ -492,19 +492,19 @@ export class DaybookEntriesRouteHandler extends BaseRouteHandler {
       const { sortBy, sortOrder, startDate, endDate, lessonPlanId, ...filterBase } = filters;
       const convertedFilters = {
         ...filterBase,
-        ...(startDate && { startDate: new Date(startDate) }),
-        ...(endDate && { endDate: new Date(endDate) }),
+        ...(startDate && { startDate: new Date(startDate as string | number | Date) }),
+        ...(endDate && { endDate: new Date(endDate as string | number | Date) }),
         ...(lessonPlanId && { lessonPlanId: parseInt(String(lessonPlanId), 10) }),
         // Convert sortBy/sortOrder to sort/order for service
         sort: sortBy,
         order: sortOrder,
       };
 
-      const result = await this.daybookService.findMany(convertedFilters, userId);
+      const result = await this.daybookService.findMany(convertedFilters as { startDate?: Date | undefined; endDate?: Date | undefined; lessonPlanId?: number | undefined; subject?: string | undefined; limit?: number | undefined; offset?: number | undefined; sort?: string | undefined; order?: "asc" | "desc" | undefined; }, userId as string | undefined);
       res.json(result);
       return;
     } catch (_error) {
-      this.logger.error(`Error in ${this.routeName} list:`, _error);
+      this.logger.error(`Error in ${this.routeName} list:`, _error as string | undefined);
       next(_error); return;
     }
   }
@@ -533,7 +533,7 @@ export class DaybookEntriesRouteHandler extends BaseRouteHandler {
       res.json(insights);
       return;
     } catch (_error) {
-      this.logger.error('Error getting insights summary:', _error);
+      this.logger.error('Error getting insights summary:', _error as string | undefined);
       next(_error); return;
     }
   }

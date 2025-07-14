@@ -171,7 +171,7 @@ export const useUIStore = create<UIState>()(
         });
         
         // Auto-hide toast after duration
-        if (duration && duration > 0) {
+        if (duration > 0) {
           setTimeout(() => {
             get().hideToast(id);
           }, duration);

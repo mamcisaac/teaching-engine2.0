@@ -47,7 +47,7 @@ router.get('/', authMiddleware, (req: Request, res: Response): void => {
     });
     return;
   } catch (_error) {
-    logger.error('Get collections error:', _error);
+    logger.error('Get collections error:', _error as string | undefined);
     res.status(500).json({
       success: false,
       error: 'Failed to get collections',
@@ -104,7 +104,7 @@ router.get('/:collectionId', authMiddleware, (req: Request, res: Response): void
     });
     return;
   } catch (_error) {
-    logger.error('Get collection details error:', _error);
+    logger.error('Get collection details error:', _error as string | undefined);
     res.status(500).json({
       success: false,
       error: 'Failed to get collection details',
@@ -147,7 +147,7 @@ router.post('/', authMiddleware, (req: Request, res: Response): void => {
     });
     return;
   } catch (_error) {
-    logger.error('Create collection error:', _error);
+    logger.error('Create collection error:', _error as string | undefined);
     res.status(400).json({
       success: false,
       error: _error instanceof z.ZodError ? _error.errors : 'Failed to create collection',
@@ -203,7 +203,7 @@ router.put('/:collectionId', authMiddleware, (req: Request, res: Response): void
     });
     return;
   } catch (_error) {
-    logger.error('Update collection error:', _error);
+    logger.error('Update collection error:', _error as string | undefined);
     res.status(400).json({
       success: false,
       error: _error instanceof z.ZodError ? _error.errors : 'Failed to update collection',
@@ -254,7 +254,7 @@ router.delete(
       });
       return;
     } catch (_error) {
-      logger.error('Delete collection error:', _error);
+      logger.error('Delete collection error:', _error as string | undefined);
       res.status(500).json({
         success: false,
         error: 'Failed to delete collection',
@@ -340,7 +340,7 @@ router.post(
       });
       return;
     } catch (_error) {
-      logger.error('Add activity to collection error:', _error);
+      logger.error('Add activity to collection error:', _error as string | undefined);
       res.status(400).json({
         success: false,
         error:
@@ -398,7 +398,7 @@ router.delete(
       });
       return;
     } catch (_error) {
-      logger.error('Remove activity from collection error:', _error);
+      logger.error('Remove activity from collection error:', _error as string | undefined);
       res.status(500).json({
         success: false,
         error: 'Failed to remove activity from collection',
@@ -447,7 +447,7 @@ router.get(
       });
       return;
     } catch (_error) {
-      logger.error('Get trending collections error:', _error);
+      logger.error('Get trending collections error:', _error as string | undefined);
       res.status(500).json({
         success: false,
         error: 'Failed to get trending collections',

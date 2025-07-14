@@ -316,7 +316,7 @@ export function collectSystemMetrics(): void {
     const cpuPercent = (cpuUsage.user + cpuUsage.system) / 1000000; // Convert to seconds
     metricsStore.setGauge('cpu_usage_percent', cpuPercent);
   } catch (_error: unknown) {
-    logger.error('Error collecting system metrics:', _error as Error);
+    logger.error('Error collecting system metrics:', _error as string | undefined);
   }
 }
 

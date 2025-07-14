@@ -61,7 +61,7 @@ params.append('startDate', startDate.toISOString());
       if (endDate) {
 params.append('endDate', endDate.toISOString());
 }
-      if (theme !== null && theme !== undefined && theme !== '') {
+      if (theme) {
 params.append('theme', theme);
 }
 

@@ -212,7 +212,7 @@ const performHealthChecks = async (): Promise<DashboardMetrics['health']> => {
   } catch (_error) {
     checks.database = false;
     score -= 30;
-    logger.error('Database health check failed', _error);
+    logger.error('Database health check failed', _error as string | undefined);
   }
 
   // Memory check
@@ -464,7 +464,7 @@ export const getDashboardMetrics = async (_req: Request, res: Response): Promise
 
       res.json(dashboardMetrics);
     } catch (_error) {
-      logger.error('Failed to generate dashboard metrics', _error);
+      logger.error('Failed to generate dashboard metrics', _error as string | undefined);
       res.status(500).json({ error: 'Failed to generate dashboard metrics' });
     }
   });
@@ -485,7 +485,7 @@ export const dashboardWebSocketHandler = (ws: any): void => {
 
       ws.send(JSON.stringify(realtimeData));
     } catch (_error) {
-      logger.error('Failed to send real-time metrics', _error);
+      logger.error('Failed to send real-time metrics', _error as string | undefined);
     }
   }, 1000); // Update every second
 

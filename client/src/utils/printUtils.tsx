@@ -205,21 +205,21 @@ export const generateUnitPlanHTML = (unitPlan: UnitPlan, longRangePlan?: { title
     <body>
       <div class="header">
         <div class="title">${escapeHtml(unitPlan.title)}</div>
-        ${(unitPlan.titleFr !== undefined && unitPlan.titleFr !== '') ? `<div class="subtitle">Français: ${escapeHtml(unitPlan.titleFr)}</div>` : ''}
+        ${unitPlan.titleFr ? `<div class="subtitle">Français: ${escapeHtml(unitPlan.titleFr)}</div>` : ''}
         ${longRangePlan ? `<div class="subtitle">Long-Range Plan: ${escapeHtml(longRangePlan.title)}</div>` : ''}
         <div class="subtitle">
           ${format(new Date(unitPlan.startDate), 'MMMM d, yyyy')} - 
           ${format(new Date(unitPlan.endDate), 'MMMM d, yyyy')}
-          ${(unitPlan.estimatedHours !== undefined && unitPlan.estimatedHours > 0) ? ` • ${unitPlan.estimatedHours} hours` : ''}
+          ${unitPlan.estimatedHours ? ` • ${unitPlan.estimatedHours} hours` : ''}
         </div>
       </div>
 
       <div class="metadata no-break">
         <div class="section-title">Unit Overview</div>
-        ${(unitPlan.description !== undefined && unitPlan.description !== '') ? `<p>${escapeHtml(unitPlan.description)}</p>` : ''}
+        ${unitPlan.description ? `<p>${escapeHtml(unitPlan.description)}</p>` : ''}
       </div>
 
-      ${(unitPlan.bigIdeas !== undefined && unitPlan.bigIdeas !== '') ? `
+      ${unitPlan.bigIdeas ? `
         <div class="section no-break">
           <div class="section-title">Big Ideas</div>
           <div>${escapeHtml(unitPlan.bigIdeas)}</div>

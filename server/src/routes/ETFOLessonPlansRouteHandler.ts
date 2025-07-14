@@ -706,7 +706,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       res.json(result);
       return;
     } catch (error) {
-      const message = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Unknown error';
+      const message = error instanceof Error ? error.message : 'Unknown error';
       this.logger.error(`Error in ${this.routeName} list:`, message);
       next(error);
     }
@@ -766,7 +766,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       const resource = await this.lessonPlanService.addResource(lessonPlanId, resourceData, userId);
       res.status(201).json(resource);
     } catch (_error) {
-      this.logger.error('Error adding resource:', _error);
+      this.logger.error('Error adding resource:', _error as string | undefined);
       next(_error); return;
     }
   }
@@ -793,7 +793,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
 
       res.status(204).send();
     } catch (_error) {
-      this.logger.error('Error removing resource:', _error);
+      this.logger.error('Error removing resource:', _error as string | undefined);
       next(_error); return;
     }
   }
@@ -814,7 +814,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       const subVersion = await this.lessonPlanService.createSubVersion(lessonPlanId, userId);
       res.status(201).json(subVersion);
     } catch (_error) {
-      this.logger.error('Error creating sub version:', _error);
+      this.logger.error('Error creating sub version:', _error as string | undefined);
       next(_error); return;
     }
   }
@@ -841,7 +841,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       res.json(rescheduledLesson);
       return;
     } catch (_error) {
-      this.logger.error('Error rescheduling lesson:', _error);
+      this.logger.error('Error rescheduling lesson:', _error as string | undefined);
       next(_error); return;
     }
   }
@@ -862,7 +862,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       const duplicatedLesson = await this.lessonPlanService.duplicate(duplicateData, userId);
       res.status(201).json(duplicatedLesson);
     } catch (_error) {
-      this.logger.error('Error duplicating lesson plan:', _error);
+      this.logger.error('Error duplicating lesson plan:', _error as string | undefined);
       next(_error); return;
     }
   }

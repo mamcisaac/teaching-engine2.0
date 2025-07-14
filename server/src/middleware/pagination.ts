@@ -57,10 +57,10 @@ export function parsePagination(req: Request, res: Response, next: NextFunction)
 
     next();
   } catch (error: unknown) {
-    logger.error('Pagination parsing error:', error);
+    logger.error('Pagination parsing error:', error as string | undefined);
     res.status(400).json({
       error: 'Invalid pagination parameters',
-      details: error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Unknown error',
+      details: error instanceof Error ? error.message : 'Unknown error',
     });
   }
 }

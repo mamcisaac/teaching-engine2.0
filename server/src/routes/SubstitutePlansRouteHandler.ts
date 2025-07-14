@@ -402,7 +402,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       res.json(result);
       return;
     } catch (_error) {
-      this.logger.error(`Error in ${this.routeName} list:`, _error);
+      this.logger.error(`Error in ${this.routeName} list:`, _error as string | undefined);
       next(_error); return;
     }
   }
@@ -453,7 +453,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       const generatedPlan = await this.substitutePlanService.generatePlan(generateData, userId);
       res.status(201).json(generatedPlan);
     } catch (_error) {
-      this.logger.error('Error generating substitute plan:', _error);
+      this.logger.error('Error generating substitute plan:', _error as string | undefined);
       next(_error); return;
     }
   }
@@ -475,7 +475,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       res.json(deactivatedPlan);
       return;
     } catch (_error) {
-      this.logger.error('Error deactivating substitute plan:', _error);
+      this.logger.error('Error deactivating substitute plan:', _error as string | undefined);
       next(_error); return;
     }
   }
@@ -495,7 +495,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       res.json(stats);
       return;
     } catch (_error) {
-      this.logger.error('Error getting substitute plan stats:', _error);
+      this.logger.error('Error getting substitute plan stats:', _error as string | undefined);
       next(_error); return;
     }
   }
@@ -517,7 +517,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       res.json(upcomingDates);
       return;
     } catch (_error) {
-      this.logger.error('Error getting upcoming dates:', _error);
+      this.logger.error('Error getting upcoming dates:', _error as string | undefined);
       next(_error); return;
     }
   }

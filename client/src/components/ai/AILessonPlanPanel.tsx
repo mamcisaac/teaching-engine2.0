@@ -160,7 +160,7 @@ export function AILessonPlanPanel({
     if (!canUseAI) {
       toast({
         title: 'AI Unavailable',
-        description: (aiDisabledReason !== null && aiDisabledReason !== undefined && aiDisabledReason !== '') ? aiDisabledReason : 'AI features are currently unavailable.',
+        description: aiDisabledReason || 'AI features are currently unavailable.',
         variant: 'destructive',
       });
       return;
@@ -311,7 +311,7 @@ export function AILessonPlanPanel({
     if (!canUseAI) {
       toast({
         title: 'AI Unavailable',
-        description: (aiDisabledReason !== null && aiDisabledReason !== undefined && aiDisabledReason !== '') ? aiDisabledReason : 'AI features are currently unavailable.',
+        description: aiDisabledReason || 'AI features are currently unavailable.',
         variant: 'destructive',
       });
       return;

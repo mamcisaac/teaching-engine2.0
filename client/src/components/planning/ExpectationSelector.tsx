@@ -63,7 +63,7 @@ return expectations;
         exp.code.toLowerCase().includes(query) ||
         exp.description.toLowerCase().includes(query) ||
         exp.strand.toLowerCase().includes(query) ||
-        (exp.substrand !== undefined && exp.substrand !== '') && exp.substrand.toLowerCase().includes(query),
+        exp.substrand && exp.substrand.toLowerCase().includes(query),
     );
   }, [expectations, searchQuery]);
 
@@ -75,7 +75,7 @@ return expectations;
       if (!(exp.strand in grouped)) {
         grouped[exp.strand] = {};
       }
-      const substrand = (exp.substrand !== undefined && exp.substrand !== '') ? exp.substrand : 'General';
+      const substrand = exp.substrand || 'General';
       if (!(substrand in grouped[exp.strand])) {
         grouped[exp.strand][substrand] = [];
       }

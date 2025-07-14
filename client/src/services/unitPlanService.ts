@@ -10,7 +10,7 @@ export class UnitPlanService {
     }
 
     const completedLessons =
-      unit.lessonPlans?.filter((lesson) => lesson.daybookEntry != null).length ?? 0;
+      unit.lessonPlans?.filter((lesson) => lesson.daybookEntry !== null).length ?? 0;
 
     return Math.round((completedLessons / unit._count.lessonPlans) * 100);
   }

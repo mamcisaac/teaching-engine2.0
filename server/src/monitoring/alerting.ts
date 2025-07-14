@@ -305,7 +305,7 @@ const sendAlert = async (alert: Alert, context: AlertContext): Promise<void> => 
         });
         logger.info(`Email alert sent for ${alert.name}`);
       } catch (_error: unknown) {
-        logger.error('Failed to send email alert', _error);
+        logger.error('Failed to send email alert', _error as string | undefined);
       }
     }
 
@@ -332,7 +332,7 @@ const sendAlert = async (alert: Alert, context: AlertContext): Promise<void> => 
 
         logger.info(`Webhook alert sent for ${alert.name}`);
       } catch (_error: unknown) {
-        logger.error('Failed to send webhook alert', _error);
+        logger.error('Failed to send webhook alert', _error as string | undefined);
       }
     }
 
@@ -389,7 +389,7 @@ const checkAlerts = async (): Promise<void> => {
           });
         }
       } catch (_error: unknown) {
-        logger.error(`Failed to check alert ${alert.name}`, _error);
+        logger.error(`Failed to check alert ${alert.name}`, _error as string | undefined);
       }
     }
   });
@@ -511,13 +511,13 @@ export const startAlertMonitoring = (): void => {
 
   // Initial check
   checkAlerts().catch((error: unknown) => {
-    logger.error('Initial alert check failed', error);
+    logger.error('Initial alert check failed', error as string | undefined);
   });
 
   // Set up recurring checks
   alertInterval = setInterval(() => {
     checkAlerts().catch((error: unknown) => {
-      logger.error('Alert check failed', error);
+      logger.error('Alert check failed', error as AlertContext);
     });
   }, ALERT_CHECK_INTERVAL);
 };

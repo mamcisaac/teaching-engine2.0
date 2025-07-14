@@ -22,7 +22,7 @@ export function validateUnitPlan(data: UnitPlanFormData): ValidationResult {
     errors.title = 'Unit title is required';
   }
 
-  if (data.longRangePlanId === 0) {
+  if (data.longRangePlanId === '0') {
     errors.longRangePlanId = 'Long-range plan selection is required';
   }
 
@@ -108,7 +108,7 @@ export function validateLessonPlan(data: LessonPlanFormData): ValidationResult {
     errors.title = 'Lesson title is required';
   }
 
-  if (data.unitPlanId === 0) {
+  if (data.unitPlanId === '0') {
     errors.unitPlanId = 'Unit plan selection is required';
   }
 

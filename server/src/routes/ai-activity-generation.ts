@@ -211,7 +211,7 @@ router.post('/save', authMiddleware, async (req: Request, res: Response): Promis
     });
     return;
   } catch (_error) {
-    logger.error('Error saving generated activity:', _error);
+    logger.error('Error saving generated activity:', _error as string | undefined);
     res.status(500).json({
       success: false,
       error: 'Failed to save generated activity',

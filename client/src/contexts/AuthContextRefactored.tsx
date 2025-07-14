@@ -98,7 +98,7 @@ export function AuthProvider({ children }: { children: ReactNode }): React.React
           message?: string;
         };
         
-        if (err.response?.data?.error !== null && err.response?.data?.error !== undefined && err.response?.data?.error !== '') {
+        if (err.response?.data?.error !== null && err.response?.data?.error !== undefined && err.response.data.error !== '') {
           errorMessage = err.response.data.error;
         } else if (err.response?.status === 401) {
           errorMessage = 'Invalid email or password';
@@ -158,7 +158,7 @@ export function AuthProvider({ children }: { children: ReactNode }): React.React
       if (success) {
         // Re-verify auth after refresh
         const userData = await checkAuth();
-        return userData.data != null;
+        return userData.data !== null;
       } 
         // Clear auth state on refresh failure
         queryClient.setQueryData(['auth', 'currentUser'], null);

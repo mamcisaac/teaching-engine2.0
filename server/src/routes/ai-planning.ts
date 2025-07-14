@@ -113,7 +113,7 @@ router.get('/status', async (req: Request, res: Response): Promise<void> => {
     res.json(status);
     return;
   } catch (_error) {
-    logger.error('Error checking AI status:', _error);
+    logger.error('Error checking AI status:', _error as string | undefined);
     res.status(500).json({
       available: false,
       error: 'Failed to check AI service status',
@@ -158,7 +158,7 @@ router.post(
       res.json(suggestions);
       return;
     } catch (_error) {
-      logger.error('Error generating long-range goals:', _error);
+      logger.error('Error generating long-range goals:', _error as string | undefined);
       res.status(500).json({ error: 'Failed to generate suggestions' });
       return;
     }
@@ -203,7 +203,7 @@ router.post('/unit/big-ideas', aiRateLimit, async (req: Request, res: Response):
     res.json(suggestions);
     return;
   } catch (_error) {
-    logger.error('Error generating unit big ideas:', _error);
+    logger.error('Error generating unit big ideas:', _error as string | undefined);
     res.status(500).json({ error: 'Failed to generate suggestions' });
     return;
   }
@@ -251,7 +251,7 @@ router.post(
       res.json(suggestions);
       return;
     } catch (_error) {
-      logger.error('Error generating lesson activities:', _error);
+      logger.error('Error generating lesson activities:', _error as string | undefined);
       res.status(500).json({ error: 'Failed to generate suggestions' });
       return;
     }
@@ -294,7 +294,7 @@ router.post(
       res.json(suggestions);
       return;
     } catch (_error) {
-      logger.error('Error generating materials list:', _error);
+      logger.error('Error generating materials list:', _error as string | undefined);
       res.status(500).json({ error: 'Failed to generate suggestions' });
       return;
     }
@@ -335,7 +335,7 @@ router.post(
       res.json(suggestions);
       return;
     } catch (_error) {
-      logger.error('Error generating assessment strategies:', _error);
+      logger.error('Error generating assessment strategies:', _error as string | undefined);
       res.status(500).json({ error: 'Failed to generate suggestions' });
       return;
     }
@@ -378,7 +378,7 @@ router.post(
       res.json(suggestions);
       return;
     } catch (_error) {
-      logger.error('Error generating reflection prompts:', _error);
+      logger.error('Error generating reflection prompts:', _error as string | undefined);
       res.status(500).json({ error: 'Failed to generate suggestions' });
       return;
     }
@@ -422,7 +422,7 @@ router.post(
       res.json({ suggestions });
       return;
     } catch (_error) {
-      logger.error('Error generating curriculum-aligned suggestions:', _error);
+      logger.error('Error generating curriculum-aligned suggestions:', _error as string | undefined);
       res.status(500).json({ error: 'Failed to generate suggestions' });
       return;
     }

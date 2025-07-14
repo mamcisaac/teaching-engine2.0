@@ -453,7 +453,7 @@ export class ErrorReportingService {
     }
 
     // Sanitize user data
-    if (sanitized.user?.email !== null && sanitized.user?.email !== undefined && sanitized.user?.email !== '') {
+    if (sanitized.user?.email !== null && sanitized.user?.email !== undefined && sanitized.user.email !== '') {
       sanitized.user.email = this.maskEmail(sanitized.user.email);
     }
 

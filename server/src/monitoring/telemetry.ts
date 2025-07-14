@@ -86,12 +86,12 @@ export const initTelemetry = async (): Promise<void> => {
  return undefined;
 })
         .catch((error) => {
- logger.error('Error terminating OpenTelemetry', error);
+ logger.error('Error terminating OpenTelemetry', error as string | undefined);
  return undefined;
 });
     });
   } catch (_error) {
-    logger.error('Failed to initialize OpenTelemetry', _error);
+    logger.error('Failed to initialize OpenTelemetry', _error as string | undefined);
   }
 };
 

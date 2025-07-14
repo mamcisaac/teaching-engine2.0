@@ -50,7 +50,7 @@ export function OnboardingFlowOptimized(): React.ReactElement | null {
     }
 
     const updatePosition = (): void => {
-      if (currentStep?.targetElement === null || currentStep?.targetElement === undefined || currentStep?.targetElement === '') {
+      if (currentStep?.targetElement === null || currentStep?.targetElement === undefined || currentStep.targetElement === '') {
         setHighlightPosition(null);
         return;
       }
@@ -133,7 +133,7 @@ return;
 }
 
     const handleClick = (e: MouseEvent): void => {
-      if (currentStep?.targetElement === null || currentStep?.targetElement === undefined || currentStep?.targetElement === '') {
+      if (currentStep?.targetElement === null || currentStep?.targetElement === undefined || currentStep.targetElement === '') {
 return;
 }
       const element = document.querySelector(currentStep.targetElement);
@@ -192,7 +192,7 @@ return null;
           />
 
           {/* Completion message */}
-          {(state.currentFlow?.completionMessage !== null && state.currentFlow?.completionMessage !== undefined && state.currentFlow?.completionMessage !== '') &&
+          {(state.currentFlow?.completionMessage !== null && state.currentFlow?.completionMessage !== undefined && state.currentFlow.completionMessage !== '') &&
             state.currentStepIndex === state.currentFlow.steps.length - 1 ? (
               <OnboardingProgress completionMessage={state.currentFlow.completionMessage} />
             ) : null}

@@ -157,7 +157,7 @@ export async function login(req: Request, res: Response, next: NextFunction): Pr
         userId: user.id,
         email: user.email,
         ip: req.ip,
-      },
+      } as Record<string, unknown>,
       'User logged in successfully',
     );
 

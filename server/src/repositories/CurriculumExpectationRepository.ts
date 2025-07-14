@@ -115,7 +115,7 @@ export class CurriculumExpectationRepository {
         hasMore: skip + take < total,
       };
     } catch (error) {
-      logger.error('Error searching curriculum expectations:', error);
+      logger.error('Error searching curriculum expectations:', error as string | undefined);
       throw error;
     }
   }
@@ -127,7 +127,7 @@ export class CurriculumExpectationRepository {
       });
       return expectation;
     } catch (error) {
-      logger.error('Error finding curriculum expectation by code:', error);
+      logger.error('Error finding curriculum expectation by code:', error as string | undefined);
       throw error;
     }
   }
@@ -143,7 +143,7 @@ export class CurriculumExpectationRepository {
       });
       return expectations;
     } catch (error) {
-      logger.error('Error finding curriculum expectations by subject and grade:', error);
+      logger.error('Error finding curriculum expectations by subject and grade:', error as string | undefined);
       throw error;
     }
   }
@@ -198,7 +198,7 @@ export class CurriculumExpectationRepository {
       logger.info(`Bulk created ${result.count} curriculum expectations`);
       return result.count;
     } catch (error) {
-      logger.error('Error bulk creating curriculum expectations:', error);
+      logger.error('Error bulk creating curriculum expectations:', error as string | undefined);
       throw error;
     }
   }
@@ -214,7 +214,7 @@ export class CurriculumExpectationRepository {
       logger.info(`Deleted ${result.count} expectations for ${subject} grade ${grade}`);
       return result.count;
     } catch (error) {
-      logger.error('Error deleting curriculum expectations:', error);
+      logger.error('Error deleting curriculum expectations:', error as string | undefined);
       throw error;
     }
   }

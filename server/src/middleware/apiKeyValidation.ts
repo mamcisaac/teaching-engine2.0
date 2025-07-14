@@ -73,7 +73,7 @@ export async function validateApiKey(
     next();
   } catch (error: unknown) {
     // Handle unexpected errors
-    logger.error(error as Error, 'Authentication error');
+    logger.error(error as string | Record<string, unknown>, 'Authentication error');
 
     res.status(500).json({
       error: 'Internal server error during authentication',

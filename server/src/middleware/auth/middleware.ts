@@ -27,7 +27,7 @@ export async function authenticate(
     // Extract token from Authorization header
     const token = extractTokenFromHeader(req.headers.authorization);
 
-    if (token === null || token === undefined || token === '') {
+    if (!token) {
       throw new AuthenticationError('No authentication token provided');
     }
 
@@ -45,7 +45,7 @@ export async function authenticate(
       },
     });
 
-    if (user === null || user === undefined) {
+    if (!user) {
       throw new AuthenticationError('User not found');
     }
 
@@ -63,7 +63,7 @@ export async function authenticate(
     if (_error instanceof AuthenticationError) {
       next(_error);
     } else {
-      logger.error('Authentication error:', _error as Error);
+      logger.error('Authentication error:', _error as string | undefined);
       next(new AuthenticationError('Authentication failed'));
     }
   }
@@ -135,7 +135,7 @@ export async function optionalAuthenticate(
     next();
   } catch (_error: unknown) {
     // Log error but continue without authentication
-    logger.debug('Optional authentication failed:', _error as Error);
+    logger.debug('Optional authentication failed:', _error as string | undefined);
     next();
   }
 }

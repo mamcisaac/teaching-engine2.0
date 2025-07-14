@@ -106,7 +106,7 @@ export function useETFOLessonPlanForm({
         await onSave(data);
       }
     },
-    enabled: (editingId !== null && editingId !== undefined && editingId !== '') && (autoSaveData !== null && autoSaveData !== undefined) && (onSave !== null && onSave !== undefined),
+    enabled: (editingId !== null && editingId !== undefined && editingId !== '') && (autoSaveData !== null && autoSaveData !== undefined) && (onSave !== undefined),
     delay: 30000, // 30 seconds
   });
 

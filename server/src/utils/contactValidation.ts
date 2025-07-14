@@ -32,7 +32,7 @@ export interface ContactValidationResult {
  * Validates and formats phone numbers supporting multiple international formats
  */
 export function validatePhoneNumber(phone: string): PhoneValidationResult {
-  if (!phone || phone === '' || typeof phone !== 'string') {
+  if (!phone) {
     return {
       isValid: false,
       errors: ['Phone number is required'],

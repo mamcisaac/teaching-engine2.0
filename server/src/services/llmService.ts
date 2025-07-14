@@ -88,7 +88,7 @@ export class LLMService extends BaseService {
     try {
       const apiKey = process.env.OPENAI_API_KEY;
 
-      if (!apiKey || apiKey === '') {
+      if (!apiKey) {
         this.logger.warn('OpenAI API key not provided. LLM features will be disabled.');
         return;
       }
@@ -117,7 +117,7 @@ export class LLMService extends BaseService {
    * Check if the service is ready for content generation
    */
   public isReady(): boolean {
-    return this.openaiClient !== null && this.openaiClient !== undefined;
+    return this.openaiClient !== null;
   }
 
   /**
