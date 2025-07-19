@@ -1,5 +1,5 @@
-import type { FormEvent, ChangeEvent } from 'react';
 import { useState, useCallback } from 'react';
+import type { FormEvent, ChangeEvent } from 'react';
 import type { z } from 'zod';
 
 export interface UseFormOptions<T> {
@@ -60,7 +60,7 @@ return undefined;
 
       try {
         // For object schemas, try to get the field schema
-        if ('shape' in validationSchema && validationSchema.shape) {
+        if ('shape' in validationSchema && validationSchema.shape !== null) {
           const fieldSchema = (validationSchema.shape as Record<string, z.ZodSchema>)[name];
           if (fieldSchema !== undefined && 'parse' in fieldSchema) {
             fieldSchema.parse(value);
@@ -75,7 +75,7 @@ return undefined;
         return undefined;
       } catch (error: unknown) {
         if (
-          error &&
+          error !== null &&
           typeof error === 'object' &&
           'errors' in error &&
           Array.isArray((error as { errors: unknown[] }).errors)
@@ -100,7 +100,7 @@ return true;
       return true;
     } catch (error: unknown) {
       if (
-        error &&
+        error !== null &&
         typeof error === 'object' &&
         'errors' in error &&
         Array.isArray((error as { errors: unknown[] }).errors)
@@ -229,15 +229,15 @@ return true;
       value: values[name],
       onChange: handleChange,
       onBlur: handleBlur,
-      'aria-invalid': (errors[String(name)] !== null && errors[String(name)] !== undefined && errors[String(name)] !== ''),
-      'aria-describedby': (errors[String(name)] !== null && errors[String(name)] !== undefined && errors[String(name)] !== '') ? `${String(name)}-error` : undefined,
+      'aria-invalid': !!errors[String(name)],
+      'aria-describedby': errors[String(name)] ? `${String(name)}-error` : undefined,
     }),
     [values, handleChange, handleBlur, errors],
   );
 
   // Check if field has error and is touched
   const getFieldError = useCallback(
-    (name: string) => touched[name] && errors[name]  ? errors[name] : undefined,
+    (name: string) => touched[name] && errors[name] ? errors[name] : undefined,
     [touched, errors],
   );
 

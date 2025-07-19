@@ -1,5 +1,5 @@
 import { ChevronDown, ChevronUp, Eye, EyeOff } from 'lucide-react';
-import type { ReactNode} from 'react';
+import type { ReactNode } from 'react';
 import React, { useState } from 'react';
 
 import { cn } from '../../lib/utils';
@@ -52,11 +52,11 @@ export function CollapsibleSection({
           </CardTitle>
           <Button
             className="h-8 w-8 p-0"
+            size="sm"
+            variant="ghost"
             onClick={(): void => {
  setIsExpanded(!isExpanded); 
 }}
-            size="sm"
-            variant="ghost"
           >
             {isExpanded ? (
               <ChevronUp className="h-4 w-4" />
@@ -167,11 +167,11 @@ export function FormPreview({ data, onEdit, className }: FormPreviewProps): Reac
           <div className="flex gap-2">
             <Button
               className="h-8"
+              size="sm"
+              variant="ghost"
               onClick={(): void => {
  setShowAll(!showAll); 
 }}
-              size="sm"
-              variant="ghost"
             >
               {showAll ? (
                 <>
@@ -187,9 +187,9 @@ export function FormPreview({ data, onEdit, className }: FormPreviewProps): Reac
             </Button>
             <Button
               className="h-8"
-              onClick={onEdit}
               size="sm"
               variant="outline"
+              onClick={onEdit}
             >
               Edit
             </Button>
@@ -200,7 +200,7 @@ export function FormPreview({ data, onEdit, className }: FormPreviewProps): Reac
       <CardContent>
         <div className="space-y-4">
           {Object.entries(data)
-            .filter(([key, value]) => value && (showAll || key === 'title' || key === 'description'))
+            .filter(([key, value]) => value !== null && (showAll || key === 'title' || key === 'description'))
             .map(([key, value]) => (
               <div key={key}>
                 <h4 className="font-medium text-sm text-gray-700 capitalize mb-1">

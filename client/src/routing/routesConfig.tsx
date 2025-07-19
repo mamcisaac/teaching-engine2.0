@@ -1,23 +1,23 @@
-import type { ComponentType } from 'react';
 import { lazy } from 'react';
+import type { ComponentType } from 'react';
 import { Navigate } from 'react-router-dom';
 
 import { ETFOLevel } from '../hooks/useWorkflowState';
 
 // Lazy load pages
 const LoginPage = lazy(() => import('../pages/LoginPage').then(module => ({ default: module.LoginPage })));
-const LongRangePlanPage = lazy(() => import('../pages/LongRangePlanPage'));
-const UnitPlansPage = lazy(() => import('../pages/UnitPlansPage'));
-const ETFOLessonPlanPage = lazy(() => import('../pages/ETFOLessonPlanPage'));
-const QuickLessonPage = lazy(() => import('../pages/QuickLessonPage'));
-const CurriculumExpectationsPage = lazy(() => import('../pages/CurriculumExpectationsPage'));
-const CurriculumImportPage = lazy(() => import('../pages/CurriculumImportPage'));
-const DaybookPage = lazy(() => import('../pages/DaybookPage'));
-const PlanningDashboard = lazy(() => import('../pages/PlanningDashboard'));
-const ParentNewsletterPage = lazy(() => import('../pages/ParentNewsletterPage'));
-const HelpPage = lazy(() => import('../pages/HelpPage'));
-const TemplatesPage = lazy(() => import('../pages/TemplatesPage'));
-const CalendarPlanningPage = lazy(() => import('../pages/planning/CalendarPlanningPage'));
+const LongRangePlanPage = lazy(() => import('../pages/LongRangePlanPage').then(module => ({ default: module.LongRangePlanPage })));
+const UnitPlansPage = lazy(() => import('../pages/UnitPlansPage').then(module => ({ default: module.UnitPlansPage })));
+const ETFOLessonPlanPage = lazy(() => import('../pages/ETFOLessonPlanPage').then(module => ({ default: module.ETFOLessonPlanPage })));
+const QuickLessonPage = lazy(() => import('../pages/QuickLessonPage').then(module => ({ default: module.QuickLessonPage })));
+const CurriculumExpectationsPage = lazy(() => import('../pages/CurriculumExpectationsPage').then(module => ({ default: module.CurriculumExpectationsPage })));
+const CurriculumImportPage = lazy(() => import('../pages/CurriculumImportPage').then(module => ({ default: module.CurriculumImportPage })));
+const DaybookPage = lazy(() => import('../pages/DaybookPage').then(module => ({ default: module.DaybookPage })));
+const PlanningDashboard = lazy(() => import('../pages/PlanningDashboard').then(module => ({ default: module.PlanningDashboard })));
+const ParentNewsletterPage = lazy(() => import('../pages/ParentNewsletterPage').then(module => ({ default: module.ParentNewsletterPage })));
+const HelpPage = lazy(() => import('../pages/HelpPage').then(module => ({ default: module.HelpPage })));
+const TemplatesPage = lazy(() => import('../pages/TemplatesPage').then(module => ({ default: module.TemplatesPage })));
+const CalendarPlanningPage = lazy(() => import('../pages/planning/CalendarPlanningPage').then(module => ({ default: module.CalendarPlanningPage })));
 
 export interface RouteConfig {
   path?: string;

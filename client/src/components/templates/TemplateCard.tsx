@@ -105,8 +105,8 @@ export function TemplateCard({
         <div className="flex flex-wrap gap-1 mb-4">
           {template.tags.slice(0, 3).map((tag, _index) => (
             <span
-              className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full"
               key={tag}
+              className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full"
             >
               {tag}
             </span>
@@ -123,31 +123,31 @@ export function TemplateCard({
       <div className="flex gap-2">
         <Button
           className="flex-1"
+          size="sm"
+          variant="outline"
           onClick={() => {
  onPreview(template); 
 }}
-          size="sm"
-          variant="outline"
         >
           Preview
         </Button>
         <Button
           className="flex-1"
+          size="sm"
           onClick={() => {
  onApply(template); 
 }}
-          size="sm"
         >
           Use Template
         </Button>
         {onDuplicate !== undefined && (
           <Button
-            onClick={() => {
- onDuplicate(template); 
-}}
             size="sm"
             title="Duplicate template"
             variant="ghost"
+            onClick={() => {
+ onDuplicate(template); 
+}}
           >
             <Copy className="h-4 w-4" />
           </Button>

@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 
 import type { KeyboardShortcut } from '../../contexts/KeyboardShortcutsContext';
 import { useKeyboardShortcut } from '../../hooks/useKeyboardShortcut';
 
-import type { ButtonProps } from './Button';
 import { Button } from './Button';
+import type { ButtonProps } from './Button';
 import { ShortcutHint } from './ShortcutHint';
 
 export interface ButtonWithShortcutProps extends ButtonProps {
@@ -26,7 +26,7 @@ export interface ButtonWithShortcutProps extends ButtonProps {
  *   Save
  * </ButtonWithShortcut>
  */
-export const ButtonWithShortcut = React.forwardRef<HTMLButtonElement, ButtonWithShortcutProps>(
+export const ButtonWithShortcut = forwardRef<HTMLButtonElement, ButtonWithShortcutProps>(
   (
     {
       shortcut,
@@ -41,15 +41,15 @@ export const ButtonWithShortcut = React.forwardRef<HTMLButtonElement, ButtonWith
     ref,
   ): React.ReactElement => {
     // Register keyboard shortcut if provided
-    if (shortcut?.key !== null && shortcut?.key !== undefined && shortcut.key !== '') {
+    if (shortcut?.key !== null && shortcut?.key !== undefined && shortcut?.key !== '') {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       useKeyboardShortcut(
         (_e): void => {
           if (disabled !== true) {
             // Call the shortcut handler or the regular onClick
-            if (onShortcutTrigger) {
+            if (onShortcutTrigger !== null && onShortcutTrigger !== undefined) {
               onShortcutTrigger();
-            } else if (onClick) {
+            } else if (onClick !== null && onClick !== undefined) {
               const syntheticEvent = new MouseEvent(
                 'click',
               ) as unknown as React.MouseEvent<HTMLButtonElement>;
@@ -65,16 +65,16 @@ export const ButtonWithShortcut = React.forwardRef<HTMLButtonElement, ButtonWith
           shift: shortcut.shift,
           description: shortcutDescription ?? shortcut.description ?? 'Button action',
           category: shortcut.category ?? 'other',
-          enabled: disabled !== true,
+          enabled: !disabled,
         },
       );
     }
 
     return (
-      <Button aria-label="Click button" onClick={onClick} ref={ref} {...props}>
+      <Button ref={ref} aria-label="Click button" onClick={onClick} {...props}>
         <span className="flex items-center gap-2">
           {children}
-          {shortcut && showShortcutHint && (
+          {shortcut !== null && shortcut !== undefined && showShortcutHint === true && (
             <ShortcutHint className="ml-1" position="inline" shortcut={shortcut} size="xs" />
           )}
         </span>

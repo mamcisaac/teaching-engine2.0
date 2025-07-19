@@ -8,8 +8,8 @@ import { Dialog } from '../components/Dialog';
 import { AISuggestionPanel } from '../components/planning/AISuggestionPanel';
 import { BlankTemplateQuickActions } from '../components/printing/BlankTemplatePrinter';
 import { Button } from '../components/ui/Button';
-import type { AISuggestion } from '../hooks/useAIPlanningAssistant';
 import { useAIPlanningAssistant } from '../hooks/useAIPlanningAssistant';
+import type { AISuggestion } from '../hooks/useAIPlanningAssistant';
 
 interface LongRangePlan {
   id: string;
@@ -53,7 +53,7 @@ function isCreateLongRangePlanResponse(data: unknown): data is CreateLongRangePl
   return typeof data === 'object' && data !== null && 'id' in data && 'title' in data;
 }
 
-export default function LongRangePlanPage(): React.ReactElement {
+export function LongRangePlanPage(): React.ReactElement {
   const queryClient = useQueryClient();
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [selectedYear, setSelectedYear] = useState(() => {
@@ -147,10 +147,10 @@ export default function LongRangePlanPage(): React.ReactElement {
           <select
             className="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
             id="year-select"
+            value={selectedYear}
             onChange={(e) => {
  setSelectedYear(e.target.value); 
 }}
-            value={selectedYear}
           >
             {[0, 1, 2].map((offset, _index) => {
               const year = new Date().getFullYear() - 1 + offset;
@@ -218,8 +218,8 @@ export default function LongRangePlanPage(): React.ReactElement {
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {plans.map((plan: LongRangePlan, _index) => (
             <Link
-              className="block bg-white rounded-lg shadow hover:shadow-lg transition-shadow border border-gray-200"
               key={plan.id}
+              className="block bg-white rounded-lg shadow hover:shadow-lg transition-shadow border border-gray-200"
               to={`/planner/long-range/${plan.id}/units`}
             >
               <div className="p-6">
@@ -263,8 +263,8 @@ export default function LongRangePlanPage(): React.ReactElement {
                   <div className="mt-4 flex flex-wrap gap-2">
                     {plan.themes.slice(0, 3).map((theme, _index) => (
                       <span
-                        className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-gray-100 text-gray-700"
                         key={_index}
+                        className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-gray-100 text-gray-700"
                       >
                         {theme}
                       </span>
@@ -281,7 +281,7 @@ export default function LongRangePlanPage(): React.ReactElement {
       )}
 
       {/* Create Plan Modal */}
-      <Dialog onOpenChange={setIsCreateModalOpen} open={isCreateModalOpen}>
+      <Dialog open={isCreateModalOpen} onOpenChange={setIsCreateModalOpen}>
         <div className="p-6 max-w-lg">
           <h3 className="text-lg font-semibold mb-4">Create Long-Range Plan</h3>
 
@@ -289,15 +289,15 @@ export default function LongRangePlanPage(): React.ReactElement {
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="plan-title">Plan Title *</label>
               <input
+                required
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 id="plan-title"
+                placeholder="e.g., Grade 3 Mathematics Year Plan"
+                type="text"
+                value={formData.title}
                 onChange={(e) => {
  setFormData({ ...formData, title: e.target.value }); 
 }}
-                placeholder="e.g., Grade 3 Mathematics Year Plan"
-                required
-                type="text"
-                value={formData.title}
               />
             </div>
 
@@ -305,15 +305,15 @@ export default function LongRangePlanPage(): React.ReactElement {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="plan-subject">Subject *</label>
                 <input
+                  required
                   className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                   id="plan-subject"
+                  placeholder="e.g., Mathematics"
+                  type="text"
+                  value={formData.subject}
                   onChange={(e) => {
  setFormData({ ...formData, subject: e.target.value }); 
 }}
-                  placeholder="e.g., Mathematics"
-                  required
-                  type="text"
-                  value={formData.subject}
                 />
               </div>
 
@@ -322,10 +322,10 @@ export default function LongRangePlanPage(): React.ReactElement {
                 <select
                   className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                   id="plan-grade"
+                  value={formData.grade}
                   onChange={(e) => {
  setFormData({ ...formData, grade: Number(e.target.value) }); 
 }}
-                  value={formData.grade}
                 >
                   {Array.from({ length: 8 }, (_, i) => (
                     <option key={i + 1} value={i + 1}>
@@ -341,10 +341,10 @@ export default function LongRangePlanPage(): React.ReactElement {
               <select
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 id="plan-term"
+                value={formData.term}
                 onChange={(e) => {
  setFormData({ ...formData, term: e.target.value }); 
 }}
-                value={formData.term}
               >
                 <option value="Full Year">Full Year</option>
                 <option value="Term 1">Term 1 (Sep-Jan)</option>
@@ -359,12 +359,12 @@ export default function LongRangePlanPage(): React.ReactElement {
               <textarea
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 id="plan-description"
-                onChange={(e) => {
- setFormData({ ...formData, description: e.target.value }); 
-}}
                 placeholder="Brief overview of the year plan..."
                 rows={3}
                 value={formData.description}
+                onChange={(e) => {
+ setFormData({ ...formData, description: e.target.value }); 
+}}
               />
             </div>
 
@@ -373,20 +373,20 @@ export default function LongRangePlanPage(): React.ReactElement {
               <textarea
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 id="plan-goals"
-                onChange={(e) => {
- setFormData({ ...formData, goals: e.target.value }); 
-}}
                 placeholder="Overall learning goals for the year..."
                 rows={3}
                 value={formData.goals}
+                onChange={(e) => {
+ setFormData({ ...formData, goals: e.target.value }); 
+}}
               />
               {formData.subject && formData.grade && (
                 <button
                   className="mt-2 text-sm text-indigo-600 hover:text-indigo-500"
+                  type="button"
                   onClick={() => {
  setShowAISuggestions(!showAISuggestions); 
 }}
-                  type="button"
                 >
                   {showAISuggestions ? 'Hide' : 'Show'} AI Suggestions
                 </button>
@@ -398,6 +398,8 @@ export default function LongRangePlanPage(): React.ReactElement {
                 description="Get AI-powered suggestions for your long-range plan goals"
                 error={generateLongRangeGoals.error}
                 isGenerating={isGenerating}
+                suggestions={aiGoalSuggestions}
+                title="AI Goal Suggestions"
                 onAcceptAll={() => {
                   if (aiGoalSuggestions?.suggestions !== null && aiGoalSuggestions.suggestions.length > 0) {
                     setFormData({
@@ -422,8 +424,6 @@ export default function LongRangePlanPage(): React.ReactElement {
                     setAiGoalSuggestions(result);
                   })();
                 }}
-                suggestions={aiGoalSuggestions}
-                title="AI Goal Suggestions"
               />
             )}
 
@@ -434,6 +434,8 @@ export default function LongRangePlanPage(): React.ReactElement {
               <input
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 id="plan-themes"
+                placeholder="Type a theme and press Enter..."
+                type="text"
                 onKeyDown={(e) => {
                   if (e.key === 'Enter') {
                     e.preventDefault();
@@ -444,18 +446,17 @@ export default function LongRangePlanPage(): React.ReactElement {
                     }
                   }
                 }}
-                placeholder="Type a theme and press Enter..."
-                type="text"
               />
               <div className="mt-2 flex flex-wrap gap-2">
                 {formData.themes.map((theme, index) => (
                   <span
-                    className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-indigo-100 text-indigo-700"
                     key={index}
+                    className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-indigo-100 text-indigo-700"
                   >
                     {theme}
                     <button
                       className="ml-1 hover:text-indigo-900"
+                      type="button"
                       onClick={() => {
  setFormData({
                           ...formData,
@@ -463,7 +464,6 @@ export default function LongRangePlanPage(): React.ReactElement {
                         }); 
 }
                       }
-                      type="button"
                     >
                       ×
                     </button>
@@ -479,12 +479,12 @@ export default function LongRangePlanPage(): React.ReactElement {
               <textarea
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 id="plan-questions"
-                onChange={(e) => {
- setFormData({ ...formData, overarchingQuestions: e.target.value }); 
-}}
                 placeholder="Big questions that will guide the year..."
                 rows={2}
                 value={formData.overarchingQuestions}
+                onChange={(e) => {
+ setFormData({ ...formData, overarchingQuestions: e.target.value }); 
+}}
               />
             </div>
 
@@ -495,12 +495,12 @@ export default function LongRangePlanPage(): React.ReactElement {
               <textarea
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 id="plan-assessment"
-                onChange={(e) => {
- setFormData({ ...formData, assessmentOverview: e.target.value }); 
-}}
                 placeholder="Overall assessment strategy for the year..."
                 rows={2}
                 value={formData.assessmentOverview}
+                onChange={(e) => {
+ setFormData({ ...formData, assessmentOverview: e.target.value }); 
+}}
               />
             </div>
 
@@ -509,12 +509,12 @@ export default function LongRangePlanPage(): React.ReactElement {
               <textarea
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 id="plan-resources"
-                onChange={(e) => {
- setFormData({ ...formData, resourceNeeds: e.target.value }); 
-}}
                 placeholder="Materials, technology, and resources needed..."
                 rows={2}
                 value={formData.resourceNeeds}
+                onChange={(e) => {
+ setFormData({ ...formData, resourceNeeds: e.target.value }); 
+}}
               />
             </div>
 
@@ -525,12 +525,12 @@ export default function LongRangePlanPage(): React.ReactElement {
               <textarea
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 id="plan-professional-goals"
-                onChange={(e) => {
- setFormData({ ...formData, professionalGoals: e.target.value }); 
-}}
                 placeholder="Your professional development goals for this year..."
                 rows={2}
                 value={formData.professionalGoals}
+                onChange={(e) => {
+ setFormData({ ...formData, professionalGoals: e.target.value }); 
+}}
               />
             </div>
 

@@ -131,7 +131,7 @@ return;
       );
 
       // Process units in batch
-      if (unitOps.length > 0 && onBatchUnitCreate) {
+      if (unitOps.length > 0 && onBatchUnitCreate !== undefined) {
         const unitData = unitOps.map((op, _index) => op.data as UnitPlanFormData);
         await onBatchUnitCreate(unitData);
 
@@ -146,7 +146,7 @@ return;
       }
 
       // Process lessons in batch
-      if (lessonOps.length > 0 && onBatchLessonCreate) {
+      if (lessonOps.length > 0 && onBatchLessonCreate !== undefined) {
         const lessonData = lessonOps.map((op, _index) => op.data as LessonPlanFormData);
         await onBatchLessonCreate(lessonData);
 
@@ -246,8 +246,8 @@ return;
   const handleFileImport = async (event: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
     const file = event.target.files?.[0];
     if (!file) {
-return;
-}
+      return;
+    }
 
     try {
       const text = await file.text();
@@ -279,11 +279,11 @@ return;
 
       <Tabs
         className="space-y-6"
+        value={activeTab}
         onValueChange={(value) => {
  setActiveTab(value as 'batch' | 'templates' | 'import' | 'wizard'); 
 }
         }
-        value={activeTab}
       >
         <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger className="flex items-center gap-2" value="batch">
@@ -370,8 +370,8 @@ return;
                 <div className="space-y-2 max-h-96 overflow-y-auto">
                   {batchOperations.map((operation, _index) => (
                     <div
-                      className="flex items-center justify-between p-3 border rounded-lg"
                       key={operation.id}
+                      className="flex items-center justify-between p-3 border rounded-lg"
                     >
                       <div className="flex items-center gap-3">
                         <Badge variant={operation.type === 'unit' ? 'default' : 'secondary'}>
@@ -388,22 +388,24 @@ return;
                       </div>
                       <div className="flex items-center gap-2">
                         <Badge
-                          variant={
-                            operation.status === 'completed'
-                              ? 'default'
-                              : operation.status === 'error'
-                                ? 'destructive'
-                                : 'secondary'
-                          }
+                          variant={((): 'default' | 'destructive' | 'secondary' => {
+                            if (operation.status === 'completed') {
+                              return 'default';
+                            }
+                            if (operation.status === 'error') {
+                              return 'destructive';
+                            }
+                            return 'secondary';
+                          })()}
                         >
                           {operation.status}
                         </Badge>
                         <Button
+                          size="sm"
+                          variant="ghost"
                           onClick={() => {
  removeBatchOperation(operation.id); 
 }}
-                          size="sm"
-                          variant="ghost"
                         >
                           Remove
                         </Button>
@@ -424,13 +426,15 @@ return;
               </CardHeader>
               <CardContent>
                 <UnitPlanForm
+                  showLongRangePlanSelector
                   allLongRangePlans={longRangePlans}
                   longRangePlan={null}
-                  onCancel={() => {}}
+                  onCancel={() => {
+                    // No-op: Quick add forms don't need cancel handling
+                  }}
                   onSubmit={(data) => {
                     addBatchOperation('unit', data);
                   }}
-                  showLongRangePlanSelector
                 />
               </CardContent>
             </Card>
@@ -442,13 +446,15 @@ return;
               </CardHeader>
               <CardContent>
                 <LessonPlanForm
+                  showUnitPlanSelector
                   allUnitPlans={unitPlans}
-                  onCancel={() => {}}
+                  unitPlan={null}
+                  onCancel={() => {
+                    // No-op: Quick add forms don't need cancel handling
+                  }}
                   onSubmit={(data) => {
                     addBatchOperation('lesson', data);
                   }}
-                  showUnitPlanSelector
-                  unitPlan={null}
                 />
               </CardContent>
             </Card>
@@ -472,10 +478,10 @@ return;
                   </p>
                   <Button
                     className="w-full"
+                    variant="outline"
                     onClick={() => {
  generateTemplate('unit'); 
 }}
-                    variant="outline"
                   >
                     <Download className="h-4 w-4 mr-2" />
                     Download Unit Template
@@ -489,10 +495,10 @@ return;
                   </p>
                   <Button
                     className="w-full"
+                    variant="outline"
                     onClick={() => {
  generateTemplate('lesson'); 
 }}
-                    variant="outline"
                   >
                     <Download className="h-4 w-4 mr-2" />
                     Download Lesson Template
@@ -528,10 +534,10 @@ return;
                   accept=".json"
                   className="mt-2"
                   id="file-import"
+                  type="file"
                   onChange={(e): void => {
  void handleFileImport(e); 
 }}
-                  type="file"
                 />
                 <p className="text-sm text-gray-600 mt-1">
                   Upload a JSON file containing unit plans or lesson plans

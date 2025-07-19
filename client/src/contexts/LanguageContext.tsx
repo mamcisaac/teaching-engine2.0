@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react';
 import { createContext, useContext, useState, useEffect } from 'react';
+import type { ReactNode } from 'react';
 
 interface LanguageContextType {
   language: string;
@@ -389,7 +389,7 @@ interface LanguageProviderProps {
 }
 
 export function LanguageProvider({ children }: LanguageProviderProps): React.ReactElement {
-  const [language, setLanguageState] = useState<string>('en');
+  const [language, setLanguageState] = useState('en');
 
   useEffect(() => {
     return () => { // Cleanup
@@ -397,7 +397,7 @@ export function LanguageProvider({ children }: LanguageProviderProps): React.Rea
 
     // Load saved language preference from localStorage
     const savedLanguage = localStorage.getItem('preferredLanguage');
-    if (savedLanguage !== null && savedLanguage !== undefined && savedLanguage !== '' && (savedLanguage === 'en' || savedLanguage === 'fr')) {
+    if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'fr')) {
       setLanguageState(savedLanguage as 'en' | 'fr');
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
@@ -409,7 +409,15 @@ export function LanguageProvider({ children }: LanguageProviderProps): React.Rea
   };
 
   const t = (key: string, fallback?: string, substitutions?: string[]): string => {
-    let translation = translations[language][key] !== null && translations[language][key] !== undefined && translations[language][key] !== '' ? translations[language][key] : (fallback !== null && fallback !== undefined && fallback !== '' ? fallback : key);
+    let translation = ((): string => {
+      if (translations[language][key]) {
+        return translations[language][key];
+      }
+      if (fallback) {
+        return fallback;
+      }
+      return key;
+    })();
 
     // Handle string interpolation for placeholders like {0}, {1}, etc.
     if (substitutions && substitutions.length > 0) {
@@ -423,7 +431,7 @@ export function LanguageProvider({ children }: LanguageProviderProps): React.Rea
 
   // Helper function to get localized field from an object
   const getLocalizedField = (obj: Record<string, unknown>, field: string): string => {
-    if (obj === null || obj === undefined) {
+    if (obj === null) {
 return '';
 }
 
@@ -450,7 +458,7 @@ return '';
 
 export function useLanguage(): LanguageContextType {
   const context = useContext(LanguageContext);
-  if (context === undefined) {
+  if (context === null) {
     throw new Error('useLanguage must be used within a LanguageProvider');
   }
   return context;

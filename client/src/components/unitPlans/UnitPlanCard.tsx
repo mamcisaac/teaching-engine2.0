@@ -35,7 +35,7 @@ export const UnitPlanCard: React.FC<UnitPlanCardProps> = memo(({ unitPlan: unit,
           </span>
         </div>
 
-        {unit.bigIdeas  && (
+        {unit.bigIdeas && (
           <div className="mb-4">
             <h4 className="text-sm font-medium text-gray-700 mb-1">Big Ideas</h4>
             <p className="text-sm text-gray-600 line-clamp-2">{unit.bigIdeas}</p>

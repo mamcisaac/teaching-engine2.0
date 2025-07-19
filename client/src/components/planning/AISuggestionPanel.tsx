@@ -82,9 +82,9 @@ export function AISuggestionPanel({
           <Button
             className="gap-2"
             disabled={isGenerating}
-            onClick={onGenerate}
             size="sm"
             variant="outline"
+            onClick={onGenerate}
           >
             {isGenerating ? (
               <>
@@ -116,23 +116,23 @@ export function AISuggestionPanel({
             <div className="space-y-2">
               {suggestions.suggestions.map((suggestion, index) => (
                 <div
+                  key={index}
                   className={`p-3 rounded-lg border transition-colors ${
                     acceptedIndices.has(index)
                       ? 'bg-green-50 border-green-300'
                       : 'bg-muted/50 hover:bg-muted'
                   }`}
-                  key={index}
                 >
                   <div className="flex items-start justify-between gap-2">
                     <p className="text-sm flex-1">{suggestion}</p>
                     <div className="flex gap-1">
                       <Button
                         className="h-8 w-8 p-0"
+                        size="sm"
+                        variant="ghost"
                         onClick={() => {
  handleCopy(suggestion, index); 
 }}
-                        size="sm"
-                        variant="ghost"
                       >
                         {copiedIndex === index ? (
                           <Check className="h-4 w-4 text-green-500" />
@@ -143,11 +143,11 @@ export function AISuggestionPanel({
                       {!acceptedIndices.has(index) && (
                         <Button
                           className="h-8 w-8 p-0"
+                          size="sm"
+                          variant="ghost"
                           onClick={() => {
  handleAccept(suggestion, index); 
 }}
-                          size="sm"
-                          variant="ghost"
                         >
                           <Check className="h-4 w-4 text-green-500" />
                         </Button>
