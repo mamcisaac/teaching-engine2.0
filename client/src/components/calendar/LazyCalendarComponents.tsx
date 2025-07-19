@@ -14,7 +14,8 @@ export const BigCalendar = lazy(() =>
 );
 
 // Export the localizer factory separately to avoid importing moment in the main bundle
-export const createMomentLocalizer = (): Promise<DateLocalizer> => import('react-big-calendar').then(async (bigCalendarModule) => {
-    const moment = await import('moment');
-    return bigCalendarModule.momentLocalizer(moment.default);
-  });
+export const createMomentLocalizer = async (): Promise<DateLocalizer> => {
+  const bigCalendarModule = await import('react-big-calendar');
+  const moment = await import('moment');
+  return bigCalendarModule.momentLocalizer(moment.default);
+};

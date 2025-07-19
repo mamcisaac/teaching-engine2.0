@@ -89,7 +89,7 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
       debounce<[string]>((search: string) => {
         setFilters((prev) => {
           const newFilters = { ...prev };
-          if (search) {
+          if (search !== '') {
             newFilters._global = search;
           } else {
             // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
@@ -134,7 +134,7 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
   const handleColumnFilter = useCallback(
     (columnKey: string, value: string) => {
       const newFilters = { ...filters };
-      if (value.trim()) {
+      if (value.trim() !== '') {
         newFilters[columnKey] = value;
       } else {
         delete newFilters[columnKey];
@@ -160,9 +160,9 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
 
   // Generate pagination buttons
   const paginationButtons = useMemo(() => {
-    if (!data) {
-return [];
-}
+    if (data === null) {
+      return [];
+    }
 
     const { totalPages } = data;
     const buttons: (number | string)[] = [];
@@ -227,11 +227,11 @@ return [];
         <div className="flex justify-between items-center">
           <Input
             className="max-w-md"
+            placeholder="Search all columns..."
+            value={globalSearch}
             onChange={(e) => {
  handleGlobalSearch(e.target.value); 
 }}
-            placeholder="Search all columns..."
-            value={globalSearch}
           />
           {data && (
             <div className="text-sm text-gray-500">
@@ -248,14 +248,14 @@ return [];
             <tr>
               {columns.map((column, _index) => (
                 <th
+                  key={column.key as string}
                   className={`px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ${
                     column.sortable === true ? 'cursor-pointer hover:bg-gray-100' : ''
                   }`}
-                  key={column.key as string}
+                  style={{ width: column.width }}
                   onClick={column.sortable === true ? (): void => {
  handleSort(column.key as string); 
 } : undefined}
-                  style={{ width: column.width }}
                 >
                   <div className="flex items-center space-x-1">
                     <span>{column.label}</span>
@@ -268,15 +268,15 @@ return [];
             {/* Filter Row */}
             <tr className="bg-gray-25">
               {columns.map((column, _index) => (
-                <th className="px-6 py-2" key={`filter-${column.key as string}`}>
+                <th key={`filter-${column.key as string}`} className="px-6 py-2">
                   {column.filterable === true && (
                     <Input
                       className="text-sm"
+                      placeholder={`Filter by ${column.label.toLowerCase()}...`}
+                      value={(filters[column.key as string] as string | undefined) ?? ''}
                       onChange={(e) => {
  handleColumnFilter(column.key as string, e.target.value); 
 }}
-                      placeholder={`Filter by ${column.label.toLowerCase()}...`}
-                      value={(filters[column.key as string] as string) || ''}
                     />
                   )}
                 </th>
@@ -290,7 +290,7 @@ return [];
               Array.from({ length: pageSize }).map((_, _index) => (
                 <tr key={`skeleton-${_index}`}>
                   {columns.map((column, _colIndex) => (
-                    <td className="px-6 py-4" key={`skeleton-${_index}-${column.key as string}`}>
+                    <td key={`skeleton-${_index}-${column.key as string}`} className="px-6 py-4">
                       <LoadingSkeleton lines={1} variant="text" />
                     </td>
                   ))}
@@ -304,11 +304,11 @@ return [];
               </tr>
             ) : (
               data?.items.map((item, _index) => (
-                <tr className="hover:bg-gray-50" key={_index}>
+                <tr key={_index} className="hover:bg-gray-50">
                   {columns.map((column, _index) => (
                     <td
-                      className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"
                       key={column.key as string}
+                      className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"
                     >
                       {column.render
                         ? column.render(item[column.key], item)
@@ -332,11 +332,11 @@ return [];
           <div className="flex space-x-1">
             <Button
               disabled={currentPage <= 1}
+              size="sm"
+              variant="outline"
               onClick={() => {
  handlePageChange(currentPage - 1); 
 }}
-              size="sm"
-              variant="outline"
             >
               <ChevronLeft className="h-4 w-4" />
               Previous
@@ -344,26 +344,28 @@ return [];
 
             {paginationButtons.map((page, _index) => (
               <Button
+                key={_index}
                 className={page === '...' ? 'cursor-default' : ''}
                 disabled={page === '...'}
-                key={_index}
-                onClick={() => {
- typeof page === 'number' ? handlePageChange(page) : undefined; 
-}}
                 size="sm"
                 variant={page === currentPage ? 'primary' : 'outline'}
+                onClick={() => {
+                  if (typeof page === 'number') {
+                    handlePageChange(page);
+                  }
+                }}
               >
                 {page}
               </Button>
             ))}
 
             <Button
-              disabled={currentPage >= (data.totalPages || 1)}
+              disabled={currentPage >= data.totalPages}
+              size="sm"
+              variant="outline"
               onClick={() => {
  handlePageChange(currentPage + 1); 
 }}
-              size="sm"
-              variant="outline"
             >
               Next
               <ChevronRight className="h-4 w-4" />
@@ -373,7 +375,7 @@ return [];
       )}
 
       {/* Loading overlay for data fetching */}
-      {isLoading && (
+      {isLoading === true && (
         <div
           className="absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center"
           data-testid="loading-skeleton"

@@ -72,8 +72,8 @@ export class LoadTestRunner {
     for (let i = 0; i < config.virtualUsers; i++) {
       const userDelay = (i / usersPerSecond) * 1000;
 
-      const userPromise = this.delay(userDelay).then(async () => {
-        await this.runVirtualUser(config, endTime, results);
+      const userPromise = this.delay(userDelay).then(() => {
+        return this.runVirtualUser(config, endTime, results);
       });
 
       userPromises.push(userPromise);
@@ -194,8 +194,8 @@ export class LoadTestRunner {
     const p95Index = Math.ceil(sortedResponseTimes.length * 0.95) - 1;
     const p99Index = Math.ceil(sortedResponseTimes.length * 0.99) - 1;
 
-    const p95ResponseTime = sortedResponseTimes[p95Index] || 0;
-    const p99ResponseTime = sortedResponseTimes[p99Index] || 0;
+    const p95ResponseTime = sortedResponseTimes[p95Index] ?? 0;
+    const p99ResponseTime = sortedResponseTimes[p99Index] ?? 0;
 
     const requestsPerSecond = (totalRequests / durationMs) * 1000;
     const errorRate = (errors.length / totalRequests) * 100;

@@ -39,9 +39,11 @@ export function hasProperty<K extends string>(
 export function safeJsonParse<T = unknown>(json: string | null, fallback: T): T {
   try {
     if (json === null || json === '') {
-return fallback;
-}
-    return JSON.parse(json) as T;
+      return fallback;
+    }
+    const parsed: unknown = JSON.parse(json);
+    // Type assertion is unavoidable here but caller should validate
+    return parsed as T;
   } catch {
     return fallback;
   }

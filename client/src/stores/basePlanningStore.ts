@@ -210,9 +210,9 @@ function detectConflicts(
   const localTimestamp = localData.lastModified ?? localData.updatedAt;
   const serverTimestamp = serverData.lastModified ?? serverData.updatedAt;
   
-  if (localTimestamp && serverTimestamp) {
-    const localTime = new Date(localTimestamp as string | number | Date).getTime();
-    const serverTime = new Date(serverTimestamp as string | number | Date).getTime();
+  if (localTimestamp !== null && serverTimestamp !== null) {
+    const localTime = new Date(localTimestamp).getTime();
+    const serverTime = new Date(serverTimestamp).getTime();
     
     // If server has newer changes than our last sync
     if (serverTime > localTime) {
@@ -268,11 +268,12 @@ async function resolveConflicts(
       }
       
       // Save conflict for user review
+      const conflictId = typeof merged.id === 'string' ? merged.id : 'unknown';
       await offlineStorage.saveConflict(
         localData,
         serverData,
         'planning-data',
-        (merged.id ?? 'unknown') as string
+        conflictId
       );
       
       return merged;
@@ -304,7 +305,7 @@ export function createAutoSave(
       const performSave = async (): Promise<void> => {
         const state = store.getState();
         
-        if (state.hasOfflineChanges && state.isSaving !== true) {
+        if (state.hasOfflineChanges === true && state.isSaving !== true) {
           try {
             await saveFunction();
           } catch (error) {

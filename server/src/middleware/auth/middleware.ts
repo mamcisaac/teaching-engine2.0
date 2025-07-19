@@ -27,7 +27,7 @@ export async function authenticate(
     // Extract token from Authorization header
     const token = extractTokenFromHeader(req.headers.authorization);
 
-    if (!token) {
+    if (token === null || token === '') {
       throw new AuthenticationError('No authentication token provided');
     }
 
@@ -45,7 +45,7 @@ export async function authenticate(
       },
     });
 
-    if (!user) {
+    if (user === null) {
       throw new AuthenticationError('User not found');
     }
 
@@ -77,7 +77,7 @@ export function authorize(...allowedRoles: UserRole[]) {
   return (req: Request, _res: Response, next: NextFunction): void => {
     const authReq = req as AuthRequest;
 
-    if (!authReq.user) {
+    if (authReq.user === null) {
       next(new AuthenticationError('User not authenticated')); return;
     }
 
@@ -108,7 +108,7 @@ export async function optionalAuthenticate(
   try {
     const token = extractTokenFromHeader(req.headers.authorization);
 
-    if (token === null || token === undefined || token === '') {
+    if (token === null || token === '') {
       next(); return;
     }
 
@@ -123,11 +123,11 @@ export async function optionalAuthenticate(
       },
     });
 
-    if (user !== null && user !== undefined) {
+    if (user !== null) {
       (req as AuthRequest).user = {
         id: user.id,
         email: user.email,
-        name: (user.name !== null && user.name !== undefined && user.name !== '') ? user.name : '',
+        name: (user.name !== null && user.name !== '') ? user.name : '',
         role: user.role as UserRole,
       };
     }
@@ -150,7 +150,7 @@ export function requireOrganization(req: Request, _res: Response, next: NextFunc
     next(new AuthenticationError('User not authenticated')); return;
   }
 
-  if (authReq.user.organizationId === null || authReq.user.organizationId === undefined) {
+  if (authReq.user.organizationId === null) {
     next(new ForbiddenError('Organization membership required')); return;
   }
 
