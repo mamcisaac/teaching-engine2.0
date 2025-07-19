@@ -82,25 +82,32 @@ containerStyle.width = width;
           case 'avatar':
             return (
               <SkeletonBox
-                key={index}
                 className={cn(
                   'rounded-full flex-shrink-0',
-                  item.size === 'sm' ? 'h-8 w-8' : 
-                  item.size === 'lg' ? 'h-16 w-16' : 'h-12 w-12'
+                  (() => {
+                    if (item.size === 'sm') {
+return 'h-8 w-8';
+}
+                    if (item.size === 'lg') {
+return 'h-16 w-16';
+}
+                    return 'h-12 w-12';
+                  })()
                 )}
                 data-testid="skeleton-avatar"
+                key={index}
               />
             );
           case 'text':
             return (
-              <div key={index} className="flex-1 space-y-2" data-testid="skeleton-text">
+              <div className="flex-1 space-y-2" data-testid="skeleton-text" key={index}>
                 {Array.from({ length: item.lines ?? 2 }).map((_, lineIndex) => (
                   <SkeletonBox
-                    key={lineIndex}
                     className={cn(
                       'h-4',
                       lineIndex === (item.lines ?? 2) - 1 ? 'w-3/4' : 'w-full'
                     )}
+                    key={lineIndex}
                   />
                 ))}
               </div>
@@ -108,21 +115,28 @@ containerStyle.width = width;
           case 'button':
             return (
               <SkeletonBox
-                key={index}
                 className="h-9 rounded-md"
                 data-testid="skeleton-button"
+                key={index}
                 style={{ width: item.width ?? '100px' }}
               />
             );
           case 'image':
             return (
               <SkeletonBox
-                key={index}
                 className={cn(
                   'rounded-lg',
-                  item.size === 'sm' ? 'h-20 w-20' :
-                  item.size === 'lg' ? 'h-48 w-48' : 'h-32 w-32'
+                  (() => {
+                    if (item.size === 'sm') {
+return 'h-20 w-20';
+}
+                    if (item.size === 'lg') {
+return 'h-48 w-48';
+}
+                    return 'h-32 w-32';
+                  })()
                 )}
+                key={index}
               />
             );
           default:
@@ -174,7 +188,7 @@ containerStyle.width = width;
           style={containerStyle}
         >
           {Array.from({ length: rows }).map((_, index) => (
-            <div key={index} className="flex items-center space-x-3" data-testid={`skeleton-row-${index}`}>
+            <div className="flex items-center space-x-3" data-testid={`skeleton-row-${index}`} key={index}>
               <SkeletonBox className="h-10 w-10 rounded-full flex-shrink-0" />
               <div className="flex-1 space-y-2">
                 <SkeletonBox className="h-4 w-3/4" />
@@ -197,19 +211,19 @@ containerStyle.width = width;
           {/* Table Header */}
           <div className="flex space-x-4 mb-4" data-testid="skeleton-table-header">
             {Array.from({ length: columns }).map((_, index) => (
-              <SkeletonBox key={index} className="h-4 flex-1" />
+              <SkeletonBox className="h-4 flex-1" key={index} />
             ))}
           </div>
           
           {/* Table Rows */}
           <div className="space-y-3">
             {Array.from({ length: rows }).map((_, rowIndex) => (
-              <div key={rowIndex} className="flex space-x-4" data-testid={`skeleton-table-row-${rowIndex}`}>
+              <div className="flex space-x-4" data-testid={`skeleton-table-row-${rowIndex}`} key={rowIndex}>
                 {Array.from({ length: columns }).map((_, colIndex) => (
                   <SkeletonBox 
-                    key={colIndex} 
                     className="h-4 flex-1" 
-                    data-testid={`skeleton-table-cell-${rowIndex}-${colIndex}`}
+                    data-testid={`skeleton-table-cell-${rowIndex}-${colIndex}`} 
+                    key={colIndex}
                   />
                 ))}
               </div>
@@ -229,12 +243,12 @@ containerStyle.width = width;
         >
           {Array.from({ length: lines }).map((_, index) => (
             <SkeletonBox
-              key={index}
               className={cn(
                 'h-4',
                 index === lines - 1 ? 'w-3/4' : 'w-full'
               )}
               data-testid={`skeleton-text-line-${index}`}
+              key={index}
             />
           ))}
         </div>

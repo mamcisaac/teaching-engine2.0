@@ -60,8 +60,6 @@ const DayCell = memo(({
       className={`border p-1 min-h-16 cursor-pointer hover:bg-gray-50 transition-colors ${
         !isCurrentMonth ? 'bg-gray-100 text-gray-400' : ''
       } ${isToday ? 'bg-blue-50 border-blue-200' : ''}`}
-      role="button"
-      tabIndex={0}
       onClick={handleDateClick}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -69,6 +67,8 @@ const DayCell = memo(({
           handleDateClick();
         }
       }}
+      role="button"
+      tabIndex={0}
     >
       <div className={`font-bold text-xs mb-1 ${isToday ? 'text-blue-600' : ''}`}>
         {dayNumber}
@@ -77,12 +77,9 @@ const DayCell = memo(({
       <div className="space-y-0.5">
         {visibleEvents.map((event, _index) => (
           <div
-            key={event.id}
             aria-label={`Event: ${event.title}`}
             className="text-xs bg-gray-200 rounded px-1 py-0.5 cursor-pointer hover:bg-gray-300 transition-colors truncate"
-            role="button"
-            tabIndex={0}
-            title={event.title}
+            key={event.id}
             onClick={(e) => {
               e.stopPropagation();
               onEventClick?.(event);
@@ -94,6 +91,9 @@ const DayCell = memo(({
                 onEventClick?.(event);
               }
             }}
+            role="button"
+            tabIndex={0}
+            title={event.title}
           >
             {event.title}
           </div>
@@ -149,8 +149,6 @@ onClick(event);
     <div
       aria-label={`Event: ${event.title}`}
       className="flex items-center justify-between p-3 border-b hover:bg-gray-50 cursor-pointer"
-      role="button"
-      tabIndex={0}
       onClick={handleClick}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -158,6 +156,8 @@ onClick(event);
           handleClick();
         }
       }}
+      role="button"
+      tabIndex={0}
     >
       <div className="flex-1 min-w-0">
         <h4 className="font-medium text-gray-900 truncate">{event.title}</h4>
@@ -311,7 +311,7 @@ grouped[dateKey] = [];
         <div className="grid grid-cols-7 gap-1 text-sm">
           {/* Day headers */}
           {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day, _index) => (
-            <div key={day} className="font-bold text-center py-2 text-gray-600">
+            <div className="font-bold text-center py-2 text-gray-600" key={day}>
               {day}
             </div>
           ))}
@@ -324,10 +324,10 @@ grouped[dateKey] = [];
 
             return (
               <DayCell
-                key={dayKey}
                 date={day}
                 events={dayEvents}
                 isCurrentMonth={isCurrentMonth}
+                key={dayKey}
                 maxEventsPerDay={compact ? 2 : maxEventsPerDay}
                 onDateClick={onDateClick}
                 onEventClick={onEventClick}
@@ -352,8 +352,8 @@ grouped[dateKey] = [];
             <div className="space-y-2">
               {events.map((event, _index) => (
                 <EventListItem
-                  key={event.id}
                   event={event}
+                  key={event.id}
                   onClick={onEventClick}
                 />
               ))}

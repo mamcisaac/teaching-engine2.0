@@ -109,7 +109,7 @@ class RequestBatcher {
 
     for (const req of requests) {
       const key = this.getGroupKey(req.request);
-      const group = (groups.get(key) !== null && groups.get(key) !== undefined) ? groups.get(key)! : [];
+      const group = groups.get(key) ?? [];
       group.push(req);
       groups.set(key, group);
     }
@@ -120,7 +120,8 @@ class RequestBatcher {
   // Get group key for request
   private getGroupKey(request: BatchRequest): string {
     // Group by base endpoint and method
-    const urlParts = request.url.split('?')[0].split('/');
+    const [baseUrl] = request.url.split('?');
+    const urlParts = baseUrl.split('/');
     const baseEndpoint = urlParts.slice(0, 3).join('/');
     return `${request.method}-${baseEndpoint}`;
   }
@@ -180,7 +181,7 @@ class RequestBatcher {
         const batchResponse = responseMap.get(pending.request.id);
 
         if (batchResponse !== null && batchResponse !== undefined) {
-          if ('error' in batchResponse && batchResponse.error) {
+          if ('error' in batchResponse && batchResponse.error !== null && batchResponse.error !== undefined) {
             pending.reject(new Error(batchResponse.error));
           } else {
             pending.resolve(batchResponse.data);
@@ -230,16 +231,16 @@ export const requestBatcher = new RequestBatcher();
 
 // Convenience methods for common operations
 export const batchedApi = {
-  get: (url: string, headers?: Record<string, string>): Promise<unknown> =>
+  get: async (url: string, headers?: Record<string, string>): Promise<unknown> =>
     requestBatcher.addRequest({ method: 'GET', url, headers }),
 
-  post: (url: string, data?: unknown, headers?: Record<string, string>): Promise<unknown> =>
+  post: async (url: string, data?: unknown, headers?: Record<string, string>): Promise<unknown> =>
     requestBatcher.addRequest({ method: 'POST', url, data, headers }),
 
-  put: (url: string, data?: unknown, headers?: Record<string, string>): Promise<unknown> =>
+  put: async (url: string, data?: unknown, headers?: Record<string, string>): Promise<unknown> =>
     requestBatcher.addRequest({ method: 'PUT', url, data, headers }),
 
-  delete: (url: string, headers?: Record<string, string>): Promise<unknown> =>
+  delete: async (url: string, headers?: Record<string, string>): Promise<unknown> =>
     requestBatcher.addRequest({ method: 'DELETE', url, headers }),
 };
 
@@ -252,7 +253,7 @@ export function createDebouncedRequest<
   let lastArgs: TArgs | null = null;
   let lastPromise: Promise<TReturn> | null = null;
 
-  const debounced = (...args: TArgs): Promise<TReturn> => {
+  const debounced = async (...args: TArgs): Promise<TReturn> => {
     lastArgs = args;
 
     if (timeout !== null) {

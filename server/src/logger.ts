@@ -16,7 +16,7 @@ import pino, { stdSerializers } from 'pino';
 
 // Base logger configuration
 const pinoConfig: pino.LoggerOptions = {
-  level: (process.env.LOG_LEVEL !== null && process.env.LOG_LEVEL !== undefined && process.env.LOG_LEVEL !== '') ? process.env.LOG_LEVEL : (process.env.NODE_ENV === 'production' ? 'info' : 'debug'),
+  level: process.env.LOG_LEVEL || (process.env.NODE_ENV === 'production' ? 'info' : 'debug'),
 
   // Custom serializers for better structured logging
   serializers: {
@@ -38,7 +38,7 @@ const pinoConfig: pino.LoggerOptions = {
           authorization: request.headers?.authorization ? '[REDACTED]' : undefined,
         },
         remoteAddress: request.remoteAddress || request.connection?.remoteAddress,
-        remotePort: (request.remotePort !== null && request.remotePort !== undefined && request.remotePort !== 0 && !isNaN(request.remotePort)) ? request.remotePort : request.connection?.remotePort,
+        remotePort: (request.remotePort && !isNaN(request.remotePort)) ? request.remotePort : request.connection?.remotePort,
       };
     },
 

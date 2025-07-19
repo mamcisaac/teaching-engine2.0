@@ -132,13 +132,13 @@ export function DateRangeSelector({
         <div className="flex flex-wrap gap-2 mb-3">
           {presetButtons.map(({ value, label }) => (
             <button
-              key={value}
               className={cn(
                 "px-3 py-1.5 text-sm rounded-md transition-colors",
                 preset === value
                   ? "bg-blue-600 text-white"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200"
               )}
+              key={value}
               onClick={(): void => {
                 handlePresetChange(value); 
               }}
@@ -152,10 +152,10 @@ export function DateRangeSelector({
         <div className="flex items-center gap-2 p-3 bg-gray-50 rounded-lg">
           <button
             className="p-1 hover:bg-gray-200 rounded transition-colors"
-            title="Previous period"
             onClick={(): void => {
               quickNavigation('prev'); 
             }}
+            title="Previous period"
           >
             <ChevronLeft className="w-4 h-4 text-gray-600" />
           </button>
@@ -172,10 +172,10 @@ export function DateRangeSelector({
           
           <button
             className="p-1 hover:bg-gray-200 rounded transition-colors"
-            title="Next period"
             onClick={(): void => {
               quickNavigation('next'); 
             }}
+            title="Next period"
           >
             <ChevronRight className="w-4 h-4 text-gray-600" />
           </button>
@@ -192,11 +192,11 @@ export function DateRangeSelector({
                 <input
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   id="custom-start-date"
-                  type="date"
-                  value={customStart}
                   onChange={(e): void => {
                     setCustomStart(e.target.value); 
                   }}
+                  type="date"
+                  value={customStart}
                 />
               </div>
               <div>
@@ -207,11 +207,11 @@ export function DateRangeSelector({
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   id="custom-end-date"
                   min={customStart}
-                  type="date"
-                  value={customEnd}
                   onChange={(e): void => {
                     setCustomEnd(e.target.value); 
                   }}
+                  type="date"
+                  value={customEnd}
                 />
               </div>
             </div>

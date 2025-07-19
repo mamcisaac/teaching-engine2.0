@@ -219,7 +219,7 @@ where.assessmentType = assessmentType;
       title: data.title,
       unitPlanId: data.unitPlanId || '',
       date: new Date(data.date),
-      duration: data.duration || 60, // Default 60 minutes
+      duration: data.duration ?? 60, // Default 60 minutes
       mindsOn: data.mindsOn,
       mindsOnFr: data.mindsOnFr,
       action: data.action,

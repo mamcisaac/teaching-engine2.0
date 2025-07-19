@@ -27,41 +27,41 @@ return;
       <div className="flex gap-2 items-center">
         <input
           className="border p-1"
-          type="date"
-          value={date}
           onChange={(e): void => {
  setDate(e.target.value); 
 }}
+          type="date"
+          value={date}
         />
         <input
           className="border p-1"
-          placeholder="Holiday name"
-          type="text"
-          value={name}
           onChange={(e): void => {
  setName(e.target.value); 
 }}
+          placeholder="Holiday name"
+          type="text"
+          value={name}
         />
         <button
           className="px-2 py-1 bg-blue-600 text-white"
-          title="Add holiday"
           onClick={handleAdd}
+          title="Add holiday"
         >
           Add
         </button>
       </div>
       <ul className="space-y-1">
         {holidays.map((h, _index) => (
-          <li key={h.id} className="flex gap-2 items-center">
+          <li className="flex gap-2 items-center" key={h.id}>
             <span>
               {h.date.split('T')[0]} - {h.name}
             </span>
             <button
               className="px-1 text-sm bg-red-600 text-white"
-              title="Remove holiday"
               onClick={(): void => {
  remove.mutate(h.id); 
 }}
+              title="Remove holiday"
             >
               Delete
             </button>

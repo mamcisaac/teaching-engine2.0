@@ -237,7 +237,7 @@ return true;
 
   // Check if field has error and is touched
   const getFieldError = useCallback(
-    (name: string) => touched[name] && (errors[name] !== null && errors[name] !== undefined && errors[name] !== '') ? errors[name] : undefined,
+    (name: string) => touched[name] && errors[name]  ? errors[name] : undefined,
     [touched, errors],
   );
 

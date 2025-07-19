@@ -30,7 +30,10 @@ export interface LessonPlanFormData {
 const initialFormData: LessonPlanFormData = {
   title: '',
   titleFr: '',
-  date: new Date().toISOString().split('T')[0],
+  date: (() => {
+    const [dateOnly] = new Date().toISOString().split('T');
+    return dateOnly;
+  })(),
   duration: 60,
   mindsOn: '',
   mindsOnFr: '',
@@ -98,15 +101,15 @@ export function useETFOLessonPlanForm({
   }));
 
   // Auto-save functionality
-  const autoSaveData = (editingId !== null && editingId !== undefined && editingId !== '') ? formData : null;
+  const autoSaveData = editingId !== null && editingId !== undefined && editingId !== '' ? formData : null;
   const { lastSaved, isSaving, hasUnsavedChanges, saveNow } = useAutoSave({
     data: autoSaveData,
     saveFn: async (data) => {
-      if ((editingId !== null && editingId !== undefined && editingId !== '') && data && onSave) {
+      if (editingId !== null && editingId !== undefined && editingId !== '' && data && onSave) {
         await onSave(data);
       }
     },
-    enabled: (editingId !== null && editingId !== undefined && editingId !== '') && (autoSaveData !== null && autoSaveData !== undefined) && (onSave !== undefined),
+    enabled: editingId !== null && editingId !== undefined && editingId !== '' && !!autoSaveData && !!onSave,
     delay: 30000, // 30 seconds
   });
 
@@ -117,7 +120,7 @@ export function useETFOLessonPlanForm({
     return () => { // Cleanup
     };
 
-    if (initialData !== null && initialData !== undefined) {
+    if (initialData) {
       setFormData(prev => ({
         ...prev,
         ...initialData,
@@ -173,7 +176,7 @@ export function useETFOLessonPlanForm({
     if (formData.duration < 15 || formData.duration > 300) {
       errors.push('Duration must be between 15 and 300 minutes');
     }
-    if (unitPlanId === null || unitPlanId === undefined || unitPlanId === 0) {
+    if (unitPlanId === null || unitPlanId === undefined || unitPlanId === '') {
       errors.push('Unit plan is required');
     }
 
@@ -222,7 +225,10 @@ export function useETFOLessonPlanForm({
     setFormData({
       title: lesson.title,
       titleFr: lesson.titleFr ?? '',
-      date: lesson.date.split('T')[0],
+      date: (() => {
+        const [dateOnly] = lesson.date.split('T');
+        return dateOnly;
+      })(),
       duration: lesson.duration,
       mindsOn: lesson.mindsOn ?? '',
       mindsOnFr: lesson.mindsOnFr ?? '',

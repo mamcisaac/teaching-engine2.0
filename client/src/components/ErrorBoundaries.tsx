@@ -179,8 +179,8 @@ export const PlanningErrorBoundary: React.FC<{ children: ReactNode }> = ({ child
 
 export const FormErrorBoundary: React.FC<{ children: ReactNode }> = ({ children }): React.ReactElement => (
   <ErrorBoundary
-    allowRetry
     showDetails
+    allowRetry
     errorDescription="There was an issue with the form. Your data has not been lost."
     errorTitle="Form Error"
   >

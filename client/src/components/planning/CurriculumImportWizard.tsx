@@ -279,13 +279,13 @@ return;
           className="hidden"
           disabled={isUploading}
           id="curriculum-file"
-          type="file"
           onChange={(e) => {
             const file = e.target.files?.[0];
             if (file) {
 void handleFileUpload(file);
 }
           }}
+          type="file"
         />
         <label className="cursor-pointer block" htmlFor="curriculum-file">
           <svg
@@ -352,11 +352,11 @@ return null;
             <input
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               id="curriculum-subject"
-              type="text"
-              value={reviewedData.subject}
               onChange={(e) => {
  handleSubjectGradeEdit('subject', e.target.value); 
 }}
+              type="text"
+              value={reviewedData.subject}
             />
           </div>
           <div>
@@ -366,11 +366,11 @@ return null;
               id="curriculum-grade"
               max="12"
               min="1"
-              type="number"
-              value={reviewedData.grade}
               onChange={(e) => {
  handleSubjectGradeEdit('grade', parseInt(e.target.value)); 
 }}
+              type="number"
+              value={reviewedData.grade}
             />
           </div>
         </div>
@@ -396,37 +396,37 @@ return null;
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {reviewedData.expectations.map((expectation, index) => (
-                  <tr key={index} className="hover:bg-gray-50">
+                  <tr className="hover:bg-gray-50" key={index}>
                     <td className="px-4 py-2">
                       <input
                         className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
-                        type="text"
-                        value={expectation.code}
                         onChange={(e) => {
  handleExpectationEdit(index, 'code', e.target.value); 
 }}
+                        type="text"
+                        value={expectation.code}
                       />
                     </td>
                     <td className="px-4 py-2">
                       <textarea
                         className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
-                        rows={2}
-                        value={expectation.description}
                         onChange={(e) => {
  handleExpectationEdit(index, 'description', e.target.value); 
 }
                         }
+                        rows={2}
+                        value={expectation.description}
                       />
                     </td>
                     <td className="px-4 py-2">
                       <input
                         className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
-                        placeholder="Optional"
-                        type="text"
-                        value={expectation.strand ?? ''}
                         onChange={(e) => {
  handleExpectationEdit(index, 'strand', e.target.value); 
 }}
+                        placeholder="Optional"
+                        type="text"
+                        value={expectation.strand ?? ''}
                       />
                     </td>
                   </tr>
@@ -480,7 +480,7 @@ return null;
   );
 
   return (
-    <Dialog open={isOpen} onOpenChange={handleClose}>
+    <Dialog onOpenChange={handleClose} open={isOpen}>
       <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
         <div className="px-6 py-4 border-b border-gray-200">
           <div className="flex items-center justify-between">

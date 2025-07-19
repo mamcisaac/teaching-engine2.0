@@ -465,7 +465,7 @@ export function useHelpContent(): {
     let content = mockHelpContent;
 
     // Apply section filter
-    if (state.currentSection !== null && state.currentSection !== undefined && state.currentSection !== '') {
+    if (state.currentSection) {
       content = content.filter(item => item.section === state.currentSection);
     }
 

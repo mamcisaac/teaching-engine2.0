@@ -224,7 +224,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
             } catch (error) {
               logger.error('Failed to load daybook entry:', error);
               set((state) => {
-                state.error = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Failed to load entry';
+                state.error = error instanceof Error ? error.message : 'Failed to load entry';
                 state.isLoading = false;
               });
             }
@@ -291,7 +291,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
             } catch (error) {
               logger.error('Failed to create daybook entry:', error);
               set((state) => {
-                state.error = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Failed to create entry';
+                state.error = error instanceof Error ? error.message : 'Failed to create entry';
                 state.isSaving = false;
               });
               throw error;
@@ -348,7 +348,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
             } catch (error) {
               logger.error('Failed to update daybook entry:', error);
               set((state) => {
-                state.error = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Failed to update entry';
+                state.error = error instanceof Error ? error.message : 'Failed to update entry';
                 state.isSaving = false;
               });
               throw error;
@@ -394,7 +394,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
             } catch (error) {
               logger.error('Failed to delete daybook entry:', error);
               set((state) => {
-                state.error = error instanceof Error ? (error instanceof Error ? error.message : String(error)) : 'Failed to delete entry';
+                state.error = error instanceof Error ? error.message : 'Failed to delete entry';
                 state.isSaving = false;
               });
               throw error;

@@ -235,7 +235,7 @@ checkObject(req.params);
 export const fileUploadSecurityMiddleware = (
   allowedTypes: string[] = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf'],
 ) => (req: Request, _res: Response, next: NextFunction): void => {
-    if (!req.file && !req.files) {
+    if (req.file === undefined && req.files === undefined) {
       next(); return;
     }
 
@@ -261,7 +261,7 @@ export const fileUploadSecurityMiddleware = (
         return parts[1] ?? parts[0];
       });
 
-      if (!ext || !allowedExtensions.includes(ext)) {
+      if (ext === undefined || !allowedExtensions.includes(ext)) {
         next(new AppError(400, 'Invalid file extension', 'INVALID_FILE_EXTENSION')); return;
       }
     }

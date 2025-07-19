@@ -366,7 +366,7 @@ return 'Grade 12';
     this.registerHelper('length', {
       fn: (...args: unknown[]) => {
         const [array] = args as [unknown[]];
-        return array !== null && array !== undefined ? array.length : 0;
+        return array?.length ?? 0;
       },
       description: 'Get array length',
       category: 'array',

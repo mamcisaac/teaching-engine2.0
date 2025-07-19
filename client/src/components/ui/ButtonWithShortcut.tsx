@@ -71,7 +71,7 @@ export const ButtonWithShortcut = React.forwardRef<HTMLButtonElement, ButtonWith
     }
 
     return (
-      <Button ref={ref} aria-label="Click button" onClick={onClick} {...props}>
+      <Button aria-label="Click button" onClick={onClick} ref={ref} {...props}>
         <span className="flex items-center gap-2">
           {children}
           {shortcut && showShortcutHint && (

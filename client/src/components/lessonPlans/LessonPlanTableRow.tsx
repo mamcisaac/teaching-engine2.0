@@ -62,21 +62,21 @@ export const LessonPlanTableRow: React.FC<LessonPlanTableRowProps> = ({
       <td className="px-3 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-right text-xs sm:text-sm font-medium">
         <div className="flex justify-end gap-2">
           <Button
-            size="sm"
-            variant="ghost"
             onClick={() => {
  onEdit(lesson); 
 }}
+            size="sm"
+            variant="ghost"
           >
             Edit
           </Button>
           <Button
             className="text-red-600 hover:text-red-700"
-            size="sm"
-            variant="ghost"
             onClick={() => {
  onDelete(lesson.id); 
 }}
+            size="sm"
+            variant="ghost"
           >
             Delete
           </Button>

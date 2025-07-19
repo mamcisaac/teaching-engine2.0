@@ -59,9 +59,9 @@ export function CalendarFilters({
         {hasActiveFilters && (
           <Button
             className="text-gray-500 hover:text-gray-700"
+            onClick={handleClearFilters}
             size="sm"
             variant="ghost"
-            onClick={handleClearFilters}
           >
             <X className="h-4 w-4 mr-1" />
             Clear All
@@ -76,12 +76,12 @@ export function CalendarFilters({
           <div className="flex flex-wrap gap-2">
             {availableSubjects.map(subject => (
               <button
-                key={subject}
                 className={`px-3 py-1 rounded-full text-sm transition-colors ${
                   filters.subjects.includes(subject)
                     ? 'bg-blue-500 text-white'
                     : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-100'
                 }`}
+                key={subject}
                 onClick={() => {
  handleSubjectToggle(subject); 
 }}
@@ -99,12 +99,12 @@ export function CalendarFilters({
         <div className="flex flex-wrap gap-2">
           {EVENT_TYPE_OPTIONS.map(option => (
             <button
-              key={option.value}
               className={`px-3 py-1 rounded-full text-sm transition-colors ${
                 filters.eventTypes.includes(option.value)
                   ? 'bg-blue-500 text-white'
                   : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-100'
               }`}
+              key={option.value}
               onClick={() => {
  handleEventTypeToggle(option.value); 
 }}
@@ -121,10 +121,10 @@ export function CalendarFilters({
           <input
             checked={filters.showWeekends}
             className="rounded border-gray-300"
-            type="checkbox"
             onChange={(e) => {
  onFiltersChange({ ...filters, showWeekends: e.target.checked }); 
 }}
+            type="checkbox"
           />
           <span className="text-gray-700">Show Weekends</span>
         </label>

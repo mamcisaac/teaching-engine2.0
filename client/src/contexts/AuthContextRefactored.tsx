@@ -43,14 +43,14 @@ export function AuthProvider({ children }: { children: ReactNode }): React.React
       try {
         // Check if we have a token first
         const hasToken = authService.isAuthenticated();
-        if (!hasToken) {
+        if (hasToken === false) {
           return null;
         }
 
         const userData = await authService.verifyAuth();
         
         // Set user context for error reporting
-        if (userData) {
+        if (userData !== null) {
           errorReportingService.setUserContext({
             id: String(userData.id),
             email: userData.email,
@@ -98,7 +98,7 @@ export function AuthProvider({ children }: { children: ReactNode }): React.React
           message?: string;
         };
         
-        if (err.response?.data?.error !== null && err.response?.data?.error !== undefined && err.response.data.error !== '') {
+        if (err.response?.data?.error !== null && err.response.data.error !== undefined && err.response.data.error !== '') {
           errorMessage = err.response.data.error;
         } else if (err.response?.status === 401) {
           errorMessage = 'Invalid email or password';
@@ -121,7 +121,7 @@ export function AuthProvider({ children }: { children: ReactNode }): React.React
         email: userData.email,
         name: userData.name,
         role: userData.role ?? 'teacher',
-        organizationId: userData.organizationId && userData.organizationId !== 0 && !isNaN(userData.organizationId) ? String(userData.organizationId) : undefined,
+        organizationId: userData.organizationId !== null && userData.organizationId !== undefined && userData.organizationId !== 0 && !isNaN(userData.organizationId) ? String(userData.organizationId) : undefined,
       });
       
       // Invalidate other queries that depend on auth
@@ -155,7 +155,7 @@ export function AuthProvider({ children }: { children: ReactNode }): React.React
     try {
       const success = await authService.refreshToken();
       
-      if (success) {
+      if (success === true) {
         // Re-verify auth after refresh
         const userData = await checkAuth();
         return userData.data !== null;
@@ -175,13 +175,13 @@ export function AuthProvider({ children }: { children: ReactNode }): React.React
 
   // Extract error message
   const getErrorMessage = (): string | null => {
-    if (loginMutation.error) {
+    if (loginMutation.error !== null && loginMutation.error !== undefined) {
       return loginMutation.error instanceof Error ? loginMutation.error.message : String(loginMutation.error);
     }
-    if (logoutMutation.error) {
+    if (logoutMutation.error !== null && logoutMutation.error !== undefined) {
       return 'Logout failed';
     }
-    if (queryError) {
+    if (queryError !== null && queryError !== undefined) {
       return 'Failed to verify authentication';
     }
     return null;
@@ -212,7 +212,7 @@ export function AuthProvider({ children }: { children: ReactNode }): React.React
 
 export const useAuth = (): AuthContextValue => {
   const context = useContext(AuthContext);
-  if (!context) {
+  if (context === null) {
     throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;

@@ -191,7 +191,7 @@ function HoverTooltip({
   const [hasBeenShown, setHasBeenShown] = useState(false);
 
   // Don't show if onboarding is active or user isn't new
-  if ((state.currentFlow !== null && state.currentFlow !== undefined) || !state.isFirstTimeUser) {
+  if (state.currentFlow  || !state.isFirstTimeUser) {
     return children;
   }
 

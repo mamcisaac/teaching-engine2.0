@@ -482,9 +482,9 @@ updateData.endDate = new Date(data.endDate);
         resources: {
           create: sourceUnitPlan.resources.map((resource: { title: string; url: string | null; type: string; notes: string | null }) => ({
             title: resource.title,
-            url: resource.url || '',
+            url: resource.url ?? '',
             type: resource.type,
-            notes: resource.notes || '',
+            notes: resource.notes ?? '',
           })),
         },
       },
@@ -647,7 +647,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
       const duplicateData = {
         unitPlanId: parsedData.unitPlanId,
         longRangePlanId: parsedData.longRangePlanId,
-        title: parsedData.title || '', // Will use default in the duplicate method if empty
+        title: parsedData.title ?? '', // Will use default in the duplicate method if empty
       };
 
       const duplicatedUnitPlan = await this.unitPlanService.duplicate(duplicateData, userId);

@@ -179,7 +179,7 @@ export const RecentPlans = memo(({
             const Icon = config.icon;
 
             return (
-              <Link key={`${plan.type}-${plan.id}`} className="block group" to={plan.planRoute}>
+              <Link className="block group" key={`${plan.type}-${plan.id}`} to={plan.planRoute}>
                 <div className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
                   <div className={cn('p-2 rounded-lg flex-shrink-0', config.color)}>
                     <Icon className="h-5 w-5" />

@@ -85,11 +85,11 @@ export default function FormsDataAgentPage(): React.ReactElement {
 
       <FormsDataAgent
         longRangePlans={longRangePlans}
-        unitPlans={unitPlans}
         onBatchLessonCreate={handleBatchLessonCreate}
         onBatchUnitCreate={handleBatchUnitCreate}
         onDataImport={handleDataImport}
         onTemplateExport={handleTemplateExport}
+        unitPlans={unitPlans}
       />
     </div>
   );

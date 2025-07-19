@@ -139,7 +139,7 @@ export default function UnitPlansPage(): React.ReactElement {
     longRangePlanId,
     editingId: editingUnit,
     onSave: async (data) => {
-      if (editingUnit !== null) {
+      if (editingUnit !== null && editingUnit !== undefined) {
         await updateUnit.mutateAsync({ id: editingUnit, ...data });
       }
     },
@@ -348,8 +348,6 @@ export default function UnitPlansPage(): React.ReactElement {
                 <div className="flex gap-2">
                   <Button
                     className="flex items-center gap-2"
-                    size="sm"
-                    variant="outline"
                     onClick={() => {
  printHTML(
                         generateUnitPlanHTML({
@@ -361,14 +359,14 @@ export default function UnitPlansPage(): React.ReactElement {
                       ); 
 }
                     }
+                    size="sm"
+                    variant="outline"
                   >
                     <Printer className="h-4 w-4" />
                     Print
                   </Button>
                   <Button
                     className="flex items-center gap-2"
-                    size="sm"
-                    variant="outline"
                     onClick={() => {
  downloadHTML(
                         generateUnitPlanHTML({
@@ -380,6 +378,8 @@ export default function UnitPlansPage(): React.ReactElement {
                       ); 
 }
                     }
+                    size="sm"
+                    variant="outline"
                   >
                     <Download className="h-4 w-4" />
                     Export
@@ -419,7 +419,7 @@ export default function UnitPlansPage(): React.ReactElement {
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Essential Questions</h3>
                   <ul className="list-disc list-inside space-y-1">
                     {unit.essentialQuestions.map((question, _index) => (
-                      <li key={_index} className="text-gray-700">
+                      <li className="text-gray-700" key={_index}>
                         {question}
                       </li>
                     ))}
@@ -432,7 +432,7 @@ export default function UnitPlansPage(): React.ReactElement {
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Success Criteria</h3>
                   <ul className="list-disc list-inside space-y-1">
                     {unit.successCriteria.map((criteria, _index) => (
-                      <li key={_index} className="text-gray-700">
+                      <li className="text-gray-700" key={_index}>
                         {criteria}
                       </li>
                     ))}
@@ -452,7 +452,7 @@ export default function UnitPlansPage(): React.ReactElement {
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Key Vocabulary</h3>
                   <div className="flex flex-wrap gap-2">
                     {unit.keyVocabulary.map((term, _index) => (
-                      <span key={_index} className="px-3 py-1 bg-gray-100 rounded-full text-sm">
+                      <span className="px-3 py-1 bg-gray-100 rounded-full text-sm" key={_index}>
                         {term}
                       </span>
                     ))}
@@ -557,7 +557,7 @@ export default function UnitPlansPage(): React.ReactElement {
                   </h3>
                   <div className="grid gap-2">
                     {unit.expectations.map(({ expectation }, _index) => (
-                      <div key={expectation.id} className="bg-gray-50 p-3 rounded">
+                      <div className="bg-gray-50 p-3 rounded" key={expectation.id}>
                         <div className="flex justify-between items-start">
                           <div>
                             <span className="font-medium text-sm">{expectation.code}</span>
@@ -658,10 +658,10 @@ export default function UnitPlansPage(): React.ReactElement {
             />
             <Button
               className="flex items-center gap-2"
-              variant="outline"
               onClick={() => {
  setIsTemplateModalOpen(true); 
 }}
+              variant="outline"
             >
               <BookTemplate className="h-4 w-4" />
               Create from Template
@@ -716,14 +716,14 @@ export default function UnitPlansPage(): React.ReactElement {
         ) : (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {unitPlans.map((unit, _index) => (
-              <OptimizedUnitPlanCard key={unit.id} unitPlan={unit} onEdit={handleEditUnit} />
+              <OptimizedUnitPlanCard key={unit.id} onEdit={handleEditUnit} unitPlan={unit} />
             ))}
           </div>
         )}
       </PlanningErrorBoundary>
 
       {/* Create/Edit Unit Modal */}
-      <Dialog open={isCreateModalOpen} onOpenChange={setIsCreateModalOpen}>
+      <Dialog onOpenChange={setIsCreateModalOpen} open={isCreateModalOpen}>
         <div className="p-6 max-w-5xl max-h-[90vh] overflow-y-auto">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold">
@@ -744,14 +744,14 @@ export default function UnitPlansPage(): React.ReactElement {
                 <Button
                   className="flex items-center gap-2"
                   disabled={isSaving || !hasUnsavedChanges}
-                  size="sm"
-                  type="button"
-                  variant="outline"
                   onClick={() => {
                     void saveNow().catch((error: unknown) => {
                       logger.error('Error saving unit plan:', error);
                     });
                   }}
+                  size="sm"
+                  type="button"
+                  variant="outline"
                 >
                   {isSaving ? (
                     <RefreshCw className="h-4 w-4 animate-spin" />
@@ -814,10 +814,10 @@ export default function UnitPlansPage(): React.ReactElement {
                           }))}
                         duration={2} // Default 2 weeks
                         grade={longRangePlan?.grade ?? 1}
-                        subject={longRangePlan?.subject ?? ''}
-                        unitTitle={formData.title}
                         onSuggestionAccepted={handleAISuggestionAccepted}
                         onUnitGenerated={handleAIUnitGenerated}
+                        subject={longRangePlan?.subject ?? ''}
+                        unitTitle={formData.title}
                       />
                     </WithAIErrorBoundary>
                   </Suspense>
@@ -838,10 +838,10 @@ export default function UnitPlansPage(): React.ReactElement {
                   <div>
                     <Label htmlFor="input">Assessment Plan</Label>
                     <RichTextEditor
-                      value={formData.assessmentPlan}
                       onChange={(value) => {
  updateField('assessmentPlan', value); 
 }}
+                      value={formData.assessmentPlan}
                     />
                   </div>
 
@@ -856,11 +856,10 @@ export default function UnitPlansPage(): React.ReactElement {
                         'Initiative',
                         'Self-Regulation',
                       ].map((skill, _index) => (
-                        <label key={skill} className="flex items-center space-x-2">
+                        <label className="flex items-center space-x-2" key={skill}>
                           <input
                             checked={formData.learningSkills.includes(skill)}
                             className="rounded"
-                            type="checkbox"
                             onChange={(e) => {
                               if (e.target.checked) {
                                 updateField('learningSkills', [...formData.learningSkills, skill]);
@@ -871,6 +870,7 @@ export default function UnitPlansPage(): React.ReactElement {
                                 );
                               }
                             }}
+                            type="checkbox"
                           />
                           <span className="text-sm">{skill}</span>
                         </label>
@@ -893,10 +893,8 @@ export default function UnitPlansPage(): React.ReactElement {
                         <div className="space-y-2 mt-2">
                           {formData.differentiationStrategies.forStruggling.map(
                             (strategy, index) => (
-                              <div key={index} className="flex gap-2">
+                              <div className="flex gap-2" key={index}>
                                 <Input
-                                  placeholder="Support strategy..."
-                                  value={strategy}
                                   onChange={(e) => {
  updateDifferentiationStrategy(
                                       'forStruggling',
@@ -905,15 +903,17 @@ export default function UnitPlansPage(): React.ReactElement {
                                     ); 
 }
                                   }
+                                  placeholder="Support strategy..."
+                                  value={strategy}
                                 />
                                 <Button
-                                  size="sm"
-                                  type="button"
-                                  variant="ghost"
                                   onClick={() => {
  removeDifferentiationStrategy('forStruggling', index); 
 }
                                   }
+                                  size="sm"
+                                  type="button"
+                                  variant="ghost"
                                 >
                                   <Trash2 className="h-4 w-4" />
                                 </Button>
@@ -921,12 +921,12 @@ export default function UnitPlansPage(): React.ReactElement {
                             ),
                           )}
                           <Button
-                            size="sm"
-                            type="button"
-                            variant="outline"
                             onClick={() => {
  addDifferentiationStrategy('forStruggling'); 
 }}
+                            size="sm"
+                            type="button"
+                            variant="outline"
                           >
                             Add Strategy
                           </Button>
@@ -937,10 +937,8 @@ export default function UnitPlansPage(): React.ReactElement {
                         <Label htmlFor="input">For Advanced Learners</Label>
                         <div className="space-y-2 mt-2">
                           {formData.differentiationStrategies.forAdvanced.map((strategy, index) => (
-                            <div key={index} className="flex gap-2">
+                            <div className="flex gap-2" key={index}>
                               <Input
-                                placeholder="Extension strategy..."
-                                value={strategy}
                                 onChange={(e) => {
  updateDifferentiationStrategy(
                                     'forAdvanced',
@@ -949,26 +947,28 @@ export default function UnitPlansPage(): React.ReactElement {
                                   ); 
 }
                                 }
+                                placeholder="Extension strategy..."
+                                value={strategy}
                               />
                               <Button
-                                size="sm"
-                                type="button"
-                                variant="ghost"
                                 onClick={() => {
  removeDifferentiationStrategy('forAdvanced', index); 
 }}
+                                size="sm"
+                                type="button"
+                                variant="ghost"
                               >
                                 <Trash2 className="h-4 w-4" />
                               </Button>
                             </div>
                           ))}
                           <Button
-                            size="sm"
-                            type="button"
-                            variant="outline"
                             onClick={() => {
  addDifferentiationStrategy('forAdvanced'); 
 }}
+                            size="sm"
+                            type="button"
+                            variant="outline"
                           >
                             Add Strategy
                           </Button>
@@ -979,34 +979,34 @@ export default function UnitPlansPage(): React.ReactElement {
                         <Label htmlFor="input">For English Language Learners</Label>
                         <div className="space-y-2 mt-2">
                           {formData.differentiationStrategies.forELL.map((strategy, index) => (
-                            <div key={index} className="flex gap-2">
+                            <div className="flex gap-2" key={index}>
                               <Input
-                                placeholder="Language support strategy..."
-                                value={strategy}
                                 onChange={(e) => {
  updateDifferentiationStrategy('forELL', index, e.target.value); 
 }
                                 }
+                                placeholder="Language support strategy..."
+                                value={strategy}
                               />
                               <Button
-                                size="sm"
-                                type="button"
-                                variant="ghost"
                                 onClick={() => {
  removeDifferentiationStrategy('forELL', index); 
 }}
+                                size="sm"
+                                type="button"
+                                variant="ghost"
                               >
                                 <Trash2 className="h-4 w-4" />
                               </Button>
                             </div>
                           ))}
                           <Button
-                            size="sm"
-                            type="button"
-                            variant="outline"
                             onClick={() => {
  addDifferentiationStrategy('forELL'); 
 }}
+                            size="sm"
+                            type="button"
+                            variant="outline"
                           >
                             Add Strategy
                           </Button>
@@ -1017,34 +1017,34 @@ export default function UnitPlansPage(): React.ReactElement {
                         <Label htmlFor="input">For Students with IEPs</Label>
                         <div className="space-y-2 mt-2">
                           {formData.differentiationStrategies.forIEP.map((strategy, index) => (
-                            <div key={index} className="flex gap-2">
+                            <div className="flex gap-2" key={index}>
                               <Input
-                                placeholder="IEP accommodation..."
-                                value={strategy}
                                 onChange={(e) => {
  updateDifferentiationStrategy('forIEP', index, e.target.value); 
 }
                                 }
+                                placeholder="IEP accommodation..."
+                                value={strategy}
                               />
                               <Button
-                                size="sm"
-                                type="button"
-                                variant="ghost"
                                 onClick={() => {
  removeDifferentiationStrategy('forIEP', index); 
 }}
+                                size="sm"
+                                type="button"
+                                variant="ghost"
                               >
                                 <Trash2 className="h-4 w-4" />
                               </Button>
                             </div>
                           ))}
                           <Button
-                            size="sm"
-                            type="button"
-                            variant="outline"
                             onClick={() => {
  addDifferentiationStrategy('forIEP'); 
 }}
+                            size="sm"
+                            type="button"
+                            variant="outline"
                           >
                             Add Strategy
                           </Button>
@@ -1059,12 +1059,12 @@ export default function UnitPlansPage(): React.ReactElement {
                     <Label htmlFor="input">Cross-Curricular Connections</Label>
                     <Textarea
                       className="mt-2"
-                      placeholder="How does this unit connect to other subject areas?"
-                      rows={3}
-                      value={formData.crossCurricularConnections}
                       onChange={(e) => {
  updateField('crossCurricularConnections', e.target.value); 
 }}
+                      placeholder="How does this unit connect to other subject areas?"
+                      rows={3}
+                      value={formData.crossCurricularConnections}
                     />
                   </div>
 
@@ -1072,12 +1072,12 @@ export default function UnitPlansPage(): React.ReactElement {
                     <Label htmlFor="input">Indigenous Perspectives</Label>
                     <Textarea
                       className="mt-2"
-                      placeholder="How will you incorporate Indigenous knowledge and perspectives?"
-                      rows={3}
-                      value={formData.indigenousPerspectives}
                       onChange={(e) => {
  updateField('indigenousPerspectives', e.target.value); 
 }}
+                      placeholder="How will you incorporate Indigenous knowledge and perspectives?"
+                      rows={3}
+                      value={formData.indigenousPerspectives}
                     />
                   </div>
 
@@ -1085,12 +1085,12 @@ export default function UnitPlansPage(): React.ReactElement {
                     <Label htmlFor="input">Environmental Education</Label>
                     <Textarea
                       className="mt-2"
-                      placeholder="Environmental learning opportunities in this unit..."
-                      rows={3}
-                      value={formData.environmentalEducation}
                       onChange={(e) => {
  updateField('environmentalEducation', e.target.value); 
 }}
+                      placeholder="Environmental learning opportunities in this unit..."
+                      rows={3}
+                      value={formData.environmentalEducation}
                     />
                   </div>
 
@@ -1098,12 +1098,12 @@ export default function UnitPlansPage(): React.ReactElement {
                     <Label htmlFor="input">Social Justice Connections</Label>
                     <Textarea
                       className="mt-2"
-                      placeholder="Equity and social justice themes..."
-                      rows={3}
-                      value={formData.socialJusticeConnections}
                       onChange={(e) => {
  updateField('socialJusticeConnections', e.target.value); 
 }}
+                      placeholder="Equity and social justice themes..."
+                      rows={3}
+                      value={formData.socialJusticeConnections}
                     />
                   </div>
 
@@ -1111,12 +1111,12 @@ export default function UnitPlansPage(): React.ReactElement {
                     <Label htmlFor="input">Technology Integration</Label>
                     <Textarea
                       className="mt-2"
-                      placeholder="How will technology enhance learning in this unit?"
-                      rows={3}
-                      value={formData.technologyIntegration}
                       onChange={(e) => {
  updateField('technologyIntegration', e.target.value); 
 }}
+                      placeholder="How will technology enhance learning in this unit?"
+                      rows={3}
+                      value={formData.technologyIntegration}
                     />
                   </div>
 
@@ -1124,12 +1124,12 @@ export default function UnitPlansPage(): React.ReactElement {
                     <Label htmlFor="input">Community Connections</Label>
                     <Textarea
                       className="mt-2"
-                      placeholder="Local partnerships, field trips, guest speakers..."
-                      rows={3}
-                      value={formData.communityConnections}
                       onChange={(e) => {
  updateField('communityConnections', e.target.value); 
 }}
+                      placeholder="Local partnerships, field trips, guest speakers..."
+                      rows={3}
+                      value={formData.communityConnections}
                     />
                   </div>
 
@@ -1137,12 +1137,12 @@ export default function UnitPlansPage(): React.ReactElement {
                     <Label htmlFor="input">Parent Communication Plan</Label>
                     <Textarea
                       className="mt-2"
-                      placeholder="How will you communicate unit goals and progress to families?"
-                      rows={3}
-                      value={formData.parentCommunicationPlan}
                       onChange={(e) => {
  updateField('parentCommunicationPlan', e.target.value); 
 }}
+                      placeholder="How will you communicate unit goals and progress to families?"
+                      rows={3}
+                      value={formData.parentCommunicationPlan}
                     />
                   </div>
                 </TabsContent>
@@ -1150,13 +1150,13 @@ export default function UnitPlansPage(): React.ReactElement {
 
               <div className="flex justify-end gap-3 pt-6 mt-6 border-t">
                 <Button
-                  type="button"
-                  variant="outline"
                   onClick={() => {
                     setIsCreateModalOpen(false);
                     setEditingUnit(null);
                     resetForm();
                   }}
+                  type="button"
+                  variant="outline"
                 >
                   Cancel
                 </Button>
@@ -1178,7 +1178,7 @@ export default function UnitPlansPage(): React.ReactElement {
       </Dialog>
 
       {/* Template Selection Modal */}
-      <Dialog open={isTemplateModalOpen} onOpenChange={setIsTemplateModalOpen}>
+      <Dialog onOpenChange={setIsTemplateModalOpen} open={isTemplateModalOpen}>
         <div className="p-6 max-w-4xl max-h-[90vh] overflow-y-auto">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold">Choose a Unit Plan Template</h3>
@@ -1205,12 +1205,12 @@ export default function UnitPlansPage(): React.ReactElement {
               <div className="grid gap-4 md:grid-cols-2">
                 {unitTemplates.map((template, _index) => (
                   <Card
-                    key={template.id}
                     className={`cursor-pointer border-2 transition-colors ${
                       selectedTemplate !== null && selectedTemplate !== undefined && selectedTemplate.id === template.id
                         ? 'border-indigo-500 bg-indigo-50'
                         : 'border-gray-200 hover:border-gray-300'
                     }`}
+                    key={template.id}
                     onClick={() => {
  setSelectedTemplate(template); 
 }}
@@ -1242,8 +1242,8 @@ export default function UnitPlansPage(): React.ReactElement {
                       <div className="flex flex-wrap gap-1 mb-3">
                         {template.tags.slice(0, 3).map((tag, _index) => (
                           <span
-                            key={tag}
                             className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-full"
+                            key={tag}
                           >
                             {tag}
                           </span>
@@ -1267,26 +1267,26 @@ export default function UnitPlansPage(): React.ReactElement {
 
           <div className="flex justify-end gap-3 pt-6 mt-6 border-t">
             <Button
-              type="button"
-              variant="outline"
               onClick={() => {
                 setIsTemplateModalOpen(false);
                 setSelectedTemplate(null);
               }}
+              type="button"
+              variant="outline"
             >
               Cancel
             </Button>
             <Button
               className="bg-indigo-600 hover:bg-indigo-700 text-white"
               disabled={selectedTemplate === null || selectedTemplate === undefined || applyTemplate.isPending}
-              type="button"
               onClick={() => {
-                if (selectedTemplate !== null && selectedTemplate !== undefined) {
+                if (selectedTemplate) {
                   void handleApplyTemplate(selectedTemplate).catch((error: unknown) => {
                     logger.error('Error applying template:', error);
                   });
                 }
               }}
+              type="button"
             >
               {applyTemplate.isPending ? 'Loading...' : 'Use This Template'}
             </Button>

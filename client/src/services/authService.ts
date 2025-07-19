@@ -104,7 +104,7 @@ class AuthService implements AuthServiceInterface {
    */
   getUser(): User | null {
     const userData = localStorage.getItem(this.USER_KEY);
-    if (userData === null || userData === '') {
+    if (!userData) {
       return null;
     }
     const parsed = safeJsonParse(userData, null);

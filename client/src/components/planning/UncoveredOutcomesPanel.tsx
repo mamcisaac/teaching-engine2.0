@@ -123,8 +123,8 @@ params.append('theme', theme);
       <div className="space-y-3">
         {uncoveredOutcomes.map(({ expectation, suggestion }) => (
           <div
-            key={expectation.id}
             className="border rounded-lg p-4 hover:shadow-md transition-shadow"
+            key={expectation.id}
           >
             <div className="flex items-start justify-between">
               <div className="flex-1">
@@ -145,11 +145,11 @@ params.append('theme', theme);
                     <p className="text-xs text-gray-600 mb-2">{suggestion.descriptionFr}</p>
                     <Button
                       className="mt-2"
-                      size="sm"
-                      variant="outline"
                       onClick={() => {
  onSelectSuggestion(suggestion); 
 }}
+                      size="sm"
+                      variant="outline"
                     >
                       <span className="mr-1">📅</span>
                       Use this activity
@@ -162,10 +162,10 @@ params.append('theme', theme);
                 {suggestion === null && (
                   <Button
                     disabled={generatingFor === expectation.id}
-                    size="sm"
                     onClick={() => {
  generateSuggestion.mutate(expectation.id); 
 }}
+                    size="sm"
                   >
                     {generatingFor === expectation.id ? (
                       <>

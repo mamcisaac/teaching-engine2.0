@@ -81,13 +81,12 @@ export class LessonPlanService {
 
   // Check if lesson is complete
   static isComplete(lesson: ETFOLessonPlan): boolean {
-    return Boolean(
-      (lesson.title !== null && lesson.title !== undefined && lesson.title !== '') &&
-      (lesson.learningGoals !== null && lesson.learningGoals !== undefined && lesson.learningGoals !== '') &&
-      (lesson.mindsOn !== null && lesson.mindsOn !== undefined && lesson.mindsOn !== '') &&
-      (lesson.action !== null && lesson.action !== undefined && lesson.action !== '') &&
-      (lesson.consolidation !== null && lesson.consolidation !== undefined && lesson.consolidation !== '') &&
-      (lesson.materials !== null && lesson.materials !== undefined) &&
+    return Boolean(lesson.title &&
+      lesson.learningGoals  &&
+      lesson.mindsOn  &&
+      lesson.action  &&
+      lesson.consolidation  &&
+      lesson.materials  &&
       lesson.materials.length > 0
     );
   }
@@ -117,7 +116,7 @@ return '';
     summary += `Duration: ${lesson.duration} minutes\n`;
     summary += `Grouping: ${lesson.grouping}\n\n`;
 
-    if (lesson.subNotes !== null && lesson.subNotes !== undefined && lesson.subNotes !== '') {
+    if (lesson.subNotes) {
       summary += `Special Notes:\n${lesson.subNotes}\n\n`;
     }
 

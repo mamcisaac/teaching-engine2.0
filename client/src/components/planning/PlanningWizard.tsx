@@ -145,9 +145,9 @@ export function PlanningWizard({
           <div className="absolute right-4 top-4">
             <Button
               className="text-gray-500 hover:text-gray-700"
+              onClick={onClose}
               size="sm"
               variant="ghost"
-              onClick={onClose}
             >
               ✕
             </Button>
@@ -162,7 +162,6 @@ export function PlanningWizard({
           <div className="flex items-center gap-2 mt-4">
             {WIZARD_STEPS.map((step, index) => (
               <div
-                key={step.id}
                 className={cn(
                   'flex-1 h-2 rounded-full transition-colors',
                   index === currentStep 
@@ -171,6 +170,7 @@ export function PlanningWizard({
                     ? 'bg-green-600'
                     : 'bg-gray-200'
                 )}
+                key={step.id}
               />
             ))}
           </div>
@@ -212,7 +212,7 @@ export function PlanningWizard({
                   <h4 className="font-medium text-sm text-gray-700">Tips for this step:</h4>
                   <ul className="space-y-2">
                     {currentStepData.tips.map((tip, index) => (
-                      <li key={index} className="flex items-start gap-2 text-sm text-gray-600">
+                      <li className="flex items-start gap-2 text-sm text-gray-600" key={index}>
                         <span className="text-indigo-600 mt-0.5">•</span>
                         <span>{tip}</span>
                       </li>
@@ -243,8 +243,8 @@ export function PlanningWizard({
             <Button
               className="gap-2"
               disabled={isFirstStep}
-              variant="outline"
               onClick={handlePrevious}
+              variant="outline"
             >
               <ChevronLeft className="h-4 w-4" />
               Previous
@@ -260,8 +260,8 @@ export function PlanningWizard({
             
             <Button
               className="gap-2"
-              variant="outline"
               onClick={handleNext}
+              variant="outline"
             >
               {isLastStep ? 'Finish' : 'Next'}
               <ChevronRight className="h-4 w-4" />

@@ -61,7 +61,7 @@ export function useETFOProgress(): {
    * Calculate if a level is complete based on progress data
    */
   const isLevelComplete = (level: string): boolean => {
-    if (progressData === null || progressData === undefined) {
+    if (!progressData) {
 return false;
 }
 
@@ -85,7 +85,7 @@ return false;
    * Calculate if a level is accessible based on prerequisites
    */
   const isLevelAccessible = (level: string): boolean => {
-    if (progressData === null || progressData === undefined) {
+    if (!progressData) {
 return false;
 }
 
@@ -109,7 +109,7 @@ return false;
    * Calculate progress percentage for a level
    */
   const getLevelProgress = (level: string): number => {
-    if (progressData === null || progressData === undefined) {
+    if (!progressData) {
 return 0;
 }
 

@@ -20,9 +20,6 @@ export function WorkflowGate({ level, children }: WorkflowGateProps): React.Reac
   const [isChecking, setIsChecking] = useState(true);
 
   useEffect(() => {
-    return () => { // Cleanup
-    };
-
     if (workflowState) {
       setIsChecking(false);
 
@@ -36,6 +33,10 @@ export function WorkflowGate({ level, children }: WorkflowGateProps): React.Reac
         });
       }
     }
+
+    return () => {
+      // Cleanup
+    };
   }, [workflowState, level, isLevelAccessible, getBlockedReason, toast]);
 
   if (isChecking) {
@@ -48,13 +49,13 @@ export function WorkflowGate({ level, children }: WorkflowGateProps): React.Reac
 
   // If level is accessible, render children
   if (isLevelAccessible(level)) {
-    return <>{children}</>;
+    return children;
   }
 
   // Otherwise, show blocked message
   const blockedReason = getBlockedReason(level);
   const previousLevel = getPreviousLevel(level);
-  const previousLevelProgress = (previousLevel != null) ? getLevelProgress(previousLevel) : null;
+  const previousLevelProgress = previousLevel !== null ? getLevelProgress(previousLevel) : null;
 
   return (
     <div className="container mx-auto py-8 max-w-2xl">
@@ -78,7 +79,7 @@ export function WorkflowGate({ level, children }: WorkflowGateProps): React.Reac
             </AlertDescription>
           </Alert>
 
-          {(previousLevel != null) && previousLevelProgress && (
+          {previousLevel !== null && previousLevelProgress && (
             <div className="space-y-3">
               <h3 className="font-semibold">Previous Level Progress</h3>
               <div className="bg-muted rounded-lg p-4 space-y-2">
@@ -112,7 +113,7 @@ export function WorkflowGate({ level, children }: WorkflowGateProps): React.Reac
             <h3 className="font-semibold">How to Unlock</h3>
             <ol className="list-decimal list-inside space-y-2 text-sm">
               {getUnlockSteps(level).map((step, _index) => (
-                <li key={_index} className="text-muted-foreground">
+                <li className="text-muted-foreground" key={_index}>
                   {step}
                 </li>
               ))}
@@ -120,7 +121,7 @@ export function WorkflowGate({ level, children }: WorkflowGateProps): React.Reac
           </div>
 
           <div className="flex gap-3">
-            {(previousLevel != null) && (
+            {previousLevel !== null && (
               <Button
                 className="flex-1"
                 onClick={() => (window.location.href = ETFO_LEVEL_PATHS[previousLevel])}
@@ -130,8 +131,8 @@ export function WorkflowGate({ level, children }: WorkflowGateProps): React.Reac
             )}
             <Button
               className="flex-1"
-              variant="outline"
               onClick={() => (window.location.href = '/')}
+              variant="outline"
             >
               Back to Dashboard
             </Button>

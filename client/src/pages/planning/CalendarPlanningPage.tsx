@@ -71,7 +71,7 @@ const CalendarLoadingFallback = (): JSX.Element => (
       <div className="h-8 bg-gray-200 rounded w-1/3 mb-4" />
       <div className="grid grid-cols-7 gap-2">
         {Array.from({ length: 35 }, (_, i) => (
-          <div key={i} className="h-20 bg-gray-100 rounded" />
+          <div className="h-20 bg-gray-100 rounded" key={i} />
         ))}
       </div>
     </div>
@@ -358,21 +358,21 @@ return false;
                 className={
                   showFilters ? 'bg-gray-100 flex-1 md:flex-initial' : 'flex-1 md:flex-initial'
                 }
-                size="sm"
-                variant="outline"
                 onClick={() => {
  setShowFilters(!showFilters); 
 }}
+                size="sm"
+                variant="outline"
               >
                 <Filter className="h-4 w-4 mr-2" />
                 <span className="hidden sm:inline">Filters</span>
               </Button>
               <Button
                 className="flex-1 md:flex-initial"
-                size="sm"
                 onClick={() => {
  setShowEventModal(true); 
 }}
+                size="sm"
               >
                 <Plus className="h-4 w-4 mr-2" />
                 <span className="hidden sm:inline">Add Event</span>
@@ -381,33 +381,33 @@ return false;
             <div className="flex gap-1 view-buttons">
               <Button
                 className="flex-1 md:flex-initial"
-                size="sm"
-                variant={view === 'month' ? 'primary' : 'outline'}
                 onClick={() => {
  setView('month'); 
 }}
+                size="sm"
+                variant={view === 'month' ? 'primary' : 'outline'}
               >
                 <span className="md:hidden">M</span>
                 <span className="hidden md:inline">Month</span>
               </Button>
               <Button
                 className="flex-1 md:flex-initial"
-                size="sm"
-                variant={view === 'week' ? 'primary' : 'outline'}
                 onClick={() => {
  setView('week'); 
 }}
+                size="sm"
+                variant={view === 'week' ? 'primary' : 'outline'}
               >
                 <span className="md:hidden">W</span>
                 <span className="hidden md:inline">Week</span>
               </Button>
               <Button
                 className="flex-1 md:flex-initial"
-                size="sm"
-                variant={view === 'agenda' ? 'primary' : 'outline'}
                 onClick={() => {
  setView('agenda'); 
 }}
+                size="sm"
+                variant={view === 'agenda' ? 'primary' : 'outline'}
               >
                 <span className="md:hidden">A</span>
                 <span className="hidden md:inline">Agenda</span>
@@ -457,7 +457,6 @@ return false;
         {localizerReady && localizer ? (
           <Suspense fallback={<CalendarLoadingFallback />}>
             <BigCalendar
-              selectable
               components={{
                 // @ts-expect-error - Toolbar component type mismatch
                 toolbar: CustomToolbar,
@@ -468,16 +467,17 @@ return false;
               eventPropGetter={(event: object) => eventStyleGetter(event as CalendarViewEvent)}
               events={events}
               localizer={localizer}
-              startAccessor={(event: object) => (event as CalendarViewEvent).start ?? new Date()}
-              style={{ height: window.innerWidth < 768 ? 500 : 700 }}
-              view={view}
-              views={['month', 'week', 'agenda']}
               onNavigate={handleNavigate}
               onSelectEvent={(event: object) => {
  handleSelectEvent(event as CalendarViewEvent); 
 }}
               onSelectSlot={handleSelectSlot}
               onView={setView}
+              selectable
+              startAccessor={(event: object) => (event as CalendarViewEvent).start ?? new Date()}
+              style={{ height: window.innerWidth < 768 ? 500 : 700 }}
+              view={view}
+              views={['month', 'week', 'agenda']}
             />
           </Suspense>
         ) : (
@@ -496,7 +496,6 @@ return false;
         >
           <CalendarEventModal
             isOpen={showEventModal}
-            selectedDate={selectedSlot?.start ?? new Date()}
             onClose={() => {
               setShowEventModal(false);
               setSelectedSlot(null);
@@ -505,6 +504,7 @@ return false;
               void queryClient.invalidateQueries({ queryKey: ['calendar-events'] });
               void queryClient.invalidateQueries({ queryKey: ['lessons'] });
             }}
+            selectedDate={selectedSlot?.start ?? new Date()}
           />
         </Suspense>
       )}

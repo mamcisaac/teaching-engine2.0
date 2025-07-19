@@ -21,19 +21,19 @@ export const UnitPlanOverviewTab: React.FC<UnitPlanOverviewTabProps> = ({
     <div className="space-y-6">
       <CollapsibleSection defaultExpanded required title="Basic Information">
         <div className="space-y-4">
-          {(longRangePlanId === null || longRangePlanId === undefined || longRangePlanId === '') && (
+          {!longRangePlanId  && (
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="unit-lrp-select">
                 Long-Range Plan *
               </label>
               <select
-                required
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 id="unit-lrp-select"
-                value={formData.longRangePlanId}
                 onChange={(e) => {
  updateField('longRangePlanId', e.target.value); 
 }}
+                required
+                value={formData.longRangePlanId}
               >
                 <option value="">Select a long-range plan...</option>
                 {allLongRangePlans.map((plan, _index) => (
@@ -50,15 +50,15 @@ export const UnitPlanOverviewTab: React.FC<UnitPlanOverviewTabProps> = ({
               Unit Title *
             </label>
             <input
-              required
               className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
               id="unit-title"
-              placeholder="e.g., Living Things in Our Environment"
-              type="text"
-              value={formData.title}
               onChange={(e) => {
  updateField('title', e.target.value); 
 }}
+              placeholder="e.g., Living Things in Our Environment"
+              required
+              type="text"
+              value={formData.title}
             />
           </div>
 
@@ -69,12 +69,12 @@ export const UnitPlanOverviewTab: React.FC<UnitPlanOverviewTabProps> = ({
             <textarea
               className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
               id="unit-description"
-              placeholder="Brief overview of the unit..."
-              rows={3}
-              value={formData.description}
               onChange={(e) => {
  updateField('description', e.target.value); 
 }}
+              placeholder="Brief overview of the unit..."
+              rows={3}
+              value={formData.description}
             />
           </div>
 
@@ -84,14 +84,14 @@ export const UnitPlanOverviewTab: React.FC<UnitPlanOverviewTabProps> = ({
                 Start Date *
               </label>
               <input
-                required
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 id="unit-start-date"
-                type="date"
-                value={formData.startDate}
                 onChange={(e) => {
  updateField('startDate', e.target.value); 
 }}
+                required
+                type="date"
+                value={formData.startDate}
               />
             </div>
 
@@ -100,14 +100,14 @@ export const UnitPlanOverviewTab: React.FC<UnitPlanOverviewTabProps> = ({
                 End Date *
               </label>
               <input
-                required
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 id="unit-end-date"
-                type="date"
-                value={formData.endDate}
                 onChange={(e) => {
  updateField('endDate', e.target.value); 
 }}
+                required
+                type="date"
+                value={formData.endDate}
               />
             </div>
 
@@ -119,11 +119,11 @@ export const UnitPlanOverviewTab: React.FC<UnitPlanOverviewTabProps> = ({
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 id="unit-hours"
                 min="1"
-                type="number"
-                value={formData.estimatedHours}
                 onChange={(e) => {
  updateField('estimatedHours', Number(e.target.value)); 
 }}
+                type="number"
+                value={formData.estimatedHours}
               />
             </div>
           </div>

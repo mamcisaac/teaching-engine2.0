@@ -155,7 +155,7 @@ return undefined;
   }
 
   private sanitizeDetails(details?: Record<string, unknown>): Record<string, unknown> | undefined {
-    if (!details) {
+    if (details === undefined) {
 return undefined;
 }
 

@@ -128,7 +128,7 @@ export function DuplicatePlanModal({
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog onOpenChange={onClose} open={isOpen}>
       <div className="p-6 max-w-md">
         <div className="flex items-center gap-3 mb-6">
           <div className="p-2 bg-indigo-100 rounded-lg">
@@ -146,7 +146,7 @@ export function DuplicatePlanModal({
           {planType === undefined ? (
             <div>
               <Label htmlFor="input">Plan Type</Label>
-              <Select value={selectedType} onValueChange={setSelectedType}>
+              <Select onValueChange={setSelectedType} value={selectedType}>
                 <SelectTrigger className="mt-1">
                   <SelectValue placeholder="Select plan type" />
                 </SelectTrigger>
@@ -177,7 +177,7 @@ export function DuplicatePlanModal({
           {(selectedType !== '' || planType !== undefined) && planId === undefined ? (
             <div>
               <Label htmlFor="input">Select Plan to Duplicate</Label>
-              <Select value={selectedPlanId} onValueChange={setSelectedPlanId}>
+              <Select onValueChange={setSelectedPlanId} value={selectedPlanId}>
                 <SelectTrigger className="mt-1">
                   <SelectValue placeholder="Choose a plan" />
                 </SelectTrigger>
@@ -215,14 +215,14 @@ export function DuplicatePlanModal({
           <div>
             <Label htmlFor="newTitle">New Plan Title</Label>
             <Input
-              required
               className="mt-1"
               id="newTitle"
-              placeholder={planTitle ? `Copy of ${planTitle}` : 'Enter new title'}
-              value={newTitle}
               onChange={(e) => {
  setNewTitle(e.target.value); 
 }}
+              placeholder={planTitle ? `Copy of ${planTitle}` : 'Enter new title'}
+              required
+              value={newTitle}
             />
           </div>
 
@@ -231,12 +231,12 @@ export function DuplicatePlanModal({
             <Textarea
               className="mt-1"
               id="notes"
-              placeholder="Add any notes about this duplicate..."
-              rows={3}
-              value={notes}
               onChange={(e) => {
  setNotes(e.target.value); 
 }}
+              placeholder="Add any notes about this duplicate..."
+              rows={3}
+              value={notes}
             />
           </div>
 
@@ -246,10 +246,10 @@ export function DuplicatePlanModal({
                 checked={includeSubItems}
                 className="rounded"
                 id="includeSubItems"
-                type="checkbox"
                 onChange={(e) => {
  setIncludeSubItems(e.target.checked); 
 }}
+                type="checkbox"
               />
               <Label className="text-sm font-normal" htmlFor="includeSubItems">
                 Include all {selectedType === 'long-range' ? 'units' : 'lessons'} from the original plan
@@ -272,9 +272,9 @@ export function DuplicatePlanModal({
 
             <div className="flex justify-end gap-3">
               <Button
+                onClick={onClose}
                 type="button"
                 variant="outline"
-                onClick={onClose}
               >
                 Cancel
               </Button>

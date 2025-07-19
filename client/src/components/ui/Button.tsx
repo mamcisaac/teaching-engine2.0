@@ -42,7 +42,6 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <button
-        ref={ref}
         className={clsx(
           baseStyles,
           variants[variant],
@@ -51,6 +50,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           className,
         )}
         disabled={disabled === true || loading}
+        ref={ref}
         {...props}
       >
         {loading ? (

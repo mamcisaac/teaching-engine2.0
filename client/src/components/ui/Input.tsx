@@ -8,7 +8,6 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, error, ...props }, ref): React.ReactElement => (
       <input
-        ref={ref}
         className={clsx(
           'flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm',
           'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent',
@@ -16,6 +15,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           error === true && 'border-red-500 focus:ring-red-500',
           className,
         )}
+        ref={ref}
         {...props}
       />
     ),

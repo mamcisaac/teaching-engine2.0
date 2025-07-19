@@ -157,7 +157,7 @@ export class LLMService extends BaseService {
 
       const content = response.choices[0]?.message?.content ?? '';
 
-      if (!content || content === '') {
+      if (!content) {
         throw new Error('No content generated from OpenAI');
       }
 
@@ -236,7 +236,7 @@ export class LLMService extends BaseService {
 
       const content = response.choices[0]?.message?.content ?? '';
 
-      if (!content || content === '') {
+      if (!content) {
         throw new Error('No content generated from OpenAI');
       }
 
@@ -332,7 +332,7 @@ export class LLMService extends BaseService {
    */
   // @ts-expect-error Method reserved for future request validation
   private _validateRequest(request: ContentGenerationRequest): void {
-    if (!request.prompt || request.prompt.trim().length === 0) {
+    if (!request.prompt?.trim()) {
       throw new Error('Prompt is required and cannot be empty');
     }
 

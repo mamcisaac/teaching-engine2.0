@@ -101,7 +101,7 @@ export default function CurriculumExpectationsPage(): React.ReactElement {
   const handleEdit = (expectation: CurriculumExpectation): void => {
     setEditingExpectation({
       ...expectation,
-      descriptionFr: (expectation.descriptionFr !== null && expectation.descriptionFr !== undefined && expectation.descriptionFr !== '') ? expectation.descriptionFr : '',
+      descriptionFr: expectation.descriptionFr  ? expectation.descriptionFr : '',
     });
     setIsEditDialogOpen(true);
   };
@@ -177,7 +177,7 @@ return;
       <TableCell className="max-w-md">
         <div className="space-y-1">
           <p className="text-sm">{expectation.description}</p>
-          {(expectation.descriptionFr !== null && expectation.descriptionFr !== undefined && expectation.descriptionFr !== '') && (
+          {expectation.descriptionFr  && (
             <p className="text-sm text-muted-foreground italic">{expectation.descriptionFr}</p>
           )}
         </div>
@@ -185,7 +185,7 @@ return;
       <TableCell>
         <div className="text-sm">
           <div>{expectation.strand}</div>
-          {(expectation.substrand !== null && expectation.substrand !== undefined && expectation.substrand !== '') && (
+          {expectation.substrand  && (
             <div className="text-muted-foreground">{expectation.substrand}</div>
           )}
         </div>
@@ -263,15 +263,15 @@ return;
               <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
                 className="pl-9"
-                placeholder="Search by code or description..."
-                value={searchTerm}
                 onChange={(e) => {
  setSearchTerm(e.target.value); 
 }}
+                placeholder="Search by code or description..."
+                value={searchTerm}
               />
             </div>
 
-            <Select value={selectedSubject} onValueChange={setSelectedSubject}>
+            <Select onValueChange={setSelectedSubject} value={selectedSubject}>
               <SelectTrigger>
                 <SelectValue placeholder="All subjects" />
               </SelectTrigger>
@@ -286,10 +286,10 @@ return;
             </Select>
 
             <Select
-              value={String(selectedGrade)}
               onValueChange={(value) => {
  setSelectedGrade(value === 'all' ? 'all' : Number(value)); 
 }}
+              value={String(selectedGrade)}
             >
               <SelectTrigger>
                 <SelectValue placeholder="All grades" />
@@ -305,10 +305,10 @@ return;
             </Select>
 
             <Select
-              value={selectedType}
               onValueChange={(value) => {
  setSelectedType(value as 'all' | 'overall' | 'specific'); 
 }}
+              value={selectedType}
             >
               <SelectTrigger>
                 <SelectValue placeholder="All types" />
@@ -333,7 +333,7 @@ return;
         </TabsList>
 
         {subjects.map((subject, _index) => (
-          <TabsContent key={subject} className="space-y-4" value={subject}>
+          <TabsContent className="space-y-4" key={subject} value={subject}>
             <Card>
               <CardHeader>
                 <div className="flex items-center justify-between">
@@ -370,7 +370,7 @@ return;
                       </TableRow>
                     ) : (
                       groupedExpectations[subject].map((expectation, _index) => (
-                        <ExpectationRow key={expectation.id} expectation={expectation} />
+                        <ExpectationRow expectation={expectation} key={expectation.id} />
                       ))
                     )}
                   </TableBody>
@@ -381,7 +381,7 @@ return;
         ))}
       </Tabs>
 
-      <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+      <Dialog onOpenChange={setIsEditDialogOpen} open={isEditDialogOpen}>
         <DialogContent className="max-w-2xl">
           <DialogHeader>
             <DialogTitle>Edit Curriculum Expectation</DialogTitle>
@@ -405,8 +405,6 @@ return;
               <div className="space-y-2">
                 <Label htmlFor="input">Description (English)</Label>
                 <Textarea
-                  rows={3}
-                  value={editingExpectation.description}
                   onChange={(e) => {
  setEditingExpectation({
                       ...editingExpectation,
@@ -414,15 +412,14 @@ return;
                     }); 
 }
                   }
+                  rows={3}
+                  value={editingExpectation.description}
                 />
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="input">Description (French)</Label>
                 <Textarea
-                  placeholder="Optional French translation"
-                  rows={3}
-                  value={(editingExpectation.descriptionFr !== null && editingExpectation.descriptionFr !== undefined && editingExpectation.descriptionFr !== '') ? editingExpectation.descriptionFr : ''}
                   onChange={(e) => {
  setEditingExpectation({
                       ...editingExpectation,
@@ -430,6 +427,9 @@ return;
                     }); 
 }
                   }
+                  placeholder="Optional French translation"
+                  rows={3}
+                  value={editingExpectation.descriptionFr  ? editingExpectation.descriptionFr : ''}
                 />
               </div>
 
@@ -437,7 +437,6 @@ return;
                 <div>
                   <Label htmlFor="input">Strand</Label>
                   <Input
-                    value={editingExpectation.strand}
                     onChange={(e) => {
  setEditingExpectation({
                         ...editingExpectation,
@@ -445,12 +444,12 @@ return;
                       }); 
 }
                     }
+                    value={editingExpectation.strand}
                   />
                 </div>
                 <div>
                   <Label htmlFor="input">Substrand (Optional)</Label>
                   <Input
-                    value={(editingExpectation.substrand !== null && editingExpectation.substrand !== undefined && editingExpectation.substrand !== '') ? editingExpectation.substrand : ''}
                     onChange={(e) => {
  setEditingExpectation({
                         ...editingExpectation,
@@ -458,6 +457,7 @@ return;
                       }); 
 }
                     }
+                    value={editingExpectation.substrand  ? editingExpectation.substrand : ''}
                   />
                 </div>
               </div>

@@ -82,7 +82,7 @@ export function PlanningWorkflowIndicator({
                     <p className="text-xs text-gray-500 mb-1">Required:</p>
                     <div className="flex flex-wrap gap-1">
                       {level.requiredFields.map((field, _index) => (
-                        <Badge key={field} className="text-xs" variant="outline">
+                        <Badge className="text-xs" key={field} variant="outline">
                           {field}
                         </Badge>
                       ))}
@@ -106,7 +106,7 @@ export function PlanningWorkflowIndicator({
           );
 
           return (
-            <div key={level.level} className="relative">
+            <div className="relative" key={level.level}>
               {canNavigate(level) ? (
                 <Link
                   className={cn(

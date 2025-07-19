@@ -30,19 +30,19 @@ export const ThreePartLessonTab: React.FC<ThreePartLessonTabProps> = ({
           <div>
             <Label htmlFor="input">Activities (English)</Label>
             <RichTextEditor
-              value={formData.mindsOn}
               onChange={(value) => {
  updateField('mindsOn', value); 
 }}
+              value={formData.mindsOn}
             />
           </div>
           <div>
             <Label htmlFor="input">Activities (French)</Label>
             <RichTextEditor
-              value={formData.mindsOnFr}
               onChange={(value) => {
  updateField('mindsOnFr', value); 
 }}
+              value={formData.mindsOnFr}
             />
           </div>
         </CardContent>
@@ -59,19 +59,19 @@ export const ThreePartLessonTab: React.FC<ThreePartLessonTabProps> = ({
           <div>
             <Label htmlFor="input">Activities (English)</Label>
             <RichTextEditor
-              value={formData.action}
               onChange={(value) => {
  updateField('action', value); 
 }}
+              value={formData.action}
             />
           </div>
           <div>
             <Label htmlFor="input">Activities (French)</Label>
             <RichTextEditor
-              value={formData.actionFr}
               onChange={(value) => {
  updateField('actionFr', value); 
 }}
+              value={formData.actionFr}
             />
           </div>
         </CardContent>
@@ -88,19 +88,19 @@ export const ThreePartLessonTab: React.FC<ThreePartLessonTabProps> = ({
           <div>
             <Label htmlFor="input">Activities (English)</Label>
             <RichTextEditor
-              value={formData.consolidation}
               onChange={(value) => {
  updateField('consolidation', value); 
 }}
+              value={formData.consolidation}
             />
           </div>
           <div>
             <Label htmlFor="input">Activities (French)</Label>
             <RichTextEditor
-              value={formData.consolidationFr}
               onChange={(value) => {
  updateField('consolidationFr', value); 
 }}
+              value={formData.consolidationFr}
             />
           </div>
         </CardContent>

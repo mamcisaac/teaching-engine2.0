@@ -63,7 +63,7 @@ export async function exportAnalyticsData(
     link.href = url;
 
     // Generate filename
-    const timestamp = new Date().toISOString().split('T')[0];
+    const [timestamp] = new Date().toISOString().split('T');
     const filename = `${type}-${timestamp}.${extensions[format]}`;
     link.download = options.title
       ? `${options.title.toLowerCase().replace(/\s+/g, '-')}-${timestamp}.${extensions[format]}`

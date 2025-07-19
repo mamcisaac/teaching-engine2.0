@@ -32,20 +32,20 @@ export function SubstituteInfoForm(): React.ReactElement {
       <textarea
         className="border p-1 w-full"
         maxLength={1000}
-        placeholder="Procedures"
-        value={procedures}
         onChange={(e): void => {
  setProcedures(e.target.value); 
 }}
+        placeholder="Procedures"
+        value={procedures}
       />
       <textarea
         className="border p-1 w-full"
         maxLength={1000}
-        placeholder="Allergies"
-        value={allergies}
         onChange={(e): void => {
  setAllergies(e.target.value); 
 }}
+        placeholder="Allergies"
+        value={allergies}
       />
       <button className="px-2 py-1 bg-blue-600 text-white" onClick={handleSave}>
         Save

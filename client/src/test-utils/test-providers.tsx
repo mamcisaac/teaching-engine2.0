@@ -95,9 +95,11 @@ export function RealProviders({
 
   // Router component selection
   const RouterComponent = useMemoryRouter ? MemoryRouter : BrowserRouter;
-  const routerProps = useMemoryRouter
-    ? { initialEntries: initialEntries.length > 0 ? initialEntries : [initialRoute] }
-    : {};
+  let routerProps = {};
+  if (useMemoryRouter) {
+    const entries = initialEntries.length > 0 ? initialEntries : [initialRoute];
+    routerProps = { initialEntries: entries };
+  }
 
   // Handle browser router navigation
   useEffect(() => {

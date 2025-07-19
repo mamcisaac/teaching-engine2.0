@@ -21,7 +21,7 @@ class ExportService {
       const link = document.createElement('a');
 
       // Generate filename
-      const timestamp = new Date().toISOString().split('T')[0];
+      const [timestamp] = new Date().toISOString().split('T');
       const filename = `${options.type}-${timestamp}.${options.format}`;
 
       link.href = url;

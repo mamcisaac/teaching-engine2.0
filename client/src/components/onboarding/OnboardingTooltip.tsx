@@ -148,9 +148,9 @@ function FlowTooltip({
             {currentStep.showSkip === true ? (
               <Button
                 className="text-gray-500"
+                onClick={skipOnboarding}
                 size="sm"
                 variant="ghost"
-                onClick={skipOnboarding}
               >
                 {currentStep.skipButtonText ?? 'Skip tour'}
               </Button>
@@ -160,8 +160,8 @@ function FlowTooltip({
           {currentStep.requiresAction !== true ? (
             <Button
               className="gap-1 bg-blue-600 hover:bg-blue-700"
-              size="sm"
               onClick={nextStep}
+              size="sm"
             >
               {currentStep.nextButtonText ?? 'Next'}
               {canGoForward ? <ChevronRight className="h-4 w-4" /> : null}
@@ -259,7 +259,7 @@ return;
       {cloneElement(children, {
         onMouseEnter: handleMouseEnter,
         onMouseLeave: handleMouseLeave,
-        className: `${((children.props as { className?: string }).className !== null && (children.props as { className?: string }).className !== undefined && (children.props as { className?: string }).className !== '') ? (children.props as { className?: string }).className : ''} ${isVisible ? 'z-40' : ''}`,
+        className: `${(children.props as { className?: string }).className ?? ''} ${isVisible ? 'z-40' : ''}`,
       })}
 
       <AnimatePresence>
@@ -269,11 +269,11 @@ return;
             className={getTooltipStyles()}
             exit={{ opacity: 0, scale: 0.95 }}
             initial={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.2 }}
             onMouseEnter={(): void => {
  setIsVisible(true); 
 }}
             onMouseLeave={handleMouseLeave}
+            transition={{ duration: 0.2 }}
           >
             {/* Arrow */}
             <div className={getArrowStyles()} />
@@ -299,7 +299,7 @@ return;
                 </div>
               </div>
 
-              {(actionText !== null && actionText !== undefined && actionText !== '') && onAction ? (
+              {actionText  && onAction ? (
                 <button
                   className="mt-3 text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
                   onClick={() => {

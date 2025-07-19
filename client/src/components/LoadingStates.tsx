@@ -77,7 +77,7 @@ export const TableSkeleton: React.FC<{ rows?: number; columns?: number }> = ({
               {Array.from({ length: columns }).map((_, colIndex) => (
                 <div 
                   key={colIndex}
-                  className="h-4 bg-gray-200 rounded flex-1" 
+                  className="h-4 bg-gray-200 rounded flex-1"
                   style={{ 
                     width: `${Math.random() * 30 + 70}%` 
                   }}

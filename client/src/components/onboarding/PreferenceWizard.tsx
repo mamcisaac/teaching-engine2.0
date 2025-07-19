@@ -101,10 +101,10 @@ export function PreferenceWizard({ onComplete, onSkip }: PreferenceWizardProps):
         </CardHeader>
         <CardContent>
           <Select
-            value={preferences.grade}
             onValueChange={(value) => {
  setPreferences(prev => ({ ...prev, grade: value })); 
 }}
+            value={preferences.grade}
           >
             <SelectTrigger>
               <SelectValue placeholder="Select your grade" />
@@ -128,7 +128,7 @@ export function PreferenceWizard({ onComplete, onSkip }: PreferenceWizardProps):
         <CardContent>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {subjects.map(subject => (
-              <div key={subject} className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2" key={subject}>
                 <Checkbox
                   checked={preferences.subjects.includes(subject)}
                   id={subject}
@@ -158,11 +158,11 @@ export function PreferenceWizard({ onComplete, onSkip }: PreferenceWizardProps):
                 className="text-indigo-600"
                 id="brief"
                 name="planningStyle"
-                type="radio"
-                value="brief"
                 onChange={(e) => {
  setPreferences(prev => ({ ...prev, planningStyle: e.target.value })); 
 }}
+                type="radio"
+                value="brief"
               />
               <Label htmlFor="brief">Brief - Key points and activities only</Label>
             </div>
@@ -172,11 +172,11 @@ export function PreferenceWizard({ onComplete, onSkip }: PreferenceWizardProps):
                 className="text-indigo-600"
                 id="detailed"
                 name="planningStyle"
-                type="radio"
-                value="detailed"
                 onChange={(e) => {
  setPreferences(prev => ({ ...prev, planningStyle: e.target.value })); 
 }}
+                type="radio"
+                value="detailed"
               />
               <Label htmlFor="detailed">Detailed - Comprehensive plans with all sections</Label>
             </div>
@@ -186,11 +186,11 @@ export function PreferenceWizard({ onComplete, onSkip }: PreferenceWizardProps):
                 className="text-indigo-600"
                 id="comprehensive"
                 name="planningStyle"
-                type="radio"
-                value="comprehensive"
                 onChange={(e) => {
  setPreferences(prev => ({ ...prev, planningStyle: e.target.value })); 
 }}
+                type="radio"
+                value="comprehensive"
               />
               <Label htmlFor="comprehensive">Comprehensive - Everything including assessments and modifications</Label>
             </div>
@@ -211,11 +211,11 @@ export function PreferenceWizard({ onComplete, onSkip }: PreferenceWizardProps):
                 className="text-indigo-600"
                 id="minimal"
                 name="aiAssistance"
-                type="radio"
-                value="minimal"
                 onChange={(e) => {
  setPreferences(prev => ({ ...prev, aiAssistanceLevel: e.target.value })); 
 }}
+                type="radio"
+                value="minimal"
               />
               <Label htmlFor="minimal">Minimal - Only when I ask for help</Label>
             </div>
@@ -225,11 +225,11 @@ export function PreferenceWizard({ onComplete, onSkip }: PreferenceWizardProps):
                 className="text-indigo-600"
                 id="moderate"
                 name="aiAssistance"
-                type="radio"
-                value="moderate"
                 onChange={(e) => {
  setPreferences(prev => ({ ...prev, aiAssistanceLevel: e.target.value })); 
 }}
+                type="radio"
+                value="moderate"
               />
               <Label htmlFor="moderate">Moderate - Smart suggestions and auto-completion</Label>
             </div>
@@ -239,11 +239,11 @@ export function PreferenceWizard({ onComplete, onSkip }: PreferenceWizardProps):
                 className="text-indigo-600"
                 id="high"
                 name="aiAssistance"
-                type="radio"
-                value="high"
                 onChange={(e) => {
  setPreferences(prev => ({ ...prev, aiAssistanceLevel: e.target.value })); 
 }}
+                type="radio"
+                value="high"
               />
               <Label htmlFor="high">High - Proactive suggestions and automated planning</Label>
             </div>
@@ -299,10 +299,10 @@ export function PreferenceWizard({ onComplete, onSkip }: PreferenceWizardProps):
         </CardHeader>
         <CardContent>
           <Select
-            value={preferences.theme}
             onValueChange={(value) => {
  setPreferences(prev => ({ ...prev, theme: value })); 
 }}
+            value={preferences.theme}
           >
             <SelectTrigger>
               <SelectValue />

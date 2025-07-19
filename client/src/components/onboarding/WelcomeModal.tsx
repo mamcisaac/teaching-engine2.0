@@ -85,7 +85,7 @@ export function WelcomeModal(): React.ReactElement | null {
             transition={{ delay: 0.4 }}
           >
             {features.map((feature, index) => (
-              <div key={index} className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
+              <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg" key={index}>
                 <div className="p-2 bg-blue-100 rounded-lg text-blue-600 flex-shrink-0">
                   {feature.icon}
                 </div>
@@ -106,10 +106,10 @@ export function WelcomeModal(): React.ReactElement | null {
           >
             <Button
               className="flex-1 bg-blue-600 hover:bg-blue-700 text-white gap-2"
-              size="lg"
               onClick={() => {
  startOnboarding('main-onboarding'); 
 }}
+              size="lg"
             >
               Take the 5-minute tour
               <ChevronRight className="h-4 w-4" />

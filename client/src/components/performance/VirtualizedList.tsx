@@ -137,11 +137,11 @@ return;
 
   return (
     <div
-      ref={containerRef}
       className={`overflow-auto ${className}`}
       data-testid="virtualized-list-container"
-      style={{ height }}
       onScroll={handleScroll}
+      ref={containerRef}
+      style={{ height }}
     >
       <div
         style={{

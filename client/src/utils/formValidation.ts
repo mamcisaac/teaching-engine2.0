@@ -152,7 +152,7 @@ export function validateLessonPlan(data: LessonPlanFormData): ValidationResult {
   const hasAction = data.action?.trim();
   const hasConsolidation = data.consolidation?.trim();
 
-  if ((hasMindsOn === null || hasMindsOn === undefined || hasMindsOn === '') && (hasAction === null || hasAction === undefined || hasAction === '') && (hasConsolidation === null || hasConsolidation === undefined || hasConsolidation === '')) {
+  if (!hasMindsOn  && !hasAction  && !hasConsolidation ) {
     errors.lessonStructure =
       'At least one lesson component (Minds On, Action, or Consolidation) must have content';
   }

@@ -277,15 +277,13 @@ return;
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {TEMPLATE_LIBRARY.map((template, _index) => (
               <div
-                key={template.id}
                 aria-label={`Select template: ${template.name}`}
                 className={`p-4 border rounded-lg cursor-pointer transition-all ${
                   selectedTemplate?.id === template.id
                     ? 'border-indigo-500 bg-indigo-50'
                     : 'border-gray-200 hover:border-gray-300'
                 }`}
-                role="button"
-                tabIndex={0}
+                key={template.id}
                 onClick={() => {
  setSelectedTemplate(template); 
 }}
@@ -295,6 +293,8 @@ return;
                     setSelectedTemplate(template);
                   }
                 }}
+                role="button"
+                tabIndex={0}
               >
                 <div className="flex items-start gap-3">
                   <div className="flex-shrink-0 text-indigo-600">
@@ -339,8 +339,6 @@ return;
                   id="quantity"
                   max="50"
                   min="1"
-                  type="number"
-                  value={customConfig.quantity}
                   onChange={(e) => {
  setCustomConfig({
                       ...customConfig,
@@ -348,18 +346,20 @@ return;
                     }); 
 }
                   }
+                  type="number"
+                  value={customConfig.quantity}
                 />
               </div>
               <div>
                 <Label htmlFor="prefix">Title prefix</Label>
                 <Input
                   id="prefix"
-                  placeholder="e.g., Grade 3 - "
-                  value={customConfig.prefix}
                   onChange={(e) => {
  setCustomConfig({ ...customConfig, prefix: e.target.value }); 
 }
                   }
+                  placeholder="e.g., Grade 3 - "
+                  value={customConfig.prefix}
                 />
               </div>
             </div>
@@ -369,8 +369,6 @@ return;
                 <Label htmlFor="start-date">Start date</Label>
                 <Input
                   id="start-date"
-                  type="date"
-                  value={customConfig.dateRange.start}
                   onChange={(e) => {
  setCustomConfig({
                       ...customConfig,
@@ -378,14 +376,14 @@ return;
                     }); 
 }
                   }
+                  type="date"
+                  value={customConfig.dateRange.start}
                 />
               </div>
               <div>
                 <Label htmlFor="end-date">End date</Label>
                 <Input
                   id="end-date"
-                  type="date"
-                  value={customConfig.dateRange.end}
                   onChange={(e) => {
  setCustomConfig({
                       ...customConfig,
@@ -393,6 +391,8 @@ return;
                     }); 
 }
                   }
+                  type="date"
+                  value={customConfig.dateRange.end}
                 />
               </div>
             </div>
@@ -404,8 +404,8 @@ return;
               </Button>
               <Button
                 className="flex items-center gap-2"
-                variant="outline"
                 onClick={handleTemplateDownload}
+                variant="outline"
               >
                 <Download className="h-4 w-4" />
                 Download Template
@@ -432,7 +432,7 @@ return;
                   <Badge variant="outline">All available fields</Badge>
                 ) : (
                   selectedTemplate.fields.map((field, _index) => (
-                    <Badge key={field} className="text-xs" variant="outline">
+                    <Badge className="text-xs" key={field} variant="outline">
                       {field}
                     </Badge>
                   ))

@@ -112,7 +112,7 @@ export const validateId = (id: string | number): number => {
 export const validatePagination = (query: unknown): { page: number; pageSize: number } => {
   const defaultPagination = { page: 1, pageSize: 20 };
   
-  if (!query || typeof query !== 'object') {
+  if (query === null || query === undefined || typeof query !== 'object') {
     return defaultPagination;
   }
   
@@ -127,14 +127,14 @@ export const validatePagination = (query: unknown): { page: number; pageSize: nu
 export const validateDateRange = (from?: string | Date, to?: string | Date): { from?: Date; to?: Date } => {
   const dates: { from?: Date; to?: Date } = {};
   
-  if (from) {
+  if (from !== undefined && from !== '') {
     dates.from = new Date(from);
     if (isNaN(dates.from.getTime())) {
       throw new Error('Invalid from date');
     }
   }
   
-  if (to) {
+  if (to !== undefined && to !== '') {
     dates.to = new Date(to);
     if (isNaN(dates.to.getTime())) {
       throw new Error('Invalid to date');
@@ -170,10 +170,10 @@ export const transformToBoolean = (value: unknown): boolean => {
 
 export const transformToArray = (value: unknown): string[] => {
   if (Array.isArray(value)) {
-    return value;
+    return value.filter((item): item is string => typeof item === 'string');
   }
   if (typeof value === 'string') {
-    return value.split(',').map(s => s.trim()).filter(s => s !== null && s !== undefined && s !== '');
+    return value.split(',').map(s => s.trim()).filter(s => s !== '');
   }
   return [];
 };
@@ -229,9 +229,7 @@ export const buildCreateSchema = <T extends z.ZodRawShape>(
   const shape: z.ZodRawShape = {};
   
   for (const key of requiredFields) {
-    if (baseSchema.shape[key] !== null && baseSchema.shape[key] !== undefined) {
-      shape[key as string] = baseSchema.shape[key] as z.ZodTypeAny;
-    }
+    shape[key as string] = baseSchema.shape[key] as z.ZodTypeAny;
   }
   
   return z.object(shape);
@@ -252,10 +250,10 @@ export const buildUpdateSchema = <T extends z.ZodRawShape>(
 // Validation middleware factory
 export const createValidationMiddleware = <T>(schema: z.ZodSchema<T>): ((req: Request, res: Response, next: NextFunction) => void) => (req: Request, res: Response, next: NextFunction): void => {
     try {
-      const data = {
-        ...(req.body || {}),
-        ...(req.query || {}),
-        ...(req.params || {}),
+      const data: Record<string, unknown> = {
+        ...(typeof req.body === 'object' && req.body !== null ? req.body as Record<string, unknown> : {}),
+        ...(req.query as Record<string, unknown>),
+        ...(req.params as Record<string, unknown>),
       };
       
       const result = schema.parse(data);

@@ -119,7 +119,8 @@ export const mockApiModule = (): AxiosInstance => {
       const day = d.getUTCDay();
       const diff = d.getUTCDate() - day + (day === 0 ? -6 : 1);
       const monday = new Date(d.setUTCDate(diff));
-      return monday.toISOString().split('T')[0];
+      const [dateOnly] = monday.toISOString().split('T');
+      return dateOnly;
     }),
   }));
 

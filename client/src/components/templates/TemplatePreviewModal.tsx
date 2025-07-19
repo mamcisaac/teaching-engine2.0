@@ -53,7 +53,7 @@ return null;
           const isExpanded = expandedSections.has(key);
 
           return (
-            <div key={key} className="border rounded-lg">
+            <div className="border rounded-lg" key={key}>
               <button
                 className="w-full px-4 py-3 flex items-center justify-between hover:bg-gray-50 transition-colors"
                 onClick={(): void => {
@@ -69,16 +69,21 @@ return null;
               </button>
               {isExpanded && (
                 <div className="px-4 pb-3">
-                  {isList === true && Array.isArray(content) ? (
-                    <ul className="list-disc list-inside space-y-1">
-                      {content.map((item, _index) => (
-                        <li key={_index} className="text-gray-700">{item}</li>
-                      ))}
-                    </ul>
-                  ) : isAssessments === true && Array.isArray(content) ? (
-                    <div className="space-y-2">
+                  {(() => {
+                    if (isList === true && Array.isArray(content)) {
+                      return (
+                        <ul className="list-disc list-inside space-y-1">
+                          {content.map((item, _index) => (
+                            <li className="text-gray-700" key={_index}>{item}</li>
+                          ))}
+                        </ul>
+                      );
+                    }
+                    if (isAssessments === true && Array.isArray(content)) {
+                      return (
+                        <div className="space-y-2">
                       {content.map((assessment, _index) => (
-                        <div key={_index} className="bg-gray-50 p-3 rounded">
+                        <div className="bg-gray-50 p-3 rounded" key={_index}>
                           <div className="font-medium">{assessment.type}</div>
                           <div className="text-gray-700">{assessment.description}</div>
                           {assessment.timing !== null && assessment.timing !== undefined && assessment.timing !== '' && (
@@ -87,24 +92,30 @@ return null;
                         </div>
                       ))}
                     </div>
-                  ) : isDiff === true && typeof content === 'object' ? (
-                    <div className="space-y-2">
-                      {Object.entries(content).map(([key, strategies]) => (
-                        <div key={key}>
-                          <div className="font-medium text-sm capitalize">
-                            {key.replace(/([A-Z])/g, ' $1').trim()}:
-                          </div>
-                          <ul className="list-disc list-inside ml-4">
-                            {(strategies).map((strategy, _index) => (
-                              <li key={_index} className="text-gray-700 text-sm">{strategy}</li>
-                            ))}
-                          </ul>
+                      );
+                    }
+                    if (isDiff === true && typeof content === 'object') {
+                      return (
+                        <div className="space-y-2">
+                          {Object.entries(content).map(([key, strategies]) => (
+                            <div key={key}>
+                              <div className="font-medium text-sm capitalize">
+                                {key.replace(/([A-Z])/g, ' $1').trim()}:
+                              </div>
+                              <ul className="list-disc list-inside ml-4">
+                                {(strategies).map((strategy, _index) => (
+                                  <li className="text-gray-700 text-sm" key={_index}>{strategy}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
                         </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <p className="text-gray-700">{typeof content === 'string' ? content : JSON.stringify(content)}</p>
-                  )}
+                      );
+                    }
+                    return (
+                      <p className="text-gray-700">{typeof content === 'string' ? content : JSON.stringify(content)}</p>
+                    );
+                  })()}
                 </div>
               )}
             </div>
@@ -137,7 +148,7 @@ return null;
           const isExpanded = expandedSections.has(key);
 
           return (
-            <div key={key} className="border rounded-lg">
+            <div className="border rounded-lg" key={key}>
               <button
                 className="w-full px-4 py-3 flex items-center justify-between hover:bg-gray-50 transition-colors"
                 onClick={(): void => {
@@ -156,7 +167,7 @@ return null;
                   {isList === true && Array.isArray(content) ? (
                     <ul className="list-disc list-inside space-y-1">
                       {content.map((item, _index) => (
-                        <li key={_index} className="text-gray-700">{item}</li>
+                        <li className="text-gray-700" key={_index}>{item}</li>
                       ))}
                     </ul>
                   ) : key === 'assessment' ? (
@@ -253,8 +264,8 @@ return null;
               <div className="flex flex-wrap gap-2">
                 {template.tags.map((tag, _index) => (
                   <span
-                    key={tag}
                     className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full"
+                    key={tag}
                   >
                     {tag}
                   </span>
@@ -278,9 +289,9 @@ return null;
               {template.unitStructure.phases && template.unitStructure.phases.length > 0 && (
                 <div className="space-y-3">
                   {template.unitStructure.phases.map((phase, _index) => (
-                    <div key={_index} className="bg-gray-50 p-4 rounded-lg">
+                    <div className="bg-gray-50 p-4 rounded-lg" key={_index}>
                       <div className="font-medium">{phase.name}</div>
-                      {(phase.description !== null && phase.description !== undefined && phase.description !== '') && (
+                      {phase.description  && (
                         <p className="text-gray-700 text-sm mt-1">{phase.description}</p>
                       )}
                       {phase.estimatedDays !== null && phase.estimatedDays !== undefined && phase.estimatedDays > 0 && (

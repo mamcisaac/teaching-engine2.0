@@ -107,7 +107,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
           errorMessage = 'Invalid email or password';
         } else if (err.response?.status !== null && err.response?.status !== undefined && err.response.status >= 500) {
           errorMessage = 'Server error. Please try again later.';
-        } else if (err.message !== null && err.message !== undefined && err.message !== '') {
+        } else if (err.message) {
           errorMessage = err.message;
         }
 

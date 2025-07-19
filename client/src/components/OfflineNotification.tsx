@@ -68,8 +68,8 @@ export function OfflineNotification(): React.ReactElement | null {
             </div>
             <div className="mt-3 flex items-center gap-2">
               <Button
-                className="text-yellow-700 border-yellow-300 hover:bg-yellow-100"
                 disabled={retrying}
+                className="text-yellow-700 border-yellow-300 hover:bg-yellow-100"
                 size="sm"
                 variant="outline"
                 onClick={() => {

@@ -11,7 +11,7 @@ const router = Router();
 router.get('/', authMiddleware, (req: Request, res: Response): void => {
   void (async () => {
     try {
-    if (req.user?.id == null) {
+    if (req.user?.id === null || req.user?.id === undefined) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
@@ -61,7 +61,7 @@ router.get('/', authMiddleware, (req: Request, res: Response): void => {
 router.get('/:collectionId', authMiddleware, (req: Request, res: Response): void => {
   void (async () => {
     try {
-    if (req.user?.id == null) {
+    if (req.user?.id === null || req.user?.id === undefined) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
@@ -124,7 +124,7 @@ const createCollectionSchema = z.object({
 router.post('/', authMiddleware, (req: Request, res: Response): void => {
   void (async () => {
     try {
-    if (req.user?.id == null) {
+    if (req.user?.id === null || req.user?.id === undefined) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
@@ -167,7 +167,7 @@ const updateCollectionSchema = z.object({
 router.put('/:collectionId', authMiddleware, (req: Request, res: Response): void => {
   void (async () => {
     try {
-    if (req.user?.id == null) {
+    if (req.user?.id === null || req.user?.id === undefined) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
@@ -220,7 +220,7 @@ router.delete(
   (req: Request, res: Response): void => {
     void (async () => {
       try {
-      if (req.user?.id == null) {
+      if (req.user?.id === null || req.user?.id === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -276,7 +276,7 @@ router.post(
   (req: Request, res: Response): void => {
     void (async () => {
       try {
-      if (req.user?.id == null) {
+      if (req.user?.id === null || req.user?.id === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -359,7 +359,7 @@ router.delete(
   (req: Request, res: Response): void => {
     void (async () => {
       try {
-      if (req.user?.id == null) {
+      if (req.user?.id === null || req.user?.id === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -416,7 +416,7 @@ router.get(
   (req: Request, res: Response): void => {
     void (async () => {
       try {
-      if (req.user?.id == null) {
+      if (req.user?.id === null || req.user?.id === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }

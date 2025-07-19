@@ -254,9 +254,9 @@ export class AIErrorBoundary extends Component<Props, State> {
                       <Button
                         aria-label="Retry AI generation"
                         className="gap-2"
+                        onClick={this.handleRetry}
                         size="sm"
                         variant="outline"
-                        onClick={this.handleRetry}
                       >
                         <RefreshCw aria-hidden="true" className="h-4 w-4" />
                         Retry
@@ -267,9 +267,9 @@ export class AIErrorBoundary extends Component<Props, State> {
                       <Button
                         aria-label="Continue creating content manually without AI assistance"
                         className="gap-2"
+                        onClick={this.handleManualFallback}
                         size="sm"
                         variant="outline"
-                        onClick={this.handleManualFallback}
                       >
                         <FileText aria-hidden="true" className="h-4 w-4" />
                         Continue Manually
@@ -279,8 +279,8 @@ export class AIErrorBoundary extends Component<Props, State> {
                     {aiError.type === AIErrorType.API_KEY_MISSING && (
                       <Button
                         className="gap-2"
-                        size="sm"
                         onClick={() => window.open('/settings', '_blank')}
+                        size="sm"
                       >
                         <Settings className="h-4 w-4" />
                         Open Settings

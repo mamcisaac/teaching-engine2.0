@@ -227,11 +227,11 @@ return [];
         <div className="flex justify-between items-center">
           <Input
             className="max-w-md"
-            placeholder="Search all columns..."
-            value={globalSearch}
             onChange={(e) => {
  handleGlobalSearch(e.target.value); 
 }}
+            placeholder="Search all columns..."
+            value={globalSearch}
           />
           {data && (
             <div className="text-sm text-gray-500">
@@ -248,14 +248,14 @@ return [];
             <tr>
               {columns.map((column, _index) => (
                 <th
-                  key={column.key as string}
                   className={`px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ${
                     column.sortable === true ? 'cursor-pointer hover:bg-gray-100' : ''
                   }`}
-                  style={{ width: column.width }}
+                  key={column.key as string}
                   onClick={column.sortable === true ? (): void => {
  handleSort(column.key as string); 
 } : undefined}
+                  style={{ width: column.width }}
                 >
                   <div className="flex items-center space-x-1">
                     <span>{column.label}</span>
@@ -268,15 +268,15 @@ return [];
             {/* Filter Row */}
             <tr className="bg-gray-25">
               {columns.map((column, _index) => (
-                <th key={`filter-${column.key as string}`} className="px-6 py-2">
+                <th className="px-6 py-2" key={`filter-${column.key as string}`}>
                   {column.filterable === true && (
                     <Input
                       className="text-sm"
-                      placeholder={`Filter by ${column.label.toLowerCase()}...`}
-                      value={(filters[column.key as string] as string) || ''}
                       onChange={(e) => {
  handleColumnFilter(column.key as string, e.target.value); 
 }}
+                      placeholder={`Filter by ${column.label.toLowerCase()}...`}
+                      value={(filters[column.key as string] as string) || ''}
                     />
                   )}
                 </th>
@@ -290,7 +290,7 @@ return [];
               Array.from({ length: pageSize }).map((_, _index) => (
                 <tr key={`skeleton-${_index}`}>
                   {columns.map((column, _colIndex) => (
-                    <td key={`skeleton-${_index}-${column.key as string}`} className="px-6 py-4">
+                    <td className="px-6 py-4" key={`skeleton-${_index}-${column.key as string}`}>
                       <LoadingSkeleton lines={1} variant="text" />
                     </td>
                   ))}
@@ -304,11 +304,11 @@ return [];
               </tr>
             ) : (
               data?.items.map((item, _index) => (
-                <tr key={_index} className="hover:bg-gray-50">
+                <tr className="hover:bg-gray-50" key={_index}>
                   {columns.map((column, _index) => (
                     <td
-                      key={column.key as string}
                       className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"
+                      key={column.key as string}
                     >
                       {column.render
                         ? column.render(item[column.key], item)
@@ -332,11 +332,11 @@ return [];
           <div className="flex space-x-1">
             <Button
               disabled={currentPage <= 1}
-              size="sm"
-              variant="outline"
               onClick={() => {
  handlePageChange(currentPage - 1); 
 }}
+              size="sm"
+              variant="outline"
             >
               <ChevronLeft className="h-4 w-4" />
               Previous
@@ -344,14 +344,14 @@ return [];
 
             {paginationButtons.map((page, _index) => (
               <Button
-                key={_index}
                 className={page === '...' ? 'cursor-default' : ''}
                 disabled={page === '...'}
-                size="sm"
-                variant={page === currentPage ? 'primary' : 'outline'}
+                key={_index}
                 onClick={() => {
  typeof page === 'number' ? handlePageChange(page) : undefined; 
 }}
+                size="sm"
+                variant={page === currentPage ? 'primary' : 'outline'}
               >
                 {page}
               </Button>
@@ -359,11 +359,11 @@ return [];
 
             <Button
               disabled={currentPage >= (data.totalPages || 1)}
-              size="sm"
-              variant="outline"
               onClick={() => {
  handlePageChange(currentPage + 1); 
 }}
+              size="sm"
+              variant="outline"
             >
               Next
               <ChevronRight className="h-4 w-4" />

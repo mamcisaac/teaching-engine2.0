@@ -66,15 +66,12 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
   };
 
   return (
-    <div ref={searchRef} className="relative">
+    <div className="relative" ref={searchRef}>
       {/* Search Input */}
       <form className="relative" onSubmit={handleSearchSubmit}>
         <div className="relative">
           <Input
             className="w-full pr-24"
-            placeholder={placeholder}
-            type="text"
-            value={query}
             onChange={(e): void => {
               setQuery(e.target.value);
               setShowSuggestionsDropdown(e.target.value.length > 0 && showSuggestions);
@@ -82,6 +79,9 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
             onFocus={(): void => {
  setShowSuggestionsDropdown(query.length > 0 && showSuggestions); 
 }}
+            placeholder={placeholder}
+            type="text"
+            value={query}
           />
           
           {/* Search Actions */}
@@ -92,12 +92,12 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
                   'p-1',
                   state.activeFilters.length > 0 && 'text-blue-600 bg-blue-50'
                 )}
-                size="sm"
-                type="button"
-                variant="ghost"
                 onClick={(): void => {
  setShowFiltersDropdown(!showFiltersDropdown); 
 }}
+                size="sm"
+                type="button"
+                variant="ghost"
               >
                 <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} />
@@ -123,16 +123,16 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
           <span className="text-sm text-gray-500">Filters:</span>
           {state.activeFilters.map((filter, _index) => (
             <span
-              key={filter}
               className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800"
+              key={filter}
             >
               {filter}
               <button
                 className="ml-1 text-blue-600 hover:text-blue-800"
-                type="button"
                 onClick={(): void => {
  removeFilter(filter); 
 }}
+                type="button"
               >
                 <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path d="M6 18L18 6M6 6l12 12" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} />
@@ -142,8 +142,8 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
           ))}
           <button
             className="text-xs text-gray-500 hover:text-gray-700 underline"
-            type="button"
             onClick={handleClearAll}
+            type="button"
           >
             Clear all
           </button>
@@ -159,8 +159,8 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
               <div className="text-xs font-medium text-gray-500 mb-2">Search Results ({content.length})</div>
               {content.slice(0, 3).map((item, _index) => (
                 <button
-                  key={item.id}
                   className="w-full text-left p-2 hover:bg-gray-50 rounded text-sm"
+                  key={item.id}
                   onClick={(): void => {
                     if (onResultSelect) {
                       onResultSelect(item.id);
@@ -186,8 +186,8 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
               <div className="text-xs font-medium text-gray-500 mb-2">Suggestions</div>
               {suggestions.map((suggestion, _index) => (
                 <button
-                  key={_index}
                   className="block w-full text-left p-2 hover:bg-gray-50 rounded text-sm text-gray-700"
+                  key={_index}
                   onClick={(): void => {
  handleSuggestionClick(suggestion); 
 }}
@@ -204,8 +204,8 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
               <div className="text-xs font-medium text-gray-500 mb-2">Popular Searches</div>
               {popularSearches.map((search, _index) => (
                 <button
-                  key={_index}
                   className="block w-full text-left p-2 hover:bg-gray-50 rounded text-sm text-gray-700"
+                  key={_index}
                   onClick={(): void => {
  handleSuggestionClick(search); 
 }}
@@ -246,14 +246,14 @@ return null;
 }
                     
                     return (
-                      <label key={difficulty} className="flex items-center">
+                      <label className="flex items-center" key={difficulty}>
                         <input
                           checked={state.activeFilters.includes(difficulty)}
                           className="h-3 w-3 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                          type="checkbox"
                           onChange={(): void => {
  handleFilterToggle(difficulty); 
 }}
+                          type="checkbox"
                         />
                         <span className="ml-2 text-sm text-gray-700">
                           {filter.label} ({filter.count})
@@ -272,14 +272,14 @@ return null;
                     .filter(f => !['beginner', 'intermediate', 'advanced'].includes(f.value))
                     .slice(0, 8) // Limit to prevent overflow
                     .map((filter, _index) => (
-                      <label key={filter.value} className="flex items-center">
+                      <label className="flex items-center" key={filter.value}>
                         <input
                           checked={state.activeFilters.includes(filter.value)}
                           className="h-3 w-3 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                          type="checkbox"
                           onChange={(): void => {
  handleFilterToggle(filter.value); 
 }}
+                          type="checkbox"
                         />
                         <span className="ml-2 text-sm text-gray-700">
                           {filter.label} ({filter.count})

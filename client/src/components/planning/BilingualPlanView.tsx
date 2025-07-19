@@ -31,12 +31,12 @@ export function BilingualPlanView({
             <span className="text-lg">🇨🇦</span> English
           </h3>
           <Button
-            size="sm"
-            type="button"
-            variant="ghost"
             onClick={() => {
  setShowEnglish(!showEnglish); 
 }}
+            size="sm"
+            type="button"
+            variant="ghost"
           >
             {showEnglish ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
           </Button>
@@ -54,12 +54,12 @@ export function BilingualPlanView({
             <span className="text-lg">🇫🇷</span> Français
           </h3>
           <Button
-            size="sm"
-            type="button"
-            variant="ghost"
             onClick={() => {
  setShowFrench(!showFrench); 
 }}
+            size="sm"
+            type="button"
+            variant="ghost"
           >
             {showFrench ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
           </Button>
@@ -80,23 +80,23 @@ export function BilingualPlanView({
         <div className="flex gap-2">
           <Button
             className="flex items-center gap-2"
-            size="sm"
-            type="button"
-            variant={language === 'en' ? 'primary' : 'outline'}
             onClick={() => {
  setShowEnglish(true); setShowFrench(false); 
 }}
+            size="sm"
+            type="button"
+            variant={language === 'en' ? 'primary' : 'outline'}
           >
             <span>🇨🇦</span> English
           </Button>
           <Button
             className="flex items-center gap-2"
-            size="sm"
-            type="button"
-            variant={language === 'fr' ? 'primary' : 'outline'}
             onClick={() => {
  setShowFrench(true); setShowEnglish(false); 
 }}
+            size="sm"
+            type="button"
+            variant={language === 'fr' ? 'primary' : 'outline'}
           >
             <span>🇫🇷</span> Français
           </Button>
@@ -112,21 +112,21 @@ export function BilingualPlanView({
         <div className="bg-white rounded-lg shadow-sm border p-2 flex gap-2">
           <button
             className={`p-1.5 rounded ${showEnglish ? 'bg-blue-100 text-blue-700' : 'text-gray-400'}`}
-            title="Toggle English"
-            type="button"
             onClick={() => {
  setShowEnglish(!showEnglish); 
 }}
+            title="Toggle English"
+            type="button"
           >
             <span className="text-sm">🇨🇦</span>
           </button>
           <button
             className={`p-1.5 rounded ${showFrench ? 'bg-green-100 text-green-700' : 'text-gray-400'}`}
-            title="Toggle French"
-            type="button"
             onClick={() => {
  setShowFrench(!showFrench); 
 }}
+            title="Toggle French"
+            type="button"
           >
             <span className="text-sm">🇫🇷</span>
           </button>
@@ -167,32 +167,32 @@ export function BilingualPlanView({
         
         <div className="flex gap-2">
           <Button
-            size="sm"
-            type="button"
-            variant={activeMode === 'side-by-side' ? 'primary' : 'outline'}
             onClick={() => {
  setViewMode('side-by-side'); 
 }}
+            size="sm"
+            type="button"
+            variant={activeMode === 'side-by-side' ? 'primary' : 'outline'}
           >
             {t('side_by_side', 'Side by Side')}
           </Button>
           <Button
-            size="sm"
-            type="button"
-            variant={activeMode === 'toggle' ? 'primary' : 'outline'}
             onClick={() => {
  setViewMode('toggle'); 
 }}
+            size="sm"
+            type="button"
+            variant={activeMode === 'toggle' ? 'primary' : 'outline'}
           >
             {t('toggle', 'Toggle')}
           </Button>
           <Button
-            size="sm"
-            type="button"
-            variant={activeMode === 'overlay' ? 'primary' : 'outline'}
             onClick={() => {
  setViewMode('overlay'); 
 }}
+            size="sm"
+            type="button"
+            variant={activeMode === 'overlay' ? 'primary' : 'outline'}
           >
             {t('overlay', 'Overlay')}
           </Button>

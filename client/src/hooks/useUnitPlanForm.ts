@@ -101,19 +101,27 @@ export function useUnitPlanForm({
   const [formData, setFormData] = useState<UnitPlanFormData>(() => ({
     ...initialFormData,
     ...initialData,
-    longRangePlanId: (longRangePlanId !== null && longRangePlanId !== undefined && longRangePlanId !== '') ? longRangePlanId : (initialData?.longRangePlanId !== null && initialData?.longRangePlanId !== undefined && initialData.longRangePlanId !== '' ? initialData.longRangePlanId : ''),
+    longRangePlanId: ((): string => {
+      if (longRangePlanId) {
+        return longRangePlanId;
+      }
+      if (initialData?.longRangePlanId) {
+        return initialData.longRangePlanId;
+      }
+      return '';
+    })(),
   }));
 
   // Auto-save functionality
-  const autoSaveData = (editingId !== null && editingId !== undefined && editingId !== '') ? formData : null;
+  const autoSaveData = editingId ? formData : null;
   const { lastSaved, isSaving, hasUnsavedChanges, saveNow } = useAutoSave({
     data: autoSaveData,
     saveFn: async (data) => {
-      if ((editingId !== null && editingId !== undefined && editingId !== '') && data && onSave) {
+      if (editingId && data && onSave) {
         await onSave(data);
       }
     },
-    enabled: (editingId !== null && editingId !== undefined && editingId !== '') && (autoSaveData !== null && autoSaveData !== undefined) && (onSave !== undefined),
+    enabled: !!editingId && autoSaveData !== null && (onSave !== undefined),
     delay: 30000, // 30 seconds
   });
 
@@ -217,7 +225,7 @@ export function useUnitPlanForm({
     if (new Date(formData.startDate) > new Date(formData.endDate)) {
       errors.push('End date must be after start date');
     }
-    if ((formData.longRangePlanId === null || formData.longRangePlanId === undefined || formData.longRangePlanId === '') && (longRangePlanId === null || longRangePlanId === undefined || longRangePlanId === '')) {
+    if (!formData.longRangePlanId && !longRangePlanId) {
       errors.push('Long-range plan is required');
     }
 
@@ -283,8 +291,14 @@ export function useUnitPlanForm({
       description: unit.description ?? '',
       bigIdeas: unit.bigIdeas ?? '',
       essentialQuestions: unit.essentialQuestions ?? [''],
-      startDate: unit.startDate.split('T')[0],
-      endDate: unit.endDate.split('T')[0],
+      startDate: (() => {
+        const [dateOnly] = unit.startDate.split('T');
+        return dateOnly;
+      })(),
+      endDate: (() => {
+        const [dateOnly] = unit.endDate.split('T');
+        return dateOnly;
+      })(),
       estimatedHours: unit.estimatedHours ?? 20,
       assessmentPlan: unit.assessmentPlan ?? '',
       successCriteria: unit.successCriteria ?? [''],

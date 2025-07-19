@@ -137,7 +137,7 @@ return;
   };
 
   // Error state
-  if ((error !== null && error !== undefined && error !== '') && items.length === 0) {
+  if (error  && items.length === 0) {
     return (
       <div className={`text-center py-8 ${className}`}>
         {errorState ?? (
@@ -186,9 +186,9 @@ return;
 
   return (
     <div
-      ref={containerRef}
       className={`${className} ${infiniteScroll ? 'overflow-auto' : ''}`}
       data-testid="progressive-loader-container"
+      ref={containerRef}
       style={infiniteScroll ? { maxHeight: '600px' } : undefined}
     >
       {/* Progress indicator */}
@@ -218,10 +218,10 @@ return;
             <Button
               className="min-w-[120px]"
               disabled={loadingMore}
-              variant="outline"
               onClick={(): void => {
  void loadMoreData(); 
 }}
+              variant="outline"
             >
               Load More
             </Button>
@@ -241,7 +241,7 @@ return;
       )}
 
       {/* Error state for load more */}
-      {(error !== null && error !== undefined && error !== '') && items.length > 0 && (
+      {error  && items.length > 0 && (
         <div className="mt-4 text-center">
           <div className="text-red-600 text-sm mb-2">Failed to load more items</div>
           <Button aria-label="Click button" onClick={() => {

@@ -404,7 +404,7 @@ return;
               <CardContent className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="input">Available Curricula</Label>
-                  <Select value={selectedPreset} onValueChange={setSelectedPreset}>
+                  <Select onValueChange={setSelectedPreset} value={selectedPreset}>
                     <SelectTrigger>
                       <SelectValue placeholder="Select a curriculum" />
                     </SelectTrigger>
@@ -487,7 +487,7 @@ return;
             </TabsList>
 
             {importSession.parsedSubjects.map((subject, _index) => (
-              <TabsContent key={subject.name} className="space-y-4" value={subject.name}>
+              <TabsContent className="space-y-4" key={subject.name} value={subject.name}>
                 <Card>
                   <CardHeader>
                     <CardTitle>{subject.name} Expectations</CardTitle>
@@ -497,8 +497,8 @@ return;
                     <div className="space-y-2">
                       {subject.expectations.map((expectation, _index) => (
                         <div
-                          key={`${expectation.code}-${_index}`}
                           className="flex items-start justify-between p-3 border rounded-md"
+                          key={`${expectation.code}-${_index}`}
                         >
                           <div className="space-y-1 flex-1">
                             <div className="flex items-center gap-2">
@@ -510,27 +510,27 @@ return;
                               <span className="font-mono text-sm">{expectation.code}</span>
                               <span className="text-sm text-muted-foreground">
                                 {expectation.strand}
-                                {(expectation.substrand !== null && expectation.substrand !== undefined && expectation.substrand !== '') && ` / ${expectation.substrand}`}
+                                {expectation.substrand  && ` / ${expectation.substrand}`}
                               </span>
                             </div>
                             <p className="text-sm">{expectation.description}</p>
                           </div>
                           <div className="flex gap-1 ml-4">
                             <Button
-                              size="sm"
-                              variant="ghost"
                               onClick={() => {
  handleEditExpectation(expectation); 
 }}
+                              size="sm"
+                              variant="ghost"
                             >
                               <Edit2 className="h-4 w-4" />
                             </Button>
                             <Button
-                              size="sm"
-                              variant="ghost"
                               onClick={() => {
  handleDeleteExpectation(expectation); 
 }}
+                              size="sm"
+                              variant="ghost"
                             >
                               <Trash2 className="h-4 w-4" />
                             </Button>
@@ -589,7 +589,6 @@ return;
                 <div className="space-y-2">
                   <Label htmlFor="input">Code</Label>
                   <Input
-                    value={editingExpectation.code}
                     onChange={(e) => {
  setEditingExpectation({
                         ...editingExpectation,
@@ -597,12 +596,12 @@ return;
                       }); 
 }
                     }
+                    value={editingExpectation.code}
                   />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="input">Type</Label>
                   <Select
-                    value={editingExpectation.type}
                     onValueChange={(value: 'overall' | 'specific') => {
  setEditingExpectation({
                         ...editingExpectation,
@@ -610,6 +609,7 @@ return;
                       }); 
 }
                     }
+                    value={editingExpectation.type}
                   >
                     <SelectTrigger>
                       <SelectValue />
@@ -625,8 +625,6 @@ return;
               <div className="space-y-2">
                 <Label htmlFor="input">Description</Label>
                 <Textarea
-                  rows={3}
-                  value={editingExpectation.description}
                   onChange={(e) => {
  setEditingExpectation({
                       ...editingExpectation,
@@ -634,6 +632,8 @@ return;
                     }); 
 }
                   }
+                  rows={3}
+                  value={editingExpectation.description}
                 />
               </div>
 
@@ -641,7 +641,6 @@ return;
                 <div className="space-y-2">
                   <Label htmlFor="input">Strand</Label>
                   <Input
-                    value={editingExpectation.strand}
                     onChange={(e) => {
  setEditingExpectation({
                         ...editingExpectation,
@@ -649,12 +648,12 @@ return;
                       }); 
 }
                     }
+                    value={editingExpectation.strand}
                   />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="input">Substrand (Optional)</Label>
                   <Input
-                    value={editingExpectation.substrand ?? ''}
                     onChange={(e) => {
  setEditingExpectation({
                         ...editingExpectation,
@@ -662,6 +661,7 @@ return;
                       }); 
 }
                     }
+                    value={editingExpectation.substrand ?? ''}
                   />
                 </div>
               </div>

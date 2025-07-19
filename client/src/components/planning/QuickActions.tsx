@@ -142,12 +142,12 @@ export function QuickActions({ onDuplicatePlan, className }: QuickActionsProps):
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {quickActions.map((action, _index) => (
             <button
-              key={action.id}
               className={cn(
                 'relative flex flex-col items-center gap-2 p-4 rounded-lg transition-all',
                 'hover:scale-105 hover:shadow-md',
                 'focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
               )}
+              key={action.id}
               onClick={action.onClick}
             >
               {action.isNew === true && (
@@ -171,33 +171,33 @@ export function QuickActions({ onDuplicatePlan, className }: QuickActionsProps):
           <div className="flex flex-wrap gap-2">
             <Button
               className="gap-2"
-              size="sm"
-              variant="outline"
               onClick={() => {
  navigate('/planner/export'); 
 }}
+              size="sm"
+              variant="outline"
             >
               <Download className="h-4 w-4" />
               Export Plans
             </Button>
             <Button
               className="gap-2"
-              size="sm"
-              variant="outline"
               onClick={() => {
  navigate('/planner/share'); 
 }}
+              size="sm"
+              variant="outline"
             >
               <Users className="h-4 w-4" />
               Share with Team
             </Button>
             <Button
               className="gap-2"
-              size="sm"
-              variant="outline"
               onClick={() => {
  navigate('/planner/print'); 
 }}
+              size="sm"
+              variant="outline"
             >
               <FileText className="h-4 w-4" />
               Print Plans

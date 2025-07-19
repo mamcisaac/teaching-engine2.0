@@ -62,7 +62,7 @@ export class HandlebarsEngine extends RenderEngine {
         },
       };
     } catch (error) {
-      throw new Error(`Handlebars render error: ${error instanceof Error ? (error instanceof Error ? error.message : String(error)) : String(error)}`);
+      throw new Error(`Handlebars render error: ${error instanceof Error ? error.message : String(error)}`);
     }
   }
 

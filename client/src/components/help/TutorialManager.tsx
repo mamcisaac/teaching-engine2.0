@@ -84,11 +84,11 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }): R
     return (
       <Modal
         isOpen={showTutorialMenu}
-        size="lg"
-        title="Interactive Tutorials"
         onClose={(): void => {
  setShowTutorialMenu(false); 
 }}
+        size="lg"
+        title="Interactive Tutorials"
       >
         <div className="space-y-6">
           <p className="text-gray-600">
@@ -105,8 +105,8 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }): R
 
                 return (
                   <div
-                    key={tutorial.id}
                     className="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition-colors"
+                    key={tutorial.id}
                   >
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
@@ -144,23 +144,23 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }): R
                           </Button>
                         ) : isActive ? (
                           <Button
-                            size="sm"
-                            variant="primary"
                             onClick={(): void => {
                               setShowTutorialMenu(false);
                               // Resume tutorial - overlay will show automatically
                             }}
+                            size="sm"
+                            variant="primary"
                           >
                             Resume
                           </Button>
                         ) : (
                           <Button
-                            size="sm"
-                            variant="primary"
                             onClick={(): void => {
                               startTutorial(tutorial.id);
                               setShowTutorialMenu(false);
                             }}
+                            size="sm"
+                            variant="primary"
                           >
                             Start
                           </Button>
@@ -203,22 +203,22 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }): R
       <TutorialOverlay
         currentStep={currentStep}
         isActive={!!activeTutorial}
-        progress={progress}
-        tutorial={activeTutorial ?? null}
         onComplete={handleCompleteTutorial}
         onNext={handleNextStep}
         onPrevious={handlePreviousStep}
         onSkip={handleSkipTutorial}
+        progress={progress}
+        tutorial={activeTutorial ?? null}
       />
 
       {/* Floating Tutorial Button */}
       {!activeTutorial && (
         <button
           className="fixed bottom-20 right-6 bg-green-600 text-white rounded-full p-3 shadow-lg hover:bg-green-700 transition-colors z-40"
-          title="Start Interactive Tutorial"
           onClick={(): void => {
  setShowTutorialMenu(true); 
 }}
+          title="Start Interactive Tutorial"
         >
           <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path

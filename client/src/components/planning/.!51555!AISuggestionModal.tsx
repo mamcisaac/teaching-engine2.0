@@ -80,7 +80,7 @@ export function AISuggestionModal({
   };
 
   const handleAddToWeek = (): void => {
-    if (onAddToWeek !== null && onAddToWeek !== undefined) {
+    if onAddToWeek  {
       // If editing, create a modified version
       const activityToAdd = isEditing
         ? {

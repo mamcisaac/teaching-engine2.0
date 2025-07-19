@@ -146,9 +146,9 @@ export function AutoSaveIndicator({
         <Button
           className="h-6 px-2 text-xs bg-orange-50 border-orange-200 text-orange-700 hover:bg-orange-100"
           disabled={isSaving || syncStatus === 'syncing'}
+          onClick={onManualSave}
           size="sm"
           variant="outline"
-          onClick={onManualSave}
         >
           <Save className="w-3 h-3 mr-1" />
           Save now

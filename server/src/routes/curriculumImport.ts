@@ -163,6 +163,7 @@ router.post('/parse', asyncHandler(async (req: AuthenticatedRequest, res: Respon
     res.status(500).json({
       error: _error instanceof Error ? _error.message : 'Failed to parse file',
     });
+    return;
   }
 }));
 
@@ -199,8 +200,9 @@ router.post('/import-preset', asyncHandler(async (req: Request, res: Response): 
     res.status(500).json({
       error: _error instanceof Error ? _error.message : 'Failed to load preset curriculum',
     });
+    return;
   }
-});
+}));
 
 // GET /api/curriculum/import/:id/status - Check import status
 router.get('/:id/status', asyncHandler(async (req: Request, res: Response): Promise<void> => {
@@ -230,8 +232,9 @@ router.get('/:id/status', asyncHandler(async (req: Request, res: Response): Prom
     res.status(500).json({
       error: _error instanceof Error ? _error.message : 'Failed to get import status',
     });
+    return;
   }
-});
+}));
 
 // POST /api/curriculum/import/:id/confirm - Confirm and finalize import
 router.post('/:id/confirm', asyncHandler(async (req: Request, res: Response): Promise<void> => {
@@ -276,8 +279,9 @@ router.post('/:id/confirm', asyncHandler(async (req: Request, res: Response): Pr
     res.status(500).json({
       error: _error instanceof Error ? _error.message : 'Failed to confirm import',
     });
+    return;
   }
-});
+}));
 
 // GET /api/curriculum/import/history - Get user's import history
 router.get('/history', async (req: Request, res: Response): Promise<void> => {

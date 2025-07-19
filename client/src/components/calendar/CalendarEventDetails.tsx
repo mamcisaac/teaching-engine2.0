@@ -151,27 +151,29 @@ export function CalendarEventDetails({
               <div className="flex gap-2">
                 <input
                   className="flex-1 px-2 py-1 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  type="text"
-                  value={editedTitle}
                   onChange={(e) => {
  setEditedTitle(e.target.value); 
 }}
-                  onKeyPress={(e) => e.key === 'Enter' && handleSaveTitle()}
+                  onKeyPress={(e) => {
+ e.key === 'Enter' && handleSaveTitle(); 
+}}
+                  type="text"
+                  value={editedTitle}
                 />
                 <Button
                   disabled={updateTitleMutation.isPending}
-                  size="sm"
                   onClick={handleSaveTitle}
+                  size="sm"
                 >
                   Save
                 </Button>
                 <Button
-                  size="sm"
-                  variant="outline"
                   onClick={() => {
                     setIsEditing(false);
                     setEditedTitle(event.title);
                   }}
+                  size="sm"
+                  variant="outline"
                 >
                   Cancel
                 </Button>
@@ -209,19 +211,19 @@ export function CalendarEventDetails({
               </div>
             )}
 
-            {event.metadata?.subject !== null && event.metadata?.subject !== undefined && event.metadata.subject !== '' && (
+            {event.metadata?.subject && (
               <div className="flex items-center gap-2 text-gray-600">
                 <Book className="h-4 w-4" />
                 <span className="capitalize">{event.metadata.subject}</span>
               </div>
             )}
 
-            {event.originalData?.description !== null && event.originalData?.description !== undefined && event.originalData.description !== '' ? (
+            {event.originalData?.description && (
               <div className="mt-4">
                 <h4 className="font-medium text-gray-700 mb-1">Description</h4>
-                <p className="text-gray-600 text-sm">{String(event.originalData.description || '')}</p>
+                <p className="text-gray-600 text-sm">{String(event.originalData.description)}</p>
               </div>
-            ) : null}
+            )}
           </div>
 
           {/* Actions */}
@@ -235,8 +237,8 @@ export function CalendarEventDetails({
               <Button
                 className="flex items-center gap-2"
                 disabled={deleteMutation.isPending}
-                variant="danger"
                 onClick={handleDelete}
+                variant="danger"
               >
                 <Trash2 className="h-4 w-4" />
                 Delete

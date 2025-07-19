@@ -549,7 +549,7 @@ export const getAlertStatus = (): unknown => ({
       name: alert.name,
       severity: alert.severity,
       active: alertState.active.get(alert.id) ?? false,
-      lastTriggered: alertState.lastTriggered.get(alert.id) || null,
+      lastTriggered: alertState.lastTriggered.get(alert.id) ?? null,
       cooldown: alert.cooldown,
     })),
     monitoring: {

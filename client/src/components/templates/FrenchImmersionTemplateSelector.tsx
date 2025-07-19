@@ -163,12 +163,12 @@ return true;
         <div className="grid md:grid-cols-3 gap-4">
           {TEACHER_PERSONAS.map((persona, _index) => (
             <button
-              key={persona.id}
               className={`p-4 rounded-lg border-2 transition-all text-left ${
                 selectedPersona === persona.id
                   ? `border-${persona.color}-500 bg-${persona.color}-50`
                   : 'border-gray-200 hover:border-gray-300'
               }`}
+              key={persona.id}
               onClick={() => {
  setSelectedPersona(selectedPersona === persona.id ? null : persona.id); 
 }}
@@ -180,7 +180,7 @@ return true;
                   <p className="text-sm text-gray-600 mt-1">{persona.description}</p>
                   <div className="mt-2 space-y-1">
                     {persona.preferences.map((pref, idx) => (
-                      <div key={idx} className="text-xs text-gray-500">
+                      <div className="text-xs text-gray-500" key={idx}>
                         • {pref}
                       </div>
                     ))}
@@ -200,22 +200,22 @@ return true;
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               <input
                 className="w-full pl-10 pr-3 py-2 border rounded-lg"
-                placeholder="Search templates..."
-                type="text"
-                value={searchTerm}
                 onChange={(e) => {
  setSearchTerm(e.target.value); 
 }}
+                placeholder="Search templates..."
+                type="text"
+                value={searchTerm}
               />
             </div>
           </div>
 
           <select
             className="px-3 py-2 border rounded-lg"
-            value={selectedTimeOfYear}
             onChange={(e) => {
  setSelectedTimeOfYear(e.target.value); 
 }}
+            value={selectedTimeOfYear}
           >
             <option value="">All Months</option>
             <option value="September">September</option>
@@ -231,11 +231,11 @@ return true;
           </select>
 
           <Button
-            size="sm"
-            variant={showOnlyFavorites ? 'primary' : 'outline'}
             onClick={() => {
  setShowOnlyFavorites(!showOnlyFavorites); 
 }}
+            size="sm"
+            variant={showOnlyFavorites ? 'primary' : 'outline'}
           >
             <Star className="h-4 w-4 mr-1" />
             Favorites
@@ -286,7 +286,7 @@ return true;
           const {fiMetadata} = (template as PlanTemplate & { fiMetadata?: FrenchImmersionTemplateMetadata });
 
           return (
-            <Card key={template.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+            <Card className="overflow-hidden hover:shadow-lg transition-shadow" key={template.id}>
               <div className="p-4">
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex-1">
@@ -319,7 +319,7 @@ return true;
 
                 <div className="flex flex-wrap gap-2 mb-4">
                   {template.tags.slice(0, 4).map((tag, _index) => (
-                    <span key={tag} className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">
+                    <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded" key={tag}>
                       {tag}
                     </span>
                   ))}
@@ -350,11 +350,11 @@ return true;
 
                 <Button
                   className="w-full"
-                  size="sm"
-                  variant="primary"
                   onClick={() => {
  onTemplateSelect(template); 
 }}
+                  size="sm"
+                  variant="primary"
                 >
                   Use This Template
                   <ChevronRight className="h-4 w-4 ml-1" />

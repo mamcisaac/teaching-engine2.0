@@ -219,9 +219,9 @@ return null;
             <Button
               aria-label="Cancel AI generation"
               className="h-8 w-8 p-0 hover:bg-gray-100"
+              onClick={onCancel}
               size="sm"
               variant="ghost"
-              onClick={onCancel}
             >
               <X aria-hidden="true" className="h-4 w-4" />
             </Button>
@@ -314,7 +314,6 @@ return null;
 
                 return (
                   <div
-                    key={step.id}
                     className={cn(
                       'flex items-center gap-2 px-2 py-1 rounded text-xs',
                       {
@@ -323,6 +322,7 @@ return null;
                         'text-gray-500': isPending,
                       }
                     )}
+                    key={step.id}
                   >
                     <div
                       className={cn('w-1.5 h-1.5 rounded-full', {

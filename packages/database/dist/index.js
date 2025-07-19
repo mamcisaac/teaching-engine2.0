@@ -22,12 +22,12 @@ const client_1 = require("@prisma/client");
 // Create singleton instance for development
 const globalForPrisma = globalThis;
 // In test environment, use test client if available
-exports.prisma = (process.env.NODE_ENV === 'test' && globalForPrisma.testPrismaClient) ?
+exports.prisma = process.env.NODE_ENV === 'test' && globalForPrisma.testPrismaClient !== undefined ?
     globalForPrisma.testPrismaClient :
-    globalForPrisma.prisma ??
+    (globalForPrisma.prisma ??
         new client_1.PrismaClient({
             log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
-        });
+        }));
 if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
     globalForPrisma.prisma = exports.prisma;
 }

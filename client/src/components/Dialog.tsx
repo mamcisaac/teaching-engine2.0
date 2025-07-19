@@ -44,7 +44,7 @@ function Dialog({
   };
 
   return (
-    <RadixDialog.Root open={open} onOpenChange={handleOpenChange}>
+    <RadixDialog.Root onOpenChange={handleOpenChange} open={open}>
       <RadixDialog.Portal>
         <RadixDialog.Overlay aria-hidden="true" className="fixed inset-0 bg-black/50 z-50" />
         <RadixDialog.Content

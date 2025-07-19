@@ -98,10 +98,13 @@ export function AIWeeklyPlanModal({
           };
         };
       }
-      const errorMessage =
-        error instanceof Error && 'response' in error
-          ? ((error as ApiError).response?.data?.error !== null && (error as ApiError).response?.data?.error !== undefined && (error as ApiError).response?.data?.error !== '') ? (error as ApiError).response?.data?.error : 'Failed to apply plan'
-          : 'Failed to apply plan';
+      let errorMessage = 'Failed to apply plan';
+      if (error instanceof Error && 'response' in error) {
+        const apiError = error as ApiError;
+        if (apiError.response?.data?.error) {
+          errorMessage = apiError.response.data.error;
+        }
+      }
       toast.error(errorMessage);
     },
   });
@@ -130,12 +133,17 @@ return 'text-yellow-600';
     const [hours, minutes] = time.split(':');
     const hour = parseInt(hours);
     const ampm = hour >= 12 ? 'PM' : 'AM';
-    const displayHour = hour > 12 ? hour - 12 : hour === 0 ? 12 : hour;
+    let displayHour = hour;
+    if (hour > 12) {
+      displayHour = hour - 12;
+    } else if (hour === 0) {
+      displayHour = 12;
+    }
     return `${displayHour}:${minutes} ${ampm}`;
   };
 
   return (
-    <Dialog open={isOpen} title="AI Weekly Plan Generator" onClose={onClose}>
+    <Dialog onClose={onClose} open={isOpen} title="AI Weekly Plan Generator">
       <div className="space-y-6">
         {!generatedPlan ? (
           <>
@@ -152,7 +160,6 @@ return 'text-yellow-600';
                     <select
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
                       id="activity-complexity"
-                      value={preferences.preferredComplexity}
                       onChange={(e) => {
  setPreferences({
                           ...preferences,
@@ -160,6 +167,7 @@ return 'text-yellow-600';
                         }); 
 }
                       }
+                      value={preferences.preferredComplexity}
                     >
                       <option value="simple">Simple</option>
                       <option value="moderate">Moderate</option>
@@ -172,7 +180,6 @@ return 'text-yellow-600';
                       <input
                         checked={preferences.includeAssessments}
                         className="mr-2 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
-                        type="checkbox"
                         onChange={(e) => {
  setPreferences({
                             ...preferences,
@@ -180,6 +187,7 @@ return 'text-yellow-600';
                           }); 
 }
                         }
+                        type="checkbox"
                       />
                       <span className="text-sm text-gray-700">Include assessment activities</span>
                     </label>
@@ -194,8 +202,6 @@ return 'text-yellow-600';
                       id="buffer-time"
                       max="30"
                       min="0"
-                      type="number"
-                      value={preferences.bufferTime}
                       onChange={(e) => {
  setPreferences({
                           ...preferences,
@@ -203,6 +209,8 @@ return 'text-yellow-600';
                         }); 
 }
                       }
+                      type="number"
+                      value={preferences.bufferTime}
                     />
                   </div>
                 </div>
@@ -295,12 +303,12 @@ return 'text-yellow-600';
               <div className="flex gap-2 mb-4">
                 {(['monday', 'tuesday', 'wednesday', 'thursday', 'friday'] as const).map((day, _index) => (
                   <button
-                    key={day}
                     className={`px-3 py-1 rounded-md text-sm font-medium capitalize ${
                       selectedDay === day
                         ? 'bg-purple-600 text-white'
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
+                    key={day}
                     onClick={() => {
  setSelectedDay(day); 
 }}
@@ -322,8 +330,8 @@ return 'text-yellow-600';
                     {(generatedPlan.plan[selectedDay] as PlanActivity[]).map(
                       (activity: PlanActivity, index: number) => (
                         <div
-                          key={index}
                           className="border border-gray-200 rounded-lg p-3 hover:bg-gray-50"
+                          key={index}
                         >
                           <div className="flex items-start justify-between mb-2">
                             <div>

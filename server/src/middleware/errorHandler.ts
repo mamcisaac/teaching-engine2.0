@@ -306,7 +306,7 @@ export function errorHandler(err: Error, req: Request, res: Response, _next: Nex
     // Handle AuthenticationError
     if (
       err instanceof AuthenticationError ||
-      (err.message &&
+      (err.message !== null && err.message !== undefined &&
         (err.message.includes('Invalid email or password') ||
           err.message.includes('Invalid credentials')))
     ) {
@@ -317,7 +317,7 @@ export function errorHandler(err: Error, req: Request, res: Response, _next: Nex
     // Handle ConflictError for duplicate email
     if (
       err instanceof ConflictError ||
-      (err.message && err.message.toLowerCase().includes('email already'))
+      (err.message !== null && err.message !== undefined && err.message.toLowerCase().includes('email already'))
     ) {
       res.status(409).json({ error: 'Email already exists' });
       return;

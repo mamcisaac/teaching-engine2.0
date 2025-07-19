@@ -57,13 +57,13 @@ export const Switch: React.FC<SwitchProps> = ({
         className={switchClasses}
         disabled={disabled}
         id={switchId}
+        onClick={handleChange}
         role="switch"
         type="button"
-        onClick={handleChange}
       >
         <span className={knobClasses} />
       </button>
-      {(label !== null && label !== undefined && label !== '') && (
+      {label  && (
         <span
           className={clsx('ml-3 text-sm', {
             'text-gray-900': !disabled,

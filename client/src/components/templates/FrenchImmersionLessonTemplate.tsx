@@ -179,52 +179,52 @@ export function FrenchImmersionLessonTemplate({
 
         <div className="space-y-4">
           {vocabulary.map((vocab, index) => (
-            <div key={index} className="p-4 bg-gray-50 rounded-lg">
+            <div className="p-4 bg-gray-50 rounded-lg" key={index}>
               <div className="grid md:grid-cols-4 gap-3">
                 <input
                   className="p-2 border rounded"
-                  placeholder="English word"
-                  type="text"
-                  value={vocab.english}
                   onChange={(e) => {
  updateVocabulary(index, 'english', e.target.value); 
 }}
+                  placeholder="English word"
+                  type="text"
+                  value={vocab.english}
                 />
                 <input
                   className="p-2 border rounded"
-                  placeholder="Mot français"
-                  type="text"
-                  value={vocab.french}
                   onChange={(e) => {
  updateVocabulary(index, 'french', e.target.value); 
 }}
+                  placeholder="Mot français"
+                  type="text"
+                  value={vocab.french}
                 />
                 <input
                   className="p-2 border rounded"
-                  placeholder="Pronunciation"
-                  type="text"
-                  value={vocab.pronunciation !== null && vocab.pronunciation !== undefined ? vocab.pronunciation : ''}
                   onChange={(e) => {
  updateVocabulary(index, 'pronunciation', e.target.value); 
 }}
+                  placeholder="Pronunciation"
+                  type="text"
+                  value={vocab.pronunciation !== null && vocab.pronunciation !== undefined ? vocab.pronunciation : ''}
                 />
                 <div className="flex gap-2">
                   <input
                     className="flex-1 p-2 border rounded"
-                    placeholder="Context/Visual"
-                    type="text"
-                    value={vocab.context !== null && vocab.context !== undefined ? vocab.context : ''}
                     onChange={(e) => {
  updateVocabulary(index, 'context', e.target.value); 
 }}
+                    placeholder="Context/Visual"
+                    type="text"
+                    value={vocab.context !== null && vocab.context !== undefined ? vocab.context : ''}
                   />
                   <Button
-                    size="sm"
-                    type="button"
-                    variant="ghost"
                     onClick={() => {
  removeVocabulary(index); 
 }}
+                    size="sm"
+                    type="button"
+                    variant="ghost"
                   >
                     ✕
                   </Button>
@@ -502,29 +502,29 @@ export function FrenchImmersionLessonTemplate({
           <div>
             <h4 className="font-medium mb-2">Home Activities</h4>
             {homeActivities.map((activity, index) => (
-              <div key={index} className="p-3 bg-blue-50 rounded-lg mb-2">
+              <div className="p-3 bg-blue-50 rounded-lg mb-2" key={index}>
                 <div className="grid md:grid-cols-2 gap-3">
                   <input
                     className="p-2 border rounded"
-                    placeholder="Activity title (English)"
-                    type="text"
-                    value={activity.titleEn}
                     onChange={(e) => {
                       const updated = [...homeActivities];
                       updated[index].titleEn = e.target.value;
                       setHomeActivities(updated);
                     }}
+                    placeholder="Activity title (English)"
+                    type="text"
+                    value={activity.titleEn}
                   />
                   <input
                     className="p-2 border rounded"
-                    placeholder="Titre de l'activité (français)"
-                    type="text"
-                    value={activity.titleFr}
                     onChange={(e) => {
                       const updated = [...homeActivities];
                       updated[index].titleFr = e.target.value;
                       setHomeActivities(updated);
                     }}
+                    placeholder="Titre de l'activité (français)"
+                    type="text"
+                    value={activity.titleFr}
                   />
                 </div>
               </div>

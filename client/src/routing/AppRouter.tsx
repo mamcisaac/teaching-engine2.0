@@ -49,13 +49,13 @@ function renderRoute(route: RouteConfig, index: number): JSX.Element {
 
   if (children !== null && children.length > 0) {
     return (
-      <Route key={(path !== null && path !== undefined && path !== '') ? path : index} element={<Outlet />} path={path}>
+      <Route element={<Outlet />} key={path  ? path : index} path={path}>
         {children.map((child, childIndex) => renderRoute(child, childIndex))}
       </Route>
     );
   }
 
-  return <Route key={(path !== null && path !== undefined && path !== '') ? path : index} element={content} index={isIndex} path={path} />;
+  return <Route element={content} index={isIndex} key={path  ? path : index} path={path} />;
 }
 
 export function AppRouter(): JSX.Element {

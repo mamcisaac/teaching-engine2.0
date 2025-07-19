@@ -306,7 +306,12 @@ export class TestMigrationHelper {
    */
   private logPerformanceComparison(testName: string, mockTime: number, realTime: number) {
     const ratio = realTime / mockTime;
-    const status = ratio > 10 ? '⚠️' : ratio > 3 ? '⏳' : '✅';
+    let status = '✅';
+    if (ratio > 10) {
+      status = '⚠️';
+    } else if (ratio > 3) {
+      status = '⏳';
+    }
 
     logger.info(
       `${status} ${testName} - Mock: ${mockTime.toFixed(1)}ms, Real: ${realTime.toFixed(1)}ms (${ratio.toFixed(1)}x)`,

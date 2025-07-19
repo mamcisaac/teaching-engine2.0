@@ -65,7 +65,7 @@ const AILessonPlanPanel = lazy(() =>
 const WithAIErrorBoundary = lazy(() =>
   import('../components/ai/AIErrorBoundary').then((m) => ({ default: m.WithAIErrorBoundary })),
 );
-export default function ETFOLessonPlanPage(): React.ReactElement {
+export function ETFOLessonPlanPage(): React.ReactElement {
   const { unitId, lessonId } = useParams();
   const navigate = useNavigate();
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -77,7 +77,7 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
   // Fetch data
   const { data: unitPlan } = useUnitPlan(unitId ?? '');
   const { data: lessonPlans = [], isLoading: isLoadingLessons } = useETFOLessonPlans(
-    unitId !== null && unitId !== '' ? { unitPlanId: unitId } : {},
+    unitId ? { unitPlanId: unitId } : {},
   );
   const { data: selectedLesson } = useETFOLessonPlan(lessonId ?? '');
 
@@ -125,7 +125,7 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
   });
 
   // Auto-save functionality for existing lessons
-  const autoSaveData = editingLesson !== null && editingLesson !== ''
+  const autoSaveData = editingLesson
     ? {
         ...formData,
         expectationIds: formData.expectationIds,
@@ -135,10 +135,10 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
   const { lastSaved, isSaving, hasUnsavedChanges, saveNow } = useAutoSave({
     data: autoSaveData,
     saveFn: async (data) => {
-      if (editingLesson !== null && editingLesson !== '' && data) {
+      if (editingLesson && data) {
         const cleanedData = {
           ...data,
-          unitPlanId: unitId !== null && unitId !== '' ? unitId : '',
+          unitPlanId: unitId ?? '',
           materials: data.materials.filter((m: string) => m.trim() !== ''),
           accommodations: data.accommodations.filter((a: string) => a.trim() !== ''),
           modifications: data.modifications.filter((m: string) => m.trim() !== ''),
@@ -147,7 +147,7 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
         await updateLesson.mutateAsync({ id: editingLesson, data: cleanedData });
       }
     },
-    enabled: editingLesson !== null && editingLesson !== '' && autoSaveData !== null,
+    enabled: editingLesson && autoSaveData,
     delay: 30000, // 30 seconds
   });
 
@@ -158,14 +158,14 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
 
     const cleanedData = {
       ...formData,
-      unitPlanId: unitId !== null && unitId !== '' ? unitId : '',
+      unitPlanId: unitId ?? '',
       materials: formData.materials.filter((m) => m.trim() !== ''),
       accommodations: formData.accommodations.filter((a) => a.trim() !== ''),
       modifications: formData.modifications.filter((m) => m.trim() !== ''),
       extensions: formData.extensions.filter((e) => e.trim() !== ''),
     };
 
-    if (editingLesson !== null) {
+    if (editingLesson !== null && editingLesson !== undefined) {
       await updateLesson.mutateAsync({ id: editingLesson, data: cleanedData });
       setEditingLesson(null);
     } else {
@@ -352,9 +352,7 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
         learningGoals: lessonPlan.learningGoals?.join('\n') ?? formData.learningGoals,
         mindsOn: lessonPlan.structure?.mindsOn?.activities?.join('\n\n') ?? formData.mindsOn,
         action: lessonPlan.structure?.handsOn?.activities?.join('\n\n') ?? formData.action,
-        consolidation:
-          lessonPlan.structure?.mindsOnReflection?.activities?.join('\n\n') ??
-          formData.consolidation,
+        consolidation: lessonPlan.structure?.mindsOnReflection?.activities?.join('\n\n') ?? formData.consolidation,
         materials: lessonPlan.materials ?? formData.materials,
         duration: lessonPlan.duration ?? formData.duration,
       });
@@ -365,7 +363,7 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
     try {
       const applied = await applyTemplate.mutateAsync({ id: template.id });
 
-      if (isLessonPlanTemplate(template) && applied.appliedContent) {
+      if (isLessonPlanTemplate(template)) {
         // Pre-populate form with template data
         const templateContent = applied.appliedContent as LessonPlanContent;
         setFormData({
@@ -386,9 +384,7 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
           accommodations: templateContent.accommodations ?? [''],
           modifications: templateContent.modifications ?? [''],
           extensions: templateContent.extensions ?? [''],
-          assessmentType:
-            (templateContent.assessmentType as 'diagnostic' | 'formative' | 'summative') ??
-            'formative',
+          assessmentType: (templateContent.assessmentType as 'diagnostic' | 'formative' | 'summative' | undefined) ?? 'formative',
           assessmentNotes: templateContent.assessmentNotes ?? '',
           isSubFriendly: false,
           subNotes: '',
@@ -404,7 +400,7 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
   };
 
   // If we're in detail mode (lessonId provided), show the detail view
-  if (lessonId !== null && lessonId !== '' && selectedLesson) {
+  if (lessonId && selectedLesson) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Breadcrumb */}
@@ -438,7 +434,7 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
             <div className="flex justify-between items-start">
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">{selectedLesson.title}</h1>
-                {selectedLesson.titleFr !== null && selectedLesson.titleFr !== '' && (
+                {selectedLesson.titleFr && (
                   <p className="text-sm text-gray-600 mt-1">{selectedLesson.titleFr}</p>
                 )}
                 <div className="flex gap-4 mt-2 text-sm text-gray-600">
@@ -503,7 +499,10 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
                     setFormData({
                       title: selectedLesson.title,
                       titleFr: selectedLesson.titleFr ?? '',
-                      date: selectedLesson.date.split('T')[0],
+                      date: (() => {
+                        const [dateOnly] = selectedLesson.date.split('T');
+                        return dateOnly;
+                      })(),
                       duration: selectedLesson.duration,
                       mindsOn: selectedLesson.mindsOn ?? '',
                       mindsOnFr: selectedLesson.mindsOnFr ?? '',
@@ -522,15 +521,14 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
                       assessmentNotes: selectedLesson.assessmentNotes ?? '',
                       isSubFriendly: selectedLesson.isSubFriendly,
                       subNotes: selectedLesson.subNotes ?? '',
-                      expectationIds:
-                        selectedLesson.expectations?.map((e, _index) => e.expectation.id) ?? [],
+                      expectationIds: selectedLesson.expectations?.map((e, _index) => e.expectation.id) ?? [],
                     });
                     setIsCreateModalOpen(true);
                   }}
                 >
                   Edit
                 </Button>
-                {selectedLesson.daybookEntry ? (
+                {selectedLesson.daybookEntry !== null ? (
                   <Link to={`/planner/daybook?date=${selectedLesson.date}`}>
                     <Button variant="outline">View in Daybook</Button>
                   </Link>
@@ -895,7 +893,10 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
                           setFormData({
                             title: lesson.title,
                             titleFr: lesson.titleFr ?? '',
-                            date: lesson.date.split('T')[0],
+                            date: (() => {
+                              const [dateOnly] = lesson.date.split('T');
+                              return dateOnly;
+                            })(),
                             duration: lesson.duration,
                             mindsOn: lesson.mindsOn ?? '',
                             mindsOnFr: lesson.mindsOnFr ?? '',
@@ -1161,11 +1162,11 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
                                 title: unitPlan.title,
                                 bigIdeas: unitPlan.bigIdeas ? [unitPlan.bigIdeas] : [],
                                 expectations:
-                                  unitPlan.expectations?.map((exp, _index) => ({
+                                  unitPlan.expectations ? unitPlan.expectations.map((exp, _index) => ({
                                     id: exp.expectation.id,
                                     code: exp.expectation.code,
                                     description: exp.expectation.description,
-                                  })) ?? [],
+                                  })) : [],
                               }
                             : undefined
                         }
@@ -1590,10 +1591,8 @@ Assessment Strategies:
                           <CardTitle className="text-base">{template.title}</CardTitle>
                           <CardDescription className="mt-1">
                             {template.category} • Grade {template.gradeMin}
-                            {template.gradeMax !== null && template.gradeMax !== undefined && template.gradeMax !== 0 && !isNaN(template.gradeMax) &&
-                              template.gradeMax !== template.gradeMin &&
-                              `-${template.gradeMax}`}
-                            {template.estimatedMinutes !== null && template.estimatedMinutes !== undefined && template.estimatedMinutes !== 0 && !isNaN(template.estimatedMinutes) && ` • ${template.estimatedMinutes} minutes`}
+                            {template.gradeMax !== null && template.gradeMax !== undefined && template.gradeMax !== template.gradeMin && `-${template.gradeMax}`}
+                            {template.estimatedMinutes !== null && template.estimatedMinutes !== undefined && template.estimatedMinutes > 0 && ` • ${template.estimatedMinutes} minutes`}
                           </CardDescription>
                         </div>
                         <div className="flex items-center gap-1 text-yellow-500">
@@ -1617,14 +1616,14 @@ Assessment Strategies:
                             {tag}
                           </span>
                         ))}
-                        {template.tags && template.tags.length > 3 && (
+                        {template.tags.length > 3 && (
                           <span className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-full">
                             +{template.tags.length - 3} more
                           </span>
                         )}
                       </div>
                       <div className="flex items-center justify-between text-xs text-gray-500">
-                        <span>Used {template.usageCount ?? 0} times</span>
+                        <span>Used {template.usageCount} times</span>
                         <span>
                           By{' '}
                           {(template as { createdBy?: { name?: string } }).createdBy?.name ??

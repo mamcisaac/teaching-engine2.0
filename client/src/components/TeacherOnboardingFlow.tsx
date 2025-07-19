@@ -764,9 +764,9 @@ return null;
               <LanguageSwitcher />
               <Button
                 className="text-gray-500 hover:text-gray-700"
+                onClick={completeOnboarding}
                 size="sm"
                 variant="outline"
-                onClick={completeOnboarding}
               >
                 {t('skip_tour', 'Skip Tour')}
               </Button>
@@ -793,18 +793,22 @@ return null;
           <div className="flex justify-center space-x-2 mt-4">
             {steps.map((step, index) => (
               <button
-                key={step.id}
                 className={`w-3 h-3 rounded-full transition-colors ${
-                  index === currentStep
-                    ? 'bg-indigo-600'
-                    : index < currentStep
-                      ? 'bg-green-500'
-                      : 'bg-gray-300'
+                  (() => {
+                    if (index === currentStep) {
+return 'bg-indigo-600';
+}
+                    if (index < currentStep) {
+return 'bg-green-500';
+}
+                    return 'bg-gray-300';
+                  })()
                 }`}
-                title={step.title}
+                key={step.id}
                 onClick={() => {
  skipToStep(index); 
 }}
+                title={step.title}
               />
             ))}
           </div>

@@ -224,7 +224,7 @@ export const assertExists = <T>(
   resource: string,
   id?: string | number,
 ): T => {
-  if (value == null) {
+  if (value === null || value === undefined) {
     throw new NotFoundError(resource, id);
   }
   return value;

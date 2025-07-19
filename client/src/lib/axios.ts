@@ -4,7 +4,7 @@ import { authService } from '../services/authService';
 import { logger } from '../utils/logger';
 // Create axios instance with base configuration
 const api = axios.create({
-  baseURL: ((import.meta.env.VITE_API_URL as string | undefined) !== null && (import.meta.env.VITE_API_URL as string | undefined) !== undefined && (import.meta.env.VITE_API_URL as string | undefined) !== '') ? (import.meta.env.VITE_API_URL as string) : 'http://localhost:3000',
+  baseURL: (import.meta.env.VITE_API_URL as string | undefined) || 'http://localhost:3000',
   timeout: 10000,
   withCredentials: true, // Include cookies in requests
 });
@@ -20,7 +20,7 @@ api.interceptors.request.use(
 
     // Also support legacy token for backward compatibility
     const legacyToken = localStorage.getItem('token');
-    if ((legacyToken !== null && legacyToken !== undefined && legacyToken !== '') && (authHeaders.Authorization === undefined || authHeaders.Authorization === null || authHeaders.Authorization === '')) {
+    if (legacyToken  && (authHeaders.Authorization === undefined || authHeaders.Authorization === null || authHeaders.Authorization === '')) {
       config.headers.Authorization = `Bearer ${legacyToken}`;
     }
 

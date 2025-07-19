@@ -34,10 +34,10 @@ export const UnitPlanPlanningTab: React.FC<UnitPlanPlanningTabProps> = ({
           <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="unit-big-ideas">Big Ideas</label>
           <RichTextEditor
             id="unit-big-ideas"
-            value={formData.bigIdeas}
             onChange={(value) => {
  updateField('bigIdeas', value); 
 }}
+            value={formData.bigIdeas}
           />
         </div>
       </CollapsibleSection>
@@ -49,22 +49,22 @@ export const UnitPlanPlanningTab: React.FC<UnitPlanPlanningTabProps> = ({
           </label>
           <div className="space-y-2">
             {formData.essentialQuestions.map((question, index) => (
-              <div key={index} className="flex gap-2">
+              <div className="flex gap-2" key={index}>
                 <input
                   className="flex-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                  placeholder="Enter an essential question..."
-                  type="text"
-                  value={question}
                   onChange={(e) => {
  updateArrayItem('essentialQuestions', index, e.target.value); 
 }}
+                  placeholder="Enter an essential question..."
+                  type="text"
+                  value={question}
                 />
                 <button
                   className="px-3 py-2 text-sm text-red-600 hover:text-red-700"
-                  type="button"
                   onClick={() => {
  removeArrayItem('essentialQuestions', index); 
 }}
+                  type="button"
                 >
                   Remove
                 </button>
@@ -72,10 +72,10 @@ export const UnitPlanPlanningTab: React.FC<UnitPlanPlanningTabProps> = ({
             ))}
             <button
               className="text-sm text-indigo-600 hover:text-indigo-700"
-              type="button"
               onClick={() => {
  addArrayItem('essentialQuestions'); 
 }}
+              type="button"
             >
               + Add Essential Question
             </button>
@@ -89,22 +89,22 @@ export const UnitPlanPlanningTab: React.FC<UnitPlanPlanningTabProps> = ({
         </label>
         <div className="space-y-2">
           {formData.successCriteria.map((criteria, index) => (
-            <div key={index} className="flex gap-2">
+            <div className="flex gap-2" key={index}>
               <input
                 className="flex-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                placeholder="Students will be able to..."
-                type="text"
-                value={criteria}
                 onChange={(e) => {
  updateArrayItem('successCriteria', index, e.target.value); 
 }}
+                placeholder="Students will be able to..."
+                type="text"
+                value={criteria}
               />
               <button
                 className="px-3 py-2 text-sm text-red-600 hover:text-red-700"
-                type="button"
                 onClick={() => {
  removeArrayItem('successCriteria', index); 
 }}
+                type="button"
               >
                 Remove
               </button>
@@ -112,10 +112,10 @@ export const UnitPlanPlanningTab: React.FC<UnitPlanPlanningTabProps> = ({
           ))}
           <button
             className="text-sm text-indigo-600 hover:text-indigo-700"
-            type="button"
             onClick={() => {
  addArrayItem('successCriteria'); 
 }}
+            type="button"
           >
             + Add Success Criteria
           </button>
@@ -126,22 +126,22 @@ export const UnitPlanPlanningTab: React.FC<UnitPlanPlanningTabProps> = ({
         <Label htmlFor="input">Key Vocabulary & Terminology</Label>
         <div className="space-y-2 mt-2">
           {formData.keyVocabulary.map((term, index) => (
-            <div key={index} className="flex gap-2">
+            <div className="flex gap-2" key={index}>
               <Input
-                placeholder="Important term or concept..."
-                type="text"
-                value={term}
                 onChange={(e) => {
  updateArrayItem('keyVocabulary', index, e.target.value); 
 }}
+                placeholder="Important term or concept..."
+                type="text"
+                value={term}
               />
               <Button
-                size="sm"
-                type="button"
-                variant="ghost"
                 onClick={() => {
  removeArrayItem('keyVocabulary', index); 
 }}
+                size="sm"
+                type="button"
+                variant="ghost"
               >
                 <Trash2 className="h-4 w-4" />
               </Button>
@@ -149,12 +149,12 @@ export const UnitPlanPlanningTab: React.FC<UnitPlanPlanningTabProps> = ({
           ))}
           <Button
             className="w-full"
-            size="sm"
-            type="button"
-            variant="outline"
             onClick={() => {
  addArrayItem('keyVocabulary'); 
 }}
+            size="sm"
+            type="button"
+            variant="outline"
           >
             <Plus className="h-4 w-4 mr-2" />
             Add Term
@@ -166,12 +166,12 @@ export const UnitPlanPlanningTab: React.FC<UnitPlanPlanningTabProps> = ({
         <Label htmlFor="input">Prior Knowledge Requirements</Label>
         <Textarea
           className="mt-2"
-          placeholder="What should students already know before starting this unit?"
-          rows={3}
-          value={formData.priorKnowledge}
           onChange={(e) => {
  updateField('priorKnowledge', e.target.value); 
 }}
+          placeholder="What should students already know before starting this unit?"
+          rows={3}
+          value={formData.priorKnowledge}
         />
       </div>
 
@@ -179,22 +179,22 @@ export const UnitPlanPlanningTab: React.FC<UnitPlanPlanningTabProps> = ({
         <ExpectationSelector
           grade={longRangePlan?.grade}
           label="Curriculum Expectations"
-          placeholder="Select curriculum expectations for this unit..."
-          selectedIds={formData.expectationIds}
-          subject={longRangePlan?.subject}
           onChange={(ids) => {
  updateField('expectationIds', ids); 
 }}
+          placeholder="Select curriculum expectations for this unit..."
+          selectedIds={formData.expectationIds}
+          subject={longRangePlan?.subject}
         />
       </div>
 
       <div>
         <Label htmlFor="input">Culminating Task Description</Label>
         <RichTextEditor
-          value={formData.culminatingTask}
           onChange={(value) => {
  updateField('culminatingTask', value); 
 }}
+          value={formData.culminatingTask}
         />
       </div>
     </div>

@@ -286,7 +286,7 @@ export function useLazyDocument(documentId: string | null, options?: LoadOptions
   const [progress, setProgress] = React.useState(0);
 
   React.useEffect(() => {
-    if (documentId === null || documentId === '' || documentId === undefined) {
+    if (!documentId) {
       return;
     }
 

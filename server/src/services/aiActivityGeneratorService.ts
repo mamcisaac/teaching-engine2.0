@@ -204,9 +204,9 @@ prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`
       const activity = parsed as any;
 
       // Validate required fields
-      if ((!activity.title || activity.title === '') || 
-          (!activity.description || activity.description === '') || 
-          (!activity.detailedInstructions)) {
+      if (!activity.title || 
+          !activity.description || 
+          !activity.detailedInstructions) {
         throw new Error('Missing required fields');
       }
 

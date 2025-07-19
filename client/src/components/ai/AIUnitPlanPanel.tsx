@@ -120,7 +120,7 @@ export function AIUnitPlanPanel({
     if (!canUseAI) {
       toast({
         title: 'AI Unavailable',
-        description: (aiDisabledReason !== null && aiDisabledReason !== undefined && aiDisabledReason !== '') ? aiDisabledReason : 'AI features are currently unavailable.',
+        description: aiDisabledReason || 'AI features are currently unavailable.',
         variant: 'destructive',
       });
       return;
@@ -190,7 +190,7 @@ export function AIUnitPlanPanel({
     if (!canUseAI) {
       toast({
         title: 'AI Unavailable',
-        description: (aiDisabledReason !== null && aiDisabledReason !== undefined && aiDisabledReason !== '') ? aiDisabledReason : 'AI features are currently unavailable.',
+        description: aiDisabledReason || 'AI features are currently unavailable.',
         variant: 'destructive',
       });
       return;
@@ -326,7 +326,7 @@ export function AIUnitPlanPanel({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Tabs className="w-full" value={activeTab} onValueChange={setActiveTab}>
+          <Tabs className="w-full" onValueChange={setActiveTab} value={activeTab}>
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="input">Setup</TabsTrigger>
               <TabsTrigger value="suggestions">Suggestions</TabsTrigger>
@@ -339,18 +339,18 @@ export function AIUnitPlanPanel({
                   <Label htmlFor="unitTitle">Unit Title</Label>
                   <Input
                     id="unitTitle"
-                    placeholder="e.g., Forces and Motion"
-                    value={formData.unitTitle}
                     onChange={(e) => {
  handleInputChange('unitTitle', e.target.value); 
 }}
+                    placeholder="e.g., Forces and Motion"
+                    value={formData.unitTitle}
                   />
                 </div>
                 <div>
                   <Label htmlFor="subject">Subject</Label>
-                  <Select value={formData.subject} onValueChange={(value) => {
+                  <Select onValueChange={(value) => {
  handleInputChange('subject', value); 
-}}>
+}} value={formData.subject}>
                     <SelectTrigger>
                       <SelectValue placeholder="Select subject" />
                     </SelectTrigger>
@@ -370,9 +370,9 @@ export function AIUnitPlanPanel({
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="grade">Grade</Label>
-                  <Select value={formData.grade} onValueChange={(value) => {
+                  <Select onValueChange={(value) => {
  handleInputChange('grade', value); 
-}}>
+}} value={formData.grade}>
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
@@ -389,11 +389,11 @@ export function AIUnitPlanPanel({
                     id="duration"
                     max="20"
                     min="1"
-                    type="number"
-                    value={formData.duration}
                     onChange={(e) => {
  handleInputChange('duration', e.target.value); 
 }}
+                    type="number"
+                    value={formData.duration}
                   />
                 </div>
               </div>
@@ -401,10 +401,10 @@ export function AIUnitPlanPanel({
               <div>
                 <Label htmlFor="teachingApproach">Teaching Approach</Label>
                 <Select 
-                  value={formData.teachingApproach} 
                   onValueChange={(value: 'inquiry' | 'direct' | 'balanced') => {
  handleInputChange('teachingApproach', value); 
-}}
+}} 
+                  value={formData.teachingApproach}
                 >
                   <SelectTrigger>
                     <SelectValue />
@@ -422,8 +422,10 @@ export function AIUnitPlanPanel({
                 <div className="flex gap-2 mb-2">
                   <Input
                     id="newFocusArea"
+                    onKeyPress={(e) => {
+ e.key === 'Enter' && addFocusArea(); 
+}}
                     placeholder="Add focus area (e.g., Scientific Method)"
-                    onKeyPress={(e) => e.key === 'Enter' && addFocusArea()}
                   />
                   <Button aria-label="Click button" onClick={addFocusArea}>
                     <Plus className="h-4 w-4" />
@@ -431,7 +433,7 @@ export function AIUnitPlanPanel({
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {formData.focusAreas.map((area, index) => (
-                    <Badge key={index} className="gap-1" variant="secondary">
+                    <Badge className="gap-1" key={index} variant="secondary">
                       {area}
                       <button
                         className="text-xs hover:text-red-500"
@@ -450,12 +452,12 @@ export function AIUnitPlanPanel({
                 <Label htmlFor="additionalContext">Additional Context</Label>
                 <Textarea
                   id="additionalContext"
-                  placeholder="Any additional context, special considerations, or requirements..."
-                  rows={3}
-                  value={formData.additionalContext}
                   onChange={(e) => {
  handleInputChange('additionalContext', e.target.value); 
 }}
+                  placeholder="Any additional context, special considerations, or requirements..."
+                  rows={3}
+                  value={formData.additionalContext}
                 />
               </div>
 
@@ -464,7 +466,7 @@ export function AIUnitPlanPanel({
                   <Label htmlFor="input">Curriculum Expectations ({curriculumExpectations.length})</Label>
                   <div className="mt-2 space-y-1 max-h-32 overflow-y-auto">
                     {curriculumExpectations.map((exp, _index) => (
-                      <div key={exp.id} className="text-sm p-2 bg-gray-50 rounded">
+                      <div className="text-sm p-2 bg-gray-50 rounded" key={exp.id}>
                         <span className="font-medium">{exp.code}:</span> {exp.description}
                       </div>
                     ))}
@@ -497,20 +499,20 @@ export function AIUnitPlanPanel({
               <div className="grid grid-cols-2 gap-2">
                 <Button 
                   disabled={isGenerating} 
-                  variant="outline"
                   onClick={() => {
  void generateSuggestions('bigIdeas'); 
 }}
+                  variant="outline"
                 >
                   <Lightbulb className="h-4 w-4 mr-2" />
                   Big Ideas
                 </Button>
                 <Button 
                   disabled={isGenerating} 
-                  variant="outline"
                   onClick={() => {
  void generateSuggestions('activities'); 
 }}
+                  variant="outline"
                 >
                   <BookOpen className="h-4 w-4 mr-2" />
                   Activities
@@ -535,7 +537,7 @@ export function AIUnitPlanPanel({
                           {suggestion.type === 'assessments' && <Target className="h-4 w-4" />}
                           {suggestion.type.replace(/([A-Z])/g, ' $1').trim()}
                         </CardTitle>
-                        {(suggestion.rationale !== null && suggestion.rationale !== undefined && suggestion.rationale !== '') && (
+                        {suggestion.rationale && (
                           <CardDescription>{suggestion.rationale}</CardDescription>
                         )}
                       </CardHeader>
@@ -547,34 +549,34 @@ export function AIUnitPlanPanel({
                             
                             return (
                               <div
-                                key={itemIndex}
                                 className={`p-3 rounded-lg border transition-colors ${
                                   isAccepted
                                     ? 'bg-green-50 border-green-300'
                                     : 'bg-gray-50 hover:bg-gray-100'
                                 }`}
+                                key={itemIndex}
                               >
                                 <div className="flex items-start justify-between gap-2">
                                   <p className="text-sm flex-1">{item}</p>
                                   <div className="flex gap-1">
                                     <Button
                                       className="h-8 w-8 p-0"
-                                      size="sm"
-                                      variant="ghost"
                                       onClick={() => {
  copySuggestion(item); 
 }}
+                                      size="sm"
+                                      variant="ghost"
                                     >
                                       <Copy className="h-4 w-4" />
                                     </Button>
                                     {!isAccepted ? (
                                       <Button
                                         className="h-8 w-8 p-0"
-                                        size="sm"
-                                        variant="ghost"
                                         onClick={() => {
  acceptSuggestion(suggestion.type, item); 
 }}
+                                        size="sm"
+                                        variant="ghost"
                                       >
                                         <Check className="h-4 w-4 text-green-500" />
                                       </Button>
@@ -611,11 +613,11 @@ export function AIUnitPlanPanel({
       <AILoadingIndicator
         currentStepId={loadingStep}
         isOpen={showLoadingModal}
-        state={isGenerating ? 'processing' : 'waiting'}
         onCancel={() => {
           setShowLoadingModal(false);
           setIsGenerating(false);
         }}
+        state={isGenerating ? 'processing' : 'waiting'}
         {...AI_LOADING_PRESETS.GENERATING_UNIT_PLAN}
         canCancel
       />

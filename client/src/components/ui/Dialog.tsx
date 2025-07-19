@@ -31,7 +31,7 @@ const DialogWrapper: React.FC<DialogProps> = ({
   };
 
   return (
-    <RadixDialog.Root open={isOpenValue} onOpenChange={handleOpenChange}>
+    <RadixDialog.Root onOpenChange={handleOpenChange} open={isOpenValue}>
       {children}
     </RadixDialog.Root>
   );
@@ -48,11 +48,11 @@ const DialogOverlay = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof RadixDialog.Overlay>
 >(({ className, ...props }, ref): React.ReactElement => (
   <RadixDialog.Overlay
-    ref={ref}
     className={clsx(
       'fixed inset-0 z-50 bg-black/50 backdrop-blur-sm animate-in fade-in',
       className,
     )}
+    ref={ref}
     {...props}
   />
 ));
@@ -65,13 +65,13 @@ const DialogContent = React.forwardRef<
   <DialogPortal>
     <DialogOverlay />
     <RadixDialog.Content
-      ref={ref}
       className={clsx(
         'fixed left-[50%] top-[50%] z-50 w-full max-w-lg translate-x-[-50%] translate-y-[-50%]',
         'bg-white rounded-lg shadow-lg animate-in fade-in-0 zoom-in-95',
         'p-6',
         className,
       )}
+      ref={ref}
       {...props}
     >
       {children}
@@ -105,8 +105,8 @@ const DialogTitle = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof RadixDialog.Title>
 >(({ className, ...props }, ref): React.ReactElement => (
   <RadixDialog.Title
-    ref={ref}
     className={clsx('text-lg font-semibold leading-none tracking-tight', className)}
+    ref={ref}
     {...props}
   />
 ));
@@ -117,8 +117,8 @@ const DialogDescription = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof RadixDialog.Description>
 >(({ className, ...props }, ref): React.ReactElement => (
   <RadixDialog.Description
-    ref={ref}
     className={clsx('text-sm text-gray-500', className)}
+    ref={ref}
     {...props}
   />
 ));

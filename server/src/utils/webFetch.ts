@@ -108,7 +108,7 @@ export class WebFetch {
     const dom = new JSDOM(html);
     const {document} = dom.window;
     
-    if (selector) {
+    if (selector !== undefined && selector !== '') {
       const element = document.querySelector(selector);
       return element?.textContent?.trim() ?? '';
     }
@@ -133,7 +133,7 @@ export class WebFetch {
     metaTags.forEach(tag => {
       const name = tag.getAttribute('name') ?? tag.getAttribute('property');
       const content = tag.getAttribute('content');
-      if ((name !== null && name !== undefined && name !== '') && (content !== null && content !== undefined && content !== '')) {
+      if (name !== null && name !== '' && content !== null && content !== '') {
         meta[name] = content;
       }
     });

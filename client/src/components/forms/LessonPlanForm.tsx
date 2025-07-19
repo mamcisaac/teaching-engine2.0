@@ -261,15 +261,15 @@ export function LessonPlanForm({
                     Unit Plan *
                   </label>
                   <select
-                    required
                     className={`w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ${
                       errors.unitPlanId ? 'border-red-500' : ''
                     }`}
                     id="unit-plan-select"
-                    value={formData.unitPlanId}
                     onChange={(e) => {
  setFormData({ ...formData, unitPlanId: e.target.value }); 
 }}
+                    required
+                    value={formData.unitPlanId}
                   >
                     <option value="">Select a unit plan...</option>
                     {allUnitPlans.map((plan, _index) => (
@@ -286,18 +286,18 @@ export function LessonPlanForm({
 
               <div>
                 <BilingualTextInput
-                  required
                   label={`${t('lesson_plan')  } ${  t('title')}`}
-                  placeholderEn="Enter lesson title..."
-                  placeholderFr="Entrez le titre de la leçon..."
-                  valueEn={formData.title}
-                  valueFr={formData.titleFr ?? ''}
                   onChangeEn={(value: string) => {
  setFormData({ ...formData, title: value }); 
 }}
                   onChangeFr={(value: string) => {
  setFormData({ ...formData, titleFr: value }); 
 }}
+                  placeholderEn="Enter lesson title..."
+                  placeholderFr="Entrez le titre de la leçon..."
+                  required
+                  valueEn={formData.title}
+                  valueFr={formData.titleFr ?? ''}
                 />
                 {errors.title && <p className="mt-1 text-sm text-red-600">{errors.title}</p>}
               </div>
@@ -306,30 +306,30 @@ export function LessonPlanForm({
                 <div>
                   <Label htmlFor="date">Date *</Label>
                   <Input
-                    required
                     className={errors.date ? 'border-red-500' : ''}
                     id="date"
-                    type="date"
-                    value={formData.date}
                     onChange={(e) => {
  setFormData({ ...formData, date: e.target.value }); 
 }}
+                    required
+                    type="date"
+                    value={formData.date}
                   />
                   {errors.date && <p className="mt-1 text-sm text-red-600">{errors.date}</p>}
                 </div>
                 <div>
                   <Label htmlFor="duration">Duration (minutes) *</Label>
                   <Input
-                    required
                     className={errors.duration ? 'border-red-500' : ''}
                     id="duration"
                     min="1"
-                    type="number"
-                    value={formData.duration}
                     onChange={(e) => {
  setFormData({ ...formData, duration: parseInt(e.target.value, 10) || 0 }); 
 }
                     }
+                    required
+                    type="number"
+                    value={formData.duration}
                   />
                   {errors.duration && (
                     <p className="mt-1 text-sm text-red-600">{errors.duration}</p>
@@ -340,10 +340,10 @@ export function LessonPlanForm({
                   <select
                     className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                     id="grouping"
-                    value={formData.grouping ?? ''}
                     onChange={(e) => {
  setFormData({ ...formData, grouping: e.target.value }); 
 }}
+                    value={formData.grouping ?? ''}
                   >
                     <option value="whole class">Whole Class</option>
                     <option value="small group">Small Group</option>
@@ -356,19 +356,19 @@ export function LessonPlanForm({
 
               <div>
                 <BilingualTextInput
-                  multiline
                   label={t('learning_goals')}
-                  placeholderEn="What will students learn in this lesson?"
-                  placeholderFr="Que vont apprendre les élèves dans cette leçon?"
-                  rows={3}
-                  valueEn={formData.learningGoals ?? ''}
-                  valueFr={formData.learningGoalsFr ?? ''}
+                  multiline
                   onChangeEn={(value) => {
  setFormData({ ...formData, learningGoals: value }); 
 }}
                   onChangeFr={(value) => {
  setFormData({ ...formData, learningGoalsFr: value }); 
 }}
+                  placeholderEn="What will students learn in this lesson?"
+                  placeholderFr="Que vont apprendre les élèves dans cette leçon?"
+                  rows={3}
+                  valueEn={formData.learningGoals ?? ''}
+                  valueFr={formData.learningGoalsFr ?? ''}
                 />
               </div>
 
@@ -376,23 +376,23 @@ export function LessonPlanForm({
                 <Label htmlFor="input">Materials & Resources</Label>
                 <div className="space-y-2 mt-2">
                   {formData.materials.map((material, index) => (
-                    <div key={index} className="flex gap-2">
+                    <div className="flex gap-2" key={index}>
                       <Input
-                        placeholder="Required material or resource..."
-                        type="text"
-                        value={material}
                         onChange={(e) => {
  updateMaterial(index, e.target.value); 
 }}
+                        placeholder="Required material or resource..."
+                        type="text"
+                        value={material}
                       />
                       <Button
                         disabled={formData.materials.length === 1}
-                        size="sm"
-                        type="button"
-                        variant="ghost"
                         onClick={() => {
  removeMaterial(index); 
 }}
+                        size="sm"
+                        type="button"
+                        variant="ghost"
                       >
                         <Trash2 className="h-4 w-4" />
                       </Button>
@@ -400,10 +400,10 @@ export function LessonPlanForm({
                   ))}
                   <Button
                     className="w-full"
+                    onClick={addMaterial}
                     size="sm"
                     type="button"
                     variant="outline"
-                    onClick={addMaterial}
                   >
                     <Plus className="h-4 w-4 mr-2" />
                     Add Material
@@ -416,12 +416,12 @@ export function LessonPlanForm({
                   className={errors.expectationIds ? 'border-red-500' : ''}
                   grade={unitPlan?.longRangePlan?.grade}
                   label="Curriculum Expectations *"
-                  placeholder="Select expectations for this lesson..."
-                  selectedIds={formData.expectationIds}
-                  subject={unitPlan?.longRangePlan?.subject}
                   onChange={(ids) => {
  setFormData({ ...formData, expectationIds: ids }); 
 }}
+                  placeholder="Select expectations for this lesson..."
+                  selectedIds={formData.expectationIds}
+                  subject={unitPlan?.longRangePlan?.subject}
                 />
                 {errors.expectationIds && (
                   <p className="mt-1 text-sm text-red-600">{errors.expectationIds}</p>
@@ -439,60 +439,60 @@ export function LessonPlanForm({
             <div>
               <Label htmlFor="input">Minds On (Introduction/Hook)</Label>
               <RichTextEditor
-                value={formData.mindsOn ?? ''}
                 onChange={(value) => {
  setFormData({ ...formData, mindsOn: value }); 
 }}
+                value={formData.mindsOn ?? ''}
               />
             </div>
 
             <div>
               <Label htmlFor="input">Minds On (French)</Label>
               <RichTextEditor
-                value={formData.mindsOnFr ?? ''}
                 onChange={(value) => {
  setFormData({ ...formData, mindsOnFr: value }); 
 }}
+                value={formData.mindsOnFr ?? ''}
               />
             </div>
 
             <div>
               <Label htmlFor="input">Action (Main Learning Activities)</Label>
               <RichTextEditor
-                value={formData.action ?? ''}
                 onChange={(value) => {
  setFormData({ ...formData, action: value }); 
 }}
+                value={formData.action ?? ''}
               />
             </div>
 
             <div>
               <Label htmlFor="input">Action (French)</Label>
               <RichTextEditor
-                value={formData.actionFr ?? ''}
                 onChange={(value) => {
  setFormData({ ...formData, actionFr: value }); 
 }}
+                value={formData.actionFr ?? ''}
               />
             </div>
 
             <div>
               <Label htmlFor="input">Consolidation (Closure/Assessment)</Label>
               <RichTextEditor
-                value={formData.consolidation ?? ''}
                 onChange={(value) => {
  setFormData({ ...formData, consolidation: value }); 
 }}
+                value={formData.consolidation ?? ''}
               />
             </div>
 
             <div>
               <Label htmlFor="input">Consolidation (French)</Label>
               <RichTextEditor
-                value={formData.consolidationFr ?? ''}
                 onChange={(value) => {
  setFormData({ ...formData, consolidationFr: value }); 
 }}
+                value={formData.consolidationFr ?? ''}
               />
             </div>
           </div>
@@ -506,23 +506,23 @@ export function LessonPlanForm({
             </p>
             <div className="space-y-2">
               {formData.accommodations.map((accommodation, index) => (
-                <div key={index} className="flex gap-2">
+                <div className="flex gap-2" key={index}>
                   <Input
-                    placeholder="Accommodation strategy..."
-                    type="text"
-                    value={accommodation}
                     onChange={(e) => {
  updateAccommodation(index, e.target.value); 
 }}
+                    placeholder="Accommodation strategy..."
+                    type="text"
+                    value={accommodation}
                   />
                   <Button
                     disabled={formData.accommodations.length === 1}
-                    size="sm"
-                    type="button"
-                    variant="ghost"
                     onClick={() => {
  removeAccommodation(index); 
 }}
+                    size="sm"
+                    type="button"
+                    variant="ghost"
                   >
                     <Trash2 className="h-4 w-4" />
                   </Button>
@@ -530,10 +530,10 @@ export function LessonPlanForm({
               ))}
               <Button
                 className="w-full"
+                onClick={addAccommodation}
                 size="sm"
                 type="button"
                 variant="outline"
-                onClick={addAccommodation}
               >
                 <Plus className="h-4 w-4 mr-2" />
                 Add Accommodation
@@ -548,23 +548,23 @@ export function LessonPlanForm({
             </p>
             <div className="space-y-2">
               {formData.modifications.map((modification, index) => (
-                <div key={index} className="flex gap-2">
+                <div className="flex gap-2" key={index}>
                   <Input
-                    placeholder="Modification strategy..."
-                    type="text"
-                    value={modification}
                     onChange={(e) => {
  updateModification(index, e.target.value); 
 }}
+                    placeholder="Modification strategy..."
+                    type="text"
+                    value={modification}
                   />
                   <Button
                     disabled={formData.modifications.length === 1}
-                    size="sm"
-                    type="button"
-                    variant="ghost"
                     onClick={() => {
  removeModification(index); 
 }}
+                    size="sm"
+                    type="button"
+                    variant="ghost"
                   >
                     <Trash2 className="h-4 w-4" />
                   </Button>
@@ -572,10 +572,10 @@ export function LessonPlanForm({
               ))}
               <Button
                 className="w-full"
+                onClick={addModification}
                 size="sm"
                 type="button"
                 variant="outline"
-                onClick={addModification}
               >
                 <Plus className="h-4 w-4 mr-2" />
                 Add Modification
@@ -590,23 +590,23 @@ export function LessonPlanForm({
             </p>
             <div className="space-y-2">
               {formData.extensions.map((extension, index) => (
-                <div key={index} className="flex gap-2">
+                <div className="flex gap-2" key={index}>
                   <Input
-                    placeholder="Extension activity..."
-                    type="text"
-                    value={extension}
                     onChange={(e) => {
  updateExtension(index, e.target.value); 
 }}
+                    placeholder="Extension activity..."
+                    type="text"
+                    value={extension}
                   />
                   <Button
                     disabled={formData.extensions.length === 1}
-                    size="sm"
-                    type="button"
-                    variant="ghost"
                     onClick={() => {
  removeExtension(index); 
 }}
+                    size="sm"
+                    type="button"
+                    variant="ghost"
                   >
                     <Trash2 className="h-4 w-4" />
                   </Button>
@@ -614,10 +614,10 @@ export function LessonPlanForm({
               ))}
               <Button
                 className="w-full"
+                onClick={addExtension}
                 size="sm"
                 type="button"
                 variant="outline"
-                onClick={addExtension}
               >
                 <Plus className="h-4 w-4 mr-2" />
                 Add Extension
@@ -635,7 +635,6 @@ export function LessonPlanForm({
             <select
               className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 mt-2"
               id="assessmentType"
-              value={formData.assessmentType ?? ''}
               onChange={(e) => {
  setFormData({
                   ...formData,
@@ -643,6 +642,7 @@ export function LessonPlanForm({
                 }); 
 }
               }
+              value={formData.assessmentType ?? ''}
             >
               <option value="diagnostic">
                 Diagnostic - Assessment FOR Learning (Before/Beginning)
@@ -687,9 +687,15 @@ export function LessonPlanForm({
               <InfoTooltip content="Clear, specific statements that describe what success looks like. Written in student-friendly language starting with 'I can...'" />
             </div>
             <BilingualTextInput
-              multiline
               className="mt-2"
               label=""
+              multiline
+              onChangeEn={(value) => {
+ setFormData({ ...formData, assessmentNotes: value }); 
+}}
+              onChangeFr={(value) => {
+ setFormData({ ...formData, assessmentNotesFr: value }); 
+}}
               placeholderEn="Success Criteria (I can statements):
 • I can identify the main idea of a text
 • I can use evidence from the text to support my answer
@@ -711,12 +717,6 @@ Stratégies d'évaluation:
               rows={6}
               valueEn={formData.assessmentNotes ?? ''}
               valueFr={formData.assessmentNotesFr ?? ''}
-              onChangeEn={(value) => {
- setFormData({ ...formData, assessmentNotes: value }); 
-}}
-              onChangeFr={(value) => {
- setFormData({ ...formData, assessmentNotesFr: value }); 
-}}
             />
             <p className="mt-1 text-xs text-gray-500">
               Include both success criteria and the specific assessment strategies you&apos;ll use
@@ -731,10 +731,10 @@ Stratégies d'évaluation:
                 <input
                   checked={formData.isSubFriendly}
                   className="rounded"
-                  type="checkbox"
                   onChange={(e) => {
  setFormData({ ...formData, isSubFriendly: e.target.checked }); 
 }}
+                  type="checkbox"
                 />
                 <span className="text-sm">This lesson is suitable for a substitute teacher</span>
               </label>
@@ -742,20 +742,20 @@ Stratégies d'évaluation:
               {formData.isSubFriendly && (
                 <div>
                   <BilingualTextInput
-                    multiline
                     className="mt-2"
                     label="Notes for Substitute Teacher"
-                    placeholderEn="Special instructions, classroom management tips, or additional context for a substitute teacher..."
-                    placeholderFr="Instructions spéciales, conseils de gestion de classe, ou contexte additionnel pour un suppléant..."
-                    rows={3}
-                    valueEn={formData.subNotes ?? ''}
-                    valueFr={formData.subNotesFr ?? ''}
+                    multiline
                     onChangeEn={(value) => {
  setFormData({ ...formData, subNotes: value }); 
 }}
                     onChangeFr={(value) => {
  setFormData({ ...formData, subNotesFr: value }); 
 }}
+                    placeholderEn="Special instructions, classroom management tips, or additional context for a substitute teacher..."
+                    placeholderFr="Instructions spéciales, conseils de gestion de classe, ou contexte additionnel pour un suppléant..."
+                    rows={3}
+                    valueEn={formData.subNotes ?? ''}
+                    valueFr={formData.subNotesFr ?? ''}
                   />
                 </div>
               )}

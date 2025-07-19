@@ -154,11 +154,11 @@ export default function QuickLessonPage(): React.ReactElement {
               expectationIds: [],
             }}
             isSubmitting={isSubmitting}
-            showUnitPlanSelector={false} // Hide unit plan requirement
             onCancel={() => {
  navigate('/planner'); 
 }}
             onSubmit={handleSubmit}
+            showUnitPlanSelector={false} // Hide unit plan requirement
           />
         </CardContent>
       </Card>
