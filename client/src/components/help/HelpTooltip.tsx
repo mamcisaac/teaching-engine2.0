@@ -1,6 +1,6 @@
 
 import { clsx } from 'clsx';
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback, cloneElement } from 'react';
 import { createPortal } from 'react-dom';
 
 import type { HelpTooltipProps } from '../../types/help';
@@ -98,7 +98,7 @@ top = 8;
     }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Clone the child element and add event handlers
-  const triggerElement = React.cloneElement(children, {
+  const triggerElement = cloneElement(children, {
     ref: triggerRef,
     ...(trigger === 'hover'
       ? {

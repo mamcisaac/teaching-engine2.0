@@ -46,7 +46,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           baseStyles,
           variants[variant],
           sizes[size],
-          fullWidth && 'w-full',
+          fullWidth === true && 'w-full',
           className,
         )}
         disabled={disabled === true || loading}
@@ -54,7 +54,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         {loading ? (
-          <>
+          <React.Fragment>
             <svg
               className="animate-spin -ml-1 mr-2 h-4 w-4"
               fill="none"
@@ -76,7 +76,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               />
             </svg>
             Loading...
-          </>
+          </React.Fragment>
         ) : (
           children
         )}

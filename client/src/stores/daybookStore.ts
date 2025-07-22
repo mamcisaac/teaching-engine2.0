@@ -200,14 +200,16 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
 
                 set((state) => {
                   state.currentEntry = entry;
-                  if (entry && state.entries.find((e) => e.id === entry.id) === undefined) {
+                  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+                  if (entry != null && state.entries.find((e) => e.id === entry.id) === undefined) {
                     state.entries.push(entry);
                   }
                   state.isLoading = false;
                 });
 
                 // Cache individual entry
-                if (entry) {
+                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+                if (entry != null) {
                   await offlineStorage.cacheData(`daybook-entry-${date}`, entry as unknown as StoredData, 60);
                 }
               } else {

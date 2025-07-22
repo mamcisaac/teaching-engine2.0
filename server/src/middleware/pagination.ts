@@ -3,7 +3,7 @@
  * Automatically adds pagination support to routes
  */
 
-import type { Request, Response, NextFunction, RequestHandler } from 'express';
+import type { Request, Response, NextFunction, RequestHandler, Router } from 'express';
 
 import { logger } from '../logger';
 import type {
@@ -108,10 +108,10 @@ export function withPagination<T extends { id: number }>(
       const pagination = req.pagination || getPaginationParams(req);
 
       return repository.findMany({
-        where: options?.where,
-        include: options?.include,
+        where: options.where,
+        include: options.include,
         pagination,
-        searchFields: options?.searchFields ?? defaultSearchFields,
+        searchFields: options.searchFields ?? defaultSearchFields,
       });
     },
 
@@ -125,9 +125,9 @@ export function withPagination<T extends { id: number }>(
       const { cursor, limit = '20' } = req.query as { cursor?: string; limit?: string };
 
       return repository.findManyCursor({
-        where: options?.where,
-        include: options?.include,
-        cursor: cursor ? parseInt(cursor) : undefined,
+        where: options.where,
+        include: options.include,
+        cursor: cursor != null && cursor !== '' ? parseInt(cursor) : undefined,
         limit: parseInt(limit),
       });
     },
@@ -137,7 +137,6 @@ export function withPagination<T extends { id: number }>(
 /**
  * Express router wrapper that automatically adds pagination to GET list endpoints
  */
-import type { Router } from 'express';
 
 export function paginatedRouter(): Router {
   // eslint-disable-next-line @typescript-eslint/no-var-requires

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Newsletter Service
  * Generates classroom newsletters from lesson plans and reflections
@@ -39,7 +38,7 @@ interface Reflection {
 }
 
 export class NewsletterService {
-  // @ts-expect-error Method reserved for future newsletter generation
+  // Method reserved for future newsletter generation
   private static _generateTemplateContent(
     lessonPlans: LessonPlan[],
     reflections: Reflection[],
@@ -121,15 +120,15 @@ Warm regards,
     return `${from.toISOString().split('T')[0]} to ${to.toISOString().split('T')[0]}`;
   }
 
-  // @ts-expect-error Method reserved for future newsletter formatting
-  private static _formatLessonSummary(lessons: unknown[]): string {
+  // Method reserved for future newsletter formatting
+  private static _formatLessonSummary(lessons: LessonPlan[]): string {
     if (lessons.length === 0) {
 return '';
 }
 
     let summary = '### Recent Lessons\n\n';
 
-    lessons.forEach((lesson: any) => {
+    lessons.forEach((lesson) => {
       const date = new Date(lesson.date.getTime() - 24 * 60 * 60 * 1000); // Subtract a day
       const dateStr = date.toISOString().split('T')[0];
 
@@ -143,15 +142,15 @@ return '';
     return summary;
   }
 
-  // @ts-expect-error Method reserved for future newsletter formatting
-  private static _formatReflectionHighlights(reflections: unknown[]): string {
+  // Method reserved for future newsletter formatting
+  private static _formatReflectionHighlights(reflections: Reflection[]): string {
     if (reflections.length === 0) {
 return '';
 }
 
     let highlights = '### Teacher Reflections\n\n';
 
-    reflections.forEach((reflection: any) => {
+    reflections.forEach((reflection) => {
       const date = new Date(reflection.date.getTime() - 24 * 60 * 60 * 1000); // Subtract a day
       const dateStr = date.toISOString().split('T')[0];
 
@@ -166,16 +165,16 @@ return '';
     return highlights;
   }
 
-  // @ts-expect-error Method reserved for future user preferences
-  private static async _getUserPreferences(_userId: number): Promise<unknown> {
+  // Method reserved for future user preferences
+  private static _getUserPreferences(_userId: number): Promise<unknown> {
     // Mock implementation - returns empty preferences
-    return {};
+    return Promise.resolve({});
   }
 
-  // @ts-expect-error Method reserved for future newsletter tracking
-  private static async _getLastNewsletterDate(_userId: number): Promise<Date | null> {
+  // Method reserved for future newsletter tracking
+  private static _getLastNewsletterDate(_userId: number): Promise<Date | null> {
     // Mock implementation - returns null
-    return null;
+    return Promise.resolve(null);
   }
 
   static async recordNewsletterGeneration(_userId: number): Promise<void> {
@@ -183,8 +182,8 @@ return '';
     return Promise.resolve();
   }
 
-  static async getUserPreferences(_userId: number): Promise<Record<string, never>> {
+  static getUserPreferences(_userId: number): Promise<Record<string, never>> {
     // Mock implementation - returns empty object
-    return {};
+    return Promise.resolve({});
   }
 }

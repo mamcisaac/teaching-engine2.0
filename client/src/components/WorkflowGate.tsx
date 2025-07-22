@@ -49,7 +49,7 @@ export function WorkflowGate({ level, children }: WorkflowGateProps): React.Reac
 
   // If level is accessible, render children
   if (isLevelAccessible(level)) {
-    return children;
+    return children as React.ReactElement;
   }
 
   // Otherwise, show blocked message

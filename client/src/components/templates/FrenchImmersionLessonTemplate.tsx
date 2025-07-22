@@ -1,6 +1,6 @@
 
 import { BookOpen, Globe, Users, MessageSquare, Target, FileText } from 'lucide-react';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import type {
@@ -49,11 +49,11 @@ export function FrenchImmersionLessonTemplate({
     },
   });
 
-  const [vocabulary, setVocabulary] = React.useState<BilingualVocabulary[]>(
+  const [vocabulary, setVocabulary] = useState<BilingualVocabulary[]>(
     initialData?.languageFocus?.targetVocabulary ?? [],
   );
 
-  const [homeActivities, setHomeActivities] = React.useState<BilingualActivity[]>(
+  const [homeActivities, setHomeActivities] = useState<BilingualActivity[]>(
     initialData?.parentCommunication?.homeActivities ?? [],
   );
 

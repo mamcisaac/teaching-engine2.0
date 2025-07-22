@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { useHelp } from '../../contexts/HelpContext';
 import type { HelpModalProps } from '../../types/help';
@@ -17,7 +17,7 @@ export const HelpModal: React.FC<HelpModalProps> = ({
 }): React.ReactElement => {
   const { markHelpPageViewed } = useHelp();
 
-  React.useEffect((): void => {
+  useEffect((): void => {
     if (isOpen && title) {
       markHelpPageViewed(title);
     }
@@ -37,7 +37,7 @@ export const HelpModal: React.FC<HelpModalProps> = ({
   const footer = (
     <div className="flex justify-between items-center">
       <div className="flex items-center space-x-2">
-        {category && (
+        {category != null && category !== '' && (
           <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
             {category}
           </span>

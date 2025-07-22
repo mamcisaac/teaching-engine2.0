@@ -31,7 +31,7 @@ export const ShortcutHint: React.FC<ShortcutHintProps> = ({
   }
 
   // Don't show if no shortcut key is provided
-  if (!shortcut.key) {
+  if (shortcut.key == null || shortcut.key === '') {
     return null;
   }
 
@@ -160,7 +160,7 @@ export const MenuItemWithShortcut: React.FC<MenuItemWithShortcutProps> = ({
       onClick={onClick}
     >
       <div className="flex items-center gap-3">
-        {icon && <span className="text-gray-500">{icon}</span>}
+        {icon != null && <span className="text-gray-500">{icon}</span>}
         <span>{label}</span>
       </div>
       {shortcut && (

@@ -2,7 +2,7 @@
 import { screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import ETFOLessonPlanPage from '../../pages/ETFOLessonPlanPage';
+import { ETFOLessonPlanPage } from '../../pages/ETFOLessonPlanPage';
 import { renderWithAuth, mockLessonPlan, mockUnitPlan } from '../../test-utils';
 import * as etfoHooks from '../../hooks/useETFOPlanning';
 

@@ -8,7 +8,7 @@ import { vi } from 'vitest';
 // Mock fetch function
 const mockFetch = vi.fn();
 
-const TestWrapper = ({ children }) => {
+const TestWrapper = ({ children }: { children: React.ReactNode }) => {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: { retry: false },
@@ -369,7 +369,7 @@ describe('PaginatedDataTable', () => {
       totalPages: 1,
     };
 
-    let resolvePromise;
+    let resolvePromise: (value: unknown) => void = () => {};
     const pendingPromise = new Promise((resolve) => {
       resolvePromise = resolve;
     });

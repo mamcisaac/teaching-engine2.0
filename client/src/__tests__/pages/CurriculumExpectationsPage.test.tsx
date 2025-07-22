@@ -2,7 +2,7 @@
 import { screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import CurriculumExpectationsPage from '../../pages/CurriculumExpectationsPage';
+import { CurriculumExpectationsPage } from '../../pages/CurriculumExpectationsPage';
 import { renderWithAuth } from '../../test-utils';
 
 // Mock the ETFO planning hooks

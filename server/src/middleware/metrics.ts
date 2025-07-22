@@ -54,7 +54,7 @@ class MetricsStore {
     this.initializeMetrics();
   }
 
-  private initializeMetrics() {
+  private initializeMetrics(): void {
     // HTTP metrics
     this.createHistogram('http_request_duration_ms', 'HTTP request duration in milliseconds');
     this.createCounter('http_requests_total', 'Total number of HTTP requests');
@@ -228,12 +228,12 @@ export function httpMetricsMiddleware(req: Request, res: Response, next: NextFun
   metricsStore.incrementCounter('http_requests_total', {
     method: req.method,
     path: req.path,
-    user_agent: req.get('User-Agent')?.substring(0, 50) ?? 'unknown',
+    user_agent: req.get('User-Agent').substring(0, 50) ?? 'unknown',
   });
 
   // Override end method to capture response metrics
   const originalEnd = res.end;
-  res.end = function (chunk?: unknown, encoding?: unknown) {
+  res.end = function (chunk?: unknown, encoding?: unknown): Response {
     const duration = performance.now() - startTime;
 
     // Record request duration
@@ -285,15 +285,15 @@ export function recordDatabaseQuery<T>(operation: string, queryFn: () => Promise
  * Cache metrics helpers
  */
 export const cacheMetrics = {
-  recordHit: (cacheType: string) => {
+  recordHit: (cacheType: string): void => {
     metricsStore.incrementCounter('cache_hits_total', { cache_type: cacheType });
   },
 
-  recordMiss: (cacheType: string) => {
+  recordMiss: (cacheType: string): void => {
     metricsStore.incrementCounter('cache_misses_total', { cache_type: cacheType });
   },
 
-  setCacheSize: (cacheType: string, size: number) => {
+  setCacheSize: (cacheType: string, size: number): void => {
     metricsStore.setGauge('cache_size', size, { cache_type: cacheType });
   },
 };
@@ -350,14 +350,14 @@ export function withMetrics<T extends any[], R>(
   metricName: string,
   labels: Record<string, string> = {},
 ) {
-  return function (_target: unknown, propertyKey: string, descriptor: PropertyDescriptor) {
+  return function (_target: unknown, propertyKey: string, descriptor: PropertyDescriptor): PropertyDescriptor {
     const originalMethod = descriptor.value as (...args: T) => Promise<R>;
 
     descriptor.value = async function (...args: T): Promise<R> {
       const startTime = performance.now();
 
       try {
-        const result = await originalMethod.apply(this as any, args);
+        const result = await originalMethod.apply(this, args);
         const duration = performance.now() - startTime;
 
         metricsStore.observeHistogram(metricName, duration, {
@@ -390,7 +390,7 @@ export function withMetrics<T extends any[], R>(
 export function calculatePercentiles(
   histogramData: HistogramData,
   percentiles: number[] = [50, 90, 95, 99],
-) {
+): Record<string, number> {
   const result: Record<string, number> = {};
 
   for (const p of percentiles) {
@@ -463,4 +463,4 @@ export function getPerformanceSummary(): { http: { totalRequests: number; totalE
 }
 
 // Named export for getMetrics function
-export const getMetrics = () => metricsStore.getMetrics();
+export const getMetrics = (): ReturnType<typeof metricsStore.getMetrics> => metricsStore.getMetrics();

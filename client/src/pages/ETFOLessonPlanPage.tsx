@@ -14,7 +14,7 @@ import {
   RefreshCw,
   BookTemplate,
 } from 'lucide-react';
-import { useState, lazy, Suspense } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 
 import { Dialog } from '../components/Dialog';
@@ -77,7 +77,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
   // Fetch data
   const { data: unitPlan } = useUnitPlan(unitId ?? '');
   const { data: lessonPlans = [], isLoading: isLoadingLessons } = useETFOLessonPlans(
-    unitId ? { unitPlanId: unitId } : {},
+    unitId !== undefined ? { unitPlanId: unitId } : {},
   );
   const { data: selectedLesson } = useETFOLessonPlan(lessonId ?? '');
 
@@ -125,7 +125,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
   });
 
   // Auto-save functionality for existing lessons
-  const autoSaveData = editingLesson
+  const autoSaveData = editingLesson !== null
     ? {
         ...formData,
         expectationIds: formData.expectationIds,
@@ -135,7 +135,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
   const { lastSaved, isSaving, hasUnsavedChanges, saveNow } = useAutoSave({
     data: autoSaveData,
     saveFn: async (data) => {
-      if (editingLesson && data) {
+      if (editingLesson !== null && data !== null) {
         const cleanedData = {
           ...data,
           unitPlanId: unitId ?? '',
@@ -147,7 +147,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
         await updateLesson.mutateAsync({ id: editingLesson, data: cleanedData });
       }
     },
-    enabled: editingLesson && autoSaveData,
+    enabled: editingLesson !== null && autoSaveData !== null,
     delay: 30000, // 30 seconds
   });
 
@@ -165,7 +165,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
       extensions: formData.extensions.filter((e) => e.trim() !== ''),
     };
 
-    if (editingLesson !== null && editingLesson !== undefined) {
+    if (editingLesson !== null) {
       await updateLesson.mutateAsync({ id: editingLesson, data: cleanedData });
       setEditingLesson(null);
     } else {
@@ -400,7 +400,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
   };
 
   // If we're in detail mode (lessonId provided), show the detail view
-  if (lessonId && selectedLesson) {
+  if (lessonId !== undefined && selectedLesson !== undefined && selectedLesson !== null) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Breadcrumb */}
@@ -413,12 +413,12 @@ export function ETFOLessonPlanPage(): React.ReactElement {
             Unit Plans
           </Link>
           {unitPlan && (
-            <>
+            <React.Fragment>
               <span>›</span>
               <Link className="hover:text-indigo-600" to={`/planner/units/${unitId}`}>
                 {unitPlan.title}
               </Link>
-            </>
+            </React.Fragment>
           )}
           <span>›</span>
           <Link className="hover:text-indigo-600" to={`/planner/units/${unitId}/lessons`}>
@@ -434,7 +434,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
             <div className="flex justify-between items-start">
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">{selectedLesson.title}</h1>
-                {selectedLesson.titleFr && (
+                {selectedLesson.titleFr !== null && selectedLesson.titleFr !== undefined && selectedLesson.titleFr !== '' && (
                   <p className="text-sm text-gray-600 mt-1">{selectedLesson.titleFr}</p>
                 )}
                 <div className="flex gap-4 mt-2 text-sm text-gray-600">
@@ -494,12 +494,12 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                 </Button>
                 <Button
                   variant="outline"
-                  onClick={() => {
+                  onClick={(): void => {
                     setEditingLesson(selectedLesson.id);
                     setFormData({
                       title: selectedLesson.title,
                       titleFr: selectedLesson.titleFr ?? '',
-                      date: (() => {
+                      date: ((): string => {
                         const [dateOnly] = selectedLesson.date.split('T');
                         return dateOnly;
                       })(),
@@ -528,7 +528,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                 >
                   Edit
                 </Button>
-                {selectedLesson.daybookEntry !== null ? (
+                {selectedLesson.daybookEntry !== null && selectedLesson.daybookEntry !== undefined ? (
                   <Link to={`/planner/daybook?date=${selectedLesson.date}`}>
                     <Button variant="outline">View in Daybook</Button>
                   </Link>
@@ -547,7 +547,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
 
           {/* Three-Part Lesson Structure */}
           <div className="p-6 space-y-6">
-            {selectedLesson.learningGoals && (
+            {selectedLesson.learningGoals !== null && selectedLesson.learningGoals !== undefined && selectedLesson.learningGoals !== '' && (
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Learning Goals</h3>
                 <SafeHtmlRenderer
@@ -564,7 +564,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                   <CardDescription>Activating prior knowledge</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  {selectedLesson.mindsOn ? (
+                  {selectedLesson.mindsOn !== null && selectedLesson.mindsOn !== undefined && selectedLesson.mindsOn !== '' ? (
                     <SafeHtmlRenderer
                       className="prose max-w-none text-sm"
                       html={selectedLesson.mindsOn}
@@ -581,7 +581,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                   <CardDescription>Main learning activities</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  {selectedLesson.action ? (
+                  {selectedLesson.action !== null && selectedLesson.action !== undefined && selectedLesson.action !== '' ? (
                     <SafeHtmlRenderer
                       className="prose max-w-none text-sm"
                       html={selectedLesson.action}
@@ -598,7 +598,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                   <CardDescription>Summarizing and reflection</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  {selectedLesson.consolidation ? (
+                  {selectedLesson.consolidation !== null && selectedLesson.consolidation !== undefined && selectedLesson.consolidation !== '' ? (
                     <SafeHtmlRenderer
                       className="prose max-w-none text-sm"
                       html={selectedLesson.consolidation}
@@ -625,13 +625,13 @@ export function ETFOLessonPlanPage(): React.ReactElement {
             )}
 
             {/* Assessment */}
-            {(selectedLesson.assessmentType || selectedLesson.assessmentNotes) && (
+            {((selectedLesson.assessmentType !== null && selectedLesson.assessmentType !== undefined) || (selectedLesson.assessmentNotes !== null && selectedLesson.assessmentNotes !== undefined && selectedLesson.assessmentNotes !== '')) && (
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Assessment</h3>
                 {selectedLesson.assessmentType && (
                   <Badge className="mb-2">{selectedLesson.assessmentType}</Badge>
                 )}
-                {selectedLesson.assessmentNotes && (
+                {selectedLesson.assessmentNotes !== null && selectedLesson.assessmentNotes !== undefined && selectedLesson.assessmentNotes !== '' && (
                   <p className="text-gray-700 mt-2">{selectedLesson.assessmentNotes}</p>
                 )}
               </div>
@@ -680,7 +680,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
             </div>
 
             {/* Sub Notes */}
-            {selectedLesson.isSubFriendly && selectedLesson.subNotes && (
+            {selectedLesson.isSubFriendly && selectedLesson.subNotes !== null && selectedLesson.subNotes !== undefined && selectedLesson.subNotes !== '' && (
               <Card className="bg-yellow-50 border-yellow-200">
                 <CardHeader>
                   <CardTitle className="text-base">Substitute Teacher Notes</CardTitle>
@@ -734,12 +734,12 @@ export function ETFOLessonPlanPage(): React.ReactElement {
             Unit Plans
           </Link>
           {unitPlan && (
-            <>
+            <React.Fragment>
               <span>›</span>
               <Link className="hover:text-indigo-600" to={`/planner/units/${unitId}`}>
                 {unitPlan.title}
               </Link>
-            </>
+            </React.Fragment>
           )}
           <span>›</span>
           <span className="text-gray-900 font-medium">Lesson Plans</span>
@@ -893,7 +893,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                           setFormData({
                             title: lesson.title,
                             titleFr: lesson.titleFr ?? '',
-                            date: (() => {
+                            date: ((): string => {
                               const [dateOnly] = lesson.date.split('T');
                               return dateOnly;
                             })(),
@@ -946,9 +946,9 @@ export function ETFOLessonPlanPage(): React.ReactElement {
         <div className="p-3 sm:p-6 w-full max-w-full sm:max-w-5xl max-h-[90vh] overflow-y-auto">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold">
-              {editingLesson ? 'Edit Lesson Plan' : 'Create Lesson Plan'}
+              {editingLesson !== null ? 'Edit Lesson Plan' : 'Create Lesson Plan'}
             </h3>
-            {editingLesson && (
+            {editingLesson !== null && (
               <div className="flex items-center gap-2">
                 <AutoSaveIndicator
                   hasUnsavedChanges={hasUnsavedChanges}
@@ -1153,7 +1153,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                         className="w-full"
                         duration={formData.duration}
                         grade={unitPlan?.longRangePlan?.grade ?? 1}
-                        learningGoals={formData.learningGoals ? [formData.learningGoals] : []}
+                        learningGoals={formData.learningGoals !== '' ? [formData.learningGoals] : []}
                         lessonTitle={formData.title}
                         subject={unitPlan?.longRangePlan?.subject ?? ''}
                         unitContext={
@@ -1537,7 +1537,7 @@ Assessment Strategies:
                 >
                   {createLesson.isPending || updateLesson.isPending || isSaving
                     ? 'Saving...'
-                    : editingLesson
+                    : editingLesson !== null
                       ? 'Update Lesson Plan'
                       : 'Create Lesson Plan'}
                 </Button>
@@ -1591,7 +1591,7 @@ Assessment Strategies:
                           <CardTitle className="text-base">{template.title}</CardTitle>
                           <CardDescription className="mt-1">
                             {template.category} • Grade {template.gradeMin}
-                            {template.gradeMax !== null && template.gradeMax !== undefined && template.gradeMax !== template.gradeMin && `-${template.gradeMax}`}
+                            {template.gradeMax !== null && template.gradeMax !== template.gradeMin && `-${template.gradeMax}`}
                             {template.estimatedMinutes !== null && template.estimatedMinutes !== undefined && template.estimatedMinutes > 0 && ` • ${template.estimatedMinutes} minutes`}
                           </CardDescription>
                         </div>
@@ -1663,7 +1663,7 @@ Assessment Strategies:
       </Dialog>
 
       {/* Delete Confirmation Dialog */}
-      <AlertDialog open={!!deleteConfirmId} onOpenChange={() => {
+      <AlertDialog open={deleteConfirmId !== null} onOpenChange={() => {
  setDeleteConfirmId(null); 
 }}>
         <AlertDialogContent>
@@ -1678,7 +1678,7 @@ Assessment Strategies:
             <AlertDialogAction
               className="bg-red-600 hover:bg-red-700"
               onClick={(): void => {
- deleteConfirmId && void handleDelete(deleteConfirmId); 
+ if (deleteConfirmId !== null) { void handleDelete(deleteConfirmId); } 
 }}
             >
               Delete

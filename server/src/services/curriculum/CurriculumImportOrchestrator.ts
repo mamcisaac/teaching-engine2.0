@@ -9,9 +9,9 @@ import type {
   CurriculumExpectation,
   Subject,
   CurriculumImport,
-  ImportStatus,
   ValidationError
 } from '../../types/prisma-types';
+import { ImportStatus } from '../../types/prisma-types';
 import { BaseService } from '../base/BaseService';
 
 import { CurriculumExportService } from './CurriculumExportService';
@@ -129,7 +129,7 @@ export class CurriculumImportOrchestrator extends BaseService {
       const importRecord = await prisma.curriculumImport.create({
         data: {
           userId,
-          status: 'UPLOADING',
+          status: ImportStatus.UPLOADING,
           grade,
           subject,
           sourceFormat,

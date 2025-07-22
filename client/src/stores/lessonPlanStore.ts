@@ -117,10 +117,10 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
               if (get().isOnline) {
                 let url = '/api/etfo-lesson-plans';
                 const params = new URLSearchParams();
-                if (startDate && startDate !== '') {
+                if (startDate != null && startDate !== '') {
 params.append('startDate', startDate);
 }
-                if (endDate && endDate !== '') {
+                if (endDate != null && endDate !== '') {
 params.append('endDate', endDate);
 }
                 if (params.toString() !== '') {

@@ -214,7 +214,7 @@ router.get('/resources', async (_req: Request, res: Response): Promise<void> => 
  */
 router.get('/insights', async (req: Request, res: Response): Promise<void> => {
   try {
-    const userId = req.user?.id;
+    const userId = req.user.id;
 
     // Get user-specific insights
     const insights = await Promise.all([

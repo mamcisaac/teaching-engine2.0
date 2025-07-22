@@ -68,7 +68,7 @@ export const helmetConfig = helmet({
 /**
  * Create rate limiter instance
  */
-// @ts-expect-error TS6133
+// Function reserved for future use
 function _createRateLimiter(): RateLimiterRedis | RateLimiterMemory {
   // Use Redis in production for distributed rate limiting
   if (process.env.REDIS_URL && process.env.NODE_ENV === 'production') {
@@ -101,7 +101,7 @@ function _createRateLimiter(): RateLimiterRedis | RateLimiterMemory {
 /**
  * General rate limiting middleware
  */
-export async function rateLimitMiddleware(_req: Request, _res: Response, next: NextFunction): Promise<void> {
+export function rateLimitMiddleware(_req: Request, _res: Response, next: NextFunction): void {
   // SINGLE USER APP - Skip all rate limiting
   next();
 }
@@ -109,7 +109,7 @@ export async function rateLimitMiddleware(_req: Request, _res: Response, next: N
 /**
  * Strict rate limiting for authentication endpoints
  */
-export async function authRateLimitMiddleware(_req: Request, _res: Response, next: NextFunction): Promise<void> {
+export function authRateLimitMiddleware(_req: Request, _res: Response, next: NextFunction): void {
   // SINGLE USER APP - Skip all rate limiting
   next();
 }
@@ -244,7 +244,7 @@ export function csrfProtection(req: Request, res: Response, next: NextFunction):
   }
 
   const token = req.headers['x-csrf-token'] ?? (req.body as Record<string, unknown>)._csrf as string;
-  const sessionToken = (req as { session?: { csrfToken?: string } }).session?.csrfToken;
+  const sessionToken = (req as { session?: { csrfToken?: string } }).session.csrfToken;
 
   if (!token || !sessionToken || token !== sessionToken) {
     return res.status(403).json({

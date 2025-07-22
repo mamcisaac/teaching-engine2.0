@@ -67,7 +67,7 @@ export abstract class BaseRouteHandler<T = any> {
     res: Response,
     next: NextFunction,
   ): void => {
-    const userId = req.user?.id;
+    const userId = req.user.id;
     if (!userId || userId === 0) {
       res.status(401).json({ error: 'Unauthorized' });
       return;

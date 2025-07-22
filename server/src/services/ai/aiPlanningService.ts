@@ -88,7 +88,7 @@ export class AIPlanningService extends BaseService {
         responseTime,
       };
     } catch (_error) {
-      this.logger.error('Health check failed:', _error);
+      this.logger.error('Health check failed:', _error as string | undefined);
       return {
         healthy: false,
         lastCheck: new Date(),

@@ -197,7 +197,7 @@ describe('performance-utils', () => {
 
     it('should update visibility when intersection changes', () => {
       let observerCallback: (entries: any[]) => void = () => {};
-      mockIntersectionObserver.mockImplementation((callback) => {
+      mockIntersectionObserver.mockImplementation((callback: (entries: IntersectionObserverEntry[]) => void) => {
         observerCallback = callback;
         return {
           observe: vi.fn(),
@@ -625,7 +625,7 @@ describe('performance-utils', () => {
 
       it('should not reload if already loaded', async () => {
         let observerCallback: (entries: any[]) => void = () => {};
-        mockIntersectionObserver.mockImplementation((callback) => {
+        mockIntersectionObserver.mockImplementation((callback: (entries: IntersectionObserverEntry[]) => void) => {
           observerCallback = callback;
           return {
             observe: vi.fn(),
@@ -744,7 +744,7 @@ describe('performance-utils', () => {
 
       it('should load image when visible', async () => {
         let observerCallback: (entries: any[]) => void = () => {};
-        mockIntersectionObserver.mockImplementation((callback) => {
+        mockIntersectionObserver.mockImplementation((callback: (entries: IntersectionObserverEntry[]) => void) => {
           observerCallback = callback;
           return {
             observe: vi.fn(),
@@ -799,7 +799,7 @@ describe('performance-utils', () => {
 
       it('should only load once', async () => {
         let observerCallback: (entries: any[]) => void = () => {};
-        mockIntersectionObserver.mockImplementation((callback) => {
+        mockIntersectionObserver.mockImplementation((callback: (entries: IntersectionObserverEntry[]) => void) => {
           observerCallback = callback;
           return {
             observe: vi.fn(),

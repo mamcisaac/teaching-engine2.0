@@ -794,7 +794,7 @@ return null;
             {steps.map((step, index) => (
               <button
                 className={`w-3 h-3 rounded-full transition-colors ${
-                  (() => {
+                  ((): string => {
                     if (index === currentStep) {
 return 'bg-indigo-600';
 }

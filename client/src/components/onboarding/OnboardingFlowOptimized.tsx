@@ -41,21 +41,24 @@ export function OnboardingFlowOptimized(): React.ReactElement | null {
 
   // Update highlight position when step changes
   useEffect(() => {
-    return () => { // Cleanup
-    };
-
-    if (!currentStep?.targetElement) {
+    if (!currentStep) {
+      setHighlightPosition(null);
+      return;
+    }
+    
+    if (currentStep.targetElement == null || currentStep.targetElement === '') {
       setHighlightPosition(null);
       return;
     }
 
     const updatePosition = (): void => {
-      if (!currentStep?.targetElement) {
+      // currentStep is guaranteed to be non-null here due to the early return above
+      if (currentStep.targetElement == null || currentStep.targetElement === '') {
         setHighlightPosition(null);
         return;
       }
       
-      const element = document.querySelector(currentStep.targetElement);
+      const element = currentStep.targetElement !== '' ? document.querySelector(currentStep.targetElement) : null;
       if (!element) {
         setHighlightPosition(null);
         return;
@@ -125,17 +128,19 @@ export function OnboardingFlowOptimized(): React.ReactElement | null {
 
   // Handle element click if required
   useEffect(() => {
-    return () => { // Cleanup
-    };
-
-    if (!currentStep?.targetElement || !currentStep?.requiresAction) {
-return;
-}
+    if (!currentStep) {
+      return;
+    }
+    
+    if ((currentStep.targetElement === undefined || currentStep.targetElement === '') || currentStep.requiresAction !== true) {
+      return;
+    }
 
     const handleClick = (e: MouseEvent): void => {
-      if (!currentStep?.targetElement) {
-return;
-}
+      // currentStep is guaranteed to be non-null here due to the early return above
+      if (currentStep.targetElement === undefined || currentStep.targetElement === '') {
+        return;
+      }
       const element = document.querySelector(currentStep.targetElement);
       if (element && element.contains(e.target as Node)) {
         nextStep();
@@ -152,7 +157,7 @@ return;
 return null;
 }
 
-  const isCenter = currentStep.position === 'center' || !currentStep.targetElement ;
+  const isCenter = currentStep.position === 'center' || currentStep.targetElement === undefined || currentStep.targetElement === '';
 
   return createPortal(
     <Suspense fallback={<OnboardingLoadingFallback />}>
@@ -166,7 +171,7 @@ return null;
             initial={{ opacity: 0 }}
             onClick={(e) => {
               // Allow clicking through to highlighted element
-              if (highlightPosition && currentStep.requiresAction) {
+              if (highlightPosition && currentStep.requiresAction === true) {
                 e.stopPropagation();
               }
             }}
@@ -192,7 +197,8 @@ return null;
           />
 
           {/* Completion message */}
-          {(state.currentFlow?.completionMessage !== null && state.currentFlow.completionMessage !== undefined && state.currentFlow.completionMessage !== '') &&
+          {state.currentFlow != null && 
+            state.currentFlow.completionMessage != null && state.currentFlow.completionMessage !== '' &&
             state.currentStepIndex === state.currentFlow.steps.length - 1 ? (
               <OnboardingProgress completionMessage={state.currentFlow.completionMessage} />
             ) : null}

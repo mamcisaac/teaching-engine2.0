@@ -3,7 +3,7 @@ import { screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { format, startOfWeek } from 'date-fns';
-import DaybookPage from '../../pages/DaybookPage';
+import { DaybookPage } from '../../pages/DaybookPage';
 import { renderWithAuth, mockLessonPlan } from '../../test-utils';
 import * as etfoHooks from '../../hooks/useETFOPlanning';
 
@@ -22,7 +22,7 @@ vi.mock('date-fns', async () => {
   
   return {
     ...actual,
-    format: vi.fn((date, formatStr) => {
+    format: vi.fn((date: Date | string | number, formatStr: string) => {
       try {
         // Handle common format patterns with test date
         if (formatStr === 'yyyy-MM-dd') {
@@ -42,12 +42,12 @@ vi.mock('date-fns', async () => {
     }),
     startOfWeek: vi.fn(() => testDate),
     endOfWeek: vi.fn(() => new Date('2024-01-21')),
-    addDays: vi.fn((date, days) => {
+    addDays: vi.fn((date: Date | string | number, days: number) => {
       const result = new Date(testDate);
       result.setDate(result.getDate() + days);
       return result;
     }),
-    isToday: vi.fn((date) => {
+    isToday: vi.fn((date: Date | string | number) => {
       try {
         return actual.format(date, 'yyyy-MM-dd') === '2024-01-15';
       } catch {

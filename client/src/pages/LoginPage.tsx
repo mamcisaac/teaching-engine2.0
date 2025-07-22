@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../contexts/AuthContext';
@@ -80,7 +80,7 @@ function LoginPage(): React.ReactElement {
             Sign in to your account
           </h2>
         </div>
-        {(authError || localError) && (
+        {((authError != null && authError !== '') || (localError != null && localError !== '')) && (
           <div className="bg-red-50 border-l-4 border-red-400 p-4">
             <div className="flex">
               <div className="flex-shrink-0">
@@ -186,7 +186,7 @@ function LoginPage(): React.ReactElement {
                 type="submit"
               >
                 {isSuccess ? (
-                  <>
+                  <React.Fragment>
                     <svg
                       className="-ml-1 mr-3 h-5 w-5 text-white"
                       fill="currentColor"
@@ -200,9 +200,9 @@ function LoginPage(): React.ReactElement {
                       />
                     </svg>
                     Success!
-                  </>
+                  </React.Fragment>
                 ) : isLoading ? (
-                  <>
+                  <React.Fragment>
                     <svg
                       className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
                       fill="none"
@@ -216,15 +216,15 @@ function LoginPage(): React.ReactElement {
                         r="10"
                         stroke="currentColor"
                         strokeWidth="4"
-                       />
+                      />
                       <path
                         className="opacity-75"
                         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                         fill="currentColor"
-                       />
+                      />
                     </svg>
                     Signing in...
-                  </>
+                  </React.Fragment>
                 ) : (
                   'Sign in'
                 )}
@@ -238,4 +238,3 @@ function LoginPage(): React.ReactElement {
 }
 
 export { LoginPage };
-export default LoginPage;

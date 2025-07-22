@@ -135,7 +135,7 @@ function createAuthRouter(prisma = defaultPrisma): Router {
     void (async () => {
       try {
       // Always fetch fresh user data from database for /me endpoint
-      if (req.user?.id === null || req.user?.id === undefined) {
+      if (req.user.id === null || req.user.id === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -181,7 +181,7 @@ function createAuthRouter(prisma = defaultPrisma): Router {
 
   // Simple auth check endpoint - returns userId if authenticated
   router.get('/check', authenticate, (req: Request, res: Response): void => {
-    const userId = req.user?.id;
+    const userId = req.user.id;
     if (!userId) {
       res.status(401).json({ error: 'User not authenticated' });
       return;

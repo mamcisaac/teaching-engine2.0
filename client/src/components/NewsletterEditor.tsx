@@ -4,7 +4,7 @@ import {
   Undo, Redo, Type, Save, Send,
   Eye, Edit3, Languages, Trash2, RefreshCw
 } from 'lucide-react';
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 import { cn } from '../lib/utils';
 import type { NewsletterSection, NewsletterDraft, NewsletterTone } from '../types/newsletter';
@@ -244,7 +244,7 @@ export function NewsletterEditor({
           
           <div className="flex items-center gap-1">
             {section.isEditable && (
-              <>
+              <React.Fragment>
                 <button
                   className="p-1.5 text-gray-600 hover:text-gray-800 hover:bg-gray-200 rounded"
                   onClick={(): void => {
@@ -263,7 +263,7 @@ export function NewsletterEditor({
                 >
                   <Trash2 className="w-4 h-4" />
                 </button>
-              </>
+              </React.Fragment>
             )}
           </div>
         </div>
@@ -354,7 +354,7 @@ export function NewsletterEditor({
 
           {/* Action buttons */}
           {!previewMode && (
-            <>
+            <React.Fragment>
               {onRegenerate && (
                 <button
                   className="flex items-center gap-2 px-3 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:opacity-50"
@@ -391,7 +391,7 @@ export function NewsletterEditor({
                   <span className="text-sm font-medium">Send</span>
                 </button>
               )}
-            </>
+            </React.Fragment>
           )}
         </div>
       </div>

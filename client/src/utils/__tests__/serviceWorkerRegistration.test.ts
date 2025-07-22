@@ -82,7 +82,7 @@ describe('serviceWorkerRegistration', () => {
     };
     
     // Reset event listeners
-    window.addEventListener = vi.fn((event, handler) => {
+    window.addEventListener = vi.fn((event: string, handler: EventListener) => {
       // Store handlers for testing
       (window as any)[`__${event}Handler`] = handler;
     });

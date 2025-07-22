@@ -68,7 +68,7 @@ export function setupInterceptors(apiClient: AxiosInstance): void {
           if (recovered) {
             // Update the authorization header with the new token
             const authHeaders = authService.getAuthHeaders();
-            if ((authHeaders.Authorization !== undefined && authHeaders.Authorization !== '') && originalRequest.headers) {
+            if ((authHeaders.Authorization !== undefined && authHeaders.Authorization !== '') && originalRequest.headers !== undefined) {
               originalRequest.headers.Authorization = authHeaders.Authorization;
             }
             return apiClient(originalRequest);

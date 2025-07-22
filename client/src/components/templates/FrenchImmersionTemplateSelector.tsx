@@ -10,7 +10,7 @@ import {
   Star,
   Clock,
 } from 'lucide-react';
-import React from 'react';
+import React, { useState } from 'react';
 
 import { getAllGrade1FITemplates } from '../../data/templates/french-immersion/grade1-templates';
 import type { FrenchImmersionTemplateMetadata } from '../../types/frenchImmersion';
@@ -67,10 +67,10 @@ export function FrenchImmersionTemplateSelector({
   grade = 1,
   filterByType,
 }: FrenchImmersionTemplateSelectorProps): React.ReactElement {
-  const [selectedPersona, setSelectedPersona] = React.useState<PersonaType | null>(null);
-  const [searchTerm, setSearchTerm] = React.useState('');
-  const [selectedTimeOfYear, setSelectedTimeOfYear] = React.useState<string>('');
-  const [showOnlyFavorites, setShowOnlyFavorites] = React.useState(false);
+  const [selectedPersona, setSelectedPersona] = useState<PersonaType | null>(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedTimeOfYear, setSelectedTimeOfYear] = useState<string>('');
+  const [showOnlyFavorites, setShowOnlyFavorites] = useState(false);
 
   const { lessonTemplates, unitTemplates } = getAllGrade1FITemplates();
 
@@ -125,7 +125,8 @@ return true;
         ('assessmentNotes' in template.content && template.content.assessmentNotes !== undefined && template.content.assessmentNotes !== '') ||
         ('lessonStructure' in template && template.lessonStructure !== undefined)
       );
-    } else if (selectedPersona === 'marie-claire') {
+    } else {
+      // marie-claire persona
       return (
         ('parentCommunication' in template.content && template.content.parentCommunication !== undefined) ||
         (template.description !== undefined && template.description !== '' && template.description.includes('structured')) ||

@@ -1,7 +1,14 @@
+npm warn Unknown project config "public-hoist-pattern". This will stop working in the next major version of npm.
+npm warn Unknown project config "enable-pre-post-scripts". This will stop working in the next major version of npm.
 
 > lint
 > eslint --config .eslintrc.json "**/*.{ts,tsx,js,jsx}"
 
+Multiple projects found, consider using a single `tsconfig` with `references` to speed up, or use `noWarnOnMultipleProjects` to suppress this warning
+
+/Users/michaelmcisaac/Github/teaching-engine2.0/client/src/components/WorkflowGate.tsx
+  1:1  error  There should be no empty line within import group            import/order
+  3:1  error  `lucide-react` import should occur before import of `react`  import/order
 
 /Users/michaelmcisaac/Github/teaching-engine2.0/client/src/components/performance/ProgressiveDataLoader.tsx
   140:7  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
@@ -9,12 +16,16 @@
 /Users/michaelmcisaac/Github/teaching-engine2.0/client/src/components/performance/VirtualizedList.tsx
   176:10  warning  Caution: `React` also has a named export `memo`. Check if you meant to write `import {memo} from 'react'` instead  import/no-named-as-default-member
 
+/Users/michaelmcisaac/Github/teaching-engine2.0/client/src/components/planning/ExpectationSelector.tsx
+  148:15  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  337:8   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+
 /Users/michaelmcisaac/Github/teaching-engine2.0/client/src/components/settings/KeyboardShortcutsSettings.tsx
-  166:27  error    'hasCustom' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
-  166:39  warning  Unnecessary conditional, the types have no overlap                                    @typescript-eslint/no-unnecessary-condition
-  167:45  warning  Unnecessary conditional, the types have no overlap                                    @typescript-eslint/no-unnecessary-condition
-  178:28  warning  Unnecessary conditional, the types have no overlap                                    @typescript-eslint/no-unnecessary-condition
-  247:32  warning  Unnecessary conditional, the types have no overlap                                    @typescript-eslint/no-unnecessary-condition
+  166:41  warning  Unexpected object value in conditional. The condition is always true  @typescript-eslint/strict-boolean-expressions
+  167:45  warning  Unnecessary conditional, value is always truthy                       @typescript-eslint/no-unnecessary-condition
+  167:45  warning  Unexpected object value in conditional. The condition is always true  @typescript-eslint/strict-boolean-expressions
+  178:28  warning  Unnecessary conditional, value is always truthy                       @typescript-eslint/no-unnecessary-condition
+  247:32  warning  Unnecessary conditional, value is always truthy                       @typescript-eslint/no-unnecessary-condition
 
 /Users/michaelmcisaac/Github/teaching-engine2.0/client/src/components/templates/FrenchImmersionLessonTemplate.tsx
   115:16  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
@@ -76,13 +87,34 @@
   269:53  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
 
 /Users/michaelmcisaac/Github/teaching-engine2.0/client/src/hooks/useETFOPlanning.ts
+  194:11  warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
+  200:11  warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
+  203:11  warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
+  220:27  warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
+  220:42  warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
+  270:22  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  273:11  warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
+  276:22  warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
+  293:27  warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
+  293:42  warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
+  354:11  warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
+  357:11  warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
+  360:11  warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
+  377:27  warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
+  377:42  warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
+  444:22  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
   447:22  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
   450:22  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
   453:22  warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
+  470:27  warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
+  470:42  warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
   532:22  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
   535:22  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
   538:22  warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
   541:22  warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
+  558:27  warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
+  558:42  warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
+  574:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
 
 /Users/michaelmcisaac/Github/teaching-engine2.0/client/src/hooks/useForm.ts
   65:15  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
@@ -157,6 +189,7 @@
    628:107  warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
    634:18   warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
    683:46   warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
+   896:39   warning  Missing return type on function                                                                    @typescript-eslint/explicit-function-return-type
   1163:43   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
   1594:30   warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
   1595:30   warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
@@ -269,6 +302,9 @@
 
 /Users/michaelmcisaac/Github/teaching-engine2.0/server/src/app.ts
   50:8  warning  Async function 'createTestApp' has no 'await' expression  @typescript-eslint/require-await
+
+/Users/michaelmcisaac/Github/teaching-engine2.0/server/src/data/bilingualLessonTemplates.ts
+  256:8  warning  Missing return type on function  @typescript-eslint/explicit-function-return-type
 
 /Users/michaelmcisaac/Github/teaching-engine2.0/server/src/index.ts
   185:50   warning  Unsafe argument of type `any` assigned to a parameter of type `RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>`  @typescript-eslint/no-unsafe-argument
@@ -531,6 +567,11 @@
   320:32  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
   343:22  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
 
+/Users/michaelmcisaac/Github/teaching-engine2.0/server/src/middleware/index.ts
+  104:3  warning  Missing return type on function  @typescript-eslint/explicit-function-return-type
+  110:3  warning  Missing return type on function  @typescript-eslint/explicit-function-return-type
+  123:3  warning  Missing return type on function  @typescript-eslint/explicit-function-return-type
+
 /Users/michaelmcisaac/Github/teaching-engine2.0/server/src/middleware/inputSanitization.ts
    85:8   warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
   114:34  warning  Unnecessary conditional, the types have no overlap                                    @typescript-eslint/no-unnecessary-condition
@@ -556,9 +597,16 @@
   429:11  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
 
 /Users/michaelmcisaac/Github/teaching-engine2.0/server/src/middleware/metrics.ts
+   57:3   warning  Missing return type on function                                                                     @typescript-eslint/explicit-function-return-type
   231:17  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  236:13  warning  Missing return type on function                                                                     @typescript-eslint/explicit-function-return-type
   243:13  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
   251:15  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  288:3   warning  Missing return type on function                                                                     @typescript-eslint/explicit-function-return-type
+  292:3   warning  Missing return type on function                                                                     @typescript-eslint/explicit-function-return-type
+  296:3   warning  Missing return type on function                                                                     @typescript-eslint/explicit-function-return-type
+  353:10  warning  Missing return type on function                                                                     @typescript-eslint/explicit-function-return-type
+  390:8   warning  Missing return type on function                                                                     @typescript-eslint/explicit-function-return-type
   421:22  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
   422:20  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
   425:9   warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
@@ -569,6 +617,7 @@
   438:20  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
   442:20  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
   443:17  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  466:30  warning  Missing return type on function                                                                     @typescript-eslint/explicit-function-return-type
 
 /Users/michaelmcisaac/Github/teaching-engine2.0/server/src/middleware/pagination.ts
   130:17  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
@@ -613,7 +662,24 @@
   277:11  warning  Unexpected object value in conditional. The condition is always true                               @typescript-eslint/strict-boolean-expressions
 
 /Users/michaelmcisaac/Github/teaching-engine2.0/server/src/middleware/standardErrorHandler.ts
+  199:8   warning  Missing return type on function                                                       @typescript-eslint/explicit-function-return-type
   336:51  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+  351:47  warning  Missing return type on function                                                       @typescript-eslint/explicit-function-return-type
+  361:3   warning  Missing return type on function                                                       @typescript-eslint/explicit-function-return-type
+  364:3   warning  Missing return type on function                                                       @typescript-eslint/explicit-function-return-type
+  366:3   warning  Missing return type on function                                                       @typescript-eslint/explicit-function-return-type
+  368:3   warning  Missing return type on function                                                       @typescript-eslint/explicit-function-return-type
+  370:3   warning  Missing return type on function                                                       @typescript-eslint/explicit-function-return-type
+  373:3   warning  Missing return type on function                                                       @typescript-eslint/explicit-function-return-type
+  375:3   warning  Missing return type on function                                                       @typescript-eslint/explicit-function-return-type
+  378:3   warning  Missing return type on function                                                       @typescript-eslint/explicit-function-return-type
+  380:3   warning  Missing return type on function                                                       @typescript-eslint/explicit-function-return-type
+  383:3   warning  Missing return type on function                                                       @typescript-eslint/explicit-function-return-type
+  386:3   warning  Missing return type on function                                                       @typescript-eslint/explicit-function-return-type
+  394:3   warning  Missing return type on function                                                       @typescript-eslint/explicit-function-return-type
+  403:3   warning  Missing return type on function                                                       @typescript-eslint/explicit-function-return-type
+  407:3   warning  Missing return type on function                                                       @typescript-eslint/explicit-function-return-type
+  411:3   warning  Missing return type on function                                                       @typescript-eslint/explicit-function-return-type
 
 /Users/michaelmcisaac/Github/teaching-engine2.0/server/src/monitoring/alerting.ts
   106:5   warning  Missing return type on function                                                                     @typescript-eslint/explicit-function-return-type
@@ -1064,43 +1130,44 @@
   193:3   warning  Promise returned in function argument where a void return was expected                                @typescript-eslint/no-misused-promises
 
 /Users/michaelmcisaac/Github/teaching-engine2.0/server/src/routes/curriculumImport.ts
-   59:3   warning  Promise returned in function argument where a void return was expected                             @typescript-eslint/no-misused-promises
-   84:12  warning  Unnecessary conditional, value is always falsy                                                     @typescript-eslint/no-unnecessary-condition
-   84:12  warning  Unexpected object value in conditional. The condition is always true                               @typescript-eslint/strict-boolean-expressions
-  132:11  warning  Unsafe assignment of an `any` value                                                                @typescript-eslint/no-unsafe-assignment
-  134:10  warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
-  149:73  warning  Unsafe argument of type `any` assigned to a parameter of type `string`                             @typescript-eslint/no-unsafe-argument
-  151:7   warning  Unsafe assignment of an `any` value                                                                @typescript-eslint/no-unsafe-assignment
+    2:1   error    There should be no empty line within import group                                                  import/order
+   60:3   warning  Promise returned in function argument where a void return was expected                             @typescript-eslint/no-misused-promises
+   85:12  warning  Unnecessary conditional, value is always falsy                                                     @typescript-eslint/no-unnecessary-condition
+   85:12  warning  Unexpected object value in conditional. The condition is always true                               @typescript-eslint/strict-boolean-expressions
+  133:11  warning  Unsafe assignment of an `any` value                                                                @typescript-eslint/no-unsafe-assignment
+  135:10  warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  150:73  warning  Unsafe argument of type `any` assigned to a parameter of type `string`                             @typescript-eslint/no-unsafe-argument
   152:7   warning  Unsafe assignment of an `any` value                                                                @typescript-eslint/no-unsafe-assignment
-  152:14  warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
-  173:11  warning  Unsafe assignment of an `any` value                                                                @typescript-eslint/no-unsafe-assignment
-  175:10  warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
-  190:90  warning  Unsafe argument of type `any` assigned to a parameter of type `ImportOptions`                      @typescript-eslint/no-unsafe-argument
-  221:10  warning  Unnecessary conditional, value is always falsy                                                     @typescript-eslint/no-unnecessary-condition
-  221:10  warning  Unexpected object value in conditional. The condition is always true                               @typescript-eslint/strict-boolean-expressions
-  254:10  warning  Unnecessary conditional, value is always falsy                                                     @typescript-eslint/no-unnecessary-condition
-  254:10  warning  Unexpected object value in conditional. The condition is always true                               @typescript-eslint/strict-boolean-expressions
-  287:24  warning  Promise returned in function argument where a void return was expected                             @typescript-eslint/no-misused-promises
-  312:23  warning  Promise returned in function argument where a void return was expected                             @typescript-eslint/no-misused-promises
-  325:10  warning  Unnecessary conditional, value is always falsy                                                     @typescript-eslint/no-unnecessary-condition
-  325:10  warning  Unexpected object value in conditional. The condition is always true                               @typescript-eslint/strict-boolean-expressions
-  343:23  warning  Promise returned in function argument where a void return was expected                             @typescript-eslint/no-misused-promises
-  345:11  warning  Unsafe assignment of an `any` value                                                                @typescript-eslint/no-unsafe-assignment
-  347:10  warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
-  347:20  warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
-  347:32  warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
-  359:7   warning  Unsafe argument of type `any` assigned to a parameter of type `number`                             @typescript-eslint/no-unsafe-argument
-  360:7   warning  Unsafe argument of type `any` assigned to a parameter of type `string`                             @typescript-eslint/no-unsafe-argument
-  361:7   warning  Unsafe argument of type `any` assigned to a parameter of type `"manual" | "pdf" | "docx" | "csv"`  @typescript-eslint/no-unsafe-argument
-  373:35  warning  Promise returned in function argument where a void return was expected                             @typescript-eslint/no-misused-promises
-  378:10  warning  Unnecessary conditional, value is always falsy                                                     @typescript-eslint/no-unnecessary-condition
-  378:10  warning  Unexpected object value in conditional. The condition is always true                               @typescript-eslint/strict-boolean-expressions
-  392:34  warning  Promise returned in function argument where a void return was expected                             @typescript-eslint/no-misused-promises
-  397:10  warning  Unnecessary conditional, value is always falsy                                                     @typescript-eslint/no-unnecessary-condition
-  397:10  warning  Unexpected object value in conditional. The condition is always true                               @typescript-eslint/strict-boolean-expressions
-  411:21  warning  Promise returned in function argument where a void return was expected                             @typescript-eslint/no-misused-promises
-  425:10  warning  Unnecessary conditional, value is always falsy                                                     @typescript-eslint/no-unnecessary-condition
-  425:10  warning  Unexpected object value in conditional. The condition is always true                               @typescript-eslint/strict-boolean-expressions
+  153:7   warning  Unsafe assignment of an `any` value                                                                @typescript-eslint/no-unsafe-assignment
+  153:14  warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  174:11  warning  Unsafe assignment of an `any` value                                                                @typescript-eslint/no-unsafe-assignment
+  176:10  warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  191:90  warning  Unsafe argument of type `any` assigned to a parameter of type `ImportOptions`                      @typescript-eslint/no-unsafe-argument
+  222:10  warning  Unnecessary conditional, value is always falsy                                                     @typescript-eslint/no-unnecessary-condition
+  222:10  warning  Unexpected object value in conditional. The condition is always true                               @typescript-eslint/strict-boolean-expressions
+  255:10  warning  Unnecessary conditional, value is always falsy                                                     @typescript-eslint/no-unnecessary-condition
+  255:10  warning  Unexpected object value in conditional. The condition is always true                               @typescript-eslint/strict-boolean-expressions
+  288:24  warning  Promise returned in function argument where a void return was expected                             @typescript-eslint/no-misused-promises
+  313:23  warning  Promise returned in function argument where a void return was expected                             @typescript-eslint/no-misused-promises
+  326:10  warning  Unnecessary conditional, value is always falsy                                                     @typescript-eslint/no-unnecessary-condition
+  326:10  warning  Unexpected object value in conditional. The condition is always true                               @typescript-eslint/strict-boolean-expressions
+  344:23  warning  Promise returned in function argument where a void return was expected                             @typescript-eslint/no-misused-promises
+  346:11  warning  Unsafe assignment of an `any` value                                                                @typescript-eslint/no-unsafe-assignment
+  348:10  warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  348:20  warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  348:32  warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  360:7   warning  Unsafe argument of type `any` assigned to a parameter of type `number`                             @typescript-eslint/no-unsafe-argument
+  361:7   warning  Unsafe argument of type `any` assigned to a parameter of type `string`                             @typescript-eslint/no-unsafe-argument
+  362:7   warning  Unsafe argument of type `any` assigned to a parameter of type `"manual" | "pdf" | "docx" | "csv"`  @typescript-eslint/no-unsafe-argument
+  374:35  warning  Promise returned in function argument where a void return was expected                             @typescript-eslint/no-misused-promises
+  379:10  warning  Unnecessary conditional, value is always falsy                                                     @typescript-eslint/no-unnecessary-condition
+  379:10  warning  Unexpected object value in conditional. The condition is always true                               @typescript-eslint/strict-boolean-expressions
+  393:34  warning  Promise returned in function argument where a void return was expected                             @typescript-eslint/no-misused-promises
+  398:10  warning  Unnecessary conditional, value is always falsy                                                     @typescript-eslint/no-unnecessary-condition
+  398:10  warning  Unexpected object value in conditional. The condition is always true                               @typescript-eslint/strict-boolean-expressions
+  412:21  warning  Promise returned in function argument where a void return was expected                             @typescript-eslint/no-misused-promises
+  426:10  warning  Unnecessary conditional, value is always falsy                                                     @typescript-eslint/no-unnecessary-condition
+  426:10  warning  Unexpected object value in conditional. The condition is always true                               @typescript-eslint/strict-boolean-expressions
 
 /Users/michaelmcisaac/Github/teaching-engine2.0/server/src/routes/dashboard-metrics.ts
    13:12  warning  Promise returned in function argument where a void return was expected                                @typescript-eslint/no-misused-promises
@@ -2031,15 +2098,18 @@
   174:13  warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly        @typescript-eslint/strict-boolean-expressions
 
 /Users/michaelmcisaac/Github/teaching-engine2.0/server/src/utils/structuredLogger.ts
-   55:11  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
-   56:11  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
-   69:9   warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
-  131:22  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+   53:22  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+   55:46  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+   56:46  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+   69:9   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+  131:57  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  178:7   warning  Missing return type on function                                                                     @typescript-eslint/explicit-function-return-type
   213:57  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
   227:5   warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
   227:6   warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
   235:20  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
   244:13  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  272:16  warning  Missing return type on function                                                                     @typescript-eslint/explicit-function-return-type
   275:59  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
   294:8   warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
   314:8   warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
@@ -2048,5 +2118,6 @@
   113:14  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
   122:12  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
 
-✖ 1717 problems (36 errors, 1681 warnings)
+✖ 1776 problems (38 errors, 1738 warnings)
+  3 errors and 0 warnings potentially fixable with the `--fix` option.
 

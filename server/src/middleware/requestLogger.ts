@@ -34,7 +34,7 @@ export function requestLoggingMiddleware(req: Request, res: Response, next: Next
     method: extendedReq.method,
     url: extendedReq.url,
     userAgent: extendedReq.get('User-Agent'),
-    ip: extendedReq.ip || extendedReq.connection.remoteAddress,
+    ip: extendedReq.ip != null && extendedReq.ip !== '' ? extendedReq.ip : extendedReq.connection.remoteAddress,
   });
 
   // Set request ID in main logger for this request

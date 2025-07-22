@@ -144,7 +144,7 @@ export class ErrorReportingService {
         // Filter transactions
         beforeSendTransaction: (transaction) => {
           // Don't send transactions for static assets
-          if (transaction.transaction?.includes('/static/') || transaction.transaction?.includes('/assets/')) {
+          if ((transaction.transaction?.includes('/static/') ?? false) || (transaction.transaction?.includes('/assets/') ?? false)) {
             return null;
           }
           return transaction;
@@ -227,7 +227,7 @@ export class ErrorReportingService {
       return;
     }
 
-    if (user === null) {
+    if (user === null || user === undefined) {
       Sentry.setUser(null);
       return;
     }
@@ -237,7 +237,7 @@ export class ErrorReportingService {
       email: user.email !== undefined ? this.maskEmail(user.email) : undefined,
       username: user.name,
       role: user.role,
-      organizationId: user.organizationId  ? String(user.organizationId) : undefined,
+      organizationId: user.organizationId !== null && user.organizationId !== undefined ? String(user.organizationId) : undefined,
     };
 
     Sentry.setUser(sanitizedUser);
@@ -394,7 +394,7 @@ export class ErrorReportingService {
     if (breadcrumb.category === 'console' && breadcrumb.level === 'warning') {
       // Filter out React development warnings
       const {message} = breadcrumb;
-      if (message?.includes('DevTools') || message?.includes('React Hook') || message?.includes('StrictMode')) {
+      if ((message?.includes('DevTools') ?? false) || (message?.includes('React Hook') ?? false) || (message?.includes('StrictMode') ?? false)) {
         return null;
       }
 
@@ -453,7 +453,7 @@ export class ErrorReportingService {
     }
 
     // Sanitize user data
-    if (sanitized.user?.email !== null && sanitized.user.email !== undefined && sanitized.user.email !== '') {
+    if (sanitized.user?.email !== null && sanitized.user?.email !== undefined && sanitized.user.email !== '') {
       sanitized.user.email = this.maskEmail(sanitized.user.email);
     }
 

@@ -131,7 +131,7 @@ return '0 Bytes';
 
         {/* Resources List */}
         <div className="flex-1 overflow-y-auto p-6">
-          {(() => {
+          {((): React.ReactElement => {
             if (isLoading) {
               return <div className="text-center py-8">Loading resources...</div>;
             }

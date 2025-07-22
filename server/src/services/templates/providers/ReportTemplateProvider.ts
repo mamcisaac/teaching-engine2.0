@@ -17,8 +17,8 @@ export class ReportTemplateProvider extends TemplateProvider {
    * Get template based on context
    */
   async getTemplate(context: TemplateContext): Promise<Template> {
-    const reportType = context.parameters?.type || 'progress';
-    const format = context.parameters?.format || 'pdf';
+    const reportType = context.parameters.type || 'progress';
+    const format = context.parameters.format || 'pdf';
     
     const templateId = `report-${reportType}-${format}`;
     let template = await this.getTemplateById(templateId);
@@ -45,7 +45,7 @@ export class ReportTemplateProvider extends TemplateProvider {
    * Validate context
    */
   validateContext(context: TemplateContext): boolean {
-    return (context.userId !== null && context.userId !== 0) && (context.parameters?.type && context.parameters.type !== '');
+    return Boolean(context.userId && context.userId !== 0) && Boolean(context.parameters.type && context.parameters.type !== '');
   }
 
   /**

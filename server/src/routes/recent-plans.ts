@@ -8,7 +8,7 @@ const router = Router();
 // Track plan access
 router.post('/track', async (req: Request, res, _next): Promise<void> => {
   try {
-    const userId = req.user?.id ?? 0;
+    const userId = req.user.id ?? 0;
     if (!userId) {
       res.status(401).json({ error: 'Unauthorized' });
       return;
@@ -54,7 +54,7 @@ router.post('/track', async (req: Request, res, _next): Promise<void> => {
 // Get recent plans for user
 router.get('/', async (req: Request, res, _next): Promise<void> => {
   try {
-    const userId = req.user?.id ?? 0;
+    const userId = req.user.id ?? 0;
     if (!userId) {
       res.status(401).json({ error: 'Unauthorized' });
       return;
@@ -186,13 +186,13 @@ return null;
         if (access.planType === 'long-range' && '_count' in plan && 'unitPlans' in plan._count) {
           // For simplicity, assume progress based on unit count
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          progress = Math.min((plan._count as any).unitPlans * 10, 100);
+          progress = Math.min((plan._count).unitPlans * 10, 100);
         } else if (access.planType === 'unit' && '_count' in plan && 'lessonPlans' in plan._count) {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          progress = Math.min((plan._count as any).lessonPlans * 5, 100);
+          progress = Math.min((plan._count).lessonPlans * 5, 100);
         } else if (access.planType === 'lesson' && 'daybookEntry' in plan) {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          status = (plan as any).daybookEntry ? 'completed' : 'in-progress';
+          status = (plan).daybookEntry ? 'completed' : 'in-progress';
         }
 
         return {
@@ -201,9 +201,9 @@ return null;
           title:
             'title' in plan ? plan.title : `Daybook - ${new Date(plan.date).toLocaleDateString()}`,
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          subject: (parentInfo as any)?.longRangePlan?.subject || (parentInfo as any)?.subject,
+          subject: (parentInfo)?.longRangePlan?.subject || (parentInfo)?.subject,
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          grade: (parentInfo as any)?.longRangePlan?.grade || (parentInfo as any)?.grade,
+          grade: (parentInfo)?.longRangePlan?.grade || (parentInfo)?.grade,
           lastAccessed: access.lastAccessed.toISOString(),
           progress,
           status,
@@ -226,7 +226,7 @@ return null;
 // Clear recent plans history
 router.delete('/clear', async (req: Request, res, _next): Promise<void> => {
   try {
-    const userId = req.user?.id ?? 0;
+    const userId = req.user.id ?? 0;
     if (!userId) {
       res.status(401).json({ error: 'Unauthorized' });
       return;

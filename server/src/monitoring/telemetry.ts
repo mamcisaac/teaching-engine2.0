@@ -80,7 +80,7 @@ export const initTelemetry = async (): Promise<void> => {
     // Graceful shutdown
     process.on('SIGTERM', () => {
       otelSDK
-        ?.shutdown()
+        .shutdown()
         .then(() => {
  logger.info('OpenTelemetry terminated');
  return undefined;

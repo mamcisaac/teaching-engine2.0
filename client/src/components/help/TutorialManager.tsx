@@ -196,7 +196,7 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }): R
   };
 
   return (
-    <>
+    <React.Fragment>
       {children}
 
       {/* Tutorial Overlay */}
@@ -233,6 +233,6 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }): R
 
       {/* Tutorial Menu Modal */}
       <TutorialMenuModal />
-    </>
+    </React.Fragment>
   );
 };

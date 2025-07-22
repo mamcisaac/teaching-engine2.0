@@ -19,13 +19,13 @@ const router = Router();
 router.get('/api/example/basic', authenticate, async (req: Request, res: Response) => {
   // Log the incoming request with context
   structuredLogger.info('Processing example request', {
-    userId: req.user?.id,
+    userId: req.user.id,
     query: req.query,
   });
 
   try {
     // Simulate some work
-    const userId = req.user?.id;
+    const userId = req.user.id;
     if (!userId) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
@@ -34,7 +34,7 @@ router.get('/api/example/basic', authenticate, async (req: Request, res: Respons
 
     // Log success with relevant data
     structuredLogger.info('Example request completed successfully', {
-      userId: req.user?.id,
+      userId: req.user.id,
       resultSize: result.length,
     });
 
@@ -43,7 +43,7 @@ router.get('/api/example/basic', authenticate, async (req: Request, res: Respons
   } catch (error) {
     // Log error with full context
     structuredLogger.error('Failed to process example request', error as Error, {
-      userId: req.user?.id,
+      userId: req.user.id,
       query: req.query,
     });
 
@@ -96,7 +96,7 @@ router.get('/api/example/performance', authenticate, async (_req: Request, res: 
 router.post('/api/example/batch', authenticate, async (req: Request, res: Response) => {
   const batchId = `batch-${Date.now()}`;
 
-  const userId = req.user?.id;
+  const userId = req.user.id;
   if (!userId) {
     res.status(401).json({ error: 'User not authenticated' });
     return;
@@ -191,7 +191,7 @@ router.post(
 router.get('/api/example/stream', authenticate, async (req: Request, res: Response) => {
   const streamId = `stream-${Date.now()}`;
   
-  const userId = req.user?.id;
+  const userId = req.user.id;
   if (!userId) {
     res.status(401).json({ error: 'User not authenticated' });
     return;

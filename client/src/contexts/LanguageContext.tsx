@@ -397,7 +397,7 @@ export function LanguageProvider({ children }: LanguageProviderProps): React.Rea
 
     // Load saved language preference from localStorage
     const savedLanguage = localStorage.getItem('preferredLanguage');
-    if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'fr')) {
+    if (savedLanguage !== null && savedLanguage !== '' && (savedLanguage === 'en' || savedLanguage === 'fr')) {
       setLanguageState(savedLanguage as 'en' | 'fr');
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
@@ -413,7 +413,7 @@ export function LanguageProvider({ children }: LanguageProviderProps): React.Rea
       if (translations[language][key]) {
         return translations[language][key];
       }
-      if (fallback) {
+      if (fallback !== undefined && fallback !== '') {
         return fallback;
       }
       return key;
@@ -431,9 +431,6 @@ export function LanguageProvider({ children }: LanguageProviderProps): React.Rea
 
   // Helper function to get localized field from an object
   const getLocalizedField = (obj: Record<string, unknown>, field: string): string => {
-    if (obj === null) {
-return '';
-}
 
     const localizedFieldName = `${field}${language.charAt(0).toUpperCase() + language.slice(1)}`;
     const localizedValue = obj[localizedFieldName];
@@ -458,7 +455,7 @@ return '';
 
 export function useLanguage(): LanguageContextType {
   const context = useContext(LanguageContext);
-  if (context === null) {
+  if (!context) {
     throw new Error('useLanguage must be used within a LanguageProvider');
   }
   return context;

@@ -1,4 +1,5 @@
-import type { Request, Response, Router } from 'express';
+import type { Request, Response } from 'express';
+import { Router } from 'express';
 
 import { logger } from '../logger';
 import { aiPlanningAssistant } from '../services/ai/aiPlanningService';
@@ -140,9 +141,7 @@ router.post(
       };
       const { subject, grade, termLength, focusAreas } = sanitizedBody;
 
-      if ((subject === null || subject === '') || 
-          (grade === null) || 
-          termLength === undefined) {
+      if (!subject || grade == null || termLength == null) {
         res.status(400).json({
           error: 'Missing required fields: subject, grade, termLength',
         });
@@ -150,7 +149,7 @@ router.post(
       }
 
       const suggestions = await aiPlanningAssistant.generateLongRangeGoals({
-        subject,
+        subject: subject!,
         grade: Number(grade),
         termLength: Number(termLength),
         focusAreas: focusAreas ?? [],
@@ -183,11 +182,7 @@ router.post('/unit/big-ideas', aiRateLimit, (req: Request, res: Response): void 
     };
     const { unitTitle, subject, grade, curriculumExpectations, duration } = sanitizedBody;
 
-    if ((unitTitle === null || unitTitle === '') ||
-        (subject === null || subject === '') ||
-        (grade === null) ||
-        curriculumExpectations === undefined || curriculumExpectations.length === 0 ||
-        (duration === null)) {
+    if (!unitTitle || !subject || grade == null || !curriculumExpectations?.length || duration == null) {
       res.status(400).json({
         error:
           'Missing required fields: unitTitle, subject, grade, curriculumExpectations, duration',
@@ -196,10 +191,10 @@ router.post('/unit/big-ideas', aiRateLimit, (req: Request, res: Response): void 
     }
 
     const suggestions = await aiPlanningAssistant.generateUnitBigIdeas({
-      unitTitle,
-      subject,
+      unitTitle: unitTitle!,
+      subject: subject!,
       grade: Number(grade),
-      curriculumExpectations,
+      curriculumExpectations: curriculumExpectations!,
       duration: Number(duration),
     });
 
@@ -210,6 +205,7 @@ router.post('/unit/big-ideas', aiRateLimit, (req: Request, res: Response): void 
     res.status(500).json({ error: 'Failed to generate suggestions' });
     return;
   }
+  })();
 });
 
 /**
@@ -231,11 +227,7 @@ router.post(
       };
       const { lessonTitle, learningGoals, subject, grade, duration, materials } = sanitizedBody;
 
-      if ((lessonTitle === null || lessonTitle === '') ||
-          (learningGoals === null) || learningGoals.length === 0 ||
-          (subject === null || subject === '') ||
-          (grade === null) ||
-          duration === undefined) {
+      if (!lessonTitle || !learningGoals?.length || !subject || grade == null || duration == null) {
         res.status(400).json({
           error: 'Missing required fields: lessonTitle, learningGoals, subject, grade, duration',
         });
@@ -243,12 +235,12 @@ router.post(
       }
 
       const suggestions = await aiPlanningAssistant.generateLessonActivities({
-        lessonTitle,
-        learningGoals,
-        subject,
+        lessonTitle: lessonTitle!,
+        learningGoals: learningGoals!,
+        subject: subject!,
         grade: Number(grade),
         duration: Number(duration),
-        materials,
+        materials: materials ?? [],
       });
 
       res.json(suggestions);
@@ -278,9 +270,7 @@ router.post(
       };
       const { activities, subject, grade, classSize } = sanitizedBody;
 
-      if ((activities === null) || activities.length === 0 ||
-          (subject === null || subject === '') ||
-          (grade === null)) {
+      if (!activities?.length || !subject || grade == null) {
         res.status(400).json({
           error: 'Missing required fields: activities, subject, grade',
         });
@@ -288,8 +278,8 @@ router.post(
       }
 
       const suggestions = await aiPlanningAssistant.generateMaterialsList({
-        activities,
-        subject,
+        activities: activities!,
+        subject: subject!,
         grade: Number(grade),
         classSize: classSize !== null ? Number(classSize) : 25,
       });
@@ -329,9 +319,9 @@ router.post(
       }
 
       const suggestions = await aiPlanningAssistant.generateAssessmentStrategies({
-        learningGoals,
-        activities,
-        subject,
+        learningGoals: learningGoals!,
+        activities: activities!,
+        subject: subject!,
         grade: Number(grade),
       });
 

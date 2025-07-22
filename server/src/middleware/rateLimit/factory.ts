@@ -95,7 +95,7 @@ export function createRateLimiter(
       : {}),
 
     // Key generator based on config
-    keyGenerator: (req: Request) => {
+    keyGenerator: (req) => {
       if (config.keyGenerator === 'user' && (req as any).user?.id) {
         return `user:${(req as any).user.id}`;
       }
@@ -106,12 +106,12 @@ export function createRateLimiter(
     skipSuccessfulRequests: config.skipSuccessful ?? false,
 
     // Skip rate limiting for certain paths or in development
-    skip: (req: Request) => {
-      return skipRateLimitPaths.includes(req.path) || shouldBypassRateLimit(req);
+    skip: (req) => {
+      return skipRateLimitPaths.includes(req.path) || shouldBypassRateLimit(req as unknown as Request);
     },
 
     // Custom handler for rate limit exceeded
-    handler: (req: Request, res: Response) => {
+    handler: (req, res) => {
       logger.warn(
         {
           ip: req.ip,
@@ -152,8 +152,8 @@ export function createDynamicRateLimiter(
     legacyHeaders: false,
 
     // Dynamic max based on user tier
-    max: (req: Request) => {
-      const userTier = getUserTier(req);
+    max: (req) => {
+      const userTier = getUserTier(req as unknown as Request);
       const config = getRateLimitConfig(configName, userTier);
       return config.max;
     },
@@ -171,7 +171,7 @@ export function createDynamicRateLimiter(
       : {}),
 
     // Key generator
-    keyGenerator: (req: Request) => {
+    keyGenerator: (req) => {
       const config = rateLimitConfigs[configName];
       if (config.keyGenerator === 'user' && (req as any).user?.id) {
         return `user:${(req as any).user.id}`;
@@ -180,12 +180,12 @@ export function createDynamicRateLimiter(
     },
 
     // Skip rate limiting for certain paths or in development
-    skip: (req: Request) => {
-      return skipRateLimitPaths.includes(req.path) || shouldBypassRateLimit(req);
+    skip: (req) => {
+      return skipRateLimitPaths.includes(req.path) || shouldBypassRateLimit(req as unknown as Request);
     },
 
     // Custom handler
-    handler: (req: Request, res: Response) => {
+    handler: (req, res) => {
       const userTier = getUserTier(req);
       const config = getRateLimitConfig(configName, userTier);
 

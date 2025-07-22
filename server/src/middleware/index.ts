@@ -101,7 +101,7 @@ export const middlewareGroups = {
 // Quick middleware setup for routes
 export const setup = {
   // Public endpoints
-  public: (rateLimitKey?: keyof typeof rateLimiters) =>
+  public: (rateLimitKey?: keyof typeof rateLimiters): ReturnType<typeof middleware.custom> =>
     middleware.custom({
       rateLimit: rateLimitKey ?? 'api',
     }),
@@ -111,16 +111,16 @@ export const setup = {
     rateLimit?: keyof typeof rateLimiters;
     cache?: boolean;
     audit?: { event: AuditEventType; severity?: 'low' | 'medium' | 'high' | 'critical' };
-  }) =>
+  }): ReturnType<typeof middleware.custom> =>
     middleware.custom({
       authenticate: true,
-      rateLimit: options?.rateLimit ?? 'api',
-      cache: options?.cache,
-      audit: options?.audit,
+      rateLimit: options.rateLimit ?? 'api',
+      cache: options.cache,
+      audit: options.audit,
     }),
 
   // Admin endpoints
-  admin: (auditResource?: string) =>
+  admin: (auditResource?: string): ReturnType<typeof middleware.custom> =>
     middleware.custom({
       authenticate: true,
       rateLimit: 'auth',

@@ -1,6 +1,8 @@
-import type { Request, Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction, RequestHandler } from 'express';
 
 import { logger } from '../logger';
+
+type Middleware = RequestHandler;
 
 import { authenticate } from './authenticate';
 import { apiCache, curriculumCache, staticCache, userCache } from './cache';
@@ -38,7 +40,7 @@ export const coreMiddleware = chain()
 // API middleware chain - for all API routes
 export const apiMiddleware = compose(
   coreMiddleware,
-  rateLimiters.api,
+  rateLimiters.api as unknown as any,
   performanceLoggingMiddleware,
 );
 
@@ -48,28 +50,28 @@ export const authenticatedApiMiddleware = compose(apiMiddleware, authenticate);
 // Public API chain (no auth required)
 export const publicApiMiddleware = compose(
   apiMiddleware,
-  conditional(isProduction, rateLimiters.auth),
+  conditional(isProduction, rateLimiters.auth as unknown as any),
 );
 
 // Write operation chain (POST, PUT, DELETE)
 export const writeOperationMiddleware = compose(
   authenticatedApiMiddleware,
-  rateLimiters.write,
+  rateLimiters.write as unknown as any,
   auditMiddleware(AuditEventType.PLAN_MODIFICATION, { severity: 'medium' }),
 );
 
 // Read operation chain (GET)
 export const readOperationMiddleware = compose(
   authenticatedApiMiddleware,
-  rateLimiters.read,
+  rateLimiters.read as unknown as any,
   conditional((req): boolean => req.path.includes('/api/curriculum'), curriculumCache),
 );
 
 // File upload chain
-export const fileUploadMiddleware = (allowedTypes?: string[]): any =>
+export const fileUploadMiddleware = (allowedTypes?: string[]) =>
   compose(
     authenticatedApiMiddleware,
-    rateLimiters.upload,
+    rateLimiters.upload as unknown as any,
     fileUploadSecurityMiddleware(allowedTypes),
     auditMiddleware(AuditEventType.DATA_IMPORT, {
       severity: 'high',
@@ -80,7 +82,7 @@ export const fileUploadMiddleware = (allowedTypes?: string[]): any =>
 // Auth endpoint chain
 export const authEndpointMiddleware = compose(
   coreMiddleware,
-  rateLimiters.auth,
+  rateLimiters.auth as unknown as any,
   auditMiddleware(AuditEventType.LOGIN_SUCCESS, { severity: 'high' }),
 );
 
@@ -117,7 +119,7 @@ export const errorHandlingMiddleware = compose(errorLoggingMiddleware, errorHand
 // Specific feature chains
 export const planningOperationsMiddleware = compose(
   authenticatedApiMiddleware,
-  rateLimiters.write,
+  rateLimiters.write as unknown as any,
   userCache,
   auditMiddleware(AuditEventType.PLAN_CREATION, {
     severity: 'low',
@@ -127,7 +129,7 @@ export const planningOperationsMiddleware = compose(
 
 export const aiOperationsMiddleware = compose(
   authenticatedApiMiddleware,
-  rateLimiters.ai,
+  rateLimiters.ai as unknown as any,
   performanceLoggingMiddleware,
   auditMiddleware(AuditEventType.AI_GENERATION, {
     severity: 'medium',
@@ -137,7 +139,7 @@ export const aiOperationsMiddleware = compose(
 
 export const exportOperationsMiddleware = compose(
   authenticatedApiMiddleware,
-  rateLimiters.read,
+  rateLimiters.read as unknown as any,
   auditMiddleware(AuditEventType.DATA_EXPORT, {
     severity: 'high',
     targetResource: 'data_export',
@@ -155,7 +157,7 @@ export const developmentMiddleware = conditional(
 
 // Health check chain (minimal processing)
 export const healthCheckMiddleware = compose(
-  rateLimiters.public,
+  rateLimiters.public as unknown as any,
   (_req: Request, res: Response, next: NextFunction) => {
     res.locals.skipLogging = true;
     next();
@@ -177,7 +179,7 @@ export const createCustomChain = (options: {
   const chainBuilder = chain().add(coreMiddleware);
 
   if (options.rateLimit) {
-    chainBuilder.add(rateLimiters[options.rateLimit]);
+    chainBuilder.add(rateLimiters[options.rateLimit] as unknown as Middleware);
   }
 
   if (options.authenticate) {

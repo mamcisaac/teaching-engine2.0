@@ -21,7 +21,7 @@ import { useHelp } from '../contexts/HelpContext';
 import { useOnboarding } from '../contexts/OnboardingContext';
 import { useRecentPlans } from '../hooks/useRecentPlans';
 
-export default function PlanningDashboard(): React.ReactElement {
+export function PlanningDashboard(): React.ReactElement {
   const { startTutorial } = useHelp();
   const { resetOnboarding } = useOnboarding();
   const { data: recentPlans = [], isLoading: recentPlansLoading } = useRecentPlans({ limit: 3 });
@@ -176,7 +176,7 @@ export default function PlanningDashboard(): React.ReactElement {
               <Link id={action.id} key={action.id} to={action.path}>
                 <Card
                   className={`h-full transition-all duration-200 hover:scale-105 hover:shadow-lg border-2 ${
-                    action.isPrimary
+                    action.isPrimary === true
                       ? 'border-blue-200 bg-blue-50'
                       : 'border-gray-200 hover:border-gray-300'
                   }`}

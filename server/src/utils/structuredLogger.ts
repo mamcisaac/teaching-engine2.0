@@ -52,8 +52,8 @@ const logFormat = format.combine(
       message: info.message,
       correlationId: context?.correlationId ?? 'no-correlation-id',
       ...(context?.userId !== undefined ? { userId: context.userId } : {}),
-      ...(context?.requestId !== undefined && context.requestId !== null && context.requestId !== '' ? { requestId: context.requestId } : {}),
-      ...(context?.sessionId !== undefined && context.sessionId !== null && context.sessionId !== '' ? { sessionId: context.sessionId } : {}),
+      ...(context?.requestId !== null && context?.requestId !== '' ? { requestId: context.requestId } : {}),
+      ...(context?.sessionId !== null && context?.sessionId !== '' ? { sessionId: context.sessionId } : {}),
       ...(info.duration !== undefined ? { duration: info.duration } : {}),
       ...(info.meta !== undefined ? { meta: info.meta } : {}),
       ...(info.error !== undefined && info.error !== null && typeof info.error === 'object' && 'message' in info.error ? {
@@ -66,7 +66,7 @@ const logFormat = format.combine(
     };
 
     // Add trace context if available
-    if (context?.traceId) {
+    if (context?.traceId !== null && context?.traceId !== '') {
       (log as Record<string, unknown>).trace = {
         traceId: context.traceId,
         spanId: context.spanId,
@@ -128,14 +128,14 @@ export class StructuredLogger {
    */
   log(level: LogLevel, message: string, meta?: LogMeta): void {
     const context = asyncLocalStorage.getStore();
-    const duration = context?.startTime !== undefined && context.startTime !== null
+    const duration = context?.startTime !== null && context?.startTime !== undefined
       ? Math.round(performance.now() - context.startTime)
       : undefined;
 
     logger.log(level, message, {
       meta,
       duration,
-      ...(meta?.error !== undefined && meta.error !== null ? { error: meta.error } : {}),
+      ...(meta?.error !== undefined && meta?.error !== null ? { error: meta.error } : {}),
     });
   }
 
@@ -175,7 +175,7 @@ export class StructuredLogger {
 
     // Return a proxy that runs in the child context
     return new Proxy(childLogger, {
-      get(target, prop) {
+      get(target, prop): unknown {
         if (typeof target[prop as keyof StructuredLogger] === 'function') {
           return (...args: unknown[]) => 
             asyncLocalStorage.run(childContext as LogContext, () => 
@@ -210,7 +210,7 @@ export class StructuredLogger {
    */
   endSpan(spanId: string, name: string): void {
     const context = asyncLocalStorage.getStore();
-    const duration = context?.startTime !== undefined && context.startTime !== null
+    const duration = context?.startTime !== undefined && context?.startTime !== null
       ? Math.round(performance.now() - context.startTime)
       : undefined;
 
@@ -269,10 +269,10 @@ export function correlationMiddleware(req: Request, res: Response, next: NextFun
 
     // Log response
     const originalSend = res.send;
-    res.send = function (data: unknown) {
+    res.send = function (data: unknown): Response {
       res.send = originalSend;
 
-      const duration = context.startTime !== undefined && context.startTime !== null ? Math.round(performance.now() - context.startTime) : 0;
+      const duration = context?.startTime !== undefined && context?.startTime !== null ? Math.round(performance.now() - context.startTime) : 0;
 
       structuredLogger.http(`${req.method} ${req.path} ${res.statusCode}`, {
         statusCode: res.statusCode,

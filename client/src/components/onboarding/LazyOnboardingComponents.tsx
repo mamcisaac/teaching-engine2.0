@@ -1,3 +1,4 @@
+import type { motion as Motion, AnimatePresence as AnimatePresenceType } from 'framer-motion';
 import { lazy } from 'react';
 
 // Lazy load onboarding components
@@ -21,8 +22,8 @@ export const OnboardingProgress = lazy(() =>
 
 // Export motion components for use
 export const loadMotionComponents = async (): Promise<{
-  motion: typeof import('framer-motion').motion;
-  AnimatePresence: typeof import('framer-motion').AnimatePresence;
+  motion: typeof Motion;
+  AnimatePresence: typeof AnimatePresenceType;
 }> => {
   const { motion, AnimatePresence } = await import('framer-motion');
   return { motion, AnimatePresence };

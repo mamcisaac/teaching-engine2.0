@@ -1,5 +1,5 @@
 
-import React, { Suspense } from 'react';
+import React, { Suspense, isValidElement } from 'react';
 import { Routes, Route, Outlet } from 'react-router-dom';
 
 import { MainLayout } from '../components/MainLayout';
@@ -23,7 +23,7 @@ function renderRoute(route: RouteConfig, index: number): JSX.Element {
 
   let content: React.ReactNode;
 
-  if (React.isValidElement(Element)) {
+  if (isValidElement(Element)) {
     // This is already a JSX element (like <Navigate />)
     content = Element;
   } else if (Element) {
@@ -33,7 +33,7 @@ function renderRoute(route: RouteConfig, index: number): JSX.Element {
 
     content = (
       <Suspense fallback={<SuspenseFallback />}>
-        {(workflowLevel !== null) ? (
+        {(workflowLevel !== undefined) ? (
           <WorkflowGate level={workflowLevel}>
             <Component />
           </WorkflowGate>
@@ -47,15 +47,15 @@ function renderRoute(route: RouteConfig, index: number): JSX.Element {
     content = null;
   }
 
-  if (children !== null && children.length > 0) {
+  if (children && children.length > 0) {
     return (
-      <Route element={<Outlet />} key={path  ? path : index} path={path}>
+      <Route element={<Outlet />} key={path != null && path !== '' ? path : index} path={path}>
         {children.map((child, childIndex) => renderRoute(child, childIndex))}
       </Route>
     );
   }
 
-  return <Route element={content} index={isIndex} key={path  ? path : index} path={path} />;
+  return <Route element={content} index={isIndex} key={path != null && path !== '' ? path : index} path={path} />;
 }
 
 export function AppRouter(): JSX.Element {

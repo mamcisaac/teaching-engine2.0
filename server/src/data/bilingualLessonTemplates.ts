@@ -253,7 +253,7 @@ export const bilingualLessonTemplates = [
 /**
  * Function to create bilingual lesson plan templates in the database
  */
-export async function seedBilingualTemplates(prisma: { planTemplate: { create: (args: { data: unknown }) => Promise<unknown> } }, systemUserId: number) {
+export async function seedBilingualTemplates(prisma: { planTemplate: { create: (args: { data: unknown }) => Promise<unknown> } }, systemUserId: number): Promise<unknown[]> {
   const templates = [];
   
   for (const template of bilingualLessonTemplates) {

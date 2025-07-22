@@ -165,3 +165,5 @@ export function QuickLessonPage(): React.ReactElement {
     </div>
   );
 }
+
+// Export removed - already has named export above

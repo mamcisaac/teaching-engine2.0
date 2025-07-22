@@ -31,6 +31,7 @@ interface NodemailerModule {
 
 let nodemailer: NodemailerModule | undefined;
 try {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   nodemailer = require('nodemailer') as NodemailerModule;
 } catch (error: unknown) {
   logger.warn('Nodemailer not available - email alerts disabled');
@@ -91,8 +92,8 @@ if (ALERT_EMAIL_ENABLED && nodemailer) {
     port: parseInt(process.env.SMTP_PORT ?? '587'),
     secure: process.env.SMTP_SECURE === 'true',
     auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
+      user: process.env.SMTP_USER ?? '',
+      pass: process.env.SMTP_PASS ?? '',
     },
   });
 }

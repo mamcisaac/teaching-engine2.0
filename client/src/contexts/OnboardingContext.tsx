@@ -192,14 +192,14 @@ export function OnboardingProvider({ children }: { children: ReactNode }): React
     // Load saved onboarding state
     const saved = localStorage.getItem(ONBOARDING_KEY);
     const defaultSavedState = { completedFlows: [], skippedOnboarding: false };
-    const savedState = saved  ? safeJsonParse(saved, defaultSavedState) : defaultSavedState;
+    const savedState = saved !== null && saved !== '' ? safeJsonParse(saved, defaultSavedState) : defaultSavedState;
     
     return {
       isFirstTimeUser: isFirstTime,
       currentFlow: null,
       currentStepIndex: 0,
-      completedFlows: savedState.completedFlows ?? [],
-      skippedOnboarding: savedState.skippedOnboarding ?? false,
+      completedFlows: savedState.completedFlows,
+      skippedOnboarding: savedState.skippedOnboarding,
       showOnboarding: false // Disabled by default to not block UI
     };
   });
@@ -225,7 +225,8 @@ export function OnboardingProvider({ children }: { children: ReactNode }): React
 
   const startOnboarding = (flowId = 'main-onboarding'): void => {
     const flow = TUTORIAL_FLOWS[flowId];
-    if (flow) {
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+    if (flow !== undefined) {
       setState(prev => ({
         ...prev,
         currentFlow: flow,

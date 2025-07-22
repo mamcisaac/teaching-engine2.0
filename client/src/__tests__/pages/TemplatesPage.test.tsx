@@ -2,7 +2,7 @@
 import { screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import TemplatesPage from '../../pages/TemplatesPage';
+import { TemplatesPage } from '../../pages/TemplatesPage';
 import { renderWithAuth } from '../../test-utils';
 
 // Mock the templates hooks
@@ -41,8 +41,8 @@ vi.mock('../../types/template', () => ({
     BY_THEME: { label: 'By Theme' },
     SEASONAL: { label: 'Seasonal' },
   },
-  isUnitPlanTemplate: vi.fn((template) => template.type === 'UNIT_PLAN'),
-  isLessonPlanTemplate: vi.fn((template) => template.type === 'LESSON_PLAN'),
+  isUnitPlanTemplate: vi.fn((template: { type: string }) => template.type === 'UNIT_PLAN'),
+  isLessonPlanTemplate: vi.fn((template: { type: string }) => template.type === 'LESSON_PLAN'),
 }));
 
 // Mock Dialog component

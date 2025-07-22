@@ -179,7 +179,8 @@ continue;
 
             // Apply custom shortcuts from preferences
             const customShortcut = currentState.preferences.customShortcuts[shortcut.id];
-            const finalShortcut = customShortcut ? { ...shortcut, ...customShortcut } : shortcut;
+            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+            const finalShortcut = customShortcut != null && Object.keys(customShortcut).length > 0 ? { ...shortcut, ...customShortcut } : shortcut;
 
             // Check if key matches
             if (event.key.toLowerCase() !== finalShortcut.key.toLowerCase()) {
@@ -199,16 +200,16 @@ continue;
             if (finalShortcut.alt === true && !event.altKey) {
 continue;
 }
-            if (finalShortcut.shift && !event.shiftKey) {
+            if (finalShortcut.shift === true && !event.shiftKey) {
 continue;
 }
 
             // Check for no modifiers when none are specified
             if (
-              !finalShortcut.ctrl &&
-              !finalShortcut.cmd &&
-              !finalShortcut.alt &&
-              !finalShortcut.shift
+              finalShortcut.ctrl !== true &&
+              finalShortcut.cmd !== true &&
+              finalShortcut.alt !== true &&
+              finalShortcut.shift !== true
             ) {
               if (event.ctrlKey || event.metaKey || event.altKey || event.shiftKey) {
 continue;

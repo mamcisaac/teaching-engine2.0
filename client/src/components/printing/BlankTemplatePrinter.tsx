@@ -203,7 +203,7 @@ export function BlankTemplatePrinter({
  handleSchoolInfoChange('schoolName', e.target.value); 
 }}
                     placeholder="e.g., Maple Leaf Elementary"
-                    value={schoolInfo.schoolName  ? schoolInfo.schoolName : ''}
+                    value={schoolInfo.schoolName ?? ''}
                   />
                 </div>
                 <div>
@@ -214,7 +214,7 @@ export function BlankTemplatePrinter({
  handleSchoolInfoChange('teacherName', e.target.value); 
 }}
                     placeholder="e.g., Ms. Johnson"
-                    value={schoolInfo.teacherName  ? schoolInfo.teacherName : ''}
+                    value={schoolInfo.teacherName ?? ''}
                   />
                 </div>
                 <div>
@@ -225,7 +225,7 @@ export function BlankTemplatePrinter({
  handleSchoolInfoChange('grade', e.target.value); 
 }}
                     placeholder="e.g., Grade 3"
-                    value={schoolInfo.grade  ? schoolInfo.grade : ''}
+                    value={schoolInfo.grade ?? ''}
                   />
                 </div>
                 <div>
@@ -236,7 +236,7 @@ export function BlankTemplatePrinter({
  handleSchoolInfoChange('subject', e.target.value); 
 }}
                     placeholder="e.g., Mathematics"
-                    value={schoolInfo.subject  ? schoolInfo.subject : ''}
+                    value={schoolInfo.subject ?? ''}
                   />
                 </div>
                 <div>
@@ -247,7 +247,7 @@ export function BlankTemplatePrinter({
  handleSchoolInfoChange('academicYear', e.target.value); 
 }}
                     placeholder="e.g., 2024-2025"
-                    value={schoolInfo.academicYear  ? schoolInfo.academicYear : ''}
+                    value={schoolInfo.academicYear ?? ''}
                   />
                 </div>
               </div>

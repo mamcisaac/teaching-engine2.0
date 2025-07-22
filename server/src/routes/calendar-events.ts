@@ -43,7 +43,7 @@ router.get('/', asyncHandler(async (req: AuthenticatedRequest, res: Response): P
       return;
     }
     const { start, end, eventType } = queryValidation.data;
-    const userId = req.user?.id;
+    const userId = req.user.id;
     if (!userId) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
@@ -90,7 +90,7 @@ router.post(
   asyncHandler(async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       const data = req.body as z.infer<typeof calendarEventSchema>;
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
@@ -123,7 +123,7 @@ router.post(
 router.patch('/:id', asyncHandler(async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
-    const userId = req.user?.id;
+    const userId = req.user.id;
     if (!userId) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
@@ -169,7 +169,7 @@ router.patch('/:id', asyncHandler(async (req: Request, res: Response): Promise<v
 router.delete('/:id', asyncHandler(async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
-    const userId = req.user?.id;
+    const userId = req.user.id;
     if (!userId) {
       res.status(401).json({ error: 'User not authenticated' });
       return;

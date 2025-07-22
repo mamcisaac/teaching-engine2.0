@@ -51,10 +51,11 @@ const DEFAULT_AI_STATUS: AIStatusInfo = {
 };
 
 export function useAIStatus(): AIStatusHookReturn {
-  const [userDisabledAI, setUserDisabledAI] = useState(() => 
+  const [userDisabledAI, setUserDisabledAI] = useState(() => {
     // Check if user has manually disabled AI for this session
-     sessionStorage.getItem('ai_disabled') === 'true'
-  );
+    const stored = sessionStorage.getItem('ai_disabled');
+    return stored != null && stored === 'true';
+  });
 
   // Query AI service status
   const {
@@ -76,20 +77,20 @@ export function useAIStatus(): AIStatusHookReturn {
       } catch (error: unknown) {
         // Handle different types of errors
         const axiosError = error as { response?: { status?: number } };
-        if (axiosError.response?.status === 503) {
+        if (axiosError.response != null && axiosError.response.status === 503) {
           return {
             ...DEFAULT_AI_STATUS,
             error: 'AI service is temporarily unavailable',
             serviceHealth: 'unavailable' as const,
           };
-        } else if (axiosError.response?.status === 401) {
+        } else if (axiosError.response != null && axiosError.response.status === 401) {
           return {
             ...DEFAULT_AI_STATUS,
             error: 'API key not configured or invalid',
             hasApiKey: false,
             apiKeyConfigured: false,
           };
-        } else if (axiosError.response?.status === 429) {
+        } else if (axiosError.response != null && axiosError.response.status === 429) {
           return {
             ...DEFAULT_AI_STATUS,
             error: 'Rate limit exceeded',
@@ -108,7 +109,7 @@ export function useAIStatus(): AIStatusHookReturn {
     retry: (failureCount, error: unknown) => {
       // Don't retry on auth errors or client errors
       const axiosError = error as { response?: { status?: number } };
-      if (axiosError.response?.status !== undefined && axiosError.response.status < 500) {
+      if (axiosError.response != null && axiosError.response.status != null && axiosError.response.status < 500) {
         return false;
       }
       return failureCount < 3;
@@ -119,17 +120,17 @@ export function useAIStatus(): AIStatusHookReturn {
     refetchOnWindowFocus: true,
   });
 
-  const isAIEnabled = !userDisabledAI && aiStatus.available;
-  const canUseAI = isAIEnabled && aiStatus.hasApiKey && aiStatus.serviceHealth !== 'unavailable';
+  const isAIEnabled = userDisabledAI === false && aiStatus.available === true;
+  const canUseAI = isAIEnabled === true && aiStatus.hasApiKey === true && aiStatus.serviceHealth !== 'unavailable';
 
   const getAIDisabledReason = (): string | undefined => {
     if (userDisabledAI) {
       return 'AI features have been manually disabled';
     }
-    if (!aiStatus.available) {
+    if (aiStatus.available === false) {
       return 'AI service is not available';
     }
-    if (!aiStatus.hasApiKey) {
+    if (aiStatus.hasApiKey === false) {
       return 'OpenAI API key is not configured';
     }
     if (aiStatus.serviceHealth === 'unavailable') {
@@ -175,7 +176,7 @@ export function useAIFeature(feature: keyof AIStatusInfo['features']): {
   const { aiStatus, canUseAI } = useAIStatus();
   
   return {
-    available: canUseAI && aiStatus.features[feature],
+    available: canUseAI === true && aiStatus.features[feature] === true,
     status: aiStatus.serviceHealth,
     limitations: aiStatus.limitations,
   };
@@ -193,7 +194,7 @@ export function useAIQuota(): {
 } {
   const { aiStatus } = useAIStatus();
   
-  const quotaPercentage = (aiStatus.limitations?.quotaLimit !== null && aiStatus.limitations?.quotaLimit !== undefined && aiStatus.limitations.quotaLimit > 0)
+  const quotaPercentage = (aiStatus.limitations != null && aiStatus.limitations.quotaLimit != null && aiStatus.limitations.quotaLimit > 0)
     ? ((aiStatus.limitations.quotaUsed ?? 0) / aiStatus.limitations.quotaLimit * 100)
     : 0;
 
@@ -226,26 +227,26 @@ export function AIStatusIndicator({
   const { aiStatus, canUseAI, aiDisabledReason } = useAIStatus();
 
   const getStatusColor = (): string => {
-    if (!canUseAI) {
-return 'text-red-500 bg-red-100';
-}
+    if (canUseAI === false) {
+      return 'text-red-500 bg-red-100';
+    }
     if (aiStatus.serviceHealth === 'degraded') {
-return 'text-yellow-500 bg-yellow-100';
-}
+      return 'text-yellow-500 bg-yellow-100';
+    }
     return 'text-green-500 bg-green-100';
   };
 
   const getStatusText = (): string => {
-    if (!canUseAI) {
-return 'Unavailable';
-}
+    if (canUseAI === false) {
+      return 'Unavailable';
+    }
     if (aiStatus.serviceHealth === 'degraded') {
-return 'Limited';
-}
+      return 'Limited';
+    }
     return 'Available';
   };
 
-  if (compact) {
+  if (compact === true) {
     return (
       <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs ${getStatusColor()} ${className}`}>
         <div className="w-2 h-2 rounded-full bg-current" />
@@ -261,20 +262,20 @@ return 'Limited';
         <span className="font-medium">AI Assistant: {getStatusText()}</span>
       </div>
       
-      {aiDisabledReason !== undefined && aiDisabledReason !== null && (
+      {aiDisabledReason != null && aiDisabledReason !== '' && (
         <p className="text-sm text-gray-600 mb-2">{aiDisabledReason}</p>
       )}
 
-      {showDetails && canUseAI && (
+      {showDetails === true && canUseAI === true && (
         <div className="text-sm text-gray-600">
           <div>Features: {Object.entries(aiStatus.features)
-            .filter(([, enabled]) => enabled)
+            .filter(([, enabled]) => enabled === true)
             .map(([feature]) => feature)
             .join(', ') || 'None'}</div>
-          {aiStatus.limitations?.requestsRemaining !== undefined && aiStatus.limitations.requestsRemaining !== null && (
+          {aiStatus.limitations != null && aiStatus.limitations.requestsRemaining != null && (
             <div>Requests remaining: {aiStatus.limitations.requestsRemaining}</div>
           )}
-          {aiStatus.lastChecked && (
+          {aiStatus.lastChecked != null && (
             <div>Last checked: {aiStatus.lastChecked.toLocaleTimeString()}</div>
           )}
         </div>
@@ -303,7 +304,7 @@ export function AIStatusProvider({ children }: AIStatusProviderProps): React.Rea
 
 export function useAIStatusContext(): AIStatusHookReturn {
   const context = useContext(AIStatusContext);
-  if (!context) {
+  if (context == null) {
     throw new Error('useAIStatusContext must be used within AIStatusProvider');
   }
   return context;

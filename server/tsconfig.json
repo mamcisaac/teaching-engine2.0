@@ -6,6 +6,7 @@
     "rootDir": "src",
     "typeRoots": ["./src/types", "../node_modules/@types"],
     "skipLibCheck": true,
+    "noEmitOnError": false,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "baseUrl": ".",

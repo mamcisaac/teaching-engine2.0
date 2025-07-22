@@ -2,7 +2,7 @@
 import { screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import PlanningDashboard from '../../pages/PlanningDashboard';
+import { PlanningDashboard } from '../../pages/PlanningDashboard';
 import { renderWithAuth } from '../../test-utils';
 import * as workflowHook from '../../hooks/useWorkflowState';
 import * as plannerStore from '../../stores/weeklyPlannerStore';

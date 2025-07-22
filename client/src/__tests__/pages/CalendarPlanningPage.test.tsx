@@ -2,7 +2,7 @@
 import { screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import CalendarPlanningPage from '../../pages/planning/CalendarPlanningPage';
+import { CalendarPlanningPage } from '../../pages/planning/CalendarPlanningPage';
 import { renderWithAuth } from '../../test-utils';
 
 // Mock react-big-calendar
@@ -60,7 +60,7 @@ vi.mock('moment', () => ({
 
 // Mock date-fns
 vi.mock('date-fns', () => ({
-  format: vi.fn((date, formatStr) => {
+  format: vi.fn((date: Date | string | number, formatStr: string) => {
     if (formatStr === 'MMMM yyyy') return 'January 2024';
     if (formatStr === 'yyyy-MM-dd') return '2024-01-15';
     if (formatStr === 'yyyy-MM') return '2024-01';
@@ -176,7 +176,7 @@ vi.mock('../../components/calendar/CalendarFilters', () => ({
         }
       >
         <option value="">All Subjects</option>
-        {availableSubjects.map((subject: string, index) => (
+        {availableSubjects.map((subject: string, index: number) => (
           <option key={subject} value={subject}>
             {subject}
           </option>

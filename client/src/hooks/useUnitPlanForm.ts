@@ -102,10 +102,10 @@ export function useUnitPlanForm({
     ...initialFormData,
     ...initialData,
     longRangePlanId: ((): string => {
-      if (longRangePlanId) {
+      if (longRangePlanId != null && longRangePlanId !== '') {
         return longRangePlanId;
       }
-      if (initialData?.longRangePlanId) {
+      if (initialData?.longRangePlanId != null && initialData.longRangePlanId !== '') {
         return initialData.longRangePlanId;
       }
       return '';
@@ -113,15 +113,15 @@ export function useUnitPlanForm({
   }));
 
   // Auto-save functionality
-  const autoSaveData = editingId ? formData : null;
+  const autoSaveData = (editingId != null && editingId !== '') ? formData : null;
   const { lastSaved, isSaving, hasUnsavedChanges, saveNow } = useAutoSave({
     data: autoSaveData,
     saveFn: async (data) => {
-      if (editingId && data && onSave) {
+      if ((editingId != null && editingId !== '') && data != null && onSave != null) {
         await onSave(data);
       }
     },
-    enabled: !!editingId && autoSaveData !== null && (onSave !== undefined),
+    enabled: (editingId != null && editingId !== '') && autoSaveData !== null && (onSave != null),
     delay: 30000, // 30 seconds
   });
 
@@ -225,7 +225,7 @@ export function useUnitPlanForm({
     if (new Date(formData.startDate) > new Date(formData.endDate)) {
       errors.push('End date must be after start date');
     }
-    if (!formData.longRangePlanId && !longRangePlanId) {
+    if ((formData.longRangePlanId == null || formData.longRangePlanId === '') && (longRangePlanId == null || longRangePlanId === '')) {
       errors.push('Long-range plan is required');
     }
 
@@ -291,11 +291,11 @@ export function useUnitPlanForm({
       description: unit.description ?? '',
       bigIdeas: unit.bigIdeas ?? '',
       essentialQuestions: unit.essentialQuestions ?? [''],
-      startDate: (() => {
+      startDate: ((): string => {
         const [dateOnly] = unit.startDate.split('T');
         return dateOnly;
       })(),
-      endDate: (() => {
+      endDate: ((): string => {
         const [dateOnly] = unit.endDate.split('T');
         return dateOnly;
       })(),

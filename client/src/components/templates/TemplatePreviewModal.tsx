@@ -46,7 +46,7 @@ export function TemplatePreviewModal({
     return (
       <div className="space-y-4">
         {sections.map(({ key, title, content, isList, isAssessments, isDiff }) => {
-          if (!content || (Array.isArray(content) && content.length === 0)) {
+          if (content === null || content === undefined || (Array.isArray(content) && content.length === 0)) {
             return null;
           }
 
@@ -141,7 +141,7 @@ export function TemplatePreviewModal({
     return (
       <div className="space-y-4">
         {sections.map(({ key, title, content, isList, assessmentType }) => {
-          if (!content || (Array.isArray(content) && content.length === 0)) {
+          if (content === null || content === undefined || (Array.isArray(content) && content.length === 0)) {
             return null;
           }
 
@@ -240,9 +240,9 @@ export function TemplatePreviewModal({
             <div className="flex items-center gap-2 text-sm">
               <Clock className="h-4 w-4 text-gray-400" />
               <span>
-                {template.type === 'UNIT_PLAN' && template.estimatedWeeks > 0
+                {template.type === 'UNIT_PLAN' && (template.estimatedWeeks !== undefined && template.estimatedWeeks > 0)
                   ? `${template.estimatedWeeks} weeks`
-                  : template.type === 'LESSON_PLAN' && template.estimatedMinutes > 0
+                  : template.type === 'LESSON_PLAN' && (template.estimatedMinutes !== undefined && template.estimatedMinutes > 0)
                   ? `${template.estimatedMinutes} minutes`
                   : 'Duration varies'}
               </span>
@@ -294,7 +294,7 @@ export function TemplatePreviewModal({
                       {phase.description !== undefined && phase.description !== '' && (
                         <p className="text-gray-700 text-sm mt-1">{phase.description}</p>
                       )}
-                      {phase.estimatedDays > 0 && (
+                      {(phase.estimatedDays !== undefined && phase.estimatedDays > 0) && (
                         <p className="text-gray-500 text-sm mt-1">
                           Estimated: {phase.estimatedDays} days
                         </p>

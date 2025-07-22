@@ -2,7 +2,7 @@
 import { screen, waitFor, fireEvent } from '@testing-library/react';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import CurriculumImportPage from '../../pages/CurriculumImportPage';
+import { CurriculumImportPage } from '../../pages/CurriculumImportPage';
 import { renderWithAuth } from '../../test-utils';
 import * as apiModule from '../../api';
 

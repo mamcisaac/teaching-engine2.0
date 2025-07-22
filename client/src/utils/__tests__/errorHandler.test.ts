@@ -522,7 +522,7 @@ describe('optimisticUpdate', () => {
     };
 
     const getCurrent = vi.fn().mockReturnValue(currentValue);
-    const update = vi.fn().mockImplementation((current) => ({
+    const update = vi.fn().mockImplementation((current: any) => ({
       ...current,
       posts: [...current.posts, { id: 2, title: 'New Post' }],
     }));

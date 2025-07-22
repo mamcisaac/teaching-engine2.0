@@ -3,6 +3,7 @@ import cors from 'cors';
 import type { Application, Request, Response, NextFunction } from 'express';
 import helmet from 'helmet';
 import DOMPurify from 'isomorphic-dompurify';
+import type { ParsedQs } from 'qs';
 
 // Multer file interface
 interface UploadedFile {
@@ -115,7 +116,7 @@ export const inputSanitizationMiddleware = (
   }
 
   if (req.query !== null && req.query !== undefined) {
-    req.query = sanitize(req.query) as Record<string, unknown>;
+    req.query = sanitize(req.query) as ParsedQs;
   }
 
   if (req.params !== null && req.params !== undefined) {

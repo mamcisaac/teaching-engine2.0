@@ -160,7 +160,7 @@ export function AILessonPlanPanel({
     if (!canUseAI) {
       toast({
         title: 'AI Unavailable',
-        description: aiDisabledReason || 'AI features are currently unavailable.',
+        description: (aiDisabledReason != null && aiDisabledReason !== '') ? aiDisabledReason : 'AI features are currently unavailable.',
         variant: 'destructive',
       });
       return;
@@ -311,7 +311,7 @@ export function AILessonPlanPanel({
     if (!canUseAI) {
       toast({
         title: 'AI Unavailable',
-        description: aiDisabledReason || 'AI features are currently unavailable.',
+        description: (aiDisabledReason != null && aiDisabledReason !== '') ? aiDisabledReason : 'AI features are currently unavailable.',
         variant: 'destructive',
       });
       return;
@@ -348,7 +348,7 @@ export function AILessonPlanPanel({
         {
           type,
           content: result.suggestions,
-          rationale: result.rationale || '',
+          rationale: result.rationale != null ? result.rationale : '',
         }
       ]);
 
@@ -766,13 +766,13 @@ export function AILessonPlanPanel({
                           {suggestion.type.includes('mindson') && <Play className="h-4 w-4" />}
                           {suggestion.type === 'handson' && <Activity className="h-4 w-4" />}
                           {suggestion.type.replace(/_/g, ' ').replace(/([A-Z])/g, ' $1').trim()}
-                          {suggestion.timeEstimate > 0 && !isNaN(suggestion.timeEstimate) && (
+                          {(suggestion.timeEstimate != null && suggestion.timeEstimate > 0 && !isNaN(suggestion.timeEstimate)) && (
                             <Badge className="ml-auto" variant="outline">
                               {suggestion.timeEstimate} min
                             </Badge>
                           )}
                         </CardTitle>
-                        {suggestion.rationale && (
+                        {(suggestion.rationale != null && suggestion.rationale !== '') && (
                           <CardDescription>{suggestion.rationale}</CardDescription>
                         )}
                       </CardHeader>

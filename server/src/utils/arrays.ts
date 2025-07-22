@@ -138,7 +138,7 @@ export const objectUtils = {
       for (const [key, value] of Object.entries(obj)) {
         if (value && typeof value === 'object' && !Array.isArray(value)) {
           (result as Record<string, unknown>)[key] = objectUtils.deepMerge(
-            (result as Record<string, unknown>)[key] ?? {},
+            ((result as Record<string, unknown>)[key] ?? {}) as object,
             value
           );
         } else {

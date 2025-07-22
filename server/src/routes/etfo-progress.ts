@@ -11,7 +11,7 @@ const router = Router();
  */
 router.get('/progress', async (req: Request, res: Response): Promise<void> => {
   try {
-    if (!req.user?.id) {
+    if (!req.user.id) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }

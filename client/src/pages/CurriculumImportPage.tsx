@@ -78,7 +78,7 @@ function isPresetImportResponse(data: unknown): data is PresetImportResponse {
   return typeof data === 'object' && data !== null && 'sessionId' in data && 'subjects' in data;
 }
 
-export default function CurriculumImportPage(): React.ReactElement {
+export function CurriculumImportPage(): React.ReactElement {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [importSession, setImportSession] = useState<ImportSession | null>(null);
@@ -495,7 +495,7 @@ return;
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-2">
-                      {subject.expectations.map((expectation, _index) => (
+                      {subject.expectations.map((expectation, _index): React.ReactElement => (
                         <div
                           className="flex items-start justify-between p-3 border rounded-md"
                           key={`${expectation.code}-${_index}`}
@@ -510,14 +510,14 @@ return;
                               <span className="font-mono text-sm">{expectation.code}</span>
                               <span className="text-sm text-muted-foreground">
                                 {expectation.strand}
-                                {expectation.substrand  && ` / ${expectation.substrand}`}
+                                {(expectation.substrand != null && expectation.substrand !== '') && ` / ${expectation.substrand}`}
                               </span>
                             </div>
                             <p className="text-sm">{expectation.description}</p>
                           </div>
                           <div className="flex gap-1 ml-4">
                             <Button
-                              onClick={() => {
+                              onClick={(): void => {
  handleEditExpectation(expectation); 
 }}
                               size="sm"
@@ -526,7 +526,7 @@ return;
                               <Edit2 className="h-4 w-4" />
                             </Button>
                             <Button
-                              onClick={() => {
+                              onClick={(): void => {
  handleDeleteExpectation(expectation); 
 }}
                               size="sm"

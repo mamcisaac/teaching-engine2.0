@@ -105,7 +105,7 @@ describe('ProgressiveDataLoader', () => {
   });
 
   it('shows loading state while fetching more data', async () => {
-    let resolvePromise;
+    let resolvePromise: (value: unknown) => void = () => {};
     const promise = new Promise((resolve) => {
       resolvePromise = resolve;
     });

@@ -943,7 +943,7 @@ Summative Assessment (End of Unit):
           </Button>
         )}
         <Button disabled={isSubmitting} type="submit">
-          {(() => {
+          {((): string => {
             if (isSubmitting) {
 return 'Saving...';
 }

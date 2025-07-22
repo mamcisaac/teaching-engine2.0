@@ -1,5 +1,5 @@
 import { Globe2, Eye, EyeOff } from 'lucide-react';
-import React from 'react';
+import React, { useState, cloneElement } from 'react';
 
 import { useLanguage } from '../../contexts/LanguageContext';
 import { Button } from '../ui/Button';
@@ -16,9 +16,9 @@ export function BilingualPlanView({
   defaultMode = 'toggle' 
 }: BilingualPlanViewProps): React.ReactElement {
   const { t, language } = useLanguage();
-  const [viewMode, setViewMode] = React.useState(controlledMode ?? defaultMode);
-  const [showEnglish, setShowEnglish] = React.useState(true);
-  const [showFrench, setShowFrench] = React.useState(true);
+  const [viewMode, setViewMode] = useState(controlledMode ?? defaultMode);
+  const [showEnglish, setShowEnglish] = useState(true);
+  const [showFrench, setShowFrench] = useState(true);
 
   // Allow controlled mode
   const activeMode = controlledMode ?? viewMode;
@@ -43,7 +43,7 @@ export function BilingualPlanView({
         </div>
         {showEnglish && (
           <div className="p-4 border border-t-0 rounded-b-lg">
-            {React.cloneElement(children as React.ReactElement, { language: 'en' })}
+            {cloneElement(children as React.ReactElement, { language: 'en' })}
           </div>
         )}
       </div>
@@ -66,7 +66,7 @@ export function BilingualPlanView({
         </div>
         {showFrench && (
           <div className="p-4 border border-t-0 rounded-b-lg">
-            {React.cloneElement(children as React.ReactElement, { language: 'fr' })}
+            {cloneElement(children as React.ReactElement, { language: 'fr' })}
           </div>
         )}
       </div>
@@ -138,16 +138,16 @@ export function BilingualPlanView({
           // Show both with visual distinction
           <div className="space-y-4">
             <div className="border-l-4 border-blue-400 pl-4">
-              {React.cloneElement(children as React.ReactElement, { language: 'en' })}
+              {cloneElement(children as React.ReactElement, { language: 'en' })}
             </div>
             <div className="border-l-4 border-green-400 pl-4">
-              {React.cloneElement(children as React.ReactElement, { language: 'fr' })}
+              {cloneElement(children as React.ReactElement, { language: 'fr' })}
             </div>
           </div>
         ) : showEnglish ? (
-          React.cloneElement(children as React.ReactElement, { language: 'en' })
+          cloneElement(children as React.ReactElement, { language: 'en' })
         ) : showFrench ? (
-          React.cloneElement(children as React.ReactElement, { language: 'fr' })
+          cloneElement(children as React.ReactElement, { language: 'fr' })
         ) : (
           <div className="text-center text-gray-500 py-8">
             {t('no_language_selected', 'Please select at least one language to view')}

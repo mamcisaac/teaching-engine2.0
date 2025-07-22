@@ -210,9 +210,10 @@ function detectConflicts(
   const localTimestamp = localData.lastModified ?? localData.updatedAt;
   const serverTimestamp = serverData.lastModified ?? serverData.updatedAt;
   
-  if (localTimestamp !== null && serverTimestamp !== null) {
-    const localTime = new Date(localTimestamp).getTime();
-    const serverTime = new Date(serverTimestamp).getTime();
+  if (localTimestamp !== null && localTimestamp !== undefined && 
+      serverTimestamp !== null && serverTimestamp !== undefined) {
+    const localTime = new Date(localTimestamp as string | number | Date).getTime();
+    const serverTime = new Date(serverTimestamp as string | number | Date).getTime();
     
     // If server has newer changes than our last sync
     if (serverTime > localTime) {

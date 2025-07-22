@@ -141,7 +141,7 @@ function sendErrorProd(err: ErrorLike, req: Request, res: Response): void {
           method: req.method,
           url: req.url,
           ip: req.ip,
-          userId: req.user?.id,
+          userId: req.user.id,
         },
       },
       'Operational error',
@@ -163,7 +163,7 @@ function sendErrorProd(err: ErrorLike, req: Request, res: Response): void {
           headers: req.headers,
           body: req.body as unknown,
           ip: req.ip,
-          userId: req.user?.id,
+          userId: req.user.id,
         },
       },
       'Unexpected error',
@@ -218,7 +218,7 @@ function handleSpecificErrors(
   if (err instanceof Prisma.PrismaClientKnownRequestError) {
     switch (err.code) {
       case 'P2002': {
-        const field = err.meta?.target as string[];
+        const field = err.meta.target as string[];
         return new ConflictError(`Duplicate value for field: ${field.join(', ') || 'unknown'}`);
       }
       case 'P2025':
@@ -284,7 +284,7 @@ function handleSpecificErrors(
   if (!(err instanceof AppError)) {
     return new AppError(
       err.message || 'Internal server error',
-      ((err as { statusCode?: number }).statusCode !== null && (err as { statusCode?: number }).statusCode !== undefined && (err as { statusCode?: number }).statusCode !== 0 && !isNaN((err as { statusCode?: number }).statusCode!)) ? (err as { statusCode?: number }).statusCode : 500,
+      ((err as { statusCode?: number }).statusCode !== null && (err as { statusCode?: number }).statusCode !== undefined && (err as { statusCode?: number }).statusCode !== 0 && !isNaN((err as { statusCode?: number }).statusCode)) ? (err as { statusCode?: number }).statusCode : 500,
       (err as { code?: string }).code || 'INTERNAL_ERROR',
     );
   }
@@ -389,7 +389,7 @@ export function handleGracefulShutdown(server: { close: (callback: () => void) =
       logger.info('HTTP server closed');
 
       // Close database connections
-      (async (): Promise<void> => {
+      void (async (): Promise<void> => {
         try {
           // eslint-disable-next-line @typescript-eslint/no-var-requires
           const { prisma } = await import('../prisma.js');
@@ -436,7 +436,7 @@ export function requestTimeout(timeoutMs = 30000): (req: Request, res: Response,
           method: req.method,
           url: req.url,
           ip: req.ip,
-          userId: req.user?.id,
+          userId: req.user.id,
         },
         'Request timeout',
       );

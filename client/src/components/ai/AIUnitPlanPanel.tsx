@@ -120,7 +120,7 @@ export function AIUnitPlanPanel({
     if (!canUseAI) {
       toast({
         title: 'AI Unavailable',
-        description: aiDisabledReason || 'AI features are currently unavailable.',
+        description: (aiDisabledReason != null && aiDisabledReason !== '') ? aiDisabledReason : 'AI features are currently unavailable.',
         variant: 'destructive',
       });
       return;
@@ -190,7 +190,7 @@ export function AIUnitPlanPanel({
     if (!canUseAI) {
       toast({
         title: 'AI Unavailable',
-        description: aiDisabledReason || 'AI features are currently unavailable.',
+        description: (aiDisabledReason != null && aiDisabledReason !== '') ? aiDisabledReason : 'AI features are currently unavailable.',
         variant: 'destructive',
       });
       return;
@@ -537,7 +537,7 @@ export function AIUnitPlanPanel({
                           {suggestion.type === 'assessments' && <Target className="h-4 w-4" />}
                           {suggestion.type.replace(/([A-Z])/g, ' $1').trim()}
                         </CardTitle>
-                        {suggestion.rationale && (
+                        {(suggestion.rationale != null && suggestion.rationale !== '') && (
                           <CardDescription>{suggestion.rationale}</CardDescription>
                         )}
                       </CardHeader>

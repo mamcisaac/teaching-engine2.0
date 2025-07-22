@@ -220,12 +220,12 @@ export function useUnitPlanWithOffline(unitPlanId?: string): {
     return () => { // Cleanup
     };
 
-    if (!unitPlanId) {
+    if (unitPlanId === null || unitPlanId === undefined || unitPlanId === '') {
 return;
 }
 
     const loadPlan = async (): Promise<void> => {
-      if (!unitPlanId) {
+      if (unitPlanId === null || unitPlanId === undefined || unitPlanId === '') {
 return;
 }
       setLoading(true);

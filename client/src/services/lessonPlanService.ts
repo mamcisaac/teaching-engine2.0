@@ -82,11 +82,11 @@ export class LessonPlanService {
   // Check if lesson is complete
   static isComplete(lesson: ETFOLessonPlan): boolean {
     return Boolean(lesson.title &&
-      lesson.learningGoals  &&
-      lesson.mindsOn  &&
-      lesson.action  &&
-      lesson.consolidation  &&
-      lesson.materials  &&
+      lesson.learningGoals !== null && lesson.learningGoals !== undefined && lesson.learningGoals !== ''  &&
+      lesson.mindsOn !== null && lesson.mindsOn !== undefined && lesson.mindsOn !== ''  &&
+      lesson.action !== null && lesson.action !== undefined && lesson.action !== ''  &&
+      lesson.consolidation !== null && lesson.consolidation !== undefined && lesson.consolidation !== ''  &&
+      lesson.materials !== null && lesson.materials !== undefined  &&
       lesson.materials.length > 0
     );
   }

@@ -11,11 +11,11 @@ const router = Router();
 router.get('/', authMiddleware, (req: Request, res: Response): void => {
   void (async () => {
     try {
-    if (req.user?.id === null || req.user?.id === undefined) {
+    if (req.user?.id == null) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
-    const userId = req.user.id;
+    const userId = req.user!.id;
     
     const { includePublic = false } = req.query;
 
@@ -61,11 +61,11 @@ router.get('/', authMiddleware, (req: Request, res: Response): void => {
 router.get('/:collectionId', authMiddleware, (req: Request, res: Response): void => {
   void (async () => {
     try {
-    if (req.user?.id === null || req.user?.id === undefined) {
+    if (req.user?.id == null) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
-    const userId = req.user.id;
+    const userId = req.user!.id;
     
     const { collectionId } = req.params;
 
@@ -124,11 +124,11 @@ const createCollectionSchema = z.object({
 router.post('/', authMiddleware, (req: Request, res: Response): void => {
   void (async () => {
     try {
-    if (req.user?.id === null || req.user?.id === undefined) {
+    if (req.user?.id == null) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
-    const userId = req.user.id;
+    const userId = req.user!.id;
     
     const data = createCollectionSchema.parse(req.body);
 
@@ -167,11 +167,11 @@ const updateCollectionSchema = z.object({
 router.put('/:collectionId', authMiddleware, (req: Request, res: Response): void => {
   void (async () => {
     try {
-    if (req.user?.id === null || req.user?.id === undefined) {
+    if (req.user?.id == null) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
-    const userId = req.user.id;
+    const userId = req.user!.id;
     
     const { collectionId } = req.params;
     const data = updateCollectionSchema.parse(req.body);
@@ -220,11 +220,11 @@ router.delete(
   (req: Request, res: Response): void => {
     void (async () => {
       try {
-      if (req.user?.id === null || req.user?.id === undefined) {
+      if (req.user?.id == null) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
-      const userId = req.user.id;
+      const userId = req.user!.id;
       
       const { collectionId } = req.params;
 
@@ -276,11 +276,11 @@ router.post(
   (req: Request, res: Response): void => {
     void (async () => {
       try {
-      if (req.user?.id === null || req.user?.id === undefined) {
+      if (req.user?.id == null) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
-      const userId = req.user.id;
+      const userId = req.user!.id;
       
       const { collectionId } = req.params;
       const { activityId } = addActivitySchema.parse(req.body);
@@ -359,11 +359,11 @@ router.delete(
   (req: Request, res: Response): void => {
     void (async () => {
       try {
-      if (req.user?.id === null || req.user?.id === undefined) {
+      if (req.user?.id == null) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
-      const userId = req.user.id;
+      const userId = req.user!.id;
       
       const { collectionId, activityId } = req.params;
 
@@ -416,11 +416,11 @@ router.get(
   (req: Request, res: Response): void => {
     void (async () => {
       try {
-      if (req.user?.id === null || req.user?.id === undefined) {
+      if (req.user?.id == null) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
-      const userId = req.user.id;
+      const userId = req.user!.id;
       
       const { limit = 10 } = req.query;
 

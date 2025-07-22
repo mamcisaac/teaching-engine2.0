@@ -5,8 +5,7 @@
 
 import { parse } from 'csv-parse/sync';
 
-import type { ParsedCurriculum, ParsedExpectation } from './CurriculumParser';
-import type { CurriculumParser } from './CurriculumParser';
+import { CurriculumParser, type ParsedCurriculum, type ParsedExpectation } from './CurriculumParser';
 
 export interface CSVRow {
   code?: string;
@@ -275,7 +274,7 @@ return row.expectation_description;
   private extractGrade(row: CSVRow): number | undefined {
     const gradeValue = row.grade ?? row.Grade ?? row.grade_level ?? row['Grade Level'];
     
-    if (gradeValue !== null) {
+    if (gradeValue !== null && gradeValue !== undefined && gradeValue !== '') {
       const numericGrade = typeof gradeValue === 'number' 
         ? gradeValue 
         : parseInt(gradeValue.toString().replace(/\D/g, ''));

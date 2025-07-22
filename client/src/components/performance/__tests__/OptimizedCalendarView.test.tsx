@@ -11,7 +11,7 @@ vi.mock('../../../api/domains/calendar', () => ({
   useCalendarEvents: vi.fn(() => ({ data: [], isLoading: false, error: null }))
 }));
 
-const TestWrapper = ({ children }) => {
+const TestWrapper = ({ children }: { children: React.ReactNode }) => {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: { retry: false },

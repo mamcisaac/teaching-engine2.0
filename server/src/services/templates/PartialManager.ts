@@ -631,7 +631,7 @@ export class PartialManager extends BaseService {
       stats.bySource[partial.source] = (stats.bySource[partial.source] ?? 0) + 1;
 
       // Count variables
-      totalVariables += partial.variables?.length ?? 0;
+      totalVariables += partial.variables.length ?? 0;
     }
 
     stats.averageVariables = this.partials.size > 0 ? totalVariables / this.partials.size : 0;

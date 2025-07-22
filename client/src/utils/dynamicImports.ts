@@ -2,18 +2,31 @@
  * Dynamic import utilities for code splitting large dependencies
  */
 
+import type { 
+  Chart, 
+  CategoryScale, 
+  LinearScale, 
+  PointElement, 
+  LineElement, 
+  Title, 
+  Tooltip, 
+  Legend, 
+  BarElement, 
+  ArcElement 
+} from 'chart.js';
+
 // Chart.js types
 interface ChartJSModule {
-  Chart: typeof import('chart.js').Chart;
-  CategoryScale: typeof import('chart.js').CategoryScale;
-  LinearScale: typeof import('chart.js').LinearScale;
-  PointElement: typeof import('chart.js').PointElement;
-  LineElement: typeof import('chart.js').LineElement;
-  Title: typeof import('chart.js').Title;
-  Tooltip: typeof import('chart.js').Tooltip;
-  Legend: typeof import('chart.js').Legend;
-  BarElement: typeof import('chart.js').BarElement;
-  ArcElement: typeof import('chart.js').ArcElement;
+  Chart: typeof Chart;
+  CategoryScale: typeof CategoryScale;
+  LinearScale: typeof LinearScale;
+  PointElement: typeof PointElement;
+  LineElement: typeof LineElement;
+  Title: typeof Title;
+  Tooltip: typeof Tooltip;
+  Legend: typeof Legend;
+  BarElement: typeof BarElement;
+  ArcElement: typeof ArcElement;
 }
 
 // FullCalendar types

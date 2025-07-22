@@ -9,7 +9,7 @@ const router = Router();
 router.get('/', (req: Request, res): void => {
   void (async () => {
     try {
-    const userId = req.user?.id ?? 0;
+    const userId = req.user.id ?? 0;
     if (!userId) {
       res.status(401).json({ error: 'Unauthorized' });
       return;
@@ -60,7 +60,7 @@ router.get('/', (req: Request, res): void => {
 router.patch('/:id/read', (req: Request, res): void => {
   void (async () => {
     try {
-    const userId = req.user?.id ?? 0;
+    const userId = req.user.id ?? 0;
     if (!userId) {
       res.status(401).json({ error: 'Unauthorized' });
       return;
@@ -101,7 +101,7 @@ router.patch('/:id/read', (req: Request, res): void => {
 router.patch('/read-all', (req: Request, res): void => {
   void (async () => {
     try {
-    const userId = req.user?.id ?? 0;
+    const userId = req.user.id ?? 0;
     if (!userId) {
       res.status(401).json({ error: 'Unauthorized' });
       return;
@@ -125,7 +125,7 @@ router.patch('/read-all', (req: Request, res): void => {
 router.delete('/:id', (req: Request, res): void => {
   void (async () => {
     try {
-    const userId = req.user?.id ?? 0;
+    const userId = req.user.id ?? 0;
     if (!userId) {
       res.status(401).json({ error: 'Unauthorized' });
       return;
@@ -165,7 +165,7 @@ router.delete('/:id', (req: Request, res): void => {
 router.delete('/clear-all', (req: Request, res): void => {
   void (async () => {
     try {
-    const userId = req.user?.id ?? 0;
+    const userId = req.user.id ?? 0;
     if (!userId) {
       res.status(401).json({ error: 'Unauthorized' });
       return;
@@ -188,7 +188,7 @@ router.delete('/clear-all', (req: Request, res): void => {
 router.post('/test', (req: Request, res): void => {
   void (async () => {
     try {
-    const userId = req.user?.id ?? 0;
+    const userId = req.user.id ?? 0;
     if (!userId) {
       res.status(401).json({ error: 'Unauthorized' });
       return;

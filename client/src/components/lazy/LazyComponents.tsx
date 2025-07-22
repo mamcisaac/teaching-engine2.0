@@ -104,8 +104,8 @@ export const LazyPlanningWizard = createLazyComponent(PlanningWizard, FormLoadin
 export const LazyTemplatePreviewModal = createLazyComponent(TemplatePreviewModal, ModalLoadingFallback);
 export const LazyTemplateApplyModal = createLazyComponent(TemplateApplyModal, ModalLoadingFallback);
 
-// Default export with all lazy components
-export default {
+// Named export with all lazy components for convenience
+export const LazyComponents = {
   // AI Components
   AILessonPlanPanel: LazyAILessonPlanPanel,
   AIUnitPlanPanel: LazyAIUnitPlanPanel,

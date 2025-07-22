@@ -149,7 +149,7 @@ router.delete('/reset', authMiddleware, (req: Request, res: Response): void => {
 
     metricsStore.reset();
 
-    logger.info(`Metrics reset by user ${req.user?.id || 'unknown'}`);
+    logger.info(`Metrics reset by user ${req.user.id || 'unknown'}`);
 
     res.json({
       success: true,

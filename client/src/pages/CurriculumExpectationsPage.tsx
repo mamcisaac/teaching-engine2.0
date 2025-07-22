@@ -45,7 +45,7 @@ import {
 } from '../hooks/useETFOPlanning';
 import { logger } from '../utils/logger';
 
-export default function CurriculumExpectationsPage(): React.ReactElement {
+export function CurriculumExpectationsPage(): React.ReactElement {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [searchTerm, setSearchTerm] = useState('');

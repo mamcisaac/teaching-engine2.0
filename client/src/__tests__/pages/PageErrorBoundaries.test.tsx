@@ -12,15 +12,15 @@ import { renderWithAuth } from '../../test-utils';
 import React from 'react';
 
 // Import all page components
-import CurriculumImportPage from '../../pages/CurriculumImportPage';
+import { CurriculumImportPage } from '../../pages/CurriculumImportPage';
 import LongRangePlanPage from '../../pages/LongRangePlanPage';
-import ParentNewsletterPage from '../../pages/ParentNewsletterPage';
-import HelpPage from '../../pages/HelpPage';
+import { ParentNewsletterPage } from '../../pages/ParentNewsletterPage';
+import { HelpPage } from '../../pages/HelpPage';
 // TeamsPage removed - focusing on single-teacher planning
-import TemplatesPage from '../../pages/TemplatesPage';
-import CalendarPlanningPage from '../../pages/planning/CalendarPlanningPage';
-import CurriculumExpectationsPage from '../../pages/CurriculumExpectationsPage';
-import QuickLessonPage from '../../pages/QuickLessonPage';
+import { TemplatesPage } from '../../pages/TemplatesPage';
+import { CalendarPlanningPage } from '../../pages/planning/CalendarPlanningPage';
+import { CurriculumExpectationsPage } from '../../pages/CurriculumExpectationsPage';
+import { QuickLessonPage } from '../../pages/QuickLessonPage';
 
 // Mock all external dependencies that could cause errors
 vi.mock('../../api', () => ({

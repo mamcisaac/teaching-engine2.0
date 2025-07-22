@@ -448,7 +448,7 @@ return '';
       }
 
       // Remove any element with dangerous data attributes
-      if (element.hasAttributes && element.hasAttributes()) {
+      if (element.hasAttributes !== undefined && element.hasAttributes()) {
         const attrs = Array.from(element.attributes);
         for (const attr of attrs) {
           if (attr.name.startsWith('data-') && /script|javascript|vbscript/i.test(attr.value)) {
@@ -462,7 +462,7 @@ return '';
     DOMPurify.addHook('afterSanitizeAttributes', (node) => {
       // Ensure no dangerous attributes survived
       const element = node;
-      if (element.hasAttributes && element.hasAttributes()) {
+      if (element.hasAttributes !== undefined && element.hasAttributes()) {
         const attrs = Array.from(element.attributes);
         for (const attr of attrs) {
           // Remove any attribute containing JavaScript
@@ -783,7 +783,6 @@ export function advancedXssProtection(req: Request, res: Response, next: NextFun
 
 // Export all functions for testing and direct use
 export {
-  advancedXssProtection as default,
   sanitizeHtmlAdvanced as sanitizeHtml,
   sanitizeEmailAdvanced as sanitizeEmail,
   sanitizeUrlAdvanced as sanitizeUrl,

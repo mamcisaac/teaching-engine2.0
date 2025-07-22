@@ -235,7 +235,7 @@ export function LongRangePlanPage(): React.ReactElement {
                   </span>
                 </div>
 
-                {plan.description  && (
+                {Boolean(plan.description != null && plan.description !== '' && plan.description.trim() !== '') && (
                   <p className="text-sm text-gray-600 mb-4 line-clamp-2">{plan.description}</p>
                 )}
 
@@ -398,10 +398,10 @@ export function LongRangePlanPage(): React.ReactElement {
                 description="Get AI-powered suggestions for your long-range plan goals"
                 error={generateLongRangeGoals.error}
                 isGenerating={isGenerating}
-                suggestions={aiGoalSuggestions}
+                suggestions={aiGoalSuggestions || null}
                 title="AI Goal Suggestions"
                 onAcceptAll={() => {
-                  if (aiGoalSuggestions?.suggestions !== null && aiGoalSuggestions.suggestions.length > 0) {
+                  if (aiGoalSuggestions?.suggestions && aiGoalSuggestions.suggestions.length > 0) {
                     setFormData({
                       ...formData,
                       goals: aiGoalSuggestions.suggestions.join('\n\n'),
@@ -554,3 +554,5 @@ export function LongRangePlanPage(): React.ReactElement {
     </div>
   );
 }
+
+export default LongRangePlanPage;

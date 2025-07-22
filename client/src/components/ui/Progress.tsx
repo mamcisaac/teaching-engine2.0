@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils"
 const Progress = React.forwardRef<
   React.ElementRef<typeof ProgressPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>
->(({ className, value, ...props }, ref): React.ReactElement => (
+>(({ className, value, ...props }, ref) => (
   <ProgressPrimitive.Root
     className={cn(
       "relative h-4 w-full overflow-hidden rounded-full bg-secondary",

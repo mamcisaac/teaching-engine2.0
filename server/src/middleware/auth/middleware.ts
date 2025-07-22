@@ -77,7 +77,7 @@ export function authorize(...allowedRoles: UserRole[]) {
   return (req: Request, _res: Response, next: NextFunction): void => {
     const authReq = req as AuthRequest;
 
-    if (authReq.user === null) {
+    if (!authReq.user) {
       next(new AuthenticationError('User not authenticated')); return;
     }
 
@@ -85,9 +85,9 @@ export function authorize(...allowedRoles: UserRole[]) {
       next(); return;
     }
 
-    if (!allowedRoles.includes(authReq.user.role)) {
+    if (authReq.user.role && !allowedRoles.includes(authReq.user.role)) {
       logger.warn(
-        `Access denied for user ${authReq.user.email} with role ${authReq.user.role}. Required roles: ${allowedRoles.join(', ')}`,
+        `Access denied for user ${authReq.user.email || 'unknown'} with role ${authReq.user.role || 'unknown'}. Required roles: ${allowedRoles.join(', ')}`,
       );
       next(new ForbiddenError('Insufficient permissions')); return;
     }

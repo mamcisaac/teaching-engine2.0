@@ -5,7 +5,7 @@ import { RichTextEditor } from '../RichTextEditor';
 
 // Mock sanitization utility
 vi.mock('../../utils/sanitization', () => ({
-  sanitizeHtml: vi.fn((html) => html),
+  sanitizeHtml: vi.fn((html: string) => html),
 }));
 
 import { sanitizeHtml } from '../../utils/sanitization';
@@ -16,7 +16,7 @@ describe('RichTextEditor', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    mockSanitizeHtml.mockImplementation((html) => html);
+    mockSanitizeHtml.mockImplementation((html: string) => html);
   });
 
   it('renders with initial value', () => {

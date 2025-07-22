@@ -187,7 +187,7 @@ export function PlanningWizard({
                 {isStepCompleted ? (
                   <CheckCircle className="h-6 w-6 text-green-600" />
                 ) : (
-                  <div className={isStepCompleted ? 'text-green-700' : 'text-indigo-700'}>
+                  <div className="text-indigo-700">
                     {currentStepData.icon}
                   </div>
                 )}

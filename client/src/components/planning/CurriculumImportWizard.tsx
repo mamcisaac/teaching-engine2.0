@@ -134,10 +134,6 @@ function CurriculumImportWizard({
 
   const handleFileUpload = useCallback(
     async (file: File) => {
-      if (!file) {
-return;
-}
-
       setIsUploading(true);
       const formData = new FormData();
       formData.append('document', file);

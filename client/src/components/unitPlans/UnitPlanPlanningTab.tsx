@@ -33,7 +33,6 @@ export const UnitPlanPlanningTab: React.FC<UnitPlanPlanningTabProps> = ({
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="unit-big-ideas">Big Ideas</label>
           <RichTextEditor
-            id="unit-big-ideas"
             value={formData.bigIdeas}
             onChange={(value) => {
  updateField('bigIdeas', value); 

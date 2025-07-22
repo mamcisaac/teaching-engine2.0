@@ -41,15 +41,15 @@ export const ButtonWithShortcut = forwardRef<HTMLButtonElement, ButtonWithShortc
     ref,
   ): React.ReactElement => {
     // Register keyboard shortcut if provided
-    if (shortcut?.key !== null && shortcut?.key !== undefined && shortcut?.key !== '') {
+    if (shortcut?.key != null && shortcut.key !== '') {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       useKeyboardShortcut(
         (_e): void => {
           if (disabled !== true) {
             // Call the shortcut handler or the regular onClick
-            if (onShortcutTrigger !== null && onShortcutTrigger !== undefined) {
+            if (onShortcutTrigger) {
               onShortcutTrigger();
-            } else if (onClick !== null && onClick !== undefined) {
+            } else if (onClick) {
               const syntheticEvent = new MouseEvent(
                 'click',
               ) as unknown as React.MouseEvent<HTMLButtonElement>;
@@ -65,7 +65,7 @@ export const ButtonWithShortcut = forwardRef<HTMLButtonElement, ButtonWithShortc
           shift: shortcut.shift,
           description: shortcutDescription ?? shortcut.description ?? 'Button action',
           category: shortcut.category ?? 'other',
-          enabled: !disabled,
+          enabled: disabled !== true,
         },
       );
     }
@@ -74,7 +74,7 @@ export const ButtonWithShortcut = forwardRef<HTMLButtonElement, ButtonWithShortc
       <Button ref={ref} aria-label="Click button" onClick={onClick} {...props}>
         <span className="flex items-center gap-2">
           {children}
-          {shortcut !== null && shortcut !== undefined && showShortcutHint === true && (
+          {shortcut && showShortcutHint && (
             <ShortcutHint className="ml-1" position="inline" shortcut={shortcut} size="xs" />
           )}
         </span>

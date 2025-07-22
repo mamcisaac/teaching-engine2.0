@@ -77,7 +77,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
     setIsEditing(false);
   };
 
-  const totalDuration = lessons.reduce((sum, lesson) => sum + (lesson.duration ?? 0), 0);
+  const totalDuration = lessons.reduce((sum, lesson) => sum + (lesson.duration || 0), 0);
 
   return (
     <Card className={_isDayToday ? 'ring-2 ring-primary' : ''}>
@@ -378,7 +378,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
   );
 }
 
-export default function DaybookPage(): React.ReactElement {
+export function DaybookPage(): React.ReactElement {
   const { toast } = useToast();
   const printRef = useRef<HTMLDivElement>(null);
   const [selectedWeek, setSelectedWeek] = useState(new Date());
@@ -449,7 +449,7 @@ export default function DaybookPage(): React.ReactElement {
 
   const generateInsights = (): {totalLessons: number; totalReflections: number; assessmentTypes: {diagnostic: number; formative: number; summative: number}; reflectionRate: number} => {
     const totalLessons = lessons.length;
-    const totalReflections = entries.filter((e) => e.notes !== null && e.notes !== undefined && e.notes !== '').length;
+    const totalReflections = entries.filter((e) => (e.notes != null && e.notes !== '')).length;
     const assessmentTypes = {
       diagnostic: lessons.filter((l) => l.assessmentType === 'diagnostic').length,
       formative: lessons.filter((l) => l.assessmentType === 'formative').length,

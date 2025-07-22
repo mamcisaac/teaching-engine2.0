@@ -405,7 +405,7 @@ orderBy.createdAt = order;
 
     const subjectBreakdown = recentEntries.reduce<Record<string, number>>(
       (acc: Record<string, number>, entry) => {
-        const subject = entry.lessonPlan?.unitPlan.longRangePlan.subject ?? 'Unknown';
+        const subject = entry.lessonPlan.unitPlan.longRangePlan.subject ?? 'Unknown';
         acc[subject] = (acc[subject] ?? 0) + 1;
         return acc;
       },

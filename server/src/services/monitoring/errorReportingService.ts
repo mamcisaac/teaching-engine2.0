@@ -178,7 +178,7 @@ export class ErrorReportingService {
     }
 
     if (this.mockMode) {
-      logger.info(`[MOCK] Would set user context for user: ${user?.id}`);
+      logger.info(`[MOCK] Would set user context for user: ${user.id}`);
       return;
     }
 
@@ -254,7 +254,7 @@ export class ErrorReportingService {
       if (statusCode >= 400 && statusCode < 500) {
         category.severity = 'warning';
 
-        if (statusCode === 400 || errorCode?.includes('VALIDATION')) {
+        if (statusCode === 400 || errorCode.includes('VALIDATION')) {
           category.category = 'validation';
         } else if (statusCode === 401 || statusCode === 403) {
           category.category = 'authentication';

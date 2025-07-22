@@ -101,7 +101,7 @@ export function AIWeeklyPlanModal({
       let errorMessage = 'Failed to apply plan';
       if (error instanceof Error && 'response' in error) {
         const apiError = error as ApiError;
-        if (apiError.response?.data?.error) {
+        if ((apiError.response?.data?.error) != null && apiError.response.data.error !== '') {
           errorMessage = apiError.response.data.error;
         }
       }

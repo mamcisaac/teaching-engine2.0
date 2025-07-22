@@ -163,8 +163,8 @@ export const KeyboardShortcutsSettings: React.FC = (): React.ReactElement => {
                   {(categoryShortcuts).map((shortcut, _index) => {
                     const customShortcut = preferences.customShortcuts[shortcut.id];
                     const isEditing = editingShortcut === shortcut.id;
-                    const hasCustom = customShortcut !== undefined && customShortcut !== null;
-                    const displayShortcut = customShortcut
+                    const hasCustom = customShortcut != null;
+                    const displayShortcut = customShortcut != null
                       ? { ...shortcut, ...customShortcut }
                       : shortcut;
 
@@ -175,7 +175,7 @@ export const KeyboardShortcutsSettings: React.FC = (): React.ReactElement => {
                       >
                         <div className="flex-1">
                           <p className="font-medium text-sm">{shortcut.description}</p>
-                          {hasCustom && (
+                          {customShortcut != null && (
                             <p className="text-xs text-gray-500 mt-1">
                               Default: {formatShortcut(shortcut)}
                             </p>
@@ -244,7 +244,7 @@ export const KeyboardShortcutsSettings: React.FC = (): React.ReactElement => {
                               >
                                 <Settings className="h-4 w-4" />
                               </Button>
-                              {hasCustom && (
+                              {customShortcut != null && (
                                 <Button
                                   onClick={(): void => {
  resetShortcut(shortcut.id); 

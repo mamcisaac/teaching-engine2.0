@@ -110,7 +110,7 @@ router.delete('/all', (req: AuthenticatedRequest, res: Response): void => {
     const cacheService = cache();
     await cacheService.clear();
 
-    logger.info(`All caches cleared by user ${req.user?.id}`);
+    logger.info(`All caches cleared by user ${req.user.id}`);
 
     res.json({
       success: true,
@@ -150,7 +150,7 @@ router.delete('/pattern', (req: AuthenticatedRequest, res: Response): void => {
     const deleted = await cacheService.deleteByPattern(pattern);
 
     logger.info(
-      `Cache cleared by pattern: ${pattern} by user ${req.user?.id}, deleted: ${deleted}`,
+      `Cache cleared by pattern: ${pattern} by user ${req.user.id}, deleted: ${deleted}`,
     );
 
     res.json({
@@ -192,7 +192,7 @@ router.delete('/tags', (req: AuthenticatedRequest, res: Response): void => {
     const deleted = await cacheService.invalidateByTags(tags);
 
     logger.info(
-      `Cache invalidated by tags: ${tags.join(', ')} by user ${req.user?.id}, deleted: ${deleted}`,
+      `Cache invalidated by tags: ${tags.join(', ')} by user ${req.user.id}, deleted: ${deleted}`,
     );
 
     res.json({
@@ -233,7 +233,7 @@ router.delete('/user/:userId', (req: AuthenticatedRequest, res: Response): void 
 
     await CacheUtils.clearUserCache(userIdNumber);
 
-    logger.info(`User cache cleared for user ${userId} by user ${req.user?.id}`);
+    logger.info(`User cache cleared for user ${userId} by user ${req.user.id}`);
 
     res.json({
       success: true,

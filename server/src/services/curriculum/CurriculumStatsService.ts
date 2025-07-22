@@ -147,7 +147,7 @@ export class CurriculumStatsService extends BaseService {
         
         // Get expectations for this subject separately
         const expectations = await prisma.curriculumExpectation.findMany({
-          where: { subject: subject?.name },
+          where: { subject: subject.name },
           // Note: isActive field doesn't exist
         });
 

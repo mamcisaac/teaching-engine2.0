@@ -21,9 +21,9 @@ export class LessonTemplateProvider extends TemplateProvider {
    */
   async getTemplate(context: TemplateContext): Promise<Template> {
     // Determine template based on parameters
-    const templateType = context.parameters?.type || 'standard';
-    const grade = context.parameters?.grade;
-    const subject = context.parameters?.subject;
+    const templateType = context.parameters.type || 'standard';
+    const grade = context.parameters.grade;
+    const subject = context.parameters.subject;
 
     // Build template ID
     let templateId = `lesson-${templateType}`;

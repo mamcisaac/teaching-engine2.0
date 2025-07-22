@@ -58,7 +58,7 @@ export class LLMService extends BaseService {
   private openaiClient: OpenAI | null = null;
   private readonly defaultModel = 'gpt-4o-mini';
   private readonly maxRetries = 3;
-  // @ts-expect-error Reserved for future retry implementation
+  // Reserved for future retry implementation
   private readonly _retryDelay = 1000; // 1 second
 
   private constructor() {
@@ -162,7 +162,7 @@ export class LLMService extends BaseService {
       }
 
       this.logger.debug(
-        `Content generated successfully - length: ${content.length}, tokens: ${response.usage?.total_tokens ?? 'unknown'}`,
+        `Content generated successfully - length: ${content.length}, tokens: ${response.usage.total_tokens ?? 'unknown'}`,
       );
 
       return content;
@@ -243,9 +243,9 @@ export class LLMService extends BaseService {
       return {
         content,
         tokensUsed: {
-          prompt: response.usage?.prompt_tokens ?? 0,
-          completion: response.usage?.completion_tokens ?? 0,
-          total: response.usage?.total_tokens ?? 0,
+          prompt: response.usage.prompt_tokens ?? 0,
+          completion: response.usage.completion_tokens ?? 0,
+          total: response.usage.total_tokens ?? 0,
         },
         model: response.model,
         finishReason: response.choices[0]?.finish_reason ?? 'unknown',
@@ -330,9 +330,9 @@ export class LLMService extends BaseService {
   /**
    * Validate content generation request
    */
-  // @ts-expect-error Method reserved for future request validation
+  // Method reserved for future request validation
   private _validateRequest(request: ContentGenerationRequest): void {
-    if (!request.prompt?.trim()) {
+    if (!request.prompt.trim()) {
       throw new Error('Prompt is required and cannot be empty');
     }
 

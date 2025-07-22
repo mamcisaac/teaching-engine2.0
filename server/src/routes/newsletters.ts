@@ -26,7 +26,7 @@ const generateNewsletterSchema = z.object({
 router.post('/generate', (req: Request, res: Response): void => {
   void (async () => {
     try {
-    const userId = req.user?.id;
+    const userId = req.user.id;
     if (!userId) {
       res.status(401).json({ error: 'Authentication required' });
       return;
@@ -78,7 +78,7 @@ router.post('/generate', (req: Request, res: Response): void => {
 router.get('/status', (req: Request, res: Response): void => {
   void (async () => {
     try {
-    const userId = req.user?.id;
+    const userId = req.user.id;
     if (!userId) {
       res.status(401).json({ error: 'Authentication required' });
       return;

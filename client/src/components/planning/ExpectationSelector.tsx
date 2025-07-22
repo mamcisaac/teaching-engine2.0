@@ -63,7 +63,7 @@ return expectations;
         exp.code.toLowerCase().includes(query) ||
         exp.description.toLowerCase().includes(query) ||
         exp.strand.toLowerCase().includes(query) ||
-        exp.substrand && exp.substrand.toLowerCase().includes(query),
+        (exp.substrand?.toLowerCase().includes(query) ?? false),
     );
   }, [expectations, searchQuery]);
 
@@ -75,7 +75,7 @@ return expectations;
       if (!(exp.strand in grouped)) {
         grouped[exp.strand] = {};
       }
-      const substrand = exp.substrand || 'General';
+      const substrand = exp.substrand ?? 'General';
       if (!(substrand in grouped[exp.strand])) {
         grouped[exp.strand][substrand] = [];
       }
@@ -145,7 +145,7 @@ return expectations;
             aria-expanded={open}
             className={cn(
               "w-full justify-between",
-              error !== undefined && error !== null ? "border-red-500 focus:ring-red-500 focus:border-red-500" : "",
+              error != null && error !== "" ? "border-red-500 focus:ring-red-500 focus:border-red-500" : "",
               className
             )}
             disabled={disabled}
@@ -213,7 +213,7 @@ return expectations;
                             <div className="space-y-1">
                               {expectations.map((exp, _index) => (
                                 <div
-                                  aria-label={`Toggle expectation: ${exp.expectation}`}
+                                  aria-label={`Toggle expectation: ${exp.description || 'Expectation'}`}
                                   className={cn(
                                     'flex items-start gap-2 p-2 rounded-md hover:bg-accent cursor-pointer',
                                     selectedIds.includes(exp.id) && 'bg-accent',
@@ -334,7 +334,7 @@ return expectations;
       ) : null}
 
       {/* Error display */}
-      {error !== undefined && error !== null && error !== '' ? (
+      {error != null && error !== "" ? (
         <p className="mt-1 text-sm text-red-600">{error}</p>
       ) : null}
     </div>

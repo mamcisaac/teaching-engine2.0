@@ -10,7 +10,7 @@ vi.mock('date-fns', () => ({
   formatDistanceToNow: vi.fn(() => '2 hours ago')
 }));
 
-const TestWrapper = ({ children }) => (
+const TestWrapper = ({ children }: { children: React.ReactNode }) => (
   <BrowserRouter>
     {children}
   </BrowserRouter>

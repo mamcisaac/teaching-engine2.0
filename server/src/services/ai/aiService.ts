@@ -190,7 +190,7 @@ export class AIService extends BaseService {
           });
 
           const content = response.choices[0]?.message?.content;
-          if (!content || content === '') {
+          if (content == null || content === '') {
             throw new AppError(500, 'No response from AI service');
           }
 
@@ -250,7 +250,7 @@ export class AIService extends BaseService {
           });
 
           const content = response.choices[0]?.message?.content;
-          if (!content || content === '') {
+          if (content == null || content === '') {
             throw new AppError(500, 'No response from AI service');
           }
 
@@ -297,7 +297,7 @@ export class AIService extends BaseService {
           });
 
           const content = response.choices[0]?.message?.content;
-          if (!content || content === '') {
+          if (content == null || content === '') {
             throw new AppError(500, 'No response from AI service');
           }
 
@@ -344,7 +344,7 @@ export class AIService extends BaseService {
           });
 
           const content = response.choices[0]?.message?.content;
-          if (!content || content === '') {
+          if (content == null || content === '') {
             throw new AppError(500, 'No response from AI service');
           }
 

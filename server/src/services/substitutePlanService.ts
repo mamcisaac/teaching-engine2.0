@@ -126,7 +126,7 @@ export class SubstitutePlanService {
     ];
   }
 
-  // @ts-expect-error Method reserved for future time slot management
+  // Method reserved for future time slot management
   private static _getTimeSlot(index: number): string {
     const timeSlots = ['9:15 AM', '10:45 AM', '1:00 PM'];
     if (index < 0 || index >= timeSlots.length) {
@@ -135,7 +135,7 @@ export class SubstitutePlanService {
     return timeSlots[index];
   }
 
-  // @ts-expect-error Method reserved for future lesson formatting
+  // Method reserved for future lesson formatting
   private static _formatLessonInstructions(lessonPlan: any): string {
     if (!lessonPlan || typeof lessonPlan !== 'object') {
       return 'Follow the activities as outlined in the lesson plan binder.';
@@ -167,7 +167,7 @@ export class SubstitutePlanService {
   }
 
   private static createGeneralNotes(teacherName?: string | null): string {
-    const teacher = teacherName?.trim() ? teacherName : 'See class information';
+    const teacher = teacherName.trim() ? teacherName : 'See class information';
 
     return `Welcome! Thank you for substituting today.
 

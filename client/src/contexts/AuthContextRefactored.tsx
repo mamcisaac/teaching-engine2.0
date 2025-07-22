@@ -55,8 +55,8 @@ export function AuthProvider({ children }: { children: ReactNode }): React.React
             id: String(userData.id),
             email: userData.email,
             name: userData.name,
-            role: userData.role ?? 'teacher',
-            organizationId: userData.organizationId !== 0 && !isNaN(userData.organizationId) ? String(userData.organizationId) : undefined,
+            role: userData.role,
+            organizationId: (userData.organizationId !== undefined && userData.organizationId !== 0) ? String(userData.organizationId) : undefined,
           });
         }
         
@@ -98,13 +98,13 @@ export function AuthProvider({ children }: { children: ReactNode }): React.React
           message?: string;
         };
         
-        if (err.response?.data?.error !== null && err.response.data.error !== undefined && err.response.data.error !== '') {
+        if ((err.response?.data?.error !== undefined && err.response.data.error !== '')) {
           errorMessage = err.response.data.error;
         } else if (err.response?.status === 401) {
           errorMessage = 'Invalid email or password';
         } else if (err.response?.status !== undefined && err.response.status >= 500) {
           errorMessage = 'Server error. Please try again later.';
-        } else if (err.message !== null && err.message !== undefined && err.message !== '') {
+        } else if (err.message != null && err.message !== '') {
           errorMessage = err.message;
         }
         
@@ -120,8 +120,8 @@ export function AuthProvider({ children }: { children: ReactNode }): React.React
         id: String(userData.id),
         email: userData.email,
         name: userData.name,
-        role: userData.role ?? 'teacher',
-        organizationId: userData.organizationId !== null && userData.organizationId !== undefined && userData.organizationId !== 0 && !isNaN(userData.organizationId) ? String(userData.organizationId) : undefined,
+        role: userData.role,
+        organizationId: (userData.organizationId !== undefined && userData.organizationId !== 0) ? String(userData.organizationId) : undefined,
       });
       
       // Invalidate other queries that depend on auth
@@ -175,20 +175,20 @@ export function AuthProvider({ children }: { children: ReactNode }): React.React
 
   // Extract error message
   const getErrorMessage = (): string | null => {
-    if (loginMutation.error !== null && loginMutation.error !== undefined) {
+    if (loginMutation.error) {
       return loginMutation.error instanceof Error ? loginMutation.error.message : String(loginMutation.error);
     }
-    if (logoutMutation.error !== null && logoutMutation.error !== undefined) {
+    if (logoutMutation.error) {
       return 'Logout failed';
     }
-    if (queryError !== null && queryError !== undefined) {
+    if (queryError) {
       return 'Failed to verify authentication';
     }
     return null;
   };
 
   const contextValue: AuthContextValue = {
-    user: user ?? null,
+    user: user || null,
     login: async (credentials: LoginCredentials) => {
       await loginMutation.mutateAsync(credentials);
     },

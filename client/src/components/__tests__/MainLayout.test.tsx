@@ -9,6 +9,7 @@ import React from 'react';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
+// @ts-expect-error jest-axe doesn't have types available
 import { axe, toHaveNoViolations } from 'jest-axe';
 import { MainLayout } from '../MainLayout';
 import { renderWithProviders, createMockUser } from '@/test-utils';
@@ -100,7 +101,7 @@ vi.mock('../../hooks/useFeatureTutorial', () => ({
 }));
 
 vi.mock('../../hooks/useKeyboardShortcut', () => ({
-  useKeyboardShortcut: vi.fn((callback, options) => {
+  useKeyboardShortcut: vi.fn((callback: () => void, options: { key: string; enabled?: boolean; ctrl?: boolean; alt?: boolean }) => {
     // Store the callbacks for testing
     if (options.key === 'b' && options.ctrl) {
       (window as any).__sidebarToggleCallback = callback;

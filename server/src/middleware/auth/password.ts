@@ -9,16 +9,14 @@ const SALT_ROUNDS = parseInt(process.env.BCRYPT_SALT_ROUNDS ?? '10', 10);
  * Hash password using bcrypt
  */
 export async function hashPassword(password: string): Promise<string> {
-  const result = (await hash(password, SALT_ROUNDS)) as string;
-  return result;
+  return await hash(password, SALT_ROUNDS);
 }
 
 /**
  * Verify password against hash
  */
 export async function verifyPassword(password: string, hash: string): Promise<boolean> {
-  const result = (await compare(password, hash)) as boolean;
-  return result;
+  return await compare(password, hash);
 }
 
 /**

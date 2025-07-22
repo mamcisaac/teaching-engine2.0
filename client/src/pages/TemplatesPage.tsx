@@ -56,7 +56,7 @@ import {
 // import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import { logger } from '../utils/logger';
 
-export default function TemplatesPage(): React.ReactElement {
+export function TemplatesPage(): React.ReactElement {
   const { templateId } = useParams();
   const navigate = useNavigate();
 
@@ -94,7 +94,7 @@ export default function TemplatesPage(): React.ReactElement {
 
   // Build search options
   const searchOptions: TemplateSearchOptions = {
-    search: searchTerm ?? undefined,
+    search: searchTerm || undefined,
     type: selectedType !== 'all' ? selectedType : undefined,
     category: selectedCategory !== 'all' ? selectedCategory : undefined,
     subject: selectedSubject !== 'all' ? selectedSubject : undefined,
@@ -211,10 +211,10 @@ return;
               <CardTitle className="text-lg">{template.title}</CardTitle>
               <CardDescription className="text-sm">
                 {template.type === 'UNIT_PLAN' ? 'Unit Plan' : 'Lesson Plan'}
-                {template.subject && ` • ${template.subject}`}
+                {template.subject !== undefined && template.subject !== '' && ` • ${template.subject}`}
                 {template.gradeMin === template.gradeMax
                   ? ` • Grade ${template.gradeMin}`
-                  : template.gradeMin !== null && template.gradeMax !== null
+                  : (template.gradeMin !== undefined && template.gradeMax !== undefined)
                     ? ` • Grades ${template.gradeMin}-${template.gradeMax}`
                     : ''}
               </CardDescription>
@@ -254,7 +254,7 @@ return;
 
         <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
           <div className="flex items-center gap-4">
-            {template.averageRating !== null && template.averageRating !== undefined && template.averageRating !== 0 && !isNaN(template.averageRating) && (
+            {(template.averageRating !== undefined && template.averageRating !== 0) && (
               <div className="flex items-center gap-1">
                 <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                 <span>{template.averageRating.toFixed(1)}</span>
@@ -266,13 +266,13 @@ return;
             </div>
           </div>
 
-          {template.estimatedWeeks !== null && template.estimatedWeeks !== undefined && template.estimatedWeeks !== 0 && !isNaN(template.estimatedWeeks) && (
+          {(template.estimatedWeeks !== undefined && template.estimatedWeeks !== 0) && (
             <div className="flex items-center gap-1">
               <Calendar className="h-4 w-4" />
               <span>{template.estimatedWeeks}w</span>
             </div>
           )}
-          {template.estimatedMinutes !== null && template.estimatedMinutes !== undefined && template.estimatedMinutes !== 0 && !isNaN(template.estimatedMinutes) && (
+          {(template.estimatedMinutes !== undefined && template.estimatedMinutes !== 0) && (
             <div className="flex items-center gap-1">
               <Clock className="h-4 w-4" />
               <span>{template.estimatedMinutes}m</span>
@@ -311,7 +311,7 @@ return;
             <Copy className="h-4 w-4" />
           </Button>
 
-          {template.createdByUserId !== null && template.createdByUserId !== undefined && template.createdByUserId !== 0 && !isNaN(template.createdByUserId) && !template.isSystem && (
+          {(template.createdByUserId !== undefined && !template.isSystem) && (
             <Button
               onClick={() => {
                 setSelectedTemplate(template);
@@ -664,7 +664,7 @@ return;
 }
                   }
                   type="number"
-                  value={(formData.gradeMin !== null && formData.gradeMin !== undefined && formData.gradeMin !== 0 && !isNaN(formData.gradeMin)) ? formData.gradeMin : ''}
+                  value={formData.gradeMin ?? ''}
                 />
               </div>
 
@@ -681,7 +681,7 @@ return;
 }
                   }
                   type="number"
-                  value={(formData.gradeMax !== null && formData.gradeMax !== undefined && formData.gradeMax !== 0 && !isNaN(formData.gradeMax)) ? formData.gradeMax : ''}
+                  value={formData.gradeMax ?? ''}
                 />
               </div>
             </div>
@@ -723,7 +723,7 @@ return;
       <Dialog onOpenChange={setIsPreviewModalOpen} open={isPreviewModalOpen}>
         <div className="p-6 max-w-4xl max-h-[90vh] overflow-y-auto">
           {selectedTemplate && (
-            <>
+            <React.Fragment>
               <div className="flex items-start justify-between mb-6">
                 <div>
                   <h3 className="text-xl font-semibold">{selectedTemplate.title}</h3>
@@ -762,13 +762,13 @@ return;
                       <span className="font-medium">Category:</span>
                       <div>{TEMPLATE_CATEGORIES[selectedTemplate.category].label}</div>
                     </div>
-                    {selectedTemplate.subject && (
+                    {selectedTemplate.subject !== undefined && selectedTemplate.subject !== '' && (
                       <div>
                         <span className="font-medium">Subject:</span>
                         <div>{selectedTemplate.subject}</div>
                       </div>
                     )}
-                    {((selectedTemplate.gradeMin !== null && selectedTemplate.gradeMin !== undefined && selectedTemplate.gradeMin !== 0 && !isNaN(selectedTemplate.gradeMin)) || (selectedTemplate.gradeMax !== null && selectedTemplate.gradeMax !== undefined && selectedTemplate.gradeMax !== 0 && !isNaN(selectedTemplate.gradeMax))) && (
+                    {(selectedTemplate.gradeMin !== undefined || selectedTemplate.gradeMax !== undefined) && (
                       <div>
                         <span className="font-medium">Grade:</span>
                         <div>
@@ -786,14 +786,14 @@ return;
                   <div className="space-y-4">
                     <h4 className="font-semibold">Unit Plan Content</h4>
 
-                    {selectedTemplate.content.overview && (
+                    {selectedTemplate.content.overview !== undefined && selectedTemplate.content.overview !== '' && (
                       <div>
                         <h5 className="font-medium mb-2">Overview</h5>
                         <p className="text-gray-700">{selectedTemplate.content.overview}</p>
                       </div>
                     )}
 
-                    {selectedTemplate.content.bigIdeas && (
+                    {selectedTemplate.content.bigIdeas !== undefined && selectedTemplate.content.bigIdeas !== '' && (
                       <div>
                         <h5 className="font-medium mb-2">Big Ideas</h5>
                         <p className="text-gray-700">{selectedTemplate.content.bigIdeas}</p>
@@ -863,21 +863,21 @@ return;
                       )}
 
                     <div className="grid gap-4">
-                      {selectedTemplate.content.mindsOn && (
+                      {selectedTemplate.content.mindsOn !== undefined && selectedTemplate.content.mindsOn !== '' && (
                         <div>
                           <h5 className="font-medium mb-2">Minds On</h5>
                           <p className="text-gray-700">{selectedTemplate.content.mindsOn}</p>
                         </div>
                       )}
 
-                      {selectedTemplate.content.action && (
+                      {selectedTemplate.content.action !== undefined && selectedTemplate.content.action !== '' && (
                         <div>
                           <h5 className="font-medium mb-2">Action</h5>
                           <p className="text-gray-700">{selectedTemplate.content.action}</p>
                         </div>
                       )}
 
-                      {selectedTemplate.content.consolidation && (
+                      {selectedTemplate.content.consolidation !== undefined && selectedTemplate.content.consolidation !== '' && (
                         <div>
                           <h5 className="font-medium mb-2">Consolidation</h5>
                           <p className="text-gray-700">{selectedTemplate.content.consolidation}</p>
@@ -904,7 +904,7 @@ return;
                   </div>
                 )}
               </div>
-            </>
+            </React.Fragment>
           )}
         </div>
       </Dialog>

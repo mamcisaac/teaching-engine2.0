@@ -1,6 +1,6 @@
 import type { UseQueryResult, UseMutationResult } from '@tanstack/react-query';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { apiClient } from '../api/core/client';
 import type {
@@ -215,9 +215,9 @@ export function useRateTemplate(): UseMutationResult<{ success: boolean; message
 
 // Custom hook for template search with debounced input
 export function useTemplateSearch(searchTerm: string, otherOptions: Omit<TemplateSearchOptions, 'search'> = {}, debounceMs = 300): UseQueryResult<TemplateSearchResult> {
-  const [debouncedSearchTerm, setDebouncedSearchTerm] = React.useState(searchTerm);
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
 
-  React.useEffect(() => {
+  useEffect(() => {
     return () => { // Cleanup
     };
 
@@ -232,7 +232,7 @@ export function useTemplateSearch(searchTerm: string, otherOptions: Omit<Templat
 
   return useTemplates({
     ...otherOptions,
-    search: debouncedSearchTerm ?? undefined,
+    search: (debouncedSearchTerm !== undefined && debouncedSearchTerm !== '') ? debouncedSearchTerm : undefined,
   });
 }
 
@@ -247,7 +247,7 @@ export function useTemplatesPaginated(options: TemplateSearchOptions = {}): UseQ
   hasNextPage: boolean;
   hasPrevPage: boolean;
 } {
-  const [currentPage, setCurrentPage] = React.useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
   const limit = options.limit ?? 20;
   
   const query = useTemplates({
@@ -313,19 +313,5 @@ export function usePublicTemplates(options: Omit<TemplateSearchOptions, 'isPubli
   });
 }
 
-export default {
-  useTemplates,
-  useTemplate,
-  useTemplateFilterOptions,
-  useCreateTemplate,
-  useUpdateTemplate,
-  useDeleteTemplate,
-  useDuplicateTemplate,
-  useApplyTemplate,
-  useRateTemplate,
-  useTemplateSearch,
-  useTemplatesPaginated,
-  useMyTemplates,
-  useSystemTemplates,
-  usePublicTemplates,
-};
+// All hooks are already exported as named exports above
+// Default export removed to comply with no-default-export rule

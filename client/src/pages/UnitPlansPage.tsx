@@ -71,7 +71,7 @@ interface ExtendedUnitPlan extends UnitPlan {
   communityConnections?: string;
 }
 
-export function UnitPlansPage(): React.ReactElement {
+function UnitPlansPage(): React.ReactElement {
   const { longRangePlanId, unitId } = useParams();
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [editingUnit, setEditingUnit] = useState<string | null>(null);
@@ -82,7 +82,7 @@ export function UnitPlansPage(): React.ReactElement {
   const { data: longRangePlan } = useLongRangePlan(longRangePlanId ?? '');
   const { data: allLongRangePlans = [] } = useLongRangePlans();
   const { data: unitPlans = [], isLoading } = useUnitPlans(
-    longRangePlanId ? { longRangePlanId } : {},
+    longRangePlanId !== undefined && longRangePlanId !== '' ? { longRangePlanId } : {},
   );
   const { data: selectedUnit } = useUnitPlan(unitId ?? '');
 
@@ -221,7 +221,7 @@ export function UnitPlansPage(): React.ReactElement {
     try {
       const applied = await applyTemplate.mutateAsync({ id: template.id });
 
-      if (isUnitPlanTemplate(template) && applied.appliedContent) {
+      if (isUnitPlanTemplate(template) && applied.appliedContent !== null && applied.appliedContent !== undefined) {
         // Pre-populate form with template data
         const templateContent = applied.appliedContent as UnitPlanContent;
         updateField('title', '');
@@ -267,7 +267,7 @@ export function UnitPlansPage(): React.ReactElement {
         updateField('communityConnections', templateContent.communityConnections ?? '');
 
         // Set estimated duration if available
-        if (template.estimatedWeeks && template.estimatedWeeks > 0) {
+        if (template.estimatedWeeks !== undefined && template.estimatedWeeks !== null && template.estimatedWeeks > 0) {
           const startDate = new Date();
           const endDate = new Date();
           endDate.setDate(startDate.getDate() + template.estimatedWeeks * 7);
@@ -304,7 +304,7 @@ export function UnitPlansPage(): React.ReactElement {
   }
 
   // Detail view for a specific unit
-  if (unitId && selectedUnit) {
+  if (unitId !== undefined && unitId !== '' && selectedUnit !== undefined && selectedUnit !== null) {
     const unit = selectedUnit as ExtendedUnitPlan;
     return (
       <PlanAccessTracker planType="unit">
@@ -328,7 +328,7 @@ export function UnitPlansPage(): React.ReactElement {
               <div className="flex justify-between items-start">
                 <div>
                   <h1 className="text-2xl font-bold text-gray-900">{unit.title}</h1>
-                  {unit.titleFr && <p className="text-sm text-gray-600 mt-1">{unit.titleFr}</p>}
+                  {unit.titleFr !== undefined && unit.titleFr !== null && unit.titleFr !== '' && <p className="text-sm text-gray-600 mt-1">{unit.titleFr}</p>}
                   <div className="flex gap-4 mt-2 text-sm text-gray-600">
                     <span>
                       {new Date(unit.startDate).toLocaleDateString()} -{' '}
@@ -393,14 +393,14 @@ export function UnitPlansPage(): React.ReactElement {
 
             {/* Unit Detail Content */}
             <div className="p-6 space-y-6">
-              {unit.description && (
+              {unit.description !== undefined && unit.description !== null && unit.description !== '' && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Description</h3>
                   <p className="text-gray-700">{unit.description}</p>
                 </div>
               )}
 
-              {unit.bigIdeas && (
+              {unit.bigIdeas !== undefined && unit.bigIdeas !== null && unit.bigIdeas !== '' && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Big Ideas</h3>
                   <SafeHtmlRenderer className="prose max-w-none" html={unit.bigIdeas} />
@@ -433,7 +433,7 @@ export function UnitPlansPage(): React.ReactElement {
                 </div>
               )}
 
-              {unit.assessmentPlan && (
+              {unit.assessmentPlan !== undefined && unit.assessmentPlan !== null && unit.assessmentPlan !== '' && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Assessment Plan</h3>
                   <SafeHtmlRenderer className="prose max-w-none" html={unit.assessmentPlan} />
@@ -454,7 +454,7 @@ export function UnitPlansPage(): React.ReactElement {
               )}
 
               {/* ETFO-specific sections */}
-              {unit.crossCurricularConnections && (
+              {unit.crossCurricularConnections !== undefined && unit.crossCurricularConnections !== null && unit.crossCurricularConnections !== '' && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">
                     Cross-Curricular Connections
@@ -470,7 +470,8 @@ export function UnitPlansPage(): React.ReactElement {
                     Differentiation Strategies
                   </h3>
                   <div className="grid gap-4 md:grid-cols-2">
-                    {unit.differentiationStrategies.forStruggling &&
+                    {unit.differentiationStrategies.forStruggling !== undefined &&
+                      unit.differentiationStrategies.forStruggling !== null &&
                       unit.differentiationStrategies.forStruggling.length > 0 && (
                         <Card>
                           <CardHeader>
@@ -488,7 +489,8 @@ export function UnitPlansPage(): React.ReactElement {
                         </Card>
                       )}
 
-                    {unit.differentiationStrategies.forAdvanced &&
+                    {unit.differentiationStrategies.forAdvanced !== undefined &&
+                      unit.differentiationStrategies.forAdvanced !== null &&
                       unit.differentiationStrategies.forAdvanced.length > 0 && (
                         <Card>
                           <CardHeader>
@@ -504,7 +506,8 @@ export function UnitPlansPage(): React.ReactElement {
                         </Card>
                       )}
 
-                    {unit.differentiationStrategies.forELL &&
+                    {unit.differentiationStrategies.forELL !== undefined &&
+                      unit.differentiationStrategies.forELL !== null &&
                       unit.differentiationStrategies.forELL.length > 0 && (
                         <Card>
                           <CardHeader>
@@ -520,7 +523,8 @@ export function UnitPlansPage(): React.ReactElement {
                         </Card>
                       )}
 
-                    {unit.differentiationStrategies.forIEP &&
+                    {unit.differentiationStrategies.forIEP !== undefined &&
+                      unit.differentiationStrategies.forIEP !== null &&
                       unit.differentiationStrategies.forIEP.length > 0 && (
                         <Card>
                           <CardHeader>
@@ -598,8 +602,8 @@ export function UnitPlansPage(): React.ReactElement {
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
-          {longRangePlanId ? (
-            <>
+          {longRangePlanId !== undefined && longRangePlanId !== '' ? (
+            <React.Fragment>
               <Link className="hover:text-indigo-600" to="/planner/long-range">
                 Long-Range Plans
               </Link>
@@ -607,9 +611,9 @@ export function UnitPlansPage(): React.ReactElement {
               <span className="text-gray-900 font-medium">
                 {longRangePlan?.title ?? 'Unit Plans'}
               </span>
-            </>
+            </React.Fragment>
           ) : (
-            <>
+            <React.Fragment>
               <Link className="hover:text-indigo-600" to="/curriculum">
                 Curriculum Expectations
               </Link>
@@ -619,14 +623,14 @@ export function UnitPlansPage(): React.ReactElement {
               </Link>
               <span>›</span>
               <span className="text-gray-900 font-medium">All Unit Plans</span>
-            </>
+            </React.Fragment>
           )}
         </div>
 
         <div className="flex justify-between items-start">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">
-              {longRangePlanId ? 'Unit Plans' : 'All Unit Plans'}
+              {longRangePlanId !== undefined && longRangePlanId !== '' ? 'Unit Plans' : 'All Unit Plans'}
             </h1>
             {longRangePlan ? (
               <p className="mt-2 text-gray-600">
@@ -717,9 +721,9 @@ export function UnitPlansPage(): React.ReactElement {
         <div className="p-6 max-w-5xl max-h-[90vh] overflow-y-auto">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold">
-              {editingUnit ? 'Edit Unit Plan' : 'Create Unit Plan'}
+              {editingUnit !== null && editingUnit !== undefined ? 'Edit Unit Plan' : 'Create Unit Plan'}
             </h3>
-            {editingUnit && (
+            {editingUnit !== null && editingUnit !== undefined && (
               <div className="flex items-center gap-2">
                 <AutoSaveIndicator
                   hasUnsavedChanges={hasUnsavedChanges}
@@ -1157,7 +1161,7 @@ export function UnitPlansPage(): React.ReactElement {
                 >
                   {createUnit.isPending || updateUnit.isPending || isSaving
                     ? 'Saving...'
-                    : editingUnit
+                    : editingUnit !== null && editingUnit !== undefined
                       ? 'Update Unit Plan'
                       : 'Create Unit Plan'}
                 </Button>
@@ -1211,8 +1215,8 @@ export function UnitPlansPage(): React.ReactElement {
                           <CardTitle className="text-base">{template.title}</CardTitle>
                           <CardDescription className="mt-1">
                             {template.category} • Grade {template.gradeMin}
-                            {template.gradeMax && template.gradeMax !== template.gradeMin && `-${template.gradeMax}`}
-                            {template.estimatedWeeks && ` • ${template.estimatedWeeks} weeks`}
+                            {template.gradeMax !== undefined && template.gradeMax !== null && template.gradeMax !== template.gradeMin && `-${template.gradeMax}`}
+                            {template.estimatedWeeks !== undefined && template.estimatedWeeks !== null && template.estimatedWeeks !== 0 && ` • ${template.estimatedWeeks} weeks`}
                           </CardDescription>
                         </div>
                         <div className="flex items-center gap-1 text-yellow-500">
@@ -1236,7 +1240,7 @@ export function UnitPlansPage(): React.ReactElement {
                             {tag}
                           </span>
                         ))}
-                        {template.tags && template.tags.length > 3 && (
+                        {template.tags.length > 3 && (
                           <span className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-full">
                             +{template.tags.length - 3} more
                           </span>
@@ -1284,3 +1288,5 @@ export function UnitPlansPage(): React.ReactElement {
     </div>
   );
 }
+
+export { UnitPlansPage };

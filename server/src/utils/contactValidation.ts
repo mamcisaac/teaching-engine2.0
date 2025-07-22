@@ -82,11 +82,12 @@ export function validatePhoneNumber(phone: string): PhoneValidationResult {
         number: `${exchange}${number}`,
         extension,
       };
-    } 
+    } else {
       return {
         isValid: false,
         errors,
       };
+    }
     
   }
 
@@ -104,12 +105,13 @@ export function validatePhoneNumber(phone: string): PhoneValidationResult {
         number: digits,
         extension,
       };
-    } 
+    } else {
       errors.push('International number must be 7-15 digits');
       return {
         isValid: false,
         errors,
       };
+    }
     
   }
 
@@ -245,7 +247,7 @@ export function validateContact(contact: {
 
   return {
     isValid: errors.length === 0,
-    name: contact.name?.trim(),
+    name: contact.name ? contact.name.trim() : undefined,
     phone: phoneResult,
     email: emailResult,
     errors: errors.length > 0 ? errors : undefined,
@@ -366,8 +368,8 @@ export function validateEmergencyContact(contact: {
   return {
     ...baseValidation,
     isValid: errors.length === 0,
-    relationship: contact.relationship?.trim(),
-    availability: contact.availability?.trim(),
+    relationship: contact.relationship ? contact.relationship.trim() : undefined,
+    availability: contact.availability ? contact.availability.trim() : undefined,
     errors: errors.length > 0 ? errors : undefined,
   };
 }

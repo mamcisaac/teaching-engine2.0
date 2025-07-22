@@ -174,15 +174,15 @@ export function FormPreview({ data, onEdit, className }: FormPreviewProps): Reac
 }}
             >
               {showAll ? (
-                <>
+                <React.Fragment>
                   <EyeOff className="h-4 w-4 mr-1" />
                   Show Less
-                </>
+                </React.Fragment>
               ) : (
-                <>
+                <React.Fragment>
                   <Eye className="h-4 w-4 mr-1" />
                   Show All
-                </>
+                </React.Fragment>
               )}
             </Button>
             <Button

@@ -482,7 +482,7 @@ describe('LongRangePlanPage', () => {
   });
 
   it('closes modal and resets form after successful creation', async () => {
-    const mockMutate = vi.fn((data, { onSuccess }) => {
+    const mockMutate = vi.fn((data: unknown, { onSuccess }: { onSuccess: () => void }) => {
       // Simulate successful mutation
       onSuccess();
     });

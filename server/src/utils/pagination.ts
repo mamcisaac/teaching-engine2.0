@@ -64,7 +64,13 @@ export function getPaginationParams(req: Request): PaginationOptions {
     };
   }
 
-  return result.data;
+  return {
+    page: result.data.page ?? 1,
+    limit: result.data.limit ?? 20,
+    sortBy: result.data.sortBy,
+    sortOrder: result.data.sortOrder ?? 'desc',
+    search: result.data.search,
+  };
 }
 
 /**

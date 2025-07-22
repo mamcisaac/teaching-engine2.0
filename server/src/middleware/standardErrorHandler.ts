@@ -201,7 +201,7 @@ export function standardErrorHandler(
   req: Request,
   res: Response,
   _next: NextFunction,
-) {
+): void {
   // Default error properties
   let statusCode = 500;
   let errorType = ErrorType.INTERNAL_ERROR;
@@ -276,7 +276,7 @@ export function standardErrorHandler(
         request: {
           method: req.method,
           url: req.url,
-          userId: (req as { user?: { id?: unknown } }).user?.id,
+          userId: (req as { user?: { id?: unknown } }).user.id,
           ip: req.ip,
         },
         statusCode,
@@ -295,7 +295,7 @@ export function standardErrorHandler(
         request: {
           method: req.method,
           url: req.url,
-          userId: (req as { user?: { id?: unknown } }).user?.id,
+          userId: (req as { user?: { id?: unknown } }).user.id,
           ip: req.ip,
         },
         statusCode,
@@ -333,7 +333,7 @@ export function standardErrorHandler(
   };
 
   // Add retry information for rate limit errors
-  if (errorType === ErrorType.RATE_LIMIT_ERROR && details.retryAfter) {
+  if (errorType === ErrorType.RATE_LIMIT_ERROR && details.retryAfter != null) {
     res.set('Retry-After', details.retryAfter.toString());
     errorResponse.retryAfter = details.retryAfter;
   }
@@ -348,7 +348,7 @@ export function standardErrorHandler(
 export function asyncHandler<T extends Request, U extends Response>(
   fn: (req: T, res: U, next: NextFunction) => Promise<unknown>,
 ) {
-  return (req: T, res: U, next: NextFunction) => {
+  return (req: T, res: U, next: NextFunction): void => {
     // eslint-disable-next-line promise/no-callback-in-promise
     Promise.resolve(fn(req, res, next)).catch(next);
   };
@@ -358,32 +358,32 @@ export function asyncHandler<T extends Request, U extends Response>(
  * Error factory functions for common errors
  */
 export const errorFactory = {
-  validation: (message: string, details?: Record<string, unknown>) =>
+  validation: (message: string, details?: Record<string, unknown>): ValidationError =>
     new ValidationError(message, details),
 
-  notFound: (resource = 'Resource') => new NotFoundError(resource),
+  notFound: (resource = 'Resource'): NotFoundError => new NotFoundError(resource),
 
-  unauthorized: (message?: string) => new AuthenticationError(message),
+  unauthorized: (message?: string): AuthenticationError => new AuthenticationError(message),
 
-  forbidden: (message?: string) => new AuthorizationError(message),
+  forbidden: (message?: string): AuthorizationError => new AuthorizationError(message),
 
-  conflict: (message: string, details?: Record<string, unknown>) =>
+  conflict: (message: string, details?: Record<string, unknown>): ConflictError =>
     new ConflictError(message, details),
 
-  rateLimit: (retryAfter?: number) => new RateLimitError(retryAfter),
+  rateLimit: (retryAfter?: number): RateLimitError => new RateLimitError(retryAfter),
 
-  database: (message: string, details?: Record<string, unknown>) =>
+  database: (message: string, details?: Record<string, unknown>): DatabaseError =>
     new DatabaseError(message, details),
 
-  externalService: (service: string, message: string) => new ExternalServiceError(service, message),
+  externalService: (service: string, message: string): ExternalServiceError => new ExternalServiceError(service, message),
 
-  businessLogic: (message: string, userMessage?: string, details?: Record<string, unknown>) =>
+  businessLogic: (message: string, userMessage?: string, details?: Record<string, unknown>): BusinessLogicError =>
     new BusinessLogicError(message, userMessage, details),
 
-  fileUpload: (message: string, details?: Record<string, unknown>) =>
+  fileUpload: (message: string, details?: Record<string, unknown>): FileUploadError =>
     new FileUploadError(message, details),
 
-  aiService: (message: string, details?: Record<string, unknown>) =>
+  aiService: (message: string, details?: Record<string, unknown>): AIServiceError =>
     new AIServiceError(message, details),
 };
 
@@ -391,7 +391,7 @@ export const errorFactory = {
  * Response helper functions
  */
 export const responseHelpers = {
-  success: (res: Response, data: unknown, message?: string, statusCode = 200) => {
+  success: (res: Response, data: unknown, message?: string, statusCode = 200): void => {
     res.status(statusCode).json({
       success: true,
       data,
@@ -400,11 +400,11 @@ export const responseHelpers = {
     });
   },
 
-  created: (res: Response, data: unknown, message?: string) => {
+  created: (res: Response, data: unknown, message?: string): void => {
     responseHelpers.success(res, data, message, 201);
   },
 
-  noContent: (res: Response) => {
+  noContent: (res: Response): void => {
     res.status(204).send();
   },
 
@@ -417,7 +417,7 @@ export const responseHelpers = {
       total: number;
       totalPages: number;
     },
-  ) => {
+  ): void => {
     res.json({
       success: true,
       data,

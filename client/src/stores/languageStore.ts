@@ -418,10 +418,16 @@ export const useLanguageStore = create<LanguageState>()(
 
         t: (key: string, fallback?: string, substitutions?: string[]): string => {
           const state = get();
-          let translation = translations[state.language][key] || fallback || key;
+          const translationValue = translations[state.language][key];
+          // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+          let translation = (translationValue != null && translationValue !== '') 
+            ? translationValue 
+            : (fallback != null && fallback !== '') 
+              ? fallback 
+              : key;
 
           // Handle string interpolation for placeholders like {0}, {1}, etc.
-          if (substitutions && substitutions.length > 0) {
+          if (substitutions != null && substitutions.length > 0) {
             substitutions.forEach((sub, index) => {
               translation = translation.replace(`{${index}}`, sub);
             });

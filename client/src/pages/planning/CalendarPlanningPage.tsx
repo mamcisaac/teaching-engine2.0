@@ -16,7 +16,6 @@ import {
 } from '../../components/calendar/LazyCalendarComponents';
 import { Button } from '../../components/ui/Button';
 import { useAuth } from '../../contexts/AuthContext';
-
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import '../../styles/calendar.css';
 import type { CalendarEvent, ETFOLessonPlan, UnitPlan } from '../../types';
@@ -78,7 +77,7 @@ const CalendarLoadingFallback = (): JSX.Element => (
   </div>
 );
 
-export default function CalendarPlanningPage(): JSX.Element {
+export function CalendarPlanningPage(): JSX.Element {
   const [localizerReady, setLocalizerReady] = useState(false);
 
   // Load the localizer asynchronously

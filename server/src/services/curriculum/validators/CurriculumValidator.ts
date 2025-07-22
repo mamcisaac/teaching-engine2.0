@@ -80,7 +80,7 @@ export class CurriculumValidator {
     this.validateStructure(curriculum, errors);
     
     // Early return if curriculum is invalid
-    if (!curriculum.expectations || !Array.isArray(curriculum.expectations)) {
+    if (!curriculum || !curriculum.expectations || !Array.isArray(curriculum.expectations)) {
       return {
         isValid: false,
         errors,

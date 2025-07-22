@@ -133,9 +133,7 @@ export function HelpProvider({ children }: { children: React.ReactNode }): React
       if (savedState !== null && savedState !== '') {
         const parsedState = safeJsonParse(savedState, initialState);
         // Convert date strings back to Date objects
-        if (parsedState.userProgress.lastVisited !== null && parsedState.userProgress.lastVisited !== undefined) {
-          parsedState.userProgress.lastVisited = new Date(parsedState.userProgress.lastVisited);
-        }
+        parsedState.userProgress.lastVisited = new Date(parsedState.userProgress.lastVisited);
         dispatch({ type: 'LOAD_STATE', payload: parsedState });
       }
     } catch (_error) {

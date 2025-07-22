@@ -300,9 +300,9 @@ return false;
 return false;
 }
 
-    if (typeof a === 'object' && a !== null) {
-      const keysA = Object.keys(a);
-      const keysB = Object.keys(b);
+    if (typeof a === 'object' && typeof b === 'object') {
+      const keysA = Object.keys(a as Record<string, unknown>);
+      const keysB = Object.keys(b as Record<string, unknown>);
 
       if (keysA.length !== keysB.length) {
 return false;
@@ -323,6 +323,7 @@ return false;
    * Shallow comparison for most memo scenarios
    */
   shallowEqual: <T extends Record<string, unknown>>(a: T, b: T): boolean => {
+    
     const keysA = Object.keys(a);
     const keysB = Object.keys(b);
 

@@ -17,7 +17,7 @@ const generateMockData = (count: number) => {
 describe('VirtualizedList', () => {
   it('renders only visible items with large dataset', async () => {
     const mockData = generateMockData(1000);
-    const renderItem = vi.fn(({ item }) => (
+    const renderItem = vi.fn(({ item }: { item: { id: string; title: string } }) => (
       <div data-testid={`item-${item.id}`} key={item.id}>
         {item.title}
       </div>
@@ -40,7 +40,7 @@ describe('VirtualizedList', () => {
 
   it('maintains scroll position when items are updated', async () => {
     const mockData = generateMockData(100);
-    const renderItem = ({ item }) => (
+    const renderItem = ({ item }: { item: { id: string; title: string } }) => (
       <div data-testid={`item-${item.id}`} key={item.id}>
         {item.title}
       </div>
@@ -80,7 +80,7 @@ describe('VirtualizedList', () => {
   });
 
   it('handles empty data gracefully', () => {
-    const renderItem = ({ item }) => <div>{item.title}</div>;
+    const renderItem = ({ item }: { item: { title: string } }) => <div>{item.title}</div>;
 
     render(
       <VirtualizedList
@@ -97,7 +97,7 @@ describe('VirtualizedList', () => {
   it('calls onScrollEnd when scrolling stops', async () => {
     const mockData = generateMockData(100);
     const onScrollEnd = vi.fn();
-    const renderItem = ({ item }) => <div>{item.title}</div>;
+    const renderItem = ({ item }: { item: { title: string } }) => <div>{item.title}</div>;
 
     render(
       <VirtualizedList
@@ -122,7 +122,7 @@ describe('VirtualizedList', () => {
 
   it('optimizes rendering performance with memoization', () => {
     const mockData = generateMockData(50);
-    const renderItem = vi.fn(({ item }) => <div>{item.title}</div>);
+    const renderItem = vi.fn(({ item }: { item: { title: string } }) => <div>{item.title}</div>);
 
     const { rerender } = render(
       <VirtualizedList

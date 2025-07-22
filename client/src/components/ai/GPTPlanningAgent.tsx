@@ -5,7 +5,7 @@ import { useState, useRef, useEffect } from 'react';
 import { toast } from 'sonner';
 
 import { api } from '../../api';
-import type { SpeechRecognition, SpeechRecognitionEvent } from '../../types/speech-recognition';
+import type { SpeechRecognition, SpeechRecognitionEvent, SpeechRecognitionErrorEvent } from '../../types/speech-recognition';
 
 interface Action {
   type: string;
@@ -116,7 +116,7 @@ export function GPTPlanningAgent({
   // Send message
   const sendMessageMutation = useMutation({
     mutationFn: async (message: string) => {
-      if (!sessionId) {
+      if (sessionId == null || sessionId === '') {
 throw new Error('No session');
 }
       const response = await api.post<{ data: MessageResponse }>('/api/ai/agent/messages', {
@@ -181,7 +181,7 @@ throw new Error('No session');
     return () => { // Cleanup
     };
 
-    if (isOpen && !sessionId) {
+    if (isOpen && (sessionId == null || sessionId === '')) {
       startSessionMutation.mutate();
     }
   }, [isOpen, sessionId, startSessionMutation]);
@@ -200,8 +200,8 @@ throw new Error('No session');
     };
 
     if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-      const SpeechRecognitionConstructor =
-        (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+      const SpeechRecognitionConstructor: new () => SpeechRecognition =
+        'SpeechRecognition' in window ? window.SpeechRecognition : window.webkitSpeechRecognition;
       const recognition = new SpeechRecognitionConstructor();
       recognitionRef.current = recognition;
       
@@ -215,9 +215,9 @@ throw new Error('No session');
         setIsListening(false);
       };
 
-      recognition.onerror = (): void => {
+      recognition.onerror = (event: SpeechRecognitionErrorEvent): void => {
         setIsListening(false);
-        toast.error('Voice recognition failed');
+        toast.error(`Voice recognition failed: ${event.error}`);
       };
 
       recognition.onend = (): void => {

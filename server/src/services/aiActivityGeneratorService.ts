@@ -103,7 +103,7 @@ export class AIActivityGeneratorService {
     };
   }
 
-  // @ts-expect-error Method reserved for future LLM integration
+  // Method reserved for future LLM integration
   private _buildGenerationPrompt(params: GenerationParams): string {
     let prompt = 'Generate an engaging educational activity.\n\n';
 
@@ -184,7 +184,7 @@ prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`
     return prompt;
   }
 
-  // @ts-expect-error Method reserved for future LLM integration
+  // Method reserved for future LLM integration
   private _parseGeneratedActivity(response: string): GeneratedActivity {
     try {
       // Extract JSON from response
@@ -282,7 +282,7 @@ prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`
     };
   }
 
-  // @ts-expect-error Method reserved for future LLM integration
+  // Method reserved for future LLM integration
   private _getSystemPrompt(): string {
     return `You are an expert elementary school teacher with extensive experience in French immersion education and the Ontario curriculum. You specialize in creating engaging, developmentally appropriate learning activities that follow ETFO best practices.
 

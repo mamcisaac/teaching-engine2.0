@@ -46,10 +46,10 @@ export function LoadingSkeleton({
   };
 
   const containerStyle: React.CSSProperties = {};
-  if (height) {
+  if (height != null && height !== '') {
 containerStyle.height = height;
 }
-  if (width) {
+  if (width != null && width !== '') {
 containerStyle.width = width;
 }
 
@@ -84,7 +84,7 @@ containerStyle.width = width;
               <SkeletonBox
                 className={cn(
                   'rounded-full flex-shrink-0',
-                  (() => {
+                  ((): string => {
                     if (item.size === 'sm') {
 return 'h-8 w-8';
 }
@@ -126,7 +126,7 @@ return 'h-16 w-16';
               <SkeletonBox
                 className={cn(
                   'rounded-lg',
-                  (() => {
+                  ((): string => {
                     if (item.size === 'sm') {
 return 'h-20 w-20';
 }

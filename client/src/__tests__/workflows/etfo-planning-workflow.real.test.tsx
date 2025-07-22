@@ -13,9 +13,9 @@ import {
   realApiAssertions,
 } from '../../test-utils/real-api-helpers';
 import { createAuthenticatedTestUser, type AuthTestContext } from '../../test-utils/auth-test-utils';
-import PlanningDashboard from '../../pages/PlanningDashboard';
-import ETFOLessonPlanPage from '../../pages/ETFOLessonPlanPage';
-import UnitPlansPage from '../../pages/UnitPlansPage';
+import { PlanningDashboard } from '../../pages/PlanningDashboard';
+import { ETFOLessonPlanPage } from '../../pages/ETFOLessonPlanPage';
+import { UnitPlansPage } from '../../pages/UnitPlansPage';
 
 describe('ETFO Planning Workflow - Complete Integration', () => {
   let authContext: AuthTestContext;
@@ -338,7 +338,7 @@ describe('ETFO Planning Workflow - Complete Integration', () => {
 
       // Verify in backend
       const unitPlans = await realApiHelpers.getUnitPlans(authContext);
-      const geometryUnit = unitPlans.find(u => u.title === 'Geometry Unit');
+      const geometryUnit = unitPlans.find((u: { title: string }) => u.title === 'Geometry Unit');
       expect(geometryUnit).toBeDefined();
       expect(geometryUnit.expectations).toBeDefined();
       expect(geometryUnit.expectations.length).toBe(2);

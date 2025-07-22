@@ -152,7 +152,7 @@ export function validateLessonPlan(data: LessonPlanFormData): ValidationResult {
   const hasAction = data.action?.trim();
   const hasConsolidation = data.consolidation?.trim();
 
-  if (!hasMindsOn  && !hasAction  && !hasConsolidation ) {
+  if ((hasMindsOn == null || hasMindsOn === '') && (hasAction == null || hasAction === '') && (hasConsolidation == null || hasConsolidation === '')) {
     errors.lessonStructure =
       'At least one lesson component (Minds On, Action, or Consolidation) must have content';
   }
@@ -162,7 +162,7 @@ export function validateLessonPlan(data: LessonPlanFormData): ValidationResult {
     errors.title = 'Title must be 200 characters or less';
   }
 
-  if (data.learningGoals && data.learningGoals !== '' && data.learningGoals.length > 1000) {
+  if (data.learningGoals != null && data.learningGoals !== '' && data.learningGoals.length > 1000) {
     errors.learningGoals = 'Learning goals must be 1000 characters or less';
   }
 
@@ -187,11 +187,11 @@ export function validateExpectationSelection(
 ): ValidationResult {
   const errors: Record<string, string> = {};
 
-  if (!expectationIds || expectationIds.length === 0) {
+  if (expectationIds.length === 0) {
     errors.expectationIds = `At least one curriculum expectation must be selected for this ${context}`;
   }
 
-  if (expectationIds && expectationIds.length > 20) {
+  if (expectationIds.length > 20) {
     errors.expectationIds = `Too many expectations selected. Consider limiting to 20 or fewer for a ${context}`;
   }
 
@@ -222,7 +222,7 @@ export function validateField(
     case 'startDate':
     case 'endDate':
     case 'date': {
-      if (!value) {
+      if (value == null || value === '') {
         return 'Date is required';
       }
       const date = new Date(value as string | number | Date);

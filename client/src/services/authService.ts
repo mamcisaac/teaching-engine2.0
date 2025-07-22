@@ -30,7 +30,7 @@ class AuthService implements AuthServiceInterface {
   getAccessToken(): string | null {
     // Check if token is expired
     const expiresAt = this.getTokenExpiration();
-    if (expiresAt !== null && expiresAt !== 0 && !isNaN(expiresAt) && Date.now() >= expiresAt) {
+    if (expiresAt !== null && expiresAt > 0 && Date.now() >= expiresAt) {
       this.clearTokens();
       return null;
     }
@@ -104,7 +104,7 @@ class AuthService implements AuthServiceInterface {
    */
   getUser(): User | null {
     const userData = localStorage.getItem(this.USER_KEY);
-    if (!userData) {
+    if (userData === null || userData === '') {
       return null;
     }
     const parsed = safeJsonParse(userData, null);
@@ -116,7 +116,7 @@ class AuthService implements AuthServiceInterface {
    */
   isAuthenticated(): boolean {
     const token = this.getAccessToken();
-    return Boolean(token);
+    return token !== null && token !== '';
   }
 
   /**
@@ -193,7 +193,7 @@ class AuthService implements AuthServiceInterface {
   }
 
   private async _performTokenRefresh(): Promise<boolean> {
-    const baseURL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:3000';
+    const baseURL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
 
     try {
       // Refresh token is now sent as HTTP-only cookie automatically
@@ -237,8 +237,7 @@ class AuthService implements AuthServiceInterface {
    */
   async verifyAuth(isRetry = false): Promise<User | null> {
     const token = this.getAccessToken();
-
-    if (token === null) {
+    if (token === null || token === '') {
       return null;
     }
 
@@ -286,8 +285,7 @@ class AuthService implements AuthServiceInterface {
    */
   getAuthHeaders(): Record<string, string> {
     const token = this.getAccessToken();
-
-    if (token === null) {
+    if (token === null || token === '') {
       return {};
     }
 

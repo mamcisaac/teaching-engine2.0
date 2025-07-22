@@ -182,7 +182,7 @@ export function DuplicatePlanModal({
                   <SelectValue placeholder="Choose a plan" />
                 </SelectTrigger>
                 <SelectContent>
-                  {(availablePlans[selectedType as keyof typeof availablePlans] || []).map((plan: PlanItem, _index) => (
+                  {(selectedType !== '' ? availablePlans[selectedType as keyof typeof availablePlans] : []).map((plan: PlanItem, _index) => (
                     <SelectItem key={plan.id} value={plan.id}>
                       <div>
                         <div className="font-medium">{plan.title}</div>
@@ -220,7 +220,7 @@ export function DuplicatePlanModal({
               onChange={(e) => {
  setNewTitle(e.target.value); 
 }}
-              placeholder={planTitle ? `Copy of ${planTitle}` : 'Enter new title'}
+              placeholder={planTitle !== undefined && planTitle !== '' ? `Copy of ${planTitle}` : 'Enter new title'}
               required
               value={newTitle}
             />

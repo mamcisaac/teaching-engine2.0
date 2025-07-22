@@ -1,69 +1,127 @@
-// Optimized Vite configuration for Teaching Engine 2.0
+// PERFORMANCE OPTIMIZED Vite configuration for Teaching Engine 2.0
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import { visualizer } from 'rollup-plugin-visualizer';
-// import compression from 'vite-plugin-compression';
 
-// Custom chunk splitting strategy
+// Advanced chunk splitting strategy for optimal loading
 function manualChunks(id: string) {
   if (id.includes('node_modules')) {
-    // Core React ecosystem
-    if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
-      return 'vendor-react';
+    // Core React ecosystem - minimal core dependencies
+    if (id.includes('react/') || id.includes('react-dom/')) {
+      return 'vendor-react-core';
+    }
+    
+    // React Router - separate for better caching
+    if (id.includes('react-router')) {
+      return 'vendor-router';
     }
 
-    // UI libraries
-    if (id.includes('@radix-ui') || id.includes('@headlessui') || id.includes('lucide-react')) {
-      return 'vendor-ui';
+    // Critical UI libraries - heavily used components
+    if (id.includes('@radix-ui') || id.includes('lucide-react') || id.includes('class-variance-authority') || id.includes('clsx') || id.includes('tailwind-merge')) {
+      return 'vendor-ui-core';
     }
 
-    // Data & state management
+    // State management - essential for app functionality
     if (id.includes('@tanstack/react-query') || id.includes('zustand') || id.includes('immer')) {
-      return 'vendor-data';
+      return 'vendor-state';
     }
 
-    // Utilities
-    if (id.includes('lodash') || id.includes('date-fns') || id.includes('axios')) {
-      return 'vendor-utils';
+    // Network & utilities - frequently used
+    if (id.includes('axios') || id.includes('date-fns') || id.includes('nanoid')) {
+      return 'vendor-utils-core';
     }
 
-    // Charts & visualization (separate large libraries)
-    if (id.includes('chart.js')) {
-      return 'vendor-chartjs';
+    // Chart libraries - large, separate loading
+    if (id.includes('chart.js') || id.includes('react-chartjs-2')) {
+      return 'vendor-charts-chartjs';
     }
     if (id.includes('recharts')) {
-      return 'vendor-recharts';
+      return 'vendor-charts-recharts';
     }
 
-    // Calendar libraries
+    // Calendar - large feature chunk
     if (id.includes('react-big-calendar') || id.includes('moment')) {
       return 'vendor-calendar';
     }
 
-    // Animation libraries
+    // Animation - optional enhancement
     if (id.includes('framer-motion')) {
       return 'vendor-animation';
     }
 
-    // PDF generation
-    if (id.includes('jspdf') || id.includes('html2canvas')) {
+    // PDF generation - heavy feature
+    if (id.includes('jspdf') || id.includes('html2canvas') || id.includes('react-to-print')) {
       return 'vendor-pdf';
     }
 
-    // DND libraries
+    // Drag and drop - specific feature
     if (id.includes('@dnd-kit')) {
       return 'vendor-dnd';
     }
 
-    // Form handling
+    // Form handling - commonly used
     if (id.includes('react-hook-form') || id.includes('zod')) {
       return 'vendor-forms';
     }
 
-    // File handling
+    // File handling & security
     if (id.includes('react-dropzone') || id.includes('dompurify')) {
       return 'vendor-files';
+    }
+
+    // Monitoring & error tracking - lazy loaded
+    if (id.includes('@sentry/')) {
+      return 'vendor-monitoring';
+    }
+
+    // Toast notifications - lightweight
+    if (id.includes('sonner')) {
+      return 'vendor-ui-toast';
+    }
+
+    // All other vendor dependencies
+    return 'vendor-misc';
+  }
+
+  // Application code splitting
+  if (id.includes('/src/')) {
+    // Page components - route-based splitting
+    if (id.includes('/pages/')) {
+      if (id.includes('ETFOLessonPlan')) return 'page-etfo-lesson';
+      if (id.includes('UnitPlans')) return 'page-unit-plans';
+      if (id.includes('Calendar')) return 'page-calendar';
+      if (id.includes('Newsletter')) return 'page-newsletter';
+      if (id.includes('Templates')) return 'page-templates';
+      if (id.includes('Help')) return 'page-help';
+      return 'pages-misc';
+    }
+
+    // Component chunks by feature
+    if (id.includes('/components/')) {
+      if (id.includes('/ai/')) return 'components-ai';
+      if (id.includes('/calendar/')) return 'components-calendar';
+      if (id.includes('/planning/')) return 'components-planning';
+      if (id.includes('/templates/')) return 'components-templates';
+      if (id.includes('/printing/')) return 'components-printing';
+      if (id.includes('/performance/')) return 'components-performance';
+      if (id.includes('/onboarding/')) return 'components-onboarding';
+      return 'components-common';
+    }
+
+    // API and services
+    if (id.includes('/api/') || id.includes('/services/')) {
+      return 'services-api';
+    }
+
+    // Stores and state
+    if (id.includes('/stores/') || id.includes('/hooks/')) {
+      return 'state-management';
+    }
+
+    // Utilities
+    if (id.includes('/utils/')) {
+      return 'app-utils';
     }
   }
 }
@@ -74,37 +132,36 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [
-      react(),
+      react({
+        // Use automatic JSX runtime
+        jsxRuntime: 'automatic',
+        // Temporarily disable Babel plugins to fix build issues
+        babel: {
+          plugins: [],
+        },
+        // Fast refresh is enabled by default in current plugin version
+      }),
 
-      // Vendor chunk splitting is now handled in build.rollupOptions.output.manualChunks
-
-      // Compress assets in production
-      // isProd && compression({
-      //   algorithm: 'gzip',
-      //   ext: '.gz',
-      //   threshold: 10240, // Only compress files > 10KB
-      // }),
-
-      // isProd && compression({
-      //   algorithm: 'brotliCompress',
-      //   ext: '.br',
-      //   threshold: 10240,
-      // }),
-
-      // Bundle analyzer for production builds
-      isProd &&
-        visualizer({
-          open: false,
-          filename: 'dist/bundle-analysis.html',
-          gzipSize: true,
-          brotliSize: true,
-        }),
+      // Advanced bundle analyzer
+      isProd && visualizer({
+        open: false,
+        filename: 'dist/bundle-analysis.html',
+        gzipSize: true,
+        brotliSize: true,
+        template: 'treemap', // Better visualization
+      }),
     ].filter(Boolean),
 
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src'),
+        // Optimize moment.js
+        'moment': 'date-fns',
       },
+      // Reduce resolution work
+      extensions: ['.ts', '.tsx', '.js', '.jsx'],
+      // Optimize dependency resolution
+      dedupe: ['react', 'react-dom', '@tanstack/react-query'],
     },
 
     envPrefix: 'VITE_',
@@ -112,21 +169,34 @@ export default defineConfig(({ mode }) => {
     server: {
       port: 5173,
       strictPort: true,
+      host: true, // Enable network access
       proxy: {
         '/api': {
           target: 'http://localhost:3000',
           changeOrigin: true,
+          secure: false,
         },
       },
-      // Optimize HMR
+      // Optimize HMR performance
       hmr: {
-        overlay: false, // Reduce overhead
+        overlay: false,
+        clientPort: 5173,
+      },
+      // Warming up frequently used files
+      warmup: {
+        clientFiles: [
+          './src/main.tsx',
+          './src/App.tsx',
+          './src/components/ui/**/*.tsx',
+          './src/pages/PlanningDashboard.tsx'
+        ],
       },
     },
 
     preview: {
       port: 5173,
       strictPort: true,
+      host: true,
       proxy: {
         '/api': {
           target: 'http://localhost:3000',
@@ -136,17 +206,18 @@ export default defineConfig(({ mode }) => {
     },
 
     build: {
-      target: 'es2020',
+      target: ['es2020', 'edge88', 'firefox78', 'chrome87', 'safari14'],
       minify: isProd ? 'esbuild' : false,
 
-      // Source maps only in development
-      sourcemap: isDev,
+      // Enable source maps only when needed
+      sourcemap: isDev ? 'inline' : false,
 
-      // Optimize chunks
+      // Advanced chunk optimization
       rollupOptions: {
         output: {
           manualChunks,
-          // Asset naming for better caching
+          
+          // Optimized asset naming strategy
           assetFileNames: (assetInfo) => {
             const info = (assetInfo.name ?? 'asset').split('.');
             let extType = info[info.length - 1];
@@ -155,31 +226,61 @@ export default defineConfig(({ mode }) => {
             } else if (/woff|woff2|eot|ttf|otf/i.test(extType)) {
               extType = 'fonts';
             }
-            return `assets/${extType}/[name]-[hash][extname]`;
+            return `assets/${extType}/[name]-[hash:8][extname]`;
           },
-          chunkFileNames: 'assets/js/[name]-[hash].js',
-          entryFileNames: 'assets/js/[name]-[hash].js',
+          chunkFileNames: 'assets/js/[name]-[hash:8].js',
+          entryFileNames: 'assets/js/[name]-[hash:8].js',
+
+          // Optimize chunk loading
+          experimentalMinChunkSize: 1000, // Minimum 1KB chunks
+        },
+
+        // External dependencies optimization
+        external: (id) => {
+          // Don't externalize any dependencies - bundle them
+          return false;
+        },
+
+        // Tree shaking optimization
+        treeshake: {
+          preset: 'recommended',
+          moduleSideEffects: false,
+          propertyReadSideEffects: false,
+          unknownGlobalSideEffects: false,
         },
       },
 
-      // Chunk size warnings
-      chunkSizeWarningLimit: 1000, // 1MB
+      // Strict chunk size limits
+      chunkSizeWarningLimit: 500, // 500KB warning
 
       // CSS optimization
       cssCodeSplit: true,
-      cssMinify: isProd,
+      cssMinify: isProd ? 'esbuild' : false,
 
-      // Build performance
+      // Performance settings
       reportCompressedSize: false, // Faster builds
+      assetsInlineLimit: 8192, // 8KB inline limit
 
-      // Module preload
+      // Advanced module preloading
       modulePreload: {
         polyfill: true,
+        resolveDependencies: (url, deps, context) => {
+          // Only preload critical dependencies
+          return deps.filter(dep => 
+            dep.includes('vendor-react-core') || 
+            dep.includes('vendor-ui-core') || 
+            dep.includes('vendor-state')
+          );
+        },
       },
+
+      // ESBuild handles minification when minify: 'esbuild' is set
+      // Console/debugger removal is handled in the esbuild section below
     },
 
-    // Dependency optimization
+    // Advanced dependency optimization
     optimizeDeps: {
+      // Critical dependencies to pre-bundle
       include: [
         'react',
         'react-dom',
@@ -187,37 +288,88 @@ export default defineConfig(({ mode }) => {
         '@tanstack/react-query',
         'axios',
         'date-fns',
+        'zustand',
+        'immer',
+        'clsx',
+        'tailwind-merge',
+        'lucide-react',
+        'nanoid',
       ],
+      
+      // Exclude local packages and problematic deps
       exclude: [
-        '@teaching-engine/database', // Local package
+        '@teaching-engine/database',
+        '@sentry/react', // Load lazily
+        'framer-motion', // Load lazily for animations
       ],
-      // Force optimization in development for consistency
+
+      // ESBuild options for dependency optimization
+      esbuildOptions: {
+        target: 'es2020',
+        jsx: 'automatic',
+        supported: {
+          bigint: true,
+        },
+      },
+
+      // Force optimization for consistency
       force: isDev,
     },
 
-    // Cache configuration
+    // Cache configuration for maximum performance
     cacheDir: '.vite-cache',
 
-    // Performance optimizations
+    // Advanced ESBuild configuration
     esbuild: {
       target: 'es2020',
-      // Remove automatic React inject - using new JSX transform
-      // jsxInject: `import React from 'react'`,
-      // Remove unused code
+      legalComments: 'none',
       treeShaking: true,
-      // Optimize for speed in development
-      minifyIdentifiers: isProd,
-      minifySyntax: isProd,
-      minifyWhitespace: isProd,
+      // Configure JSX for automatic runtime
+      jsx: 'automatic',
+      jsxDev: isDev,
+      
+      // Production optimizations
+      ...(isProd && {
+        drop: ['console', 'debugger'],
+        minifyIdentifiers: true,
+        minifySyntax: true,
+        minifyWhitespace: true,
+      }),
+
+      // Development optimizations
+      ...(isDev && {
+        sourcemap: 'inline',
+        keepNames: true,
+      }),
     },
 
-    // Worker configuration
+    // Web Worker optimization
     worker: {
       format: 'es',
+      plugins: () => [react()],
       rollupOptions: {
         output: {
-          entryFileNames: 'assets/worker/[name]-[hash].js',
+          entryFileNames: 'assets/worker/[name]-[hash:8].js',
+          chunkFileNames: 'assets/worker/chunk-[name]-[hash:8].js',
         },
+      },
+    },
+
+    // Prevent dependency cycles and optimize loading
+    define: {
+      'process.env.NODE_ENV': JSON.stringify(mode),
+      __DEV__: isDev,
+    },
+
+    // JSON optimization
+    json: {
+      stringify: true,
+    },
+
+    // Experimental features for performance
+    experimental: {
+      renderBuiltUrl: (filename) => {
+        return `/${filename}`;
       },
     },
   };

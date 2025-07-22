@@ -5,27 +5,23 @@
 
 import { prisma } from '../../../prisma';
 import type {
-  User,
   UserTemplateData,
   UserPreferences,
   Student,
   LessonTemplateData,
   ExpectationReference,
-  CurriculumExpectation,
   GroupedExpectations,
   AssessmentData,
   ReportPeriodData,
   AttendanceData,
   SubjectSummary,
   NewsletterData,
-  DaybookEntry,
   LessonFilterOptions,
   StudentFilterOptions,
   CurriculumFilterOptions,
   CustomDataFilters,
   LessonWhereInput,
   StudentWhereInput,
-  CurriculumWhereInput,
 } from '../../../types/template-data';
 import type { DataRequirement } from '../providers/TemplateProvider';
 
@@ -185,7 +181,7 @@ export class TemplateDataFetcher {
       userId: context.userId,
     };
 
-    if (filters?.startDate && filters.endDate) {
+    if (filters?.startDate && filters?.endDate) {
       where.date = {
         gte: new Date(filters.startDate),
         lte: new Date(filters.endDate),
@@ -216,12 +212,12 @@ export class TemplateDataFetcher {
 
     // Transform to template-friendly format
     return lessons.map((lesson): LessonTemplateData => ({
-      id: lesson.id,
+      id: parseInt(lesson.id),
       title: lesson.title,
       date: lesson.date,
-      subject: lesson.unitPlan.longRangePlan.subject || lesson.subject,
-      grade: lesson.unitPlan.longRangePlan.grade,
-      duration: lesson.duration,
+      subject: lesson.unitPlan.longRangePlan.subject || lesson.subject || '',
+      grade: lesson.unitPlan.longRangePlan.grade.toString() || '0',
+      duration: parseInt(String(lesson.duration || '0')),
       unit: lesson.unitPlan ? {
         title: lesson.unitPlan.title,
         week: Math.ceil(
@@ -229,19 +225,19 @@ export class TemplateDataFetcher {
           (7 * 24 * 60 * 60 * 1000)
         ),
       } : null,
-      learningGoals: lesson.learningGoals,
-      materials: lesson.materials,
-      mindsOn: lesson.mindsOn,
-      action: lesson.action,
-      consolidation: lesson.consolidation,
-      grouping: lesson.grouping,
-      assessmentType: lesson.assessmentType,
-      assessmentNotes: lesson.assessmentNotes,
-      accommodations: lesson.accommodations,
-      modifications: lesson.modifications,
-      extensions: lesson.extensions,
+      learningGoals: typeof lesson.learningGoals === 'string' ? lesson.learningGoals : lesson.learningGoals ? String(lesson.learningGoals) : null,
+      materials: typeof lesson.materials === 'string' ? lesson.materials : lesson.materials ? String(lesson.materials) : null,
+      mindsOn: typeof lesson.mindsOn === 'string' ? lesson.mindsOn : lesson.mindsOn ? String(lesson.mindsOn) : null,
+      action: typeof lesson.action === 'string' ? lesson.action : (lesson.action ? String(lesson.action) : null),
+      consolidation: typeof lesson.consolidation === 'string' ? lesson.consolidation : (lesson.consolidation ? String(lesson.consolidation) : null),
+      grouping: typeof lesson.grouping === 'string' ? lesson.grouping : lesson.grouping ? String(lesson.grouping) : null,
+      assessmentType: typeof lesson.assessmentType === 'string' ? lesson.assessmentType : lesson.assessmentType ? String(lesson.assessmentType) : null,
+      assessmentNotes: typeof lesson.assessmentNotes === 'string' ? lesson.assessmentNotes : lesson.assessmentNotes ? String(lesson.assessmentNotes) : null,
+      accommodations: typeof lesson.accommodations === 'string' ? lesson.accommodations : lesson.accommodations ? String(lesson.accommodations) : null,
+      modifications: typeof lesson.modifications === 'string' ? lesson.modifications : (lesson.modifications ? String(lesson.modifications) : null),
+      extensions: typeof lesson.extensions === 'string' ? lesson.extensions : (lesson.extensions ? String(lesson.extensions) : null),
       expectations: lesson.expectations.map((e): ExpectationReference => ({
-        code: e.expectationId,
+        code: e.expectationId || '',
         description: '',
         type: 'specific' as const,
       })),
@@ -265,7 +261,7 @@ export class TemplateDataFetcher {
    */
   private async fetchCurriculumData(context: FetchContext): Promise<GroupedExpectations> {
     const filters = context.filters as CurriculumFilterOptions | undefined;
-    const where: CurriculumWhereInput = {
+    const where: any = {
       isActive: true,
     };
 
@@ -274,7 +270,7 @@ export class TemplateDataFetcher {
     }
 
     if (filters?.grade) {
-      where.grade = filters.grade;
+      where.grade = Number(filters.grade);
     }
 
     if (filters?.strand) {
@@ -283,15 +279,34 @@ export class TemplateDataFetcher {
 
     const expectations = await prisma.curriculumExpectation.findMany({
       where,
+      select: {
+        id: true,
+        code: true,
+        description: true,
+        grade: true,
+        subject: true,
+        strand: true,
+      },
       orderBy: [
         { code: 'asc' },
       ],
     });
 
+    // Transform to match interface requirements
+    const transformedExpectations = expectations.map(e => ({
+      id: parseInt(e.id),
+      code: e.code,
+      description: e.description,
+      grade: e.grade.toString(),
+      subject: e.subject,
+      strand: e.strand,
+      isActive: true, // Default to true since we filter by isActive in where clause
+    }));
+
     // Group by code pattern (e.g., A1 is overall, A1.1 is specific)
     const grouped: GroupedExpectations = {
-      overall: expectations.filter((e) => !e.code.includes('.')),
-      specific: expectations.filter((e) => e.code.includes('.')),
+      overall: transformedExpectations.filter((e) => !e.code.includes('.')),
+      specific: transformedExpectations.filter((e) => e.code.includes('.')),
     };
 
     return grouped;

@@ -1,7 +1,7 @@
 // Lazy Loading Service for Large Documents
 // Provides efficient loading of curriculum documents with caching
 
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import { apiClient } from '../api/core/client';
 import { logger } from '../utils/logger';
@@ -280,13 +280,13 @@ export const lazyLoader = new LazyLoader();
 
 // React hook for lazy loading
 export function useLazyDocument(documentId: string | null, options?: LoadOptions): { document: unknown; loading: boolean; error: Error | null; progress: number } {
-  const [document, setDocument] = React.useState<unknown>(null);
-  const [loading, setLoading] = React.useState(false);
-  const [error, setError] = React.useState<Error | null>(null);
-  const [progress, setProgress] = React.useState(0);
+  const [document, setDocument] = useState<unknown>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
+  const [progress, setProgress] = useState(0);
 
-  React.useEffect(() => {
-    if (!documentId) {
+  useEffect(() => {
+    if (documentId === null || documentId === '') {
       return;
     }
 
@@ -348,10 +348,10 @@ export function LazyDocument<T = unknown>({
   placeholder,
   onError 
 }: LazyDocumentProps<T>): JSX.Element {
-  const elementRef = React.useRef<HTMLDivElement>(null);
+  const elementRef = useRef<HTMLDivElement>(null);
   const { document, loading, error } = useLazyDocument(documentId);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const element = elementRef.current;
     if (element !== null) {
       lazyLoader.observeElement(element, documentId);
@@ -364,7 +364,7 @@ export function LazyDocument<T = unknown>({
     };
   }, [documentId]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (error && onError !== undefined) {
       onError(error);
     }
@@ -374,7 +374,7 @@ export function LazyDocument<T = unknown>({
     <div ref={elementRef}>
       {loading && (placeholder ?? <div>Loading...</div>)}
       {error && <div>Error loading document: {(error instanceof Error ? error.message : String(error))}</div>}
-      {document ? render(document as T) : null}
+      {document !== null && document !== undefined ? render(document as T) : null}
     </div>
   );
 }

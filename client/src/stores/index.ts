@@ -18,9 +18,7 @@ export * from './languageStore';
 export * from './uiStore';
 
 // Re-export commonly used types and utilities
-export type { OnboardingStep, OnboardingFlow } from './onboardingStore';
-export type { KeyboardShortcut } from './keyboardShortcutsStore';
-export type { LessonPlan } from './lessonPlanStore';
+// Types are already exported via export * above
 
 // Store initialization utilities
 export const initializeStores = (): void => {

@@ -11,18 +11,11 @@ import {
   isForgotPasswordRequestBody,
   isResetPasswordRequestBody} from '../types/auth-data.js';
 import type {
-  LoginRequestBody,
-  RegisterRequestBody,
-  ChangePasswordRequestBody,
-  ForgotPasswordRequestBody,
-  ResetPasswordRequestBody,
-  AuthUserResponse,
   LoginResponse,
   RegisterResponse,
   ForgotPasswordResponse,
   MessageResponse,
   DatabaseUser,
-  TokenPayload,
   ResetTokenPayload,
   PasswordValidationResult,
   PrismaError
@@ -41,7 +34,7 @@ import { AuthenticationError, ValidationError, ConflictError, AppError } from '.
 
 // Environment validation
 const {JWT_SECRET} = process.env;
-if (!JWT_SECRET) {
+if (JWT_SECRET == null || JWT_SECRET === '') {
   throw new Error('JWT_SECRET environment variable is required');
 }
 // TypeScript now knows JWT_SECRET is defined, but we need to help it
@@ -307,7 +300,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
           },
           email: email.toLowerCase(),
           errorType: typeof error,
-          errorConstructor: error?.constructor?.name,
+          errorConstructor: error?.constructor.name,
         },
         'Error creating user',
       );

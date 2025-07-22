@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -40,7 +40,7 @@ export function LanguageSwitcher(): React.ReactElement {
       </button>
 
       {isOpen && (
-        <>
+        <React.Fragment>
           {/* Backdrop */}
           <div 
             aria-label="Close language selector" 
@@ -89,7 +89,7 @@ export function LanguageSwitcher(): React.ReactElement {
               ))}
             </div>
           </div>
-        </>
+        </React.Fragment>
       )}
     </div>
   );

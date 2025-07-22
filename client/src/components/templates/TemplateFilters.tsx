@@ -76,7 +76,7 @@ export function TemplateFilters({
 }}
             placeholder="Search templates..."
             type="text"
-            value={filters.search  ? filters.search : ''}
+            value={filters.search ?? ''}
           />
         </div>
 

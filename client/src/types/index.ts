@@ -368,19 +368,7 @@ export interface Student {
   name?: string;
 }
 
-export interface ReflectionInput {
-  date: string;
-  content: string;
-  // Legacy outcome IDs removed
-  themeId?: number | null;
-}
-
-export interface ReflectionUpdate {
-  date?: string;
-  content?: string;
-  // Legacy outcome IDs removed
-  themeId?: number | null;
-}
+// ReflectionInput and ReflectionUpdate already defined above
 
 export interface StudentGoal {
   id: number;

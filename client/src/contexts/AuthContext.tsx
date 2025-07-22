@@ -101,13 +101,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
           response?: { data?: { error?: string }; status?: number };
           message?: string;
         };
-        if (err.response?.data?.error !== null && err.response?.data?.error !== undefined && err.response.data.error !== '') {
+        if (err.response?.data?.error !== undefined && err.response.data.error !== '') {
           errorMessage = err.response.data.error;
         } else if (err.response?.status === 401) {
           errorMessage = 'Invalid email or password';
-        } else if (err.response?.status !== null && err.response?.status !== undefined && err.response.status >= 500) {
+        } else if (err.response?.status !== undefined && err.response.status >= 500) {
           errorMessage = 'Server error. Please try again later.';
-        } else if (err.message) {
+        } else if (err.message !== undefined && err.message !== '') {
           errorMessage = err.message;
         }
 
@@ -147,9 +147,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
         const userData = await authService.verifyAuth();
         updateAuthState(userData);
         return true;
-      } 
-        updateAuthState(null);
-        return false;
+      }
+      updateAuthState(null);
+      return false;
       
     } catch (_error) {
       logger.error('Token refresh failed:', _error);
@@ -200,7 +200,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
 
         // If we have a stored user and token, verify with server
         // Add a timeout to prevent hanging
-        if (storedUser !== null && hasToken) {
+        if (storedUser !== null) {
           const checkAuthPromise = checkAuth();
           const timeoutPromise = new Promise<void>((_, reject) =>
             setTimeout((): void => {
@@ -213,7 +213,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
           } catch (timeoutError) {
             logger.warn('Auth verification timed out, using cached user');
             // Use cached user data if server check times out
-            if (isMounted && storedUser !== null) {
+            if (isMounted) {
               updateAuthState(storedUser);
             }
           }
