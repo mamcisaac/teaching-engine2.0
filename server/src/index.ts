@@ -13,7 +13,7 @@ import { logger } from './logger.js';
 import { authenticate } from './middleware/authenticate';
 import { curriculumCache, staticCache, userCache } from './middleware/cache';
 import { errorContextMiddleware, authErrorMiddleware } from './middleware/errorContext';
-import { errorHandler, notFoundHandler, asyncHandler } from './middleware/errorHandler';
+import { errorHandler, notFoundHandler } from './middleware/errorHandler';
 import { httpMetricsMiddleware, startSystemMetricsCollection } from './middleware/metrics';
 import { rateLimiters } from './middleware/rateLimit/index';
 import { requestLoggingMiddleware, errorLoggingMiddleware } from './middleware/requestLogger';

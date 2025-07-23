@@ -58,7 +58,7 @@ function CurriculumImportWizard({
     setReviewedData(null);
     setIsUploading(false);
     setIsConfirming(false);
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [])
 
   const handleClose = useCallback(() => {
     resetWizard();

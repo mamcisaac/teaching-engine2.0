@@ -39,7 +39,7 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
     return (): void => {
  document.removeEventListener('mousedown', handleClickOutside); 
 };
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [])
 
   const handleSearchSubmit = (e: React.FormEvent): void => {
     e.preventDefault();

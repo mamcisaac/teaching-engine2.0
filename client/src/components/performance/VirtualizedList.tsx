@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useMemo, useRef, useState, type ComponentType, type CSSProperties, type ReactNode, type UIEvent } from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef, useState, type ComponentType, type CSSProperties, type ReactNode } from 'react';
 // Type-safe debounce implementation with cancel
 interface DebounceFunction<T extends unknown[]> {
   (...args: T): void;

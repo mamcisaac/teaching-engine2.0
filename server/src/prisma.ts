@@ -69,11 +69,11 @@ const getPrisma = (): DatabasePrismaClient => {
 
 // Create a proxy to always use the current client
 export const prisma = new Proxy({} as InstanceType<typeof DatabasePrismaClient>, {
-  get(_target, prop) {
+  get(_target, prop): unknown {
     const client = getPrisma();
     return client[prop as keyof InstanceType<typeof DatabasePrismaClient>];
   },
-  has(_target, prop) {
+  has(_target, prop): boolean {
     const client = getPrisma();
     return prop in client;
   },

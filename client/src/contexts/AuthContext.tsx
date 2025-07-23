@@ -43,7 +43,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
 
   const clearError = useCallback((): void => {
     setError(null);
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [])
 
   const updateAuthState = useCallback((userData: User | null): void => {
     setUser(userData);
@@ -62,7 +62,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
       // Clear user context when logged out
       errorReportingService.setUserContext(null);
     }
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [])
 
   const checkAuth = useCallback(async (): Promise<void> => {
     try {
@@ -243,8 +243,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
       isMounted = false;
       clearTimeout(timeoutId);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []) // Only run once on mount
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []) // Only run once on mount - dependencies intentionally omitted to prevent re-runs
 
   // Auto-refresh token when it's about to expire
   useEffect((): (() => void) => {

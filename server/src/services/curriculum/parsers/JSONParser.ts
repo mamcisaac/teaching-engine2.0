@@ -83,22 +83,22 @@ export class JSONParser extends CurriculumParser {
 
     for (const item of data) {
       const expectation = this.parseExpectation(item as JSONExpectation);
-      if (expectation) {
+      if (expectation !== null) {
         expectations.push(expectation);
         
         // Try to infer grade and subject
-        if (!inferredGrade && expectation.grade) {
+        if ((inferredGrade === null) && (expectation.grade !== null)) {
           inferredGrade = expectation.grade;
         }
-        if (!inferredSubject && expectation.subject) {
+        if ((inferredSubject === null || inferredSubject === '') && (expectation.subject !== null && expectation.subject !== '')) {
           inferredSubject = expectation.subject;
         }
       }
     }
 
     const curriculum: ParsedCurriculum = {
-      subject: inferredSubject || 'Unknown',
-      grade: inferredGrade || 0,
+      subject: (inferredSubject !== null && inferredSubject !== '') ? inferredSubject : 'Unknown',
+      grade: (inferredGrade !== null) ? inferredGrade : 0,
       expectations,
       metadata: {
         source: 'JSON Import',
@@ -106,7 +106,7 @@ export class JSONParser extends CurriculumParser {
       },
     };
 
-    if (!this.validate(curriculum)) {
+    if (this.validate(curriculum) !== true) {
       throw new Error('Invalid curriculum data structure');
     }
 
@@ -118,8 +118,8 @@ export class JSONParser extends CurriculumParser {
    */
   private parseCurriculumObject(data: JSONCurriculum): ParsedCurriculum {
     // Extract metadata
-    const grade = this.parseGrade(data.grade || data.level);
-    const subject = data.subject || data.course || 'Unknown';
+    const grade = this.parseGrade((data.grade !== null) ? data.grade : data.level);
+    const subject = (data.subject !== null && data.subject !== '') ? data.subject : ((data.course !== null && data.course !== '') ? data.course : 'Unknown');
 
     // Find expectations array
     const expectationsList = 
@@ -128,7 +128,7 @@ export class JSONParser extends CurriculumParser {
       data.standards ||
       this.findExpectationsArray(data);
 
-    if (!expectationsList || !Array.isArray(expectationsList)) {
+    if ((expectationsList === null) || !Array.isArray(expectationsList)) {
       throw new Error('No expectations array found in JSON');
     }
 
@@ -137,14 +137,14 @@ export class JSONParser extends CurriculumParser {
     
     for (const item of expectationsList) {
       const expectation = this.parseExpectation(item as JSONExpectation, grade, subject);
-      if (expectation) {
+      if (expectation !== null) {
         expectations.push(expectation);
       }
     }
 
     const curriculum: ParsedCurriculum = {
       subject,
-      grade: grade || 0,
+      grade: (grade !== null) ? grade : 0,
       expectations: this.organizeExpectations(expectations),
       metadata: {
         source: 'JSON Import',
@@ -153,7 +153,7 @@ export class JSONParser extends CurriculumParser {
       },
     };
 
-    if (!this.validate(curriculum)) {
+    if (this.validate(curriculum) !== true) {
       throw new Error('Invalid curriculum data structure');
     }
 

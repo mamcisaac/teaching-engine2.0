@@ -67,7 +67,7 @@ export const readOperationMiddleware = compose(
 );
 
 // File upload chain
-export const fileUploadMiddleware = (allowedTypes?: string[]) =>
+export const fileUploadMiddleware = (allowedTypes?: string[]): (req: Request, res: Response, next: NextFunction) => void =>
   compose(
     authenticatedApiMiddleware,
     rateLimiters.upload as RateLimitRequestHandler,
@@ -101,7 +101,7 @@ export const adminOperationMiddleware = compose(
 // Cached read chain
 export const cachedReadMiddleware = (
   cacheType: 'api' | 'curriculum' | 'static' | 'user' = 'api',
-) => {
+): (req: Request, res: Response, next: NextFunction) => void => {
   const cacheMiddleware = {
     api: apiCache,
     curriculum: curriculumCache,
@@ -148,7 +148,7 @@ export const exportOperationsMiddleware = compose(
 // Development-only chains
 export const developmentMiddleware = conditional(
   isDevelopment,
-  compose((_req: Request, _res: Response, next: NextFunction) => {
+  compose((_req: Request, _res: Response, next: NextFunction): void => {
     logger.info(`[DEV] ${_req.method} ${_req.path}`);
     next();
   }, performanceLoggingMiddleware),
@@ -157,7 +157,7 @@ export const developmentMiddleware = conditional(
 // Health check chain (minimal processing)
 export const healthCheckMiddleware = compose(
   rateLimiters.public as RateLimitRequestHandler,
-  (_req: Request, res: Response, next: NextFunction) => {
+  (_req: Request, res: Response, next: NextFunction): void => {
     res.locals.skipLogging = true;
     next();
   },
@@ -174,7 +174,7 @@ export const createCustomChain = (options: {
     resource?: string;
   };
   validators?: ((req: Request, res: Response, next: NextFunction) => void)[];
-}) => {
+}): (req: Request, res: Response, next: NextFunction) => void => {
   const chainBuilder = chain().add(coreMiddleware);
 
   if (options.rateLimit) {
@@ -199,7 +199,7 @@ export const createCustomChain = (options: {
   }
 
   if (options.validators) {
-    options.validators.forEach((validator) => chainBuilder.add(validator));
+    options.validators.forEach((validator): void => chainBuilder.add(validator));
   }
 
   return chainBuilder.build();

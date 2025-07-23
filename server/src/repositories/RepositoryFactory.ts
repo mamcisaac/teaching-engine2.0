@@ -45,7 +45,11 @@ export class RepositoryFactory {
   }
 
   // Helper method to get all repositories
-  getAllRepositories() {
+  getAllRepositories(): {
+    user: UserRepository;
+    curriculumExpectation: CurriculumExpectationRepository;
+    etfoLessonPlan: ETFOLessonPlanRepository;
+  } {
     return {
       user: this.getUserRepository(),
       curriculumExpectation: this.getCurriculumExpectationRepository(),
@@ -54,7 +58,7 @@ export class RepositoryFactory {
   }
 
   // Reset method for testing
-  static reset() {
+  static reset(): void {
     RepositoryFactory.instance = undefined;
   }
 }

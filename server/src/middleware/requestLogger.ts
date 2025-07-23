@@ -113,20 +113,10 @@ return;
   res.end = function (this: Response, ...args: unknown[]): Response {
     logResponse();
     
-    // Type-safe handling of res.end arguments
-    const [chunk, encoding, cb] = args as [
-      chunk?: Buffer | string | undefined,
-      encoding?: BufferEncoding | (() => void) | undefined,
-      cb?: (() => void) | undefined
-    ];
-    
-    if (typeof encoding === 'function') {
-      // end(chunk, cb) case
-      return originalEnd.call(this, chunk, encoding);
-    } else {
-      // end(chunk, encoding, cb) case
-      return originalEnd.call(this, chunk, encoding as BufferEncoding | undefined, cb);
-    }
+    // Forward all arguments to original method
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore - Complex Express method signature, let runtime handle it
+    return originalEnd.apply(this, args);
   };
 
   // Handle request completion

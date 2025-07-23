@@ -119,7 +119,7 @@ export class WebFetch {
  el.remove(); 
 });
     
-    return document.body?.textContent?.trim() ?? '';
+    return document.body.textContent?.trim() ?? '';
   }
   
   // Utility method to extract meta information

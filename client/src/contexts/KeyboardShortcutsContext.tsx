@@ -100,7 +100,7 @@ export const KeyboardShortcutsProvider: React.FC<{ children: React.ReactNode }> 
         logger.error('Failed to parse keyboard shortcuts preferences:', e);
       }
     }
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [])
 
   // Save preferences to localStorage
   const updatePreferences = useCallback((prefs: Partial<KeyboardShortcutPreferences>) => {
@@ -114,7 +114,7 @@ export const KeyboardShortcutsProvider: React.FC<{ children: React.ReactNode }> 
       
       return newPrefs;
     });
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [])
 
   const registerShortcut = useCallback((shortcut: KeyboardShortcut) => {
     setShortcuts(prev => {
@@ -127,23 +127,23 @@ export const KeyboardShortcutsProvider: React.FC<{ children: React.ReactNode }> 
       // Add new shortcut
       return [...prev, shortcut];
     });
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [])
 
   const unregisterShortcut = useCallback((id: string) => {
     setShortcuts(prev => prev.filter(s => s.id !== id));
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [])
 
   const enableShortcut = useCallback((id: string) => {
     setShortcuts(prev => prev.map(s => 
       s.id === id ? { ...s, enabled: true } : s
     ));
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [])
 
   const disableShortcut = useCallback((id: string) => {
     setShortcuts(prev => prev.map(s => 
       s.id === id ? { ...s, enabled: false } : s
     ));
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [])
 
   // Update ref when shortcuts change
   useEffect(() => {
@@ -184,7 +184,7 @@ continue;
 
         // Apply custom shortcuts from preferences
         const customShortcut = preferences.customShortcuts[shortcut.id];
-        const finalShortcut = customShortcut !== undefined ? { ...shortcut, ...customShortcut } : shortcut;
+        const finalShortcut = customShortcut ? { ...shortcut, ...customShortcut } : shortcut;
 
         // Check if key matches
         if (event.key.toLowerCase() !== finalShortcut.key.toLowerCase()) {

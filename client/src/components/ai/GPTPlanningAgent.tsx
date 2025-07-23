@@ -91,11 +91,11 @@ export function GPTPlanningAgent({
 
   // Start session
   const startSessionMutation = useMutation({
-    mutationFn: async () => {
+    mutationFn: async (): Promise<SessionResponse> => {
       const response = await api.post<{ data: SessionResponse }>('/api/ai/agent/sessions');
       return response.data.data;
     },
-    onSuccess: (data) => {
+    onSuccess: (data: SessionResponse): void => {
       setSessionId(data.sessionId);
       setMessages([
         {
@@ -115,7 +115,7 @@ export function GPTPlanningAgent({
 
   // Send message
   const sendMessageMutation = useMutation({
-    mutationFn: async (message: string) => {
+    mutationFn: async (message: string): Promise<MessageResponse> => {
       if (sessionId === null || sessionId === '') {
 throw new Error('No session');
 }
@@ -125,7 +125,7 @@ throw new Error('No session');
       });
       return response.data.data;
     },
-    onSuccess: (data) => {
+    onSuccess: (data: MessageResponse): void => {
       setMessages((prev) => [
         ...prev,
         {
@@ -139,7 +139,7 @@ throw new Error('No session');
 
       // Handle action results
       if (data.actionResults) {
-        data.actionResults.forEach((result: ActionResult) => {
+        data.actionResults.forEach((result: ActionResult): void => {
           switch (result.type) {
             case 'activities_generated':
               if (onActivityGenerated) {
@@ -156,7 +156,7 @@ throw new Error('No session');
         });
       }
     },
-    onError: () => {
+    onError: (): void => {
       toast.error('Failed to send message');
     },
   });
@@ -170,38 +170,40 @@ throw new Error('No session');
 
   const { data: quickActions } = useQuery<QuickAction[]>({
     queryKey: ['quick-actions'],
-    queryFn: async () => {
+    queryFn: async (): Promise<QuickAction[]> => {
       const response = await api.get('/api/ai/agent/quick-actions');
       return (response.data as { data: QuickAction[] }).data;
     },
   });
 
   // Initialize session when opened
-  useEffect(() => {
-    return () => { // Cleanup
-    };
-
+  useEffect((): (() => void) => {
     if (isOpen && (sessionId === null || sessionId === '')) {
       startSessionMutation.mutate();
     }
+    
+    return (): void => { // Cleanup
+    };
   }, [isOpen, sessionId, startSessionMutation]);
 
   // Scroll to bottom when messages change
-  useEffect(() => {
-    return () => { // Cleanup
-    };
-
+  useEffect((): (() => void) => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    
+    return (): void => { // Cleanup
+    };
   }, [messages]);
 
   // Initialize speech recognition
-  useEffect(() => {
-    return () => { // Cleanup
-    };
-
+  useEffect((): (() => void) => {
     if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+      type WindowWithSpeechRecognition = Window & {
+        SpeechRecognition?: new () => SpeechRecognition;
+        webkitSpeechRecognition?: new () => SpeechRecognition;
+      };
+      const windowWithSpeech = window as WindowWithSpeechRecognition;
       const SpeechRecognitionConstructor: new () => SpeechRecognition =
-        'SpeechRecognition' in window ? window.SpeechRecognition : window.webkitSpeechRecognition;
+        windowWithSpeech.SpeechRecognition ?? windowWithSpeech.webkitSpeechRecognition!;
       const recognition = new SpeechRecognitionConstructor();
       recognitionRef.current = recognition;
       
@@ -224,7 +226,14 @@ throw new Error('No session');
         setIsListening(false);
       };
     }
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+    return (): void => {
+      // Cleanup speech recognition  
+      if (recognitionRef.current) {
+        recognitionRef.current.stop();
+      }
+    };
+  }, [])
 
   const handleSend = (): void => {
     if (!inputValue.trim() || sendMessageMutation.isPending) {
@@ -292,7 +301,7 @@ return null;
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
-        {messages.map((message, _index) => (
+        {messages.map((message, _index): JSX.Element => (
           <div
             className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
             key={_index}
@@ -307,7 +316,7 @@ return null;
               {/* Action Results */}
               {message.actionResults && message.actionResults.length > 0 && (
                 <div className="mt-2 pt-2 border-t border-gray-200">
-                  {message.actionResults.map((result: ActionResult, idx: number) => (
+                  {message.actionResults.map((result: ActionResult, idx: number): JSX.Element => (
                     <div className="text-xs" key={idx}>
                       {result.type === 'activities_generated' && (
                         <span className="flex items-center gap-1">
@@ -339,11 +348,11 @@ return null;
         <div className="px-4 pb-2">
           <p className="text-xs text-gray-500 mb-2">Quick actions:</p>
           <div className="flex flex-wrap gap-2">
-            {quickActions.map((action: QuickAction, index: number) => (
+            {quickActions.map((action: QuickAction, index: number): JSX.Element => (
               <button
                 className="text-xs px-3 py-1 bg-purple-100 text-purple-700 rounded-full hover:bg-purple-200"
                 key={index}
-                onClick={() => {
+                onClick={(): void => {
  handleQuickAction(action); 
 }}
               >
@@ -360,10 +369,10 @@ return null;
           <input
             className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500"
             disabled={sendMessageMutation.isPending}
-            onChange={(e) => {
+            onChange={(e): void => {
  setInputValue(e.target.value); 
 }}
-            onKeyPress={(e) => {
+            onKeyPress={(e): void => {
  e.key === 'Enter' && handleSend(); 
 }}
             placeholder="Ask me anything about planning..."

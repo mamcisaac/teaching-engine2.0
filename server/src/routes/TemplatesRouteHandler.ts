@@ -116,19 +116,19 @@ class TemplateService extends BaseService {
     // Build where clause using optimized ownership filter
     const where = optimizedQueries.createOwnershipWhere(userId);
 
-    if (type) {
+    if (type !== null && String(type) !== '') {
 where.AND.push({ type });
 }
-    if (category) {
+    if (category !== null && String(category) !== '') {
 where.AND.push({ category });
 }
-    if (subject && subject !== '') {
+    if (subject !== null && String(subject) !== '') {
 where.AND.push({ subject: { contains: subject, mode: 'insensitive' } });
 }
-    if (gradeMin && gradeMin !== 0) {
+    if (gradeMin !== null && Number(gradeMin) !== 0 && !isNaN(Number(gradeMin))) {
 where.AND.push({ gradeMin: { gte: gradeMin } });
 }
-    if (gradeMax && gradeMax !== 0) {
+    if (gradeMax !== null && Number(gradeMax) !== 0 && !isNaN(Number(gradeMax))) {
 where.AND.push({ gradeMax: { lte: gradeMax } });
 }
     if (isSystem !== undefined) {
@@ -136,7 +136,7 @@ where.AND.push({ isSystem });
 }
 
     // Search functionality using optimized search utility
-    if (search && search !== '') {
+    if (search !== null && String(search) !== '') {
       const searchWhere = optimizedQueries.createSearchWhere(String(search), [
         'title',
         'description',
@@ -146,7 +146,7 @@ where.AND.push({ isSystem });
     }
 
     // Tag filtering
-    if (tags && Array.isArray(tags) && tags.length > 0) {
+    if (tags !== null && Array.isArray(tags) && tags.length > 0) {
       where.AND.push({
         tags: {
           path: [],
@@ -157,8 +157,8 @@ where.AND.push({ isSystem });
 
     // Sorting with validation
     const orderBy = queryPerformance.createOptimizedSort(
-      String(sortBy || 'title'),
-      (sortOrder || 'asc') as 'asc' | 'desc',
+      String((sortBy !== null && String(sortBy) !== '') ? sortBy : 'title'),
+      ((sortOrder !== null && String(sortOrder) !== '') ? sortOrder : 'asc') as 'asc' | 'desc',
       ['title', 'usageCount', 'averageRating', 'createdAt', 'lastUsedAt'],
     );
 

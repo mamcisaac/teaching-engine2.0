@@ -46,7 +46,7 @@ export function TemplatePreviewModal({
     return (
       <div className="space-y-4">
         {sections.map(({ key, title, content, isList, isAssessments, isDiff }) => {
-          if (content === null || content === undefined || (Array.isArray(content) && content.length === 0)) {
+          if (content == null || (Array.isArray(content) && content.length === 0)) {
             return null;
           }
 
@@ -141,7 +141,7 @@ export function TemplatePreviewModal({
     return (
       <div className="space-y-4">
         {sections.map(({ key, title, content, isList, assessmentType }) => {
-          if (content === null || content === undefined || (Array.isArray(content) && content.length === 0)) {
+          if (content == null || (Array.isArray(content) && content.length === 0)) {
             return null;
           }
 

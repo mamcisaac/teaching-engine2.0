@@ -95,7 +95,7 @@ top = 8;
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
-    }, []) // eslint-disable-line react-hooks/exhaustive-deps
+    }, [])
 
   // Clone the child element and add event handlers
   const triggerElement = cloneElement(children, {

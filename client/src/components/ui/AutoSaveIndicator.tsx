@@ -48,7 +48,7 @@ export function AutoSaveIndicator({
       window.removeEventListener('online', handleOnline);
       window.removeEventListener('offline', handleOffline);
     };
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [])
 
   const getStatus = (): { icon: React.ReactElement; text: string; variant: 'outline' | 'secondary' | 'destructive'; tooltip: string } => {
     // Offline status takes priority

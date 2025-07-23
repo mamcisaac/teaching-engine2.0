@@ -112,7 +112,7 @@ export function FrenchImmersionLessonTemplate({
               Grade 1 French Immersion Lesson Plan
             </h2>
             <p className="text-gray-600 mt-1">
-              {metadata?.theme !== null && metadata?.theme !== undefined && metadata.theme !== ''
+              {metadata?.theme && metadata.theme.trim()
                 ? `Theme: ${metadata.theme}`
                 : 'Structured bilingual learning template'}
             </p>
@@ -206,7 +206,7 @@ export function FrenchImmersionLessonTemplate({
 }}
                   placeholder="Pronunciation"
                   type="text"
-                  value={vocab.pronunciation !== null && vocab.pronunciation !== undefined ? vocab.pronunciation : ''}
+                  value={vocab.pronunciation ?? ''}
                 />
                 <div className="flex gap-2">
                   <input
@@ -216,7 +216,7 @@ export function FrenchImmersionLessonTemplate({
 }}
                     placeholder="Context/Visual"
                     type="text"
-                    value={vocab.context !== null && vocab.context !== undefined ? vocab.context : ''}
+                    value={vocab.context ?? ''}
                   />
                   <Button
                     onClick={() => {

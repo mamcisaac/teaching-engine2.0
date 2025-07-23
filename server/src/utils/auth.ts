@@ -18,7 +18,7 @@ export interface TokenPair {
  * Hash a password using bcrypt
  */
 export async function hashPassword(password: string): Promise<string> {
-  const result = (await hash(password, SALT_ROUNDS)) as string;
+  const result: string = await hash(password, SALT_ROUNDS);
   return result;
 }
 
@@ -26,7 +26,7 @@ export async function hashPassword(password: string): Promise<string> {
  * Compare a plain text password with a hashed password
  */
 export async function comparePassword(password: string, hash: string): Promise<boolean> {
-  const result = (await compare(password, hash)) as boolean;
+  const result: boolean = await compare(password, hash);
   return result;
 }
 

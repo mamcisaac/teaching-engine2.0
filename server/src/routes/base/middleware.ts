@@ -15,7 +15,7 @@ export interface AuthenticatedRequest extends Request {
   user?: {
     id: number;
     email: string;
-    name: string;
+    name?: string;
     role: string;
     organizationId?: number;
     permissions?: string[];
@@ -62,10 +62,10 @@ export const requireRole = (requiredRole: string) => (req: AuthenticatedRequest,
 /**
  * Validation middleware factory
  */
-export const validate = (schema: z.ZodSchema) => (req: Request, res: Response, next: NextFunction): void => {
+export const validate = <T>(schema: z.ZodSchema<T>) => (req: Request, res: Response, next: NextFunction): void => {
     try {
-      const validatedData = schema.parse(req.body);
-      req.body = validatedData;
+      const validatedData: T = schema.parse(req.body);
+      req.body = validatedData as unknown;
       next();
     } catch (_error) {
       if (_error instanceof z.ZodError) {
@@ -83,10 +83,10 @@ export const validate = (schema: z.ZodSchema) => (req: Request, res: Response, n
 /**
  * Query parameter validation middleware
  */
-export const validateQuery = (schema: z.ZodSchema) => (req: Request, res: Response, next: NextFunction): void => {
+export const validateQuery = <T>(schema: z.ZodSchema<T>) => (req: Request, res: Response, next: NextFunction): void => {
     try {
-      const validatedQuery = schema.parse(req.query);
-      req.query = validatedQuery;
+      const validatedQuery: T = schema.parse(req.query);
+      req.query = validatedQuery as ParsedQs;
       next();
     } catch (_error) {
       if (_error instanceof z.ZodError) {

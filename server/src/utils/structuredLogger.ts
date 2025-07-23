@@ -135,7 +135,7 @@ export class StructuredLogger {
     logger.log(level, message, {
       meta,
       duration,
-      ...(meta?.error !== undefined && meta?.error !== null ? { error: meta.error } : {}),
+      ...(meta?.error !== undefined && meta.error !== null ? { error: meta.error } : {}),
     });
   }
 
@@ -210,7 +210,7 @@ export class StructuredLogger {
    */
   endSpan(spanId: string, name: string): void {
     const context = asyncLocalStorage.getStore();
-    const duration = context?.startTime !== undefined && context?.startTime !== null
+    const duration = context?.startTime !== undefined && context.startTime !== null
       ? Math.round(performance.now() - context.startTime)
       : undefined;
 
@@ -272,7 +272,7 @@ export function correlationMiddleware(req: Request, res: Response, next: NextFun
     res.send = function (data: unknown): Response {
       res.send = originalSend;
 
-      const duration = context?.startTime !== undefined && context?.startTime !== null ? Math.round(performance.now() - context.startTime) : 0;
+      const duration = context.startTime !== undefined && context.startTime !== null ? Math.round(performance.now() - context.startTime) : 0;
 
       structuredLogger.http(`${req.method} ${req.path} ${res.statusCode}`, {
         statusCode: res.statusCode,

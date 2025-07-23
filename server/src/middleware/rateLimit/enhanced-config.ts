@@ -109,10 +109,7 @@ export const rateLimitConfigs = {
  * Get user tier from request
  */
 export function getUserTier(req: Request): UserTier {
-  interface RequestWithUser extends Request {
-    user?: { role?: string };
-  }
-  const user = (req as RequestWithUser)?.user;
+  const user = req.user;
   if (!user) return UserTier.FREE;
 
   switch (user.role) {
@@ -165,7 +162,7 @@ export async function createEnhancedRateLimiter(
       // Generate key
       const key = customConfig?.keyGenerator
         ? customConfig.keyGenerator(req)
-        : ((req as RequestWithUser & { user?: { userId?: string } })?.user?.userId ?? req.ip);
+        : (req.user?.id?.toString() ?? req.ip ?? 'anonymous');
 
       // Check if should skip
       if (customConfig?.skip?.(req)) {

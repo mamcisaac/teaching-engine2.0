@@ -4,11 +4,11 @@
  */
 
 import type { PrismaClient } from '@teaching-engine/database';
-import { compare } from 'bcryptjs';
 import type { Request } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
 
+import { verifyPassword } from '../middleware/auth/password';
 import { asyncHandler } from '../middleware/errorHandler';
 import { RepositoryFactory } from '../repositories/RepositoryFactory';
 // Authentication middleware available if needed
@@ -71,7 +71,7 @@ export function userRoutes(prisma: PrismaClient): Router {
       }
 
       // Verify current password
-      const isValidPassword = await compare(currentPassword, user.password);
+      const isValidPassword: boolean = await verifyPassword(currentPassword, user.password);
       if (isValidPassword !== true) {
         res.status(401).json({ error: 'Current password is incorrect' });
         return;

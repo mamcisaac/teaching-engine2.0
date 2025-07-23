@@ -27,7 +27,7 @@ const sanitizeData = (data: unknown): unknown => {
   const sensitive = ['password', 'token', 'secret', 'authorization', 'cookie'];
   const sanitized = { ...data } as Record<string, unknown>;
 
-  Object.keys(sanitized).forEach((key) => {
+  Object.keys(sanitized).forEach((key): void => {
     const lowerKey = key.toLowerCase();
     if (sensitive.some((s) => lowerKey.includes(s))) {
       sanitized[key] = '[REDACTED]';
@@ -83,7 +83,7 @@ export const requestLoggingMiddleware = (
 
   // Capture response
   const originalSend = res.send;
-  res.send = function (data: unknown) {
+  res.send = function (data: unknown): Response {
     res.locals.body = data as Record<string, unknown>;
     return originalSend.call(this, data);
   };
@@ -225,7 +225,7 @@ export const performanceLoggingMiddleware = (
   };
 
   res.locals.perfMeasure = (name: string): void => {
-    const segment = segments.find((s) => s.name === name && s.end === undefined);
+    const segment = segments.find((s): boolean => s.name === name && s.end === undefined);
     if (segment) {
       segment.end = Date.now();
     }
@@ -236,7 +236,7 @@ export const performanceLoggingMiddleware = (
     const totalDuration = Date.now() - (req.startTime ?? 0);
     const measurements = segments
       .filter((s): s is { name: string; start: number; end: number } => s.end !== undefined)
-      .map((s) => ({
+      .map((s): { name: string; duration: number } => ({
         name: s.name,
         duration: s.end - s.start,
       }));

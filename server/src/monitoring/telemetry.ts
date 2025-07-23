@@ -79,8 +79,8 @@ export const initTelemetry = async (): Promise<void> => {
 
     // Graceful shutdown
     process.on('SIGTERM', () => {
-      otelSDK
-        .shutdown()
+      if (otelSDK) {
+        otelSDK.shutdown()
         .then(() => {
  logger.info('OpenTelemetry terminated');
  return undefined;
@@ -88,7 +88,8 @@ export const initTelemetry = async (): Promise<void> => {
         .catch((error) => {
  logger.error('Error terminating OpenTelemetry', error as string | undefined);
  return undefined;
-});
+        });
+      }
     });
   } catch (_error) {
     logger.error('Failed to initialize OpenTelemetry', _error as string | undefined);

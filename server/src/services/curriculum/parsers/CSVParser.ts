@@ -60,7 +60,7 @@ export class CSVParser extends CurriculumParser {
 
     if (records.length === 0) {
       // In non-strict mode, return empty curriculum
-      if (!this.options.strict) {
+      if (this.options.strict !== true) {
         return {
           subject: 'Unknown',
           grade: 1,
@@ -93,15 +93,15 @@ export class CSVParser extends CurriculumParser {
     let finalSubject = subject;
     let finalGrade = grade;
     
-    if (!finalSubject || !finalGrade) {
+    if ((finalSubject === null || finalSubject === '') || (finalGrade === null)) {
       for (const expectation of expectations) {
-        if (!finalSubject && expectation.subject) {
+        if ((finalSubject === null || finalSubject === '') && (expectation.subject !== null && expectation.subject !== '')) {
           finalSubject = expectation.subject;
         }
-        if (!finalGrade && expectation.grade) {
+        if ((finalGrade === null) && (expectation.grade !== null)) {
           finalGrade = expectation.grade;
         }
-        if (finalSubject && finalGrade) {
+        if ((finalSubject !== null && finalSubject !== '') && (finalGrade !== null)) {
 break;
 }
       }
@@ -118,7 +118,7 @@ break;
     };
 
     // In non-strict mode, always return the curriculum even if validation would fail
-    if (!this.options.strict) {
+    if (this.options.strict !== true) {
       return curriculum;
     }
 
@@ -136,10 +136,10 @@ break;
     // Try different column name variations
     const code = this.cleanText(
       this.ensureString((() => {
-        if (row.code) {
+        if (row.code !== null && row.code !== '') {
 return row.code;
 }
-        if (row.expectation_code) {
+        if (row.expectation_code !== null && row.expectation_code !== '') {
 return row.expectation_code;
 }
         if (row.Code !== null && row.Code !== '') {
@@ -154,10 +154,10 @@ return row['Expectation Code'];
     
     const description = this.cleanText(
       this.ensureString((() => {
-        if (row.description) {
+        if (row.description !== null && row.description !== '') {
 return row.description;
 }
-        if (row.expectation_description) {
+        if (row.expectation_description !== null && row.expectation_description !== '') {
 return row.expectation_description;
 }
         if (row.Description !== null && row.Description !== '') {
@@ -170,13 +170,13 @@ return row['Expectation Description'];
       })())
     );
 
-    if (!code || !description) {
+    if ((code === null || code === '') || (description === null || description === '')) {
       return null;
     }
 
     const type = this.parseType(row);
     const strand = this.cleanText(this.ensureString((() => {
-      if (row.strand) {
+      if (row.strand !== null && row.strand !== '') {
 return row.strand;
 }
       if (row.Strand !== null && row.Strand !== '') {
@@ -185,7 +185,7 @@ return row.Strand;
       return '';
     })()));
     const substrand = this.cleanText(this.ensureString((() => {
-      if (row.substrand) {
+      if (row.substrand !== null && row.substrand !== '') {
 return row.substrand;
 }
       if (row.Substrand !== null && row.Substrand !== '') {
@@ -220,16 +220,16 @@ return row.Substrand;
    */
   private parseType(row: CSVRow): 'overall' | 'specific' {
     const typeValue = (() => {
-      if (row.type) {
+      if (row.type !== null && row.type !== '') {
 return row.type;
 }
-      if (row.expectation_type) {
+      if (row.expectation_type !== null && row.expectation_type !== '') {
 return row.expectation_type;
 }
-      if (row.Type) {
+      if (row.Type !== null && row.Type !== '') {
 return row.Type;
 }
-      if (row['Expectation Type']) {
+      if (row['Expectation Type'] !== null && row['Expectation Type'] !== '') {
 return row['Expectation Type'];
 }
       return '';
@@ -247,19 +247,19 @@ return 'specific';
 
     // Fall back to code analysis
     const code = (() => {
-      if (row.code) {
+      if (row.code !== null && row.code !== '') {
 return row.code;
 }
-      if (row.expectation_code) {
+      if (row.expectation_code !== null && row.expectation_code !== '') {
 return row.expectation_code;
 }
       return '';
     })();
     const description = (() => {
-      if (row.description) {
+      if (row.description !== null && row.description !== '') {
 return row.description;
 }
-      if (row.expectation_description) {
+      if (row.expectation_description !== null && row.expectation_description !== '') {
 return row.expectation_description;
 }
       return '';
@@ -292,21 +292,21 @@ return row.expectation_description;
    */
   private extractSubject(row: CSVRow): string | undefined {
     const subjectValue = (() => {
-      if (row.subject) {
+      if (row.subject !== null && row.subject !== '') {
 return row.subject;
 }
-      if (row.Subject) {
+      if (row.Subject !== null && row.Subject !== '') {
 return row.Subject;
 }
-      if (row.subject_area) {
+      if (row.subject_area !== null && row.subject_area !== '') {
 return row.subject_area;
 }
-      if (row['Subject Area']) {
+      if (row['Subject Area'] !== null && row['Subject Area'] !== '') {
 return row['Subject Area'];
 }
       return undefined;
     })();
-    return subjectValue ? this.cleanText(subjectValue.toString()) : undefined;
+    return (subjectValue !== null && subjectValue !== '') ? this.cleanText(subjectValue.toString()) : undefined;
   }
 
   /**
@@ -334,11 +334,11 @@ return row['Subject Area'];
    * Check if expectation is valid
    */
   private isValidExpectation(expectation: ParsedExpectation): boolean {
-    if (!this.options.strict) {
+    if (this.options.strict !== true) {
       return true;
     }
 
-    if (!(this.options.validateCodes && this.validateExpectationCode(expectation.code))) {
+    if (!((this.options.validateCodes === true) && this.validateExpectationCode(expectation.code))) {
       return false;
     }
 
@@ -349,12 +349,12 @@ return row['Subject Area'];
    * Validate parsed curriculum
    */
   validate(data: ParsedCurriculum): boolean {
-    if (!data.subject || !data.grade) {
+    if ((data.subject === null || data.subject === '') || (data.grade === null)) {
       return false;
     }
 
     // In strict mode, require non-empty expectations
-    if (this.options.strict && data.expectations.length === 0) {
+    if ((this.options.strict === true) && data.expectations.length === 0) {
       return false;
     }
 

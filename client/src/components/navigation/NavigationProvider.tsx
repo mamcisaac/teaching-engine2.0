@@ -27,11 +27,11 @@ export function NavigationProvider({ children }: NavigationProviderProps): React
 
   const toggleSidebar = useCallback((): void => {
     setIsSidebarOpen(prev => !prev);
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [])
 
   const setSidebarOpen = useCallback((isOpen: boolean): void => {
     setIsSidebarOpen(isOpen);
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect((): (() => void) => {
     const handleResize = (): void => {

@@ -4,6 +4,8 @@
  * Provides templates for various reports
  */
 
+import { logger } from '../../../logger';
+
 import type { Template, TemplateContext } from './TemplateProvider';
 import { TemplateProvider } from './TemplateProvider';
 
@@ -13,7 +15,7 @@ export class ReportTemplateProvider extends TemplateProvider {
     try {
       this.loadTemplates();
     } catch (error) {
-      console.error('Failed to load report templates:', error);
+      logger.error('Failed to load report templates:', error);
     }
   }
 
@@ -49,7 +51,7 @@ export class ReportTemplateProvider extends TemplateProvider {
    * Validate context
    */
   validateContext(context: TemplateContext): boolean {
-    return Boolean(context.userId && context.userId !== 0) && Boolean(context.parameters?.type && context.parameters?.type !== '');
+    return Boolean(context.userId && context.userId !== 0) && Boolean(context.parameters?.type && context.parameters.type !== '');
   }
 
   /**

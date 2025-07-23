@@ -400,7 +400,7 @@ export function LanguageProvider({ children }: LanguageProviderProps): React.Rea
     if (savedLanguage !== null && savedLanguage !== '' && (savedLanguage === 'en' || savedLanguage === 'fr')) {
       setLanguageState(savedLanguage as 'en' | 'fr');
     }
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [])
 
   const setLanguage = (lang: string): void => {
     setLanguageState(lang);

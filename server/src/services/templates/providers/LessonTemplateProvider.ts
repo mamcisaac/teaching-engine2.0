@@ -7,6 +7,8 @@
 import * as fs from 'fs/promises';
 import * as path from 'path';
 
+import { logger } from '../../../logger';
+
 import type { Template, TemplateContext, DataRequirement } from './TemplateProvider';
 import { TemplateProvider } from './TemplateProvider';
 
@@ -16,7 +18,7 @@ export class LessonTemplateProvider extends TemplateProvider {
     try {
       this.loadTemplates();
     } catch (error) {
-      console.error('Failed to load lesson templates:', error);
+      logger.error('Failed to load lesson templates:', error);
     }
   }
 

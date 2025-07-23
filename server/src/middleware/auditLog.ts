@@ -51,8 +51,8 @@ class AuditLogger {
   /**
    * Create audit middleware for specific actions
    */
-  middleware(action: string, resource: string) {
-    return async (req: Request, res: Response, next: NextFunction) => {
+  middleware(action: string, resource: string): (req: Request, res: Response, next: NextFunction) => Promise<void> {
+    return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
       const start = Date.now();
       const originalSend = res.send;
       const originalJson = res.json;
@@ -62,7 +62,7 @@ class AuditLogger {
       let errorMessage: string | undefined;
 
       // Intercept response
-      res.send = function (data: unknown) {
+      res.send = function (data: unknown): Response {
         // _responseData = data as Record<string, unknown>;
         if (res.statusCode >= 400) {
           success = false;
@@ -72,7 +72,7 @@ class AuditLogger {
         return originalSend.call(res, data);
       };
 
-      res.json = function (data: unknown) {
+      res.json = function (data: unknown): Response {
         // _responseData = data as Record<string, unknown>;
         if (res.statusCode >= 400) {
           success = false;
@@ -83,11 +83,11 @@ class AuditLogger {
       };
 
       // Continue with request
-      res.on('finish', () => {
+      res.on('finish', (): void => {
         const duration = Date.now() - start;
 
         const entry: AuditLogEntry = {
-          userId: req.user?.id?.toString() ?? 'anonymous',
+          userId: req.user?.id.toString() ?? 'anonymous',
           action,
           resource,
           resourceId: req.params.id ?? (req.body as Record<string, unknown>).id as string,
@@ -139,8 +139,8 @@ class AuditLogger {
       resource,
       resourceId: options?.resourceId,
       metadata: options?.metadata,
-      ip: options?.req?.ip ?? options?.req?.socket?.remoteAddress,
-      userAgent: options?.req?.headers?.['user-agent'],
+      ip: options?.req?.ip ?? options?.req?.socket.remoteAddress,
+      userAgent: options?.req?.headers['user-agent'],
       timestamp: new Date(),
       success: options?.success ?? true,
       errorMessage: options?.errorMessage,
@@ -183,9 +183,9 @@ export const auditLoggers = {
   deleteUser: auditLogger.middleware('DELETE', 'user'),
 
   // Generic operations
-  create: (resource: string) => auditLogger.middleware('CREATE', resource),
-  update: (resource: string) => auditLogger.middleware('UPDATE', resource),
-  delete: (resource: string) => auditLogger.middleware('DELETE', resource),
-  view: (resource: string) => auditLogger.middleware('VIEW', resource),
-  list: (resource: string) => auditLogger.middleware('LIST', resource),
+  create: (resource: string): (req: Request, res: Response, next: NextFunction) => Promise<void> => auditLogger.middleware('CREATE', resource),
+  update: (resource: string): (req: Request, res: Response, next: NextFunction) => Promise<void> => auditLogger.middleware('UPDATE', resource),
+  delete: (resource: string): (req: Request, res: Response, next: NextFunction) => Promise<void> => auditLogger.middleware('DELETE', resource),
+  view: (resource: string): (req: Request, res: Response, next: NextFunction) => Promise<void> => auditLogger.middleware('VIEW', resource),
+  list: (resource: string): (req: Request, res: Response, next: NextFunction) => Promise<void> => auditLogger.middleware('LIST', resource),
 };

@@ -32,13 +32,13 @@ const sanitizeAIInput = (input: unknown): unknown => {
   if (Array.isArray(input)) {
     return input.map(sanitizeAIInput).slice(0, 50); // Limit array size
   }
-  if (typeof input === 'object' && input !=== null || grade === undefined) {
+  if (typeof input === 'object' && input !== null) {
     const sanitized: Record<string, unknown> = {};
     Object.keys(input)
       .slice(0, 20)
       .forEach((key) => {
         // Limit object keys
-        (sanitized)[key] = sanitizeAIInput(
+        sanitized[key] = sanitizeAIInput(
           (input as Record<string, unknown>)[key],
         );
       });
@@ -82,7 +82,7 @@ router.get('/status', (req: Request, res: Response): void => {
       const userId = req.user?.id;
 
     // Check OpenAI API key availability
-    const hasApiKey = process.env.OPENAI_API_KEY !=== null || grade === undefined && process.env.OPENAI_API_KEY !== '';
+    const hasApiKey = process.env.OPENAI_API_KEY !== null && process.env.OPENAI_API_KEY !== '';
 
     // Get service health
     const serviceHealth = await aiPlanningAssistant.getServiceHealth();

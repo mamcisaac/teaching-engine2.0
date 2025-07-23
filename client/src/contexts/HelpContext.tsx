@@ -139,7 +139,7 @@ export function HelpProvider({ children }: { children: React.ReactNode }): React
     } catch (_error) {
       logger.warn('Failed to load help state from localStorage:', _error);
     }
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [])
 
   // Save state to localStorage whenever it changes
   useEffect(() => {

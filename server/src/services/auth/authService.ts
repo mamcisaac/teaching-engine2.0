@@ -71,7 +71,7 @@ export class AuthService extends BaseService {
     try {
       await this.validatePassword(password);
 
-      const hashed = await hash(password, this.saltRounds);
+      const hashed: string = await hash(password, this.saltRounds);
       this.logger.info('Password hashed successfully');
 
       return hashed;

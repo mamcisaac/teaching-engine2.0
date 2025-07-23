@@ -84,8 +84,9 @@ export const useKeyboardShortcut = (
     options.enabled,
     options.visible,
     options.preventDefault,
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    ...deps,
+    ...deps, // Additional dependencies from caller - spread is intentional
   ]);
 };
 

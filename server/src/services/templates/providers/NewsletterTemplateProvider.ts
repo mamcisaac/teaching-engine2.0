@@ -4,6 +4,8 @@
  * Provides templates for newsletters
  */
 
+import { logger } from '../../../logger';
+
 import type { Template, TemplateContext } from './TemplateProvider';
 import { TemplateProvider } from './TemplateProvider';
 
@@ -13,7 +15,7 @@ export class NewsletterTemplateProvider extends TemplateProvider {
     try {
       this.loadTemplates();
     } catch (error) {
-      console.error('Failed to load newsletter templates:', error);
+      logger.error('Failed to load newsletter templates:', error);
     }
   }
 

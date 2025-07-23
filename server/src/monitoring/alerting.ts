@@ -103,14 +103,14 @@ const alerts: Alert[] = [
   {
     id: 'high_error_rate',
     name: 'High Error Rate',
-    condition: async () => {
+    condition: async (): Promise<boolean> => {
       const metrics = getMetrics();
       const errors = metrics.counters.http_errors_total ?? 0;
       const total = metrics.counters.http_requests_total || 1;
       const errorRate = (errors / total) * 100;
       return errorRate > 10;
     },
-    message: (context) => `Error rate is ${context.errorRate?.toFixed(2)}% (threshold: 10%)`,
+    message: (context): string => `Error rate is ${context.errorRate?.toFixed(2)}% (threshold: 10%)`,
     severity: 'critical',
     cooldown: 15,
     channels: ['log', 'email', 'webhook'],
@@ -118,13 +118,13 @@ const alerts: Alert[] = [
   {
     id: 'high_memory_usage',
     name: 'High Memory Usage',
-    condition: async () => {
+    condition: async (): Promise<boolean> => {
       const used = process.memoryUsage().heapUsed;
       const total = process.memoryUsage().heapTotal;
       const percentage = (used / total) * 100;
       return percentage > 90;
     },
-    message: (context) => `Memory usage is ${context.percentage?.toFixed(2)}% (threshold: 90%)`,
+    message: (context): string => `Memory usage is ${context.percentage?.toFixed(2)}% (threshold: 90%)`,
     severity: 'critical',
     cooldown: 10,
     channels: ['log', 'email'],
@@ -132,7 +132,7 @@ const alerts: Alert[] = [
   {
     id: 'database_connection_failure',
     name: 'Database Connection Failure',
-    condition: async () => {
+    condition: async (): Promise<boolean> => {
       try {
         await prisma.$queryRaw`SELECT 1`;
         return false;
@@ -140,7 +140,7 @@ const alerts: Alert[] = [
         return true;
       }
     },
-    message: () => 'Database connection is failing',
+    message: (): string => 'Database connection is failing',
     severity: 'critical',
     cooldown: 5,
     channels: ['log', 'email', 'webhook'],
@@ -148,7 +148,7 @@ const alerts: Alert[] = [
   {
     id: 'slow_response_times',
     name: 'Slow Response Times',
-    condition: async () => {
+    condition: async (): Promise<boolean> => {
       const metrics = getMetrics();
       const histogramData = metrics.histograms.http_request_duration_ms;
       if (!histogramData || histogramData.count === 0) {
@@ -170,7 +170,7 @@ return false;
 
       return p95 > 5000; // 5 seconds
     },
-    message: (context) => `95th percentile response time is ${context.p95}ms (threshold: 5000ms)`,
+    message: (context): string => `95th percentile response time is ${context.p95}ms (threshold: 5000ms)`,
     severity: 'warning',
     cooldown: 30,
     channels: ['log', 'webhook'],
@@ -178,7 +178,7 @@ return false;
   {
     id: 'low_cache_hit_rate',
     name: 'Low Cache Hit Rate',
-    condition: async () => {
+    condition: async (): Promise<boolean> => {
       const metrics = getMetrics();
       const hits = metrics.counters.cache_hits_total ?? 0;
       const misses = metrics.counters.cache_misses_total ?? 0;
@@ -189,7 +189,7 @@ return false;
       const hitRate = (hits / total) * 100;
       return hitRate < 50;
     },
-    message: (context) => `Cache hit rate is ${context.hitRate?.toFixed(2)}% (threshold: 50%)`,
+    message: (context): string => `Cache hit rate is ${context.hitRate?.toFixed(2)}% (threshold: 50%)`,
     severity: 'info',
     cooldown: 60,
     channels: ['log'],
@@ -197,14 +197,14 @@ return false;
   {
     id: 'high_ai_operation_failures',
     name: 'High AI Operation Failures',
-    condition: async () => {
+    condition: async (): Promise<boolean> => {
       const metrics = getMetrics();
       const errors = metrics.counters.ai_operation_errors_total ?? 0;
       const total = metrics.counters.ai_operations_total || 1;
       const errorRate = (errors / total) * 100;
       return errorRate > 20;
     },
-    message: (context) =>
+    message: (context): string =>
       `AI operation error rate is ${context.errorRate?.toFixed(2)}% (threshold: 20%)`,
     severity: 'warning',
     cooldown: 30,
@@ -213,12 +213,12 @@ return false;
   {
     id: 'disk_space_low',
     name: 'Low Disk Space',
-    condition: async () => 
+    condition: async (): Promise<boolean> => 
       // This would need actual disk space checking implementation
       // For now, return false
        false
     ,
-    message: (context) => `Disk space is ${context.percentage?.toFixed(2)}% full (threshold: 90%)`,
+    message: (context): string => `Disk space is ${context.percentage?.toFixed(2)}% full (threshold: 90%)`,
     severity: 'warning',
     cooldown: 60,
     channels: ['log', 'email'],
@@ -226,7 +226,7 @@ return false;
   {
     id: 'unusual_user_activity',
     name: 'Unusual User Activity',
-    condition: async () => {
+    condition: async (): Promise<boolean> => {
       try {
         // Check for sudden spikes in user activity
         const now = new Date();
@@ -248,7 +248,7 @@ return false;
         return false;
       }
     },
-    message: (context) => `Unusual activity detected: ${context.count} entries in last 5 minutes`,
+    message: (context): string => `Unusual activity detected: ${context.count} entries in last 5 minutes`,
     severity: 'warning',
     cooldown: 30,
     channels: ['log', 'webhook'],
@@ -257,7 +257,7 @@ return false;
 
 // Send alert through various channels
 const sendAlert = async (alert: Alert, context: AlertContext): Promise<void> => {
-  await withSpan('alerting.sendAlert', { attributes: { alertId: alert.id } }, async (_span) => {
+  await withSpan('alerting.sendAlert', { attributes: { alertId: alert.id } }, async (_span): Promise<void> => {
     const message = alert.message(context);
     const timestamp = new Date().toISOString();
 

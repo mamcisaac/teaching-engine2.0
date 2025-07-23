@@ -16,7 +16,7 @@ export const GlobalKeyboardShortcuts: React.FC = (): React.ReactElement => {
   // Wrap all handlers in useCallback to prevent infinite re-renders
   const handleShowHelp = useCallback((): void => {
  setIsHelpOpen(true); 
-}, []) // eslint-disable-line react-hooks/exhaustive-deps
+}, [])
   const handleCreateNewLesson = useCallback((): void => {
     navigate('/planner/quick-lesson');
     // addNotification('info', 'Create a new lesson plan');
@@ -25,7 +25,7 @@ export const GlobalKeyboardShortcuts: React.FC = (): React.ReactElement => {
     // Dispatch a custom event that components can listen to
     window.dispatchEvent(new CustomEvent('global:save'));
     // addNotification('success', 'Saved successfully');
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [])
 
   // Global: Show keyboard shortcuts help (? or F1)
   useKeyboardShortcut(handleShowHelp, {
@@ -70,7 +70,7 @@ export const GlobalKeyboardShortcuts: React.FC = (): React.ReactElement => {
     setIsSearchOpen(true);
     // Dispatch event for components to handle search
     window.dispatchEvent(new CustomEvent('global:search'));
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [])
 
   useKeyboardShortcut(handleSearch, {
     key: 'f',
@@ -85,7 +85,7 @@ export const GlobalKeyboardShortcuts: React.FC = (): React.ReactElement => {
     // Dispatch event for components to handle escape
     window.dispatchEvent(new CustomEvent('global:escape'));
     setIsSearchOpen(false);
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [])
 
   const handleNavigateDashboard = useCallback((): void => {
  navigate('/planner/dashboard'); 
@@ -101,10 +101,10 @@ export const GlobalKeyboardShortcuts: React.FC = (): React.ReactElement => {
 }, [navigate]);
   const handleGoBack = useCallback((): void => {
  window.history.back(); 
-}, []) // eslint-disable-line react-hooks/exhaustive-deps
+}, [])
   const handleGoForward = useCallback((): void => {
  window.history.forward(); 
-}, []) // eslint-disable-line react-hooks/exhaustive-deps
+}, [])
 
   // Global: Close modals/overlays (Escape)
   useKeyboardShortcut(

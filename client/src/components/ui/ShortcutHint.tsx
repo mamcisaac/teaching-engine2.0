@@ -31,7 +31,7 @@ export const ShortcutHint: FC<ShortcutHintProps> = ({
   }
 
   // Don't show if no shortcut key is provided
-  if (shortcut.key === null || shortcut.key === '') {
+  if (!shortcut.key) {
     return null;
   }
 

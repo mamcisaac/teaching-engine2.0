@@ -3,16 +3,7 @@ import { Request, Response } from 'express';
 // import '../../types/express';
 import rateLimit, { RateLimitRequestHandler, Options } from 'express-rate-limit';
 
-// Type definitions for authenticated requests
-interface AuthenticatedRequest extends Request {
-  user?: {
-    id?: string;
-    role?: string;
-  };
-  rateLimit?: {
-    resetTime?: number;
-  };
-}
+// Use the global Express Request type which includes user
 // Optional Redis support
 let RedisStore: unknown;
 let createClient: unknown;
@@ -107,8 +98,8 @@ export function createRateLimiter(
 
     // Key generator based on config
     keyGenerator: (req) => {
-      if (config.keyGenerator === 'user' && (req as AuthenticatedRequest).user?.id) {
-        return `user:${(req as AuthenticatedRequest).user.id}`;
+      if (config.keyGenerator === 'user' && req.user?.id) {
+        return `user:${req.user.id}`;
       }
       return req.ip ?? 'unknown';
     },
@@ -128,7 +119,7 @@ export function createRateLimiter(
           ip: req.ip,
           path: req.path,
           method: req.method,
-          userId: (req as AuthenticatedRequest).user?.id,
+          userId: req.user?.id,
           rateLimitType: configName,
         },
         'Rate limit exceeded',
@@ -137,7 +128,7 @@ export function createRateLimiter(
       res.status(429).json({
         error: 'Too Many Requests',
         message: config.message ?? 'Rate limit exceeded. Please try again later.',
-        retryAfter: (req as AuthenticatedRequest).rateLimit?.resetTime,
+        retryAfter: req.rateLimit?.resetTime,
         limit: config.max,
         windowMs: config.windowMs,
       });
@@ -184,8 +175,8 @@ export function createDynamicRateLimiter(
     // Key generator
     keyGenerator: (req) => {
       const config = rateLimitConfigs[configName];
-      if (config.keyGenerator === 'user' && (req as AuthenticatedRequest).user?.id) {
-        return `user:${(req as AuthenticatedRequest).user.id}`;
+      if (config.keyGenerator === 'user' && req.user?.id) {
+        return `user:${req.user.id}`;
       }
       return req.ip ?? 'unknown';
     },
@@ -204,7 +195,7 @@ export function createDynamicRateLimiter(
         {
           ip: req.ip,
           path: req.path,
-          userId: (req as AuthenticatedRequest).user?.id,
+          userId: req.user?.id,
           userTier,
           rateLimitType: configName,
         },
@@ -214,7 +205,7 @@ export function createDynamicRateLimiter(
       res.status(429).json({
         error: 'Too Many Requests',
         message: config.message ?? 'Rate limit exceeded. Please try again later.',
-        retryAfter: (req as AuthenticatedRequest).rateLimit?.resetTime,
+        retryAfter: req.rateLimit?.resetTime,
         limit: config.max,
         windowMs: config.windowMs,
         userTier,
@@ -285,11 +276,11 @@ export function applyRateLimitGroup(
  * Get user tier from request
  */
 function getUserTier(req: Request): keyof typeof rateLimitTiers | undefined {
-  if ((req as AuthenticatedRequest).user === null || (req as AuthenticatedRequest).user === undefined) return undefined;
+  if (req.user === null || req.user === undefined) return undefined;
 
   // Check user role
-  if ((req as AuthenticatedRequest).user && (req as AuthenticatedRequest).user.role === 'ADMIN') return 'admin';
-  if ((req as AuthenticatedRequest).user && (req as AuthenticatedRequest).user.role === 'PREMIUM') return 'premium';
+  if (req.user && req.user.role === 'ADMIN') return 'admin';
+  if (req.user && req.user.role === 'PREMIUM') return 'premium';
 
   // Check for API token
   if (req.headers.authorization && req.headers.authorization.startsWith('Bearer ')) {

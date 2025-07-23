@@ -88,12 +88,12 @@ export class CurriculumSearchService extends BaseService {
         };
 
         // Apply filters
-        if (filters?.grade !== undefined) {
-          where.grade = filters?.grade;
+        if (filters.grade !== undefined) {
+          where.grade = filters.grade;
         }
         
-        if (filters?.strand && isValidString(filters?.strand)) {
-          where.strand = { contains: filters?.strand, mode: 'insensitive' };
+        if (filters.strand && isValidString(filters.strand)) {
+          where.strand = { contains: filters.strand, mode: 'insensitive' };
         }
 
         // Get total count
@@ -139,12 +139,12 @@ export class CurriculumSearchService extends BaseService {
         }
 
         // Apply filters
-        if (filters?.grade !== undefined && isValidNumber(filters?.grade)) {
-          where.grade = filters?.grade;
+        if (filters?.grade !== undefined && isValidNumber(filters.grade)) {
+          where.grade = filters.grade;
         }
         
-        if (filters?.strand !== undefined && isValidString(filters?.strand)) {
-          where.strand = { contains: filters?.strand, mode: 'insensitive' };
+        if (filters?.strand !== undefined && isValidString(filters.strand)) {
+          where.strand = { contains: filters.strand, mode: 'insensitive' };
         }
         
         // Note: type field doesn't exist in schema
@@ -180,12 +180,12 @@ export class CurriculumSearchService extends BaseService {
         };
 
         // Apply filters
-        if (filters?.grade !== undefined && isValidNumber(filters?.grade)) {
-          where.grade = filters?.grade;
+        if (filters?.grade !== undefined && isValidNumber(filters.grade)) {
+          where.grade = filters.grade;
         }
         
-        if (filters?.strand !== undefined && isValidString(filters?.strand)) {
-          where.strand = { contains: filters?.strand, mode: 'insensitive' };
+        if (filters?.strand !== undefined && isValidString(filters.strand)) {
+          where.strand = { contains: filters.strand, mode: 'insensitive' };
         }
         
         // Note: type field doesn't exist in schema

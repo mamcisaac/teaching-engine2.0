@@ -15,7 +15,6 @@ import type { AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandl
 import { BaseRouteHandler } from './base/BaseRouteHandler.js';
 import {
   optimizedIncludes,
-  optimizedQueries,
   queryPerformance,
 } from './optimizations/queryOptimizations.js';
 

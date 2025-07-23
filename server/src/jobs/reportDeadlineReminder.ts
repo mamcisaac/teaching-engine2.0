@@ -12,7 +12,7 @@ export function scheduleReportDeadlineReminders(): void {
     try {
       sendReportDeadlineReminders();
     } catch (error) {
-      logger.error('Failed to send report deadline reminders:', error);
+      logger.error('Failed to send report deadline reminders:', error instanceof Error ? error.message : String(error));
     }
   });
 }

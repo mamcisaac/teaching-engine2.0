@@ -39,7 +39,7 @@ export function useToast(): { toasts: Toast[]; toast: (options: ToastOptions) =>
         toastListeners.splice(index, 1);
       }
     };
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [])
 
   const toast = (options: ToastOptions): void => {
     const newToast: Toast = {

@@ -55,7 +55,7 @@ export class TemplateDataFetcher {
           throw _error;
         }
         // Use default value for optional requirements
-        data[req.key] = req.defaultValue || null;
+        data[req.key] = (req.defaultValue !== null) ? req.defaultValue : null;
       }
     });
 
@@ -181,7 +181,7 @@ export class TemplateDataFetcher {
       userId: context.userId,
     };
 
-    if (filters?.startDate && filters?.endDate) {
+    if (filters?.startDate && filters.endDate) {
       where.date = {
         gte: new Date(filters.startDate),
         lte: new Date(filters.endDate),
