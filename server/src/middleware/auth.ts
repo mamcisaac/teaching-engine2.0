@@ -34,7 +34,7 @@ import { AuthenticationError, ValidationError, ConflictError, AppError } from '.
 
 // Environment validation
 const {JWT_SECRET} = process.env;
-if (JWT_SECRET == null || JWT_SECRET === '') {
+if (JWT_SECRET === undefined || JWT_SECRET === '') {
   throw new Error('JWT_SECRET environment variable is required');
 }
 // TypeScript now knows JWT_SECRET is defined, but we need to help it
@@ -396,7 +396,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
 /**
  * Logout endpoint handler
  */
-export async function logout(req: Request, res: Response, next: NextFunction): Promise<void> {
+export function logout(req: Request, res: Response, next: NextFunction): void {
   try {
     // Clear refresh token cookie
     res.clearCookie('refreshToken');
@@ -623,11 +623,11 @@ export async function resetPassword(
 /**
  * Session validation middleware
  */
-export async function validateSession(
+export function validateSession(
   req: Request,
   _res: Response,
   next: NextFunction,
-): Promise<void> {
+): void {
   try {
     if (!req.user) {
       throw new AuthenticationError('Session invalid');

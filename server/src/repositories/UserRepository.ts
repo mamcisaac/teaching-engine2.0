@@ -29,7 +29,7 @@ export class UserRepository extends BaseRepository<
 
   async findByEmail(email: string): Promise<User | null> {
     try {
-      const user = await this.model.findUnique({
+      const user = await this.prisma.user.findUnique({
         where: { email: email.toLowerCase() },
       });
       return user;
@@ -42,7 +42,7 @@ export class UserRepository extends BaseRepository<
 
   async findByIdWithoutPassword(id: number): Promise<UserWithoutPassword | null> {
     try {
-      const user = await this.model.findUnique({
+      const user = await this.prisma.user.findUnique({
         where: { id },
         select: {
           id: true,
@@ -68,7 +68,7 @@ export class UserRepository extends BaseRepository<
   }): Promise<UserWithoutPassword> {
     try {
       const hashedPassword = await hashPassword(data.password);
-      const user = await this.model.create({
+      const user = await this.prisma.user.create({
         data: {
           email: data.email.toLowerCase(),
           password: hashedPassword,
@@ -95,7 +95,7 @@ export class UserRepository extends BaseRepository<
   async updatePassword(userId: number, newPassword: string): Promise<void> {
     try {
       const hashedPassword = await hashPassword(newPassword);
-      await this.model.update({
+      await this.prisma.user.update({
         where: { id: userId },
         data: { password: hashedPassword },
       });
@@ -112,7 +112,7 @@ export class UserRepository extends BaseRepository<
     take?: number;
   }): Promise<UserWithoutPassword[]> {
     try {
-      const users = await this.model.findMany({
+      const users = await this.prisma.user.findMany({
         select: {
           id: true,
           email: true,
@@ -120,8 +120,8 @@ export class UserRepository extends BaseRepository<
           role: true,
           preferredLanguage: true,
         },
-        skip: pagination.skip,
-        take: pagination.take,
+        skip: pagination?.skip,
+        take: pagination?.take,
         orderBy: { id: 'desc' },
       });
       return users;

@@ -5,16 +5,13 @@ import {
   isRepositoryError} from '../../types/repository';
 import type {
   PrismaModelDelegate,
-  RepositoryError,
   BaseModel,
   FindManyOptions,
   FindFirstOptions,
   CursorPaginationOptions,
   CursorPaginationResult,
-  ModelWithId,
 } from '../../types/repository';
 import type {
-  PaginationOptions,
   PaginatedResponse} from '../../utils/pagination';
 import {
   createPaginatedResponse,

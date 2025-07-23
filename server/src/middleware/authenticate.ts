@@ -94,7 +94,7 @@ function extractToken(req: Request): string | null {
 /**
  * Verify and decode JWT token
  */
-export async function verifyToken(token: string): Promise<TokenPayload | { error: string } | null> {
+export function verifyToken(token: string): TokenPayload | { error: string } | null {
   try {
     // Debug logging for test environment
     if (process.env.NODE_ENV === 'test') {
@@ -206,7 +206,7 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
       return;
     }
 
-    const decoded = await verifyToken(token);
+    const decoded = verifyToken(token);
 
     if (!decoded) {
       if (process.env.NODE_ENV === 'test') {
@@ -426,7 +426,7 @@ export async function optionalAuthenticate(
       return;
     }
 
-    const decoded = await verifyToken(token);
+    const decoded = verifyToken(token);
 
     if (decoded && !('error' in decoded)) {
       req.user = {

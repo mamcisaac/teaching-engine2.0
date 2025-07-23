@@ -2,7 +2,7 @@
 import { screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import HelpPage from '../../pages/HelpPage';
+import { HelpPage } from '../../pages/HelpPage';
 import { renderWithAuth } from '../../test-utils';
 
 // Mock the help context

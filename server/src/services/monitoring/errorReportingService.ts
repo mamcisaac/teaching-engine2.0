@@ -333,7 +333,17 @@ export class ErrorReportingService {
       return event; // Return original if parsing failed
     }
     
-    const sanitized = parsed as any;
+    interface SanitizedEvent extends Record<string, unknown> {
+      message?: string;
+      extra?: Record<string, unknown>;
+      request?: Record<string, unknown>;
+      user?: Record<string, unknown>;
+      contexts?: Record<string, unknown>;
+      tags?: Record<string, unknown>;
+      fingerprint?: string[];
+    }
+    
+    const sanitized = parsed as SanitizedEvent;
 
     // Sanitize message
     if (sanitized.message) {

@@ -13,7 +13,11 @@ import { TemplateProvider } from './TemplateProvider';
 export class LessonTemplateProvider extends TemplateProvider {
   constructor() {
     super('LessonTemplateProvider');
-    this.loadTemplates();
+    try {
+      this.loadTemplates();
+    } catch (error) {
+      console.error('Failed to load lesson templates:', error);
+    }
   }
 
   /**
@@ -21,9 +25,9 @@ export class LessonTemplateProvider extends TemplateProvider {
    */
   async getTemplate(context: TemplateContext): Promise<Template> {
     // Determine template based on parameters
-    const templateType = context.parameters.type || 'standard';
-    const grade = context.parameters.grade;
-    const subject = context.parameters.subject;
+    const templateType = context.parameters?.type || 'standard';
+    const grade = context.parameters?.grade;
+    const subject = context.parameters?.subject;
 
     // Build template ID
     let templateId = `lesson-${templateType}`;
@@ -35,12 +39,12 @@ export class LessonTemplateProvider extends TemplateProvider {
     }
 
     // Try specific template first, fall back to general
-    let template = await this.getTemplateById(templateId);
+    let template = this.getTemplateById(templateId);
     if (!template) {
-      template = await this.getTemplateById(`lesson-${templateType}`);
+      template = this.getTemplateById(`lesson-${templateType}`);
     }
     if (!template) {
-      template = await this.getTemplateById('lesson-standard');
+      template = this.getTemplateById('lesson-standard');
     }
 
     if (!template) {
@@ -53,7 +57,7 @@ export class LessonTemplateProvider extends TemplateProvider {
   /**
    * List available templates
    */
-  async listTemplates(): Promise<Template[]> {
+  listTemplates(): Template[] {
     return Array.from(this.templates.values());
   }
 
@@ -67,7 +71,7 @@ export class LessonTemplateProvider extends TemplateProvider {
   /**
    * Load templates
    */
-  protected async loadTemplates(): Promise<void> {
+  protected loadTemplates(): void {
     // Register standard lesson template
     this.registerTemplate({
       id: 'lesson-standard',

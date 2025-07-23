@@ -35,6 +35,67 @@ export interface ETFOLessonPlanCreateData {
 
 export type ETFOLessonPlanUpdateData = Partial<Omit<ETFOLessonPlanCreateData, 'unitPlanId' | 'userId'>>
 
+export interface ETFOLessonPlanWithRelations {
+  id: string;
+  title: string;
+  titleFr?: string | null;
+  unitPlanId: string;
+  date: Date;
+  duration: number;
+  mindsOn?: string | null;
+  mindsOnFr?: string | null;
+  action?: string | null;
+  actionFr?: string | null;
+  consolidation?: string | null;
+  consolidationFr?: string | null;
+  learningGoals?: string | null;
+  learningGoalsFr?: string | null;
+  materials?: string[];
+  grouping?: string | null;
+  accommodations?: string[];
+  modifications?: string[];
+  extensions?: string[];
+  assessmentType?: 'diagnostic' | 'formative' | 'summative' | null;
+  assessmentNotes?: string | null;
+  isSubFriendly?: boolean | null;
+  subNotes?: string | null;
+  userId: number;
+  createdAt: Date;
+  updatedAt: Date;
+  unitPlan?: {
+    id: string;
+    title: string;
+    longRangePlan?: {
+      subject: string;
+    } | null;
+  } | null;
+  expectations?: Array<{
+    id: string;
+    expectationId: number;
+  }>;
+}
+
+export interface ETFOLessonPlanListResponse {
+  plans: ETFOLessonPlanWithRelations[];
+  total: number;
+  pagination: {
+    skip: number;
+    take: number;
+    hasMore: boolean;
+  };
+}
+
+export interface ETFOLessonPlanSearchResult {
+  plans: ETFOLessonPlanWithRelations[];
+  total: number;
+  searchTerm: string;
+  pagination: {
+    skip: number;
+    take: number;
+    hasMore: boolean;
+  };
+}
+
 export interface ETFOLessonPlanFilters {
   unitPlanId?: string;
   startDate?: string;
@@ -58,7 +119,7 @@ export class ETFOLessonPlanService extends BaseService {
     userId: number,
     filters: ETFOLessonPlanFilters = {},
     pagination: { skip?: number; take?: number } = {},
-  ): Promise<any> {
+  ): Promise<ETFOLessonPlanListResponse> {
     try {
       const where: Prisma.ETFOLessonPlanWhereInput = {
         userId,
@@ -109,7 +170,7 @@ export class ETFOLessonPlanService extends BaseService {
     }
   }
 
-  async findById(id: string, userId: number): Promise<any> {
+  async findById(id: string, userId: number): Promise<ETFOLessonPlanWithRelations | null> {
     try {
       const plan = await this.repository.findByIdWithRelations(id);
 
@@ -124,7 +185,7 @@ export class ETFOLessonPlanService extends BaseService {
     }
   }
 
-  async create(data: ETFOLessonPlanCreateData, userId: number): Promise<any> {
+  async create(data: ETFOLessonPlanCreateData, userId: number): Promise<ETFOLessonPlanWithRelations> {
     try {
       const { expectationIds = [], ...planData } = data;
 
@@ -161,7 +222,7 @@ export class ETFOLessonPlanService extends BaseService {
     }
   }
 
-  async update(id: string, userId: number, data: ETFOLessonPlanUpdateData): Promise<any> {
+  async update(id: string, userId: number, data: ETFOLessonPlanUpdateData): Promise<ETFOLessonPlanWithRelations> {
     try {
       // Verify ownership
       const existingPlan = await this.repository.findById(id);
@@ -202,7 +263,7 @@ export class ETFOLessonPlanService extends BaseService {
     }
   }
 
-  async duplicate(id: string, userId: number): Promise<any> {
+  async duplicate(id: string, userId: number): Promise<ETFOLessonPlanWithRelations> {
     try {
       // Get the original plan
       const originalPlan = await this.repository.findByIdWithRelations(id);
@@ -249,7 +310,7 @@ export class ETFOLessonPlanService extends BaseService {
     userId: number,
     searchTerm: string,
     pagination: { skip?: number; take?: number } = {},
-  ): Promise<any> {
+  ): Promise<ETFOLessonPlanSearchResult> {
     try {
       const plans = await this.repository.searchByContent(userId, searchTerm, pagination);
       return plans;

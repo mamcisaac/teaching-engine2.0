@@ -20,6 +20,65 @@ import {
 } from './optimizations/queryOptimizations.js';
 
 // Daybook-specific interfaces
+interface DaybookEntryWithRelations {
+  id: string;
+  date: Date;
+  rating?: number | null;
+  overallRating?: number | null;
+  classEngagement?: string | null;
+  whatWorked?: string | null;
+  whatDidntWork?: string | null;
+  commonChallenges?: string | null;
+  nextSteps?: string | null;
+  wouldReuseLesson?: boolean | null;
+  userId: number;
+  lessonPlanId?: string | null;
+  lessonPlan?: {
+    id: string;
+    title: string;
+    unitPlan?: {
+      id: string;
+      title: string;
+      longRangePlan?: {
+        subject: string;
+      } | null;
+    } | null;
+  } | null;
+  expectations?: Array<{
+    id: string;
+    expectationId: string;
+    coverage: string;
+  }>;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+interface DaybookEntriesListResponse {
+  entries: DaybookEntryWithRelations[];
+  pagination: {
+    total: number;
+    limit: number;
+    offset: number;
+    hasMore: boolean;
+  };
+}
+
+interface InsightsSummary {
+  totalEntries: number;
+  averageRating: number | null;
+  mostCommonChallenges: Array<{ challenge: string; count: number }>;
+  subjectInsights: Array<{ subject: string; averageRating: number; entryCount: number }>;
+  engagementTrends: Array<{ period: string; rating: number }>;
+  commonSuccesses: string[];
+  improvementAreas: string[];
+}
+
+interface ValidationSchemas {
+  create: typeof daybookEntryCreateSchema;
+  update: typeof daybookEntryUpdateSchema;
+  query: typeof daybookQuerySchema;
+}
+
 interface DaybookEntryForAnalytics {
   date: Date | string;
   rating?: number | null;
@@ -199,7 +258,7 @@ class DaybookService extends BaseService {
       order?: 'asc' | 'desc';
     },
     userId: number,
-  ): Promise<any> {
+  ): Promise<DaybookEntriesListResponse> {
     const { startDate, endDate, lessonPlanId, subject, limit, offset, sort, order } = filters;
 
     const where: Prisma.DaybookEntryWhereInput = { userId };
@@ -238,14 +297,19 @@ orderBy.overallRating = order;
 orderBy.createdAt = order;
 }
 
-    const result = await queryPerformance.monitorQuery('daybookEntry.findMany', () =>
-      optimizedQueries.paginatedQuery(prisma.daybookEntry, where, {
-        limit: limit ?? 10,
-        offset: offset ?? 0,
-        orderBy,
-        include: optimizedIncludes.daybookEntry,
-      }),
-    );
+    const result = await queryPerformance.monitorQuery('daybookEntry.findMany', async () => {
+      const [items, total] = await Promise.all([
+        prisma.daybookEntry.findMany({
+          where,
+          take: limit ?? 10,
+          skip: offset ?? 0,
+          orderBy,
+          include: optimizedIncludes.daybookEntry,
+        }),
+        prisma.daybookEntry.count({ where }),
+      ]);
+      return { items, total };
+    });
 
     const { items: entries, total } = result;
 
@@ -260,7 +324,7 @@ orderBy.createdAt = order;
     };
   }
 
-  async findById(id: string, userId: number): Promise<any> {
+  async findById(id: string, userId: number): Promise<DaybookEntryWithRelations | null> {
     return prisma.daybookEntry.findFirst({
       where: { id, userId },
       include: {
@@ -295,7 +359,7 @@ orderBy.createdAt = order;
     });
   }
 
-  async create(data: DaybookEntryCreateData, userId: number): Promise<any> {
+  async create(data: DaybookEntryCreateData, userId: number): Promise<DaybookEntryWithRelations> {
     const { expectations, ...daybookData } = data as unknown as Record<string, unknown>;
 
     return prisma.daybookEntry.create({
@@ -319,7 +383,7 @@ orderBy.createdAt = order;
     });
   }
 
-  async update(id: string, data: DaybookEntryUpdateData, userId: number): Promise<any> {
+  async update(id: string, data: DaybookEntryUpdateData, userId: number): Promise<DaybookEntryWithRelations> {
     // Verify ownership
     const entry = await prisma.daybookEntry.findFirst({
       where: { id, userId },
@@ -369,7 +433,7 @@ orderBy.createdAt = order;
     return true;
   }
 
-  async getInsightsSummary(userId: number): Promise<any> {
+  async getInsightsSummary(userId: number): Promise<InsightsSummary> {
     const recentEntries = await prisma.daybookEntry.findMany({
       where: {
         userId,
@@ -441,7 +505,7 @@ export class DaybookEntriesRouteHandler extends BaseRouteHandler {
     return this.daybookService;
   }
 
-  protected getValidationSchemas(): any {
+  protected getValidationSchemas(): ValidationSchemas {
     return {
       create: daybookEntryCreateSchema,
       update: daybookEntryUpdateSchema,

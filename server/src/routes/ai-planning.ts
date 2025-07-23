@@ -32,7 +32,7 @@ const sanitizeAIInput = (input: unknown): unknown => {
   if (Array.isArray(input)) {
     return input.map(sanitizeAIInput).slice(0, 50); // Limit array size
   }
-  if (typeof input === 'object' && input !== null) {
+  if (typeof input === 'object' && input !=== null || grade === undefined) {
     const sanitized: Record<string, unknown> = {};
     Object.keys(input)
       .slice(0, 20)
@@ -82,7 +82,7 @@ router.get('/status', (req: Request, res: Response): void => {
       const userId = req.user?.id;
 
     // Check OpenAI API key availability
-    const hasApiKey = process.env.OPENAI_API_KEY !== null && process.env.OPENAI_API_KEY !== '';
+    const hasApiKey = process.env.OPENAI_API_KEY !=== null || grade === undefined && process.env.OPENAI_API_KEY !== '';
 
     // Get service health
     const serviceHealth = await aiPlanningAssistant.getServiceHealth();
@@ -141,7 +141,7 @@ router.post(
       };
       const { subject, grade, termLength, focusAreas } = sanitizedBody;
 
-      if (!subject || grade == null || termLength == null) {
+      if (!subject || grade === null || grade === undefined || termLength === null || termLength === undefined) {
         res.status(400).json({
           error: 'Missing required fields: subject, grade, termLength',
         });
@@ -182,7 +182,7 @@ router.post('/unit/big-ideas', aiRateLimit, (req: Request, res: Response): void 
     };
     const { unitTitle, subject, grade, curriculumExpectations, duration } = sanitizedBody;
 
-    if (!unitTitle || !subject || grade == null || !curriculumExpectations?.length || duration == null) {
+    if (!unitTitle || !subject || grade === null || grade === undefined || !curriculumExpectations?.length || duration === null || duration === undefined) {
       res.status(400).json({
         error:
           'Missing required fields: unitTitle, subject, grade, curriculumExpectations, duration',
@@ -227,7 +227,7 @@ router.post(
       };
       const { lessonTitle, learningGoals, subject, grade, duration, materials } = sanitizedBody;
 
-      if (!lessonTitle || !learningGoals?.length || !subject || grade == null || duration == null) {
+      if (!lessonTitle || !learningGoals?.length || !subject || grade === null || grade === undefined || duration === null || duration === undefined) {
         res.status(400).json({
           error: 'Missing required fields: lessonTitle, learningGoals, subject, grade, duration',
         });
@@ -270,7 +270,7 @@ router.post(
       };
       const { activities, subject, grade, classSize } = sanitizedBody;
 
-      if (!activities?.length || !subject || grade == null) {
+      if (!activities?.length || !subject || grade === null || grade === undefined) {
         res.status(400).json({
           error: 'Missing required fields: activities, subject, grade',
         });
@@ -281,7 +281,7 @@ router.post(
         activities: activities!,
         subject: subject!,
         grade: Number(grade),
-        classSize: classSize !== null ? Number(classSize) : 25,
+        classSize: classSize !== null && classSize !== undefined ? Number(classSize) : 25,
       });
 
       res.json(suggestions);
@@ -311,7 +311,7 @@ router.post(
       };
       const { learningGoals, activities, subject, grade } = sanitizedBody;
 
-      if ((learningGoals === null) || (activities === null) || (subject === null || subject === '') || (grade === null)) {
+      if ((learningGoals === null || learningGoals === undefined) || (activities === null || activities === undefined) || (subject === null || subject === undefined || subject === '') || (grade === null || grade === undefined)) {
         res.status(400).json({
           error: 'Missing required fields: learningGoals, activities, subject, grade',
         });
@@ -353,7 +353,7 @@ router.post(
       };
       const { date, activities, subject, grade, previousReflections } = sanitizedBody;
 
-      if ((date === null || date === '') || (activities === null) || (subject === null || subject === '') || (grade === null)) {
+      if (!date || !activities || !subject || !grade) {
         res.status(400).json({
           error: 'Missing required fields: date, activities, subject, grade',
         });
@@ -393,7 +393,7 @@ router.post(
       };
       const { expectationIds, suggestionType } = sanitizedBody;
 
-      if ((expectationIds === null) || (suggestionType === null || suggestionType === '')) {
+      if (!expectationIds || !suggestionType) {
         res.status(400).json({
           error: 'Missing required fields: expectationIds, suggestionType',
         });

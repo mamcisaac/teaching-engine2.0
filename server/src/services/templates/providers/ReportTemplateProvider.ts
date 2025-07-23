@@ -10,21 +10,25 @@ import { TemplateProvider } from './TemplateProvider';
 export class ReportTemplateProvider extends TemplateProvider {
   constructor() {
     super('ReportTemplateProvider');
-    this.loadTemplates();
+    try {
+      this.loadTemplates();
+    } catch (error) {
+      console.error('Failed to load report templates:', error);
+    }
   }
 
   /**
    * Get template based on context
    */
   async getTemplate(context: TemplateContext): Promise<Template> {
-    const reportType = context.parameters.type || 'progress';
-    const format = context.parameters.format || 'pdf';
+    const reportType = context.parameters?.type || 'progress';
+    const format = context.parameters?.format || 'pdf';
     
     const templateId = `report-${reportType}-${format}`;
-    let template = await this.getTemplateById(templateId);
+    let template = this.getTemplateById(templateId);
     
     if (!template) {
-      template = await this.getTemplateById(`report-${reportType}`);
+      template = this.getTemplateById(`report-${reportType}`);
     }
     
     if (!template) {
@@ -37,7 +41,7 @@ export class ReportTemplateProvider extends TemplateProvider {
   /**
    * List available templates
    */
-  async listTemplates(): Promise<Template[]> {
+  listTemplates(): Template[] {
     return Array.from(this.templates.values());
   }
 
@@ -45,13 +49,13 @@ export class ReportTemplateProvider extends TemplateProvider {
    * Validate context
    */
   validateContext(context: TemplateContext): boolean {
-    return Boolean(context.userId && context.userId !== 0) && Boolean(context.parameters.type && context.parameters.type !== '');
+    return Boolean(context.userId && context.userId !== 0) && Boolean(context.parameters?.type && context.parameters?.type !== '');
   }
 
   /**
    * Load templates
    */
-  protected async loadTemplates(): Promise<void> {
+  protected loadTemplates(): void {
     // Progress report template
     this.registerTemplate({
       id: 'report-progress-pdf',

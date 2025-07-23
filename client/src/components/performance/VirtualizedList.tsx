@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef, useState, type ComponentType, type CSSProperties, type ReactNode, type UIEvent } from 'react';
 // Type-safe debounce implementation with cancel
 interface DebounceFunction<T extends unknown[]> {
   (...args: T): void;
@@ -29,7 +29,7 @@ interface VirtualizedListProps<T> {
   items: T[];
   itemHeight: number;
   height: number;
-  renderItem: (props: { item: T; index: number; style: React.CSSProperties }) => React.ReactNode;
+  renderItem: (props: { item: T; index: number; style: CSSProperties }) => ReactNode;
   onScrollEnd?: (scrollTop: number) => void;
   overscan?: number;
   className?: string;
@@ -150,7 +150,7 @@ return;
         }}
       >
         {visibleItems.map(({ item, index }) => {
-          const style: React.CSSProperties = {
+          const style: CSSProperties = {
             position: 'absolute',
             top: index * itemHeight,
             left: 0,
@@ -171,9 +171,9 @@ return;
 
 // HOC for memoizing items
 export function withVirtualizedMemo<T>(
-  Component: React.ComponentType<{ item: T; index: number; style: React.CSSProperties }>,
-): React.ComponentType<{ item: T; index: number; style: React.CSSProperties }> {
-  return React.memo(Component, (prevProps, nextProps) => (
+  Component: ComponentType<{ item: T; index: number; style: CSSProperties }>,
+): ComponentType<{ item: T; index: number; style: CSSProperties }> {
+  return memo(Component, (prevProps, nextProps) => (
       prevProps.index === nextProps.index &&
       prevProps.item === nextProps.item &&
       prevProps.style.top === nextProps.style.top &&

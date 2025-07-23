@@ -52,8 +52,8 @@ const logFormat = format.combine(
       message: info.message,
       correlationId: context?.correlationId ?? 'no-correlation-id',
       ...(context?.userId !== undefined ? { userId: context.userId } : {}),
-      ...(context?.requestId !== null && context?.requestId !== '' ? { requestId: context.requestId } : {}),
-      ...(context?.sessionId !== null && context?.sessionId !== '' ? { sessionId: context.sessionId } : {}),
+      ...(context?.requestId !== null && context?.requestId !== '' ? { requestId: context?.requestId } : {}),
+      ...(context?.sessionId !== null && context?.sessionId !== '' ? { sessionId: context?.sessionId } : {}),
       ...(info.duration !== undefined ? { duration: info.duration } : {}),
       ...(info.meta !== undefined ? { meta: info.meta } : {}),
       ...(info.error !== undefined && info.error !== null && typeof info.error === 'object' && 'message' in info.error ? {
@@ -68,9 +68,9 @@ const logFormat = format.combine(
     // Add trace context if available
     if (context?.traceId !== null && context?.traceId !== '') {
       (log as Record<string, unknown>).trace = {
-        traceId: context.traceId,
-        spanId: context.spanId,
-        parentSpanId: context.parentSpanId,
+        traceId: context?.traceId,
+        spanId: context?.spanId,
+        parentSpanId: context?.parentSpanId,
       };
     }
 

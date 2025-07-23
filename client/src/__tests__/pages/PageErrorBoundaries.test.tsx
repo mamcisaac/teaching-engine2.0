@@ -13,7 +13,7 @@ import React from 'react';
 
 // Import all page components
 import { CurriculumImportPage } from '../../pages/CurriculumImportPage';
-import LongRangePlanPage from '../../pages/LongRangePlanPage';
+import { LongRangePlanPage } from '../../pages/LongRangePlanPage';
 import { ParentNewsletterPage } from '../../pages/ParentNewsletterPage';
 import { HelpPage } from '../../pages/HelpPage';
 // TeamsPage removed - focusing on single-teacher planning

@@ -116,7 +116,7 @@ export function GPTPlanningAgent({
   // Send message
   const sendMessageMutation = useMutation({
     mutationFn: async (message: string) => {
-      if (sessionId == null || sessionId === '') {
+      if (sessionId === null || sessionId === '') {
 throw new Error('No session');
 }
       const response = await api.post<{ data: MessageResponse }>('/api/ai/agent/messages', {
@@ -181,7 +181,7 @@ throw new Error('No session');
     return () => { // Cleanup
     };
 
-    if (isOpen && (sessionId == null || sessionId === '')) {
+    if (isOpen && (sessionId === null || sessionId === '')) {
       startSessionMutation.mutate();
     }
   }, [isOpen, sessionId, startSessionMutation]);

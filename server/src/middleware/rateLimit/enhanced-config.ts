@@ -109,7 +109,10 @@ export const rateLimitConfigs = {
  * Get user tier from request
  */
 export function getUserTier(req: Request): UserTier {
-  const user = (req as any)?.user;
+  interface RequestWithUser extends Request {
+    user?: { role?: string };
+  }
+  const user = (req as RequestWithUser)?.user;
   if (!user) return UserTier.FREE;
 
   switch (user.role) {
@@ -162,7 +165,7 @@ export async function createEnhancedRateLimiter(
       // Generate key
       const key = customConfig?.keyGenerator
         ? customConfig.keyGenerator(req)
-        : (req as any)?.user?.userId ?? req.ip;
+        : ((req as RequestWithUser & { user?: { userId?: string } })?.user?.userId ?? req.ip);
 
       // Check if should skip
       if (customConfig?.skip?.(req)) {
@@ -173,28 +176,29 @@ export async function createEnhancedRateLimiter(
       const rateLimiterRes = await rateLimiter.consume(key, 1);
 
       // Set headers
-      (res as any).setHeader('X-RateLimit-Limit', limit);
-      (res as any).setHeader('X-RateLimit-Remaining', rateLimiterRes.remainingPoints);
-      (res as any).setHeader(
+      res.setHeader('X-RateLimit-Limit', limit);
+      res.setHeader('X-RateLimit-Remaining', rateLimiterRes.remainingPoints);
+      res.setHeader(
         'X-RateLimit-Reset',
         new Date(Date.now() + rateLimiterRes.msBeforeNext).toISOString(),
       );
-      (res as any).setHeader('X-RateLimit-Tier', tier);
+      res.setHeader('X-RateLimit-Tier', tier);
 
       next();
-    } catch (rejRes: any) {
+    } catch (rejRes) {
       // Rate limit exceeded
-      const retryAfter = Math.floor((rejRes?.msBeforeNext ?? config.windowMs) / 1000);
+      const rateLimitError = rejRes as { msBeforeNext?: number } | undefined;
+      const retryAfter = Math.floor((rateLimitError?.msBeforeNext ?? config.windowMs) / 1000);
 
-      (res as any).setHeader('Retry-After', retryAfter);
-      (res as any).setHeader('X-RateLimit-Limit', config.tierLimits[getUserTier(req)]);
-      (res as any).setHeader('X-RateLimit-Remaining', 0);
-      (res as any).setHeader(
+      res.setHeader('Retry-After', retryAfter);
+      res.setHeader('X-RateLimit-Limit', config.tierLimits[getUserTier(req)]);
+      res.setHeader('X-RateLimit-Remaining', 0);
+      res.setHeader(
         'X-RateLimit-Reset',
-        new Date(Date.now() + (rejRes?.msBeforeNext ?? config.windowMs)).toISOString(),
+        new Date(Date.now() + (rateLimitError?.msBeforeNext ?? config.windowMs)).toISOString(),
       );
 
-      (res as any).status(429).json({
+      res.status(429).json({
         error: customConfig?.message ?? 'Too many requests, please try again later.',
         retryAfter,
         tier: getUserTier(req),
@@ -229,7 +233,7 @@ export async function getRedisClient(): Promise<Redis | null> {
 
     return redisClient;
   } catch (_error) {
-    logger.info('Redis connection failed, using in-memory rate limiting', _error);
+    logger.info('Redis connection failed, using in-memory rate limiting', _error as string | undefined);
     return null;
   }
 }

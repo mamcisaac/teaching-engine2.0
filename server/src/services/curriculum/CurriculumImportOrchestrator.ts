@@ -6,7 +6,6 @@
 import { prisma } from '../../prisma';
 import type {
   PrismaTransactionClient,
-  CurriculumExpectation,
   Subject,
   CurriculumImport,
   ValidationError
@@ -193,7 +192,7 @@ export class CurriculumImportOrchestrator extends BaseService {
 
         // Validate if requested
         if (options.validate !== false) {
-          const validationResult = await this.validateCurriculum(parsed, options.validationOptions);
+          const validationResult = this.validateCurriculum(parsed, options.validationOptions);
           result.validation = validationResult;
 
           if (!validationResult.isValid) {
@@ -234,10 +233,10 @@ export class CurriculumImportOrchestrator extends BaseService {
   /**
    * Validate curriculum data
    */
-  private async validateCurriculum(
+  private validateCurriculum(
     parsed: ParsedCurriculum,
     validationOptions?: ValidationOptions,
-  ): Promise<{ isValid: boolean; errors: unknown[]; warnings: unknown[] }> {
+  ): { isValid: boolean; errors: unknown[]; warnings: unknown[] } {
     const validator = validationOptions
       ? new CurriculumValidator(validationOptions)
       : this.validator;
@@ -414,10 +413,10 @@ export class CurriculumImportOrchestrator extends BaseService {
   /**
    * Parse uploaded file - alias for existing method
    */
-  public async parseUploadedFile(
+  public parseUploadedFile(
     _filePath: string,
     _options: ImportOptions,
-  ): Promise<ImportResult> {
+  ): ImportResult {
     // This method should use the proper import flow
     return {
       success: false,
@@ -435,10 +434,10 @@ export class CurriculumImportOrchestrator extends BaseService {
   /**
    * Load preset curriculum data
    */
-  public async loadPresetCurriculum(
+  public loadPresetCurriculum(
     presetId: string | number,
     _options: ImportOptions,
-  ): Promise<ImportResult> {
+  ): ImportResult {
     // For now, return a mock result
     return {
       success: true,
@@ -457,7 +456,7 @@ export class CurriculumImportOrchestrator extends BaseService {
   /**
    * Get import progress
    */
-  public async getImportProgress(importId: string): Promise<{
+  public getImportProgress(importId: string): {
     importId: string;
     status: string;
     progress: number;
@@ -468,7 +467,7 @@ export class CurriculumImportOrchestrator extends BaseService {
       totalExpectations: number;
       processedExpectations: number;
     };
-  }> {
+  } {
     // Mock progress data
     return {
       importId,
@@ -487,7 +486,7 @@ export class CurriculumImportOrchestrator extends BaseService {
   /**
    * Confirm import
    */
-  public async confirmImport(importId: string): Promise<ImportResult> {
+  public confirmImport(importId: string): ImportResult {
     // Mock confirmation
     return {
       success: true,
@@ -519,7 +518,7 @@ export class CurriculumImportOrchestrator extends BaseService {
   /**
    * Cancel import
    */
-  public async cancelImport(importId: string): Promise<{ success: boolean; message: string }> {
+  public cancelImport(importId: string): { success: boolean; message: string } {
     return {
       success: true,
       message: `Import ${importId} cancelled successfully`,
@@ -529,7 +528,7 @@ export class CurriculumImportOrchestrator extends BaseService {
   /**
    * Finalize import
    */
-  public async finalizeImport(importId: string, _userId?: number): Promise<ImportResult> {
+  public finalizeImport(importId: string, _userId?: number): ImportResult {
     return {
       success: true,
       message: `Import ${importId} finalized successfully`,

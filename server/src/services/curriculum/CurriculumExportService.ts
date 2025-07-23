@@ -60,7 +60,13 @@ export class CurriculumExportService extends BaseService {
     return this.executeWithMetrics(
       async () => {
         // Build query
-        const where: any = {};
+        interface CurriculumWhereClause {
+          subjectId?: string;
+          grade?: string;
+          strand?: string;
+          isActive?: boolean;
+        }
+        const where: CurriculumWhereClause = {};
         
         if (options.subjectId) {
           where.subjectId = options.subjectId;
@@ -100,7 +106,7 @@ export class CurriculumExportService extends BaseService {
         const exportData = CurriculumTransformer.transformForExport(
           expectations,
           options.format
-        ) as any[];
+        ) as Array<Record<string, unknown>>;
 
         // Convert to buffer based on format
         let buffer: Buffer;

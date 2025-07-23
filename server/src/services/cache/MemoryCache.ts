@@ -197,7 +197,7 @@ continue;
     };
   }
 
-  async healthCheck(): Promise<boolean> {
+  healthCheck(): boolean {
     return true;
   }
 

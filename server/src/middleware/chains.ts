@@ -1,8 +1,7 @@
-import type { Request, Response, NextFunction, RequestHandler } from 'express';
+import type { Request, Response, NextFunction } from 'express';
+import type { RateLimitRequestHandler } from 'express-rate-limit';
 
 import { logger } from '../logger';
-
-type Middleware = RequestHandler;
 
 import { authenticate } from './authenticate';
 import { apiCache, curriculumCache, staticCache, userCache } from './cache';
@@ -40,7 +39,7 @@ export const coreMiddleware = chain()
 // API middleware chain - for all API routes
 export const apiMiddleware = compose(
   coreMiddleware,
-  rateLimiters.api as unknown as any,
+  rateLimiters.api as RateLimitRequestHandler,
   performanceLoggingMiddleware,
 );
 
@@ -50,20 +49,20 @@ export const authenticatedApiMiddleware = compose(apiMiddleware, authenticate);
 // Public API chain (no auth required)
 export const publicApiMiddleware = compose(
   apiMiddleware,
-  conditional(isProduction, rateLimiters.auth as unknown as any),
+  conditional(isProduction, rateLimiters.auth as RateLimitRequestHandler),
 );
 
 // Write operation chain (POST, PUT, DELETE)
 export const writeOperationMiddleware = compose(
   authenticatedApiMiddleware,
-  rateLimiters.write as unknown as any,
+  rateLimiters.write as RateLimitRequestHandler,
   auditMiddleware(AuditEventType.PLAN_MODIFICATION, { severity: 'medium' }),
 );
 
 // Read operation chain (GET)
 export const readOperationMiddleware = compose(
   authenticatedApiMiddleware,
-  rateLimiters.read as unknown as any,
+  rateLimiters.read as RateLimitRequestHandler,
   conditional((req): boolean => req.path.includes('/api/curriculum'), curriculumCache),
 );
 
@@ -71,7 +70,7 @@ export const readOperationMiddleware = compose(
 export const fileUploadMiddleware = (allowedTypes?: string[]) =>
   compose(
     authenticatedApiMiddleware,
-    rateLimiters.upload as unknown as any,
+    rateLimiters.upload as RateLimitRequestHandler,
     fileUploadSecurityMiddleware(allowedTypes),
     auditMiddleware(AuditEventType.DATA_IMPORT, {
       severity: 'high',
@@ -82,7 +81,7 @@ export const fileUploadMiddleware = (allowedTypes?: string[]) =>
 // Auth endpoint chain
 export const authEndpointMiddleware = compose(
   coreMiddleware,
-  rateLimiters.auth as unknown as any,
+  rateLimiters.auth as RateLimitRequestHandler,
   auditMiddleware(AuditEventType.LOGIN_SUCCESS, { severity: 'high' }),
 );
 
@@ -119,7 +118,7 @@ export const errorHandlingMiddleware = compose(errorLoggingMiddleware, errorHand
 // Specific feature chains
 export const planningOperationsMiddleware = compose(
   authenticatedApiMiddleware,
-  rateLimiters.write as unknown as any,
+  rateLimiters.write as RateLimitRequestHandler,
   userCache,
   auditMiddleware(AuditEventType.PLAN_CREATION, {
     severity: 'low',
@@ -129,7 +128,7 @@ export const planningOperationsMiddleware = compose(
 
 export const aiOperationsMiddleware = compose(
   authenticatedApiMiddleware,
-  rateLimiters.ai as unknown as any,
+  rateLimiters.ai as RateLimitRequestHandler,
   performanceLoggingMiddleware,
   auditMiddleware(AuditEventType.AI_GENERATION, {
     severity: 'medium',
@@ -139,7 +138,7 @@ export const aiOperationsMiddleware = compose(
 
 export const exportOperationsMiddleware = compose(
   authenticatedApiMiddleware,
-  rateLimiters.read as unknown as any,
+  rateLimiters.read as RateLimitRequestHandler,
   auditMiddleware(AuditEventType.DATA_EXPORT, {
     severity: 'high',
     targetResource: 'data_export',
@@ -157,7 +156,7 @@ export const developmentMiddleware = conditional(
 
 // Health check chain (minimal processing)
 export const healthCheckMiddleware = compose(
-  rateLimiters.public as unknown as any,
+  rateLimiters.public as RateLimitRequestHandler,
   (_req: Request, res: Response, next: NextFunction) => {
     res.locals.skipLogging = true;
     next();
@@ -179,7 +178,7 @@ export const createCustomChain = (options: {
   const chainBuilder = chain().add(coreMiddleware);
 
   if (options.rateLimit) {
-    chainBuilder.add(rateLimiters[options.rateLimit] as unknown as Middleware);
+    chainBuilder.add(rateLimiters[options.rateLimit] as RateLimitRequestHandler);
   }
 
   if (options.authenticate) {

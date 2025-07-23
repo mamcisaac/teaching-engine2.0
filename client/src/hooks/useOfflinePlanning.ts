@@ -1,7 +1,7 @@
 // Hook for using offline-capable planning stores
 // Example of how to integrate offline functionality into components
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { lazyLoader } from '../services/lazyLoader';
 import type { StoredData } from '../services/offlineStorage';
@@ -243,7 +243,7 @@ return;
   }, [unitPlanId, unitPlanStore]);
 
   // Create debounced update function with proper typing
-  const debouncedUpdate = React.useMemo(() => {
+  const debouncedUpdate = useMemo(() => {
     let timeout: NodeJS.Timeout | null = null;
     
     const debounced = (updates: unknown): Promise<void> => {

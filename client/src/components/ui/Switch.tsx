@@ -1,5 +1,5 @@
 import { clsx } from 'clsx';
-import React from 'react';
+import { type FC, type ReactElement, useId } from 'react';
 
 interface SwitchProps {
   checked: boolean;
@@ -10,14 +10,14 @@ interface SwitchProps {
   label?: string;
 }
 
-export const Switch: React.FC<SwitchProps> = ({
+export const Switch: FC<SwitchProps> = ({
   checked,
   onChange,
   disabled = false,
   size = 'md',
   className,
   label,
-}): React.ReactElement => {
+}): ReactElement => {
   const handleChange = (): void => {
     if (!disabled) {
       onChange(!checked);
@@ -25,7 +25,7 @@ export const Switch: React.FC<SwitchProps> = ({
   };
 
   // Generate a unique ID for the switch
-  const switchId = React.useId();
+  const switchId = useId();
 
   const switchClasses = clsx(
     'relative inline-flex flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2',

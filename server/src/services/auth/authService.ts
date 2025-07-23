@@ -21,7 +21,7 @@ export class AuthService extends BaseService {
   /**
    * Validates password strength and security requirements
    */
-  async validatePassword(password: string): Promise<void> {
+  validatePassword(password: string): void {
     if (!password || typeof password !== 'string') {
       throw new Error('Password is required');
     }

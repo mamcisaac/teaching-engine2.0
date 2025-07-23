@@ -1,15 +1,15 @@
 import { clsx } from 'clsx';
-import React from 'react';
+import { Fragment, forwardRef, type ButtonHTMLAttributes, type ReactElement, type ReactNode } from 'react';
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'danger' | 'ghost' | 'outline';
   size?: 'sm' | 'md' | 'lg';
   loading?: boolean;
   fullWidth?: boolean;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       variant = 'primary',
@@ -22,7 +22,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       ...props
     },
     ref,
-  ): React.ReactElement => {
+  ): ReactElement => {
     const baseStyles =
       'inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
 
@@ -54,7 +54,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         {loading ? (
-          <React.Fragment>
+          <Fragment>
             <svg
               className="animate-spin -ml-1 mr-2 h-4 w-4"
               fill="none"
@@ -76,7 +76,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               />
             </svg>
             Loading...
-          </React.Fragment>
+          </Fragment>
         ) : (
           children
         )}

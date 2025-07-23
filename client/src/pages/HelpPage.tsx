@@ -476,4 +476,3 @@ export function HelpPage(): React.ReactElement {
   );
 }
 
-export default HelpPage;

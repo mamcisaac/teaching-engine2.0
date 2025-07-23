@@ -1,18 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import type { Request, Response, NextFunction } from 'express';
-import type { ZodSchema } from 'zod';
+import type { Response, NextFunction, RequestHandler, Request } from 'express';
+import type { ParamsDictionary, Query } from 'express-serve-static-core';
+import type { ZodSchema, ZodTypeAny } from 'zod';
 import { z, ZodError } from 'zod';
 
 import { logger } from '../../logger';
+import type { ValidatedRequest } from '../../types/http';
 import { ValidationError } from '../../utils/errors';
 
-// Extended request with validated data
-export interface ValidatedRequest<T = unknown> extends Request {
-  validated?: T;
-  validatedBody?: T;
-  validatedQuery?: unknown;
-  validatedParams?: unknown;
-}
+export type { ValidatedRequest } from '../../types/http';
 
 // Validation source types
 export type ValidationSource = 'body' | 'query' | 'params' | 'headers' | 'cookies';
@@ -30,7 +26,7 @@ export interface ValidationOptions {
 export const validate = <T>(
   schema: ZodSchema<T>,
   options: ValidationOptions = {},
-): ((req: ValidatedRequest<T>, res: Response, next: NextFunction) => void) => {
+): RequestHandler => {
   const {
     source = ['body', 'query', 'params'],
     stripUnknown = true,
@@ -39,8 +35,8 @@ export const validate = <T>(
     customErrorHandler,
   } = options;
 
-  return (req: ValidatedRequest<T>, _res: Response, next: NextFunction): void => {
-    void (async (): Promise<void> => {
+  return async (req, _res, next): Promise<void> => {
+    const validatedReq = req as ValidatedRequest<T>;
     try {
       // Determine sources to validate
       const sources = Array.isArray(source) ? source : [source];
@@ -71,17 +67,17 @@ export const validate = <T>(
       const validated = await schema.parseAsync(dataToValidate);
 
       // Store validated data
-      req.validated = validated;
+      validatedReq.validated = validated;
 
       // Also store in specific locations for convenience
       if (sources.includes('body')) {
-        req.validatedBody = validated;
+        validatedReq.validatedBody = validated;
       }
       if (sources.includes('query')) {
-        req.validatedQuery = validated;
+        validatedReq.validatedQuery = validated;
       }
       if (sources.includes('params')) {
-        req.validatedParams = validated;
+        validatedReq.validatedParams = validated;
       }
 
       // Replace original data with validated data if stripUnknown is true
@@ -131,7 +127,6 @@ export const validate = <T>(
         next(_error as Error);
       }
     }
-    })().catch(next);
   };
 };
 
@@ -139,24 +134,24 @@ export const validate = <T>(
 export const validateBody = <T>(
   schema: ZodSchema<T>,
   options?: Omit<ValidationOptions, 'source'>,
-): ReturnType<typeof validate> => validate(schema, { ...options, source: 'body' });
+): RequestHandler => validate(schema, { ...options, source: 'body' });
 
 export const validateQuery = <T>(
   schema: ZodSchema<T>,
   options?: Omit<ValidationOptions, 'source'>,
-): ReturnType<typeof validate> => validate(schema, { ...options, source: 'query' });
+): RequestHandler => validate(schema, { ...options, source: 'query' });
 
 export const validateParams = <T>(
   schema: ZodSchema<T>,
   options?: Omit<ValidationOptions, 'source'>,
-): ReturnType<typeof validate> => validate(schema, { ...options, source: 'params' });
+): RequestHandler => validate(schema, { ...options, source: 'params' });
 
 // Conditional validation
 export const validateIf = <T>(
   condition: (req: Request) => boolean,
   schema: ZodSchema<T>,
   options?: ValidationOptions,
-): ((req: ValidatedRequest<T>, res: Response, next: NextFunction) => void) => (req: ValidatedRequest<T>, res: Response, next: NextFunction): void => {
+): RequestHandler => (req, res, next): void => {
     if (condition(req)) {
       validate(schema, options)(req, res, next); return;
     }
@@ -164,15 +159,21 @@ export const validateIf = <T>(
   };
 
 // Multiple schema validation (OR)
-export const validateOneOf = <T extends ZodSchema<unknown>[]>(
+export const validateOneOf = <T extends ZodTypeAny[]>(
   schemas: T,
   options?: ValidationOptions,
-): ((req: ValidatedRequest, res: Response, next: NextFunction) => Promise<void>) => async (req: ValidatedRequest, res: Response, next: NextFunction): Promise<void> => {
+): RequestHandler => async (req, res, next): Promise<void> => {
     const errors: ZodError[] = [];
 
     for (const schema of schemas) {
       try {
-        await validate(schema, options)(req, res, () => {});
+        // Create a promise that resolves when validation succeeds
+        await new Promise<void>((resolve, reject) => {
+          validate(schema, options)(req, res, (err?: Error | null) => {
+            if (err) reject(err);
+            else resolve();
+          });
+        });
         next(); return; // Success on first valid schema
       } catch (_error: unknown) {
         if (_error instanceof ZodError) {
@@ -183,16 +184,24 @@ export const validateOneOf = <T extends ZodSchema<unknown>[]>(
 
     // All schemas failed
     const combinedErrors = errors.flatMap((e) => e.errors);
-    next(new ValidationError('None of the validation schemas passed', combinedErrors));
+    const formattedErrors = combinedErrors.map((err) => ({
+      field: err.path.join('.'),
+      message: err.message,
+      code: err.code,
+    }));
+    next(new ValidationError('None of the validation schemas passed', formattedErrors));
   };
 
 // Schema composition helpers
-export const mergeSchemas = <T extends ZodSchema<unknown>[]>(...schemas: T): ZodSchema => schemas.reduce((merged, schema) => {
-    if ('merge' in merged && typeof merged.merge === 'function') {
-      return merged.merge(schema) as ZodSchema;
+export const mergeSchemas = <T extends ZodTypeAny[]>(...schemas: T): ZodTypeAny => {
+  const baseObject = z.object({});
+  return schemas.reduce((merged, schema) => {
+    if (merged instanceof z.ZodObject && schema instanceof z.ZodObject) {
+      return merged.merge(schema);
     }
     return schema;
-  }, z.object({}));
+  }, baseObject);
+};
 
 // Common validation patterns
 export const commonValidators = {
@@ -242,7 +251,7 @@ export const sanitizeRequest = (
     query?: string[];
     params?: string[];
   } = {},
-): ((req: Request, _res: Response, next: NextFunction) => void) => (req: Request, _res: Response, next: NextFunction): void => {
+): RequestHandler => (req, _res, next): void => {
     const sanitizeHtml = (str: string): string => str
         .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
         .replace(/<[^>]+>/g, '')
@@ -282,7 +291,7 @@ export const sanitizeRequest = (
 // Type coercion middleware for query parameters
 export const coerceQueryParams = (
   coercions: Record<string, 'number' | 'boolean' | 'array' | 'date'>,
-): ((req: Request, _res: Response, next: NextFunction) => void) => (req: Request, _res: Response, next: NextFunction): void => {
+): RequestHandler => (req, _res, next): void => {
     for (const [param, type] of Object.entries(coercions)) {
       if (req.query[param] !== undefined) {
         const value = req.query[param] as string;

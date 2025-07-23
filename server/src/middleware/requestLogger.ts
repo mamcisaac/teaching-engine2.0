@@ -34,7 +34,7 @@ export function requestLoggingMiddleware(req: Request, res: Response, next: Next
     method: extendedReq.method,
     url: extendedReq.url,
     userAgent: extendedReq.get('User-Agent'),
-    ip: extendedReq.ip != null && extendedReq.ip !== '' ? extendedReq.ip : extendedReq.connection.remoteAddress,
+    ip: extendedReq.ip !== null && extendedReq.ip !== undefined && extendedReq.ip !== '' ? extendedReq.ip : extendedReq.connection.remoteAddress,
   });
 
   // Set request ID in main logger for this request
@@ -110,11 +110,23 @@ return;
     return originalSend.call(this, body);
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   res.end = function (this: Response, ...args: unknown[]): Response {
     logResponse();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return originalEnd.apply(this, args as [chunk: any, encoding: BufferEncoding, cb?: (() => void) | undefined]);
+    
+    // Type-safe handling of res.end arguments
+    const [chunk, encoding, cb] = args as [
+      chunk?: Buffer | string | undefined,
+      encoding?: BufferEncoding | (() => void) | undefined,
+      cb?: (() => void) | undefined
+    ];
+    
+    if (typeof encoding === 'function') {
+      // end(chunk, cb) case
+      return originalEnd.call(this, chunk, encoding);
+    } else {
+      // end(chunk, encoding, cb) case
+      return originalEnd.call(this, chunk, encoding as BufferEncoding | undefined, cb);
+    }
   };
 
   // Handle request completion

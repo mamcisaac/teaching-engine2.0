@@ -58,7 +58,7 @@ export abstract class TemplateProvider {
   /**
    * List available templates
    */
-  abstract listTemplates(): Promise<Template[]>;
+  abstract listTemplates(): Template[];
 
   /**
    * Validate template context
@@ -88,7 +88,7 @@ export abstract class TemplateProvider {
   /**
    * Get template by ID
    */
-  async getTemplateById(id: string): Promise<Template | null> {
+  getTemplateById(id: string): Template | null {
     return this.templates.get(id) ?? null;
   }
 
@@ -102,15 +102,15 @@ export abstract class TemplateProvider {
   /**
    * Get data requirements for template
    */
-  async getDataRequirements(templateId: string): Promise<DataRequirement[]> {
-    const template = await this.getTemplateById(templateId);
-    return template.dataRequirements ?? [];
+  getDataRequirements(templateId: string): DataRequirement[] {
+    const template = this.getTemplateById(templateId);
+    return template?.dataRequirements ?? [];
   }
 
   /**
    * Load templates from files
    */
-  protected abstract loadTemplates(): Promise<void>;
+  protected abstract loadTemplates(): void;
 
   /**
    * Get template variables

@@ -304,7 +304,7 @@ export function AIStatusProvider({ children }: AIStatusProviderProps): React.Rea
 
 export function useAIStatusContext(): AIStatusHookReturn {
   const context = useContext(AIStatusContext);
-  if (context == null) {
+  if (context === null) {
     throw new Error('useAIStatusContext must be used within AIStatusProvider');
   }
   return context;

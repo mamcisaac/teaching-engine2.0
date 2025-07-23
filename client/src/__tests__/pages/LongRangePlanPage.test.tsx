@@ -2,7 +2,7 @@
 import { screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import LongRangePlanPage from '../../pages/LongRangePlanPage';
+import { LongRangePlanPage } from '../../pages/LongRangePlanPage';
 import { renderWithAuth } from '../../test-utils';
 
 // Mock the useQuery and useMutation hooks

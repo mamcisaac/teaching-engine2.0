@@ -1,6 +1,6 @@
 
 import { clsx } from 'clsx';
-import React from 'react';
+import { type ButtonHTMLAttributes, type FC, type ReactElement, type ReactNode } from 'react';
 
 import type { KeyboardShortcut } from '../../contexts/KeyboardShortcutsContext';
 import { formatShortcut , useKeyboardShortcuts } from '../../contexts/KeyboardShortcutsContext';
@@ -16,13 +16,13 @@ interface ShortcutHintProps {
 /**
  * Component that displays keyboard shortcut hints for UI elements
  */
-export const ShortcutHint: React.FC<ShortcutHintProps> = ({
+export const ShortcutHint: FC<ShortcutHintProps> = ({
   shortcut,
   className,
   position = 'inline',
   size = 'sm',
   showAlways = false
-}): React.ReactElement | null => {
+}): ReactElement | null => {
   const { preferences } = useKeyboardShortcuts();
 
   // Don't show if hints are disabled (unless showAlways is true)
@@ -31,7 +31,7 @@ export const ShortcutHint: React.FC<ShortcutHintProps> = ({
   }
 
   // Don't show if no shortcut key is provided
-  if (shortcut.key == null || shortcut.key === '') {
+  if (shortcut.key === null || shortcut.key === '') {
     return null;
   }
 
@@ -73,20 +73,20 @@ export const ShortcutHint: React.FC<ShortcutHintProps> = ({
   );
 };
 
-interface ButtonWithShortcutProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonWithShortcutProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   shortcut?: Partial<KeyboardShortcut>;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 /**
  * Button component that displays a keyboard shortcut hint
  */
-export const ButtonWithShortcut: React.FC<ButtonWithShortcutProps> = ({
+export const ButtonWithShortcut: FC<ButtonWithShortcutProps> = ({
   shortcut,
   children,
   className,
   ...props
-}): React.ReactElement => (
+}): ReactElement => (
     <button
       className={clsx('inline-flex items-center gap-2', className)}
       {...props}
@@ -104,19 +104,19 @@ export const ButtonWithShortcut: React.FC<ButtonWithShortcutProps> = ({
   );
 
 interface TooltipWithShortcutProps {
-  content: React.ReactNode;
+  content: ReactNode;
   shortcut?: Partial<KeyboardShortcut>;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 /**
  * Tooltip component that includes keyboard shortcut information
  */
-export const TooltipWithShortcut: React.FC<TooltipWithShortcutProps> = ({
+export const TooltipWithShortcut: FC<TooltipWithShortcutProps> = ({
   content,
   shortcut,
   children
-}): React.ReactElement => (
+}): ReactElement => (
     <div className="group relative inline-block">
       {children}
       <div className="invisible group-hover:visible absolute z-10 w-max max-w-xs px-3 py-2 text-sm text-white bg-gray-900 rounded-lg shadow-lg -top-10 left-1/2 transform -translate-x-1/2">
@@ -138,19 +138,19 @@ interface MenuItemWithShortcutProps {
   label: string;
   shortcut?: Partial<KeyboardShortcut>;
   onClick?: () => void;
-  icon?: React.ReactNode;
+  icon?: ReactNode;
   disabled?: boolean;
   className?: string;
 }
 
-export const MenuItemWithShortcut: React.FC<MenuItemWithShortcutProps> = ({
+export const MenuItemWithShortcut: FC<MenuItemWithShortcutProps> = ({
   label,
   shortcut,
   onClick,
   icon,
   disabled = false,
   className
-}): React.ReactElement => (
+}): ReactElement => (
     <button
       className={clsx(
         'w-full flex items-center justify-between px-4 py-2 text-sm text-left hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed',

@@ -20,7 +20,7 @@ interface LoggedRequest extends Request {
 
 // Sanitize sensitive data from logs
 const sanitizeData = (data: unknown): unknown => {
-  if (data == null || typeof data !== 'object') {
+  if (data === null || typeof data !== 'object') {
     return data;
   }
 
@@ -102,7 +102,7 @@ export const requestLoggingMiddleware = (
 
     // Add response size if available
     const contentLength = res.get('content-length');
-    if (contentLength != null && contentLength !== '') {
+    if (contentLength !== null && contentLength !== undefined && contentLength !== '') {
       responseLog.responseSize = parseInt(contentLength, 10);
     }
 

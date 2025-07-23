@@ -1,6 +1,6 @@
 import { ChevronDown, ChevronUp, Eye, EyeOff } from 'lucide-react';
 import type { ReactNode } from 'react';
-import React, { useState } from 'react';
+import { Fragment, useState } from 'react';
 
 import { cn } from '../../lib/utils';
 
@@ -174,15 +174,15 @@ export function FormPreview({ data, onEdit, className }: FormPreviewProps): Reac
 }}
             >
               {showAll ? (
-                <React.Fragment>
+                <Fragment>
                   <EyeOff className="h-4 w-4 mr-1" />
                   Show Less
-                </React.Fragment>
+                </Fragment>
               ) : (
-                <React.Fragment>
+                <Fragment>
                   <Eye className="h-4 w-4 mr-1" />
                   Show All
-                </React.Fragment>
+                </Fragment>
               )}
             </Button>
             <Button

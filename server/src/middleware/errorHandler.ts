@@ -4,6 +4,7 @@ import { TokenExpiredError, JsonWebTokenError } from 'jsonwebtoken';
 import { ZodError } from 'zod';
 
 import { logger } from '../logger.js';
+import { isDefined, isNonEmptyString } from '../types/http.js';
 
 /**
  * Error interface for type safety
@@ -15,6 +16,11 @@ interface ErrorLike {
   name?: string;
   stack?: string;
   isOperational?: boolean;
+  type?: string;
+  path?: string;
+  value?: unknown;
+  keyValue?: Record<string, unknown>;
+  meta?: unknown;
 }
 
 /**
@@ -94,7 +100,7 @@ export function notFoundHandler(req: Request, _res: Response, next: NextFunction
  * Development error response with stack trace
  */
 function sendErrorDev(err: ErrorLike, req: Request, res: Response): void {
-  const statusCode = (err.statusCode !== null && err.statusCode !== undefined && err.statusCode !== 0 && !isNaN(err.statusCode)) ? err.statusCode : 500;
+  const statusCode = isDefined(err.statusCode) && err.statusCode > 0 ? err.statusCode : 500;
 
   logger.error(
     {
@@ -126,7 +132,7 @@ function sendErrorDev(err: ErrorLike, req: Request, res: Response): void {
  * Production error response without sensitive details
  */
 function sendErrorProd(err: ErrorLike, req: Request, res: Response): void {
-  const statusCode = (err.statusCode !== null && err.statusCode !== undefined && err.statusCode !== 0 && !isNaN(err.statusCode)) ? err.statusCode : 500;
+  const statusCode = isDefined(err.statusCode) && err.statusCode > 0 ? err.statusCode : 500;
 
   // Operational, trusted error: send message to client
   if (err.isOperational === true) {
@@ -141,7 +147,7 @@ function sendErrorProd(err: ErrorLike, req: Request, res: Response): void {
           method: req.method,
           url: req.url,
           ip: req.ip,
-          userId: req.user.id,
+          userId: req.user?.id || 'anonymous',
         },
       },
       'Operational error',
@@ -163,7 +169,7 @@ function sendErrorProd(err: ErrorLike, req: Request, res: Response): void {
           headers: req.headers,
           body: req.body as unknown,
           ip: req.ip,
-          userId: req.user.id,
+          userId: req.user?.id || 'anonymous',
         },
       },
       'Unexpected error',
@@ -180,14 +186,7 @@ function sendErrorProd(err: ErrorLike, req: Request, res: Response): void {
 /**
  * Handle specific error types
  */
-function handleSpecificErrors(
-  err: ErrorLike & {
-    type?: string;
-    path?: string;
-    value?: unknown;
-    keyValue?: Record<string, unknown>;
-  },
-): AppError {
+function handleSpecificErrors(err: ErrorLike): AppError {
   // JSON parsing errors (malformed JSON)
   if (err instanceof SyntaxError && err.message.includes('JSON')) {
     return new ValidationError('Invalid JSON format in request body');
@@ -218,7 +217,7 @@ function handleSpecificErrors(
   if (err instanceof Prisma.PrismaClientKnownRequestError) {
     switch (err.code) {
       case 'P2002': {
-        const field = err.meta.target as string[];
+        const field = err.meta?.target as string[] || [];
         return new ConflictError(`Duplicate value for field: ${field.join(', ') || 'unknown'}`);
       }
       case 'P2025':
@@ -249,11 +248,11 @@ function handleSpecificErrors(
   }
 
   // File upload errors
-  if (err.message !== null && err.message !== undefined && err.message !== '' && err.message.includes('File too large')) {
+  if (isNonEmptyString(err.message) && err.message.includes('File too large')) {
     return new ValidationError('File size exceeds maximum allowed size');
   }
 
-  if (err.message !== null && err.message !== undefined && err.message !== '' && err.message.includes('Invalid file type')) {
+  if (isNonEmptyString(err.message) && err.message.includes('Invalid file type')) {
     return new ValidationError('File type not allowed');
   }
 
@@ -272,7 +271,7 @@ function handleSpecificErrors(
 
   if (err.name === 'ValidationError') {
     const errorWithValidation = err as unknown as { errors?: Record<string, { message: string }> };
-    if (errorWithValidation.errors !== null && errorWithValidation.errors !== undefined) {
+    if (isDefined(errorWithValidation.errors)) {
       const errors = Object.values(errorWithValidation.errors).map(
         (e: { message: string }) => e.message,
       );
@@ -282,10 +281,11 @@ function handleSpecificErrors(
 
   // Convert to AppError if not already one
   if (!(err instanceof AppError)) {
+    const statusCode = isDefined(err.statusCode) && err.statusCode > 0 ? err.statusCode : 500;
     return new AppError(
       err.message || 'Internal server error',
-      ((err as { statusCode?: number }).statusCode !== null && (err as { statusCode?: number }).statusCode !== undefined && (err as { statusCode?: number }).statusCode !== 0 && !isNaN((err as { statusCode?: number }).statusCode)) ? (err as { statusCode?: number }).statusCode : 500,
-      (err as { code?: string }).code || 'INTERNAL_ERROR',
+      statusCode,
+      err.code || 'INTERNAL_ERROR',
     );
   }
 
@@ -306,7 +306,7 @@ export function errorHandler(err: Error, req: Request, res: Response, _next: Nex
     // Handle AuthenticationError
     if (
       err instanceof AuthenticationError ||
-      (err.message !== null && err.message !== undefined &&
+      (isNonEmptyString(err.message) &&
         (err.message.includes('Invalid email or password') ||
           err.message.includes('Invalid credentials')))
     ) {
@@ -317,7 +317,7 @@ export function errorHandler(err: Error, req: Request, res: Response, _next: Nex
     // Handle ConflictError for duplicate email
     if (
       err instanceof ConflictError ||
-      (err.message !== null && err.message !== undefined && err.message.toLowerCase().includes('email already'))
+      (isNonEmptyString(err.message) && err.message.toLowerCase().includes('email already'))
     ) {
       res.status(409).json({ error: 'Email already exists' });
       return;
@@ -436,7 +436,7 @@ export function requestTimeout(timeoutMs = 30000): (req: Request, res: Response,
           method: req.method,
           url: req.url,
           ip: req.ip,
-          userId: req.user.id,
+          userId: req.user?.id || 'anonymous',
         },
         'Request timeout',
       );

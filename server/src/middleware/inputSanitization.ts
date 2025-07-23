@@ -82,7 +82,7 @@ function removeDangerousPatterns(input: string): string {
  * Recursively sanitize object properties
  */
 function sanitizeObject(obj: unknown, config: Record<string, unknown> = strictConfig): unknown {
-  if (obj == null) {
+  if (obj === null) {
     return obj;
   }
 

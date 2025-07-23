@@ -555,4 +555,3 @@ export function LongRangePlanPage(): React.ReactElement {
   );
 }
 
-export default LongRangePlanPage;

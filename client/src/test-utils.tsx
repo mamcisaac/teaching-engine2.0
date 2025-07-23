@@ -8,8 +8,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { RenderOptions, RenderResult } from '@testing-library/react';
 import { render } from '@testing-library/react';
-import type { ReactElement } from 'react';
-import React from 'react';
+import { createContext, type ComponentType, type FC, type ReactElement, type ReactNode } from 'react';
 import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 
 import { vi } from 'vitest';
@@ -22,7 +21,7 @@ export interface CustomRenderOptions extends Omit<RenderOptions, 'wrapper'> {
   withAuth?: boolean;
   withQueryClient?: boolean;
   initialAuthState?: Partial<AuthContextValue>;
-  wrapper?: React.ComponentType<{ children: React.ReactNode }>;
+  wrapper?: ComponentType<{ children: ReactNode }>;
 }
 
 export interface AuthContextValue {
@@ -290,8 +289,8 @@ export const createTestQueryClient = (): QueryClient => {
  * 2. Mock API calls explicitly when needed
  * 3. Test authentication flows with real implementations
  */
-export const MockAuthProvider: React.FC<{
-  children: React.ReactNode;
+export const MockAuthProvider: FC<{
+  children: ReactNode;
   value?: Partial<AuthContextValue>;
 }> = ({ children, value = {} }) => {
   console.warn(
@@ -316,14 +315,14 @@ export const MockAuthProvider: React.FC<{
   };
 
   // Create a mock context provider
-  const AuthContext = React.createContext<AuthContextValue>(defaultAuthValue);
+  const AuthContext = createContext<AuthContextValue>(defaultAuthValue);
 
   return <AuthContext.Provider value={defaultAuthValue}>{children}</AuthContext.Provider>;
 };
 
 // All providers wrapper for comprehensive testing
-const AllProviders: React.FC<{
-  children: React.ReactNode;
+const AllProviders: FC<{
+  children: ReactNode;
   queryClient: QueryClient;
   initialEntries?: string[];
   initialAuthState?: Partial<AuthContextValue>;
@@ -366,7 +365,7 @@ export const renderWithProviders = (ui: ReactElement, options: CustomRenderOptio
 
   const queryClient = createTestQueryClient();
 
-  const Wrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const Wrapper: FC<{ children: ReactNode }> = ({ children }) => {
     if (!withRouter && !withAuth && !withQueryClient) {
       return <>{children}</>;
     }

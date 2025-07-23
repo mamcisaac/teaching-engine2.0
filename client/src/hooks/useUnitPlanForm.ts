@@ -225,7 +225,7 @@ export function useUnitPlanForm({
     if (new Date(formData.startDate) > new Date(formData.endDate)) {
       errors.push('End date must be after start date');
     }
-    if ((formData.longRangePlanId == null || formData.longRangePlanId === '') && (longRangePlanId == null || longRangePlanId === '')) {
+    if ((formData.longRangePlanId === null || formData.longRangePlanId === '') && (longRangePlanId === null || longRangePlanId === '')) {
       errors.push('Long-range plan is required');
     }
 

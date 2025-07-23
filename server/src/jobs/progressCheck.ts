@@ -36,5 +36,9 @@ export async function runProgressCheck(): Promise<void> {
  * to run without manual intervention.
  */
 export function scheduleProgressCheck(): void {
-  schedule('0 6 * * *', runProgressCheck);
+  schedule('0 6 * * *', () => {
+    void runProgressCheck().catch((error) => {
+      logger.error('Failed to run progress check:', error);
+    });
+  });
 }

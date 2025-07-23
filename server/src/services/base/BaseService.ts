@@ -65,21 +65,21 @@ export abstract class BaseService {
   /**
    * Initialize the service
    */
-  protected async initialize(): Promise<void> {
+  protected initialize(): void {
     this.logger.info(`Initializing ${this.name}`);
   }
 
   /**
    * Shutdown the service gracefully
    */
-  public async shutdown(): Promise<void> {
+  public shutdown(): void {
     this.logger.info(`Service ${this.name} shutting down`);
   }
 
   /**
    * Perform health check
    */
-  public async healthCheck(): Promise<ServiceHealth> {
+  public healthCheck(): ServiceHealth {
     this.lastHealthCheck = new Date();
     const dependencies = this.checkDependencies();
     

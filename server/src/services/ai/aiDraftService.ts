@@ -36,7 +36,7 @@ export class AIDraftService extends BaseService {
     return AIDraftService.instance;
   }
 
-  async generateLongRangePlanDraft(request: LongRangePlanDraftRequest): Promise<DraftResult> {
+  generateLongRangePlanDraft(request: LongRangePlanDraftRequest): DraftResult {
     this.logger.info('Generating long-range plan draft');
 
     // Generate educational content for PEI teachers using ETFO resources
@@ -53,7 +53,7 @@ export class AIDraftService extends BaseService {
     return draft;
   }
 
-  async generateUnitPlanDraft(request: AIServiceRequestData): Promise<unknown> {
+  generateUnitPlanDraft(request: AIServiceRequestData): unknown {
     this.logger.info('Generating unit plan draft');
     
     return {
@@ -64,7 +64,7 @@ export class AIDraftService extends BaseService {
     };
   }
 
-  async generateLessonPlanDraft(request: AIServiceRequestData): Promise<unknown> {
+  generateLessonPlanDraft(request: AIServiceRequestData): unknown {
     this.logger.info('Generating lesson plan draft');
     
     return {
@@ -76,7 +76,7 @@ export class AIDraftService extends BaseService {
     };
   }
 
-  async generateDaybookDraft(request: AIServiceRequestData): Promise<unknown> {
+  generateDaybookDraft(request: AIServiceRequestData): unknown {
     this.logger.info('Generating daybook draft');
     
     return {
@@ -87,7 +87,7 @@ export class AIDraftService extends BaseService {
     };
   }
 
-  async generatePlanSuggestions(planType: string, _existingContent: any): Promise<string[]> {
+  generatePlanSuggestions(planType: string, _existingContent: any): string[] {
     this.logger.info('Generating plan suggestions');
 
     const suggestions: Record<string, string[]> = {

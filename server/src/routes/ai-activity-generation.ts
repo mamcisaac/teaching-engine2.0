@@ -193,11 +193,11 @@ router.post('/save', authMiddleware, async (req: Request, res: Response): Promis
     };
 
     // Save the generated activity
-    const userId = req.user.id;
-    if (!userId) {
+    if (!req.user || !req.user.id) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
+    const userId = req.user.id;
     
     const savedActivity = await aiGenerator.saveGeneratedActivity(
       activityWithDefaults,

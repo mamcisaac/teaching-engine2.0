@@ -276,7 +276,7 @@ export function standardErrorHandler(
         request: {
           method: req.method,
           url: req.url,
-          userId: (req as { user?: { id?: unknown } }).user.id,
+          userId: (req as { user?: { id?: unknown } }).user?.id,
           ip: req.ip,
         },
         statusCode,
@@ -295,7 +295,7 @@ export function standardErrorHandler(
         request: {
           method: req.method,
           url: req.url,
-          userId: (req as { user?: { id?: unknown } }).user.id,
+          userId: (req as { user?: { id?: unknown } }).user?.id,
           ip: req.ip,
         },
         statusCode,
@@ -333,7 +333,7 @@ export function standardErrorHandler(
   };
 
   // Add retry information for rate limit errors
-  if (errorType === ErrorType.RATE_LIMIT_ERROR && details.retryAfter != null) {
+  if (errorType === ErrorType.RATE_LIMIT_ERROR && details.retryAfter !== null && details.retryAfter !== undefined) {
     res.set('Retry-After', details.retryAfter.toString());
     errorResponse.retryAfter = details.retryAfter;
   }

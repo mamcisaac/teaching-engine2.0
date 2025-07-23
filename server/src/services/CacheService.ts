@@ -1,16 +1,15 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Cache Service
  * Simple in-memory cache with TTL support
  */
 
-interface CacheItem {
-  value: any;
+interface CacheItem<T = unknown> {
+  value: T;
   expires: number;
 }
 
 export class CacheService {
-  private cache = new Map<string, CacheItem>();
+  private cache = new Map<string, CacheItem<unknown>>();
 
   constructor() {
     // Clear expired items every 5 minutes
@@ -19,8 +18,8 @@ export class CacheService {
     }, 5 * 60 * 1000);
   }
 
-  get(key: string): any | null {
-    const item = this.cache.get(key);
+  get<T = unknown>(key: string): T | null {
+    const item = this.cache.get(key) as CacheItem<T> | undefined;
     if (!item) {
 return null;
 }
@@ -33,7 +32,7 @@ return null;
     return item.value;
   }
 
-  set(key: string, value: any, ttlMs = 3600000): void {
+  set<T = unknown>(key: string, value: T, ttlMs = 3600000): void {
     this.cache.set(key, {
       value,
       expires: Date.now() + ttlMs,

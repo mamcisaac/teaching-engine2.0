@@ -114,9 +114,9 @@ export const setup = {
   }): ReturnType<typeof middleware.custom> =>
     middleware.custom({
       authenticate: true,
-      rateLimit: options.rateLimit ?? 'api',
-      cache: options.cache,
-      audit: options.audit,
+      rateLimit: options?.rateLimit ?? 'api',
+      cache: options?.cache,
+      audit: options?.audit,
     }),
 
   // Admin endpoints

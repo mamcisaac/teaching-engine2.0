@@ -24,7 +24,7 @@ class AuditLogger {
    * Log an audit event
    * Currently logs to application logs only, as AuditLog table is not yet implemented
    */
-  async log(entry: AuditLogEntry): Promise<void> {
+  log(entry: AuditLogEntry): void {
     // Log to application logs
     if (entry.success) {
       logger.info(
@@ -83,7 +83,7 @@ class AuditLogger {
       };
 
       // Continue with request
-      res.on('finish', async () => {
+      res.on('finish', () => {
         const duration = Date.now() - start;
 
         const entry: AuditLogEntry = {
@@ -107,9 +107,11 @@ class AuditLogger {
         };
 
         // Log asynchronously, don't block response
-        this.log(entry).catch((error: unknown) => {
+        try {
+          this.log(entry);
+        } catch (error: unknown) {
           logger.error({ error: error as Error }, 'Failed to create audit log');
-        });
+        }
       });
 
       next();
@@ -119,7 +121,7 @@ class AuditLogger {
   /**
    * Log a custom audit event
    */
-  async logCustom(
+  logCustom(
     userId: string,
     action: string,
     resource: string,
@@ -130,7 +132,7 @@ class AuditLogger {
       errorMessage?: string;
       req?: Request;
     },
-  ): Promise<void> {
+  ): void {
     const entry: AuditLogEntry = {
       userId,
       action,
@@ -144,7 +146,7 @@ class AuditLogger {
       errorMessage: options?.errorMessage,
     };
 
-    await this.log(entry);
+    this.log(entry);
   }
 }
 

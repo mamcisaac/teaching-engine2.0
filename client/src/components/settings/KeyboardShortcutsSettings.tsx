@@ -163,7 +163,6 @@ export const KeyboardShortcutsSettings: React.FC = (): React.ReactElement => {
                   {(categoryShortcuts).map((shortcut, _index) => {
                     const customShortcut = preferences.customShortcuts[shortcut.id];
                     const isEditing = editingShortcut === shortcut.id;
-                    const hasCustom = customShortcut != null;
                     const displayShortcut = customShortcut != null
                       ? { ...shortcut, ...customShortcut }
                       : shortcut;

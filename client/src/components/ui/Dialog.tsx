@@ -1,6 +1,6 @@
 import * as RadixDialog from '@radix-ui/react-dialog';
 import { clsx } from 'clsx';
-import React from 'react';
+import { forwardRef, type ComponentPropsWithoutRef, type ElementRef, type FC, type HTMLAttributes, type ReactElement, type ReactNode } from 'react';
 
 // Wrapper component for consistent API
 interface DialogProps {
@@ -8,18 +8,18 @@ interface DialogProps {
   open?: boolean;
   onClose?: () => void;
   onOpenChange?: (open: boolean) => void;
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }
 
-const DialogWrapper: React.FC<DialogProps> = ({
+const DialogWrapper: FC<DialogProps> = ({
   isOpen,
   open,
   onClose,
   onOpenChange,
   children,
   className: _className,
-}): React.ReactElement => {
+}): ReactElement => {
   const isOpenValue = isOpen ?? open ?? false;
   const handleOpenChange = (newOpen: boolean): void => {
     if (!newOpen && onClose) {
@@ -43,10 +43,10 @@ const DialogTrigger = RadixDialog.Trigger;
 
 const DialogPortal = RadixDialog.Portal;
 
-const DialogOverlay = React.forwardRef<
-  React.ElementRef<typeof RadixDialog.Overlay>,
-  React.ComponentPropsWithoutRef<typeof RadixDialog.Overlay>
->(({ className, ...props }, ref): React.ReactElement => (
+const DialogOverlay = forwardRef<
+  ElementRef<typeof RadixDialog.Overlay>,
+  ComponentPropsWithoutRef<typeof RadixDialog.Overlay>
+>(({ className, ...props }, ref): ReactElement => (
   <RadixDialog.Overlay
     className={clsx(
       'fixed inset-0 z-50 bg-black/50 backdrop-blur-sm animate-in fade-in',
@@ -58,10 +58,10 @@ const DialogOverlay = React.forwardRef<
 ));
 DialogOverlay.displayName = RadixDialog.Overlay.displayName;
 
-const DialogContent = React.forwardRef<
-  React.ElementRef<typeof RadixDialog.Content>,
-  React.ComponentPropsWithoutRef<typeof RadixDialog.Content>
->(({ className, children, ...props }, ref): React.ReactElement => (
+const DialogContent = forwardRef<
+  ElementRef<typeof RadixDialog.Content>,
+  ComponentPropsWithoutRef<typeof RadixDialog.Content>
+>(({ className, children, ...props }, ref): ReactElement => (
   <DialogPortal>
     <DialogOverlay />
     <RadixDialog.Content
@@ -84,7 +84,7 @@ const DialogContent = React.forwardRef<
 ));
 DialogContent.displayName = RadixDialog.Content.displayName;
 
-const DialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>): React.ReactElement => (
+const DialogHeader = ({ className, ...props }: HTMLAttributes<HTMLDivElement>): ReactElement => (
   <div
     className={clsx('flex flex-col space-y-1.5 text-center sm:text-left', className)}
     {...props}
@@ -92,7 +92,7 @@ const DialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivEleme
 );
 DialogHeader.displayName = 'DialogHeader';
 
-const DialogFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>): React.ReactElement => (
+const DialogFooter = ({ className, ...props }: HTMLAttributes<HTMLDivElement>): ReactElement => (
   <div
     className={clsx('flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2', className)}
     {...props}
@@ -100,10 +100,10 @@ const DialogFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivEleme
 );
 DialogFooter.displayName = 'DialogFooter';
 
-const DialogTitle = React.forwardRef<
-  React.ElementRef<typeof RadixDialog.Title>,
-  React.ComponentPropsWithoutRef<typeof RadixDialog.Title>
->(({ className, ...props }, ref): React.ReactElement => (
+const DialogTitle = forwardRef<
+  ElementRef<typeof RadixDialog.Title>,
+  ComponentPropsWithoutRef<typeof RadixDialog.Title>
+>(({ className, ...props }, ref): ReactElement => (
   <RadixDialog.Title
     className={clsx('text-lg font-semibold leading-none tracking-tight', className)}
     ref={ref}
@@ -112,10 +112,10 @@ const DialogTitle = React.forwardRef<
 ));
 DialogTitle.displayName = RadixDialog.Title.displayName;
 
-const DialogDescription = React.forwardRef<
-  React.ElementRef<typeof RadixDialog.Description>,
-  React.ComponentPropsWithoutRef<typeof RadixDialog.Description>
->(({ className, ...props }, ref): React.ReactElement => (
+const DialogDescription = forwardRef<
+  ElementRef<typeof RadixDialog.Description>,
+  ComponentPropsWithoutRef<typeof RadixDialog.Description>
+>(({ className, ...props }, ref): ReactElement => (
   <RadixDialog.Description
     className={clsx('text-sm text-gray-500', className)}
     ref={ref}

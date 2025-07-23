@@ -1,8 +1,14 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Substitute Plan Service
  * Generates substitute teacher plans and formats them for export
  */
+
+interface LessonPlanDetails {
+  learningGoals?: string;
+  mindsOnActivities?: string;
+  actionActivities?: string;
+  consolidationActivities?: string;
+}
 
 export interface ScheduleItem {
   time: string;
@@ -136,7 +142,7 @@ export class SubstitutePlanService {
   }
 
   // Method reserved for future lesson formatting
-  private static _formatLessonInstructions(lessonPlan: any): string {
+  private static _formatLessonInstructions(lessonPlan: LessonPlanDetails | null | undefined): string {
     if (!lessonPlan || typeof lessonPlan !== 'object') {
       return 'Follow the activities as outlined in the lesson plan binder.';
     }

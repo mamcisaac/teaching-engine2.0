@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Response } from 'express';
 import { logger } from '../logger';
 import { ZodError } from 'zod';
@@ -10,7 +9,7 @@ export class AppError extends Error {
     public statusCode: number,
     public message: string,
     public code?: string,
-    public details?: any,
+    public details?: unknown,
   ) {
     super(message);
     this.name = 'AppError';
@@ -85,7 +84,7 @@ export const formatErrorResponse = (
 ): ErrorResponse => {
   let code = 'INTERNAL_ERROR';
   let message = 'An unexpected error occurred';
-  let details: any = undefined;
+  let details: unknown = undefined;
 
   if (error instanceof AppError) {
     code = error.code ?? 'APP_ERROR';

@@ -68,8 +68,8 @@ export const helmetConfig = helmet({
 /**
  * Create rate limiter instance
  */
-// Function reserved for future use
-function _createRateLimiter(): RateLimiterRedis | RateLimiterMemory {
+// Function reserved for future use - exported for potential future use
+export function _createRateLimiter(): RateLimiterRedis | RateLimiterMemory {
   // Use Redis in production for distributed rate limiting
   if (process.env.REDIS_URL && process.env.NODE_ENV === 'production') {
     const redis = new Redis(process.env.REDIS_URL);
@@ -244,7 +244,7 @@ export function csrfProtection(req: Request, res: Response, next: NextFunction):
   }
 
   const token = req.headers['x-csrf-token'] ?? (req.body as Record<string, unknown>)._csrf as string;
-  const sessionToken = (req as { session?: { csrfToken?: string } }).session.csrfToken;
+  const sessionToken = (req as { session?: { csrfToken?: string } }).session?.csrfToken;
 
   if (!token || !sessionToken || token !== sessionToken) {
     return res.status(403).json({
@@ -273,8 +273,13 @@ export function applySecurityMiddleware(app: { use: (middleware: unknown) => voi
   app.use(helmetConfig);
 
   // Apply CORS
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  app.use(cors.default ? cors.default(corsOptions) : (cors as typeof cors.default)(corsOptions));
+  // Handle both CommonJS and ES module formats for cors
+  const corsMiddleware = typeof cors === 'function' 
+    ? cors(corsOptions)
+    : cors.default 
+      ? cors.default(corsOptions)
+      : (cors as unknown as typeof cors.default)(corsOptions);
+  app.use(corsMiddleware);
 
   // Apply custom security headers
   app.use(securityHeaders);

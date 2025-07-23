@@ -1,12 +1,12 @@
 import { clsx } from 'clsx';
-import React from 'react';
+import { forwardRef, type ReactElement, type TextareaHTMLAttributes } from 'react';
 
-export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   error?: boolean;
 }
 
-export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ className, error, ...props }, ref): React.ReactElement => (
+export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
+  ({ className, error, ...props }, ref): ReactElement => (
       <textarea
         className={clsx(
           'flex min-h-[80px] w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm',

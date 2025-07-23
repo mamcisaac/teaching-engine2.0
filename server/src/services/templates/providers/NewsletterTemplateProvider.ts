@@ -10,25 +10,29 @@ import { TemplateProvider } from './TemplateProvider';
 export class NewsletterTemplateProvider extends TemplateProvider {
   constructor() {
     super('NewsletterTemplateProvider');
-    this.loadTemplates();
+    try {
+      this.loadTemplates();
+    } catch (error) {
+      console.error('Failed to load newsletter templates:', error);
+    }
   }
 
   /**
    * Get template based on context
    */
   async getTemplate(context: TemplateContext): Promise<Template> {
-    const frequency = context.parameters.frequency || 'weekly';
-    const style = context.parameters.style || 'standard';
+    const frequency = context.parameters?.frequency || 'weekly';
+    const style = context.parameters?.style || 'standard';
     
     const templateId = `newsletter-${frequency}-${style}`;
-    let template = await this.getTemplateById(templateId);
+    let template = this.getTemplateById(templateId);
     
     if (!template) {
-      template = await this.getTemplateById(`newsletter-${frequency}`);
+      template = this.getTemplateById(`newsletter-${frequency}`);
     }
     
     if (!template) {
-      template = await this.getTemplateById('newsletter-weekly-standard');
+      template = this.getTemplateById('newsletter-weekly-standard');
     }
 
     if (!template) {
@@ -41,7 +45,7 @@ export class NewsletterTemplateProvider extends TemplateProvider {
   /**
    * List available templates
    */
-  async listTemplates(): Promise<Template[]> {
+  listTemplates(): Template[] {
     return Array.from(this.templates.values());
   }
 
@@ -55,7 +59,7 @@ export class NewsletterTemplateProvider extends TemplateProvider {
   /**
    * Load templates
    */
-  protected async loadTemplates(): Promise<void> {
+  protected loadTemplates(): void {
     // Weekly newsletter template
     this.registerTemplate({
       id: 'newsletter-weekly-standard',

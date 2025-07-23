@@ -57,19 +57,18 @@ const resetPasswordSchema = z.object({
 // Middleware to validate auth inputs with test-compatible error messages
 function validateAuthInputs(isRegister = false): (req: Request, res: Response, next: NextFunction) => void {
   return (req: Request, res: Response, next: NextFunction): void => {
-    let { email } = req.body as { email?: unknown; password?: unknown; name?: unknown };
-    const { password } = req.body as { email?: unknown; password?: unknown; name?: unknown };
+    const { email: rawEmail, password } = req.body as { email?: unknown; password?: unknown; name?: unknown };
 
     // Check for missing or non-string email/password
-    if (!email || (typeof email === 'string' && email === '') || 
+    if (!rawEmail || (typeof rawEmail === 'string' && rawEmail === '') || 
         !password || (typeof password === 'string' && password === '') || 
-        typeof email !== 'string' || typeof password !== 'string') {
+        typeof rawEmail !== 'string' || typeof password !== 'string') {
       res.status(400).json({ error: 'Email and password are required' });
       return;
     }
 
-    // Trim email whitespace
-    email = (email).trim();
+    // At this point, TypeScript knows email is a string
+    const email = rawEmail.trim();
     (req.body as { email: string }).email = email;
 
     // Check basic email format
@@ -135,7 +134,7 @@ function createAuthRouter(prisma = defaultPrisma): Router {
     void (async () => {
       try {
       // Always fetch fresh user data from database for /me endpoint
-      if (req.user.id === null || req.user.id === undefined) {
+      if (!req.user || !req.user.id) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -181,6 +180,10 @@ function createAuthRouter(prisma = defaultPrisma): Router {
 
   // Simple auth check endpoint - returns userId if authenticated
   router.get('/check', authenticate, (req: Request, res: Response): void => {
+    if (!req.user || !req.user.id) {
+      res.status(401).json({ error: 'User not authenticated' });
+      return;
+    }
     const userId = req.user.id;
     if (!userId) {
       res.status(401).json({ error: 'User not authenticated' });

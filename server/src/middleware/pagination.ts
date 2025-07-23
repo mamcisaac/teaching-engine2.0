@@ -108,10 +108,10 @@ export function withPagination<T extends { id: number }>(
       const pagination = req.pagination || getPaginationParams(req);
 
       return repository.findMany({
-        where: options.where,
-        include: options.include,
+        where: options?.where,
+        include: options?.include,
         pagination,
-        searchFields: options.searchFields ?? defaultSearchFields,
+        searchFields: options?.searchFields ?? defaultSearchFields,
       });
     },
 
@@ -125,9 +125,9 @@ export function withPagination<T extends { id: number }>(
       const { cursor, limit = '20' } = req.query as { cursor?: string; limit?: string };
 
       return repository.findManyCursor({
-        where: options.where,
-        include: options.include,
-        cursor: cursor != null && cursor !== '' ? parseInt(cursor) : undefined,
+        where: options?.where,
+        include: options?.include,
+        cursor: cursor !== null && cursor !== undefined && cursor !== '' ? parseInt(cursor) : undefined,
         limit: parseInt(limit),
       });
     },
@@ -147,7 +147,11 @@ export function paginatedRouter(): Router {
   const originalGet = router.get.bind(router);
 
   // Override get method to add pagination middleware
-  router.get = function (path: string, ...handlers: RequestHandler[]): Router {
+  const extendedRouter = router as Router & {
+    get: (path: string, ...handlers: RequestHandler[]) => Router;
+  };
+  
+  extendedRouter.get = function (path: string, ...handlers: RequestHandler[]): Router {
     // Only add pagination to list endpoints (root or ending with 's')
     if (path === '/' || path.match(/s$/)) {
       return originalGet(path, parsePagination, ...handlers);

@@ -1,5 +1,6 @@
-import DOMPurify from 'dompurify';
-import React from 'react';
+import DOMPurifyDefault from 'dompurify';
+const DOMPurify = DOMPurifyDefault;
+import { createElement, useMemo, type ReactElement } from 'react';
 
 export const sanitizeHtml = (dirty: string | undefined | null): string => {
   if (dirty === undefined || dirty === null || dirty === '') {
@@ -43,13 +44,13 @@ interface SafeHtmlRendererProps {
   className?: string;
 }
 
-export function SafeHtmlRenderer(props: SafeHtmlRendererProps): React.ReactElement {
+export function SafeHtmlRenderer(props: SafeHtmlRendererProps): ReactElement {
   // Use a more secure approach - convert HTML to React elements
   const sanitizedHtml = sanitizeHtml(props.html);
   
   // For maximum security, we'll only render text content
   // Complex HTML rendering should use a proper HTML-to-React parser
-  const textContent = React.useMemo(() => {
+  const textContent = useMemo(() => {
     if (typeof window !== 'undefined') {
       const tempDiv = document.createElement('div');
       tempDiv.innerHTML = sanitizedHtml;
@@ -59,14 +60,14 @@ export function SafeHtmlRenderer(props: SafeHtmlRendererProps): React.ReactEleme
     return sanitizedHtml.replace(/<[^>]*>/g, '');
   }, [sanitizedHtml]);
   
-  return React.createElement('div', {
+  return createElement('div', {
     className: props.className
   }, textContent);
 }
 
 // Alternative: Use this for truly safe HTML rendering when needed
-export function SafeTextRenderer({ text, className }: { text: string; className?: string }): React.ReactElement {
-  return React.createElement('div', {
+export function SafeTextRenderer({ text, className }: { text: string; className?: string }): ReactElement {
+  return createElement('div', {
     className
   }, text);
 }

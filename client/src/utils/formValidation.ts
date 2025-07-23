@@ -152,7 +152,7 @@ export function validateLessonPlan(data: LessonPlanFormData): ValidationResult {
   const hasAction = data.action?.trim();
   const hasConsolidation = data.consolidation?.trim();
 
-  if ((hasMindsOn == null || hasMindsOn === '') && (hasAction == null || hasAction === '') && (hasConsolidation == null || hasConsolidation === '')) {
+  if ((hasMindsOn === null || hasMindsOn === '') && (hasAction === null || hasAction === '') && (hasConsolidation === null || hasConsolidation === '')) {
     errors.lessonStructure =
       'At least one lesson component (Minds On, Action, or Consolidation) must have content';
   }
@@ -222,7 +222,7 @@ export function validateField(
     case 'startDate':
     case 'endDate':
     case 'date': {
-      if (value == null || value === '') {
+      if (value === null || value === '') {
         return 'Date is required';
       }
       const date = new Date(value as string | number | Date);

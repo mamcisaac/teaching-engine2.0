@@ -261,7 +261,15 @@ export class TemplateDataFetcher {
    */
   private async fetchCurriculumData(context: FetchContext): Promise<GroupedExpectations> {
     const filters = context.filters as CurriculumFilterOptions | undefined;
-    const where: any = {
+    interface CurriculumWhereClause {
+      isActive: boolean;
+      subjectId?: string;
+      grade?: number;
+      strand?: string;
+      subject?: string;
+    }
+    
+    const where: CurriculumWhereClause = {
       isActive: true,
     };
 

@@ -46,19 +46,19 @@ export function OnboardingFlowOptimized(): React.ReactElement | null {
       return;
     }
     
-    if (currentStep.targetElement == null || currentStep.targetElement === '') {
+    if (!currentStep.targetElement || currentStep.targetElement === '') {
       setHighlightPosition(null);
       return;
     }
 
     const updatePosition = (): void => {
       // currentStep is guaranteed to be non-null here due to the early return above
-      if (currentStep.targetElement == null || currentStep.targetElement === '') {
+      if (!currentStep.targetElement || currentStep.targetElement === '') {
         setHighlightPosition(null);
         return;
       }
       
-      const element = currentStep.targetElement !== '' ? document.querySelector(currentStep.targetElement) : null;
+      const element = document.querySelector(currentStep.targetElement);
       if (!element) {
         setHighlightPosition(null);
         return;

@@ -1,6 +1,6 @@
 import type { UseQueryResult, UseMutationResult } from '@tanstack/react-query';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import { apiClient } from '../api/core/client';
 import type {
@@ -256,21 +256,21 @@ export function useTemplatesPaginated(options: TemplateSearchOptions = {}): UseQ
     offset: currentPage * limit,
   });
 
-  const nextPage = React.useCallback(() => {
+  const nextPage = useCallback(() => {
     if (query.data?.pagination.hasMore) {
       setCurrentPage(prev => prev + 1);
     }
   }, [query.data?.pagination.hasMore]);
 
-  const prevPage = React.useCallback(() => {
+  const prevPage = useCallback(() => {
     setCurrentPage(prev => Math.max(0, prev - 1));
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const goToPage = React.useCallback((page: number) => {
+  const goToPage = useCallback((page: number) => {
     setCurrentPage(Math.max(0, page));
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const resetPage = React.useCallback(() => {
+  const resetPage = useCallback(() => {
     setCurrentPage(0);
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 

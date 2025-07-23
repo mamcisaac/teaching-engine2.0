@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-console */
 // External imports (npm packages)
 import type { Server } from 'http';
 import path from 'path';
@@ -6,7 +6,7 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import debug from 'debug';
 import { config } from 'dotenv';
-import type { Request, Response, NextFunction, RequestHandler } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import express, { json, urlencoded, static as expressStatic } from 'express';
 
 import { logger } from './logger.js';
@@ -143,7 +143,7 @@ app.post('/api/register', authRateLimitMiddleware, (req: Request, _res: Response
 
 // Auth check endpoint is handled by authEndpoints router at /api/auth/me
 
-app.get('/api/auth/check', asyncHandler(authenticate), (req: Request, res: Response): void => {
+app.get('/api/auth/check', authenticate, (req: Request, res: Response): void => {
   res.json({ userId: req.user?.id });
 });
 
@@ -182,24 +182,24 @@ app.use('/api/auth', authEndpoints);
 
 // Mount user routes (authenticated)
 log('Mounting user routes...');
-app.use('/api/user', asyncHandler(authenticate), rateLimiters.api as unknown as any, userRoutes(prisma));
+app.use('/api/user', authenticate, rateLimiters.api, userRoutes(prisma));
 
 // Notification routes
 log('Mounting notification routes...');
-app.use('/api/notifications', asyncHandler(authenticate), rateLimiters.api as unknown as any, notificationRoutes);
+app.use('/api/notifications', authenticate, rateLimiters.api, notificationRoutes);
 
 // Apply authentication and rate limiting to all API routes
 log('Mounting ETFO-aligned API routes...');
 // Student endpoints removed - app does not store student data
 
 // Key Teacher Features
-app.use('/api/newsletters', asyncHandler(authenticate), rateLimiters.write as unknown as any, newsletterRoutes);
-app.use('/api/substitute-plans', asyncHandler(authenticate), rateLimiters.write as unknown as any, substitutePlanRoutes);
+app.use('/api/newsletters', authenticate, rateLimiters.write, newsletterRoutes);
+app.use('/api/substitute-plans', authenticate, rateLimiters.write, substitutePlanRoutes);
 
 app.use(
   '/api/curriculum-import',
-  asyncHandler(authenticate),
-  rateLimiters.upload as unknown as any,
+  authenticate,
+  rateLimiters.upload,
   validateFileUpload(['application/pdf', 'text/csv']),
   curriculumImportRoutes,
 );
@@ -208,36 +208,36 @@ app.use(
 // ETFO-aligned Planning Routes
 app.use(
   '/api/curriculum-expectations',
-  asyncHandler(authenticate),
-  rateLimiters.read as unknown as any,
+  authenticate,
+  rateLimiters.read,
   curriculumCache, // Cache curriculum data for 30 minutes
   curriculumExpectationRoutes,
 );
-app.use('/api/long-range-plans', asyncHandler(authenticate), rateLimiters.write as unknown as any, userCache, longRangePlanRoutes);
-app.use('/api/unit-plans', asyncHandler(authenticate), rateLimiters.write as unknown as any, userCache, unitPlanRoutes);
+app.use('/api/long-range-plans', authenticate, rateLimiters.write, userCache, longRangePlanRoutes);
+app.use('/api/unit-plans', authenticate, rateLimiters.write, userCache, unitPlanRoutes);
 app.use(
   '/api/etfo-lesson-plans',
-  asyncHandler(authenticate),
-  rateLimiters.write as unknown as any,
+  authenticate,
+  rateLimiters.write,
   userCache,
   etfoLessonPlanRoutes,
 );
-app.use('/api/daybook-entries', asyncHandler(authenticate), rateLimiters.write as unknown as any, userCache, daybookEntryRoutes);
-app.use('/api/etfo', asyncHandler(authenticate), rateLimiters.read as unknown as any, etfoProgressRoutes);
+app.use('/api/daybook-entries', authenticate, rateLimiters.write, userCache, daybookEntryRoutes);
+app.use('/api/etfo', authenticate, rateLimiters.read, etfoProgressRoutes);
 
 // State Management Routes
-app.use('/api/planner', asyncHandler(authenticate), rateLimiters.api as unknown as any, plannerStateRoutes);
+app.use('/api/planner', authenticate, rateLimiters.api, plannerStateRoutes);
 // Workflow state routes removed - over-engineered for single-teacher use
-app.use('/api/ai-planning', asyncHandler(authenticate), rateLimiters.ai as unknown as any, aiPlanningRoutes);
+app.use('/api/ai-planning', authenticate, rateLimiters.ai, aiPlanningRoutes);
 
 // Template System Routes
-app.use('/api/templates', asyncHandler(authenticate), rateLimiters.api as unknown as any, staticCache, templateRoutes);
+app.use('/api/templates', authenticate, rateLimiters.api, staticCache, templateRoutes);
 
 // Calendar Routes
-app.use('/api/calendar-events', asyncHandler(authenticate), rateLimiters.api as unknown as any, userCache, calendarEventRoutes);
+app.use('/api/calendar-events', authenticate, rateLimiters.api, userCache, calendarEventRoutes);
 
 // Recent Plans Routes
-app.use('/api/recent-plans', asyncHandler(authenticate), rateLimiters.api as unknown as any, userCache, recentPlansRoutes);
+app.use('/api/recent-plans', authenticate, rateLimiters.api, userCache, recentPlansRoutes);
 
 // Cache Management Routes
 app.use('/api/cache', cacheRoutes);
@@ -250,21 +250,21 @@ app.use('/api/metrics', metricsRoutes);
 app.use('/api/dashboard', dashboardMetricsRoutes);
 
 // Monitoring Routes (includes enhanced dashboard and alerting)
-app.use('/api/monitoring', asyncHandler(authenticate), monitoringRoutes);
+app.use('/api/monitoring', authenticate, monitoringRoutes);
 
 // AI status endpoint (maps to ai-planning/status for backward compatibility)
-app.get('/api/ai/status', asyncHandler(authenticate), (req: Request, res: Response): void => {
+app.get('/api/ai/status', authenticate, (req: Request, res: Response): void => {
   // Forward to ai-planning routes handler
   req.url = '/status';
   aiPlanningRoutes(req, res, () => {});
 });
 
 // Planner State Routes
-app.use('/api/planner', asyncHandler(authenticate), plannerStateRoutes);
+app.use('/api/planner', authenticate, plannerStateRoutes);
 
 // Activity Discovery Routes
-app.use('/api/activity-collections', asyncHandler(authenticate), rateLimiters.write as unknown as RequestHandler, activityCollectionsRoutes);
-app.use('/api/ai-activities', asyncHandler(authenticate), rateLimiters.ai as unknown as RequestHandler, aiActivityGenerationRoutes);
+app.use('/api/activity-collections', authenticate, rateLimiters.write, activityCollectionsRoutes);
+app.use('/api/ai-activities', authenticate, rateLimiters.ai, aiActivityGenerationRoutes);
 
 // Batch Processing Routes
 
@@ -316,7 +316,7 @@ app.get('*', (_req, res): void => {
 // Global error handler - must be last middleware
 app.use(errorHandler);
 
-const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
+const PORT = (process.env.PORT !== null && process.env.PORT !== undefined && process.env.PORT !== '') ? parseInt(process.env.PORT, 10) : 3000;
 log(`Starting server on port ${PORT}...`);
 // Export app before starting the server
 export { app };
@@ -369,7 +369,7 @@ async function gracefulShutdown(signal: string, server?: Server): Promise<void> 
 // Also start if running in test mode for E2E tests (unless IS_TEST_SERVER is set)
 const isDirectRun = require.main === module;
 const isE2ETest =
-  process.env.NODE_ENV === 'test' && process.env.E2E_TEST === 'true' && !process.env.IS_TEST_SERVER;
+  process.env.NODE_ENV === 'test' && process.env.E2E_TEST === 'true' && (process.env.IS_TEST_SERVER === null || process.env.IS_TEST_SERVER === undefined || process.env.IS_TEST_SERVER === '');
 // Check if running in development mode
 const isDevelopment = process.env.NODE_ENV !== 'production';
 

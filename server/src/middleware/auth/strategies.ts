@@ -113,7 +113,7 @@ export async function login(credentials: LoginCredentials): Promise<{
 /**
  * Refresh access token using refresh token
  */
-export async function refreshTokens(_refreshToken: string): Promise<TokenResponse> {
+export function refreshTokens(_refreshToken: string): TokenResponse {
   // This would typically verify the refresh token
   // and generate new tokens. For now, simplified implementation
   throw new Error('Refresh token functionality not implemented');
@@ -122,7 +122,7 @@ export async function refreshTokens(_refreshToken: string): Promise<TokenRespons
 /**
  * Logout user (optional - for token blacklisting)
  */
-export async function logout(userId: number): Promise<void> {
+export function logout(userId: number): void {
   // In a stateless JWT system, logout is typically handled client-side
   // This could be used for token blacklisting if implemented
   logger.info({ userId }, `User ${userId} logged out`);
@@ -204,7 +204,7 @@ export async function requestPasswordReset(email: string): Promise<void> {
 /**
  * Reset password with token
  */
-export async function resetPassword(_token: string, newPassword: string): Promise<void> {
+export function resetPassword(_token: string, newPassword: string): void {
   // Validate new password
   const passwordValidation = validatePasswordStrength(newPassword);
   if (!passwordValidation.isValid) {

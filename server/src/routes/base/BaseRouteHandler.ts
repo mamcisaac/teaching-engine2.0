@@ -11,6 +11,7 @@ import type { z } from 'zod';
 import { logger } from '../../logger';
 import { prisma } from '../../prisma';
 import type { BaseService } from '../../services/base/BaseService';
+import { formatErrorForLogging } from '../../utils/typeGuards';
 
 import type { AuthenticatedRequest } from './middleware';
 
@@ -67,8 +68,12 @@ export abstract class BaseRouteHandler<T = any> {
     res: Response,
     next: NextFunction,
   ): void => {
+    if (!req.user || !req.user.id) {
+      res.status(401).json({ error: 'Unauthorized' });
+      return;
+    }
     const userId = req.user.id;
-    if (!userId || userId === 0) {
+    if (userId === 0) {
       res.status(401).json({ error: 'Unauthorized' });
       return;
     }
@@ -142,7 +147,7 @@ export abstract class BaseRouteHandler<T = any> {
       res.json(items);
       return;
     } catch (error) {
-      this.logger.error(`Error in ${this.routeName} list:`, error);
+      this.logger.error(`Error in ${this.routeName} list:`, formatErrorForLogging(error));
       next(error);
     }
   }
@@ -171,7 +176,7 @@ export abstract class BaseRouteHandler<T = any> {
       res.json(item);
       return;
     } catch (error) {
-      this.logger.error(`Error in ${this.routeName} get:`, error);
+      this.logger.error(`Error in ${this.routeName} get:`, formatErrorForLogging(error));
       next(error);
     }
   }
@@ -194,7 +199,7 @@ export abstract class BaseRouteHandler<T = any> {
       const item = await crudOps.create(data, userId);
       res.status(201).json(item);
     } catch (error) {
-      this.logger.error(`Error in ${this.routeName} create:`, error);
+      this.logger.error(`Error in ${this.routeName} create:`, formatErrorForLogging(error));
       next(error);
     }
   }
@@ -219,7 +224,7 @@ export abstract class BaseRouteHandler<T = any> {
       res.json(item);
       return;
     } catch (error) {
-      this.logger.error(`Error in ${this.routeName} update:`, error);
+      this.logger.error(`Error in ${this.routeName} update:`, formatErrorForLogging(error));
       next(error);
     }
   }
@@ -247,7 +252,7 @@ export abstract class BaseRouteHandler<T = any> {
 
       res.status(204).send();
     } catch (error) {
-      this.logger.error(`Error in ${this.routeName} delete:`, error);
+      this.logger.error(`Error in ${this.routeName} delete:`, formatErrorForLogging(error));
       next(error);
     }
   }
@@ -279,8 +284,7 @@ export abstract class BaseRouteHandler<T = any> {
     userId: number,
   ): Promise<boolean> {
     try {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const record = await (prisma as any)[tableName].findFirst({
+      const record = await (prisma as Record<string, { findFirst: (query: unknown) => Promise<unknown> }>)[tableName].findFirst({
         where: {
           id,
           OR: [{ isSystem: true }, { createdByUserId: userId }, { userId }],
@@ -288,7 +292,7 @@ export abstract class BaseRouteHandler<T = any> {
       });
       return record !== null && record !== undefined;
     } catch (error) {
-      this.logger.error(`Error validating ownership for ${tableName}:`, error);
+      this.logger.error(`Error validating ownership for ${tableName}:`, formatErrorForLogging(error));
       return false;
     }
   }

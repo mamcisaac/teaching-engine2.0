@@ -6,11 +6,11 @@ import { logger } from '../logger.js';
  * Middleware for API key validation
  * Provides security through API key authentication
  */
-export async function validateApiKey(
+export function validateApiKey(
   req: Request,
   res: Response,
   next: NextFunction,
-): Promise<void> {
+): void {
   try {
     // Check if API key validation is enabled
     const isValidationEnabled = process.env.ENABLE_API_KEY_VALIDATION === 'true';
