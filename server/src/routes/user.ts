@@ -116,7 +116,7 @@ export function userRoutes(prisma: PrismaClient): Router {
   // Data validation endpoint
   router.post(
     '/data/validate',
-    asyncHandler(async (req, res): Promise<void> => {
+    asyncHandler((req, res): void => {
       const data = req.body as Record<string, unknown>;
 
       // Type validation

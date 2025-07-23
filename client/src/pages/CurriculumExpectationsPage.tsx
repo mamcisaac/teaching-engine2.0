@@ -62,7 +62,7 @@ export function CurriculumExpectationsPage(): React.ReactElement {
   } = useCurriculumExpectations({
     subject: selectedSubject === 'all' ? undefined : selectedSubject,
     grade: selectedGrade === 'all' ? undefined : selectedGrade,
-    search: searchTerm ?? undefined,
+    search: searchTerm || undefined,
   });
 
   const updateMutation = useUpdateCurriculumExpectation();
@@ -89,7 +89,7 @@ export function CurriculumExpectationsPage(): React.ReactElement {
     const grouped: Record<string, typeof expectations> = {};
 
     expectations.forEach((exp) => {
-      if (!grouped[exp.subject]) {
+      if (!(exp.subject in grouped)) {
         grouped[exp.subject] = [];
       }
       grouped[exp.subject].push(exp);
@@ -101,7 +101,7 @@ export function CurriculumExpectationsPage(): React.ReactElement {
   const handleEdit = (expectation: CurriculumExpectation): void => {
     setEditingExpectation({
       ...expectation,
-      descriptionFr: expectation.descriptionFr  ? expectation.descriptionFr : '',
+      descriptionFr: expectation.descriptionFr != null ? expectation.descriptionFr : '',
     });
     setIsEditDialogOpen(true);
   };
@@ -177,7 +177,7 @@ return;
       <TableCell className="max-w-md">
         <div className="space-y-1">
           <p className="text-sm">{expectation.description}</p>
-          {expectation.descriptionFr  && (
+          {expectation.descriptionFr != null && (
             <p className="text-sm text-muted-foreground italic">{expectation.descriptionFr}</p>
           )}
         </div>
@@ -185,7 +185,7 @@ return;
       <TableCell>
         <div className="text-sm">
           <div>{expectation.strand}</div>
-          {expectation.substrand  && (
+          {expectation.substrand != null && (
             <div className="text-muted-foreground">{expectation.substrand}</div>
           )}
         </div>
@@ -339,7 +339,7 @@ return;
                 <div className="flex items-center justify-between">
                   <CardTitle>{subject} Expectations</CardTitle>
                   <Badge variant="outline">
-                    {groupedExpectations[subject].length ?? 0} expectations
+                    {groupedExpectations[subject].length} expectations
                   </Badge>
                 </div>
               </CardHeader>
@@ -429,7 +429,7 @@ return;
                   }
                   placeholder="Optional French translation"
                   rows={3}
-                  value={editingExpectation.descriptionFr  ? editingExpectation.descriptionFr : ''}
+                  value={editingExpectation.descriptionFr != null ? editingExpectation.descriptionFr : ''}
                 />
               </div>
 
@@ -457,7 +457,7 @@ return;
                       }); 
 }
                     }
-                    value={editingExpectation.substrand  ? editingExpectation.substrand : ''}
+                    value={editingExpectation.substrand != null ? editingExpectation.substrand : ''}
                   />
                 </div>
               </div>

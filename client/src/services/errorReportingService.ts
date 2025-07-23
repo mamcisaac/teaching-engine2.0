@@ -227,17 +227,17 @@ export class ErrorReportingService {
       return;
     }
 
-    if (user === null || user === undefined) {
+    if (user == null) {
       Sentry.setUser(null);
       return;
     }
 
     const sanitizedUser = {
       id: String(user.id),
-      email: user.email !== undefined ? this.maskEmail(user.email) : undefined,
+      email: user.email ? this.maskEmail(user.email) : undefined,
       username: user.name,
       role: user.role,
-      organizationId: user.organizationId !== null && user.organizationId !== undefined ? String(user.organizationId) : undefined,
+      organizationId: user.organizationId != null ? String(user.organizationId) : undefined,
     };
 
     Sentry.setUser(sanitizedUser);
@@ -453,7 +453,7 @@ export class ErrorReportingService {
     }
 
     // Sanitize user data
-    if (sanitized.user?.email !== null && sanitized.user?.email !== undefined && sanitized.user.email !== '') {
+    if (sanitized.user?.email && sanitized.user.email !== '') {
       sanitized.user.email = this.maskEmail(sanitized.user.email);
     }
 
@@ -473,11 +473,11 @@ export class ErrorReportingService {
   }
 
   private isValidExtras(data: unknown): data is Record<string, unknown> {
-    return Boolean(data && typeof data === 'object' && !Array.isArray(data));
+    return data != null && typeof data === 'object' && !Array.isArray(data);
   }
 
   private sanitizeData(data: unknown): unknown {
-    if (!data) {
+    if (data == null) {
       return data;
     }
 

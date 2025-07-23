@@ -393,16 +393,14 @@ export function handleGracefulShutdown(server: { close: (callback: () => void) =
         try {
           // eslint-disable-next-line @typescript-eslint/no-var-requires
           const { prisma } = await import('../prisma.js');
-          prisma
-            .$disconnect()
-            .then((): number => {
-              logger.info('Database connections closed');
-              return process.exit(0);
-            })
-            .catch((err: unknown): number => {
-              logger.error({ error: err }, 'Error closing database connections');
-              return process.exit(1);
-            });
+          try {
+            await prisma.$disconnect();
+            logger.info('Database connections closed');
+            process.exit(0);
+          } catch (err: unknown) {
+            logger.error({ error: err }, 'Error closing database connections');
+            process.exit(1);
+          }
         } catch (_error) {
           logger.warn('Could not access prisma for shutdown');
           process.exit(0);

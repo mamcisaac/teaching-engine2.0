@@ -129,7 +129,7 @@ router.post(
   async (req: Request, res: Response): Promise<void> => {
     try {
       const params = generateActivitySchema.parse(req.body);
-      const count = Math.min(req.body.count || 3, 5); // Max 5 variations
+      const count = Math.min((req.body as { count?: number }).count || 3, 5); // Max 5 variations
 
       const searchResults = undefined;
 

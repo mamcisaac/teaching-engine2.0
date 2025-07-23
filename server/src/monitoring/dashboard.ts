@@ -118,7 +118,7 @@ const getCpuUsage = (): number => {
 };
 
 // Helper to get active alerts
-const getActiveAlerts = async (): Promise<DashboardMetrics['alerts']> => {
+const getActiveAlerts = (): DashboardMetrics['alerts'] => {
   const alerts: DashboardMetrics['alerts'] = [];
   const metrics = getMetrics();
 
@@ -451,7 +451,7 @@ export const getDashboardMetrics = async (_req: Request, res: Response): Promise
             success_rate: 95, // Would need actual tracking
           },
         },
-        alerts: await getActiveAlerts(),
+        alerts: getActiveAlerts(),
         health: await performHealthChecks(),
       };
 
@@ -470,8 +470,15 @@ export const getDashboardMetrics = async (_req: Request, res: Response): Promise
   });
 };
 
+// WebSocket interface for typing
+interface WebSocketLike {
+  clients?: { size: number };
+  send(data: string): void;
+  on(event: string, callback: () => void): void;
+}
+
 // WebSocket support for real-time dashboard updates
-export const dashboardWebSocketHandler = (ws: any): void => {
+export const dashboardWebSocketHandler = (ws: WebSocketLike): void => {
   const interval = setInterval(async () => {
     try {
       const metrics = getMetrics();

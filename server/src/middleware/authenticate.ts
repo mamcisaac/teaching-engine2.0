@@ -413,11 +413,11 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
  * Optional authentication middleware
  * Attaches user if token is valid, but doesn't require it
  */
-export async function optionalAuthenticate(
+export function optionalAuthenticate(
   req: Request,
   _res: Response,
   next: NextFunction,
-): Promise<void> {
+): void {
   try {
     const token = extractToken(req);
 
@@ -552,7 +552,7 @@ export async function refreshToken(req: Request, res: Response): Promise<void> {
     // Read refresh token from HTTP-only cookie
     const { refreshToken } = req.cookies;
 
-    if (!refreshToken) {
+    if (!refreshToken || typeof refreshToken !== 'string') {
       res.status(400).json({
         error: 'Bad Request',
         message: 'Refresh token required',

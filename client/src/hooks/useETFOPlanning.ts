@@ -191,16 +191,16 @@ export function useCurriculumExpectations(filters?: {
     queryKey: ['curriculum-expectations', filters],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (filters?.subject) {
+      if (filters?.subject != null && filters.subject !== '') {
         params.append('subject', filters.subject);
       }
       if (filters?.grade != null) {
         params.append('grade', filters.grade.toString());
       }
-      if (filters?.strand) {
+      if (filters?.strand != null && filters.strand !== '') {
         params.append('strand', filters.strand);
       }
-      if (filters?.search) {
+      if (filters?.search != null && filters.search !== '') {
         params.append('search', filters.search);
       }
 
@@ -230,7 +230,9 @@ export function useUpdateCurriculumExpectation(): UseMutationResult<unknown, Err
       return response.data as CurriculumExpectation;
     },
     onSuccess: () => {
-      void queryClient.invalidateQueries({ queryKey: ['curriculum-expectations'] });
+      void (async (): Promise<void> => {
+        await queryClient.invalidateQueries({ queryKey: ['curriculum-expectations'] });
+      })();
       toast.success('Curriculum expectation updated successfully');
     },
     onError: (error) => {
@@ -248,7 +250,9 @@ export function useDeleteCurriculumExpectation(): UseMutationResult<unknown, Err
       return response.data as { success: boolean };
     },
     onSuccess: () => {
-      void queryClient.invalidateQueries({ queryKey: ['curriculum-expectations'] });
+      void (async (): Promise<void> => {
+        await queryClient.invalidateQueries({ queryKey: ['curriculum-expectations'] });
+      })();
       toast.success('Curriculum expectation deleted successfully');
     },
     onError: (error) => {
@@ -267,10 +271,10 @@ export function useLongRangePlans(filters?: {
     queryKey: ['long-range-plans', filters],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (filters?.academicYear) {
+      if (filters?.academicYear != null && filters.academicYear !== '') {
         params.append('academicYear', filters.academicYear);
       }
-      if (filters?.subject) {
+      if (filters?.subject != null && filters.subject !== '') {
         params.append('subject', filters.subject);
       }
       if (filters?.grade != null) {
@@ -303,7 +307,9 @@ export function useCreateLongRangePlan(): ReturnType<typeof useMutation<LongRang
       return response.data as LongRangePlan;
     },
     onSuccess: () => {
-      void queryClient.invalidateQueries({ queryKey: ['long-range-plans'] });
+      void (async (): Promise<void> => {
+        await queryClient.invalidateQueries({ queryKey: ['long-range-plans'] });
+      })();
     },
   });
 }
@@ -320,8 +326,10 @@ export function useUpdateLongRangePlan(): ReturnType<typeof useMutation<LongRang
       return response.data as LongRangePlan;
     },
     onSuccess: (_data) => {
-      void queryClient.invalidateQueries({ queryKey: ['long-range-plans'] });
-      void queryClient.invalidateQueries({ queryKey: ['long-range-plans', _data.id] });
+      void (async (): Promise<void> => {
+        await queryClient.invalidateQueries({ queryKey: ['long-range-plans'] });
+        await queryClient.invalidateQueries({ queryKey: ['long-range-plans', _data.id] });
+      })();
     },
   });
 }
@@ -335,8 +343,10 @@ export function useDeleteLongRangePlan(): UseMutationResult<unknown, Error, stri
       return response.data as { success: boolean };
     },
     onSuccess: (_, id) => {
-      void queryClient.invalidateQueries({ queryKey: ['long-range-plans'] });
-      void queryClient.invalidateQueries({ queryKey: ['long-range-plans', id] });
+      void (async (): Promise<void> => {
+        await queryClient.invalidateQueries({ queryKey: ['long-range-plans'] });
+        await queryClient.invalidateQueries({ queryKey: ['long-range-plans', id] });
+      })();
     },
   });
 }
@@ -351,13 +361,13 @@ export function useUnitPlans(filters?: {
     queryKey: ['unit-plans', filters],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (filters?.longRangePlanId) {
+      if (filters?.longRangePlanId != null && filters.longRangePlanId !== '') {
         params.append('longRangePlanId', filters.longRangePlanId);
       }
-      if (filters?.startDate) {
+      if (filters?.startDate != null && filters.startDate !== '') {
         params.append('startDate', filters.startDate);
       }
-      if (filters?.endDate) {
+      if (filters?.endDate != null && filters.endDate !== '') {
         params.append('endDate', filters.endDate);
       }
 
@@ -387,13 +397,15 @@ export function useCreateUnitPlan(): ReturnType<typeof useMutation<UnitPlan, Err
       return response.data as UnitPlan;
     },
     onSuccess: (_data) => {
-      void queryClient.invalidateQueries({ queryKey: ['unit-plans'] });
-      void queryClient.invalidateQueries({ queryKey: ['long-range-plans', _data.longRangePlanId] });
+      void (async (): Promise<void> => {
+        await queryClient.invalidateQueries({ queryKey: ['unit-plans'] });
+        await queryClient.invalidateQueries({ queryKey: ['long-range-plans', _data.longRangePlanId] });
+      })();
     },
   });
 }
 
-export function useUpdateUnitPlan(): ReturnType<typeof useMutation<UnitPlan, Error, Partial<UnitPlan> & { id: string; expectationIds?: string[] }>> {
+export function useUpdateUnitPlan(): UseMutationResult<UnitPlan, Error, Partial<UnitPlan> & { id: string; expectationIds?: string[] }> {
   const queryClient = useQueryClient();
 
   return useMutation<UnitPlan, Error, Partial<UnitPlan> & { id: string; expectationIds?: string[] }>({
@@ -405,8 +417,10 @@ export function useUpdateUnitPlan(): ReturnType<typeof useMutation<UnitPlan, Err
       return response.data as UnitPlan;
     },
     onSuccess: (_data) => {
-      void queryClient.invalidateQueries({ queryKey: ['unit-plans'] });
-      void queryClient.invalidateQueries({ queryKey: ['unit-plans', _data.id] });
+      void (async (): Promise<void> => {
+        await queryClient.invalidateQueries({ queryKey: ['unit-plans'] });
+        await queryClient.invalidateQueries({ queryKey: ['unit-plans', _data.id] });
+      })();
     },
   });
 }
@@ -420,8 +434,10 @@ export function useDeleteUnitPlan(): UseMutationResult<unknown, Error, string> {
       return response.data as { success: boolean };
     },
     onSuccess: (_, id) => {
-      void queryClient.invalidateQueries({ queryKey: ['unit-plans'] });
-      void queryClient.invalidateQueries({ queryKey: ['unit-plans', id] });
+      void (async (): Promise<void> => {
+        await queryClient.invalidateQueries({ queryKey: ['unit-plans'] });
+        await queryClient.invalidateQueries({ queryKey: ['unit-plans', id] });
+      })();
       toast.success('Unit plan deleted successfully');
     },
     onError: (error) => {
@@ -441,13 +457,13 @@ export function useETFOLessonPlans(filters?: {
     queryKey: ['etfo-lesson-plans', filters],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (filters?.unitPlanId) {
+      if (filters?.unitPlanId != null && filters.unitPlanId !== '') {
         params.append('unitPlanId', filters.unitPlanId);
       }
-      if (filters?.startDate) {
+      if (filters?.startDate != null && filters.startDate !== '') {
         params.append('startDate', filters.startDate);
       }
-      if (filters?.endDate) {
+      if (filters?.endDate != null && filters.endDate !== '') {
         params.append('endDate', filters.endDate);
       }
       if (filters?.isSubFriendly != null) {
@@ -480,8 +496,10 @@ export function useCreateETFOLessonPlan(): ReturnType<typeof useMutation<ETFOLes
       return response.data as ETFOLessonPlan;
     },
     onSuccess: (_data) => {
-      void queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans'] });
-      void queryClient.invalidateQueries({ queryKey: ['unit-plans', _data.unitPlanId] });
+      void (async (): Promise<void> => {
+        await queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans'] });
+        await queryClient.invalidateQueries({ queryKey: ['unit-plans', _data.unitPlanId] });
+      })();
     },
   });
 }
@@ -498,8 +516,10 @@ export function useUpdateETFOLessonPlan(): ReturnType<typeof useMutation<ETFOLes
       return response.data as ETFOLessonPlan;
     },
     onSuccess: (_data) => {
-      void queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans'] });
-      void queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans', _data.id] });
+      void (async (): Promise<void> => {
+        await queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans'] });
+        await queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans', _data.id] });
+      })();
     },
   });
 }
@@ -513,7 +533,9 @@ export function useDeleteETFOLessonPlan(): UseMutationResult<unknown, Error, str
       return response.data as { success: boolean };
     },
     onSuccess: () => {
-      void queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans'] });
+      void (async (): Promise<void> => {
+        await queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans'] });
+      })();
     },
   });
 }
@@ -570,10 +592,12 @@ export function useCreateDaybookEntry(): ReturnType<typeof useMutation<DaybookEn
       return response.data as DaybookEntry;
     },
     onSuccess: (_data) => {
-      void queryClient.invalidateQueries({ queryKey: ['daybook-entries'] });
-      if (_data.lessonPlanId) {
-        void queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans', _data.lessonPlanId] });
-      }
+      void (async (): Promise<void> => {
+        await queryClient.invalidateQueries({ queryKey: ['daybook-entries'] });
+        if (_data.lessonPlanId) {
+          await queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans', _data.lessonPlanId] });
+        }
+      })();
     },
   });
 }
@@ -590,8 +614,10 @@ export function useUpdateDaybookEntry(): ReturnType<typeof useMutation<DaybookEn
       return response.data as DaybookEntry;
     },
     onSuccess: (_data) => {
-      void queryClient.invalidateQueries({ queryKey: ['daybook-entries'] });
-      void queryClient.invalidateQueries({ queryKey: ['daybook-entries', _data.id] });
+      void (async (): Promise<void> => {
+        await queryClient.invalidateQueries({ queryKey: ['daybook-entries'] });
+        await queryClient.invalidateQueries({ queryKey: ['daybook-entries', _data.id] });
+      })();
     },
   });
 }

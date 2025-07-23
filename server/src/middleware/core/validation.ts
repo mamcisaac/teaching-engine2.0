@@ -168,7 +168,7 @@ export const validateOneOf = <T extends ZodTypeAny[]>(
       try {
         // Create a promise that resolves when validation succeeds
         await new Promise<void>((resolve, reject) => {
-          validate(schema, options)(req, res, ((err?: unknown) => {
+          validate(schema as ZodSchema<unknown>, options)(req, res, ((err?: unknown) => {
             if (err) reject(err);
             else resolve();
           }) as NextFunction);

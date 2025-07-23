@@ -11,7 +11,7 @@ const router = Router();
  * Prometheus metrics endpoint (no auth required for monitoring tools)
  * GET /metrics
  */
-router.get('/', async (_req: Request, res: Response): Promise<void> => {
+router.get('/', (_req: Request, res: Response): void => {
   try {
     const prometheusFormat = metricsStore.getPrometheusFormat();
 
@@ -27,7 +27,7 @@ router.get('/', async (_req: Request, res: Response): Promise<void> => {
  * JSON metrics endpoint (requires authentication)
  * GET /api/metrics/json
  */
-router.get('/json', authMiddleware, async (_req: Request, res: Response): Promise<void> => {
+router.get('/json', authMiddleware, (_req: Request, res: Response): void => {
   try {
     const metrics = metricsStore.getMetrics();
 
@@ -51,7 +51,7 @@ router.get('/json', authMiddleware, async (_req: Request, res: Response): Promis
  * Performance summary endpoint
  * GET /api/metrics/summary
  */
-router.get('/summary', authMiddleware, async (_req: Request, res: Response): Promise<void> => {
+router.get('/summary', authMiddleware, (_req: Request, res: Response): void => {
   try {
     const summary = getPerformanceSummary();
 
@@ -75,7 +75,7 @@ router.get('/summary', authMiddleware, async (_req: Request, res: Response): Pro
  * Health check with performance data
  * GET /api/metrics/health
  */
-router.get('/health', authMiddleware, async (_req: Request, res: Response): Promise<void> => {
+router.get('/health', authMiddleware, (_req: Request, res: Response): void => {
   try {
     const summary = getPerformanceSummary();
 

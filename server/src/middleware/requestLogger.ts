@@ -100,12 +100,12 @@ return;
   }
 
   // Override response methods
-  res.json = function (obj: unknown) {
+  res.json = function (obj: unknown): Response {
     logResponse();
     return originalJson.call(this, obj);
   };
 
-  res.send = function (body: unknown) {
+  res.send = function (body: unknown): Response {
     logResponse();
     return originalSend.call(this, body);
   };

@@ -40,7 +40,7 @@ try {
 interface Alert {
   id: string;
   name: string;
-  condition: () => Promise<boolean>;
+  condition: () => boolean | Promise<boolean>;
   message: (context: AlertContext) => string;
   severity: 'info' | 'warning' | 'error' | 'critical';
   cooldown: number; // Minutes before re-alerting
@@ -103,7 +103,7 @@ const alerts: Alert[] = [
   {
     id: 'high_error_rate',
     name: 'High Error Rate',
-    condition: async (): Promise<boolean> => {
+    condition: (): boolean => {
       const metrics = getMetrics();
       const errors = metrics.counters.http_errors_total ?? 0;
       const total = metrics.counters.http_requests_total || 1;
@@ -118,7 +118,7 @@ const alerts: Alert[] = [
   {
     id: 'high_memory_usage',
     name: 'High Memory Usage',
-    condition: async (): Promise<boolean> => {
+    condition: (): boolean => {
       const used = process.memoryUsage().heapUsed;
       const total = process.memoryUsage().heapTotal;
       const percentage = (used / total) * 100;
@@ -148,7 +148,7 @@ const alerts: Alert[] = [
   {
     id: 'slow_response_times',
     name: 'Slow Response Times',
-    condition: async (): Promise<boolean> => {
+    condition: (): boolean => {
       const metrics = getMetrics();
       const histogramData = metrics.histograms.http_request_duration_ms;
       if (!histogramData || histogramData.count === 0) {
@@ -178,7 +178,7 @@ return false;
   {
     id: 'low_cache_hit_rate',
     name: 'Low Cache Hit Rate',
-    condition: async (): Promise<boolean> => {
+    condition: (): boolean => {
       const metrics = getMetrics();
       const hits = metrics.counters.cache_hits_total ?? 0;
       const misses = metrics.counters.cache_misses_total ?? 0;
@@ -197,7 +197,7 @@ return false;
   {
     id: 'high_ai_operation_failures',
     name: 'High AI Operation Failures',
-    condition: async (): Promise<boolean> => {
+    condition: (): boolean => {
       const metrics = getMetrics();
       const errors = metrics.counters.ai_operation_errors_total ?? 0;
       const total = metrics.counters.ai_operations_total || 1;
@@ -226,7 +226,7 @@ return false;
   {
     id: 'unusual_user_activity',
     name: 'Unusual User Activity',
-    condition: async (): Promise<boolean> => {
+    condition: (): boolean => {
       try {
         // Check for sudden spikes in user activity
         const now = new Date();
@@ -364,7 +364,7 @@ const checkAlerts = async (): Promise<void> => {
   await withSpan('alerting.checkAlerts', {}, async (span) => {
     for (const alert of alerts) {
       try {
-        const shouldAlert = await alert.condition();
+        const shouldAlert = await Promise.resolve(alert.condition());
         const wasActive = alertState.active.get(alert.id) ?? false;
 
         if (shouldAlert && !wasActive) {
@@ -533,7 +533,7 @@ export const stopAlertMonitoring = (): void => {
 };
 
 // Manual alert trigger (for testing)
-export const triggerManualAlert = async (alertId: string, context?: any): Promise<void> => {
+export const triggerManualAlert = async (alertId: string, context?: AlertContext): Promise<void> => {
   const alert = alerts.find((a) => a.id === alertId);
   if (!alert) {
     throw new Error(`Alert ${alertId} not found`);

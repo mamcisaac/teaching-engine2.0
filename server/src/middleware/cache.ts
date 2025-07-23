@@ -105,7 +105,7 @@ export function createCacheMiddleware(
     condition?: (req: Request) => boolean;
     skipUserSpecific?: boolean;
   } = {},
-) {
+): (req: Request, res: Response, next: NextFunction) => Promise<Response | void> {
   const cache = caches[cacheType];
   const { ttl, keyPrefix = '', condition = shouldCache, skipUserSpecific = false } = options;
 
@@ -156,7 +156,7 @@ export function createCacheMiddleware(
       const originalJson = res.json;
 
       // Override json method to cache the response
-      res.json = function (data: unknown) {
+      res.json = function (data: unknown): Response {
         // Cache the response data
         if (res.statusCode === 200 && data) {
           const cacheTTL = ttl ?? cache.options.stdTTL ?? DEFAULT_TTL;
@@ -259,7 +259,7 @@ export function invalidateCache(
     }
 
     // Override response methods
-    res.json = function (data: unknown) {
+    res.json = function (data: unknown): Response {
       invalidateCacheEntries();
       return originalJson.call(this, data);
     };
@@ -281,7 +281,7 @@ export function invalidateCache(
 /**
  * Cache warm-up for commonly accessed data
  */
-export async function warmUpCache(): Promise<void> {
+export function warmUpCache(): void {
   logger.info('Starting cache warm-up...');
 
   try {

@@ -51,8 +51,8 @@ class AuditLogger {
   /**
    * Create audit middleware for specific actions
    */
-  middleware(action: string, resource: string): (req: Request, res: Response, next: NextFunction) => Promise<void> {
-    return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  middleware(action: string, resource: string): (req: Request, res: Response, next: NextFunction) => void {
+    return (req: Request, res: Response, next: NextFunction): void => {
       const start = Date.now();
       const originalSend = res.send;
       const originalJson = res.json;

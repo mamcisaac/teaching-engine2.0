@@ -1,4 +1,4 @@
-import * as cors from 'cors';
+import cors from 'cors';
 import type { Request, Response, NextFunction } from 'express';
 import helmet from 'helmet';
 import Redis from 'ioredis';
@@ -268,18 +268,12 @@ export function generateCSRFToken(): string {
 /**
  * Apply all security middleware
  */
-export function applySecurityMiddleware(app: { use: (middleware: unknown) => void }) {
+export function applySecurityMiddleware(app: { use: (middleware: unknown) => void }): void {
   // Apply Helmet for security headers
   app.use(helmetConfig);
 
   // Apply CORS
-  // Handle both CommonJS and ES module formats for cors
-  const corsMiddleware = typeof cors === 'function' 
-    ? cors(corsOptions)
-    : cors.default != null
-      ? cors.default(corsOptions)
-      : (cors as unknown as typeof cors.default)(corsOptions);
-  app.use(corsMiddleware);
+  app.use(cors(corsOptions));
 
   // Apply custom security headers
   app.use(securityHeaders);

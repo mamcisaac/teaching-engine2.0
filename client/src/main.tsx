@@ -8,7 +8,6 @@ import { App } from './App';
 import './index.css';
 // import logger from './utils/logger';
 import { errorReportingService } from './services/errorReportingService';
-import { hasResponseStatus } from './types/errors';
 
 // Initialize error reporting service
 errorReportingService.init();
@@ -87,9 +86,14 @@ createRoot(document.getElementById('root')!).render(
 
 // Unregister any existing service workers
 if ('serviceWorker' in navigator) {
-  void navigator.serviceWorker.getRegistrations().then((registrations): void => {
-    for(const registration of registrations) {
-      void registration.unregister();
+  void (async (): Promise<void> => {
+    try {
+      const registrations = await navigator.serviceWorker.getRegistrations();
+      for(const registration of registrations) {
+        await registration.unregister();
+      }
+    } catch (error) {
+      console.warn('Failed to unregister service workers:', error);
     }
-  });
+  })();
 }

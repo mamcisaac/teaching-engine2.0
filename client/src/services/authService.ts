@@ -139,12 +139,12 @@ class AuthService implements AuthServiceInterface {
     try {
       const data = await authClient.login({ email, password });
 
-      if (data.user) {
+      if (data.user != null) {
         this.setUser(data.user);
 
         if (data.tokens !== undefined) {
           this.setTokens(data.tokens);
-        } else if (data.accessToken !== undefined) {
+        } else if (data.accessToken) {
           // Current backend format
           this.setLegacyToken(data.accessToken);
         } else if (data.token !== undefined) {
@@ -218,7 +218,7 @@ class AuthService implements AuthServiceInterface {
         } else if (data.token !== undefined) {
           this.setLegacyToken(data.token);
           return true;
-        } else if (data.accessToken !== undefined) {
+        } else if (data.accessToken) {
           this.setLegacyToken(data.accessToken);
           return true;
         }

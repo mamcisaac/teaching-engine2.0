@@ -100,7 +100,7 @@ class MetricsStore {
   }
 
   incrementCounter(name: string, labels: Record<string, string> = {}, value = 1): void {
-    const current = this.counters.get(name) ?? 0;
+    const current = this.counters.get(name) || 0;
     this.counters.set(name, current + value);
 
     this.recordMetric({
@@ -240,7 +240,7 @@ export function httpMetricsMiddleware(req: Request, res: Response, next: NextFun
     metricsStore.observeHistogram('http_request_duration_ms', duration, {
       method: req.method,
       status_code: res.statusCode.toString(),
-      path: (req.route as Record<string, unknown>).path as string ?? req.path,
+      path: ((req.route as Record<string, unknown>)?.path as string) || req.path,
     });
 
     // Record errors
@@ -248,7 +248,7 @@ export function httpMetricsMiddleware(req: Request, res: Response, next: NextFun
       metricsStore.incrementCounter('http_errors_total', {
         method: req.method,
         status_code: res.statusCode.toString(),
-        path: (req.route as Record<string, unknown>).path as string ?? req.path,
+        path: ((req.route as Record<string, unknown>)?.path as string) || req.path,
       });
     }
 
@@ -418,29 +418,29 @@ export function getPerformanceSummary(): { http: { totalRequests: number; totalE
 
   const summary = {
     http: {
-      totalRequests: metrics.counters.http_requests_total ?? 0,
-      totalErrors: metrics.counters.http_errors_total ?? 0,
+      totalRequests: metrics.counters.http_requests_total || 0,
+      totalErrors: metrics.counters.http_errors_total || 0,
       errorRate: 0,
       responseTime: calculatePercentiles(
-        metrics.histograms.http_request_duration_ms ?? { buckets: [], sum: 0, count: 0 },
+        metrics.histograms.http_request_duration_ms || { buckets: [], sum: 0, count: 0 },
       ),
     },
     database: {
-      totalQueries: metrics.counters.db_queries_total ?? 0,
-      totalErrors: metrics.counters.db_errors_total ?? 0,
+      totalQueries: metrics.counters.db_queries_total || 0,
+      totalErrors: metrics.counters.db_errors_total || 0,
       errorRate: 0,
       queryTime: calculatePercentiles(
-        metrics.histograms.db_query_duration_ms ?? { buckets: [], sum: 0, count: 0 },
+        metrics.histograms.db_query_duration_ms || { buckets: [], sum: 0, count: 0 },
       ),
     },
     cache: {
-      totalHits: metrics.counters.cache_hits_total ?? 0,
-      totalMisses: metrics.counters.cache_misses_total ?? 0,
+      totalHits: metrics.counters.cache_hits_total || 0,
+      totalMisses: metrics.counters.cache_misses_total || 0,
       hitRate: 0,
     },
     system: {
-      memoryUsage: metrics.gauges.memory_usage_bytes ?? 0,
-      cpuUsage: metrics.gauges.cpu_usage_percent ?? 0,
+      memoryUsage: metrics.gauges.memory_usage_bytes || 0,
+      cpuUsage: metrics.gauges.cpu_usage_percent || 0,
     },
   };
 

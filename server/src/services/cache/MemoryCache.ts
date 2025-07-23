@@ -40,11 +40,11 @@ export class MemoryCache {
 }, interval);
   }
 
-  async connect(): Promise<void> {
+  connect(): void {
     structuredLogger.info('Memory cache initialized');
   }
 
-  async disconnect(): Promise<void> {
+  disconnect(): void {
     if (this.cleanupInterval) {
       clearInterval(this.cleanupInterval);
       this.cleanupInterval = null;

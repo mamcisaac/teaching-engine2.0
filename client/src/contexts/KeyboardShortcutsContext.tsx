@@ -32,7 +32,7 @@ interface KeyboardShortcutsContextType {
 interface KeyboardShortcutPreferences {
   enabled: boolean;
   showHints: boolean;
-  customShortcuts: Record<string, Partial<KeyboardShortcut>>;
+  customShortcuts: Record<string, Partial<KeyboardShortcut> | undefined>;
 }
 
 const defaultPreferences: KeyboardShortcutPreferences = {

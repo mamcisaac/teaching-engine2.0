@@ -116,7 +116,7 @@ class SubstitutePlanServiceWrapper extends BaseService {
       sortOrder?: 'asc' | 'desc';
     },
     userId: number,
-  ) {
+  ): Promise<{ plans: unknown[]; pagination: { total: number; limit: number; offset: number; hasMore: boolean } }> {
     const {
       startDate,
       endDate,
@@ -184,7 +184,7 @@ where.isActive = isActive;
     };
   }
 
-  async findById(id: string, userId: number) {
+  async findById(id: string, userId: number): Promise<unknown> {
     return queryPerformance.monitorQuery('substitutePlan.findById', () =>
       prisma.substitutePlan.findFirst({
         where: { id, userId },
@@ -192,7 +192,7 @@ where.isActive = isActive;
     );
   }
 
-  async create(data: SubstitutePlanCreateData, userId: number) {
+  async create(data: SubstitutePlanCreateData, userId: number): Promise<unknown> {
     return prisma.substitutePlan.create({
       data: {
         userId,
@@ -219,7 +219,7 @@ where.isActive = isActive;
     });
   }
 
-  async update(id: string, data: SubstitutePlanUpdateData, userId: number) {
+  async update(id: string, data: SubstitutePlanUpdateData, userId: number): Promise<unknown> {
     // Verify ownership
     const plan = await prisma.substitutePlan.findFirst({
       where: { id, userId },
@@ -251,11 +251,11 @@ where.isActive = isActive;
     return true;
   }
 
-  async generatePlan(generateData: unknown, _userId: number) {
+  async generatePlan(generateData: unknown, _userId: number): Promise<unknown> {
     return SubstitutePlanService.generate(generateData);
   }
 
-  async deactivatePlan(planId: string, userId: number) {
+  async deactivatePlan(planId: string, userId: number): Promise<unknown> {
     const plan = await prisma.substitutePlan.findFirst({
       where: { id: planId, userId },
     });
@@ -270,7 +270,7 @@ where.isActive = isActive;
     });
   }
 
-  async getStats(userId: number) {
+  async getStats(userId: number): Promise<unknown> {
     const [totalPlans, activePlans, upcomingPlans, recentPlans] = await Promise.all([
       prisma.substitutePlan.count({ where: { userId } }),
       prisma.substitutePlan.count({ where: { userId, isActive: true } }),
@@ -297,7 +297,7 @@ where.isActive = isActive;
     };
   }
 
-  async getUpcomingDates(userId: number, daysAhead = 30) {
+  async getUpcomingDates(userId: number, daysAhead = 30): Promise<unknown> {
     const startDate = new Date();
     const endDate = new Date();
     endDate.setDate(endDate.getDate() + daysAhead);
@@ -340,7 +340,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
     return this.substitutePlanService;
   }
 
-  protected getValidationSchemas() {
+  protected getValidationSchemas(): { create: unknown; update: unknown; query: unknown } {
     return {
       create: substitutePlanCreateSchema,
       update: substitutePlanUpdateSchema,
@@ -351,7 +351,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
   protected getCrudOperations(): CrudOperations<unknown> {
     return {
       create: async (data: unknown, userId: number) => this.substitutePlanService.create(data as SubstitutePlanCreateData, userId),
-      findMany: async (filters: unknown, userId: number) => {
+      findMany: async (filters: unknown, userId: number): Promise<unknown> => {
         const result = await this.substitutePlanService.findMany(
           filters as {
             startDate?: Date;

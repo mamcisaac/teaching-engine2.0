@@ -304,13 +304,13 @@ export function auditMiddleware(
   getActionFromRequest?: (req: Request) => string,
   getDetailsFromRequest?: (req: Request) => Record<string, unknown>,
 ) {
-  return (req: Request, res: Response, next: NextFunction) => {
+  return (req: Request, res: Response, next: NextFunction): void => {
     // Store original response methods
     const originalJson = res.json;
     const originalSend = res.send;
 
     // Override response methods to capture success/failure
-    res.json = function (data: unknown) {
+    res.json = function (data: unknown): Response {
       const success = res.statusCode < 400;
       const action = getActionFromRequest ? getActionFromRequest(req) : `${req.method} ${req.path}`;
       const details = getDetailsFromRequest ? getDetailsFromRequest(req) : undefined;
@@ -333,7 +333,7 @@ export function auditMiddleware(
       return originalJson.call(this, data);
     };
 
-    res.send = function (data: unknown) {
+    res.send = function (data: unknown): Response {
       const success = res.statusCode < 400;
       const action = getActionFromRequest ? getActionFromRequest(req) : `${req.method} ${req.path}`;
       const details = getDetailsFromRequest ? getDetailsFromRequest(req) : undefined;
@@ -360,7 +360,7 @@ export function auditMiddleware(
  * Convenience functions for common audit events
  */
 export const auditFunctions = {
-  loginAttempt: (req: Request, success: boolean, errorMessage?: string) => {
+  loginAttempt: (req: Request, success: boolean, errorMessage?: string): void => {
     const event = auditLogger.createEventFromRequest(
       req,
       success ? AuditEventType.LOGIN_SUCCESS : AuditEventType.LOGIN_FAILURE,
@@ -372,7 +372,7 @@ export const auditFunctions = {
     auditLogger.logEvent(event);
   },
 
-  logout: (req: Request) => {
+  logout: (req: Request): void => {
     const event = auditLogger.createEventFromRequest(req, AuditEventType.LOGOUT, 'User logout');
     auditLogger.logEvent(event);
   },
@@ -382,7 +382,7 @@ export const auditFunctions = {
     operation: 'create' | 'update' | 'delete',
     planType: string,
     planId: string,
-  ) => {
+  ): void => {
     const eventTypeMap = {
       create: AuditEventType.PLAN_CREATION,
       update: AuditEventType.PLAN_MODIFICATION,
@@ -398,7 +398,7 @@ export const auditFunctions = {
     auditLogger.logEvent(event);
   },
 
-  dataExport: (req: Request, dataType: string, format: string) => {
+  dataExport: (req: Request, dataType: string, format: string): void => {
     const event = auditLogger.createEventFromRequest(
       req,
       AuditEventType.DATA_EXPORT,
@@ -408,7 +408,7 @@ export const auditFunctions = {
     auditLogger.logEvent(event);
   },
 
-  curriculumImport: (req: Request, fileName: string, recordCount: number) => {
+  curriculumImport: (req: Request, fileName: string, recordCount: number): void => {
     const event = auditLogger.createEventFromRequest(
       req,
       AuditEventType.CURRICULUM_IMPORT,
@@ -418,7 +418,7 @@ export const auditFunctions = {
     auditLogger.logEvent(event);
   },
 
-  aiGeneration: (req: Request, model: string, operation: string) => {
+  aiGeneration: (req: Request, model: string, operation: string): void => {
     const event = auditLogger.createEventFromRequest(
       req,
       AuditEventType.AI_GENERATION,
@@ -428,7 +428,7 @@ export const auditFunctions = {
     auditLogger.logEvent(event);
   },
 
-  suspiciousActivity: (req: Request, activityType: string, details: Record<string, unknown>) => {
+  suspiciousActivity: (req: Request, activityType: string, details: Record<string, unknown>): void => {
     const event = auditLogger.createEventFromRequest(
       req,
       AuditEventType.SUSPICIOUS_ACTIVITY,
@@ -438,7 +438,7 @@ export const auditFunctions = {
     auditLogger.logEvent(event);
   },
 
-  rateLimitExceeded: (req: Request, limitType: string) => {
+  rateLimitExceeded: (req: Request, limitType: string): void => {
     const event = auditLogger.createEventFromRequest(
       req,
       AuditEventType.RATE_LIMIT_EXCEEDED,

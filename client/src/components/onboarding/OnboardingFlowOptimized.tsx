@@ -3,7 +3,11 @@ import React, { useEffect, useRef, useState, Suspense } from 'react';
 import { createPortal } from 'react-dom';
 
 import { useOnboarding } from '../../contexts/OnboardingContext';
-import { isNonEmptyString } from '@shared/utils/validation';
+
+// Utility to check if a string is non-empty
+const isNonEmptyString = (value: unknown): value is string => {
+  return typeof value === 'string' && value.trim() !== '';
+};
 
 import { OnboardingHighlight } from './OnboardingHighlight';
 import { OnboardingProgress } from './OnboardingProgress';
@@ -133,13 +137,13 @@ export function OnboardingFlowOptimized(): React.ReactElement | null {
       return;
     }
     
-    if ((currentStep.targetElement === undefined || currentStep.targetElement === '') || currentStep.requiresAction !== true) {
+    if (!isNonEmptyString(currentStep.targetElement) || currentStep.requiresAction !== true) {
       return;
     }
 
     const handleClick = (e: MouseEvent): void => {
       // currentStep is guaranteed to be non-null here due to the early return above
-      if (currentStep.targetElement === undefined || currentStep.targetElement === '') {
+      if (!isNonEmptyString(currentStep.targetElement)) {
         return;
       }
       const element = document.querySelector(currentStep.targetElement);

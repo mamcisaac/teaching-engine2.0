@@ -232,7 +232,7 @@ export function useTemplateSearch(searchTerm: string, otherOptions: Omit<Templat
 
   return useTemplates({
     ...otherOptions,
-    search: (debouncedSearchTerm !== undefined && debouncedSearchTerm !== '') ? debouncedSearchTerm : undefined,
+    search: (debouncedSearchTerm && debouncedSearchTerm !== '') ? debouncedSearchTerm : undefined,
   });
 }
 
@@ -257,7 +257,7 @@ export function useTemplatesPaginated(options: TemplateSearchOptions = {}): UseQ
   });
 
   const nextPage = useCallback(() => {
-    if (query.data?.pagination.hasMore) {
+    if (query.data?.pagination.hasMore === true) {
       setCurrentPage(prev => prev + 1);
     }
   }, [query.data?.pagination.hasMore]);

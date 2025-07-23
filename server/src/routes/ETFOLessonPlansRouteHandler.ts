@@ -119,7 +119,7 @@ class ETFOLessonPlanService extends BaseService {
       order?: 'asc' | 'desc';
     },
     userId: number,
-  ) {
+  ): Promise<{ lessonPlans: unknown[]; pagination: { total: number; limit: number; offset: number; hasMore: boolean } }> {
     const {
       unitPlanId,
       startDate,
@@ -190,7 +190,7 @@ where.assessmentType = assessmentType;
     };
   }
 
-  async findById(id: string, userId: number) {
+  async findById(id: string, userId: number): Promise<unknown> {
     return queryPerformance.monitorQuery('etfoLessonPlan.findById', () =>
       prisma.eTFOLessonPlan.findFirst({
         where: { id, userId },
@@ -199,7 +199,7 @@ where.assessmentType = assessmentType;
     );
   }
 
-  async create(data: ETFOLessonPlanCreateData, userId: number) {
+  async create(data: ETFOLessonPlanCreateData, userId: number): Promise<unknown> {
     // Verify user owns the unit plan
     const unitPlan = await prisma.unitPlan.findFirst({
       where: {
@@ -266,7 +266,7 @@ where.assessmentType = assessmentType;
     });
   }
 
-  async update(id: string, data: ETFOLessonPlanUpdateData, userId: number) {
+  async update(id: string, data: ETFOLessonPlanUpdateData, userId: number): Promise<unknown> {
     // Verify ownership
     const lessonPlan = await prisma.eTFOLessonPlan.findFirst({
       where: { id, userId },
@@ -406,7 +406,7 @@ baseUpdateData.subNotes = updateData.subNotes;
     lessonPlanId: string,
     resourceData: { url?: string; title: string; type: string; content?: string },
     userId: number,
-  ) {
+  ): Promise<unknown> {
     // Verify ownership
     const lessonPlan = await prisma.eTFOLessonPlan.findFirst({
       where: { id: lessonPlanId, userId },
@@ -453,7 +453,7 @@ baseUpdateData.subNotes = updateData.subNotes;
     return true;
   }
 
-  async createSubVersion(lessonPlanId: string, userId: number) {
+  async createSubVersion(lessonPlanId: string, userId: number): Promise<unknown> {
     const originalLesson = await prisma.eTFOLessonPlan.findFirst({
       where: { id: lessonPlanId, userId },
       include: {
@@ -513,7 +513,7 @@ baseUpdateData.subNotes = updateData.subNotes;
     lessonPlanId: string,
     rescheduleData: { newDate: string | Date; updateRelated?: boolean },
     userId: number,
-  ) {
+  ): Promise<unknown> {
     const { newDate, updateRelated } = rescheduleData;
 
     const lessonPlan = await prisma.eTFOLessonPlan.findFirst({
@@ -554,7 +554,7 @@ baseUpdateData.subNotes = updateData.subNotes;
       title?: string;
     },
     userId: number,
-  ) {
+  ): Promise<unknown> {
     const { lessonPlanId, unitPlanId, date, title } = duplicateData;
 
     // Verify user owns both the source lesson plan and target unit plan
@@ -636,7 +636,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
     return this.lessonPlanService;
   }
 
-  protected getValidationSchemas() {
+  protected getValidationSchemas(): { create: unknown; update: unknown; query: unknown } {
     return {
       create: lessonPlanCreateSchema,
       update: lessonPlanUpdateSchema,
@@ -647,7 +647,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   protected getCrudOperations(): CrudOperations<unknown> {
     return {
       create: async (data: unknown, userId: number) => this.lessonPlanService.create(data as ETFOLessonPlanCreateData, userId),
-      findMany: async (filters: unknown, userId: number) => {
+      findMany: async (filters: unknown, userId: number): Promise<unknown> => {
         const result = await this.lessonPlanService.findMany(
           filters as {
             unitPlanId?: number;

@@ -217,11 +217,11 @@ export const systemHealthGauge = meter.createObservableGauge('system_health', {
 let activeUserCount = 0;
 let systemHealthScore = 100;
 
-activeUsersGauge.addCallback(async (observableResult) => {
+activeUsersGauge.addCallback((observableResult) => {
   observableResult.observe(activeUserCount);
 });
 
-systemHealthGauge.addCallback(async (observableResult) => {
+systemHealthGauge.addCallback((observableResult) => {
   observableResult.observe(systemHealthScore);
 });
 

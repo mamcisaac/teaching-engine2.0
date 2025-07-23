@@ -25,7 +25,7 @@ export class CSVParser extends CurriculumParser {
   /**
    * Parse CSV content
    */
-  async parse(content: string | Buffer): Promise<ParsedCurriculum> {
+  parse(content: string | Buffer): ParsedCurriculum {
     const stringContent = content instanceof Buffer ? content.toString('utf-8') : content;
     
     // Parse CSV with error handling for malformed data

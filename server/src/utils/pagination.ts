@@ -65,10 +65,10 @@ export function getPaginationParams(req: Request): PaginationOptions {
   }
 
   return {
-    page: result.data.page ?? 1,
-    limit: result.data.limit ?? 20,
+    page: result.data.page || 1,
+    limit: result.data.limit || 20,
     sortBy: result.data.sortBy,
-    sortOrder: result.data.sortOrder ?? 'desc',
+    sortOrder: result.data.sortOrder || 'desc',
     search: result.data.search,
   };
 }
@@ -112,7 +112,7 @@ export function createPaginatedResponse<T>(
   };
 
   // Add navigation links if base URL provided
-  if (baseUrl !== undefined && baseUrl !== null && baseUrl !== '') {
+  if (baseUrl && baseUrl !== '') {
     response.links = {};
 
     const url = new URL(baseUrl);
@@ -161,7 +161,7 @@ export function getPrismaArgs(options: PaginationOptions): { skip: number; take:
   };
 
   // Add sorting
-  if (options.sortBy) {
+  if (options.sortBy != null && options.sortBy !== '') {
     args.orderBy = {
       [options.sortBy]: options.sortOrder ?? 'desc',
     };

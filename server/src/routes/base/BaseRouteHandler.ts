@@ -141,7 +141,7 @@ export abstract class BaseRouteHandler<T = any> {
 
       // Validate query parameters if schema provided
       const schemas = this.getValidationSchemas();
-      const filters = schemas.query ? schemas.query.parse(req.query) : req.query;
+      const filters: Record<string, unknown> = schemas.query ? (schemas.query.parse(req.query) as Record<string, unknown>) : (req.query as Record<string, unknown>);
 
       const items = await crudOps.findMany(filters, userId);
       res.json(items);
@@ -193,7 +193,7 @@ export abstract class BaseRouteHandler<T = any> {
         return;
       }
       const schemas = this.getValidationSchemas();
-      const data = schemas.create.parse(req.body);
+      const data = schemas.create.parse(req.body) as Record<string, unknown>;
       const crudOps = this.getCrudOperations();
 
       const item = await crudOps.create(data, userId);
@@ -217,7 +217,7 @@ export abstract class BaseRouteHandler<T = any> {
       }
       const { id } = req.params;
       const schemas = this.getValidationSchemas();
-      const data = schemas.update.parse(req.body);
+      const data = schemas.update.parse(req.body) as Record<string, unknown>;
       const crudOps = this.getCrudOperations();
 
       const item = await crudOps.update(id, data, userId);

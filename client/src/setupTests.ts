@@ -141,15 +141,15 @@ Object.defineProperty(window, 'matchMedia', {
 });
 
 // Mock pointer capture methods for Radix UI
-// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, @typescript-eslint/strict-boolean-expressions
 if (!Element.prototype.hasPointerCapture) {
   Element.prototype.hasPointerCapture = (): boolean => false;
 }
-// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, @typescript-eslint/strict-boolean-expressions
 if (!Element.prototype.setPointerCapture) {
   Element.prototype.setPointerCapture = (_pointerId: number): void => {};
 }
-// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, @typescript-eslint/strict-boolean-expressions
 if (!Element.prototype.releasePointerCapture) {
   Element.prototype.releasePointerCapture = (_pointerId: number): void => {};
 }

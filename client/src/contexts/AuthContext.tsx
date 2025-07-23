@@ -100,7 +100,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
         let errorMessage = 'Login failed';
         if (isApiError(_error)) {
           const responseData = _error.response?.data as { error?: string } | undefined;
-          if (responseData?.error) {
+          if (responseData?.error != null && responseData.error !== '') {
             errorMessage = responseData.error;
           } else if (_error.response?.status === 401) {
             errorMessage = 'Invalid email or password';

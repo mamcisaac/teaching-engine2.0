@@ -242,7 +242,7 @@ class EnhancedLogger {
   }
 
   // Create child logger with context
-  child(context: Record<string, unknown>) {
+  child(context: Record<string, unknown>): EnhancedLogger {
     const childLogger = this.logger.child(this.enhanceLogObject(context));
     const enhanced = new EnhancedLogger(childLogger);
     enhanced.requestId = this.requestId;
@@ -250,7 +250,7 @@ class EnhancedLogger {
   }
 
   // Set request ID for request tracing
-  setRequestId(requestId: string) {
+  setRequestId(requestId: string): void {
     this.requestId = requestId;
   }
 

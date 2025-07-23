@@ -131,7 +131,7 @@ export const xssProtectionMiddleware = (_req: Request, res: Response, next: Next
   // Additional XSS protection for JSON responses
   const originalJson = res.json;
 
-  res.json = function (data: unknown) {
+  res.json = function (data: unknown): Response {
     // Escape HTML in JSON responses
     const escapeHtml = (str: string): string => str
         .replace(/&/g, '&amp;')

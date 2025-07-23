@@ -47,7 +47,7 @@ export function createApp(prisma: PrismaClient): Express {
   return app;
 }
 
-export async function createTestApp(prisma?: PrismaClient): Promise<Express> {
+export function createTestApp(prisma?: PrismaClient): Express {
   // Use provided prisma or create a mock
   const testPrisma = prisma ?? new PrismaClient();
 

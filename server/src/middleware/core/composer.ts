@@ -182,7 +182,7 @@ export const asyncMiddleware = (
 export const timed = (name: string, middleware: Middleware): RequestHandler => async (req: Request, res: Response, next: NextFunction) => {
     const start = Date.now();
     
-    const handleNext = (err?: unknown) => {
+    const handleNext = (err?: unknown): void => {
       const duration = Date.now() - start;
       
       logger.debug({
