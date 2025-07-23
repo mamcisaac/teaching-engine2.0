@@ -106,7 +106,7 @@ export function useAIStatus(): AIStatusHookReturn {
         };
       }
     },
-    retry: (failureCount, error: unknown) => {
+    retry: (failureCount, error: unknown): boolean => {
       // Don't retry on auth errors or client errors
       const axiosError = error as { response?: { status?: number } };
       if (axiosError.response != null && axiosError.response.status != null && axiosError.response.status < 500) {
@@ -114,7 +114,7 @@ export function useAIStatus(): AIStatusHookReturn {
       }
       return failureCount < 3;
     },
-    retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
+    retryDelay: (attemptIndex: number): number => Math.min(1000 * 2 ** attemptIndex, 30000),
     staleTime: 5 * 60 * 1000, // 5 minutes
     refetchInterval: 10 * 60 * 1000, // 10 minutes
     refetchOnWindowFocus: true,

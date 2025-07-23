@@ -16,7 +16,7 @@ import pino, { stdSerializers } from 'pino';
 
 // Base logger configuration
 const pinoConfig: pino.LoggerOptions = {
-  level: process.env.LOG_LEVEL || (process.env.NODE_ENV === 'production' ? 'info' : 'debug'),
+  level: process.env.LOG_LEVEL ?? (process.env.NODE_ENV === 'production' ? 'info' : 'debug'),
 
   // Custom serializers for better structured logging
   serializers: {
@@ -35,10 +35,10 @@ const pinoConfig: pino.LoggerOptions = {
         headers: {
           'user-agent': request.headers?.['user-agent'],
           'content-type': request.headers?.['content-type'],
-          authorization: request.headers?.authorization ? '[REDACTED]' : undefined,
+          authorization: request.headers?.authorization != null && request.headers.authorization !== '' ? '[REDACTED]' : undefined,
         },
-        remoteAddress: request.remoteAddress || request.connection?.remoteAddress,
-        remotePort: (request.remotePort && !isNaN(request.remotePort)) ? request.remotePort : request.connection?.remotePort,
+        remoteAddress: request.remoteAddress ?? request.connection?.remoteAddress,
+        remotePort: (request.remotePort != null && !isNaN(request.remotePort)) ? request.remotePort : request.connection?.remotePort,
       };
     },
 
@@ -66,7 +66,7 @@ const pinoConfig: pino.LoggerOptions = {
       return {
         id: userData.id,
         email:
-          (userData.email !== null && userData.email !== undefined && userData.email !== '') && typeof userData.email === 'string'
+          (userData.email != null && userData.email !== '') && typeof userData.email === 'string'
             ? `${userData.email.substring(0, 3)  }***`
             : undefined,
         role: userData.role,
@@ -106,15 +106,15 @@ class EnhancedLogger {
   }
 
   // Standard log methods (allow both string and object for flexibility)
-  fatal(obj: Record<string, unknown> | string, msg?: string, ...args: unknown[]) {
+  fatal(obj: Record<string, unknown> | string, msg?: string, ...args: unknown[]): void {
     this.logger.fatal(this.enhanceLogObject(obj), msg, ...args);
   }
 
-  error(obj: Record<string, unknown> | string, msg?: string, ...args: unknown[]) {
+  error(obj: Record<string, unknown> | string, msg?: string, ...args: unknown[]): void {
     this.logger.error(this.enhanceLogObject(obj), msg, ...args);
   }
 
-  warn(obj: Record<string, unknown> | string, msg?: string, ...args: unknown[]) {
+  warn(obj: Record<string, unknown> | string, msg?: string, ...args: unknown[]): void {
     this.logger.warn(this.enhanceLogObject(obj), msg, ...args);
   }
 
@@ -261,16 +261,16 @@ class EnhancedLogger {
         message: obj,
         requestId: this.requestId,
         service: 'teaching-engine',
-        version: (process.env.npm_package_version !== null && process.env.npm_package_version !== undefined && process.env.npm_package_version !== '') ? process.env.npm_package_version : 'unknown',
+        version: (process.env.npm_package_version != null && process.env.npm_package_version !== '') ? process.env.npm_package_version : 'unknown',
       };
     }
 
-    if (obj !== null && obj !== undefined && typeof obj === 'object') {
+    if (obj != null && typeof obj === 'object') {
       return {
         ...(obj as Record<string, unknown>),
         requestId: this.requestId,
         service: 'teaching-engine',
-        version: (process.env.npm_package_version !== null && process.env.npm_package_version !== undefined && process.env.npm_package_version !== '') ? process.env.npm_package_version : 'unknown',
+        version: (process.env.npm_package_version != null && process.env.npm_package_version !== '') ? process.env.npm_package_version : 'unknown',
       };
     }
 
@@ -293,7 +293,7 @@ class EnhancedLogger {
     delete sanitized.apiKey;
 
     // Redact email addresses
-    if (sanitized.email !== null && sanitized.email !== undefined) {
+    if (sanitized.email != null) {
       sanitized.email = this.redactEmail(sanitized.email);
     }
 
@@ -304,11 +304,11 @@ class EnhancedLogger {
     const sanitized = { ...details };
 
     // Keep only necessary security info
-    if (sanitized.ip !== null && sanitized.ip !== undefined) {
+    if (sanitized.ip != null) {
       sanitized.ip = this.maskIP(sanitized.ip);
     }
 
-    if (sanitized.userAgent && typeof sanitized.userAgent === 'string') {
+    if (sanitized.userAgent != null && typeof sanitized.userAgent === 'string') {
       sanitized.userAgent = sanitized.userAgent.substring(0, 100);
     }
 
@@ -329,7 +329,7 @@ class EnhancedLogger {
     const sanitized = { ...details };
 
     // Remove sensitive query parameters
-    if (sanitized.query && typeof sanitized.query === 'string') {
+    if (sanitized.query != null && typeof sanitized.query === 'string') {
       sanitized.query = sanitized.query.replace(
         /password\s*=\s*'[^']*'/gi,
         "password='[REDACTED]'",
@@ -343,7 +343,7 @@ class EnhancedLogger {
     const sanitized = { ...details };
 
     // Limit prompt size and remove sensitive content
-    if (sanitized.prompt && typeof sanitized.prompt === 'string') {
+    if (sanitized.prompt != null && typeof sanitized.prompt === 'string') {
       sanitized.prompt =
         sanitized.prompt.substring(0, 500) + (sanitized.prompt.length > 500 ? '...' : '');
     }
@@ -356,7 +356,7 @@ class EnhancedLogger {
 return '[INVALID_EMAIL]';
 }
     const [local, domain] = email.split('@');
-    if (!local || !domain) {
+    if (local == null || local === '' || domain == null || domain === '') {
 return '[INVALID_EMAIL]';
 }
     return `${local.substring(0, 2)}***@${domain}`;

@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState, Suspense } from 'react';
 import { createPortal } from 'react-dom';
 
 import { useOnboarding } from '../../contexts/OnboardingContext';
+import { isNonEmptyString } from '@shared/utils/validation';
 
 import { OnboardingHighlight } from './OnboardingHighlight';
 import { OnboardingProgress } from './OnboardingProgress';
@@ -46,14 +47,14 @@ export function OnboardingFlowOptimized(): React.ReactElement | null {
       return;
     }
     
-    if (!currentStep.targetElement || currentStep.targetElement === '') {
+    if (!isNonEmptyString(currentStep.targetElement)) {
       setHighlightPosition(null);
       return;
     }
 
     const updatePosition = (): void => {
       // currentStep is guaranteed to be non-null here due to the early return above
-      if (!currentStep.targetElement || currentStep.targetElement === '') {
+      if (!isNonEmptyString(currentStep.targetElement)) {
         setHighlightPosition(null);
         return;
       }

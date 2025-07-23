@@ -49,8 +49,15 @@ export function createCompatibleLogger(): LegacyLogger {
 
     log(level: string, message: string, ...args: unknown[]) {
       const [data, meta] = parseArgs(args);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (structuredLogger as any).log(level, message, { ...meta, data });
+      // Map string level to LogLevel enum
+      const logLevel = level as keyof typeof structuredLogger;
+      if (typeof structuredLogger[logLevel] === 'function' && logLevel !== 'log') {
+        // Call specific level method
+        (structuredLogger[logLevel] as (message: string, meta?: LogMeta) => void)(message, { ...meta, data });
+      } else {
+        // Default to info for unknown levels
+        structuredLogger.info(message, { ...meta, data, originalLevel: level });
+      }
     },
   };
 }
@@ -93,8 +100,14 @@ export class StructuredLoggerTransport extends winston.transports.Stream {
     const { level, message, ...meta } = info;
 
     // Forward to structured logger
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (structuredLogger as any).log(level, message, meta);
+    const logMethod = level as keyof typeof structuredLogger;
+    if (typeof structuredLogger[logMethod] === 'function' && logMethod !== 'log') {
+      // Call specific level method
+      (structuredLogger[logMethod] as (message: string, meta?: LogMeta) => void)(message as string, meta);
+    } else {
+      // Default to info for unknown levels
+      structuredLogger.info(message as string, { ...meta, originalLevel: level });
+    }
 
     callback();
   }
@@ -156,8 +169,7 @@ export function requestLoggerMiddleware(
     requestId: req.id,
     method: req.method,
     path: req.path,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  }) as any;
+  }) as StructuredLogger;
 
   // Helper methods
   const {logger} = req;

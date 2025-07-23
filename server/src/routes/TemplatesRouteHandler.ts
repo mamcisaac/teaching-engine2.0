@@ -114,26 +114,28 @@ class TemplateService extends BaseService {
     } = filters;
 
     // Build where clause using optimized ownership filter
-    const where = optimizedQueries.createOwnershipWhere(userId);
+    const where = optimizedQueries.createOwnershipWhere(userId) as {
+      AND: Array<Record<string, unknown>>;
+    };
 
     if (type !== null && String(type) !== '') {
-where.AND.push({ type });
-}
+      where.AND.push({ type });
+    }
     if (category !== null && String(category) !== '') {
-where.AND.push({ category });
-}
+      where.AND.push({ category });
+    }
     if (subject !== null && String(subject) !== '') {
-where.AND.push({ subject: { contains: subject, mode: 'insensitive' } });
-}
+      where.AND.push({ subject: { contains: subject, mode: 'insensitive' } });
+    }
     if (gradeMin !== null && Number(gradeMin) !== 0 && !isNaN(Number(gradeMin))) {
-where.AND.push({ gradeMin: { gte: gradeMin } });
-}
+      where.AND.push({ gradeMin: { gte: gradeMin } });
+    }
     if (gradeMax !== null && Number(gradeMax) !== 0 && !isNaN(Number(gradeMax))) {
-where.AND.push({ gradeMax: { lte: gradeMax } });
-}
+      where.AND.push({ gradeMax: { lte: gradeMax } });
+    }
     if (isSystem !== undefined) {
-where.AND.push({ isSystem });
-}
+      where.AND.push({ isSystem });
+    }
 
     // Search functionality using optimized search utility
     if (search !== null && String(search) !== '') {

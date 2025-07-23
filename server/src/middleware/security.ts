@@ -22,7 +22,7 @@ const ALLOWED_FILE_TYPES = [
 export const corsOptions: cors.CorsOptions = {
   origin: (origin, callback) => {
     // Allow requests with no origin (mobile apps, Postman)
-    if (origin === undefined || origin === null || origin === '' || ALLOWED_ORIGINS.includes(origin)) {
+    if (origin == null || origin === '' || ALLOWED_ORIGINS.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
@@ -71,7 +71,7 @@ export const helmetConfig = helmet({
 // Function reserved for future use - exported for potential future use
 export function _createRateLimiter(): RateLimiterRedis | RateLimiterMemory {
   // Use Redis in production for distributed rate limiting
-  if (process.env.REDIS_URL && process.env.NODE_ENV === 'production') {
+  if (process.env.REDIS_URL != null && process.env.REDIS_URL !== '' && process.env.NODE_ENV === 'production') {
     const redis = new Redis(process.env.REDIS_URL);
     return new RateLimiterRedis({
       storeClient: redis,
@@ -119,7 +119,7 @@ export function authRateLimitMiddleware(_req: Request, _res: Response, next: Nex
  */
 export function validateFileUpload(allowedTypes: string[] = ALLOWED_FILE_TYPES): (req: Request, res: Response, next: NextFunction) => Response | void {
   return (req: Request, res: Response, next: NextFunction): Response | void => {
-    if (!req.file && !req.files) {
+    if (req.file == null && req.files == null) {
       next(); 
       return;
     }
@@ -136,7 +136,7 @@ export function validateFileUpload(allowedTypes: string[] = ALLOWED_FILE_TYPES):
       }
 
       // Check file type
-      if (!allowedTypes.includes(file.mimetype)) {
+      if (allowedTypes.includes(file.mimetype) === false) {
         return res.status(400).json({
           error: 'Invalid File Type',
           message: `File type ${file.mimetype} is not allowed. Allowed types: ${allowedTypes.join(', ')}`,
@@ -188,17 +188,17 @@ export function securityHeaders(_req: Request, res: Response, next: NextFunction
  */
 export function sanitizeInput(req: Request, _res: Response, next: NextFunction): void {
   // Sanitize request body
-  if (req.body && typeof req.body === 'object') {
+  if (req.body != null && typeof req.body === 'object') {
     sanitizeObject(req.body as Record<string, unknown>);
   }
 
   // Sanitize query parameters
-  if (req.query && typeof req.query === 'object') {
+  if (req.query != null && typeof req.query === 'object') {
     sanitizeObject(req.query);
   }
 
   // Sanitize params
-  if (req.params && typeof req.params === 'object') {
+  if (req.params != null && typeof req.params === 'object') {
     sanitizeObject(req.params);
   }
 
@@ -246,7 +246,7 @@ export function csrfProtection(req: Request, res: Response, next: NextFunction):
   const token = req.headers['x-csrf-token'] ?? (req.body as Record<string, unknown>)._csrf as string;
   const sessionToken = (req as { session?: { csrfToken?: string } }).session?.csrfToken;
 
-  if (!token || !sessionToken || token !== sessionToken) {
+  if (token == null || token === '' || sessionToken == null || sessionToken === '' || token !== sessionToken) {
     return res.status(403).json({
       error: 'Forbidden',
       message: 'Invalid CSRF token',
@@ -276,7 +276,7 @@ export function applySecurityMiddleware(app: { use: (middleware: unknown) => voi
   // Handle both CommonJS and ES module formats for cors
   const corsMiddleware = typeof cors === 'function' 
     ? cors(corsOptions)
-    : cors.default 
+    : cors.default != null
       ? cors.default(corsOptions)
       : (cors as unknown as typeof cors.default)(corsOptions);
   app.use(corsMiddleware);

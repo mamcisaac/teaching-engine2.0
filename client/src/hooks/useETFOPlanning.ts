@@ -191,16 +191,16 @@ export function useCurriculumExpectations(filters?: {
     queryKey: ['curriculum-expectations', filters],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (filters?.subject != null && filters.subject !== '') {
+      if (filters?.subject) {
         params.append('subject', filters.subject);
       }
       if (filters?.grade != null) {
         params.append('grade', filters.grade.toString());
       }
-      if (filters?.strand != null && filters.strand !== '') {
+      if (filters?.strand) {
         params.append('strand', filters.strand);
       }
-      if (filters?.search != null && filters.search !== '') {
+      if (filters?.search) {
         params.append('search', filters.search);
       }
 
@@ -267,10 +267,10 @@ export function useLongRangePlans(filters?: {
     queryKey: ['long-range-plans', filters],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (filters?.academicYear != null && filters.academicYear !== '') {
+      if (filters?.academicYear) {
         params.append('academicYear', filters.academicYear);
       }
-      if (filters?.subject != null && filters.subject !== '') {
+      if (filters?.subject) {
         params.append('subject', filters.subject);
       }
       if (filters?.grade != null) {
@@ -351,13 +351,13 @@ export function useUnitPlans(filters?: {
     queryKey: ['unit-plans', filters],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (filters?.longRangePlanId != null && filters.longRangePlanId !== '') {
+      if (filters?.longRangePlanId) {
         params.append('longRangePlanId', filters.longRangePlanId);
       }
-      if (filters?.startDate != null && filters.startDate !== '') {
+      if (filters?.startDate) {
         params.append('startDate', filters.startDate);
       }
-      if (filters?.endDate != null && filters.endDate !== '') {
+      if (filters?.endDate) {
         params.append('endDate', filters.endDate);
       }
 
@@ -441,16 +441,16 @@ export function useETFOLessonPlans(filters?: {
     queryKey: ['etfo-lesson-plans', filters],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (filters?.unitPlanId != null && filters.unitPlanId !== '') {
+      if (filters?.unitPlanId) {
         params.append('unitPlanId', filters.unitPlanId);
       }
-      if (filters && filters.startDate && filters.startDate !== '') {
+      if (filters?.startDate) {
         params.append('startDate', filters.startDate);
       }
-      if (filters && filters.endDate && filters.endDate !== '') {
+      if (filters?.endDate) {
         params.append('endDate', filters.endDate);
       }
-      if (filters && filters.isSubFriendly !== null && filters.isSubFriendly !== undefined) {
+      if (filters?.isSubFriendly != null) {
         params.append('isSubFriendly', filters.isSubFriendly.toString());
       }
 
@@ -529,16 +529,16 @@ export function useDaybookEntries(filters?: {
     queryKey: ['daybook-entries', filters],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (filters && filters.startDate && filters.startDate !== '') {
+      if (filters?.startDate) {
         params.append('startDate', filters.startDate);
       }
-      if (filters && filters.endDate && filters.endDate !== '') {
+      if (filters?.endDate) {
         params.append('endDate', filters.endDate);
       }
-      if (filters && filters.hasLessonPlan !== null && filters.hasLessonPlan !== undefined) {
+      if (filters?.hasLessonPlan != null) {
         params.append('hasLessonPlan', filters.hasLessonPlan.toString());
       }
-      if (filters && filters.rating !== null && filters.rating !== undefined) {
+      if (filters?.rating != null) {
         params.append('rating', filters.rating.toString());
       }
 
@@ -571,7 +571,7 @@ export function useCreateDaybookEntry(): ReturnType<typeof useMutation<DaybookEn
     },
     onSuccess: (_data) => {
       void queryClient.invalidateQueries({ queryKey: ['daybook-entries'] });
-      if (_data.lessonPlanId != null && _data.lessonPlanId !== '') {
+      if (_data.lessonPlanId) {
         void queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans', _data.lessonPlanId] });
       }
     },

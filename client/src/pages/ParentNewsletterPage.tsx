@@ -32,7 +32,7 @@ export function ParentNewsletterPage(): React.ReactElement {
   const { t: _t, language } = useLanguage();
   
   // State
-  const [showCreateForm, setShowCreateForm] = useState(id === null);
+  const [showCreateForm, setShowCreateForm] = useState(id == null);
   const [selectedStudentIds, setSelectedStudentIds] = useState<number[]>([]);
   const [dateRange, setDateRange] = useState({
     from: startOfMonth(new Date()),
@@ -87,10 +87,10 @@ export function ParentNewsletterPage(): React.ReactElement {
       
       // Create draft from generated content
       const draft: NewsletterDraft = {
-        title: result.metadata.templateType ? 
+        title: (result.metadata.templateType != null && result.metadata.templateType !== '') ? 
           `${result.metadata.templateType.charAt(0).toUpperCase()}${result.metadata.templateType.slice(1)} Newsletter` :
           'Parent Newsletter',
-        titleFr: result.metadata.templateType ? 
+        titleFr: (result.metadata.templateType != null && result.metadata.templateType !== '') ? 
           `Bulletin ${result.metadata.templateType === 'weekly' ? 'Hebdomadaire' : 'Mensuel'}` :
           'Bulletin aux Parents',
         studentIds: selectedStudentIds,
@@ -145,7 +145,7 @@ return;
   };
 
   const handleSendNewsletter = async (draft: NewsletterDraft): Promise<void> => {
-    if (!draft.id) {
+    if (draft.id == null || draft.id === '') {
 return;
 }
     
@@ -176,7 +176,7 @@ return;
   };
 
   // Loading states
-  if (studentsLoading || draftsLoading || (id && newsletterLoading)) {
+  if (studentsLoading || draftsLoading || ((id != null && id !== '') && newsletterLoading)) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
@@ -367,7 +367,7 @@ return;
               <button
                 className="flex items-center gap-2 px-4 py-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg"
                 onClick={() => {
-                  if (currentNewsletter?.id) {
+                  if (currentNewsletter?.id != null && currentNewsletter.id !== '') {
                     void handleDeleteNewsletter(currentNewsletter.id);
                   }
                 }}

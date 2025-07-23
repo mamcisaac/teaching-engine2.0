@@ -35,7 +35,7 @@ export function validateUnitPlan(data: UnitPlanFormData): ValidationResult {
   }
 
   // Date validation
-  if (data.startDate !== '' && data.endDate !== '') {
+  if (data.startDate && data.endDate) {
     const startDate = new Date(data.startDate);
     const endDate = new Date(data.endDate);
 
@@ -63,16 +63,14 @@ export function validateUnitPlan(data: UnitPlanFormData): ValidationResult {
   }
 
   // Duration validation
-  if (!data.estimatedHours || data.estimatedHours <= 0) {
+  if (data.estimatedHours == null || data.estimatedHours <= 0) {
     errors.estimatedHours = 'Estimated hours must be greater than 0';
-  }
-
-  if (data.estimatedHours && data.estimatedHours > 500) {
+  } else if (data.estimatedHours > 500) {
     errors.estimatedHours = 'Estimated hours seems unreasonably high (max 500)';
   }
 
   // Content validation
-  if (data.title !== '' && data.title.length > 200) {
+  if (data.title.length > 200) {
     errors.title = 'Title must be 200 characters or less';
   }
 
@@ -117,7 +115,7 @@ export function validateLessonPlan(data: LessonPlanFormData): ValidationResult {
   }
 
   // Date validation
-  if (data.date !== '') {
+  if (data.date) {
     const lessonDate = new Date(data.date);
     const now = new Date();
     const oneYearAgo = new Date(now.getFullYear() - 1, now.getMonth(), now.getDate());
@@ -152,17 +150,17 @@ export function validateLessonPlan(data: LessonPlanFormData): ValidationResult {
   const hasAction = data.action?.trim();
   const hasConsolidation = data.consolidation?.trim();
 
-  if ((hasMindsOn === null || hasMindsOn === '') && (hasAction === null || hasAction === '') && (hasConsolidation === null || hasConsolidation === '')) {
+  if (!hasMindsOn && !hasAction && !hasConsolidation) {
     errors.lessonStructure =
       'At least one lesson component (Minds On, Action, or Consolidation) must have content';
   }
 
   // Content length validation
-  if (data.title !== '' && data.title.length > 200) {
+  if (data.title.length > 200) {
     errors.title = 'Title must be 200 characters or less';
   }
 
-  if (data.learningGoals != null && data.learningGoals !== '' && data.learningGoals.length > 1000) {
+  if (data.learningGoals && data.learningGoals.length > 1000) {
     errors.learningGoals = 'Learning goals must be 1000 characters or less';
   }
 
@@ -222,7 +220,7 @@ export function validateField(
     case 'startDate':
     case 'endDate':
     case 'date': {
-      if (value === null || value === '') {
+      if (!value) {
         return 'Date is required';
       }
       const date = new Date(value as string | number | Date);
@@ -234,7 +232,7 @@ export function validateField(
 
     case 'estimatedHours': {
       const numValue = typeof value === 'number' ? value : Number(value);
-      if (!numValue || Number.isNaN(numValue) || numValue <= 0) {
+      if (Number.isNaN(numValue) || numValue <= 0) {
         return 'Must be greater than 0';
       }
       if (numValue > 500) {
@@ -245,7 +243,7 @@ export function validateField(
 
     case 'duration': {
       const numValue = typeof value === 'number' ? value : Number(value);
-      if (!numValue || Number.isNaN(numValue) || numValue <= 0) {
+      if (Number.isNaN(numValue) || numValue <= 0) {
         return 'Duration must be greater than 0';
       }
       if (numValue > 480) {

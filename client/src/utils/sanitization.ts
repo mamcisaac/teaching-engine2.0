@@ -3,9 +3,9 @@ const DOMPurify = DOMPurifyDefault;
 import { createElement, useMemo, type ReactElement } from 'react';
 
 export const sanitizeHtml = (dirty: string | undefined | null): string => {
-  if (dirty === undefined || dirty === null || dirty === '') {
-return '';
-}
+  if (!dirty) {
+    return '';
+  }
   
   const clean = DOMPurify.sanitize(dirty, {
     ALLOWED_TAGS: [
@@ -27,9 +27,9 @@ return '';
 };
 
 export const escapeHtml = (unsafe: string | undefined | null): string => {
-  if (unsafe === undefined || unsafe === null || unsafe === '') {
-return '';
-}
+  if (!unsafe) {
+    return '';
+  }
   
   return unsafe
     .replace(/&/g, "&amp;")

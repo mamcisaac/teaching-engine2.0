@@ -4,6 +4,7 @@ import { createContext, useContext, useEffect, useState, useCallback } from 'rea
 import { authService } from '../services/authService';
 import { errorReportingService } from '../services/errorReportingService';
 import type { User } from '../types';
+import { getErrorMessage, isApiError } from '../types/errors';
 import { logger } from '../utils/logger';
 interface AuthContextValue {
   user: User | null;
@@ -97,18 +98,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
 
         // Extract user-friendly error message
         let errorMessage = 'Login failed';
-        const err = _error as {
-          response?: { data?: { error?: string }; status?: number };
-          message?: string;
-        };
-        if (err.response?.data?.error !== undefined && err.response.data.error !== '') {
-          errorMessage = err.response.data.error;
-        } else if (err.response?.status === 401) {
-          errorMessage = 'Invalid email or password';
-        } else if (err.response?.status !== undefined && err.response.status >= 500) {
-          errorMessage = 'Server error. Please try again later.';
-        } else if (err.message !== undefined && err.message !== '') {
-          errorMessage = err.message;
+        if (isApiError(_error)) {
+          const responseData = _error.response?.data as { error?: string } | undefined;
+          if (responseData?.error) {
+            errorMessage = responseData.error;
+          } else if (_error.response?.status === 401) {
+            errorMessage = 'Invalid email or password';
+          } else if (_error.response?.status !== undefined && _error.response.status >= 500) {
+            errorMessage = 'Server error. Please try again later.';
+          } else {
+            errorMessage = getErrorMessage(_error);
+          }
+        } else {
+          errorMessage = getErrorMessage(_error);
         }
 
         setError(errorMessage);

@@ -11,7 +11,7 @@ const router = Router();
  * Prometheus metrics endpoint (no auth required for monitoring tools)
  * GET /metrics
  */
-router.get('/', (_req: Request, res: Response): void => {
+router.get('/', async (_req: Request, res: Response): Promise<void> => {
   try {
     const prometheusFormat = metricsStore.getPrometheusFormat();
 
@@ -27,7 +27,7 @@ router.get('/', (_req: Request, res: Response): void => {
  * JSON metrics endpoint (requires authentication)
  * GET /api/metrics/json
  */
-router.get('/json', authMiddleware, (_req: Request, res: Response): void => {
+router.get('/json', authMiddleware, async (_req: Request, res: Response): Promise<void> => {
   try {
     const metrics = metricsStore.getMetrics();
 
@@ -51,7 +51,7 @@ router.get('/json', authMiddleware, (_req: Request, res: Response): void => {
  * Performance summary endpoint
  * GET /api/metrics/summary
  */
-router.get('/summary', authMiddleware, (_req: Request, res: Response): void => {
+router.get('/summary', authMiddleware, async (_req: Request, res: Response): Promise<void> => {
   try {
     const summary = getPerformanceSummary();
 
@@ -75,7 +75,7 @@ router.get('/summary', authMiddleware, (_req: Request, res: Response): void => {
  * Health check with performance data
  * GET /api/metrics/health
  */
-router.get('/health', authMiddleware, (_req: Request, res: Response): void => {
+router.get('/health', authMiddleware, async (_req: Request, res: Response): Promise<void> => {
   try {
     const summary = getPerformanceSummary();
 
@@ -136,7 +136,7 @@ router.get('/health', authMiddleware, (_req: Request, res: Response): void => {
  * Reset metrics (development/testing only)
  * DELETE /api/metrics/reset
  */
-router.delete('/reset', authMiddleware, (req: Request, res: Response): void => {
+router.delete('/reset', authMiddleware, async (req: Request, res: Response): Promise<void> => {
   try {
     // Only allow in development/test environments
     if (process.env.NODE_ENV === 'production') {
@@ -171,7 +171,7 @@ router.delete('/reset', authMiddleware, (req: Request, res: Response): void => {
  * Real-time metrics for dashboard
  * GET /api/metrics/realtime
  */
-router.get('/realtime', authMiddleware, (_req: Request, res: Response): void => {
+router.get('/realtime', authMiddleware, async (_req: Request, res: Response): Promise<void> => {
   try {
     const summary = getPerformanceSummary();
     const metrics = metricsStore.getMetrics();

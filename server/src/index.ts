@@ -316,7 +316,7 @@ app.get('*', (_req, res): void => {
 // Global error handler - must be last middleware
 app.use(errorHandler);
 
-const PORT = (process.env.PORT !== null && process.env.PORT !== undefined && process.env.PORT !== '') ? parseInt(process.env.PORT, 10) : 3000;
+const PORT = (process.env.PORT != null && process.env.PORT !== '') ? parseInt(process.env.PORT, 10) : 3000;
 log(`Starting server on port ${PORT}...`);
 // Export app before starting the server
 export { app };
@@ -346,7 +346,7 @@ async function gracefulShutdown(signal: string, server?: Server): Promise<void> 
 
   try {
     // Stop accepting new connections
-    if (server) {
+    if (server != null) {
       server.close(() => {
         structuredLogger.info('HTTP server closed');
       });
@@ -369,7 +369,7 @@ async function gracefulShutdown(signal: string, server?: Server): Promise<void> 
 // Also start if running in test mode for E2E tests (unless IS_TEST_SERVER is set)
 const isDirectRun = require.main === module;
 const isE2ETest =
-  process.env.NODE_ENV === 'test' && process.env.E2E_TEST === 'true' && (process.env.IS_TEST_SERVER === null || process.env.IS_TEST_SERVER === undefined || process.env.IS_TEST_SERVER === '');
+  process.env.NODE_ENV === 'test' && process.env.E2E_TEST === 'true' && (process.env.IS_TEST_SERVER == null || process.env.IS_TEST_SERVER === '');
 // Check if running in development mode
 const isDevelopment = process.env.NODE_ENV !== 'production';
 

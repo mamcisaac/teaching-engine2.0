@@ -8,6 +8,7 @@ import { App } from './App';
 import './index.css';
 // import logger from './utils/logger';
 import { errorReportingService } from './services/errorReportingService';
+import { hasResponseStatus } from './types/errors';
 
 // Initialize error reporting service
 errorReportingService.init();

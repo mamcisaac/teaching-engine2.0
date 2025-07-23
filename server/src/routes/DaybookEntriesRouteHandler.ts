@@ -219,7 +219,7 @@ function extractKeywords(entries: DaybookEntryForAnalytics[]): string[] {
 
   const allText = entries
     .map((e) =>
-      [e.whatWorked, e.whatDidntWork, e.commonChallenges, e.nextSteps].filter(Boolean).join(' '),
+      [e.whatWorked, e.whatDidntWork, e.commonChallenges, e.nextSteps].filter((item) => item != null && item !== '').join(' '),
     )
     .join(' ')
     .toLowerCase();
@@ -228,7 +228,7 @@ function extractKeywords(entries: DaybookEntryForAnalytics[]): string[] {
   const wordFreq: Record<string, number> = {};
 
   words.forEach((word) => {
-    if (!stopWords.includes(word)) {
+    if (stopWords.includes(word) === false) {
       wordFreq[word] = (wordFreq[word] ?? 0) + 1;
     }
   });
@@ -262,22 +262,22 @@ class DaybookService extends BaseService {
 
     const where: Prisma.DaybookEntryWhereInput = { userId };
 
-    if (startDate && endDate) {
+    if (startDate != null && endDate != null) {
       where.date = {
         gte: new Date(startDate),
         lte: new Date(endDate),
       };
-    } else if (startDate) {
+    } else if (startDate != null) {
       where.date = { gte: new Date(startDate) };
-    } else if (endDate) {
+    } else if (endDate != null) {
       where.date = { lte: new Date(endDate) };
     }
-    if (lessonPlanId && lessonPlanId !== 0) {
+    if (lessonPlanId != null && lessonPlanId !== 0) {
       where.lessonPlanId = String(lessonPlanId);
     }
 
     // Subject filtering through lesson plan relationship
-    if (subject) {
+    if (subject != null && subject !== '') {
       where.lessonPlan = {
         unitPlan: {
           longRangePlan: {
@@ -366,7 +366,7 @@ orderBy.createdAt = order;
         ...daybookData,
         userId,
         date: new Date(data.date),
-        expectations: expectations && Array.isArray(expectations)
+        expectations: expectations != null && Array.isArray(expectations)
           ? {
               create: expectations.map((exp: unknown) => {
                 const expectation = exp as { expectationId: string; coverage?: string };
@@ -388,7 +388,7 @@ orderBy.createdAt = order;
       where: { id, userId },
     });
 
-    if (!entry) {
+    if (entry == null) {
       throw new Error('Daybook entry not found');
     }
 
@@ -398,15 +398,15 @@ orderBy.createdAt = order;
       where: { id },
       data: {
         ...updateData as Prisma.DaybookEntryUpdateInput,
-        ...(data.date && { date: new Date(data.date) }),
-        ...(expectations && Array.isArray(expectations) && {
+        ...(data.date != null && data.date !== '' && { date: new Date(data.date) }),
+        ...(expectations != null && Array.isArray(expectations) && {
           expectations: {
             deleteMany: {},
             create: expectations.map((exp: unknown) => {
               const expectation = exp as { expectationId: string; notes?: string; coverage?: string };
               return {
                 expectationId: expectation.expectationId,
-                coverage: expectation.coverage || 'introduced',
+                coverage: expectation.coverage ?? 'introduced',
               };
             }),
           },
@@ -421,7 +421,7 @@ orderBy.createdAt = order;
       where: { id, userId },
     });
 
-    if (!entry) {
+    if (entry == null) {
       return false;
     }
 
@@ -544,7 +544,7 @@ export class DaybookEntriesRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (!userId) {
+      if (userId == null) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -555,9 +555,9 @@ export class DaybookEntriesRouteHandler extends BaseRouteHandler {
       const { sortBy, sortOrder, startDate, endDate, lessonPlanId, ...filterBase } = filters;
       const convertedFilters = {
         ...filterBase,
-        ...(startDate && { startDate: new Date(startDate as string | number | Date) }),
-        ...(endDate && { endDate: new Date(endDate as string | number | Date) }),
-        ...(lessonPlanId && { lessonPlanId: parseInt(String(lessonPlanId), 10) }),
+        ...(startDate != null && startDate !== '' && { startDate: new Date(startDate as string | number | Date) }),
+        ...(endDate != null && endDate !== '' && { endDate: new Date(endDate as string | number | Date) }),
+        ...(lessonPlanId != null && lessonPlanId !== '' && { lessonPlanId: parseInt(String(lessonPlanId), 10) }),
         // Convert sortBy/sortOrder to sort/order for service
         sort: sortBy,
         order: sortOrder,
@@ -588,7 +588,7 @@ export class DaybookEntriesRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (!userId) {
+      if (userId == null) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }

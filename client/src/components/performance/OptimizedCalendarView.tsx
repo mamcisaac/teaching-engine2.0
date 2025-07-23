@@ -35,7 +35,7 @@ const DayCell = memo(({
   onDateClick?: (date: Date) => void;
   isCurrentMonth: boolean;
   maxEventsPerDay: number;
-}) => {
+}): JSX.Element => {
   const dayNumber = date.getDate();
   const isToday = useMemo(() => {
     const today = new Date();
@@ -185,7 +185,7 @@ export const OptimizedCalendarView = memo(({
   compact = false,
   virtualizeEvents = false,
   maxEventsPerDay = 3,
-}: OptimizedCalendarViewProps) => {
+}: OptimizedCalendarViewProps): JSX.Element => {
   const [viewMode, setViewMode] = useState<'calendar' | 'list'>('calendar');
 
   // Memoize expensive date calculations

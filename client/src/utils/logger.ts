@@ -6,6 +6,8 @@
  * with different log levels and environment-aware behavior.
  */
 
+import type { WindowWithErrorReporter, LoggerResponse } from '../types/errors';
+
 type LogLevel = 'error' | 'warn' | 'info' | 'debug' | 'trace';
 
 interface LogEntry {
@@ -75,9 +77,9 @@ class ClientLogger {
     }
     
     // Send to error reporting service in production
-    if (!this.isDevelopment && typeof window !== 'undefined' && 'errorReporter' in window && 
-        typeof (window as { errorReporter?: { report: (entry: LogEntry) => void } }).errorReporter?.report === 'function') {
-      (window as { errorReporter: { report: (entry: LogEntry) => void } }).errorReporter.report(entry);
+    const win = window as unknown as WindowWithErrorReporter;
+    if (!this.isDevelopment && typeof window !== 'undefined' && win.errorReporter?.report) {
+      win.errorReporter.report(entry);
     }
   }
 
@@ -155,9 +157,9 @@ class ClientLogger {
     this.info(`API ${method} ${url}`, {
       request: data,
       response: (typeof response === 'object' && response !== null && 'status' in response) ? {
-        status: (response as { status: unknown }).status,
-        statusText: (response as { status: unknown; statusText: unknown }).statusText,
-        data: (response as { status: unknown; data: unknown }).data
+        status: (response as LoggerResponse).status,
+        statusText: (response as LoggerResponse).statusText,
+        data: (response as LoggerResponse).data
       } : response
     });
   }

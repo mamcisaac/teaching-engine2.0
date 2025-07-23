@@ -18,7 +18,7 @@ export const OptimizedUnitPlanCard = memo(({
   onEdit,
   className,
   compact = false,
-}: OptimizedUnitPlanCardProps) => {
+}: OptimizedUnitPlanCardProps): JSX.Element => {
   // Memoize expensive date formatting
   const dateRange = useMemo(() => {
     try {

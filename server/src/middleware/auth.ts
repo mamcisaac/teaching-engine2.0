@@ -49,16 +49,14 @@ const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@
  */
 export async function hashPassword(password: string): Promise<string> {
   const saltRounds = parseInt(process.env.BCRYPT_SALT_ROUNDS ?? '10', 10);
-  const result: string = await bcryptHash(password, saltRounds);
-  return result;
+  return await bcryptHash(password, saltRounds);
 }
 
 /**
  * Verify password against hash
  */
 export async function verifyPassword(password: string, hash: string): Promise<boolean> {
-  const result: boolean = await bcryptCompare(password, hash);
-  return result;
+  return await bcryptCompare(password, hash);
 }
 
 /**
@@ -100,7 +98,7 @@ export async function login(req: Request, res: Response, next: NextFunction): Pr
       where: { email: email.toLowerCase() },
     });
 
-    if (!user) {
+    if (user == null) {
       // Don't reveal whether email exists
       throw new AuthenticationError('Invalid email or password');
     }
@@ -179,7 +177,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
       {
         bodyKeys: req.body ? Object.keys(req.body as Record<string, unknown>) : [],
         bodyType: typeof req.body,
-        hasBody: !!req.body,
+        hasBody: req.body != null,
       },
       'Registration function entry',
     );
@@ -195,9 +193,9 @@ export async function register(req: Request, res: Response, next: NextFunction):
     logger.info(
       {
         email: email.toLowerCase(),
-        hasPassword: !!password,
-        hasName: !!name,
-        extractedData: { email: !!email, password: !!password, name: !!name },
+        hasPassword: password != null,
+        hasName: name != null,
+        extractedData: { email: email != null, password: password != null, name: name != null },
       },
       'Registration attempt',
     );
@@ -205,9 +203,9 @@ export async function register(req: Request, res: Response, next: NextFunction):
     // Validate input
     logger.info(
       {
-        emailCheck: { exists: !!email, type: typeof email, value: email },
-        passwordCheck: { exists: !!password, type: typeof password, length: password.length },
-        nameCheck: { exists: !!name, type: typeof name, value: name },
+        emailCheck: { exists: email != null, type: typeof email, value: email },
+        passwordCheck: { exists: password != null, type: typeof password, length: password.length },
+        nameCheck: { exists: name != null, type: typeof name, value: name },
       },
       'Input validation checks',
     );
@@ -282,7 +280,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
           userId: user.id,
           email: user.email,
           userType: typeof user,
-          userKeys: user ? Object.keys(user) : [],
+          userKeys: user != null ? Object.keys(user) : [],
         },
         'User created successfully',
       );
@@ -337,7 +335,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
     let refreshToken: string;
     try {
       logger.info(
-        { userId: user.id, hasJwtSecret: !!process.env.JWT_SECRET },
+        { userId: user.id, hasJwtSecret: process.env.JWT_SECRET != null && process.env.JWT_SECRET !== '' },
         'About to generate tokens',
       );
 
@@ -350,7 +348,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
       refreshToken = generateRefreshToken(user.id);
 
       logger.info(
-        { userId: user.id, hasTokens: !!accessToken && !!refreshToken },
+        { userId: user.id, hasTokens: accessToken != null && refreshToken != null },
         'Tokens generated successfully',
       );
     } catch (error: unknown) {
@@ -402,7 +400,7 @@ export function logout(req: Request, res: Response, next: NextFunction): void {
     res.clearCookie('refreshToken');
 
     // Log logout
-    if (req.user) {
+    if (req.user != null) {
       logger.info(
         {
           userId: req.user.id,
@@ -428,7 +426,7 @@ export async function changePassword(
   next: NextFunction,
 ): Promise<void> {
   try {
-    if (!req.user) {
+    if (req.user == null) {
       throw new AuthenticationError('Authentication required');
     }
 
@@ -450,7 +448,7 @@ export async function changePassword(
       where: { id: req.user.id },
     });
 
-    if (!user) {
+    if (user == null) {
       throw new AuthenticationError('User not found');
     }
 
@@ -514,7 +512,7 @@ export async function forgotPassword(
     });
 
     // Always return success to prevent email enumeration
-    if (!user) {
+    if (user == null) {
       const response: MessageResponse = { message: 'If the email exists, a reset link has been sent' };
       res.json(response);
       return;
@@ -629,7 +627,7 @@ export function validateSession(
   next: NextFunction,
 ): void {
   try {
-    if (!req.user) {
+    if (req.user == null) {
       throw new AuthenticationError('Session invalid');
     }
 

@@ -231,7 +231,7 @@ function UnitPlansPage(): React.ReactElement {
         updateField('keyVocabulary', templateContent.keyVocabulary ?? []);
         updateField(
           'assessmentPlan',
-          templateContent.assessments ? JSON.stringify(templateContent.assessments) : '',
+          (templateContent.assessments != null) ? JSON.stringify(templateContent.assessments) : '',
         );
         updateField('successCriteria', templateContent.successCriteria ?? []);
         updateField('crossCurricularConnections', templateContent.crossCurricularConnections ?? '');
@@ -285,7 +285,7 @@ function UnitPlansPage(): React.ReactElement {
     }
   };
 
-  if (isLoading === true) {
+  if (isLoading) {
     return (
       <PlanningErrorBoundary>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -304,7 +304,7 @@ function UnitPlansPage(): React.ReactElement {
   }
 
   // Detail view for a specific unit
-  if (unitId !== undefined && unitId !== '' && selectedUnit !== undefined && selectedUnit !== null) {
+  if (unitId != null && unitId !== '' && selectedUnit != null) {
     const unit = selectedUnit as ExtendedUnitPlan;
     return (
       <PlanAccessTracker planType="unit">
@@ -328,7 +328,7 @@ function UnitPlansPage(): React.ReactElement {
               <div className="flex justify-between items-start">
                 <div>
                   <h1 className="text-2xl font-bold text-gray-900">{unit.title}</h1>
-                  {unit.titleFr !== undefined && unit.titleFr !== null && unit.titleFr !== '' && <p className="text-sm text-gray-600 mt-1">{unit.titleFr}</p>}
+                  {unit.titleFr != null && unit.titleFr !== '' && <p className="text-sm text-gray-600 mt-1">{unit.titleFr}</p>}
                   <div className="flex gap-4 mt-2 text-sm text-gray-600">
                     <span>
                       {new Date(unit.startDate).toLocaleDateString()} -{' '}
@@ -393,7 +393,7 @@ function UnitPlansPage(): React.ReactElement {
 
             {/* Unit Detail Content */}
             <div className="p-6 space-y-6">
-              {unit.description !== undefined && unit.description !== null && unit.description !== '' && (
+              {unit.description != null && unit.description !== '' && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Description</h3>
                   <p className="text-gray-700">{unit.description}</p>

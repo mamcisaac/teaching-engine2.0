@@ -16,8 +16,8 @@ router.use(authMiddleware);
  * Get cache statistics
  * GET /api/cache/stats
  */
-router.get('/stats', (_req: Request, res: Response): void => {
-  void (async () => {
+router.get('/stats', async (_req: Request, res: Response): Promise<void> => {
+
     try {
     const cacheService = cache();
     const stats = cacheService.getStats();
@@ -41,15 +41,15 @@ router.get('/stats', (_req: Request, res: Response): void => {
     });
     return;
   }
-  })();
+
 });
 
 /**
  * Get cache health status
  * GET /api/cache/health
  */
-router.get('/health', (_req: Request, res: Response): void => {
-  void (async () => {
+router.get('/health', async (_req: Request, res: Response): Promise<void> => {
+
     try {
     const health = await CacheUtils.getHealth();
 
@@ -71,15 +71,15 @@ router.get('/health', (_req: Request, res: Response): void => {
     });
     return;
   }
-  })();
+
 });
 
 /**
  * Warm up cache with commonly accessed data
  * POST /api/cache/warmup
  */
-router.post('/warmup', (_req: Request, res: Response): void => {
-  void (async () => {
+router.post('/warmup', async (_req: Request, res: Response): Promise<void> => {
+
     try {
     await CacheUtils.warmUp();
 
@@ -97,15 +97,15 @@ router.post('/warmup', (_req: Request, res: Response): void => {
     });
     return;
   }
-  })();
+
 });
 
 /**
  * Clear all caches
  * DELETE /api/cache/all
  */
-router.delete('/all', (req: AuthenticatedRequest, res: Response): void => {
-  void (async () => {
+router.delete('/all', async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+
     try {
     const cacheService = cache();
     await cacheService.clear();
@@ -126,15 +126,15 @@ router.delete('/all', (req: AuthenticatedRequest, res: Response): void => {
     });
     return;
   }
-  })();
+
 });
 
 /**
  * Clear cache by pattern
  * DELETE /api/cache/pattern
  */
-router.delete('/pattern', (req: AuthenticatedRequest, res: Response): void => {
-  void (async () => {
+router.delete('/pattern', async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+
     try {
     const { pattern } = req.body;
 
@@ -168,15 +168,15 @@ router.delete('/pattern', (req: AuthenticatedRequest, res: Response): void => {
     });
     return;
   }
-  })();
+
 });
 
 /**
  * Clear cache by tags
  * DELETE /api/cache/tags
  */
-router.delete('/tags', (req: AuthenticatedRequest, res: Response): void => {
-  void (async () => {
+router.delete('/tags', async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+
     try {
     const { tags } = req.body;
 
@@ -210,15 +210,15 @@ router.delete('/tags', (req: AuthenticatedRequest, res: Response): void => {
     });
     return;
   }
-  })();
+
 });
 
 /**
  * Clear user-specific cache
  * DELETE /api/cache/user/:userId
  */
-router.delete('/user/:userId', (req: AuthenticatedRequest, res: Response): void => {
-  void (async () => {
+router.delete('/user/:userId', async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+
     try {
     const { userId } = req.params;
     const userIdNumber = parseInt(userId, 10);
@@ -249,7 +249,7 @@ router.delete('/user/:userId', (req: AuthenticatedRequest, res: Response): void 
     });
     return;
   }
-  })();
+
 });
 
 export { router };

@@ -192,7 +192,7 @@ export const OptimizedRecentPlans = memo(
     virtualizeThreshold = 50,
     showViewAll = true,
     compact = false,
-  }: OptimizedRecentPlansProps) => {
+  }: OptimizedRecentPlansProps): JSX.Element => {
     // Memoize expensive calculations for plan processing
     const processedPlans = useMemo(() => plans.map((plan, _index) => ({
         ...plan,

@@ -60,7 +60,7 @@ return undefined;
 
       try {
         // For object schemas, try to get the field schema
-        if ('shape' in validationSchema && validationSchema.shape !== null) {
+        if ('shape' in validationSchema) {
           const fieldSchema = (validationSchema.shape as Record<string, z.ZodSchema>)[name];
           if (fieldSchema !== undefined && 'parse' in fieldSchema) {
             fieldSchema.parse(value);
@@ -229,15 +229,15 @@ return true;
       value: values[name],
       onChange: handleChange,
       onBlur: handleBlur,
-      'aria-invalid': Boolean(errors[String(name)] != null && errors[String(name)] !== ''),
-      'aria-describedby': (errors[String(name)] != null && errors[String(name)] !== '') ? `${String(name)}-error` : undefined,
+      'aria-invalid': Boolean(errors[String(name)]),
+      'aria-describedby': errors[String(name)] ? `${String(name)}-error` : undefined,
     }),
     [values, handleChange, handleBlur, errors],
   );
 
   // Check if field has error and is touched
   const getFieldError = useCallback(
-    (name: string) => touched[name] && (errors[name] != null && errors[name] !== '') ? errors[name] : undefined,
+    (name: string) => touched[name] && errors[name] ? errors[name] : undefined,
     [touched, errors],
   );
 

@@ -3,7 +3,7 @@ import { forwardRef, type HTMLAttributes } from 'react';
 import { cn } from '@/lib/utils';
 
 const Card = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
+  ({ className, ...props }, ref): JSX.Element => (
     <div
       className={cn('rounded-lg border bg-card text-card-foreground shadow-sm', className)}
       ref={ref}
@@ -14,14 +14,14 @@ const Card = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
 Card.displayName = 'Card';
 
 const CardHeader = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
+  ({ className, ...props }, ref): JSX.Element => (
     <div className={cn('flex flex-col space-y-1.5 p-6', className)} ref={ref} {...props} />
   ),
 );
 CardHeader.displayName = 'CardHeader';
 
 const CardTitle = forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLHeadingElement>>(
-  ({ className, ...props }, ref) => (
+  ({ className, ...props }, ref): JSX.Element => (
     // eslint-disable-next-line jsx-a11y/heading-has-content
     <h3
       className={cn('text-2xl font-semibold leading-none tracking-tight', className)}
@@ -35,20 +35,20 @@ CardTitle.displayName = 'CardTitle';
 const CardDescription = forwardRef<
   HTMLParagraphElement,
   HTMLAttributes<HTMLParagraphElement>
->(({ className, ...props }, ref) => (
+>(({ className, ...props }, ref): JSX.Element => (
   <p className={cn('text-sm text-muted-foreground', className)} ref={ref} {...props} />
 ));
 CardDescription.displayName = 'CardDescription';
 
 const CardContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
+  ({ className, ...props }, ref): JSX.Element => (
     <div className={cn('p-6 pt-0', className)} ref={ref} {...props} />
   ),
 );
 CardContent.displayName = 'CardContent';
 
 const CardFooter = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
+  ({ className, ...props }, ref): JSX.Element => (
     <div className={cn('flex items-center p-6 pt-0', className)} ref={ref} {...props} />
   ),
 );

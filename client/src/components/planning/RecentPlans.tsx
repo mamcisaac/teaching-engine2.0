@@ -66,7 +66,7 @@ export const RecentPlans = memo(({
   plans,
   isLoading,
   className,
-}: RecentPlansProps) => {
+}: RecentPlansProps): JSX.Element => {
   // Memoize expensive calculations for plan processing
   const processedPlans = useMemo(() => plans.map((plan, _index) => ({
       ...plan,

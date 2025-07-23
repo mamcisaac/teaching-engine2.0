@@ -82,7 +82,7 @@ function removeDangerousPatterns(input: string): string {
  * Recursively sanitize object properties
  */
 function sanitizeObject(obj: unknown, config: Record<string, unknown> = strictConfig): unknown {
-  if (obj === null) {
+  if (obj == null) {
     return obj;
   }
 
@@ -111,7 +111,7 @@ function sanitizeObject(obj: unknown, config: Record<string, unknown> = strictCo
     return obj.map((item) => sanitizeObject(item, config));
   }
 
-  if (typeof obj === 'object' && obj !== null) {
+  if (typeof obj === 'object') {
     const sanitized: Record<string, unknown> = {};
     for (const key in obj) {
       if (Object.prototype.hasOwnProperty.call(obj, key)) {
@@ -370,7 +370,7 @@ export function preventNoSQLInjection(req: Request, res: Response, next: NextFun
 
     // Deep check for objects that might contain MongoDB operators
     const deepCheck = (obj: unknown, path = ''): boolean => {
-      if (!obj) {
+      if (obj == null) {
 return false;
 }
 
@@ -427,8 +427,9 @@ next(err); return;
 }
     preventSQLInjection(req, res, (err?: unknown) => {
       if (err) {
-next(err); return;
-}
+        next(err);
+        return;
+      }
       preventNoSQLInjection(req, res, next);
     });
   });

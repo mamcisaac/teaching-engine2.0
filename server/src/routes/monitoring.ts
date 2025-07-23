@@ -11,17 +11,17 @@ import { CacheUtils } from '../services/cache';
 const router = Router();
 
 // Dashboard metrics endpoint
-router.get('/dashboard', authenticate, (req: Request, res: Response): void => {
-  void (async () => {
+router.get('/dashboard', authenticate, async (req: Request, res: Response): Promise<void> => {
+
     await withSpan('api.monitoring.dashboard', {}, async () => {
       await getDashboardMetrics(req, res);
     });
-  })();
+
 });
 
 // Alert status endpoint
-router.get('/alerts', authenticate, (_req: Request, res: Response): void => {
-  void (async () => {
+router.get('/alerts', authenticate, async (_req: Request, res: Response): Promise<void> => {
+
   await withSpan('api.monitoring.alerts', {}, async () => {
     try {
       const status = getAlertStatus();
@@ -32,12 +32,12 @@ router.get('/alerts', authenticate, (_req: Request, res: Response): void => {
       res.status(500).json({ error: 'Failed to get alert status' });
     }
     });
-  })();
+
 });
 
 // Manual alert trigger (for testing)
-router.post('/alerts/:alertId/trigger', authenticate, (req: Request, res: Response): void => {
-  void (async () => {
+router.post('/alerts/:alertId/trigger', authenticate, async (req: Request, res: Response): Promise<void> => {
+
   await withSpan('api.monitoring.triggerAlert', {}, async (span) => {
     try {
       const { alertId } = req.params;
@@ -56,12 +56,12 @@ router.post('/alerts/:alertId/trigger', authenticate, (req: Request, res: Respon
       res.status(500).json({ error: 'Failed to trigger alert' });
     }
     });
-  })();
+
 });
 
 // Health check endpoint with detailed status
-router.get('/health/detailed', (_req: Request, res: Response): void => {
-  void (async () => {
+router.get('/health/detailed', async (_req: Request, res: Response): Promise<void> => {
+
   await withSpan('api.monitoring.healthDetailed', {}, async (span) => {
     try {
       const health = {
@@ -119,7 +119,7 @@ router.get('/health/detailed', (_req: Request, res: Response): void => {
       });
     }
     });
-  })();
+
 });
 
 export { router };

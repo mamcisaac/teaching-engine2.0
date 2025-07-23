@@ -274,10 +274,11 @@ return;
 
   const completeOnboarding = (): void => {
     if (state.currentFlow !== null) {
+      const currentFlowId = state.currentFlow.id;
       localStorage.setItem(FIRST_TIME_KEY, 'false');
       setState(prev => ({
         ...prev,
-        completedFlows: [...prev.completedFlows, prev.currentFlow!.id],
+        completedFlows: [...prev.completedFlows, currentFlowId],
         currentFlow: null,
         currentStepIndex: 0,
         showOnboarding: false,

@@ -37,7 +37,7 @@ export async function runProgressCheck(): Promise<void> {
  */
 export function scheduleProgressCheck(): void {
   schedule('0 6 * * *', () => {
-    void runProgressCheck().catch((error) => {
+    void runProgressCheck().catch((error: unknown) => {
       logger.error('Failed to run progress check:', error);
     });
   });
