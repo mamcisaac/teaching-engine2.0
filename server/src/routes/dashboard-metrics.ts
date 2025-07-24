@@ -16,7 +16,7 @@ router.use(authMiddleware);
  * Dashboard overview metrics
  * GET /api/dashboard/metrics
  */
-router.get('/', async (_req: Request, res: Response): Promise<void> => {
+router.get('/', async (_req: Request, res: Response) => {
   try {
     const performanceSummary = getPerformanceSummary();
     const cacheStats = getCacheStats();
@@ -84,7 +84,7 @@ router.get('/', async (_req: Request, res: Response): Promise<void> => {
  * Performance trends over time
  * GET /api/dashboard/trends
  */
-router.get('/trends', async (_req: Request, res: Response): Promise<void> => {
+router.get('/trends', async (_req: Request, res: Response) => {
   try {
     const metrics = metricsStore.getMetrics();
 
@@ -158,7 +158,7 @@ router.get('/trends', async (_req: Request, res: Response): Promise<void> => {
  * Resource usage insights
  * GET /api/dashboard/resources
  */
-router.get('/resources', async (_req: Request, res: Response): Promise<void> => {
+router.get('/resources', async (_req: Request, res: Response) => {
   try {
     const memUsage = process.memoryUsage();
     const cpuUsage = process.cpuUsage();
@@ -212,7 +212,7 @@ router.get('/resources', async (_req: Request, res: Response): Promise<void> => 
  * Application insights (user activity, popular features)
  * GET /api/dashboard/insights
  */
-router.get('/insights', async (req: Request, res: Response): Promise<void> => {
+router.get('/insights', async (req: Request, res: Response) => {
   try {
     const userId = req.user.id;
 

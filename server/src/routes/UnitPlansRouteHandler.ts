@@ -116,7 +116,7 @@ class UnitPlanService extends BaseService {
   }
 
   async findMany(filters: Record<string, unknown>, userId: number) {
-    const filtersObj = filters || {};
+    const filtersObj = filters ?? {};
     const {
       longRangePlanId,
       startDate,

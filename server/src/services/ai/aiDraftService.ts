@@ -114,7 +114,7 @@ export class AIDraftService extends BaseService {
       ],
     };
 
-    return suggestions[planType] || [
+    return suggestions[planType] ?? [
       'Focus on student-centered learning',
       'Align with curriculum expectations',
       'Include assessment for learning strategies',

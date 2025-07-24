@@ -181,11 +181,11 @@ export const createCustomChain = (options: {
     chainBuilder.add(rateLimiters[options.rateLimit] as RateLimitRequestHandler);
   }
 
-  if (options.authenticate) {
+  if (options.authenticate === true) {
     chainBuilder.add(authenticate);
   }
 
-  if (options.cache) {
+  if (options.cache === true) {
     chainBuilder.add(apiCache);
   }
 

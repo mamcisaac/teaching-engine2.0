@@ -132,7 +132,7 @@ export function useModals(initialModals: string[] = []): UseModalsReturn {
   }, []);
 
   const isModalOpen = useCallback(
-    (name: string) => modals[name]?.isOpen ?? false,
+    (name: string) => name in modals && modals[name].isOpen,
     [modals],
   );
 

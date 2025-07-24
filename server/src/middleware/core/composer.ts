@@ -38,7 +38,7 @@ export const compose = (...middlewares: Middleware[]): RequestHandler => async (
 
         // Regular middleware
         await (middleware as RequestHandler)(req, res, (err?: unknown) => {
-          if (err && typeof err === 'string') {
+          if (err !== null && err !== undefined && typeof err === 'string') {
             void dispatch(new Error(err));
           } else {
             void dispatch(err as Error);

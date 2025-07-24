@@ -72,7 +72,7 @@ export class TemplateCache extends BaseService {
     const baseDeps = super.checkDependencies();
     return {
       ...baseDeps,
-      cacheMap: !!this.cache,
+      cacheMap: this.cache != null,
     };
   }
 

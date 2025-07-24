@@ -236,7 +236,7 @@ export function errorLoggingMiddleware(
   next: NextFunction,
 ): void {
   const extendedReq = req as ExtendedRequest;
-  const requestLogger = extendedReq.logger || logger;
+  const requestLogger = extendedReq.logger ?? logger;
 
   requestLogger.error(
     {
@@ -268,7 +268,7 @@ export function logSecurityEvent(
   details: Record<string, unknown> = {},
 ): void {
   const extendedReq = req as ExtendedRequest;
-  const requestLogger = extendedReq.logger || logger;
+  const requestLogger = extendedReq.logger ?? logger;
 
   requestLogger.security(event, {
     ...details,
@@ -289,7 +289,7 @@ export function logBusinessOperation(
   context: Record<string, unknown> = {},
 ): void {
   const extendedReq = req as ExtendedRequest;
-  const requestLogger = extendedReq.logger || logger;
+  const requestLogger = extendedReq.logger ?? logger;
 
   requestLogger.business(operation, {
     ...context,
@@ -307,7 +307,7 @@ export function logAuditEvent(
   details: Record<string, unknown> = {},
 ): void {
   const extendedReq = req as ExtendedRequest;
-  const requestLogger = extendedReq.logger || logger;
+  const requestLogger = extendedReq.logger ?? logger;
 
   requestLogger.audit(operation, {
     ...details,

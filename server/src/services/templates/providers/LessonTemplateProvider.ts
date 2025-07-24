@@ -176,9 +176,9 @@ export class LessonTemplateProvider extends TemplateProvider {
 
     for (const variable of variables) {
       const baseVar = variable.split('.')[0];
-      if (variableMap[variable]) {
+      if (variableMap[variable] != null) {
         requirements.push(variableMap[variable]);
-      } else if (variableMap[baseVar]) {
+      } else if (variableMap[baseVar] != null) {
         requirements.push(variableMap[baseVar]);
       }
     }

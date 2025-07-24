@@ -206,7 +206,7 @@ export const sanitizeInput = (req: Request, _res: Response, next: NextFunction):
   if (req.body) {
     req.body = sanitizeValue(req.body);
   }
-  if (req.query) {
+  if (Object.keys(req.query).length > 0) {
     req.query = sanitizeValue(req.query) as ParsedQs;
   }
 

@@ -33,12 +33,12 @@ export async function comparePassword(password: string, hash: string): Promise<b
  */
 export function generateAccessToken(payload: JWTPayload): string {
   const secret = process.env.JWT_SECRET;
-  if (!secret || secret === '') {
+  if (secret === null || secret === undefined || secret === '') {
     throw new Error('JWT_SECRET is not defined');
   }
 
   const options: SignOptions = {
-    expiresIn: process.env.JWT_EXPIRES_IN || '7d',
+    expiresIn: process.env.JWT_EXPIRES_IN ?? '7d',
   };
   return sign(payload, secret, options);
 }
@@ -48,12 +48,12 @@ export function generateAccessToken(payload: JWTPayload): string {
  */
 export function generateRefreshToken(payload: JWTPayload): string {
   const secret = process.env.JWT_REFRESH_SECRET;
-  if (!secret || secret === '') {
+  if (secret === null || secret === undefined || secret === '') {
     throw new Error('JWT_REFRESH_SECRET is not defined');
   }
 
   const options: SignOptions = {
-    expiresIn: process.env.JWT_REFRESH_EXPIRES_IN || '30d',
+    expiresIn: process.env.JWT_REFRESH_EXPIRES_IN ?? '30d',
   };
   return sign(payload, secret, options);
 }
@@ -72,7 +72,7 @@ export function generateTokenPair(payload: JWTPayload): TokenPair {
  * Verify JWT access token
  */
 export function verifyAccessToken(token: string): JWTPayload {
-  if (!process.env.JWT_SECRET || process.env.JWT_SECRET === '') {
+  if (process.env.JWT_SECRET === null || process.env.JWT_SECRET === undefined || process.env.JWT_SECRET === '') {
     throw new Error('JWT_SECRET is not defined');
   }
 
@@ -87,7 +87,7 @@ export function verifyAccessToken(token: string): JWTPayload {
  * Verify JWT refresh token
  */
 export function verifyRefreshToken(token: string): JWTPayload {
-  if (!process.env.JWT_REFRESH_SECRET || process.env.JWT_REFRESH_SECRET === '') {
+  if (process.env.JWT_REFRESH_SECRET === null || process.env.JWT_REFRESH_SECRET === undefined || process.env.JWT_REFRESH_SECRET === '') {
     throw new Error('JWT_REFRESH_SECRET is not defined');
   }
 
@@ -102,7 +102,7 @@ export function verifyRefreshToken(token: string): JWTPayload {
  * Extract token from Authorization header
  */
 export function extractTokenFromHeader(authHeader?: string): string | null {
-  if (!authHeader || authHeader === '') {
+  if (authHeader === null || authHeader === undefined || authHeader === '') {
     return null;
   }
 

@@ -44,7 +44,7 @@ export function validateApiKey(
 
     // Check Authorization header with Bearer format
     const authHeader = req.headers.authorization;
-    if (authHeader && typeof authHeader === 'string') {
+    if (authHeader !== null && authHeader !== undefined && typeof authHeader === 'string') {
       const bearerMatch = authHeader.match(/^Bearer (.+)$/i);
       if (bearerMatch) {
         providedApiKey = bearerMatch[1];
@@ -52,7 +52,7 @@ export function validateApiKey(
     }
 
     // Validate API key
-    if (!providedApiKey || providedApiKey.trim() === '') {
+    if (providedApiKey === null || providedApiKey === undefined || providedApiKey.trim() === '') {
       res.status(401).json({
         error: 'Unauthorized: API key is required',
       });

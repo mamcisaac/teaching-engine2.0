@@ -53,7 +53,7 @@ export async function authenticate(
     (req as AuthRequest).user = {
       id: user.id,
       email: user.email,
-      name: user.name ?? '',
+      name: user.name,
       role: user.role as UserRole,
     };
 

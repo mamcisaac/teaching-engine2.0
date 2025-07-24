@@ -63,7 +63,7 @@ I hope this newsletter finds you well! Here's a summary of what we've been worki
 
       lessonPlans.forEach((lesson) => {
         const subject = lesson.subject ?? lesson.unitPlan?.title ?? 'General Studies';
-        if (!lessonsBySubject[subject]) {
+        if (lessonsBySubject[subject] == null) {
           lessonsBySubject[subject] = [];
         }
         lessonsBySubject[subject].push(lesson);

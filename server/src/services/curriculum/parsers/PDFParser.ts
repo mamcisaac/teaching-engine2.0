@@ -338,7 +338,7 @@ continue;
    * Validate parsed curriculum
    */
   validate(data: ParsedCurriculum): boolean {
-    if (!data.subject || !data.grade || !data.expectations) {
+    if (!data.subject || !data.grade || data.expectations == null) {
       return false;
     }
 

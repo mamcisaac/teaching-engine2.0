@@ -140,3 +140,31 @@ export function getPropertyOrDefault<T, K extends keyof T>(
 ): T[K] {
   return obj?.[key] ?? defaultValue;
 }
+
+/**
+ * Type guard for objects (excludes arrays and null)
+ */
+export function isObject(value: unknown): value is Record<string, unknown> {
+  return value !== null && value !== undefined && typeof value === 'object' && !Array.isArray(value);
+}
+
+/**
+ * Safe boolean evaluation for any value
+ */
+export function isTruthy(value: unknown): boolean {
+  return Boolean(value);
+}
+
+/**
+ * Check if a value is a valid string property (not null, undefined, or empty)
+ */
+export function isValidStringProperty(value: unknown): value is string {
+  return typeof value === 'string' && value !== null && value !== undefined && value !== '';
+}
+
+/**
+ * Check if value exists and has a specific type 
+ */
+export function isOfType<T>(value: unknown, type: string): value is T {
+  return value !== null && value !== undefined && typeof value === type;
+}

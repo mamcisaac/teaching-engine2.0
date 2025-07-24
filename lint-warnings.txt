@@ -1,0 +1,199 @@
+  465:11  warning  Unnecessary conditional, the types have no overlap                    @typescript-eslint/no-unnecessary-condition
+  718:9   warning  Unexpected object value in conditional. The condition is always true  @typescript-eslint/strict-boolean-expressions
+  718:9   warning  Unnecessary conditional, value is always truthy                       @typescript-eslint/no-unnecessary-condition
+  736:9   warning  Unexpected object value in conditional. The condition is always true  @typescript-eslint/strict-boolean-expressions
+  736:9   warning  Unnecessary conditional, value is always truthy                       @typescript-eslint/no-unnecessary-condition
+--
+  425:9   warning  Unnecessary conditional, value is always truthy                       @typescript-eslint/no-unnecessary-condition
+  425:9   warning  Unexpected object value in conditional. The condition is always true  @typescript-eslint/strict-boolean-expressions
+  433:9   warning  Unnecessary conditional, value is always truthy                       @typescript-eslint/no-unnecessary-condition
+  433:9   warning  Unexpected object value in conditional. The condition is always true  @typescript-eslint/strict-boolean-expressions
+
+--
+  239:25  warning  Unnecessary conditional, value is always truthy                                                    @typescript-eslint/no-unnecessary-condition
+  239:25  warning  Unexpected object value in conditional. The condition is always true                               @typescript-eslint/strict-boolean-expressions
+  271:25  warning  Unnecessary conditional, value is always truthy                                                    @typescript-eslint/no-unnecessary-condition
+  271:25  warning  Unexpected object value in conditional. The condition is always true                               @typescript-eslint/strict-boolean-expressions
+  275:9   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  292:25  warning  Unnecessary conditional, value is always truthy                                                    @typescript-eslint/no-unnecessary-condition
+  292:25  warning  Unexpected object value in conditional. The condition is always true                               @typescript-eslint/strict-boolean-expressions
+  310:25  warning  Unnecessary conditional, value is always truthy                                                    @typescript-eslint/no-unnecessary-condition
+  310:25  warning  Unexpected object value in conditional. The condition is always true                               @typescript-eslint/strict-boolean-expressions
+  315:9   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+  154:12  warning  Unnecessary conditional, value is always falsy                                                      @typescript-eslint/no-unnecessary-condition
+  154:12  warning  Unexpected object value in conditional. The condition is always true                                @typescript-eslint/strict-boolean-expressions
+  183:20  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+--
+  406:22  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  424:11  warning  Unexpected object value in conditional. The condition is always true                                @typescript-eslint/strict-boolean-expressions
+  424:11  warning  Unnecessary conditional, value is always truthy                                                     @typescript-eslint/no-unnecessary-condition
+--
+  252:27  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  260:11  warning  Unexpected object value in conditional. The condition is always true                                @typescript-eslint/strict-boolean-expressions
+  260:11  warning  Unnecessary conditional, value is always truthy                                                     @typescript-eslint/no-unnecessary-condition
+--
+  394:18  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  396:15  warning  Unexpected object value in conditional. The condition is always true                                @typescript-eslint/strict-boolean-expressions
+  396:15  warning  Unnecessary conditional, value is always truthy                                                     @typescript-eslint/no-unnecessary-condition
+--
+  447:31  warning  Unnecessary conditional, value is always truthy                                                     @typescript-eslint/no-unnecessary-condition
+  447:31  warning  Unexpected object value in conditional. The condition is always true                                @typescript-eslint/strict-boolean-expressions
+  482:32  warning  Promise returned in function argument where a void return was expected                              @typescript-eslint/no-misused-promises
+--
+  119:24  warning  Unnecessary conditional, value is always truthy                                                       @typescript-eslint/no-unnecessary-condition
+  119:24  warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+  198:3   warning  Missing return type on function                                                                       @typescript-eslint/explicit-function-return-type
+--
+  209:7   warning  Unnecessary conditional, value is always truthy                                                    @typescript-eslint/no-unnecessary-condition
+  209:7   warning  Unexpected object value in conditional. The condition is always true                               @typescript-eslint/strict-boolean-expressions
+  271:9   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+   84:12  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+   84:12  warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+  105:9   warning  Forbidden non-null assertion                                                                          @typescript-eslint/no-non-null-assertion
+--
+  221:10  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+  221:10  warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+  244:10  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  254:10  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+  254:10  warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+  287:24  warning  Promise returned in function argument where a void return was expected                                @typescript-eslint/no-misused-promises
+--
+  325:10  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+  325:10  warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+  343:23  warning  Promise returned in function argument where a void return was expected                                @typescript-eslint/no-misused-promises
+--
+  378:10  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+  378:10  warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+  392:34  warning  Promise returned in function argument where a void return was expected                                @typescript-eslint/no-misused-promises
+  397:10  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+  397:10  warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+  411:21  warning  Promise returned in function argument where a void return was expected                                @typescript-eslint/no-misused-promises
+--
+  425:10  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+  425:10  warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+  440:75  warning  Forbidden non-null assertion                                                                          @typescript-eslint/no-non-null-assertion
+--
+  275:30  warning  Unnecessary conditional, value is always truthy                                                       @typescript-eslint/no-unnecessary-condition
+  275:30  warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+  284:19  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+--
+  117:12  warning  Unnecessary conditional, value is always truthy                                                    @typescript-eslint/no-unnecessary-condition
+  117:12  warning  Unexpected object value in conditional. The condition is always true                               @typescript-eslint/strict-boolean-expressions
+
+--
+   56:8   warning  Unnecessary conditional, value is always falsy                                        @typescript-eslint/no-unnecessary-condition
+   56:8   warning  Unexpected object value in conditional. The condition is always true                  @typescript-eslint/strict-boolean-expressions
+   72:8   warning  Unnecessary conditional, value is always falsy                                        @typescript-eslint/no-unnecessary-condition
+   72:8   warning  Unexpected object value in conditional. The condition is always true                  @typescript-eslint/strict-boolean-expressions
+  105:8   warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+--
+  144:10  warning  Unnecessary conditional, value is always falsy                                        @typescript-eslint/no-unnecessary-condition
+  144:10  warning  Unexpected object value in conditional. The condition is always true                  @typescript-eslint/strict-boolean-expressions
+  170:8   warning  Unnecessary conditional, value is always falsy                                        @typescript-eslint/no-unnecessary-condition
+  170:8   warning  Unexpected object value in conditional. The condition is always true                  @typescript-eslint/strict-boolean-expressions
+
+--
+  179:10  warning  Unnecessary conditional, value is always falsy                        @typescript-eslint/no-unnecessary-condition
+  179:10  warning  Unexpected object value in conditional. The condition is always true  @typescript-eslint/strict-boolean-expressions
+
+--
+/Users/michaelmcisaac/Github/teaching-engine2.0/server/src/services/curriculum/CurriculumExportService.ts
+   52:19  warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+   71:13  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+/Users/michaelmcisaac/Github/teaching-engine2.0/server/src/services/curriculum/CurriculumImportOrchestrator.ts
+  109:19  warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+  206:13  warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly           @typescript-eslint/strict-boolean-expressions
+  320:34  warning  Unnecessary conditional, value is always truthy                                                       @typescript-eslint/no-unnecessary-condition
+  320:34  warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+  358:45  warning  Unsafe member access .created on an `any` value                                                       @typescript-eslint/no-unsafe-member-access
+--
+/Users/michaelmcisaac/Github/teaching-engine2.0/server/src/services/curriculum/CurriculumSearchService.ts
+   71:19  warning  Unexpected object value in conditional. The condition is always true                               @typescript-eslint/strict-boolean-expressions
+   95:13  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+/Users/michaelmcisaac/Github/teaching-engine2.0/server/src/services/curriculum/CurriculumStatsService.ts
+   69:19  warning  Unexpected object value in conditional. The condition is always true  @typescript-eslint/strict-boolean-expressions
+  260:16  warning  Unnecessary conditional, value is always falsy                        @typescript-eslint/no-unnecessary-condition
+  260:16  warning  Unexpected object value in conditional. The condition is always true  @typescript-eslint/strict-boolean-expressions
+  270:16  warning  Unnecessary conditional, value is always falsy                        @typescript-eslint/no-unnecessary-condition
+  270:16  warning  Unexpected object value in conditional. The condition is always true  @typescript-eslint/strict-boolean-expressions
+
+--
+   21:10  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+   21:10  warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+   32:10  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+   32:10  warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+   42:10  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+   42:10  warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+  106:9   warning  Unnecessary conditional, value is always truthy                                                       @typescript-eslint/no-unnecessary-condition
+  106:9   warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+  112:11  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+  299:11  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+  299:11  warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+
+--
+  347:42  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+  347:42  warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+  357:45  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+--
+  341:42  warning  Unnecessary conditional, value is always falsy                                               @typescript-eslint/no-unnecessary-condition
+  341:42  warning  Unexpected object value in conditional. The condition is always true                         @typescript-eslint/strict-boolean-expressions
+
+--
+   83:10  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+   83:10  warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+   83:25  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+   83:25  warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+  105:9   warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly           @typescript-eslint/strict-boolean-expressions
+  131:10  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+  131:10  warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+  139:10  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+  139:10  warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+  150:16  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+   66:14  warning  Unnecessary conditional, value is always falsy                                                     @typescript-eslint/no-unnecessary-condition
+   66:14  warning  Unexpected object value in conditional. The condition is always true                               @typescript-eslint/strict-boolean-expressions
+   91:24  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+/Users/michaelmcisaac/Github/teaching-engine2.0/server/src/services/templates/RenderCoordinator.ts
+   87:22  warning  Unexpected object value in conditional. The condition is always true                               @typescript-eslint/strict-boolean-expressions
+  149:44  warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly        @typescript-eslint/strict-boolean-expressions
+  219:10  warning  Unnecessary conditional, value is always falsy                                                     @typescript-eslint/no-unnecessary-condition
+  219:10  warning  Unexpected object value in conditional. The condition is always true                               @typescript-eslint/strict-boolean-expressions
+  220:62  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+/Users/michaelmcisaac/Github/teaching-engine2.0/server/src/services/templates/TemplateCache.ts
+   75:19  warning  Unexpected object value in conditional. The condition is always true                               @typescript-eslint/strict-boolean-expressions
+  234:3   warning  Async method 'warmCache' has no 'await' expression                                                 @typescript-eslint/require-await
+--
+  379:14  warning  Unnecessary conditional, value is always falsy                                                      @typescript-eslint/no-unnecessary-condition
+  379:14  warning  Unexpected object value in conditional. The condition is always true                                @typescript-eslint/strict-boolean-expressions
+  435:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+--
+  511:9   warning  Unnecessary conditional, value is always truthy                                                    @typescript-eslint/no-unnecessary-condition
+  511:9   warning  Unexpected object value in conditional. The condition is always true                               @typescript-eslint/strict-boolean-expressions
+
+--
+  221:13  warning  Unnecessary conditional, value is always truthy                                                       @typescript-eslint/no-unnecessary-condition
+  221:13  warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+  228:88  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+--
+  179:11  warning  Unnecessary conditional, value is always truthy                                       @typescript-eslint/no-unnecessary-condition
+  179:11  warning  Unexpected object value in conditional. The condition is always true                  @typescript-eslint/strict-boolean-expressions
+  181:18  warning  Unnecessary conditional, value is always truthy                                       @typescript-eslint/no-unnecessary-condition
+  181:18  warning  Unexpected object value in conditional. The condition is always true                  @typescript-eslint/strict-boolean-expressions
+
+--
+   20:8   warning  Unnecessary conditional, value is always falsy                                        @typescript-eslint/no-unnecessary-condition
+   20:8   warning  Unexpected object value in conditional. The condition is always true                  @typescript-eslint/strict-boolean-expressions
+   50:8   warning  Unnecessary conditional, value is always falsy                                        @typescript-eslint/no-unnecessary-condition
+   50:8   warning  Unexpected object value in conditional. The condition is always true                  @typescript-eslint/strict-boolean-expressions
+   57:20  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+--
+  182:9  warning  Unnecessary conditional, value is always truthy                                                    @typescript-eslint/no-unnecessary-condition
+  182:9  warning  Unexpected object value in conditional. The condition is always true                               @typescript-eslint/strict-boolean-expressions
+

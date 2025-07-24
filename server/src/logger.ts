@@ -3,6 +3,7 @@ import { performance } from 'perf_hooks';
 
 // eslint-disable-next-line import/no-named-as-default
 import pino, { stdSerializers } from 'pino';
+import { isValidStringProperty, isObject } from './utils/typeGuards.js';
 
 // Log levels configuration - kept for future use
 // const _LOG_LEVELS = {
@@ -16,7 +17,7 @@ import pino, { stdSerializers } from 'pino';
 
 // Base logger configuration
 const pinoConfig: pino.LoggerOptions = {
-  level: process.env.LOG_LEVEL ?? (process.env.NODE_ENV === 'production' ? 'info' : 'debug'),
+  level: (process.env.LOG_LEVEL !== null && process.env.LOG_LEVEL !== undefined && process.env.LOG_LEVEL !== '') ? process.env.LOG_LEVEL : (process.env.NODE_ENV === 'production' ? 'info' : 'debug'),
 
   // Custom serializers for better structured logging
   serializers: {
@@ -35,10 +36,10 @@ const pinoConfig: pino.LoggerOptions = {
         headers: {
           'user-agent': request.headers?.['user-agent'],
           'content-type': request.headers?.['content-type'],
-          authorization: request.headers?.authorization !== null && request.headers.authorization !== '' ? '[REDACTED]' : undefined,
+          authorization: (request.headers?.authorization !== null && request.headers?.authorization !== undefined && request.headers?.authorization !== '') ? '[REDACTED]' : undefined,
         },
         remoteAddress: request.remoteAddress ?? request.connection?.remoteAddress,
-        remotePort: (request.remotePort !== null && request.remotePort !== undefined && !isNaN(request.remotePort)) ? request.remotePort : request.connection?.remotePort,
+        remotePort: (request.remotePort !== null && request.remotePort !== undefined && typeof request.remotePort === 'number' && !isNaN(request.remotePort)) ? request.remotePort : request.connection?.remotePort,
       };
     },
 

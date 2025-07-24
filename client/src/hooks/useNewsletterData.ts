@@ -86,11 +86,11 @@ export function useSaveNewsletterDraft(): UseMutationResult<NewsletterDraft, Err
 
   return useMutation<NewsletterDraft, Error, NewsletterDraft>({
     mutationFn: async (draft) => {
-      const endpoint = draft.id && draft.id !== ''  
+      const endpoint = draft.id !== null && draft.id !== undefined && draft.id !== ''  
         ? `/newsletters/${draft.id}` 
         : '/newsletters';
       
-      const method = draft.id && draft.id !== '' ? 'put' : 'post';
+      const method = draft.id !== null && draft.id !== undefined && draft.id !== '' ? 'put' : 'post';
       
       const response = await apiClient[method](endpoint, draft);
       return response.data as NewsletterDraft;

@@ -79,7 +79,7 @@ function extractToken(req: Request): string | null {
   }
 
   // Check cookies
-  if (req.cookies.token !== undefined && req.cookies.token !== null && req.cookies.token !== '') {
+  if (req.cookies?.token !== undefined && req.cookies.token !== null && typeof req.cookies.token === 'string' && req.cookies.token !== '') {
     return req.cookies.token as string;
   }
 

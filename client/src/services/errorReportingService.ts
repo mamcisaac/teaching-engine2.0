@@ -453,7 +453,7 @@ export class ErrorReportingService {
     }
 
     // Sanitize user data
-    if (sanitized.user?.email && sanitized.user.email !== '') {
+    if (sanitized.user?.email !== null && sanitized.user?.email !== undefined && sanitized.user?.email !== '') {
       sanitized.user.email = this.maskEmail(sanitized.user.email);
     }
 
@@ -473,11 +473,11 @@ export class ErrorReportingService {
   }
 
   private isValidExtras(data: unknown): data is Record<string, unknown> {
-    return data !== null && typeof data === 'object' && !Array.isArray(data);
+    return data !== null && data !== undefined && typeof data === 'object' && !Array.isArray(data);
   }
 
   private sanitizeData(data: unknown): unknown {
-    if (data === null) {
+    if (data === null || data === undefined) {
       return data;
     }
 

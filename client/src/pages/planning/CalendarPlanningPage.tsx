@@ -189,7 +189,7 @@ export function CalendarPlanningPage(): JSX.Element {
       if (lesson.date !== null && lesson.date.length > 0) {
         allEvents.push({
           id: `lesson-${lesson.id}`,
-          title: lesson.title ?? 'Untitled Lesson',
+          title: lesson.title || 'Untitled Lesson',
           start: new Date(lesson.date),
           end: new Date(lesson.date),
           type: 'lesson',

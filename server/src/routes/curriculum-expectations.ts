@@ -18,7 +18,7 @@ import {
 const router = Router();
 
 // Get curriculum expectations by bulk search (for autocomplete)
-router.get('/search', async (req: Request, res: Response): Promise<void> => {
+router.get('/search', async (req: Request, res: Response) => {
   try {
     const { q, limit = '10' } = req.query as Record<string, string>;
     const limitNumber = Math.min(parseInt(limit, 10), 50); // Cap at 50 for autocomplete
@@ -65,7 +65,7 @@ router.get('/search', async (req: Request, res: Response): Promise<void> => {
 });
 
 // Get all curriculum expectations with optional filtering
-router.get('/', validatePagination, async (req: Request, res: Response): Promise<void> => {
+router.get('/', validatePagination, async (req: Request, res: Response) => {
   try {
     const pagination = getPaginationParams(req);
     const { subject, grade, strand } = req.query as Record<string, string>;
@@ -143,7 +143,7 @@ baseFilter.strand = strand;
 });
 
 // Get a single curriculum expectation by ID
-router.get('/:id', async (req: Request, res: Response): Promise<void> => {
+router.get('/:id', async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
@@ -190,7 +190,7 @@ router.get('/:id', async (req: Request, res: Response): Promise<void> => {
 router.get(
   '/filters/options',
   cacheMiddleware('curriculum:filters', { ttl: 3600, tags: CacheTags.curriculum() }),
-  async (_req: Request, res: Response): Promise<void> => {
+  async (_req: Request, res: Response) => {
     try {
       const [subjects, grades, strands] = await Promise.all([
         prisma.curriculumExpectation.findMany({

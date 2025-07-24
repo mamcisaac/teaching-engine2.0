@@ -150,7 +150,9 @@ export function validateLessonPlan(data: LessonPlanFormData): ValidationResult {
   const hasAction = data.action?.trim();
   const hasConsolidation = data.consolidation?.trim();
 
-  if (!hasMindsOn && !hasAction && !hasConsolidation) {
+  if ((hasMindsOn === null || hasMindsOn === undefined || hasMindsOn === '') && 
+      (hasAction === null || hasAction === undefined || hasAction === '') && 
+      (hasConsolidation === null || hasConsolidation === undefined || hasConsolidation === '')) {
     errors.lessonStructure =
       'At least one lesson component (Minds On, Action, or Consolidation) must have content';
   }
@@ -160,7 +162,7 @@ export function validateLessonPlan(data: LessonPlanFormData): ValidationResult {
     errors.title = 'Title must be 200 characters or less';
   }
 
-  if (data.learningGoals && data.learningGoals.length > 1000) {
+  if (data.learningGoals !== null && data.learningGoals !== undefined && data.learningGoals !== '' && data.learningGoals.length > 1000) {
     errors.learningGoals = 'Learning goals must be 1000 characters or less';
   }
 
@@ -220,7 +222,7 @@ export function validateField(
     case 'startDate':
     case 'endDate':
     case 'date': {
-      if (!value) {
+      if (value === null || value === undefined || value === '') {
         return 'Date is required';
       }
       const date = new Date(value as string | number | Date);

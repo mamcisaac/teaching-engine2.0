@@ -54,7 +54,7 @@ export function SafeHtmlRenderer(props: SafeHtmlRendererProps): ReactElement {
     if (typeof window !== 'undefined') {
       const tempDiv = document.createElement('div');
       tempDiv.innerHTML = sanitizedHtml;
-      return tempDiv.textContent ?? tempDiv.innerText ?? '';
+      return tempDiv.textContent ?? tempDiv.innerText;
     }
     // Server-side fallback - strip all HTML tags
     return sanitizedHtml.replace(/<[^>]*>/g, '');

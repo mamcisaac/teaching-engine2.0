@@ -28,7 +28,7 @@ export const KeyboardShortcutsSettings: React.FC = (): React.ReactElement => {
 
   // Group shortcuts by category
   const shortcutsByCategory = shortcuts
-    .filter((s) => s.visible !== false)
+    .filter((s) => s.visible === true)
     .reduce<Record<KeyboardShortcut['category'], KeyboardShortcut[]>>(
       (acc, shortcut) => {
         acc[shortcut.category].push(shortcut);
@@ -163,7 +163,7 @@ export const KeyboardShortcutsSettings: React.FC = (): React.ReactElement => {
                   {(categoryShortcuts).map((shortcut, _index) => {
                     const customShortcut = preferences.customShortcuts[shortcut.id];
                     const isEditing = editingShortcut === shortcut.id;
-                    const hasCustomShortcut = shortcut.id in preferences.customShortcuts;
+                    const hasCustomShortcut = Boolean(preferences.customShortcuts[shortcut.id]);
                     const displayShortcut = hasCustomShortcut
                       ? { ...shortcut, ...customShortcut }
                       : shortcut;
@@ -204,7 +204,7 @@ export const KeyboardShortcutsSettings: React.FC = (): React.ReactElement => {
                                 }
                               />
                               <Button
-                                disabled={!captureKey}
+                                disabled={captureKey === ''}
                                 onClick={(): void => {
  saveCustomShortcut(shortcut.id); 
 }}

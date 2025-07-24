@@ -127,7 +127,7 @@ export function withPagination<T extends { id: number }>(
       return repository.findManyCursor({
         where: options?.where,
         include: options?.include,
-        cursor: cursor && cursor !== '' ? parseInt(cursor) : undefined,
+        cursor: cursor !== null && cursor !== '' ? parseInt(cursor) : undefined,
         limit: parseInt(limit),
       });
     },

@@ -100,7 +100,7 @@ class MetricsStore {
   }
 
   incrementCounter(name: string, labels: Record<string, string> = {}, value = 1): void {
-    const current = this.counters.get(name) || 0;
+    const current = this.counters.get(name) ?? 0;
     this.counters.set(name, current + value);
 
     this.recordMetric({
@@ -422,7 +422,7 @@ export function getPerformanceSummary(): { http: { totalRequests: number; totalE
       totalErrors: metrics.counters.http_errors_total || 0,
       errorRate: 0,
       responseTime: calculatePercentiles(
-        metrics.histograms.http_request_duration_ms || { buckets: [], sum: 0, count: 0 },
+        metrics.histograms.http_request_duration_ms ?? { buckets: [], sum: 0, count: 0 },
       ),
     },
     database: {
@@ -430,7 +430,7 @@ export function getPerformanceSummary(): { http: { totalRequests: number; totalE
       totalErrors: metrics.counters.db_errors_total || 0,
       errorRate: 0,
       queryTime: calculatePercentiles(
-        metrics.histograms.db_query_duration_ms || { buckets: [], sum: 0, count: 0 },
+        metrics.histograms.db_query_duration_ms ?? { buckets: [], sum: 0, count: 0 },
       ),
     },
     cache: {

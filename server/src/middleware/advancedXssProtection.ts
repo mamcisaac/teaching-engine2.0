@@ -656,7 +656,7 @@ return '';
  */
 function sanitizeObjectAdvanced(obj: unknown, depth = 0, parentKey = ''): unknown {
   // Prevent infinite recursion and very deep objects
-  if (depth > 20 || !obj) {
+  if (depth > 20 || obj === null || obj === undefined) {
     return obj;
   }
 
@@ -710,12 +710,12 @@ export function advancedXssProtection(req: Request, res: Response, next: NextFun
     const startTime = Date.now();
 
     // Sanitize request body
-    if (req.body && typeof req.body === 'object') {
+    if (req.body !== null && req.body !== undefined && typeof req.body === 'object') {
       req.body = sanitizeObjectAdvanced(req.body, 0, '');
     }
 
     // Sanitize query parameters
-    if (req.query && typeof req.query === 'object') {
+    if (Object.keys(req.query).length > 0) {
       const sanitizedQuery: Record<string, unknown> = {};
       for (const key in req.query) {
         const value = req.query[key];
@@ -733,7 +733,7 @@ export function advancedXssProtection(req: Request, res: Response, next: NextFun
     }
 
     // Sanitize URL parameters
-    if (req.params && typeof req.params === 'object') {
+    if (Object.keys(req.params).length > 0) {
       const sanitizedParams: Record<string, unknown> = {};
       for (const key in req.params) {
         const value = req.params[key];
@@ -769,7 +769,7 @@ export function advancedXssProtection(req: Request, res: Response, next: NextFun
         error: _error,
         path: req.path,
         method: req.method,
-        bodySize: req.body ? JSON.stringify(req.body).length : 0,
+        bodySize: (req.body !== null && req.body !== undefined) ? JSON.stringify(req.body).length : 0,
       },
       'Advanced XSS protection error',
     );

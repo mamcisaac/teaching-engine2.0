@@ -176,7 +176,7 @@ export function useETFOLessonPlanForm({
     if (formData.duration < 15 || formData.duration > 300) {
       errors.push('Duration must be between 15 and 300 minutes');
     }
-    if (!unitPlanId || unitPlanId === '') {
+    if (unitPlanId === null || unitPlanId === undefined || unitPlanId === '') {
       errors.push('Unit plan is required');
     }
 

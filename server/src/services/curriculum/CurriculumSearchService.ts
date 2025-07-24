@@ -68,7 +68,7 @@ export class CurriculumSearchService extends BaseService {
     const baseDeps = super.checkDependencies();
     return {
       ...baseDeps,
-      database: !!prisma,
+      database: prisma != null,
     };
   }
 

@@ -1005,7 +1005,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                           required
                           placeholder="e.g., Introduction to Ecosystems"
                           value={formData.title}
-                          onChange={(e) => {
+                          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
  setFormData({ ...formData, title: e.target.value }); 
 }}
                         />
@@ -1015,7 +1015,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                         <Input
                           placeholder="e.g., Introduction aux écosystèmes"
                           value={formData.titleFr}
-                          onChange={(e) => {
+                          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
  setFormData({ ...formData, titleFr: e.target.value }); 
 }}
                         />
@@ -1031,7 +1031,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                           required
                           type="date"
                           value={formData.date}
-                          onChange={(e) => {
+                          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
  setFormData({ ...formData, date: e.target.value }); 
 }}
                         />
@@ -1044,10 +1044,9 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                           min="15"
                           type="number"
                           value={formData.duration}
-                          onChange={(e) => {
+                          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
  setFormData({ ...formData, duration: Number(e.target.value) }); 
-}
-                          }
+}}
                         />
                       </div>
                       <div>
@@ -1055,7 +1054,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                         <select
                           className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                           value={formData.grouping}
-                          onChange={(e) => {
+                          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
  setFormData({ ...formData, grouping: e.target.value }); 
 }}
                         >
@@ -1114,7 +1113,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                             placeholder="Special instructions for substitute teachers..."
                             rows={3}
                             value={formData.subNotes}
-                            onChange={(e) => {
+                            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
  setFormData({ ...formData, subNotes: e.target.value }); 
 }}
                           />
@@ -1275,7 +1274,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                           <Input
                             placeholder="e.g., Chart paper, markers, science textbook p.45-48"
                             value={material}
-                            onChange={(e) => {
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
  updateMaterial(index, e.target.value); 
 }}
                           />
@@ -1317,7 +1316,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                           <Input
                             placeholder="e.g., Provide visual aids, allow extra time"
                             value={accommodation}
-                            onChange={(e) => {
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
  updateAccommodation(index, e.target.value); 
 }}
                           />
@@ -1357,7 +1356,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                           <Input
                             placeholder="e.g., Simplified text, reduced number of questions"
                             value={modification}
-                            onChange={(e) => {
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
  updateModification(index, e.target.value); 
 }}
                           />
@@ -1397,7 +1396,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                           <Input
                             placeholder="e.g., Research project, advanced problems"
                             value={extension}
-                            onChange={(e) => {
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
  updateExtension(index, e.target.value); 
 }}
                           />
@@ -1436,7 +1435,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                     <select
                       className="w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                       value={formData.assessmentType}
-                      onChange={(e) => {
+                      onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
  setFormData({
                           ...formData,
                           assessmentType: e.target.value as
@@ -1444,8 +1443,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                             | 'formative'
                             | 'summative',
                         }); 
-}
-                      }
+}}
                     >
                       <option value="diagnostic">
                         Diagnostic - Assessment FOR Learning (Before/Beginning)
@@ -1505,10 +1503,9 @@ Assessment Strategies:
 • Self-assessment checklist"
                       rows={6}
                       value={formData.assessmentNotes}
-                      onChange={(e) => {
+                      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
  setFormData({ ...formData, assessmentNotes: e.target.value }); 
-}
-                      }
+}}
                     />
                     <p className="mt-1 text-xs text-gray-500">
                       Include both success criteria and the specific assessment strategies

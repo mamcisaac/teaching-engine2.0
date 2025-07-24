@@ -19,7 +19,7 @@ export const errorContextMiddleware = (
   next: NextFunction,
 ): void => {
   // Generate request ID if not present
-  req.id = req.id ?? (req.headers['x-request-id'] as string) ?? uuidv4();
+  req.id = req.id || (req.headers['x-request-id'] as string) || uuidv4();
 
   // Track request start time
   req.startTime = Date.now();

@@ -217,7 +217,7 @@ function handleSpecificErrors(err: ErrorLike): AppError {
   if (err instanceof Prisma.PrismaClientKnownRequestError) {
     switch (err.code) {
       case 'P2002': {
-        const field = err.meta?.target as string[] ?? [];
+        const field = (err.meta?.target as string[]) ?? [];
         return new ConflictError(`Duplicate value for field: ${field.join(', ') || 'unknown'}`);
       }
       case 'P2025':
@@ -340,7 +340,7 @@ export function errorHandler(err: Error, req: Request, res: Response, _next: Nex
   const error = handleSpecificErrors(err);
 
   // Set default values if not set
-  error.statusCode = error.statusCode ?? 500;
+  error.statusCode = error.statusCode || 500;
 
   // Send appropriate error response
   if (process.env.NODE_ENV === 'development') {

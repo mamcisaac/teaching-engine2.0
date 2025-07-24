@@ -116,7 +116,7 @@ return '';
     summary += `Duration: ${lesson.duration} minutes\n`;
     summary += `Grouping: ${lesson.grouping}\n\n`;
 
-    if (lesson.subNotes) {
+    if (lesson.subNotes !== null && lesson.subNotes !== undefined && lesson.subNotes !== '') {
       summary += `Special Notes:\n${lesson.subNotes}\n\n`;
     }
 

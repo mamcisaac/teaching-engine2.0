@@ -218,7 +218,7 @@ export class TemplateDataFetcher {
       subject: lesson.unitPlan.longRangePlan.subject || lesson.subject || '',
       grade: lesson.unitPlan.longRangePlan.grade.toString() || '0',
       duration: parseInt(String(lesson.duration || '0')),
-      unit: lesson.unitPlan ? {
+      unit: lesson.unitPlan != null ? {
         title: lesson.unitPlan.title,
         week: Math.ceil(
           (lesson.date.getTime() - lesson.unitPlan.startDate.getTime()) / 

@@ -106,7 +106,7 @@ export class CurriculumImportOrchestrator extends BaseService {
     const baseDeps = super.checkDependencies();
     return {
       ...baseDeps,
-      database: !!prisma,
+      database: prisma != null,
       parsers: ParserFactory.getSupportedExtensions().length > 0,
       exportService: this.exportService.isHealthy(),
       searchService: this.searchService.isHealthy(),
@@ -317,7 +317,7 @@ export class CurriculumImportOrchestrator extends BaseService {
       );
 
       // Create new expectations
-      if (toCreate.length > 0 && subject) {
+      if (toCreate.length > 0 && subject != null) {
         await tx.curriculumExpectation.createMany({
           data: toCreate.map((exp) => ({
             ...exp,

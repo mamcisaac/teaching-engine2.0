@@ -180,7 +180,7 @@ export function strictSanitization(req: Request, res: Response, next: NextFuncti
     };
 
     // Sanitize request body
-    if (req.body && typeof req.body === 'object') {
+    if (req.body !== null && typeof req.body === 'object' && Object.keys(req.body).length > 0) {
       // Log detected XSS attempts for security monitoring
       const bodyString = JSON.stringify(req.body);
       if (detectXSS(bodyString)) {
@@ -199,7 +199,7 @@ export function strictSanitization(req: Request, res: Response, next: NextFuncti
     }
 
     // Sanitize query parameters
-    if (req.query && typeof req.query === 'object') {
+    if (req.query !== null && Object.keys(req.query).length > 0) {
       const queryString = JSON.stringify(req.query);
       if (detectXSS(queryString)) {
         logger.warn(
@@ -216,7 +216,7 @@ export function strictSanitization(req: Request, res: Response, next: NextFuncti
     }
 
     // Sanitize URL parameters
-    if (req.params && typeof req.params === 'object') {
+    if (Object.keys(req.params).length > 0) {
       req.params = sanitizeObject(req.params, strictConfig) as ParamsDictionary;
     }
 
@@ -235,15 +235,15 @@ export function strictSanitization(req: Request, res: Response, next: NextFuncti
  */
 export function moderateSanitization(req: Request, res: Response, next: NextFunction): void {
   try {
-    if (req.body && typeof req.body === 'object') {
+    if (req.body !== null && typeof req.body === 'object' && Object.keys(req.body).length > 0) {
       req.body = sanitizeObject(req.body, moderateConfig);
     }
 
-    if (req.query && typeof req.query === 'object') {
+    if (req.query !== null && Object.keys(req.query).length > 0) {
       req.query = sanitizeObject(req.query, moderateConfig) as ParsedQs;
     }
 
-    if (req.params && typeof req.params === 'object') {
+    if (Object.keys(req.params).length > 0) {
       req.params = sanitizeObject(req.params, moderateConfig) as ParamsDictionary;
     }
 
@@ -262,15 +262,15 @@ export function moderateSanitization(req: Request, res: Response, next: NextFunc
  */
 export function lenientSanitization(req: Request, res: Response, next: NextFunction): void {
   try {
-    if (req.body && typeof req.body === 'object') {
+    if (req.body !== null && typeof req.body === 'object' && Object.keys(req.body).length > 0) {
       req.body = sanitizeObject(req.body, lenientConfig);
     }
 
-    if (req.query && typeof req.query === 'object') {
+    if (req.query !== null && Object.keys(req.query).length > 0) {
       req.query = sanitizeObject(req.query, lenientConfig) as ParsedQs;
     }
 
-    if (req.params && typeof req.params === 'object') {
+    if (Object.keys(req.params).length > 0) {
       req.params = sanitizeObject(req.params, lenientConfig) as ParamsDictionary;
     }
 
@@ -306,7 +306,7 @@ export function preventSQLInjection(req: Request, res: Response, next: NextFunct
     };
 
     // Check body
-    if (req.body && typeof req.body === 'object') {
+    if (req.body !== null && typeof req.body === 'object' && Object.keys(req.body).length > 0) {
       for (const key in req.body) {
         if (checkValue((req.body as Record<string, unknown>)[key], `body.${key}`)) {
           res.status(400).json({
@@ -402,7 +402,7 @@ return false;
       return false;
     };
 
-    if (req.body && deepCheck(req.body, 'body')) {
+    if (req.body !== null && deepCheck(req.body, 'body')) {
       res.status(400).json({
         error: 'Invalid Input',
         message: 'Request contains potentially dangerous patterns',
@@ -422,11 +422,11 @@ return false;
  */
 export function fullSecuritySanitization(req: Request, res: Response, next: NextFunction): void {
   strictSanitization(req, res, (err?: unknown) => {
-    if (err) {
+    if (err !== null) {
 next(err); return;
 }
     preventSQLInjection(req, res, (err?: unknown) => {
-      if (err) {
+      if (err !== null) {
         next(err);
         return;
       }

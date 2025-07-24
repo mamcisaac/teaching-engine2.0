@@ -56,7 +56,7 @@ const upload = multer({
 router.post(
   '/upload',
   upload.single('file') as unknown as express.RequestHandler,
-  async (req: Request, res: Response): Promise<void> => {
+  async (req: Request, res: Response) => {
     try {
       if (!req.file) {
         res.status(400).json({
@@ -81,7 +81,7 @@ router.post(
       }
 
       // Validate file buffer is not null
-      if (!req.file.buffer || req.file.buffer.length === 0) {
+      if (req.file.buffer == null || req.file.buffer.length === 0) {
         res.status(400).json({
           error: 'Invalid file content',
         });
@@ -127,7 +127,7 @@ router.post(
 );
 
 // POST /api/curriculum/import/parse - Parse uploaded file
-router.post('/parse', asyncHandler(async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+router.post('/parse', asyncHandler(async (req: AuthenticatedRequest, res: Response) => {
   try {
     const { sessionId, useAiExtraction } = req.body;
 
@@ -168,7 +168,7 @@ router.post('/parse', asyncHandler(async (req: AuthenticatedRequest, res: Respon
 }));
 
 // POST /api/curriculum/import/import-preset - Load preset curriculum
-router.post('/import-preset', asyncHandler(async (req: Request, res: Response): Promise<void> => {
+router.post('/import-preset', asyncHandler(async (req: Request, res: Response) => {
   try {
     const { presetId } = req.body;
 
@@ -205,7 +205,7 @@ router.post('/import-preset', asyncHandler(async (req: Request, res: Response): 
 }));
 
 // GET /api/curriculum/import/:id/status - Check import status
-router.get('/:id/status', asyncHandler(async (req: Request, res: Response): Promise<void> => {
+router.get('/:id/status', asyncHandler(async (req: Request, res: Response) => {
   try {
     const importId = req.params.id;
 
@@ -218,7 +218,7 @@ router.get('/:id/status', asyncHandler(async (req: Request, res: Response): Prom
 
     const status = await curriculumImportService.getImportProgress(importId);
 
-    if (!status) {
+    if (status == null) {
       res.status(404).json({
         error: 'Import not found',
       });
@@ -237,7 +237,7 @@ router.get('/:id/status', asyncHandler(async (req: Request, res: Response): Prom
 }));
 
 // POST /api/curriculum/import/:id/confirm - Confirm and finalize import
-router.post('/:id/confirm', asyncHandler(async (req: Request, res: Response): Promise<void> => {
+router.post('/:id/confirm', asyncHandler(async (req: Request, res: Response) => {
   try {
     const importId = req.params.id;
 
@@ -251,7 +251,7 @@ router.post('/:id/confirm', asyncHandler(async (req: Request, res: Response): Pr
     // Check if import exists and is ready
     const progress = await curriculumImportService.getImportProgress(importId);
 
-    if (!progress) {
+    if (progress == null) {
       res.status(404).json({
         error: 'Import not found',
       });
@@ -322,7 +322,7 @@ router.delete('/:id', async (req: Request, res: Response): Promise<void> => {
 
     const result = await curriculumImportService.cancelImport(importId);
 
-    if (!result) {
+    if (result == null) {
       res.status(404).json({
         error: 'Import not found',
       });
@@ -375,7 +375,7 @@ router.get('/:importId/progress', async (req: Request, res: Response): Promise<v
     const { importId } = req.params;
     const progress = await curriculumImportService.getImportProgress(importId);
 
-    if (!progress) {
+    if (progress == null) {
       res.status(404).json({ error: 'Import session not found' });
       return;
     }
@@ -394,7 +394,7 @@ router.post('/:importId/cancel', async (req: Request, res: Response): Promise<vo
     const { importId } = req.params;
     const success = await curriculumImportService.cancelImport(importId);
 
-    if (!success) {
+    if (success == null) {
       res.status(404).json({ error: 'Import session not found or already completed' });
       return;
     }
@@ -422,7 +422,7 @@ router.post('/:id', async (req: Request, res: Response): Promise<void> => {
     // Get the import session
     const importRecord = await curriculumImportService.getImportProgress(importId);
 
-    if (!importRecord) {
+    if (importRecord == null) {
       res.status(404).json({
         error: 'Import session not found',
       });

@@ -90,7 +90,7 @@ class AuditLogger {
           userId: req.user?.id.toString() ?? 'anonymous',
           action,
           resource,
-          resourceId: req.params.id ?? (req.body as Record<string, unknown>).id as string,
+          resourceId: req.params.id || (req.body as Record<string, unknown>).id as string,
           metadata: {
             method: req.method,
             path: req.path,
@@ -183,9 +183,9 @@ export const auditLoggers = {
   deleteUser: auditLogger.middleware('DELETE', 'user'),
 
   // Generic operations
-  create: (resource: string): (req: Request, res: Response, next: NextFunction) => Promise<void> => auditLogger.middleware('CREATE', resource),
-  update: (resource: string): (req: Request, res: Response, next: NextFunction) => Promise<void> => auditLogger.middleware('UPDATE', resource),
-  delete: (resource: string): (req: Request, res: Response, next: NextFunction) => Promise<void> => auditLogger.middleware('DELETE', resource),
-  view: (resource: string): (req: Request, res: Response, next: NextFunction) => Promise<void> => auditLogger.middleware('VIEW', resource),
-  list: (resource: string): (req: Request, res: Response, next: NextFunction) => Promise<void> => auditLogger.middleware('LIST', resource),
+  create: (resource: string): (req: Request, res: Response, next: NextFunction) => void => auditLogger.middleware('CREATE', resource),
+  update: (resource: string): (req: Request, res: Response, next: NextFunction) => void => auditLogger.middleware('UPDATE', resource),
+  delete: (resource: string): (req: Request, res: Response, next: NextFunction) => void => auditLogger.middleware('DELETE', resource),
+  view: (resource: string): (req: Request, res: Response, next: NextFunction) => void => auditLogger.middleware('VIEW', resource),
+  list: (resource: string): (req: Request, res: Response, next: NextFunction) => void => auditLogger.middleware('LIST', resource),
 };

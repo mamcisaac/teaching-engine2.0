@@ -89,7 +89,7 @@ router.post(
   '/generate',
   authMiddleware,
   aiRateLimit,
-  async (req: Request, res: Response): Promise<void> => {
+  async (req: Request, res: Response) => {
     try {
       const params = generateActivitySchema.parse(req.body);
       const searchResults = undefined;
@@ -126,7 +126,7 @@ router.post(
   '/generate-variations',
   authMiddleware,
   aiRateLimit,
-  async (req: Request, res: Response): Promise<void> => {
+  async (req: Request, res: Response) => {
     try {
       const params = generateActivitySchema.parse(req.body);
       const count = Math.min((req.body as { count?: number }).count || 3, 5); // Max 5 variations
@@ -169,7 +169,7 @@ router.post(
 /**
  * Save a generated activity
  */
-router.post('/save', authMiddleware, async (req: Request, res: Response): Promise<void> => {
+router.post('/save', authMiddleware, async (req: Request, res: Response) => {
   try {
     const params = saveActivitySchema.parse(req.body);
 

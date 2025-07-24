@@ -977,10 +977,9 @@ function UnitPlansPage(): React.ReactElement {
                               <Input
                                 placeholder="Language support strategy..."
                                 value={strategy}
-                                onChange={(e) => {
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
  updateDifferentiationStrategy('forELL', index, e.target.value); 
-}
-                                }
+}}
                               />
                               <Button
                                 size="sm"
@@ -1015,10 +1014,9 @@ function UnitPlansPage(): React.ReactElement {
                               <Input
                                 placeholder="IEP accommodation..."
                                 value={strategy}
-                                onChange={(e) => {
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
  updateDifferentiationStrategy('forIEP', index, e.target.value); 
-}
-                                }
+}}
                               />
                               <Button
                                 size="sm"
@@ -1056,7 +1054,7 @@ function UnitPlansPage(): React.ReactElement {
                       placeholder="How does this unit connect to other subject areas?"
                       rows={3}
                       value={formData.crossCurricularConnections}
-                      onChange={(e) => {
+                      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
  updateField('crossCurricularConnections', e.target.value); 
 }}
                     />
@@ -1069,7 +1067,7 @@ function UnitPlansPage(): React.ReactElement {
                       placeholder="How will you incorporate Indigenous knowledge and perspectives?"
                       rows={3}
                       value={formData.indigenousPerspectives}
-                      onChange={(e) => {
+                      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
  updateField('indigenousPerspectives', e.target.value); 
 }}
                     />
@@ -1082,7 +1080,7 @@ function UnitPlansPage(): React.ReactElement {
                       placeholder="Environmental learning opportunities in this unit..."
                       rows={3}
                       value={formData.environmentalEducation}
-                      onChange={(e) => {
+                      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
  updateField('environmentalEducation', e.target.value); 
 }}
                     />
@@ -1095,7 +1093,7 @@ function UnitPlansPage(): React.ReactElement {
                       placeholder="Equity and social justice themes..."
                       rows={3}
                       value={formData.socialJusticeConnections}
-                      onChange={(e) => {
+                      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
  updateField('socialJusticeConnections', e.target.value); 
 }}
                     />
@@ -1108,7 +1106,7 @@ function UnitPlansPage(): React.ReactElement {
                       placeholder="How will technology enhance learning in this unit?"
                       rows={3}
                       value={formData.technologyIntegration}
-                      onChange={(e) => {
+                      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
  updateField('technologyIntegration', e.target.value); 
 }}
                     />
@@ -1121,7 +1119,7 @@ function UnitPlansPage(): React.ReactElement {
                       placeholder="Local partnerships, field trips, guest speakers..."
                       rows={3}
                       value={formData.communityConnections}
-                      onChange={(e) => {
+                      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
  updateField('communityConnections', e.target.value); 
 }}
                     />
@@ -1134,7 +1132,7 @@ function UnitPlansPage(): React.ReactElement {
                       placeholder="How will you communicate unit goals and progress to families?"
                       rows={3}
                       value={formData.parentCommunicationPlan}
-                      onChange={(e) => {
+                      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
  updateField('parentCommunicationPlan', e.target.value); 
 }}
                     />

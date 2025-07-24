@@ -166,7 +166,7 @@ export const createValidationSchema = {
     });
     
     const baseSchema = baseObjectSchema.refine(
-      (data) => !data.gradeMin || !data.gradeMax || data.gradeMin <= data.gradeMax,
+      (data) => (data.gradeMin === null || data.gradeMin === undefined) || (data.gradeMax === null || data.gradeMax === undefined) || data.gradeMin <= data.gradeMax,
       {
         message: 'Maximum grade must be greater than or equal to minimum grade',
         path: ['gradeMax']

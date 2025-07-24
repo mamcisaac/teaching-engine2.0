@@ -51,7 +51,8 @@ export function safeJsonParse<T = unknown>(
   defaultValue?: T
 ): T | undefined {
   try {
-    return JSON.parse(json) as T;
+    const parsed: unknown = JSON.parse(json);
+    return parsed as T;
   } catch {
     return defaultValue;
   }

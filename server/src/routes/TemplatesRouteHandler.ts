@@ -9,7 +9,7 @@ import { z } from 'zod';
 
 import { prisma } from '../prisma.js';
 import { BaseService } from '../services/base/BaseService.js';
-import type { TemplateCreateData, TemplateUpdateData } from '../types/routes.js';
+import type { TemplateCreateData, TemplateUpdateData, Template } from '../types/routes.js';
 
 import type { AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler.js';
 import { BaseRouteHandler } from './base/BaseRouteHandler.js';
@@ -19,6 +19,7 @@ import {
   optimizedQueries,
   queryPerformance,
 } from './optimizations/queryOptimizations.js';
+import { isValidStringProperty, isNumber } from '../utils/typeGuards.js';
 
 // Template-specific validation schemas
 const templateContentSchema = z.object({
@@ -118,28 +119,28 @@ class TemplateService extends BaseService {
       AND: Array<Record<string, unknown>>;
     };
 
-    if (type !== null && String(type) !== '') {
+    if (isValidStringProperty(type)) {
       where.AND.push({ type });
     }
-    if (category !== null && String(category) !== '') {
+    if (isValidStringProperty(category)) {
       where.AND.push({ category });
     }
-    if (subject !== null && String(subject) !== '') {
+    if (isValidStringProperty(subject)) {
       where.AND.push({ subject: { contains: subject, mode: 'insensitive' } });
     }
-    if (gradeMin !== null && Number(gradeMin) !== 0 && !isNaN(Number(gradeMin))) {
+    if (isNumber(gradeMin) && gradeMin !== 0) {
       where.AND.push({ gradeMin: { gte: gradeMin } });
     }
-    if (gradeMax !== null && Number(gradeMax) !== 0 && !isNaN(Number(gradeMax))) {
+    if (isNumber(gradeMax) && gradeMax !== 0) {
       where.AND.push({ gradeMax: { lte: gradeMax } });
     }
-    if (isSystem !== undefined) {
+    if (isSystem !== undefined && isSystem !== null) {
       where.AND.push({ isSystem });
     }
 
     // Search functionality using optimized search utility
-    if (search !== null && String(search) !== '') {
-      const searchWhere = optimizedQueries.createSearchWhere(String(search), [
+    if (isValidStringProperty(search)) {
+      const searchWhere = optimizedQueries.createSearchWhere(search, [
         'title',
         'description',
         'subject',
@@ -186,7 +187,7 @@ class TemplateService extends BaseService {
     };
   }
 
-  async findById(id: string, userId: number) {
+  async findById(id: string, userId: number): Promise<Template | null> {
     return queryPerformance.monitorQuery('template.findById', () =>
       prisma.planTemplate.findFirst({
         where: {
@@ -198,7 +199,7 @@ class TemplateService extends BaseService {
     );
   }
 
-  async create(data: TemplateCreateData, userId: number) {
+  async create(data: TemplateCreateData, userId: number): Promise<Template> {
     return prisma.planTemplate.create({
       data: {
         title: data.title,
@@ -225,7 +226,7 @@ class TemplateService extends BaseService {
     });
   }
 
-  async update(id: string, data: TemplateUpdateData, userId: number) {
+  async update(id: string, data: TemplateUpdateData, userId: number): Promise<Template> {
     // Check ownership
     const template = await prisma.planTemplate.findFirst({
       where: {
@@ -286,7 +287,7 @@ class TemplateService extends BaseService {
     return true;
   }
 
-  async getFilterOptions(userId: number) {
+  async getFilterOptions(userId: number): Promise<{ subjects: string[]; grades: number[]; categories: string[]; tags: string[] }> {
     const [subjects, grades, categories, tags] = await Promise.all([
       prisma.planTemplate.findMany({
         where: {
@@ -371,7 +372,7 @@ export class TemplatesRouteHandler extends BaseRouteHandler {
     return this.templateService;
   }
 
-  protected getValidationSchemas() {
+  protected getValidationSchemas(): { create: typeof templateCreateSchema; update: typeof templateUpdateSchema; query: typeof templateQuerySchema } {
     return {
       create: templateCreateSchema,
       update: templateUpdateSchema,
@@ -381,7 +382,7 @@ export class TemplatesRouteHandler extends BaseRouteHandler {
 
   protected getCrudOperations(): CrudOperations<unknown> {
     return {
-      create: async (data: unknown, userId: number) => this.templateService.create(data as TemplateCreateData, userId),
+      create: async (data: unknown, userId: number): Promise<Template> => this.templateService.create(data as TemplateCreateData, userId),
       findMany: async (filters: unknown, userId: number) => {
         const result = await this.templateService.findMany(
           filters as Record<string, unknown>,

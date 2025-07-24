@@ -84,7 +84,7 @@ export class RenderCoordinator extends BaseService {
       cache: this.cache.isHealthy(),
       helpers: this.helpers.isHealthy(),
       partialManager: this.partialManager.isHealthy(),
-      dataFetcher: !!this.dataFetcher,
+      dataFetcher: this.dataFetcher != null,
     };
   }
 
@@ -216,7 +216,7 @@ export class RenderCoordinator extends BaseService {
 
     // Get template
     const template = await provider.getTemplate(templateContext);
-    if (!template) {
+    if (template == null) {
       throw new Error(`Template not found: ${templateType}:${options.templateId || 'default'}`);
     }
 

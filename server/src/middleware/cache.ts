@@ -82,7 +82,7 @@ function shouldCache(req: Request): boolean {
   }
 
   // Don't cache authenticated endpoints by default unless explicitly enabled
-  if (req.headers.authorization && !(req as Request & { cacheEnabled?: boolean }).cacheEnabled) {
+  if (req.headers.authorization !== null && req.headers.authorization !== '' && (req as Request & { cacheEnabled?: boolean }).cacheEnabled !== true) {
     return false;
   }
 
@@ -269,7 +269,7 @@ export function invalidateCache(
       chunk?: unknown,
       encoding?: BufferEncoding,
       cb?: () => void,
-    ) {
+    ): Response {
       invalidateCacheEntries();
       return originalEnd.call(this, chunk, encoding as BufferEncoding, cb);
     } as Response['end'];

@@ -218,7 +218,7 @@ export function validateContact(contact: {
   let emailResult: EmailValidationResult | undefined;
 
   // Validate name
-  if (!contact.name || contact.name === '' || typeof contact.name !== 'string' || contact.name.trim().length === 0) {
+  if (contact.name === null || contact.name === undefined || contact.name === '' || typeof contact.name !== 'string' || contact.name.trim().length === 0) {
     errors.push('Name is required');
   } else if (contact.name.trim().length > 200) {
     errors.push('Name too long');
