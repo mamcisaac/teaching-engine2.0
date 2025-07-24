@@ -74,12 +74,12 @@ export function generateRefreshToken(userId: number): string {
 function extractToken(req: Request): string | null {
   // Check Authorization header
   const authHeader = req.headers.authorization;
-  if (authHeader && authHeader.startsWith('Bearer ')) {
+  if (authHeader !== undefined && authHeader.startsWith('Bearer ')) {
     return authHeader.substring(7);
   }
 
   // Check cookies
-  if (req.cookies.token) {
+  if (req.cookies.token !== undefined && req.cookies.token !== null && req.cookies.token !== '') {
     return req.cookies.token as string;
   }
 

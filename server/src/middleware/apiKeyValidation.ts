@@ -22,7 +22,7 @@ export function validateApiKey(
     // Get the expected API key from environment
     const expectedApiKey = process.env.API_KEY;
 
-    if (!expectedApiKey || expectedApiKey === '') {
+    if (expectedApiKey === undefined || expectedApiKey === null || expectedApiKey === '') {
       // Server misconfiguration - log error but don't expose details
       logger.error('API_KEY environment variable not set');
 

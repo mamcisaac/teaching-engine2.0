@@ -175,7 +175,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
   try {
     logger.info(
       {
-        bodyKeys: req.body ? Object.keys(req.body as Record<string, unknown>) : [],
+        bodyKeys: req.body !== null && req.body !== undefined ? Object.keys(req.body as Record<string, unknown>) : [],
         bodyType: typeof req.body,
         hasBody: req.body !== null,
       },

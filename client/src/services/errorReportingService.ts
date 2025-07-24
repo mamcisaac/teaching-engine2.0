@@ -234,7 +234,7 @@ export class ErrorReportingService {
 
     const sanitizedUser = {
       id: String(user.id),
-      email: user.email ? this.maskEmail(user.email) : undefined,
+      email: user.email !== undefined && user.email !== null && user.email !== '' ? this.maskEmail(user.email) : undefined,
       username: user.name,
       role: user.role,
       organizationId: user.organizationId !== null ? String(user.organizationId) : undefined,
