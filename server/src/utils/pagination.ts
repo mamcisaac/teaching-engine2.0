@@ -161,7 +161,7 @@ export function getPrismaArgs(options: PaginationOptions): { skip: number; take:
   };
 
   // Add sorting
-  if (options.sortBy !== null && options.sortBy !== '') {
+  if (options.sortBy !== null && options.sortBy !== undefined && options.sortBy !== '') {
     args.orderBy = {
       [options.sortBy]: options.sortOrder ?? 'desc',
     };
