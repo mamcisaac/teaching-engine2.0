@@ -97,7 +97,7 @@ class TemplateService extends BaseService {
     super('TemplateService');
   }
 
-  async findMany(filters: Record<string, unknown>, userId: number) {
+  async findMany(filters: Record<string, unknown>, userId: number): Promise<Template[]> {
     const {
       type,
       category,
