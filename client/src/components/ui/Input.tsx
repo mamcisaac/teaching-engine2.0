@@ -1,5 +1,6 @@
 import { clsx } from 'clsx';
-import { forwardRef, type InputHTMLAttributes, type ReactElement } from 'react';
+import { forwardRef } from 'react';
+import type { InputHTMLAttributes, ReactElement } from 'react';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: boolean;

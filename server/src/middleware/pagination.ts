@@ -194,8 +194,8 @@ export function paginatedHandler<T>(
 /**
  * Cache-aware pagination middleware
  */
-export function cachedPagination(_cacheKeyPrefix: string, _ttl = 60): (req: Request, res: Response, next: NextFunction) => Promise<void> {
-  return async (_req: Request, res: Response, next: NextFunction): Promise<void> => {
+export function cachedPagination(_cacheKeyPrefix: string, _ttl = 60): (req: Request, res: Response, next: NextFunction) => void {
+  return (_req: Request, res: Response, next: NextFunction): void => {
     // const _pagination = getPaginationParams(req);
     // const _cacheKey = `${cacheKeyPrefix}:${JSON.stringify({ ...req.query, ...pagination })}`;
 

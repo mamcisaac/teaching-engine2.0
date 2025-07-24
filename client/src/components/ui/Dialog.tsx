@@ -1,6 +1,7 @@
 import * as RadixDialog from '@radix-ui/react-dialog';
 import { clsx } from 'clsx';
-import { forwardRef, type ComponentPropsWithoutRef, type ElementRef, type FC, type HTMLAttributes, type ReactElement, type ReactNode } from 'react';
+import { forwardRef } from 'react';
+import type { ComponentPropsWithoutRef, ElementRef, FC, HTMLAttributes, ReactElement, ReactNode } from 'react';
 
 // Wrapper component for consistent API
 interface DialogProps {

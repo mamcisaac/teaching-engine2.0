@@ -82,7 +82,7 @@ function removeDangerousPatterns(input: string): string {
  * Recursively sanitize object properties
  */
 function sanitizeObject(obj: unknown, config: Record<string, unknown> = strictConfig): unknown {
-  if (obj == null) {
+  if (obj === null) {
     return obj;
   }
 
@@ -370,7 +370,7 @@ export function preventNoSQLInjection(req: Request, res: Response, next: NextFun
 
     // Deep check for objects that might contain MongoDB operators
     const deepCheck = (obj: unknown, path = ''): boolean => {
-      if (obj == null) {
+      if (obj === null) {
 return false;
 }
 

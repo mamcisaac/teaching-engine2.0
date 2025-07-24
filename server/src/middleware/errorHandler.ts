@@ -147,7 +147,7 @@ function sendErrorProd(err: ErrorLike, req: Request, res: Response): void {
           method: req.method,
           url: req.url,
           ip: req.ip,
-          userId: req.user?.id || 'anonymous',
+          userId: req.user?.id ?? 'anonymous',
         },
       },
       'Operational error',
@@ -169,7 +169,7 @@ function sendErrorProd(err: ErrorLike, req: Request, res: Response): void {
           headers: req.headers,
           body: req.body as unknown,
           ip: req.ip,
-          userId: req.user?.id || 'anonymous',
+          userId: req.user?.id ?? 'anonymous',
         },
       },
       'Unexpected error',
@@ -217,7 +217,7 @@ function handleSpecificErrors(err: ErrorLike): AppError {
   if (err instanceof Prisma.PrismaClientKnownRequestError) {
     switch (err.code) {
       case 'P2002': {
-        const field = err.meta?.target as string[] || [];
+        const field = err.meta?.target as string[] ?? [];
         return new ConflictError(`Duplicate value for field: ${field.join(', ') || 'unknown'}`);
       }
       case 'P2025':
@@ -265,7 +265,7 @@ function handleSpecificErrors(err: ErrorLike): AppError {
     (typeof err.code === 'string' && err.code === '11000') ||
     (typeof err.code === 'number' && err.code === 11000)
   ) {
-    const field = Object.keys(err.keyValue || {})[0];
+    const field = Object.keys(err.keyValue ?? {})[0];
     return new ConflictError(`Duplicate field value: ${field}`);
   }
 
@@ -434,7 +434,7 @@ export function requestTimeout(timeoutMs = 30000): (req: Request, res: Response,
           method: req.method,
           url: req.url,
           ip: req.ip,
-          userId: req.user?.id || 'anonymous',
+          userId: req.user?.id ?? 'anonymous',
         },
         'Request timeout',
       );

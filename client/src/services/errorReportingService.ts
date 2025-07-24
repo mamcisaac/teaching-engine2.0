@@ -227,7 +227,7 @@ export class ErrorReportingService {
       return;
     }
 
-    if (user == null) {
+    if (user === null) {
       Sentry.setUser(null);
       return;
     }
@@ -237,7 +237,7 @@ export class ErrorReportingService {
       email: user.email ? this.maskEmail(user.email) : undefined,
       username: user.name,
       role: user.role,
-      organizationId: user.organizationId != null ? String(user.organizationId) : undefined,
+      organizationId: user.organizationId !== null ? String(user.organizationId) : undefined,
     };
 
     Sentry.setUser(sanitizedUser);
@@ -473,11 +473,11 @@ export class ErrorReportingService {
   }
 
   private isValidExtras(data: unknown): data is Record<string, unknown> {
-    return data != null && typeof data === 'object' && !Array.isArray(data);
+    return data !== null && typeof data === 'object' && !Array.isArray(data);
   }
 
   private sanitizeData(data: unknown): unknown {
-    if (data == null) {
+    if (data === null) {
       return data;
     }
 

@@ -1,5 +1,6 @@
 import { clsx } from 'clsx';
-import { Fragment, forwardRef, type ButtonHTMLAttributes, type ReactElement, type ReactNode } from 'react';
+import { Fragment, forwardRef } from 'react';
+import type { ButtonHTMLAttributes, ReactElement, ReactNode } from 'react';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'danger' | 'ghost' | 'outline';

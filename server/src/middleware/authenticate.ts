@@ -533,7 +533,7 @@ export function requireOrganization(req: Request, res: Response, next: NextFunct
     return;
   }
 
-  if (req.user.organizationId == null) {
+  if (req.user.organizationId === null) {
     res.status(403).json({
       error: 'Forbidden',
       message: 'Organization membership required',
