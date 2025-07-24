@@ -54,7 +54,7 @@ export async function retry<T>(fn: () => Promise<T>, options: RetryOptions = {})
     onRetry,
   } = options;
 
-  let lastError: Error;
+  let lastError: Error | undefined;
   let currentDelay = delay;
 
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
@@ -76,7 +76,8 @@ export async function retry<T>(fn: () => Promise<T>, options: RetryOptions = {})
     }
   }
 
-  throw lastError!;
+  // This should never be reached due to the loop structure, but provide a fallback
+  throw lastError ?? new Error('Retry failed without capturing error');
 }
 
 /**

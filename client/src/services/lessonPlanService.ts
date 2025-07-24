@@ -146,7 +146,7 @@ return '';
       if (Array.isArray(value)) {
         return value.length > 0 && value.some((item) => String(item).trim() !== '');
       }
-      return value && String(value).trim() !== '';
+      return value != null && String(value).trim() !== '';
     });
   }
 }

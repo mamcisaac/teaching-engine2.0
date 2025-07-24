@@ -77,7 +77,7 @@ const router = Router();
  * Check AI service availability and user quota status
  */
 router.get('/status', (req: Request, res: Response): void => {
-  void (async () => {
+  void (async (): Promise<void> => {
     try {
       const userId = req.user?.id;
 
@@ -131,7 +131,7 @@ router.post(
   '/long-range/goals',
   aiRateLimit,
   (req: Request, res: Response): void => {
-    void (async () => {
+    void (async (): Promise<void> => {
       try {
         const sanitizedBody = sanitizeAIInput(req.body) as {
         subject?: string;
@@ -141,7 +141,7 @@ router.post(
       };
       const { subject, grade, termLength, focusAreas } = sanitizedBody;
 
-      if (!subject || grade === null || grade === undefined || termLength === null || termLength === undefined) {
+      if (subject == null || subject === '' || grade === null || grade === undefined || termLength === null || termLength === undefined) {
         res.status(400).json({
           error: 'Missing required fields: subject, grade, termLength',
         });
@@ -149,7 +149,7 @@ router.post(
       }
 
       const suggestions = await aiPlanningAssistant.generateLongRangeGoals({
-        subject: subject!,
+        subject: subject,
         grade: Number(grade),
         termLength: Number(termLength),
         focusAreas: focusAreas ?? [],
@@ -171,7 +171,7 @@ router.post(
  * Generate AI suggestions for unit plan big ideas
  */
 router.post('/unit/big-ideas', aiRateLimit, (req: Request, res: Response): void => {
-  void (async () => {
+  void (async (): Promise<void> => {
     try {
       const sanitizedBody = sanitizeAIInput(req.body) as {
       unitTitle?: string;
@@ -191,10 +191,10 @@ router.post('/unit/big-ideas', aiRateLimit, (req: Request, res: Response): void 
     }
 
     const suggestions = await aiPlanningAssistant.generateUnitBigIdeas({
-      unitTitle: unitTitle!,
-      subject: subject!,
+      unitTitle: unitTitle,
+      subject: subject,
       grade: Number(grade),
-      curriculumExpectations: curriculumExpectations!,
+      curriculumExpectations: curriculumExpectations,
       duration: Number(duration),
     });
 
@@ -235,9 +235,9 @@ router.post(
       }
 
       const suggestions = await aiPlanningAssistant.generateLessonActivities({
-        lessonTitle: lessonTitle!,
-        learningGoals: learningGoals!,
-        subject: subject!,
+        lessonTitle: lessonTitle,
+        learningGoals: learningGoals,
+        subject: subject,
         grade: Number(grade),
         duration: Number(duration),
         materials: materials ?? [],
@@ -278,8 +278,8 @@ router.post(
       }
 
       const suggestions = await aiPlanningAssistant.generateMaterialsList({
-        activities: activities!,
-        subject: subject!,
+        activities: activities,
+        subject: subject,
         grade: Number(grade),
         classSize: classSize !== null && classSize !== undefined ? Number(classSize) : 25,
       });
@@ -319,9 +319,9 @@ router.post(
       }
 
       const suggestions = await aiPlanningAssistant.generateAssessmentStrategies({
-        learningGoals: learningGoals!,
-        activities: activities!,
-        subject: subject!,
+        learningGoals: learningGoals,
+        activities: activities,
+        subject: subject,
         grade: Number(grade),
       });
 

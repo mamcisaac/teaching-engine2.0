@@ -11,6 +11,7 @@ import { prisma } from '../prisma.js';
 import { BaseService } from '../services/base/BaseService.js';
 import type { TemplateCreateData, TemplateUpdateData, Template } from '../types/routes.js';
 import { isValidStringProperty, isNumber } from '../utils/typeGuards.js';
+import { isDefined } from '../../shared/utils/typeGuards';
 
 import type { AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler.js';
 import { BaseRouteHandler } from './base/BaseRouteHandler.js';
@@ -92,6 +93,17 @@ const templateQuerySchema = z.object({
   offset: z.coerce.number().int().min(0).default(0),
 });
 
+// Helper function to safely get numeric values
+function getNumericValue(value: unknown, defaultValue: number): number {
+  if (value === null || value === undefined) return defaultValue;
+  if (typeof value === 'number' && !isNaN(value)) return value;
+  if (typeof value === 'string') {
+    const parsed = parseInt(value, 10);
+    return !isNaN(parsed) ? parsed : defaultValue;
+  }
+  return defaultValue;
+}
+
 // Template service that handles business logic
 class TemplateService extends BaseService {
   constructor() {
@@ -134,7 +146,7 @@ class TemplateService extends BaseService {
     if (isNumber(gradeMax) && gradeMax !== 0) {
       where.AND.push({ gradeMax: { lte: gradeMax } });
     }
-    if (isSystem !== undefined && isSystem !== null) {
+    if (isDefined(isSystem)) {
       where.AND.push({ isSystem });
     }
 
@@ -167,8 +179,8 @@ class TemplateService extends BaseService {
 
     const result = await queryPerformance.monitorQuery('template.findMany', () =>
       optimizedQueries.paginatedQuery(prisma.planTemplate, where, {
-        limit: Number(limit || 20),
-        offset: Number(offset || 0),
+        limit: getNumericValue(limit, 20),
+        offset: getNumericValue(offset, 0),
         orderBy,
         include: optimizedIncludes.template,
       }),
@@ -176,13 +188,16 @@ class TemplateService extends BaseService {
 
     const { items: templates, total } = result;
 
+    const finalLimit = getNumericValue(limit, 20);
+    const finalOffset = getNumericValue(offset, 0);
+    
     return {
       templates,
       pagination: {
         total,
-        limit: Number(limit || 20),
-        offset: Number(offset || 0),
-        hasMore: Number(offset || 0) + Number(limit || 20) < total,
+        limit: finalLimit,
+        offset: finalOffset,
+        hasMore: finalOffset + finalLimit < total,
       },
     };
   }
@@ -217,11 +232,11 @@ class TemplateService extends BaseService {
         subject: data.subject,
         gradeMin: data.gradeMin,
         gradeMax: data.gradeMax,
-        tags: data.tags || [],
-        keywords: data.tags || [], // Use same as tags for now
+        tags: isDefined(data.tags) ? data.tags : [],
+        keywords: isDefined(data.tags) ? data.tags : [], // Use same as tags for now
         isSystem: data.isSystem ?? false,
         createdByUserId: userId,
-        content: data.content || {},
+        content: isDefined(data.content) ? data.content : {},
       },
     });
   }
@@ -242,12 +257,12 @@ class TemplateService extends BaseService {
     return prisma.planTemplate.update({
       where: { id },
       data: {
-        ...(data.title && { title: data.title }),
-        ...(data.titleFr && { titleFr: data.titleFr }),
-        ...(data.description && { description: data.description }),
-        ...(data.descriptionFr && { descriptionFr: data.descriptionFr }),
-        ...(data.type && { type: data.type as 'UNIT_PLAN' | 'LESSON_PLAN' }),
-        ...(data.category && {
+        ...(isDefined(data.title) && isValidStringProperty(data.title) && { title: data.title }),
+        ...(isDefined(data.titleFr) && isValidStringProperty(data.titleFr) && { titleFr: data.titleFr }),
+        ...(isDefined(data.description) && isValidStringProperty(data.description) && { description: data.description }),
+        ...(isDefined(data.descriptionFr) && isValidStringProperty(data.descriptionFr) && { descriptionFr: data.descriptionFr }),
+        ...(isDefined(data.type) && isValidStringProperty(data.type) && { type: data.type as 'UNIT_PLAN' | 'LESSON_PLAN' }),
+        ...(isDefined(data.category) && isValidStringProperty(data.category) && {
           category: data.category as
             | 'BY_SUBJECT'
             | 'BY_GRADE'
@@ -256,12 +271,12 @@ class TemplateService extends BaseService {
             | 'BY_SKILL'
             | 'CUSTOM',
         }),
-        ...(data.subject && { subject: data.subject }),
-        ...(data.gradeMin !== undefined && { gradeMin: data.gradeMin }),
-        ...(data.gradeMax !== undefined && { gradeMax: data.gradeMax }),
-        ...(data.tags && { tags: data.tags }),
-        ...(data.content && { content: data.content }),
-        ...(data.templateData && { templateData: data.templateData }),
+        ...(isDefined(data.subject) && isValidStringProperty(data.subject) && { subject: data.subject }),
+        ...(isDefined(data.gradeMin) && { gradeMin: data.gradeMin }),
+        ...(isDefined(data.gradeMax) && { gradeMax: data.gradeMax }),
+        ...(isDefined(data.tags) && { tags: data.tags }),
+        ...(isDefined(data.content) && { content: data.content }),
+        ...(isDefined(data.templateData) && { templateData: data.templateData }),
       },
     });
   }

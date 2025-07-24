@@ -115,7 +115,7 @@ class UnitPlanService extends BaseService {
     super('UnitPlanService');
   }
 
-  async findMany(filters: Record<string, unknown>, userId: number) {
+  async findMany(filters: Record<string, unknown>, userId: number): Promise<{unitPlans: any[]; pagination: {total: number; limit: number; offset: number; hasMore: boolean};}> {
     const filtersObj = filters ?? {};
     const {
       longRangePlanId,
@@ -195,7 +195,7 @@ where.endDate = { lte: new Date(String(endDate)) };
     };
   }
 
-  async findById(id: string, userId: number) {
+  async findById(id: string, userId: number): Promise<any> {
     return queryPerformance.monitorQuery('unitPlan.findById', () =>
       prisma.unitPlan.findFirst({
         where: {
@@ -207,7 +207,7 @@ where.endDate = { lte: new Date(String(endDate)) };
     );
   }
 
-  async create(data: UnitPlanCreateData, userId: number) {
+  async create(data: UnitPlanCreateData, userId: number): Promise<any> {
     // Verify user owns the long range plan
     const longRangePlan = await prisma.longRangePlan.findFirst({
       where: {
@@ -299,7 +299,7 @@ where.endDate = { lte: new Date(String(endDate)) };
     });
   }
 
-  async update(id: string, data: UnitPlanUpdateData, userId: number) {
+  async update(id: string, data: UnitPlanUpdateData, userId: number): Promise<any> {
     // Verify ownership
     const unitPlan = await prisma.unitPlan.findFirst({
       where: {
@@ -373,7 +373,7 @@ updateData.endDate = new Date(data.endDate);
     return true;
   }
 
-  async addResource(unitPlanId: string, resourceData: ResourceData, userId: number) {
+  async addResource(unitPlanId: string, resourceData: ResourceData, userId: number): Promise<any> {
     // Verify ownership
     const unitPlan = await prisma.unitPlan.findFirst({
       where: {
@@ -420,7 +420,7 @@ updateData.endDate = new Date(data.endDate);
   async duplicate(
     duplicateData: { unitPlanId: string; longRangePlanId: string; title: string },
     userId: number,
-  ) {
+  ): Promise<any> {
     const { unitPlanId, longRangePlanId, title } = duplicateData;
 
     // Verify user owns both the source unit plan and target long range plan
@@ -507,7 +507,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
     return this.unitPlanService;
   }
 
-  protected getValidationSchemas() {
+  protected getValidationSchemas(): {create: any; update: any; query: any} {
     return {
       create: unitPlanCreateSchema,
       update: unitPlanUpdateSchema,
@@ -518,7 +518,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
   protected getCrudOperations(): CrudOperations<unknown> {
     return {
       create: async (data: unknown, userId: number) => this.unitPlanService.create(data as UnitPlanCreateData, userId),
-      findMany: async (filters: unknown, userId: number) => {
+      findMany: async (filters: unknown, userId: number): Promise<any> => {
         const result = await this.unitPlanService.findMany(
           filters as Record<string, unknown>,
           userId,

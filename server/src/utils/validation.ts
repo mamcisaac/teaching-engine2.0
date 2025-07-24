@@ -118,10 +118,17 @@ export const validatePagination = (query: unknown): { page: number; pageSize: nu
   
   const queryObj = query as Record<string, unknown>;
   
-  return {
-    page: Math.max(1, parseInt(String(queryObj.page), 10) || 1),
-    pageSize: Math.min(100, Math.max(1, parseInt(String(queryObj.pageSize), 10) || 20)),
-  };
+  // Parse page with proper NaN checking
+  const parsedPage = parseInt(String(queryObj.page), 10);
+  const page = !isNaN(parsedPage) ? Math.max(1, parsedPage) : 1;
+  
+  // Parse pageSize with proper NaN checking
+  const parsedPageSize = parseInt(String(queryObj.pageSize), 10);
+  const pageSize = !isNaN(parsedPageSize) 
+    ? Math.min(100, Math.max(1, parsedPageSize)) 
+    : 20;
+  
+  return { page, pageSize };
 };
 
 export const validateDateRange = (from?: string | Date, to?: string | Date): { from?: Date; to?: Date } => {

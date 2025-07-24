@@ -9,7 +9,7 @@ const bucket = process.env.AWS_BUCKET_NAME;
 const localDir = path.join(__dirname, '../uploads');
 
 // Initialize S3 client lazily
-async function getS3Client() {
+async function getS3Client(): Promise<unknown> {
   if (!s3Client && bucket && process.env.AWS_ACCESS_KEY_ID && process.env.AWS_SECRET_ACCESS_KEY) {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const { S3Client } = await import('@aws-sdk/client-s3');

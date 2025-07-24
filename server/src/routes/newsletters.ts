@@ -24,7 +24,7 @@ const generateNewsletterSchema = z.object({
  * POST /api/newsletters/generate
  */
 router.post('/generate', (req: Request, res: Response): void => {
-  void (async () => {
+  void (async (): Promise<void> => {
     try {
     const userId = req.user.id;
     if (!userId) {
@@ -76,7 +76,7 @@ router.post('/generate', (req: Request, res: Response): void => {
  * GET /api/newsletters/status
  */
 router.get('/status', (req: Request, res: Response): void => {
-  void (async () => {
+  void (async (): Promise<void> => {
     try {
     const userId = req.user.id;
     if (!userId) {

@@ -101,8 +101,13 @@ router.post(
         sourceFormat = 'csv';
       }
 
+      if (!req.user) {
+        res.status(401).json({ error: 'User not authenticated' });
+        return;
+      }
+
       const importId = await curriculumImportService.startImport(
-        req.user!.id,
+        req.user.id,
         1, // Default grade, can be updated later
         'General', // Default subject, can be updated later
         sourceFormat,
@@ -147,7 +152,7 @@ router.post('/parse', asyncHandler(async (req: AuthenticatedRequest, res: Respon
 
     // Parse the uploaded file
     const parseResult = await curriculumImportService.parseUploadedFile(sessionId, {
-      userId: req.user!.id,
+      userId: req.user.id,
       filename: sessionId,
       useAI: useAiExtraction || true,
     });
@@ -187,7 +192,7 @@ router.post('/import-preset', asyncHandler(async (req: Request, res: Response) =
     }
 
     // Load preset curriculum
-    const presetResult = await curriculumImportService.loadPresetCurriculum(req.user!.id, presetId);
+    const presetResult = await curriculumImportService.loadPresetCurriculum(req.user.id, presetId);
 
     res.json({
       sessionId: presetResult.sessionId,
@@ -293,10 +298,12 @@ router.get('/history', async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    const limit = parseInt(req.query.limit as string) || 10;
+    // Parse limit with proper NaN checking
+    const parsedLimit = parseInt(req.query.limit as string, 10);
+    const limit = !isNaN(parsedLimit) && parsedLimit > 0 ? parsedLimit : 10;
     // Note: offset is not supported by the service method yet
 
-    const history = await curriculumImportService.getImportHistory(req.user!.id, limit);
+    const history = await curriculumImportService.getImportHistory(req.user.id, limit);
 
     res.json(history);
     return;
@@ -355,7 +362,7 @@ router.post('/start', async (req: Request, res: Response): Promise<void> => {
     }
 
     const importId = await curriculumImportService.startImport(
-      req.user!.id,
+      req.user.id,
       grade,
       subject,
       sourceFormat,
@@ -437,7 +444,7 @@ router.post('/:id', async (req: Request, res: Response): Promise<void> => {
     }
 
     // Finalize the import and create curriculum expectations
-    const result = await curriculumImportService.finalizeImport(importId, req.user!.id);
+    const result = await curriculumImportService.finalizeImport(importId, req.user.id);
 
     res.json({
       message: 'Curriculum imported successfully',

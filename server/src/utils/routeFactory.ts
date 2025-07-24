@@ -112,7 +112,11 @@ export function createCrudRoutes<T extends BaseModel = BaseModel>(
   // GET - Get single by ID
   router.get('/:id', async (req: Request, res: Response): Promise<void> => {
     try {
-      const id = parseInt(req.params.id);
+      const id = parseInt(req.params.id, 10);
+      if (isNaN(id)) {
+        res.status(400).json({ message: 'Invalid ID format' });
+        return;
+      }
 
       const item = await prismaModel.findUnique({
         where: { id },
@@ -170,7 +174,11 @@ export function createCrudRoutes<T extends BaseModel = BaseModel>(
   // PUT - Update by ID
   router.put('/:id', async (req: Request, res: Response): Promise<void> => {
     try {
-      const id = parseInt(req.params.id);
+      const id = parseInt(req.params.id, 10);
+      if (isNaN(id)) {
+        res.status(400).json({ message: 'Invalid ID format' });
+        return;
+      }
       let data = updateSchema ? updateSchema.parse(req.body) : req.body;
 
       // Check if item exists
@@ -216,7 +224,11 @@ export function createCrudRoutes<T extends BaseModel = BaseModel>(
   // DELETE - Delete by ID
   router.delete('/:id', async (req: Request, res: Response): Promise<void> => {
     try {
-      const id = parseInt(req.params.id);
+      const id = parseInt(req.params.id, 10);
+      if (isNaN(id)) {
+        res.status(400).json({ message: 'Invalid ID format' });
+        return;
+      }
 
       // Check if item exists
       const existing = await prismaModel.findUnique({ where: { id } });

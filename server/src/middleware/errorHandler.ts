@@ -285,7 +285,7 @@ function handleSpecificErrors(err: ErrorLike): AppError {
     return new AppError(
       err.message || 'Internal server error',
       statusCode,
-      err.code || 'INTERNAL_ERROR',
+      (err.code !== null && err.code !== undefined && err.code !== '') ? err.code : 'INTERNAL_ERROR',
     );
   }
 

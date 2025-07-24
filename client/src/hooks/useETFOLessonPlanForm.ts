@@ -132,12 +132,12 @@ export function useETFOLessonPlanForm({
   const updateField = useCallback(<K extends keyof LessonPlanFormData>(
     field: K,
     value: LessonPlanFormData[K]
-  ) => {
+  ): void => {
     setFormData(prev => ({ ...prev, [field]: value }));
   }, [])
 
   // Array field handlers
-  const addArrayItem = useCallback((field: keyof LessonPlanFormData, value = '') => {
+  const addArrayItem = useCallback((field: keyof LessonPlanFormData, value = ''): void => {
     setFormData(prev => ({
       ...prev,
       [field]: [...(prev[field] as string[]), value],
@@ -148,7 +148,7 @@ export function useETFOLessonPlanForm({
     field: keyof LessonPlanFormData,
     index: number,
     value: string
-  ) => {
+  ): void => {
     setFormData(prev => {
       const array = [...(prev[field] as string[])];
       array[index] = value;
@@ -156,7 +156,7 @@ export function useETFOLessonPlanForm({
     });
   }, [])
 
-  const removeArrayItem = useCallback((field: keyof LessonPlanFormData, index: number) => {
+  const removeArrayItem = useCallback((field: keyof LessonPlanFormData, index: number): void => {
     setFormData(prev => ({
       ...prev,
       [field]: (prev[field] as string[]).filter((_, i) => i !== index),
@@ -167,7 +167,7 @@ export function useETFOLessonPlanForm({
   const validateForm = useCallback((): { isValid: boolean; errors: string[] } => {
     const errors: string[] = [];
 
-    if (!formData.title.trim()) {
+    if (formData.title.trim() === '') {
       errors.push('Title is required');
     }
     if (!formData.date) {
@@ -176,7 +176,7 @@ export function useETFOLessonPlanForm({
     if (formData.duration < 15 || formData.duration > 300) {
       errors.push('Duration must be between 15 and 300 minutes');
     }
-    if (!unitPlanId) {
+    if (unitPlanId === undefined || unitPlanId === '') {
       errors.push('Unit plan is required');
     }
 
@@ -186,14 +186,14 @@ export function useETFOLessonPlanForm({
   // Clean form data for submission
   const getCleanFormData = useCallback((): LessonPlanFormData => ({
       ...formData,
-      materials: formData.materials.filter(m => m.trim()),
-      accommodations: formData.accommodations.filter(a => a.trim()),
-      modifications: formData.modifications.filter(m => m.trim()),
-      extensions: formData.extensions.filter(e => e.trim()),
+      materials: formData.materials.filter(m => m.trim() !== ''),
+      accommodations: formData.accommodations.filter(a => a.trim() !== ''),
+      modifications: formData.modifications.filter(m => m.trim() !== ''),
+      extensions: formData.extensions.filter(e => e.trim() !== ''),
     }), [formData]);
 
   // Reset form
-  const resetForm = useCallback(() => {
+  const resetForm = useCallback((): void => {
     setFormData(initialFormData);
   }, [])
 
@@ -221,7 +221,7 @@ export function useETFOLessonPlanForm({
     isSubFriendly: boolean;
     subNotes?: string;
     expectations?: { expectation: { id: string } }[];
-  }) => {
+  }): void => {
     setFormData({
       title: lesson.title,
       titleFr: lesson.titleFr ?? '',
@@ -252,7 +252,7 @@ export function useETFOLessonPlanForm({
   }, [])
 
   // AI suggestion handlers
-  const applyAISuggestion = useCallback((type: string, content: string[]) => {
+  const applyAISuggestion = useCallback((type: string, content: string[]): void => {
     switch (type) {
       case 'mindson':
         setFormData(prev => ({ ...prev, mindsOn: content.join('\n\n') }));
@@ -266,7 +266,7 @@ export function useETFOLessonPlanForm({
       case 'materials':
         setFormData(prev => ({ 
           ...prev, 
-          materials: [...prev.materials.filter(m => m.trim()), ...content] 
+          materials: [...prev.materials.filter(m => m.trim() !== ''), ...content] 
         }));
         break;
       case 'assessments':

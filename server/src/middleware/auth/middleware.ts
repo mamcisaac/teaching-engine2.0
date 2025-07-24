@@ -85,9 +85,9 @@ export function authorize(...allowedRoles: UserRole[]) {
       next(); return;
     }
 
-    if (authReq.user.role && !allowedRoles.includes(authReq.user.role)) {
+    if (authReq.user.role != null && !allowedRoles.includes(authReq.user.role)) {
       logger.warn(
-        `Access denied for user ${authReq.user.email || 'unknown'} with role ${authReq.user.role || 'unknown'}. Required roles: ${allowedRoles.join(', ')}`,
+        `Access denied for user ${authReq.user.email ?? 'unknown'} with role ${authReq.user.role ?? 'unknown'}. Required roles: ${allowedRoles.join(', ')}`,
       );
       next(new ForbiddenError('Insufficient permissions')); return;
     }
@@ -127,7 +127,7 @@ export async function optionalAuthenticate(
       (req as AuthRequest).user = {
         id: user.id,
         email: user.email,
-        name: (user.name !== null && user.name !== '') ? user.name : '',
+        name: (user.name != null && user.name !== '') ? user.name : '',
         role: user.role as UserRole,
       };
     }

@@ -444,8 +444,10 @@ export function CurriculumSetupWizard({
                   max="12"
                   min="2"
                   onChange={(e) => {
- setFormData({ ...formData, unitCount: parseInt(e.target.value) || 6 }); 
-}}
+                    const parsed = parseInt(e.target.value, 10);
+                    const unitCount = !isNaN(parsed) && parsed > 0 ? parsed : 6;
+                    setFormData({ ...formData, unitCount });
+                  }}
                   type="number"
                   value={formData.unitCount}
                 />
@@ -457,8 +459,10 @@ export function CurriculumSetupWizard({
                   max="12"
                   min="1"
                   onChange={(e) => {
- setFormData({ ...formData, avgUnitLength: parseInt(e.target.value) || 4 }); 
-}}
+                    const parsed = parseInt(e.target.value, 10);
+                    const avgUnitLength = !isNaN(parsed) && parsed > 0 ? parsed : 4;
+                    setFormData({ ...formData, avgUnitLength });
+                  }}
                   type="number"
                   value={formData.avgUnitLength}
                 />

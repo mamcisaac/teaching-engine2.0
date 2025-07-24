@@ -34,7 +34,7 @@ export interface CrudOperations<T> {
   delete: (id: string, userId: number) => Promise<boolean>;
 }
 
-export abstract class BaseRouteHandler<T = any> {
+export abstract class BaseRouteHandler<T = unknown> {
   protected readonly router: Router;
   protected readonly routeName: string;
   protected readonly logger: typeof logger;
@@ -87,8 +87,7 @@ export abstract class BaseRouteHandler<T = any> {
   protected asyncHandler = (
     fn: (req: AuthenticatedRequest, res: Response, next: NextFunction) => Promise<void>,
   ): ((req: AuthenticatedRequest, res: Response, next: NextFunction) => void) => (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
-      // eslint-disable-next-line promise/no-callback-in-promise
-      Promise.resolve(fn(req, res, next)).catch(next);
+      void Promise.resolve(fn(req, res, next)).catch(next);
     };
 
   /**

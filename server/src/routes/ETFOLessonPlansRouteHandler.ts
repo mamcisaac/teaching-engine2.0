@@ -10,6 +10,7 @@ import { z } from 'zod';
 import { prisma } from '../prisma.js';
 import { BaseService } from '../services/base/BaseService.js';
 import type { ETFOLessonPlanCreateData, ETFOLessonPlanUpdateData } from '../types/routes.js';
+import { isNonEmptyArray } from '../../shared/utils/typeGuards';
 
 import type { AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler.js';
 import { BaseRouteHandler } from './base/BaseRouteHandler.js';
@@ -242,8 +243,7 @@ where.assessmentType = assessmentType;
     };
 
     // Add expectations relationship if provided
-    const createData =
-      expectationIds && Array.isArray(expectationIds) && expectationIds.length > 0
+    const createData = isNonEmptyArray(expectationIds)
         ? {
             ...baseData,
             expectations: {
@@ -355,7 +355,7 @@ baseUpdateData.subNotes = updateData.subNotes;
 }
 
     // Handle date conversion
-    if (data.date && data.date !== '') {
+    if (data.date != null && data.date !== '') {
       baseUpdateData.date = new Date(data.date);
     }
 
@@ -482,11 +482,11 @@ baseUpdateData.subNotes = updateData.subNotes;
         consolidationFr: originalLesson.consolidationFr,
         learningGoals: originalLesson.learningGoals,
         learningGoalsFr: originalLesson.learningGoalsFr,
-        materials: originalLesson.materials || undefined,
+        materials: originalLesson.materials ?? undefined,
         grouping: originalLesson.grouping,
-        accommodations: originalLesson.accommodations || undefined,
-        modifications: originalLesson.modifications || undefined,
-        extensions: originalLesson.extensions || undefined,
+        accommodations: originalLesson.accommodations ?? undefined,
+        modifications: originalLesson.modifications ?? undefined,
+        extensions: originalLesson.extensions ?? undefined,
         assessmentType: originalLesson.assessmentType,
         assessmentNotes: originalLesson.assessmentNotes,
         isSubFriendly: true,

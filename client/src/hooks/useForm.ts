@@ -62,7 +62,7 @@ return undefined;
         // For object schemas, try to get the field schema
         if ('shape' in validationSchema) {
           const fieldSchema = (validationSchema.shape as Record<string, z.ZodSchema>)[name];
-          if (fieldSchema && 'parse' in fieldSchema) {
+          if (fieldSchema !== undefined && fieldSchema !== null && 'parse' in fieldSchema) {
             fieldSchema.parse(value);
           } else {
             // Validate entire object if can't extract field schema
@@ -119,7 +119,7 @@ return true;
 
   // Handle field change
   const handleChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>): void => {
       const { name, value, type } = e.target;
       const newValue = type === 'checkbox' ? (e.target as HTMLInputElement).checked : value;
 
@@ -136,7 +136,7 @@ return true;
 
   // Handle field blur
   const handleBlur = useCallback(
-    (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>): void => {
       const { name } = e.target;
       setTouched((prev) => ({ ...prev, [name]: true }));
 
@@ -150,7 +150,7 @@ return true;
 
   // Set field value programmatically
   const setFieldValue = useCallback(
-    (name: keyof T, value: T[keyof T]) => {
+    (name: keyof T, value: T[keyof T]): void => {
       setValues((prev) => ({ ...prev, [name]: value }));
       setIsDirty(true);
 
@@ -163,13 +163,13 @@ return true;
   );
 
   // Set field error programmatically
-  const setFieldError = useCallback((name: string, error: string | undefined) => {
+  const setFieldError = useCallback((name: string, error: string | undefined): void => {
     setErrors((prev) => ({ ...prev, [name]: error }));
   }, [])
 
   // Set field touched programmatically
   const setFieldTouched = useCallback(
-    (name: string, isTouched = true) => {
+    (name: string, isTouched = true): void => {
       setTouched((prev) => ({ ...prev, [name]: isTouched }));
 
       if (isTouched && validateOnBlur) {
@@ -212,7 +212,7 @@ return true;
 
   // Reset form
   const reset = useCallback(
-    (newValues?: Partial<T>) => {
+    (newValues?: Partial<T>): void => {
       setValues(newValues ? { ...initialValues, ...newValues } : initialValues);
       setErrors({});
       setTouched({});
@@ -224,7 +224,14 @@ return true;
 
   // Get field props
   const getFieldProps = useCallback(
-    (name: keyof T) => ({
+    (name: keyof T): {
+      name: string;
+      value: T[keyof T];
+      onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
+      onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
+      'aria-invalid': boolean;
+      'aria-describedby': string | undefined;
+    } => ({
       name: String(name),
       value: values[name],
       onChange: handleChange,

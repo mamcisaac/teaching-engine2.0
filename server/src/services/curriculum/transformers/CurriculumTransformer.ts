@@ -62,7 +62,7 @@ export class CurriculumTransformer {
 
     for (const expectation of expectations) {
       // Skip duplicates if not merging
-      if (!options.mergeDuplicates && processedCodes.has(expectation.code)) {
+      if (options.mergeDuplicates !== true && processedCodes.has(expectation.code)) {
         continue;
       }
       processedCodes.add(expectation.code);
@@ -86,7 +86,7 @@ export class CurriculumTransformer {
       description: expectation.description,
       strand: expectation.strand,
       substrand: expectation.substrand,
-      grade: expectation.grade || curriculum.grade,
+      grade: expectation.grade ?? curriculum.grade,
       subject: curriculum.subject,
       // Note: type, keywords, isActive, metadata fields don't exist in the schema
     };
@@ -151,7 +151,7 @@ export class CurriculumTransformer {
     }
 
     // Mark unprocessed as inactive if overwriting
-    if (options.overwrite) {
+    if (options.overwrite === true) {
       for (const existing of existingExpectations) {
         if (!processedIds.has(existing.id)) {
           toDeactivate.push(existing.id);

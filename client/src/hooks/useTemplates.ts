@@ -232,7 +232,7 @@ export function useTemplateSearch(searchTerm: string, otherOptions: Omit<Templat
 
   return useTemplates({
     ...otherOptions,
-    search: (debouncedSearchTerm && debouncedSearchTerm !== '') ? debouncedSearchTerm : undefined,
+    search: (debouncedSearchTerm !== null && debouncedSearchTerm !== undefined && debouncedSearchTerm !== '') ? debouncedSearchTerm : undefined,
   });
 }
 

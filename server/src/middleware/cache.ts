@@ -5,6 +5,8 @@ import NodeCache from 'node-cache';
 
 import { logger } from '../logger.js';
 
+import { isDefined, isErrorLike } from '../../shared/utils/typeGuards';
+
 import { cacheMetrics } from './metrics.js';
 
 // Cache configuration
@@ -105,60 +107,61 @@ export function createCacheMiddleware(
     condition?: (req: Request) => boolean;
     skipUserSpecific?: boolean;
   } = {},
-): (req: Request, res: Response, next: NextFunction) => Promise<Response | void> {
+): (req: Request, res: Response, next: NextFunction) => void {
   const cache = caches[cacheType];
   const { ttl, keyPrefix = '', condition = shouldCache, skipUserSpecific = false } = options;
 
-  return async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+  return (req: Request, res: Response, next: NextFunction): void => {
     // Check if this request should be cached
     if (!condition(req)) {
       next();
       return;
     }
 
-    try {
-      // Generate cache key
-      const cacheKey = skipUserSpecific
-        ? generateCacheKey(
-            {
-              path: req.path,
-              method: req.method,
-              query: req.query,
-              body: req.body as Record<string, unknown>,
-              headers: req.headers,
-              user: undefined,
-            } as Request,
-            keyPrefix,
-          )
-        : generateCacheKey(req, keyPrefix);
+    // Wrap async logic in void wrapper
+    (async (): Promise<void> => {
+      try {
+        // Generate cache key
+        const cacheKey = skipUserSpecific
+          ? generateCacheKey(
+              {
+                path: req.path,
+                method: req.method,
+                query: req.query,
+                body: req.body as Record<string, unknown>,
+                headers: req.headers,
+                user: undefined,
+              } as Request,
+              keyPrefix,
+            )
+          : generateCacheKey(req, keyPrefix);
 
-      // Try to get from cache
-      const cachedResponse = cache.get(cacheKey);
+        // Try to get from cache
+        const cachedResponse = cache.get(cacheKey);
 
-      if (cachedResponse) {
-        // Cache hit
-        stats[cacheType].hits++;
-        cacheMetrics.recordHit(cacheType);
-        logger.debug({ cacheType, path: req.path }, `Cache hit for key: ${cacheKey}`);
+        if (isDefined(cachedResponse)) {
+          // Cache hit
+          stats[cacheType].hits++;
+          cacheMetrics.recordHit(cacheType);
+          logger.debug({ cacheType, path: req.path }, `Cache hit for key: ${cacheKey}`);
 
-        // Set cache headers
-        res.set('X-Cache', 'HIT');
-        res.set('X-Cache-Key', cacheKey.substring(0, 8));
+          // Set cache headers
+          res.set('X-Cache', 'HIT');
+          res.set('X-Cache-Key', cacheKey.substring(0, 8));
 
-        return res.json(cachedResponse);
-      }
+          res.json(cachedResponse);
+          return;
+        }
 
-      // Cache miss - continue to route handler
-      stats[cacheType].misses++;
-      cacheMetrics.recordMiss(cacheType);
+        // Cache miss - continue to route handler
+        stats[cacheType].misses++;
+        cacheMetrics.recordMiss(cacheType);
+        logger.debug({ cacheType, path: req.path }, `Cache miss for key: ${cacheKey}`);
 
-      // Store original json method
-      const originalJson = res.json;
-
-      // Override json method to cache the response
-      res.json = function (data: unknown): Response {
-        // Cache the response data
-        if (res.statusCode === 200 && data) {
+        // Store original json method to intercept response
+        const originalJson = res.json.bind(res);
+        res.json = function (data: unknown): Response {
+          // Store in cache for future requests
           const cacheTTL = ttl ?? cache.options.stdTTL ?? DEFAULT_TTL;
           cache.set(cacheKey, data, cacheTTL);
 
@@ -166,26 +169,28 @@ export function createCacheMiddleware(
             {
               cacheType,
               path: req.path,
+              cacheKey: cacheKey.substring(0, 8),
               ttl: cacheTTL,
             },
             `Cached response for key: ${cacheKey}`,
           );
-        }
 
-        // Set cache headers
-        res.set('X-Cache', 'MISS');
-        res.set('X-Cache-Key', cacheKey.substring(0, 8));
+          // Set cache headers
+          res.set('X-Cache', 'MISS');
+          res.set('X-Cache-Key', cacheKey.substring(0, 8));
 
-        // Call original json method
-        return originalJson.call(this, data);
-      };
+          // Call original json method
+          return originalJson.call(this, data);
+        };
 
-      next();
-    } catch (_error: unknown) {
-      logger.error('Cache middleware error:', _error as string | undefined);
-      // Continue without caching on error
-      next();
-    }
+        next();
+      } catch (_error: unknown) {
+        const errorMessage = isErrorLike(_error) ? _error.message : 'Unknown cache middleware error';
+        logger.error('Cache middleware error:', errorMessage);
+        // Continue without caching on error
+        next();
+      }
+    })().catch(next);
   };
 }
 
@@ -294,7 +299,8 @@ export function warmUpCache(): void {
 
     logger.info('Cache warm-up completed');
   } catch (_error: unknown) {
-    logger.error('Cache warm-up failed:', _error as string | undefined);
+    const errorMessage = isErrorLike(_error) ? _error.message : 'Unknown cache warm-up error';
+    logger.error('Cache warm-up failed:', errorMessage);
   }
 }
 
@@ -389,7 +395,8 @@ export function isCacheHealthy(): boolean {
     });
     return true;
   } catch (_error: unknown) {
-    logger.error('Cache health check failed:', _error as string | undefined);
+    const errorMessage = isErrorLike(_error) ? _error.message : 'Unknown cache health check error';
+    logger.error('Cache health check failed:', errorMessage);
     return false;
   }
 }

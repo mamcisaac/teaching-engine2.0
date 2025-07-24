@@ -19,6 +19,7 @@ import {
   authenticate,
 } from '../middleware/auth';
 import { authRateLimiter } from '../middleware/rateLimit';
+import { isDefined, isNonEmptyString } from '../../shared/utils/typeGuards';
 import { validateRequest } from '../middleware/validateRequest';
 
 // Validation schemas
@@ -60,9 +61,7 @@ function validateAuthInputs(isRegister = false): (req: Request, res: Response, n
     const { email: rawEmail, password } = req.body as { email?: unknown; password?: unknown; name?: unknown };
 
     // Check for missing or non-string email/password
-    if (!rawEmail || (typeof rawEmail === 'string' && rawEmail === '') || 
-        !password || (typeof password === 'string' && password === '') || 
-        typeof rawEmail !== 'string' || typeof password !== 'string') {
+    if (!isNonEmptyString(rawEmail) || !isNonEmptyString(password)) {
       res.status(400).json({ error: 'Email and password are required' });
       return;
     }
@@ -79,7 +78,7 @@ function validateAuthInputs(isRegister = false): (req: Request, res: Response, n
     }
 
     // For register, check if name is provided
-    if (isRegister && (!(req.body as { name?: unknown }).name || (req.body as { name?: string }).name === '')) {
+    if (isRegister && !isNonEmptyString((req.body as { name?: unknown }).name)) {
       res.status(400).json({ error: 'Email, password, and name are required' });
       return;
     }

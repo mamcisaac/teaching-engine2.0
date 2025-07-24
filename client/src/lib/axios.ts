@@ -14,13 +14,13 @@ api.interceptors.request.use(
   async (config) => {
     // Add authorization header if we have a token
     const authHeaders = authService.getAuthHeaders();
-    if (authHeaders.Authorization !== undefined && authHeaders.Authorization !== '') {
+    if (authHeaders.Authorization !== null && authHeaders.Authorization !== undefined && authHeaders.Authorization !== '' && authHeaders.Authorization.length > 0) {
       config.headers.Authorization = authHeaders.Authorization;
     }
 
     // Also support legacy token for backward compatibility
     const legacyToken = localStorage.getItem('token');
-    if ((legacyToken !== null && legacyToken !== '') && (authHeaders.Authorization === undefined || authHeaders.Authorization === null || authHeaders.Authorization === '')) {
+    if (legacyToken !== null && legacyToken !== undefined && legacyToken !== '' && legacyToken.length > 0 && (authHeaders.Authorization === null || authHeaders.Authorization === undefined || authHeaders.Authorization === '' || authHeaders.Authorization.length === 0)) {
       config.headers.Authorization = `Bearer ${legacyToken}`;
     }
 
@@ -58,7 +58,7 @@ api.interceptors.response.use(
       if (shouldRetry) {
         // Update the authorization header with the new token
         const authHeaders = authService.getAuthHeaders();
-        if ((authHeaders.Authorization !== undefined && authHeaders.Authorization !== '') && originalRequest.headers) {
+        if (authHeaders.Authorization && authHeaders.Authorization.length > 0 && originalRequest.headers) {
           originalRequest.headers.Authorization = authHeaders.Authorization;
         }
 

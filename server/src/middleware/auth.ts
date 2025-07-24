@@ -595,9 +595,16 @@ export async function resetPassword(
     // Hash new password
     const passwordHash = await hashPassword(newPassword);
 
+    // Parse and validate user ID
+    const userId = parseInt(decoded.userId, 10);
+    if (isNaN(userId)) {
+      res.status(400).json({ error: 'Invalid user ID in token' });
+      return;
+    }
+
     // Update user password
     await prisma.user.update({
-      where: { id: parseInt(decoded.userId, 10) },
+      where: { id: userId },
       data: {
         password: passwordHash,
         // passwordChangedAt field doesn't exist in schema

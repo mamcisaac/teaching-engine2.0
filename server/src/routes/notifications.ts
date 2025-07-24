@@ -15,8 +15,13 @@ router.get('/', (req: Request, res): void => {
       return;
     }
 
-    const limit = parseInt(req.query.limit as string) || 20;
-    const offset = parseInt(req.query.offset as string) || 0;
+    // Parse limit with proper NaN checking
+    const parsedLimit = parseInt(req.query.limit as string, 10);
+    const limit = !isNaN(parsedLimit) && parsedLimit > 0 ? parsedLimit : 20;
+    
+    // Parse offset with proper NaN checking - 0 is valid
+    const parsedOffset = parseInt(req.query.offset as string, 10);
+    const offset = !isNaN(parsedOffset) && parsedOffset >= 0 ? parsedOffset : 0;
     const read = req.query.read === 'true' ? true : req.query.read === 'false' ? false : undefined;
 
     // Build where clause

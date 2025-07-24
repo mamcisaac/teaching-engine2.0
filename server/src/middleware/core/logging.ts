@@ -75,7 +75,7 @@ export const requestLoggingMiddleware = (
   };
 
   // Don't log body for GET requests or file uploads
-  if (req.method !== 'GET' && !req.is('multipart/form-data')) {
+  if (req.method !== 'GET' && req.is('multipart/form-data') === false) {
     requestLog.body = sanitizeData(req.body as Record<string, unknown>);
   }
 

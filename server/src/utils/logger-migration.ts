@@ -23,7 +23,7 @@ interface LegacyLogger {
  */
 export function createCompatibleLogger(): LegacyLogger {
   return {
-    error(message: string, ...args: unknown[]) {
+    error(message: string, ...args: unknown[]): void {
       const [error, meta] = parseArgs(args);
       if (error instanceof Error) {
         structuredLogger.error(message, error, meta);
@@ -32,22 +32,22 @@ export function createCompatibleLogger(): LegacyLogger {
       }
     },
 
-    warn(message: string, ...args: unknown[]) {
+    warn(message: string, ...args: unknown[]): void {
       const [data, meta] = parseArgs(args);
       structuredLogger.warn(message, { ...meta, data });
     },
 
-    info(message: string, ...args: unknown[]) {
+    info(message: string, ...args: unknown[]): void {
       const [data, meta] = parseArgs(args);
       structuredLogger.info(message, { ...meta, data });
     },
 
-    debug(message: string, ...args: unknown[]) {
+    debug(message: string, ...args: unknown[]): void {
       const [data, meta] = parseArgs(args);
       structuredLogger.debug(message, { ...meta, data });
     },
 
-    log(level: string, message: string, ...args: unknown[]) {
+    log(level: string, message: string, ...args: unknown[]): void {
       const [data, meta] = parseArgs(args);
       // Map string level to LogLevel enum
       const logLevel = level as keyof typeof structuredLogger;
@@ -96,7 +96,7 @@ export class StructuredLoggerTransport extends winston.transports.Stream {
     super(options);
   }
 
-  log(info: winston.LogEntry, callback: () => void) {
+  log(info: winston.LogEntry, callback: () => void): void {
     const { level, message, ...meta } = info;
 
     // Forward to structured logger
@@ -163,7 +163,7 @@ export function requestLoggerMiddleware(
   },
   _res: Response,
   next: () => void,
-) {
+): void {
   // Add logger to request for convenience
   req.logger = structuredLogger.child({
     requestId: req.id,
@@ -177,19 +177,19 @@ export function requestLoggerMiddleware(
     throw new Error('Logger not initialized on request object');
   }
   
-  req.logInfo = (message: string, meta?: LogMeta) => {
+  req.logInfo = (message: string, meta?: LogMeta): void => {
     logger.info(message, meta);
   };
 
-  req.logError = (message: string, error: Error, meta?: LogMeta) => {
+  req.logError = (message: string, error: Error, meta?: LogMeta): void => {
     logger.error(message, error, meta);
   };
 
-  req.logWarn = (message: string, meta?: LogMeta) => {
+  req.logWarn = (message: string, meta?: LogMeta): void => {
     logger.warn(message, meta);
   };
 
-  req.logDebug = (message: string, meta?: LogMeta) => {
+  req.logDebug = (message: string, meta?: LogMeta): void => {
     logger.debug(message, meta);
   };
 
@@ -240,7 +240,7 @@ export class PerformanceLogger {
     });
   }
 
-  end(metadata?: LogMeta) {
+  end(metadata?: LogMeta): number {
     const duration = Date.now() - this.startTime;
 
     structuredLogger.info(`${this.operation} completed`, {

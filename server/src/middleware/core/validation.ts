@@ -6,6 +6,7 @@ import { z, ZodError } from 'zod';
 import { logger } from '../../logger';
 import type { ValidatedRequest } from '../../types/http';
 import { ValidationError } from '../../utils/errors';
+import { isDefined, isError } from '../../../shared/utils/typeGuards';
 
 export type { ValidatedRequest } from '../../types/http';
 
@@ -108,7 +109,7 @@ export const validate = <T>(
         );
 
         // Use custom _error handler if provided
-        if (customErrorHandler !== null && customErrorHandler !== undefined) {
+        if (isDefined(customErrorHandler)) {
           const customError = customErrorHandler(_error, req);
           next(customError); return;
         }
@@ -118,13 +119,13 @@ export const validate = <T>(
           field: err.path.join('.'),
           message: err.message,
           code: err.code,
-          ...('expected' in err && err.expected !== undefined && { expected: err.expected }),
-          ...('received' in err && err.received !== undefined && { received: err.received }),
+          ...('expected' in err && isDefined(err.expected) && { expected: err.expected }),
+          ...('received' in err && isDefined(err.received) && { received: err.received }),
         }));
 
         next(new ValidationError('Validation failed', formattedErrors));
       } else {
-        next(_error as Error);
+        next(isError(_error) ? _error : new Error(`Validation error: ${String(_error)}`));
       }
     }
     })().catch(next);
@@ -163,34 +164,36 @@ export const validateIf = <T>(
 export const validateOneOf = <T extends ZodTypeAny[]>(
   schemas: T,
   options?: ValidationOptions,
-): RequestHandler => async (req, res, next): Promise<void> => {
-    const errors: ZodError[] = [];
+): RequestHandler => (req, res, next): void => {
+    void (async (): Promise<void> => {
+      const errors: ZodError[] = [];
 
-    for (const schema of schemas) {
-      try {
-        // Create a promise that resolves when validation succeeds
-        await new Promise<void>((resolve, reject) => {
-          validate(schema as ZodSchema<unknown>, options)(req, res, ((err?: unknown) => {
-            if (err) reject(err);
-            else resolve();
-          }) as NextFunction);
-        });
-        next(); return; // Success on first valid schema
-      } catch (_error: unknown) {
-        if (_error instanceof ZodError) {
-          errors.push(_error);
+      for (const schema of schemas) {
+        try {
+          // Create a promise that resolves when validation succeeds
+          await new Promise<void>((resolve, reject) => {
+            validate(schema as ZodSchema<unknown>, options)(req, res, ((err?: unknown) => {
+              if (isDefined(err)) reject(err);
+              else resolve();
+            }) as NextFunction);
+          });
+          next(); return; // Success on first valid schema
+        } catch (_error: unknown) {
+          if (_error instanceof ZodError) {
+            errors.push(_error);
+          }
         }
       }
-    }
 
-    // All schemas failed
-    const combinedErrors = errors.flatMap((e) => e.errors);
-    const formattedErrors = combinedErrors.map((err) => ({
-      field: err.path.join('.'),
-      message: err.message,
-      code: err.code,
-    }));
-    next(new ValidationError('None of the validation schemas passed', formattedErrors));
+      // All schemas failed
+      const combinedErrors = errors.flatMap((e) => e.errors);
+      const formattedErrors = combinedErrors.map((err) => ({
+        field: err.path.join('.'),
+        message: err.message,
+        code: err.code,
+      }));
+      next(new ValidationError('None of the validation schemas passed', formattedErrors));
+    })().catch(next);
   };
 
 // Schema composition helpers

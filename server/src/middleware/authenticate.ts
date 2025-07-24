@@ -84,7 +84,7 @@ function extractToken(req: Request): string | null {
   }
 
   // Check query parameter (for download links)
-  if (req.query.token && typeof req.query.token === 'string') {
+  if (req.query.token != null && typeof req.query.token === 'string') {
     return req.query.token;
   }
 

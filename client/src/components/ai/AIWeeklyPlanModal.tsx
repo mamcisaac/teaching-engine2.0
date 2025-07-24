@@ -131,7 +131,9 @@ return 'text-yellow-600';
 
   const formatTime = (time: string): string => {
     const [hours, minutes] = time.split(':');
-    const hour = parseInt(hours);
+    const parsedHour = parseInt(hours, 10);
+    // If parsing fails, default to 12 (noon)
+    const hour = !isNaN(parsedHour) ? parsedHour : 12;
     const ampm = hour >= 12 ? 'PM' : 'AM';
     let displayHour = hour;
     if (hour > 12) {

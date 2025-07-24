@@ -217,17 +217,11 @@ export function useUnitPlanWithOffline(unitPlanId?: string): {
 
   // Load unit plan with offline support
   useEffect(() => {
-    return () => { // Cleanup
-    };
-
-    if (unitPlanId === null || unitPlanId === undefined || unitPlanId === '') {
-return;
-}
+    if (unitPlanId === undefined || unitPlanId === '') {
+      return;
+    }
 
     const loadPlan = async (): Promise<void> => {
-      if (unitPlanId === null || unitPlanId === undefined || unitPlanId === '') {
-return;
-}
       setLoading(true);
       try {
         const typedStore = unitPlanStore as UnitPlanStoreType;
@@ -240,6 +234,9 @@ return;
     };
 
     void loadPlan();
+
+    return () => { // Cleanup
+    };
   }, [unitPlanId, unitPlanStore]);
 
   // Create debounced update function with proper typing

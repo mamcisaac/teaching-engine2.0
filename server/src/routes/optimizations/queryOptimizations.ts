@@ -272,12 +272,12 @@ return {};
   ): WhereCondition {
     const where: WhereCondition = {};
 
-    if (startDate || endDate) {
+    if (startDate != null || endDate != null) {
       where[dateField] = {};
-      if (startDate) {
+      if (startDate != null) {
         (where[dateField] as Record<string, unknown>).gte = new Date(startDate);
       }
-      if (endDate) {
+      if (endDate != null) {
         (where[dateField] as Record<string, unknown>).lte = new Date(endDate);
       }
     }

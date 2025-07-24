@@ -326,11 +326,15 @@ export async function getRateLimitStatus(
     );
     const ttl = await (redisClient as { ttl: (key: string) => Promise<number> }).ttl(fullKey);
 
-    if (count && ttl > 0) {
-      return {
-        count: parseInt(count),
-        resetTime: new Date(Date.now() + ttl * 1000),
-      };
+    // Check if count is not null and parse it - 0 is a valid count
+    if (count !== null && count !== undefined && ttl > 0) {
+      const parsedCount = parseInt(count, 10);
+      if (!isNaN(parsedCount)) {
+        return {
+          count: parsedCount,
+          resetTime: new Date(Date.now() + ttl * 1000),
+        };
+      }
     }
   } catch (error) {
     logger.error('Failed to get rate limit status:', error as string | undefined);

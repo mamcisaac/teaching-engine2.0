@@ -5,25 +5,42 @@ import { z } from 'zod';
 
 import { logger } from '../logger';
 import { authMiddleware } from '../middleware/auth';
+import { isDefined, isErrorLike } from '../../shared/utils/typeGuards';
 const router = Router();
+
+// Helper function to safely get boolean values
+function getSafeBooleanValue(value: unknown): boolean {
+  if (value === 'true' || value === true) return true;
+  return false;
+}
+
+// Helper function to safely get numeric values
+function getSafeNumericValue(value: unknown, defaultValue: number): number {
+  if (value === null || value === undefined) return defaultValue;
+  if (typeof value === 'number' && !isNaN(value)) return value;
+  if (typeof value === 'string') {
+    const parsed = parseInt(value, 10);
+    return !isNaN(parsed) ? parsed : defaultValue;
+  }
+  return defaultValue;
+}
 
 // Async middleware wrapper to handle promises properly
 const asyncMiddleware = (fn: (req: Request, res: Response, next: NextFunction) => Promise<void>) => 
   (req: Request, res: Response, next: NextFunction): void => {
-    Promise.resolve(fn(req, res, next)).catch(next);
+    void Promise.resolve(fn(req, res, next)).catch(next);
   };
 
 // Get user's collections
-router.get('/', asyncMiddleware(authMiddleware), async (req: Request, res: Response) => {
-
-    try {
+router.get('/', asyncMiddleware(authMiddleware), asyncMiddleware(async (req: Request, res: Response, next: NextFunction) => {
+  try {
     if (req.user?.id === null || req.user?.id === undefined) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
     const userId = req.user?.id;
     
-    const { includePublic = false } = req.query;
+    const includePublic = getSafeBooleanValue(req.query.includePublic);
 
     const where = includePublic
       ? {
@@ -51,17 +68,15 @@ router.get('/', asyncMiddleware(authMiddleware), async (req: Request, res: Respo
       success: true,
       data: collections,
     });
-    return;
   } catch (_error) {
-    logger.error('Get collections error:', _error as string | undefined);
+    const errorMessage = isErrorLike(_error) ? _error.message : 'Unknown error';
+    logger.error('Get collections error:', errorMessage);
     res.status(500).json({
       success: false,
       error: 'Failed to get collections',
     });
-    return;
   }
-
-});
+}));
 
 // Get collection details with activities
 router.get('/:collectionId', asyncMiddleware(authMiddleware), async (req: Request, res: Response) => {
@@ -110,7 +125,8 @@ router.get('/:collectionId', asyncMiddleware(authMiddleware), async (req: Reques
     });
     return;
   } catch (_error) {
-    logger.error('Get collection details error:', _error as string | undefined);
+    const errorMessage = isErrorLike(_error) ? _error.message : 'Unknown error';
+    logger.error('Get collection details error:', errorMessage);
     res.status(500).json({
       success: false,
       error: 'Failed to get collection details',
@@ -153,7 +169,8 @@ router.post('/', authMiddleware, async (req: Request, res: Response) => {
     });
     return;
   } catch (_error) {
-    logger.error('Create collection error:', _error as string | undefined);
+    const errorMessage = isErrorLike(_error) ? _error.message : 'Unknown error';
+    logger.error('Create collection error:', errorMessage);
     res.status(400).json({
       success: false,
       error: _error instanceof z.ZodError ? _error.errors : 'Failed to create collection',
@@ -209,7 +226,8 @@ router.put('/:collectionId', authMiddleware, async (req: Request, res: Response)
     });
     return;
   } catch (_error) {
-    logger.error('Update collection error:', _error as string | undefined);
+    const errorMessage = isErrorLike(_error) ? _error.message : 'Unknown error';
+    logger.error('Update collection error:', errorMessage);
     res.status(400).json({
       success: false,
       error: _error instanceof z.ZodError ? _error.errors : 'Failed to update collection',
@@ -260,7 +278,8 @@ router.delete(
       });
       return;
     } catch (_error) {
-      logger.error('Delete collection error:', _error as string | undefined);
+      const errorMessage = isErrorLike(_error) ? _error.message : 'Unknown error';
+      logger.error('Delete collection error:', errorMessage);
       res.status(500).json({
         success: false,
         error: 'Failed to delete collection',
@@ -346,7 +365,8 @@ router.post(
       });
       return;
     } catch (_error) {
-      logger.error('Add activity to collection error:', _error as string | undefined);
+      const errorMessage = isErrorLike(_error) ? _error.message : 'Unknown error';
+      logger.error('Add activity to collection error:', errorMessage);
       res.status(400).json({
         success: false,
         error:
@@ -404,7 +424,8 @@ router.delete(
       });
       return;
     } catch (_error) {
-      logger.error('Remove activity from collection error:', _error as string | undefined);
+      const errorMessage = isErrorLike(_error) ? _error.message : 'Unknown error';
+      logger.error('Remove activity from collection error:', errorMessage);
       res.status(500).json({
         success: false,
         error: 'Failed to remove activity from collection',
@@ -428,7 +449,7 @@ router.get(
       }
       const userId = req.user?.id;
       
-      const { limit = 10 } = req.query;
+      const limit = getSafeNumericValue(req.query.limit, 10);
 
       const collections = await prisma.activityCollection.findMany({
         where: { userId }, // Single-teacher use - only user's collections
@@ -444,7 +465,7 @@ router.get(
           },
         },
         orderBy: [{ items: { _count: 'desc' } }, { updatedAt: 'desc' }],
-        take: Number(limit),
+        take: limit,
       });
 
       res.json({
@@ -453,7 +474,8 @@ router.get(
       });
       return;
     } catch (_error) {
-      logger.error('Get trending collections error:', _error as string | undefined);
+      const errorMessage = isErrorLike(_error) ? _error.message : 'Unknown error';
+      logger.error('Get trending collections error:', errorMessage);
       res.status(500).json({
         success: false,
         error: 'Failed to get trending collections',

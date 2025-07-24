@@ -324,9 +324,11 @@ export function LessonPlanForm({
                     id="duration"
                     min="1"
                     onChange={(e) => {
- setFormData({ ...formData, duration: parseInt(e.target.value, 10) || 0 }); 
-}
-                    }
+                      const parsed = parseInt(e.target.value, 10);
+                      // For duration, 0 is not valid (min is 1), so fall back to 1
+                      const duration = !isNaN(parsed) && parsed > 0 ? parsed : 1;
+                      setFormData({ ...formData, duration });
+                    }}
                     required
                     type="number"
                     value={formData.duration}

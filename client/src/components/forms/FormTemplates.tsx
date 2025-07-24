@@ -340,12 +340,14 @@ return;
                   max="50"
                   min="1"
                   onChange={(e) => {
- setCustomConfig({
+                    const parsed = parseInt(e.target.value, 10);
+                    // For quantity, 0 is not valid (min is 1), so fall back to 1
+                    const quantity = !isNaN(parsed) && parsed > 0 ? parsed : 1;
+                    setCustomConfig({
                       ...customConfig,
-                      quantity: parseInt(e.target.value) || 1,
-                    }); 
-}
-                  }
+                      quantity,
+                    });
+                  }}
                   type="number"
                   value={customConfig.quantity}
                 />

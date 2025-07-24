@@ -44,13 +44,13 @@ router.get('/', async (req: Request, res, _next) => {
     const { academicYear, subject, grade } = req.query;
 
     const where: Prisma.LongRangePlanWhereInput = { userId };
-    if (academicYear) {
+    if (academicYear != null) {
 where.academicYear = String(academicYear);
 }
-    if (subject) {
+    if (subject != null) {
 where.subject = String(subject);
 }
-    if (grade) {
+    if (grade != null) {
 where.grade = Number(grade);
 }
 

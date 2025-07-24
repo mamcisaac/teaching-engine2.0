@@ -196,7 +196,7 @@ describe('LoginPage', () => {
 
   describe('Loading State', () => {
     it('should show loading state during form submission', async () => {
-      let resolveApiCall: (value: unknown) => void;
+      let resolveApiCall: ((value: unknown) => void) | undefined;
       const apiPromise = new Promise(resolve => {
         resolveApiCall = resolve;
       });
@@ -219,7 +219,9 @@ describe('LoginPage', () => {
       expect(screen.queryByRole('button', { name: /sign in/i })).not.toBeInTheDocument();
 
       // Resolve the API call
-      resolveApiCall!({ data: { user: createMockUser() } });
+      if (resolveApiCall) {
+        resolveApiCall({ data: { user: createMockUser() } });
+      }
 
       await waitFor(() => {
         expect(screen.queryByText(/signing in\.\.\./i)).not.toBeInTheDocument();
@@ -227,7 +229,7 @@ describe('LoginPage', () => {
     });
 
     it('should prevent multiple submissions during loading', async () => {
-      let resolveApiCall: (value: unknown) => void;
+      let resolveApiCall: ((value: unknown) => void) | undefined;
       const apiPromise = new Promise(resolve => {
         resolveApiCall = resolve;
       });
@@ -252,7 +254,9 @@ describe('LoginPage', () => {
       expect(api.api.post).toHaveBeenCalledTimes(1);
 
       // Resolve the API call
-      resolveApiCall!({ data: { user: createMockUser() } });
+      if (resolveApiCall) {
+        resolveApiCall({ data: { user: createMockUser() } });
+      }
     });
   });
 

@@ -41,7 +41,7 @@ export interface ConflictData {
 }
 
 class OfflineStorageService {
-  private db: IDBDatabase | null = null;
+  private db!: IDBDatabase;
   private initPromise: Promise<void> | null = null;
 
   constructor() {
@@ -108,7 +108,7 @@ class OfflineStorageService {
       synced: false,
     };
 
-    const transaction = this.db!.transaction(['changes'], 'readwrite');
+    const transaction = this.db.transaction(['changes'], 'readwrite');
     const store = transaction.objectStore('changes');
 
     return new Promise((resolve, reject) => {
@@ -126,7 +126,7 @@ class OfflineStorageService {
   async getUnsyncedChanges(): Promise<OfflineChange[]> {
     await this.ensureInitialized();
 
-    const transaction = this.db!.transaction(['changes'], 'readonly');
+    const transaction = this.db.transaction(['changes'], 'readonly');
     const store = transaction.objectStore('changes');
     const index = store.index('synced');
 
@@ -145,7 +145,7 @@ class OfflineStorageService {
   async markChangeSynced(changeId: string): Promise<void> {
     await this.ensureInitialized();
 
-    const transaction = this.db!.transaction(['changes'], 'readwrite');
+    const transaction = this.db.transaction(['changes'], 'readwrite');
     const store = transaction.objectStore('changes');
 
     return new Promise((resolve, reject) => {
@@ -184,7 +184,7 @@ class OfflineStorageService {
       expiresAt: ttlMinutes !== undefined ? Date.now() + ttlMinutes * 60 * 1000 : undefined,
     };
 
-    const transaction = this.db!.transaction(['cache'], 'readwrite');
+    const transaction = this.db.transaction(['cache'], 'readwrite');
     const store = transaction.objectStore('cache');
 
     return new Promise((resolve, reject) => {
@@ -202,7 +202,7 @@ class OfflineStorageService {
   async getCachedData<T = StoredData>(key: string): Promise<T | null> {
     await this.ensureInitialized();
 
-    const transaction = this.db!.transaction(['cache'], 'readonly');
+    const transaction = this.db.transaction(['cache'], 'readonly');
     const store = transaction.objectStore('cache');
 
     return new Promise((resolve, reject) => {
@@ -238,7 +238,7 @@ class OfflineStorageService {
   async deleteCachedData(key: string): Promise<void> {
     await this.ensureInitialized();
 
-    const transaction = this.db!.transaction(['cache'], 'readwrite');
+    const transaction = this.db.transaction(['cache'], 'readwrite');
     const store = transaction.objectStore('cache');
 
     return new Promise((resolve, reject) => {
@@ -256,7 +256,7 @@ class OfflineStorageService {
   async cleanupExpiredCache(): Promise<void> {
     await this.ensureInitialized();
 
-    const transaction = this.db!.transaction(['cache'], 'readwrite');
+    const transaction = this.db.transaction(['cache'], 'readwrite');
     const store = transaction.objectStore('cache');
     const index = store.index('expiresAt');
     const now = Date.now();
@@ -300,7 +300,7 @@ class OfflineStorageService {
       resolved: false,
     };
 
-    const transaction = this.db!.transaction(['conflicts'], 'readwrite');
+    const transaction = this.db.transaction(['conflicts'], 'readwrite');
     const store = transaction.objectStore('conflicts');
 
     return new Promise((resolve, reject) => {
@@ -328,7 +328,7 @@ class OfflineStorageService {
   > {
     await this.ensureInitialized();
 
-    const transaction = this.db!.transaction(['conflicts'], 'readonly');
+    const transaction = this.db.transaction(['conflicts'], 'readonly');
     const store = transaction.objectStore('conflicts');
     const index = store.index('resolved');
 
@@ -351,7 +351,7 @@ class OfflineStorageService {
   ): Promise<void> {
     await this.ensureInitialized();
 
-    const transaction = this.db!.transaction(['conflicts'], 'readwrite');
+    const transaction = this.db.transaction(['conflicts'], 'readwrite');
     const store = transaction.objectStore('conflicts');
 
     return new Promise((resolve, reject) => {
@@ -392,7 +392,7 @@ class OfflineStorageService {
   async clearAll(): Promise<void> {
     await this.ensureInitialized();
 
-    const transaction = this.db!.transaction(['changes', 'cache', 'conflicts'], 'readwrite');
+    const transaction = this.db.transaction(['changes', 'cache', 'conflicts'], 'readwrite');
 
     return new Promise((resolve, reject) => {
       transaction.objectStore('changes').clear();

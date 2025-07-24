@@ -143,12 +143,14 @@ export function AISuggestionModal({
               <Input
                 id="duration"
                 onChange={(e) => {
- setEditedSuggestion({
+                  const parsed = parseInt(e.target.value, 10);
+                  // For duration, 0 might be valid (no duration set), so keep it
+                  const duration = !isNaN(parsed) && parsed >= 0 ? parsed : 0;
+                  setEditedSuggestion({
                     ...editedSuggestion,
-                    duration: parseInt(e.target.value) || 0,
-                  }); 
-}
-                }
+                    duration,
+                  });
+                }}
                 type="number"
                 value={editedSuggestion.duration}
               />

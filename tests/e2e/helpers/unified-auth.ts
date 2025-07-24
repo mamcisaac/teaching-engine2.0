@@ -260,13 +260,13 @@ export async function retry<T>(
 ): Promise<T> {
   const { maxRetries = 3, delay = 1000, retryCondition = () => true } = options;
 
-  let lastError: Error;
+  let lastError: Error | undefined;
 
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
     try {
       return await operation();
     } catch (_error) {
-      lastError = error as Error;
+      lastError = _error as Error;
 
       if (attempt === maxRetries || !retryCondition(lastError)) {
         throw lastError;
@@ -277,7 +277,8 @@ export async function retry<T>(
     }
   }
 
-  throw lastError!;
+  // This should never be reached due to the loop structure, but provide a fallback
+  throw lastError ?? new Error('Retry failed without capturing error');
 }
 
 /**

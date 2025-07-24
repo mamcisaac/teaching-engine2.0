@@ -400,7 +400,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
   };
 
   // If we're in detail mode (lessonId provided), show the detail view
-  if (lessonId !== undefined && selectedLesson !== undefined && selectedLesson !== null) {
+  if (lessonId !== undefined && selectedLesson != null) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Breadcrumb */}

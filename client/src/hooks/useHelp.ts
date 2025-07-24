@@ -465,7 +465,7 @@ export function useHelpContent(): {
     let content = mockHelpContent;
 
     // Apply section filter
-    if (state.currentSection) {
+    if (state.currentSection !== null && state.currentSection !== undefined && state.currentSection !== '') {
       content = content.filter(item => item.section === state.currentSection);
     }
 
@@ -617,7 +617,7 @@ export function useHelpSearch(): {
 
   // Get search suggestions based on current query
   useEffect(() => {
-    if (state.searchQuery && state.searchQuery.length > 1) {
+    if (state.searchQuery !== null && state.searchQuery !== undefined && state.searchQuery !== '' && state.searchQuery.length > 1) {
       const query = state.searchQuery.toLowerCase();
       const allSearchTerms = mockHelpContent.flatMap(item => item.searchTerms);
       const matchingSuggestions = allSearchTerms

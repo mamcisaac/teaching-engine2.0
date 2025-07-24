@@ -68,8 +68,8 @@ return;
       res as unknown as Record<string, unknown>,
       duration,
       {
-        responseSize: res.get('Content-Length') || 0,
-        cacheStatus: res.get('X-Cache') || 'MISS',
+        responseSize: res.get('Content-Length') !== null && res.get('Content-Length') !== undefined && res.get('Content-Length') !== '' ? res.get('Content-Length') : 0,
+        cacheStatus: res.get('X-Cache') !== null && res.get('X-Cache') !== undefined && res.get('X-Cache') !== '' ? res.get('X-Cache') : 'MISS',
       },
     );
 
@@ -272,7 +272,7 @@ export function logSecurityEvent(
 
   requestLogger.security(event, {
     ...details,
-    ip: extendedReq.ip || extendedReq.connection.remoteAddress,
+    ip: extendedReq.ip !== null && extendedReq.ip !== undefined && extendedReq.ip !== '' ? extendedReq.ip : extendedReq.connection.remoteAddress,
     userAgent: extendedReq.get('User-Agent'),
     method: extendedReq.method,
     url: extendedReq.url,
@@ -312,7 +312,7 @@ export function logAuditEvent(
   requestLogger.audit(operation, {
     ...details,
     userId: (extendedReq.user as { id?: unknown }).id,
-    ip: extendedReq.ip || extendedReq.connection.remoteAddress,
+    ip: extendedReq.ip !== null && extendedReq.ip !== undefined && extendedReq.ip !== '' ? extendedReq.ip : extendedReq.connection.remoteAddress,
     timestamp: new Date().toISOString(),
   });
 }

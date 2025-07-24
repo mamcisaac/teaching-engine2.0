@@ -66,7 +66,9 @@ router.get('/', async (req: Request, res, _next) => {
       return;
     }
 
-    const limit = parseInt(req.query.limit as string) || 10;
+    // Parse limit with proper NaN checking
+    const parsedLimit = parseInt(req.query.limit as string, 10);
+    const limit = !isNaN(parsedLimit) && parsedLimit > 0 ? parsedLimit : 10;
 
     const recentAccesses = await prisma.recentPlanAccess.findMany({
       where: { userId },

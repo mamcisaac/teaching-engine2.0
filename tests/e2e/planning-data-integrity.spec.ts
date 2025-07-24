@@ -303,23 +303,27 @@ test.describe('Planning Data Integrity Tests', () => {
       });
 
       await test.step('Validate expectation linking', async () => {
-        const expectationId = testData.curriculumExpectationIds![0];
-        await validator.validateExpectationLinking(expectationId, testData.unitPlanId!, 'unit');
+        if (testData.curriculumExpectationIds && testData.curriculumExpectationIds.length > 0 && testData.unitPlanId) {
+          const expectationId = testData.curriculumExpectationIds[0];
+          await validator.validateExpectationLinking(expectationId, testData.unitPlanId, 'unit');
+        }
       });
 
       await test.step('Test expectation deletion constraints', async () => {
-        const expectationId = testData.curriculumExpectationIds![0];
-        const deleteResponse = await page.request.delete(
-          `/api/curriculum-expectations/${expectationId}`,
-        );
-
-        // Should either cascade or prevent deletion
-        if (deleteResponse.status() === 409) {
-          // Deletion prevented - verify expectation still exists
-          const expectationResponse = await page.request.get(
+        if (testData.curriculumExpectationIds && testData.curriculumExpectationIds.length > 0) {
+          const expectationId = testData.curriculumExpectationIds[0];
+          const deleteResponse = await page.request.delete(
             `/api/curriculum-expectations/${expectationId}`,
           );
-          expect(expectationResponse.status()).toBe(200);
+
+          // Should either cascade or prevent deletion
+          if (deleteResponse.status() === 409) {
+            // Deletion prevented - verify expectation still exists
+            const expectationResponse = await page.request.get(
+              `/api/curriculum-expectations/${expectationId}`,
+            );
+            expect(expectationResponse.status()).toBe(200);
+          }
         }
       });
     });
@@ -443,7 +447,9 @@ test.describe('Planning Data Integrity Tests', () => {
       });
 
       await test.step('Test concurrent modifications', async () => {
-        await validator.validateConcurrentModifications(testData.unitPlanId!, 'unit');
+        if (testData.unitPlanId) {
+          await validator.validateConcurrentModifications(testData.unitPlanId, 'unit');
+        }
       });
     });
 

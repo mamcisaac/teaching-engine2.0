@@ -179,7 +179,8 @@ export function AILessonPlanPanel({
     setShowLoadingModal(true);
 
     try {
-      const totalDuration = parseInt(formData.duration);
+      const parsedDuration = parseInt(formData.duration, 10);
+      const totalDuration = !isNaN(parsedDuration) && parsedDuration > 0 ? parsedDuration : 60; // Default to 60 minutes
       const mindsOnDuration = Math.round(totalDuration * 0.2); // 20%
       const handsOnDuration = Math.round(totalDuration * 0.6); // 60%
       const reflectionDuration = totalDuration - mindsOnDuration - handsOnDuration; // Remaining

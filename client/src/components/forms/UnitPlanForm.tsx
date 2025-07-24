@@ -436,9 +436,11 @@ export function UnitPlanForm({
                     id="estimatedHours"
                     min="1"
                     onChange={(e) => {
- setFormData({ ...formData, estimatedHours: parseInt(e.target.value, 10) || 0 }); 
-}
-                    }
+                      const parsed = parseInt(e.target.value, 10);
+                      // For estimatedHours, 0 is not valid (min is 1), so fall back to 1
+                      const estimatedHours = !isNaN(parsed) && parsed > 0 ? parsed : 1;
+                      setFormData({ ...formData, estimatedHours });
+                    }}
                     type="number"
                     value={formData.estimatedHours}
                   />
