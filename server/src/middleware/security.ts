@@ -188,12 +188,12 @@ export function securityHeaders(_req: Request, res: Response, next: NextFunction
  */
 export function sanitizeInput(req: Request, _res: Response, next: NextFunction): void {
   // Sanitize request body
-  if (req.body !== null && typeof req.body === 'object') {
+  if (req.body !== null && req.body !== undefined && typeof req.body === 'object') {
     sanitizeObject(req.body as Record<string, unknown>);
   }
 
   // Sanitize query parameters
-  if (req.query !== null && typeof req.query === 'object') {
+  if (req.query !== null && req.query !== undefined && typeof req.query === 'object') {
     sanitizeObject(req.query);
   }
 

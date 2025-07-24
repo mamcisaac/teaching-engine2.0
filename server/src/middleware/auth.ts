@@ -34,7 +34,7 @@ import { AuthenticationError, ValidationError, ConflictError, AppError } from '.
 
 // Environment validation
 const {JWT_SECRET} = process.env;
-if (JWT_SECRET === undefined || JWT_SECRET === '') {
+if (JWT_SECRET === null || JWT_SECRET === undefined || JWT_SECRET === '') {
   throw new Error('JWT_SECRET environment variable is required');
 }
 // TypeScript now knows JWT_SECRET is defined, but we need to help it

@@ -18,7 +18,7 @@ export class ExcelParser extends CurriculumParser {
     // Read workbook
     const workbook = XLSX.read(content, { type: 'buffer' });
 
-    if (workbook.SheetNames == null || workbook.SheetNames.length === 0) {
+    if (workbook.SheetNames === null || workbook.SheetNames.length === 0) {
       throw new Error('No sheets found in Excel file');
     }
 
@@ -29,7 +29,7 @@ export class ExcelParser extends CurriculumParser {
 
     const worksheet = workbook.Sheets[sheetName];
 
-    if (worksheet == null) {
+    if (worksheet === null) {
       throw new Error(`Worksheet ${sheetName} not found`);
     }
 
@@ -39,7 +39,7 @@ export class ExcelParser extends CurriculumParser {
       defval: '',
     });
 
-    if (rows == null || rows.length === 0) {
+    if (rows === null || rows.length === 0) {
       throw new Error('No data found in Excel file');
     }
 
@@ -103,7 +103,7 @@ export class ExcelParser extends CurriculumParser {
 
     // Try to extract from first few rows
     const firstRow = rows[0];
-    if (firstRow != null) {
+    if (firstRow !== null) {
       metadata.grade = this.extractGrade(firstRow);
       metadata.subject = this.extractSubject(firstRow);
     }
@@ -296,7 +296,7 @@ export class ExcelParser extends CurriculumParser {
   validate(data: ParsedCurriculum): boolean {
     if ((!data.subject || data.subject === '') || 
         (!data.grade) || 
-        (data.expectations == null)) {
+        (data.expectations === null || data.expectations === undefined)) {
       return false;
     }
 

@@ -53,7 +53,7 @@ export interface ProgressReport {
  * Calculate GPA from assessment ratings (1-4 scale)
  */
 export function calculateGPA(grades: AssessmentWithRating[]): number {
-  if (grades == null || grades.length === 0) {
+  if (grades === null || grades === undefined || grades.length === 0) {
     return 0;
   }
 
@@ -69,7 +69,7 @@ export function calculateGPA(grades: AssessmentWithRating[]): number {
  * Calculate average rating from array of ratings
  */
 export function calculateAverageRating(ratings: number[]): number {
-  if (ratings == null || ratings.length === 0) {
+  if (ratings === null || ratings === undefined || ratings.length === 0) {
     return 0;
   }
 
@@ -141,7 +141,7 @@ export function aggregateAssessmentsByStrand(
   for (const assessment of assessments) {
     const strand = assessment.strand ?? 'General';
     
-    if (aggregated[strand] == null) {
+    if (aggregated[strand] === null || aggregated[strand] === undefined) {
       aggregated[strand] = {
         assessments: [],
         averageRating: 0,
@@ -167,7 +167,7 @@ export function aggregateAssessmentsByStrand(
  * Calculate trend analysis from assessments
  */
 export function calculateTrendAnalysis(assessments: AssessmentData[]): TrendAnalysis {
-  if (assessments == null || assessments.length === 0) {
+  if (assessments === null || assessments === undefined || assessments.length === 0) {
     return {
       direction: 'stable',
       strength: 0,

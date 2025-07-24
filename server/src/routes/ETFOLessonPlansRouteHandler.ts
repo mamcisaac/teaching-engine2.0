@@ -135,7 +135,7 @@ class ETFOLessonPlanService extends BaseService {
 
     const where: Prisma.ETFOLessonPlanWhereInput = { userId };
 
-    if (unitPlanId && unitPlanId !== 0) {
+    if (unitPlanId !== null && unitPlanId !== undefined && unitPlanId !== 0) {
 where.unitPlanId = String(unitPlanId);
 }
     if (isSubFriendly !== undefined) {
@@ -683,7 +683,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (!userId) {
+      if (userId === null || userId === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -756,7 +756,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (!userId) {
+      if (userId === null || userId === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -778,7 +778,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (!userId) {
+      if (userId === null || userId === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -805,7 +805,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (!userId) {
+      if (userId === null || userId === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -826,7 +826,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (!userId) {
+      if (userId === null || userId === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -853,7 +853,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (!userId) {
+      if (userId === null || userId === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }

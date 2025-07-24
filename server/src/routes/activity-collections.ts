@@ -1,5 +1,5 @@
 import { prisma } from '@teaching-engine/database';
-import type { Request, Response } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
 
@@ -7,8 +7,14 @@ import { logger } from '../logger';
 import { authMiddleware } from '../middleware/auth';
 const router = Router();
 
+// Async middleware wrapper to handle promises properly
+const asyncMiddleware = (fn: (req: Request, res: Response, next: NextFunction) => Promise<void>) => 
+  (req: Request, res: Response, next: NextFunction): void => {
+    Promise.resolve(fn(req, res, next)).catch(next);
+  };
+
 // Get user's collections
-router.get('/', authMiddleware, async (req: Request, res: Response) => {
+router.get('/', asyncMiddleware(authMiddleware), async (req: Request, res: Response) => {
 
     try {
     if (req.user?.id === null || req.user?.id === undefined) {
@@ -58,7 +64,7 @@ router.get('/', authMiddleware, async (req: Request, res: Response) => {
 });
 
 // Get collection details with activities
-router.get('/:collectionId', authMiddleware, async (req: Request, res: Response) => {
+router.get('/:collectionId', asyncMiddleware(authMiddleware), async (req: Request, res: Response) => {
 
     try {
     if (req.user?.id === null || req.user?.id === undefined) {

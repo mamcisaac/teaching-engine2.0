@@ -46,7 +46,7 @@ export class CurriculumExpectationRepository {
       };
 
       // Text search across multiple fields
-      if (query) {
+      if (query !== null && query !== undefined && query !== '') {
         (where.AND as Prisma.CurriculumExpectationWhereInput[]).push({
           OR: [
             { code: { contains: query } },

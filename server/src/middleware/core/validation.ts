@@ -34,9 +34,10 @@ export const validate = <T>(
     customErrorHandler,
   } = options;
 
-  return async (req, _res, next): Promise<void> => {
-    const validatedReq = req as ValidatedRequest<T>;
-    try {
+  return (req, _res, next): void => {
+    void (async (): Promise<void> => {
+      const validatedReq = req as ValidatedRequest<T>;
+      try {
       // Determine sources to validate
       const sources = Array.isArray(source) ? source : [source];
       let dataToValidate: Record<string, unknown> = {};
@@ -126,6 +127,7 @@ export const validate = <T>(
         next(_error as Error);
       }
     }
+    })().catch(next);
   };
 };
 

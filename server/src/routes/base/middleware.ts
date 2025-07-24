@@ -65,7 +65,8 @@ export const requireRole = (requiredRole: string) => (req: AuthenticatedRequest,
 export const validate = <T>(schema: z.ZodSchema<T>) => (req: Request, res: Response, next: NextFunction): void => {
     try {
       const validatedData: T = schema.parse(req.body);
-      req.body = validatedData as unknown;
+      // TypeScript knows validatedData is of type T, but Express expects unknown
+      req.body = validatedData as unknown as Request['body'];
       next();
     } catch (_error) {
       if (_error instanceof z.ZodError) {
@@ -86,7 +87,8 @@ export const validate = <T>(schema: z.ZodSchema<T>) => (req: Request, res: Respo
 export const validateQuery = <T>(schema: z.ZodSchema<T>) => (req: Request, res: Response, next: NextFunction): void => {
     try {
       const validatedQuery: T = schema.parse(req.query);
-      req.query = validatedQuery as ParsedQs;
+      // Safe assignment with proper type assertion
+      req.query = validatedQuery as unknown as ParsedQs;
       next();
     } catch (_error) {
       if (_error instanceof z.ZodError) {
@@ -204,7 +206,7 @@ export const sanitizeInput = (req: Request, _res: Response, next: NextFunction):
   };
 
   if (req.body) {
-    req.body = sanitizeValue(req.body);
+    req.body = sanitizeValue(req.body) as Request['body'];
   }
   if (Object.keys(req.query).length > 0) {
     req.query = sanitizeValue(req.query) as ParsedQs;

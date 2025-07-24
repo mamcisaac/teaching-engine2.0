@@ -33,10 +33,10 @@ export class LessonTemplateProvider extends TemplateProvider {
 
     // Build template ID
     let templateId = `lesson-${templateType}`;
-    if (grade) {
+    if (grade !== null && grade !== undefined && grade !== '') {
       templateId += `-grade${grade}`;
     }
-    if (subject) {
+    if (subject !== null && subject !== undefined && subject !== '') {
       templateId += `-${String(subject).toLowerCase()}`;
     }
 
@@ -176,9 +176,9 @@ export class LessonTemplateProvider extends TemplateProvider {
 
     for (const variable of variables) {
       const baseVar = variable.split('.')[0];
-      if (variableMap[variable] != null) {
+      if (variableMap[variable] !== null) {
         requirements.push(variableMap[variable]);
-      } else if (variableMap[baseVar] != null) {
+      } else if (variableMap[baseVar] !== null) {
         requirements.push(variableMap[baseVar]);
       }
     }

@@ -82,7 +82,7 @@ function shouldCache(req: Request): boolean {
   }
 
   // Don't cache authenticated endpoints by default unless explicitly enabled
-  if (req.headers.authorization !== null && req.headers.authorization !== '' && (req as Request & { cacheEnabled?: boolean }).cacheEnabled !== true) {
+  if (req.headers.authorization !== null && req.headers.authorization !== undefined && req.headers.authorization !== '' && (req as Request & { cacheEnabled?: boolean }).cacheEnabled !== true) {
     return false;
   }
 

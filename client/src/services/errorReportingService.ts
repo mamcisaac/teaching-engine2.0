@@ -453,8 +453,11 @@ export class ErrorReportingService {
     }
 
     // Sanitize user data
-    if (sanitized.user?.email !== null && sanitized.user?.email !== undefined && sanitized.user?.email !== '') {
-      sanitized.user.email = this.maskEmail(sanitized.user.email);
+    if (sanitized.user !== null && sanitized.user !== undefined && typeof sanitized.user === 'object' && 'email' in sanitized.user) {
+      const email = sanitized.user.email;
+      if (email !== null && email !== undefined && email !== '' && typeof email === 'string') {
+        sanitized.user.email = this.maskEmail(email);
+      }
     }
 
     // Sanitize contexts

@@ -81,7 +81,7 @@ router.post(
       }
 
       // Validate file buffer is not null
-      if (req.file.buffer == null || req.file.buffer.length === 0) {
+      if (req.file.buffer === null || req.file.buffer.length === 0) {
         res.status(400).json({
           error: 'Invalid file content',
         });
@@ -218,7 +218,7 @@ router.get('/:id/status', asyncHandler(async (req: Request, res: Response) => {
 
     const status = await curriculumImportService.getImportProgress(importId);
 
-    if (status == null) {
+    if (status === null) {
       res.status(404).json({
         error: 'Import not found',
       });
@@ -251,7 +251,7 @@ router.post('/:id/confirm', asyncHandler(async (req: Request, res: Response) => 
     // Check if import exists and is ready
     const progress = await curriculumImportService.getImportProgress(importId);
 
-    if (progress == null) {
+    if (progress === null) {
       res.status(404).json({
         error: 'Import not found',
       });
@@ -322,7 +322,7 @@ router.delete('/:id', async (req: Request, res: Response): Promise<void> => {
 
     const result = await curriculumImportService.cancelImport(importId);
 
-    if (result == null) {
+    if (result === null) {
       res.status(404).json({
         error: 'Import not found',
       });
@@ -375,7 +375,7 @@ router.get('/:importId/progress', async (req: Request, res: Response): Promise<v
     const { importId } = req.params;
     const progress = await curriculumImportService.getImportProgress(importId);
 
-    if (progress == null) {
+    if (progress === null) {
       res.status(404).json({ error: 'Import session not found' });
       return;
     }
@@ -394,7 +394,7 @@ router.post('/:importId/cancel', async (req: Request, res: Response): Promise<vo
     const { importId } = req.params;
     const success = await curriculumImportService.cancelImport(importId);
 
-    if (success == null) {
+    if (success === null) {
       res.status(404).json({ error: 'Import session not found or already completed' });
       return;
     }
@@ -422,7 +422,7 @@ router.post('/:id', async (req: Request, res: Response): Promise<void> => {
     // Get the import session
     const importRecord = await curriculumImportService.getImportProgress(importId);
 
-    if (importRecord == null) {
+    if (importRecord === null) {
       res.status(404).json({
         error: 'Import session not found',
       });

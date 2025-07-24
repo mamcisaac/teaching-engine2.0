@@ -167,7 +167,7 @@ export function useETFOLessonPlanForm({
   const validateForm = useCallback((): { isValid: boolean; errors: string[] } => {
     const errors: string[] = [];
 
-    if (formData.title.trim() === '') {
+    if (!formData.title.trim()) {
       errors.push('Title is required');
     }
     if (!formData.date) {
@@ -176,7 +176,7 @@ export function useETFOLessonPlanForm({
     if (formData.duration < 15 || formData.duration > 300) {
       errors.push('Duration must be between 15 and 300 minutes');
     }
-    if (unitPlanId === null || unitPlanId === undefined || unitPlanId === '') {
+    if (!unitPlanId) {
       errors.push('Unit plan is required');
     }
 
@@ -186,10 +186,10 @@ export function useETFOLessonPlanForm({
   // Clean form data for submission
   const getCleanFormData = useCallback((): LessonPlanFormData => ({
       ...formData,
-      materials: formData.materials.filter(m => m.trim() !== ''),
-      accommodations: formData.accommodations.filter(a => a.trim() !== ''),
-      modifications: formData.modifications.filter(m => m.trim() !== ''),
-      extensions: formData.extensions.filter(e => e.trim() !== ''),
+      materials: formData.materials.filter(m => m.trim()),
+      accommodations: formData.accommodations.filter(a => a.trim()),
+      modifications: formData.modifications.filter(m => m.trim()),
+      extensions: formData.extensions.filter(e => e.trim()),
     }), [formData]);
 
   // Reset form
@@ -266,7 +266,7 @@ export function useETFOLessonPlanForm({
       case 'materials':
         setFormData(prev => ({ 
           ...prev, 
-          materials: [...prev.materials.filter(m => m.trim() !== ''), ...content] 
+          materials: [...prev.materials.filter(m => m.trim()), ...content] 
         }));
         break;
       case 'assessments':

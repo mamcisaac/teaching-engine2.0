@@ -179,7 +179,7 @@ export const sendFile = (
   }
   
   res.sendFile(filePath, (err) => {
-    if (err != null) {
+    if (err !== null) {
       logger.error({ error: err, filePath }, 'Failed to send file');
       res.status(500).json({
         success: false,

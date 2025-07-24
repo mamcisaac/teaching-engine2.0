@@ -65,6 +65,12 @@ const error = debug('server:error');
 // Get directory name
 const __dirname_index = __dirname;
 
+// Async middleware wrapper to handle promises properly
+const asyncMiddleware = (fn: (req: Request, res: Response, next: NextFunction) => Promise<void>) => 
+  (req: Request, res: Response, next: NextFunction): void => {
+    Promise.resolve(fn(req, res, next)).catch(next);
+  };
+
 // Create backward-compatible logger for gradual migration
 // Logger is now imported from structuredLogger
 
@@ -143,7 +149,7 @@ app.post('/api/register', authRateLimitMiddleware, (req: Request, _res: Response
 
 // Auth check endpoint is handled by authEndpoints router at /api/auth/me
 
-app.get('/api/auth/check', authenticate, (req: Request, res: Response): void => {
+app.get('/api/auth/check', asyncMiddleware(authenticate), (req: Request, res: Response): void => {
   res.json({ userId: req.user?.id });
 });
 
@@ -182,23 +188,23 @@ app.use('/api/auth', authEndpoints);
 
 // Mount user routes (authenticated)
 log('Mounting user routes...');
-app.use('/api/user', authenticate, rateLimiters.api, userRoutes(prisma));
+app.use('/api/user', asyncMiddleware(authenticate), rateLimiters.api, userRoutes(prisma));
 
 // Notification routes
 log('Mounting notification routes...');
-app.use('/api/notifications', authenticate, rateLimiters.api, notificationRoutes);
+app.use('/api/notifications', asyncMiddleware(authenticate), rateLimiters.api, notificationRoutes);
 
 // Apply authentication and rate limiting to all API routes
 log('Mounting ETFO-aligned API routes...');
 // Student endpoints removed - app does not store student data
 
 // Key Teacher Features
-app.use('/api/newsletters', authenticate, rateLimiters.write, newsletterRoutes);
-app.use('/api/substitute-plans', authenticate, rateLimiters.write, substitutePlanRoutes);
+app.use('/api/newsletters', asyncMiddleware(authenticate), rateLimiters.write, newsletterRoutes);
+app.use('/api/substitute-plans', asyncMiddleware(authenticate), rateLimiters.write, substitutePlanRoutes);
 
 app.use(
   '/api/curriculum-import',
-  authenticate,
+  asyncMiddleware(authenticate),
   rateLimiters.upload,
   validateFileUpload(['application/pdf', 'text/csv']),
   curriculumImportRoutes,
@@ -208,36 +214,36 @@ app.use(
 // ETFO-aligned Planning Routes
 app.use(
   '/api/curriculum-expectations',
-  authenticate,
+  asyncMiddleware(authenticate),
   rateLimiters.read,
   curriculumCache, // Cache curriculum data for 30 minutes
   curriculumExpectationRoutes,
 );
-app.use('/api/long-range-plans', authenticate, rateLimiters.write, userCache, longRangePlanRoutes);
-app.use('/api/unit-plans', authenticate, rateLimiters.write, userCache, unitPlanRoutes);
+app.use('/api/long-range-plans', asyncMiddleware(authenticate), rateLimiters.write, userCache, longRangePlanRoutes);
+app.use('/api/unit-plans', asyncMiddleware(authenticate), rateLimiters.write, userCache, unitPlanRoutes);
 app.use(
   '/api/etfo-lesson-plans',
-  authenticate,
+  asyncMiddleware(authenticate),
   rateLimiters.write,
   userCache,
   etfoLessonPlanRoutes,
 );
-app.use('/api/daybook-entries', authenticate, rateLimiters.write, userCache, daybookEntryRoutes);
-app.use('/api/etfo', authenticate, rateLimiters.read, etfoProgressRoutes);
+app.use('/api/daybook-entries', asyncMiddleware(authenticate), rateLimiters.write, userCache, daybookEntryRoutes);
+app.use('/api/etfo', asyncMiddleware(authenticate), rateLimiters.read, etfoProgressRoutes);
 
 // State Management Routes
-app.use('/api/planner', authenticate, rateLimiters.api, plannerStateRoutes);
+app.use('/api/planner', asyncMiddleware(authenticate), rateLimiters.api, plannerStateRoutes);
 // Workflow state routes removed - over-engineered for single-teacher use
-app.use('/api/ai-planning', authenticate, rateLimiters.ai, aiPlanningRoutes);
+app.use('/api/ai-planning', asyncMiddleware(authenticate), rateLimiters.ai, aiPlanningRoutes);
 
 // Template System Routes
-app.use('/api/templates', authenticate, rateLimiters.api, staticCache, templateRoutes);
+app.use('/api/templates', asyncMiddleware(authenticate), rateLimiters.api, staticCache, templateRoutes);
 
 // Calendar Routes
-app.use('/api/calendar-events', authenticate, rateLimiters.api, userCache, calendarEventRoutes);
+app.use('/api/calendar-events', asyncMiddleware(authenticate), rateLimiters.api, userCache, calendarEventRoutes);
 
 // Recent Plans Routes
-app.use('/api/recent-plans', authenticate, rateLimiters.api, userCache, recentPlansRoutes);
+app.use('/api/recent-plans', asyncMiddleware(authenticate), rateLimiters.api, userCache, recentPlansRoutes);
 
 // Cache Management Routes
 app.use('/api/cache', cacheRoutes);
@@ -250,21 +256,21 @@ app.use('/api/metrics', metricsRoutes);
 app.use('/api/dashboard', dashboardMetricsRoutes);
 
 // Monitoring Routes (includes enhanced dashboard and alerting)
-app.use('/api/monitoring', authenticate, monitoringRoutes);
+app.use('/api/monitoring', asyncMiddleware(authenticate), monitoringRoutes);
 
 // AI status endpoint (maps to ai-planning/status for backward compatibility)
-app.get('/api/ai/status', authenticate, (req: Request, res: Response): void => {
+app.get('/api/ai/status', asyncMiddleware(authenticate), (req: Request, res: Response): void => {
   // Forward to ai-planning routes handler
   req.url = '/status';
   aiPlanningRoutes(req, res, () => {});
 });
 
 // Planner State Routes
-app.use('/api/planner', authenticate, plannerStateRoutes);
+app.use('/api/planner', asyncMiddleware(authenticate), plannerStateRoutes);
 
 // Activity Discovery Routes
-app.use('/api/activity-collections', authenticate, rateLimiters.write, activityCollectionsRoutes);
-app.use('/api/ai-activities', authenticate, rateLimiters.ai, aiActivityGenerationRoutes);
+app.use('/api/activity-collections', asyncMiddleware(authenticate), rateLimiters.write, activityCollectionsRoutes);
+app.use('/api/ai-activities', asyncMiddleware(authenticate), rateLimiters.ai, aiActivityGenerationRoutes);
 
 // Batch Processing Routes
 

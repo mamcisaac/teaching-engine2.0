@@ -159,7 +159,7 @@ export abstract class BaseRouteHandler<T = any> {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (!userId) {
+      if (userId === null || userId === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -188,7 +188,7 @@ export abstract class BaseRouteHandler<T = any> {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (!userId) {
+      if (userId === null || userId === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -211,7 +211,7 @@ export abstract class BaseRouteHandler<T = any> {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (!userId) {
+      if (userId === null || userId === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -236,7 +236,7 @@ export abstract class BaseRouteHandler<T = any> {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (!userId) {
+      if (userId === null || userId === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -284,7 +284,14 @@ export abstract class BaseRouteHandler<T = any> {
     userId: number,
   ): Promise<boolean> {
     try {
-      const record = await (prisma as Record<string, { findFirst: (query: unknown) => Promise<unknown> }>)[tableName].findFirst({
+      // Type-safe access to prisma models
+      const model = (prisma as any)[tableName];
+      if (!model || typeof model.findFirst !== 'function') {
+        this.logger.error(`Invalid table name: ${tableName}`);
+        return false;
+      }
+      
+      const record: unknown = await model.findFirst({
         where: {
           id,
           OR: [{ isSystem: true }, { createdByUserId: userId }, { userId }],

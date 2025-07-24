@@ -38,7 +38,7 @@ export function validateApiKey(
     // Check x-api-key header (case-insensitive)
     // Express automatically lowercases header names
     const xApiKey = req.headers['x-api-key'] as string;
-    if (xApiKey) {
+    if (xApiKey !== null && xApiKey !== undefined && xApiKey !== '') {
       providedApiKey = xApiKey;
     }
 

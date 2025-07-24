@@ -136,17 +136,17 @@ class AuditLogger {
   }
 
   private redactEmail(email?: string): string | undefined {
-    if (!email || email === '') {
-return undefined;
-}
+    if (email === null || email === undefined || email === '') {
+      return undefined;
+    }
     const [local, domain] = email.split('@');
     return `${local.substring(0, 2)}***@${domain}`;
   }
 
   private maskIP(ip?: string): string | undefined {
-    if (!ip || ip === '') {
-return undefined;
-}
+    if (ip === null || ip === undefined || ip === '') {
+      return undefined;
+    }
     const parts = ip.split('.');
     if (parts.length === 4) {
       return `${parts[0]}.${parts[1]}.xxx.xxx`;

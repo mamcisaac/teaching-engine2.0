@@ -1,5 +1,6 @@
 import type { Request } from 'express';
 import { Router } from 'express';
+import { z } from 'zod';
 
 import { logger } from '../logger';
 import { prisma } from '../prisma';
@@ -14,7 +15,12 @@ router.post('/track', async (req: Request, res, _next) => {
       return;
     }
 
-    const { planType, planId } = req.body;
+    // Validate request body
+    const bodySchema = z.object({
+      planType: z.string(),
+      planId: z.string()
+    });
+    const { planType, planId } = bodySchema.parse(req.body);
 
     if (!planType || !planId) {
       res.status(400).json({ error: 'Plan type and ID are required' });
@@ -110,7 +116,7 @@ router.get('/', async (req: Request, res, _next) => {
                 },
               },
             });
-            if (plan) {
+            if (plan && 'longRangePlan' in plan) {
               parentInfo = plan.longRangePlan;
             }
             break;
@@ -139,7 +145,7 @@ router.get('/', async (req: Request, res, _next) => {
                 },
               },
             });
-            if (plan) {
+            if (plan && 'unitPlan' in plan) {
               parentInfo = plan.unitPlan;
             }
             break;
@@ -169,7 +175,7 @@ router.get('/', async (req: Request, res, _next) => {
                 },
               },
             });
-            if (plan?.lessonPlan) {
+            if (plan && 'lessonPlan' in plan && plan.lessonPlan) {
               parentInfo = plan.lessonPlan.unitPlan;
             }
             break;
@@ -185,14 +191,11 @@ return null;
 
         if (access.planType === 'long-range' && '_count' in plan && 'unitPlans' in plan._count) {
           // For simplicity, assume progress based on unit count
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          progress = Math.min((plan._count).unitPlans * 10, 100);
+          progress = Math.min(plan._count.unitPlans * 10, 100);
         } else if (access.planType === 'unit' && '_count' in plan && 'lessonPlans' in plan._count) {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          progress = Math.min((plan._count).lessonPlans * 5, 100);
+          progress = Math.min(plan._count.lessonPlans * 5, 100);
         } else if (access.planType === 'lesson' && 'daybookEntry' in plan) {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          status = (plan).daybookEntry ? 'completed' : 'in-progress';
+          status = plan.daybookEntry ? 'completed' : 'in-progress';
         }
 
         return {
@@ -200,10 +203,10 @@ return null;
           type: access.planType,
           title:
             'title' in plan ? plan.title : `Daybook - ${new Date(plan.date).toLocaleDateString()}`,
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          subject: (parentInfo)?.longRangePlan?.subject || (parentInfo)?.subject,
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          grade: (parentInfo)?.longRangePlan?.grade || (parentInfo)?.grade,
+          subject: (parentInfo && 'longRangePlan' in parentInfo) ? parentInfo.longRangePlan.subject : 
+                   (parentInfo && 'subject' in parentInfo) ? parentInfo.subject : undefined,
+          grade: (parentInfo && 'longRangePlan' in parentInfo) ? parentInfo.longRangePlan.grade : 
+                 (parentInfo && 'grade' in parentInfo) ? parentInfo.grade : undefined,
           lastAccessed: access.lastAccessed.toISOString(),
           progress,
           status,

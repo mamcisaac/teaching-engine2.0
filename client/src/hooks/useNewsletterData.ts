@@ -86,11 +86,11 @@ export function useSaveNewsletterDraft(): UseMutationResult<NewsletterDraft, Err
 
   return useMutation<NewsletterDraft, Error, NewsletterDraft>({
     mutationFn: async (draft) => {
-      const endpoint = draft.id !== null && draft.id !== undefined && draft.id !== ''  
+      const endpoint = draft.id  
         ? `/newsletters/${draft.id}` 
         : '/newsletters';
       
-      const method = draft.id !== null && draft.id !== undefined && draft.id !== '' ? 'put' : 'post';
+      const method = draft.id ? 'put' : 'post';
       
       const response = await apiClient[method](endpoint, draft);
       return response.data as NewsletterDraft;
@@ -176,7 +176,7 @@ export function useParentSummaries(studentId: number | undefined): UseQueryResul
   return useQuery<ParentSummary[], Error, ParentSummary[]>({
     queryKey: ['parent-summaries', studentId],
     queryFn: async () => {
-      if (studentId === null || studentId === undefined || studentId === 0 || isNaN(studentId)) {
+      if (!studentId || isNaN(studentId)) {
 throw new Error('Student ID is required');
 }
       const response = await apiClient.get(`/parent-summaries/student/${studentId}`);

@@ -66,7 +66,7 @@ export class CurriculumStatsService extends BaseService {
     const baseDeps = super.checkDependencies();
     return {
       ...baseDeps,
-      database: prisma != null,
+      database: prisma !== null && prisma !== undefined,
     };
   }
 
@@ -257,7 +257,7 @@ export class CurriculumStatsService extends BaseService {
 
         for (const exp of expectations) {
           // By grade and strand
-          if (coverageByGradeAndStrand[exp.grade] == null) {
+          if (coverageByGradeAndStrand[exp.grade] === null || coverageByGradeAndStrand[exp.grade] === undefined) {
             coverageByGradeAndStrand[exp.grade] = {};
           }
           if (exp.strand) {
@@ -267,7 +267,7 @@ export class CurriculumStatsService extends BaseService {
 
           // By subject and grade
           const subjectName = exp.subject; // subject is a string field
-          if (coverageBySubjectAndGrade[subjectName] == null) {
+          if (coverageBySubjectAndGrade[subjectName] === null || coverageBySubjectAndGrade[subjectName] === undefined) {
             coverageBySubjectAndGrade[subjectName] = {};
           }
           coverageBySubjectAndGrade[subjectName][exp.grade] = 

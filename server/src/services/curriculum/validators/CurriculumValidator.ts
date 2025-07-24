@@ -80,7 +80,7 @@ export class CurriculumValidator {
     this.validateStructure(curriculum, errors);
     
     // Early return if curriculum is invalid
-    if (curriculum == null || curriculum.expectations == null || !Array.isArray(curriculum.expectations)) {
+    if (curriculum === null || curriculum === undefined || curriculum.expectations === null || curriculum.expectations === undefined || !Array.isArray(curriculum.expectations)) {
       return {
         isValid: false,
         errors,
@@ -128,7 +128,7 @@ export class CurriculumValidator {
    * Validate basic structure
    */
   private validateStructure(curriculum: ParsedCurriculum, errors: ValidationError[]): void {
-    if (curriculum == null) {
+    if (curriculum === null || curriculum === undefined) {
       errors.push({
         field: 'curriculum',
         message: 'Curriculum object is required',
@@ -136,7 +136,7 @@ export class CurriculumValidator {
       return;
     }
 
-    if (curriculum.expectations == null) {
+    if (curriculum.expectations === null || curriculum.expectations === undefined) {
       errors.push({
         field: 'expectations',
         message: 'Expectations array is required',

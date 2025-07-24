@@ -376,7 +376,7 @@ return 'Grade 12';
     this.registerHelper('join', {
       fn: (...args: unknown[]) => {
         const [array, separator = ', '] = args as [unknown[], string?];
-        if (array == null || !Array.isArray(array)) {
+        if (array === null || !Array.isArray(array)) {
 return '';
 }
         return array.join(separator);

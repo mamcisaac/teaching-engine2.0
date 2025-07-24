@@ -19,17 +19,18 @@ export class CacheService {
   }
 
   get<T = unknown>(key: string): T | null {
-    const item = this.cache.get(key) as CacheItem<T> | undefined;
+    const item = this.cache.get(key);
     if (!item) {
-return null;
-}
+      return null;
+    }
 
     if (Date.now() > item.expires) {
       this.cache.delete(key);
       return null;
     }
 
-    return item.value;
+    // Safe type assertion after validation
+    return item.value as T;
   }
 
   set<T = unknown>(key: string, value: T, ttlMs = 3600000): void {

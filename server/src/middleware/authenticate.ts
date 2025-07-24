@@ -74,7 +74,7 @@ export function generateRefreshToken(userId: number): string {
 function extractToken(req: Request): string | null {
   // Check Authorization header
   const authHeader = req.headers.authorization;
-  if (authHeader !== undefined && authHeader.startsWith('Bearer ')) {
+  if (authHeader !== null && authHeader !== undefined && authHeader.startsWith('Bearer ')) {
     return authHeader.substring(7);
   }
 
@@ -190,7 +190,7 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
       );
     }
 
-    if (!token) {
+    if (token === null || token === undefined || token === '') {
       // For consistency, always return the same error format
       res.status(401).json({
         error: 'Authentication required',
@@ -369,7 +369,7 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
         id: validUser.id,
         email: validUser.email,
         role: validUser.role,
-        organizationId: decoded.organizationId ? parseInt(decoded.organizationId, 10) : undefined,
+        organizationId: (decoded.organizationId !== null && decoded.organizationId !== undefined && decoded.organizationId !== '') ? parseInt(decoded.organizationId, 10) : undefined,
         permissions: decoded.permissions,
       };
     } else {
@@ -378,7 +378,7 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
         id: parseInt(decoded.userId, 10),
         email: decoded.email,
         role: decoded.role,
-        organizationId: decoded.organizationId ? parseInt(decoded.organizationId, 10) : undefined,
+        organizationId: (decoded.organizationId !== null && decoded.organizationId !== undefined && decoded.organizationId !== '') ? parseInt(decoded.organizationId, 10) : undefined,
         permissions: decoded.permissions,
       };
     }
@@ -421,7 +421,7 @@ export function optionalAuthenticate(
   try {
     const token = extractToken(req);
 
-    if (!token) {
+    if (token === null || token === undefined || token === '') {
       next();
       return;
     }
@@ -433,7 +433,7 @@ export function optionalAuthenticate(
         id: parseInt(decoded.userId, 10),
         email: decoded.email,
         role: decoded.role,
-        organizationId: decoded.organizationId ? parseInt(decoded.organizationId, 10) : undefined,
+        organizationId: (decoded.organizationId !== null && decoded.organizationId !== undefined && decoded.organizationId !== '') ? parseInt(decoded.organizationId, 10) : undefined,
         permissions: decoded.permissions,
       };
     }

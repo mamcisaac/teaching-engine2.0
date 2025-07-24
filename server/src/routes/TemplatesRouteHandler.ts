@@ -10,6 +10,7 @@ import { z } from 'zod';
 import { prisma } from '../prisma.js';
 import { BaseService } from '../services/base/BaseService.js';
 import type { TemplateCreateData, TemplateUpdateData, Template } from '../types/routes.js';
+import { isValidStringProperty, isNumber } from '../utils/typeGuards.js';
 
 import type { AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler.js';
 import { BaseRouteHandler } from './base/BaseRouteHandler.js';
@@ -19,7 +20,6 @@ import {
   optimizedQueries,
   queryPerformance,
 } from './optimizations/queryOptimizations.js';
-import { isValidStringProperty, isNumber } from '../utils/typeGuards.js';
 
 // Template-specific validation schemas
 const templateContentSchema = z.object({

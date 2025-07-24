@@ -508,7 +508,7 @@ return 'planning';
    * Get supported formats from engine
    */
   private getSupportedFormats(engine: RenderEngine): string[] {
-    if (engine.getSupportedFormats != null) {
+    if (engine.getSupportedFormats !== null) {
       return engine.getSupportedFormats();
     }
 

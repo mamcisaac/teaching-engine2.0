@@ -163,7 +163,7 @@ export const KeyboardShortcutsSettings: React.FC = (): React.ReactElement => {
                   {(categoryShortcuts).map((shortcut, _index) => {
                     const customShortcut = preferences.customShortcuts[shortcut.id];
                     const isEditing = editingShortcut === shortcut.id;
-                    const hasCustomShortcut = Boolean(preferences.customShortcuts[shortcut.id]);
+                    const hasCustomShortcut = shortcut.id in preferences.customShortcuts;
                     const displayShortcut = hasCustomShortcut
                       ? { ...shortcut, ...customShortcut }
                       : shortcut;
@@ -175,11 +175,11 @@ export const KeyboardShortcutsSettings: React.FC = (): React.ReactElement => {
                       >
                         <div className="flex-1">
                           <p className="font-medium text-sm">{shortcut.description}</p>
-                          {hasCustomShortcut && (
+                          {hasCustomShortcut ? (
                             <p className="text-xs text-gray-500 mt-1">
                               Default: {formatShortcut(shortcut)}
                             </p>
-                          )}
+                          ) : null}
                         </div>
 
                         <div className="flex items-center gap-2">
@@ -244,7 +244,7 @@ export const KeyboardShortcutsSettings: React.FC = (): React.ReactElement => {
                               >
                                 <Settings className="h-4 w-4" />
                               </Button>
-                              {hasCustomShortcut && (
+                              {hasCustomShortcut ? (
                                 <Button
                                   onClick={(): void => {
  resetShortcut(shortcut.id); 
@@ -255,7 +255,7 @@ export const KeyboardShortcutsSettings: React.FC = (): React.ReactElement => {
                                 >
                                   <RefreshCw className="h-4 w-4" />
                                 </Button>
-                              )}
+                              ) : null}
                             </>
                           )}
                         </div>

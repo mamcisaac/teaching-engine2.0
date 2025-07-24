@@ -96,7 +96,13 @@ export function userRoutes(prisma: PrismaClient): Router {
         return;
       }
 
-      const { email, name, role } = req.body as { email: string; name: string; role?: string };
+      // Parse and validate request body
+      const bodySchema = z.object({
+        email: z.string().email(),
+        name: z.string(),
+        role: z.string().optional()
+      });
+      const { email, name, role } = bodySchema.parse(req.body);
 
       // Sanitize input
       const sanitizedName = (name).replace(/<[^>]*>/g, ''); // Remove HTML tags

@@ -62,7 +62,7 @@ return undefined;
         // For object schemas, try to get the field schema
         if ('shape' in validationSchema) {
           const fieldSchema = (validationSchema.shape as Record<string, z.ZodSchema>)[name];
-          if (fieldSchema !== undefined && 'parse' in fieldSchema) {
+          if (fieldSchema && 'parse' in fieldSchema) {
             fieldSchema.parse(value);
           } else {
             // Validate entire object if can't extract field schema

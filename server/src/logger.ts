@@ -3,6 +3,7 @@ import { performance } from 'perf_hooks';
 
 // eslint-disable-next-line import/no-named-as-default
 import pino, { stdSerializers } from 'pino';
+
 import { isValidStringProperty, isObject } from './utils/typeGuards.js';
 
 // Log levels configuration - kept for future use
@@ -36,7 +37,7 @@ const pinoConfig: pino.LoggerOptions = {
         headers: {
           'user-agent': request.headers?.['user-agent'],
           'content-type': request.headers?.['content-type'],
-          authorization: (request.headers?.authorization !== null && request.headers?.authorization !== undefined && request.headers?.authorization !== '') ? '[REDACTED]' : undefined,
+          authorization: (request.headers !== null && request.headers !== undefined && typeof request.headers === 'object' && 'authorization' in request.headers && request.headers.authorization !== null && request.headers.authorization !== undefined && request.headers.authorization !== '') ? '[REDACTED]' : undefined,
         },
         remoteAddress: request.remoteAddress ?? request.connection?.remoteAddress,
         remotePort: (request.remotePort !== null && request.remotePort !== undefined && typeof request.remotePort === 'number' && !isNaN(request.remotePort)) ? request.remotePort : request.connection?.remotePort,
