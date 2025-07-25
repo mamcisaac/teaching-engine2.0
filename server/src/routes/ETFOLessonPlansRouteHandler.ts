@@ -7,19 +7,19 @@ import type { Prisma } from '@teaching-engine/database';
 import type { Response, NextFunction } from 'express';
 import { z } from 'zod';
 
-import { prisma } from '../prisma.js';
-import { BaseService } from '../services/base/BaseService.js';
-import type { ETFOLessonPlanCreateData, ETFOLessonPlanUpdateData } from '../types/routes.js';
-import { isNonEmptyArray } from '../../shared/utils/typeGuards';
+import { prisma } from '../prisma';
+import { BaseService } from '../services/base/BaseService';
+import type { ETFOLessonPlanCreateData, ETFOLessonPlanUpdateData } from '../types/routes';
+import { isNonEmptyArray } from '../../../shared/utils/typeGuards';
 
-import type { AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler.js';
-import { BaseRouteHandler } from './base/BaseRouteHandler.js';
-import { commonValidations } from './base/validation.js';
+import type { AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler';
+import { BaseRouteHandler } from './base/BaseRouteHandler';
+import { commonValidations } from './base/validation';
 import {
   optimizedIncludes,
   optimizedQueries,
   queryPerformance,
-} from './optimizations/queryOptimizations.js';
+} from './optimizations/queryOptimizations';
 
 // ETFO lesson plan-specific validation schemas
 const lessonPlanCreateSchema = z.object({
@@ -355,7 +355,7 @@ baseUpdateData.subNotes = updateData.subNotes;
 }
 
     // Handle date conversion
-    if (data.date != null && data.date !== '') {
+    if (data.date !== null && data.date !== '') {
       baseUpdateData.date = new Date(data.date);
     }
 

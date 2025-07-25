@@ -3,7 +3,7 @@
  * Provides validation for common API response patterns
  */
 
-import { isObject, isString, isValidNumber, hasProperty, isError } from './typeGuards.js';
+import { isObject, isString, isValidNumber, hasProperty, isError } from './typeGuards';
 
 // Common API response structure
 export interface StandardApiResponse<T = unknown> {

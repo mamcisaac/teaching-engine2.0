@@ -7,20 +7,20 @@ import type { Prisma } from '@teaching-engine/database';
 import type { Response, NextFunction } from 'express';
 import { z } from 'zod';
 
-import { prisma } from '../prisma.js';
-import { BaseService } from '../services/base/BaseService.js';
-import type { TemplateCreateData, TemplateUpdateData, Template } from '../types/routes.js';
-import { isValidStringProperty, isNumber } from '../utils/typeGuards.js';
-import { isDefined } from '../../shared/utils/typeGuards';
+import { prisma } from '../prisma';
+import { BaseService } from '../services/base/BaseService';
+import type { TemplateCreateData, TemplateUpdateData, Template } from '../types/routes';
+import { isValidStringProperty, isNumber } from '../utils/typeGuards';
+import { isDefined } from '../../../shared/utils/typeGuards';
 
-import type { AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler.js';
-import { BaseRouteHandler } from './base/BaseRouteHandler.js';
-import { commonValidations } from './base/validation.js';
+import type { AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler';
+import { BaseRouteHandler } from './base/BaseRouteHandler';
+import { commonValidations } from './base/validation';
 import {
   optimizedIncludes,
   optimizedQueries,
   queryPerformance,
-} from './optimizations/queryOptimizations.js';
+} from './optimizations/queryOptimizations';
 
 // Template-specific validation schemas
 const templateContentSchema = z.object({

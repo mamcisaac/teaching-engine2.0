@@ -4,10 +4,10 @@
  * Provides common functionality and lifecycle management
  */
 
-import type { Logger } from '../../logger.js';
-import { logger } from '../../logger.js';
-import { recordDatabaseQuery } from '../../middleware/metrics.js';
-import { prisma } from '../../prisma.js';
+import type { Logger } from '../../logger';
+import { logger } from '../../logger';
+import { recordDatabaseQuery } from '../../middleware/metrics';
+import { prisma } from '../../prisma';
 
 export interface OperationMetrics {
   count: number;

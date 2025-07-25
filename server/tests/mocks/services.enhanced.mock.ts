@@ -5,7 +5,7 @@
  */
 
 import { jest } from '@jest/globals';
-import { MOCK_EMBEDDING_DATA } from './openai.mock.js';
+import { MOCK_EMBEDDING_DATA } from './openai.mock';
 
 /**
  * Enhanced Service Registry Mock

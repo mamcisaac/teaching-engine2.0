@@ -32,7 +32,7 @@ declare global {
     interface Response {
       locals: {
         requestId?: string;
-        [key: string]: any;
+        [key: string]: unknown;
       };
     }
   }

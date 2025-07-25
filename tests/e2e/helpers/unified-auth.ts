@@ -98,7 +98,7 @@ export async function login(page: Page, credentials = DEFAULT_TEST_USER): Promis
     throw new Error(`Login failed with status ${response.status()}: ${errorBody}`);
   }
 
-  const { accessToken, user } = (await response.json()) as { accessToken: string; user: any };
+  const { accessToken, user } = (await response.json()) as { accessToken: string; user: unknown };
 
   // Set auth data before navigation
   await page.addInitScript(
@@ -286,7 +286,7 @@ export async function retry<T>(
  */
 export function createAuthenticatedRequest(page: Page, token: string) {
   return {
-    get: (url: string, options?: any) =>
+    get: (url: string, options?: unknown) =>
       page.request.get(`${API_BASE}${url}`, {
         ...options,
         headers: {
@@ -294,7 +294,7 @@ export function createAuthenticatedRequest(page: Page, token: string) {
           Authorization: `Bearer ${token}`,
         },
       }),
-    post: (url: string, options?: any) =>
+    post: (url: string, options?: unknown) =>
       page.request.post(`${API_BASE}${url}`, {
         ...options,
         headers: {
@@ -302,7 +302,7 @@ export function createAuthenticatedRequest(page: Page, token: string) {
           Authorization: `Bearer ${token}`,
         },
       }),
-    put: (url: string, options?: any) =>
+    put: (url: string, options?: unknown) =>
       page.request.put(`${API_BASE}${url}`, {
         ...options,
         headers: {
@@ -310,7 +310,7 @@ export function createAuthenticatedRequest(page: Page, token: string) {
           Authorization: `Bearer ${token}`,
         },
       }),
-    delete: (url: string, options?: any) =>
+    delete: (url: string, options?: unknown) =>
       page.request.delete(`${API_BASE}${url}`, {
         ...options,
         headers: {
@@ -318,7 +318,7 @@ export function createAuthenticatedRequest(page: Page, token: string) {
           Authorization: `Bearer ${token}`,
         },
       }),
-    patch: (url: string, options?: any) =>
+    patch: (url: string, options?: unknown) =>
       page.request.patch(`${API_BASE}${url}`, {
         ...options,
         headers: {
@@ -411,7 +411,7 @@ export function getAuthenticatedApiContext(token: string): APIRequestContext {
 }
 
 // Track created test users for cleanup
-const createdTestUsers: any[] = [];
+const createdTestUsers: unknown[] = [];
 
 /**
  * Clean up test users created during test

@@ -2,14 +2,14 @@ import { hash as bcryptHash, compare as bcryptCompare } from 'bcryptjs';
 import type { Request, Response, NextFunction } from 'express';
 import { sign, verify } from 'jsonwebtoken';
 
-import { logger } from '../logger.js';
-import { prisma } from '../prisma.js';
+import { logger } from '../logger';
+import { prisma } from '../prisma';
 import {
   isLoginRequestBody,
   isRegisterRequestBody,
   isChangePasswordRequestBody,
   isForgotPasswordRequestBody,
-  isResetPasswordRequestBody} from '../types/auth-data.js';
+  isResetPasswordRequestBody} from '../types/auth-data';
 import type {
   LoginResponse,
   RegisterResponse,
@@ -19,10 +19,10 @@ import type {
   ResetTokenPayload,
   PasswordValidationResult,
   PrismaError
-} from '../types/auth-data.js';
+} from '../types/auth-data';
 
-import { generateToken, generateRefreshToken } from './authenticate.js';
-import { AuthenticationError, ValidationError, ConflictError, AppError } from './errorHandler.js';
+import { generateToken, generateRefreshToken } from './authenticate';
+import { AuthenticationError, ValidationError, ConflictError, AppError } from './errorHandler';
 
 // The global prisma client already handles test client selection via proxy
 // No need for getPrismaClient function - just use prisma directly
@@ -34,7 +34,7 @@ import { AuthenticationError, ValidationError, ConflictError, AppError } from '.
 
 // Environment validation
 const {JWT_SECRET} = process.env;
-if (JWT_SECRET === null || JWT_SECRET === undefined || JWT_SECRET === '') {
+if (JWT_SECRET === null || JWT_SECRET === '') {
   throw new Error('JWT_SECRET environment variable is required');
 }
 // TypeScript now knows JWT_SECRET is defined, but we need to help it
@@ -175,7 +175,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
   try {
     logger.info(
       {
-        bodyKeys: req.body !== null && req.body !== undefined ? Object.keys(req.body as Record<string, unknown>) : [],
+        bodyKeys: req.body !== null ? Object.keys(req.body as Record<string, unknown>) : [],
         bodyType: typeof req.body,
         hasBody: req.body !== null,
       },
@@ -653,7 +653,7 @@ export {
   optionalAuthenticate,
   requirePermission,
   requireOrganization,
-} from './authenticate.js';
+} from './authenticate';
 
 // Export authenticate as authMiddleware for backward compatibility
-export { authenticate as authMiddleware } from './authenticate.js';
+export { authenticate as authMiddleware } from './authenticate';

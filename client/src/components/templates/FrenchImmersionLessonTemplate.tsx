@@ -112,7 +112,7 @@ export function FrenchImmersionLessonTemplate({
               Grade 1 French Immersion Lesson Plan
             </h2>
             <p className="text-gray-600 mt-1">
-              {metadata?.theme != null && metadata.theme.trim() !== ''
+              {metadata?.theme !== null && metadata?.theme !== undefined && metadata.theme.trim() !== ''
                 ? `Theme: ${metadata.theme}`
                 : 'Structured bilingual learning template'}
             </p>

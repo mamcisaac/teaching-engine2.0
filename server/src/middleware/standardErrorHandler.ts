@@ -2,9 +2,9 @@ import type { Request, Response, NextFunction } from 'express';
 // import '../types/express.js';
 import { ZodError } from 'zod';
 
-import { logger } from '../logger.js';
+import { logger } from '../logger';
 
-import { auditFunctions } from './auditLogger.js';
+import { auditFunctions } from './auditLogger';
 
 // Standard error types
 export enum ErrorType {

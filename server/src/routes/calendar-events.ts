@@ -1,8 +1,9 @@
-import type { Prisma } from '@teaching-engine/database';
 import { endOfDay, parseISO } from 'date-fns';
 import type { Request, Response } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
+
+import type { Prisma } from '@teaching-engine/database';
 // Note: Authentication is handled at the route mounting level in index.ts
 
 import { logger } from '../logger';
@@ -10,7 +11,7 @@ import { asyncHandler } from '../middleware/errorHandler';
 import { validateRequest } from '../middleware/validateRequest';
 import { prisma } from '../prisma';
 
-import type { AuthenticatedRequest } from './base/middleware.js';
+import type { AuthenticatedRequest } from './base/middleware';
 const router = Router();
 
 // Validation schemas

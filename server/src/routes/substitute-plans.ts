@@ -3,7 +3,7 @@
  * Refactored to use SubstitutePlansRouteHandler for standardized CRUD operations
  */
 
-import { SubstitutePlansRouteHandler } from './SubstitutePlansRouteHandler.js';
+import { SubstitutePlansRouteHandler } from './SubstitutePlansRouteHandler';
 
 // Create and export the substitute plans router using the standardized handler
 const substitutePlansHandler = new SubstitutePlansRouteHandler();

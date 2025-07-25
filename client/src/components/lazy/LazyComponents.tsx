@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import type { ComponentType } from 'react';
 import { lazy, Suspense } from 'react';
 
@@ -76,7 +75,7 @@ const ModalLoadingFallback = (): React.ReactElement => (
 );
 
 // Higher-order component for creating lazy wrapped components
-function createLazyComponent<T = any>(
+function createLazyComponent<T extends object>(
   LazyComponent: ComponentType<T>, 
   fallback: ComponentType = (): React.ReactElement => <div>Loading...</div>
 ): ComponentType<T> {
@@ -84,10 +83,10 @@ function createLazyComponent<T = any>(
     const FallbackComponent = fallback;
     return (
       <Suspense fallback={<FallbackComponent />}>
-        <LazyComponent {...props as any} />
+        <LazyComponent {...props} />
       </Suspense>
     );
-  };
+  } as ComponentType<T>;
 }
 
 // Export lazy-wrapped components

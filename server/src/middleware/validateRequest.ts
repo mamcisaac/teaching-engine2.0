@@ -3,7 +3,7 @@ import type { ParsedQs } from 'qs';
 import type { ZodSchema} from 'zod';
 import { ZodError } from 'zod';
 
-import { logger } from '../logger.js';
+import { logger } from '../logger';
 
 /**
  * Validation middleware factory

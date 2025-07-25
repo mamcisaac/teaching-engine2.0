@@ -3,11 +3,10 @@ import crypto from 'crypto';
 import type { Request, Response, NextFunction } from 'express';
 import NodeCache from 'node-cache';
 
-import { logger } from '../logger.js';
+import { isDefined, isErrorLike } from '../../../shared/utils/typeGuards';
+import { logger } from '../logger';
 
-import { isDefined, isErrorLike } from '../../shared/utils/typeGuards';
-
-import { cacheMetrics } from './metrics.js';
+import { cacheMetrics } from './metrics';
 
 // Cache configuration
 const DEFAULT_TTL = 300; // 5 minutes in seconds

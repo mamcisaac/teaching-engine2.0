@@ -6,7 +6,7 @@
 
 import type { ExternalActivity } from '@teaching-engine/database';
 
-import { safeJsonParse } from '../utils/type-guards.js';
+import { safeJsonParse } from '../utils/type-guards';
 
 export interface LessonContext {
   title?: string;
@@ -107,7 +107,7 @@ export class AIActivityGeneratorService {
   private _buildGenerationPrompt(params: GenerationParams): string {
     let prompt = 'Generate an engaging educational activity.\n\n';
 
-    if (params.lessonContext) {
+    if (params.lessonContext !== null && params.lessonContext !== undefined) {
       const context = params.lessonContext;
       prompt += 'Lesson Context:\n';
       if (context.title && context.title !== '') {
@@ -131,7 +131,7 @@ prompt += `Section: ${context.section}\n`;
       prompt += '\n';
     }
 
-    if (params.specificRequirements) {
+    if (params.specificRequirements !== null && params.specificRequirements !== undefined) {
       const reqs = params.specificRequirements;
       prompt += 'Requirements:\n';
       if (reqs.activityType && reqs.activityType !== '') {
@@ -152,7 +152,7 @@ prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`
       prompt += '\n';
     }
 
-    if (params.searchResults && params.searchResults.length > 0) {
+    if (params.searchResults !== null && params.searchResults !== undefined && params.searchResults.length > 0) {
       prompt += 'Consider these similar activities for inspiration:\n';
       const limitedResults = params.searchResults.slice(0, 3);
       limitedResults.forEach((result) => {

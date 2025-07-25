@@ -2,8 +2,8 @@ import type { Request, Response, NextFunction } from 'express';
 import { sign, verify, JsonWebTokenError, TokenExpiredError } from 'jsonwebtoken';
 import type { JwtPayload, SignOptions } from 'jsonwebtoken';
 
-import { logger } from '../logger.js';
-import { prisma } from '../prisma.js';
+import { logger } from '../logger';
+import { prisma } from '../prisma';
 
 // User interface is defined in /src/types/express.d.ts
 
@@ -84,7 +84,7 @@ function extractToken(req: Request): string | null {
   }
 
   // Check query parameter (for download links)
-  if (req.query.token != null && typeof req.query.token === 'string') {
+  if (req.query.token !== null && typeof req.query.token === 'string') {
     return req.query.token;
   }
 

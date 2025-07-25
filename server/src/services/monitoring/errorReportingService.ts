@@ -3,7 +3,7 @@ import { nodeProfilingIntegration } from '@sentry/profiling-node';
 
 import { logger } from '../../logger';
 import { AppError } from '../../utils/errors';
-import { safeJsonParse } from '../../utils/type-guards.js';
+import { safeJsonParse } from '../../utils/type-guards';
 
 type Context = Record<string, unknown>;
 

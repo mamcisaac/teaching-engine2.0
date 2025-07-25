@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 // Express types imported but not used in this file
-import { logger } from '../../logger.js';
-import { prisma } from '../../prisma.js';
-import { AuthenticationError, ValidationError, ConflictError } from '../errorHandler.js';
+import { logger } from '../../logger';
+import { prisma } from '../../prisma';
+import { AuthenticationError, ValidationError, ConflictError } from '../errorHandler';
 
 import { generateTokenPair } from './jwt';
 import { hashPassword, verifyPassword, validatePasswordStrength } from './password';

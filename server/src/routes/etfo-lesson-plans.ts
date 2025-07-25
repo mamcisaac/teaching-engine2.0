@@ -3,7 +3,7 @@
  * Refactored to use ETFOLessonPlansRouteHandler for standardized CRUD operations
  */
 
-import { ETFOLessonPlansRouteHandler } from './ETFOLessonPlansRouteHandler.js';
+import { ETFOLessonPlansRouteHandler } from './ETFOLessonPlansRouteHandler';
 
 // Create and export the ETFO lesson plans router using the standardized handler
 const etfoLessonPlansHandler = new ETFOLessonPlansRouteHandler();

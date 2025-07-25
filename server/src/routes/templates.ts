@@ -3,7 +3,7 @@
  * Refactored to use TemplatesRouteHandler for standardized CRUD operations
  */
 
-import { TemplatesRouteHandler } from './TemplatesRouteHandler.js';
+import { TemplatesRouteHandler } from './TemplatesRouteHandler';
 
 // Create and export the templates router using the standardized handler
 const templatesHandler = new TemplatesRouteHandler();

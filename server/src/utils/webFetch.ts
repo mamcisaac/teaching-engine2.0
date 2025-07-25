@@ -3,7 +3,7 @@ import { createHash } from 'crypto';
 import axios from 'axios';
 import { JSDOM } from 'jsdom';
 
-import { logger } from '../logger.js';
+import { logger } from '../logger';
 
 interface CacheEntry {
   html: string;

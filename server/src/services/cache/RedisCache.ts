@@ -9,7 +9,7 @@ import { createClient } from 'redis';
 
 import { PerformanceLogger } from '../../utils/logger-migration';
 import { structuredLogger } from '../../utils/structuredLogger';
-import { safeJsonParse } from '../../utils/type-guards.js';
+import { safeJsonParse } from '../../utils/type-guards';
 
 export interface CacheOptions {
   ttl?: number; // Time to live in seconds

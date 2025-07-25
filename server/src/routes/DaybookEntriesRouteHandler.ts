@@ -7,16 +7,16 @@ import type { Prisma } from '@teaching-engine/database';
 import type { Response, NextFunction } from 'express';
 import { z } from 'zod';
 
-import { prisma } from '../prisma.js';
-import { BaseService } from '../services/base/BaseService.js';
-import type { DaybookEntryCreateData, DaybookEntryUpdateData } from '../types/routes.js';
+import { prisma } from '../prisma';
+import { BaseService } from '../services/base/BaseService';
+import type { DaybookEntryCreateData, DaybookEntryUpdateData } from '../types/routes';
 
-import type { AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler.js';
-import { BaseRouteHandler } from './base/BaseRouteHandler.js';
+import type { AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler';
+import { BaseRouteHandler } from './base/BaseRouteHandler';
 import {
   optimizedIncludes,
   queryPerformance,
-} from './optimizations/queryOptimizations.js';
+} from './optimizations/queryOptimizations';
 
 // Daybook-specific interfaces
 interface DaybookEntryWithRelations {

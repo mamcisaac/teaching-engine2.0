@@ -3,10 +3,11 @@
  * Handles user profile and account management
  */
 
-import type { PrismaClient } from '@teaching-engine/database';
 import type { Request } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
+
+import type { PrismaClient } from '@teaching-engine/database';
 
 import { verifyPassword } from '../middleware/auth/password';
 import { asyncHandler } from '../middleware/errorHandler';

@@ -12,7 +12,7 @@ vi.mock('@sentry/react', () => ({
   setTag: vi.fn(),
   setTags: vi.fn(),
   addBreadcrumb: vi.fn(),
-  configureScope: vi.fn((callback: (scope: any) => void) => {
+  configureScope: vi.fn((callback: (scope: unknown) => void) => {
     callback({
       setUser: vi.fn(),
       setContext: vi.fn(),
@@ -22,7 +22,7 @@ vi.mock('@sentry/react', () => ({
       clear: vi.fn(),
     });
   }),
-  withScope: vi.fn((callback: (scope: any) => void) => {
+  withScope: vi.fn((callback: (scope: unknown) => void) => {
     callback({
       setUser: vi.fn(),
       setContext: vi.fn(),

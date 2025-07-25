@@ -3,8 +3,8 @@ import type { Request, Response, NextFunction } from 'express';
 import { TokenExpiredError, JsonWebTokenError } from 'jsonwebtoken';
 import { ZodError } from 'zod';
 
-import { logger } from '../logger.js';
-import { isDefined, isNonEmptyString } from '../types/http.js';
+import { logger } from '../logger';
+import { isDefined, isNonEmptyString } from '../types/http';
 
 /**
  * Error interface for type safety

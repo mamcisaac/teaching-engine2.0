@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express';
 import { Router } from 'express';
 
-import { logger } from '../logger.js';
+import { logger } from '../logger';
 import { authMiddleware } from '../middleware/auth';
 import { cache, CacheUtils } from '../services/cache';
 

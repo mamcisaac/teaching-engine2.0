@@ -4,7 +4,7 @@ import { performance } from 'perf_hooks';
 // eslint-disable-next-line import/no-named-as-default
 import pino, { stdSerializers } from 'pino';
 
-import { isValidStringProperty, isObject } from './utils/typeGuards.js';
+import { isValidStringProperty, isObject } from './utils/typeGuards';
 
 // Log levels configuration - kept for future use
 // const _LOG_LEVELS = {

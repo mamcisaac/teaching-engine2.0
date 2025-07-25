@@ -19,8 +19,15 @@ import {
   authenticate,
 } from '../middleware/auth';
 import { authRateLimiter } from '../middleware/rateLimit';
-import { isDefined, isNonEmptyString } from '../../shared/utils/typeGuards';
+import { isNonEmptyString } from '../../../shared/utils/typeGuards';
 import { validateRequest } from '../middleware/validateRequest';
+
+// Async middleware wrapper to handle Promise-returning middleware
+function asyncHandler(fn: (req: Request, res: Response, next: NextFunction) => Promise<void>) {
+  return (req: Request, res: Response, next: NextFunction): void => {
+    fn(req, res, next).catch(next);
+  };
+}
 
 // Validation schemas
 const loginSchema = z.object({
@@ -96,89 +103,76 @@ function createAuthRouter(prisma = defaultPrisma): Router {
     '/login',
     authRateLimiter,
     validateAuthInputs(false),
-    validateRequest(loginSchema),
-    login,
+    asyncHandler(validateRequest(loginSchema)),
+    asyncHandler(login),
   );
   router.post(
     '/register',
     authRateLimiter,
     validateAuthInputs(true),
-    validateRequest(registerSchema),
-    register,
+    asyncHandler(validateRequest(registerSchema)),
+    asyncHandler(register),
   );
   router.post(
     '/forgot-password',
     authRateLimiter,
-    validateRequest(forgotPasswordSchema),
-    forgotPassword,
+    asyncHandler(validateRequest(forgotPasswordSchema)),
+    asyncHandler(forgotPassword),
   );
   router.post(
     '/reset-password',
     authRateLimiter,
-    validateRequest(resetPasswordSchema),
-    resetPassword,
+    asyncHandler(validateRequest(resetPasswordSchema)),
+    asyncHandler(resetPassword),
   );
 
   // Protected endpoints
-  router.post('/logout', authenticate, logout);
+  router.post('/logout', asyncHandler(authenticate), logout);
   router.post(
     '/change-password',
-    authenticate,
-    validateRequest(changePasswordSchema),
-    changePassword,
+    asyncHandler(authenticate),
+    asyncHandler(validateRequest(changePasswordSchema)),
+    asyncHandler(changePassword),
   );
 
   // Session check endpoint - authentication middleware handles all error cases
-  router.get('/me', authenticate, (req: Request, res: Response): void => {
-    void (async () => {
-      try {
-      // Always fetch fresh user data from database for /me endpoint
-      if (!req.user || !req.user.id) {
-        res.status(401).json({ error: 'User not authenticated' });
-        return;
-      }
-      const userId = req.user.id;
-
-      const user = await prisma.user.findUnique({
-        where: { id: userId },
-        select: {
-          id: true,
-          email: true,
-          name: true,
-          role: true,
-        },
-      });
-
-      if (user === null) {
-        // This shouldn't happen as authenticate middleware already checked
-        res.status(404).json({
-          error: 'User not found',
-        });
-        return;
-      }
-
-      // Return user data directly in response body
-      res.json({
-        id: user.id,
-        email: user.email,
-        name: user.name,
-        role: user.role,
-      });
+  router.get('/me', asyncHandler(authenticate), asyncHandler(async (req: Request, res: Response): Promise<void> => {
+    // Always fetch fresh user data from database for /me endpoint
+    if (!req.user || !req.user.id) {
+      res.status(401).json({ error: 'User not authenticated' });
       return;
-      return;
-    } catch (_error) {
-      // This should rarely happen as authenticate middleware handles most errors
-      res.status(500).json({
-        error: 'Internal Server Error',
-        message: 'Failed to retrieve user data',
+    }
+    const userId = req.user.id;
+
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        role: true,
+      },
+    });
+
+    if (user === null) {
+      // This shouldn't happen as authenticate middleware already checked
+      res.status(404).json({
+        error: 'User not found',
       });
       return;
     }
-    })();
-  });
+
+    // Return user data directly in response body
+    res.json({
+      id: user.id,
+      email: user.email,
+      name: user.name,
+      role: user.role,
+    });
+  }));
 
   // Simple auth check endpoint - returns userId if authenticated
-  router.get('/check', authenticate, (req: Request, res: Response): void => {
+  router.get('/check', asyncHandler(authenticate), (req: Request, res: Response): void => {
     if (!req.user || !req.user.id) {
       res.status(401).json({ error: 'User not authenticated' });
       return;

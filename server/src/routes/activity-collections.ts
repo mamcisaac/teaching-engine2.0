@@ -1,11 +1,12 @@
-import { prisma } from '@teaching-engine/database';
 import type { Request, Response, NextFunction } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
 
+import { prisma } from '@teaching-engine/database';
+
 import { logger } from '../logger';
 import { authMiddleware } from '../middleware/auth';
-import { isDefined, isErrorLike } from '../../shared/utils/typeGuards';
+import { isErrorLike } from '../../../shared/utils/typeGuards';
 const router = Router();
 
 // Helper function to safely get boolean values
@@ -32,7 +33,7 @@ const asyncMiddleware = (fn: (req: Request, res: Response, next: NextFunction) =
   };
 
 // Get user's collections
-router.get('/', asyncMiddleware(authMiddleware), asyncMiddleware(async (req: Request, res: Response, next: NextFunction) => {
+router.get('/', asyncMiddleware(authMiddleware), asyncMiddleware(async (req: Request, res: Response, _next: NextFunction) => {
   try {
     if (req.user?.id === null || req.user?.id === undefined) {
       res.status(401).json({ error: 'User not authenticated' });

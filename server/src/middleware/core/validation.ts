@@ -6,7 +6,7 @@ import { z, ZodError } from 'zod';
 import { logger } from '../../logger';
 import type { ValidatedRequest } from '../../types/http';
 import { ValidationError } from '../../utils/errors';
-import { isDefined, isError } from '../../../shared/utils/typeGuards';
+import { isDefined, isError } from '../../../../shared/utils/typeGuards';
 
 export type { ValidatedRequest } from '../../types/http';
 

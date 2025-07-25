@@ -191,7 +191,7 @@ export class CurriculumImportOrchestrator extends BaseService {
         result.stats.totalExpectations = parsed.expectations.length;
 
         // Validate if requested
-        if (options.validate !== false) {
+        if (options.validate === true || options.validate === undefined) {
           const validationResult = this.validateCurriculum(parsed, options.validationOptions);
           result.validation = validationResult;
 
@@ -203,7 +203,7 @@ export class CurriculumImportOrchestrator extends BaseService {
         }
 
         // Dry run - return without saving
-        if (options.dryRun) {
+        if (options.dryRun === true) {
           result.success = true;
           result.message = 'Dry run completed successfully';
           return result;

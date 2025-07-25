@@ -1,6 +1,6 @@
 import type { Request, Response, NextFunction } from 'express';
 
-import { logger } from '../logger.js';
+import { logger } from '../logger';
 
 /**
  * Middleware for API key validation

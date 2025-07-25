@@ -45,7 +45,7 @@ import {
   MockOpenAIInstance,
   createTypedMockFunction,
   ensureMockFunction,
-} from '../helpers/mock-types.js';
+} from '../helpers/mock-types';
 
 // Standard mock embedding data - simpler for unit tests
 export const MOCK_EMBEDDING_DATA = [0.1, 0.2, 0.3, 0.4, 0.5];

@@ -7,8 +7,8 @@
 // eslint-disable-next-line import/no-named-as-default
 import OpenAI from 'openai';
 
-import { BaseService } from './base/BaseService.js';
-// import logger from '../logger.js';
+import { BaseService } from './base/BaseService';
+// import logger from '../logger';
 
 export interface ContentGenerationRequest {
   prompt: string;
@@ -88,7 +88,7 @@ export class LLMService extends BaseService {
     try {
       const apiKey = process.env.OPENAI_API_KEY;
 
-      if (!apiKey) {
+      if (apiKey === null || apiKey === undefined || apiKey === '') {
         this.logger.warn('OpenAI API key not provided. LLM features will be disabled.');
         return;
       }
@@ -157,7 +157,7 @@ export class LLMService extends BaseService {
 
       const content = response.choices[0]?.message?.content ?? '';
 
-      if (!content) {
+      if (content === null || content === undefined || content === '') {
         throw new Error('No content generated from OpenAI');
       }
 
@@ -236,7 +236,7 @@ export class LLMService extends BaseService {
 
       const content = response.choices[0]?.message?.content ?? '';
 
-      if (!content) {
+      if (content === null || content === undefined || content === '') {
         throw new Error('No content generated from OpenAI');
       }
 

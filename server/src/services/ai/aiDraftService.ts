@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { AIServiceRequestData } from '../../types/routes.js';
+import type { AIServiceRequestData } from '../../types/routes';
 import { BaseService } from '../base/BaseService';
 
 interface LongRangePlanDraftRequest {

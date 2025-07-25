@@ -1,11 +1,11 @@
 import type { Request, Response } from 'express';
 import { Router } from 'express';
 
-import { logger } from '../logger.js';
-import { authMiddleware } from '../middleware/auth.js';
-import { getCacheStats } from '../middleware/cache.js';
-import { getPerformanceSummary, metricsStore } from '../middleware/metrics.js';
-import { prisma } from '../prisma.js';
+import { logger } from '../logger';
+import { authMiddleware } from '../middleware/auth';
+import { getCacheStats } from '../middleware/cache';
+import { getPerformanceSummary, metricsStore } from '../middleware/metrics';
+import { prisma } from '../prisma';
 
 const router = Router();
 

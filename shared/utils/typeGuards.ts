@@ -61,7 +61,7 @@ export function isNonEmptyArray<T = unknown>(value: unknown): value is T[] {
 }
 
 // Function validation
-export function isFunction(value: unknown): value is (...args: any[]) => any {
+export function isFunction(value: unknown): value is (...args: unknown[]) => unknown {
   return typeof value === 'function';
 }
 

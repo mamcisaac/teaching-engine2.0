@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { sign, verify } from 'jsonwebtoken';
 
-import { logger } from '../../logger.js';
+import { logger } from '../../logger';
 
 import type { TokenPayload} from './types';
 import { JWTConfig as _JWTConfig } from './types';

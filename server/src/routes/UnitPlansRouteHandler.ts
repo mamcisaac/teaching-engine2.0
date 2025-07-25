@@ -7,18 +7,19 @@ import type { Prisma } from '@teaching-engine/database';
 import type { Response, NextFunction } from 'express';
 import { z } from 'zod';
 
-import { prisma } from '../prisma.js';
-import { BaseService } from '../services/base/BaseService.js';
-import type { UnitPlanCreateData, UnitPlanUpdateData, ResourceData } from '../types/routes.js';
+import { prisma } from '../prisma';
+import { BaseService } from '../services/base/BaseService';
+import type { UnitPlanCreateData, UnitPlanUpdateData, ResourceData } from '../types/routes';
+import type { UnitPlan } from '../types/prisma-types';
 
-import type { AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler.js';
-import { BaseRouteHandler } from './base/BaseRouteHandler.js';
-import { commonValidations } from './base/validation.js';
+import type { AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler';
+import { BaseRouteHandler } from './base/BaseRouteHandler';
+import { commonValidations } from './base/validation';
 import {
   optimizedIncludes,
   optimizedQueries,
   queryPerformance,
-} from './optimizations/queryOptimizations.js';
+} from './optimizations/queryOptimizations';
 
 // Unit plan-specific validation schemas
 const unitPlanCreateSchema = z.object({
@@ -115,7 +116,7 @@ class UnitPlanService extends BaseService {
     super('UnitPlanService');
   }
 
-  async findMany(filters: Record<string, unknown>, userId: number): Promise<{unitPlans: any[]; pagination: {total: number; limit: number; offset: number; hasMore: boolean};}> {
+  async findMany(filters: Record<string, unknown>, userId: number): Promise<{unitPlans: UnitPlan[]; pagination: {total: number; limit: number; offset: number; hasMore: boolean};}> {
     const filtersObj = filters ?? {};
     const {
       longRangePlanId,
@@ -195,7 +196,7 @@ where.endDate = { lte: new Date(String(endDate)) };
     };
   }
 
-  async findById(id: string, userId: number): Promise<any> {
+  async findById(id: string, userId: number): Promise<UnitPlan | null> {
     return queryPerformance.monitorQuery('unitPlan.findById', () =>
       prisma.unitPlan.findFirst({
         where: {
@@ -207,7 +208,7 @@ where.endDate = { lte: new Date(String(endDate)) };
     );
   }
 
-  async create(data: UnitPlanCreateData, userId: number): Promise<any> {
+  async create(data: UnitPlanCreateData, userId: number): Promise<UnitPlan> {
     // Verify user owns the long range plan
     const longRangePlan = await prisma.longRangePlan.findFirst({
       where: {
@@ -299,7 +300,7 @@ where.endDate = { lte: new Date(String(endDate)) };
     });
   }
 
-  async update(id: string, data: UnitPlanUpdateData, userId: number): Promise<any> {
+  async update(id: string, data: UnitPlanUpdateData, userId: number): Promise<UnitPlan> {
     // Verify ownership
     const unitPlan = await prisma.unitPlan.findFirst({
       where: {
@@ -507,7 +508,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
     return this.unitPlanService;
   }
 
-  protected getValidationSchemas(): {create: any; update: any; query: any} {
+  protected getValidationSchemas(): {create: typeof unitPlanCreateSchema; update: typeof unitPlanUpdateSchema; query: typeof unitPlanQuerySchema} {
     return {
       create: unitPlanCreateSchema,
       update: unitPlanUpdateSchema,
@@ -518,7 +519,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
   protected getCrudOperations(): CrudOperations<unknown> {
     return {
       create: async (data: unknown, userId: number) => this.unitPlanService.create(data as UnitPlanCreateData, userId),
-      findMany: async (filters: unknown, userId: number): Promise<any> => {
+      findMany: async (filters: unknown, userId: number): Promise<UnitPlan[]> => {
         const result = await this.unitPlanService.findMany(
           filters as Record<string, unknown>,
           userId,

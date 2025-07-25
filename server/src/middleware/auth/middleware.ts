@@ -1,8 +1,8 @@
 import type { Request, Response, NextFunction } from 'express';
 
-import { logger } from '../../logger.js';
-import { prisma } from '../../prisma.js';
-import { AuthenticationError } from '../errorHandler.js';
+import { logger } from '../../logger';
+import { prisma } from '../../prisma';
+import { AuthenticationError } from '../errorHandler';
 
 import { verifyToken, extractTokenFromHeader } from './jwt';
 import type { AuthRequest, UserRole } from './types';
@@ -85,7 +85,7 @@ export function authorize(...allowedRoles: UserRole[]) {
       next(); return;
     }
 
-    if (authReq.user.role != null && !allowedRoles.includes(authReq.user.role)) {
+    if (authReq.user.role !== null && authReq.user.role !== undefined && !allowedRoles.includes(authReq.user.role)) {
       logger.warn(
         `Access denied for user ${authReq.user.email ?? 'unknown'} with role ${authReq.user.role ?? 'unknown'}. Required roles: ${allowedRoles.join(', ')}`,
       );
@@ -127,7 +127,7 @@ export async function optionalAuthenticate(
       (req as AuthRequest).user = {
         id: user.id,
         email: user.email,
-        name: (user.name != null && user.name !== '') ? user.name : '',
+        name: (user.name !== null && user.name !== '') ? user.name : '',
         role: user.role as UserRole,
       };
     }

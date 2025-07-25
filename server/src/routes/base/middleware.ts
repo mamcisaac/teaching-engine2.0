@@ -8,7 +8,7 @@ import { z } from 'zod';
 
 import { logger } from '../../logger';
 
-import { formatValidationError } from './validation.js';
+import { formatValidationError } from './validation';
 
 export interface AuthenticatedRequest extends Request {
   userId?: number;

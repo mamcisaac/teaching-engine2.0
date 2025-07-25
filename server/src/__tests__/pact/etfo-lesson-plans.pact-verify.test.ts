@@ -13,9 +13,9 @@ describe('ETFO Lesson Plans Pact Verification Tests', () => {
 import { Verifier } from '@pact-foundation/pact';
 import path from 'path';
 import { beforeAll, afterAll } from '@jest/globals';
-import { prisma } from '../../prisma.js';
-import { createTestUser, generateAuthToken } from '../security/utils/security-test-utilities.js';
-import { server } from '../../index.js';
+import { prisma } from '../../prisma';
+import { createTestUser, generateAuthToken } from '../security/utils/security-test-utilities';
+import { server } from '../../index';
 import type { Server } from 'http';
 
 describe('ETFO Lesson Plans Provider Contract Tests', () => {

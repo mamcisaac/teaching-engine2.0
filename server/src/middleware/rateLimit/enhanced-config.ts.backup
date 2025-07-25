@@ -30,7 +30,7 @@ export interface RateLimitConfig {
   skipFailedRequests?: boolean;
   keyGenerator?: (req: Request) => string;
   skip?: (req: Request) => boolean;
-  handler?: (req: Request, res: Response, next: NextFunction, options: RateLimitConfig) => void;
+  handler?: (req: Request, res: unknown, next: unknown, options: unknown) => void;
   store?: Redis | 'memory';
 }
 
@@ -128,7 +128,7 @@ export function getUserTier(req: Request): UserTier {
 export async function createEnhancedRateLimiter(
   type: keyof typeof rateLimitConfigs,
   customConfig?: Partial<RateLimitConfig>,
-): Promise<(req: Request, res: Response, next: NextFunction) => Promise<void>> {
+): Promise<unknown> {
   const config = rateLimitConfigs[type];
   const redis = await getRedisClient();
 
@@ -261,7 +261,7 @@ export function applyRateLimits(types: Array<keyof typeof rateLimitConfigs>) {
  * Dynamic rate limiter based on request properties
  */
 export function dynamicRateLimiter() {
-  return async (req: Request, res: Response, next: NextFunction) => {
+  return async (req: Request, res: unknown, next: unknown) => {
     // Determine rate limit type based on request
     let type: keyof typeof rateLimitConfigs = 'api';
 
@@ -278,7 +278,7 @@ export function dynamicRateLimiter() {
     }
 
     const limiter = await enhancedRateLimiters[type]();
-    return limiter(req, res, next);
+    return (limiter as any)(req, res, next);
   };
 }
 

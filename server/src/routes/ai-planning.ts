@@ -141,7 +141,7 @@ router.post(
       };
       const { subject, grade, termLength, focusAreas } = sanitizedBody;
 
-      if (subject == null || subject === '' || grade === null || grade === undefined || termLength === null || termLength === undefined) {
+      if (subject === null || subject === '' || grade === null || grade === undefined || termLength === null || termLength === undefined) {
         res.status(400).json({
           error: 'Missing required fields: subject, grade, termLength',
         });

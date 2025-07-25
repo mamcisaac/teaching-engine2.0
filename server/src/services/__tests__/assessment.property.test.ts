@@ -8,7 +8,7 @@ import {
   invariants,
   matchers,
   runPropertyTest
-} from '../../test-utils/property-test-utils.js';
+} from '../../test-utils/property-test-utils';
 import {
   calculateGPA,
   calculateAverageRating,
@@ -21,7 +21,7 @@ import {
   type AssessmentData,
   type StrandAggregation,
   type TrendAnalysis
-} from '../assessment/assessmentCalculations.js';
+} from '../assessment/assessmentCalculations';
 
 describe('Assessment Services - Property Tests', () => {
   describe('calculateGPA', () => {

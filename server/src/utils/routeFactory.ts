@@ -1,7 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { z } from 'zod';
 import { authMiddleware } from '../middleware/auth';
-import { logger } from '../logger.js';
+import { logger } from '../logger';
 
 // Base interface for models that might have userId
 interface BaseModel {
