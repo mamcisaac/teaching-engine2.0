@@ -138,9 +138,7 @@ return;
           useAiExtraction: true,
         });
 
-        if (progressInterval !== null) {
-          clearInterval(progressInterval);
-        }
+        clearInterval(progressInterval);
         setParseProgress(100);
 
         if (!isParseResponse(parseResponse.data)) {

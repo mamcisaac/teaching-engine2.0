@@ -73,13 +73,21 @@ export interface ApiResponse<T = unknown> {
 }
 
 export function isApiResponse<T = unknown>(value: unknown): value is ApiResponse<T> {
-  if (!isObject(value)) return false;
-  
-  // Check optional fields
-  if ('data' in value && value.data !== undefined && value.data === null) return false;
-  if ('error' in value && value.error !== undefined) {
-    if (!isString(value.error) && !hasErrorMessage(value.error)) return false;
+  if (!isObject(value)) {
+    return false;
   }
+  
+  // Check optional fields with explicit null/undefined handling
+  if ('data' in value && value.data === null) {
+    return false;
+  }
+  
+  if ('error' in value && value.error !== undefined) {
+    if (!isString(value.error) && !hasErrorMessage(value.error)) {
+      return false;
+    }
+  }
+  
   if ('status' in value && value.status !== undefined && !isValidNumber(value.status)) {
     return false;
   }
@@ -94,7 +102,7 @@ export function tryParseJSON<T = unknown>(
 ): T | null {
   try {
     const parsed = JSON.parse(jsonString);
-    if (validator) {
+    if (validator != null) {
       return validator(parsed) ? parsed : null;
     }
     return parsed as T;
@@ -129,14 +137,26 @@ export function hasId(value: unknown): value is IdObject {
     (isString(value.id) || isValidNumber(value.id));
 }
 
-// Safe conditional checks
+// Safe conditional checks with explicit boolean conversions
 export function safeBoolean(value: unknown): boolean {
-  if (value === null || value === undefined) return false;
-  if (typeof value === 'boolean') return value;
-  if (typeof value === 'number') return value !== 0 && !isNaN(value);
-  if (typeof value === 'string') return value.length > 0;
-  if (Array.isArray(value)) return value.length > 0;
-  if (typeof value === 'object') return Object.keys(value).length > 0;
+  if (value === null || value === undefined) {
+    return false;
+  }
+  if (typeof value === 'boolean') {
+    return value;
+  }
+  if (typeof value === 'number') {
+    return value !== 0 && !isNaN(value);
+  }
+  if (typeof value === 'string') {
+    return value.length > 0;
+  }
+  if (Array.isArray(value)) {
+    return value.length > 0;
+  }
+  if (typeof value === 'object') {
+    return Object.keys(value).length > 0;
+  }
   return false;
 }
 

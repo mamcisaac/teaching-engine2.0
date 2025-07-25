@@ -528,7 +528,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                 >
                   Edit
                 </Button>
-                {selectedLesson.daybookEntry !== null && selectedLesson.daybookEntry !== undefined ? (
+                {selectedLesson.daybookEntry != null ? (
                   <Link to={`/planner/daybook?date=${selectedLesson.date}`}>
                     <Button variant="outline">View in Daybook</Button>
                   </Link>

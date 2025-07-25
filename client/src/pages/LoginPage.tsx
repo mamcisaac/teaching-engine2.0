@@ -80,7 +80,7 @@ function LoginPage(): React.ReactElement {
             Sign in to your account
           </h2>
         </div>
-        {((authError != null && authError !== '') || (localError != null && localError !== '')) && (
+        {(authError || localError) && (
           <div className="bg-red-50 border-l-4 border-red-400 p-4">
             <div className="flex">
               <div className="flex-shrink-0">

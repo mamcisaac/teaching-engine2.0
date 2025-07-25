@@ -17,16 +17,22 @@ export interface StandardApiResponse<T = unknown> {
 export function isStandardApiResponse<T = unknown>(
   value: unknown
 ): value is StandardApiResponse<T> {
-  if (!isObject(value)) return false;
+  if (!isObject(value)) {
+    return false;
+  }
   
   // Must have success field as boolean
   if (!hasProperty(value, 'success') || typeof value.success !== 'boolean') {
     return false;
   }
   
-  // Optional fields validation
-  if (hasProperty(value, 'error') && !isString(value.error)) return false;
-  if (hasProperty(value, 'message') && !isString(value.message)) return false;
+  // Optional fields validation with explicit checks
+  if (hasProperty(value, 'error') && !isString(value.error)) {
+    return false;
+  }
+  if (hasProperty(value, 'message') && !isString(value.message)) {
+    return false;
+  }
   
   return true;
 }
@@ -43,7 +49,9 @@ export interface PaginatedResponse<T = unknown> {
 export function isPaginatedResponse<T = unknown>(
   value: unknown
 ): value is PaginatedResponse<T> {
-  if (!isObject(value)) return false;
+  if (!isObject(value)) {
+    return false;
+  }
   
   return (
     hasProperty(value, 'items') && Array.isArray(value.items) &&
@@ -87,7 +95,7 @@ export function safeJsonParse<T = unknown>(
   try {
     const parsed = JSON.parse(jsonString);
     
-    if (validator && !validator(parsed)) {
+    if (validator != null && !validator(parsed)) {
       return { success: false, error: 'Parsed data does not match expected format' };
     }
     
@@ -107,7 +115,7 @@ export function getValidQueryParam(
   defaultValue: string
 ): string {
   const value = params[key];
-  return isString(value) && value.length > 0 ? value : defaultValue;
+  return (isString(value) && value.length > 0) ? value : defaultValue;
 }
 
 export function getValidNumericParam(
@@ -117,7 +125,9 @@ export function getValidNumericParam(
 ): number {
   const value = params[key];
   
-  if (isValidNumber(value)) return value;
+  if (isValidNumber(value)) {
+    return value;
+  }
   
   if (isString(value)) {
     const parsed = parseInt(value, 10);
@@ -134,9 +144,15 @@ export function getValidBooleanParam(
 ): boolean {
   const value = params[key];
   
-  if (typeof value === 'boolean') return value;
-  if (value === 'true' || value === '1') return true;
-  if (value === 'false' || value === '0') return false;
+  if (typeof value === 'boolean') {
+    return value;
+  }
+  if (value === 'true' || value === '1') {
+    return true;
+  }
+  if (value === 'false' || value === '0') {
+    return false;
+  }
   
   return defaultValue;
 }
@@ -167,7 +183,9 @@ export interface AuthData {
 }
 
 export function isValidAuthData(value: unknown): value is AuthData {
-  if (!isObject(value)) return false;
+  if (!isObject(value)) {
+    return false;
+  }
   
   return (
     hasProperty(value, 'email') && 

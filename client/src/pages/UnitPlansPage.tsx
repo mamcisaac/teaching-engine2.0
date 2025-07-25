@@ -221,7 +221,7 @@ function UnitPlansPage(): React.ReactElement {
     try {
       const applied = await applyTemplate.mutateAsync({ id: template.id });
 
-      if (isUnitPlanTemplate(template) && applied.appliedContent !== undefined) {
+      if (isUnitPlanTemplate(template)) {
         // Pre-populate form with template data
         const templateContent = applied.appliedContent as UnitPlanContent;
         updateField('title', '');
@@ -470,9 +470,7 @@ function UnitPlansPage(): React.ReactElement {
                     Differentiation Strategies
                   </h3>
                   <div className="grid gap-4 md:grid-cols-2">
-                    {unit.differentiationStrategies.forStruggling !== undefined &&
-                      unit.differentiationStrategies.forStruggling !== undefined &&
-                      unit.differentiationStrategies.forStruggling.length > 0 && (
+                    {unit.differentiationStrategies.forStruggling.length > 0 && (
                         <Card>
                           <CardHeader>
                             <CardTitle className="text-sm">For Struggling Learners</CardTitle>
@@ -489,9 +487,7 @@ function UnitPlansPage(): React.ReactElement {
                         </Card>
                       )}
 
-                    {unit.differentiationStrategies.forAdvanced !== undefined &&
-                      unit.differentiationStrategies.forAdvanced !== undefined &&
-                      unit.differentiationStrategies.forAdvanced.length > 0 && (
+                    {unit.differentiationStrategies.forAdvanced.length > 0 && (
                         <Card>
                           <CardHeader>
                             <CardTitle className="text-sm">For Advanced Learners</CardTitle>
@@ -506,9 +502,7 @@ function UnitPlansPage(): React.ReactElement {
                         </Card>
                       )}
 
-                    {unit.differentiationStrategies.forELL !== undefined &&
-                      unit.differentiationStrategies.forELL !== undefined &&
-                      unit.differentiationStrategies.forELL.length > 0 && (
+                    {unit.differentiationStrategies.forELL.length > 0 && (
                         <Card>
                           <CardHeader>
                             <CardTitle className="text-sm">For English Language Learners</CardTitle>
@@ -523,9 +517,7 @@ function UnitPlansPage(): React.ReactElement {
                         </Card>
                       )}
 
-                    {unit.differentiationStrategies.forIEP !== undefined &&
-                      unit.differentiationStrategies.forIEP !== undefined &&
-                      unit.differentiationStrategies.forIEP.length > 0 && (
+                    {unit.differentiationStrategies.forIEP.length > 0 && (
                         <Card>
                           <CardHeader>
                             <CardTitle className="text-sm">For Students with IEPs</CardTitle>
@@ -721,9 +713,9 @@ function UnitPlansPage(): React.ReactElement {
         <div className="p-6 max-w-5xl max-h-[90vh] overflow-y-auto">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold">
-              {editingUnit !== null && editingUnit !== undefined ? 'Edit Unit Plan' : 'Create Unit Plan'}
+              {editingUnit != null ? 'Edit Unit Plan' : 'Create Unit Plan'}
             </h3>
-            {editingUnit !== null && editingUnit !== undefined && (
+            {editingUnit != null && (
               <div className="flex items-center gap-2">
                 <AutoSaveIndicator
                   hasUnsavedChanges={hasUnsavedChanges}
@@ -1159,7 +1151,7 @@ function UnitPlansPage(): React.ReactElement {
                 >
                   {createUnit.isPending || updateUnit.isPending || isSaving
                     ? 'Saving...'
-                    : editingUnit !== null && editingUnit !== undefined
+                    : editingUnit != null
                       ? 'Update Unit Plan'
                       : 'Create Unit Plan'}
                 </Button>
@@ -1245,7 +1237,7 @@ function UnitPlansPage(): React.ReactElement {
                         )}
                       </div>
                       <div className="flex items-center justify-between text-xs text-gray-500">
-                        <span>Used {template.usageCount ?? 0} times</span>
+                        <span>Used {template.usageCount} times</span>
                         <span>By {template.createdByUser?.name ?? 'Anonymous'}</span>
                       </div>
                     </CardContent>

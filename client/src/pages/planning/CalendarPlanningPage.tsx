@@ -186,7 +186,7 @@ export function CalendarPlanningPage(): JSX.Element {
 
     // Add lessons
     lessons.forEach((lesson: ETFOLessonPlan) => {
-      if (lesson.date !== null && lesson.date.length > 0) {
+      if (lesson.date.length > 0) {
         allEvents.push({
           id: `lesson-${lesson.id}`,
           title: lesson.title || 'Untitled Lesson',
@@ -198,7 +198,7 @@ export function CalendarPlanningPage(): JSX.Element {
             unitId: lesson.unitPlanId,
             lessonId: lesson.id,
             color:
-              SUBJECT_COLORS[(lesson.unitPlan?.longRangePlan?.subject !== null && lesson.unitPlan?.longRangePlan?.subject !== undefined && lesson.unitPlan?.longRangePlan?.subject !== '' ? lesson.unitPlan.longRangePlan.subject.toLowerCase() : 'default')] ||
+              SUBJECT_COLORS[(lesson.unitPlan.longRangePlan.subject !== '' ? lesson.unitPlan.longRangePlan.subject.toLowerCase() : 'default')] ||
               SUBJECT_COLORS.default,
             isEditable: true,
           },
@@ -209,7 +209,7 @@ export function CalendarPlanningPage(): JSX.Element {
 
     // Add unit boundaries
     units.forEach((unit: UnitPlan) => {
-      if (unit.startDate !== null && unit.startDate.length > 0) {
+      if (unit.startDate.length > 0) {
         allEvents.push({
           id: `unit-start-${unit.id}`,
           title: `${unit.title} - Start`,
@@ -224,7 +224,7 @@ export function CalendarPlanningPage(): JSX.Element {
           originalData: unit,
         });
       }
-      if (unit.endDate !== null && unit.endDate.length > 0) {
+      if (unit.endDate.length > 0) {
         allEvents.push({
           id: `unit-end-${unit.id}`,
           title: `${unit.title} - End`,
@@ -243,7 +243,7 @@ export function CalendarPlanningPage(): JSX.Element {
 
     // Apply filters
     return allEvents.filter((event) => {
-      if (filters.subjects.length > 0 && event.metadata?.subject !== null && event.metadata?.subject !== undefined && event.metadata?.subject !== '') {
+      if (filters.subjects.length > 0 && event.metadata.subject !== '') {
         if (!filters.subjects.includes(event.metadata.subject)) {
 return false;
 }
@@ -289,7 +289,7 @@ return false;
   // Handle event drop (drag and drop)
   const _handleEventDrop = useCallback(
     ({ event, start }: { event: CalendarViewEvent; start: Date }) => {
-      if (event.type === 'lesson' && event.metadata?.lessonId !== null && event.metadata?.lessonId !== undefined && event.metadata?.lessonId !== '') {
+      if (event.type === 'lesson' && event.metadata.lessonId !== '') {
         updateLessonMutation.mutate({
           lessonId: event.metadata.lessonId,
           newDate: start,

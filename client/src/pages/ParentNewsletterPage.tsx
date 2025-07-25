@@ -342,7 +342,7 @@ return;
   }
 
   // Newsletter editor view
-  if (currentNewsletter !== null) {
+  if (currentNewsletter) {
     return (
       <div className="max-w-6xl mx-auto p-6">
         <div className="mb-6">
@@ -350,7 +350,7 @@ return;
             <div>
               <h1 className="text-3xl font-bold text-gray-900 mb-2">Newsletter Editor</h1>
               <p className="text-gray-600">
-                {currentNewsletter && format(currentNewsletter.dateFrom, 'MMM d')} - {currentNewsletter && format(currentNewsletter.dateTo, 'MMM d, yyyy')}
+                {format(currentNewsletter.dateFrom, 'MMM d')} - {format(currentNewsletter.dateTo, 'MMM d, yyyy')}
               </p>
             </div>
             
@@ -367,7 +367,7 @@ return;
               <button
                 className="flex items-center gap-2 px-4 py-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg"
                 onClick={() => {
-                  if (currentNewsletter?.id != null && currentNewsletter.id !== '') {
+                  if (currentNewsletter.id != null && currentNewsletter.id !== '') {
                     void handleDeleteNewsletter(currentNewsletter.id);
                   }
                 }}
@@ -379,27 +379,25 @@ return;
           </div>
         </div>
 
-        {currentNewsletter && (
-          <NewsletterEditor
-            draft={currentNewsletter}
-            isGenerating={regenerateNewsletter.isPending}
-            onRegenerate={(tone?: NewsletterTone) => {
-              void handleRegenerateNewsletter(tone).catch((error: unknown) => {
-                logger.error('Error regenerating newsletter:', error);
-              });
-            }}
-            onSave={(draft: NewsletterDraft) => {
-              void handleSaveDraft(draft).catch((error: unknown) => {
-                logger.error('Error saving draft:', error);
-              });
-            }}
-            onSend={(draft: NewsletterDraft) => {
-              void handleSendNewsletter(draft).catch((error: unknown) => {
-                logger.error('Error sending newsletter:', error);
-              });
-            }}
-          />
-        )}
+        <NewsletterEditor
+          draft={currentNewsletter}
+          isGenerating={regenerateNewsletter.isPending}
+          onRegenerate={(tone?: NewsletterTone) => {
+            void handleRegenerateNewsletter(tone).catch((error: unknown) => {
+              logger.error('Error regenerating newsletter:', error);
+            });
+          }}
+          onSave={(draft: NewsletterDraft) => {
+            void handleSaveDraft(draft).catch((error: unknown) => {
+              logger.error('Error saving draft:', error);
+            });
+          }}
+          onSend={(draft: NewsletterDraft) => {
+            void handleSendNewsletter(draft).catch((error: unknown) => {
+              logger.error('Error sending newsletter:', error);
+            });
+          }}
+        />
       </div>
     );
   }
