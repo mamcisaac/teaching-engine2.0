@@ -146,7 +146,7 @@ export class RenderCoordinator extends BaseService {
         const result = await engine.render(template, renderContext);
 
         // Step 7: Cache result if appropriate
-        if (options.useCache !== false && !options.debug) {
+        if (options.useCache !== false && (options.debug == null || options.debug === false)) {
           const cacheKey = this.generateCacheKey(context, options);
           this.cache.set(cacheKey, result);
         }
@@ -217,7 +217,7 @@ export class RenderCoordinator extends BaseService {
     // Get template
     const template = await provider.getTemplate(templateContext);
     if (template === null) {
-      throw new Error(`Template not found: ${templateType}:${options.templateId || 'default'}`);
+      throw new Error(`Template not found: ${templateType}:${options.templateId ?? 'default'}`);
     }
 
     return { provider, template };

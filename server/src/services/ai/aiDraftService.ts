@@ -57,7 +57,7 @@ export class AIDraftService extends BaseService {
     this.logger.info('Generating unit plan draft');
     
     return {
-      title: request.title || 'Unit Plan',
+      title: request.title ?? 'Unit Plan',
       description: 'Generated unit plan description',
       bigIdeas: ['Key concepts and understanding'],
       essentialQuestions: ['What should students understand?'],
@@ -68,7 +68,7 @@ export class AIDraftService extends BaseService {
     this.logger.info('Generating lesson plan draft');
     
     return {
-      title: request.title || 'Lesson Plan',
+      title: request.title ?? 'Lesson Plan',
       objectives: ['Students will be able to...'],
       activities: ['Opening activity', 'Main activity', 'Closing activity'],
       materials: ['Required materials'],
@@ -80,7 +80,7 @@ export class AIDraftService extends BaseService {
     this.logger.info('Generating daybook draft');
     
     return {
-      date: request.date || new Date().toISOString().split('T')[0],
+      date: request.date ?? new Date().toISOString().split('T')[0],
       activities: ['Daily activities'],
       reflections: ['Teaching reflections'],
       nextSteps: ['Next steps for learning'],

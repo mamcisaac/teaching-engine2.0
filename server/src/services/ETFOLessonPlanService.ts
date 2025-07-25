@@ -125,16 +125,16 @@ export class ETFOLessonPlanService extends BaseService {
         userId,
       };
 
-      if (filters.unitPlanId) {
+      if (filters.unitPlanId != null && filters.unitPlanId !== '') {
         where.unitPlanId = filters.unitPlanId;
       }
 
-      if (filters.startDate || filters.endDate) {
+      if ((filters.startDate != null && filters.startDate !== '') || (filters.endDate != null && filters.endDate !== '')) {
         where.date = {};
-        if (filters.startDate) {
+        if (filters.startDate != null && filters.startDate !== '') {
           where.date.gte = new Date(filters.startDate);
         }
-        if (filters.endDate) {
+        if (filters.endDate != null && filters.endDate !== '') {
           where.date.lte = new Date(filters.endDate);
         }
       }

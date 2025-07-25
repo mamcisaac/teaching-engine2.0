@@ -88,7 +88,7 @@ I hope this newsletter finds you well! Here's a summary of what we've been worki
     if (reflections.length > 0) {
       const achievements = reflections
         .map((r) => r.notableAchievements)
-        .filter((a) => a && a.trim());
+        .filter((a) => a != null && a.trim() !== '');
 
       content += '## Classroom Celebrations\n\n';
       if (achievements.length > 0) {
@@ -133,7 +133,7 @@ return '';
       const dateStr = date.toISOString().split('T')[0];
 
       summary += `**${dateStr}**: ${lesson.title}\n`;
-      if (lesson.learningGoals) {
+      if (lesson.learningGoals != null && lesson.learningGoals !== '') {
         summary += `- Learning Goals: ${lesson.learningGoals}\n`;
       }
       summary += '\n';
@@ -154,7 +154,7 @@ return '';
       const date = new Date(reflection.date.getTime() - 24 * 60 * 60 * 1000); // Subtract a day
       const dateStr = date.toISOString().split('T')[0];
 
-      if (reflection.notableAchievements) {
+      if (reflection.notableAchievements != null && reflection.notableAchievements !== '') {
         highlights += `- ${dateStr}: ${reflection.notableAchievements}\n`;
       }
       if (reflection.whatWorked) {

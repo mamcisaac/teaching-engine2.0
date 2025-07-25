@@ -142,7 +142,7 @@ where.unitPlanId = String(unitPlanId);
     if (isSubFriendly !== undefined) {
 where.isSubFriendly = isSubFriendly;
 }
-    if (assessmentType && assessmentType !== '') {
+    if (assessmentType != null && assessmentType !== '') {
 where.assessmentType = assessmentType;
 }
 

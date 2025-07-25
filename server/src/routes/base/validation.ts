@@ -118,7 +118,7 @@ export const commonQuerySchemas = {
     grade: z.coerce.number().int().min(1).max(12).optional(),
     category: z.string().optional(),
     tags: z.union([z.string(), z.array(z.string())]).optional().transform(val => {
-      if (!val || val === '') {
+      if (val == null || val === '') {
 return undefined;
 }
       if (Array.isArray(val)) {

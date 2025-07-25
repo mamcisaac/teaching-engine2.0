@@ -221,7 +221,7 @@ function UnitPlansPage(): React.ReactElement {
     try {
       const applied = await applyTemplate.mutateAsync({ id: template.id });
 
-      if (isUnitPlanTemplate(template) && applied.appliedContent !== null && applied.appliedContent !== undefined) {
+      if (isUnitPlanTemplate(template) && applied.appliedContent !== undefined) {
         // Pre-populate form with template data
         const templateContent = applied.appliedContent as UnitPlanContent;
         updateField('title', '');
@@ -267,7 +267,7 @@ function UnitPlansPage(): React.ReactElement {
         updateField('communityConnections', templateContent.communityConnections ?? '');
 
         // Set estimated duration if available
-        if (template.estimatedWeeks !== undefined && template.estimatedWeeks !== null && template.estimatedWeeks > 0) {
+        if (template.estimatedWeeks !== undefined && template.estimatedWeeks > 0) {
           const startDate = new Date();
           const endDate = new Date();
           endDate.setDate(startDate.getDate() + template.estimatedWeeks * 7);
@@ -400,7 +400,7 @@ function UnitPlansPage(): React.ReactElement {
                 </div>
               )}
 
-              {unit.bigIdeas !== undefined && unit.bigIdeas !== null && unit.bigIdeas !== '' && (
+              {unit.bigIdeas !== undefined && unit.bigIdeas !== '' && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Big Ideas</h3>
                   <SafeHtmlRenderer className="prose max-w-none" html={unit.bigIdeas} />
@@ -433,7 +433,7 @@ function UnitPlansPage(): React.ReactElement {
                 </div>
               )}
 
-              {unit.assessmentPlan !== undefined && unit.assessmentPlan !== null && unit.assessmentPlan !== '' && (
+              {unit.assessmentPlan !== undefined && unit.assessmentPlan !== '' && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Assessment Plan</h3>
                   <SafeHtmlRenderer className="prose max-w-none" html={unit.assessmentPlan} />
@@ -454,7 +454,7 @@ function UnitPlansPage(): React.ReactElement {
               )}
 
               {/* ETFO-specific sections */}
-              {unit.crossCurricularConnections !== undefined && unit.crossCurricularConnections !== null && unit.crossCurricularConnections !== '' && (
+              {unit.crossCurricularConnections !== undefined && unit.crossCurricularConnections !== '' && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">
                     Cross-Curricular Connections
@@ -471,7 +471,7 @@ function UnitPlansPage(): React.ReactElement {
                   </h3>
                   <div className="grid gap-4 md:grid-cols-2">
                     {unit.differentiationStrategies.forStruggling !== undefined &&
-                      unit.differentiationStrategies.forStruggling !== null &&
+                      unit.differentiationStrategies.forStruggling !== undefined &&
                       unit.differentiationStrategies.forStruggling.length > 0 && (
                         <Card>
                           <CardHeader>
@@ -490,7 +490,7 @@ function UnitPlansPage(): React.ReactElement {
                       )}
 
                     {unit.differentiationStrategies.forAdvanced !== undefined &&
-                      unit.differentiationStrategies.forAdvanced !== null &&
+                      unit.differentiationStrategies.forAdvanced !== undefined &&
                       unit.differentiationStrategies.forAdvanced.length > 0 && (
                         <Card>
                           <CardHeader>
@@ -507,7 +507,7 @@ function UnitPlansPage(): React.ReactElement {
                       )}
 
                     {unit.differentiationStrategies.forELL !== undefined &&
-                      unit.differentiationStrategies.forELL !== null &&
+                      unit.differentiationStrategies.forELL !== undefined &&
                       unit.differentiationStrategies.forELL.length > 0 && (
                         <Card>
                           <CardHeader>
@@ -524,7 +524,7 @@ function UnitPlansPage(): React.ReactElement {
                       )}
 
                     {unit.differentiationStrategies.forIEP !== undefined &&
-                      unit.differentiationStrategies.forIEP !== null &&
+                      unit.differentiationStrategies.forIEP !== undefined &&
                       unit.differentiationStrategies.forIEP.length > 0 && (
                         <Card>
                           <CardHeader>
@@ -1213,8 +1213,8 @@ function UnitPlansPage(): React.ReactElement {
                           <CardTitle className="text-base">{template.title}</CardTitle>
                           <CardDescription className="mt-1">
                             {template.category} • Grade {template.gradeMin}
-                            {template.gradeMax !== undefined && template.gradeMax !== null && template.gradeMax !== template.gradeMin && `-${template.gradeMax}`}
-                            {template.estimatedWeeks !== undefined && template.estimatedWeeks !== null && template.estimatedWeeks !== 0 && ` • ${template.estimatedWeeks} weeks`}
+                            {template.gradeMax !== undefined && template.gradeMax !== template.gradeMin && `-${template.gradeMax}`}
+                            {template.estimatedWeeks !== undefined && template.estimatedWeeks !== 0 && ` • ${template.estimatedWeeks} weeks`}
                           </CardDescription>
                         </div>
                         <div className="flex items-center gap-1 text-yellow-500">

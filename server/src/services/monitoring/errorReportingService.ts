@@ -95,7 +95,7 @@ export class ErrorReportingService {
     }
 
     const dsn = process.env.SENTRY_DSN;
-    if (!dsn) {
+    if (dsn == null || dsn === '') {
       logger.warn('SENTRY_DSN not configured, error reporting disabled');
       return;
     }
@@ -150,7 +150,7 @@ export class ErrorReportingService {
       scope.setContext('category', { type: errorCategory.category });
 
       // Add custom context
-      if (sanitizedContext) {
+      if (sanitizedContext != null) {
         scope.setContext('custom', sanitizedContext as Context);
       }
 

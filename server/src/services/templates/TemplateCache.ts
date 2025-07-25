@@ -253,7 +253,7 @@ export class TemplateCache extends BaseService {
       }
     }
 
-    if (oldestKey) {
+    if (oldestKey != null) {
       this.cache.delete(oldestKey);
       this.logger.debug(`Evicted LRU cache entry: key=${oldestKey}`);
     }

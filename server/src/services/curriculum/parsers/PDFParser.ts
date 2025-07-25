@@ -25,7 +25,7 @@ export class PDFParser extends CurriculumParser {
     const buffer = content instanceof Buffer ? content : Buffer.from(content);
     const data = await pdfParse(buffer);
 
-    if (!data.text) {
+    if (data.text == null || data.text === '') {
       throw new Error('No text content found in PDF');
     }
 
@@ -61,7 +61,7 @@ export class PDFParser extends CurriculumParser {
       },
     };
 
-    if (!this.validate(curriculum)) {
+    if (this.validate(curriculum) !== true) {
       throw new Error('Invalid curriculum data structure');
     }
 
@@ -83,7 +83,7 @@ export class PDFParser extends CurriculumParser {
     } = {};
 
     // Try to extract from PDF metadata
-    if (pdfData && typeof pdfData === 'object' && 'info' in pdfData) {
+    if (pdfData != null && typeof pdfData === 'object' && 'info' in pdfData) {
       const {info} = (pdfData as { info?: { Title?: string; Subject?: string } });
       metadata.version = info.Title ?? info.Subject;
     }

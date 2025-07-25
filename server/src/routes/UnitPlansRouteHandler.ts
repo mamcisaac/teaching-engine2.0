@@ -374,7 +374,7 @@ updateData.endDate = new Date(data.endDate);
     return true;
   }
 
-  async addResource(unitPlanId: string, resourceData: ResourceData, userId: number): Promise<any> {
+  async addResource(unitPlanId: string, resourceData: ResourceData, userId: number): Promise<Prisma.UnitPlanResourceCreateResult> {
     // Verify ownership
     const unitPlan = await prisma.unitPlan.findFirst({
       where: {
@@ -421,7 +421,7 @@ updateData.endDate = new Date(data.endDate);
   async duplicate(
     duplicateData: { unitPlanId: string; longRangePlanId: string; title: string },
     userId: number,
-  ): Promise<any> {
+  ): Promise<UnitPlan> {
     const { unitPlanId, longRangePlanId, title } = duplicateData;
 
     // Verify user owns both the source unit plan and target long range plan

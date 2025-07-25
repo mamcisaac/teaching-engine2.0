@@ -234,7 +234,7 @@ export const commonValidators = {
       to: z.string().datetime().optional(),
     })
     .refine(
-      (data) => !data.from || data.from === '' || (data.to === undefined) || new Date(data.from) <= new Date(data.to),
+      (data) => (data.from == null) || data.from === '' || (data.to === undefined) || new Date(data.from) <= new Date(data.to),
       'From date must be before or equal to to date',
     ),
 
