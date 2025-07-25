@@ -151,7 +151,7 @@ const alerts: Alert[] = [
     condition: (): boolean => {
       const metrics = getMetrics();
       const histogramData = metrics.histograms.http_request_duration_ms;
-      if (histogramData === null || histogramData === undefined || histogramData.count === 0) {
+      if (!histogramData || histogramData.count === 0) {
 return false;
 }
 
@@ -421,7 +421,7 @@ const gatherAlertContext = async (alert: Alert): Promise<AlertContext> => {
 
     case 'slow_response_times': {
       const histogramData = metrics.histograms.http_request_duration_ms;
-      if (histogramData !== null && histogramData !== undefined && histogramData.count > 0) {
+      if (histogramData && histogramData.count > 0) {
         // Calculate p95 from histogram buckets
         const targetCount95 = (histogramData.count * 95) / 100;
         const targetCount99 = (histogramData.count * 99) / 100;

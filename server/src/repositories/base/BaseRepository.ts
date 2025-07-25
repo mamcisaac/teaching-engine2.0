@@ -211,7 +211,7 @@ export abstract class BaseRepository<T extends BaseModel, CreateInput, UpdateInp
         orderBy,
       };
 
-      if (cursor !== null && cursor !== undefined) {
+      if (cursor) {
         queryArgs.cursor = { id: cursor };
         queryArgs.skip = 1; // Skip the cursor item
       }

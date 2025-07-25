@@ -26,7 +26,7 @@ async function getS3Client(): Promise<unknown> {
  */
 export async function saveFile(filename: string, buffer: Buffer): Promise<string> {
   const client = await getS3Client();
-  if (client !== null && client !== undefined && bucket) {
+  if (client && bucket) {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const { PutObjectCommand } = await import('@aws-sdk/client-s3');
     const key = `${Date.now()}-${filename}`;

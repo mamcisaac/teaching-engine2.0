@@ -18,7 +18,7 @@ import { isValidStringProperty, isObject } from './utils/typeGuards';
 
 // Base logger configuration
 const pinoConfig: pino.LoggerOptions = {
-  level: (process.env.LOG_LEVEL !== null && process.env.LOG_LEVEL !== undefined && process.env.LOG_LEVEL !== '') ? process.env.LOG_LEVEL : (process.env.NODE_ENV === 'production' ? 'info' : 'debug'),
+  level: process.env.LOG_LEVEL || (process.env.NODE_ENV === 'production' ? 'info' : 'debug'),
 
   // Custom serializers for better structured logging
   serializers: {
@@ -37,10 +37,10 @@ const pinoConfig: pino.LoggerOptions = {
         headers: {
           'user-agent': request.headers?.['user-agent'],
           'content-type': request.headers?.['content-type'],
-          authorization: (request.headers !== null && request.headers !== undefined && typeof request.headers === 'object' && 'authorization' in request.headers && request.headers.authorization !== null && request.headers.authorization !== undefined && request.headers.authorization !== '') ? '[REDACTED]' : undefined,
+          authorization: (request.headers && 'authorization' in request.headers && request.headers.authorization) ? '[REDACTED]' : undefined,
         },
         remoteAddress: request.remoteAddress ?? request.connection?.remoteAddress,
-        remotePort: (request.remotePort !== null && request.remotePort !== undefined && typeof request.remotePort === 'number' && !isNaN(request.remotePort)) ? request.remotePort : request.connection?.remotePort,
+        remotePort: (typeof request.remotePort === 'number' && !isNaN(request.remotePort)) ? request.remotePort : request.connection?.remotePort,
       };
     },
 
@@ -68,7 +68,7 @@ const pinoConfig: pino.LoggerOptions = {
       return {
         id: userData.id,
         email:
-          (userData.email !== null && userData.email !== undefined && userData.email !== '') && typeof userData.email === 'string'
+          userData.email && typeof userData.email === 'string'
             ? `${userData.email.substring(0, 3)  }***`
             : undefined,
         role: userData.role,
@@ -263,16 +263,16 @@ class EnhancedLogger {
         message: obj,
         requestId: this.requestId,
         service: 'teaching-engine',
-        version: (process.env.npm_package_version !== null && process.env.npm_package_version !== undefined && process.env.npm_package_version !== '') ? process.env.npm_package_version : 'unknown',
+        version: process.env.npm_package_version || 'unknown',
       };
     }
 
-    if (obj !== null && obj !== undefined && typeof obj === 'object') {
+    if (obj && typeof obj === 'object') {
       return {
         ...(obj as Record<string, unknown>),
         requestId: this.requestId,
         service: 'teaching-engine',
-        version: (process.env.npm_package_version !== null && process.env.npm_package_version !== undefined && process.env.npm_package_version !== '') ? process.env.npm_package_version : 'unknown',
+        version: process.env.npm_package_version || 'unknown',
       };
     }
 
@@ -295,7 +295,7 @@ class EnhancedLogger {
     delete sanitized.apiKey;
 
     // Redact email addresses
-    if (sanitized.email !== null && sanitized.email !== undefined) {
+    if (sanitized.email) {
       sanitized.email = this.redactEmail(sanitized.email);
     }
 
@@ -306,11 +306,11 @@ class EnhancedLogger {
     const sanitized = { ...details };
 
     // Keep only necessary security info
-    if (sanitized.ip !== null && sanitized.ip !== undefined) {
+    if (sanitized.ip) {
       sanitized.ip = this.maskIP(sanitized.ip);
     }
 
-    if (sanitized.userAgent !== null && sanitized.userAgent !== undefined && typeof sanitized.userAgent === 'string') {
+    if (typeof sanitized.userAgent === 'string') {
       sanitized.userAgent = sanitized.userAgent.substring(0, 100);
     }
 
@@ -331,7 +331,7 @@ class EnhancedLogger {
     const sanitized = { ...details };
 
     // Remove sensitive query parameters
-    if (sanitized.query !== null && sanitized.query !== undefined && typeof sanitized.query === 'string') {
+    if (typeof sanitized.query === 'string') {
       sanitized.query = sanitized.query.replace(
         /password\s*=\s*'[^']*'/gi,
         "password='[REDACTED]'",
@@ -345,7 +345,7 @@ class EnhancedLogger {
     const sanitized = { ...details };
 
     // Limit prompt size and remove sensitive content
-    if (sanitized.prompt !== null && sanitized.prompt !== undefined && typeof sanitized.prompt === 'string') {
+    if (typeof sanitized.prompt === 'string') {
       sanitized.prompt =
         sanitized.prompt.substring(0, 500) + (sanitized.prompt.length > 500 ? '...' : '');
     }
@@ -358,7 +358,7 @@ class EnhancedLogger {
 return '[INVALID_EMAIL]';
 }
     const [local, domain] = email.split('@');
-    if (local === null || local === undefined || local === '' || domain === null || domain === undefined || domain === '') {
+    if (!local || !domain) {
 return '[INVALID_EMAIL]';
 }
     return `${local.substring(0, 2)}***@${domain}`;

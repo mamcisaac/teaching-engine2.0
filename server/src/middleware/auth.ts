@@ -34,7 +34,7 @@ import { AuthenticationError, ValidationError, ConflictError, AppError } from '.
 
 // Environment validation
 const {JWT_SECRET} = process.env;
-if (JWT_SECRET === null || JWT_SECRET === '') {
+if (!JWT_SECRET) {
   throw new Error('JWT_SECRET environment variable is required');
 }
 // TypeScript now knows JWT_SECRET is defined, but we need to help it
@@ -175,9 +175,9 @@ export async function register(req: Request, res: Response, next: NextFunction):
   try {
     logger.info(
       {
-        bodyKeys: req.body !== null ? Object.keys(req.body as Record<string, unknown>) : [],
+        bodyKeys: req.body ? Object.keys(req.body as Record<string, unknown>) : [],
         bodyType: typeof req.body,
-        hasBody: req.body !== null,
+        hasBody: !!req.body,
       },
       'Registration function entry',
     );
@@ -193,9 +193,9 @@ export async function register(req: Request, res: Response, next: NextFunction):
     logger.info(
       {
         email: email.toLowerCase(),
-        hasPassword: password !== null,
-        hasName: name !== null,
-        extractedData: { email: email !== null, password: password !== null, name: name !== null },
+        hasPassword: !!password,
+        hasName: !!name,
+        extractedData: { email: !!email, password: !!password, name: !!name },
       },
       'Registration attempt',
     );
@@ -203,9 +203,9 @@ export async function register(req: Request, res: Response, next: NextFunction):
     // Validate input
     logger.info(
       {
-        emailCheck: { exists: email !== null, type: typeof email, value: email },
-        passwordCheck: { exists: password !== null, type: typeof password, length: password.length },
-        nameCheck: { exists: name !== null, type: typeof name, value: name },
+        emailCheck: { exists: !!email, type: typeof email, value: email },
+        passwordCheck: { exists: !!password, type: typeof password, length: password.length },
+        nameCheck: { exists: !!name, type: typeof name, value: name },
       },
       'Input validation checks',
     );
@@ -280,7 +280,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
           userId: user.id,
           email: user.email,
           userType: typeof user,
-          userKeys: user !== null ? Object.keys(user) : [],
+          userKeys: user ? Object.keys(user) : [],
         },
         'User created successfully',
       );
@@ -335,7 +335,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
     let refreshToken: string;
     try {
       logger.info(
-        { userId: user.id, hasJwtSecret: process.env.JWT_SECRET !== null && process.env.JWT_SECRET !== '' },
+        { userId: user.id, hasJwtSecret: !!process.env.JWT_SECRET },
         'About to generate tokens',
       );
 
@@ -348,7 +348,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
       refreshToken = generateRefreshToken(user.id);
 
       logger.info(
-        { userId: user.id, hasTokens: accessToken !== null && refreshToken !== null },
+        { userId: user.id, hasTokens: !!accessToken && !!refreshToken },
         'Tokens generated successfully',
       );
     } catch (error: unknown) {
@@ -400,7 +400,7 @@ export function logout(req: Request, res: Response, next: NextFunction): void {
     res.clearCookie('refreshToken');
 
     // Log logout
-    if (req.user !== null) {
+    if (req.user) {
       logger.info(
         {
           userId: req.user.id,
@@ -426,7 +426,7 @@ export async function changePassword(
   next: NextFunction,
 ): Promise<void> {
   try {
-    if (req.user === null) {
+    if (!req.user) {
       throw new AuthenticationError('Authentication required');
     }
 
@@ -634,7 +634,7 @@ export function validateSession(
   next: NextFunction,
 ): void {
   try {
-    if (req.user === null) {
+    if (!req.user) {
       throw new AuthenticationError('Session invalid');
     }
 
