@@ -9,6 +9,7 @@ import type { Request, Response, NextFunction } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
 
+import { isNonEmptyString } from '../../../shared/utils/typeGuards';
 import {
   login,
   register,
@@ -19,7 +20,6 @@ import {
   authenticate,
 } from '../middleware/auth';
 import { authRateLimiter } from '../middleware/rateLimit';
-import { isNonEmptyString } from '../../../shared/utils/typeGuards';
 import { validateRequest } from '../middleware/validateRequest';
 
 // Async middleware wrapper to handle Promise-returning middleware

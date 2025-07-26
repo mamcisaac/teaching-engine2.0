@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { prisma } from '@teaching-engine/database';
 
 import { logger } from '../logger';
@@ -151,7 +150,7 @@ const alerts: Alert[] = [
     condition: (): boolean => {
       const metrics = getMetrics();
       const histogramData = metrics.histograms.http_request_duration_ms;
-      if (!histogramData || histogramData.count === 0) {
+      if (histogramData == null || histogramData.count === 0) {
 return false;
 }
 
@@ -226,7 +225,7 @@ return false;
   {
     id: 'unusual_user_activity',
     name: 'Unusual User Activity',
-    condition: (): boolean => {
+    condition: async (): Promise<boolean> => {
       try {
         // Check for sudden spikes in user activity
         const now = new Date();
@@ -311,7 +310,7 @@ const sendAlert = async (alert: Alert, context: AlertContext): Promise<void> => 
     }
 
     // Send webhook if configured
-    if (alert.channels.includes('webhook') && ALERT_WEBHOOK_URL) {
+    if (alert.channels.includes('webhook') && ALERT_WEBHOOK_URL != null && ALERT_WEBHOOK_URL !== '') {
       try {
         const response = await fetch(ALERT_WEBHOOK_URL, {
           method: 'POST',
@@ -349,9 +348,9 @@ const sendAlert = async (alert: Alert, context: AlertContext): Promise<void> => 
 // Check if alert should be triggered
 const shouldTriggerAlert = (alert: Alert): boolean => {
   const lastTriggered = alertState.lastTriggered.get(alert.id);
-  if (!lastTriggered) {
-return true;
-}
+  if (lastTriggered == null) {
+    return true;
+  }
 
   const cooldownMs = alert.cooldown * 60 * 1000;
   const timeSinceLastTrigger = Date.now() - lastTriggered.getTime();
@@ -421,7 +420,7 @@ const gatherAlertContext = async (alert: Alert): Promise<AlertContext> => {
 
     case 'slow_response_times': {
       const histogramData = metrics.histograms.http_request_duration_ms;
-      if (histogramData && histogramData.count > 0) {
+      if (histogramData != null && histogramData.count > 0) {
         // Calculate p95 from histogram buckets
         const targetCount95 = (histogramData.count * 95) / 100;
         const targetCount99 = (histogramData.count * 99) / 100;
@@ -505,7 +504,7 @@ export const startAlertMonitoring = (): void => {
     {
       checkInterval: ALERT_CHECK_INTERVAL,
       emailEnabled: ALERT_EMAIL_ENABLED,
-      webhookEnabled: !!ALERT_WEBHOOK_URL,
+      webhookEnabled: ALERT_WEBHOOK_URL != null && ALERT_WEBHOOK_URL !== '',
     },
     'Starting alert monitoring',
   );
@@ -518,7 +517,7 @@ export const startAlertMonitoring = (): void => {
   // Set up recurring checks
   alertInterval = setInterval(() => {
     checkAlerts().catch((error: unknown) => {
-      logger.error('Alert check failed', error as AlertContext);
+      logger.error('Alert check failed', error as string | undefined);
     });
   }, ALERT_CHECK_INTERVAL);
 };
@@ -544,7 +543,7 @@ export const triggerManualAlert = async (alertId: string, context?: AlertContext
 };
 
 // Get alert status
-export const getAlertStatus = (): unknown => ({
+export const getAlertStatus = (): { alerts: Array<{ id: string; name: string; severity: string; active: boolean; lastTriggered: Date | null; cooldown: number }>; monitoring: { enabled: boolean; checkInterval: number; emailEnabled: boolean; webhookEnabled: boolean } } => ({
     alerts: alerts.map((alert) => ({
       id: alert.id,
       name: alert.name,
@@ -557,6 +556,6 @@ export const getAlertStatus = (): unknown => ({
       enabled: !!alertInterval,
       checkInterval: ALERT_CHECK_INTERVAL,
       emailEnabled: ALERT_EMAIL_ENABLED,
-      webhookEnabled: !!ALERT_WEBHOOK_URL,
+      webhookEnabled: ALERT_WEBHOOK_URL != null && ALERT_WEBHOOK_URL !== '',
     },
   });

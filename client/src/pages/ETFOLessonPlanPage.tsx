@@ -400,7 +400,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
   };
 
   // If we're in detail mode (lessonId provided), show the detail view
-  if (lessonId !== undefined && selectedLesson != null) {
+  if (lessonId != null && selectedLesson != null) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Breadcrumb */}
@@ -434,7 +434,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
             <div className="flex justify-between items-start">
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">{selectedLesson.title}</h1>
-                {selectedLesson.titleFr !== undefined && selectedLesson.titleFr !== '' && (
+                {(selectedLesson.titleFr != null && selectedLesson.titleFr !== '') && (
                   <p className="text-sm text-gray-600 mt-1">{selectedLesson.titleFr}</p>
                 )}
                 <div className="flex gap-4 mt-2 text-sm text-gray-600">
@@ -528,7 +528,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                 >
                   Edit
                 </Button>
-                {selectedLesson.daybookEntry != null ? (
+                {selectedLesson.daybookEntry ? (
                   <Link to={`/planner/daybook?date=${selectedLesson.date}`}>
                     <Button variant="outline">View in Daybook</Button>
                   </Link>
@@ -547,7 +547,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
 
           {/* Three-Part Lesson Structure */}
           <div className="p-6 space-y-6">
-            {selectedLesson.learningGoals !== undefined && selectedLesson.learningGoals !== '' && (
+            {(selectedLesson.learningGoals != null && selectedLesson.learningGoals !== '') && (
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Learning Goals</h3>
                 <SafeHtmlRenderer
@@ -564,7 +564,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                   <CardDescription>Activating prior knowledge</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  {selectedLesson.mindsOn !== undefined && selectedLesson.mindsOn !== '' ? (
+                  {(selectedLesson.mindsOn != null && selectedLesson.mindsOn !== '') ? (
                     <SafeHtmlRenderer
                       className="prose max-w-none text-sm"
                       html={selectedLesson.mindsOn}
@@ -581,7 +581,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                   <CardDescription>Main learning activities</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  {selectedLesson.action !== undefined && selectedLesson.action !== '' ? (
+                  {(selectedLesson.action != null && selectedLesson.action !== '') ? (
                     <SafeHtmlRenderer
                       className="prose max-w-none text-sm"
                       html={selectedLesson.action}
@@ -598,7 +598,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                   <CardDescription>Summarizing and reflection</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  {selectedLesson.consolidation !== undefined && selectedLesson.consolidation !== '' ? (
+                  {(selectedLesson.consolidation != null && selectedLesson.consolidation !== '') ? (
                     <SafeHtmlRenderer
                       className="prose max-w-none text-sm"
                       html={selectedLesson.consolidation}
@@ -611,7 +611,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
             </div>
 
             {/* Materials and Resources */}
-            {selectedLesson.materials && selectedLesson.materials.length > 0 && (
+            {(selectedLesson.materials != null && selectedLesson.materials.length > 0) && (
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Materials Needed</h3>
                 <ul className="list-disc list-inside space-y-1">
@@ -625,13 +625,13 @@ export function ETFOLessonPlanPage(): React.ReactElement {
             )}
 
             {/* Assessment */}
-            {((selectedLesson.assessmentType !== undefined) || (selectedLesson.assessmentNotes !== undefined && selectedLesson.assessmentNotes !== '')) && (
+            {(selectedLesson.assessmentType != null || (selectedLesson.assessmentNotes != null && selectedLesson.assessmentNotes !== '')) && (
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Assessment</h3>
-                {selectedLesson.assessmentType && (
+                {(selectedLesson.assessmentType != null) && (
                   <Badge className="mb-2">{selectedLesson.assessmentType}</Badge>
                 )}
-                {selectedLesson.assessmentNotes !== undefined && selectedLesson.assessmentNotes !== '' && (
+                {(selectedLesson.assessmentNotes != null && selectedLesson.assessmentNotes !== '') && (
                   <p className="text-gray-700 mt-2">{selectedLesson.assessmentNotes}</p>
                 )}
               </div>
@@ -639,7 +639,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
 
             {/* Differentiation */}
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {selectedLesson.accommodations && selectedLesson.accommodations.length > 0 && (
+              {(selectedLesson.accommodations != null && selectedLesson.accommodations.length > 0) && (
                 <div>
                   <h4 className="font-medium text-gray-900 mb-2">Accommodations</h4>
                   <ul className="list-disc list-inside space-y-1 text-sm">
@@ -652,7 +652,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                 </div>
               )}
 
-              {selectedLesson.modifications && selectedLesson.modifications.length > 0 && (
+              {(selectedLesson.modifications != null && selectedLesson.modifications.length > 0) && (
                 <div>
                   <h4 className="font-medium text-gray-900 mb-2">Modifications</h4>
                   <ul className="list-disc list-inside space-y-1 text-sm">
@@ -665,7 +665,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                 </div>
               )}
 
-              {selectedLesson.extensions && selectedLesson.extensions.length > 0 && (
+              {(selectedLesson.extensions != null && selectedLesson.extensions.length > 0) && (
                 <div>
                   <h4 className="font-medium text-gray-900 mb-2">Extensions</h4>
                   <ul className="list-disc list-inside space-y-1 text-sm">
@@ -680,7 +680,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
             </div>
 
             {/* Sub Notes */}
-            {selectedLesson.isSubFriendly && selectedLesson.subNotes !== undefined && selectedLesson.subNotes !== '' && (
+            {(selectedLesson.isSubFriendly === true && selectedLesson.subNotes != null && selectedLesson.subNotes !== '') && (
               <Card className="bg-yellow-50 border-yellow-200">
                 <CardHeader>
                   <CardTitle className="text-base">Substitute Teacher Notes</CardTitle>
@@ -692,7 +692,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
             )}
 
             {/* Curriculum Expectations */}
-            {selectedLesson.expectations && selectedLesson.expectations.length > 0 && (
+            {(selectedLesson.expectations != null && selectedLesson.expectations.length > 0) && (
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Curriculum Expectations
@@ -1588,8 +1588,8 @@ Assessment Strategies:
                           <CardTitle className="text-base">{template.title}</CardTitle>
                           <CardDescription className="mt-1">
                             {template.category} • Grade {template.gradeMin}
-                            {template.gradeMax !== undefined && template.gradeMax !== template.gradeMin && `-${template.gradeMax}`}
-                            {template.estimatedMinutes !== undefined && template.estimatedMinutes > 0 && ` • ${template.estimatedMinutes} minutes`}
+                            {template.gradeMax != null && template.gradeMax !== template.gradeMin && `-${template.gradeMax}`}
+                            {template.estimatedMinutes != null && template.estimatedMinutes > 0 && ` • ${template.estimatedMinutes} minutes`}
                           </CardDescription>
                         </div>
                         <div className="flex items-center gap-1 text-yellow-500">

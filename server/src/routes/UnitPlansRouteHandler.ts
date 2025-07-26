@@ -9,8 +9,8 @@ import { z } from 'zod';
 
 import { prisma } from '../prisma';
 import { BaseService } from '../services/base/BaseService';
-import type { UnitPlanCreateData, UnitPlanUpdateData, ResourceData } from '../types/routes';
 import type { UnitPlan } from '../types/prisma-types';
+import type { UnitPlanCreateData, UnitPlanUpdateData, ResourceData } from '../types/routes';
 
 import type { AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler';
 import { BaseRouteHandler } from './base/BaseRouteHandler';
@@ -169,15 +169,15 @@ where.endDate = { lte: new Date(String(endDate)) };
 
     // Sorting with validation
     const orderBy = queryPerformance.createOptimizedSort(
-      String(sortBy !== undefined ? sortBy : 'startDate'),
-      (sortOrder !== undefined ? sortOrder : 'asc') as 'asc' | 'desc',
+      String(sortBy ?? 'startDate'),
+      (sortOrder ?? 'asc') as 'asc' | 'desc',
       ['title', 'startDate', 'endDate', 'createdAt'],
     );
 
     const result = await queryPerformance.monitorQuery('unitPlan.findMany', () =>
       optimizedQueries.paginatedQuery(prisma.unitPlan, where, {
-        limit: Number(limit !== undefined ? limit : 20),
-        offset: Number(offset !== undefined ? offset : 0),
+        limit: Number(limit ?? 20),
+        offset: Number(offset ?? 0),
         orderBy,
         include: optimizedIncludes.unitPlan,
       }),
@@ -189,9 +189,9 @@ where.endDate = { lte: new Date(String(endDate)) };
       unitPlans,
       pagination: {
         total,
-        limit: Number(limit !== undefined ? limit : 20),
-        offset: Number(offset !== undefined ? offset : 0),
-        hasMore: Number(offset !== undefined ? offset : 0) + Number(limit !== undefined ? limit : 20) < total,
+        limit: Number(limit ?? 20),
+        offset: Number(offset ?? 0),
+        hasMore: Number(offset ?? 0) + Number(limit ?? 20) < total,
       },
     };
   }
@@ -217,7 +217,7 @@ where.endDate = { lte: new Date(String(endDate)) };
       },
     });
 
-    if (!longRangePlan) {
+    if (longRangePlan == null) {
       throw new Error('Long range plan not found or access denied');
     }
 
@@ -257,7 +257,7 @@ where.endDate = { lte: new Date(String(endDate)) };
       technologyIntegration: data.technologyIntegration,
       communityConnections: data.communityConnections,
       // Add expectations relationship if provided
-      ...(expectations !== undefined &&
+      ...(expectations != null &&
         Array.isArray(expectations) &&
         expectations.length > 0 ? {
           expectations: {
@@ -270,7 +270,7 @@ where.endDate = { lte: new Date(String(endDate)) };
           },
         } : {}),
       // Add resources relationship if provided
-      ...(resources !== undefined &&
+      ...(resources != null &&
         Array.isArray(resources) &&
         resources.length > 0 ? {
           resources: {
@@ -309,7 +309,7 @@ where.endDate = { lte: new Date(String(endDate)) };
       },
     });
 
-    if (!unitPlan) {
+    if (unitPlan == null) {
       throw new Error('Unit plan not found or access denied');
     }
 
@@ -325,10 +325,10 @@ where.endDate = { lte: new Date(String(endDate)) };
     });
 
     // Handle date conversion
-    if (data.startDate && data.startDate !== '') {
+    if (data.startDate != null && data.startDate !== '') {
 updateData.startDate = new Date(data.startDate);
 }
-    if (data.endDate && data.endDate !== '') {
+    if (data.endDate != null && data.endDate !== '') {
 updateData.endDate = new Date(data.endDate);
 }
 
@@ -336,7 +336,7 @@ updateData.endDate = new Date(data.endDate);
       where: { id },
       data: {
         ...updateData,
-        ...(expectationIds !== undefined && Array.isArray(expectationIds) ? {
+        ...(expectationIds != null && Array.isArray(expectationIds) ? {
           expectations: {
             deleteMany: {},
             create: expectationIds.map((expectationId: unknown) => ({
@@ -363,7 +363,7 @@ updateData.endDate = new Date(data.endDate);
       },
     });
 
-    if (!unitPlan) {
+    if (unitPlan == null) {
       return false;
     }
 
@@ -383,7 +383,7 @@ updateData.endDate = new Date(data.endDate);
       },
     });
 
-    if (!unitPlan) {
+    if (unitPlan == null) {
       throw new Error('Unit plan not found or access denied');
     }
 
@@ -407,7 +407,7 @@ updateData.endDate = new Date(data.endDate);
       },
     });
 
-    if (!resource) {
+    if (resource == null) {
       return false;
     }
 
@@ -444,33 +444,33 @@ updateData.endDate = new Date(data.endDate);
       }),
     ]);
 
-    if (!sourceUnitPlan || !targetLongRangePlan) {
+    if (sourceUnitPlan == null || targetLongRangePlan == null) {
       throw new Error('Source unit plan or target long range plan not found');
     }
 
     return prisma.unitPlan.create({
       data: {
         userId,
-        title: title || `${sourceUnitPlan.title} (Copy)`,
+        title: title ?? `${sourceUnitPlan.title} (Copy)`,
         titleFr: sourceUnitPlan.titleFr,
         description: sourceUnitPlan.description,
         descriptionFr: sourceUnitPlan.descriptionFr,
         bigIdeas: sourceUnitPlan.bigIdeas,
         bigIdeasFr: sourceUnitPlan.bigIdeasFr,
-        essentialQuestions: sourceUnitPlan.essentialQuestions || undefined,
+        essentialQuestions: sourceUnitPlan.essentialQuestions ?? undefined,
         startDate: sourceUnitPlan.startDate,
         endDate: sourceUnitPlan.endDate,
         estimatedHours: sourceUnitPlan.estimatedHours,
         assessmentPlan: sourceUnitPlan.assessmentPlan,
-        successCriteria: sourceUnitPlan.successCriteria || undefined,
+        successCriteria: sourceUnitPlan.successCriteria ?? undefined,
         crossCurricularConnections: sourceUnitPlan.crossCurricularConnections,
-        learningSkills: sourceUnitPlan.learningSkills || undefined,
+        learningSkills: sourceUnitPlan.learningSkills ?? undefined,
         culminatingTask: sourceUnitPlan.culminatingTask,
-        keyVocabulary: sourceUnitPlan.keyVocabulary || undefined,
+        keyVocabulary: sourceUnitPlan.keyVocabulary ?? undefined,
         priorKnowledge: sourceUnitPlan.priorKnowledge,
         parentCommunicationPlan: sourceUnitPlan.parentCommunicationPlan,
         fieldTripsAndGuestSpeakers: sourceUnitPlan.fieldTripsAndGuestSpeakers,
-        differentiationStrategies: sourceUnitPlan.differentiationStrategies || undefined,
+        differentiationStrategies: sourceUnitPlan.differentiationStrategies ?? undefined,
         socialJusticeConnections: sourceUnitPlan.socialJusticeConnections,
         technologyIntegration: sourceUnitPlan.technologyIntegration,
         communityConnections: sourceUnitPlan.communityConnections,
@@ -539,7 +539,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (!userId) {
+      if (userId == null) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -585,7 +585,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (!userId) {
+      if (userId == null) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -613,7 +613,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (!userId) {
+      if (userId == null) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -621,7 +621,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
 
       const success = await this.unitPlanService.removeResource(unitPlanId, resourceId, userId);
 
-      if (!success) {
+      if (success === false) {
         res.status(404).json({ error: 'Resource not found' });
         return;
       }
@@ -640,7 +640,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (!userId) {
+      if (userId == null) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }

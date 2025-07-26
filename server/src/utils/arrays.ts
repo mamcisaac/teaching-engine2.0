@@ -135,7 +135,7 @@ export const objectUtils = {
     
     for (const obj of objects) {
       for (const [key, value] of Object.entries(obj)) {
-        if (value != null && typeof value === 'object' && !Array.isArray(value)) {
+        if (value !== null && typeof value === 'object' && !Array.isArray(value)) {
           (result as Record<string, unknown>)[key] = objectUtils.deepMerge(
             ((result as Record<string, unknown>)[key] ?? {}) as object,
             value
@@ -154,7 +154,7 @@ export const objectUtils = {
     const result: Partial<T> = {};
     
     for (const [key, value] of Object.entries(obj)) {
-      if (value != null) {
+      if (value !== null) {
         (result as Record<string, unknown>)[key] = value;
       }
     }

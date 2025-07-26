@@ -30,7 +30,7 @@ const csrfProtection = (
   req: express.Request,
   res: express.Response,
   next: express.NextFunction,
-) => {
+): void => {
   // Skip CSRF protection in test environment
   if (process.env.NODE_ENV === 'test') {
     next(); return;
@@ -45,13 +45,13 @@ const csrfProtection = (
   ];
 
   if (req.method !== 'GET' && req.method !== 'HEAD') {
-    if (!origin && !referer) {
+    if (origin == null && referer == null) {
       res.status(403).json({ error: 'CSRF protection: Missing origin/referer header' });
       return;
     }
 
-    const sourceUrl = origin || (referer ? new URL(referer).origin : '');
-    if (!allowedOrigins.includes(sourceUrl)) {
+    const sourceUrl = origin ?? (referer != null ? new URL(referer).origin : '');
+    if (allowedOrigins.includes(sourceUrl) === false) {
       res.status(403).json({ error: 'CSRF protection: Invalid origin' });
       return;
     }
@@ -127,7 +127,7 @@ const WeeklyPlannerStateSchema = z
 // GET /api/planner/state - Get user's planner state
 router.get('/state', async (req: express.Request, res: express.Response): Promise<void> => {
   try {
-    if (!req.user.id) {
+    if (req.user.id == null) {
       res.status(401).json({ error: 'Unauthorized' });
       return;
     }
@@ -139,7 +139,7 @@ router.get('/state', async (req: express.Request, res: express.Response): Promis
     });
 
     // Create default state if it doesn't exist
-    if (!plannerState) {
+    if (plannerState == null) {
       plannerState = await prisma.weeklyPlannerState.create({
         data: {
           userId,
@@ -171,10 +171,10 @@ router.get('/state', async (req: express.Request, res: express.Response): Promis
     const responseState = {
       ...plannerState,
       workingHours: safeJsonParse(plannerState.workingHours, {}),
-      draftChanges: plannerState.draftChanges ? safeJsonParse(plannerState.draftChanges, {}) : null,
+      draftChanges: (plannerState.draftChanges != null) ? safeJsonParse(plannerState.draftChanges, {}) : null,
       undoHistory: safeJsonParse(plannerState.undoHistory, {}),
       redoHistory: safeJsonParse(plannerState.redoHistory, {}),
-      offlineData: plannerState.offlineData ? safeJsonParse(plannerState.offlineData, {}) : null,
+      offlineData: (plannerState.offlineData != null) ? safeJsonParse(plannerState.offlineData, {}) : null,
     };
 
     res.json(responseState);
@@ -192,7 +192,7 @@ router.put(
   csrfProtection,
   async (req: express.Request, res: Response) => {
     try {
-      if (!req.user.id) {
+      if (req.user.id == null) {
         res.status(401).json({ error: 'Unauthorized' });
         return;
       }
@@ -201,7 +201,7 @@ router.put(
 
       // Validate the request body
       const validationResult = WeeklyPlannerStateSchema.safeParse(req.body);
-      if (!validationResult.success) {
+      if (validationResult.success === false) {
         res.status(400).json({
           error: 'Invalid planner state data',
           details: validationResult.error.errors,
@@ -212,16 +212,16 @@ router.put(
       const stateData = validationResult.data;
 
       // Sanitize text fields to prevent XSS
-      const sanitizedDraftChanges = stateData.draftChanges
+      const sanitizedDraftChanges = (stateData.draftChanges != null)
         ? {
             ...stateData.draftChanges,
-            title: stateData.draftChanges.title
+            title: (stateData.draftChanges.title != null)
               ? sanitizeText(stateData.draftChanges.title)
               : undefined,
-            content: stateData.draftChanges.content
+            content: (stateData.draftChanges.content != null)
               ? sanitizeText(stateData.draftChanges.content)
               : undefined,
-            changes: stateData.draftChanges.changes
+            changes: (stateData.draftChanges.changes != null)
               ? Object.fromEntries(
                   Object.entries(stateData.draftChanges.changes).map(([key, value]) => [
                     sanitizeText(key),
@@ -248,14 +248,14 @@ router.put(
         autoSaveInterval: stateData.autoSaveInterval,
         showUncoveredOutcomes: stateData.showUncoveredOutcomes,
         defaultLessonDuration: stateData.defaultLessonDuration,
-        currentWeekStart: stateData.currentWeekStart
+        currentWeekStart: (stateData.currentWeekStart != null)
           ? new Date(stateData.currentWeekStart)
           : new Date(),
-        lastActiveView: stateData.lastActiveView ? sanitizeText(stateData.lastActiveView) : null,
-        draftChanges: sanitizedDraftChanges ? JSON.stringify(sanitizedDraftChanges) : null,
+        lastActiveView: (stateData.lastActiveView != null) ? sanitizeText(stateData.lastActiveView) : null,
+        draftChanges: (sanitizedDraftChanges != null) ? JSON.stringify(sanitizedDraftChanges) : null,
         maxHistorySize: stateData.maxHistorySize,
         hasOfflineChanges: stateData.hasOfflineChanges,
-        offlineData: stateData.offlineData ? JSON.stringify(stateData.offlineData) : null,
+        offlineData: (stateData.offlineData != null) ? JSON.stringify(stateData.offlineData) : null,
         lastSyncedAt: new Date(),
       };
 
@@ -275,10 +275,10 @@ router.put(
       const responseState = {
         ...plannerState,
         workingHours: safeJsonParse(plannerState.workingHours, {}),
-        draftChanges: plannerState.draftChanges ? safeJsonParse(plannerState.draftChanges, {}) : null,
+        draftChanges: (plannerState.draftChanges != null) ? safeJsonParse(plannerState.draftChanges, {}) : null,
         undoHistory: safeJsonParse(plannerState.undoHistory, {}),
         redoHistory: safeJsonParse(plannerState.redoHistory, {}),
-        offlineData: plannerState.offlineData ? safeJsonParse(plannerState.offlineData, {}) : null,
+        offlineData: (plannerState.offlineData != null) ? safeJsonParse(plannerState.offlineData, {}) : null,
       };
 
       res.json(responseState);
@@ -293,7 +293,7 @@ router.put(
 // GET /api/planner/week/:weekStart/state - Get state for specific week
 router.get('/week/:weekStart/state', async (req: express.Request, res: Response): Promise<void> => {
   try {
-    if (!req.user.id) {
+    if (req.user.id == null) {
       res.status(401).json({ error: 'Unauthorized' });
       return;
     }
@@ -415,7 +415,7 @@ router.post(
   csrfProtection,
   async (req: express.Request, res: Response) => {
     try {
-      if (!req.user.id) {
+      if (req.user.id == null) {
         res.status(401).json({ error: 'Unauthorized' });
         return;
       }
@@ -461,10 +461,10 @@ router.post(
       const responseState = {
         ...plannerState,
         workingHours: safeJsonParse(plannerState.workingHours, {}),
-        draftChanges: plannerState.draftChanges ? safeJsonParse(plannerState.draftChanges, {}) : null,
+        draftChanges: (plannerState.draftChanges != null) ? safeJsonParse(plannerState.draftChanges, {}) : null,
         undoHistory: safeJsonParse(plannerState.undoHistory, {}),
         redoHistory: safeJsonParse(plannerState.redoHistory, {}),
-        offlineData: plannerState.offlineData ? safeJsonParse(plannerState.offlineData, {}) : null,
+        offlineData: (plannerState.offlineData != null) ? safeJsonParse(plannerState.offlineData, {}) : null,
       };
 
       res.json(responseState);

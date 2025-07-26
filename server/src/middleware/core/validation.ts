@@ -3,10 +3,10 @@ import type { RequestHandler, Request, NextFunction } from 'express';
 import type { ZodSchema, ZodTypeAny } from 'zod';
 import { z, ZodError } from 'zod';
 
+import { isDefined, isError, isObject } from '../../../../shared/utils/typeGuards';
 import { logger } from '../../logger';
 import type { ValidatedRequest } from '../../types/http';
 import { ValidationError } from '../../utils/errors';
-import { isDefined, isError } from '../../../../shared/utils/typeGuards';
 
 export type { ValidatedRequest } from '../../types/http';
 
@@ -47,19 +47,29 @@ export const validate = <T>(
       for (const src of sources) {
         switch (src) {
           case 'body':
-            dataToValidate = { ...dataToValidate, ...(req.body as Record<string, unknown>) };
+            if (isObject(req.body)) {
+              dataToValidate = { ...dataToValidate, ...req.body };
+            }
             break;
           case 'query':
-            dataToValidate = { ...dataToValidate, ...(req.query as Record<string, unknown>) };
+            if (isObject(req.query)) {
+              dataToValidate = { ...dataToValidate, ...req.query };
+            }
             break;
           case 'params':
-            dataToValidate = { ...dataToValidate, ...(req.params as Record<string, unknown>) };
+            if (isObject(req.params)) {
+              dataToValidate = { ...dataToValidate, ...req.params };
+            }
             break;
           case 'headers':
-            dataToValidate = { ...dataToValidate, ...(req.headers as Record<string, unknown>) };
+            if (isObject(req.headers)) {
+              dataToValidate = { ...dataToValidate, ...req.headers };
+            }
             break;
           case 'cookies':
-            dataToValidate = { ...dataToValidate, ...(req.cookies as Record<string, unknown>) };
+            if (isObject(req.cookies)) {
+              dataToValidate = { ...dataToValidate, ...req.cookies };
+            }
             break;
         }
       }
@@ -84,12 +94,12 @@ export const validate = <T>(
       // Replace original data with validated data if stripUnknown is true
       if (stripUnknown) {
         if (sources.includes('body')) {
-          req.body = validated;
+          req.body = validated as Record<string, unknown>;
         }
-        if (sources.includes('query')) {
+        if (sources.includes('query') && isObject(validated)) {
           req.query = validated as typeof req.query;
         }
-        if (sources.includes('params')) {
+        if (sources.includes('params') && isObject(validated)) {
           req.params = validated as typeof req.params;
         }
       }
@@ -103,7 +113,11 @@ export const validate = <T>(
             path: req.path,
             method: req.method,
             errors: _error.errors,
-            data: { body: req.body as Record<string, unknown>, query: req.query as Record<string, unknown>, params: req.params as Record<string, unknown> },
+            data: { 
+              body: isObject(req.body) ? req.body : {}, 
+              query: isObject(req.query) ? req.query : {}, 
+              params: isObject(req.params) ? req.params : {} 
+            },
           },
           'Validation failed',
         );
@@ -119,8 +133,8 @@ export const validate = <T>(
           field: err.path.join('.'),
           message: err.message,
           code: err.code,
-          ...('expected' in err && isDefined(err.expected) && { expected: err.expected }),
-          ...('received' in err && isDefined(err.received) && { received: err.received }),
+          ...('expected' in err && isDefined(err.expected) ? { expected: err.expected } : {}),
+          ...('received' in err && isDefined(err.received) ? { received: err.received } : {}),
         }));
 
         next(new ValidationError('Validation failed', formattedErrors));
@@ -154,7 +168,7 @@ export const validateIf = <T>(
   schema: ZodSchema<T>,
   options?: ValidationOptions,
 ): RequestHandler => (req, res, next): void => {
-    if (condition(req)) {
+    if (condition(req) === true) {
       validate(schema, options)(req, res, next); return;
     }
     next();
@@ -234,7 +248,7 @@ export const commonValidators = {
       to: z.string().datetime().optional(),
     })
     .refine(
-      (data) => (data.from == null) || data.from === '' || (data.to === undefined) || new Date(data.from) <= new Date(data.to),
+      (data) => (data.from == null || data.from === '') || (data.to == null) || new Date(data.from) <= new Date(data.to),
       'From date must be before or equal to to date',
     ),
 
@@ -262,29 +276,29 @@ export const sanitizeRequest = (
         .trim();
 
     // Sanitize specified fields
-    if (fieldsToSanitize.body && req.body !== undefined) {
+    if (fieldsToSanitize.body != null && isObject(req.body)) {
       fieldsToSanitize.body.forEach((field) => {
-        const bodyValue = (req.body as Record<string, unknown>)[field];
-        if (bodyValue !== null && bodyValue !== undefined && typeof bodyValue === 'string') {
-          (req.body as Record<string, unknown>)[field] = sanitizeHtml(bodyValue);
+        const bodyValue = req.body[field];
+        if (bodyValue != null && typeof bodyValue === 'string') {
+          req.body[field] = sanitizeHtml(bodyValue);
         }
       });
     }
 
-    if (fieldsToSanitize.query && req.query !== undefined) {
+    if (fieldsToSanitize.query != null && isObject(req.query)) {
       fieldsToSanitize.query.forEach((field) => {
-        const queryValue = (req.query as Record<string, unknown>)[field];
-        if (queryValue !== null && queryValue !== undefined && typeof queryValue === 'string') {
-          (req.query as Record<string, unknown>)[field] = sanitizeHtml(queryValue);
+        const queryValue = req.query[field];
+        if (queryValue != null && typeof queryValue === 'string') {
+          req.query[field] = sanitizeHtml(queryValue);
         }
       });
     }
 
-    if (fieldsToSanitize.params && req.params !== undefined) {
+    if (fieldsToSanitize.params != null && isObject(req.params)) {
       fieldsToSanitize.params.forEach((field) => {
-        const paramValue = (req.params as Record<string, unknown>)[field];
-        if (paramValue !== null && paramValue !== undefined && typeof paramValue === 'string') {
-          (req.params as Record<string, unknown>)[field] = sanitizeHtml(paramValue);
+        const paramValue = req.params[field];
+        if (paramValue != null && typeof paramValue === 'string') {
+          req.params[field] = sanitizeHtml(paramValue);
         }
       });
     }
@@ -297,22 +311,24 @@ export const coerceQueryParams = (
   coercions: Record<string, 'number' | 'boolean' | 'array' | 'date'>,
 ): RequestHandler => (req, _res, next): void => {
     for (const [param, type] of Object.entries(coercions)) {
-      if (req.query[param] !== undefined) {
-        const value = req.query[param] as string;
-
-        switch (type) {
-          case 'number':
-            (req.query as Record<string, unknown>)[param] = parseFloat(value);
-            break;
-          case 'boolean':
-            (req.query as Record<string, unknown>)[param] = value === 'true' || value === '1';
-            break;
-          case 'array':
-            (req.query as Record<string, unknown>)[param] = value.split(',');
-            break;
-          case 'date':
-            (req.query as Record<string, unknown>)[param] = new Date(value);
-            break;
+      if (isObject(req.query) && req.query[param] !== undefined) {
+        const value = req.query[param];
+        if (typeof value === 'string') {
+          switch (type) {
+            case 'number':
+              req.query[param] = parseFloat(value);
+              break;
+            case 'boolean':
+              req.query[param] = value === 'true' || value === '1';
+              break;
+            case 'array':
+              req.query[param] = value.split(',');
+              break;
+            case 'date':
+              req.query[param] = new Date(value);
+              break;
+          }
+        }
         }
       }
     }

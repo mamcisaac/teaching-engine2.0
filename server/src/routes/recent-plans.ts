@@ -10,7 +10,7 @@ const router = Router();
 router.post('/track', async (req: Request, res, _next) => {
   try {
     const userId = req.user.id ?? 0;
-    if (!userId) {
+    if (userId === 0) {
       res.status(401).json({ error: 'Unauthorized' });
       return;
     }
@@ -22,7 +22,7 @@ router.post('/track', async (req: Request, res, _next) => {
     });
     const { planType, planId } = bodySchema.parse(req.body);
 
-    if (!planType || !planId) {
+    if (planType == null || planType === '' || planId == null || planId === '') {
       res.status(400).json({ error: 'Plan type and ID are required' });
       return;
     }
@@ -61,14 +61,14 @@ router.post('/track', async (req: Request, res, _next) => {
 router.get('/', async (req: Request, res, _next) => {
   try {
     const userId = req.user.id ?? 0;
-    if (!userId) {
+    if (userId === 0) {
       res.status(401).json({ error: 'Unauthorized' });
       return;
     }
 
     // Parse limit with proper NaN checking
     const parsedLimit = parseInt(req.query.limit as string, 10);
-    const limit = !isNaN(parsedLimit) && parsedLimit > 0 ? parsedLimit : 10;
+    const limit = isNaN(parsedLimit) === false && parsedLimit > 0 ? parsedLimit : 10;
 
     const recentAccesses = await prisma.recentPlanAccess.findMany({
       where: { userId },
@@ -78,7 +78,7 @@ router.get('/', async (req: Request, res, _next) => {
 
     // Fetch plan details for each recent access
     const recentPlans = await Promise.all(
-      recentAccesses.map(async (access: { planType: string; planId: string; lastAccessed: Date }) => {
+      recentAccesses.map(async (access) => {
         let plan = null;
         let parentInfo = null;
 
@@ -118,7 +118,7 @@ router.get('/', async (req: Request, res, _next) => {
                 },
               },
             });
-            if (plan && 'longRangePlan' in plan) {
+            if (plan != null && 'longRangePlan' in plan) {
               parentInfo = plan.longRangePlan;
             }
             break;
@@ -147,7 +147,7 @@ router.get('/', async (req: Request, res, _next) => {
                 },
               },
             });
-            if (plan && 'unitPlan' in plan) {
+            if (plan != null && 'unitPlan' in plan) {
               parentInfo = plan.unitPlan;
             }
             break;
@@ -232,7 +232,7 @@ return null;
 router.delete('/clear', async (req: Request, res, _next) => {
   try {
     const userId = req.user.id ?? 0;
-    if (!userId) {
+    if (userId === 0) {
       res.status(401).json({ error: 'Unauthorized' });
       return;
     }

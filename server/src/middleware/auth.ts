@@ -34,7 +34,7 @@ import { AuthenticationError, ValidationError, ConflictError, AppError } from '.
 
 // Environment validation
 const {JWT_SECRET} = process.env;
-if (!JWT_SECRET) {
+if (JWT_SECRET == null || JWT_SECRET === '') {
   throw new Error('JWT_SECRET environment variable is required');
 }
 // TypeScript now knows JWT_SECRET is defined, but we need to help it
@@ -98,7 +98,7 @@ export async function login(req: Request, res: Response, next: NextFunction): Pr
       where: { email: email.toLowerCase() },
     });
 
-    if (user === null) {
+    if (user == null) {
       // Don't reveal whether email exists
       throw new AuthenticationError('Invalid email or password');
     }
@@ -177,7 +177,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
       {
         bodyKeys: req.body ? Object.keys(req.body as Record<string, unknown>) : [],
         bodyType: typeof req.body,
-        hasBody: !!req.body,
+        hasBody: req.body != null,
       },
       'Registration function entry',
     );
@@ -193,9 +193,9 @@ export async function register(req: Request, res: Response, next: NextFunction):
     logger.info(
       {
         email: email.toLowerCase(),
-        hasPassword: !!password,
-        hasName: !!name,
-        extractedData: { email: !!email, password: !!password, name: !!name },
+        hasPassword: password != null && password !== '',
+        hasName: name != null && name !== '',
+        extractedData: { email: email != null && email !== '', password: password != null && password !== '', name: name != null && name !== '' },
       },
       'Registration attempt',
     );
@@ -203,9 +203,9 @@ export async function register(req: Request, res: Response, next: NextFunction):
     // Validate input
     logger.info(
       {
-        emailCheck: { exists: !!email, type: typeof email, value: email },
-        passwordCheck: { exists: !!password, type: typeof password, length: password.length },
-        nameCheck: { exists: !!name, type: typeof name, value: name },
+        emailCheck: { exists: email != null && email !== '', type: typeof email, value: email },
+        passwordCheck: { exists: password != null && password !== '', type: typeof password, length: password?.length ?? 0 },
+        nameCheck: { exists: name != null && name !== '', type: typeof name, value: name },
       },
       'Input validation checks',
     );
@@ -220,7 +220,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
 
     // Validate password strength
     const passwordValidation = validatePasswordStrength(password);
-    if (!passwordValidation.isValid) {
+    if (passwordValidation.isValid !== true) {
       logger.warn({ passwordValidation }, 'Password validation failed');
       throw new ValidationError(passwordValidation.errors.join('. '));
     }
@@ -233,7 +233,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
         where: { email: email.toLowerCase() },
       });
 
-      if (existingUser) {
+      if (existingUser != null) {
         // Use ConflictError for duplicate email instead of ValidationError
         throw new ConflictError('Email already registered');
       }
@@ -335,7 +335,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
     let refreshToken: string;
     try {
       logger.info(
-        { userId: user.id, hasJwtSecret: !!process.env.JWT_SECRET },
+        { userId: user.id, hasJwtSecret: process.env.JWT_SECRET != null && process.env.JWT_SECRET !== '' },
         'About to generate tokens',
       );
 
@@ -348,7 +348,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
       refreshToken = generateRefreshToken(user.id);
 
       logger.info(
-        { userId: user.id, hasTokens: !!accessToken && !!refreshToken },
+        { userId: user.id, hasTokens: (accessToken != null && accessToken !== '') && (refreshToken != null && refreshToken !== '') },
         'Tokens generated successfully',
       );
     } catch (error: unknown) {
@@ -400,7 +400,7 @@ export function logout(req: Request, res: Response, next: NextFunction): void {
     res.clearCookie('refreshToken');
 
     // Log logout
-    if (req.user) {
+    if (req.user != null) {
       logger.info(
         {
           userId: req.user.id,
@@ -426,7 +426,7 @@ export async function changePassword(
   next: NextFunction,
 ): Promise<void> {
   try {
-    if (!req.user) {
+    if (req.user == null) {
       throw new AuthenticationError('Authentication required');
     }
 
@@ -439,7 +439,7 @@ export async function changePassword(
 
     // Validate new password strength
     const passwordValidation = validatePasswordStrength(newPassword);
-    if (!passwordValidation.isValid) {
+    if (passwordValidation.isValid !== true) {
       throw new ValidationError(passwordValidation.errors.join('. '));
     }
 
@@ -448,7 +448,7 @@ export async function changePassword(
       where: { id: req.user.id },
     });
 
-    if (user === null) {
+    if (user == null) {
       throw new AuthenticationError('User not found');
     }
 
@@ -460,7 +460,7 @@ export async function changePassword(
 
     // Check if new password is different from current
     const isSamePassword = await verifyPassword(newPassword, user.password);
-    if (isSamePassword) {
+    if (isSamePassword === true) {
       throw new ValidationError('New password must be different from current password');
     }
 
@@ -512,7 +512,7 @@ export async function forgotPassword(
     });
 
     // Always return success to prevent email enumeration
-    if (user === null) {
+    if (user == null) {
       const response: MessageResponse = { message: 'If the email exists, a reset link has been sent' };
       res.json(response);
       return;
@@ -588,7 +588,7 @@ export async function resetPassword(
 
     // Validate new password
     const passwordValidation = validatePasswordStrength(newPassword);
-    if (!passwordValidation.isValid) {
+    if (passwordValidation.isValid !== true) {
       throw new ValidationError(passwordValidation.errors.join('. '));
     }
 
@@ -634,7 +634,7 @@ export function validateSession(
   next: NextFunction,
 ): void {
   try {
-    if (!req.user) {
+    if (req.user == null) {
       throw new AuthenticationError('Session invalid');
     }
 

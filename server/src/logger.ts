@@ -18,7 +18,7 @@ import { isValidStringProperty, isObject } from './utils/typeGuards';
 
 // Base logger configuration
 const pinoConfig: pino.LoggerOptions = {
-  level: process.env.LOG_LEVEL || (process.env.NODE_ENV === 'production' ? 'info' : 'debug'),
+  level: process.env.LOG_LEVEL ?? (process.env.NODE_ENV === 'production' ? 'info' : 'debug'),
 
   // Custom serializers for better structured logging
   serializers: {
@@ -37,10 +37,10 @@ const pinoConfig: pino.LoggerOptions = {
         headers: {
           'user-agent': request.headers?.['user-agent'],
           'content-type': request.headers?.['content-type'],
-          authorization: (request.headers && 'authorization' in request.headers && request.headers.authorization) ? '[REDACTED]' : undefined,
+          authorization: request.headers?.authorization != null ? '[REDACTED]' : undefined,
         },
         remoteAddress: request.remoteAddress ?? request.connection?.remoteAddress,
-        remotePort: (typeof request.remotePort === 'number' && !isNaN(request.remotePort)) ? request.remotePort : request.connection?.remotePort,
+        remotePort: typeof request.remotePort === 'number' ? request.remotePort : request.connection?.remotePort,
       };
     },
 
@@ -67,9 +67,8 @@ const pinoConfig: pino.LoggerOptions = {
       const userData = user as { id?: string | number; email?: string; role?: string };
       return {
         id: userData.id,
-        email:
-          userData.email && typeof userData.email === 'string'
-            ? `${userData.email.substring(0, 3)  }***`
+        email: userData.email != null
+            ? `${userData.email.substring(0, 3)}***`
             : undefined,
         role: userData.role,
       };
@@ -80,7 +79,7 @@ const pinoConfig: pino.LoggerOptions = {
   timestamp: () => `,"time":"${new Date().toISOString()}"`,
 
   // Format based on environment
-  ...(process.env.NODE_ENV === 'development' && {
+  ...(process.env.NODE_ENV === 'development' ? {
     transport: {
       target: 'pino-pretty',
       options: {
@@ -92,7 +91,7 @@ const pinoConfig: pino.LoggerOptions = {
         customColors: 'error:red,warn:yellow,info:green,debug:blue,trace:gray',
       },
     },
-  }),
+  } : {}),
 };
 
 // Create the base logger
@@ -263,16 +262,16 @@ class EnhancedLogger {
         message: obj,
         requestId: this.requestId,
         service: 'teaching-engine',
-        version: process.env.npm_package_version || 'unknown',
+        version: process.env.npm_package_version ?? 'unknown',
       };
     }
 
-    if (obj && typeof obj === 'object') {
+    if (obj != null && typeof obj === 'object') {
       return {
         ...(obj as Record<string, unknown>),
         requestId: this.requestId,
         service: 'teaching-engine',
-        version: process.env.npm_package_version || 'unknown',
+        version: process.env.npm_package_version ?? 'unknown',
       };
     }
 
@@ -295,7 +294,7 @@ class EnhancedLogger {
     delete sanitized.apiKey;
 
     // Redact email addresses
-    if (sanitized.email) {
+    if (sanitized.email != null) {
       sanitized.email = this.redactEmail(sanitized.email);
     }
 
@@ -306,7 +305,7 @@ class EnhancedLogger {
     const sanitized = { ...details };
 
     // Keep only necessary security info
-    if (sanitized.ip) {
+    if (sanitized.ip != null) {
       sanitized.ip = this.maskIP(sanitized.ip);
     }
 
@@ -358,7 +357,7 @@ class EnhancedLogger {
 return '[INVALID_EMAIL]';
 }
     const [local, domain] = email.split('@');
-    if (!local || !domain) {
+    if (local == null || local === '' || domain == null || domain === '') {
 return '[INVALID_EMAIL]';
 }
     return `${local.substring(0, 2)}***@${domain}`;

@@ -63,7 +63,7 @@ export function validateUnitPlan(data: UnitPlanFormData): ValidationResult {
   }
 
   // Duration validation
-  if (data.estimatedHours == null || data.estimatedHours <= 0) {
+  if (!data.estimatedHours || data.estimatedHours <= 0) {
     errors.estimatedHours = 'Estimated hours must be greater than 0';
   } else if (data.estimatedHours > 500) {
     errors.estimatedHours = 'Estimated hours seems unreasonably high (max 500)';

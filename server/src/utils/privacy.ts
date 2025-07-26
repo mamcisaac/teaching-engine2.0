@@ -17,7 +17,7 @@ export function maskUserData(user: Record<string, unknown>, options: PrivacyOpti
     isOwner = true,
   } = options;
 
-  if (user === null) {
+  if (!user) {
 return null;
 }
 
@@ -47,7 +47,7 @@ return null;
  * Generates a privacy-safe user identifier for logging
  */
 export function getUserIdentifier(user: Record<string, unknown>): string {
-  if (user === null) {
+  if (!user) {
 return 'unknown';
 }
   

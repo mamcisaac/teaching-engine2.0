@@ -72,7 +72,7 @@ export class TemplateCache extends BaseService {
     const baseDeps = super.checkDependencies();
     return {
       ...baseDeps,
-      cacheMap: this.cache !== null && this.cache !== undefined,
+      cacheMap: Boolean(this.cache),
     };
   }
 
@@ -231,7 +231,7 @@ export class TemplateCache extends BaseService {
   /**
    * Warm cache with predefined entries
    */
-  public async warmCache(entries: { key: string; result: RenderResult }[]): Promise<void> {
+  public warmCache(entries: { key: string; result: RenderResult }[]): void {
     for (const { key, result } of entries) {
       this.set(key, result);
     }
@@ -253,7 +253,7 @@ export class TemplateCache extends BaseService {
       }
     }
 
-    if (oldestKey != null) {
+    if (oldestKey !== null) {
       this.cache.delete(oldestKey);
       this.logger.debug(`Evicted LRU cache entry: key=${oldestKey}`);
     }
@@ -315,7 +315,7 @@ export class TemplateCache extends BaseService {
   /**
    * Cleanup resources
    */
-  public async cleanup(): Promise<void> {
+  public cleanup(): void {
     this.clear();
     this.logger.info('Template cache cleanup completed');
   }

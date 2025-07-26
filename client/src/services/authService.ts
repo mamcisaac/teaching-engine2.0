@@ -30,7 +30,7 @@ class AuthService implements AuthServiceInterface {
   getAccessToken(): string | null {
     // Check if token is expired
     const expiresAt = this.getTokenExpiration();
-    if (expiresAt !== null && expiresAt > 0 && Date.now() >= expiresAt) {
+    if (expiresAt != null && expiresAt !== 0 && expiresAt > 0 && Date.now() >= expiresAt) {
       this.clearTokens();
       return null;
     }
@@ -52,7 +52,7 @@ class AuthService implements AuthServiceInterface {
    */
   getTokenExpiration(): number | null {
     const expiresAt = localStorage.getItem('auth_expires_at');
-    return (expiresAt !== null && expiresAt !== '') ? parseInt(expiresAt, 10) : null;
+    return expiresAt != null && expiresAt !== '' ? parseInt(expiresAt, 10) : null;
   }
 
   /**
@@ -104,7 +104,7 @@ class AuthService implements AuthServiceInterface {
    */
   getUser(): User | null {
     const userData = localStorage.getItem(this.USER_KEY);
-    if (userData === null || userData === '') {
+    if (userData == null || userData === '') {
       return null;
     }
     const parsed = safeJsonParse(userData, null);
@@ -116,7 +116,7 @@ class AuthService implements AuthServiceInterface {
    */
   isAuthenticated(): boolean {
     const token = this.getAccessToken();
-    return token !== null && token !== '';
+    return Boolean(token);
   }
 
   /**
@@ -139,12 +139,12 @@ class AuthService implements AuthServiceInterface {
     try {
       const data = await authClient.login({ email, password });
 
-      if (data.user != null) {
+      if (data.user) {
         this.setUser(data.user);
 
         if (data.tokens !== undefined) {
           this.setTokens(data.tokens);
-        } else if (data.accessToken !== null && data.accessToken !== undefined && data.accessToken !== '') {
+        } else if (data.accessToken != null && data.accessToken !== '') {
           // Current backend format
           this.setLegacyToken(data.accessToken);
         } else if (data.token !== undefined) {
@@ -178,7 +178,7 @@ class AuthService implements AuthServiceInterface {
    */
   async refreshToken(): Promise<boolean> {
     // Prevent multiple simultaneous refresh attempts
-    if (this.refreshPromise !== null) {
+    if (this.refreshPromise) {
       return this.refreshPromise;
     }
 
@@ -193,7 +193,7 @@ class AuthService implements AuthServiceInterface {
   }
 
   private async _performTokenRefresh(): Promise<boolean> {
-    const baseURL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+    const baseURL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:3000';
 
     try {
       // Refresh token is now sent as HTTP-only cookie automatically
@@ -218,7 +218,7 @@ class AuthService implements AuthServiceInterface {
         } else if (data.token !== undefined) {
           this.setLegacyToken(data.token);
           return true;
-        } else if (data.accessToken !== null && data.accessToken !== undefined && data.accessToken !== '') {
+        } else if (data.accessToken != null && data.accessToken !== '') {
           this.setLegacyToken(data.accessToken);
           return true;
         }
@@ -251,7 +251,7 @@ class AuthService implements AuthServiceInterface {
       
       if (isUnauthorized) {
         // Try to refresh token if available, but only if not already retrying
-        if (!isRetry && this.hasRefreshToken() && (await this.refreshToken())) {
+        if (isRetry !== true && this.hasRefreshToken() === true && (await this.refreshToken()) === true) {
           // Retry with new token
           return this.verifyAuth(true);
         }
@@ -263,7 +263,7 @@ class AuthService implements AuthServiceInterface {
       logger.error('Auth verification failed:', error);
 
       // Try token refresh on network errors, but only if not already retrying
-      if (!isRetry && this.hasRefreshToken()) {
+      if (isRetry !== true && this.hasRefreshToken() === true) {
         const refreshSuccess = await this.refreshToken();
         if (refreshSuccess) {
           // Retry once after successful refresh

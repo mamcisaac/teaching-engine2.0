@@ -274,7 +274,7 @@ export class CurriculumImportOrchestrator extends BaseService {
         },
       });
 
-      if (!subject) {
+      if (subject == null) {
         // Create subject
         const transformOptions: TransformOptions = {
           userId: options.userId,
@@ -317,7 +317,7 @@ export class CurriculumImportOrchestrator extends BaseService {
       );
 
       // Create new expectations
-      if (toCreate.length > 0 && subject !== null && subject !== undefined) {
+      if (toCreate.length > 0) {
         await tx.curriculumExpectation.createMany({
           data: toCreate.map((exp) => ({
             ...exp,
@@ -373,11 +373,11 @@ export class CurriculumImportOrchestrator extends BaseService {
   public validateImportOptions(options: ImportOptions): { isValid: boolean; errors: string[] } {
     const errors: string[] = [];
 
-    if (!options.userId) {
+    if (options.userId == null) {
       errors.push('User ID is required');
     }
 
-    if (!options.filename) {
+    if (options.filename == null || options.filename === '') {
       errors.push('Filename is required');
     } else if (!ParserFactory.isSupported(options.filename)) {
       errors.push(`Unsupported file type: ${options.filename}`);

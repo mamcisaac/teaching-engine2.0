@@ -58,14 +58,14 @@ router.post(
   upload.single('file') as unknown as express.RequestHandler,
   async (req: Request, res: Response) => {
     try {
-      if (!req.file) {
+      if (req.file == null) {
         res.status(400).json({
           error: 'No file uploaded',
         });
         return;
       }
 
-      if (!req.user?.id) {
+      if (req.user?.id == null) {
         res.status(401).json({
           error: 'User not authenticated',
         });
@@ -101,7 +101,7 @@ router.post(
         sourceFormat = 'csv';
       }
 
-      if (!req.user) {
+      if (req.user == null) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -136,7 +136,7 @@ router.post('/parse', asyncHandler(async (req: AuthenticatedRequest, res: Respon
   try {
     const { sessionId, useAiExtraction } = req.body;
 
-    if (!sessionId) {
+    if (sessionId == null || sessionId === '') {
       res.status(400).json({
         error: 'Session ID is required',
       });
@@ -154,13 +154,13 @@ router.post('/parse', asyncHandler(async (req: AuthenticatedRequest, res: Respon
     const parseResult = await curriculumImportService.parseUploadedFile(sessionId, {
       userId: req.user.id,
       filename: sessionId,
-      useAI: useAiExtraction || true,
+      useAI: useAiExtraction ?? true,
     });
 
     res.json({
       message: 'File parsed successfully',
       subjects: parseResult.subjects,
-      errors: parseResult.errors || [],
+      errors: parseResult.errors ?? [],
     });
     return;
   } catch (_error) {
@@ -177,7 +177,7 @@ router.post('/import-preset', asyncHandler(async (req: Request, res: Response) =
   try {
     const { presetId } = req.body;
 
-    if (!presetId) {
+    if (presetId == null || presetId === '') {
       res.status(400).json({
         error: 'Preset ID is required',
       });
@@ -351,7 +351,7 @@ router.post('/start', async (req: Request, res: Response): Promise<void> => {
   try {
     const { grade, subject, sourceFormat } = req.body;
 
-    if (!grade || !subject || !sourceFormat) {
+    if (grade == null || grade === '' || subject == null || subject === '' || sourceFormat == null || sourceFormat === '') {
       res.status(400).json({ error: 'Missing required fields: grade, subject, sourceFormat' });
       return;
     }

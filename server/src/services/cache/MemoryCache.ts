@@ -45,7 +45,7 @@ export class MemoryCache {
   }
 
   disconnect(): void {
-    if (this.cleanupInterval) {
+    if (this.cleanupInterval != null) {
       clearInterval(this.cleanupInterval);
       this.cleanupInterval = null;
     }
@@ -54,10 +54,10 @@ export class MemoryCache {
     structuredLogger.info('Memory cache disconnected');
   }
 
-  async get<T>(key: string): Promise<T | null> {
+  get<T>(key: string): T | null {
     const entry = this.cache.get(key);
 
-    if (!entry) {
+    if (entry == null) {
       this.stats.misses++;
       this.updateHitRate();
       return null;
@@ -77,10 +77,10 @@ export class MemoryCache {
     return entry.value as T;
   }
 
-  async set<T>(key: string, value: T, options: CacheOptions = {}): Promise<boolean> {
+  set<T>(key: string, value: T, options: CacheOptions = {}): boolean {
     try {
       // Check max size
-      if (this.config.maxSize && this.cache.size >= this.config.maxSize) {
+      if (this.config.maxSize != null && this.cache.size >= this.config.maxSize) {
         this.evictOldest();
       }
 
@@ -104,9 +104,9 @@ export class MemoryCache {
     }
   }
 
-  async delete(key: string): Promise<boolean> {
+  delete(key: string): boolean {
     const entry = this.cache.get(key);
-    if (!entry) {
+    if (entry == null) {
 return false;
 }
 
@@ -116,7 +116,7 @@ return false;
     return true;
   }
 
-  async deleteByPattern(pattern: string): Promise<number> {
+  deleteByPattern(pattern: string): number {
     const regex = new RegExp(pattern.replace(/\*/g, '.*'));
     let deleted = 0;
 
@@ -132,12 +132,12 @@ return false;
     return deleted;
   }
 
-  async invalidateByTags(tags: string[]): Promise<number> {
+  invalidateByTags(tags: string[]): number {
     let totalDeleted = 0;
 
     for (const tag of tags) {
       const keys = this.tagIndex.get(tag);
-      if (!keys) {
+      if (keys == null) {
 continue;
 }
 
@@ -154,7 +154,7 @@ continue;
     return totalDeleted;
   }
 
-  async clear(): Promise<void> {
+  clear(): void {
     this.cache.clear();
     this.tagIndex.clear();
     this.resetStats();
@@ -165,20 +165,20 @@ continue;
     factory: () => Promise<T>,
     options: CacheOptions = {},
   ): Promise<T> {
-    const cached = await this.get<T>(key);
+    const cached = this.get<T>(key);
     if (cached !== null) {
       return cached;
     }
 
     const value = await factory();
-    await this.set(key, value, options);
+    this.set(key, value, options);
     return value;
   }
 
   async increment(key: string, amount = 1): Promise<number> {
-    const current = (await this.get<number>(key)) ?? 0;
+    const current = this.get<number>(key) ?? 0;
     const newValue = current + amount;
-    await this.set(key, newValue);
+    this.set(key, newValue);
     return newValue;
   }
 
@@ -223,10 +223,10 @@ continue;
   private evictOldest(): void {
     // Simple FIFO eviction
     const firstKey = this.cache.keys().next().value;
-    if (firstKey) {
+    if (firstKey != null) {
       const entry = this.cache.get(firstKey);
       this.cache.delete(firstKey);
-      if (entry) {
+      if (entry != null) {
         this.removeFromTags(firstKey, entry.tags);
       }
     }
@@ -234,11 +234,11 @@ continue;
 
   private addToTags(key: string, tags: string[]): void {
     for (const tag of tags) {
-      if (!this.tagIndex.has(tag)) {
+      if (this.tagIndex.has(tag) === false) {
         this.tagIndex.set(tag, new Set());
       }
       const tagSet = this.tagIndex.get(tag);
-      if (tagSet) {
+      if (tagSet != null) {
         tagSet.add(key);
       }
     }
@@ -247,7 +247,7 @@ continue;
   private removeFromTags(key: string, tags: string[]): void {
     for (const tag of tags) {
       const keys = this.tagIndex.get(tag);
-      if (keys) {
+      if (keys != null) {
         keys.delete(key);
         if (keys.size === 0) {
           this.tagIndex.delete(tag);
@@ -271,7 +271,7 @@ let memoryCacheInstance: MemoryCache | null = null;
  * Get or create memory cache instance
  */
 export function getMemoryCache(): MemoryCache {
-  if (!memoryCacheInstance) {
+  if (memoryCacheInstance == null) {
     memoryCacheInstance = new MemoryCache({
       maxSize: 1000,
       defaultTtl: 3600,

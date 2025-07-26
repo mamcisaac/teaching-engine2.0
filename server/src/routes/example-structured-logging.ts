@@ -30,7 +30,7 @@ router.get('/api/example/basic', authenticate, async (req: Request, res: Respons
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
-    const result = await someBusinessLogic(userId);
+    const result = someBusinessLogic(userId);
 
     // Log success with relevant data
     structuredLogger.info('Example request completed successfully', {
@@ -66,7 +66,7 @@ router.get('/api/example/performance', authenticate, async (_req: Request, res: 
 
     // Step 2: External API call
     const apiPerfLogger = new PerformanceLogger('example.external.api');
-    const apiResult = await simulateExternalApiCall();
+    const apiResult = simulateExternalApiCall();
     apiPerfLogger.end({ statusCode: apiResult.status });
 
     // Step 3: Data processing
@@ -124,7 +124,7 @@ router.post('/api/example/batch', authenticate, async (req: Request, res: Respon
     try {
       itemLogger.debug('Processing item');
 
-      const result = await processItem(item);
+      const result = processItem(item);
       results.push(result);
 
       itemLogger.info('Item processed successfully');
@@ -164,14 +164,14 @@ router.post(
         // Stage 1: Validation
         await withLoggingContext({ stage: 'validation' }, async () => {
           structuredLogger.debug('Validating input');
-          await validateWorkflowInput(req.body);
+          validateWorkflowInput(req.body);
           structuredLogger.info('Validation completed');
         });
 
         // Stage 2: Processing
         await withLoggingContext({ stage: 'processing' }, async () => {
           structuredLogger.debug('Processing workflow');
-          const result = await processWorkflow(req.body);
+          const result = processWorkflow(req.body);
           structuredLogger.info('Processing completed', { resultId: result.id });
 
           res.json({ workflowId, result });
@@ -235,29 +235,29 @@ router.get('/api/example/stream', authenticate, async (req: Request, res: Respon
 });
 
 // Helper functions
-async function someBusinessLogic(userId: number) {
+function someBusinessLogic(userId: number): string[] {
   return [`item-${userId}-1`, `item-${userId}-2`];
 }
 
-async function simulateExternalApiCall() {
+function simulateExternalApiCall(): { status: number; data: { message: string } } {
   return { status: 200, data: { message: 'Success' } };
 }
 
-function processData(users: { id: number; name: string }[], apiResult: { data: unknown }) {
+function processData(users: { id: number; name: string }[], apiResult: { data: unknown }): Array<{ id: number; name: string; apiData: unknown }> {
   return users.map((u) => ({ ...u, apiData: apiResult.data }));
 }
 
-async function processItem(item: Record<string, unknown>) {
+function processItem(item: Record<string, unknown>): Record<string, unknown> {
   return { ...item, processed: true };
 }
 
-async function validateWorkflowInput(input: { name?: string }) {
+function validateWorkflowInput(input: { name?: string }): void {
   if (!input.name) {
 throw new Error('Name is required');
 }
 }
 
-async function processWorkflow(input: Record<string, unknown>) {
+function processWorkflow(input: Record<string, unknown>): Record<string, unknown> {
   return { id: Date.now(), ...input, status: 'completed' };
 }
 

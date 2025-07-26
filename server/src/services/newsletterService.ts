@@ -63,7 +63,7 @@ I hope this newsletter finds you well! Here's a summary of what we've been worki
 
       lessonPlans.forEach((lesson) => {
         const subject = lesson.subject ?? lesson.unitPlan?.title ?? 'General Studies';
-        if (lessonsBySubject[subject] === null || lessonsBySubject[subject] === undefined) {
+        if (!lessonsBySubject[subject]) {
           lessonsBySubject[subject] = [];
         }
         lessonsBySubject[subject].push(lesson);
@@ -73,12 +73,12 @@ I hope this newsletter finds you well! Here's a summary of what we've been worki
         const titles = lessons.map((l) => l.title).join(', ');
         const goals = lessons
           .map((l) => l.learningGoals)
-          .filter((g) => g)
+          .filter((g) => g != null && g !== '')
           .join(', ')
           .replace(/,\s*/g, ' and ');
 
         content += `**${subject}**: We've been exploring ${titles}`;
-        if (goals) {
+        if (goals != null && goals !== '') {
           content += `. Our focus has been on ${goals}`;
         }
         content += '.\n\n';
@@ -157,7 +157,7 @@ return '';
       if (reflection.notableAchievements != null && reflection.notableAchievements !== '') {
         highlights += `- ${dateStr}: ${reflection.notableAchievements}\n`;
       }
-      if (reflection.whatWorked) {
+      if (reflection.whatWorked != null && reflection.whatWorked !== '') {
         highlights += `- What worked well: ${reflection.whatWorked}\n`;
       }
     });
@@ -177,13 +177,13 @@ return '';
     return Promise.resolve(null);
   }
 
-  static async recordNewsletterGeneration(_userId: number): Promise<void> {
+  static recordNewsletterGeneration(_userId: number): void {
     // Mock implementation that doesn't throw
-    return Promise.resolve();
+    return;
   }
 
-  static getUserPreferences(_userId: number): Promise<Record<string, never>> {
+  static getUserPreferences(_userId: number): Record<string, never> {
     // Mock implementation - returns empty object
-    return Promise.resolve({});
+    return {};
   }
 }

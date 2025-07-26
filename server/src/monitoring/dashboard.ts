@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import * as os from 'os';
 
 import { prisma } from '@teaching-engine/database';
@@ -221,8 +220,8 @@ const performHealthChecks = async (): Promise<DashboardMetrics['health']> => {
   const memPercentage = (memUsage.heapUsed / totalMem) * 100;
   checks.memory = memPercentage < 90;
   if (!checks.memory) {
-score -= 20;
-}
+    score -= 20;
+  }
 
   // Disk space check (simplified)
   checks.disk_space = true; // Would need actual implementation
@@ -257,7 +256,7 @@ export const getDashboardMetrics = async (_req: Request, res: Response): Promise
       const httpDuration = metrics.histograms.http_request_duration_ms;
       // Calculate percentiles from histogram data
       const percentiles = { p50: 0, p90: 0, p95: 0, p99: 0 };
-      if (httpDuration !== null && httpDuration !== undefined && httpDuration.count > 0) {
+      if (httpDuration != null && httpDuration.count > 0) {
         const p50Target = (httpDuration.count * 50) / 100;
         const p90Target = (httpDuration.count * 90) / 100;
         const p95Target = (httpDuration.count * 95) / 100;
@@ -436,7 +435,7 @@ export const getDashboardMetrics = async (_req: Request, res: Response): Promise
           curriculum: {
             expectations_covered: coveredExpectations,
             coverage_percentage: coveragePercentage,
-            most_used_subjects: subjectCounts.map((sc: { subject: string | null; _count: { subject: number } }) => ({
+            most_used_subjects: subjectCounts.map((sc) => ({
               subject: sc.subject ?? 'Unknown',
               count: sc._count.subject,
             })),
@@ -444,7 +443,7 @@ export const getDashboardMetrics = async (_req: Request, res: Response): Promise
           ai_usage: {
             total_operations: metrics.counters.ai_operations_total,
             operations_today: 0, // Would need time-based tracking
-            average_duration: metrics.histograms.ai_operation_duration_ms !== null && metrics.histograms.ai_operation_duration_ms !== undefined
+            average_duration: metrics.histograms.ai_operation_duration_ms != null
               ? metrics.histograms.ai_operation_duration_ms.sum /
                 metrics.histograms.ai_operation_duration_ms.count
               : 0,

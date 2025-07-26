@@ -118,7 +118,7 @@ export class PdfEngine extends RenderEngine {
   /**
    * Validate template
    */
-  async validate(template: Template): Promise<boolean> {
+  validate(template: Template): boolean {
     // Validate as HTML first
     return this.handlebarsEngine.validate(template);
   }
@@ -133,7 +133,7 @@ export class PdfEngine extends RenderEngine {
   /**
    * Precompile template
    */
-  async precompile(template: Template): Promise<unknown> {
+  precompile(template: Template): unknown {
     // Precompile as Handlebars template
     return this.handlebarsEngine.precompile(template);
   }
@@ -188,7 +188,7 @@ export class PdfEngine extends RenderEngine {
   /**
    * Add watermark to PDF
    */
-  async addWatermark(
+  addWatermark(
     pdfBuffer: Buffer,
     _watermarkText: string,
     _options?: {
@@ -197,7 +197,7 @@ export class PdfEngine extends RenderEngine {
       color?: string;
       angle?: number;
     }
-  ): Promise<Buffer> {
+  ): Buffer {
     // This would require a PDF manipulation library like pdf-lib
     // For now, return the original buffer
     return pdfBuffer;
@@ -206,7 +206,7 @@ export class PdfEngine extends RenderEngine {
   /**
    * Merge multiple PDFs
    */
-  async mergePdfs(pdfBuffers: Buffer[]): Promise<Buffer> {
+  mergePdfs(pdfBuffers: Buffer[]): Buffer {
     // This would require a PDF manipulation library like pdf-lib
     // For now, return the first buffer
     return pdfBuffers[0];

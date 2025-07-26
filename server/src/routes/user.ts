@@ -3,11 +3,10 @@
  * Handles user profile and account management
  */
 
+import type { PrismaClient } from '@teaching-engine/database';
 import type { Request } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
-
-import type { PrismaClient } from '@teaching-engine/database';
 
 import { verifyPassword } from '../middleware/auth/password';
 import { asyncHandler } from '../middleware/errorHandler';
@@ -31,7 +30,7 @@ export function userRoutes(prisma: PrismaClient): Router {
   router.get(
     '/profile',
     asyncHandler(async (req, res): Promise<void> => {
-      if (!req.user.id) {
+      if (req.user.id == null) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -39,7 +38,7 @@ export function userRoutes(prisma: PrismaClient): Router {
 
       const user = await userRepository.findByIdWithoutPassword(userId);
 
-      if (!user) {
+      if (user == null) {
         res.status(404).json({ error: 'User not found' });
         return;
       }
@@ -53,7 +52,7 @@ export function userRoutes(prisma: PrismaClient): Router {
   router.put(
     '/password',
     asyncHandler(async (req, res): Promise<void> => {
-      if (!req.user.id) {
+      if (req.user.id == null) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -66,14 +65,14 @@ export function userRoutes(prisma: PrismaClient): Router {
       // Get user with password
       const user = await userRepository.findById(userId);
 
-      if (!user) {
+      if (user == null) {
         res.status(404).json({ error: 'User not found' });
         return;
       }
 
       // Verify current password
       const isValidPassword: boolean = await verifyPassword(currentPassword, user.password);
-      if (isValidPassword !== true) {
+      if (isValidPassword === false) {
         res.status(401).json({ error: 'Current password is incorrect' });
         return;
       }
@@ -142,7 +141,7 @@ export function userRoutes(prisma: PrismaClient): Router {
         return;
       }
 
-      if (data.metadata !== undefined && (typeof data.metadata !== 'object' || data.metadata === null)) {
+      if (data.metadata !== undefined && (typeof data.metadata !== 'object' || data.metadata == null)) {
         res.status(400).json({ error: 'Invalid data type: metadata must be an object' });
         return;
       }

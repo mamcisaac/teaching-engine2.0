@@ -53,7 +53,7 @@ export interface ProgressReport {
  * Calculate GPA from assessment ratings (1-4 scale)
  */
 export function calculateGPA(grades: AssessmentWithRating[]): number {
-  if (grades === null || grades === undefined || grades.length === 0) {
+  if (grades == null || grades.length === 0) {
     return 0;
   }
 
@@ -69,7 +69,7 @@ export function calculateGPA(grades: AssessmentWithRating[]): number {
  * Calculate average rating from array of ratings
  */
 export function calculateAverageRating(ratings: number[]): number {
-  if (ratings === null || ratings === undefined || ratings.length === 0) {
+  if (ratings == null || ratings.length === 0) {
     return 0;
   }
 
@@ -102,7 +102,7 @@ export function determineAchievementLevel(rating: number): string {
 export function validateAssessmentData(assessment: unknown): ValidationResult {
   const errors: string[] = [];
   
-  if (!assessment || typeof assessment !== 'object') {
+  if (assessment == null || typeof assessment !== 'object') {
     return { isValid: false, errors: ['Assessment data is required'] };
   }
 
@@ -114,13 +114,13 @@ export function validateAssessmentData(assessment: unknown): ValidationResult {
   }
 
   // Validate date
-  if (!data.date || !(data.date instanceof Date) || isNaN(data.date.getTime())) {
+  if (data.date == null || !(data.date instanceof Date) || isNaN(data.date.getTime())) {
     errors.push('Valid date is required');
   }
 
   // Validate type
   const validTypes = ['diagnostic', 'formative', 'summative'];
-  if (!data.type || !validTypes.includes(data.type as string)) {
+  if (data.type == null || !validTypes.includes(data.type as string)) {
     errors.push('Type must be diagnostic, formative, or summative');
   }
 
@@ -141,7 +141,7 @@ export function aggregateAssessmentsByStrand(
   for (const assessment of assessments) {
     const strand = assessment.strand ?? 'General';
     
-    if (aggregated[strand] === null || aggregated[strand] === undefined) {
+    if (aggregated[strand] == null) {
       aggregated[strand] = {
         assessments: [],
         averageRating: 0,

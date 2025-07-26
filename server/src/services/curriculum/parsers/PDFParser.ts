@@ -25,7 +25,7 @@ export class PDFParser extends CurriculumParser {
     const buffer = content instanceof Buffer ? content : Buffer.from(content);
     const data = await pdfParse(buffer);
 
-    if (data.text == null || data.text === '') {
+    if (!data.text) {
       throw new Error('No text content found in PDF');
     }
 
@@ -61,7 +61,7 @@ export class PDFParser extends CurriculumParser {
       },
     };
 
-    if (this.validate(curriculum) !== true) {
+    if (!this.validate(curriculum)) {
       throw new Error('Invalid curriculum data structure');
     }
 
@@ -90,7 +90,7 @@ export class PDFParser extends CurriculumParser {
 
     // Extract from text content
     const text =
-      pdfData && typeof pdfData === 'object' && 'text' in pdfData
+      (pdfData != null && typeof pdfData === 'object' && 'text' in pdfData)
         ? (pdfData as { text: string }).text
         : '';
 
@@ -252,7 +252,7 @@ export class PDFParser extends CurriculumParser {
         description = this.cleanText(description);
 
         if (description.length < 10) {
-continue;
+          continue;
 } // Skip very short descriptions
 
         const expectation: ParsedExpectation = {
@@ -264,7 +264,7 @@ continue;
           subject: metadata.subject,
         };
 
-        if (this.options.extractKeywords) {
+        if (this.options.extractKeywords === true) {
           expectation.keywords = this.extractKeywords(description);
         }
 
@@ -338,7 +338,7 @@ continue;
    * Validate parsed curriculum
    */
   validate(data: ParsedCurriculum): boolean {
-    if (!data.subject || !data.grade || data.expectations === null) {
+    if (data.subject == null || data.subject === '' || data.grade == null || data.grade === 0 || data.expectations === null) {
       return false;
     }
 

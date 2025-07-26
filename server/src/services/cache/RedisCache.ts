@@ -73,7 +73,7 @@ export class RedisCache {
     this.setupEventHandlers();
   }
 
-  private setupEventHandlers() {
+  private setupEventHandlers(): void {
     this.client.on('connect', () => {
       structuredLogger.info('Redis client connected');
       this.isConnected = true;
@@ -458,10 +458,10 @@ export function getCache(): RedisCache {
 /**
  * Express middleware for cache
  */
-export function cacheMiddleware(keyPattern: string, options: CacheOptions = {}) {
+export function cacheMiddleware(keyPattern: string, options: CacheOptions = {}): (req: Request, res: Response, next: NextFunction) => Promise<void> {
   const cache = getCache();
 
-  return async (req: Request, res: Response, next: NextFunction) => {
+  return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     const key = keyPattern
       .replace(':id', req.params.id ?? '')
       .replace(':userId', (req as Request & { user?: { id: string } }).user?.id ?? 'anonymous');
@@ -477,7 +477,7 @@ export function cacheMiddleware(keyPattern: string, options: CacheOptions = {}) 
     const originalJson = res.json.bind(res);
 
     // Override json to cache the response
-    res.json = function (data: unknown) {
+    res.json = function (data: unknown): Response {
       res.setHeader('X-Cache', 'MISS');
 
       // Cache the response asynchronously

@@ -62,10 +62,10 @@ export class AIActivityGeneratorService {
   /**
    * Generate multiple activity variations
    */
-  async generateActivityVariations(
+  generateActivityVariations(
     params: GenerationParams,
     count = 3,
-  ): Promise<GeneratedActivity[]> {
+  ): GeneratedActivity[] {
     const variations: GeneratedActivity[] = [];
 
     for (let i = 0; i < count; i++) {
@@ -107,52 +107,52 @@ export class AIActivityGeneratorService {
   private _buildGenerationPrompt(params: GenerationParams): string {
     let prompt = 'Generate an engaging educational activity.\n\n';
 
-    if (params.lessonContext !== null && params.lessonContext !== undefined) {
+    if (params.lessonContext != null) {
       const context = params.lessonContext;
       prompt += 'Lesson Context:\n';
-      if (context.title && context.title !== '') {
+      if (context.title != null && context.title !== '') {
 prompt += `Title: ${context.title}\n`;
 }
-      if (context.grade && context.grade !== 0) {
+      if (context.grade != null && context.grade !== 0) {
 prompt += `Grade: ${context.grade}\n`;
 }
-      if (context.subject && context.subject !== '') {
+      if (context.subject != null && context.subject !== '') {
 prompt += `Subject: ${context.subject}\n`;
 }
-      if (context.learningGoals && context.learningGoals.length > 0) {
+      if (context.learningGoals != null && context.learningGoals.length > 0) {
 prompt += `Learning Goals: ${context.learningGoals.join(', ')}\n`;
 }
-      if (context.duration && context.duration !== 0) {
+      if (context.duration != null && context.duration !== 0) {
 prompt += `Duration: ${context.duration} minutes\n`;
 }
-      if (context.section) {
+      if (context.section != null) {
 prompt += `Section: ${context.section}\n`;
 }
       prompt += '\n';
     }
 
-    if (params.specificRequirements !== null && params.specificRequirements !== undefined) {
+    if (params.specificRequirements != null) {
       const reqs = params.specificRequirements;
       prompt += 'Requirements:\n';
-      if (reqs.activityType && reqs.activityType !== '') {
+      if (reqs.activityType != null && reqs.activityType !== '') {
 prompt += `Activity Type: ${reqs.activityType}\n`;
 }
-      if (reqs.materials && reqs.materials.length > 0) {
+      if (reqs.materials != null && reqs.materials.length > 0) {
 prompt += `Materials Available: ${reqs.materials.join(', ')}\n`;
 }
-      if (reqs.groupSize && reqs.groupSize !== '') {
+      if (reqs.groupSize != null && reqs.groupSize !== '') {
 prompt += `Group Size: ${reqs.groupSize}\n`;
 }
-      if (reqs.language && reqs.language !== '') {
+      if (reqs.language != null && reqs.language !== '') {
 prompt += `Language: ${reqs.language}\n`;
 }
-      if (reqs.curriculumExpectations && reqs.curriculumExpectations.length > 0) {
+      if (reqs.curriculumExpectations != null && reqs.curriculumExpectations.length > 0) {
 prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`;
 }
       prompt += '\n';
     }
 
-    if (params.searchResults !== null && params.searchResults !== undefined && params.searchResults.length > 0) {
+    if (params.searchResults != null && params.searchResults.length > 0) {
       prompt += 'Consider these similar activities for inspiration:\n';
       const limitedResults = params.searchResults.slice(0, 3);
       limitedResults.forEach((result) => {
@@ -189,14 +189,14 @@ prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`
     try {
       // Extract JSON from response
       const jsonMatch = response.match(/\{[\s\S]*\}/);
-      if (!jsonMatch) {
+      if (jsonMatch == null) {
         throw new Error('No JSON found in response');
       }
 
       const parsed = safeJsonParse(jsonMatch[0], {});
 
       // Ensure parsed is valid and has the expected structure
-      if (!parsed || typeof parsed !== 'object') {
+      if (parsed == null || typeof parsed !== 'object') {
         throw new Error('Invalid JSON structure in response');
       }
 
@@ -204,9 +204,9 @@ prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`
       const activity = parsed as any;
 
       // Validate required fields
-      if (!activity.title || 
-          !activity.description || 
-          !activity.detailedInstructions) {
+      if (activity.title == null || activity.title === '' || 
+          activity.description == null || activity.description === '' || 
+          activity.detailedInstructions == null) {
         throw new Error('Missing required fields');
       }
 

@@ -95,7 +95,7 @@ export class ErrorReportingService {
     }
 
     const dsn = process.env.SENTRY_DSN;
-    if (dsn == null || dsn === '') {
+    if (dsn === null || dsn === '') {
       logger.warn('SENTRY_DSN not configured, error reporting disabled');
       return;
     }
@@ -128,7 +128,7 @@ export class ErrorReportingService {
   }
 
   captureError(error: Error | unknown, context?: Record<string, unknown>): void {
-    if (!this.enabled) {
+    if (this.enabled === false) {
       logger.debug(`Error reporting disabled, skipping error: ${error}`);
       return;
     }
@@ -150,7 +150,7 @@ export class ErrorReportingService {
       scope.setContext('category', { type: errorCategory.category });
 
       // Add custom context
-      if (sanitizedContext != null) {
+      if (sanitizedContext !== null) {
         scope.setContext('custom', sanitizedContext as Context);
       }
 
@@ -160,7 +160,7 @@ export class ErrorReportingService {
   }
 
   captureMessage(message: string, level: Sentry.SeverityLevel = 'info'): void {
-    if (!this.enabled) {
+    if (this.enabled === false) {
       return;
     }
 
@@ -173,7 +173,7 @@ export class ErrorReportingService {
   }
 
   setUserContext(user: UserContext | null): void {
-    if (!this.enabled) {
+    if (this.enabled === false) {
       return;
     }
 
@@ -182,24 +182,24 @@ export class ErrorReportingService {
       return;
     }
 
-    if (!user) {
+    if (user == null) {
       Sentry.configureScope((scope) => scope.clear());
       return;
     }
 
     const sanitizedUser = {
       id: String(user.id),
-      email: user.email ? this.maskEmail(user.email) : undefined,
+      email: user.email != null && user.email !== '' ? this.maskEmail(user.email) : undefined,
       username: user.name,
       role: user.role,
-      organizationId: user.organizationId ? String(user.organizationId) : undefined,
+      organizationId: user.organizationId != null ? String(user.organizationId) : undefined,
     };
 
     Sentry.setUser(sanitizedUser);
   }
 
   addBreadcrumb(breadcrumb: BreadcrumbData): void {
-    if (!this.enabled) {
+    if (this.enabled === false) {
       return;
     }
 
@@ -220,7 +220,7 @@ export class ErrorReportingService {
   }
 
   setErrorContext(key: string, context: Record<string, unknown>): void {
-    if (!this.enabled) {
+    if (this.enabled === false) {
       return;
     }
 
@@ -313,11 +313,11 @@ export class ErrorReportingService {
     _hint?: Sentry.BreadcrumbHint,
   ): Sentry.Breadcrumb | null {
     // Sanitize breadcrumb
-    if (breadcrumb.message) {
+    if (breadcrumb.message != null && breadcrumb.message !== '') {
       breadcrumb.message = this.sanitizeString(breadcrumb.message);
     }
 
-    if (breadcrumb.data) {
+    if (breadcrumb.data != null) {
       breadcrumb.data = this.sanitizeData(breadcrumb.data) as Record<string, unknown>;
     }
 
@@ -329,7 +329,7 @@ export class ErrorReportingService {
     const parsed = safeJsonParse(JSON.stringify(event), {});
     
     // Ensure we have a valid object
-    if (!parsed || typeof parsed !== 'object') {
+    if (parsed == null || typeof parsed !== 'object') {
       return event; // Return original if parsing failed
     }
     
@@ -346,35 +346,35 @@ export class ErrorReportingService {
     const sanitized = parsed as SanitizedEvent;
 
     // Sanitize message
-    if (sanitized.message) {
+    if (sanitized.message != null && sanitized.message !== '') {
       sanitized.message = this.sanitizeString(sanitized.message);
     }
 
     // Sanitize extra data
-    if (sanitized.extra) {
+    if (sanitized.extra != null) {
       sanitized.extra = this.sanitizeData(sanitized.extra);
     }
 
     // Sanitize request data
-    if (sanitized.request) {
-      if (sanitized.request.headers) {
+    if (sanitized.request != null) {
+      if (sanitized.request.headers != null) {
         sanitized.request.headers = this.sanitizeHeaders(sanitized.request.headers);
       }
-      if (sanitized.request.data) {
+      if (sanitized.request.data != null) {
         sanitized.request.data = this.sanitizeData(sanitized.request.data);
       }
-      if (sanitized.request.query_string) {
+      if (sanitized.request.query_string != null && sanitized.request.query_string !== '') {
         sanitized.request.query_string = this.sanitizeString(sanitized.request.query_string);
       }
     }
 
     // Sanitize user data
-    if (sanitized.user?.email) {
+    if (sanitized.user?.email != null && sanitized.user.email !== '') {
       sanitized.user.email = this.maskEmail(sanitized.user.email);
     }
 
     // Sanitize contexts
-    if (sanitized.contexts) {
+    if (sanitized.contexts != null) {
       for (const key in sanitized.contexts) {
         sanitized.contexts[key] = this.sanitizeData(sanitized.contexts[key]);
       }
@@ -384,7 +384,7 @@ export class ErrorReportingService {
   }
 
   private sanitizeData(data: unknown): unknown {
-    if (!data) {
+    if (data == null) {
 return data;
 }
 
@@ -461,7 +461,7 @@ return data;
   }
 
   private maskEmail(email: string): string {
-    if (!email || typeof email !== 'string') {
+    if (email == null || email === '' || typeof email !== 'string') {
 return '[INVALID_EMAIL]';
 }
 
@@ -477,7 +477,7 @@ return '[INVALID_EMAIL]';
   }
 
   private maskIP(ip: string): string {
-    if (!ip || typeof ip !== 'string') {
+    if (ip == null || ip === '' || typeof ip !== 'string') {
 return 'xxx.xxx.xxx.xxx';
 }
 

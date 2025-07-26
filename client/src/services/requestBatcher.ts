@@ -30,7 +30,7 @@ interface ApiResponse {
 }
 
 function hasData(response: unknown): response is ApiResponse {
-  return typeof response === 'object' && response !== null && 'data' in response;
+  return typeof response === 'object' && response && 'data' in response;
 }
 
 class RequestBatcher {
@@ -58,7 +58,7 @@ class RequestBatcher {
 
   // Schedule batch processing
   private scheduleBatch(): void {
-    if (this.batchTimeout !== null) {
+    if (this.batchTimeout) {
       clearTimeout(this.batchTimeout);
     }
 

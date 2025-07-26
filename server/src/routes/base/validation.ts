@@ -55,7 +55,7 @@ export const commonValidations = {
     gradeMin: z.number().int().min(1).max(12).optional(),
     gradeMax: z.number().int().min(1).max(12).optional()
   }).refine(
-    (data) => (data.gradeMin === undefined || data.gradeMax === undefined) || data.gradeMin <= data.gradeMax,
+    (data) => (data.gradeMin == null || data.gradeMin === 0) || (data.gradeMax == null || data.gradeMax === 0) || data.gradeMin <= data.gradeMax,
     {
       message: 'Maximum grade must be greater than or equal to minimum grade',
       path: ['gradeMax']
@@ -118,7 +118,7 @@ export const commonQuerySchemas = {
     grade: z.coerce.number().int().min(1).max(12).optional(),
     category: z.string().optional(),
     tags: z.union([z.string(), z.array(z.string())]).optional().transform(val => {
-      if (val == null || val === '') {
+      if (val === null || val === '') {
 return undefined;
 }
       if (Array.isArray(val)) {
@@ -143,7 +143,7 @@ export const createValidationSchema = {
   /**
    * Create a basic CRUD schema set
    */
-  crud: <T extends z.ZodRawShape>(fields: T) => {
+  crud: <T extends z.ZodRawShape>(fields: T): { create: z.ZodObject<T>; update: z.ZodObject<Partial<T>>; query: z.ZodObject<typeof commonQuerySchemas.list._type> } => {
     const baseSchema = z.object(fields);
     return {
       create: baseSchema,
@@ -155,7 +155,7 @@ export const createValidationSchema = {
   /**
    * Create educational content schema set
    */
-  educational: <T extends z.ZodRawShape>(fields: T) => {
+  educational: <T extends z.ZodRawShape>(fields: T): { create: z.ZodEffects<any>; update: z.ZodObject<any>; query: z.ZodObject<any> } => {
     const baseObjectSchema = z.object({
       ...fields,
       gradeMin: z.number().int().min(1).max(12).optional(),
@@ -183,7 +183,7 @@ export const createValidationSchema = {
   /**
    * Create a schema with title and description
    */
-  withTitleDescription: <T extends z.ZodRawShape>(fields: T) => {
+  withTitleDescription: <T extends z.ZodRawShape>(fields: T): { create: z.ZodObject<any>; update: z.ZodObject<any>; query: z.ZodObject<any> } => {
     const baseSchema = z.object({
       ...fields,
       title: commonValidations.title,

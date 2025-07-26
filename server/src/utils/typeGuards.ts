@@ -8,7 +8,7 @@ import type { AppError } from '../types/http';
  * Check if a value is defined (not null or undefined)
  */
 export function isDefined<T>(value: T | null | undefined): value is T {
-  return value !== null && value !== undefined;
+  return value != null;
 }
 
 /**
@@ -53,7 +53,7 @@ export function isAppError(error: unknown): error is AppError {
 export function hasErrorMessage(error: unknown): error is { message: string } {
   return (
     typeof error === 'object' &&
-    error !== null &&
+    error &&
     'message' in error &&
     typeof (error as { message?: unknown }).message === 'string'
   );
@@ -76,7 +76,7 @@ export function getErrorMessage(error: unknown): string {
  * Safe error logging formatter
  */
 export function formatErrorForLogging(error: unknown): string | undefined {
-  if (error === null || error === undefined) {
+  if (error == null) {
     return undefined;
   }
   if (hasErrorMessage(error)) {

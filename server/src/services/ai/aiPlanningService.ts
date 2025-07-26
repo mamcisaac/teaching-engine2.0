@@ -61,18 +61,18 @@ export class AIPlanningService extends BaseService {
   }
 
   public static getInstance(): AIPlanningService {
-    if (!AIPlanningService.instance) {
+    if (AIPlanningService.instance == null) {
       AIPlanningService.instance = new AIPlanningService();
     }
     return AIPlanningService.instance;
   }
 
-  async getServiceHealth(): Promise<ServiceHealth> {
+  getServiceHealth(): ServiceHealth {
     const startTime = Date.now();
 
     try {
       // Check if OpenAI API key is available
-      if (!process.env.OPENAI_API_KEY) {
+      if (process.env.OPENAI_API_KEY == null || process.env.OPENAI_API_KEY === '') {
         return {
           healthy: false,
           lastCheck: new Date(),
@@ -96,7 +96,7 @@ export class AIPlanningService extends BaseService {
     }
   }
 
-  async generateLongRangeGoals(request: LongRangeGoalsRequest): Promise<string[]> {
+  generateLongRangeGoals(request: LongRangeGoalsRequest): string[] {
     this.logger.info('Generating long-range goals');
 
     // For now, return static educational suggestions
@@ -117,7 +117,7 @@ export class AIPlanningService extends BaseService {
     return baseGoals;
   }
 
-  async generateUnitBigIdeas(request: UnitBigIdeasRequest): Promise<string[]> {
+  generateUnitBigIdeas(request: UnitBigIdeasRequest): string[] {
     this.logger.info('Generating unit big ideas');
 
     return [
@@ -128,7 +128,7 @@ export class AIPlanningService extends BaseService {
     ];
   }
 
-  async generateLessonActivities(request: LessonActivitiesRequest): Promise<string[]> {
+  generateLessonActivities(request: LessonActivitiesRequest): string[] {
     this.logger.info('Generating lesson activities');
 
     return [
@@ -139,7 +139,7 @@ export class AIPlanningService extends BaseService {
     ];
   }
 
-  async generateMaterialsList(request: MaterialsListRequest): Promise<string[]> {
+  generateMaterialsList(request: MaterialsListRequest): string[] {
     this.logger.info('Generating materials list');
 
     const baseMaterials = [
@@ -160,7 +160,7 @@ export class AIPlanningService extends BaseService {
     return baseMaterials;
   }
 
-  async generateAssessmentStrategies(_request: AssessmentStrategiesRequest): Promise<string[]> {
+  generateAssessmentStrategies(_request: AssessmentStrategiesRequest): string[] {
     this.logger.info('Generating assessment strategies');
 
     return [
@@ -172,7 +172,7 @@ export class AIPlanningService extends BaseService {
     ];
   }
 
-  async generateReflectionPrompts(_request: ReflectionPromptsRequest): Promise<string[]> {
+  generateReflectionPrompts(_request: ReflectionPromptsRequest): string[] {
     this.logger.info('Generating reflection prompts');
 
     return [
@@ -184,10 +184,10 @@ export class AIPlanningService extends BaseService {
     ];
   }
 
-  async getCurriculumAlignedSuggestions(
+  getCurriculumAlignedSuggestions(
     _expectationIds: string[],
     suggestionType: 'activities' | 'assessments' | 'resources',
-  ): Promise<string[]> {
+  ): string[] {
     this.logger.info('Generating curriculum-aligned suggestions');
 
     const suggestions: Record<string, string[]> = {

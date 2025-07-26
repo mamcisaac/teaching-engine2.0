@@ -125,16 +125,16 @@ export class ETFOLessonPlanService extends BaseService {
         userId,
       };
 
-      if (filters.unitPlanId != null && filters.unitPlanId !== '') {
+      if (filters.unitPlanId !== null && filters.unitPlanId !== '') {
         where.unitPlanId = filters.unitPlanId;
       }
 
-      if ((filters.startDate != null && filters.startDate !== '') || (filters.endDate != null && filters.endDate !== '')) {
+      if ((filters.startDate !== null && filters.startDate !== '') || (filters.endDate !== null && filters.endDate !== '')) {
         where.date = {};
-        if (filters.startDate != null && filters.startDate !== '') {
+        if (filters.startDate !== null && filters.startDate !== '') {
           where.date.gte = new Date(filters.startDate);
         }
-        if (filters.endDate != null && filters.endDate !== '') {
+        if (filters.endDate !== null && filters.endDate !== '') {
           where.date.lte = new Date(filters.endDate);
         }
       }
@@ -143,7 +143,7 @@ export class ETFOLessonPlanService extends BaseService {
         where.isSubFriendly = filters.isSubFriendly;
       }
 
-      if (filters.assessmentType) {
+      if (filters.assessmentType != null && filters.assessmentType !== '') {
         where.assessmentType = filters.assessmentType;
       }
 
@@ -174,7 +174,7 @@ export class ETFOLessonPlanService extends BaseService {
     try {
       const plan = await this.repository.findByIdWithRelations(id);
 
-      if (!plan || plan.userId !== userId) {
+      if (plan == null || plan.userId !== userId) {
         return null;
       }
 
@@ -197,7 +197,7 @@ export class ETFOLessonPlanService extends BaseService {
         },
       });
 
-      if (!unitPlan) {
+      if (unitPlan == null) {
         throw new Error('Unit plan not found or unauthorized');
       }
 
@@ -226,7 +226,7 @@ export class ETFOLessonPlanService extends BaseService {
     try {
       // Verify ownership
       const existingPlan = await this.repository.findById(id);
-      if (!existingPlan || existingPlan.userId !== userId) {
+      if (existingPlan == null || existingPlan.userId !== userId) {
         throw new Error('Lesson plan not found or unauthorized');
       }
 
@@ -236,9 +236,9 @@ export class ETFOLessonPlanService extends BaseService {
         id,
         {
           ...updateData,
-          date: data.date ? new Date(data.date) : undefined,
+          date: data.date != null && data.date !== '' ? new Date(data.date) : undefined,
         },
-        (expectationIds || []).map((id) => String(id)),
+        (expectationIds ?? []).map((id) => String(id)),
       );
 
       return updatedPlan;
@@ -252,7 +252,7 @@ export class ETFOLessonPlanService extends BaseService {
     try {
       // Verify ownership
       const existingPlan = await this.repository.findById(id);
-      if (!existingPlan || existingPlan.userId !== userId) {
+      if (existingPlan == null || existingPlan.userId !== userId) {
         throw new Error('Lesson plan not found or unauthorized');
       }
 
@@ -267,7 +267,7 @@ export class ETFOLessonPlanService extends BaseService {
     try {
       // Get the original plan
       const originalPlan = await this.repository.findByIdWithRelations(id);
-      if (!originalPlan || originalPlan.userId !== userId) {
+      if (originalPlan == null || originalPlan.userId !== userId) {
         throw new Error('Lesson plan not found or unauthorized');
       }
 
@@ -281,21 +281,21 @@ export class ETFOLessonPlanService extends BaseService {
         title: `${originalPlan.title} (Copy)`,
         date: originalPlan.date.toISOString(),
         duration: originalPlan.duration,
-        language: originalPlan.language || undefined,
-        subject: originalPlan.subject || undefined,
+        language: originalPlan.language ?? undefined,
+        subject: originalPlan.subject ?? undefined,
         grade: originalPlan.grade,
-        titleFr: originalPlan.titleFr || undefined,
-        mindsOn: originalPlan.mindsOn || undefined,
-        action: originalPlan.action || undefined,
-        consolidation: originalPlan.consolidation || undefined,
-        learningGoals: originalPlan.learningGoals || undefined,
+        titleFr: originalPlan.titleFr ?? undefined,
+        mindsOn: originalPlan.mindsOn ?? undefined,
+        action: originalPlan.action ?? undefined,
+        consolidation: originalPlan.consolidation ?? undefined,
+        learningGoals: originalPlan.learningGoals ?? undefined,
         materials: Array.isArray(originalPlan.materials)
           ? (originalPlan.materials as string[])
           : undefined,
-        grouping: originalPlan.grouping || undefined,
-        mindsOnFr: originalPlan.mindsOnFr || undefined,
-        actionFr: originalPlan.actionFr || undefined,
-        consolidationFr: originalPlan.consolidationFr || undefined,
+        grouping: originalPlan.grouping ?? undefined,
+        mindsOnFr: originalPlan.mindsOnFr ?? undefined,
+        actionFr: originalPlan.actionFr ?? undefined,
+        consolidationFr: originalPlan.consolidationFr ?? undefined,
         expectationIds: expectationIds.map((id) => parseInt(id, 10)),
       };
 

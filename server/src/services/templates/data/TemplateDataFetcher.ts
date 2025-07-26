@@ -55,7 +55,7 @@ export class TemplateDataFetcher {
           throw _error;
         }
         // Use default value for optional requirements
-        data[req.key] = (req.defaultValue !== null) ? req.defaultValue : null;
+        data[req.key] = req.defaultValue ?? null;
       }
     });
 
@@ -110,7 +110,7 @@ export class TemplateDataFetcher {
       },
     });
 
-    if (!user) {
+    if (user == null) {
       throw new Error('User not found');
     }
 
@@ -133,18 +133,18 @@ export class TemplateDataFetcher {
   /**
    * Fetch student data
    */
-  private async fetchStudentData(context: FetchContext): Promise<Student[]> {
+  private fetchStudentData(context: FetchContext): Student[] {
     const filters = context.filters as StudentFilterOptions | undefined;
     const where: StudentWhereInput = {
       userId: context.userId,
       active: true,
     };
 
-    if (filters?.studentId) {
+    if (filters?.studentId != null) {
       where.id = filters.studentId;
     }
 
-    if (filters?.grade) {
+    if (filters?.grade != null) {
       where.grade = filters.grade;
     }
 
@@ -181,14 +181,14 @@ export class TemplateDataFetcher {
       userId: context.userId,
     };
 
-    if (filters?.startDate && filters.endDate) {
+    if (filters?.startDate != null && filters.endDate != null) {
       where.date = {
         gte: new Date(filters.startDate),
         lte: new Date(filters.endDate),
       };
     }
 
-    if (filters?.subject) {
+    if (filters?.subject != null) {
       where.subject = filters.subject;
     }
 
@@ -215,24 +215,24 @@ export class TemplateDataFetcher {
       id: parseInt(lesson.id),
       title: lesson.title,
       date: lesson.date,
-      subject: lesson.unitPlan.longRangePlan.subject || lesson.subject || '',
-      grade: lesson.unitPlan.longRangePlan.grade.toString() || '0',
+      subject: lesson.unitPlan.longRangePlan.subject ?? lesson.subject ?? '',
+      grade: lesson.unitPlan.longRangePlan.grade.toString() ?? '0',
       duration: parseInt(String(lesson.duration || '0')),
-      unit: lesson.unitPlan !== null ? {
+      unit: lesson.unitPlan != null ? {
         title: lesson.unitPlan.title,
         week: Math.ceil(
           (lesson.date.getTime() - lesson.unitPlan.startDate.getTime()) / 
           (7 * 24 * 60 * 60 * 1000)
         ),
       } : null,
-      learningGoals: typeof lesson.learningGoals === 'string' ? lesson.learningGoals : (lesson.learningGoals !== null ? String(lesson.learningGoals) : null),
-      materials: typeof lesson.materials === 'string' ? lesson.materials : (lesson.materials !== null ? String(lesson.materials) : null),
-      mindsOn: typeof lesson.mindsOn === 'string' ? lesson.mindsOn : (lesson.mindsOn !== null ? String(lesson.mindsOn) : null),
-      action: typeof lesson.action === 'string' ? lesson.action : (lesson.action !== null ? String(lesson.action) : null),
-      consolidation: typeof lesson.consolidation === 'string' ? lesson.consolidation : (lesson.consolidation !== null ? String(lesson.consolidation) : null),
-      grouping: typeof lesson.grouping === 'string' ? lesson.grouping : (lesson.grouping !== null ? String(lesson.grouping) : null),
-      assessmentType: typeof lesson.assessmentType === 'string' ? lesson.assessmentType : (lesson.assessmentType !== null ? String(lesson.assessmentType) : null),
-      assessmentNotes: typeof lesson.assessmentNotes === 'string' ? lesson.assessmentNotes : (lesson.assessmentNotes !== null ? String(lesson.assessmentNotes) : null),
+      learningGoals: typeof lesson.learningGoals === 'string' ? lesson.learningGoals : (lesson.learningGoals != null ? String(lesson.learningGoals) : null),
+      materials: typeof lesson.materials === 'string' ? lesson.materials : (lesson.materials != null ? String(lesson.materials) : null),
+      mindsOn: typeof lesson.mindsOn === 'string' ? lesson.mindsOn : (lesson.mindsOn != null ? String(lesson.mindsOn) : null),
+      action: typeof lesson.action === 'string' ? lesson.action : (lesson.action != null ? String(lesson.action) : null),
+      consolidation: typeof lesson.consolidation === 'string' ? lesson.consolidation : (lesson.consolidation != null ? String(lesson.consolidation) : null),
+      grouping: typeof lesson.grouping === 'string' ? lesson.grouping : (lesson.grouping != null ? String(lesson.grouping) : null),
+      assessmentType: typeof lesson.assessmentType === 'string' ? lesson.assessmentType : (lesson.assessmentType != null ? String(lesson.assessmentType) : null),
+      assessmentNotes: typeof lesson.assessmentNotes === 'string' ? lesson.assessmentNotes : (lesson.assessmentNotes != null ? String(lesson.assessmentNotes) : null),
       accommodations: typeof lesson.accommodations === 'string' ? lesson.accommodations : (lesson.accommodations !== null ? String(lesson.accommodations) : null),
       modifications: typeof lesson.modifications === 'string' ? lesson.modifications : (lesson.modifications !== null ? String(lesson.modifications) : null),
       extensions: typeof lesson.extensions === 'string' ? lesson.extensions : (lesson.extensions !== null ? String(lesson.extensions) : null),
@@ -247,7 +247,7 @@ export class TemplateDataFetcher {
   /**
    * Fetch assessment data
    */
-  private async fetchAssessmentData(_context: FetchContext): Promise<AssessmentData> {
+  private fetchAssessmentData(_context: FetchContext): AssessmentData {
     // This would fetch from assessment tables
     // For now, return mock data
     return {
@@ -273,15 +273,15 @@ export class TemplateDataFetcher {
       isActive: true,
     };
 
-    if (filters?.subjectId) {
+    if (filters?.subjectId != null) {
       where.subjectId = filters.subjectId;
     }
 
-    if (filters?.grade) {
+    if (filters?.grade != null) {
       where.grade = Number(filters.grade);
     }
 
-    if (filters?.strand) {
+    if (filters?.strand != null) {
       where.strand = filters.strand;
     }
 
@@ -323,10 +323,10 @@ export class TemplateDataFetcher {
   /**
    * Fetch custom data
    */
-  private async fetchCustomData(
+  private fetchCustomData(
     key: string,
     context: FetchContext
-  ): Promise<unknown> {
+  ): unknown {
     // Handle specific custom data requirements
     switch (key) {
       case 'reportPeriod': {
@@ -427,7 +427,7 @@ export class TemplateDataFetcher {
     for (const lesson of lessons) {
       const subject = lesson.subject ?? 'General';
       
-      if (!grouped.has(subject)) {
+      if (grouped.has(subject) === false) {
         grouped.set(subject, {
           subject,
           summary: '',
@@ -436,7 +436,7 @@ export class TemplateDataFetcher {
       }
 
       const group = grouped.get(subject);
-      if (group) {
+      if (group != null) {
         group.highlights.push(lesson.title);
       }
     }
@@ -475,13 +475,13 @@ export class TemplateDataFetcher {
 
     return entries
       .map((e) => e.notableAchievements)
-      .filter((achievement): achievement is string => Boolean(achievement));
+      .filter((achievement): achievement is string => achievement != null && achievement !== '');
   }
 
   /**
    * Fetch upcoming events
    */
-  private async fetchUpcomingEvents(_userId: number): Promise<unknown[]> {
+  private fetchUpcomingEvents(_userId: number): unknown[] {
     // This would fetch from calendar events
     return [];
   }

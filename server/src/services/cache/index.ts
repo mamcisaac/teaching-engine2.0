@@ -35,7 +35,7 @@ class UnifiedCache implements ICache {
   private useRedis: boolean;
 
   constructor() {
-    this.useRedis = process.env.REDIS_URL !== undefined && process.env.NODE_ENV !== 'test';
+    this.useRedis = Boolean(process.env.REDIS_URL) && process.env.NODE_ENV !== 'test';
     this.fallbackCache = getMemoryCache();
 
     if (this.useRedis) {
@@ -49,7 +49,7 @@ class UnifiedCache implements ICache {
 
     structuredLogger.info('Cache initialized', {
       type: this.useRedis ? 'redis' : 'memory',
-      redisUrl: process.env.REDIS_URL !== null && process.env.REDIS_URL !== undefined && process.env.REDIS_URL !== '' ? 'configured' : 'not configured',
+      redisUrl: process.env.REDIS_URL != null && process.env.REDIS_URL !== '' ? 'configured' : 'not configured',
     });
   }
 
@@ -139,7 +139,7 @@ class UnifiedCache implements ICache {
   }
 
   isUsingRedis(): boolean {
-    return this.useRedis && this.primaryCache !== null;
+    return this.useRedis && Boolean(this.primaryCache);
   }
 }
 
@@ -168,10 +168,10 @@ export function cache(): ICache {
  * Cache decorator for methods
  */
 export function Cacheable(options: CacheOptions & { keyPrefix?: string } = {}) {
-  return function (target: unknown, propertyKey: string, descriptor: PropertyDescriptor) {
+  return function (target: unknown, propertyKey: string, descriptor: PropertyDescriptor): PropertyDescriptor {
     const originalMethod = descriptor.value;
 
-    descriptor.value = async function (...args: unknown[]) {
+    descriptor.value = async function (...args: unknown[]): Promise<unknown> {
       const cacheService = cache();
       const keyPrefix =
         options.keyPrefix ||
@@ -189,10 +189,10 @@ export function Cacheable(options: CacheOptions & { keyPrefix?: string } = {}) {
  * Cache invalidation decorator
  */
 export function CacheInvalidate(tags: string[] | ((args: unknown[]) => string[])) {
-  return function (_target: unknown, _propertyKey: string, descriptor: PropertyDescriptor) {
+  return function (_target: unknown, _propertyKey: string, descriptor: PropertyDescriptor): PropertyDescriptor {
     const originalMethod = descriptor.value;
 
-    descriptor.value = async function (...args: unknown[]) {
+    descriptor.value = async function (...args: unknown[]): Promise<unknown> {
       const result = await originalMethod.apply(this, args);
 
       const cacheService = cache();
@@ -211,27 +211,27 @@ export function CacheInvalidate(tags: string[] | ((args: unknown[]) => string[])
  * Common cache keys
  */
 export const CacheKeys = {
-  user: (id: number) => `user:${id}`,
-  userByEmail: (email: string) => `user:email:${email}`,
-  lessonPlan: (id: string) => `lesson:${id}`,
-  lessonPlans: (userId: number, page: number) => `lessons:user:${userId}:page:${page}`,
-  curriculumExpectation: (id: string) => `curriculum:${id}`,
-  curriculumSearch: (query: string) => `curriculum:search:${query}`,
-  aiGeneration: (prompt: string) => `ai:${Buffer.from(prompt).toString('base64').substring(0, 32)}`,
-  template: (id: string) => `template:${id}`,
-  metrics: (type: string) => `metrics:${type}`,
+  user: (id: number): string => `user:${id}`,
+  userByEmail: (email: string): string => `user:email:${email}`,
+  lessonPlan: (id: string): string => `lesson:${id}`,
+  lessonPlans: (userId: number, page: number): string => `lessons:user:${userId}:page:${page}`,
+  curriculumExpectation: (id: string): string => `curriculum:${id}`,
+  curriculumSearch: (query: string): string => `curriculum:search:${query}`,
+  aiGeneration: (prompt: string): string => `ai:${Buffer.from(prompt).toString('base64').substring(0, 32)}`,
+  template: (id: string): string => `template:${id}`,
+  metrics: (type: string): string => `metrics:${type}`,
 };
 
 /**
  * Common cache tags
  */
 export const CacheTags = {
-  user: (id: number) => [`user:${id}`],
-  lessonPlans: (userId: number) => [`lessons:user:${userId}`],
-  curriculum: () => ['curriculum'],
-  ai: () => ['ai'],
-  templates: () => ['templates'],
-  metrics: () => ['metrics'],
+  user: (id: number): string[] => [`user:${id}`],
+  lessonPlans: (userId: number): string[] => [`lessons:user:${userId}`],
+  curriculum: (): string[] => ['curriculum'],
+  ai: (): string[] => ['ai'],
+  templates: (): string[] => ['templates'],
+  metrics: (): string[] => ['metrics'],
 };
 
 /**

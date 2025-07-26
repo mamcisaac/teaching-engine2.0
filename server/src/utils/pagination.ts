@@ -55,7 +55,7 @@ export interface PaginationMeta {
 export function getPaginationParams(req: Request): PaginationOptions {
   const result = paginationSchema.safeParse(req.query);
 
-  if (!result.success) {
+  if (result.success === false) {
     // Return defaults if validation fails
     return {
       page: 1,
@@ -65,10 +65,10 @@ export function getPaginationParams(req: Request): PaginationOptions {
   }
 
   return {
-    page: result.data.page || 1,
-    limit: result.data.limit || 20,
+    page: result.data.page,
+    limit: result.data.limit,
     sortBy: result.data.sortBy,
-    sortOrder: result.data.sortOrder || 'desc',
+    sortOrder: result.data.sortOrder,
     search: result.data.search,
   };
 }
@@ -112,7 +112,7 @@ export function createPaginatedResponse<T>(
   };
 
   // Add navigation links if base URL provided
-  if (baseUrl && baseUrl !== '') {
+  if (baseUrl != null && baseUrl !== '') {
     response.links = {};
 
     const url = new URL(baseUrl);
@@ -213,7 +213,7 @@ export function createCursorPaginatedResponse<T>(
 export function validatePagination(req: Request, res: Response, next: NextFunction): void {
   const result = paginationSchema.safeParse(req.query);
 
-  if (!result.success) {
+  if (result.success === false) {
     res.status(400).json({
       error: 'Invalid pagination parameters',
       details: result.error.flatten(),
@@ -232,7 +232,7 @@ export function validatePagination(req: Request, res: Response, next: NextFuncti
 export function setPaginationHeaders<T>(
   res: Response,
   pagination: PaginatedResponse<T>['pagination'],
-) {
+): void {
   res.set({
     'X-Page': pagination.page.toString(),
     'X-Limit': pagination.limit.toString(),
@@ -250,7 +250,7 @@ export function createSearchFilter(
   search: string | undefined,
   fields: string[],
 ): Record<string, unknown> | undefined {
-  if (search === undefined || search === '' || fields.length === 0) {
+  if (search == null || search === '' || fields.length === 0) {
     return undefined;
   }
 

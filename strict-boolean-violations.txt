@@ -1,0 +1,617 @@
+    3:1   error    There should be at least one empty line between import groups         import/order
+  259:26  warning  Unexpected object value in conditional. The condition is always true  @typescript-eslint/strict-boolean-expressions
+  259:26  warning  Unnecessary conditional, value is always truthy                       @typescript-eslint/no-unnecessary-condition
+  259:78  warning  Unexpected object value in conditional. The condition is always true  @typescript-eslint/strict-boolean-expressions
+--
+/Users/michaelmcisaac/Github/teaching-engine2.0/client/src/hooks/useForm.ts
+  240:27  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  247:40  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+  17:34  warning  Unnecessary optional chain on a non-nullish value                                                     @typescript-eslint/no-unnecessary-condition
+  23:9   warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+/Users/michaelmcisaac/Github/teaching-engine2.0/client/src/pages/LoginPage.tsx
+  83:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+/Users/michaelmcisaac/Github/teaching-engine2.0/client/src/pages/UnitPlansPage.tsx
+    85:5   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+   135:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+   152:9   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+   307:7   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+   331:20  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+   396:16  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+   403:16  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+   436:16  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+   457:16  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+--
+   520:59  warning  Unnecessary optional chain on a non-nullish value                                                     @typescript-eslint/no-unnecessary-condition
+   597:12  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+   625:16  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+   716:16  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+   718:14  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  1154:23  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  1208:30  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  1209:30  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+/Users/michaelmcisaac/Github/teaching-engine2.0/client/src/services/authService.ts
+   33:9   warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+   55:12  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  107:10  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  142:11  warning  Unnecessary conditional, value is always truthy                                                       @typescript-eslint/no-unnecessary-condition
+  142:11  warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+  147:20  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+--
+/Users/michaelmcisaac/Github/teaching-engine2.0/client/src/services/lessonPlanService.ts
+   30:9   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+   44:9   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+   51:19  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+   54:19  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+   57:19  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+   85:7   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+   86:7   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+   87:7   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+   88:7   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+/Users/michaelmcisaac/Github/teaching-engine2.0/client/src/services/unitPlanService.ts
+    8:10  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+   53:9   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+   57:9   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+   61:9   warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+   69:9   warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  100:7   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+--
+  101:14   error    Expected '===' and instead saw '=='                                                                 eqeqeq
+  178:19   warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+--
+  283:21   warning  Unnecessary conditional, value is always truthy                                                     @typescript-eslint/no-unnecessary-condition
+  283:21   warning  Unexpected object value in conditional. The condition is always true                                @typescript-eslint/strict-boolean-expressions
+--
+  122:18  error    Expected '!==' and instead saw '!='                                                   eqeqeq
+  150:11  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+  191:10  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+  211:11  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+--
+  225:20  error    Expected '!==' and instead saw '!='                                                   eqeqeq
+  289:9   warning  Unexpected value in conditional. A boolean expression is required                     @typescript-eslint/strict-boolean-expressions
+--
+/Users/michaelmcisaac/Github/teaching-engine2.0/server/src/middleware/errorContext.ts
+  65:22  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+   72:22  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  146:8   warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+  167:9   warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+  186:8   warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+  193:7   warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+  197:7   warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+  201:7   warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+  221:9   warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+--
+  391:15  error    Expected '===' and instead saw '=='                                                                 eqeqeq
+  401:13  warning  Unexpected value in conditional. A boolean expression is required                                   @typescript-eslint/strict-boolean-expressions
+--
+  145:24  error    Expected '!==' and instead saw '!='                                                                 eqeqeq
+  165:58  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+--
+  336:28  warning  Unnecessary conditional, value is always truthy                                                     @typescript-eslint/no-unnecessary-condition
+  336:28  warning  Unexpected object value in conditional. The condition is always true                                @typescript-eslint/strict-boolean-expressions
+  347:33  warning  Unnecessary conditional, value is always truthy                                                     @typescript-eslint/no-unnecessary-condition
+  347:33  warning  Unexpected object value in conditional. The condition is always true                                @typescript-eslint/strict-boolean-expressions
+  352:32  warning  Unnecessary conditional, value is always truthy                                                     @typescript-eslint/no-unnecessary-condition
+  352:32  warning  Unexpected object value in conditional. The condition is always true                                @typescript-eslint/strict-boolean-expressions
+  357:29  warning  Unnecessary conditional, value is always truthy                                                     @typescript-eslint/no-unnecessary-condition
+  357:29  warning  Unexpected object value in conditional. The condition is always true                                @typescript-eslint/strict-boolean-expressions
+--
+  482:24  error    Expected '===' and instead saw '=='                                                                 eqeqeq
+  489:18  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+--
+  594:52  error    Expected '===' and instead saw '=='                                                                 eqeqeq
+  604:15  warning  Unexpected value in conditional. A boolean expression is required                                   @typescript-eslint/strict-boolean-expressions
+--
+  144:9   warning  Unnecessary conditional, the types have no overlap                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-unnecessary-condition
+  152:9   warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly                                                                                                                                                                                                                                                                                                    @typescript-eslint/strict-boolean-expressions
+  159:58  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly                                                                                                                                                                                                                                                                                              @typescript-eslint/strict-boolean-expressions
+  203:19  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly                                                                                                                                                                                                                                                                                              @typescript-eslint/strict-boolean-expressions
+  206:28  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly                                                                                                                                                                                                                                                                                              @typescript-eslint/strict-boolean-expressions
+  209:24  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly                                                                                                                                                                                                                                                                                              @typescript-eslint/strict-boolean-expressions
+  210:22  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly                                                                                                                                                                                                                                                                                              @typescript-eslint/strict-boolean-expressions
+  215:24  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly                                                                                                                                                                                                                                                                                              @typescript-eslint/strict-boolean-expressions
+  216:24  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly                                                                                                                                                                                                                                                                                              @typescript-eslint/strict-boolean-expressions
+  254:3   warning  Async method 'generatePlan' has no 'await' expression                                                                                                                                                                                                                                                                                                                                          @typescript-eslint/require-await
+  385:12  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly                                                                                                                                                                                                                                                                                           @typescript-eslint/strict-boolean-expressions
+--
+  394:13  warning  Unsafe assignment of an `any` value                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-unsafe-assignment
+  396:13  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                                                                                                                                                                                                                                                                                                           @typescript-eslint/strict-boolean-expressions
+  396:48  warning  Unsafe argument of type `any` assigned to a parameter of type `string | number | Date`                                                                                                                                                                                                                                                                                                         @typescript-eslint/no-unsafe-argument
+  397:13  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                                                                                                                                                                                                                                                                                                           @typescript-eslint/strict-boolean-expressions
+  397:44  warning  Unsafe argument of type `any` assigned to a parameter of type `string | number | Date`                                                                                                                                                                                                                                                                                                         @typescript-eslint/no-unsafe-argument
+  398:13  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                                                                                                                                                                                                                                                                                                           @typescript-eslint/strict-boolean-expressions
+  401:64  warning  Unsafe argument of type `any` assigned to a parameter of type `{ startDate?: Date | undefined; endDate?: Date | undefined; grade?: string | undefined; subject?: string | undefined; isActive?: boolean | undefined; upcoming?: boolean | undefined; limit?: number | undefined; offset?: number | undefined; sortBy?: string | undefined; sortOrder?: "asc" | ... 1 more ... | undefined; }`  @typescript-eslint/no-unsafe-argument
+  447:12  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly                                                                                                                                                                                                                                                                                           @typescript-eslint/strict-boolean-expressions
+  468:12  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly                                                                                                                                                                                                                                                                                           @typescript-eslint/strict-boolean-expressions
+  490:12  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly                                                                                                                                                                                                                                                                                           @typescript-eslint/strict-boolean-expressions
+  510:12  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly                                                                                                                                                                                                                                                                                           @typescript-eslint/strict-boolean-expressions
+  514:25  warning  Unexpected value in conditional. A boolean expression is required                                                                                                                                                                                                                                                                                                                              @typescript-eslint/strict-boolean-expressions
+--
+   98:13  error    Expected '===' and instead saw '=='                                                                   eqeqeq
+  177:14  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                  @typescript-eslint/strict-boolean-expressions
+  178:8   warning  Unexpected any value in conditional. An explicit comparison or type cast is required                  @typescript-eslint/strict-boolean-expressions
+  424:7   warning  Missing return type on function                                                                       @typescript-eslint/explicit-function-return-type
+  442:12  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  477:12  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+  120:24  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined    @typescript-eslint/no-unnecessary-condition
+  328:9   warning  Unexpected value in conditional. A boolean expression is required                                     @typescript-eslint/strict-boolean-expressions
+  331:9   warning  Unexpected value in conditional. A boolean expression is required                                     @typescript-eslint/strict-boolean-expressions
+  460:29  warning  Unexpected value in conditional. A boolean expression is required                                     @typescript-eslint/strict-boolean-expressions
+  465:26  warning  Unexpected value in conditional. A boolean expression is required                                     @typescript-eslint/strict-boolean-expressions
+  467:25  warning  Unexpected value in conditional. A boolean expression is required                                     @typescript-eslint/strict-boolean-expressions
+  469:24  warning  Unexpected value in conditional. A boolean expression is required                                     @typescript-eslint/strict-boolean-expressions
+  473:36  warning  Unexpected value in conditional. A boolean expression is required                                     @typescript-eslint/strict-boolean-expressions
+  542:12  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  588:12  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  601:13  warning  Unsafe assignment of an `any` value                                                                   @typescript-eslint/no-unsafe-assignment
+  616:12  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  643:12  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+  129:3   warning  Promise returned in function argument where a void return was expected                                @typescript-eslint/no-misused-promises
+  132:30  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+   90:54  warning  Avoid calling back inside of a promise                                                                promise/no-callback-in-promise
+  135:12  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+  238:11  warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  272:13  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                  @typescript-eslint/strict-boolean-expressions
+--
+  287:37  warning  Unsafe member access [tableName] on an `any` value                                                    @typescript-eslint/no-unsafe-member-access
+  288:12  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                  @typescript-eslint/strict-boolean-expressions
+--
+   69:7   warning  Unsafe assignment of an `any` value                                                                @typescript-eslint/no-unsafe-assignment
+  198:9   warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  208:7   warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  209:5   warning  Unsafe assignment of an `any` value                                                                @typescript-eslint/no-unsafe-assignment
+  273:9   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+/Users/michaelmcisaac/Github/teaching-engine2.0/server/src/routes/base/validation.ts
+   58:16   warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+   58:34   warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+  139:11  warning  Unsafe assignment of an `any` value                                                   @typescript-eslint/no-unsafe-assignment
+  141:10  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+--
+  181:11  warning  Unsafe assignment of an `any` value                                                   @typescript-eslint/no-unsafe-assignment
+  183:10  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+--
+   68:37  warning  Promise returned in function argument where a void return was expected                                @typescript-eslint/no-misused-promises
+   79:9   warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+   59:3   warning  Promise returned in function argument where a void return was expected                                @typescript-eslint/no-misused-promises
+   68:12  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+  104:12  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+  104:12  warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+  137:11  warning  Unsafe assignment of an `any` value                                                                   @typescript-eslint/no-unsafe-assignment
+  139:10  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                  @typescript-eslint/strict-boolean-expressions
+  146:10  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+  157:7   warning  Unsafe assignment of an `any` value                                                                   @typescript-eslint/no-unsafe-assignment
+  157:14  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                  @typescript-eslint/strict-boolean-expressions
+  178:11  warning  Unsafe assignment of an `any` value                                                                   @typescript-eslint/no-unsafe-assignment
+  180:10  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                  @typescript-eslint/strict-boolean-expressions
+  187:10  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  195:90  warning  Unsafe argument of type `any` assigned to a parameter of type `ImportOptions`                         @typescript-eslint/no-unsafe-argument
+  217:10  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  226:9   warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  249:10  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+  292:24  warning  Promise returned in function argument where a void return was expected                                @typescript-eslint/no-misused-promises
+  294:10  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  319:23  warning  Promise returned in function argument where a void return was expected                                @typescript-eslint/no-misused-promises
+  323:10  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+  352:11  warning  Unsafe assignment of an `any` value                                                                   @typescript-eslint/no-unsafe-assignment
+  354:10  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                  @typescript-eslint/strict-boolean-expressions
+  354:20  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                  @typescript-eslint/strict-boolean-expressions
+  354:32  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                  @typescript-eslint/strict-boolean-expressions
+  359:10  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+  418:21  warning  Promise returned in function argument where a void return was expected                                @typescript-eslint/no-misused-promises
+  422:10  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+  215:25  warning  Promise returned in function argument where a void return was expected                                @typescript-eslint/no-misused-promises
+  286:20  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  287:25  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  287:45  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+   96:85  warning  Async arrow function has no 'await' expression                                                     @typescript-eslint/require-await
+  109:16  warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+--
+  191:85  warning  Async arrow function has no 'await' expression                                                     @typescript-eslint/require-await
+  255:8   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+  141:9   warning  Unsafe assignment of an `any` value                                                                @typescript-eslint/no-unsafe-assignment
+  141:17  warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  154:9   warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+--
+  325:11  warning  Unsafe assignment of an `any` value                                                                @typescript-eslint/no-unsafe-assignment
+  327:10  warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  345:7   warning  Unsafe assignment of an `any` value                                                                @typescript-eslint/no-unsafe-assignment
+  345:16  warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  346:7   warning  Unsafe assignment of an `any` value                                                                @typescript-eslint/no-unsafe-assignment
+  346:14  warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  347:7   warning  Unsafe assignment of an `any` value                                                                @typescript-eslint/no-unsafe-assignment
+  347:21  warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  360:36  warning  Promise returned in function argument where a void return was expected                             @typescript-eslint/no-misused-promises
+  384:10  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+/Users/michaelmcisaac/Github/teaching-engine2.0/server/src/routes/newsletters.ts
+  49:23  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+  208:9   warning  Unsafe assignment of an `any` value                                                                 @typescript-eslint/no-unsafe-assignment
+  208:15  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+--
+  146:34  error    Expected '!==' and instead saw '!='                                                                   eqeqeq
+  162:15  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  163:15  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  239:17  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  275:30  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined    @typescript-eslint/no-unnecessary-condition
+  284:19  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  285:18  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  287:18  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  288:18  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  289:17  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  290:24  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  291:24  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  295:19  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  296:20  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  297:19  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  298:26  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+--
+  391:64  warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  445:12  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+--
+  453:7   warning  Unsafe return of an `any` typed value                                                                 @typescript-eslint/no-unsafe-return
+  496:12  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+--
+  510:7   warning  Unsafe return of an `any` typed value                                                                 @typescript-eslint/no-unsafe-return
+  540:3   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  541:3   warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  596:10  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                  @typescript-eslint/strict-boolean-expressions
+  599:10  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                  @typescript-eslint/strict-boolean-expressions
+  602:10  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                  @typescript-eslint/strict-boolean-expressions
+  605:10  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                  @typescript-eslint/strict-boolean-expressions
+  608:10  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                  @typescript-eslint/strict-boolean-expressions
+--
+/Users/michaelmcisaac/Github/teaching-engine2.0/server/src/services/aiActivityGeneratorService.ts
+  113:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  116:11  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  119:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  122:11  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  125:11  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  137:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  140:11  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  143:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  146:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  149:11  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  155:9   warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  204:13  warning  Unsafe assignment of an `any` value                                                                   @typescript-eslint/no-unsafe-assignment
+  207:12  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                  @typescript-eslint/strict-boolean-expressions
+  207:21  warning  Unsafe member access .title on an `any` value                                                         @typescript-eslint/no-unsafe-member-access
+  208:12  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                  @typescript-eslint/strict-boolean-expressions
+  208:21  warning  Unsafe member access .description on an `any` value                                                   @typescript-eslint/no-unsafe-member-access
+  209:12  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                  @typescript-eslint/strict-boolean-expressions
+--
+   72:15  warning  Unnecessary optional chain on a non-nullish value                                     @typescript-eslint/no-unnecessary-condition
+  105:8   warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+  117:8   warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+  123:8   warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+  144:10  warning  Unnecessary conditional, value is always falsy                                        @typescript-eslint/no-unnecessary-condition
+  144:10  warning  Unexpected object value in conditional. The condition is always true                  @typescript-eslint/strict-boolean-expressions
+--
+   87:52  warning  Unsafe argument of type `any` assigned to a parameter of type `Error | undefined`                   @typescript-eslint/no-unsafe-argument
+  385:12  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+  391:9   warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly         @typescript-eslint/strict-boolean-expressions
+  391:21  warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly         @typescript-eslint/strict-boolean-expressions
+--
+  467:27  warning  Unnecessary conditional, left-hand side of `??` operator is always `null` or `undefined`            @typescript-eslint/no-unnecessary-condition
+  471:9   warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+--
+/Users/michaelmcisaac/Github/teaching-engine2.0/server/src/services/cache/index.ts
+   52:17  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+  172:11  warning  Unsafe assignment of an `any` value                                                                @typescript-eslint/no-unsafe-assignment
+  177:9   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+/Users/michaelmcisaac/Github/teaching-engine2.0/server/src/services/curriculum/CurriculumExportService.ts
+   71:13  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+   75:13  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+   79:13  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+   83:14  warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly           @typescript-eslint/strict-boolean-expressions
+  162:32  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                  @typescript-eslint/strict-boolean-expressions
+  184:10  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+  190:9   warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+  360:5   warning  Unsafe return of an `any[]` typed value                                                               @typescript-eslint/no-unsafe-return
+  510:25  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+/Users/michaelmcisaac/Github/teaching-engine2.0/server/src/services/curriculum/CurriculumSearchService.ts
+   91:13  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+  173:52  error    Expected '===' and instead saw '=='                                                                 eqeqeq
+  179:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+  182:11  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+  188:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+  191:11  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+--
+  202:18  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  211:9   warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly         @typescript-eslint/strict-boolean-expressions
+  223:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+  226:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+  229:11  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+  232:11  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+--
+  238:19  error    Expected '!==' and instead saw '!='                                                                 eqeqeq
+  250:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+  253:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+  259:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+  262:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+  277:20  error    Expected '!==' and instead saw '!='                                                                 eqeqeq
+  295:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+  298:11  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+  301:11  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+  304:11  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+--
+  309:26  error    Expected '!==' and instead saw '!='                                                                 eqeqeq
+  341:11  warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly         @typescript-eslint/strict-boolean-expressions
+--
+   32:10  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+   32:10  warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+--
+  106:9   warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  112:11  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  112:32  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  145:10  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  160:10  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  179:18  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  184:9   warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly           @typescript-eslint/strict-boolean-expressions
+  227:9   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  243:12  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  282:10  warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly           @typescript-eslint/strict-boolean-expressions
+  286:9   warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly           @typescript-eslint/strict-boolean-expressions
+--
+/Users/michaelmcisaac/Github/teaching-engine2.0/server/src/services/curriculum/parsers/JSONParser.ts
+   90:14  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+   90:31  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+   93:14  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+   93:33  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  100:16  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  101:14  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  121:35  warning  Unexpected value in conditional. A boolean expression is required                                     @typescript-eslint/strict-boolean-expressions
+  122:21  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  122:37  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  147:14  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  180:15  warning  Unsafe assignment of an `any` value                                                                   @typescript-eslint/no-unsafe-assignment
+  183:12  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                  @typescript-eslint/strict-boolean-expressions
+  183:22  warning  Unsafe member access .code on an `any` value                                                          @typescript-eslint/no-unsafe-member-access
+  183:30  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                  @typescript-eslint/strict-boolean-expressions
+  183:40  warning  Unsafe member access .id on an `any` value                                                            @typescript-eslint/no-unsafe-member-access
+  183:46  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                  @typescript-eslint/strict-boolean-expressions
+  183:56  warning  Unsafe member access .description on an `any` value                                                   @typescript-eslint/no-unsafe-member-access
+  183:71  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                  @typescript-eslint/strict-boolean-expressions
+--
+  185:11  warning  Unsafe return of an `any[]` typed value                                                               @typescript-eslint/no-unsafe-return
+  209:7   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  209:20  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  214:7   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  214:27  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  214:43  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  223:7   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  223:20  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  230:7   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  230:22  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  237:35  warning  Unnecessary conditional, both sides of the expression are literal values                              @typescript-eslint/no-unnecessary-condition
+  239:18  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  240:14  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  240:30  warning  Unexpected value in conditional. A boolean expression is required                                     @typescript-eslint/strict-boolean-expressions
+  241:16  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  241:32  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  247:16  warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly           @typescript-eslint/strict-boolean-expressions
+--
+/Users/michaelmcisaac/Github/teaching-engine2.0/server/src/services/curriculum/parsers/PDFParser.ts
+   86:9   warning  Unexpected any value in conditional. An explicit comparison or type cast is required         @typescript-eslint/strict-boolean-expressions
+   93:8   warning  Unexpected any value in conditional. An explicit comparison or type cast is required         @typescript-eslint/strict-boolean-expressions
+  267:13  warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly  @typescript-eslint/strict-boolean-expressions
+--
+   83:10  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+   83:10  warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+   83:25  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+   83:25  warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+  105:9   warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly           @typescript-eslint/strict-boolean-expressions
+  131:10  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+  131:10  warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+  139:10  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+  139:10  warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+  150:50  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  205:21  warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly           @typescript-eslint/strict-boolean-expressions
+  235:13  warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly           @typescript-eslint/strict-boolean-expressions
+  246:13  warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly           @typescript-eslint/strict-boolean-expressions
+  266:57  warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly           @typescript-eslint/strict-boolean-expressions
+--
+  282:52  warning  Unnecessary conditional, both sides of the expression are literal values                              @typescript-eslint/no-unnecessary-condition
+  311:21  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+  278:36  error    Expected '!==' and instead saw '!='                                                                   eqeqeq
+  339:9   warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  343:9   warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+   98:9   warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
+  192:14  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  195:23  warning  Unexpected value in conditional. A boolean expression is required                                  @typescript-eslint/strict-boolean-expressions
+  316:9   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  349:9   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  360:11  warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  363:11  warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  366:11  warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  372:9   warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  387:10  warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+--
+   66:14  warning  Unnecessary conditional, value is always falsy                                                     @typescript-eslint/no-unnecessary-condition
+   66:14  warning  Unexpected object value in conditional. The condition is always true                               @typescript-eslint/strict-boolean-expressions
+  136:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  160:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+/Users/michaelmcisaac/Github/teaching-engine2.0/server/src/services/substitutePlanService.ts
+   95:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  152:9   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  156:9   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  160:9   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  163:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  168:9   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+/Users/michaelmcisaac/Github/teaching-engine2.0/server/src/services/templates/RenderCoordinator.ts
+  149:44  warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly        @typescript-eslint/strict-boolean-expressions
+  219:9   warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
+  281:7   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  284:7   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  304:49  warning  Unsafe argument of type `any` assigned to a parameter of type `{}`                                 @typescript-eslint/no-unsafe-argument
+  368:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  474:12  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  526:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  530:92  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+  379:13  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  435:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+  451:9   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+  458:68  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+  519:10  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+  532:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+--
+/Users/michaelmcisaac/Github/teaching-engine2.0/server/src/services/templates/TemplateRegistry.ts
+  131:26  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+  252:3   warning  Async method 'getTemplate' has no 'await' expression                                               @typescript-eslint/require-await
+  273:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  277:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  281:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  485:9   warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+--
+/Users/michaelmcisaac/Github/teaching-engine2.0/server/src/services/templates/data/TemplateDataFetcher.ts
+  143:9   warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  147:9   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  184:9   warning  Unexpected value in conditional. A boolean expression is required                                     @typescript-eslint/strict-boolean-expressions
+  184:31  warning  Unexpected value in conditional. A boolean expression is required                                     @typescript-eslint/strict-boolean-expressions
+  191:9   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  203:23  warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly           @typescript-eslint/strict-boolean-expressions
+  218:57  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  221:13  warning  Unnecessary conditional, value is always truthy                                                       @typescript-eslint/no-unnecessary-condition
+  221:13  warning  Unexpected object value in conditional. The condition is always true                                  @typescript-eslint/strict-boolean-expressions
+  228:89  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+  228:89  warning  Unexpected nullish value in conditional. The condition is always false                                @typescript-eslint/strict-boolean-expressions
+  229:77  warning  Unexpected value in conditional. A boolean expression is required                                     @typescript-eslint/strict-boolean-expressions
+  230:71  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+  230:71  warning  Unexpected nullish value in conditional. The condition is always false                                @typescript-eslint/strict-boolean-expressions
+  231:68  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+  231:68  warning  Unexpected nullish value in conditional. The condition is always false                                @typescript-eslint/strict-boolean-expressions
+  232:89  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+  232:89  warning  Unexpected nullish value in conditional. The condition is always false                                @typescript-eslint/strict-boolean-expressions
+  233:74  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+  233:74  warning  Unexpected nullish value in conditional. The condition is always false                                @typescript-eslint/strict-boolean-expressions
+  234:92  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+  234:92  warning  Unexpected nullish value in conditional. The condition is always false                                @typescript-eslint/strict-boolean-expressions
+  235:95  warning  Unnecessary conditional, value is always falsy                                                        @typescript-eslint/no-unnecessary-condition
+  235:95  warning  Unexpected nullish value in conditional. The condition is always false                                @typescript-eslint/strict-boolean-expressions
+  240:15  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined    @typescript-eslint/no-unnecessary-condition
+  276:9   warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  280:9   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  284:9   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  336:22  warning  Unexpected value in conditional. A boolean expression is required                                     @typescript-eslint/strict-boolean-expressions
+  337:20  warning  Unexpected value in conditional. A boolean expression is required                                     @typescript-eslint/strict-boolean-expressions
+--
+   27:3    warning  Async method 'render' has no 'await' expression                                                    @typescript-eslint/require-await
+  115:12   warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  166:12   warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+--
+  226:34   warning  Unsafe argument of type `any` assigned to a parameter of type `number | undefined`                 @typescript-eslint/no-unsafe-argument
+  242:90   warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  245:129  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+  25:3   warning  Async method 'getTemplate' has no 'await' expression                                  @typescript-eslint/require-await
+  26:23  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+  27:19  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+--
+  25:3   warning  Async method 'getTemplate' has no 'await' expression                                  @typescript-eslint/require-await
+  26:24  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+  27:20  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+  54:71  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+--
+/Users/michaelmcisaac/Github/teaching-engine2.0/server/src/types/errors.ts
+  128:7  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+  143:7  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+  159:7  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+--
+/Users/michaelmcisaac/Github/teaching-engine2.0/server/src/types/http.ts
+  139:9  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+/Users/michaelmcisaac/Github/teaching-engine2.0/server/src/utils/auth.ts
+   36:8  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+   51:8  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+   75:8  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+   90:8  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  105:8  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+  221:7   warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
+  228:7   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  236:7   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  244:9   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  244:53  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  250:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  360:7   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  364:7   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  371:19  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  372:19  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+  210:12  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  214:7   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+--
+/Users/michaelmcisaac/Github/teaching-engine2.0/server/src/utils/pagination.ts
+  115:7  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+   20:8   warning  Unnecessary conditional, value is always falsy                                        @typescript-eslint/no-unnecessary-condition
+   20:8   warning  Unexpected object value in conditional. The condition is always true                  @typescript-eslint/strict-boolean-expressions
+   50:8   warning  Unnecessary conditional, value is always falsy                                        @typescript-eslint/no-unnecessary-condition
+   50:8   warning  Unexpected object value in conditional. The condition is always true                  @typescript-eslint/strict-boolean-expressions
+   57:20  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+  108:25  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+--
+    3:24  error    Parse errors in imported module '../logger': ':' expected. (94:3)                                  import/namespace
+  119:7   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  151:7   warning  Unexpected value in conditional. A boolean expression is required                                  @typescript-eslint/strict-boolean-expressions
+  173:7   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  177:7   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+--
+  148:50  error    Unexpected any. Specify a different type                                                           @typescript-eslint/no-explicit-any
+  161:13  warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly        @typescript-eslint/strict-boolean-expressions
+  162:19  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  162:44  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  162:65  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  165:13  warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly        @typescript-eslint/strict-boolean-expressions
+  166:19  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  166:44  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  166:65  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  172:18  warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly        @typescript-eslint/strict-boolean-expressions
+  174:13  warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly        @typescript-eslint/strict-boolean-expressions
+--
+/Users/michaelmcisaac/Github/teaching-engine2.0/server/src/utils/structuredLogger.ts
+   55:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+   55:52  warning  Unnecessary optional chain on a non-nullish value                                                   @typescript-eslint/no-unnecessary-condition
+   56:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+   56:52  warning  Unnecessary optional chain on a non-nullish value                                                   @typescript-eslint/no-unnecessary-condition
+   59:11  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+   69:9   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+--
+  131:41  error    Expected '!==' and instead saw '!='                                                                 eqeqeq
+  138:11  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+--
+  275:42  error    Expected '!==' and instead saw '!='                                                                 eqeqeq
+  294:8   warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+  302:26  error    Expected '!==' and instead saw '!='                                                                 eqeqeq
+  314:8   warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions

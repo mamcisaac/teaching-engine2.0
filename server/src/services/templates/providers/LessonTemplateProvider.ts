@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Lesson Template Provider
  * Provides templates for lesson plans
@@ -7,6 +6,7 @@
 import * as fs from 'fs/promises';
 import * as path from 'path';
 
+import { isObject, isString, hasProperty } from '../../../../../shared/utils/typeGuards';
 import { logger } from '../../../logger';
 
 import type { Template, TemplateContext, DataRequirement } from './TemplateProvider';
@@ -16,20 +16,23 @@ export class LessonTemplateProvider extends TemplateProvider {
   constructor() {
     super('LessonTemplateProvider');
     try {
-      this.loadTemplates();
+      this.loadTemplates().catch(error => {
+        logger.error('Failed to load lesson templates:', error);
+      });
     } catch (error) {
-      logger.error('Failed to load lesson templates:', error);
+      logger.error('Failed to initialize lesson templates:', error);
     }
   }
 
   /**
    * Get template based on context
    */
-  async getTemplate(context: TemplateContext): Promise<Template> {
-    // Determine template based on parameters
-    const templateType = context.parameters?.type ?? 'standard';
-    const grade = context.parameters?.grade;
-    const subject = context.parameters?.subject;
+  getTemplate(context: TemplateContext): Template {
+    // Determine template based on parameters with safe access
+    const parameters = isObject(context.parameters) ? context.parameters : {};
+    const templateType = hasProperty(parameters, 'type') && isString(parameters.type) ? parameters.type : 'standard';
+    const grade = hasProperty(parameters, 'grade') ? parameters.grade : undefined;
+    const subject = hasProperty(parameters, 'subject') ? parameters.subject : undefined;
 
     // Build template ID
     let templateId = `lesson-${templateType}`;
@@ -73,7 +76,7 @@ export class LessonTemplateProvider extends TemplateProvider {
   /**
    * Load templates
    */
-  protected loadTemplates(): void {
+  protected async loadTemplates(): Promise<void> {
     // Register standard lesson template
     this.registerTemplate({
       id: 'lesson-standard',
@@ -175,10 +178,12 @@ export class LessonTemplateProvider extends TemplateProvider {
     };
 
     for (const variable of variables) {
+      if (!isString(variable)) continue;
+      
       const baseVar = variable.split('.')[0];
-      if (variableMap[variable] !== null) {
+      if (hasProperty(variableMap, variable) && variableMap[variable] !== undefined) {
         requirements.push(variableMap[variable]);
-      } else if (variableMap[baseVar] !== null) {
+      } else if (baseVar && hasProperty(variableMap, baseVar) && variableMap[baseVar] !== undefined) {
         requirements.push(variableMap[baseVar]);
       }
     }

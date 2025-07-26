@@ -1,12 +1,11 @@
+import { prisma } from '@teaching-engine/database';
 import type { Request, Response, NextFunction } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
 
-import { prisma } from '@teaching-engine/database';
-
+import { isErrorLike } from '../../../shared/utils/typeGuards';
 import { logger } from '../logger';
 import { authMiddleware } from '../middleware/auth';
-import { isErrorLike } from '../../../shared/utils/typeGuards';
 const router = Router();
 
 // Helper function to safely get boolean values
@@ -39,7 +38,7 @@ router.get('/', asyncMiddleware(authMiddleware), asyncMiddleware(async (req: Req
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
-    const userId = req.user?.id;
+    const userId = req.user.id;
     
     const includePublic = getSafeBooleanValue(req.query.includePublic);
 
@@ -87,7 +86,7 @@ router.get('/:collectionId', asyncMiddleware(authMiddleware), async (req: Reques
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
-    const userId = req.user?.id;
+    const userId = req.user.id;
     
     const { collectionId } = req.params;
 
@@ -151,7 +150,7 @@ router.post('/', authMiddleware, async (req: Request, res: Response) => {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
-    const userId = req.user?.id;
+    const userId = req.user.id;
     
     const data = createCollectionSchema.parse(req.body);
 
@@ -195,7 +194,7 @@ router.put('/:collectionId', authMiddleware, async (req: Request, res: Response)
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
-    const userId = req.user?.id;
+    const userId = req.user.id;
     
     const { collectionId } = req.params;
     const data = updateCollectionSchema.parse(req.body);
@@ -249,7 +248,7 @@ router.delete(
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
-      const userId = req.user?.id;
+      const userId = req.user.id;
       
       const { collectionId } = req.params;
 
@@ -306,7 +305,7 @@ router.post(
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
-      const userId = req.user?.id;
+      const userId = req.user.id;
       
       const { collectionId } = req.params;
       const { activityId } = addActivitySchema.parse(req.body);
@@ -390,7 +389,7 @@ router.delete(
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
-      const userId = req.user?.id;
+      const userId = req.user.id;
       
       const { collectionId, activityId } = req.params;
 
@@ -448,7 +447,7 @@ router.get(
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
-      const userId = req.user?.id;
+      const userId = req.user.id;
       
       const limit = getSafeNumericValue(req.query.limit, 10);
 

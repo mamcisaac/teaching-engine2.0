@@ -1,0 +1,422 @@
+  259:26  warning  Unexpected object value in conditional. The condition is always true  @typescript-eslint/strict-boolean-expressions
+  259:26  warning  Unnecessary conditional, value is always truthy                       @typescript-eslint/no-unnecessary-condition
+  259:78  warning  Unexpected object value in conditional. The condition is always true  @typescript-eslint/strict-boolean-expressions
+  259:78  warning  Unnecessary conditional, value is always truthy                       @typescript-eslint/no-unnecessary-condition
+  247:23  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  17:34  warning  Unnecessary optional chain on a non-nullish value                                                     @typescript-eslint/no-unnecessary-condition
+  23:9   warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  23:58  warning  Unnecessary optional chain on a non-nullish value                                                     @typescript-eslint/no-unnecessary-condition
+  61:38  warning  Unnecessary optional chain on a non-nullish value                                                     @typescript-eslint/no-unnecessary-condition
+  83:55  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  473:66  warning  Unnecessary optional chain on a non-nullish value  @typescript-eslint/no-unnecessary-condition
+  490:64  warning  Unnecessary optional chain on a non-nullish value  @typescript-eslint/no-unnecessary-condition
+  505:59  warning  Unnecessary optional chain on a non-nullish value  @typescript-eslint/no-unnecessary-condition
+  520:59  warning  Unnecessary optional chain on a non-nullish value  @typescript-eslint/no-unnecessary-condition
+  142:11  warning  Unnecessary conditional, value is always truthy                                                     @typescript-eslint/no-unnecessary-condition
+  142:11  warning  Unexpected object value in conditional. The condition is always true                                @typescript-eslint/strict-boolean-expressions
+  196:21  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  221:20  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  240:23   warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  397:12   warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  397:91   warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  397:172  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  456:9    warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  458:11   warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+   84:20  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  118:9   warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  183:13  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  184:43  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  99:7  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  153:8  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  154:8  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  155:8  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  165:7  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  360:9   warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  360:42  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  451:11  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  465:11  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  25:41  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  41:9   warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  41:29  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  47:9   warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  55:9   warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  127:19  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  130:10  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  139:9   warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  147:9   warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  178:19   warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+  196:22   warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  197:18   warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  198:33   warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  198:74   warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  198:117  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  206:31   warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  207:34   warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  207:102  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  207:110  warning  Unnecessary optional chain on a non-nullish value                                                   @typescript-eslint/no-unnecessary-condition
+  208:30   warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  283:21   warning  Unnecessary conditional, value is always truthy                                                     @typescript-eslint/no-unnecessary-condition
+  283:21   warning  Unexpected object value in conditional. The condition is always true                                @typescript-eslint/strict-boolean-expressions
+  351:40   warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  351:87   warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  585:9    warning  Unnecessary conditional, both sides of the expression are literal values                            @typescript-eslint/no-unnecessary-condition
+  75:35  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+   88:9   warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+   88:39  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+   90:35  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+   90:80  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  130:16  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  153:7   warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+   82:18  warning  Unnecessary optional chain on a non-nullish value                         @typescript-eslint/no-unnecessary-condition
+  142:13  warning  Unnecessary conditional, both sides of the expression are literal values  @typescript-eslint/no-unnecessary-condition
+  193:27  warning  Unnecessary conditional, the types have no overlap                        @typescript-eslint/no-unnecessary-condition
+  372:26  warning  Unnecessary conditional, the types have no overlap                        @typescript-eslint/no-unnecessary-condition
+  381:26  warning  Unnecessary conditional, the types have no overlap                        @typescript-eslint/no-unnecessary-condition
+  424:27  warning  Unnecessary conditional, the types have no overlap                        @typescript-eslint/no-unnecessary-condition
+  436:26  warning  Unnecessary conditional, the types have no overlap                        @typescript-eslint/no-unnecessary-condition
+  536:7   warning  Unnecessary conditional, the types have no overlap                        @typescript-eslint/no-unnecessary-condition
+   22:11   warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  40:15  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  105:9  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+   29:33  warning  Unnecessary conditional, the types have no overlap                                    @typescript-eslint/no-unnecessary-condition
+  118:7   warning  Unnecessary conditional, the types have no overlap                                    @typescript-eslint/no-unnecessary-condition
+  122:7   warning  Unnecessary conditional, the types have no overlap                                    @typescript-eslint/no-unnecessary-condition
+  150:11  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+  191:10  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+  211:11  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+  222:9   warning  Unnecessary conditional, the types have no overlap                                    @typescript-eslint/no-unnecessary-condition
+  225:9   warning  Unnecessary conditional, the types have no overlap                                    @typescript-eslint/no-unnecessary-condition
+  289:9   warning  Unexpected value in conditional. A boolean expression is required                     @typescript-eslint/strict-boolean-expressions
+  220:24  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  288:8   warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  202:9   warning  Unnecessary conditional, the types have no overlap                  @typescript-eslint/no-unnecessary-condition
+  242:9   warning  Unnecessary conditional, the types have no overlap                  @typescript-eslint/no-unnecessary-condition
+  269:9   warning  Unnecessary conditional, the types have no overlap                  @typescript-eslint/no-unnecessary-condition
+  243:52  warning  Unnecessary optional chain on a non-nullish value                                                   @typescript-eslint/no-unnecessary-condition
+  251:54  warning  Unnecessary optional chain on a non-nullish value                                                   @typescript-eslint/no-unnecessary-condition
+  425:9   warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  433:9   warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  130:17  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+   37:9   warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+   71:23  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+   72:22  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  146:8   warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+  167:9   warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+  186:8   warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+  193:7   warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+  197:7   warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+  201:7   warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+  221:9   warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+  239:25  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  271:25  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  275:9   warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  292:25  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  310:25  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  315:9   warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  196:7   warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  201:7   warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  249:7   warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  153:11  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  423:11  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  259:11  warning  Unnecessary conditional, the types have no overlap                      @typescript-eslint/no-unnecessary-condition
+  395:15  warning  Unnecessary conditional, the types have no overlap                      @typescript-eslint/no-unnecessary-condition
+  395:40  warning  Unnecessary conditional, the types have no overlap                      @typescript-eslint/no-unnecessary-condition
+  446:31  warning  Unnecessary conditional, the types have no overlap                      @typescript-eslint/no-unnecessary-condition
+  49:11  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  401:13  warning  Unexpected value in conditional. A boolean expression is required                                   @typescript-eslint/strict-boolean-expressions
+  471:25  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  165:58  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+  229:19  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  336:28  warning  Unnecessary conditional, value is always truthy                                                     @typescript-eslint/no-unnecessary-condition
+  336:28  warning  Unexpected object value in conditional. The condition is always true                                @typescript-eslint/strict-boolean-expressions
+  347:33  warning  Unnecessary conditional, value is always truthy                                                     @typescript-eslint/no-unnecessary-condition
+  347:33  warning  Unexpected object value in conditional. The condition is always true                                @typescript-eslint/strict-boolean-expressions
+  352:32  warning  Unnecessary conditional, value is always truthy                                                     @typescript-eslint/no-unnecessary-condition
+  352:32  warning  Unexpected object value in conditional. The condition is always true                                @typescript-eslint/strict-boolean-expressions
+  357:29  warning  Unnecessary conditional, value is always truthy                                                     @typescript-eslint/no-unnecessary-condition
+  357:29  warning  Unexpected object value in conditional. The condition is always true                                @typescript-eslint/strict-boolean-expressions
+  489:18  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+  604:15  warning  Unexpected value in conditional. A boolean expression is required                                   @typescript-eslint/strict-boolean-expressions
+  201:16  warning  Unnecessary conditional, the types have no overlap                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-unnecessary-condition
+  177:14  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                  @typescript-eslint/strict-boolean-expressions
+  178:8   warning  Unexpected any value in conditional. An explicit comparison or type cast is required                  @typescript-eslint/strict-boolean-expressions
+  442:12  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  477:12  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  120:24  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  454:16  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+   37:9   warning  Unnecessary conditional, the types have no overlap                      @typescript-eslint/no-unnecessary-condition
+   85:9   warning  Unnecessary conditional, the types have no overlap                      @typescript-eslint/no-unnecessary-condition
+  149:9   warning  Unnecessary conditional, the types have no overlap                      @typescript-eslint/no-unnecessary-condition
+  193:9   warning  Unnecessary conditional, the types have no overlap                      @typescript-eslint/no-unnecessary-condition
+  247:11  warning  Unnecessary conditional, the types have no overlap                      @typescript-eslint/no-unnecessary-condition
+  304:11  warning  Unnecessary conditional, the types have no overlap                      @typescript-eslint/no-unnecessary-condition
+  388:11  warning  Unnecessary conditional, the types have no overlap                      @typescript-eslint/no-unnecessary-condition
+  446:11  warning  Unnecessary conditional, the types have no overlap                      @typescript-eslint/no-unnecessary-condition
+  132:30  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  135:12  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  161:11  warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  190:11  warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  213:11  warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  238:11  warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  272:13  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                  @typescript-eslint/strict-boolean-expressions
+  288:12  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                  @typescript-eslint/strict-boolean-expressions
+  198:9  warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  208:7  warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  273:9  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  121:11   warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  141:10  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+  183:10  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+   47:9   warning  Unnecessary conditional, the types have no overlap                                      @typescript-eslint/no-unnecessary-condition
+   94:11  warning  Unnecessary conditional, the types have no overlap                                      @typescript-eslint/no-unnecessary-condition
+  127:9   warning  Unnecessary conditional, the types have no overlap                                      @typescript-eslint/no-unnecessary-condition
+   79:9   warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  101:7   warning  Unnecessary conditional, value is always truthy                                                       @typescript-eslint/no-unnecessary-condition
+   84:11  warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  104:11  warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  146:10  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  187:10  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  217:10  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  226:9   warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  249:10  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  259:9   warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  294:10  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  323:10  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  332:9   warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  359:10  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  385:9   warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  404:9   warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  422:10  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  432:9   warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  286:20  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  287:25  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  287:45  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  109:16  warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  255:8   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+   47:9   warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
+   50:9   warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
+   53:9   warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
+  141:17  warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  154:9   warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  327:10  warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  345:16  warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  346:14  warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  347:21  warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  384:10  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+   12:20  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+   68:20  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  109:20  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  133:20  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  173:20  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  196:20  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  208:15  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+  251:30  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  275:9   warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  275:31  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  277:11  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  280:11  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  400:42  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  130:9   warning  Unnecessary conditional, the types have no overlap                      @typescript-eslint/no-unnecessary-condition
+  195:11  warning  Unnecessary conditional, the types have no overlap                      @typescript-eslint/no-unnecessary-condition
+  296:9   warning  Unnecessary conditional, the types have no overlap                      @typescript-eslint/no-unnecessary-condition
+  418:11  warning  Unnecessary conditional, the types have no overlap                      @typescript-eslint/no-unnecessary-condition
+   12:20  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+   25:9   warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+   25:48  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+   63:20  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  234:20  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  128:11  warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  132:12  warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  132:72  warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  134:13  warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  137:13  warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  162:15  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  163:15  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  275:30  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined    @typescript-eslint/no-unnecessary-condition
+  193:35  warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  253:35  warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  300:35  warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  347:35  warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  391:64  warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  395:11  warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  540:3   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly     @typescript-eslint/strict-boolean-expressions
+  541:3   warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+   56:14  warning  Unnecessary optional chain on a non-nullish value                                     @typescript-eslint/no-unnecessary-condition
+   72:15  warning  Unnecessary optional chain on a non-nullish value                                     @typescript-eslint/no-unnecessary-condition
+  105:8   warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+  117:8   warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+  123:8   warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+  144:10  warning  Unnecessary conditional, value is always falsy                                        @typescript-eslint/no-unnecessary-condition
+  144:10  warning  Unexpected object value in conditional. The condition is always true                  @typescript-eslint/strict-boolean-expressions
+  170:7   warning  Unnecessary conditional, the types have no overlap                                    @typescript-eslint/no-unnecessary-condition
+  170:31  warning  Unnecessary conditional, the types have no overlap                                    @typescript-eslint/no-unnecessary-condition
+  127:14  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  179:9   warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  385:12  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+  391:9   warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly         @typescript-eslint/strict-boolean-expressions
+  391:21  warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly         @typescript-eslint/strict-boolean-expressions
+  466:23  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  467:27  warning  Unnecessary conditional, left-hand side of `??` operator is always `null` or `undefined`            @typescript-eslint/no-unnecessary-condition
+  471:9   warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+  177:9   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  184:9   warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  109:17  warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  109:36  warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  320:34  warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  320:54  warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  510:25  warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  271:20  warning  Unnecessary conditional, both sides of the expression are literal values  @typescript-eslint/no-unnecessary-condition
+  260:15  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  260:63  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  270:15  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  270:66  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+   96:56  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  101:13  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  101:36  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  104:60  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  173:9   warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  173:40  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  201:16  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  202:18  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  211:9   warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly         @typescript-eslint/strict-boolean-expressions
+  238:9   warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  352:9   warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  352:56  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+   21:9   warning  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+   32:9   warning  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+   42:9   warning  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+  106:9   warning  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+  184:9   warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly  @typescript-eslint/strict-boolean-expressions
+  207:9   warning  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+  297:9   warning  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+  298:9   warning  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+  299:9   warning  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+  237:35   warning  Unnecessary conditional, both sides of the expression are literal values                     @typescript-eslint/no-unnecessary-condition
+  247:16   warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly  @typescript-eslint/strict-boolean-expressions
+  347:9    warning  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+  347:56   warning  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+  347:98   warning  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+  357:11   warning  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+  357:50   warning  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+  357:103  warning  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+  357:142  warning  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+  341:9   warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  341:56  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  341:98  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+   83:9   warning  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+   83:31  warning  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+  105:9   warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly  @typescript-eslint/strict-boolean-expressions
+  131:9   warning  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+  139:9   warning  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+  163:9   warning  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+  187:9   warning  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+  227:11  warning  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+  246:13  warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly  @typescript-eslint/strict-boolean-expressions
+  260:11  warning  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+  266:57  warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly  @typescript-eslint/strict-boolean-expressions
+  276:11  warning  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+  282:52  warning  Unnecessary conditional, both sides of the expression are literal values                     @typescript-eslint/no-unnecessary-condition
+  292:11  warning  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+  340:11  warning  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+  160:11  warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  165:80  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined    @typescript-eslint/no-unnecessary-condition
+  239:11  warning  Unnecessary conditional, the types have no overlap                                                    @typescript-eslint/no-unnecessary-condition
+  246:19  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined    @typescript-eslint/no-unnecessary-condition
+  247:23  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined    @typescript-eslint/no-unnecessary-condition
+  248:18  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined    @typescript-eslint/no-unnecessary-condition
+  339:9   warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+  343:9   warning  Unexpected nullable number value in conditional. Please handle the nullish/zero/NaN cases explicitly  @typescript-eslint/strict-boolean-expressions
+   98:9   warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  464:9   warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  480:9   warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+   66:14  warning  Unnecessary conditional, value is always falsy                                                     @typescript-eslint/no-unnecessary-condition
+   66:14  warning  Unexpected object value in conditional. The condition is always true                               @typescript-eslint/strict-boolean-expressions
+  136:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  160:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  384:10  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  481:9   warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  486:11  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  570:11  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  572:13  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  626:11  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  634:25  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  219:9   warning  Unnecessary conditional, the types have no overlap                  @typescript-eslint/no-unnecessary-condition
+  349:16  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  349:34  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  359:16  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  359:34  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  369:16  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  379:13  warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  435:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+  451:9   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+  458:68  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+  519:10  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+  532:11  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+  158:9  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  511:9   warning  Unnecessary conditional, the types have no overlap                @typescript-eslint/no-unnecessary-condition
+  203:23   warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly         @typescript-eslint/strict-boolean-expressions
+  218:16   warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  218:16   warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  219:14   warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  221:13   warning  Unnecessary conditional, the types have no overlap                                                  @typescript-eslint/no-unnecessary-condition
+  228:89   warning  Unnecessary conditional, both sides of the expression are literal values                            @typescript-eslint/no-unnecessary-condition
+  230:71   warning  Unnecessary conditional, both sides of the expression are literal values                            @typescript-eslint/no-unnecessary-condition
+  231:68   warning  Unnecessary conditional, both sides of the expression are literal values                            @typescript-eslint/no-unnecessary-condition
+  232:89   warning  Unnecessary conditional, both sides of the expression are literal values                            @typescript-eslint/no-unnecessary-condition
+  233:74   warning  Unnecessary conditional, both sides of the expression are literal values                            @typescript-eslint/no-unnecessary-condition
+  234:92   warning  Unnecessary conditional, both sides of the expression are literal values                            @typescript-eslint/no-unnecessary-condition
+  235:95   warning  Unnecessary conditional, both sides of the expression are literal values                            @typescript-eslint/no-unnecessary-condition
+  240:15   warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  336:22   warning  Unexpected value in conditional. A boolean expression is required                                   @typescript-eslint/strict-boolean-expressions
+  337:20   warning  Unexpected value in conditional. A boolean expression is required                                   @typescript-eslint/strict-boolean-expressions
+  428:23   warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  115:12   warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  166:12   warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  242:90   warning  Unexpected any value in conditional. An explicit comparison or type cast is required               @typescript-eslint/strict-boolean-expressions
+  245:129  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+   73:12  warning  Unnecessary conditional, the types have no overlap                                  @typescript-eslint/no-unnecessary-condition
+  184:49  warning  Unnecessary conditional, the types have no overlap                                  @typescript-eslint/no-unnecessary-condition
+  186:66  warning  Unnecessary conditional, the types have no overlap                                  @typescript-eslint/no-unnecessary-condition
+  26:23  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+  27:19  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+  58:12  warning  Unnecessary conditional, the types have no overlap                                    @typescript-eslint/no-unnecessary-condition
+  26:24  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+  27:20  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+  54:71  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+   35:7   warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  152:7   warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  174:7   warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  182:7   warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  221:7   warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  261:7   warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  210:12  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  214:7   warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly   @typescript-eslint/strict-boolean-expressions
+  164:7   warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+   20:8   warning  Unnecessary conditional, value is always falsy                                        @typescript-eslint/no-unnecessary-condition
+   20:8   warning  Unexpected object value in conditional. The condition is always true                  @typescript-eslint/strict-boolean-expressions
+   50:8   warning  Unnecessary conditional, value is always falsy                                        @typescript-eslint/no-unnecessary-condition
+   50:8   warning  Unexpected object value in conditional. The condition is always true                  @typescript-eslint/strict-boolean-expressions
+   57:20  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+  108:25  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
+  119:7  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  151:7  warning  Unexpected value in conditional. A boolean expression is required                                  @typescript-eslint/strict-boolean-expressions
+  173:7  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  177:7  warning  Unexpected nullable string value in conditional. Please handle the nullish/empty cases explicitly  @typescript-eslint/strict-boolean-expressions
+  182:9  warning  Unnecessary conditional, the types have no overlap                                                 @typescript-eslint/no-unnecessary-condition
+   65:39  warning  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+   68:39  warning  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+   80:39  warning  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+   83:39  warning  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+  172:18  warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly  @typescript-eslint/strict-boolean-expressions
+  174:13  warning  Unexpected nullable boolean value in conditional. Please handle the nullish case explicitly  @typescript-eslint/strict-boolean-expressions
+   71:25  warning  Unnecessary optional chain on a non-nullish value                                                   @typescript-eslint/no-unnecessary-condition
+   72:24  warning  Unnecessary optional chain on a non-nullish value                                                   @typescript-eslint/no-unnecessary-condition
+   73:30  warning  Unnecessary optional chain on a non-nullish value                                                   @typescript-eslint/no-unnecessary-condition
+  138:11  warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+  227:5   warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  227:6   warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  235:20  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  244:13  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  294:8   warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+  314:8   warning  Unexpected any value in conditional. An explicit comparison or type cast is required                @typescript-eslint/strict-boolean-expressions
+  162:39  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition
+  162:57  warning  Unnecessary conditional, the types have no overlap  @typescript-eslint/no-unnecessary-condition

@@ -75,7 +75,7 @@ export class LLMService extends BaseService {
   }
 
   public static getInstance(): LLMService {
-    if (!LLMService.instance) {
+    if (LLMService.instance == null) {
       LLMService.instance = new LLMService();
     }
     return LLMService.instance;
@@ -88,7 +88,7 @@ export class LLMService extends BaseService {
     try {
       const apiKey = process.env.OPENAI_API_KEY;
 
-      if (apiKey === null || apiKey === undefined || apiKey === '') {
+      if (apiKey == null || apiKey === '') {
         this.logger.warn('OpenAI API key not provided. LLM features will be disabled.');
         return;
       }
@@ -117,7 +117,7 @@ export class LLMService extends BaseService {
    * Check if the service is ready for content generation
    */
   public isReady(): boolean {
-    return this.openaiClient !== null;
+    return this.openaiClient != null;
   }
 
   /**
@@ -125,7 +125,7 @@ export class LLMService extends BaseService {
    */
   public async generateContent(request: ContentGenerationRequest): Promise<string> {
     return this.executeWithMetrics(async () => {
-      if (!this.isReady()) {
+      if (this.isReady() === false) {
         throw new Error('LLM service not initialized. Please check OpenAI API key.');
       }
 
@@ -135,7 +135,7 @@ export class LLMService extends BaseService {
         `Generating content with prompt - type: ${request.type}, promptLength: ${enhancedPrompt.length}`,
       );
 
-      if (!this.openaiClient) {
+      if (this.openaiClient == null) {
         throw new Error('OpenAI client is not available');
       }
       
@@ -157,7 +157,7 @@ export class LLMService extends BaseService {
 
       const content = response.choices[0]?.message?.content ?? '';
 
-      if (content === null || content === undefined || content === '') {
+      if (content == null || content === '') {
         throw new Error('No content generated from OpenAI');
       }
 
@@ -176,7 +176,7 @@ export class LLMService extends BaseService {
     request: ContentGenerationRequest,
   ): Promise<BilingualContent> {
     return this.executeWithMetrics(async () => {
-      if (!this.isReady()) {
+      if (this.isReady() === false) {
         throw new Error('LLM service not initialized. Please check OpenAI API key.');
       }
 
@@ -208,13 +208,13 @@ export class LLMService extends BaseService {
     request: ContentGenerationRequest,
   ): Promise<GenerationResult> {
     return this.executeWithMetrics(async () => {
-      if (!this.isReady()) {
+      if (this.isReady() === false) {
         throw new Error('LLM service not initialized. Please check OpenAI API key.');
       }
 
       const enhancedPrompt = this.enhancePrompt(request);
 
-      if (!this.openaiClient) {
+      if (this.openaiClient == null) {
         throw new Error('OpenAI client is not available');
       }
       
@@ -236,7 +236,7 @@ export class LLMService extends BaseService {
 
       const content = response.choices[0]?.message?.content ?? '';
 
-      if (content === null || content === undefined || content === '') {
+      if (content == null || content === '') {
         throw new Error('No content generated from OpenAI');
       }
 
@@ -260,22 +260,22 @@ export class LLMService extends BaseService {
     let {prompt} = request;
 
     // Add context if provided
-    if (request.context) {
+    if (request.context != null) {
       const contextParts: string[] = [];
 
-      if (request.context.subject && request.context.subject !== '') {
+      if (request.context.subject != null && request.context.subject !== '') {
         contextParts.push(`Subject: ${request.context.subject}`);
       }
 
-      if (request.context.grade !== undefined && request.context.grade !== 0 && !isNaN(request.context.grade)) {
+      if (request.context.grade != null && !isNaN(request.context.grade)) {
         contextParts.push(`Grade Level: ${request.context.grade}`);
       }
 
-      if (request.context.duration !== undefined && request.context.duration !== 0 && !isNaN(request.context.duration)) {
+      if (request.context.duration != null && !isNaN(request.context.duration)) {
         contextParts.push(`Duration: ${request.context.duration} minutes`);
       }
 
-      if (request.context.language) {
+      if (request.context.language != null && request.context.language !== '') {
         contextParts.push(`Language: ${request.context.language}`);
       }
 
@@ -320,7 +320,7 @@ export class LLMService extends BaseService {
   protected getHealthStatus(): 'healthy' | 'degraded' | 'unhealthy' {
     const baseHealth = super.getHealthStatus();
 
-    if (!this.isReady()) {
+    if (this.isReady() === false) {
       return 'degraded'; // Service works but AI features unavailable
     }
 
@@ -336,11 +336,11 @@ export class LLMService extends BaseService {
       throw new Error('Prompt is required and cannot be empty');
     }
 
-    if (request.maxTokens !== undefined && !isNaN(request.maxTokens) && (request.maxTokens < 1 || request.maxTokens > 4000)) {
+    if (request.maxTokens && !isNaN(request.maxTokens) && (request.maxTokens < 1 || request.maxTokens > 4000)) {
       throw new Error('Max tokens must be between 1 and 4000');
     }
 
-    if (request.temperature !== undefined && !isNaN(request.temperature) && (request.temperature < 0 || request.temperature > 2)) {
+    if (request.temperature && !isNaN(request.temperature) && (request.temperature < 0 || request.temperature > 2)) {
       throw new Error('Temperature must be between 0 and 2');
     }
   }

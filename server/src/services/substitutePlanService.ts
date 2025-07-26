@@ -43,7 +43,7 @@ export interface SubstitutePlan {
 }
 
 export class SubstitutePlanService {
-  static async generate(_params: unknown): Promise<SubstitutePlan> {
+  static generate(_params: unknown): SubstitutePlan {
     // Mock implementation for testing
     return {
       title: 'Test Substitute Plan',
@@ -60,7 +60,7 @@ export class SubstitutePlanService {
     };
   }
 
-  static async exportAsHTML(plan: SubstitutePlan): Promise<string> {
+  static exportAsHTML(plan: SubstitutePlan): string {
     const dateStr = new Date(plan.dateFor.getTime() - 24 * 60 * 60 * 1000)
       .toISOString()
       .split('T')[0]; // Subtract a day for formatting
@@ -92,7 +92,7 @@ export class SubstitutePlanService {
 
     plan.schedule.forEach((item) => {
       html += `<p><strong>${item.time}:</strong> ${item.activity}`;
-      if (item.notes) {
+      if (item.notes != null && item.notes !== '') {
         html += ` <em>${item.notes}</em>`;
       }
       html += '</p>';
@@ -143,29 +143,29 @@ export class SubstitutePlanService {
 
   // Method reserved for future lesson formatting
   private static _formatLessonInstructions(lessonPlan: LessonPlanDetails | null | undefined): string {
-    if (!lessonPlan || typeof lessonPlan !== 'object') {
+    if (lessonPlan == null || typeof lessonPlan !== 'object') {
       return 'Follow the activities as outlined in the lesson plan binder.';
     }
 
     let instructions = '';
 
-    if (lessonPlan.learningGoals) {
+    if (lessonPlan.learningGoals != null && lessonPlan.learningGoals !== '') {
       instructions += `Learning Goals: ${lessonPlan.learningGoals}\n\n`;
     }
 
-    if (lessonPlan.mindsOnActivities) {
+    if (lessonPlan.mindsOnActivities != null && lessonPlan.mindsOnActivities !== '') {
       instructions += `Start (10 min): ${lessonPlan.mindsOnActivities}\n\n`;
     }
 
-    if (lessonPlan.actionActivities) {
+    if (lessonPlan.actionActivities != null && lessonPlan.actionActivities !== '') {
       instructions += `Main Activity: ${lessonPlan.actionActivities}`;
       // Only add extra newlines if there are more sections coming
-      if (lessonPlan.consolidationActivities) {
+      if (lessonPlan.consolidationActivities != null && lessonPlan.consolidationActivities !== '') {
         instructions += '\n\n';
       }
     }
 
-    if (lessonPlan.consolidationActivities) {
+    if (lessonPlan.consolidationActivities != null && lessonPlan.consolidationActivities !== '') {
       instructions += `Wrap-up: ${lessonPlan.consolidationActivities}`;
     }
 

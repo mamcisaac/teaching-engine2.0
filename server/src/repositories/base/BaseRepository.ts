@@ -94,7 +94,7 @@ export abstract class BaseRepository<T extends BaseModel, CreateInput, UpdateInp
 
   async findFirst(options?: FindFirstOptions): Promise<T | null> {
     try {
-      const { where = {}, include = {} } = options || {};
+      const { where = {}, include = {} } = options ?? {};
       const result = await this.model.findFirst({
         where,
         include,
@@ -211,7 +211,7 @@ export abstract class BaseRepository<T extends BaseModel, CreateInput, UpdateInp
         orderBy,
       };
 
-      if (cursor) {
+      if (cursor != null) {
         queryArgs.cursor = { id: cursor };
         queryArgs.skip = 1; // Skip the cursor item
       }
@@ -221,7 +221,7 @@ export abstract class BaseRepository<T extends BaseModel, CreateInput, UpdateInp
       let nextCursor: number | undefined;
       if (items.length > limit) {
         const nextItem = items.pop();
-        if (nextItem) {
+        if (nextItem != null) {
           nextCursor = nextItem.id;
         }
       }

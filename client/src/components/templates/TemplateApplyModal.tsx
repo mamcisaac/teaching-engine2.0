@@ -119,12 +119,12 @@ export function TemplateApplyModal({
     e.preventDefault();
     
     // Validate required fields
-    if (template.type === 'UNIT_PLAN' && (!formData.longRangePlanId || formData.longRangePlanId === '')) {
+    if (template.type === 'UNIT_PLAN' && formData.longRangePlanId === '') {
       toast.error('Please select a long-range plan');
       return;
     }
     
-    if (template.type === 'LESSON_PLAN' && (!formData.unitPlanId || formData.unitPlanId === '')) {
+    if (template.type === 'LESSON_PLAN' && formData.unitPlanId === '') {
       toast.error('Please select a unit plan');
       return;
     }
@@ -242,12 +242,12 @@ export function TemplateApplyModal({
               )}
               <span>{template.type === 'UNIT_PLAN' ? 'Unit Plan' : 'Lesson Plan'} Template</span>
             </div>
-            {template.estimatedWeeks !== undefined && template.estimatedWeeks > 0 && (
+            {template.estimatedWeeks > 0 && (
               <p className="text-sm text-gray-600">
                 Duration: {template.estimatedWeeks} weeks
               </p>
             )}
-            {template.estimatedMinutes !== undefined && template.estimatedMinutes > 0 && (
+            {template.estimatedMinutes > 0 && (
               <p className="text-sm text-gray-600">
                 Duration: {template.estimatedMinutes} minutes
               </p>

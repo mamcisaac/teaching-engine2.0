@@ -74,17 +74,17 @@ export function generateRefreshToken(userId: number): string {
 function extractToken(req: Request): string | null {
   // Check Authorization header
   const authHeader = req.headers.authorization;
-  if (authHeader !== null && authHeader !== undefined && authHeader.startsWith('Bearer ')) {
+  if (authHeader != null && authHeader.startsWith('Bearer ')) {
     return authHeader.substring(7);
   }
 
   // Check cookies
-  if (req.cookies?.token !== undefined && req.cookies.token !== null && typeof req.cookies.token === 'string' && req.cookies.token !== '') {
+  if (req.cookies?.token != null && typeof req.cookies.token === 'string') {
     return req.cookies.token as string;
   }
 
   // Check query parameter (for download links)
-  if (req.query.token !== null && typeof req.query.token === 'string') {
+  if (req.query.token != null && typeof req.query.token === 'string') {
     return req.query.token;
   }
 
@@ -552,7 +552,7 @@ export async function refreshToken(req: Request, res: Response): Promise<void> {
     // Read refresh token from HTTP-only cookie
     const { refreshToken } = req.cookies;
 
-    if (!refreshToken || typeof refreshToken !== 'string') {
+    if (refreshToken == null || refreshToken === '' || typeof refreshToken !== 'string') {
       res.status(400).json({
         error: 'Bad Request',
         message: 'Refresh token required',

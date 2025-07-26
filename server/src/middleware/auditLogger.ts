@@ -124,10 +124,10 @@ class AuditLogger {
       userRole: req.user?.role,
       action,
       details,
-      ipAddress: (req.ip !== null && req.ip !== undefined && req.ip !== '') ? req.ip : req.connection.remoteAddress,
+      ipAddress: (req.ip != null && req.ip !== '') ? req.ip : req.connection.remoteAddress,
       userAgent: req.get('User-Agent') ?? undefined,
       sessionId:
-        ((req as Request & { sessionID?: string; requestId?: string }).sessionID !== null && (req as Request & { sessionID?: string; requestId?: string }).sessionID !== undefined && (req as Request & { sessionID?: string; requestId?: string }).sessionID !== '') ? (req as Request & { sessionID?: string; requestId?: string }).sessionID :
+        ((req as Request & { sessionID?: string; requestId?: string }).sessionID != null && (req as Request & { sessionID?: string; requestId?: string }).sessionID !== '') ? (req as Request & { sessionID?: string; requestId?: string }).sessionID :
         (req as Request & { sessionID?: string; requestId?: string }).requestId,
       timestamp: new Date().toISOString(),
       success,
@@ -136,7 +136,7 @@ class AuditLogger {
   }
 
   private redactEmail(email?: string): string | undefined {
-    if (email === null || email === undefined || email === '') {
+    if (email == null || email === '') {
       return undefined;
     }
     const [local, domain] = email.split('@');
@@ -144,7 +144,7 @@ class AuditLogger {
   }
 
   private maskIP(ip?: string): string | undefined {
-    if (ip === null || ip === undefined || ip === '') {
+    if (ip == null || ip === '') {
       return undefined;
     }
     const parts = ip.split('.');
@@ -174,7 +174,7 @@ return undefined;
     ];
 
     sensitiveFields.forEach((field) => {
-      if (sanitized[field] !== null && sanitized[field] !== undefined) {
+      if (sanitized[field] != null) {
         sanitized[field] = '[REDACTED]';
       }
     });

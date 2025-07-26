@@ -112,7 +112,7 @@ export function FrenchImmersionLessonTemplate({
               Grade 1 French Immersion Lesson Plan
             </h2>
             <p className="text-gray-600 mt-1">
-              {metadata?.theme && metadata.theme.trim() !== ''
+              {metadata?.theme != null && metadata.theme.trim() !== ''
                 ? `Theme: ${metadata.theme}`
                 : 'Structured bilingual learning template'}
             </p>
@@ -560,7 +560,7 @@ export function FrenchImmersionLessonTemplate({
 
       {/* Action Buttons */}
       <div className="flex justify-end gap-3 pt-6 border-t">
-        {onCancel && (
+        {onCancel != null && (
           <Button aria-label="Click button" onClick={onCancel}>
             Cancel
           </Button>

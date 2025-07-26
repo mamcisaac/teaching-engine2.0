@@ -1,9 +1,8 @@
+import type { Prisma } from '@teaching-engine/database';
 import { endOfDay, parseISO } from 'date-fns';
 import type { Request, Response } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
-
-import type { Prisma } from '@teaching-engine/database';
 // Note: Authentication is handled at the route mounting level in index.ts
 
 import { logger } from '../logger';
@@ -36,7 +35,7 @@ router.get('/', asyncHandler(async (req: AuthenticatedRequest, res: Response): P
   try {
     // Validate query parameters
     const queryValidation = querySchema.safeParse(req.query);
-    if (!queryValidation.success) {
+    if (queryValidation.success === false) {
       res.status(400).json({
         error: 'Invalid query parameters',
         details: queryValidation.error.errors,
@@ -45,7 +44,7 @@ router.get('/', asyncHandler(async (req: AuthenticatedRequest, res: Response): P
     }
     const { start, end, eventType } = queryValidation.data;
     const userId = req.user.id;
-    if (!userId) {
+    if (userId == null) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
@@ -57,15 +56,15 @@ router.get('/', asyncHandler(async (req: AuthenticatedRequest, res: Response): P
       ],
     };
 
-    if (start && start !== '') {
+    if (start != null && start !== '') {
       where.start = { gte: parseISO(start) };
     }
 
-    if (end && end !== '') {
+    if (end != null && end !== '') {
       where.end = { lte: endOfDay(parseISO(end)) };
     }
 
-    if (eventType) {
+    if (eventType != null) {
       where.eventType = eventType;
     }
 
@@ -92,7 +91,7 @@ router.post(
     try {
       const data = req.body as z.infer<typeof calendarEventSchema>;
       const userId = req.user.id;
-      if (!userId) {
+      if (userId == null) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -125,7 +124,7 @@ router.patch('/:id', asyncHandler(async (req: Request, res: Response): Promise<v
   try {
     const { id } = req.params;
     const userId = req.user.id;
-    if (!userId) {
+    if (userId == null) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
@@ -139,16 +138,16 @@ router.patch('/:id', asyncHandler(async (req: Request, res: Response): Promise<v
       },
     });
 
-    if (!event) {
+    if (event == null) {
       res.status(404).json({ error: 'Event not found or unauthorized' });
       return;
     }
 
     // Convert date strings to Date objects if present
-    if (updates.start) {
+    if (updates.start != null) {
       updates.start = new Date(updates.start);
     }
-    if (updates.end) {
+    if (updates.end != null) {
       updates.end = new Date(updates.end);
     }
 
@@ -184,7 +183,7 @@ router.delete('/:id', asyncHandler(async (req: AuthenticatedRequest, res: Respon
       },
     });
 
-    if (!event) {
+    if (event == null) {
       res.status(404).json({ error: 'Event not found or unauthorized' });
       return;
     }

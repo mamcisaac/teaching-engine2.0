@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 
+import { isArray, isString } from '../../../shared/utils/typeGuards';
 import { useAutoSave, useUnsavedChangesWarning } from './useAutoSave';
 
 export interface LessonPlanFormData {
@@ -31,8 +32,9 @@ const initialFormData: LessonPlanFormData = {
   title: '',
   titleFr: '',
   date: ((): string => {
-    const [dateOnly] = new Date().toISOString().split('T');
-    return dateOnly;
+    const isoString = new Date().toISOString();
+    const parts = isoString.split('T');
+    return parts.length > 0 ? parts[0] : isoString;
   })(),
   duration: 60,
   mindsOn: '',
@@ -140,7 +142,7 @@ export function useETFOLessonPlanForm({
   const addArrayItem = useCallback((field: keyof LessonPlanFormData, value = ''): void => {
     setFormData(prev => ({
       ...prev,
-      [field]: [...(prev[field] as string[]), value],
+      [field]: isArray(prev[field]) ? [...prev[field], value] : [value],
     }));
   }, [])
 
@@ -150,8 +152,12 @@ export function useETFOLessonPlanForm({
     value: string
   ): void => {
     setFormData(prev => {
-      const array = [...(prev[field] as string[])];
-      array[index] = value;
+      const currentArray = prev[field];
+      if (!isArray(currentArray)) return prev;
+      const array = [...currentArray];
+      if (index >= 0 && index < array.length) {
+        array[index] = value;
+      }
       return { ...prev, [field]: array };
     });
   }, [])
@@ -159,7 +165,7 @@ export function useETFOLessonPlanForm({
   const removeArrayItem = useCallback((field: keyof LessonPlanFormData, index: number): void => {
     setFormData(prev => ({
       ...prev,
-      [field]: (prev[field] as string[]).filter((_, i) => i !== index),
+      [field]: isArray(prev[field]) ? prev[field].filter((_, i) => i !== index) : [],
     }));
   }, [])
 
@@ -226,8 +232,9 @@ export function useETFOLessonPlanForm({
       title: lesson.title,
       titleFr: lesson.titleFr ?? '',
       date: ((): string => {
-        const [dateOnly] = lesson.date.split('T');
-        return dateOnly;
+        if (isString(lesson.date) === false) return '';
+        const parts = lesson.date.split('T');
+        return parts.length > 0 ? parts[0] : lesson.date;
       })(),
       duration: lesson.duration,
       mindsOn: lesson.mindsOn ?? '',
@@ -247,7 +254,12 @@ export function useETFOLessonPlanForm({
       assessmentNotes: lesson.assessmentNotes ?? '',
       isSubFriendly: lesson.isSubFriendly,
       subNotes: lesson.subNotes ?? '',
-      expectationIds: lesson.expectations?.map((e) => e.expectation.id) ?? [],
+      expectationIds: isArray(lesson.expectations) 
+        ? lesson.expectations
+            .filter(e => e && typeof e === 'object' && 'expectation' in e && e.expectation && typeof e.expectation === 'object' && 'id' in e.expectation)
+            .map((e) => String((e.expectation as { id: unknown }).id))
+            .filter(id => isString(id))
+        : [],
     });
   }, [])
 
@@ -266,7 +278,10 @@ export function useETFOLessonPlanForm({
       case 'materials':
         setFormData(prev => ({ 
           ...prev, 
-          materials: [...prev.materials.filter(m => m.trim() !== ''), ...content] 
+          materials: [
+            ...(isArray(prev.materials) ? prev.materials.filter(m => isString(m) && m.trim() !== '') : []),
+            ...(isArray(content) ? content.filter(c => isString(c)) : [])
+          ] 
         }));
         break;
       case 'assessments':

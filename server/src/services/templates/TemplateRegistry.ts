@@ -128,7 +128,7 @@ export class TemplateRegistry extends BaseService {
    * Register a template provider
    */
   public registerProvider(name: string, provider: TemplateProvider, type?: string): void {
-    const providerType = type || this.inferProviderType(name, provider);
+    const providerType = type ?? this.inferProviderType(name, provider);
 
     const info: ProviderInfo = {
       name,
@@ -141,7 +141,7 @@ export class TemplateRegistry extends BaseService {
     this.providers.set(name, info);
 
     // Update type index
-    if (!this.providersByType.has(providerType)) {
+    if (this.providersByType.has(providerType) === false) {
       this.providersByType.set(providerType, []);
     }
     const providers = this.providersByType.get(providerType);
@@ -270,15 +270,15 @@ export class TemplateRegistry extends BaseService {
     const allTemplates = await this.listAllTemplates();
 
     return allTemplates.filter((template) => {
-      if (criteria.type && template.type !== criteria.type) {
+      if (criteria.type != null && criteria.type !== '' && template.type !== criteria.type) {
         return false;
       }
 
-      if (criteria.format && !template.supportedFormats.includes(criteria.format)) {
+      if (criteria.format != null && criteria.format !== '' && template.supportedFormats.includes(criteria.format) === false) {
         return false;
       }
 
-      if (criteria.engine && template.engine !== criteria.engine) {
+      if (criteria.engine != null && criteria.engine !== '' && template.engine !== criteria.engine) {
         return false;
       }
 
@@ -482,7 +482,7 @@ export class TemplateRegistry extends BaseService {
    */
   private inferProviderType(name: string, provider: TemplateProvider): string {
     // Try to get type from provider metadata
-    if (provider.getMetadata().type) {
+    if (provider.getMetadata().type != null) {
       const {type} = provider.getMetadata();
       return typeof type === 'string' ? type : 'generic';
     }

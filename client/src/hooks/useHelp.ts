@@ -461,11 +461,11 @@ export function useHelpContent(): {
   const [_isLoading, _setIsLoading] = useState(false);
 
   // Filter and search help content
-  const filteredContent = useMemo(() => {
+  const filteredContent = useMemo((): HelpContent[] => {
     let content = mockHelpContent;
 
     // Apply section filter
-    if (state.currentSection) {
+    if (state.currentSection !== '') {
       content = content.filter(item => item.section === state.currentSection);
     }
 
@@ -480,7 +480,7 @@ export function useHelpContent(): {
     }
 
     // Apply search query
-    if (state.searchQuery && state.searchQuery !== '') {
+    if (state.searchQuery !== '') {
       const query = state.searchQuery.toLowerCase();
       content = content.filter(item =>
         item.title.toLowerCase().includes(query) ||
@@ -494,7 +494,7 @@ export function useHelpContent(): {
   }, [state.currentSection, state.activeFilters, state.searchQuery]);
 
   // Get available filter options
-  const availableFilters = useMemo(() => {
+  const availableFilters = useMemo((): string[] => {
     const allTags = mockHelpContent.flatMap(item => item.tags);
     const allDifficulties = mockHelpContent.map(item => item.difficulty);
     const uniqueFilters = [...new Set([...allTags, ...allDifficulties])];
@@ -527,7 +527,7 @@ export function useTutorials(): {
   const { state } = useHelpContext();
 
   // Get available tutorials
-  const availableTutorials = useMemo(() => mockTutorials.filter(tutorial => {
+  const availableTutorials = useMemo((): Tutorial[] => mockTutorials.filter(tutorial => {
       // Check if prerequisites are met
       if (tutorial.prerequisites.length > 0) {
         return tutorial.prerequisites.every(prereq =>
@@ -571,7 +571,7 @@ export function useHelpAnalytics(): {
 } {
   const { state } = useHelpContext();
 
-  const analytics = useMemo(() => {
+  const analytics = useMemo((): { totalPagesViewed: number; totalTimeSpent: number; tutorialsCompleted: number; tutorialsInProgress: number; favoriteTopics: string[]; searchHistory: string[] } => {
     const totalPagesViewed = state.userProgress.helpPagesViewed.length;
     const totalTutorialsCompleted = state.userProgress.tutorialsCompleted.length;
     const {totalTimeSpent} = state.userProgress;
@@ -617,7 +617,7 @@ export function useHelpSearch(): {
 
   // Get search suggestions based on current query
   useEffect(() => {
-    if (state.searchQuery && state.searchQuery.length > 1) {
+    if (state.searchQuery.length > 1) {
       const query = state.searchQuery.toLowerCase();
       const allSearchTerms = mockHelpContent.flatMap(item => item.searchTerms);
       const matchingSuggestions = allSearchTerms

@@ -145,7 +145,7 @@ export function createBilingualValidation(
     requireAtLeastOne?: boolean;
     requireAll?: boolean;
   },
-) {
+): z.ZodEffects<z.ZodObject<any, any, any>, any, any> {
   return z
     .object({
       [fieldName]: z.string().optional(),
@@ -158,12 +158,12 @@ export function createBilingualValidation(
         const en = data[`${fieldName}En`];
         const fr = data[`${fieldName}Fr`];
 
-        if (options?.requireAll) {
-          return (base && base !== '') && (en && en !== '') && (fr && fr !== '');
+        if (options?.requireAll === true) {
+          return (base != null && base !== '') && (en != null && en !== '') && (fr != null && fr !== '');
         }
 
-        if (options?.requireAtLeastOne) {
-          return (base && base !== '') || (en && en !== '') || (fr && fr !== '');
+        if (options?.requireAtLeastOne === true) {
+          return (base != null && base !== '') || (en != null && en !== '') || (fr != null && fr !== '');
         }
 
         return true;

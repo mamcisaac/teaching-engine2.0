@@ -60,9 +60,9 @@ return undefined;
 
       try {
         // For object schemas, try to get the field schema
-        if ('shape' in validationSchema) {
+        if (typeof validationSchema === 'object' && 'shape' in validationSchema) {
           const fieldSchema = (validationSchema.shape as Record<string, z.ZodSchema>)[name];
-          if ('parse' in fieldSchema) {
+          if (typeof fieldSchema === 'object' && 'parse' in fieldSchema) {
             fieldSchema.parse(value);
           } else {
             // Validate entire object if can't extract field schema
@@ -244,7 +244,7 @@ return true;
 
   // Check if field has error and is touched
   const getFieldError = useCallback(
-    (name: string) => touched[name] && errors[name] != null && errors[name] !== '' ? errors[name] : undefined,
+    (name: string) => touched[name] != null && touched[name] !== '' && errors[name] != null && errors[name] !== '' ? errors[name] : undefined,
     [touched, errors],
   );
 

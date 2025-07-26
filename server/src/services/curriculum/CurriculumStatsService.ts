@@ -66,7 +66,7 @@ export class CurriculumStatsService extends BaseService {
     const baseDeps = super.checkDependencies();
     return {
       ...baseDeps,
-      database: prisma !== null && prisma !== undefined,
+      database: Boolean(prisma),
     };
   }
 

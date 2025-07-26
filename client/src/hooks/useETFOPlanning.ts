@@ -551,10 +551,10 @@ export function useDaybookEntries(filters?: {
     queryKey: ['daybook-entries', filters],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (filters?.startDate !== undefined && filters.startDate !== '') {
+      if (filters?.startDate != null && filters.startDate !== '') {
         params.append('startDate', filters.startDate);
       }
-      if (filters?.endDate !== undefined && filters.endDate !== '') {
+      if (filters?.endDate != null && filters.endDate !== '') {
         params.append('endDate', filters.endDate);
       }
       if (filters?.hasLessonPlan != null) {
@@ -594,7 +594,7 @@ export function useCreateDaybookEntry(): ReturnType<typeof useMutation<DaybookEn
     onSuccess: (_data) => {
       void (async (): Promise<void> => {
         await queryClient.invalidateQueries({ queryKey: ['daybook-entries'] });
-        if (_data.lessonPlanId !== undefined && _data.lessonPlanId !== '') {
+        if (_data.lessonPlanId != null && _data.lessonPlanId !== '') {
           await queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans', _data.lessonPlanId] });
         }
       })();

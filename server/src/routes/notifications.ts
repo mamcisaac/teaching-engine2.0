@@ -7,7 +7,7 @@ const router = Router();
 
 // Get notifications for authenticated user
 router.get('/', (req: Request, res): void => {
-  void (async () => {
+  void (async (): Promise<void> => {
     try {
     const userId = req.user.id ?? 0;
     if (!userId) {
@@ -63,7 +63,7 @@ router.get('/', (req: Request, res): void => {
 
 // Mark notification as read
 router.patch('/:id/read', (req: Request, res): void => {
-  void (async () => {
+  void (async (): Promise<void> => {
     try {
     const userId = req.user.id ?? 0;
     if (!userId) {
@@ -104,7 +104,7 @@ router.patch('/:id/read', (req: Request, res): void => {
 
 // Mark all notifications as read
 router.patch('/read-all', (req: Request, res): void => {
-  void (async () => {
+  void (async (): Promise<void> => {
     try {
     const userId = req.user.id ?? 0;
     if (!userId) {
@@ -128,7 +128,7 @@ router.patch('/read-all', (req: Request, res): void => {
 
 // Delete notification
 router.delete('/:id', (req: Request, res): void => {
-  void (async () => {
+  void (async (): Promise<void> => {
     try {
     const userId = req.user.id ?? 0;
     if (!userId) {
@@ -168,7 +168,7 @@ router.delete('/:id', (req: Request, res): void => {
 
 // Clear all notifications
 router.delete('/clear-all', (req: Request, res): void => {
-  void (async () => {
+  void (async (): Promise<void> => {
     try {
     const userId = req.user.id ?? 0;
     if (!userId) {
@@ -191,7 +191,7 @@ router.delete('/clear-all', (req: Request, res): void => {
 
 // Create a test notification (for development)
 router.post('/test', (req: Request, res): void => {
-  void (async () => {
+  void (async (): Promise<void> => {
     try {
     const userId = req.user.id ?? 0;
     if (!userId) {

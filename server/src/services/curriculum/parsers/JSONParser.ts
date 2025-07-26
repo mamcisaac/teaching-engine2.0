@@ -45,7 +45,7 @@ export class JSONParser extends CurriculumParser {
   /**
    * Parse JSON content
    */
-  async parse(content: string | Buffer): Promise<ParsedCurriculum> {
+  parse(content: string | Buffer): ParsedCurriculum {
     let stringContent: string;
     if (content instanceof Buffer) {
       stringContent = content.toString('utf-8');
@@ -66,7 +66,7 @@ export class JSONParser extends CurriculumParser {
     }
 
     // Handle object with expectations
-    if (typeof data === 'object' && data !== null) {
+    if (typeof data === 'object' && data != null) {
       return this.parseCurriculumObject(data as JSONCurriculum);
     }
 
@@ -83,22 +83,22 @@ export class JSONParser extends CurriculumParser {
 
     for (const item of data) {
       const expectation = this.parseExpectation(item as JSONExpectation);
-      if (expectation !== null) {
+      if (expectation != null) {
         expectations.push(expectation);
         
         // Try to infer grade and subject
-        if ((inferredGrade === null) && (expectation.grade !== null)) {
+        if (inferredGrade == null && expectation.grade != null) {
           inferredGrade = expectation.grade;
         }
-        if ((inferredSubject === null || inferredSubject === '') && (expectation.subject !== null && expectation.subject !== '')) {
+        if (inferredSubject == null && expectation.subject != null) {
           inferredSubject = expectation.subject;
         }
       }
     }
 
     const curriculum: ParsedCurriculum = {
-      subject: (inferredSubject !== null && inferredSubject !== '') ? inferredSubject : 'Unknown',
-      grade: (inferredGrade !== null) ? inferredGrade : 0,
+      subject: inferredSubject ?? 'Unknown',
+      grade: inferredGrade ?? 0,
       expectations,
       metadata: {
         source: 'JSON Import',
@@ -106,7 +106,7 @@ export class JSONParser extends CurriculumParser {
       },
     };
 
-    if (this.validate(curriculum) !== true) {
+    if (!this.validate(curriculum)) {
       throw new Error('Invalid curriculum data structure');
     }
 
@@ -118,17 +118,17 @@ export class JSONParser extends CurriculumParser {
    */
   private parseCurriculumObject(data: JSONCurriculum): ParsedCurriculum {
     // Extract metadata
-    const grade = this.parseGrade((data.grade !== null) ? data.grade : data.level);
-    const subject = (data.subject !== null && data.subject !== '') ? data.subject : ((data.course !== null && data.course !== '') ? data.course : 'Unknown');
+    const grade = this.parseGrade(data.grade ?? data.level);
+    const subject = data.subject ?? data.course ?? 'Unknown';
 
     // Find expectations array
     const expectationsList = 
-      data.expectations || 
-      data.outcomes || 
-      data.standards ||
+      data.expectations ?? 
+      data.outcomes ?? 
+      data.standards ??
       this.findExpectationsArray(data);
 
-    if ((expectationsList === null) || !Array.isArray(expectationsList)) {
+    if (expectationsList == null || !Array.isArray(expectationsList)) {
       throw new Error('No expectations array found in JSON');
     }
 
@@ -137,23 +137,23 @@ export class JSONParser extends CurriculumParser {
     
     for (const item of expectationsList) {
       const expectation = this.parseExpectation(item as JSONExpectation, grade, subject);
-      if (expectation !== null) {
+      if (expectation != null) {
         expectations.push(expectation);
       }
     }
 
     const curriculum: ParsedCurriculum = {
       subject,
-      grade: (grade !== null) ? grade : 0,
+      grade: grade ?? 0,
       expectations: this.organizeExpectations(expectations),
       metadata: {
         source: 'JSON Import',
         lastUpdated: new Date(),
-        ...(typeof data.metadata === 'object' && data.metadata !== null ? data.metadata : {}),
+        ...(typeof data.metadata === 'object' && data.metadata != null ? data.metadata : {}),
       },
     };
 
-    if (this.validate(curriculum) !== true) {
+    if (!this.validate(curriculum)) {
       throw new Error('Invalid curriculum data structure');
     }
 
@@ -168,7 +168,7 @@ export class JSONParser extends CurriculumParser {
 return null;
 } // Prevent deep recursion
     
-    if (typeof obj !== 'object' || obj === null) {
+    if (typeof obj !== 'object' || obj == null) {
 return null;
 }
 
@@ -179,15 +179,15 @@ return null;
         // Check if this looks like an expectations array
         const firstItem = value[0];
         if (
-          typeof firstItem === 'object' &&
-          (firstItem.code || firstItem.id || firstItem.description || firstItem.content)
+          typeof firstItem === 'object' && firstItem != null &&
+          (firstItem.code != null || firstItem.id != null || firstItem.description != null || firstItem.content != null)
         ) {
           return value;
         }
-      } else if (typeof value === 'object' && value !== null) {
+      } else if (typeof value === 'object' && value != null) {
         // Recurse into objects
         const found = this.findExpectationsArray(value, depth + 1);
-        if (found) {
+        if (found != null) {
 return found;
 }
       }
@@ -206,28 +206,28 @@ return found;
   ): ParsedExpectation | null {
     // Extract code
     const code = this.cleanText(
-      item.code || item.id || `EXP-${Date.now()}-${Math.random()}`
+      item.code ?? item.id ?? `EXP-${Date.now()}-${Math.random()}`
     );
 
     // Extract description
     const description = this.cleanText(
-      item.description || item.content || item.text || ''
+      item.description ?? item.content ?? item.text ?? ''
     );
 
-    if (!description) {
+    if (description === '') {
 return null;
 }
 
     // Extract type
     const type = this.parseExpectationTypeFromJSON(
-      item.type || item.category || '',
+      item.type ?? item.category ?? '',
       code,
       description
     );
 
     // Extract strand
     const strand = this.cleanText(
-      item.strand || item.domain || this.extractStrandFromCode(code)
+      item.strand ?? item.domain ?? this.extractStrandFromCode(code)
     );
 
     // Extract other fields
@@ -236,9 +236,9 @@ return null;
       description,
       type: type === 'overall' || type === 'specific' ? type : 'specific',
       strand,
-      substrand: item.substrand || item.topic,
-      grade: this.parseGrade(item.grade || item.level) || defaultGrade,
-      subject: item.subject || item.course || defaultSubject,
+      substrand: item.substrand ?? item.topic,
+      grade: this.parseGrade(item.grade ?? item.level) ?? defaultGrade,
+      subject: item.subject ?? item.course ?? defaultSubject,
     };
 
     // Handle keywords
@@ -273,7 +273,7 @@ return null;
    * Parse expectation type from JSON value or fallback to parent logic
    */
   private parseExpectationTypeFromJSON(typeValue: string, code: string, description: string): 'overall' | 'specific' {
-    if (typeValue) {
+    if (typeValue !== '') {
       const normalized = typeValue.toLowerCase();
       if (normalized.includes('overall')) {
 return 'overall';
@@ -316,7 +316,7 @@ return 'specific';
       }
       
       const group = grouped.get(exp.strand);
-      if (group) {
+      if (group != null) {
         if (exp.type === 'overall') {
           group.overall.push(exp);
         } else {
@@ -344,7 +344,7 @@ return 'specific';
    * Validate parsed curriculum
    */
   validate(data: ParsedCurriculum): boolean {
-    if (!data.subject || !data.grade || data.expectations === null) {
+    if (data.subject == null || data.subject === '' || data.grade == null || data.grade === 0 || data.expectations === null) {
       return false;
     }
 
@@ -354,7 +354,7 @@ return 'specific';
 
     // Validate each expectation
     for (const exp of data.expectations) {
-      if (!exp.code || !exp.description || !exp.type || !exp.strand) {
+      if (exp.code == null || exp.code === '' || exp.description == null || exp.description === '' || exp.type == null || exp.type === '' || exp.strand == null || exp.strand === '') {
         return false;
       }
     }

@@ -7,11 +7,11 @@ import type { Prisma } from '@teaching-engine/database';
 import type { Response, NextFunction } from 'express';
 import { z } from 'zod';
 
+import { isDefined, isObject, isArray, hasProperty, isString, isValidNumber } from '../../../shared/utils/typeGuards';
 import { prisma } from '../prisma';
 import { BaseService } from '../services/base/BaseService';
 import type { TemplateCreateData, TemplateUpdateData, Template } from '../types/routes';
 import { isValidStringProperty, isNumber } from '../utils/typeGuards';
-import { isDefined } from '../../../shared/utils/typeGuards';
 
 import type { AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler';
 import { BaseRouteHandler } from './base/BaseRouteHandler';
@@ -95,7 +95,7 @@ const templateQuerySchema = z.object({
 
 // Helper function to safely get numeric values
 function getNumericValue(value: unknown, defaultValue: number): number {
-  if (value === null || value === undefined) return defaultValue;
+  if (value == null) return defaultValue;
   if (typeof value === 'number' && !isNaN(value)) return value;
   if (typeof value === 'string') {
     const parsed = parseInt(value, 10);
@@ -110,7 +110,7 @@ class TemplateService extends BaseService {
     super('TemplateService');
   }
 
-  async findMany(filters: Record<string, unknown>, userId: number): Promise<Template[]> {
+  async findMany(filters: Record<string, unknown>, userId: number): Promise<{ templates: Array<Record<string, unknown>>; pagination: { total: number; limit: number; offset: number; hasMore: boolean } }> {
     const {
       type,
       category,
@@ -127,9 +127,11 @@ class TemplateService extends BaseService {
     } = filters;
 
     // Build where clause using optimized ownership filter
-    const where = optimizedQueries.createOwnershipWhere(userId) as {
-      AND: Array<Record<string, unknown>>;
-    };
+    const ownershipWhere = optimizedQueries.createOwnershipWhere(userId);
+    if (!isObject(ownershipWhere) || !hasProperty(ownershipWhere, 'AND') || !isArray(ownershipWhere.AND)) {
+      throw new Error('Invalid ownership where clause structure');
+    }
+    const where = ownershipWhere as { AND: Array<Record<string, unknown>> };
 
     if (isValidStringProperty(type)) {
       where.AND.push({ type });
@@ -161,7 +163,7 @@ class TemplateService extends BaseService {
     }
 
     // Tag filtering
-    if (tags !== null && Array.isArray(tags) && tags.length > 0) {
+    if (Array.isArray(tags) && tags.length > 0) {
       where.AND.push({
         tags: {
           path: [],
@@ -172,8 +174,8 @@ class TemplateService extends BaseService {
 
     // Sorting with validation
     const orderBy = queryPerformance.createOptimizedSort(
-      String((sortBy !== null && String(sortBy) !== '') ? sortBy : 'title'),
-      ((sortOrder !== null && String(sortOrder) !== '') ? sortOrder : 'asc') as 'asc' | 'desc',
+      String(sortBy || 'title'),
+      (sortOrder || 'asc') as 'asc' | 'desc',
       ['title', 'usageCount', 'averageRating', 'createdAt', 'lastUsedAt'],
     );
 
@@ -186,13 +188,18 @@ class TemplateService extends BaseService {
       }),
     );
 
+    if (!isObject(result) || !hasProperty(result, 'items') || !hasProperty(result, 'total')) {
+      throw new Error('Invalid query result structure');
+    }
     const { items: templates, total } = result;
 
     const finalLimit = getNumericValue(limit, 20);
     const finalOffset = getNumericValue(offset, 0);
     
+    const validatedTemplates = isArray(templates) ? templates : [];
+    
     return {
-      templates,
+      templates: validatedTemplates,
       pagination: {
         total,
         limit: finalLimit,
@@ -202,7 +209,7 @@ class TemplateService extends BaseService {
     };
   }
 
-  async findById(id: string, userId: number): Promise<Template | null> {
+  async findById(id: string, userId: number): Promise<Record<string, unknown> | null> {
     return queryPerformance.monitorQuery('template.findById', () =>
       prisma.planTemplate.findFirst({
         where: {
@@ -214,7 +221,7 @@ class TemplateService extends BaseService {
     );
   }
 
-  async create(data: TemplateCreateData, userId: number): Promise<Template> {
+  async create(data: TemplateCreateData, userId: number): Promise<Record<string, unknown>> {
     return prisma.planTemplate.create({
       data: {
         title: data.title,
@@ -241,7 +248,7 @@ class TemplateService extends BaseService {
     });
   }
 
-  async update(id: string, data: TemplateUpdateData, userId: number): Promise<Template> {
+  async update(id: string, data: TemplateUpdateData, userId: number): Promise<Record<string, unknown>> {
     // Check ownership
     const template = await prisma.planTemplate.findFirst({
       where: {
@@ -338,26 +345,28 @@ class TemplateService extends BaseService {
     ]);
 
     const uniqueSubjects = subjects
-      .map((t: { subject: string | null }) => t.subject)
-      .filter((s: string | null): s is string => s !== null)
+      .filter(t => isObject(t) && hasProperty(t, 'subject'))
+      .map((t) => t.subject)
+      .filter((s): s is string => isString(s))
       .sort();
 
     const gradeRange = grades.reduce(
-      (range: { min: number; max: number }, template: { gradeMin: number | null; gradeMax: number | null }) => {
-        if (template.gradeMin !== null && template.gradeMin !== undefined && template.gradeMin !== 0 && !isNaN(template.gradeMin)) {
-range.min = Math.min(range.min, template.gradeMin);
-}
-        if (template.gradeMax !== null && template.gradeMax !== undefined && template.gradeMax !== 0 && !isNaN(template.gradeMax)) {
-range.max = Math.max(range.max, template.gradeMax);
-}
+      (range, template) => {
+        if (isValidNumber(template.gradeMin) && template.gradeMin !== 0) {
+          range.min = Math.min(range.min, template.gradeMin);
+        }
+        if (isValidNumber(template.gradeMax) && template.gradeMax !== 0) {
+          range.max = Math.max(range.max, template.gradeMax);
+        }
         return range;
       },
       { min: 12, max: 1 },
     );
 
     const allTags = tags
-      .flatMap((t: { tags: unknown }) => (Array.isArray(t.tags) ? t.tags as string[] : []))
-      .filter((tag: string, index: number, array: string[]) => array.indexOf(tag) === index)
+      .filter(t => isObject(t) && hasProperty(t, 'tags'))
+      .flatMap((t) => isArray(t.tags) ? t.tags.filter(tag => isString(tag)) : [])
+      .filter((tag, index, array) => array.indexOf(tag) === index)
       .sort();
 
     return {
@@ -366,7 +375,9 @@ range.max = Math.max(range.max, template.gradeMax);
         { length: gradeRange.max - gradeRange.min + 1 },
         (_, i) => gradeRange.min + i,
       ),
-      categories: categories.map((c: { category: string }) => c.category),
+      categories: categories
+        .filter(c => isObject(c) && hasProperty(c, 'category') && isString(c.category))
+        .map((c) => c.category as string),
       tags: allTags,
     };
   }
@@ -397,8 +408,12 @@ export class TemplatesRouteHandler extends BaseRouteHandler {
 
   protected getCrudOperations(): CrudOperations<unknown> {
     return {
-      create: async (data: unknown, userId: number): Promise<Template> => this.templateService.create(data as TemplateCreateData, userId),
-      findMany: async (filters: unknown, userId: number) => {
+      create: async (data: unknown, userId: number): Promise<Record<string, unknown>> => {
+        if (!isObject(data)) throw new Error('Invalid create data');
+        return this.templateService.create(data as TemplateCreateData, userId);
+      },
+      findMany: async (filters: unknown, userId: number): Promise<Array<Record<string, unknown>>> => {
+        if (!isObject(filters)) throw new Error('Invalid filters');
         const result = await this.templateService.findMany(
           filters as Record<string, unknown>,
           userId,
@@ -406,7 +421,10 @@ export class TemplatesRouteHandler extends BaseRouteHandler {
         return result.templates;
       },
       findById: async (id: string, userId: number) => this.templateService.findById(id, userId),
-      update: async (id: string, data: unknown, userId: number) => this.templateService.update(id, data as TemplateUpdateData, userId),
+      update: async (id: string, data: unknown, userId: number) => {
+        if (!isObject(data)) throw new Error('Invalid update data');
+        return this.templateService.update(id, data as TemplateUpdateData, userId);
+      },
       delete: async (id: string, userId: number) => this.templateService.delete(id, userId),
     };
   }

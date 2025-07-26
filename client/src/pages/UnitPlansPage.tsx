@@ -82,7 +82,7 @@ function UnitPlansPage(): React.ReactElement {
   const { data: longRangePlan } = useLongRangePlan(longRangePlanId ?? '');
   const { data: allLongRangePlans = [] } = useLongRangePlans();
   const { data: unitPlans = [], isLoading } = useUnitPlans(
-    longRangePlanId !== undefined && longRangePlanId !== '' ? { longRangePlanId } : {},
+    longRangePlanId != null ? { longRangePlanId } : {},
   );
   const { data: selectedUnit } = useUnitPlan(unitId ?? '');
 
@@ -132,7 +132,7 @@ function UnitPlansPage(): React.ReactElement {
     longRangePlanId,
     editingId: editingUnit,
     onSave: async (data) => {
-      if (editingUnit !== null) {
+      if (editingUnit != null) {
         await updateUnit.mutateAsync({ id: editingUnit, ...data });
       }
     },
@@ -149,7 +149,7 @@ function UnitPlansPage(): React.ReactElement {
 
     const cleanData = getCleanFormData();
 
-    if (editingUnit !== null) {
+    if (editingUnit != null) {
       await updateUnit.mutateAsync({ id: editingUnit, ...cleanData });
       setEditingUnit(null);
     } else {
@@ -231,7 +231,7 @@ function UnitPlansPage(): React.ReactElement {
         updateField('keyVocabulary', templateContent.keyVocabulary ?? []);
         updateField(
           'assessmentPlan',
-          (templateContent.assessments != null) ? JSON.stringify(templateContent.assessments) : '',
+          templateContent.assessments ? JSON.stringify(templateContent.assessments) : ''
         );
         updateField('successCriteria', templateContent.successCriteria ?? []);
         updateField('crossCurricularConnections', templateContent.crossCurricularConnections ?? '');
@@ -267,7 +267,7 @@ function UnitPlansPage(): React.ReactElement {
         updateField('communityConnections', templateContent.communityConnections ?? '');
 
         // Set estimated duration if available
-        if (template.estimatedWeeks !== undefined && template.estimatedWeeks > 0) {
+        if (template.estimatedWeeks > 0) {
           const startDate = new Date();
           const endDate = new Date();
           endDate.setDate(startDate.getDate() + template.estimatedWeeks * 7);
@@ -304,7 +304,7 @@ function UnitPlansPage(): React.ReactElement {
   }
 
   // Detail view for a specific unit
-  if (unitId != null && unitId !== '' && selectedUnit != null) {
+  if (unitId != null && selectedUnit != null) {
     const unit = selectedUnit as ExtendedUnitPlan;
     return (
       <PlanAccessTracker planType="unit">
@@ -400,7 +400,7 @@ function UnitPlansPage(): React.ReactElement {
                 </div>
               )}
 
-              {unit.bigIdeas !== undefined && unit.bigIdeas !== '' && (
+              {unit.bigIdeas != null && unit.bigIdeas !== '' && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Big Ideas</h3>
                   <SafeHtmlRenderer className="prose max-w-none" html={unit.bigIdeas} />
@@ -433,7 +433,7 @@ function UnitPlansPage(): React.ReactElement {
                 </div>
               )}
 
-              {unit.assessmentPlan !== undefined && unit.assessmentPlan !== '' && (
+              {unit.assessmentPlan != null && unit.assessmentPlan !== '' && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Assessment Plan</h3>
                   <SafeHtmlRenderer className="prose max-w-none" html={unit.assessmentPlan} />
@@ -454,7 +454,7 @@ function UnitPlansPage(): React.ReactElement {
               )}
 
               {/* ETFO-specific sections */}
-              {unit.crossCurricularConnections !== undefined && unit.crossCurricularConnections !== '' && (
+              {unit.crossCurricularConnections != null && unit.crossCurricularConnections !== '' && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">
                     Cross-Curricular Connections
@@ -470,7 +470,7 @@ function UnitPlansPage(): React.ReactElement {
                     Differentiation Strategies
                   </h3>
                   <div className="grid gap-4 md:grid-cols-2">
-                    {unit.differentiationStrategies.forStruggling.length > 0 && (
+                    {unit.differentiationStrategies.forStruggling && unit.differentiationStrategies.forStruggling.length > 0 && (
                         <Card>
                           <CardHeader>
                             <CardTitle className="text-sm">For Struggling Learners</CardTitle>
@@ -487,7 +487,7 @@ function UnitPlansPage(): React.ReactElement {
                         </Card>
                       )}
 
-                    {unit.differentiationStrategies.forAdvanced.length > 0 && (
+                    {unit.differentiationStrategies.forAdvanced && unit.differentiationStrategies.forAdvanced.length > 0 && (
                         <Card>
                           <CardHeader>
                             <CardTitle className="text-sm">For Advanced Learners</CardTitle>
@@ -502,7 +502,7 @@ function UnitPlansPage(): React.ReactElement {
                         </Card>
                       )}
 
-                    {unit.differentiationStrategies.forELL.length > 0 && (
+                    {unit.differentiationStrategies.forELL && unit.differentiationStrategies.forELL.length > 0 && (
                         <Card>
                           <CardHeader>
                             <CardTitle className="text-sm">For English Language Learners</CardTitle>
@@ -517,7 +517,7 @@ function UnitPlansPage(): React.ReactElement {
                         </Card>
                       )}
 
-                    {unit.differentiationStrategies.forIEP.length > 0 && (
+                    {unit.differentiationStrategies.forIEP && unit.differentiationStrategies.forIEP.length > 0 && (
                         <Card>
                           <CardHeader>
                             <CardTitle className="text-sm">For Students with IEPs</CardTitle>
@@ -594,7 +594,7 @@ function UnitPlansPage(): React.ReactElement {
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
-          {longRangePlanId !== undefined && longRangePlanId !== '' ? (
+          {longRangePlanId != null ? (
             <React.Fragment>
               <Link className="hover:text-indigo-600" to="/planner/long-range">
                 Long-Range Plans
@@ -622,7 +622,7 @@ function UnitPlansPage(): React.ReactElement {
         <div className="flex justify-between items-start">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">
-              {longRangePlanId !== undefined && longRangePlanId !== '' ? 'Unit Plans' : 'All Unit Plans'}
+              {longRangePlanId != null ? 'Unit Plans' : 'All Unit Plans'}
             </h1>
             {longRangePlan ? (
               <p className="mt-2 text-gray-600">
@@ -1205,8 +1205,8 @@ function UnitPlansPage(): React.ReactElement {
                           <CardTitle className="text-base">{template.title}</CardTitle>
                           <CardDescription className="mt-1">
                             {template.category} • Grade {template.gradeMin}
-                            {template.gradeMax !== undefined && template.gradeMax !== template.gradeMin && `-${template.gradeMax}`}
-                            {template.estimatedWeeks !== undefined && template.estimatedWeeks !== 0 && ` • ${template.estimatedWeeks} weeks`}
+                            {template.gradeMax != null && template.gradeMax !== template.gradeMin && `-${template.gradeMax}`}
+                            {template.estimatedWeeks != null && template.estimatedWeeks !== 0 && ` • ${template.estimatedWeeks} weeks`}
                           </CardDescription>
                         </div>
                         <div className="flex items-center gap-1 text-yellow-500">
@@ -1260,10 +1260,10 @@ function UnitPlansPage(): React.ReactElement {
             </Button>
             <Button
               className="bg-indigo-600 hover:bg-indigo-700 text-white"
-              disabled={!selectedTemplate || applyTemplate.isPending}
+              disabled={selectedTemplate == null || applyTemplate.isPending}
               type="button"
               onClick={() => {
-                if (selectedTemplate !== null) {
+                if (selectedTemplate) {
                   void handleApplyTemplate(selectedTemplate).catch((error: unknown) => {
                     logger.error('Error applying template:', error);
                   });

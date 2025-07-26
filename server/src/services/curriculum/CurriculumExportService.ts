@@ -28,7 +28,7 @@ export class CurriculumExportService extends BaseService {
    * Get singleton instance
    */
   public static getInstance(): CurriculumExportService {
-    if (!CurriculumExportService.instance) {
+    if (CurriculumExportService.instance == null) {
       CurriculumExportService.instance = new CurriculumExportService();
     }
     return CurriculumExportService.instance;
@@ -49,7 +49,7 @@ export class CurriculumExportService extends BaseService {
     const baseDeps = super.checkDependencies();
     return {
       ...baseDeps,
-      database: prisma !== null && prisma !== undefined,
+      database: Boolean(prisma),
     };
   }
 
@@ -68,19 +68,19 @@ export class CurriculumExportService extends BaseService {
         }
         const where: CurriculumWhereClause = {};
         
-        if (options.subjectId) {
+        if (options.subjectId != null && options.subjectId !== '') {
           where.subjectId = options.subjectId;
         }
         
-        if (options.grade) {
+        if (options.grade != null && options.grade !== 0) {
           where.grade = options.grade;
         }
         
-        if (options.strand) {
+        if (options.strand != null && options.strand !== '') {
           where.strand = options.strand;
         }
         
-        if (!options.includeInactive) {
+        if (options.includeInactive !== true) {
           where.isActive = true;
         }
 
@@ -144,7 +144,7 @@ export class CurriculumExportService extends BaseService {
    * Convert data to CSV
    */
   private convertToCSV(data: unknown[]): string {
-    if (!Array.isArray(data) || data.length === 0) {
+    if (Array.isArray(data) === false || data.length === 0) {
       return '';
     }
 
@@ -159,7 +159,7 @@ export class CurriculumExportService extends BaseService {
       const values = headers.map(header => {
         const value = rowObj[header];
         // Escape quotes and wrap in quotes if contains comma
-        const escaped = String(value || '').replace(/"/g, '""');
+        const escaped = String(value ?? '').replace(/"/g, '""');
         return escaped.includes(',') ? `"${escaped}"` : escaped;
       });
       rows.push(values.join(','));
@@ -181,13 +181,13 @@ export class CurriculumExportService extends BaseService {
   public validateExportOptions(options: ExportOptions): { isValid: boolean; errors: string[] } {
     const errors: string[] = [];
 
-    if (!options.format) {
+    if (options.format == null || options.format === '') {
       errors.push('Export format is required');
-    } else if (!this.getSupportedFormats().includes(options.format)) {
+    } else if (this.getSupportedFormats().includes(options.format) === false) {
       errors.push(`Unsupported export format: ${options.format}`);
     }
 
-    if (options.grade && (options.grade < 1 || options.grade > 12)) {
+    if (options.grade != null && options.grade !== 0 && (options.grade < 1 || options.grade > 12)) {
       errors.push('Grade must be between 1 and 12');
     }
 

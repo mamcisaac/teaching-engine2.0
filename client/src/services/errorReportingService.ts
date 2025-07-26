@@ -104,7 +104,7 @@ export class ErrorReportingService {
     }
 
     const dsn = import.meta.env.VITE_SENTRY_DSN as string | undefined;
-    if (dsn === undefined || dsn === '') {
+    if (dsn == null || dsn === '') {
       logger.warn('VITE_SENTRY_DSN not configured, error reporting disabled');
       return;
     }
@@ -144,7 +144,7 @@ export class ErrorReportingService {
         // Filter transactions
         beforeSendTransaction: (transaction) => {
           // Don't send transactions for static assets
-          if ((transaction.transaction !== null && transaction.transaction !== undefined && transaction.transaction.includes('/static/')) || (transaction.transaction !== null && transaction.transaction !== undefined && transaction.transaction.includes('/assets/'))) {
+          if ((transaction.transaction != null && transaction.transaction.includes('/static/')) || (transaction.transaction != null && transaction.transaction.includes('/assets/'))) {
             return null;
           }
           return transaction;
@@ -234,10 +234,10 @@ export class ErrorReportingService {
 
     const sanitizedUser = {
       id: String(user.id),
-      email: user.email !== undefined && user.email !== null && user.email !== '' ? this.maskEmail(user.email) : undefined,
+      email: user.email != null && user.email !== '' ? this.maskEmail(user.email) : undefined,
       username: user.name,
       role: user.role,
-      organizationId: user.organizationId !== null ? String(user.organizationId) : undefined,
+      organizationId: user.organizationId != null ? String(user.organizationId) : undefined,
     };
 
     Sentry.setUser(sanitizedUser);
@@ -394,7 +394,7 @@ export class ErrorReportingService {
     if (breadcrumb.category === 'console' && breadcrumb.level === 'warning') {
       // Filter out React development warnings
       const {message} = breadcrumb;
-      if ((message !== null && message !== undefined && message.includes('DevTools')) || (message !== null && message !== undefined && message.includes('React Hook')) || (message !== null && message !== undefined && message.includes('StrictMode'))) {
+      if ((message != null && message.includes('DevTools')) || (message != null && message.includes('React Hook')) || (message != null && message.includes('StrictMode'))) {
         return null;
       }
 
@@ -453,9 +453,9 @@ export class ErrorReportingService {
     }
 
     // Sanitize user data
-    if (sanitized.user !== null && sanitized.user !== undefined && typeof sanitized.user === 'object' && 'email' in sanitized.user) {
+    if (sanitized.user != null && typeof sanitized.user === 'object' && 'email' in sanitized.user) {
       const email = sanitized.user.email;
-      if (email !== null && email !== undefined && email !== '' && typeof email === 'string') {
+      if (email != null && email !== '' && typeof email === 'string') {
         sanitized.user.email = this.maskEmail(email);
       }
     }

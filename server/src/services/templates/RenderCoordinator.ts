@@ -84,7 +84,7 @@ export class RenderCoordinator extends BaseService {
       cache: this.cache.isHealthy(),
       helpers: this.helpers.isHealthy(),
       partialManager: this.partialManager.isHealthy(),
-      dataFetcher: this.dataFetcher !== null && this.dataFetcher !== undefined,
+      dataFetcher: Boolean(this.dataFetcher),
     };
   }
 
@@ -140,13 +140,13 @@ export class RenderCoordinator extends BaseService {
         }
 
         // Step 5: Prepare render context
-        const renderContext = await this.prepareRenderContext(data, options);
+        const renderContext = this.prepareRenderContext(data, options);
 
         // Step 6: Perform rendering
         const result = await engine.render(template, renderContext);
 
         // Step 7: Cache result if appropriate
-        if (options.useCache !== false && (options.debug == null || options.debug === false)) {
+        if (options.useCache !== false && options.debug !== true) {
           const cacheKey = this.generateCacheKey(context, options);
           this.cache.set(cacheKey, result);
         }
@@ -200,7 +200,7 @@ export class RenderCoordinator extends BaseService {
     }
 
     // Validate context
-    if (!provider.validateContext(context)) {
+    if (provider.validateContext(context) === false) {
       throw new Error('Invalid template context for provider');
     }
 
@@ -251,10 +251,10 @@ export class RenderCoordinator extends BaseService {
   /**
    * Prepare render context
    */
-  private async prepareRenderContext(
+  private prepareRenderContext(
     data: Record<string, unknown>,
     options: RenderRequest['options']
-  ): Promise<RenderContext> {
+  ): RenderContext {
     return {
       data,
       helpers: this.helpers.getHelpersRecord(),
@@ -278,19 +278,19 @@ export class RenderCoordinator extends BaseService {
   ): string {
     const keyParts = [
       options.templateType,
-      options.templateId || 'default',
+      options.templateId ?? 'default',
       context.userId.toString(),
-      options.format || 'html',
-      options.locale || 'en',
+      options.format ?? 'html',
+      options.locale ?? 'en',
     ];
 
     // Add filters to key if present
-    if (options.filters && Object.keys(options.filters).length > 0) {
+    if (options.filters != null && Object.keys(options.filters).length > 0) {
       keyParts.push(JSON.stringify(options.filters));
     }
 
     // Add data hash if provided
-    if (options.data && Object.keys(options.data).length > 0) {
+    if (options.data != null && Object.keys(options.data).length > 0) {
       keyParts.push(this.hashObject(options.data));
     }
 
@@ -365,7 +365,7 @@ export class RenderCoordinator extends BaseService {
       }
 
       // Check if template exists
-      if (templateId) {
+      if (templateId != null && templateId !== '') {
         const template = await provider.getTemplateById(templateId);
         if (!template) {
           issues.push(`Template not found: ${templateId}`);
@@ -471,7 +471,7 @@ export class RenderCoordinator extends BaseService {
     const required = requiredPartials[templateType] ?? [];
     
     for (const partial of required) {
-      if (!this.partialManager.getPartial(partial)) {
+      if (this.partialManager.getPartial(partial) == null) {
         missingPartials.push(partial);
       }
     }
@@ -523,11 +523,11 @@ export class RenderCoordinator extends BaseService {
       try {
         await this.previewTemplate(
           template.templateType,
-          template.templateId || 'default',
+          template.templateId ?? 'default',
           template.sampleData || {}
         );
       } catch (_error) {
-        this.logger.error(`Failed to warm up template cache for ${template.templateType}/${template.templateId || 'default'}: ${_error instanceof Error ? _error.message : _error}`);
+        this.logger.error(`Failed to warm up template cache for ${template.templateType}/${template.templateId ?? 'default'}: ${_error instanceof Error ? _error.message : _error}`);
       }
     }
 

@@ -47,7 +47,7 @@ export class CurriculumSearchService extends BaseService {
    * Get singleton instance
    */
   public static getInstance(): CurriculumSearchService {
-    if (!CurriculumSearchService.instance) {
+    if (CurriculumSearchService.instance == null) {
       CurriculumSearchService.instance = new CurriculumSearchService();
     }
     return CurriculumSearchService.instance;
@@ -68,7 +68,7 @@ export class CurriculumSearchService extends BaseService {
     const baseDeps = super.checkDependencies();
     return {
       ...baseDeps,
-      database: prisma !== null && prisma !== undefined,
+      database: prisma != null,
     };
   }
 
@@ -88,11 +88,11 @@ export class CurriculumSearchService extends BaseService {
         };
 
         // Apply filters
-        if (filters.grade !== undefined) {
+        if (filters.grade != null && filters.grade !== 0) {
           where.grade = filters.grade;
         }
         
-        if (filters.strand && isValidString(filters.strand)) {
+        if (isValidString(filters.strand)) {
           where.strand = { contains: filters.strand, mode: 'insensitive' };
         }
 
@@ -280,7 +280,7 @@ export class CurriculumSearchService extends BaseService {
 
         return expectations
           .map((e: AutoCompleteEntry) => field === 'code' ? e.code : e.description)
-          .filter((value: string | undefined): value is string => typeof value === 'string' && Boolean(value));
+          .filter((value: string | undefined): value is string => typeof value === 'string' && value !== '');
       },
       'getAutoCompleteSuggestions'
     );

@@ -67,7 +67,7 @@ export function useRegenerateNewsletter(): UseMutationResult<GeneratedNewsletter
         studentIds: draft.studentIds,
         from: draft.dateFrom,
         to: draft.dateTo,
-        tone: tone || draft.tone,
+        tone: tone ?? draft.tone,
       });
       return response.data as GeneratedNewsletter;
     },
