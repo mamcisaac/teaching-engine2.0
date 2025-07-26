@@ -4,6 +4,7 @@ import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { TemplatesPage } from '../../pages/TemplatesPage';
 import { renderWithAuth } from '../../test-utils';
+import * as templatesModule from '../../hooks/useTemplates';
 
 // Mock the templates hooks
 vi.mock('../../hooks/useTemplates', () => ({
@@ -160,9 +161,8 @@ describe('TemplatesPage', () => {
     mockNavigate.mockClear();
 
     // Setup mock implementations
-    const templates = require('../../hooks/useTemplates');
     Object.entries(mockHooks).forEach(([key, mock]) => {
-      templates[key] = mock;
+      (templatesModule as any)[key] = mock;
     });
 
     // Default mock returns

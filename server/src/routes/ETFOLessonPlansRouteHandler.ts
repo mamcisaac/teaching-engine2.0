@@ -136,13 +136,13 @@ class ETFOLessonPlanService extends BaseService {
 
     const where: Prisma.ETFOLessonPlanWhereInput = { userId };
 
-    if (unitPlanId != null) {
+    if (unitPlanId !== undefined) {
       where.unitPlanId = String(unitPlanId);
     }
-    if (isSubFriendly != null) {
+    if (isSubFriendly !== undefined) {
 where.isSubFriendly = isSubFriendly;
 }
-    if (assessmentType != null && assessmentType !== '') {
+    if (assessmentType !== undefined && assessmentType !== '') {
 where.assessmentType = assessmentType;
 }
 
@@ -153,7 +153,7 @@ where.assessmentType = assessmentType;
     }
 
     // Filter by lessons with curriculum expectations
-    if (hasExpectations != null) {
+    if (hasExpectations !== undefined) {
       if (hasExpectations) {
         where.expectations = { some: {} };
       } else {
@@ -214,7 +214,7 @@ where.assessmentType = assessmentType;
       },
     });
 
-    if (unitPlan == null) {
+    if (!unitPlan) {
       throw new Error('Unit plan not found or access denied');
     }
 
@@ -280,7 +280,7 @@ where.assessmentType = assessmentType;
       where: { id, userId },
     });
 
-    if (lessonPlan == null) {
+    if (!lessonPlan) {
       throw new Error('Lesson plan not found or access denied');
     }
 
@@ -299,75 +299,75 @@ where.assessmentType = assessmentType;
     const baseUpdateData: Partial<Prisma.ETFOLessonPlanUpdateInput> = {};
 
     // Only include fields that are actually being updated
-    if (updateData.title != null) {
+    if (updateData.title !== undefined) {
 baseUpdateData.title = updateData.title;
 }
-    if (updateData.unitPlanId != null) {
+    if (updateData.unitPlanId !== undefined) {
 baseUpdateData.unitPlanId = updateData.unitPlanId;
 }
-    if (updateData.duration != null) {
+    if (updateData.duration !== undefined) {
 baseUpdateData.duration = updateData.duration;
 }
-    if (updateData.mindsOn != null) {
+    if (updateData.mindsOn !== undefined) {
 baseUpdateData.mindsOn = updateData.mindsOn;
 }
-    if (updateData.mindsOnFr != null) {
+    if (updateData.mindsOnFr !== undefined) {
 baseUpdateData.mindsOnFr = updateData.mindsOnFr;
 }
-    if (updateData.action != null) {
+    if (updateData.action !== undefined) {
 baseUpdateData.action = updateData.action;
 }
-    if (updateData.actionFr != null) {
+    if (updateData.actionFr !== undefined) {
 baseUpdateData.actionFr = updateData.actionFr;
 }
-    if (updateData.consolidation != null) {
+    if (updateData.consolidation !== undefined) {
 baseUpdateData.consolidation = updateData.consolidation;
 }
-    if (updateData.consolidationFr != null) {
+    if (updateData.consolidationFr !== undefined) {
 baseUpdateData.consolidationFr = updateData.consolidationFr;
 }
-    if (updateData.learningGoals != null) {
+    if (updateData.learningGoals !== undefined) {
 baseUpdateData.learningGoals = updateData.learningGoals;
 }
-    if (updateData.learningGoalsFr != null) {
+    if (updateData.learningGoalsFr !== undefined) {
 baseUpdateData.learningGoalsFr = updateData.learningGoalsFr;
 }
-    if (updateData.materials != null) {
+    if (updateData.materials !== undefined) {
 baseUpdateData.materials = updateData.materials
         ? JSON.stringify(updateData.materials)
         : undefined;
 }
-    if (updateData.grouping != null) {
+    if (updateData.grouping !== undefined) {
 baseUpdateData.grouping = updateData.grouping;
 }
-    if (updateData.titleFr != null) {
+    if (updateData.titleFr !== undefined) {
 baseUpdateData.titleFr = updateData.titleFr;
 }
-    if (updateData.accommodations != null) {
+    if (updateData.accommodations !== undefined) {
 baseUpdateData.accommodations = updateData.accommodations
         ? JSON.stringify(updateData.accommodations)
         : undefined;
 }
-    if (updateData.modifications != null) {
+    if (updateData.modifications !== undefined) {
 baseUpdateData.modifications = updateData.modifications
         ? JSON.stringify(updateData.modifications)
         : undefined;
 }
-    if (updateData.extensions != null) {
+    if (updateData.extensions !== undefined) {
 baseUpdateData.extensions = updateData.extensions
         ? JSON.stringify(updateData.extensions)
         : undefined;
 }
-    if (updateData.assessmentType != null) {
+    if (updateData.assessmentType !== undefined) {
 baseUpdateData.assessmentType = updateData.assessmentType;
 }
-    if (updateData.assessmentNotes != null) {
+    if (updateData.assessmentNotes !== undefined) {
 baseUpdateData.assessmentNotes = updateData.assessmentNotes;
 }
-    if (updateData.isSubFriendly != null) {
+    if (updateData.isSubFriendly !== undefined) {
 baseUpdateData.isSubFriendly = updateData.isSubFriendly;
 }
-    if (updateData.subNotes != null) {
+    if (updateData.subNotes !== undefined) {
 baseUpdateData.subNotes = updateData.subNotes;
 }
 
@@ -408,7 +408,7 @@ baseUpdateData.subNotes = updateData.subNotes;
       where: { id, userId },
     });
 
-    if (lessonPlan == null) {
+    if (!lessonPlan) {
       return false;
     }
 
@@ -429,7 +429,7 @@ baseUpdateData.subNotes = updateData.subNotes;
       where: { id: lessonPlanId, userId },
     });
 
-    if (lessonPlan == null) {
+    if (!lessonPlan) {
       throw new Error('Lesson plan not found or access denied');
     }
 
@@ -459,7 +459,7 @@ baseUpdateData.subNotes = updateData.subNotes;
       },
     });
 
-    if (resource == null) {
+    if (!resource) {
       return false;
     }
 
@@ -479,7 +479,7 @@ baseUpdateData.subNotes = updateData.subNotes;
       },
     });
 
-    if (originalLesson == null) {
+    if (!originalLesson) {
       throw new Error('Lesson plan not found or access denied');
     }
 
@@ -537,7 +537,7 @@ baseUpdateData.subNotes = updateData.subNotes;
       where: { id: lessonPlanId, userId },
     });
 
-    if (lessonPlan == null) {
+    if (!lessonPlan) {
       throw new Error('Lesson plan not found or access denied');
     }
 
@@ -548,7 +548,7 @@ baseUpdateData.subNotes = updateData.subNotes;
     });
 
     // If requested, update related daybook entries
-    if (updateRelated === true) {
+    if (updateRelated) {
       await prisma.daybookEntry.updateMany({
         where: {
           lessonPlanId,
@@ -591,7 +591,7 @@ baseUpdateData.subNotes = updateData.subNotes;
       }),
     ]);
 
-    if (sourceLessonPlan == null || targetUnitPlan == null) {
+    if (!sourceLessonPlan || !targetUnitPlan) {
       throw new Error('Source lesson plan or target unit plan not found');
     }
 
@@ -700,7 +700,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId == null) {
+      if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -723,9 +723,9 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       const { sortBy, sortOrder, startDate, endDate, unitPlanId, ...filterBase } = filters;
       const convertedFilters = {
         ...filterBase,
-        ...(startDate != null && startDate !== '' && { startDate: new Date(startDate) }),
-        ...(endDate != null && endDate !== '' && { endDate: new Date(endDate) }),
-        ...(unitPlanId != null && unitPlanId !== '' && { unitPlanId: parseInt(String(unitPlanId), 10) }),
+        ...(startDate && startDate !== '' && { startDate: new Date(startDate) }),
+        ...(endDate && endDate !== '' && { endDate: new Date(endDate) }),
+        ...(unitPlanId && unitPlanId !== '' && { unitPlanId: parseInt(String(unitPlanId), 10) }),
         // Convert sortBy/sortOrder to sort/order for service
         sort: sortBy,
         order: sortOrder,
@@ -796,7 +796,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId == null) {
+      if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -818,7 +818,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId == null) {
+      if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -826,7 +826,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
 
       const success = await this.lessonPlanService.removeResource(lessonPlanId, resourceId, userId);
 
-      if (success !== true) {
+      if (success === false) {
         res.status(404).json({ error: 'Resource not found' });
         return;
       }
@@ -845,7 +845,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId == null) {
+      if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -866,7 +866,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId == null) {
+      if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -893,7 +893,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId == null) {
+      if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }

@@ -182,17 +182,17 @@ export class ErrorReportingService {
       return;
     }
 
-    if (user == null) {
+    if (user === null) {
       Sentry.configureScope((scope) => scope.clear());
       return;
     }
 
     const sanitizedUser = {
       id: String(user.id),
-      email: user.email != null && user.email !== '' ? this.maskEmail(user.email) : undefined,
+      email: user.email !== null && user.email !== '' ? this.maskEmail(user.email) : undefined,
       username: user.name,
       role: user.role,
-      organizationId: user.organizationId != null ? String(user.organizationId) : undefined,
+      organizationId: user.organizationId !== null ? String(user.organizationId) : undefined,
     };
 
     Sentry.setUser(sanitizedUser);
@@ -313,11 +313,11 @@ export class ErrorReportingService {
     _hint?: Sentry.BreadcrumbHint,
   ): Sentry.Breadcrumb | null {
     // Sanitize breadcrumb
-    if (breadcrumb.message != null && breadcrumb.message !== '') {
+    if (breadcrumb.message !== null && breadcrumb.message !== '') {
       breadcrumb.message = this.sanitizeString(breadcrumb.message);
     }
 
-    if (breadcrumb.data != null) {
+    if (breadcrumb.data !== null) {
       breadcrumb.data = this.sanitizeData(breadcrumb.data) as Record<string, unknown>;
     }
 
@@ -329,7 +329,7 @@ export class ErrorReportingService {
     const parsed = safeJsonParse(JSON.stringify(event), {});
     
     // Ensure we have a valid object
-    if (parsed == null || typeof parsed !== 'object') {
+    if (parsed === null || typeof parsed !== 'object') {
       return event; // Return original if parsing failed
     }
     
@@ -346,35 +346,35 @@ export class ErrorReportingService {
     const sanitized = parsed as SanitizedEvent;
 
     // Sanitize message
-    if (sanitized.message != null && sanitized.message !== '') {
+    if (sanitized.message !== null && sanitized.message !== '') {
       sanitized.message = this.sanitizeString(sanitized.message);
     }
 
     // Sanitize extra data
-    if (sanitized.extra != null) {
+    if (sanitized.extra !== null) {
       sanitized.extra = this.sanitizeData(sanitized.extra);
     }
 
     // Sanitize request data
-    if (sanitized.request != null) {
-      if (sanitized.request.headers != null) {
+    if (sanitized.request !== null) {
+      if (sanitized.request.headers !== null) {
         sanitized.request.headers = this.sanitizeHeaders(sanitized.request.headers);
       }
-      if (sanitized.request.data != null) {
+      if (sanitized.request.data !== null) {
         sanitized.request.data = this.sanitizeData(sanitized.request.data);
       }
-      if (sanitized.request.query_string != null && sanitized.request.query_string !== '') {
+      if (sanitized.request.query_string !== null && sanitized.request.query_string !== '') {
         sanitized.request.query_string = this.sanitizeString(sanitized.request.query_string);
       }
     }
 
     // Sanitize user data
-    if (sanitized.user?.email != null && sanitized.user.email !== '') {
+    if (sanitized.user?.email !== null && sanitized.user.email !== '') {
       sanitized.user.email = this.maskEmail(sanitized.user.email);
     }
 
     // Sanitize contexts
-    if (sanitized.contexts != null) {
+    if (sanitized.contexts !== null) {
       for (const key in sanitized.contexts) {
         sanitized.contexts[key] = this.sanitizeData(sanitized.contexts[key]);
       }
@@ -384,7 +384,7 @@ export class ErrorReportingService {
   }
 
   private sanitizeData(data: unknown): unknown {
-    if (data == null) {
+    if (data === null) {
 return data;
 }
 
@@ -461,7 +461,7 @@ return data;
   }
 
   private maskEmail(email: string): string {
-    if (email == null || email === '' || typeof email !== 'string') {
+    if (email === null || email === '' || typeof email !== 'string') {
 return '[INVALID_EMAIL]';
 }
 
@@ -477,7 +477,7 @@ return '[INVALID_EMAIL]';
   }
 
   private maskIP(ip: string): string {
-    if (ip == null || ip === '' || typeof ip !== 'string') {
+    if (ip === null || ip === '' || typeof ip !== 'string') {
 return 'xxx.xxx.xxx.xxx';
 }
 

@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 const Card = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref): JSX.Element => (
     <div
-      className={cn('rounded-lg border bg-card text-card-foreground shadow-sm', className)}
+      className={cn('rounded-lg border bg-card text-card-foreground shadow-sm', className ?? '') as string}
       ref={ref}
       {...props}
     />
@@ -15,7 +15,7 @@ Card.displayName = 'Card';
 
 const CardHeader = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref): JSX.Element => (
-    <div className={cn('flex flex-col space-y-1.5 p-6', className)} ref={ref} {...props} />
+    <div className={cn('flex flex-col space-y-1.5 p-6', className ?? '') as string} ref={ref} {...props} />
   ),
 );
 CardHeader.displayName = 'CardHeader';
@@ -24,7 +24,7 @@ const CardTitle = forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLHeadingEle
   ({ className, ...props }, ref): JSX.Element => (
     // eslint-disable-next-line jsx-a11y/heading-has-content
     <h3
-      className={cn('text-2xl font-semibold leading-none tracking-tight', className)}
+      className={cn('text-2xl font-semibold leading-none tracking-tight', className ?? '') as string}
       ref={ref}
       {...props}
     />
@@ -36,20 +36,20 @@ const CardDescription = forwardRef<
   HTMLParagraphElement,
   HTMLAttributes<HTMLParagraphElement>
 >(({ className, ...props }, ref): JSX.Element => (
-  <p className={cn('text-sm text-muted-foreground', className)} ref={ref} {...props} />
+  <p className={cn('text-sm text-muted-foreground', className ?? '') as string} ref={ref} {...props} />
 ));
 CardDescription.displayName = 'CardDescription';
 
 const CardContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref): JSX.Element => (
-    <div className={cn('p-6 pt-0', className)} ref={ref} {...props} />
+    <div className={cn('p-6 pt-0', className ?? '') as string} ref={ref} {...props} />
   ),
 );
 CardContent.displayName = 'CardContent';
 
 const CardFooter = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref): JSX.Element => (
-    <div className={cn('flex items-center p-6 pt-0', className)} ref={ref} {...props} />
+    <div className={cn('flex items-center p-6 pt-0', className ?? '') as string} ref={ref} {...props} />
   ),
 );
 CardFooter.displayName = 'CardFooter';

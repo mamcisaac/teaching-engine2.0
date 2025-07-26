@@ -80,7 +80,7 @@ export class CurriculumValidator {
     this.validateStructure(curriculum, errors);
     
     // Early return if curriculum is invalid
-    if (curriculum == null || curriculum.expectations == null || !Array.isArray(curriculum.expectations)) {
+    if (curriculum === null || curriculum.expectations === null || !Array.isArray(curriculum.expectations)) {
       return {
         isValid: false,
         errors,
@@ -112,7 +112,7 @@ export class CurriculumValidator {
     this.calculateStats(curriculum.expectations, stats);
 
     // Check required strands
-    if (this.options.requiredStrands != null && this.options.requiredStrands.length > 0) {
+    if (this.options.requiredStrands !== null && this.options.requiredStrands.length > 0) {
       this.validateRequiredStrands(stats.strands, errors);
     }
 
@@ -128,7 +128,7 @@ export class CurriculumValidator {
    * Validate basic structure
    */
   private validateStructure(curriculum: ParsedCurriculum, errors: ValidationError[]): void {
-    if (curriculum == null) {
+    if (curriculum === null) {
       errors.push({
         field: 'curriculum',
         message: 'Curriculum object is required',
@@ -136,7 +136,7 @@ export class CurriculumValidator {
       return;
     }
 
-    if (curriculum.expectations == null) {
+    if (curriculum.expectations === null) {
       errors.push({
         field: 'expectations',
         message: 'Expectations array is required',
@@ -160,7 +160,7 @@ export class CurriculumValidator {
    * Validate grade
    */
   private validateGrade(grade: number, errors: ValidationError[]): void {
-    if (grade == null || (grade === 0 && this.options.strictMode === true)) {
+    if (grade === null || (grade === 0 && this.options.strictMode)) {
       errors.push({
         field: 'grade',
         message: 'Grade is required',
@@ -168,7 +168,7 @@ export class CurriculumValidator {
       return;
     }
 
-    if (this.options.gradeRange != null) {
+    if (this.options.gradeRange !== null) {
       const { min, max } = this.options.gradeRange;
       if (grade < min || grade > max) {
         errors.push({
@@ -184,7 +184,7 @@ export class CurriculumValidator {
    * Validate subject
    */
   private validateSubject(subject: string, errors: ValidationError[], warnings: ValidationWarning[]): void {
-    if (subject == null || subject === '') {
+    if (subject === null || subject === '') {
       errors.push({
         field: 'subject',
         message: 'Subject is required',
@@ -224,7 +224,7 @@ export class CurriculumValidator {
 
     for (const expectation of expectations) {
       // Validate required fields
-      if (expectation.code == null || expectation.code === '') {
+      if (expectation.code === null || expectation.code === '') {
         errors.push({
           field: 'expectation.code',
           message: 'Expectation code is required',
@@ -257,7 +257,7 @@ export class CurriculumValidator {
       }
 
       // Validate description
-      if (expectation.description == null || expectation.description === '') {
+      if (expectation.description === null || expectation.description === '') {
         errors.push({
           field: 'expectation.description',
           message: 'Expectation description is required',
@@ -273,7 +273,7 @@ export class CurriculumValidator {
       }
 
       // Validate type
-      if (expectation.type == null || expectation.type === '') {
+      if (expectation.type === null || expectation.type === '') {
         errors.push({
           field: 'expectation.type',
           message: 'Expectation type is required',
@@ -289,7 +289,7 @@ export class CurriculumValidator {
       }
 
       // Validate strand
-      if (expectation.strand == null || expectation.strand === '') {
+      if (expectation.strand === null || expectation.strand === '') {
         errors.push({
           field: 'expectation.strand',
           message: 'Expectation strand is required',
@@ -337,7 +337,7 @@ export class CurriculumValidator {
       }
 
       // Collect strands
-      if (expectation.strand != null && expectation.strand !== '') {
+      if (expectation.strand !== null && expectation.strand !== '') {
         strands.add(expectation.strand);
       }
     }
@@ -349,7 +349,7 @@ export class CurriculumValidator {
    * Validate required strands
    */
   private validateRequiredStrands(strands: string[], errors: ValidationError[]): void {
-    if (this.options.requiredStrands == null || this.options.requiredStrands.length === 0) {
+    if (this.options.requiredStrands === null || this.options.requiredStrands.length === 0) {
       return;
     }
     

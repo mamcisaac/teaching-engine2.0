@@ -63,7 +63,7 @@ export function PlanningWorkflowIndicator({
   const canNavigate = (level: LevelProgress): boolean => level.isAccessible || level.isComplete;
 
   return (
-    <div className={cn('bg-white rounded-lg shadow-sm p-6', className)}>
+    <div className={cn('bg-white rounded-lg shadow-sm p-6', className) as string}>
       <h3 className="text-lg font-semibold mb-4">Planning Workflow Progress</h3>
 
       <div className="space-y-3">
@@ -113,7 +113,7 @@ export function PlanningWorkflowIndicator({
                     'flex items-start gap-4 p-4 rounded-lg border-2 transition-all',
                     getStepStyles(level),
                     'cursor-pointer',
-                  )}
+                  ) as string}
                   to={ETFO_LEVEL_PATHS[level.level]}
                 >
                   {stepContent}
@@ -123,7 +123,7 @@ export function PlanningWorkflowIndicator({
                   className={cn(
                     'flex items-start gap-4 p-4 rounded-lg border-2 transition-all',
                     getStepStyles(level),
-                  )}
+                  ) as string}
                 >
                   {stepContent}
                 </div>

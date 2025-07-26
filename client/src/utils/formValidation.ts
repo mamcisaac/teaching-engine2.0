@@ -35,7 +35,7 @@ export function validateUnitPlan(data: UnitPlanFormData): ValidationResult {
   }
 
   // Date validation
-  if (data.startDate && data.endDate) {
+  if (data.startDate !== '' && data.endDate !== '') {
     const startDate = new Date(data.startDate);
     const endDate = new Date(data.endDate);
 
@@ -63,7 +63,7 @@ export function validateUnitPlan(data: UnitPlanFormData): ValidationResult {
   }
 
   // Duration validation
-  if (!data.estimatedHours || data.estimatedHours <= 0) {
+  if (data.estimatedHours <= 0) {
     errors.estimatedHours = 'Estimated hours must be greater than 0';
   } else if (data.estimatedHours > 500) {
     errors.estimatedHours = 'Estimated hours seems unreasonably high (max 500)';
@@ -74,18 +74,18 @@ export function validateUnitPlan(data: UnitPlanFormData): ValidationResult {
     errors.title = 'Title must be 200 characters or less';
   }
 
-  if (data.description && data.description.length > 2000) {
+  if (data.description.length > 2000) {
     errors.description = 'Description must be 2000 characters or less';
   }
 
   // Array validation - ensure at least one meaningful entry
   const hasEssentialQuestions = data.essentialQuestions.some((q) => q.trim().length > 0);
-  if (!hasEssentialQuestions) {
+  if (hasEssentialQuestions === false) {
     errors.essentialQuestions = 'At least one essential question is required';
   }
 
   const hasSuccessCriteria = data.successCriteria.some((c) => c.trim().length > 0);
-  if (!hasSuccessCriteria) {
+  if (hasSuccessCriteria === false) {
     errors.successCriteria = 'At least one success criteria is required';
   }
 
@@ -115,7 +115,7 @@ export function validateLessonPlan(data: LessonPlanFormData): ValidationResult {
   }
 
   // Date validation
-  if (data.date) {
+  if (data.date !== '') {
     const lessonDate = new Date(data.date);
     const now = new Date();
     const oneYearAgo = new Date(now.getFullYear() - 1, now.getMonth(), now.getDate());
@@ -150,9 +150,7 @@ export function validateLessonPlan(data: LessonPlanFormData): ValidationResult {
   const hasAction = data.action?.trim();
   const hasConsolidation = data.consolidation?.trim();
 
-  if ((hasMindsOn === null || hasMindsOn === undefined || hasMindsOn === '') && 
-      (hasAction === null || hasAction === undefined || hasAction === '') && 
-      (hasConsolidation === null || hasConsolidation === undefined || hasConsolidation === '')) {
+  if (hasMindsOn === false && hasAction === false && hasConsolidation === false) {
     errors.lessonStructure =
       'At least one lesson component (Minds On, Action, or Consolidation) must have content';
   }
@@ -162,13 +160,13 @@ export function validateLessonPlan(data: LessonPlanFormData): ValidationResult {
     errors.title = 'Title must be 200 characters or less';
   }
 
-  if (data.learningGoals !== null && data.learningGoals !== undefined && data.learningGoals !== '' && data.learningGoals.length > 1000) {
+  if (data.learningGoals.length > 1000) {
     errors.learningGoals = 'Learning goals must be 1000 characters or less';
   }
 
   // Materials validation - at least one meaningful material
   const hasMaterials = data.materials.some((m) => m.trim().length > 0);
-  if (!hasMaterials) {
+  if (hasMaterials === false) {
     errors.materials = 'At least one material or resource is required';
   }
 

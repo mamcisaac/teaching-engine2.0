@@ -11,6 +11,7 @@ import { screen, waitFor } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { AILessonPlanPanel } from '../AILessonPlanPanel';
 import { renderWithProviders } from '@/test-utils';
+import * as aiStatusHooks from '../../../hooks/useAIStatus';
 
 // Mock the AI hooks
 const mockGenerateLesson = vi.fn();
@@ -154,7 +155,7 @@ describe('AILessonPlanPanel', () => {
 
   describe('AI Status Integration', () => {
     it('should show disabled state when AI is not available', () => {
-      vi.mocked(require('../../hooks/useAIStatus').useAIStatus).mockReturnValue({
+      vi.mocked(aiStatusHooks.useAIStatus).mockReturnValue({
         canUseAI: false,
         aiDisabledReason: 'API quota exceeded',
       });
@@ -176,7 +177,7 @@ describe('AILessonPlanPanel', () => {
   describe('Strict Boolean Expression Tests', () => {
     describe('aiDisabledReason handling', () => {
       it('should handle null aiDisabledReason', () => {
-        vi.mocked(require('../../hooks/useAIStatus').useAIStatus).mockReturnValue({
+        vi.mocked(aiStatusHooks.useAIStatus).mockReturnValue({
           canUseAI: false,
           aiDisabledReason: null,
         });
@@ -187,7 +188,7 @@ describe('AILessonPlanPanel', () => {
       });
 
       it('should handle undefined aiDisabledReason', () => {
-        vi.mocked(require('../../hooks/useAIStatus').useAIStatus).mockReturnValue({
+        vi.mocked(aiStatusHooks.useAIStatus).mockReturnValue({
           canUseAI: false,
           aiDisabledReason: undefined,
         });
@@ -198,7 +199,7 @@ describe('AILessonPlanPanel', () => {
       });
 
       it('should handle empty string aiDisabledReason', () => {
-        vi.mocked(require('../../hooks/useAIStatus').useAIStatus).mockReturnValue({
+        vi.mocked(aiStatusHooks.useAIStatus).mockReturnValue({
           canUseAI: false,
           aiDisabledReason: '',
         });
@@ -209,7 +210,7 @@ describe('AILessonPlanPanel', () => {
       });
 
       it('should display custom aiDisabledReason when provided', () => {
-        vi.mocked(require('../../hooks/useAIStatus').useAIStatus).mockReturnValue({
+        vi.mocked(aiStatusHooks.useAIStatus).mockReturnValue({
           canUseAI: false,
           aiDisabledReason: 'Custom reason for AI being disabled',
         });

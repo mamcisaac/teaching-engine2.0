@@ -19,7 +19,7 @@ export const errorContextMiddleware = (
   next: NextFunction,
 ): void => {
   // Generate request ID if not present
-  req.id = req.id ?? (req.headers['x-request-id'] as string) || uuidv4();
+  req.id = req.id ?? ((req.headers['x-request-id'] as string) || uuidv4());
 
   // Track request start time
   req.startTime = Date.now();
@@ -62,7 +62,7 @@ export const errorContextMiddleware = (
 
   // Clean up on response finish
   res.on('finish', () => {
-    const duration = req.startTime != null && req.startTime !== 0 ? Date.now() - req.startTime : 0;
+    const duration = req.startTime !== undefined && req.startTime !== 0 ? Date.now() - req.startTime : 0;
 
     // Add response breadcrumb
     errorReportingService.addBreadcrumb({

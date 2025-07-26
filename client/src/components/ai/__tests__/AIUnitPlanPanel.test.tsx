@@ -3,9 +3,10 @@ import React from 'react';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 
 import { AIUnitPlanPanel } from '../AIUnitPlanPanel';
+import * as aiStatusHooks from '../../../hooks/useAIStatus';
 
 // Mock all dependencies
-vi.mock('../../hooks/useAIPlanningAssistant', () => ({
+vi.mock('../../../hooks/useAIPlanningAssistant', () => ({
   useAIPlanningAssistant: () => ({
     generateUnitBigIdeas: { mutateAsync: vi.fn() },
   }),
@@ -40,8 +41,7 @@ describe('AIUnitPlanPanel - Strict Boolean Expression Tests', () => {
 
   describe('aiDisabledReason handling', () => {
     it('should handle null aiDisabledReason', () => {
-      const { useAIStatus } = require('../../hooks/useAIStatus');
-      useAIStatus.mockReturnValue({
+            (aiStatusHooks.useAIStatus as ReturnType<typeof vi.fn>).mockReturnValue({
         canUseAI: false,
         aiDisabledReason: null,
       });
@@ -52,8 +52,7 @@ describe('AIUnitPlanPanel - Strict Boolean Expression Tests', () => {
     });
 
     it('should handle undefined aiDisabledReason', () => {
-      const { useAIStatus } = require('../../hooks/useAIStatus');
-      useAIStatus.mockReturnValue({
+            (aiStatusHooks.useAIStatus as ReturnType<typeof vi.fn>).mockReturnValue({
         canUseAI: false,
         aiDisabledReason: undefined,
       });
@@ -64,8 +63,7 @@ describe('AIUnitPlanPanel - Strict Boolean Expression Tests', () => {
     });
 
     it('should handle empty string aiDisabledReason', () => {
-      const { useAIStatus } = require('../../hooks/useAIStatus');
-      useAIStatus.mockReturnValue({
+            (aiStatusHooks.useAIStatus as ReturnType<typeof vi.fn>).mockReturnValue({
         canUseAI: false,
         aiDisabledReason: '',
       });
@@ -76,8 +74,7 @@ describe('AIUnitPlanPanel - Strict Boolean Expression Tests', () => {
     });
 
     it('should display custom aiDisabledReason when provided', () => {
-      const { useAIStatus } = require('../../hooks/useAIStatus');
-      useAIStatus.mockReturnValue({
+            (aiStatusHooks.useAIStatus as ReturnType<typeof vi.fn>).mockReturnValue({
         canUseAI: false,
         aiDisabledReason: 'Custom reason for AI being disabled',
       });
@@ -90,8 +87,7 @@ describe('AIUnitPlanPanel - Strict Boolean Expression Tests', () => {
 
   describe('suggestion rationale handling', () => {
     it('should handle null rationale', () => {
-      const { useAIStatus } = require('../../hooks/useAIStatus');
-      useAIStatus.mockReturnValue({
+            (aiStatusHooks.useAIStatus as ReturnType<typeof vi.fn>).mockReturnValue({
         canUseAI: true,
         aiDisabledReason: null,
       });
@@ -106,8 +102,7 @@ describe('AIUnitPlanPanel - Strict Boolean Expression Tests', () => {
     });
 
     it('should handle undefined rationale', () => {
-      const { useAIStatus } = require('../../hooks/useAIStatus');
-      useAIStatus.mockReturnValue({
+            (aiStatusHooks.useAIStatus as ReturnType<typeof vi.fn>).mockReturnValue({
         canUseAI: true,
         aiDisabledReason: null,
       });
@@ -122,8 +117,7 @@ describe('AIUnitPlanPanel - Strict Boolean Expression Tests', () => {
     });
 
     it('should handle empty string rationale', () => {
-      const { useAIStatus } = require('../../hooks/useAIStatus');
-      useAIStatus.mockReturnValue({
+            (aiStatusHooks.useAIStatus as ReturnType<typeof vi.fn>).mockReturnValue({
         canUseAI: true,
         aiDisabledReason: null,
       });
@@ -140,8 +134,7 @@ describe('AIUnitPlanPanel - Strict Boolean Expression Tests', () => {
 
   describe('form validation', () => {
     it('should handle empty unit title and subject', () => {
-      const { useAIStatus } = require('../../hooks/useAIStatus');
-      useAIStatus.mockReturnValue({
+            (aiStatusHooks.useAIStatus as ReturnType<typeof vi.fn>).mockReturnValue({
         canUseAI: true,
         aiDisabledReason: null,
       });
@@ -153,8 +146,7 @@ describe('AIUnitPlanPanel - Strict Boolean Expression Tests', () => {
     });
 
     it('should enable generate button when unit title and subject are provided', () => {
-      const { useAIStatus } = require('../../hooks/useAIStatus');
-      useAIStatus.mockReturnValue({
+            (aiStatusHooks.useAIStatus as ReturnType<typeof vi.fn>).mockReturnValue({
         canUseAI: true,
         aiDisabledReason: null,
       });
@@ -168,8 +160,7 @@ describe('AIUnitPlanPanel - Strict Boolean Expression Tests', () => {
 
   describe('accessibility', () => {
     it('should have proper ARIA attributes for buttons', () => {
-      const { useAIStatus } = require('../../hooks/useAIStatus');
-      useAIStatus.mockReturnValue({
+            (aiStatusHooks.useAIStatus as ReturnType<typeof vi.fn>).mockReturnValue({
         canUseAI: true,
         aiDisabledReason: null,
       });
@@ -184,8 +175,7 @@ describe('AIUnitPlanPanel - Strict Boolean Expression Tests', () => {
 
   describe('component rendering', () => {
     it('should render basic structure', () => {
-      const { useAIStatus } = require('../../hooks/useAIStatus');
-      useAIStatus.mockReturnValue({
+            (aiStatusHooks.useAIStatus as ReturnType<typeof vi.fn>).mockReturnValue({
         canUseAI: true,
         aiDisabledReason: null,
       });
@@ -197,8 +187,7 @@ describe('AIUnitPlanPanel - Strict Boolean Expression Tests', () => {
     });
 
     it('should render disabled state when AI is unavailable', () => {
-      const { useAIStatus } = require('../../hooks/useAIStatus');
-      useAIStatus.mockReturnValue({
+            (aiStatusHooks.useAIStatus as ReturnType<typeof vi.fn>).mockReturnValue({
         canUseAI: false,
         aiDisabledReason: 'AI quota exceeded',
       });

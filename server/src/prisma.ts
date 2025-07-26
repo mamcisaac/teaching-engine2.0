@@ -79,7 +79,7 @@ export const prisma = new Proxy({} as InstanceType<typeof DatabasePrismaClient>,
   },
 });
 
-if (process.env.NODE_ENV !== 'production' && isTestEnvironment === false) {
+if (process.env.NODE_ENV !== 'production' && !isTestEnvironment) {
   globalForPrisma.prisma = getPrisma();
 }
 

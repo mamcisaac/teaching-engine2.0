@@ -4,6 +4,7 @@ import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { CurriculumExpectationsPage } from '../../pages/CurriculumExpectationsPage';
 import { renderWithAuth } from '../../test-utils';
+import * as etfoHooks from '../../hooks/useETFOPlanning';
 
 // Mock the ETFO planning hooks
 vi.mock('../../hooks/useETFOPlanning', () => ({
@@ -98,9 +99,8 @@ describe('CurriculumExpectationsPage', () => {
     mockNavigate.mockClear();
 
     // Setup mock implementations
-    const etfoHooks = require('../../hooks/useETFOPlanning');
     Object.entries(mockHooks).forEach(([key, mock]) => {
-      etfoHooks[key] = mock;
+      (etfoHooks as any)[key] = mock;
     });
 
     // Default mock returns

@@ -102,10 +102,10 @@ export function useUnitPlanForm({
     ...initialFormData,
     ...initialData,
     longRangePlanId: ((): string => {
-      if (longRangePlanId != null && longRangePlanId !== '') {
+      if (longRangePlanId !== '') {
         return longRangePlanId;
       }
-      if (initialData?.longRangePlanId != null && initialData.longRangePlanId !== '') {
+      if (initialData?.longRangePlanId !== undefined && initialData.longRangePlanId !== '') {
         return initialData.longRangePlanId;
       }
       return '';
@@ -113,15 +113,15 @@ export function useUnitPlanForm({
   }));
 
   // Auto-save functionality
-  const autoSaveData = (editingId != null && editingId !== '') ? formData : null;
+  const autoSaveData = (editingId !== null && editingId !== '') ? formData : null;
   const { lastSaved, isSaving, hasUnsavedChanges, saveNow } = useAutoSave({
     data: autoSaveData,
     saveFn: async (data) => {
-      if ((editingId != null && editingId !== '') && data != null && onSave != null) {
+      if ((editingId !== null && editingId !== '') && data !== null && onSave !== undefined) {
         await onSave(data);
       }
     },
-    enabled: (editingId != null && editingId !== '') && autoSaveData !== null && (onSave != null),
+    enabled: (editingId !== null && editingId !== '') && autoSaveData !== null && (onSave !== undefined),
     delay: 30000, // 30 seconds
   });
 

@@ -217,7 +217,7 @@ where.endDate = { lte: new Date(String(endDate)) };
       },
     });
 
-    if (longRangePlan == null) {
+    if (longRangePlan === null) {
       throw new Error('Long range plan not found or access denied');
     }
 
@@ -257,7 +257,7 @@ where.endDate = { lte: new Date(String(endDate)) };
       technologyIntegration: data.technologyIntegration,
       communityConnections: data.communityConnections,
       // Add expectations relationship if provided
-      ...(expectations != null &&
+      ...(expectations !== null &&
         Array.isArray(expectations) &&
         expectations.length > 0 ? {
           expectations: {
@@ -270,7 +270,7 @@ where.endDate = { lte: new Date(String(endDate)) };
           },
         } : {}),
       // Add resources relationship if provided
-      ...(resources != null &&
+      ...(resources !== null &&
         Array.isArray(resources) &&
         resources.length > 0 ? {
           resources: {
@@ -309,7 +309,7 @@ where.endDate = { lte: new Date(String(endDate)) };
       },
     });
 
-    if (unitPlan == null) {
+    if (unitPlan === null) {
       throw new Error('Unit plan not found or access denied');
     }
 
@@ -325,10 +325,10 @@ where.endDate = { lte: new Date(String(endDate)) };
     });
 
     // Handle date conversion
-    if (data.startDate != null && data.startDate !== '') {
+    if (data.startDate !== null && data.startDate !== '') {
 updateData.startDate = new Date(data.startDate);
 }
-    if (data.endDate != null && data.endDate !== '') {
+    if (data.endDate !== null && data.endDate !== '') {
 updateData.endDate = new Date(data.endDate);
 }
 
@@ -336,7 +336,7 @@ updateData.endDate = new Date(data.endDate);
       where: { id },
       data: {
         ...updateData,
-        ...(expectationIds != null && Array.isArray(expectationIds) ? {
+        ...(expectationIds !== null && Array.isArray(expectationIds) ? {
           expectations: {
             deleteMany: {},
             create: expectationIds.map((expectationId: unknown) => ({
@@ -363,7 +363,7 @@ updateData.endDate = new Date(data.endDate);
       },
     });
 
-    if (unitPlan == null) {
+    if (unitPlan === null) {
       return false;
     }
 
@@ -383,7 +383,7 @@ updateData.endDate = new Date(data.endDate);
       },
     });
 
-    if (unitPlan == null) {
+    if (unitPlan === null) {
       throw new Error('Unit plan not found or access denied');
     }
 
@@ -407,7 +407,7 @@ updateData.endDate = new Date(data.endDate);
       },
     });
 
-    if (resource == null) {
+    if (resource === null) {
       return false;
     }
 
@@ -444,7 +444,7 @@ updateData.endDate = new Date(data.endDate);
       }),
     ]);
 
-    if (sourceUnitPlan == null || targetLongRangePlan == null) {
+    if (sourceUnitPlan === null || targetLongRangePlan === null) {
       throw new Error('Source unit plan or target long range plan not found');
     }
 
@@ -539,7 +539,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId == null) {
+      if (userId === null) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -585,7 +585,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId == null) {
+      if (userId === null) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -613,7 +613,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId == null) {
+      if (userId === null) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -640,7 +640,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId == null) {
+      if (userId === null) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }

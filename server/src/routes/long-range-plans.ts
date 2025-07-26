@@ -111,7 +111,7 @@ router.get('/:id', async (req: Request, res, _next) => {
       },
     });
 
-    if (!plan) {
+    if (plan === null || plan === undefined) {
       res.status(404).json({ error: 'Long-range plan not found' });
       return;
     }
@@ -214,7 +214,7 @@ router.put('/:id', validate(longRangePlanUpdateSchema), async (req: Request, res
       where: { id: req.params.id, userId },
     });
 
-    if (!existing) {
+    if (existing === null || existing === undefined) {
       res.status(404).json({ error: 'Long-range plan not found' });
       return;
     }
@@ -278,7 +278,7 @@ router.put('/:id', validate(longRangePlanUpdateSchema), async (req: Request, res
 router.delete('/:id', async (req: Request, res, _next) => {
   try {
     const userId = req.user.id;
-    if (!userId) {
+    if (userId === null || userId === undefined) {
       res.status(401).json({ error: 'Unauthorized' });
       return;
     }
@@ -291,7 +291,7 @@ router.delete('/:id', async (req: Request, res, _next) => {
       },
     });
 
-    if (!plan) {
+    if (plan === null || plan === undefined) {
       res.status(404).json({ error: 'Long-range plan not found' });
       return;
     }
@@ -317,14 +317,14 @@ router.delete('/:id', async (req: Request, res, _next) => {
 router.post('/ai-draft', async (req: Request, res, _next) => {
   try {
     const userId = req.user.id;
-    if (!userId) {
+    if (userId === null || userId === undefined) {
       res.status(401).json({ error: 'Unauthorized' });
       return;
     }
 
     const { expectationIds, subject, grade, academicYear } = req.body;
 
-    if (!expectationIds || !Array.isArray(expectationIds) || expectationIds.length === 0) {
+    if (expectationIds === null || expectationIds === undefined || !Array.isArray(expectationIds) || expectationIds.length === 0) {
       res.status(400).json({ error: 'Expectation IDs are required' });
       return;
     }
@@ -360,7 +360,7 @@ router.post('/ai-draft', async (req: Request, res, _next) => {
 router.post('/:id/ai-suggestions', async (req: Request, res, _next) => {
   try {
     const userId = req.user.id;
-    if (!userId) {
+    if (userId === null || userId === undefined) {
       res.status(401).json({ error: 'Unauthorized' });
       return;
     }
@@ -372,7 +372,7 @@ router.post('/:id/ai-suggestions', async (req: Request, res, _next) => {
       },
     });
 
-    if (!plan) {
+    if (plan === null || plan === undefined) {
       res.status(404).json({ error: 'Long-range plan not found' });
       return;
     }

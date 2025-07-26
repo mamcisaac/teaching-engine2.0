@@ -107,40 +107,40 @@ export class AIActivityGeneratorService {
   private _buildGenerationPrompt(params: GenerationParams): string {
     let prompt = 'Generate an engaging educational activity.\n\n';
 
-    if (params.lessonContext != null) {
+    if (params.lessonContext !== undefined) {
       const context = params.lessonContext;
       prompt += 'Lesson Context:\n';
-      if (context.title != null && context.title !== '') {
+      if (context.title !== undefined && context.title !== '') {
 prompt += `Title: ${context.title}\n`;
 }
-      if (context.grade != null && context.grade !== 0) {
+      if (context.grade !== undefined && context.grade !== 0) {
 prompt += `Grade: ${context.grade}\n`;
 }
-      if (context.subject != null && context.subject !== '') {
+      if (context.subject !== undefined && context.subject !== '') {
 prompt += `Subject: ${context.subject}\n`;
 }
-      if (context.learningGoals != null && context.learningGoals.length > 0) {
+      if (context.learningGoals !== undefined && context.learningGoals.length > 0) {
 prompt += `Learning Goals: ${context.learningGoals.join(', ')}\n`;
 }
-      if (context.duration != null && context.duration !== 0) {
+      if (context.duration !== undefined && context.duration !== 0) {
 prompt += `Duration: ${context.duration} minutes\n`;
 }
-      if (context.section != null) {
+      if (context.section !== undefined) {
 prompt += `Section: ${context.section}\n`;
 }
       prompt += '\n';
     }
 
-    if (params.specificRequirements != null) {
+    if (params.specificRequirements !== undefined) {
       const reqs = params.specificRequirements;
       prompt += 'Requirements:\n';
-      if (reqs.activityType != null && reqs.activityType !== '') {
+      if (reqs.activityType !== undefined && reqs.activityType !== '') {
 prompt += `Activity Type: ${reqs.activityType}\n`;
 }
-      if (reqs.materials != null && reqs.materials.length > 0) {
+      if (reqs.materials !== undefined && reqs.materials.length > 0) {
 prompt += `Materials Available: ${reqs.materials.join(', ')}\n`;
 }
-      if (reqs.groupSize != null && reqs.groupSize !== '') {
+      if (reqs.groupSize !== undefined && reqs.groupSize !== '') {
 prompt += `Group Size: ${reqs.groupSize}\n`;
 }
       if (reqs.language != null && reqs.language !== '') {

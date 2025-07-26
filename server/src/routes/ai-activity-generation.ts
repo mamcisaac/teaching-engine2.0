@@ -1,5 +1,5 @@
 import debug from 'debug';
-import type { Request, Response } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
 
@@ -7,6 +7,12 @@ import { logger } from '../logger';
 import { authMiddleware } from '../middleware/auth';
 import { AIActivityGeneratorService } from '../services/aiActivityGeneratorService';
 const log = debug('server:ai-activity:error');
+
+// Async middleware wrapper to handle async route handlers
+const asyncMiddleware = (fn: (req: Request, res: Response, next: NextFunction) => Promise<void>) => 
+  (req: Request, res: Response, next: NextFunction): void => {
+    void Promise.resolve(fn(req, res, next)).catch(next);
+  };
 // ActivityDiscoveryService removed - over-engineered for single-teacher use
 
 const router = Router();
@@ -87,9 +93,9 @@ const saveActivitySchema = z.object({
  */
 router.post(
   '/generate',
-  authMiddleware,
+  asyncMiddleware(authMiddleware),
   aiRateLimit,
-  async (req: Request, res: Response) => {
+  asyncMiddleware(async (req: Request, res: Response, _next: NextFunction) => {
     try {
       const params = generateActivitySchema.parse(req.body);
       const searchResults = undefined;
@@ -116,7 +122,7 @@ router.post(
       });
       return;
     }
-  },
+  }),
 );
 
 /**
@@ -124,9 +130,9 @@ router.post(
  */
 router.post(
   '/generate-variations',
-  authMiddleware,
+  asyncMiddleware(authMiddleware),
   aiRateLimit,
-  async (req: Request, res: Response) => {
+  asyncMiddleware(async (req: Request, res: Response, _next: NextFunction) => {
     try {
       const params = generateActivitySchema.parse(req.body);
       const count = Math.min((req.body as { count?: number }).count || 3, 5); // Max 5 variations
@@ -161,7 +167,7 @@ router.post(
       });
       return;
     }
-  },
+  }),
 );
 
 // Activity enhancement route removed - over-engineered for single-teacher use
@@ -169,7 +175,7 @@ router.post(
 /**
  * Save a generated activity
  */
-router.post('/save', authMiddleware, async (req: Request, res: Response) => {
+router.post('/save', asyncMiddleware(authMiddleware), asyncMiddleware(async (req: Request, res: Response, _next: NextFunction) => {
   try {
     const params = saveActivitySchema.parse(req.body);
 
@@ -218,6 +224,6 @@ router.post('/save', authMiddleware, async (req: Request, res: Response) => {
     });
     return;
   }
-});
+}));
 
 export { router };

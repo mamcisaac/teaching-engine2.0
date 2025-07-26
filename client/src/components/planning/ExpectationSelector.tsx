@@ -145,7 +145,7 @@ return expectations;
             aria-expanded={open}
             className={cn(
               "w-full justify-between",
-              error != null && error !== "" ? "border-red-500 focus:ring-red-500 focus:border-red-500" : "",
+              error !== "" ? "border-red-500 focus:ring-red-500 focus:border-red-500" : "",
               className
             )}
             disabled={disabled}
@@ -334,7 +334,7 @@ return expectations;
       ) : null}
 
       {/* Error display */}
-      {error != null && error !== "" ? (
+      {error !== "" ? (
         <p className="mt-1 text-sm text-red-600">{error}</p>
       ) : null}
     </div>

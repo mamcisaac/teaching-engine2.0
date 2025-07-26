@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 
-import { isArray, isString } from '../../../shared/utils/typeGuards';
+import { isArray, isString } from '../utils/typeGuards';
+
 import { useAutoSave, useUnsavedChangesWarning } from './useAutoSave';
 
 export interface LessonPlanFormData {
@@ -256,9 +257,8 @@ export function useETFOLessonPlanForm({
       subNotes: lesson.subNotes ?? '',
       expectationIds: isArray(lesson.expectations) 
         ? lesson.expectations
-            .filter(e => e && typeof e === 'object' && 'expectation' in e && e.expectation && typeof e.expectation === 'object' && 'id' in e.expectation)
+            .filter(e => typeof e === 'object' && 'expectation' in e && 'id' in e.expectation)
             .map((e) => String((e.expectation as { id: unknown }).id))
-            .filter(id => isString(id))
         : [],
     });
   }, [])

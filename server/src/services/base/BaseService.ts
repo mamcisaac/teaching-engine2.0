@@ -176,7 +176,7 @@ export abstract class BaseService {
    * Update operation-specific metrics
    */
   private updateOperationMetrics(operationName: string, duration: number): void {
-    if (this.metrics.operations[operationName] == null) {
+    if (this.metrics.operations[operationName] === undefined) {
       this.metrics.operations[operationName] = {
         count: 0,
         totalDuration: 0,

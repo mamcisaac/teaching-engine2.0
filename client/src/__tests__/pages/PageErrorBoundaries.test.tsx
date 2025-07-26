@@ -10,6 +10,10 @@ import { screen } from '@testing-library/react';
 import { vi } from 'vitest';
 import { renderWithAuth } from '../../test-utils';
 import React from 'react';
+import * as reactQuery from '@tanstack/react-query';
+import * as etfoHooks from '../../hooks/useETFOPlanning';
+import * as templateHooks from '../../hooks/useTemplates';
+import * as newsletterHooks from '../../hooks/useNewsletterData';
 
 // Import all page components
 import { CurriculumImportPage } from '../../pages/CurriculumImportPage';
@@ -154,27 +158,25 @@ describe('Page Error Boundaries and Loading States', () => {
     vi.clearAllMocks();
 
     // Reset all mocks to successful states by default
-    const { useQuery, useMutation, useQueryClient } = require('@tanstack/react-query');
-    useQuery.mockReturnValue({
+    (reactQuery.useQuery as any).mockReturnValue({
       data: [],
       isLoading: false,
       error: null,
     });
-    useMutation.mockReturnValue({
+    (reactQuery.useMutation as any).mockReturnValue({
       mutate: vi.fn(),
       mutateAsync: vi.fn(),
       isPending: false,
       error: null,
     });
-    useQueryClient.mockReturnValue({
+    (reactQuery.useQueryClient as any).mockReturnValue({
       invalidateQueries: vi.fn(),
     });
   });
 
   describe('Loading States', () => {
     it('handles loading state in LongRangePlanPage', () => {
-      const { useQuery } = require('@tanstack/react-query');
-      useQuery.mockReturnValue({
+      (reactQuery.useQuery as any).mockReturnValue({
         data: null,
         isLoading: true,
         error: null,
@@ -186,8 +188,7 @@ describe('Page Error Boundaries and Loading States', () => {
     });
 
     it('handles loading state in CurriculumExpectationsPage', () => {
-      const etfoHooks = require('../../hooks/useETFOPlanning');
-      etfoHooks.useCurriculumExpectations.mockReturnValue({
+      (etfoHooks.useCurriculumExpectations as any).mockReturnValue({
         data: [],
         isLoading: true,
         error: null,
@@ -199,8 +200,7 @@ describe('Page Error Boundaries and Loading States', () => {
     });
 
     it('handles loading state in TemplatesPage', () => {
-      const templateHooks = require('../../hooks/useTemplates');
-      templateHooks.useTemplates.mockReturnValue({
+      (templateHooks.useTemplates as any).mockReturnValue({
         data: null,
         isLoading: true,
         error: null,
@@ -212,8 +212,7 @@ describe('Page Error Boundaries and Loading States', () => {
     });
 
     it('handles loading state in ParentNewsletterPage', () => {
-      const newsletterHooks = require('../../hooks/useNewsletterData');
-      newsletterHooks.useStudents.mockReturnValue({
+      (newsletterHooks.useStudents as any).mockReturnValue({
         data: [],
         isLoading: true,
       });
@@ -226,8 +225,7 @@ describe('Page Error Boundaries and Loading States', () => {
 
   describe('Error States', () => {
     it('handles API error in CurriculumExpectationsPage', () => {
-      const etfoHooks = require('../../hooks/useETFOPlanning');
-      etfoHooks.useCurriculumExpectations.mockReturnValue({
+      (etfoHooks.useCurriculumExpectations as any).mockReturnValue({
         data: [],
         isLoading: false,
         error: new Error('Failed to load expectations'),
@@ -241,8 +239,7 @@ describe('Page Error Boundaries and Loading States', () => {
     });
 
     it('handles API error in TemplatesPage', () => {
-      const templateHooks = require('../../hooks/useTemplates');
-      templateHooks.useTemplates.mockReturnValue({
+      (templateHooks.useTemplates as any).mockReturnValue({
         data: null,
         isLoading: false,
         error: new Error('Failed to load templates'),
@@ -254,8 +251,7 @@ describe('Page Error Boundaries and Loading States', () => {
     });
 
     it('handles mutation error in QuickLessonPage', async () => {
-      const etfoHooks = require('../../hooks/useETFOPlanning');
-      etfoHooks.useCreateETFOLessonPlan.mockReturnValue({
+      (etfoHooks.useCreateETFOLessonPlan as any).mockReturnValue({
         mutateAsync: vi.fn().mockRejectedValue(new Error('Creation failed')),
         isPending: false,
       });
@@ -267,8 +263,7 @@ describe('Page Error Boundaries and Loading States', () => {
 
   describe('Empty States', () => {
     it('handles empty state in LongRangePlanPage', () => {
-      const { useQuery } = require('@tanstack/react-query');
-      useQuery.mockReturnValue({
+      (reactQuery.useQuery as any).mockReturnValue({
         data: [],
         isLoading: false,
         error: null,
@@ -280,8 +275,7 @@ describe('Page Error Boundaries and Loading States', () => {
     });
 
     it('handles empty state in TemplatesPage', () => {
-      const templateHooks = require('../../hooks/useTemplates');
-      templateHooks.useTemplates.mockReturnValue({
+      (templateHooks.useTemplates as any).mockReturnValue({
         data: { templates: [], total: 0 },
         isLoading: false,
         error: null,
@@ -293,8 +287,7 @@ describe('Page Error Boundaries and Loading States', () => {
     });
 
     it('handles empty state in CurriculumExpectationsPage', () => {
-      const etfoHooks = require('../../hooks/useETFOPlanning');
-      etfoHooks.useCurriculumExpectations.mockReturnValue({
+      (etfoHooks.useCurriculumExpectations as any).mockReturnValue({
         data: [],
         isLoading: false,
         error: null,
@@ -322,8 +315,7 @@ describe('Page Error Boundaries and Loading States', () => {
 
   describe('Network Error Handling', () => {
     it('handles network errors gracefully', () => {
-      const { useQuery } = require('@tanstack/react-query');
-      useQuery.mockReturnValue({
+      (reactQuery.useQuery as any).mockReturnValue({
         data: null,
         isLoading: false,
         error: new Error('Network Error'),
@@ -396,7 +388,6 @@ describe('Page Error Boundaries and Loading States', () => {
 
   describe('Performance Under Load', () => {
     it('handles large datasets gracefully', () => {
-      const templateHooks = require('../../hooks/useTemplates');
       const largeDataset = Array.from({ length: 1000 }, (_, i) => ({
         id: `template-${i}`,
         title: `Template ${i}`,
@@ -408,7 +399,7 @@ describe('Page Error Boundaries and Loading States', () => {
         usageCount: 10,
       }));
 
-      templateHooks.useTemplates.mockReturnValue({
+      (templateHooks.useTemplates as any).mockReturnValue({
         data: { templates: largeDataset, total: largeDataset.length },
         isLoading: false,
         error: null,

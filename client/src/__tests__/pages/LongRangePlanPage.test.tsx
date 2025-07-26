@@ -4,6 +4,8 @@ import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { LongRangePlanPage } from '../../pages/LongRangePlanPage';
 import { renderWithAuth } from '../../test-utils';
+import * as reactQuery from '@tanstack/react-query';
+import * as aiPlanningHooks from '../../hooks/useAIPlanningAssistant';
 
 // Mock the useQuery and useMutation hooks
 vi.mock('@tanstack/react-query', () => ({
@@ -133,11 +135,9 @@ describe('LongRangePlanPage', () => {
     mockNavigate.mockClear();
 
     // Setup query and mutation mocks
-    const { useQuery, useMutation, useQueryClient } = require('@tanstack/react-query');
-
-    useQuery.mockImplementation(mockUseQuery);
-    useMutation.mockImplementation(mockUseMutation);
-    useQueryClient.mockImplementation(mockUseQueryClient);
+    (reactQuery.useQuery as any).mockImplementation(mockUseQuery);
+    (reactQuery.useMutation as any).mockImplementation(mockUseMutation);
+    (reactQuery.useQueryClient as any).mockImplementation(mockUseQueryClient);
 
     // Default successful state
     mockUseQuery.mockReturnValue({
@@ -359,8 +359,7 @@ describe('LongRangePlanPage', () => {
       suggestions: ['Develop number sense', 'Understand place value'],
     });
 
-    const { useAIPlanningAssistant } = require('../../hooks/useAIPlanningAssistant');
-    useAIPlanningAssistant.mockReturnValue({
+    (aiPlanningHooks.useAIPlanningAssistant as any).mockReturnValue({
       generateLongRangeGoals: {
         mutateAsync: mockGenerateGoals,
         error: null,

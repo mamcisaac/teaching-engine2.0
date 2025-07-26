@@ -58,14 +58,14 @@ router.post(
   upload.single('file') as unknown as express.RequestHandler,
   async (req: Request, res: Response) => {
     try {
-      if (req.file == null) {
+      if (!req.file) {
         res.status(400).json({
           error: 'No file uploaded',
         });
         return;
       }
 
-      if (req.user?.id == null) {
+      if (!req.user?.id) {
         res.status(401).json({
           error: 'User not authenticated',
         });
@@ -81,7 +81,7 @@ router.post(
       }
 
       // Validate file buffer is not null
-      if (req.file.buffer === null || req.file.buffer.length === 0) {
+      if (!req.file.buffer || req.file.buffer.length === 0) {
         res.status(400).json({
           error: 'Invalid file content',
         });
@@ -101,7 +101,7 @@ router.post(
         sourceFormat = 'csv';
       }
 
-      if (req.user == null) {
+      if (!req.user) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -136,14 +136,14 @@ router.post('/parse', asyncHandler(async (req: AuthenticatedRequest, res: Respon
   try {
     const { sessionId, useAiExtraction } = req.body;
 
-    if (sessionId == null || sessionId === '') {
+    if (!sessionId || sessionId === '') {
       res.status(400).json({
         error: 'Session ID is required',
       });
       return;
     }
 
-    if (!req.user?.id) {
+    if (req.user?.id === null || req.user?.id === undefined) {
       res.status(401).json({
         error: 'User not authenticated',
       });
@@ -177,14 +177,14 @@ router.post('/import-preset', asyncHandler(async (req: Request, res: Response) =
   try {
     const { presetId } = req.body;
 
-    if (presetId == null || presetId === '') {
+    if (!presetId || presetId === '') {
       res.status(400).json({
         error: 'Preset ID is required',
       });
       return;
     }
 
-    if (!req.user?.id) {
+    if (req.user?.id === null || req.user?.id === undefined) {
       res.status(401).json({
         error: 'User not authenticated',
       });
@@ -214,7 +214,7 @@ router.get('/:id/status', asyncHandler(async (req: Request, res: Response) => {
   try {
     const importId = req.params.id;
 
-    if (!req.user?.id) {
+    if (req.user?.id === null || req.user?.id === undefined) {
       res.status(401).json({
         error: 'User not authenticated',
       });
@@ -223,7 +223,7 @@ router.get('/:id/status', asyncHandler(async (req: Request, res: Response) => {
 
     const status = await curriculumImportService.getImportProgress(importId);
 
-    if (status === null) {
+    if (!status) {
       res.status(404).json({
         error: 'Import not found',
       });
@@ -256,7 +256,7 @@ router.post('/:id/confirm', asyncHandler(async (req: Request, res: Response) => 
     // Check if import exists and is ready
     const progress = await curriculumImportService.getImportProgress(importId);
 
-    if (progress === null) {
+    if (!progress) {
       res.status(404).json({
         error: 'Import not found',
       });
@@ -291,7 +291,7 @@ router.post('/:id/confirm', asyncHandler(async (req: Request, res: Response) => 
 // GET /api/curriculum/import/history - Get user's import history
 router.get('/history', async (req: Request, res: Response): Promise<void> => {
   try {
-    if (!req.user?.id) {
+    if (req.user?.id === null || req.user?.id === undefined) {
       res.status(401).json({
         error: 'User not authenticated',
       });
@@ -320,7 +320,7 @@ router.delete('/:id', async (req: Request, res: Response): Promise<void> => {
   try {
     const importId = req.params.id;
 
-    if (!req.user?.id) {
+    if (req.user?.id === null || req.user?.id === undefined) {
       res.status(401).json({
         error: 'User not authenticated',
       });
@@ -329,7 +329,7 @@ router.delete('/:id', async (req: Request, res: Response): Promise<void> => {
 
     const result = await curriculumImportService.cancelImport(importId);
 
-    if (result === null) {
+    if (!result) {
       res.status(404).json({
         error: 'Import not found',
       });
@@ -351,12 +351,12 @@ router.post('/start', async (req: Request, res: Response): Promise<void> => {
   try {
     const { grade, subject, sourceFormat } = req.body;
 
-    if (grade == null || grade === '' || subject == null || subject === '' || sourceFormat == null || sourceFormat === '') {
+    if (!grade || grade === '' || !subject || subject === '' || !sourceFormat || sourceFormat === '') {
       res.status(400).json({ error: 'Missing required fields: grade, subject, sourceFormat' });
       return;
     }
 
-    if (!req.user?.id) {
+    if (req.user?.id === null || req.user?.id === undefined) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
@@ -382,7 +382,7 @@ router.get('/:importId/progress', async (req: Request, res: Response): Promise<v
     const { importId } = req.params;
     const progress = await curriculumImportService.getImportProgress(importId);
 
-    if (progress === null) {
+    if (!progress) {
       res.status(404).json({ error: 'Import session not found' });
       return;
     }
@@ -401,7 +401,7 @@ router.post('/:importId/cancel', async (req: Request, res: Response): Promise<vo
     const { importId } = req.params;
     const success = await curriculumImportService.cancelImport(importId);
 
-    if (success === null) {
+    if (!success) {
       res.status(404).json({ error: 'Import session not found or already completed' });
       return;
     }
@@ -419,7 +419,7 @@ router.post('/:id', async (req: Request, res: Response): Promise<void> => {
   try {
     const importId = req.params.id;
 
-    if (!req.user?.id) {
+    if (req.user?.id === null || req.user?.id === undefined) {
       res.status(401).json({
         error: 'User not authenticated',
       });
@@ -429,7 +429,7 @@ router.post('/:id', async (req: Request, res: Response): Promise<void> => {
     // Get the import session
     const importRecord = await curriculumImportService.getImportProgress(importId);
 
-    if (importRecord === null) {
+    if (!importRecord) {
       res.status(404).json({
         error: 'Import session not found',
       });

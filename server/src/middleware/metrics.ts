@@ -240,7 +240,7 @@ export function httpMetricsMiddleware(req: Request, res: Response, next: NextFun
     metricsStore.observeHistogram('http_request_duration_ms', duration, {
       method: req.method,
       status_code: res.statusCode.toString(),
-      path: ((req.route as Record<string, unknown>)?.path as string) || req.path,
+      path: ((req.route as Record<string, unknown>).path as string) || req.path,
     });
 
     // Record errors
@@ -248,7 +248,7 @@ export function httpMetricsMiddleware(req: Request, res: Response, next: NextFun
       metricsStore.incrementCounter('http_errors_total', {
         method: req.method,
         status_code: res.statusCode.toString(),
-        path: ((req.route as Record<string, unknown>)?.path as string) || req.path,
+        path: ((req.route as Record<string, unknown>).path as string) || req.path,
       });
     }
 

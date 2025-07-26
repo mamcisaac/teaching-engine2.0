@@ -4,6 +4,7 @@ import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { HelpPage } from '../../pages/HelpPage';
 import { renderWithAuth } from '../../test-utils';
+import * as helpHooks from '../../hooks/useHelp';
 
 // Mock the help context
 const mockHelpContext = {
@@ -355,8 +356,7 @@ describe('HelpPage', () => {
   it('handles empty search results gracefully', () => {
     mockHelpContext.state.searchQuery = 'nonexistent topic';
 
-    const { useHelpContent } = require('../../hooks/useHelp');
-    useHelpContent.mockReturnValue({
+    (helpHooks.useHelpContent as any).mockReturnValue({
       filteredCount: 0,
       totalCount: 10,
     });

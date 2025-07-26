@@ -3,6 +3,7 @@ import React from 'react';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 
 import { AIWeeklyPlanModal } from '../AIWeeklyPlanModal';
+// import * as weeklyPlanHooks from '../../../hooks/useWeeklyPlanMutation'; // Hook doesn't exist
 
 // Mock dependencies
 vi.mock('../../../hooks/useAIStatus', () => ({
@@ -12,12 +13,15 @@ vi.mock('../../../hooks/useAIStatus', () => ({
   }),
 }));
 
+// Mock useWeeklyPlanMutation since the hook doesn't exist
+const mockUseWeeklyPlanMutation = vi.fn(() => ({
+  mutate: vi.fn(),
+  isLoading: false,
+  error: null,
+}));
+
 vi.mock('../../../hooks/useWeeklyPlanMutation', () => ({
-  useWeeklyPlanMutation: () => ({
-    mutate: vi.fn(),
-    isLoading: false,
-    error: null,
-  }),
+  useWeeklyPlanMutation: mockUseWeeklyPlanMutation,
 }));
 
 describe('AIWeeklyPlanModal - Strict Boolean Expression Tests', () => {
@@ -33,8 +37,7 @@ describe('AIWeeklyPlanModal - Strict Boolean Expression Tests', () => {
 
   describe('error handling', () => {
     it('should handle API error with null message', () => {
-      const { useWeeklyPlanMutation } = require('../../../hooks/useWeeklyPlanMutation');
-      useWeeklyPlanMutation.mockReturnValue({
+            mockUseWeeklyPlanMutation.mockReturnValue({
         mutate: vi.fn(),
         isLoading: false,
         error: {
@@ -53,8 +56,7 @@ describe('AIWeeklyPlanModal - Strict Boolean Expression Tests', () => {
     });
 
     it('should handle API error with undefined message', () => {
-      const { useWeeklyPlanMutation } = require('../../../hooks/useWeeklyPlanMutation');
-      useWeeklyPlanMutation.mockReturnValue({
+            mockUseWeeklyPlanMutation.mockReturnValue({
         mutate: vi.fn(),
         isLoading: false,
         error: {
@@ -73,8 +75,7 @@ describe('AIWeeklyPlanModal - Strict Boolean Expression Tests', () => {
     });
 
     it('should handle API error with empty string message', () => {
-      const { useWeeklyPlanMutation } = require('../../../hooks/useWeeklyPlanMutation');
-      useWeeklyPlanMutation.mockReturnValue({
+            mockUseWeeklyPlanMutation.mockReturnValue({
         mutate: vi.fn(),
         isLoading: false,
         error: {
@@ -93,8 +94,7 @@ describe('AIWeeklyPlanModal - Strict Boolean Expression Tests', () => {
     });
 
     it('should handle API error with valid message', () => {
-      const { useWeeklyPlanMutation } = require('../../../hooks/useWeeklyPlanMutation');
-      useWeeklyPlanMutation.mockReturnValue({
+            mockUseWeeklyPlanMutation.mockReturnValue({
         mutate: vi.fn(),
         isLoading: false,
         error: {

@@ -115,11 +115,11 @@ export const inputSanitizationMiddleware = (
     req.body = sanitize(req.body);
   }
 
-  if (req.query != null) {
+  if (req.query !== null) {
     req.query = sanitize(req.query) as ParsedQs;
   }
 
-  if (req.params != null) {
+  if (req.params !== null) {
     req.params = sanitize(req.params) as Record<string, string>;
   }
 
@@ -219,10 +219,10 @@ return;
     if (req.body !== null && req.body !== undefined) {
 checkObject(req.body);
 }
-    if (req.query != null) {
+    if (req.query !== null) {
 checkObject(req.query);
 }
-    if (req.params != null) {
+    if (req.params !== null) {
 checkObject(req.params);
 }
   } catch (_error: unknown) {

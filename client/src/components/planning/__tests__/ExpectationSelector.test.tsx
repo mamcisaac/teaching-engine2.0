@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { ExpectationSelector } from '../ExpectationSelector';
+import * as etfoHooks from '../../../hooks/useETFOPlanning';
 
 // Mock the hook
 vi.mock('../../../hooks/useETFOPlanning', () => ({
@@ -63,11 +64,10 @@ const renderWithQueryClient = (ui: React.ReactElement) => {
 
 describe('ExpectationSelector', () => {
   const mockOnChange = vi.fn();
-  const mockUseCurriculumExpectations = require('../../../hooks/useETFOPlanning').useCurriculumExpectations;
 
   beforeEach(() => {
     vi.clearAllMocks();
-    mockUseCurriculumExpectations.mockReturnValue({
+    (etfoHooks.useCurriculumExpectations as any).mockReturnValue({
       data: mockExpectations,
       isLoading: false,
     });
@@ -127,7 +127,7 @@ describe('ExpectationSelector', () => {
 
   describe('Loading State', () => {
     it('should show loading message when data is loading', async () => {
-      mockUseCurriculumExpectations.mockReturnValue({
+      (etfoHooks.useCurriculumExpectations as ReturnType<typeof vi.fn>).mockReturnValue({
         data: undefined,
         isLoading: true,
       });
@@ -414,7 +414,7 @@ describe('ExpectationSelector', () => {
         type: undefined,
       }];
       
-      mockUseCurriculumExpectations.mockReturnValue({
+      (etfoHooks.useCurriculumExpectations as ReturnType<typeof vi.fn>).mockReturnValue({
         data: expectationsWithoutType,
         isLoading: false,
       });

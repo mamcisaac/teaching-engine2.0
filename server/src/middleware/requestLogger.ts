@@ -272,7 +272,7 @@ export function logSecurityEvent(
 
   requestLogger.security(event, {
     ...details,
-    ip: extendedReq.ip !== null && extendedReq.ip !== undefined && extendedReq.ip !== '' ? extendedReq.ip : extendedReq.connection.remoteAddress,
+    ip: (extendedReq.ip !== null && extendedReq.ip !== undefined && extendedReq.ip !== '') ? extendedReq.ip : extendedReq.connection.remoteAddress,
     userAgent: extendedReq.get('User-Agent'),
     method: extendedReq.method,
     url: extendedReq.url,
@@ -312,7 +312,7 @@ export function logAuditEvent(
   requestLogger.audit(operation, {
     ...details,
     userId: (extendedReq.user as { id?: unknown }).id,
-    ip: extendedReq.ip !== null && extendedReq.ip !== undefined && extendedReq.ip !== '' ? extendedReq.ip : extendedReq.connection.remoteAddress,
+    ip: (extendedReq.ip !== null && extendedReq.ip !== undefined && extendedReq.ip !== '') ? extendedReq.ip : extendedReq.connection.remoteAddress,
     timestamp: new Date().toISOString(),
   });
 }

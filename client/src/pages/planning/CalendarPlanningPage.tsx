@@ -198,7 +198,7 @@ export function CalendarPlanningPage(): JSX.Element {
             unitId: lesson.unitPlanId,
             lessonId: lesson.id,
             color:
-              SUBJECT_COLORS[(lesson.unitPlan.longRangePlan.subject !== '' ? lesson.unitPlan.longRangePlan.subject.toLowerCase() : 'default')] ||
+              SUBJECT_COLORS[(lesson.unitPlan?.longRangePlan?.subject !== '' && lesson.unitPlan?.longRangePlan?.subject != null ? lesson.unitPlan.longRangePlan.subject.toLowerCase() : 'default')] ||
               SUBJECT_COLORS.default,
             isEditable: true,
           },
@@ -243,7 +243,7 @@ export function CalendarPlanningPage(): JSX.Element {
 
     // Apply filters
     return allEvents.filter((event) => {
-      if (filters.subjects.length > 0 && event.metadata.subject !== '') {
+      if (filters.subjects.length > 0 && event.metadata?.subject != null && event.metadata.subject !== '') {
         if (!filters.subjects.includes(event.metadata.subject)) {
 return false;
 }
@@ -289,7 +289,7 @@ return false;
   // Handle event drop (drag and drop)
   const _handleEventDrop = useCallback(
     ({ event, start }: { event: CalendarViewEvent; start: Date }) => {
-      if (event.type === 'lesson' && event.metadata.lessonId !== '') {
+      if (event.type === 'lesson' && event.metadata?.lessonId != null && event.metadata.lessonId !== '') {
         updateLessonMutation.mutate({
           lessonId: event.metadata.lessonId,
           newDate: start,

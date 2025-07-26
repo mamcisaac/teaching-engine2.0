@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Toaster } from 'sonner';
 
 import { App } from './App';
+// import { TestApp as App } from './TestApp';
 import './index.css';
 // import logger from './utils/logger';
 import { errorReportingService } from './services/errorReportingService';
@@ -46,16 +47,19 @@ return false;
   },
 });
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-      <Toaster position="top-right" />
-    </QueryClientProvider>
-  </StrictMode>,
-);
+const rootElement = document.getElementById('root');
+if (rootElement) {
+  createRoot(rootElement).render(
+    <StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <App />
+          <Toaster position="top-right" richColors closeButton />
+        </BrowserRouter>
+      </QueryClientProvider>
+    </StrictMode>
+  );
+}
 
 // Register service worker - TEMPORARILY DISABLED FOR DEBUGGING
 // serviceWorkerRegistration.register({

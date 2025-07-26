@@ -135,9 +135,11 @@ export default defineConfig(({ mode }) => {
       react({
         // Use automatic JSX runtime
         jsxRuntime: 'automatic',
-        // Temporarily disable Babel plugins to fix build issues
+        // Keep minimal Babel configuration to avoid parser errors
         babel: {
-          plugins: [],
+          // Don't disable all plugins, use default behavior
+          babelrc: false,
+          configFile: false,
         },
         // Fast refresh is enabled by default in current plugin version
       }),
@@ -299,7 +301,6 @@ export default defineConfig(({ mode }) => {
       // Exclude local packages and problematic deps
       exclude: [
         '@teaching-engine/database',
-        '@sentry/react', // Load lazily
         'framer-motion', // Load lazily for animations
       ],
 

@@ -196,7 +196,7 @@ export class AIService extends BaseService {
 
           let lessonPlan = safeJsonParse<LessonPlan>(content);
           
-          if (lessonPlan == null) {
+          if (lessonPlan === null) {
             logger.warn('Failed to parse AI response, using fallback');
             lessonPlan = this.createFallbackLesson(input);
             lessonPlan.fallback = true;
@@ -256,7 +256,7 @@ export class AIService extends BaseService {
 
           let activity = safeJsonParse<Activity>(content);
           
-          if (activity == null) {
+          if (activity === null) {
             activity = this.createFallbackActivity(input);
           }
 
@@ -303,7 +303,7 @@ export class AIService extends BaseService {
 
           let parsedPlan = safeJsonParse<SubstitutePlan>(content);
           
-          if (parsedPlan == null) {
+          if (parsedPlan === null) {
             parsedPlan = this.createFallbackSubstitutePlan(input);
           }
 
@@ -350,7 +350,7 @@ export class AIService extends BaseService {
 
           let parsedNewsletter = safeJsonParse<Newsletter>(content);
           
-          if (parsedNewsletter == null) {
+          if (parsedNewsletter === null) {
             parsedNewsletter = this.createFallbackNewsletter(input);
           }
 
@@ -392,7 +392,7 @@ export class AIService extends BaseService {
     } catch (error: unknown) {
       logger.error('AI Service health check failed:', error instanceof Error ? error.message : String(error));
       // If we have a fallback key or test key, consider it healthy (fallback mode)
-      if (this.apiKey != null && this.apiKey !== '' && (this.apiKey.includes('test') || this.apiKey.includes('fallback'))) {
+      if (this.apiKey !== null && this.apiKey !== '' && (this.apiKey.includes('test') || this.apiKey.includes('fallback'))) {
         return true;
       }
       return false;
@@ -442,7 +442,7 @@ export class AIService extends BaseService {
       });
 
       const content = response.choices[0]?.message?.content;
-      if (content == null || content === '') {
+      if (content === null || content === '') {
         return this.createFallbackEnhancedLesson(input.lesson, input.enhancementType);
       }
 
@@ -493,7 +493,7 @@ export class AIService extends BaseService {
       });
 
       const content = response.choices[0]?.message?.content;
-      if (content == null || content === '') {
+      if (content === null || content === '') {
         return this.createFallbackQuestions(input);
       }
 
@@ -593,19 +593,19 @@ Return a JSON object with the structure: { title, dateRange, sections, footer }`
     const lessonPlan = this.ensureRecordObject(plan);
     
     // Ensure required fields exist
-    if (lessonPlan.title == null || lessonPlan.title === '') {
+    if (lessonPlan.title === null || lessonPlan.title === '') {
       lessonPlan.title = `${input.topic} - Grade ${input.grade} ${input.subject}`;
     }
-    if (lessonPlan.objectives == null || Array.isArray(lessonPlan.objectives) === false) {
+    if (lessonPlan.objectives === null || Array.isArray(lessonPlan.objectives) === false) {
       lessonPlan.objectives = ['Understand key concepts'];
     }
-    if (lessonPlan.activities == null || Array.isArray(lessonPlan.activities) === false) {
+    if (lessonPlan.activities === null || Array.isArray(lessonPlan.activities) === false) {
       lessonPlan.activities = [];
     }
-    if (lessonPlan.materials == null || Array.isArray(lessonPlan.materials) === false) {
+    if (lessonPlan.materials === null || Array.isArray(lessonPlan.materials) === false) {
       lessonPlan.materials = [];
     }
-    if (lessonPlan.duration == null || lessonPlan.duration === 0) {
+    if (lessonPlan.duration === null || lessonPlan.duration === 0) {
       lessonPlan.duration = input.duration;
     }
 

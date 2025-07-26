@@ -3,6 +3,7 @@ import React from 'react';
 import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 
 import { AIErrorBoundary, AIErrorType, isAIError, useAIErrorHandler, WithAIErrorBoundary } from '../AIErrorBoundary';
+import { logger } from '../../../utils/logger';
 
 // Mock gtag
 declare global {
@@ -62,7 +63,6 @@ describe('AIErrorBoundary', () => {
     });
 
     it('should handle context parameter in useAIErrorHandler correctly', () => {
-      const logger = require('../../../utils/logger').default;
       const handler = useAIErrorHandler();
       
       // Test with null context
@@ -433,7 +433,6 @@ describe('AIErrorBoundary', () => {
 
   describe('useAIErrorHandler hook', () => {
     it('should log errors with context', () => {
-      const logger = require('../../../utils/logger').default;
       const handler = useAIErrorHandler();
       
       handler.handleAIError(new Error('Test error'), 'TestComponent');

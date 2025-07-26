@@ -4,7 +4,6 @@ import { performance } from 'perf_hooks';
 // eslint-disable-next-line import/no-named-as-default
 import pino, { stdSerializers } from 'pino';
 
-import { isValidStringProperty, isObject } from './utils/typeGuards';
 
 // Log levels configuration - kept for future use
 // const _LOG_LEVELS = {
@@ -37,7 +36,7 @@ const pinoConfig: pino.LoggerOptions = {
         headers: {
           'user-agent': request.headers?.['user-agent'],
           'content-type': request.headers?.['content-type'],
-          authorization: request.headers?.authorization != null ? '[REDACTED]' : undefined,
+          authorization: request.headers?.authorization !== null ? '[REDACTED]' : undefined,
         },
         remoteAddress: request.remoteAddress ?? request.connection?.remoteAddress,
         remotePort: typeof request.remotePort === 'number' ? request.remotePort : request.connection?.remotePort,
@@ -67,7 +66,7 @@ const pinoConfig: pino.LoggerOptions = {
       const userData = user as { id?: string | number; email?: string; role?: string };
       return {
         id: userData.id,
-        email: userData.email != null
+        email: userData.email !== null && userData.email !== undefined
             ? `${userData.email.substring(0, 3)}***`
             : undefined,
         role: userData.role,
@@ -266,7 +265,7 @@ class EnhancedLogger {
       };
     }
 
-    if (obj != null && typeof obj === 'object') {
+    if (obj !== null && typeof obj === 'object') {
       return {
         ...(obj as Record<string, unknown>),
         requestId: this.requestId,
@@ -294,7 +293,7 @@ class EnhancedLogger {
     delete sanitized.apiKey;
 
     // Redact email addresses
-    if (sanitized.email != null) {
+    if (sanitized.email !== null && sanitized.email !== undefined) {
       sanitized.email = this.redactEmail(sanitized.email);
     }
 
@@ -305,7 +304,7 @@ class EnhancedLogger {
     const sanitized = { ...details };
 
     // Keep only necessary security info
-    if (sanitized.ip != null) {
+    if (sanitized.ip !== null && sanitized.ip !== undefined) {
       sanitized.ip = this.maskIP(sanitized.ip);
     }
 
@@ -357,7 +356,7 @@ class EnhancedLogger {
 return '[INVALID_EMAIL]';
 }
     const [local, domain] = email.split('@');
-    if (local == null || local === '' || domain == null || domain === '') {
+    if (!local || local === '' || !domain || domain === '') {
 return '[INVALID_EMAIL]';
 }
     return `${local.substring(0, 2)}***@${domain}`;

@@ -66,7 +66,7 @@ export class JSONParser extends CurriculumParser {
     }
 
     // Handle object with expectations
-    if (typeof data === 'object' && data != null) {
+    if (typeof data === 'object' && data !== null) {
       return this.parseCurriculumObject(data as JSONCurriculum);
     }
 
@@ -83,14 +83,14 @@ export class JSONParser extends CurriculumParser {
 
     for (const item of data) {
       const expectation = this.parseExpectation(item as JSONExpectation);
-      if (expectation != null) {
+      if (expectation !== null) {
         expectations.push(expectation);
         
         // Try to infer grade and subject
-        if (inferredGrade == null && expectation.grade != null) {
+        if (inferredGrade === null && expectation.grade !== null) {
           inferredGrade = expectation.grade;
         }
-        if (inferredSubject == null && expectation.subject != null) {
+        if (inferredSubject === null && expectation.subject !== null) {
           inferredSubject = expectation.subject;
         }
       }
@@ -128,7 +128,7 @@ export class JSONParser extends CurriculumParser {
       data.standards ??
       this.findExpectationsArray(data);
 
-    if (expectationsList == null || !Array.isArray(expectationsList)) {
+    if (expectationsList === null || !Array.isArray(expectationsList)) {
       throw new Error('No expectations array found in JSON');
     }
 
@@ -137,7 +137,7 @@ export class JSONParser extends CurriculumParser {
     
     for (const item of expectationsList) {
       const expectation = this.parseExpectation(item as JSONExpectation, grade, subject);
-      if (expectation != null) {
+      if (expectation !== null) {
         expectations.push(expectation);
       }
     }
@@ -149,7 +149,7 @@ export class JSONParser extends CurriculumParser {
       metadata: {
         source: 'JSON Import',
         lastUpdated: new Date(),
-        ...(typeof data.metadata === 'object' && data.metadata != null ? data.metadata : {}),
+        ...(typeof data.metadata === 'object' && data.metadata !== null ? data.metadata : {}),
       },
     };
 
@@ -168,7 +168,7 @@ export class JSONParser extends CurriculumParser {
 return null;
 } // Prevent deep recursion
     
-    if (typeof obj !== 'object' || obj == null) {
+    if (typeof obj !== 'object' || obj === null) {
 return null;
 }
 
@@ -179,15 +179,15 @@ return null;
         // Check if this looks like an expectations array
         const firstItem = value[0];
         if (
-          typeof firstItem === 'object' && firstItem != null &&
-          (firstItem.code != null || firstItem.id != null || firstItem.description != null || firstItem.content != null)
+          typeof firstItem === 'object' && firstItem !== null &&
+          (firstItem.code !== null || firstItem.id !== null || firstItem.description !== null || firstItem.content !== null)
         ) {
           return value;
         }
-      } else if (typeof value === 'object' && value != null) {
+      } else if (typeof value === 'object' && value !== null) {
         // Recurse into objects
         const found = this.findExpectationsArray(value, depth + 1);
-        if (found != null) {
+        if (found !== null) {
 return found;
 }
       }
@@ -316,7 +316,7 @@ return 'specific';
       }
       
       const group = grouped.get(exp.strand);
-      if (group != null) {
+      if (group !== null) {
         if (exp.type === 'overall') {
           group.overall.push(exp);
         } else {
@@ -344,7 +344,7 @@ return 'specific';
    * Validate parsed curriculum
    */
   validate(data: ParsedCurriculum): boolean {
-    if (data.subject == null || data.subject === '' || data.grade == null || data.grade === 0 || data.expectations === null) {
+    if (data.subject === null || data.subject === '' || data.grade === null || data.grade === 0 || data.expectations === null) {
       return false;
     }
 
@@ -354,7 +354,7 @@ return 'specific';
 
     // Validate each expectation
     for (const exp of data.expectations) {
-      if (exp.code == null || exp.code === '' || exp.description == null || exp.description === '' || exp.type == null || exp.type === '' || exp.strand == null || exp.strand === '') {
+      if (exp.code === null || exp.code === '' || exp.description === null || exp.description === '' || exp.type === null || exp.type === '' || exp.strand === null || exp.strand === '') {
         return false;
       }
     }

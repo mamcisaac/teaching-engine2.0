@@ -8,7 +8,7 @@ const Table = forwardRef<
 >(({ className, ...props }, ref): JSX.Element => (
   <div className="relative w-full overflow-auto">
     <table
-      className={cn("w-full caption-bottom text-sm", className)}
+      className={cn("w-full caption-bottom text-sm", className ?? "") as string}
       ref={ref}
       {...props}
     />
@@ -20,7 +20,7 @@ const TableHeader = forwardRef<
   HTMLTableSectionElement,
   HTMLAttributes<HTMLTableSectionElement>
 >(({ className, ...props }, ref): JSX.Element => (
-  <thead className={cn("[&_tr]:border-b", className)} ref={ref} {...props} />
+  <thead className={cn("[&_tr]:border-b", className ?? "") as string} ref={ref} {...props} />
 ))
 TableHeader.displayName = "TableHeader"
 
@@ -29,7 +29,7 @@ const TableBody = forwardRef<
   HTMLAttributes<HTMLTableSectionElement>
 >(({ className, ...props }, ref): JSX.Element => (
   <tbody
-    className={cn("[&_tr:last-child]:border-0", className)}
+    className={cn("[&_tr:last-child]:border-0", className ?? "") as string}
     ref={ref}
     {...props}
   />
@@ -41,7 +41,7 @@ const TableFooter = forwardRef<
   HTMLAttributes<HTMLTableSectionElement>
 >(({ className, ...props }, ref): JSX.Element => (
   <tfoot
-    className={cn("border-t bg-muted/50 font-medium [&>tr]:last:border-b-0", className)}
+    className={cn("border-t bg-muted/50 font-medium [&>tr]:last:border-b-0", className ?? "") as string}
     ref={ref}
     {...props}
   />
@@ -55,8 +55,8 @@ const TableRow = forwardRef<
   <tr
     className={cn(
       "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
-      className
-    )}
+      className ?? ""
+    ) as string}
     ref={ref}
     {...props}
   />
@@ -70,8 +70,8 @@ const TableHead = forwardRef<
   <th
     className={cn(
       "h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
-      className
-    )}
+      className ?? ""
+    ) as string}
     ref={ref}
     {...props}
   />
@@ -83,7 +83,7 @@ const TableCell = forwardRef<
   TdHTMLAttributes<HTMLTableCellElement>
 >(({ className, ...props }, ref): JSX.Element => (
   <td
-    className={cn("p-4 align-middle [&:has([role=checkbox])]:pr-0", className)}
+    className={cn("p-4 align-middle [&:has([role=checkbox])]:pr-0", className ?? "") as string}
     ref={ref}
     {...props}
   />
@@ -95,7 +95,7 @@ const TableCaption = forwardRef<
   HTMLAttributes<HTMLTableCaptionElement>
 >(({ className, ...props }, ref): JSX.Element => (
   <caption
-    className={cn("mt-4 text-sm text-muted-foreground", className)}
+    className={cn("mt-4 text-sm text-muted-foreground", className ?? "") as string}
     ref={ref}
     {...props}
   />

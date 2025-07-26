@@ -73,12 +73,12 @@ I hope this newsletter finds you well! Here's a summary of what we've been worki
         const titles = lessons.map((l) => l.title).join(', ');
         const goals = lessons
           .map((l) => l.learningGoals)
-          .filter((g) => g != null && g !== '')
+          .filter((g) => g !== null && g !== '')
           .join(', ')
           .replace(/,\s*/g, ' and ');
 
         content += `**${subject}**: We've been exploring ${titles}`;
-        if (goals != null && goals !== '') {
+        if (goals !== null && goals !== '') {
           content += `. Our focus has been on ${goals}`;
         }
         content += '.\n\n';
@@ -88,7 +88,7 @@ I hope this newsletter finds you well! Here's a summary of what we've been worki
     if (reflections.length > 0) {
       const achievements = reflections
         .map((r) => r.notableAchievements)
-        .filter((a) => a != null && a.trim() !== '');
+        .filter((a) => a !== null && a.trim() !== '');
 
       content += '## Classroom Celebrations\n\n';
       if (achievements.length > 0) {
@@ -133,7 +133,7 @@ return '';
       const dateStr = date.toISOString().split('T')[0];
 
       summary += `**${dateStr}**: ${lesson.title}\n`;
-      if (lesson.learningGoals != null && lesson.learningGoals !== '') {
+      if (lesson.learningGoals !== null && lesson.learningGoals !== '') {
         summary += `- Learning Goals: ${lesson.learningGoals}\n`;
       }
       summary += '\n';
@@ -154,10 +154,10 @@ return '';
       const date = new Date(reflection.date.getTime() - 24 * 60 * 60 * 1000); // Subtract a day
       const dateStr = date.toISOString().split('T')[0];
 
-      if (reflection.notableAchievements != null && reflection.notableAchievements !== '') {
+      if (reflection.notableAchievements !== null && reflection.notableAchievements !== '') {
         highlights += `- ${dateStr}: ${reflection.notableAchievements}\n`;
       }
-      if (reflection.whatWorked != null && reflection.whatWorked !== '') {
+      if (reflection.whatWorked !== null && reflection.whatWorked !== '') {
         highlights += `- What worked well: ${reflection.whatWorked}\n`;
       }
     });

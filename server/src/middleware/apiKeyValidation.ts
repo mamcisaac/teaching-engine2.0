@@ -22,7 +22,7 @@ export function validateApiKey(
     // Get the expected API key from environment
     const expectedApiKey = process.env.API_KEY;
 
-    if (expectedApiKey === undefined || expectedApiKey === null || expectedApiKey === '') {
+    if (!expectedApiKey || expectedApiKey === '') {
       // Server misconfiguration - log error but don't expose details
       logger.error('API_KEY environment variable not set');
 
@@ -38,13 +38,13 @@ export function validateApiKey(
     // Check x-api-key header (case-insensitive)
     // Express automatically lowercases header names
     const xApiKey = req.headers['x-api-key'] as string;
-    if (xApiKey !== null && xApiKey !== undefined && xApiKey !== '') {
+    if (xApiKey && xApiKey !== '') {
       providedApiKey = xApiKey;
     }
 
     // Check Authorization header with Bearer format
     const authHeader = req.headers.authorization;
-    if (authHeader !== null && authHeader !== undefined && typeof authHeader === 'string') {
+    if (authHeader && typeof authHeader === 'string') {
       const bearerMatch = authHeader.match(/^Bearer (.+)$/i);
       if (bearerMatch) {
         providedApiKey = bearerMatch[1];
@@ -52,7 +52,7 @@ export function validateApiKey(
     }
 
     // Validate API key
-    if (providedApiKey === null || providedApiKey === undefined || providedApiKey.trim() === '') {
+    if (!providedApiKey || providedApiKey.trim() === '') {
       res.status(401).json({
         error: 'Unauthorized: API key is required',
       });

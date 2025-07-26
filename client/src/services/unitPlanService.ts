@@ -5,7 +5,7 @@ import type { UnitPlanFormData } from '../hooks/useUnitPlanForm';
 export class UnitPlanService {
   // Calculate progress percentage
   static calculateProgress(unit: UnitPlan): number {
-    if (unit._count?.lessonPlans == null || unit._count.lessonPlans === 0) {
+    if (unit._count?.lessonPlans === 0) {
       return 0;
     }
 
@@ -50,15 +50,15 @@ export class UnitPlanService {
   static formatForExport(unit: UnitPlan): string {
     let content = `# ${unit.title}\n\n`;
 
-    if (unit.description != null && unit.description !== '') {
+    if (unit.description !== '') {
       content += `## Description\n${unit.description}\n\n`;
     }
 
-    if (unit.bigIdeas != null && unit.bigIdeas !== '') {
+    if (unit.bigIdeas !== '') {
       content += `## Big Ideas\n${unit.bigIdeas}\n\n`;
     }
 
-    if (unit.essentialQuestions != null && unit.essentialQuestions.length > 0) {
+    if (unit.essentialQuestions.length > 0) {
       content += `## Essential Questions\n`;
       unit.essentialQuestions.forEach((q) => {
         content += `- ${q}\n`;
@@ -66,7 +66,7 @@ export class UnitPlanService {
       content += '\n';
     }
 
-    if (unit.successCriteria != null && unit.successCriteria.length > 0) {
+    if (unit.successCriteria.length > 0) {
       content += `## Success Criteria\n`;
       unit.successCriteria.forEach((c) => {
         content += `- ${c}\n`;
@@ -96,8 +96,8 @@ export class UnitPlanService {
   // Check if unit is complete
   static isComplete(unit: UnitPlan): boolean {
     return (
-      unit.title != null && unit.title !== '' &&
-      unit.bigIdeas != null && unit.bigIdeas !== '' &&
+      unit.title !== '' &&
+      unit.bigIdeas !== '' &&
       (unit.essentialQuestions !== undefined) &&
       unit.essentialQuestions.length > 0 &&
       (unit.successCriteria !== undefined) &&

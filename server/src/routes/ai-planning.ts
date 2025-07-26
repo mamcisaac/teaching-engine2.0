@@ -1,8 +1,14 @@
-import type { Request, Response } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import { Router } from 'express';
 
 import { logger } from '../logger';
 import { aiPlanningAssistant } from '../services/ai/aiPlanningService';
+
+// Async middleware wrapper to handle async route handlers
+const asyncMiddleware = (fn: (req: Request, res: Response, next: NextFunction) => Promise<void>) => 
+  (req: Request, res: Response, next: NextFunction): void => {
+    void Promise.resolve(fn(req, res, next)).catch(next);
+  };
 // Simple rate limiting for AI endpoints (to avoid async issues)
 const aiRateLimit = (_req: Request, _res: Response, next: () => void): void => {
   // Simple in-memory rate limiting - production should use proper rate limiter
@@ -82,7 +88,7 @@ router.get('/status', (req: Request, res: Response): void => {
       const userId = req.user?.id;
 
     // Check OpenAI API key availability
-    const hasApiKey = process.env.OPENAI_API_KEY != null && process.env.OPENAI_API_KEY !== '';
+    const hasApiKey = process.env.OPENAI_API_KEY !== null && process.env.OPENAI_API_KEY !== '';
 
     // Get service health
     const serviceHealth = await aiPlanningAssistant.getServiceHealth();
@@ -141,7 +147,7 @@ router.post(
       };
       const { subject, grade, termLength, focusAreas } = sanitizedBody;
 
-      if (subject == null || subject === '' || grade == null || termLength == null) {
+      if (subject === null || subject === '' || grade === null || termLength === null) {
         res.status(400).json({
           error: 'Missing required fields: subject, grade, termLength',
         });
@@ -182,7 +188,7 @@ router.post('/unit/big-ideas', aiRateLimit, (req: Request, res: Response): void 
     };
     const { unitTitle, subject, grade, curriculumExpectations, duration } = sanitizedBody;
 
-    if (unitTitle == null || unitTitle === '' || subject == null || subject === '' || grade == null || (curriculumExpectations == null || curriculumExpectations.length === 0) || duration == null) {
+    if (unitTitle === null || unitTitle === '' || subject === null || subject === '' || grade === null || (curriculumExpectations === null || curriculumExpectations.length === 0) || duration === null) {
       res.status(400).json({
         error:
           'Missing required fields: unitTitle, subject, grade, curriculumExpectations, duration',
@@ -215,7 +221,7 @@ router.post('/unit/big-ideas', aiRateLimit, (req: Request, res: Response): void 
 router.post(
   '/lesson/activities',
   aiRateLimit,
-  async (req: Request, res: Response): Promise<void> => {
+  asyncMiddleware(async (req: Request, res: Response, _next: NextFunction): Promise<void> => {
     try {
       const sanitizedBody = sanitizeAIInput(req.body) as {
         lessonTitle?: string;
@@ -227,7 +233,7 @@ router.post(
       };
       const { lessonTitle, learningGoals, subject, grade, duration, materials } = sanitizedBody;
 
-      if (lessonTitle == null || lessonTitle === '' || (learningGoals == null || learningGoals.length === 0) || subject == null || subject === '' || grade == null || duration == null) {
+      if (lessonTitle === null || lessonTitle === '' || (learningGoals === null || learningGoals.length === 0) || subject === null || subject === '' || grade === null || duration === null) {
         res.status(400).json({
           error: 'Missing required fields: lessonTitle, learningGoals, subject, grade, duration',
         });
@@ -250,7 +256,7 @@ router.post(
       res.status(500).json({ error: 'Failed to generate suggestions' });
       return;
     }
-  },
+  }),
 );
 
 /**
@@ -260,7 +266,7 @@ router.post(
 router.post(
   '/lesson/materials',
   aiRateLimit,
-  async (req: Request, res: Response): Promise<void> => {
+  asyncMiddleware(async (req: Request, res: Response, _next: NextFunction): Promise<void> => {
     try {
       const sanitizedBody = sanitizeAIInput(req.body) as {
         activities?: string[];
@@ -270,7 +276,7 @@ router.post(
       };
       const { activities, subject, grade, classSize } = sanitizedBody;
 
-      if ((activities == null || activities.length === 0) || subject == null || subject === '' || grade == null) {
+      if ((activities === null || activities.length === 0) || subject === null || subject === '' || grade === null) {
         res.status(400).json({
           error: 'Missing required fields: activities, subject, grade',
         });
@@ -281,7 +287,7 @@ router.post(
         activities: activities,
         subject: subject,
         grade: Number(grade),
-        classSize: classSize != null ? Number(classSize) : 25,
+        classSize: classSize !== null ? Number(classSize) : 25,
       });
 
       res.json(suggestions);
@@ -291,7 +297,7 @@ router.post(
       res.status(500).json({ error: 'Failed to generate suggestions' });
       return;
     }
-  },
+  })
 );
 
 /**
@@ -301,7 +307,7 @@ router.post(
 router.post(
   '/lesson/assessments',
   aiRateLimit,
-  async (req: Request, res: Response): Promise<void> => {
+  asyncMiddleware(async (req: Request, res: Response, _next: NextFunction): Promise<void> => {
     try {
       const sanitizedBody = sanitizeAIInput(req.body) as {
         learningGoals?: string[];
@@ -311,7 +317,7 @@ router.post(
       };
       const { learningGoals, activities, subject, grade } = sanitizedBody;
 
-      if (learningGoals == null || activities == null || subject == null || subject === '' || grade == null) {
+      if (learningGoals === null || activities === null || subject === null || subject === '' || grade === null) {
         res.status(400).json({
           error: 'Missing required fields: learningGoals, activities, subject, grade',
         });
@@ -332,7 +338,7 @@ router.post(
       res.status(500).json({ error: 'Failed to generate suggestions' });
       return;
     }
-  },
+  })
 );
 
 /**
@@ -342,7 +348,7 @@ router.post(
 router.post(
   '/daybook/reflections',
   aiRateLimit,
-  async (req: Request, res: Response): Promise<void> => {
+  asyncMiddleware(async (req: Request, res: Response, _next: NextFunction): Promise<void> => {
     try {
       const sanitizedBody = sanitizeAIInput(req.body) as {
         date?: string;
@@ -353,7 +359,7 @@ router.post(
       };
       const { date, activities, subject, grade, previousReflections } = sanitizedBody;
 
-      if (date == null || date === '' || activities == null || subject == null || subject === '' || grade == null) {
+      if (date === null || date === '' || activities === null || subject === null || subject === '' || grade === null) {
         res.status(400).json({
           error: 'Missing required fields: date, activities, subject, grade',
         });
@@ -375,7 +381,7 @@ router.post(
       res.status(500).json({ error: 'Failed to generate suggestions' });
       return;
     }
-  },
+  })
 );
 
 /**
@@ -385,7 +391,7 @@ router.post(
 router.post(
   '/curriculum-aligned',
   aiRateLimit,
-  async (req: Request, res: Response): Promise<void> => {
+  asyncMiddleware(async (req: Request, res: Response, _next: NextFunction): Promise<void> => {
     try {
       const sanitizedBody = sanitizeAIInput(req.body) as {
         expectationIds?: string[];
@@ -393,7 +399,7 @@ router.post(
       };
       const { expectationIds, suggestionType } = sanitizedBody;
 
-      if (expectationIds == null || suggestionType == null || suggestionType === '') {
+      if (expectationIds === null || suggestionType === null || suggestionType === '') {
         res.status(400).json({
           error: 'Missing required fields: expectationIds, suggestionType',
         });
@@ -419,7 +425,7 @@ router.post(
       res.status(500).json({ error: 'Failed to generate suggestions' });
       return;
     }
-  },
+  })
 );
 
 export { router };

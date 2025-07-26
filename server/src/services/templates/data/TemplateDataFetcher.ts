@@ -110,7 +110,7 @@ export class TemplateDataFetcher {
       },
     });
 
-    if (user == null) {
+    if (!user) {
       throw new Error('User not found');
     }
 
@@ -140,11 +140,11 @@ export class TemplateDataFetcher {
       active: true,
     };
 
-    if (filters?.studentId != null) {
+    if (filters?.studentId !== undefined) {
       where.id = filters.studentId;
     }
 
-    if (filters?.grade != null) {
+    if (filters?.grade !== undefined) {
       where.grade = filters.grade;
     }
 
@@ -181,14 +181,14 @@ export class TemplateDataFetcher {
       userId: context.userId,
     };
 
-    if (filters?.startDate != null && filters.endDate != null) {
+    if (filters?.startDate !== undefined && filters.endDate !== undefined) {
       where.date = {
         gte: new Date(filters.startDate),
         lte: new Date(filters.endDate),
       };
     }
 
-    if (filters?.subject != null) {
+    if (filters?.subject !== undefined) {
       where.subject = filters.subject;
     }
 
@@ -218,21 +218,21 @@ export class TemplateDataFetcher {
       subject: lesson.unitPlan.longRangePlan.subject ?? lesson.subject ?? '',
       grade: lesson.unitPlan.longRangePlan.grade.toString() ?? '0',
       duration: parseInt(String(lesson.duration || '0')),
-      unit: lesson.unitPlan != null ? {
+      unit: lesson.unitPlan !== null ? {
         title: lesson.unitPlan.title,
         week: Math.ceil(
           (lesson.date.getTime() - lesson.unitPlan.startDate.getTime()) / 
           (7 * 24 * 60 * 60 * 1000)
         ),
       } : null,
-      learningGoals: typeof lesson.learningGoals === 'string' ? lesson.learningGoals : (lesson.learningGoals != null ? String(lesson.learningGoals) : null),
-      materials: typeof lesson.materials === 'string' ? lesson.materials : (lesson.materials != null ? String(lesson.materials) : null),
-      mindsOn: typeof lesson.mindsOn === 'string' ? lesson.mindsOn : (lesson.mindsOn != null ? String(lesson.mindsOn) : null),
-      action: typeof lesson.action === 'string' ? lesson.action : (lesson.action != null ? String(lesson.action) : null),
-      consolidation: typeof lesson.consolidation === 'string' ? lesson.consolidation : (lesson.consolidation != null ? String(lesson.consolidation) : null),
-      grouping: typeof lesson.grouping === 'string' ? lesson.grouping : (lesson.grouping != null ? String(lesson.grouping) : null),
-      assessmentType: typeof lesson.assessmentType === 'string' ? lesson.assessmentType : (lesson.assessmentType != null ? String(lesson.assessmentType) : null),
-      assessmentNotes: typeof lesson.assessmentNotes === 'string' ? lesson.assessmentNotes : (lesson.assessmentNotes != null ? String(lesson.assessmentNotes) : null),
+      learningGoals: typeof lesson.learningGoals === 'string' ? lesson.learningGoals : (lesson.learningGoals !== null ? String(lesson.learningGoals) : null),
+      materials: typeof lesson.materials === 'string' ? lesson.materials : (lesson.materials !== null ? String(lesson.materials) : null),
+      mindsOn: typeof lesson.mindsOn === 'string' ? lesson.mindsOn : (lesson.mindsOn !== null ? String(lesson.mindsOn) : null),
+      action: typeof lesson.action === 'string' ? lesson.action : (lesson.action !== null ? String(lesson.action) : null),
+      consolidation: typeof lesson.consolidation === 'string' ? lesson.consolidation : (lesson.consolidation !== null ? String(lesson.consolidation) : null),
+      grouping: typeof lesson.grouping === 'string' ? lesson.grouping : (lesson.grouping !== null ? String(lesson.grouping) : null),
+      assessmentType: typeof lesson.assessmentType === 'string' ? lesson.assessmentType : (lesson.assessmentType !== null ? String(lesson.assessmentType) : null),
+      assessmentNotes: typeof lesson.assessmentNotes === 'string' ? lesson.assessmentNotes : (lesson.assessmentNotes !== null ? String(lesson.assessmentNotes) : null),
       accommodations: typeof lesson.accommodations === 'string' ? lesson.accommodations : (lesson.accommodations !== null ? String(lesson.accommodations) : null),
       modifications: typeof lesson.modifications === 'string' ? lesson.modifications : (lesson.modifications !== null ? String(lesson.modifications) : null),
       extensions: typeof lesson.extensions === 'string' ? lesson.extensions : (lesson.extensions !== null ? String(lesson.extensions) : null),
@@ -273,15 +273,15 @@ export class TemplateDataFetcher {
       isActive: true,
     };
 
-    if (filters?.subjectId != null) {
+    if (filters?.subjectId !== undefined) {
       where.subjectId = filters.subjectId;
     }
 
-    if (filters?.grade != null) {
+    if (filters?.grade !== undefined) {
       where.grade = Number(filters.grade);
     }
 
-    if (filters?.strand != null) {
+    if (filters?.strand !== undefined) {
       where.strand = filters.strand;
     }
 
@@ -436,7 +436,7 @@ export class TemplateDataFetcher {
       }
 
       const group = grouped.get(subject);
-      if (group != null) {
+      if (group !== null) {
         group.highlights.push(lesson.title);
       }
     }
@@ -475,7 +475,7 @@ export class TemplateDataFetcher {
 
     return entries
       .map((e) => e.notableAchievements)
-      .filter((achievement): achievement is string => achievement != null && achievement !== '');
+      .filter((achievement): achievement is string => achievement !== null && achievement !== '');
   }
 
   /**

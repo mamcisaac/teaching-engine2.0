@@ -138,10 +138,10 @@ class SubstitutePlanServiceWrapper extends BaseService {
       Object.assign(where, dateWhere);
     }
 
-    if (grade != null && grade !== '') {
+    if (grade !== null && grade !== '') {
 where.grade = parseInt(String(grade), 10);
 }
-    if (subject != null && subject !== '') {
+    if (subject !== null && subject !== '') {
 where.subject = { contains: subject };
 }
     if (isActive !== undefined) {
@@ -198,22 +198,22 @@ where.isActive = isActive;
         userId,
         title: data.title,
         dateFor: new Date(data.dateFor),
-        grade: data.gradeLevel != null && data.gradeLevel !== '' ? parseInt(data.gradeLevel, 10) : null,
+        grade: data.gradeLevel !== null && data.gradeLevel !== '' ? parseInt(data.gradeLevel, 10) : null,
         subject: data.subject,
-        schedule: data.activities != null && data.activities !== ''
+        schedule: data.activities !== null && data.activities !== ''
           ? [{ time: '9:00', activity: data.activities, notes: data.notes }]
           : [],
-        classroomRoutines: data.classroomManagement != null && data.classroomManagement !== ''
+        classroomRoutines: data.classroomManagement !== null && data.classroomManagement !== ''
           ? [{ category: 'other', description: data.classroomManagement }]
           : [],
-        emergencyInfo: data.emergencyContacts != null ? { contacts: data.emergencyContacts } : {},
-        lessonPlans: data.objectives != null && data.objectives !== ''
+        emergencyInfo: data.emergencyContacts !== null ? { contacts: data.emergencyContacts } : {},
+        lessonPlans: data.objectives !== null && data.objectives !== ''
           ? { objectives: data.objectives, materials: data.materials }
           : {},
         behaviorPlan: {},
         studentNotes: {},
-        materialsList: data.materials != null && data.materials !== '' ? { materials: data.materials } : {},
-        importantInfo: data.importantNotes != null && data.importantNotes !== '' ? { notes: data.importantNotes } : undefined,
+        materialsList: data.materials !== null && data.materials !== '' ? { materials: data.materials } : {},
+        importantInfo: data.importantNotes !== null && data.importantNotes !== '' ? { notes: data.importantNotes } : undefined,
         isActive: data.isActive ?? true,
       },
     });
@@ -225,7 +225,7 @@ where.isActive = isActive;
       where: { id, userId },
     });
 
-    if (plan == null) {
+    if (plan === null) {
       throw new Error('Substitute plan not found or access denied');
     }
 
@@ -240,7 +240,7 @@ where.isActive = isActive;
       where: { id, userId },
     });
 
-    if (plan == null) {
+    if (plan === null) {
       return false;
     }
 
@@ -260,7 +260,7 @@ where.isActive = isActive;
       where: { id: planId, userId },
     });
 
-    if (plan == null) {
+    if (plan === null) {
       throw new Error('Substitute plan not found or access denied');
     }
 
@@ -382,7 +382,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId == null) {
+      if (userId === null) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -393,9 +393,9 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       const { startDate, endDate, grade, ...filterBase } = filters;
       const convertedFilters = {
         ...filterBase,
-        ...(startDate != null && { startDate: new Date(startDate) }),
-        ...(endDate != null && { endDate: new Date(endDate) }),
-        ...(grade != null && { grade: String(grade) }),
+        ...(startDate !== null && { startDate: new Date(startDate) }),
+        ...(endDate !== null && { endDate: new Date(endDate) }),
+        ...(grade !== null && { grade: String(grade) }),
       };
 
       const result = await this.substitutePlanService.findMany(convertedFilters, userId);
@@ -444,7 +444,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId == null) {
+      if (userId === null) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -465,7 +465,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId == null) {
+      if (userId === null) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -487,7 +487,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId == null) {
+      if (userId === null) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -507,11 +507,11 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId == null) {
+      if (userId === null) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
-      const daysAhead = req.query.days != null ? parseInt(req.query.days as string, 10) : 30;
+      const daysAhead = req.query.days !== null ? parseInt(req.query.days as string, 10) : 30;
 
       const upcomingDates = await this.substitutePlanService.getUpcomingDates(userId, daysAhead);
       res.json(upcomingDates);

@@ -30,7 +30,7 @@ interface ApiResponse {
 }
 
 function hasData(response: unknown): response is ApiResponse {
-  return typeof response === 'object' && response && 'data' in response;
+  return typeof response === 'object' && response !== null && 'data' in response;
 }
 
 class RequestBatcher {
@@ -180,8 +180,8 @@ class RequestBatcher {
       for (const pending of requests) {
         const batchResponse = responseMap.get(pending.request.id);
 
-        if (batchResponse !== null && batchResponse !== undefined) {
-          if ('error' in batchResponse && batchResponse.error !== null && batchResponse.error !== undefined) {
+        if (batchResponse !== undefined) {
+          if ('error' in batchResponse && batchResponse.error !== undefined) {
             pending.reject(new Error(batchResponse.error));
           } else {
             pending.resolve(batchResponse.data);

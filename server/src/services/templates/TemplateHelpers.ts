@@ -207,7 +207,7 @@ return '0%';
     this.registerHelper('capitalize', {
       fn: (...args: unknown[]) => {
         const [str] = args as [string];
-        if (!str) {
+        if (str === null || str === undefined || str === '') {
 return '';
 }
         return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
@@ -240,7 +240,7 @@ return '';
     this.registerHelper('truncate', {
       fn: (...args: unknown[]) => {
         const [str, length = 50] = args as [string, number?];
-        if (!str) {
+        if (str === null || str === undefined || str === '') {
 return '';
 }
         if (str.length <= length) {

@@ -45,7 +45,7 @@ export class MemoryCache {
   }
 
   disconnect(): void {
-    if (this.cleanupInterval != null) {
+    if (this.cleanupInterval !== null) {
       clearInterval(this.cleanupInterval);
       this.cleanupInterval = null;
     }
@@ -57,7 +57,7 @@ export class MemoryCache {
   get<T>(key: string): T | null {
     const entry = this.cache.get(key);
 
-    if (entry == null) {
+    if (entry === null) {
       this.stats.misses++;
       this.updateHitRate();
       return null;
@@ -106,7 +106,7 @@ export class MemoryCache {
 
   delete(key: string): boolean {
     const entry = this.cache.get(key);
-    if (entry == null) {
+    if (entry === null) {
 return false;
 }
 
@@ -223,10 +223,10 @@ continue;
   private evictOldest(): void {
     // Simple FIFO eviction
     const firstKey = this.cache.keys().next().value;
-    if (firstKey != null) {
+    if (firstKey !== null) {
       const entry = this.cache.get(firstKey);
       this.cache.delete(firstKey);
-      if (entry != null) {
+      if (entry !== null) {
         this.removeFromTags(firstKey, entry.tags);
       }
     }
@@ -238,7 +238,7 @@ continue;
         this.tagIndex.set(tag, new Set());
       }
       const tagSet = this.tagIndex.get(tag);
-      if (tagSet != null) {
+      if (tagSet !== null) {
         tagSet.add(key);
       }
     }
@@ -247,7 +247,7 @@ continue;
   private removeFromTags(key: string, tags: string[]): void {
     for (const tag of tags) {
       const keys = this.tagIndex.get(tag);
-      if (keys != null) {
+      if (keys !== null) {
         keys.delete(key);
         if (keys.size === 0) {
           this.tagIndex.delete(tag);
@@ -271,7 +271,7 @@ let memoryCacheInstance: MemoryCache | null = null;
  * Get or create memory cache instance
  */
 export function getMemoryCache(): MemoryCache {
-  if (memoryCacheInstance == null) {
+  if (memoryCacheInstance === null) {
     memoryCacheInstance = new MemoryCache({
       maxSize: 1000,
       defaultTtl: 3600,

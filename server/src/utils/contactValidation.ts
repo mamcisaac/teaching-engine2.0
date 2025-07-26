@@ -32,7 +32,7 @@ export interface ContactValidationResult {
  * Validates and formats phone numbers supporting multiple international formats
  */
 export function validatePhoneNumber(phone: string): PhoneValidationResult {
-  if (phone == null || phone === '') {
+  if (phone === null || phone === '') {
     return {
       isValid: false,
       errors: ['Phone number is required'],
@@ -53,8 +53,8 @@ export function validatePhoneNumber(phone: string): PhoneValidationResult {
 
   // Extract extension if present
   const extMatch = originalPhone.match(/(?:ext\.?|extension|x)\s*(\d+)/i);
-  const extension = extMatch != null ? extMatch[1] : undefined;
-  const phoneWithoutExt = extMatch != null ? originalPhone.replace(extMatch[0], '').trim() : originalPhone;
+  const extension = extMatch !== null ? extMatch[1] : undefined;
+  const phoneWithoutExt = extMatch !== null ? originalPhone.replace(extMatch[0], '').trim() : originalPhone;
 
   // North American format (10 digits) - more flexible matching
   const naMatch = phoneWithoutExt.match(
@@ -149,7 +149,7 @@ export function validatePhoneNumber(phone: string): PhoneValidationResult {
  * Validates email addresses
  */
 export function validateEmail(email: string): EmailValidationResult {
-  if (email == null || email === '' || typeof email !== 'string') {
+  if (email === null || email === '' || typeof email !== 'string') {
     return {
       isValid: false,
       errors: ['Email is required'],
@@ -171,7 +171,7 @@ export function validateEmail(email: string): EmailValidationResult {
 
   const [localPart, domain] = trimmed.split('@');
 
-  if (localPart != null && localPart.length > 64) {
+  if (localPart !== undefined && localPart.length > 64) {
     errors.push('Email local part too long');
     return {
       isValid: false,
@@ -179,7 +179,7 @@ export function validateEmail(email: string): EmailValidationResult {
     };
   }
 
-  if (domain != null && domain.includes('..')) {
+  if (domain !== undefined && domain.includes('..')) {
     errors.push('Invalid domain format');
     return {
       isValid: false,
@@ -225,29 +225,29 @@ export function validateContact(contact: {
   }
 
   // Validate phone if provided
-  if (contact.phone != null && contact.phone !== '') {
+  if (contact.phone !== undefined && contact.phone !== '') {
     phoneResult = validatePhoneNumber(contact.phone);
-    if (phoneResult.isValid === false && phoneResult.errors != null) {
+    if (phoneResult.isValid === false && phoneResult.errors !== undefined) {
       errors.push(...phoneResult.errors.map((e) => `Phone: ${e}`));
     }
   }
 
   // Validate email if provided
-  if (contact.email != null && contact.email !== '') {
+  if (contact.email !== undefined && contact.email !== '') {
     emailResult = validateEmail(contact.email);
-    if (emailResult.isValid === false && emailResult.errors != null) {
+    if (emailResult.isValid === false && emailResult.errors !== undefined) {
       errors.push(...emailResult.errors.map((e) => `Email: ${e}`));
     }
   }
 
   // At least phone or email is required
-  if ((contact.phone == null || contact.phone === '') && (contact.email == null || contact.email === '')) {
+  if ((contact.phone === undefined || contact.phone === '') && (contact.email === undefined || contact.email === '')) {
     errors.push('Either phone number or email is required');
   }
 
   return {
     isValid: errors.length === 0,
-    name: contact.name != null && contact.name !== '' ? contact.name.trim() : undefined,
+    name: contact.name !== undefined && contact.name !== '' ? contact.name.trim() : undefined,
     phone: phoneResult,
     email: emailResult,
     errors: errors.length > 0 ? errors : undefined,
@@ -258,7 +258,7 @@ export function validateContact(contact: {
  * Parses contact string in various formats
  */
 export function parseContactString(contactString: string): ContactValidationResult {
-  if (contactString == null || contactString === '' || typeof contactString !== 'string' || contactString.trim() === '') {
+  if (contactString === null || contactString === '' || typeof contactString !== 'string' || contactString.trim() === '') {
     return {
       isValid: false,
       errors: ['Contact string is required'],
@@ -281,12 +281,12 @@ export function parseContactString(contactString: string): ContactValidationResu
   let phone: string | undefined;
   let email: string | undefined;
 
-  if (phoneMatch != null) {
+  if (phoneMatch !== null) {
     phone = phoneMatch[1].trim();
     name = name.replace(phoneMatch[0], '').trim();
   }
 
-  if (emailMatch != null) {
+  if (emailMatch !== null) {
     email = emailMatch[1].trim();
     name = name.replace(emailMatch[0], '').trim();
   }
@@ -332,7 +332,7 @@ function formatBasicNumber(digits: string): string {
 export function extractExtension(phone: string): { phone: string; extension?: string } {
   const extMatch = phone.match(/(.+?)(?:\s*(?:ext\.?|extension|x)\s*(\d+))/i);
 
-  if (extMatch != null) {
+  if (extMatch !== null) {
     return {
       phone: extMatch[1].trim(),
       extension: extMatch[2],
@@ -354,22 +354,22 @@ export function validateEmergencyContact(contact: {
 }): ContactValidationResult & { relationship?: string; availability?: string } {
   const baseValidation = validateContact(contact);
 
-  const errors = baseValidation.errors != null ? [...baseValidation.errors] : [];
+  const errors = baseValidation.errors !== undefined ? [...baseValidation.errors] : [];
 
   // Additional validation for emergency contacts
-  if (contact.relationship != null && contact.relationship !== '' && contact.relationship.trim().length > 100) {
+  if (contact.relationship !== undefined && contact.relationship !== '' && contact.relationship.trim().length > 100) {
     errors.push('Relationship description too long');
   }
 
-  if (contact.availability != null && contact.availability !== '' && contact.availability.trim().length > 200) {
+  if (contact.availability !== undefined && contact.availability !== '' && contact.availability.trim().length > 200) {
     errors.push('Availability description too long');
   }
 
   return {
     ...baseValidation,
     isValid: errors.length === 0,
-    relationship: contact.relationship != null && contact.relationship !== '' ? contact.relationship.trim() : undefined,
-    availability: contact.availability != null && contact.availability !== '' ? contact.availability.trim() : undefined,
+    relationship: contact.relationship !== undefined && contact.relationship !== '' ? contact.relationship.trim() : undefined,
+    availability: contact.availability !== undefined && contact.availability !== '' ? contact.availability.trim() : undefined,
     errors: errors.length > 0 ? errors : undefined,
   };
 }

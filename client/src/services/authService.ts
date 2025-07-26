@@ -30,7 +30,7 @@ class AuthService implements AuthServiceInterface {
   getAccessToken(): string | null {
     // Check if token is expired
     const expiresAt = this.getTokenExpiration();
-    if (expiresAt != null && expiresAt !== 0 && expiresAt > 0 && Date.now() >= expiresAt) {
+    if (expiresAt !== null && expiresAt !== 0 && expiresAt > 0 && Date.now() >= expiresAt) {
       this.clearTokens();
       return null;
     }
@@ -52,7 +52,7 @@ class AuthService implements AuthServiceInterface {
    */
   getTokenExpiration(): number | null {
     const expiresAt = localStorage.getItem('auth_expires_at');
-    return expiresAt != null && expiresAt !== '' ? parseInt(expiresAt, 10) : null;
+    return expiresAt !== null && expiresAt !== '' ? parseInt(expiresAt, 10) : null;
   }
 
   /**
@@ -104,7 +104,7 @@ class AuthService implements AuthServiceInterface {
    */
   getUser(): User | null {
     const userData = localStorage.getItem(this.USER_KEY);
-    if (userData == null || userData === '') {
+    if (userData === null || userData === '') {
       return null;
     }
     const parsed = safeJsonParse(userData, null);
@@ -139,18 +139,16 @@ class AuthService implements AuthServiceInterface {
     try {
       const data = await authClient.login({ email, password });
 
-      if (data.user) {
-        this.setUser(data.user);
+      this.setUser(data.user);
 
-        if (data.tokens !== undefined) {
-          this.setTokens(data.tokens);
-        } else if (data.accessToken != null && data.accessToken !== '') {
-          // Current backend format
-          this.setLegacyToken(data.accessToken);
-        } else if (data.token !== undefined) {
-          // Legacy token format
-          this.setLegacyToken(data.token);
-        }
+      if (data.tokens !== undefined) {
+        this.setTokens(data.tokens);
+      } else if (data.accessToken !== '') {
+        // Current backend format
+        this.setLegacyToken(data.accessToken);
+      } else if (data.token !== undefined) {
+        // Legacy token format
+        this.setLegacyToken(data.token);
       }
 
       return data;
@@ -193,7 +191,7 @@ class AuthService implements AuthServiceInterface {
   }
 
   private async _performTokenRefresh(): Promise<boolean> {
-    const baseURL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:3000';
+    const baseURL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
 
     try {
       // Refresh token is now sent as HTTP-only cookie automatically
@@ -218,7 +216,7 @@ class AuthService implements AuthServiceInterface {
         } else if (data.token !== undefined) {
           this.setLegacyToken(data.token);
           return true;
-        } else if (data.accessToken != null && data.accessToken !== '') {
+        } else if (data.accessToken !== '') {
           this.setLegacyToken(data.accessToken);
           return true;
         }

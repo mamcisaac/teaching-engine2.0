@@ -169,7 +169,7 @@ export function PlanningWizard({
                     : index < currentStep || completedLevels.includes(step.id)
                     ? 'bg-green-600'
                     : 'bg-gray-200'
-                )}
+                ) as string}
                 key={step.id}
               />
             ))}
@@ -183,7 +183,7 @@ export function PlanningWizard({
               <div className={cn(
                 'p-3 rounded-lg flex-shrink-0',
                 isStepCompleted ? 'bg-green-100' : 'bg-indigo-100'
-              )}>
+              ) as string}>
                 {isStepCompleted ? (
                   <CheckCircle className="h-6 w-6 text-green-600" />
                 ) : (

@@ -4,6 +4,9 @@ import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { QuickLessonPage } from '../../pages/QuickLessonPage';
 import { renderWithAuth } from '../../test-utils';
+import * as etfoHooks from '../../hooks/useETFOPlanning';
+import * as tutorialHooks from '../../hooks/useFeatureTutorial';
+import { toast } from 'sonner';
 
 // Mock the ETFO planning hooks
 vi.mock('../../hooks/useETFOPlanning', () => ({
@@ -102,11 +105,8 @@ describe('QuickLessonPage', () => {
     mockNavigate.mockClear();
 
     // Setup mock implementations
-    const etfoHooks = require('../../hooks/useETFOPlanning');
-    const tutorialHooks = require('../../hooks/useFeatureTutorial');
-
-    etfoHooks.useCreateETFOLessonPlan = mockHooks.useCreateETFOLessonPlan;
-    tutorialHooks.useShowContextualHints = mockHooks.useShowContextualHints;
+    (etfoHooks as any).useCreateETFOLessonPlan = mockHooks.useCreateETFOLessonPlan;
+    (tutorialHooks as any).useShowContextualHints = mockHooks.useShowContextualHints;
 
     // Default mock returns
     mockHooks.useCreateETFOLessonPlan.mockReturnValue({
@@ -206,8 +206,6 @@ describe('QuickLessonPage', () => {
       isPending: false,
     });
 
-    const { toast } = require('sonner');
-
     renderWithAuth(<QuickLessonPage />);
 
     const submitButton = screen.getByRole('button', { name: /create lesson/i });
@@ -225,8 +223,6 @@ describe('QuickLessonPage', () => {
       mutateAsync: mockMutateAsync,
       isPending: false,
     });
-
-    const { toast } = require('sonner');
 
     renderWithAuth(<QuickLessonPage />);
 

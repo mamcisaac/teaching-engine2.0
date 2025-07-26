@@ -19,7 +19,9 @@
   "include": [
     "tests/**/*",
     "playwright.config.ts",
-    "shared/**/*"
+    "shared/**/*",
+    "server/**/*",
+    "client/**/*"
   ],
   "exclude": [
     "node_modules",

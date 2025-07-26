@@ -4,6 +4,7 @@ import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { CalendarPlanningPage } from '../../pages/planning/CalendarPlanningPage';
 import { renderWithAuth } from '../../test-utils';
+import * as reactQuery from '@tanstack/react-query';
 
 // Mock react-big-calendar
 vi.mock('react-big-calendar', () => ({
@@ -262,11 +263,9 @@ describe('CalendarPlanningPage', () => {
     vi.clearAllMocks();
 
     // Setup query and mutation mocks
-    const { useQuery, useMutation, useQueryClient } = require('@tanstack/react-query');
-
-    useQuery.mockImplementation(mockHooks.useQuery);
-    useMutation.mockImplementation(mockHooks.useMutation);
-    useQueryClient.mockImplementation(mockHooks.useQueryClient);
+    (reactQuery.useQuery as any).mockImplementation(mockHooks.useQuery);
+    (reactQuery.useMutation as any).mockImplementation(mockHooks.useMutation);
+    (reactQuery.useQueryClient as any).mockImplementation(mockHooks.useQueryClient);
 
     // Setup default query returns
     mockHooks.useQuery

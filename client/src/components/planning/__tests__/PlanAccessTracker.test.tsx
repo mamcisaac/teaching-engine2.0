@@ -3,6 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { useParams } from 'react-router-dom';
 import { PlanAccessTracker } from '../PlanAccessTracker';
+import * as recentPlansHooks from '../../../hooks/useRecentPlans';
 
 // Mock react-router-dom
 vi.mock('react-router-dom', () => ({
@@ -17,11 +18,9 @@ vi.mock('../../../hooks/useRecentPlans', () => ({
 describe('PlanAccessTracker', () => {
   const mockUseParams = useParams as ReturnType<typeof vi.fn>;
   const mockMutate = vi.fn();
-  const mockUseTrackPlanAccess = require('../../../hooks/useRecentPlans').useTrackPlanAccess;
-
   beforeEach(() => {
     vi.clearAllMocks();
-    mockUseTrackPlanAccess.mockReturnValue({ mutate: mockMutate });
+    (recentPlansHooks.useTrackPlanAccess as any).mockReturnValue({ mutate: mockMutate });
   });
 
   const renderTracker = (planType: 'long-range' | 'unit' | 'lesson' | 'daybook') => {

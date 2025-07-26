@@ -248,7 +248,7 @@ export const commonValidators = {
       to: z.string().datetime().optional(),
     })
     .refine(
-      (data) => (data.from == null || data.from === '') || (data.to == null) || new Date(data.from) <= new Date(data.to),
+      (data) => (data.from === undefined || data.from === '') || (data.to === undefined) || new Date(data.from) <= new Date(data.to),
       'From date must be before or equal to to date',
     ),
 
@@ -276,28 +276,28 @@ export const sanitizeRequest = (
         .trim();
 
     // Sanitize specified fields
-    if (fieldsToSanitize.body != null && isObject(req.body)) {
+    if (fieldsToSanitize.body !== undefined && isObject(req.body)) {
       fieldsToSanitize.body.forEach((field) => {
-        const bodyValue = req.body[field];
-        if (bodyValue != null && typeof bodyValue === 'string') {
+        const bodyValue = req.body[field] as unknown;
+        if (bodyValue !== undefined && typeof bodyValue === 'string') {
           req.body[field] = sanitizeHtml(bodyValue);
         }
       });
     }
 
-    if (fieldsToSanitize.query != null && isObject(req.query)) {
+    if (fieldsToSanitize.query !== undefined && isObject(req.query)) {
       fieldsToSanitize.query.forEach((field) => {
         const queryValue = req.query[field];
-        if (queryValue != null && typeof queryValue === 'string') {
+        if (queryValue !== undefined && typeof queryValue === 'string') {
           req.query[field] = sanitizeHtml(queryValue);
         }
       });
     }
 
-    if (fieldsToSanitize.params != null && isObject(req.params)) {
+    if (fieldsToSanitize.params !== undefined && isObject(req.params)) {
       fieldsToSanitize.params.forEach((field) => {
         const paramValue = req.params[field];
-        if (paramValue != null && typeof paramValue === 'string') {
+        if (paramValue !== undefined && typeof paramValue === 'string') {
           req.params[field] = sanitizeHtml(paramValue);
         }
       });
@@ -316,19 +316,18 @@ export const coerceQueryParams = (
         if (typeof value === 'string') {
           switch (type) {
             case 'number':
-              req.query[param] = parseFloat(value);
+              (req.query as Record<string, unknown>)[param] = parseFloat(value);
               break;
             case 'boolean':
-              req.query[param] = value === 'true' || value === '1';
+              (req.query as Record<string, unknown>)[param] = value === 'true' || value === '1';
               break;
             case 'array':
-              req.query[param] = value.split(',');
+              (req.query as Record<string, unknown>)[param] = value.split(',');
               break;
             case 'date':
-              req.query[param] = new Date(value);
+              (req.query as Record<string, unknown>)[param] = new Date(value);
               break;
           }
-        }
         }
       }
     }

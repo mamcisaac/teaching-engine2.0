@@ -25,7 +25,7 @@ class ClientLogger {
   private maxHistorySize = 1000;
 
   constructor() {
-    this.isDevelopment = import.meta.env.DEV;
+    this.isDevelopment = Boolean(import.meta.env.DEV);
     this.isEnabled = this.isDevelopment || import.meta.env.VITE_ENABLE_LOGGING === 'true';
   }
 

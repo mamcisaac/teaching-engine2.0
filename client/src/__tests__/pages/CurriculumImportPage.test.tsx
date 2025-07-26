@@ -597,10 +597,11 @@ describe('CurriculumImportPage', () => {
     expect(codeInput).toBeInvalid();
   });
 
-  it('handles different file types correctly', () => {
-    const { useDropzone } = require('react-dropzone');
-
+  it('handles different file types correctly', async () => {
     renderWithAuth(<CurriculumImportPage />);
+
+    // Import the mocked useDropzone from the module
+    const { useDropzone } = await import('react-dropzone');
 
     // The dropzone should accept PDF, DOCX, and TXT files
     expect(useDropzone).toHaveBeenCalledWith(

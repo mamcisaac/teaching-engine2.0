@@ -494,7 +494,7 @@ export function useHelpContent(): {
   }, [state.currentSection, state.activeFilters, state.searchQuery]);
 
   // Get available filter options
-  const availableFilters = useMemo((): string[] => {
+  const availableFilters = useMemo((): { value: string; label: string; count: number }[] => {
     const allTags = mockHelpContent.flatMap(item => item.tags);
     const allDifficulties = mockHelpContent.map(item => item.difficulty);
     const uniqueFilters = [...new Set([...allTags, ...allDifficulties])];
@@ -571,7 +571,7 @@ export function useHelpAnalytics(): {
 } {
   const { state } = useHelpContext();
 
-  const analytics = useMemo((): { totalPagesViewed: number; totalTimeSpent: number; tutorialsCompleted: number; tutorialsInProgress: number; favoriteTopics: string[]; searchHistory: string[] } => {
+  const analytics = useMemo(() => {
     const totalPagesViewed = state.userProgress.helpPagesViewed.length;
     const totalTutorialsCompleted = state.userProgress.tutorialsCompleted.length;
     const {totalTimeSpent} = state.userProgress;

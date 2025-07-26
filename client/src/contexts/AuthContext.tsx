@@ -100,7 +100,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
         let errorMessage = 'Login failed';
         if (isApiError(_error)) {
           const responseData = _error.response?.data as { error?: string } | undefined;
-          if (responseData?.error != null && responseData.error !== '') {
+          if (responseData?.error !== undefined && responseData.error !== '') {
             errorMessage = responseData.error;
           } else if (_error.response?.status === 401) {
             errorMessage = 'Invalid email or password';
@@ -162,9 +162,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
 
   // Initial auth check with improved error handling and retry logic
   useEffect((): (() => void) => {
-    return (): void => { // Cleanup
-    };
-
     let isMounted = true;
     const timeoutId: NodeJS.Timeout = setTimeout(() => {
       if (isMounted && isLoading) {
@@ -250,9 +247,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
 
   // Auto-refresh token when it's about to expire
   useEffect((): (() => void) => {
-    return (): void => { // Cleanup
-    };
-
     if (!isAuthenticated) {
       return (): void => {}; // Return empty cleanup function
     }
@@ -274,9 +268,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
 
   // Retry auth check with exponential backoff when there are connection issues
   useEffect((): (() => void) => {
-    return (): void => { // Cleanup
-    };
-
     if (error !== null && error !== '' && retryCount > 0 && retryCount < 3) {
       const retryDelay = Math.min(1000 * Math.pow(2, retryCount - 1), 5000);
       const timeoutId = setTimeout((): void => {
@@ -284,9 +275,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
       }, retryDelay);
 
       return (): void => {
- clearTimeout(timeoutId); 
-};
+        clearTimeout(timeoutId); 
+      };
     }
+    
+    // Return empty cleanup function when condition is not met
+    return (): void => {};
   }, [error, retryCount, checkAuth]);
 
   const contextValue: AuthContextValue = {

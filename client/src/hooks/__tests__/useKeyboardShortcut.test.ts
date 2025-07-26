@@ -3,10 +3,11 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import React from 'react';
 import { useKeyboardShortcut, useMultipleKeyboardShortcuts } from '../useKeyboardShortcut';
 import { KeyboardShortcutsProvider } from '../../contexts/KeyboardShortcutsContext';
+import { logger } from '../../utils/logger';
 
 // Mock logger
 vi.mock('../../utils/logger', () => ({
-  default: {
+  logger: {
     warn: vi.fn(),
     error: vi.fn(),
     info: vi.fn(),
@@ -260,8 +261,6 @@ describe('useKeyboardShortcut', () => {
 
 describe('useMultipleKeyboardShortcuts', () => {
   it('should log deprecation warning', () => {
-    const logger = require('../../utils/logger').default;
-    
     renderHook(
       () => useMultipleKeyboardShortcuts([]),
       { wrapper: createWrapper() }
@@ -273,8 +272,6 @@ describe('useMultipleKeyboardShortcuts', () => {
   });
 
   it('should handle null shortcuts array', () => {
-    const logger = require('../../utils/logger').default;
-    
     renderHook(
       () => useMultipleKeyboardShortcuts(null as any),
       { wrapper: createWrapper() }
@@ -285,8 +282,6 @@ describe('useMultipleKeyboardShortcuts', () => {
   });
 
   it('should handle undefined shortcuts array', () => {
-    const logger = require('../../utils/logger').default;
-    
     renderHook(
       () => useMultipleKeyboardShortcuts(undefined as any),
       { wrapper: createWrapper() }

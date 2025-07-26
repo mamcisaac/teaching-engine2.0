@@ -2,6 +2,7 @@ import axios, { type AxiosError, type AxiosRequestConfig } from 'axios';
 
 import { authService } from '../services/authService';
 import { logger } from '../utils/logger';
+
 // Create axios instance with base configuration
 const api = axios.create({
   baseURL: (import.meta.env.VITE_API_URL as string | undefined) ?? 'http://localhost:3000',
@@ -9,18 +10,23 @@ const api = axios.create({
   withCredentials: true, // Include cookies in requests
 });
 
+// Type guard for checking if auth header is valid
+function isValidAuthHeader(header: string | null | undefined): header is string {
+  return header !== null && header.length > 0;
+}
+
 // Add request interceptor to include auth token
 api.interceptors.request.use(
   async (config) => {
     // Add authorization header if we have a token
     const authHeaders = authService.getAuthHeaders();
-    if (authHeaders.Authorization != null && authHeaders.Authorization.length > 0) {
+    if (isValidAuthHeader(authHeaders.Authorization)) {
       config.headers.Authorization = authHeaders.Authorization;
     }
 
     // Also support legacy token for backward compatibility
     const legacyToken = localStorage.getItem('token');
-    if (legacyToken != null && legacyToken.length > 0 && (authHeaders.Authorization == null || authHeaders.Authorization.length === 0)) {
+    if (isValidAuthHeader(legacyToken) && !isValidAuthHeader(authHeaders.Authorization)) {
       config.headers.Authorization = `Bearer ${legacyToken}`;
     }
 
@@ -55,10 +61,10 @@ api.interceptors.response.use(
       // Try to handle the auth error with the auth service
       const shouldRetry = await authService.handleAuthError(response);
 
-      if (shouldRetry) {
+      if (shouldRetry === true) {
         // Update the authorization header with the new token
         const authHeaders = authService.getAuthHeaders();
-        if (authHeaders.Authorization != null && authHeaders.Authorization.length > 0 && originalRequest.headers) {
+        if (isValidAuthHeader(authHeaders.Authorization)) {
           originalRequest.headers.Authorization = authHeaders.Authorization;
         }
 

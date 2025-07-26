@@ -72,7 +72,7 @@ export function verifyToken(token: string): TokenPayload {
  * Extract token from Authorization header
  */
 export function extractTokenFromHeader(authHeader?: string): string | null {
-  if (authHeader === undefined || authHeader === null || authHeader === '') {
+  if (!authHeader || authHeader === '') {
     return null;
   }
 

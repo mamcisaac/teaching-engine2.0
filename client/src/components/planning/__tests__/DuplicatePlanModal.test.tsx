@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { DuplicatePlanModal } from '../DuplicatePlanModal';
+import { api } from '../../../api';
 
 // Mock API
 vi.mock('../../../api', () => ({
@@ -30,7 +31,6 @@ const renderWithQueryClient = (ui: React.ReactElement) => {
 
 describe('DuplicatePlanModal', () => {
   const mockOnClose = vi.fn();
-  const mockApi = require('../../../api').api;
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -169,7 +169,7 @@ describe('DuplicatePlanModal', () => {
     });
 
     it('should submit with correct data', async () => {
-      mockApi.post.mockResolvedValueOnce({ data: { id: 'new-123' } });
+      (api.post as ReturnType<typeof vi.fn>).mockResolvedValueOnce({ data: { id: 'new-123' } });
       
       renderModal({ planType: 'unit', planId: '1' });
       
@@ -183,7 +183,7 @@ describe('DuplicatePlanModal', () => {
       fireEvent.click(submitButton);
       
       await waitFor(() => {
-        expect(mockApi.post).toHaveBeenCalledWith('/api/unit-plans/duplicate', {
+        expect(api.post).toHaveBeenCalledWith('/api/unit-plans/duplicate', {
           sourceId: '1',
           title: 'New Unit Plan',
           notes: 'Test notes',
@@ -194,7 +194,7 @@ describe('DuplicatePlanModal', () => {
 
     it('should show loading state during submission', async () => {
       let resolvePost: any;
-      mockApi.post.mockImplementationOnce(() => 
+      (api.post as ReturnType<typeof vi.fn>).mockImplementationOnce(() => 
         new Promise(resolve => { resolvePost = resolve; })
       );
       
@@ -217,7 +217,7 @@ describe('DuplicatePlanModal', () => {
       delete (window as any).location;
       (window as any).location = { ...originalLocation, href: '' };
       
-      mockApi.post.mockResolvedValueOnce({ data: { id: 'new-123' } });
+      (api.post as ReturnType<typeof vi.fn>).mockResolvedValueOnce({ data: { id: 'new-123' } });
       
       renderModal({ planType: 'lesson', planId: '1' });
       

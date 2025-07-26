@@ -146,7 +146,7 @@ export function QuickActions({ onDuplicatePlan, className }: QuickActionsProps):
                 'relative flex flex-col items-center gap-2 p-4 rounded-lg transition-all',
                 'hover:scale-105 hover:shadow-md',
                 'focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
-              )}
+              ) as string}
               key={action.id}
               onClick={action.onClick}
             >
@@ -155,7 +155,7 @@ export function QuickActions({ onDuplicatePlan, className }: QuickActionsProps):
                   New
                 </span>
               )}
-              <div className={cn('p-3 rounded-lg', action.color)}>
+              <div className={cn('p-3 rounded-lg', action.color) as string}>
                 {action.icon}
               </div>
               <div className="text-center">

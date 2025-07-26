@@ -3,7 +3,7 @@ const DOMPurify = DOMPurifyDefault;
 import { createElement, useMemo, type ReactElement } from 'react';
 
 export const sanitizeHtml = (dirty: string | undefined | null): string => {
-  if (dirty == null || dirty === '') {
+  if (dirty === null || dirty === '') {
     return '';
   }
   
@@ -27,7 +27,7 @@ export const sanitizeHtml = (dirty: string | undefined | null): string => {
 };
 
 export const escapeHtml = (unsafe: string | undefined | null): string => {
-  if (unsafe == null || unsafe === '') {
+  if (unsafe === null || unsafe === '') {
     return '';
   }
   

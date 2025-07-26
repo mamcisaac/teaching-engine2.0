@@ -79,7 +79,7 @@ router.get('/', asyncMiddleware(authMiddleware), asyncMiddleware(async (req: Req
 }));
 
 // Get collection details with activities
-router.get('/:collectionId', asyncMiddleware(authMiddleware), async (req: Request, res: Response) => {
+router.get('/:collectionId', asyncMiddleware(authMiddleware), asyncMiddleware(async (req: Request, res: Response) => {
 
     try {
     if (req.user?.id === null || req.user?.id === undefined) {
@@ -134,7 +134,7 @@ router.get('/:collectionId', asyncMiddleware(authMiddleware), async (req: Reques
     return;
   }
 
-});
+}));
 
 // Create a new collection
 const createCollectionSchema = z.object({
@@ -143,7 +143,7 @@ const createCollectionSchema = z.object({
   // isPublic field removed - single-teacher use only
 });
 
-router.post('/', authMiddleware, async (req: Request, res: Response) => {
+router.post('/', authMiddleware, asyncMiddleware(async (req: Request, res: Response) => {
 
     try {
     if (req.user?.id === null || req.user?.id === undefined) {
@@ -178,7 +178,7 @@ router.post('/', authMiddleware, async (req: Request, res: Response) => {
     return;
   }
 
-});
+}));
 
 // Update collection
 const updateCollectionSchema = z.object({
@@ -187,7 +187,7 @@ const updateCollectionSchema = z.object({
   // isPublic field removed - single-teacher use only
 });
 
-router.put('/:collectionId', authMiddleware, async (req: Request, res: Response) => {
+router.put('/:collectionId', authMiddleware, asyncMiddleware(async (req: Request, res: Response) => {
 
     try {
     if (req.user?.id === null || req.user?.id === undefined) {
@@ -235,13 +235,13 @@ router.put('/:collectionId', authMiddleware, async (req: Request, res: Response)
     return;
   }
 
-});
+}));
 
 // Delete collection
 router.delete(
   '/:collectionId',
   authMiddleware,
-  async (req: Request, res: Response) => {
+  asyncMiddleware(async (req: Request, res: Response) => {
 
       try {
       if (req.user?.id === null || req.user?.id === undefined) {
@@ -287,7 +287,7 @@ router.delete(
       return;
     }
 
-  },
+  }),
 );
 
 // Add activity to collection
@@ -298,7 +298,7 @@ const addActivitySchema = z.object({
 router.post(
   '/:collectionId/activities',
   authMiddleware,
-  async (req: Request, res: Response) => {
+  asyncMiddleware(async (req: Request, res: Response) => {
 
       try {
       if (req.user?.id === null || req.user?.id === undefined) {
@@ -374,8 +374,7 @@ router.post(
       });
       return;
     }
-
-  },
+  })
 );
 
 // Remove activity from collection

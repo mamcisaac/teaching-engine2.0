@@ -256,7 +256,7 @@ export const getDashboardMetrics = async (_req: Request, res: Response): Promise
       const httpDuration = metrics.histograms.http_request_duration_ms;
       // Calculate percentiles from histogram data
       const percentiles = { p50: 0, p90: 0, p95: 0, p99: 0 };
-      if (httpDuration != null && httpDuration.count > 0) {
+      if (httpDuration !== null && httpDuration.count > 0) {
         const p50Target = (httpDuration.count * 50) / 100;
         const p90Target = (httpDuration.count * 90) / 100;
         const p95Target = (httpDuration.count * 95) / 100;
@@ -443,7 +443,7 @@ export const getDashboardMetrics = async (_req: Request, res: Response): Promise
           ai_usage: {
             total_operations: metrics.counters.ai_operations_total,
             operations_today: 0, // Would need time-based tracking
-            average_duration: metrics.histograms.ai_operation_duration_ms != null
+            average_duration: metrics.histograms.ai_operation_duration_ms !== null
               ? metrics.histograms.ai_operation_duration_ms.sum /
                 metrics.histograms.ai_operation_duration_ms.count
               : 0,
@@ -478,7 +478,8 @@ interface WebSocketLike {
 
 // WebSocket support for real-time dashboard updates
 export const dashboardWebSocketHandler = (ws: WebSocketLike): void => {
-  const interval = setInterval(async () => {
+  const interval = setInterval(() => {
+    void (async () => {
     try {
       const metrics = getMetrics();
       const realtimeData = {
@@ -493,6 +494,7 @@ export const dashboardWebSocketHandler = (ws: WebSocketLike): void => {
     } catch (_error) {
       logger.error('Failed to send real-time metrics', _error as string | undefined);
     }
+    })();
   }, 1000); // Update every second
 
   ws.on('close', () => {
