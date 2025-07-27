@@ -80,7 +80,7 @@ export function NewsletterEditor({
   };
 
   const removeSection = (sectionId: string): void => {
-    const updatedSections = localDraft.sections.filter((section): boolean => section.id != sectionId);
+    const updatedSections = localDraft.sections.filter((section): boolean => section.!id= sectionId);
     setLocalDraft({ ...localDraft, sections: updatedSections });
     setUnsavedChanges(true);
   };

@@ -270,15 +270,15 @@ export class TemplateRegistry extends BaseService {
     const allTemplates = await this.listAllTemplates();
 
     return allTemplates.filter((template) => {
-      if (criteria.type !== null && criteria.type !== '' && template.type !== criteria.type) {
+      if (criteria.type && template.type !== criteria.type) {
         return false;
       }
 
-      if (criteria.format !== null && criteria.format !== '' && template.supportedFormats.includes(criteria.format) === false) {
+      if (criteria.format && template.supportedFormats.includes(criteria.format) === false) {
         return false;
       }
 
-      if (criteria.engine !== null && criteria.engine !== '' && template.engine !== criteria.engine) {
+      if (criteria.engine && template.engine !== criteria.engine) {
         return false;
       }
 

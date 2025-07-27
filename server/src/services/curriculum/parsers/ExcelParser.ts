@@ -18,7 +18,7 @@ export class ExcelParser extends CurriculumParser {
     // Read workbook
     const workbook = XLSX.read(content, { type: 'buffer' });
 
-    if (!workbook.SheetNames || workbook.SheetNames.length === 0) {
+    if (workbook.SheetNames === null || workbook.SheetNames === undefined || workbook.SheetNames.length === 0) {
       throw new Error('No sheets found in Excel file');
     }
 
@@ -29,7 +29,7 @@ export class ExcelParser extends CurriculumParser {
 
     const worksheet = workbook.Sheets[sheetName];
 
-    if (!worksheet) {
+    if (worksheet === null || worksheet === undefined) {
       throw new Error(`Worksheet ${sheetName} not found`);
     }
 
@@ -39,7 +39,7 @@ export class ExcelParser extends CurriculumParser {
       defval: '',
     });
 
-    if (!rows || rows.length === 0) {
+    if (rows === null || rows === undefined || rows.length === 0) {
       throw new Error('No data found in Excel file');
     }
 
@@ -103,13 +103,13 @@ export class ExcelParser extends CurriculumParser {
 
     // Try to extract from first few rows
     const firstRow = rows[0];
-    if (firstRow) {
+    if (firstRow !== null && firstRow !== undefined) {
       metadata.grade = this.extractGrade(firstRow);
       metadata.subject = this.extractSubject(firstRow);
     }
 
     // Try to find metadata in sheet names or cell values
-    if (!metadata.grade || !metadata.subject) {
+    if ((metadata.grade === null || metadata.grade === undefined || metadata.grade === 0) || (metadata.subject === null || metadata.subject === undefined || metadata.subject === '')) {
       for (const sheetName of workbook.SheetNames) {
         const gradeMatch = sheetName.match(/Grade\s*(\d+)/i);
         if (gradeMatch) {
@@ -142,7 +142,7 @@ export class ExcelParser extends CurriculumParser {
     const codeKeys = ['Code', 'code', 'Expectation Code', 'expectation_code', 'ID', 'Reference'];
     const code = this.findValue(row, codeKeys);
 
-    if (!code) {
+    if (code === null || code === undefined || code === '') {
       return null;
     }
 
@@ -157,7 +157,7 @@ export class ExcelParser extends CurriculumParser {
     ];
     const description = this.findValue(row, descKeys);
 
-    if (!description) {
+    if (description === null || description === undefined || description === '') {
       return null;
     }
 
@@ -176,12 +176,12 @@ export class ExcelParser extends CurriculumParser {
       description: this.cleanText(description),
       type,
       strand: this.cleanText(strand),
-      substrand: substrand ? this.cleanText(substrand) : undefined,
+      substrand: (substrand !== null && substrand !== undefined && substrand !== '') ? this.cleanText(substrand) : undefined,
       grade: this.extractGrade(row) ?? defaultGrade,
       subject: this.extractSubject(row) ?? defaultSubject,
     };
 
-    if (this.options.extractKeywords) {
+    if (this.options.extractKeywords === true) {
       expectation.keywords = this.extractKeywords(description);
     }
 
@@ -193,7 +193,7 @@ export class ExcelParser extends CurriculumParser {
    */
   private findValue(row: ExcelRow, keys: string[]): string | undefined {
     for (const key of keys) {
-      if (row[key]) {
+      if (row[key] !== null && row[key] !== undefined) {
         return String(row[key]);
       }
     }
@@ -224,7 +224,7 @@ export class ExcelParser extends CurriculumParser {
     const gradeKeys = ['Grade', 'grade', 'Level', 'Year'];
     const gradeValue = this.findValue(row, gradeKeys);
 
-    if (gradeValue) {
+    if (gradeValue !== null && gradeValue !== undefined && gradeValue !== '') {
       const numericGrade = parseInt(gradeValue.replace(/\D/g, ''));
       if (!isNaN(numericGrade) && numericGrade >= 1 && numericGrade <= 12) {
         return numericGrade;
@@ -240,7 +240,7 @@ export class ExcelParser extends CurriculumParser {
   private extractSubject(row: ExcelRow): string | undefined {
     const subjectKeys = ['Subject', 'subject', 'Course', 'Area'];
     const subjectValue = this.findValue(row, subjectKeys);
-    return subjectValue ? this.cleanText(subjectValue) : undefined;
+    return (subjectValue !== null && subjectValue !== undefined && subjectValue !== '') ? this.cleanText(subjectValue) : undefined;
   }
 
   /**
@@ -279,11 +279,11 @@ export class ExcelParser extends CurriculumParser {
    * Check if expectation is valid
    */
   private isValidExpectation(expectation: ParsedExpectation): boolean {
-    if (!this.options.strict) {
+    if (this.options.strict !== true) {
       return true;
     }
 
-    if (this.options.validateCodes && !this.validateExpectationCode(expectation.code)) {
+    if (this.options.validateCodes === true && this.validateExpectationCode(expectation.code) !== true) {
       return false;
     }
 
@@ -294,9 +294,9 @@ export class ExcelParser extends CurriculumParser {
    * Validate parsed curriculum
    */
   validate(data: ParsedCurriculum): boolean {
-    if (!data.subject || 
-        !data.grade || data.grade === 0 || 
-        !data.expectations) {
+    if ((data.subject === null || data.subject === undefined || data.subject === '') || 
+        (data.grade === null || data.grade === undefined || data.grade === 0) || 
+        data.expectations === null || data.expectations === undefined) {
       return false;
     }
 

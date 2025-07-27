@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * AI Activity Generator Service
  * Generates educational activities using AI
@@ -6,7 +5,7 @@
 
 import type { ExternalActivity } from '@teaching-engine/database';
 
-import { safeJsonParse } from '../utils/type-guards';
+import { safeJsonParse, toGeneratedActivity } from '../utils/type-guards';
 
 export interface LessonContext {
   title?: string;
@@ -193,41 +192,18 @@ prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`
         throw new Error('No JSON found in response');
       }
 
-      const parsed = safeJsonParse(jsonMatch[0], {});
+      const parsed = safeJsonParse(jsonMatch[0]);
 
-      // Ensure parsed is valid and has the expected structure
-      if (parsed === null || typeof parsed !== 'object') {
-        throw new Error('Invalid JSON structure in response');
-      }
-
-      // Type assertion for the parsed object
-      const activity = parsed as any;
+      // Use type-safe conversion with defaults
+      const activity = toGeneratedActivity(parsed);
 
       // Validate required fields
-      if (activity.title === null || activity.title === '' || 
-          activity.description === null || activity.description === '' || 
-          activity.detailedInstructions === null) {
+      if (!activity.title || !activity.description || 
+          !activity.detailedInstructions || activity.detailedInstructions.length === 0) {
         throw new Error('Missing required fields');
       }
 
-      // Apply defaults for missing optional fields
-      return {
-        title: activity.title,
-        description: activity.description,
-        detailedInstructions: activity.detailedInstructions ?? [],
-        duration: activity.duration ?? 30,
-        activityType: activity.activityType ?? 'handson',
-        materials: activity.materials ?? [],
-        groupSize: activity.groupSize ?? 'flexible',
-        learningGoals: activity.learningGoals ?? [],
-        assessmentSuggestions: activity.assessmentSuggestions ?? [],
-        differentiation: {
-          support: activity.differentiation?.support ?? [],
-          extension: activity.differentiation?.extension ?? [],
-        },
-        safetyConsiderations: activity.safetyConsiderations,
-        technologyRequirements: activity.technologyRequirements,
-      };
+      return activity;
     } catch (error) {
       throw new Error('Failed to parse generated activity');
     }

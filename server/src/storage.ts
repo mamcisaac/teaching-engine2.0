@@ -10,7 +10,7 @@ const localDir = path.join(__dirname, '../uploads');
 
 // Initialize S3 client lazily
 async function getS3Client(): Promise<unknown> {
-  if (s3Client === null && bucket !== null && bucket !== '' && process.env.AWS_ACCESS_KEY_ID !== null && process.env.AWS_ACCESS_KEY_ID !== '' && process.env.AWS_SECRET_ACCESS_KEY !== null && process.env.AWS_SECRET_ACCESS_KEY !== '') {
+  if (s3Client === null && bucket  bucket  process.env.AWS_ACCESS_KEY_ID !== null && process.env.AWS_ACCESS_KEY_ID !== '' && process.env.AWS_SECRET_ACCESS_KEY !== null && process.env.AWS_SECRET_ACCESS_KEY !== '') {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const { S3Client } = await import('@aws-sdk/client-s3');
     s3Client = new S3Client({ region: process.env.AWS_REGION ?? 'us-east-1' });

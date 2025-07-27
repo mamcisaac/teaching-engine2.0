@@ -47,7 +47,7 @@ import { logger } from '../utils/logger';
 
 export function CurriculumExpectationsPage(): React.ReactElement {
   const navigate = useNavigate();
-  const { toast } = useToast();
+  const { toast }: { toast: (options: { title?: string; description?: string; variant?: 'default' | 'destructive' }) => void } = useToast();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedSubject, setSelectedSubject] = useState<string>('all');
   const [selectedGrade, setSelectedGrade] = useState<number | 'all'>('all');
@@ -101,7 +101,7 @@ export function CurriculumExpectationsPage(): React.ReactElement {
   const handleEdit = (expectation: CurriculumExpectation): void => {
     setEditingExpectation({
       ...expectation,
-      descriptionFr: expectation.descriptionFr !== null ? expectation.descriptionFr : '',
+      descriptionFr: expectation.descriptionFr || '',
     });
     setIsEditDialogOpen(true);
   };
@@ -177,7 +177,7 @@ return;
       <TableCell className="max-w-md">
         <div className="space-y-1">
           <p className="text-sm">{expectation.description}</p>
-          {expectation.descriptionFr !== null && (
+          {expectation.descriptionFr && (
             <p className="text-sm text-muted-foreground italic">{expectation.descriptionFr}</p>
           )}
         </div>
@@ -185,7 +185,7 @@ return;
       <TableCell>
         <div className="text-sm">
           <div>{expectation.strand}</div>
-          {expectation.substrand !== null && (
+          {expectation.substrand && (
             <div className="text-muted-foreground">{expectation.substrand}</div>
           )}
         </div>
@@ -263,7 +263,7 @@ return;
               <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
                 className="pl-9"
-                onChange={(e) => {
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
  setSearchTerm(e.target.value); 
 }}
                 placeholder="Search by code or description..."
@@ -429,7 +429,7 @@ return;
                   }
                   placeholder="Optional French translation"
                   rows={3}
-                  value={editingExpectation.descriptionFr !== null ? editingExpectation.descriptionFr : ''}
+                  value={editingExpectation.descriptionFr || ''}
                 />
               </div>
 
@@ -457,7 +457,7 @@ return;
                       }); 
 }
                     }
-                    value={editingExpectation.substrand !== null ? editingExpectation.substrand : ''}
+                    value={editingExpectation.substrand || ''}
                   />
                 </div>
               </div>

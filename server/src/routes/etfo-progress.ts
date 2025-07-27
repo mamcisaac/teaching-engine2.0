@@ -3,13 +3,14 @@ import { Router } from 'express';
 
 import { logger } from '../logger';
 import { prisma } from '../prisma';
+import { asyncHandler } from './base/middleware';
 const router = Router();
 
 /**
  * GET /api/etfo/progress
  * Get ETFO planning progress across all 5 levels
  */
-router.get('/progress', async (req: Request, res: Response) => {
+router.get('/progress', asyncHandler(async (req: Request, res: Response) => {
   try {
     if (!req.user.id) {
       res.status(401).json({ error: 'User not authenticated' });
@@ -110,6 +111,6 @@ router.get('/progress', async (req: Request, res: Response) => {
     logger.error('Error fetching ETFO progress:', message);
     res.status(500).json({ error: 'Failed to fetch ETFO progress' });
   }
-});
+}));
 
 export { router };

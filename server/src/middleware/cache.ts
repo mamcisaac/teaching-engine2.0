@@ -117,8 +117,8 @@ export function createCacheMiddleware(
       return;
     }
 
-    // Wrap async logic in void wrapper
-    (async (): Promise<void> => {
+    // Wrap logic in void wrapper
+    ((): void => {
       try {
         // Generate cache key
         const cacheKey = skipUserSpecific
@@ -189,7 +189,7 @@ export function createCacheMiddleware(
         // Continue without caching on error
         next();
       }
-    })().catch(next);
+    })();
   };
 }
 

@@ -381,7 +381,7 @@ router.post(
 router.delete(
   '/:collectionId/activities/:activityId',
   authMiddleware,
-  async (req: Request, res: Response) => {
+  asyncMiddleware(async (req: Request, res: Response) => {
 
       try {
       if (req.user?.id === null || req.user?.id === undefined) {
@@ -432,14 +432,14 @@ router.delete(
       return;
     }
 
-  },
+  }),
 );
 
 // Get popular/trending collections
 router.get(
   '/trending/public',
   authMiddleware,
-  async (req: Request, res: Response) => {
+  asyncMiddleware(async (req: Request, res: Response) => {
 
       try {
       if (req.user?.id === null || req.user?.id === undefined) {
@@ -482,7 +482,7 @@ router.get(
       return;
     }
 
-  },
+  }),
 );
 
 export { router };

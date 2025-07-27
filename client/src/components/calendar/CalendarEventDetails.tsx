@@ -46,9 +46,9 @@ export function CalendarEventDetails({
   // Delete mutation
   const deleteMutation = useMutation({
     mutationFn: async () => {
-      if (event.type === 'lesson' && event.metadata?.lessonId !== null && event.metadata.lessonId !== '') {
+      if (event.type === 'lesson' && event.metadata?.lessonId) {
         return apiClient.delete(`/api/etfo-lesson-plans/${event.metadata.lessonId}`);
-      } else if (event.originalData?.id !== null && event.originalData.id !== '') {
+      } else if (event.originalData?.id) {
         return apiClient.delete(`/api/calendar-events/${event.originalData.id}`);
       }
     },
@@ -67,11 +67,11 @@ export function CalendarEventDetails({
   // Update title mutation
   const updateTitleMutation = useMutation({
     mutationFn: async (newTitle: string) => {
-      if (event.type === 'lesson' && event.metadata?.lessonId !== null && event.metadata.lessonId !== '') {
+      if (event.type === 'lesson' && event.metadata?.lessonId) {
         return apiClient.patch(`/api/etfo-lesson-plans/${event.metadata.lessonId}`, {
           title: newTitle,
         });
-      } else if (event.originalData?.id !== null && event.originalData.id !== '') {
+      } else if (event.originalData?.id) {
         return apiClient.patch(`/api/calendar-events/${event.originalData.id}`, {
           title: newTitle,
         });
@@ -106,9 +106,9 @@ export function CalendarEventDetails({
   };
 
   const handleViewDetails = (): void => {
-    if (event.type === 'lesson' && event.metadata?.lessonId !== null && event.metadata.lessonId !== '') {
+    if (event.type === 'lesson' && event.metadata?.lessonId) {
       navigate(`/planner/lessons/${event.metadata.lessonId}`);
-    } else if (event.type === 'unit-boundary' && event.metadata?.unitId !== null && event.metadata.unitId !== '') {
+    } else if (event.type === 'unit-boundary' && event.metadata?.unitId) {
       navigate(`/planner/units/${event.metadata.unitId}`);
     }
   };
@@ -181,7 +181,7 @@ export function CalendarEventDetails({
             ) : (
               <div className="flex justify-between items-start">
                 <h2 className="text-xl font-semibold">{event.title}</h2>
-                {event.metadata?.isEditable === true && (
+                {event.metadata?.isEditable && (
                   <button
                     className="text-gray-500 hover:text-gray-700"
                     onClick={() => {
@@ -211,14 +211,14 @@ export function CalendarEventDetails({
               </div>
             )}
 
-            {(event.metadata?.subject !== null && event.metadata.subject !== '') && (
+            {event.metadata?.subject && (
               <div className="flex items-center gap-2 text-gray-600">
                 <Book className="h-4 w-4" />
                 <span className="capitalize">{event.metadata.subject}</span>
               </div>
             )}
 
-            {(event.originalData?.description !== null && event.originalData.description !== '') ? (
+            {event.originalData?.description ? (
               <div className="mt-4">
                 <h4 className="font-medium text-gray-700 mb-1">Description</h4>
                 <p className="text-gray-600 text-sm">{String(event.originalData.description)}</p>
@@ -233,7 +233,7 @@ export function CalendarEventDetails({
                 View Details
               </Button>
             )}
-            {event.metadata?.isEditable === true && (
+            {event.metadata?.isEditable && (
               <Button
                 className="flex items-center gap-2"
                 disabled={deleteMutation.isPending}

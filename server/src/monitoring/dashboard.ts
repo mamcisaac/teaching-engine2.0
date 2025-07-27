@@ -479,7 +479,7 @@ interface WebSocketLike {
 // WebSocket support for real-time dashboard updates
 export const dashboardWebSocketHandler = (ws: WebSocketLike): void => {
   const interval = setInterval(() => {
-    void (async () => {
+    void (async (): Promise<void> => {
     try {
       const metrics = getMetrics();
       const realtimeData = {

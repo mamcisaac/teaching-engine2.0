@@ -176,7 +176,7 @@ export function PlanningDashboard(): React.ReactElement {
               <Link key={action.id} id={action.id} to={action.path}>
                 <Card
                   className={`h-full transition-all duration-200 hover:scale-105 hover:shadow-lg border-2 ${
-                    action.isPrimary === true
+                    action.isPrimary 
                       ? 'border-blue-200 bg-blue-50'
                       : 'border-gray-200 hover:border-gray-300'
                   }`}

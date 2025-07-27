@@ -56,19 +56,19 @@ const isMac = typeof window !== 'undefined' && navigator.platform.toUpperCase().
 export const formatShortcut = (shortcut: KeyboardShortcut): string => {
   const parts: string[] = [];
   
-  if (shortcut.ctrl === true && !isMac) {
+  if (shortcut.ctrl  && !isMac) {
 parts.push('Ctrl');
 }
-  if (shortcut.cmd === true && isMac) {
+  if (shortcut.cmd  && isMac) {
 parts.push('⌘');
 }
-  if (shortcut.ctrl === true && isMac) {
+  if (shortcut.ctrl  && isMac) {
 parts.push('⌃');
 }
-  if (shortcut.alt === true) {
+  if (shortcut.alt ) {
 parts.push(isMac ? '⌥' : 'Alt');
 }
-  if (shortcut.shift === true) {
+  if (shortcut.shift ) {
 parts.push(isMac ? '⇧' : 'Shift');
 }
   
@@ -178,7 +178,7 @@ return;
 
       // Check each registered shortcut
       for (const shortcut of shortcutsRef.current) {
-        if (shortcut.enabled === false) {
+        if (shortcut.!enabled) {
 continue;
 }
 
@@ -195,16 +195,16 @@ continue;
         const ctrlKey = isMac ? event.metaKey : event.ctrlKey;
         const cmdKey = isMac ? event.metaKey : false;
 
-        if (finalShortcut.ctrl === true && !ctrlKey) {
+        if (finalShortcut.ctrl  && !ctrlKey) {
 continue;
 }
-        if (finalShortcut.cmd === true && !cmdKey) {
+        if (finalShortcut.cmd  && !cmdKey) {
 continue;
 }
-        if (finalShortcut.alt === true && !event.altKey) {
+        if (finalShortcut.alt  && !event.altKey) {
 continue;
 }
-        if (finalShortcut.shift === true && !event.shiftKey) {
+        if (finalShortcut.shift  && !event.shiftKey) {
 continue;
 }
 

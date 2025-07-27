@@ -6,17 +6,18 @@ import { authMiddleware } from '../middleware/auth';
 import { cache, CacheUtils } from '../services/cache';
 
 import type { AuthenticatedRequest } from './base/middleware';
+import { asyncHandler } from './base/middleware';
 
 const router = Router();
 
 // All cache management endpoints require authentication
-router.use(authMiddleware);
+router.use(asyncHandler(authMiddleware));
 
 /**
  * Get cache statistics
  * GET /api/cache/stats
  */
-router.get('/stats', async (_req: Request, res: Response) => {
+router.get('/stats', asyncHandler(async (_req: Request, res: Response) => {
 
     try {
     const cacheService = cache();
@@ -42,13 +43,13 @@ router.get('/stats', async (_req: Request, res: Response) => {
     return;
   }
 
-});
+}));
 
 /**
  * Get cache health status
  * GET /api/cache/health
  */
-router.get('/health', async (_req: Request, res: Response) => {
+router.get('/health', asyncHandler(async (_req: Request, res: Response) => {
 
     try {
     const health = await CacheUtils.getHealth();
@@ -72,13 +73,13 @@ router.get('/health', async (_req: Request, res: Response) => {
     return;
   }
 
-});
+}));
 
 /**
  * Warm up cache with commonly accessed data
  * POST /api/cache/warmup
  */
-router.post('/warmup', async (_req: Request, res: Response) => {
+router.post('/warmup', asyncHandler(async (_req: Request, res: Response) => {
 
     try {
     await CacheUtils.warmUp();
@@ -98,13 +99,13 @@ router.post('/warmup', async (_req: Request, res: Response) => {
     return;
   }
 
-});
+}));
 
 /**
  * Clear all caches
  * DELETE /api/cache/all
  */
-router.delete('/all', async (req: AuthenticatedRequest, res: Response) => {
+router.delete('/all', asyncHandler(async (req: AuthenticatedRequest, res: Response) => {
 
     try {
     const cacheService = cache();
@@ -127,13 +128,13 @@ router.delete('/all', async (req: AuthenticatedRequest, res: Response) => {
     return;
   }
 
-});
+}));
 
 /**
  * Clear cache by pattern
  * DELETE /api/cache/pattern
  */
-router.delete('/pattern', async (req: AuthenticatedRequest, res: Response) => {
+router.delete('/pattern', asyncHandler(async (req: AuthenticatedRequest, res: Response) => {
 
     try {
     const { pattern } = req.body;
@@ -169,13 +170,13 @@ router.delete('/pattern', async (req: AuthenticatedRequest, res: Response) => {
     return;
   }
 
-});
+}));
 
 /**
  * Clear cache by tags
  * DELETE /api/cache/tags
  */
-router.delete('/tags', async (req: AuthenticatedRequest, res: Response) => {
+router.delete('/tags', asyncHandler(async (req: AuthenticatedRequest, res: Response) => {
 
     try {
     const { tags } = req.body;
@@ -189,7 +190,7 @@ router.delete('/tags', async (req: AuthenticatedRequest, res: Response) => {
     }
 
     const cacheService = cache();
-    const deleted = await cacheService.invalidateByTags(tags);
+    const deleted = await cacheService.invalidateByTags(tags as string[]);
 
     logger.info(
       `Cache invalidated by tags: ${tags.join(', ')} by user ${req.user.id}, deleted: ${deleted}`,
@@ -211,13 +212,13 @@ router.delete('/tags', async (req: AuthenticatedRequest, res: Response) => {
     return;
   }
 
-});
+}));
 
 /**
  * Clear user-specific cache
  * DELETE /api/cache/user/:userId
  */
-router.delete('/user/:userId', async (req: AuthenticatedRequest, res: Response) => {
+router.delete('/user/:userId', asyncHandler(async (req: AuthenticatedRequest, res: Response) => {
 
     try {
     const { userId } = req.params;
@@ -250,6 +251,6 @@ router.delete('/user/:userId', async (req: AuthenticatedRequest, res: Response) 
     return;
   }
 
-});
+}));
 
 export { router };

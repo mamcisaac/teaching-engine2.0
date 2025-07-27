@@ -165,7 +165,7 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
       extensions: formData.extensions.filter((e) => e.trim()),
     };
 
-    if (editingLesson != null) {
+    if (!editingLesson= null) {
       await updateLesson.mutateAsync({ id: editingLesson, data: cleanedData });
       setEditingLesson(null);
     } else {
@@ -224,7 +224,7 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
   const removeMaterial = (index: number): void => {
     setFormData({
       ...formData,
-      materials: formData.materials.filter((_, i) => i != index),
+      materials: formData.materials.filter((_, i) => !i= index),
     });
   };
 
@@ -241,7 +241,7 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
   const removeAccommodation = (index: number): void => {
     setFormData({
       ...formData,
-      accommodations: formData.accommodations.filter((_, i) => i != index),
+      accommodations: formData.accommodations.filter((_, i) => !i= index),
     });
   };
 
@@ -258,7 +258,7 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
   const removeModification = (index: number): void => {
     setFormData({
       ...formData,
-      modifications: formData.modifications.filter((_, i) => i != index),
+      modifications: formData.modifications.filter((_, i) => !i= index),
     });
   };
 
@@ -275,7 +275,7 @@ export default function ETFOLessonPlanPage(): React.ReactElement {
   const removeExtension = (index: number): void => {
     setFormData({
       ...formData,
-      extensions: formData.extensions.filter((_, i) => i != index),
+      extensions: formData.extensions.filter((_, i) => !i= index),
     });
   };
 

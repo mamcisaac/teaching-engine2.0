@@ -141,7 +141,7 @@ export function AILessonPlanPanel({
   };
 
   const removeLearningGoal = (goal: string): void => {
-    handleInputChange('learningGoals', formData.learningGoals.filter(g => g != goal));
+    handleInputChange('learningGoals', formData.learningGoals.filter(g => !g= goal));
   };
 
   const addMaterial = (): void => {
@@ -153,7 +153,7 @@ export function AILessonPlanPanel({
   };
 
   const removeMaterial = (material: string): void => {
-    handleInputChange('materials', formData.materials.filter(m => m != material));
+    handleInputChange('materials', formData.materials.filter(m => !m= material));
   };
 
   const generateThreePartLesson = useCallback(async (): Promise<void> => {
@@ -344,7 +344,7 @@ export function AILessonPlanPanel({
       }
 
       setSuggestions(prev => [
-        ...prev.filter(s => s.type != type),
+        ...prev.filter(s => s.!type= type),
         {
           type,
           content: result.suggestions,

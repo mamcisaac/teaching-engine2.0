@@ -136,7 +136,7 @@ export function errorResponse(
   return {
     status: 'error',
     message,
-    ...(code !== null && code !== '' && { code }),
+    ...(code && { code }),
     ...(errors !== null && { errors }),
   };
 }

@@ -27,7 +27,7 @@ export class LessonPlanService {
   // Format lesson plan for export
   static formatForExport(lesson: ETFOLessonPlan, unitPlan?: UnitPlan): string {
     let content = `# ${lesson.title}\n`;
-    if (lesson.titleFr !== null && lesson.titleFr !== '') {
+    if (lesson.titleFr) {
       content += `## ${lesson.titleFr}\n`;
     }
     // Handle date formatting properly to avoid timezone issues
@@ -41,7 +41,7 @@ export class LessonPlanService {
 
     content += '\n---\n\n';
 
-    if (lesson.learningGoals !== null && lesson.learningGoals !== '') {
+    if (lesson.learningGoals) {
       content += `## Learning Goals\n${lesson.learningGoals}\n\n`;
     }
 
@@ -86,7 +86,7 @@ export class LessonPlanService {
       lesson.mindsOn !== '' &&
       lesson.action !== '' &&
       lesson.consolidation !== '' &&
-      lesson.materials !== null && lesson.materials.length > 0
+      lesson.materials && lesson.materials.length > 0
     );
   }
 
@@ -145,7 +145,7 @@ return '';
       if (Array.isArray(value)) {
         return value.length > 0 && value.some((item) => String(item).trim() !== '');
       }
-      return value !== null && String(value).trim() !== '';
+      return value && String(value).trim() !== '';
     });
   }
 }

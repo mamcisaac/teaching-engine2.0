@@ -86,7 +86,7 @@ router.get('/', asyncHandler(async (req: AuthenticatedRequest, res: Response): P
 // Create a new calendar event
 router.post(
   '/',
-  validateRequest(calendarEventSchema),
+  asyncHandler(validateRequest(calendarEventSchema)),
   asyncHandler(async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       const data = req.body as z.infer<typeof calendarEventSchema>;
@@ -145,10 +145,10 @@ router.patch('/:id', asyncHandler(async (req: Request, res: Response): Promise<v
 
     // Convert date strings to Date objects if present
     if (updates.start !== null && updates.start !== undefined) {
-      updates.start = new Date(updates.start);
+      updates.start = new Date(updates.start as string | number | Date);
     }
-    if (updates.end !== null && end !== undefined) {
-      updates.end = new Date(updates.end);
+    if (updates.end !== null && updates.end !== undefined) {
+      updates.end = new Date(updates.end as string | number | Date);
     }
 
     const updatedEvent = await prisma.calendarEvent.update({

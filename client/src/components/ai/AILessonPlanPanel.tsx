@@ -767,13 +767,13 @@ export function AILessonPlanPanel({
                           {suggestion.type.includes('mindson') && <Play className="h-4 w-4" />}
                           {suggestion.type === 'handson' && <Activity className="h-4 w-4" />}
                           {suggestion.type.replace(/_/g, ' ').replace(/([A-Z])/g, ' $1').trim()}
-                          {(suggestion.timeEstimate !== null && suggestion.timeEstimate > 0 && !isNaN(suggestion.timeEstimate)) && (
+                          {(suggestion.timeEstimate && suggestion.timeEstimate > 0) && (
                             <Badge className="ml-auto" variant="outline">
                               {suggestion.timeEstimate} min
                             </Badge>
                           )}
                         </CardTitle>
-                        {(suggestion.rationale !== null && suggestion.rationale !== '') && (
+                        {suggestion.rationale && (
                           <CardDescription>{suggestion.rationale}</CardDescription>
                         )}
                       </CardHeader>

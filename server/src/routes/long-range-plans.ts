@@ -7,6 +7,7 @@ import type { Prisma } from '../prisma';
 import { prisma } from '../prisma';
 import { generateLongRangePlanDraft, generatePlanSuggestions } from '../services/ai/aiDraftService';
 import { validate } from '../validation';
+import { asyncHandler } from './base/middleware';
 const router = Router();
 
 // Validation schemas
@@ -33,7 +34,7 @@ const longRangePlanCreateSchema = z.object({
 const longRangePlanUpdateSchema = longRangePlanCreateSchema.partial();
 
 // Get all long-range plans for the authenticated user
-router.get('/', async (req: Request, res, _next) => {
+router.get('/', asyncHandler(async (req: Request, res, _next) => {
   try {
     const userId = req.user.id;
     if (!userId) {
@@ -72,10 +73,10 @@ where.grade = Number(grade);
   } catch (_err) {
     _next(_err); return;
   }
-});
+}));
 
 // Get a single long-range plan
-router.get('/:id', async (req: Request, res, _next) => {
+router.get('/:id', asyncHandler(async (req: Request, res, _next) => {
   try {
     const userId = req.user.id;
     if (!userId) {
@@ -121,10 +122,10 @@ router.get('/:id', async (req: Request, res, _next) => {
   } catch (_err) {
     _next(_err); return;
   }
-});
+}));
 
 // Create a new long-range plan
-router.post('/', validate(longRangePlanCreateSchema), async (req: Request, res, _next) => {
+router.post('/', validate(longRangePlanCreateSchema), asyncHandler(async (req: Request, res, _next) => {
   try {
     const userId = req.user.id;
     if (!userId) {
@@ -132,7 +133,12 @@ router.post('/', validate(longRangePlanCreateSchema), async (req: Request, res, 
       return;
     }
 
-    const { expectationIds, themes, ...planData } = req.body;
+    // After validation, req.body is guaranteed to match the schema
+    const validatedBody = req.body as z.infer<typeof longRangePlanCreateSchema> & {
+      expectationIds?: string[];
+      themes?: string[];
+    };
+    const { expectationIds, themes, ...planData } = validatedBody;
 
     const plan = await prisma.longRangePlan.create({
       data: {
@@ -162,13 +168,13 @@ router.post('/', validate(longRangePlanCreateSchema), async (req: Request, res, 
         res.status(400).json({
           error: 'One or more curriculum expectations not found',
           provided: expectationIds,
-          found: validExpectations.map((e: { id: string }) => e.id),
+          found: validExpectations.map((e) => e.id),
         });
         return;
       }
 
       await prisma.longRangePlanExpectation.createMany({
-        data: expectationIds.map((expectationId: string) => ({
+        data: expectationIds.map((expectationId) => ({
           longRangePlanId: plan.id,
           expectationId,
         })),
@@ -196,10 +202,10 @@ router.post('/', validate(longRangePlanCreateSchema), async (req: Request, res, 
   } catch (_err) {
     _next(_err); return;
   }
-});
+}));
 
 // Update a long-range plan
-router.put('/:id', validate(longRangePlanUpdateSchema), async (req: Request, res, _next) => {
+router.put('/:id', validate(longRangePlanUpdateSchema), asyncHandler(async (req: Request, res, _next) => {
   try {
     const userId = req.user.id;
     if (!userId) {
@@ -238,7 +244,7 @@ router.put('/:id', validate(longRangePlanUpdateSchema), async (req: Request, res
       // Add new expectations
       if (expectationIds.length > 0) {
         await prisma.longRangePlanExpectation.createMany({
-          data: expectationIds.map((expectationId: string) => ({
+          data: expectationIds.map((expectationId) => ({
             longRangePlanId: plan.id,
             expectationId,
           })),
@@ -272,10 +278,10 @@ router.put('/:id', validate(longRangePlanUpdateSchema), async (req: Request, res
   } catch (_err) {
     _next(_err); return;
   }
-});
+}));
 
 // Delete a long-range plan
-router.delete('/:id', async (req: Request, res, _next) => {
+router.delete('/:id', asyncHandler(async (req: Request, res, _next) => {
   try {
     const userId = req.user.id;
     if (userId === null || userId === undefined) {
@@ -311,10 +317,10 @@ router.delete('/:id', async (req: Request, res, _next) => {
   } catch (_err) {
     _next(_err); return;
   }
-});
+}));
 
 // Generate AI draft for long-range plan
-router.post('/ai-draft', async (req: Request, res, _next) => {
+router.post('/ai-draft', asyncHandler(async (req: Request, res, _next) => {
   try {
     const userId = req.user.id;
     if (userId === null || userId === undefined) {
@@ -354,10 +360,10 @@ router.post('/ai-draft', async (req: Request, res, _next) => {
     res.status(500).json({ error: 'Failed to generate AI draft' });
     return;
   }
-});
+}));
 
 // Generate AI suggestions for existing plan
-router.post('/:id/ai-suggestions', async (req: Request, res, _next) => {
+router.post('/:id/ai-suggestions', asyncHandler(async (req: Request, res, _next) => {
   try {
     const userId = req.user.id;
     if (userId === null || userId === undefined) {
@@ -395,6 +401,6 @@ Expectations: ${plan.expectations.map((e: { expectation: { code: string; descrip
     res.status(500).json({ error: 'Failed to generate suggestions' });
     return;
   }
-});
+}));
 
 export { router };

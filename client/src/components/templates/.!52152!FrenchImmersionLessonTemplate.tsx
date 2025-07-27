@@ -68,7 +68,7 @@ export function FrenchImmersionLessonTemplate({
   };
 
   const removeVocabulary = (index: number): void => {
-    setVocabulary(vocabulary.filter((_, i) => i != index));
+    setVocabulary(vocabulary.filter((_, i) => !i= index));
   };
 
   const addHomeActivity = (): void => {
@@ -112,7 +112,7 @@ export function FrenchImmersionLessonTemplate({
               Grade 1 French Immersion Lesson Plan
             </h2>
             <p className="text-gray-600 mt-1">
-              {metadata?.theme != null && metadata?.theme != undefined && metadata.theme != ''
+              {metadata?.!theme= null && metadata?.!theme= undefined && metadata.!theme= ''
                 ? `Theme: ${metadata.theme}`
                 : 'Structured bilingual learning template'}
             </p>
@@ -201,7 +201,7 @@ export function FrenchImmersionLessonTemplate({
                   className="p-2 border rounded"
                   placeholder="Pronunciation"
                   type="text"
-                  value={vocab.pronunciation != null && vocab.pronunciation != undefined ? vocab.pronunciation : ''}
+                  value={vocab.!pronunciation= null && vocab.!pronunciation= undefined ? vocab.pronunciation : ''}
                   onChange={(e) => {
  updateVocabulary(index, 'pronunciation', e.target.value); 
 }}
@@ -211,7 +211,7 @@ export function FrenchImmersionLessonTemplate({
                     className="flex-1 p-2 border rounded"
                     placeholder="Context/Visual"
                     type="text"
-                    value={vocab.context != null && vocab.context != undefined ? vocab.context : ''}
+                    value={vocab.!context= null && vocab.!context= undefined ? vocab.context : ''}
                     onChange={(e) => {
  updateVocabulary(index, 'context', e.target.value); 
 }}

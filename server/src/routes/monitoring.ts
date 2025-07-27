@@ -7,20 +7,21 @@ import { getAlertStatus, triggerManualAlert } from '../monitoring/alerting';
 import { getDashboardMetrics } from '../monitoring/dashboard';
 import { withSpan } from '../monitoring/telemetry';
 import { CacheUtils } from '../services/cache';
+import { asyncHandler } from './base/middleware';
 
 const router = Router();
 
 // Dashboard metrics endpoint
-router.get('/dashboard', authenticate, async (req: Request, res: Response) => {
+router.get('/dashboard', authenticate, asyncHandler(async (req: Request, res: Response) => {
 
     await withSpan('api.monitoring.dashboard', {}, async () => {
       await getDashboardMetrics(req, res);
     });
 
-});
+}));
 
 // Alert status endpoint
-router.get('/alerts', authenticate, async (_req: Request, res: Response) => {
+router.get('/alerts', authenticate, asyncHandler(async (_req: Request, res: Response) => {
 
   await withSpan('api.monitoring.alerts', {}, async () => {
     try {
@@ -33,10 +34,10 @@ router.get('/alerts', authenticate, async (_req: Request, res: Response) => {
     }
     });
 
-});
+}));
 
 // Manual alert trigger (for testing)
-router.post('/alerts/:alertId/trigger', authenticate, async (req: Request, res: Response) => {
+router.post('/alerts/:alertId/trigger', authenticate, asyncHandler(async (req: Request, res: Response) => {
 
   await withSpan('api.monitoring.triggerAlert', {}, async (span) => {
     try {
@@ -57,10 +58,10 @@ router.post('/alerts/:alertId/trigger', authenticate, async (req: Request, res: 
     }
     });
 
-});
+}));
 
 // Health check endpoint with detailed status
-router.get('/health/detailed', async (_req: Request, res: Response) => {
+router.get('/health/detailed', asyncHandler(async (_req: Request, res: Response) => {
 
   await withSpan('api.monitoring.healthDetailed', {}, async (span) => {
     try {
@@ -120,6 +121,6 @@ router.get('/health/detailed', async (_req: Request, res: Response) => {
     }
     });
 
-});
+}));
 
 export { router };

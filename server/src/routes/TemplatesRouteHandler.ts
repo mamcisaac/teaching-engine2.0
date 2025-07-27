@@ -10,7 +10,7 @@ import { z } from 'zod';
 import { isDefined, isObject, isArray, hasProperty, isString, isValidNumber } from '../../../shared/utils/typeGuards';
 import { prisma } from '../prisma';
 import { BaseService } from '../services/base/BaseService';
-import type { TemplateCreateData, TemplateUpdateData, Template } from '../types/routes';
+import type { TemplateCreateData, TemplateUpdateData } from '../types/routes';
 import { isValidStringProperty, isNumber } from '../utils/typeGuards';
 
 import type { AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler';
@@ -421,7 +421,7 @@ export class TemplatesRouteHandler extends BaseRouteHandler {
         return result.templates;
       },
       findById: async (id: string, userId: number) => this.templateService.findById(id, userId),
-      update: async (id: string, data: unknown, userId: number) => {
+      update: async (id: string, data: unknown, userId: number): Promise<unknown> => {
         if (!isObject(data)) throw new Error('Invalid update data');
         return this.templateService.update(id, data as TemplateUpdateData, userId);
       },

@@ -176,7 +176,7 @@ return null;
             initial={{ opacity: 0 }}
             onClick={(e) => {
               // Allow clicking through to highlighted element
-              if (highlightPosition && currentStep.requiresAction === true) {
+              if (highlightPosition && currentStep.requiresAction ) {
                 e.stopPropagation();
               }
             }}
@@ -205,7 +205,7 @@ return null;
           {state.currentFlow !== null && 
             state.currentFlow.completionMessage !== null && state.currentFlow.completionMessage !== '' &&
             state.currentStepIndex === state.currentFlow.steps.length - 1 ? (
-              <OnboardingProgress completionMessage={state.currentFlow.completionMessage} />
+              <OnboardingProgress completionMessage={state.currentFlow.completionMessage || ''} />
             ) : null}
         </div>
       </AnimatePresence>

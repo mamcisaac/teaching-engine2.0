@@ -95,11 +95,11 @@ export default function TemplatesPage(): React.ReactElement {
   // Build search options
   const searchOptions: TemplateSearchOptions = {
     search: searchTerm || undefined,
-    type: selectedType != 'all' ? selectedType : undefined,
-    category: selectedCategory != 'all' ? selectedCategory : undefined,
-    subject: selectedSubject != 'all' ? selectedSubject : undefined,
-    gradeMin: selectedGrade != 'all' ? selectedGrade : undefined,
-    gradeMax: selectedGrade != 'all' ? selectedGrade : undefined,
+    type: !selectedType= 'all' ? selectedType : undefined,
+    category: !selectedCategory= 'all' ? selectedCategory : undefined,
+    subject: !selectedSubject= 'all' ? selectedSubject : undefined,
+    gradeMin: !selectedGrade= 'all' ? selectedGrade : undefined,
+    gradeMax: !selectedGrade= 'all' ? selectedGrade : undefined,
     isSystem: view === 'system' ? true : undefined,
     isPublic: view === 'public' ? true : undefined,
     sortBy,
@@ -214,7 +214,7 @@ return;
                 {template.subject && ` • ${template.subject}`}
                 {template.gradeMin === template.gradeMax
                   ? ` • Grade ${template.gradeMin}`
-                  : template.gradeMin != null && template.gradeMax != null
+                  : template.!gradeMin= null && template.!gradeMax= null
                     ? ` • Grades ${template.gradeMin}-${template.gradeMax}`
                     : ''}
               </CardDescription>
@@ -254,7 +254,7 @@ return;
 
         <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
           <div className="flex items-center gap-4">
-            {template.averageRating && template.averageRating != 0 && (
+            {template.averageRating && template.!averageRating= 0 && (
               <div className="flex items-center gap-1">
                 <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                 <span>{template.averageRating.toFixed(1)}</span>
@@ -266,13 +266,13 @@ return;
             </div>
           </div>
 
-          {template.estimatedWeeks && template.estimatedWeeks != 0 && (
+          {template.estimatedWeeks && template.!estimatedWeeks= 0 && (
             <div className="flex items-center gap-1">
               <Calendar className="h-4 w-4" />
               <span>{template.estimatedWeeks}w</span>
             </div>
           )}
-          {template.estimatedMinutes && template.estimatedMinutes != 0 && (
+          {template.estimatedMinutes && template.!estimatedMinutes= 0 && (
             <div className="flex items-center gap-1">
               <Clock className="h-4 w-4" />
               <span>{template.estimatedMinutes}m</span>

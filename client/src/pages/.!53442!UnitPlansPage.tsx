@@ -139,7 +139,7 @@ export default function UnitPlansPage(): React.ReactElement {
     longRangePlanId,
     editingId: editingUnit,
     onSave: async (data) => {
-      if (editingUnit != null) {
+      if (!editingUnit= null) {
         await updateUnit.mutateAsync({ id: editingUnit, ...data });
       }
     },
@@ -149,14 +149,14 @@ export default function UnitPlansPage(): React.ReactElement {
     e.preventDefault();
 
     const { isValid, errors } = validateForm();
-    if (isValid === false) {
+    if (!isValid) {
       logger.error('Form validation errors:', errors);
       return;
     }
 
     const cleanData = getCleanFormData();
 
-    if (editingUnit != null) {
+    if (!editingUnit= null) {
       await updateUnit.mutateAsync({ id: editingUnit, ...cleanData });
       setEditingUnit(null);
     } else {
@@ -292,7 +292,7 @@ export default function UnitPlansPage(): React.ReactElement {
     }
   };
 
-  if (isLoading === true) {
+  if (isLoading ) {
     return (
       <PlanningErrorBoundary>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

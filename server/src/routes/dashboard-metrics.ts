@@ -7,16 +7,18 @@ import { getCacheStats } from '../middleware/cache';
 import { getPerformanceSummary, metricsStore } from '../middleware/metrics';
 import { prisma } from '../prisma';
 
+import { asyncHandler } from './base/middleware';
+
 const router = Router();
 
 // All dashboard metrics require authentication
-router.use(authMiddleware);
+router.use(asyncHandler(authMiddleware));
 
 /**
  * Dashboard overview metrics
  * GET /api/dashboard/metrics
  */
-router.get('/', async (_req: Request, res: Response) => {
+router.get('/', asyncHandler(async (_req: Request, res: Response) => {
   try {
     const performanceSummary = getPerformanceSummary();
     const cacheStats = getCacheStats();
@@ -78,13 +80,13 @@ router.get('/', async (_req: Request, res: Response) => {
       message: 'Failed to get dashboard metrics',
     });
   }
-});
+}));
 
 /**
  * Performance trends over time
  * GET /api/dashboard/trends
  */
-router.get('/trends', async (_req: Request, res: Response) => {
+router.get('/trends', asyncHandler(async (_req: Request, res: Response) => {
   try {
     const metrics = metricsStore.getMetrics();
 
@@ -152,13 +154,13 @@ router.get('/trends', async (_req: Request, res: Response) => {
       message: 'Failed to get performance trends',
     });
   }
-});
+}));
 
 /**
  * Resource usage insights
  * GET /api/dashboard/resources
  */
-router.get('/resources', async (_req: Request, res: Response) => {
+router.get('/resources', asyncHandler(async (_req: Request, res: Response) => {
   try {
     const memUsage = process.memoryUsage();
     const cpuUsage = process.cpuUsage();
@@ -206,13 +208,13 @@ router.get('/resources', async (_req: Request, res: Response) => {
       message: 'Failed to get resource usage',
     });
   }
-});
+}));
 
 /**
  * Application insights (user activity, popular features)
  * GET /api/dashboard/insights
  */
-router.get('/insights', async (req: Request, res: Response) => {
+router.get('/insights', asyncHandler(async (req: Request, res: Response) => {
   try {
     const userId = req.user.id;
 
@@ -272,7 +274,7 @@ router.get('/insights', async (req: Request, res: Response) => {
       message: 'Failed to get application insights',
     });
   }
-});
+}));
 
 /**
  * Calculate overall cache hit rate from cache stats

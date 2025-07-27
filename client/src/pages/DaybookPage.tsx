@@ -179,7 +179,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
               <Label htmlFor="input">What Worked Well?</Label>
               <Textarea
                 onChange={(e) => {
- setFormData({ ...formData, whatWorked: e.target.value }); 
+ setFormData({ ...formData, whatWorked: (e.target as HTMLTextAreaElement).value }); 
 }}
                 placeholder="Describe successful strategies, activities, or moments..."
                 rows={2}
@@ -192,7 +192,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
               <Label htmlFor="input">What Could Be Improved?</Label>
               <Textarea
                 onChange={(e) => {
- setFormData({ ...formData, whatDidntWork: e.target.value }); 
+ setFormData({ ...formData, whatDidntWork: (e.target as HTMLTextAreaElement).value }); 
 }}
                 placeholder="Identify challenges or areas for improvement..."
                 rows={2}
@@ -205,7 +205,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
               <Label htmlFor="input">Next Steps</Label>
               <Textarea
                 onChange={(e) => {
- setFormData({ ...formData, nextSteps: e.target.value }); 
+ setFormData({ ...formData, nextSteps: (e.target as HTMLTextAreaElement).value }); 
 }}
                 placeholder="What will you do differently next time? Follow-up needed?"
                 rows={2}
@@ -221,7 +221,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
                 <Label className="text-sm">Engagement Level</Label>
                 <Textarea
                   onChange={(e) => {
- setFormData({ ...formData, studentEngagement: e.target.value }); 
+ setFormData({ ...formData, studentEngagement: (e.target as HTMLTextAreaElement).value }); 
 }}
                   placeholder="How engaged were students? Note participation patterns..."
                   rows={2}
@@ -233,7 +233,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
                 <Label className="text-sm">Challenges Observed</Label>
                 <Textarea
                   onChange={(e) => {
- setFormData({ ...formData, studentChallenges: e.target.value }); 
+ setFormData({ ...formData, studentChallenges: (e.target as HTMLTextAreaElement).value }); 
 }}
                   placeholder="What difficulties did students encounter? Who needs support?"
                   rows={2}
@@ -245,7 +245,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
                 <Label className="text-sm">Successes Noted</Label>
                 <Textarea
                   onChange={(e) => {
- setFormData({ ...formData, studentSuccesses: e.target.value }); 
+ setFormData({ ...formData, studentSuccesses: (e.target as HTMLTextAreaElement).value }); 
 }}
                   placeholder="Notable achievements, breakthroughs, or growth observed..."
                   rows={2}
@@ -264,7 +264,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
               </div>
               <Textarea
                 onChange={(e) => {
- setFormData({ ...formData, notes: e.target.value }); 
+ setFormData({ ...formData, notes: (e.target as HTMLTextAreaElement).value }); 
 }}
                 placeholder="Any other observations, reminders, or reflections (may be shared in newsletters)..."
                 rows={2}
@@ -298,7 +298,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
               </div>
               <Textarea
                 onChange={(e) => {
- setFormData({ ...formData, privateNotes: e.target.value }); 
+ setFormData({ ...formData, privateNotes: (e.target as HTMLTextAreaElement).value }); 
 }}
                 placeholder="Confidential notes, behavioral concerns, parent communications, substitute info..."
                 rows={2}

@@ -56,7 +56,7 @@ const upload = multer({
 router.post(
   '/upload',
   upload.single('file') as unknown as express.RequestHandler,
-  async (req: Request, res: Response) => {
+  asyncHandler(async (req: Request, res: Response) => {
     try {
       if (!req.file) {
         res.status(400).json({
@@ -128,7 +128,7 @@ router.post(
         error: _error instanceof Error ? _error.message : 'Failed to process upload',
       });
     }
-  },
+  }),
 );
 
 // POST /api/curriculum/import/parse - Parse uploaded file
@@ -246,7 +246,7 @@ router.post('/:id/confirm', asyncHandler(async (req: Request, res: Response) => 
   try {
     const importId = req.params.id;
 
-    if (req.user?.id === null || req.user?.id === undefined || req.user?.id === 0) {
+    if (req.user?.id === null || req.user?.id === undefined || req.user.id === 0) {
       res.status(401).json({
         error: 'User not authenticated',
       });

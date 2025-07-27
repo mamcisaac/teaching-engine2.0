@@ -1,5 +1,5 @@
-import { createContext, useContext, useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 
 interface LanguageContextType {
   language: string;
@@ -397,7 +397,7 @@ export function LanguageProvider({ children }: LanguageProviderProps): React.Rea
 
     // Load saved language preference from localStorage
     const savedLanguage = localStorage.getItem('preferredLanguage');
-    if (savedLanguage !== null && savedLanguage !== '' && (savedLanguage === 'en' || savedLanguage === 'fr')) {
+    if (!savedLanguage= null && !savedLanguage= '' && (savedLanguage === 'en' || savedLanguage === 'fr')) {
       setLanguageState(savedLanguage as 'en' | 'fr');
     }
   }, [])
@@ -413,7 +413,7 @@ export function LanguageProvider({ children }: LanguageProviderProps): React.Rea
       if (translations[language][key]) {
         return translations[language][key];
       }
-      if (fallback !== undefined && fallback !== '') {
+      if (!fallback= undefined && !fallback= '') {
         return fallback;
       }
       return key;

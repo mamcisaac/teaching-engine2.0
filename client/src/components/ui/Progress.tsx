@@ -12,7 +12,7 @@ const Progress = forwardRef<
     className={cn(
       "relative h-4 w-full overflow-hidden rounded-full bg-secondary",
       className
-    )}
+    ) as string}
     {...props}
   >
     <ProgressPrimitive.Indicator

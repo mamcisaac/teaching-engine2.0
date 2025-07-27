@@ -80,7 +80,7 @@ export class CurriculumValidator {
     this.validateStructure(curriculum, errors);
     
     // Early return if curriculum is invalid
-    if (!curriculum || !curriculum.expectations || !Array.isArray(curriculum.expectations)) {
+    if ((curriculum === null || curriculum === undefined) || (curriculum.expectations === null || curriculum.expectations === undefined) || !Array.isArray(curriculum.expectations)) {
       return {
         isValid: false,
         errors,
@@ -102,7 +102,7 @@ export class CurriculumValidator {
     this.validateExpectations(curriculum.expectations, errors, warnings, stats);
 
     // Check duplicates
-    if (this.options.checkDuplicates) {
+    if (this.options.checkDuplicates === true) {
       stats.duplicates = this.checkDuplicates(curriculum.expectations, warnings);
     } else {
       stats.duplicates = 0;
@@ -128,7 +128,7 @@ export class CurriculumValidator {
    * Validate basic structure
    */
   private validateStructure(curriculum: ParsedCurriculum, errors: ValidationError[]): void {
-    if (!curriculum) {
+    if (curriculum === null || curriculum === undefined) {
       errors.push({
         field: 'curriculum',
         message: 'Curriculum object is required',
@@ -136,7 +136,7 @@ export class CurriculumValidator {
       return;
     }
 
-    if (!curriculum.expectations) {
+    if (curriculum.expectations === null || curriculum.expectations === undefined) {
       errors.push({
         field: 'expectations',
         message: 'Expectations array is required',
@@ -160,7 +160,7 @@ export class CurriculumValidator {
    * Validate grade
    */
   private validateGrade(grade: number, errors: ValidationError[]): void {
-    if (!grade || (grade === 0 && this.options.strictMode)) {
+    if ((grade === null || grade === undefined) || (grade === 0 && this.options.strictMode === true)) {
       errors.push({
         field: 'grade',
         message: 'Grade is required',
@@ -202,7 +202,7 @@ export class CurriculumValidator {
     const normalizedSubject = subject.toLowerCase();
     const isKnown = knownSubjects.some(s => s.toLowerCase() === normalizedSubject);
 
-    if (!isKnown && this.options.strictMode) {
+    if (isKnown !== true && this.options.strictMode === true) {
       warnings.push({
         field: 'subject',
         message: `Unknown subject: ${subject}. Expected one of: ${knownSubjects.join(', ')}`,
@@ -232,7 +232,7 @@ export class CurriculumValidator {
         });
       } else {
         // Validate code format
-        if (this.options.validateCodes && !this.isValidCode(expectation.code)) {
+        if (this.options.validateCodes === true && this.isValidCode(expectation.code) !== true) {
           warnings.push({
             field: 'expectation.code',
             message: 'Invalid expectation code format',
@@ -243,7 +243,7 @@ export class CurriculumValidator {
         }
 
         // Check for duplicate codes only if checkDuplicates is enabled
-        if (this.options.checkDuplicates) {
+        if (this.options.checkDuplicates === true) {
           if (seenCodes.has(expectation.code)) {
             warnings.push({
               field: 'expectation.code',
@@ -263,7 +263,7 @@ export class CurriculumValidator {
           message: 'Expectation description is required',
           expectationCode: expectation.code,
         });
-      } else if (expectation.description.length < 10 && this.options.strictMode) {
+      } else if (expectation.description.length < 10 && this.options.strictMode === true) {
         warnings.push({
           field: 'expectation.description',
           message: 'Expectation description is too short',

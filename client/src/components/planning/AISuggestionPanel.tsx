@@ -58,9 +58,9 @@ export function AISuggestionPanel({
   };
 
   const handleAcceptAll = (): void => {
-    if (onAcceptAll) {
+    if (onAcceptAll && suggestions && Array.isArray(suggestions.suggestions)) {
       onAcceptAll();
-      const allIndices = new Set((suggestions?.suggestions ?? []).map((_, i) => i));
+      const allIndices = new Set(suggestions.suggestions.map((_, i) => i));
       setAcceptedIndices(allIndices);
       toast({
         title: 'All Accepted',
@@ -108,22 +108,22 @@ export function AISuggestionPanel({
           </Alert>
         )}
 
-        {suggestions && Array.isArray(suggestions.suggestions) && suggestions.suggestions.length > 0 && (
+        {suggestions && suggestions.suggestions.length > 0 && (
           <div className="space-y-3">
-            {(suggestions.rationale !== undefined && suggestions.rationale !== null && suggestions.rationale !== '') && (
-              <p className="text-sm text-muted-foreground italic">{suggestions.rationale as string}</p>
+            {suggestions.rationale && suggestions.rationale.trim() !== '' && (
+              <p className="text-sm text-muted-foreground italic">{suggestions.rationale}</p>
             )}
 
             <div className="space-y-2">
-              {(suggestions.suggestions as string[]).map((suggestion: string, index: number) => (
+              {suggestions.suggestions.map((suggestion: string, index: number) => (
                 <div
-                  key={index as number}
+                  key={index}
                   className={cn(
                     'p-3 rounded-lg border transition-colors',
                     acceptedIndices.has(index)
                       ? 'bg-green-50 border-green-300'
                       : 'bg-muted/50 hover:bg-muted'
-                  ) as string}
+                  )}
                 >
                   <div className="flex items-start justify-between gap-2">
                     <p className="text-sm flex-1">{suggestion}</p>
@@ -132,9 +132,7 @@ export function AISuggestionPanel({
                         className="h-8 w-8 p-0"
                         size="sm"
                         variant="ghost"
-                        onClick={() => {
- handleCopy(suggestion, index); 
-}}
+                        onClick={() => handleCopy(suggestion, index)}
                       >
                         {copiedIndex === index ? (
                           <Check className="h-4 w-4 text-green-500" />
@@ -147,9 +145,7 @@ export function AISuggestionPanel({
                           className="h-8 w-8 p-0"
                           size="sm"
                           variant="ghost"
-                          onClick={() => {
- handleAccept(suggestion, index); 
-}}
+                          onClick={() => handleAccept(suggestion, index)}
                         >
                           <Check className="h-4 w-4 text-green-500" />
                         </Button>
@@ -165,7 +161,7 @@ export function AISuggestionPanel({
               ))}
             </div>
 
-            {onAcceptAll && acceptedIndices.size < (suggestions.suggestions as string[]).length && (
+            {onAcceptAll && suggestions.suggestions && acceptedIndices.size < suggestions.suggestions.length && (
               <Button aria-label="Click button" onClick={handleAcceptAll}>
                 Accept All Suggestions
               </Button>
@@ -173,7 +169,7 @@ export function AISuggestionPanel({
           </div>
         )}
 
-        {suggestions && Array.isArray(suggestions.suggestions) && suggestions.suggestions.length === 0 && (
+        {suggestions && suggestions.suggestions.length === 0 && (
           <div className="text-center py-8 text-muted-foreground">
             <Sparkles className="h-8 w-8 mx-auto mb-2 opacity-20" />
             <p className="text-sm">No suggestions generated. Try adjusting your input.</p>

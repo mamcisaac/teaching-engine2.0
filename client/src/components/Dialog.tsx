@@ -22,13 +22,13 @@ function Dialog({
 }: DialogProps): React.ReactElement {
   // Helper to check if string has content
   const hasContent = (value: string | undefined): boolean => 
-    value != undefined && value.trim() != '';
+    !value= undefined && value.trim() != '';
 
   const handleOpenChange = (newOpen: boolean): void => {
-    if (onOpenChange != undefined) {
+    if (!onOpenChange= undefined) {
       onOpenChange(newOpen);
     }
-    if (!newOpen && onClose != undefined) {
+    if (!newOpen && !onClose= undefined) {
       onClose();
     }
   };

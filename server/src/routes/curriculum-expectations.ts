@@ -15,10 +15,12 @@ import {
   fetchPaginatedData,
 } from '../utils/pagination';
 
+import { asyncHandler } from './base/middleware';
+
 const router = Router();
 
 // Get curriculum expectations by bulk search (for autocomplete)
-router.get('/search', async (req: Request, res: Response) => {
+router.get('/search', asyncHandler(async (req: Request, res: Response) => {
   try {
     const { q, limit = '10' } = req.query as Record<string, string>;
     const limitNumber = Math.min(parseInt(limit, 10), 50); // Cap at 50 for autocomplete
@@ -62,10 +64,10 @@ router.get('/search', async (req: Request, res: Response) => {
     logger.error('Error searching curriculum expectations:', error);
     res.status(500).json({ error: 'Failed to search curriculum expectations' });
   }
-});
+}));
 
 // Get all curriculum expectations with optional filtering
-router.get('/', validatePagination, async (req: Request, res: Response) => {
+router.get('/', validatePagination, asyncHandler(async (req: Request, res: Response) => {
   try {
     const pagination = getPaginationParams(req);
     const { subject, grade, strand } = req.query as Record<string, string>;
@@ -140,10 +142,10 @@ baseFilter.strand = strand;
     logger.error('Error fetching curriculum expectations:', error);
     res.status(500).json({ error: 'Failed to fetch curriculum expectations' });
   }
-});
+}));
 
 // Get a single curriculum expectation by ID
-router.get('/:id', async (req: Request, res: Response) => {
+router.get('/:id', asyncHandler(async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
@@ -184,13 +186,13 @@ router.get('/:id', async (req: Request, res: Response) => {
     logger.error('Error fetching curriculum expectation:', _error);
     res.status(500).json({ error: 'Failed to fetch curriculum expectation' });
   }
-});
+}));
 
 // Get distinct values for filters
 router.get(
   '/filters/options',
-  cacheMiddleware('curriculum:filters', { ttl: 3600, tags: CacheTags.curriculum() }),
-  async (_req: Request, res: Response) => {
+  asyncHandler(cacheMiddleware('curriculum:filters', { ttl: 3600, tags: CacheTags.curriculum() })),
+  asyncHandler(async (_req: Request, res: Response) => {
     try {
       const [subjects, grades, strands] = await Promise.all([
         prisma.curriculumExpectation.findMany({
@@ -221,7 +223,7 @@ router.get(
       res.status(500).json({ error: 'Failed to fetch filter options' });
       return;
     }
-  },
+  }),
 );
 
 export { router };

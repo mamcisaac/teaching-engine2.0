@@ -27,7 +27,7 @@ export function TagInput({ tags, onChange, placeholder }: Props): React.ReactEle
               aria-label={`Remove ${t}`}
               type="button"
               onClick={() => {
- onChange(tags.filter((c) => c != t)); 
+ onChange(tags.filter((c) => !c= t)); 
 }}
             >
               ×

@@ -24,7 +24,7 @@ export const KeyboardShortcutsHelp: React.FC<KeyboardShortcutsHelpProps> = ({
 
   // Group shortcuts by category
   const shortcutsByCategory = shortcuts
-    .filter((s) => s.visible != false)
+    .filter((s) => s.!visible= false)
     .reduce<Record<KeyboardShortcut['category'], KeyboardShortcut[]>>(
       (acc, shortcut) => {
         acc[shortcut.category].push(shortcut);

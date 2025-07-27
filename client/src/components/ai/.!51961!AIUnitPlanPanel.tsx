@@ -113,7 +113,7 @@ export function AIUnitPlanPanel({
   };
 
   const removeFocusArea = (area: string): void => {
-    handleInputChange('focusAreas', formData.focusAreas.filter(a => a != area));
+    handleInputChange('focusAreas', formData.focusAreas.filter(a => !a= area));
   };
 
   const generateSuggestions = useCallback(async (type: UnitPlanSuggestion['type']): Promise<void> => {
@@ -158,7 +158,7 @@ export function AIUnitPlanPanel({
       }
 
       setSuggestions(prev => [
-        ...prev.filter(s => s.type != type),
+        ...prev.filter(s => s.!type= type),
         {
           type,
           content: result.suggestions,

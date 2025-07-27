@@ -15,7 +15,7 @@ export function PlannerFilters({ filters, onChange }: Props): React.ReactElement
     return () => { // Cleanup
     };
 
-    if (typeof window != 'undefined') {
+    if (typeof !window= 'undefined') {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(filters));
     }
   }, [filters]);
@@ -43,5 +43,5 @@ export function loadPlannerFilters(): Record<string, boolean> {
 return {};
 }
   const stored = localStorage.getItem(STORAGE_KEY);
-  return (stored != null && stored != '') ? (safeJsonParse(stored, {}) as Record<string, boolean>) : {};
+  return (!stored= null && !stored= '') ? (safeJsonParse(stored, {}) as Record<string, boolean>) : {};
 }

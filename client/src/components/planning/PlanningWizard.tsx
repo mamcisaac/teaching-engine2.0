@@ -198,7 +198,7 @@ export function PlanningWizard({
                   <h3 className="text-lg font-semibold">
                     Step {currentStep + 1}: {currentStepData.title}
                   </h3>
-                  {currentStepData.isAIAssisted === true && (
+                  {currentStepData.isAIAssisted  && (
                     <span className="inline-flex items-center gap-1 text-xs bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded-full">
                       <Sparkles className="h-3 w-3" />
                       AI-Assisted

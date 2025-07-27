@@ -207,7 +207,7 @@ return '0%';
     this.registerHelper('capitalize', {
       fn: (...args: unknown[]) => {
         const [str] = args as [string];
-        if (str === null || str === undefined || str === '') {
+        if (!str) {
 return '';
 }
         return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
@@ -240,7 +240,7 @@ return '';
     this.registerHelper('truncate', {
       fn: (...args: unknown[]) => {
         const [str, length = 50] = args as [string, number?];
-        if (str === null || str === undefined || str === '') {
+        if (!str) {
 return '';
 }
         if (str.length <= length) {
@@ -346,7 +346,7 @@ return 'Grade 12';
     this.registerHelper('first', {
       fn: (...args: unknown[]) => {
         const [array] = args as [unknown[]];
-        return array !== null && array !== undefined && array.length > 0 ? array[0] : null;
+        return array && array.length > 0 ? array[0] : null;
       },
       description: 'Get first item from array',
       category: 'array',
@@ -356,7 +356,7 @@ return 'Grade 12';
     this.registerHelper('last', {
       fn: (...args: unknown[]) => {
         const [array] = args as [unknown[]];
-        return array !== null && array !== undefined && array.length > 0 ? array[array.length - 1] : null;
+        return array && array.length > 0 ? array[array.length - 1] : null;
       },
       description: 'Get last item from array',
       category: 'array',
@@ -366,7 +366,7 @@ return 'Grade 12';
     this.registerHelper('length', {
       fn: (...args: unknown[]) => {
         const [array] = args as [unknown[]];
-        return array.length ?? 0;
+        return array.length;
       },
       description: 'Get array length',
       category: 'array',
@@ -376,7 +376,7 @@ return 'Grade 12';
     this.registerHelper('join', {
       fn: (...args: unknown[]) => {
         const [array, separator = ', '] = args as [unknown[], string?];
-        if (array === null || !Array.isArray(array)) {
+        if (!Array.isArray(array)) {
 return '';
 }
         return array.join(separator);

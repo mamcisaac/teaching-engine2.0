@@ -43,7 +43,7 @@ export function AuthProvider({ children }: { children: ReactNode }): React.React
       try {
         // Check if we have a token first
         const hasToken = authService.isAuthenticated();
-        if (hasToken === false) {
+        if (!hasToken) {
           return null;
         }
 
@@ -155,7 +155,7 @@ export function AuthProvider({ children }: { children: ReactNode }): React.React
     try {
       const success = await authService.refreshToken();
       
-      if (success === true) {
+      if (success ) {
         // Re-verify auth after refresh
         const userData = await checkAuth();
         return userData.data !== null;

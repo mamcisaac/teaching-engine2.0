@@ -250,16 +250,16 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
                 <th
                   key={column.key as string}
                   className={`px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ${
-                    column.sortable === true ? 'cursor-pointer hover:bg-gray-100' : ''
+                    column.sortable  ? 'cursor-pointer hover:bg-gray-100' : ''
                   }`}
                   style={{ width: column.width }}
-                  onClick={column.sortable === true ? (): void => {
+                  onClick={column.sortable  ? (): void => {
  handleSort(column.key as string); 
 } : undefined}
                 >
                   <div className="flex items-center space-x-1">
                     <span>{column.label}</span>
-                    {column.sortable === true && renderSortIcon(column.key as string)}
+                    {column.sortable  && renderSortIcon(column.key as string)}
                   </div>
                 </th>
               ))}
@@ -269,7 +269,7 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
             <tr className="bg-gray-25">
               {columns.map((column, _index) => (
                 <th key={`filter-${column.key as string}`} className="px-6 py-2">
-                  {column.filterable === true && (
+                  {column.filterable  && (
                     <Input
                       className="text-sm"
                       placeholder={`Filter by ${column.label.toLowerCase()}...`}
@@ -375,7 +375,7 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
       )}
 
       {/* Loading overlay for data fetching */}
-      {isLoading === true && (
+      {isLoading  && (
         <div
           className="absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center"
           data-testid="loading-skeleton"

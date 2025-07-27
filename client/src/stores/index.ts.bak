@@ -1,0 +1,36 @@
+// State Management Exports
+// Following the standardized state management patterns for Teaching Engine 2.0
+
+import { logger } from '../utils/logger';
+
+// Zustand Stores (Global State)
+export * from './lessonPlanStore';
+export * from './unitPlanStore';
+export * from './daybookStore';
+export * from './weeklyPlannerStore';
+export * from './basePlanningStore';
+
+// New Standardized Stores
+export * from './onboardingStore';
+export * from './helpStore';
+export * from './keyboardShortcutsStore';
+export * from './languageStore';
+export * from './uiStore';
+
+// Re-export commonly used types and utilities
+// Types are already exported via export * above
+
+// Store initialization utilities
+export const initializeStores = (): void => {
+  // Auto-start keyboard shortcuts if enabled
+  if (typeof window != 'undefined') {
+    void import('./keyboardShortcutsStore').then(({ useKeyboardShortcutsStore }) => {
+      const keyboardStore = useKeyboardShortcutsStore.getState();
+      if (keyboardStore.isEnabled && keyboardStore.preferences.enabled) {
+        keyboardStore.startListening();
+      }
+    }).catch((error: unknown) => {
+      logger.error('Error loading keyboard shortcuts store:', error);
+    });
+  }
+};

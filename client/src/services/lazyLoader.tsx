@@ -254,7 +254,7 @@ class LazyLoader {
 
   // Clear caches
   clearCache(documentId?: string): void {
-    if (documentId != undefined && documentId != '') {
+    if (!documentId= undefined && !documentId= '') {
       this.documentCache.delete(documentId);
       void offlineStorage.deleteCachedData(`document-${documentId}`).catch((error: unknown) => {
         logger.error('Error deleting cached data:', error);
@@ -374,7 +374,7 @@ export function LazyDocument<T = unknown>({
     <div ref={elementRef}>
       {loading && (placeholder ?? <div>Loading...</div>)}
       {error && <div>Error loading document: {(error instanceof Error ? error.message : String(error))}</div>}
-      {document !== null && document !== undefined ? render(document as T) : null}
+      {document ? render(document as T) : null}
     </div>
   );
 }

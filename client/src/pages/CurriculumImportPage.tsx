@@ -19,7 +19,7 @@ import {
 } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Textarea } from '@/components/ui/Textarea';
-import { useToast, type Toast } from '@/components/ui/use-toast';
+import { useToast } from '@/components/ui/use-toast';
 
 import { apiClient } from '../api/core/client';
 import { logger } from '../utils/logger';
@@ -80,7 +80,7 @@ function isPresetImportResponse(data: unknown): data is PresetImportResponse {
 
 export function CurriculumImportPage(): React.ReactElement {
   const navigate = useNavigate();
-  const { toast } = useToast();
+  const { toast }: { toast: (options: { title?: string; description?: string; variant?: 'default' | 'destructive' }) => void } = useToast();
   const [importSession, setImportSession] = useState<ImportSession | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [selectedPreset, setSelectedPreset] = useState<string>('');

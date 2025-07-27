@@ -133,20 +133,20 @@ const PlanItem = memo(
                   <span className={cn('text-xs text-gray-500', compact && 'text-xs')}>
                     {config.label}
                   </span>
-                  {(plan.subject !== null && plan.subject !== '') && (
+                  {(plan.subject !== null && plan.subject !== undefined && plan.subject !== '') && (
                     <>
                       <span className="text-xs text-gray-400">•</span>
                       <span className="text-xs text-gray-500">{plan.subject}</span>
                     </>
                   )}
-                  {(plan.grade !== null && !isNaN(plan.grade) && plan.grade > 0) && (
+                  {(plan.grade !== null && plan.grade !== undefined && !isNaN(plan.grade) && plan.grade > 0) && (
                     <>
                       <span className="text-xs text-gray-400">•</span>
                       <span className="text-xs text-gray-500">Grade {plan.grade}</span>
                     </>
                   )}
                 </div>
-                {(plan.parentTitle !== null && plan.parentTitle !== '') && (
+                {(plan.parentTitle !== null && plan.parentTitle !== undefined && plan.parentTitle !== '') && (
                   <p className="text-xs text-gray-500 mt-0.5">in {plan.parentTitle}</p>
                 )}
               </div>
@@ -218,7 +218,7 @@ export const OptimizedRecentPlans = memo(
       [compact],
     );
 
-    if (isLoading === true) {
+    if (isLoading ) {
       return (
         <Card className={className}>
           <CardHeader>

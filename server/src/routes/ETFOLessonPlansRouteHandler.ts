@@ -162,7 +162,7 @@ where.isSubFriendly = isSubFriendly;
     }
 
     // Sorting with validation
-    const orderBy = queryPerformance.createOptimizedSort(sort || 'date', order || 'asc', [
+    const orderBy = queryPerformance.createOptimizedSort((sort !== null && sort !== undefined && sort !== '') ? sort : 'date', (order !== null && order !== undefined && order !== '') ? order : 'asc', [
       'date',
       'title',
       'duration',
@@ -226,7 +226,7 @@ where.isSubFriendly = isSubFriendly;
     // Create lesson plan data that matches Prisma schema
     const baseData = {
       title: data.title,
-      unitPlanId: data.unitPlanId ?? '',
+      unitPlanId: data.unitPlanId,
       date: new Date(data.date),
       duration: data.duration ?? 60, // Default 60 minutes
       mindsOn: data.mindsOn,
@@ -333,7 +333,7 @@ where.isSubFriendly = isSubFriendly;
       baseUpdateData.learningGoalsFr = updateData.learningGoalsFr;
     }
     if (updateData.materials !== undefined) {
-      baseUpdateData.materials = updateData.materials
+      baseUpdateData.materials = (updateData.materials !== null && updateData.materials !== undefined)
         ? JSON.stringify(updateData.materials)
         : undefined;
     }
@@ -344,17 +344,17 @@ where.isSubFriendly = isSubFriendly;
       baseUpdateData.titleFr = updateData.titleFr;
     }
     if (updateData.accommodations !== undefined) {
-      baseUpdateData.accommodations = updateData.accommodations
+      baseUpdateData.accommodations = (updateData.accommodations !== null && updateData.accommodations !== undefined)
         ? JSON.stringify(updateData.accommodations)
         : undefined;
     }
     if (updateData.modifications !== undefined) {
-      baseUpdateData.modifications = updateData.modifications
+      baseUpdateData.modifications = (updateData.modifications !== null && updateData.modifications !== undefined)
         ? JSON.stringify(updateData.modifications)
         : undefined;
     }
     if (updateData.extensions !== undefined) {
-      baseUpdateData.extensions = updateData.extensions
+      baseUpdateData.extensions = (updateData.extensions !== null && updateData.extensions !== undefined)
         ? JSON.stringify(updateData.extensions)
         : undefined;
     }
@@ -486,7 +486,7 @@ where.isSubFriendly = isSubFriendly;
     return prisma.eTFOLessonPlan.create({
       data: {
         title: `${originalLesson.title} (Sub-Friendly)`,
-        titleFr: originalLesson.titleFr !== null && originalLesson.titleFr !== undefined && originalLesson.titleFr !== '' ? `${originalLesson.titleFr} (Sub-Friendly)` : undefined,
+        titleFr: (originalLesson.titleFr !== null && originalLesson.titleFr !== undefined && originalLesson.titleFr !== '') ? `${originalLesson.titleFr} (Sub-Friendly)` : undefined,
         unitPlanId: originalLesson.unitPlanId,
         userId,
         date: originalLesson.date,
@@ -700,7 +700,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId === undefined || userId === null || userId === 0) {
+      if (userId === null || userId === undefined || userId === 0) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -723,9 +723,9 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       const { sortBy, sortOrder, startDate, endDate, unitPlanId, ...filterBase } = filters;
       const convertedFilters = {
         ...filterBase,
-        ...(startDate !== undefined && startDate !== null && startDate !== '' && { startDate: new Date(startDate) }),
-        ...(endDate !== undefined && endDate !== null && endDate !== '' && { endDate: new Date(endDate) }),
-        ...(unitPlanId !== undefined && unitPlanId !== null && unitPlanId !== '' && { unitPlanId: parseInt(String(unitPlanId), 10) }),
+        ...((startDate !== null && startDate !== undefined && startDate !== '') && { startDate: new Date(startDate) }),
+        ...((endDate !== null && endDate !== undefined && endDate !== '') && { endDate: new Date(endDate) }),
+        ...((unitPlanId !== null && unitPlanId !== undefined && unitPlanId !== '') && { unitPlanId: parseInt(String(unitPlanId), 10) }),
         // Convert sortBy/sortOrder to sort/order for service
         sort: sortBy,
         order: sortOrder,
@@ -796,7 +796,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId === undefined || userId === null || userId === 0) {
+      if (userId === null || userId === undefined || userId === 0) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -818,7 +818,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId === undefined || userId === null || userId === 0) {
+      if (userId === null || userId === undefined || userId === 0) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -845,7 +845,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId === undefined || userId === null || userId === 0) {
+      if (userId === null || userId === undefined || userId === 0) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -866,7 +866,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId === undefined || userId === null || userId === 0) {
+      if (userId === null || userId === undefined || userId === 0) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -893,7 +893,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId === undefined || userId === null || userId === 0) {
+      if (userId === null || userId === undefined || userId === 0) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }

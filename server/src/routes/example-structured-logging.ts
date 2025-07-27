@@ -11,12 +11,13 @@ import { prisma } from '../prisma';
 import { structuredLogger, PerformanceLogger } from '../utils/logger-migration';
 import { withLoggingContext } from '../utils/structuredLogger';
 
+import { asyncHandler } from './base/middleware';
 const router = Router();
 
 /**
  * Example: Basic route with structured logging
  */
-router.get('/api/example/basic', authenticate, async (req: Request, res: Response) => {
+router.get('/api/example/basic', authenticate, asyncHandler(async (req: Request, res: Response) => {
   // Log the incoming request with context
   structuredLogger.info('Processing example request', {
     userId: req.user.id,
@@ -50,12 +51,12 @@ router.get('/api/example/basic', authenticate, async (req: Request, res: Respons
     res.status(500).json({ error: 'Internal server error' });
     return;
   }
-});
+}));
 
 /**
  * Example: Route with performance logging
  */
-router.get('/api/example/performance', authenticate, async (_req: Request, res: Response) => {
+router.get('/api/example/performance', authenticate, asyncHandler(async (_req: Request, res: Response) => {
   const perfLogger = new PerformanceLogger('example.performance');
 
   try {
@@ -93,7 +94,7 @@ router.get('/api/example/performance', authenticate, async (_req: Request, res: 
 /**
  * Example: Route with child logger context
  */
-router.post('/api/example/batch', authenticate, async (req: Request, res: Response) => {
+router.post('/api/example/batch', authenticate, asyncHandler(async (req: Request, res: Response) => {
   const batchId = `batch-${Date.now()}`;
 
   const userId = req.user.id;
@@ -153,7 +154,7 @@ router.post('/api/example/batch', authenticate, async (req: Request, res: Respon
 router.post(
   '/api/example/workflow',
   authenticate,
-  async (req: Request, res: Response, next: NextFunction) => {
+  asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
     const workflowId = `workflow-${Date.now()}`;
 
     // Run entire workflow with additional context
@@ -182,13 +183,13 @@ router.post(
         next(error);
       }
     });
-  },
+  }),
 );
 
 /**
  * Example: Streaming endpoint with progress logging
  */
-router.get('/api/example/stream', authenticate, async (req: Request, res: Response) => {
+router.get('/api/example/stream', authenticate, asyncHandler(async (req: Request, res: Response) => {
   const streamId = `stream-${Date.now()}`;
   
   const userId = req.user.id;
@@ -232,7 +233,7 @@ router.get('/api/example/stream', authenticate, async (req: Request, res: Respon
     streamLogger.warn('Stream closed by client', { processed, completed: processed >= total });
     clearInterval(interval);
   });
-});
+}));
 
 // Helper functions
 function someBusinessLogic(userId: number): string[] {

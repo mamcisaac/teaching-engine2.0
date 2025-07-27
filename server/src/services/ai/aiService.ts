@@ -392,7 +392,7 @@ export class AIService extends BaseService {
     } catch (error: unknown) {
       logger.error('AI Service health check failed:', error instanceof Error ? error.message : String(error));
       // If we have a fallback key or test key, consider it healthy (fallback mode)
-      if (this.apiKey !== null && this.apiKey !== '' && (this.apiKey.includes('test') || this.apiKey.includes('fallback'))) {
+      if (this.apiKey && (this.apiKey.includes('test') || this.apiKey.includes('fallback'))) {
         return true;
       }
       return false;

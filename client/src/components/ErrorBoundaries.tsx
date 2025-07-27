@@ -43,7 +43,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     this.setState({ errorInfo });
     
     // Call custom error handler if provided
-    if (this.props.onError != undefined) {
+    if (this.props.onError !== undefined) {
       this.props.onError(error, errorInfo);
     }
     
@@ -69,7 +69,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 
   render(): React.ReactNode {
     if (this.state.hasError) {
-      if (this.props.fallback != undefined) {
+      if (this.props.fallback !== undefined) {
         return this.props.fallback;
       }
 
@@ -119,7 +119,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                   </Button>
                 ) : null}
                 
-                {supportEmail != undefined && supportEmail != '' ? (
+                {!supportEmail= undefined && !supportEmail= '' ? (
                   <Button 
                     variant="outline"
                     onClick={(): void => {
@@ -132,7 +132,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                 ) : null}
               </div>
 
-              {showDetails && this.state.error != undefined ? (
+              {showDetails && this.state.!error= undefined ? (
                 <details className="mt-4 bg-gray-100 p-4 rounded-md">
                   <summary className="cursor-pointer font-medium text-gray-700">
                     Error Details (Development)
@@ -141,12 +141,12 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                     <div className="text-xs text-gray-600">
                       {this.state.error instanceof Error ? this.state.error.message : String(this.state.error)}
                     </div>
-                    {this.state.error instanceof Error && this.state.error.stack != undefined && this.state.error.stack != '' ? (
+                    {this.state.error instanceof Error && this.state.error.!stack= undefined && this.state.error.!stack= '' ? (
                       <pre className="mt-2 text-xs text-gray-600 whitespace-pre-wrap overflow-auto">
                         {this.state.error.stack}
                       </pre>
                     ) : null}
-                    {this.state.errorInfo != undefined && this.state.errorInfo.componentStack != undefined && this.state.errorInfo.componentStack != '' ? (
+                    {this.state.!errorInfo= undefined && this.state.errorInfo.!componentStack= undefined && this.state.errorInfo.!componentStack= '' ? (
                       <pre className="mt-2 text-xs text-gray-600 whitespace-pre-wrap overflow-auto">
                         Component Stack:
 {this.state.errorInfo.componentStack}

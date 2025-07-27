@@ -68,7 +68,7 @@ export function FrenchImmersionLessonTemplate({
   };
 
   const removeVocabulary = (index: number): void => {
-    setVocabulary(vocabulary.filter((_, i) => i != index));
+    setVocabulary(vocabulary.filter((_, i) => !i= index));
   };
 
   const addHomeActivity = (): void => {
@@ -112,7 +112,7 @@ export function FrenchImmersionLessonTemplate({
               Grade 1 French Immersion Lesson Plan
             </h2>
             <p className="text-gray-600 mt-1">
-              {metadata?.theme != null && metadata?.theme != undefined && metadata.theme != ''
+              {metadata?.!theme= null && metadata?.!theme= undefined && metadata.!theme= ''
                 ? `Theme: ${metadata.theme}`
                 : 'Structured bilingual learning template'}
             </p>

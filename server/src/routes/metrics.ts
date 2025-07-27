@@ -4,6 +4,7 @@ import { Router } from 'express';
 import { logger } from '../logger';
 import { authMiddleware } from '../middleware/auth';
 import { metricsStore, getPerformanceSummary } from '../middleware/metrics';
+import { asyncHandler } from './base/middleware';
 
 const router = Router();
 
@@ -136,7 +137,7 @@ router.get('/health', authMiddleware, (_req: Request, res: Response): void => {
  * Reset metrics (development/testing only)
  * DELETE /api/metrics/reset
  */
-router.delete('/reset', authMiddleware, async (req: Request, res: Response): Promise<void> => {
+router.delete('/reset', authMiddleware, asyncHandler(async (req: Request, res: Response): Promise<void> => {
   try {
     // Only allow in development/test environments
     if (process.env.NODE_ENV === 'production') {
@@ -165,13 +166,13 @@ router.delete('/reset', authMiddleware, async (req: Request, res: Response): Pro
     });
     return;
   }
-});
+}));
 
 /**
  * Real-time metrics for dashboard
  * GET /api/metrics/realtime
  */
-router.get('/realtime', authMiddleware, async (_req: Request, res: Response): Promise<void> => {
+router.get('/realtime', authMiddleware, asyncHandler(async (_req: Request, res: Response): Promise<void> => {
   try {
     const summary = getPerformanceSummary();
     const metrics = metricsStore.getMetrics();
@@ -212,6 +213,6 @@ router.get('/realtime', authMiddleware, async (_req: Request, res: Response): Pr
     });
     return;
   }
-});
+}));
 
 export { router };

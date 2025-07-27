@@ -150,7 +150,7 @@ export function QuickActions({ onDuplicatePlan, className }: QuickActionsProps):
               ) as string}
               onClick={action.onClick}
             >
-              {action.isNew === true && (
+              {action.isNew  && (
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-full">
                   New
                 </span>
