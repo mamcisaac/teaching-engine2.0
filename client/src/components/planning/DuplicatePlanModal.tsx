@@ -101,7 +101,7 @@ export function DuplicatePlanModal({
         'unit': '/planner/units',
         'lesson': '/planner/etfo-lessons',
       }[selectedType];
-      if (routePrefix != undefined && routePrefix != '') {
+      if (routePrefix !== undefined && routePrefix !== '') {
         window.location.href = `${routePrefix}/${response.data.id}`;
       }
     },
@@ -109,7 +109,7 @@ export function DuplicatePlanModal({
 
   const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
-    if (selectedType != '' && selectedPlanId != '' && newTitle != '') {
+    if (selectedType !== '' && selectedPlanId !== '' && newTitle !== '') {
       duplicateMutation.mutate({});
     }
   };
@@ -174,7 +174,7 @@ export function DuplicatePlanModal({
             </div>
           ) : null}
 
-          {(selectedType != '' || planType != undefined) && planId === undefined ? (
+          {(selectedType !== '' || planType !== undefined) && planId === undefined ? (
             <div>
               <Label htmlFor="input">Select Plan to Duplicate</Label>
               <Select value={selectedPlanId} onValueChange={setSelectedPlanId}>
@@ -182,7 +182,7 @@ export function DuplicatePlanModal({
                   <SelectValue placeholder="Choose a plan" />
                 </SelectTrigger>
                 <SelectContent>
-                  {(selectedType != '' ? availablePlans[selectedType as keyof typeof availablePlans] : []).map((plan: PlanItem, _index) => (
+                  {(selectedType !== '' ? availablePlans[selectedType as keyof typeof availablePlans] : []).map((plan: PlanItem, _index) => (
                     <SelectItem key={plan.id} value={plan.id}>
                       <div>
                         <div className="font-medium">{plan.title}</div>
@@ -202,7 +202,7 @@ export function DuplicatePlanModal({
             </div>
           ) : null}
 
-          {planTitle != undefined ? (
+          {planTitle !== undefined ? (
             <div className="p-3 bg-gray-50 rounded-lg">
               <p className="text-sm text-gray-600">Duplicating:</p>
               <p className="font-medium flex items-center gap-2 mt-1">
@@ -218,7 +218,7 @@ export function DuplicatePlanModal({
               required
               className="mt-1"
               id="newTitle"
-              placeholder={planTitle != undefined && planTitle != '' ? `Copy of ${planTitle}` : 'Enter new title'}
+              placeholder={planTitle !== undefined && planTitle !== '' ? `Copy of ${planTitle}` : 'Enter new title'}
               value={newTitle}
               onChange={(e) => {
  setNewTitle(e.target.value); 

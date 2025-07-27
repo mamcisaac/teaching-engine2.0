@@ -20,7 +20,7 @@ function isValidationDetailArray(details: unknown): details is ValidationDetail[
   return Array.isArray(details) && 
     details.every(detail => 
       typeof detail === 'object' && 
-      detail != null && 
+      detail !== null && 
       'field' in detail && 
       'message' in detail &&
       typeof (detail as ValidationDetail).field === 'string' &&
@@ -30,7 +30,7 @@ function isValidationDetailArray(details: unknown): details is ValidationDetail[
 
 // Type guard for API error response
 function isApiError(data: unknown): data is ApiError {
-  return typeof data === 'object' && data != null;
+  return typeof data === 'object' && data !== null;
 }
 
 export class ClientError extends Error {
@@ -88,7 +88,7 @@ export function handleApiError(error: unknown, customMessage?: string): void {
       case 429: {
         const retryAfter = error.response.headers['retry-after'] as string | undefined;
         toast.error(
-          `Too many requests. Please try again ${retryAfter != undefined && retryAfter != '' ? `in ${retryAfter} seconds` : 'later'}.`,
+          `Too many requests. Please try again ${retryAfter !== undefined && retryAfter !== '' ? `in ${retryAfter} seconds` : 'later'}.`,
         );
         break;
       }

@@ -55,14 +55,14 @@ export const useKeyboardShortcut = (
       description: options.description,
       category: options.category || 'other',
       handler: (event) => {
-        if (options.preventDefault != false) {
+        if (options.preventDefault !== false) {
           event.preventDefault();
         }
         // Use the ref to always call the latest handler
         handlerRef.current(event);
       },
-      enabled: options.enabled != false,
-      visible: options.visible != false,
+      enabled: options.enabled !== false,
+      visible: options.visible !== false,
     };
 
     registerShortcut(shortcut);

@@ -49,7 +49,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
   const updateAuthState = useCallback((userData: User | null): void => {
     setUser(userData);
     setIsAuthenticated(!!userData);
-    if (userData != null) {
+    if (userData !== null) {
       setError(null); // Clear errors on successful auth
       // Set user context for error reporting
       errorReportingService.setUserContext({
@@ -57,7 +57,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
         email: userData.email,
         name: userData.name,
         role: userData.role,
-        organizationId: userData.organizationId != undefined && userData.organizationId != 0 && !isNaN(userData.organizationId) ? String(userData.organizationId) : undefined,
+        organizationId: userData.organizationId !== undefined && userData.organizationId !== 0 && !isNaN(userData.organizationId) ? String(userData.organizationId) : undefined,
       });
     } else {
       // Clear user context when logged out
@@ -100,11 +100,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
         let errorMessage = 'Login failed';
         if (isApiError(_error)) {
           const responseData = _error.response?.data as { error?: string } | undefined;
-          if (responseData?.error != undefined && responseData.error != '') {
+          if (responseData?.error !== undefined && responseData.error !== '') {
             errorMessage = responseData.error;
           } else if (_error.response?.status === 401) {
             errorMessage = 'Invalid email or password';
-          } else if (_error.response?.status != undefined && _error.response.status >= 500) {
+          } else if (_error.response?.status !== undefined && _error.response.status >= 500) {
             errorMessage = 'Server error. Please try again later.';
           } else {
             errorMessage = getErrorMessage(_error);
@@ -181,7 +181,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
 
         // Debug logging in development
         logger.debug('[AuthContext] Initial auth check:', {
-          hasStoredUser: storedUser != null,
+          hasStoredUser: storedUser !== null,
           hasToken,
           storedUser,
           tokenValue: `${authService.getAccessToken()?.substring(0, 20)  }...`,
@@ -199,7 +199,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
 
         // If we have a stored user and token, verify with server
         // Add a timeout to prevent hanging
-        if (storedUser != null) {
+        if (storedUser !== null) {
           const checkAuthPromise = checkAuth();
           const timeoutPromise = new Promise<void>((_, reject) =>
             setTimeout((): void => {
@@ -268,7 +268,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
 
   // Retry auth check with exponential backoff when there are connection issues
   useEffect((): (() => void) => {
-    if (error != null && error != '' && retryCount > 0 && retryCount < 3) {
+    if (error !== null && error !== '' && retryCount > 0 && retryCount < 3) {
       const retryDelay = Math.min(1000 * Math.pow(2, retryCount - 1), 5000);
       const timeoutId = setTimeout((): void => {
         void checkAuth();

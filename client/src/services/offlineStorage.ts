@@ -153,7 +153,7 @@ class OfflineStorageService {
 
       getRequest.onsuccess = (): void => {
         const change = getRequest.result as OfflineChange | undefined;
-        if (change != undefined) {
+        if (change !== undefined) {
           change.synced = true;
           const putRequest = store.put(change);
           putRequest.onsuccess = (): void => {
@@ -181,7 +181,7 @@ class OfflineStorageService {
       key,
       data,
       timestamp: Date.now(),
-      expiresAt: ttlMinutes != undefined ? Date.now() + ttlMinutes * 60 * 1000 : undefined,
+      expiresAt: ttlMinutes !== undefined ? Date.now() + ttlMinutes * 60 * 1000 : undefined,
     };
 
     const transaction = this.db.transaction(['cache'], 'readwrite');
@@ -216,7 +216,7 @@ class OfflineStorageService {
         }
 
         // Check if expired
-        if (result.expiresAt != undefined && result.expiresAt < Date.now()) {
+        if (result.expiresAt !== undefined && result.expiresAt < Date.now()) {
           // Delete expired data
           void this.deleteCachedData(key).catch((error: unknown) => {
             logger.error('Error deleting expired data:', error);
@@ -267,7 +267,7 @@ class OfflineStorageService {
     return new Promise((resolve, reject) => {
       request.onsuccess = (): void => {
         const cursor = request.result;
-        if (cursor != null) {
+        if (cursor !== null) {
           store.delete(cursor.primaryKey);
           cursor.continue();
         } else {
@@ -359,7 +359,7 @@ class OfflineStorageService {
 
       getRequest.onsuccess = (): void => {
         const conflict = getRequest.result as ConflictData | undefined;
-        if (conflict != undefined) {
+        if (conflict !== undefined) {
           conflict.resolved = true;
           conflict.resolution = resolution;
           conflict.resolvedData =

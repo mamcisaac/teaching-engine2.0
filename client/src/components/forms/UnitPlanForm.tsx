@@ -183,7 +183,7 @@ export function UnitPlanForm({
     if (formData.essentialQuestions.length > 1) {
       setFormData({
         ...formData,
-        essentialQuestions: formData.essentialQuestions.filter((_, i) => i != index),
+        essentialQuestions: formData.essentialQuestions.filter((_, i) => i !== index),
       });
     }
   };
@@ -202,7 +202,7 @@ export function UnitPlanForm({
     if (formData.successCriteria.length > 1) {
       setFormData({
         ...formData,
-        successCriteria: formData.successCriteria.filter((_, i) => i != index),
+        successCriteria: formData.successCriteria.filter((_, i) => i !== index),
       });
     }
   };
@@ -221,7 +221,7 @@ export function UnitPlanForm({
     if (formData.keyVocabulary.length > 1) {
       setFormData({
         ...formData,
-        keyVocabulary: formData.keyVocabulary.filter((_, i) => i != index),
+        keyVocabulary: formData.keyVocabulary.filter((_, i) => i !== index),
       });
     }
   };
@@ -262,7 +262,7 @@ export function UnitPlanForm({
         ...formData,
         differentiationStrategies: {
           ...formData.differentiationStrategies,
-          [category]: formData.differentiationStrategies[category].filter((_, i) => i != index),
+          [category]: formData.differentiationStrategies[category].filter((_, i) => i !== index),
         },
       });
     }
@@ -311,14 +311,14 @@ export function UnitPlanForm({
       // Clean up empty array entries before submitting
       const cleanedData = {
         ...formData,
-        essentialQuestions: formData.essentialQuestions.filter(q => q.trim() != ''),
-        successCriteria: formData.successCriteria.filter(c => c.trim() != ''),
-        keyVocabulary: formData.keyVocabulary.filter(v => v.trim() != ''),
+        essentialQuestions: formData.essentialQuestions.filter(q => q.trim() !== ''),
+        successCriteria: formData.successCriteria.filter(c => c.trim() !== ''),
+        keyVocabulary: formData.keyVocabulary.filter(v => v.trim() !== ''),
         differentiationStrategies: {
-          forStruggling: formData.differentiationStrategies.forStruggling.filter(s => s.trim() != ''),
-          forAdvanced: formData.differentiationStrategies.forAdvanced.filter(s => s.trim() != ''),
-          forELL: formData.differentiationStrategies.forELL.filter(s => s.trim() != ''),
-          forIEP: formData.differentiationStrategies.forIEP.filter(s => s.trim() != ''),
+          forStruggling: formData.differentiationStrategies.forStruggling.filter(s => s.trim() !== ''),
+          forAdvanced: formData.differentiationStrategies.forAdvanced.filter(s => s.trim() !== ''),
+          forELL: formData.differentiationStrategies.forELL.filter(s => s.trim() !== ''),
+          forIEP: formData.differentiationStrategies.forIEP.filter(s => s.trim() !== ''),
         },
       };
 
@@ -534,7 +534,7 @@ export function UnitPlanForm({
                 strand: exp.strand,
               }))}
             duration={2}
-            grade={longRangePlan?.grade != undefined && !isNaN(longRangePlan.grade) && longRangePlan.grade > 0 ? longRangePlan.grade : 1}
+            grade={longRangePlan?.grade !== undefined && !isNaN(longRangePlan.grade) && longRangePlan.grade > 0 ? longRangePlan.grade : 1}
             subject={longRangePlan?.subject ?? ''}
             unitTitle={formData.title}
             onSuggestionAccepted={(type, content) => {
@@ -703,7 +703,7 @@ Summative Assessment (End of Unit):
                       } else {
                         setFormData({
                           ...formData,
-                          learningSkills: formData.learningSkills.filter((s) => s != skill),
+                          learningSkills: formData.learningSkills.filter((s) => s !== skill),
                         });
                       }
                     }}

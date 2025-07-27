@@ -187,12 +187,12 @@ export const OnboardingContext = createContext<OnboardingContextType | undefined
 export function OnboardingProvider({ children }: { children: ReactNode }): React.ReactElement {
   const [state, setState] = useState<OnboardingState>(() => {
     // Check if first time user
-    const isFirstTime = localStorage.getItem(FIRST_TIME_KEY) != 'false';
+    const isFirstTime = localStorage.getItem(FIRST_TIME_KEY) !== 'false';
     
     // Load saved onboarding state
     const saved = localStorage.getItem(ONBOARDING_KEY);
     const defaultSavedState = { completedFlows: [], skippedOnboarding: false };
-    const savedState = saved != null && saved != '' ? safeJsonParse(saved, defaultSavedState) : defaultSavedState;
+    const savedState = saved !== null && saved !== '' ? safeJsonParse(saved, defaultSavedState) : defaultSavedState;
     
     return {
       isFirstTimeUser: isFirstTime,
@@ -226,7 +226,7 @@ export function OnboardingProvider({ children }: { children: ReactNode }): React
   const startOnboarding = (flowId = 'main-onboarding'): void => {
     const flow = TUTORIAL_FLOWS[flowId];
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    if (flow != undefined) {
+    if (flow !== undefined) {
       setState(prev => ({
         ...prev,
         currentFlow: flow,
@@ -273,7 +273,7 @@ return;
   };
 
   const completeOnboarding = (): void => {
-    if (state.currentFlow != null) {
+    if (state.currentFlow !== null) {
       const currentFlowId = state.currentFlow.id;
       localStorage.setItem(FIRST_TIME_KEY, 'false');
       setState(prev => ({

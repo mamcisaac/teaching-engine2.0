@@ -61,7 +61,7 @@ params.append('startDate', startDate.toISOString());
       if (endDate) {
 params.append('endDate', endDate.toISOString());
 }
-      if (theme != undefined && theme != '') {
+      if (theme !== undefined && theme !== '') {
 params.append('theme', theme);
 }
 
@@ -136,7 +136,7 @@ params.append('theme', theme);
                 </div>
                 <p className="text-sm text-gray-700">{expectation.description}</p>
 
-                {suggestion != null && (
+                {suggestion !== null && (
                   <div className="mt-3 p-3 bg-gray-50 rounded-md">
                     <div className="flex items-center justify-between mb-2">
                       <h4 className="font-medium text-sm">{suggestion.title}</h4>

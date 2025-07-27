@@ -26,7 +26,7 @@ export function setupInterceptors(apiClient: AxiosInstance): void {
       // Add authorization header if we have a token
       const authService = await getAuthService();
       const authHeaders = authService.getAuthHeaders();
-      if (authHeaders.Authorization != undefined && authHeaders.Authorization != '') {
+      if (authHeaders.Authorization !== undefined && authHeaders.Authorization !== '') {
         config.headers.Authorization = authHeaders.Authorization;
       }
 
@@ -52,7 +52,7 @@ export function setupInterceptors(apiClient: AxiosInstance): void {
     async (error: AxiosError): Promise<never> => {
       const originalRequest = error.config as AxiosRequestConfig & { _retry?: boolean };
 
-      if (error.response?.status === 401 && originalRequest._retry != true) {
+      if (error.response?.status === 401 && originalRequest._retry !== true) {
         originalRequest._retry = true;
 
         // Try to handle the auth error with the auth service
@@ -68,7 +68,7 @@ export function setupInterceptors(apiClient: AxiosInstance): void {
           if (recovered) {
             // Update the authorization header with the new token
             const authHeaders = authService.getAuthHeaders();
-            if ((authHeaders.Authorization != undefined && authHeaders.Authorization != '') && originalRequest.headers != undefined) {
+            if ((authHeaders.Authorization !== undefined && authHeaders.Authorization !== '') && originalRequest.headers !== undefined) {
               originalRequest.headers.Authorization = authHeaders.Authorization;
             }
             return apiClient(originalRequest);

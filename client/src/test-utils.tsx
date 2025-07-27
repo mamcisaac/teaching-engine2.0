@@ -332,7 +332,7 @@ const AllProviders: FC<{
 
   // If we need auth, wrap with MockAuthProvider
   const content =
-    initialAuthState != undefined ? (
+    initialAuthState !== undefined ? (
       <MockAuthProvider value={initialAuthState}>{children}</MockAuthProvider>
     ) : (
       children

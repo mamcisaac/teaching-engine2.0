@@ -21,7 +21,7 @@ export const templatesApi = {
     const params = new URLSearchParams();
     
     Object.entries(options).forEach(([key, value]) => {
-      if (value != undefined && value != null) {
+      if (value !== undefined && value !== null) {
         if (Array.isArray(value)) {
           value.forEach(item => {
  params.append(key, String(item)); 
@@ -232,7 +232,7 @@ export function useTemplateSearch(searchTerm: string, otherOptions: Omit<Templat
 
   return useTemplates({
     ...otherOptions,
-    search: (debouncedSearchTerm != '') ? debouncedSearchTerm : undefined,
+    search: (debouncedSearchTerm !== '') ? debouncedSearchTerm : undefined,
   });
 }
 

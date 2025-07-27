@@ -91,7 +91,7 @@ export function AISuggestionModal({
             materials: editedSuggestion.materials
               .split(',')
               .map((m) => m.trim())
-              .filter((m) => m != ''),
+              .filter((m) => m !== ''),
             duration: editedSuggestion.duration,
             theme: editedSuggestion.theme,
           }
@@ -199,7 +199,7 @@ export function AISuggestionModal({
               />
             ) : (
               <p className="text-sm whitespace-pre-wrap text-gray-600">
-                {(suggestion.descriptionEn != undefined && suggestion.descriptionEn != '') ? suggestion.descriptionEn : 'No English description provided'}
+                {(suggestion.descriptionEn !== undefined && suggestion.descriptionEn !== '') ? suggestion.descriptionEn : 'No English description provided'}
               </p>
             )}
           </div>
@@ -235,7 +235,7 @@ export function AISuggestionModal({
           </div>
 
           {/* Theme */}
-          {((suggestion.theme != undefined && suggestion.theme != '') || isEditing) ? (
+          {((suggestion.theme !== undefined && suggestion.theme !== '') || isEditing) ? (
             <div className="space-y-2">
               <Label htmlFor="theme">Theme</Label>
               {isEditing ? (

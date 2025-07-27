@@ -34,7 +34,7 @@ function isError(error: unknown): error is Error {
 
 // Type guard for objects
 function isObject(value: unknown): value is Record<string, unknown> {
-  return typeof value === 'object' && value != null;
+  return typeof value === 'object' && value !== null;
 }
 
 export class ErrorReportingService {
@@ -144,7 +144,7 @@ export class ErrorReportingService {
         // Filter transactions
         beforeSendTransaction: (transaction) => {
           // Don't send transactions for static assets
-          if (transaction.transaction != null && (transaction.transaction.includes('/static/') || transaction.transaction.includes('/assets/'))) {
+          if (transaction.transaction !== null && (transaction.transaction.includes('/static/') || transaction.transaction.includes('/assets/'))) {
             return null;
           }
           return transaction;
@@ -193,7 +193,7 @@ export class ErrorReportingService {
       }
 
       // Add React error info if available
-      if (errorInfo != undefined) {
+      if (errorInfo !== undefined) {
         scope.setContext('react', {
           componentStack: errorInfo.componentStack,
         });
@@ -234,10 +234,10 @@ export class ErrorReportingService {
 
     const sanitizedUser = {
       id: String(user.id),
-      email: user.email != null && user.email != '' ? this.maskEmail(user.email) : undefined,
+      email: user.email !== null && user.email !== '' ? this.maskEmail(user.email) : undefined,
       username: user.name,
       role: user.role,
-      organizationId: user.organizationId != undefined && user.organizationId != null ? String(user.organizationId) : undefined,
+      organizationId: user.organizationId !== undefined && user.organizationId !== null ? String(user.organizationId) : undefined,
     };
 
     Sentry.setUser(sanitizedUser);
@@ -367,7 +367,7 @@ export class ErrorReportingService {
 
   private beforeSend(event: Sentry.ErrorEvent, hint: Sentry.EventHint): Sentry.ErrorEvent | null {
     // Filter out non-actionable errors
-    if (hint.originalException != undefined) {
+    if (hint.originalException !== undefined) {
       const error = hint.originalException;
       const errorMessage = isError(error) ? error.message : String(error);
 
@@ -394,7 +394,7 @@ export class ErrorReportingService {
     if (breadcrumb.category === 'console' && breadcrumb.level === 'warning') {
       // Filter out React development warnings
       const {message} = breadcrumb;
-      if (message != null && (message.includes('DevTools') || message.includes('React Hook') || message.includes('StrictMode'))) {
+      if (message !== null && (message.includes('DevTools') || message.includes('React Hook') || message.includes('StrictMode'))) {
         return null;
       }
 
@@ -405,11 +405,11 @@ export class ErrorReportingService {
     }
 
     // Sanitize breadcrumb
-    if (breadcrumb.message != undefined) {
+    if (breadcrumb.message !== undefined) {
       breadcrumb.message = this.sanitizeString(breadcrumb.message);
     }
 
-    if (breadcrumb.data != undefined) {
+    if (breadcrumb.data !== undefined) {
       breadcrumb.data = this.sanitizeData(breadcrumb.data) as Record<string, unknown> | undefined;
     }
 
@@ -421,25 +421,25 @@ export class ErrorReportingService {
     const sanitized = safeJsonParse(JSON.stringify(event), event);
 
     // Sanitize message
-    if (sanitized.message != undefined) {
+    if (sanitized.message !== undefined) {
       sanitized.message = this.sanitizeString(sanitized.message);
     }
 
     // Sanitize extra data
-    if (sanitized.extra != undefined) {
+    if (sanitized.extra !== undefined) {
       const sanitizedExtra = this.sanitizeData(sanitized.extra);
       sanitized.extra = this.isValidExtras(sanitizedExtra) ? sanitizedExtra : undefined;
     }
 
     // Sanitize request data
-    if (sanitized.request != undefined) {
-      if (sanitized.request.headers != undefined) {
+    if (sanitized.request !== undefined) {
+      if (sanitized.request.headers !== undefined) {
         sanitized.request.headers = this.sanitizeHeaders(sanitized.request.headers);
       }
-      if (sanitized.request.data != undefined) {
+      if (sanitized.request.data !== undefined) {
         sanitized.request.data = this.sanitizeData(sanitized.request.data);
       }
-      if (sanitized.request.query_string != undefined) {
+      if (sanitized.request.query_string !== undefined) {
         if (typeof sanitized.request.query_string === 'string') {
           sanitized.request.query_string = this.sanitizeString(sanitized.request.query_string);
         } else {
@@ -447,7 +447,7 @@ export class ErrorReportingService {
           sanitized.request.query_string = '';
         }
       }
-      if (sanitized.request.cookies != undefined) {
+      if (sanitized.request.cookies !== undefined) {
         sanitized.request.cookies = {} as Record<string, string>;
       }
     }
@@ -455,20 +455,20 @@ export class ErrorReportingService {
     // Sanitize user data
     if (typeof sanitized.user === 'object' && 'email' in sanitized.user) {
       const email = sanitized.user.email;
-      if (email != '' && typeof email === 'string') {
+      if (email !== '' && typeof email === 'string') {
         sanitized.user.email = this.maskEmail(email);
       }
     }
 
     // Sanitize contexts
-    if (sanitized.contexts != undefined) {
+    if (sanitized.contexts !== undefined) {
       for (const key in sanitized.contexts) {
         sanitized.contexts[key] = this.sanitizeData(sanitized.contexts[key]) as Sentry.Context | undefined;
       }
     }
 
     // Sanitize tags
-    if (sanitized.tags != undefined) {
+    if (sanitized.tags !== undefined) {
       sanitized.tags = this.sanitizeData(sanitized.tags) as Record<string, string> | undefined;
     }
 
@@ -476,7 +476,7 @@ export class ErrorReportingService {
   }
 
   private isValidExtras(data: unknown): data is Record<string, unknown> {
-    return data != null && data != undefined && typeof data === 'object' && !Array.isArray(data);
+    return data !== null && data !== undefined && typeof data === 'object' && !Array.isArray(data);
   }
 
   private sanitizeData(data: unknown): unknown {
@@ -502,9 +502,9 @@ export class ErrorReportingService {
         // Check if field should be redacted
         if (this.sensitiveFields.some((field) => lowerKey.includes(field))) {
           sanitized[key] = '[REDACTED]';
-        } else if (key === 'email' && dataObj[key] != undefined && dataObj[key] != null) {
+        } else if (key === 'email' && dataObj[key] !== undefined && dataObj[key] !== null) {
           sanitized[key] = this.maskEmail(String(dataObj[key]));
-        } else if ((key === 'ip' || key === 'ipAddress' || key === 'ip_address') && dataObj[key] != undefined && dataObj[key] != null) {
+        } else if ((key === 'ip' || key === 'ipAddress' || key === 'ip_address') && dataObj[key] !== undefined && dataObj[key] !== null) {
           sanitized[key] = this.maskIP(String(dataObj[key]));
         } else {
           sanitized[key] = this.sanitizeData(dataObj[key]);
@@ -576,12 +576,12 @@ export class ErrorReportingService {
   }
 
   private maskEmail(email: string): string {
-    if (email === '' || typeof email != 'string') {
+    if (email === '' || typeof email !== 'string') {
       return '[INVALID_EMAIL]';
     }
 
     const parts = email.split('@');
-    if (parts.length != 2) {
+    if (parts.length !== 2) {
       return '[INVALID_EMAIL]';
     }
 
@@ -592,7 +592,7 @@ export class ErrorReportingService {
   }
 
   private maskIP(ip: string): string {
-    if (!ip || typeof ip != 'string') {
+    if (!ip || typeof ip !== 'string') {
       return 'xxx.xxx.xxx.xxx';
     }
 

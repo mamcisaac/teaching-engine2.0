@@ -160,7 +160,7 @@ export const MenuItemWithShortcut: FC<MenuItemWithShortcutProps> = ({
       onClick={onClick}
     >
       <div className="flex items-center gap-3">
-        {icon != null && <span className="text-gray-500">{icon}</span>}
+        {icon !== null && <span className="text-gray-500">{icon}</span>}
         <span>{label}</span>
       </div>
       {shortcut && (

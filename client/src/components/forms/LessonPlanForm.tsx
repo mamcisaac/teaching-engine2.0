@@ -107,7 +107,7 @@ export function LessonPlanForm({
     return () => { // Cleanup
     };
 
-    if (initialData != undefined) {
+    if (initialData !== undefined) {
       setFormData((prev) => ({ ...prev, ...initialData }));
     }
   }, [initialData]);
@@ -127,7 +127,7 @@ export function LessonPlanForm({
     if (formData.materials.length > 1) {
       setFormData({
         ...formData,
-        materials: formData.materials.filter((_, i) => i != index),
+        materials: formData.materials.filter((_, i) => i !== index),
       });
     }
   };
@@ -146,7 +146,7 @@ export function LessonPlanForm({
     if (formData.accommodations.length > 1) {
       setFormData({
         ...formData,
-        accommodations: formData.accommodations.filter((_, i) => i != index),
+        accommodations: formData.accommodations.filter((_, i) => i !== index),
       });
     }
   };
@@ -165,7 +165,7 @@ export function LessonPlanForm({
     if (formData.modifications.length > 1) {
       setFormData({
         ...formData,
-        modifications: formData.modifications.filter((_, i) => i != index),
+        modifications: formData.modifications.filter((_, i) => i !== index),
       });
     }
   };
@@ -184,7 +184,7 @@ export function LessonPlanForm({
     if (formData.extensions.length > 1) {
       setFormData({
         ...formData,
-        extensions: formData.extensions.filter((_, i) => i != index),
+        extensions: formData.extensions.filter((_, i) => i !== index),
       });
     }
   };
@@ -230,10 +230,10 @@ export function LessonPlanForm({
       // Clean up empty array entries before submitting
       const cleanedData = {
         ...formData,
-        materials: formData.materials.filter((m) => m.trim() != ''),
-        accommodations: formData.accommodations.filter((a) => a.trim() != ''),
-        modifications: formData.modifications.filter((m) => m.trim() != ''),
-        extensions: formData.extensions.filter((_e) => _e.trim() != ''),
+        materials: formData.materials.filter((m) => m.trim() !== ''),
+        accommodations: formData.accommodations.filter((a) => a.trim() !== ''),
+        modifications: formData.modifications.filter((m) => m.trim() !== ''),
+        extensions: formData.extensions.filter((_e) => _e.trim() !== ''),
       };
 
       onSubmit(cleanedData);
@@ -773,7 +773,7 @@ Stratégies d'évaluation:
           </Button>
         )}
         <Button disabled={isSubmitting} type="submit">
-          {isSubmitting ? 'Saving...' : initialData != undefined ? 'Update Lesson Plan' : 'Create Lesson Plan'}
+          {isSubmitting ? 'Saving...' : initialData !== undefined ? 'Update Lesson Plan' : 'Create Lesson Plan'}
         </Button>
       </div>
     </form>

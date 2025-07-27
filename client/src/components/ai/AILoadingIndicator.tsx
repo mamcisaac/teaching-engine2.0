@@ -123,7 +123,7 @@ export function AILoadingIndicator({
   }, [state]);
 
   const currentStep = steps.find((step) => step.id === currentStepId);
-  const currentStepIndex = currentStepId != '' ? steps.findIndex((step) => step.id === currentStepId) : -1;
+  const currentStepIndex = currentStepId !== '' ? steps.findIndex((step) => step.id === currentStepId) : -1;
   const displayProgress = progress > 0 ? progress : localProgress;
 
   const formatElapsedTime = (ms: number): string => {
@@ -205,7 +205,7 @@ return null;
               >
                 {title}
               </h3>
-              {subtitle != '' && (
+              {subtitle !== '' && (
                 <p 
                   className="text-sm text-gray-500"
                   id="ai-loading-description"
@@ -215,7 +215,7 @@ return null;
               )}
             </div>
           </div>
-          {canCancel && onCancel && state != 'success' && (
+          {canCancel && onCancel && state !== 'success' && (
             <Button
               aria-label="Cancel AI generation"
               className="h-8 w-8 p-0 hover:bg-gray-100"
@@ -283,7 +283,7 @@ return null;
             aria-live="assertive" 
             className="sr-only"
           >
-            AI generation failed{error != '' ? `: ${error}` : ''}
+            AI generation failed{error !== '' ? `: ${error}` : ''}
           </div>
         )}
 
@@ -340,14 +340,14 @@ return null;
         )}
 
         {/* Error Message */}
-        {state === 'error' && error != '' && (
+        {state === 'error' && error !== '' && (
           <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
             <p className="text-sm text-red-700">{error}</p>
           </div>
         )}
 
         {/* Success Message */}
-        {state === 'success' && successMessage != '' && (
+        {state === 'success' && successMessage !== '' && (
           <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-md">
             <p className="text-sm text-green-700">{successMessage}</p>
           </div>

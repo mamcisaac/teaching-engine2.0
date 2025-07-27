@@ -89,7 +89,7 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
       debounce<[string]>((search: string) => {
         setFilters((prev) => {
           const newFilters = { ...prev };
-          if (search != '') {
+          if (search !== '') {
             newFilters._global = search;
           } else {
             // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
@@ -134,7 +134,7 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
   const handleColumnFilter = useCallback(
     (columnKey: string, value: string) => {
       const newFilters = { ...filters };
-      if (value.trim() != '') {
+      if (value.trim() !== '') {
         newFilters[columnKey] = value;
       } else {
         delete newFilters[columnKey];
@@ -197,7 +197,7 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
 
   // Render sort icon
   const renderSortIcon = (columnKey: string): JSX.Element => {
-    if (sortBy != columnKey) {
+    if (sortBy !== columnKey) {
       return <ArrowUpDown className="h-4 w-4 text-gray-400" />;
     }
     return sortOrder === 'asc' ? (

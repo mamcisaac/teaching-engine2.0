@@ -113,14 +113,14 @@ export function AIUnitPlanPanel({
   };
 
   const removeFocusArea = (area: string): void => {
-    handleInputChange('focusAreas', formData.focusAreas.filter(a => a != area));
+    handleInputChange('focusAreas', formData.focusAreas.filter(a => a !== area));
   };
 
   const generateSuggestions = useCallback(async (type: UnitPlanSuggestion['type']): Promise<void> => {
     if (!canUseAI) {
       toast({
         title: 'AI Unavailable',
-        description: (aiDisabledReason != null && aiDisabledReason != '') ? aiDisabledReason : 'AI features are currently unavailable.',
+        description: (aiDisabledReason !== null && aiDisabledReason !== '') ? aiDisabledReason : 'AI features are currently unavailable.',
         variant: 'destructive',
       });
       return;
@@ -158,7 +158,7 @@ export function AIUnitPlanPanel({
       }
 
       setSuggestions(prev => [
-        ...prev.filter(s => s.type != type),
+        ...prev.filter(s => s.type !== type),
         {
           type,
           content: result.suggestions,
@@ -190,7 +190,7 @@ export function AIUnitPlanPanel({
     if (!canUseAI) {
       toast({
         title: 'AI Unavailable',
-        description: (aiDisabledReason != null && aiDisabledReason != '') ? aiDisabledReason : 'AI features are currently unavailable.',
+        description: (aiDisabledReason !== null && aiDisabledReason !== '') ? aiDisabledReason : 'AI features are currently unavailable.',
         variant: 'destructive',
       });
       return;
@@ -537,7 +537,7 @@ export function AIUnitPlanPanel({
                           {suggestion.type === 'assessments' && <Target className="h-4 w-4" />}
                           {suggestion.type.replace(/([A-Z])/g, ' $1').trim()}
                         </CardTitle>
-                        {(suggestion.rationale != null && suggestion.rationale != '') && (
+                        {(suggestion.rationale !== null && suggestion.rationale !== '') && (
                           <CardDescription>{suggestion.rationale}</CardDescription>
                         )}
                       </CardHeader>

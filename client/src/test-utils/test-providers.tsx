@@ -106,7 +106,7 @@ export function RealProviders({
     return () => { // Cleanup
     };
 
-    if (!useMemoryRouter && initialRoute != '/') {
+    if (!useMemoryRouter && initialRoute !== '/') {
       window.history.pushState({}, '', initialRoute);
     }
   }, [initialRoute, useMemoryRouter]);
@@ -167,7 +167,7 @@ export function AllProviders({
     return () => { // Cleanup
     };
 
-    if (useMockProviders && initialRoute != '/') {
+    if (useMockProviders && initialRoute !== '/') {
       window.history.pushState({}, '', initialRoute);
     }
   }, [useMockProviders, initialRoute]);

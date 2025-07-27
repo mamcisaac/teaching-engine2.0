@@ -95,11 +95,11 @@ export function TemplatesPage(): React.ReactElement {
   // Build search options
   const searchOptions: TemplateSearchOptions = {
     search: searchTerm || undefined,
-    type: selectedType != 'all' ? selectedType : undefined,
-    category: selectedCategory != 'all' ? selectedCategory : undefined,
-    subject: selectedSubject != 'all' ? selectedSubject : undefined,
-    gradeMin: selectedGrade != 'all' ? selectedGrade : undefined,
-    gradeMax: selectedGrade != 'all' ? selectedGrade : undefined,
+    type: selectedType !== 'all' ? selectedType : undefined,
+    category: selectedCategory !== 'all' ? selectedCategory : undefined,
+    subject: selectedSubject !== 'all' ? selectedSubject : undefined,
+    gradeMin: selectedGrade !== 'all' ? selectedGrade : undefined,
+    gradeMax: selectedGrade !== 'all' ? selectedGrade : undefined,
     isSystem: view === 'system' ? true : undefined,
     isPublic: view === 'public' ? true : undefined,
     sortBy,
@@ -211,10 +211,10 @@ return;
               <CardTitle className="text-lg">{template.title}</CardTitle>
               <CardDescription className="text-sm">
                 {template.type === 'UNIT_PLAN' ? 'Unit Plan' : 'Lesson Plan'}
-                {template.subject != undefined && template.subject != '' && ` • ${template.subject}`}
+                {template.subject !== undefined && template.subject !== '' && ` • ${template.subject}`}
                 {template.gradeMin === template.gradeMax
                   ? ` • Grade ${template.gradeMin}`
-                  : (template.gradeMin != undefined && template.gradeMax != undefined)
+                  : (template.gradeMin !== undefined && template.gradeMax !== undefined)
                     ? ` • Grades ${template.gradeMin}-${template.gradeMax}`
                     : ''}
               </CardDescription>
@@ -254,7 +254,7 @@ return;
 
         <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
           <div className="flex items-center gap-4">
-            {(template.averageRating != undefined && template.averageRating != 0) && (
+            {(template.averageRating !== undefined && template.averageRating !== 0) && (
               <div className="flex items-center gap-1">
                 <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                 <span>{template.averageRating.toFixed(1)}</span>
@@ -266,13 +266,13 @@ return;
             </div>
           </div>
 
-          {(template.estimatedWeeks != undefined && template.estimatedWeeks != 0) && (
+          {(template.estimatedWeeks !== undefined && template.estimatedWeeks !== 0) && (
             <div className="flex items-center gap-1">
               <Calendar className="h-4 w-4" />
               <span>{template.estimatedWeeks}w</span>
             </div>
           )}
-          {(template.estimatedMinutes != undefined && template.estimatedMinutes != 0) && (
+          {(template.estimatedMinutes !== undefined && template.estimatedMinutes !== 0) && (
             <div className="flex items-center gap-1">
               <Clock className="h-4 w-4" />
               <span>{template.estimatedMinutes}m</span>
@@ -311,7 +311,7 @@ return;
             <Copy className="h-4 w-4" />
           </Button>
 
-          {(template.createdByUserId != undefined && !template.isSystem) && (
+          {(template.createdByUserId !== undefined && !template.isSystem) && (
             <Button
               size="sm"
               variant="ghost"
@@ -661,7 +661,7 @@ return;
                   onChange={(e) => {
  setFormData({
                       ...formData,
-                      gradeMin: e.target.value != '' ? parseInt(e.target.value) : undefined,
+                      gradeMin: e.target.value !== '' ? parseInt(e.target.value) : undefined,
                     }); 
 }
                   }
@@ -678,7 +678,7 @@ return;
                   onChange={(e) => {
  setFormData({
                       ...formData,
-                      gradeMax: e.target.value != '' ? parseInt(e.target.value) : undefined,
+                      gradeMax: e.target.value !== '' ? parseInt(e.target.value) : undefined,
                     }); 
 }
                   }
@@ -762,13 +762,13 @@ return;
                       <span className="font-medium">Category:</span>
                       <div>{TEMPLATE_CATEGORIES[selectedTemplate.category].label}</div>
                     </div>
-                    {selectedTemplate.subject != undefined && selectedTemplate.subject != '' && (
+                    {selectedTemplate.subject !== undefined && selectedTemplate.subject !== '' && (
                       <div>
                         <span className="font-medium">Subject:</span>
                         <div>{selectedTemplate.subject}</div>
                       </div>
                     )}
-                    {(selectedTemplate.gradeMin != undefined || selectedTemplate.gradeMax != undefined) && (
+                    {(selectedTemplate.gradeMin !== undefined || selectedTemplate.gradeMax !== undefined) && (
                       <div>
                         <span className="font-medium">Grade:</span>
                         <div>
@@ -786,14 +786,14 @@ return;
                   <div className="space-y-4">
                     <h4 className="font-semibold">Unit Plan Content</h4>
 
-                    {selectedTemplate.content.overview != undefined && selectedTemplate.content.overview != '' && (
+                    {selectedTemplate.content.overview !== undefined && selectedTemplate.content.overview !== '' && (
                       <div>
                         <h5 className="font-medium mb-2">Overview</h5>
                         <p className="text-gray-700">{selectedTemplate.content.overview}</p>
                       </div>
                     )}
 
-                    {selectedTemplate.content.bigIdeas != undefined && selectedTemplate.content.bigIdeas != '' && (
+                    {selectedTemplate.content.bigIdeas !== undefined && selectedTemplate.content.bigIdeas !== '' && (
                       <div>
                         <h5 className="font-medium mb-2">Big Ideas</h5>
                         <p className="text-gray-700">{selectedTemplate.content.bigIdeas}</p>
@@ -863,21 +863,21 @@ return;
                       )}
 
                     <div className="grid gap-4">
-                      {selectedTemplate.content.mindsOn != undefined && selectedTemplate.content.mindsOn != '' && (
+                      {selectedTemplate.content.mindsOn !== undefined && selectedTemplate.content.mindsOn !== '' && (
                         <div>
                           <h5 className="font-medium mb-2">Minds On</h5>
                           <p className="text-gray-700">{selectedTemplate.content.mindsOn}</p>
                         </div>
                       )}
 
-                      {selectedTemplate.content.action != undefined && selectedTemplate.content.action != '' && (
+                      {selectedTemplate.content.action !== undefined && selectedTemplate.content.action !== '' && (
                         <div>
                           <h5 className="font-medium mb-2">Action</h5>
                           <p className="text-gray-700">{selectedTemplate.content.action}</p>
                         </div>
                       )}
 
-                      {selectedTemplate.content.consolidation != undefined && selectedTemplate.content.consolidation != '' && (
+                      {selectedTemplate.content.consolidation !== undefined && selectedTemplate.content.consolidation !== '' && (
                         <div>
                           <h5 className="font-medium mb-2">Consolidation</h5>
                           <p className="text-gray-700">{selectedTemplate.content.consolidation}</p>

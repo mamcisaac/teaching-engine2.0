@@ -54,7 +54,7 @@ export function useAIStatus(): AIStatusHookReturn {
   const [userDisabledAI, setUserDisabledAI] = useState(() => {
     // Check if user has manually disabled AI for this session
     const stored = sessionStorage.getItem('ai_disabled');
-    return stored != null && stored === 'true';
+    return stored !== null && stored === 'true';
   });
 
   // Query AI service status
@@ -77,20 +77,20 @@ export function useAIStatus(): AIStatusHookReturn {
       } catch (error: unknown) {
         // Handle different types of errors
         const axiosError = error as { response?: { status?: number } };
-        if (axiosError.response != null && axiosError.response.status === 503) {
+        if (axiosError.response !== null && axiosError.response.status === 503) {
           return {
             ...DEFAULT_AI_STATUS,
             error: 'AI service is temporarily unavailable',
             serviceHealth: 'unavailable' as const,
           };
-        } else if (axiosError.response != null && axiosError.response.status === 401) {
+        } else if (axiosError.response !== null && axiosError.response.status === 401) {
           return {
             ...DEFAULT_AI_STATUS,
             error: 'API key not configured or invalid',
             hasApiKey: false,
             apiKeyConfigured: false,
           };
-        } else if (axiosError.response != null && axiosError.response.status === 429) {
+        } else if (axiosError.response !== null && axiosError.response.status === 429) {
           return {
             ...DEFAULT_AI_STATUS,
             error: 'Rate limit exceeded',
@@ -109,7 +109,7 @@ export function useAIStatus(): AIStatusHookReturn {
     retry: (failureCount, error: unknown): boolean => {
       // Don't retry on auth errors or client errors
       const axiosError = error as { response?: { status?: number } };
-      if (axiosError.response != null && axiosError.response.status != null && axiosError.response.status < 500) {
+      if (axiosError.response !== null && axiosError.response.status !== null && axiosError.response.status < 500) {
         return false;
       }
       return failureCount < 3;
@@ -121,7 +121,7 @@ export function useAIStatus(): AIStatusHookReturn {
   });
 
   const isAIEnabled = userDisabledAI === false && aiStatus.available === true;
-  const canUseAI = isAIEnabled === true && aiStatus.hasApiKey === true && aiStatus.serviceHealth != 'unavailable';
+  const canUseAI = isAIEnabled === true && aiStatus.hasApiKey === true && aiStatus.serviceHealth !== 'unavailable';
 
   const getAIDisabledReason = (): string | undefined => {
     if (userDisabledAI) {
@@ -194,7 +194,7 @@ export function useAIQuota(): {
 } {
   const { aiStatus } = useAIStatus();
   
-  const quotaPercentage = (aiStatus.limitations != null && aiStatus.limitations.quotaLimit != null && aiStatus.limitations.quotaLimit > 0)
+  const quotaPercentage = (aiStatus.limitations !== null && aiStatus.limitations.quotaLimit !== null && aiStatus.limitations.quotaLimit > 0)
     ? ((aiStatus.limitations.quotaUsed ?? 0) / aiStatus.limitations.quotaLimit * 100)
     : 0;
 
@@ -262,7 +262,7 @@ export function AIStatusIndicator({
         <span className="font-medium">AI Assistant: {getStatusText()}</span>
       </div>
       
-      {aiDisabledReason != null && aiDisabledReason != '' && (
+      {aiDisabledReason !== null && aiDisabledReason !== '' && (
         <p className="text-sm text-gray-600 mb-2">{aiDisabledReason}</p>
       )}
 
@@ -272,10 +272,10 @@ export function AIStatusIndicator({
             .filter(([, enabled]) => enabled === true)
             .map(([feature]) => feature)
             .join(', ') || 'None'}</div>
-          {aiStatus.limitations != null && aiStatus.limitations.requestsRemaining != null && (
+          {aiStatus.limitations !== null && aiStatus.limitations.requestsRemaining !== null && (
             <div>Requests remaining: {aiStatus.limitations.requestsRemaining}</div>
           )}
-          {aiStatus.lastChecked != null && (
+          {aiStatus.lastChecked !== null && (
             <div>Last checked: {aiStatus.lastChecked.toLocaleTimeString()}</div>
           )}
         </div>

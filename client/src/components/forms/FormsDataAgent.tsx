@@ -82,7 +82,7 @@ export function FormsDataAgent({
   };
 
   const removeBatchOperation = (id: string): void => {
-    setBatchOperations((prev) => prev.filter((op) => op.id != id));
+    setBatchOperations((prev) => prev.filter((op) => op.id !== id));
   };
 
   const clearAllOperations = (): void => {
@@ -131,7 +131,7 @@ return;
       );
 
       // Process units in batch
-      if (unitOps.length > 0 && onBatchUnitCreate != undefined) {
+      if (unitOps.length > 0 && onBatchUnitCreate !== undefined) {
         const unitData = unitOps.map((op, _index) => op.data as UnitPlanFormData);
         await onBatchUnitCreate(unitData);
 
@@ -146,7 +146,7 @@ return;
       }
 
       // Process lessons in batch
-      if (lessonOps.length > 0 && onBatchLessonCreate != undefined) {
+      if (lessonOps.length > 0 && onBatchLessonCreate !== undefined) {
         const lessonData = lessonOps.map((op, _index) => op.data as LessonPlanFormData);
         await onBatchLessonCreate(lessonData);
 

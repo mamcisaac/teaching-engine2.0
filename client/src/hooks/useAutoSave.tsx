@@ -36,7 +36,7 @@ export function useAutoSave<T>({
     const dataString = JSON.stringify(data);
     const lastDataString = JSON.stringify(lastDataRef.current);
     
-    if (dataString != lastDataString && lastSaved != null) {
+    if (dataString !== lastDataString && lastSaved !== null) {
       setHasUnsavedChanges(true);
     }
     
@@ -50,7 +50,7 @@ export function useAutoSave<T>({
     }
 
     // Clear existing timeout
-    if (timeoutRef.current != null) {
+    if (timeoutRef.current !== null) {
       clearTimeout(timeoutRef.current);
     }
 
@@ -88,7 +88,7 @@ export function useAutoSave<T>({
     }, delay);
 
     return (): void => {
-      if (timeoutRef.current != null) {
+      if (timeoutRef.current !== null) {
         clearTimeout(timeoutRef.current);
       }
     };
@@ -131,7 +131,7 @@ return;
 
   // Cleanup on unmount
   useEffect(() => (): void => {
-      if (timeoutRef.current != null) {
+      if (timeoutRef.current !== null) {
         clearTimeout(timeoutRef.current);
       }
     }, []);

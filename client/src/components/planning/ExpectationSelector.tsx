@@ -113,7 +113,7 @@ return expectations;
   const toggleExpectation = (expectationId: string): void => {
     if (multiSelect) {
       if (selectedIds.includes(expectationId)) {
-        onChange(selectedIds.filter((id) => id != expectationId));
+        onChange(selectedIds.filter((id) => id !== expectationId));
       } else {
         onChange([...selectedIds, expectationId]);
       }
@@ -124,7 +124,7 @@ return expectations;
   };
 
   const removeExpectation = (expectationId: string): void => {
-    onChange(selectedIds.filter((id) => id != expectationId));
+    onChange(selectedIds.filter((id) => id !== expectationId));
   };
 
   const clearAll = (): void => {
@@ -145,7 +145,7 @@ return expectations;
             aria-expanded={open}
             className={cn(
               "w-full justify-between",
-              error != "" ? "border-red-500 focus:ring-red-500 focus:border-red-500" : "",
+              error !== "" ? "border-red-500 focus:ring-red-500 focus:border-red-500" : "",
               className
             )}
             disabled={disabled}
@@ -205,7 +205,7 @@ return expectations;
                       <div className="ml-6 space-y-3">
                         {Object.entries(substrands).map(([substrand, expectations]) => (
                           <div key={substrand}>
-                            {substrand != 'General' ? (
+                            {substrand !== 'General' ? (
                               <div className="text-xs font-medium text-muted-foreground mb-1">
                                 {substrand}
                               </div>
@@ -334,7 +334,7 @@ return expectations;
       ) : null}
 
       {/* Error display */}
-      {error != "" ? (
+      {error !== "" ? (
         <p className="mt-1 text-sm text-red-600">{error}</p>
       ) : null}
     </div>

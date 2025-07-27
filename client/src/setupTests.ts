@@ -245,7 +245,7 @@ Object.defineProperty(window, 'localStorage', {
 // eslint-disable-next-line @typescript-eslint/no-unsafe-call
 beforeEach((): void => {
   // Clear localStorage but preserve real implementation state if needed
-  if (process.env.VITE_PRESERVE_TEST_STATE != 'true') {
+  if (process.env.VITE_PRESERVE_TEST_STATE !== 'true') {
     localStorageMock.clear();
   }
 
@@ -256,7 +256,7 @@ beforeEach((): void => {
   vi.clearAllTimers();
 
   // Clear any test-specific global state
-  if (typeof window != 'undefined') {
+  if (typeof window !== 'undefined') {
     // Clear any test-specific window properties
     const windowAny = window as unknown as Record<string, unknown>;
     delete windowAny.testAuthState;

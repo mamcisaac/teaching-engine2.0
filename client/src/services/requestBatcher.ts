@@ -30,7 +30,7 @@ interface ApiResponse {
 }
 
 function hasData(response: unknown): response is ApiResponse {
-  return typeof response === 'object' && response != null && 'data' in response;
+  return typeof response === 'object' && response !== null && 'data' in response;
 }
 
 class RequestBatcher {
@@ -180,8 +180,8 @@ class RequestBatcher {
       for (const pending of requests) {
         const batchResponse = responseMap.get(pending.request.id);
 
-        if (batchResponse != undefined) {
-          if ('error' in batchResponse && batchResponse.error != undefined) {
+        if (batchResponse !== undefined) {
+          if ('error' in batchResponse && batchResponse.error !== undefined) {
             pending.reject(new Error(batchResponse.error));
           } else {
             pending.resolve(batchResponse.data);
@@ -202,17 +202,17 @@ class RequestBatcher {
 
   // Configure batching parameters
   configure(options: { delay?: number; maxSize?: number }): void {
-    if (options.delay != undefined) {
+    if (options.delay !== undefined) {
       this.batchDelay = options.delay;
     }
-    if (options.maxSize != undefined) {
+    if (options.maxSize !== undefined) {
       this.maxBatchSize = options.maxSize;
     }
   }
 
   // Clear pending requests
   clear(): void {
-    if (this.batchTimeout != null) {
+    if (this.batchTimeout !== null) {
       clearTimeout(this.batchTimeout);
       this.batchTimeout = null;
     }
@@ -256,7 +256,7 @@ export function createDebouncedRequest<
   const debounced = async (...args: TArgs): Promise<TReturn> => {
     lastArgs = args;
 
-    if (timeout != null) {
+    if (timeout !== null) {
       clearTimeout(timeout);
     }
 
@@ -286,7 +286,7 @@ export function createDebouncedRequest<
   };
 
   debounced.cancel = (): void => {
-    if (timeout != null) {
+    if (timeout !== null) {
       clearTimeout(timeout);
       timeout = null;
     }

@@ -90,7 +90,7 @@ const PlanItem = memo(
             Draft
           </span>
         );
-      } else if (plan.progress != undefined) {
+      } else if (plan.progress !== undefined) {
         return (
           <div className="flex items-center gap-2">
             <div className="flex-1 bg-gray-200 rounded-full h-1.5 w-16">
@@ -133,20 +133,20 @@ const PlanItem = memo(
                   <span className={cn('text-xs text-gray-500', compact && 'text-xs')}>
                     {config.label}
                   </span>
-                  {(plan.subject != null && plan.subject != '') && (
+                  {(plan.subject !== null && plan.subject !== '') && (
                     <>
                       <span className="text-xs text-gray-400">•</span>
                       <span className="text-xs text-gray-500">{plan.subject}</span>
                     </>
                   )}
-                  {(plan.grade != null && !isNaN(plan.grade) && plan.grade > 0) && (
+                  {(plan.grade !== null && !isNaN(plan.grade) && plan.grade > 0) && (
                     <>
                       <span className="text-xs text-gray-400">•</span>
                       <span className="text-xs text-gray-500">Grade {plan.grade}</span>
                     </>
                   )}
                 </div>
-                {(plan.parentTitle != null && plan.parentTitle != '') && (
+                {(plan.parentTitle !== null && plan.parentTitle !== '') && (
                   <p className="text-xs text-gray-500 mt-0.5">in {plan.parentTitle}</p>
                 )}
               </div>

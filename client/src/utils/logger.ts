@@ -64,7 +64,7 @@ class ClientLogger {
   }
 
   error(message: string, error?: unknown, data?: unknown): void {
-    const errorData = typeof data === 'object' && data != null ? data : {};
+    const errorData = typeof data === 'object' && data !== null ? data : {};
     const entry = this.createLogEntry('error', message, { error: error instanceof Error ? error.stack : error, ...errorData });
     this.addToHistory(entry);
     
@@ -78,7 +78,7 @@ class ClientLogger {
     
     // Send to error reporting service in production
     const win = window as unknown as WindowWithErrorReporter;
-    if (!this.isDevelopment && typeof window != 'undefined' && win.errorReporter?.report) {
+    if (!this.isDevelopment && typeof window !== 'undefined' && win.errorReporter?.report) {
       win.errorReporter.report(entry);
     }
   }
@@ -156,7 +156,7 @@ class ClientLogger {
   api(method: string, url: string, data?: unknown, response?: unknown): void {
     this.info(`API ${method} ${url}`, {
       request: data,
-      response: (typeof response === 'object' && response != null && 'status' in response) ? {
+      response: (typeof response === 'object' && response !== null && 'status' in response) ? {
         status: (response as LoggerResponse).status,
         statusText: (response as LoggerResponse).statusText,
         data: (response as LoggerResponse).data

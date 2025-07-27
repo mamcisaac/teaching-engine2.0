@@ -38,13 +38,13 @@ export function TemplateFilters({
   };
 
   const hasActiveFilters =
-    filters.type != undefined ||
-    filters.category != undefined ||
-    (filters.subject != undefined && filters.subject != '') ||
-    filters.gradeMin != undefined ||
-    filters.gradeMax != undefined ||
-    (filters.search != undefined && filters.search != '') ||
-    (filters.tags != undefined && filters.tags.length > 0);
+    filters.type !== undefined ||
+    filters.category !== undefined ||
+    (filters.subject !== undefined && filters.subject !== '') ||
+    filters.gradeMin !== undefined ||
+    filters.gradeMax !== undefined ||
+    (filters.search !== undefined && filters.search !== '') ||
+    (filters.tags !== undefined && filters.tags.length > 0);
 
   return (
     <div className="bg-gray-50 rounded-lg p-4 space-y-4">
@@ -155,7 +155,7 @@ export function TemplateFilters({
           <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="filter-grade-min">Grade Level</label>
           <div className="flex gap-2 items-center">
             <Select
-              value={filters.gradeMin != undefined ? filters.gradeMin.toString() : 'all'}
+              value={filters.gradeMin !== undefined ? filters.gradeMin.toString() : 'all'}
               onValueChange={(value): void => {
  updateFilter('gradeMin', value === 'all' ? undefined : parseInt(value)); 
 }
@@ -175,7 +175,7 @@ export function TemplateFilters({
             </Select>
             <span className="text-gray-500">to</span>
             <Select
-              value={filters.gradeMax != undefined ? filters.gradeMax.toString() : 'all'}
+              value={filters.gradeMax !== undefined ? filters.gradeMax.toString() : 'all'}
               onValueChange={(value): void => {
  updateFilter('gradeMax', value === 'all' ? undefined : parseInt(value)); 
 }

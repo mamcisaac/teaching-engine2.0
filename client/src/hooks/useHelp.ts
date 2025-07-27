@@ -465,7 +465,7 @@ export function useHelpContent(): {
     let content = mockHelpContent;
 
     // Apply section filter
-    if (state.currentSection != '') {
+    if (state.currentSection !== '') {
       content = content.filter(item => item.section === state.currentSection);
     }
 
@@ -480,7 +480,7 @@ export function useHelpContent(): {
     }
 
     // Apply search query
-    if (state.searchQuery != '') {
+    if (state.searchQuery !== '') {
       const query = state.searchQuery.toLowerCase();
       content = content.filter(item =>
         item.title.toLowerCase().includes(query) ||

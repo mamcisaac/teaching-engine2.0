@@ -78,7 +78,7 @@ export function AISuggestionPanel({
               <Sparkles className="h-5 w-5 text-purple-500" />
               {title}
             </CardTitle>
-            {(description != undefined && description != '') && <CardDescription>{description}</CardDescription>}
+            {(description !== undefined && description !== '') && <CardDescription>{description}</CardDescription>}
           </div>
           <Button
             className="gap-2"
@@ -110,7 +110,7 @@ export function AISuggestionPanel({
 
         {suggestions && Array.isArray(suggestions.suggestions) && suggestions.suggestions.length > 0 && (
           <div className="space-y-3">
-            {(suggestions.rationale != undefined && suggestions.rationale != null && suggestions.rationale != '') && (
+            {(suggestions.rationale !== undefined && suggestions.rationale !== null && suggestions.rationale !== '') && (
               <p className="text-sm text-muted-foreground italic">{suggestions.rationale as string}</p>
             )}
 

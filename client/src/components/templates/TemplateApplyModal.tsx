@@ -242,12 +242,12 @@ export function TemplateApplyModal({
               )}
               <span>{template.type === 'UNIT_PLAN' ? 'Unit Plan' : 'Lesson Plan'} Template</span>
             </div>
-            {template.estimatedWeeks != null && template.estimatedWeeks > 0 && (
+            {template.estimatedWeeks !== null && template.estimatedWeeks > 0 && (
               <p className="text-sm text-gray-600">
                 Duration: {template.estimatedWeeks} weeks
               </p>
             )}
-            {template.estimatedMinutes != null && template.estimatedMinutes > 0 && (
+            {template.estimatedMinutes !== null && template.estimatedMinutes > 0 && (
               <p className="text-sm text-gray-600">
                 Duration: {template.estimatedMinutes} minutes
               </p>

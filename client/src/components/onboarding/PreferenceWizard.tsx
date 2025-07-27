@@ -67,7 +67,7 @@ export function PreferenceWizard({ onComplete, onSkip }: PreferenceWizardProps):
       ...prev,
       subjects: checked
         ? [...prev.subjects, subject]
-        : prev.subjects.filter(s => s != subject),
+        : prev.subjects.filter(s => s !== subject),
     }));
   };
 

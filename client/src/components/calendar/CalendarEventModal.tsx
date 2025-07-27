@@ -201,7 +201,7 @@ export function CalendarEventModal({
             />
           </div>
 
-          {eventType != 'lesson' && (
+          {eventType !== 'lesson' && (
             <>
               <div>
                 <label className="flex items-center space-x-2">

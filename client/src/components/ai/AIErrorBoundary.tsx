@@ -67,7 +67,7 @@ export class AIErrorBoundary extends Component<Props, State> {
     logger.error('========================');
 
     // Report to monitoring service if available
-    if (window.gtag != undefined) {
+    if (window.gtag !== undefined) {
       window.gtag('event', 'ai_error', {
         event_category: 'AI Integration',
         event_label: (error instanceof Error ? error.message : String(error)),
@@ -130,7 +130,7 @@ export class AIErrorBoundary extends Component<Props, State> {
     }));
 
     // Call external retry handler if provided
-    if (this.props.onRetry != undefined) {
+    if (this.props.onRetry !== undefined) {
       this.props.onRetry();
     }
 
@@ -163,7 +163,7 @@ export class AIErrorBoundary extends Component<Props, State> {
   };
 
   componentWillUnmount(): void {
-    if (this.retryTimeout != undefined) {
+    if (this.retryTimeout !== undefined) {
       clearTimeout(this.retryTimeout);
     }
   }
@@ -198,7 +198,7 @@ export class AIErrorBoundary extends Component<Props, State> {
 
   render(): React.ReactNode {
     if (this.state.hasError && this.state.error) {
-      if (this.props.fallback != undefined && this.props.fallback != null) {
+      if (this.props.fallback !== undefined && this.props.fallback !== null) {
         return this.props.fallback;
       }
 
@@ -297,11 +297,11 @@ export class AIErrorBoundary extends Component<Props, State> {
                       <div className="mt-2 p-2 bg-gray-100 rounded text-xs font-mono">
                         <div><strong>Type:</strong> {aiError.type}</div>
                         <div><strong>Message:</strong> {this.state.error instanceof Error ? this.state.error.message : String(this.state.error)}</div>
-                        {aiError.statusCode != undefined && (
+                        {aiError.statusCode !== undefined && (
                           <div><strong>Status:</strong> {aiError.statusCode}</div>
                         )}
                         <div><strong>Retryable:</strong> {aiError.retryable === true ? 'Yes' : 'No'}</div>
-                        {this.state.errorInfo != undefined && (
+                        {this.state.errorInfo !== undefined && (
                           <details className="mt-2">
                             <summary>Component Stack</summary>
                             <pre className="whitespace-pre-wrap text-xs mt-1">
@@ -327,13 +327,13 @@ export class AIErrorBoundary extends Component<Props, State> {
 // Hook for handling AI errors in functional components
 export function useAIErrorHandler(): { handleAIError: (error: unknown, context?: string) => void } {
   const handleAIError = (error: unknown, context?: string): void => {
-    logger.error(`AI Error${context != undefined && context != '' ? ` in ${context}` : ''}:`, error);
+    logger.error(`AI Error${context !== undefined && context !== '' ? ` in ${context}` : ''}:`, error);
     
     // Report to monitoring
-    if (window.gtag != undefined) {
+    if (window.gtag !== undefined) {
       window.gtag('event', 'ai_error', {
         event_category: 'AI Integration',
-        event_label: context != undefined && context != '' ? context : 'Unknown',
+        event_label: context !== undefined && context !== '' ? context : 'Unknown',
         value: 1,
       });
     }

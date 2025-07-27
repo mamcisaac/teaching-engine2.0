@@ -51,7 +51,7 @@ export function SafeHtmlRenderer(props: SafeHtmlRendererProps): ReactElement {
   // For maximum security, we'll only render text content
   // Complex HTML rendering should use a proper HTML-to-React parser
   const textContent = useMemo(() => {
-    if (typeof window != 'undefined') {
+    if (typeof window !== 'undefined') {
       const tempDiv = document.createElement('div');
       tempDiv.innerHTML = sanitizedHtml;
       return tempDiv.textContent ?? tempDiv.innerText;
