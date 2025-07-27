@@ -243,7 +243,7 @@ return false;
         return recentActivity > 100;
       } catch (error: unknown) {
         // Silently fail if database is not ready
-        logger.debug('Failed to check unusual user activity', error);
+        logger.debug('Failed to check unusual user activity', error instanceof Error ? error.message : String(error));
         return false;
       }
     },
@@ -482,7 +482,7 @@ const gatherAlertContext = async (alert: Alert): Promise<AlertContext> => {
       } catch (error: unknown) {
         // Provide default value if database query fails
         context.count = 0;
-        logger.debug('Failed to gather unusual user activity context', error);
+        logger.debug('Failed to gather unusual user activity context', error instanceof Error ? error.message : String(error));
       }
       break;
     }

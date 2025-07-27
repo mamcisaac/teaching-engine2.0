@@ -18,21 +18,21 @@ export const useSubject = (id: number): UseQueryResult<Subject> =>
   useQuery({
     queryKey: queryKeys.curriculum.subject(id),
     queryFn: () => curriculumApi.getSubject(id),
-    enabled: id !== 0,
+    enabled: id != 0,
   });
 
 export const useStrands = (subjectId: number): UseQueryResult<string[]> =>
   useQuery({
     queryKey: ['subject-strands', subjectId],
     queryFn: () => curriculumApi.getStrands(subjectId),
-    enabled: subjectId !== 0,
+    enabled: subjectId != 0,
   });
 
 export const useTopics = (subjectId: number, strand: string): UseQueryResult<string[]> =>
   useQuery({
     queryKey: ['subject-topics', subjectId, strand],
     queryFn: () => curriculumApi.getTopics(subjectId, strand),
-    enabled: subjectId !== 0 && strand !== '',
+    enabled: subjectId != 0 && strand != '',
   });
 
 // Curriculum Expectations Query Hooks
@@ -51,7 +51,7 @@ export const useCurriculumExpectation = (id: number): UseQueryResult<CurriculumE
   useQuery({
     queryKey: ['curriculum-expectation', id],
     queryFn: () => curriculumApi.getCurriculumExpectation(id),
-    enabled: id !== 0,
+    enabled: id != 0,
   });
 
 // Thematic Units Query Hooks
@@ -70,7 +70,7 @@ export const useThematicUnit = (id: number): UseQueryResult<ThematicUnit> =>
   useQuery({
     queryKey: queryKeys.curriculum.thematicUnit(id),
     queryFn: () => curriculumApi.getThematicUnit(id),
-    enabled: id !== 0,
+    enabled: id != 0,
   });
 
 // Search Hook

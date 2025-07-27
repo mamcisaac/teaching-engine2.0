@@ -78,7 +78,7 @@ export function CurriculumExpectationCoverage(): React.ReactElement {
       bySubject[exp.subject].push(exp);
 
       // By strand
-      const strand = exp.strand && exp.strand !== '' ? exp.strand : 'Other';
+      const strand = exp.strand && exp.strand != '' ? exp.strand : 'Other';
       byStrand[strand] ??= [];
       byStrand[strand].push(exp);
 

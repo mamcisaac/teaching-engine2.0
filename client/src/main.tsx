@@ -54,7 +54,7 @@ if (rootElement) {
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <App />
-          <Toaster position="top-right" richColors closeButton />
+          <Toaster closeButton richColors position="top-right" />
         </BrowserRouter>
       </QueryClientProvider>
     </StrictMode>

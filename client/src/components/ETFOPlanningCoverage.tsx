@@ -47,8 +47,8 @@ export function ETFOPlanningCoverage(): React.ReactElement {
       name: 'Long-Range Plans',
       icon: <Calendar className="h-5 w-5" />,
       total: 8, // Assuming 8 subjects for elementary
-      completed: longRangePlans.filter((p) => p.goals !== '' && (p.themes?.length ?? 0) > 0).length,
-      inProgress: longRangePlans.filter((p) => p.goals !== '' && (p.themes?.length ?? 0) === 0).length,
+      completed: longRangePlans.filter((p) => p.goals != '' && (p.themes?.length ?? 0) > 0).length,
+      inProgress: longRangePlans.filter((p) => p.goals != '' && (p.themes?.length ?? 0) === 0).length,
       notStarted: 8 - longRangePlans.length,
       description: 'Year-long curriculum organization by subject',
     },
@@ -57,10 +57,10 @@ export function ETFOPlanningCoverage(): React.ReactElement {
       icon: <Target className="h-5 w-5" />,
       total: longRangePlans.reduce((sum, lrp) => sum + (lrp._count?.unitPlans ?? 0) + 5, 0), // Expected units
       completed: unitPlans.filter(
-        (u) => u.bigIdeas !== '' && u.assessmentPlan !== '' && (u.successCriteria?.length ?? 0) > 0,
+        (u) => u.bigIdeas != '' && u.assessmentPlan != '' && (u.successCriteria?.length ?? 0) > 0,
       ).length,
       inProgress: unitPlans.filter(
-        (u) => u.bigIdeas !== '' && (u.assessmentPlan === '' || (u.successCriteria?.length ?? 0) === 0),
+        (u) => u.bigIdeas != '' && (u.assessmentPlan === '' || (u.successCriteria?.length ?? 0) === 0),
       ).length,
       notStarted: unitPlans.filter((u) => u.bigIdeas === '').length,
       description: '3-6 week thematic units with big ideas and assessments',
@@ -69,10 +69,10 @@ export function ETFOPlanningCoverage(): React.ReactElement {
       name: 'Lesson Plans',
       icon: <Clock className="h-5 w-5" />,
       total: unitPlans.reduce((sum, unit) => sum + (unit.estimatedHours ?? 20), 0), // Estimated lessons needed
-      completed: lessonPlans.filter((l) => l.mindsOn !== '' && l.action !== '' && l.consolidation !== '').length,
+      completed: lessonPlans.filter((l) => l.mindsOn != '' && l.action != '' && l.consolidation != '').length,
       inProgress: lessonPlans.filter(
         (l) =>
-          (l.mindsOn !== '' || l.action !== '' || l.consolidation !== '') && !(l.mindsOn !== '' && l.action !== '' && l.consolidation !== ''),
+          (l.mindsOn != '' || l.action != '' || l.consolidation != '') && !(l.mindsOn != '' && l.action != '' && l.consolidation != ''),
       ).length,
       notStarted: lessonPlans.filter((l) => l.mindsOn === '' && l.action === '' && l.consolidation === '').length,
       description: 'Daily lessons with three-part structure',
@@ -81,9 +81,9 @@ export function ETFOPlanningCoverage(): React.ReactElement {
       name: 'Daybook Reflections',
       icon: <Users className="h-5 w-5" />,
       total: lessonPlans.length, // One reflection per lesson
-      completed: daybookEntries.filter((d) => d.whatWorked !== '' && d.nextSteps !== '').length,
+      completed: daybookEntries.filter((d) => d.whatWorked != '' && d.nextSteps != '').length,
       inProgress: daybookEntries.filter(
-        (d) => (d.whatWorked !== '' || d.nextSteps !== '') && !(d.whatWorked !== '' && d.nextSteps !== ''),
+        (d) => (d.whatWorked != '' || d.nextSteps != '') && !(d.whatWorked != '' && d.nextSteps != ''),
       ).length,
       notStarted: lessonPlans.length - daybookEntries.length,
       description: 'Daily reflections and student observations',
@@ -235,7 +235,7 @@ return 'secondary';
                   <div className="grid gap-2">
                     {plans.map((plan, _index) => {
                       const planUnits = unitPlans.filter((u) => u.longRangePlanId === plan.id);
-                      const unitPercentage = (plan._count?.unitPlans !== undefined && plan._count.unitPlans > 0)
+                      const unitPercentage = (plan._count?.unitPlans != undefined && plan._count.unitPlans > 0)
                         ? calculatePercentage(planUnits.length, plan._count.unitPlans)
                         : 0;
 
@@ -336,7 +336,7 @@ return 'secondary';
       </Card>
 
       {/* Progress Insights */}
-      {progressData !== undefined && (
+      {progressData != undefined && (
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">

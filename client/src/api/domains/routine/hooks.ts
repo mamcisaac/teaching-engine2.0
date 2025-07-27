@@ -27,7 +27,7 @@ export const useRoutineTemplate = (id: number): UseQueryResult<OralRoutineTempla
   useQuery({
     queryKey: ['routine-template', id],
     queryFn: () => routineApi.templates.getById(id),
-    enabled: id !== 0,
+    enabled: id != 0,
   });
 
 export const usePublicRoutineTemplates = (filters?: RoutineFilters): UseQueryResult<OralRoutineTemplate[]> =>
@@ -49,14 +49,14 @@ export const useDailyRoutine = (id: number): UseQueryResult<DailyOralRoutine> =>
   useQuery({
     queryKey: ['daily-routine', id],
     queryFn: () => routineApi.daily.getById(id),
-    enabled: id !== 0,
+    enabled: id != 0,
   });
 
 export const useDailyRoutinesByDate = (date: string): UseQueryResult<DailyOralRoutine[]> =>
   useQuery({
     queryKey: ['daily-routines-by-date', date],
     queryFn: () => routineApi.daily.getByDate(date),
-    enabled: date !== '',
+    enabled: date != '',
     staleTime: 1 * 60 * 1000, // 1 minute
   });
 
@@ -64,7 +64,7 @@ export const useRoutineSuggestions = (date: string): UseQueryResult<OralRoutineT
   useQuery({
     queryKey: ['routine-suggestions', date],
     queryFn: () => routineApi.daily.getSuggestions(date),
-    enabled: date !== '',
+    enabled: date != '',
     staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
@@ -80,7 +80,7 @@ export const useClassRoutine = (id: number): UseQueryResult<ClassRoutine> =>
   useQuery({
     queryKey: ['class-routine', id],
     queryFn: () => routineApi.class.getById(id),
-    enabled: id !== 0,
+    enabled: id != 0,
   });
 
 // Statistics query hooks
@@ -95,7 +95,7 @@ export const useEngagementTrends = (startDate: string, endDate: string): UseQuer
   useQuery({
     queryKey: ['engagement-trends', startDate, endDate],
     queryFn: () => routineApi.stats.getEngagementTrends(startDate, endDate),
-    enabled: startDate !== '' && endDate !== '',
+    enabled: startDate != '' && endDate != '',
     staleTime: 5 * 60 * 1000, // 5 minutes
   });
 

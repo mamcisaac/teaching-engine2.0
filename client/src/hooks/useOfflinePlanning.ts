@@ -23,15 +23,15 @@ interface ApiResponse {
 }
 
 function isApiResponse(value: unknown): value is ApiResponse {
-  return typeof value === 'object' && value !== null && 'data' in value;
+  return typeof value === 'object' && value != null && 'data' in value;
 }
 
 function hasId(value: unknown): value is HasId {
-  return typeof value === 'object' && value !== null && 'id' in value && typeof (value as { id: unknown }).id === 'string';
+  return typeof value === 'object' && value != null && 'id' in value && typeof (value as { id: unknown }).id === 'string';
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === 'object' && value !== null && !Array.isArray(value);
+  return typeof value === 'object' && value != null && !Array.isArray(value);
 }
 
 // Store interfaces with proper typing
@@ -122,7 +122,7 @@ export function useOfflinePlanning(): {
     mergedData?: unknown
   ): Promise<void> => {
     await offlineStorage.resolveConflict(conflictId, resolution, mergedData as StoredData | undefined);
-    setConflicts(conflicts.filter(c => c.id !== conflictId));
+    setConflicts(conflicts.filter(c => c.id != conflictId));
   };
 
   // Preload curriculum documents for offline use

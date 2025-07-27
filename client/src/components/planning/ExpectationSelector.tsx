@@ -113,7 +113,7 @@ return expectations;
   const toggleExpectation = (expectationId: string): void => {
     if (multiSelect) {
       if (selectedIds.includes(expectationId)) {
-        onChange(selectedIds.filter((id) => id !== expectationId));
+        onChange(selectedIds.filter((id) => id != expectationId));
       } else {
         onChange([...selectedIds, expectationId]);
       }
@@ -124,7 +124,7 @@ return expectations;
   };
 
   const removeExpectation = (expectationId: string): void => {
-    onChange(selectedIds.filter((id) => id !== expectationId));
+    onChange(selectedIds.filter((id) => id != expectationId));
   };
 
   const clearAll = (): void => {
@@ -139,13 +139,13 @@ return expectations;
         </Label>
       )}
 
-      <Popover onOpenChange={setOpen} open={open}>
+      <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
             aria-expanded={open}
             className={cn(
               "w-full justify-between",
-              error !== "" ? "border-red-500 focus:ring-red-500 focus:border-red-500" : "",
+              error != "" ? "border-red-500 focus:ring-red-500 focus:border-red-500" : "",
               className
             )}
             disabled={disabled}
@@ -166,11 +166,11 @@ return expectations;
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
                 className="pl-9"
+                placeholder="Search by code, description, or strand..."
+                value={searchQuery}
                 onChange={(e) => {
  setSearchQuery(e.target.value); 
 }}
-                placeholder="Search by code, description, or strand..."
-                value={searchQuery}
               />
             </div>
           </div>
@@ -185,13 +185,13 @@ return expectations;
                 <div className="text-center py-8 text-muted-foreground">No expectations found</div>
               ) : (
                 Object.entries(groupedExpectations).map(([strand, substrands]) => (
-                  <div className="mb-4" key={strand}>
+                  <div key={strand} className="mb-4">
                     <button
                       className="flex items-center gap-2 w-full text-left font-medium text-sm mb-2 hover:text-primary"
+                      type="button"
                       onClick={() => {
  toggleStrand(strand); 
 }}
-                      type="button"
                     >
                       {expandedStrands.has(strand) ? (
                         <ChevronDown className="h-4 w-4" />
@@ -205,7 +205,7 @@ return expectations;
                       <div className="ml-6 space-y-3">
                         {Object.entries(substrands).map(([substrand, expectations]) => (
                           <div key={substrand}>
-                            {substrand !== 'General' ? (
+                            {substrand != 'General' ? (
                               <div className="text-xs font-medium text-muted-foreground mb-1">
                                 {substrand}
                               </div>
@@ -213,12 +213,14 @@ return expectations;
                             <div className="space-y-1">
                               {expectations.map((exp, _index) => (
                                 <div
+                                  key={exp.id}
                                   aria-label={`Toggle expectation: ${exp.description || 'Expectation'}`}
                                   className={cn(
                                     'flex items-start gap-2 p-2 rounded-md hover:bg-accent cursor-pointer',
                                     selectedIds.includes(exp.id) && 'bg-accent',
                                   )}
-                                  key={exp.id}
+                                  role="button"
+                                  tabIndex={0}
                                   onClick={() => {
  toggleExpectation(exp.id); 
 }}
@@ -228,8 +230,6 @@ return expectations;
                                       toggleExpectation(exp.id);
                                     }
                                   }}
-                                  role="button"
-                                  tabIndex={0}
                                 >
                                   <div className="mt-0.5">
                                     {multiSelect ? (
@@ -304,8 +304,8 @@ return expectations;
         <div className="mt-3 space-y-2">
           {selectedExpectations.map((exp, _index) => (
             <div
-              className="flex items-start justify-between gap-2 p-2 bg-muted rounded-md"
               key={exp.id}
+              className="flex items-start justify-between gap-2 p-2 bg-muted rounded-md"
             >
               <div className="flex-1">
                 <div className="flex items-center gap-2">
@@ -319,11 +319,11 @@ return expectations;
               {multiSelect ? (
                 <Button
                   className="h-auto p-1"
+                  size="sm"
+                  variant="ghost"
                   onClick={() => {
  removeExpectation(exp.id); 
 }}
-                  size="sm"
-                  variant="ghost"
                 >
                   <X className="h-4 w-4" />
                 </Button>
@@ -334,7 +334,7 @@ return expectations;
       ) : null}
 
       {/* Error display */}
-      {error !== "" ? (
+      {error != "" ? (
         <p className="mt-1 text-sm text-red-600">{error}</p>
       ) : null}
     </div>

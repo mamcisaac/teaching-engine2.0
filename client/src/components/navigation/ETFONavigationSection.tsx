@@ -44,7 +44,7 @@ export function ETFONavigationSection(): React.ReactElement {
         const {progress} = level;
 
         return (
-          <div className="relative" key={level.id}>
+          <div key={level.id} className="relative">
             {isSidebarOpen && (
               <div className="px-4 py-1 text-xs text-indigo-300 flex items-center justify-between">
                 <span>Step {index + 1}</span>
@@ -81,12 +81,12 @@ export function ETFONavigationSection(): React.ReactElement {
                 return `${baseClasses} text-indigo-100 hover:bg-indigo-700`;
               }}
               data-testid={level.id === 2 ? 'long-range-nav' : undefined}
+              to={isAccessible ? level.path : '#'}
               onClick={(e): void => {
                 if (!isAccessible) {
                   e.preventDefault();
                 }
               }}
-              to={isAccessible ? level.path : '#'}
             >
               <span className="mr-3 relative">
                 {level.icon}

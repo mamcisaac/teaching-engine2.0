@@ -44,7 +44,7 @@ export function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingFlowProps
   const [completedSteps, setCompletedSteps] = useState<string[]>(() => {
     try {
       const saved = localStorage.getItem('onboarding-completed-steps');
-      return (saved !== null && saved !== '') ? safeJsonParse(saved, []) : [];
+      return (saved != null && saved != '') ? safeJsonParse(saved, []) : [];
     } catch {
       return [];
     }
@@ -764,9 +764,9 @@ return null;
               <LanguageSwitcher />
               <Button
                 className="text-gray-500 hover:text-gray-700"
-                onClick={completeOnboarding}
                 size="sm"
                 variant="outline"
+                onClick={completeOnboarding}
               >
                 {t('skip_tour', 'Skip Tour')}
               </Button>

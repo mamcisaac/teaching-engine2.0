@@ -139,7 +139,7 @@ export default function UnitPlansPage(): React.ReactElement {
     longRangePlanId,
     editingId: editingUnit,
     onSave: async (data) => {
-      if (editingUnit !== null) {
+      if (editingUnit != null) {
         await updateUnit.mutateAsync({ id: editingUnit, ...data });
       }
     },
@@ -156,7 +156,7 @@ export default function UnitPlansPage(): React.ReactElement {
 
     const cleanData = getCleanFormData();
 
-    if (editingUnit !== null) {
+    if (editingUnit != null) {
       await updateUnit.mutateAsync({ id: editingUnit, ...cleanData });
       setEditingUnit(null);
     } else {

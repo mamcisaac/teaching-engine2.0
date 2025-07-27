@@ -199,7 +199,9 @@ export const createCustomChain = (options: {
   }
 
   if (options.validators) {
-    options.validators.forEach((validator): void => chainBuilder.add(validator));
+    options.validators.forEach((validator): void => {
+      chainBuilder.add(validator);
+    });
   }
 
   return chainBuilder.build();

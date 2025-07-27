@@ -113,9 +113,9 @@ export function CalendarEventModal({
   };
 
   return (
-    <Dialog onOpenChange={() => {
+    <Dialog open={isOpen} onOpenChange={() => {
  onClose(); 
-}} open={isOpen}>
+}}>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
           <DialogTitle>Create New Event</DialogTitle>
@@ -123,9 +123,9 @@ export function CalendarEventModal({
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
             <label className="block text-sm font-medium mb-1" htmlFor="event-type-select">Event Type</label>
-            <Select onValueChange={(value) => {
+            <Select value={eventType} onValueChange={(value) => {
  setEventType(value as EventType); 
-}} value={eventType}>
+}}>
               <SelectTrigger id="event-type-select">
                 <SelectValue />
               </SelectTrigger>
@@ -144,13 +144,13 @@ export function CalendarEventModal({
               Title
             </label>
             <input
+              required
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               id="title"
               name="title"
-              onChange={handleInputChange}
-              required
               type="text"
               value={formData.title}
+              onChange={handleInputChange}
             />
           </div>
 
@@ -162,9 +162,9 @@ export function CalendarEventModal({
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               id="description"
               name="description"
-              onChange={handleInputChange}
               rows={3}
               value={formData.description}
+              onChange={handleInputChange}
             />
           </div>
 
@@ -177,10 +177,10 @@ export function CalendarEventModal({
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 id="subject"
                 name="subject"
-                onChange={handleInputChange}
                 placeholder="e.g., Math, Language, Science"
                 type="text"
                 value={formData.subject}
+                onChange={handleInputChange}
               />
             </div>
           )}
@@ -191,17 +191,17 @@ export function CalendarEventModal({
               Date
             </label>
             <input
+              required
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               id="date"
               name="date"
-              onChange={handleInputChange}
-              required
               type="date"
               value={formData.date}
+              onChange={handleInputChange}
             />
           </div>
 
-          {eventType !== 'lesson' && (
+          {eventType != 'lesson' && (
             <>
               <div>
                 <label className="flex items-center space-x-2">
@@ -209,8 +209,8 @@ export function CalendarEventModal({
                     checked={formData.allDay}
                     className="rounded border-gray-300"
                     name="allDay"
-                    onChange={handleInputChange}
                     type="checkbox"
+                    onChange={handleInputChange}
                   />
                   <span className="text-sm font-medium">All Day Event</span>
                 </label>
@@ -227,9 +227,9 @@ export function CalendarEventModal({
                       className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       id="startTime"
                       name="startTime"
-                      onChange={handleInputChange}
                       type="time"
                       value={formData.startTime}
+                      onChange={handleInputChange}
                     />
                   </div>
                   <div>
@@ -241,9 +241,9 @@ export function CalendarEventModal({
                       className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       id="endTime"
                       name="endTime"
-                      onChange={handleInputChange}
                       type="time"
                       value={formData.endTime}
+                      onChange={handleInputChange}
                     />
                   </div>
                 </div>

@@ -63,7 +63,7 @@ export function PlanningWorkflowIndicator({
   const canNavigate = (level: LevelProgress): boolean => level.isAccessible || level.isComplete;
 
   return (
-    <div className={cn('bg-white rounded-lg shadow-sm p-6', className) as string}>
+    <div className={cn('bg-white rounded-lg shadow-sm p-6', className)}>
       <h3 className="text-lg font-semibold mb-4">Planning Workflow Progress</h3>
 
       <div className="space-y-3">
@@ -82,7 +82,7 @@ export function PlanningWorkflowIndicator({
                     <p className="text-xs text-gray-500 mb-1">Required:</p>
                     <div className="flex flex-wrap gap-1">
                       {level.requiredFields.map((field, _index) => (
-                        <Badge className="text-xs" key={field} variant="outline">
+                        <Badge key={field} className="text-xs" variant="outline">
                           {field}
                         </Badge>
                       ))}
@@ -106,7 +106,7 @@ export function PlanningWorkflowIndicator({
           );
 
           return (
-            <div className="relative" key={level.level}>
+            <div key={level.level} className="relative">
               {canNavigate(level) ? (
                 <Link
                   className={cn(

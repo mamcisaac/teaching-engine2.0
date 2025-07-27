@@ -250,5 +250,5 @@ export async function setupAuthTest(): Promise<AuthTestContext> {
  * Verify test authentication
  */
 export async function verifyTestAuth(context: AuthTestContext): Promise<boolean> {
-  return context.user !== null && context.user !== undefined && context.token !== null && context.token !== undefined && context.token !== '';
+  return context.user != null && context.user != undefined && context.token != null && context.token != undefined && context.token != '';
 }

@@ -45,9 +45,9 @@ export function FrenchImmersionWeeklyTemplate({
   metadata,
 }: FrenchImmersionWeeklyTemplateProps): React.ReactElement {
   const [weekData, setWeekData] = useState<WeeklyPlanData>({
-    weekNumber: metadata?.weekNumber !== undefined && metadata.weekNumber !== 0 ? metadata.weekNumber : 1,
-    theme: initialData?.theme !== undefined ? initialData.theme : '',
-    themeFr: initialData?.themeFr !== undefined ? initialData.themeFr : '',
+    weekNumber: metadata?.weekNumber != undefined && metadata.weekNumber != 0 ? metadata.weekNumber : 1,
+    theme: initialData?.theme != undefined ? initialData.theme : '',
+    themeFr: initialData?.themeFr != undefined ? initialData.themeFr : '',
     weekFocus: initialData?.weekFocus ?? {
       vocabulary: [],
       structures: [],
@@ -61,7 +61,7 @@ export function FrenchImmersionWeeklyTemplate({
       { day: 'Thursday', languageTarget: '', mainActivity: '', vocabulary: [] },
       { day: 'Friday', languageTarget: '', mainActivity: '', vocabulary: [] },
     ],
-    assessmentFocus: initialData?.assessmentFocus !== undefined ? initialData.assessmentFocus : '',
+    assessmentFocus: initialData?.assessmentFocus != undefined ? initialData.assessmentFocus : '',
     parentUpdate: initialData?.parentUpdate ?? { english: '', french: '' },
   });
 
@@ -108,7 +108,7 @@ export function FrenchImmersionWeeklyTemplate({
               Grade 1 French Immersion Weekly Plan
             </h2>
             <p className="text-gray-600 mt-1">
-              {metadata?.month !== undefined && metadata.month !== ''
+              {metadata?.month != undefined && metadata.month != ''
                 ? `${metadata.month} - Week ${metadata.weekNumber}`
                 : 'Structured weekly planning template'}
             </p>
@@ -201,7 +201,7 @@ export function FrenchImmersionWeeklyTemplate({
                     className="p-2 border rounded"
                     placeholder="Pronunciation"
                     type="text"
-                    value={(vocab.pronunciation !== undefined && vocab.pronunciation !== '') ? vocab.pronunciation : ''}
+                    value={(vocab.pronunciation != undefined && vocab.pronunciation != '') ? vocab.pronunciation : ''}
                     onChange={(e) => {
                       const updated = [...weekData.weekFocus.vocabulary];
                       updated[index].pronunciation = e.target.value;
@@ -215,7 +215,7 @@ export function FrenchImmersionWeeklyTemplate({
                     className="p-2 border rounded"
                     placeholder="Context"
                     type="text"
-                    value={(vocab.context !== undefined && vocab.context !== '') ? vocab.context : ''}
+                    value={(vocab.context != undefined && vocab.context != '') ? vocab.context : ''}
                     onChange={(e) => {
                       const updated = [...weekData.weekFocus.vocabulary];
                       updated[index].context = e.target.value;
@@ -364,7 +364,7 @@ Use possessive adjectives correctly"
                     id="cultural-wednesday"
                     placeholder="Explore French-Canadian family traditions"
                     type="text"
-                    value={(dayPlan.culturalNote !== undefined && dayPlan.culturalNote !== '') ? dayPlan.culturalNote : ''}
+                    value={(dayPlan.culturalNote != undefined && dayPlan.culturalNote != '') ? dayPlan.culturalNote : ''}
                     onChange={(e) => {
  updateDailyPlan(index, 'culturalNote', e.target.value); 
 }}

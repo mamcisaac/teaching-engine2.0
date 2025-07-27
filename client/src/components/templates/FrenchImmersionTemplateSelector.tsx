@@ -78,16 +78,16 @@ export function FrenchImmersionTemplateSelector({
   let allTemplates = [...lessonTemplates, ...unitTemplates];
 
   // Apply type filter if provided
-  if (filterByType !== undefined) {
+  if (filterByType != undefined) {
     allTemplates = allTemplates.filter((t) => t.type === filterByType);
   }
 
   // Apply search filter
-  if (searchTerm !== '') {
+  if (searchTerm != '') {
     allTemplates = allTemplates.filter(
       (t) =>
         t.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (t.titleFr !== undefined && t.titleFr !== '' && t.titleFr.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (t.titleFr != undefined && t.titleFr != '' && t.titleFr.toLowerCase().includes(searchTerm.toLowerCase())) ||
         t.tags.some((tag) => tag.toLowerCase().includes(searchTerm.toLowerCase())),
     );
   }
@@ -115,21 +115,21 @@ return true;
     // Check if template matches persona preferences
     if (selectedPersona === 'jean-luc') {
       return (
-        ('culturalConnections' in template.content && template.content.culturalConnections !== undefined) ||
+        ('culturalConnections' in template.content && template.content.culturalConnections != undefined) ||
         template.tags.includes('art-integration') ||
         template.tags.includes('cultural')
       );
     } else if (selectedPersona === 'sophie') {
       return (
-        ('assessments' in template.content && template.content.assessments !== undefined) ||
-        ('assessmentNotes' in template.content && template.content.assessmentNotes !== undefined && template.content.assessmentNotes !== '') ||
-        ('lessonStructure' in template && template.lessonStructure !== undefined)
+        ('assessments' in template.content && template.content.assessments != undefined) ||
+        ('assessmentNotes' in template.content && template.content.assessmentNotes != undefined && template.content.assessmentNotes != '') ||
+        ('lessonStructure' in template && template.lessonStructure != undefined)
       );
     } else {
       // marie-claire persona
       return (
-        ('parentCommunication' in template.content && template.content.parentCommunication !== undefined) ||
-        (template.description !== undefined && template.description !== '' && template.description.includes('structured')) ||
+        ('parentCommunication' in template.content && template.content.parentCommunication != undefined) ||
+        (template.description != undefined && template.description != '' && template.description.includes('structured')) ||
         template.tags.includes('guided')
       );
     }
@@ -164,12 +164,12 @@ return true;
         <div className="grid md:grid-cols-3 gap-4">
           {TEACHER_PERSONAS.map((persona, _index) => (
             <button
+              key={persona.id}
               className={`p-4 rounded-lg border-2 transition-all text-left ${
                 selectedPersona === persona.id
                   ? `border-${persona.color}-500 bg-${persona.color}-50`
                   : 'border-gray-200 hover:border-gray-300'
               }`}
-              key={persona.id}
               onClick={() => {
  setSelectedPersona(selectedPersona === persona.id ? null : persona.id); 
 }}
@@ -181,7 +181,7 @@ return true;
                   <p className="text-sm text-gray-600 mt-1">{persona.description}</p>
                   <div className="mt-2 space-y-1">
                     {persona.preferences.map((pref, idx) => (
-                      <div className="text-xs text-gray-500" key={idx}>
+                      <div key={idx} className="text-xs text-gray-500">
                         • {pref}
                       </div>
                     ))}
@@ -201,22 +201,22 @@ return true;
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               <input
                 className="w-full pl-10 pr-3 py-2 border rounded-lg"
-                onChange={(e) => {
- setSearchTerm(e.target.value); 
-}}
                 placeholder="Search templates..."
                 type="text"
                 value={searchTerm}
+                onChange={(e) => {
+ setSearchTerm(e.target.value); 
+}}
               />
             </div>
           </div>
 
           <select
             className="px-3 py-2 border rounded-lg"
+            value={selectedTimeOfYear}
             onChange={(e) => {
  setSelectedTimeOfYear(e.target.value); 
 }}
-            value={selectedTimeOfYear}
           >
             <option value="">All Months</option>
             <option value="September">September</option>
@@ -232,11 +232,11 @@ return true;
           </select>
 
           <Button
+            size="sm"
+            variant={showOnlyFavorites ? 'primary' : 'outline'}
             onClick={() => {
  setShowOnlyFavorites(!showOnlyFavorites); 
 }}
-            size="sm"
-            variant={showOnlyFavorites ? 'primary' : 'outline'}
           >
             <Star className="h-4 w-4 mr-1" />
             Favorites
@@ -287,7 +287,7 @@ return true;
           const {fiMetadata} = (template as PlanTemplate & { fiMetadata?: FrenchImmersionTemplateMetadata });
 
           return (
-            <Card className="overflow-hidden hover:shadow-lg transition-shadow" key={template.id}>
+            <Card key={template.id} className="overflow-hidden hover:shadow-lg transition-shadow">
               <div className="p-4">
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex-1">
@@ -307,7 +307,7 @@ return true;
                       )}
                     </div>
                     <h4 className="font-semibold text-lg">{template.title}</h4>
-                    {template.titleFr !== undefined && template.titleFr !== '' && (
+                    {template.titleFr != undefined && template.titleFr != '' && (
                       <p className="text-sm text-gray-600 italic">{template.titleFr}</p>
                     )}
                   </div>
@@ -320,7 +320,7 @@ return true;
 
                 <div className="flex flex-wrap gap-2 mb-4">
                   {template.tags.slice(0, 4).map((tag, _index) => (
-                    <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded" key={tag}>
+                    <span key={tag} className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">
                       {tag}
                     </span>
                   ))}
@@ -351,11 +351,11 @@ return true;
 
                 <Button
                   className="w-full"
+                  size="sm"
+                  variant="primary"
                   onClick={() => {
  onTemplateSelect(template); 
 }}
-                  size="sm"
-                  variant="primary"
                 >
                   Use This Template
                   <ChevronRight className="h-4 w-4 ml-1" />

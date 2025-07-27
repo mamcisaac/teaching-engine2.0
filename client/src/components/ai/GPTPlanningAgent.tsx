@@ -303,8 +303,8 @@ return null;
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.map((message, _index): JSX.Element => (
           <div
-            className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
             key={_index}
+            className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
           >
             <div
               className={`max-w-[80%] rounded-lg p-3 ${
@@ -317,7 +317,7 @@ return null;
               {message.actionResults && message.actionResults.length > 0 && (
                 <div className="mt-2 pt-2 border-t border-gray-200">
                   {message.actionResults.map((result: ActionResult, idx: number): JSX.Element => (
-                    <div className="text-xs" key={idx}>
+                    <div key={idx} className="text-xs">
                       {result.type === 'activities_generated' && (
                         <span className="flex items-center gap-1">
                           <Sparkles className="h-3 w-3" />
@@ -350,8 +350,8 @@ return null;
           <div className="flex flex-wrap gap-2">
             {quickActions.map((action: QuickAction, index: number): JSX.Element => (
               <button
-                className="text-xs px-3 py-1 bg-purple-100 text-purple-700 rounded-full hover:bg-purple-200"
                 key={index}
+                className="text-xs px-3 py-1 bg-purple-100 text-purple-700 rounded-full hover:bg-purple-200"
                 onClick={(): void => {
  handleQuickAction(action); 
 }}
@@ -369,15 +369,15 @@ return null;
           <input
             className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500"
             disabled={sendMessageMutation.isPending}
+            placeholder="Ask me anything about planning..."
+            type="text"
+            value={inputValue}
             onChange={(e): void => {
  setInputValue(e.target.value); 
 }}
             onKeyPress={(e): void => {
  e.key === 'Enter' && handleSend(); 
 }}
-            placeholder="Ask me anything about planning..."
-            type="text"
-            value={inputValue}
           />
           <button
             className={`p-2 rounded-md ${
@@ -385,8 +385,8 @@ return null;
                 ? 'bg-red-100 text-red-600 hover:bg-red-200'
                 : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
             }`}
-            onClick={toggleVoiceRecognition}
             title={isListening ? 'Stop recording' : 'Start voice input'}
+            onClick={toggleVoiceRecognition}
           >
             {isListening ? <MicOff className="h-5 w-5" /> : <Mic className="h-5 w-5" />}
           </button>

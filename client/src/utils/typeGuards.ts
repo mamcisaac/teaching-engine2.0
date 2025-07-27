@@ -7,14 +7,14 @@ export function isError(value: unknown): value is Error {
 export function isAxiosError(error: unknown): error is { response?: { data?: unknown; status?: number } } {
   return (
     typeof error === 'object' &&
-    error !== null &&
+    error != null &&
     'response' in error &&
     typeof (error as Record<string, unknown>).response === 'object'
   );
 }
 
 export function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === 'object' && value !== null && !Array.isArray(value);
+  return typeof value === 'object' && value != null && !Array.isArray(value);
 }
 
 export function isString(value: unknown): value is string {
@@ -53,7 +53,7 @@ export function getErrorMessage(error: unknown): string {
   if (isError(error)) {
     return error.message;
   }
-  if (isAxiosError(error) && error.response?.data !== undefined) {
+  if (isAxiosError(error) && error.response?.data != undefined) {
     if (isRecord(error.response.data) && isString(error.response.data.message)) {
       return error.response.data.message;
     }

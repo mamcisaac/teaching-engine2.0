@@ -151,7 +151,7 @@ export const useUIStore = create<UIState>()(
       
       closeModal: (modalId: string): void => {
         set((state) => {
-          state.activeModals = state.activeModals.filter(id => id !== modalId);
+          state.activeModals = state.activeModals.filter(id => id != modalId);
         });
       },
       
@@ -180,7 +180,7 @@ export const useUIStore = create<UIState>()(
       
       hideToast: (id: string): void => {
         set((state) => {
-          state.activeToasts = state.activeToasts.filter(toast => toast.id !== id);
+          state.activeToasts = state.activeToasts.filter(toast => toast.id != id);
         });
       },
       
@@ -250,7 +250,7 @@ export const useUIStore = create<UIState>()(
 );
 
 // Listen for system theme changes
-if (typeof window !== 'undefined') {
+if (typeof window != 'undefined') {
   const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
   mediaQuery.addEventListener('change', () => {
     const state = useUIStore.getState();

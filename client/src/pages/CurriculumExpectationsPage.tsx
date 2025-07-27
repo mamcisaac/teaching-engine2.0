@@ -101,7 +101,7 @@ export function CurriculumExpectationsPage(): React.ReactElement {
   const handleEdit = (expectation: CurriculumExpectation): void => {
     setEditingExpectation({
       ...expectation,
-      descriptionFr: expectation.descriptionFr != null ? expectation.descriptionFr : '',
+      descriptionFr: expectation.descriptionFr !== null ? expectation.descriptionFr : '',
     });
     setIsEditDialogOpen(true);
   };
@@ -177,7 +177,7 @@ return;
       <TableCell className="max-w-md">
         <div className="space-y-1">
           <p className="text-sm">{expectation.description}</p>
-          {expectation.descriptionFr != null && (
+          {expectation.descriptionFr !== null && (
             <p className="text-sm text-muted-foreground italic">{expectation.descriptionFr}</p>
           )}
         </div>
@@ -185,7 +185,7 @@ return;
       <TableCell>
         <div className="text-sm">
           <div>{expectation.strand}</div>
-          {expectation.substrand != null && (
+          {expectation.substrand !== null && (
             <div className="text-muted-foreground">{expectation.substrand}</div>
           )}
         </div>
@@ -429,7 +429,7 @@ return;
                   }
                   placeholder="Optional French translation"
                   rows={3}
-                  value={editingExpectation.descriptionFr != null ? editingExpectation.descriptionFr : ''}
+                  value={editingExpectation.descriptionFr !== null ? editingExpectation.descriptionFr : ''}
                 />
               </div>
 
@@ -457,7 +457,7 @@ return;
                       }); 
 }
                     }
-                    value={editingExpectation.substrand != null ? editingExpectation.substrand : ''}
+                    value={editingExpectation.substrand !== null ? editingExpectation.substrand : ''}
                   />
                 </div>
               </div>

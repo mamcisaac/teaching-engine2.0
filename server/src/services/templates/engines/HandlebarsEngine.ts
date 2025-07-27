@@ -112,9 +112,9 @@ export class HandlebarsEngine extends RenderEngine {
   private registerDefaultHelpers(): void {
     // Date formatting
     this.handlebars.registerHelper('formatDate', (date: unknown, format?: string) => {
-      if (!date) {
-return '';
-}
+      if (date === null || date === undefined) {
+        return '';
+      }
       
       let d: Date;
       if (date === 'now') {
@@ -163,9 +163,9 @@ return '';
 
     // Time formatting
     this.handlebars.registerHelper('formatTime', (date: unknown) => {
-      if (!date) {
-return '';
-}
+      if (date === null || date === undefined) {
+        return '';
+      }
       const d = new Date(date as string | number | Date);
       return d.toLocaleTimeString('en-US', {
         hour: 'numeric',
@@ -239,10 +239,10 @@ return str;
     this.handlebars.registerHelper('json', (context: unknown) => JSON.stringify(context, null, 2));
 
     // Default value helper
-    this.handlebars.registerHelper('default', (value: unknown, defaultValue: unknown) => value || defaultValue);
+    this.handlebars.registerHelper('default', (value: unknown, defaultValue: unknown) => value !== null && value !== undefined ? value : defaultValue);
 
     // Pluralize helper
-    this.handlebars.registerHelper('pluralize', (count: number, singular: string, plural?: string) => count === 1 ? singular : (plural || `${singular  }s`));
+    this.handlebars.registerHelper('pluralize', (count: number, singular: string, plural?: string) => count === 1 ? singular : (plural !== null && plural !== undefined && plural !== '' ? plural : `${singular  }s`));
   }
 
   /**

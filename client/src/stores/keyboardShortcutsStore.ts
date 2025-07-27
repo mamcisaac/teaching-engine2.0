@@ -51,7 +51,7 @@ const defaultPreferences: KeyboardShortcutPreferences = {
   customShortcuts: {},
 };
 
-const isMac = typeof window !== 'undefined' && navigator.platform.toUpperCase().includes('MAC');
+const isMac = typeof window != 'undefined' && navigator.platform.toUpperCase().includes('MAC');
 
 export const formatShortcut = (shortcut: KeyboardShortcut): string => {
   const parts: string[] = [];
@@ -102,14 +102,14 @@ export const useKeyboardShortcutsStore = create<KeyboardShortcutsState>()(
 
       unregisterShortcut: (id: string): void => {
         set((state) => {
-          state.shortcuts = state.shortcuts.filter((s) => s.id !== id);
+          state.shortcuts = state.shortcuts.filter((s) => s.id != id);
         });
       },
 
       enableShortcut: (id: string): void => {
         set((state) => {
           const shortcut = state.shortcuts.find((s) => s.id === id);
-          if (shortcut !== undefined) {
+          if (shortcut != undefined) {
             shortcut.enabled = true;
           }
         });
@@ -118,7 +118,7 @@ export const useKeyboardShortcutsStore = create<KeyboardShortcutsState>()(
       disableShortcut: (id: string): void => {
         set((state) => {
           const shortcut = state.shortcuts.find((s) => s.id === id);
-          if (shortcut !== undefined) {
+          if (shortcut != undefined) {
             shortcut.enabled = false;
           }
         });
@@ -134,7 +134,7 @@ export const useKeyboardShortcutsStore = create<KeyboardShortcutsState>()(
       updatePreferences: (prefs: Partial<KeyboardShortcutPreferences>): void => {
         set((state) => {
           state.preferences = { ...state.preferences, ...prefs };
-          if (prefs.enabled !== undefined) {
+          if (prefs.enabled != undefined) {
             state.isEnabled = prefs.enabled;
           }
         });
@@ -183,7 +183,7 @@ continue;
             const finalShortcut = customShortcut != null && Object.keys(customShortcut).length > 0 ? { ...shortcut, ...customShortcut } : shortcut;
 
             // Check if key matches
-            if (event.key.toLowerCase() !== finalShortcut.key.toLowerCase()) {
+            if (event.key.toLowerCase() != finalShortcut.key.toLowerCase()) {
 continue;
 }
 
@@ -206,10 +206,10 @@ continue;
 
             // Check for no modifiers when none are specified
             if (
-              finalShortcut.ctrl !== true &&
-              finalShortcut.cmd !== true &&
-              finalShortcut.alt !== true &&
-              finalShortcut.shift !== true
+              finalShortcut.ctrl != true &&
+              finalShortcut.cmd != true &&
+              finalShortcut.alt != true &&
+              finalShortcut.shift != true
             ) {
               if (event.ctrlKey || event.metaKey || event.altKey || event.shiftKey) {
 continue;
@@ -244,7 +244,7 @@ continue;
           __keyboardShortcutCleanup?: () => void;
         }
         const windowWithCleanup = window as unknown as WindowWithCleanup;
-        if (windowWithCleanup.__keyboardShortcutCleanup !== undefined) {
+        if (windowWithCleanup.__keyboardShortcutCleanup != undefined) {
           windowWithCleanup.__keyboardShortcutCleanup();
           delete windowWithCleanup.__keyboardShortcutCleanup;
         }
@@ -265,7 +265,7 @@ continue;
         isEnabled: state.isEnabled,
       }),
       onRehydrateStorage: () => (state?: KeyboardShortcutsState): void => {
-        if (state !== undefined) {
+        if (state != undefined) {
           try {
             // Auto-start listening when rehydrated if enabled
             if (state.isEnabled && state.preferences.enabled) {
@@ -281,7 +281,7 @@ continue;
 );
 
 // Cleanup function for when the store is no longer needed
-if (typeof window !== 'undefined') {
+if (typeof window != 'undefined') {
   window.addEventListener('beforeunload', () => {
     const state = useKeyboardShortcutsStore.getState();
     state.stopListening();

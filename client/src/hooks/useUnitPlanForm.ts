@@ -102,10 +102,10 @@ export function useUnitPlanForm({
     ...initialFormData,
     ...initialData,
     longRangePlanId: ((): string => {
-      if (longRangePlanId != null && longRangePlanId !== '') {
+      if (longRangePlanId != null && longRangePlanId != '') {
         return longRangePlanId;
       }
-      if (initialData?.longRangePlanId !== undefined && initialData.longRangePlanId !== '') {
+      if (initialData?.longRangePlanId != undefined && initialData.longRangePlanId != '') {
         return initialData.longRangePlanId;
       }
       return '';
@@ -113,15 +113,15 @@ export function useUnitPlanForm({
   }));
 
   // Auto-save functionality
-  const autoSaveData = (editingId !== null && editingId !== '') ? formData : null;
+  const autoSaveData = (editingId != null && editingId != '') ? formData : null;
   const { lastSaved, isSaving, hasUnsavedChanges, saveNow } = useAutoSave({
     data: autoSaveData,
     saveFn: async (data) => {
-      if ((editingId !== null && editingId !== '') && data !== null && onSave !== undefined) {
+      if ((editingId != null && editingId != '') && data != null && onSave != undefined) {
         await onSave(data);
       }
     },
-    enabled: (editingId !== null && editingId !== '') && autoSaveData !== null && (onSave !== undefined),
+    enabled: (editingId != null && editingId != '') && autoSaveData != null && (onSave != undefined),
     delay: 30000, // 30 seconds
   });
 
@@ -171,7 +171,7 @@ export function useUnitPlanForm({
   const removeArrayItem = useCallback((field: keyof UnitPlanFormData, index: number) => {
     setFormData(prev => ({
       ...prev,
-      [field]: (prev[field] as string[]).filter((_, i) => i !== index),
+      [field]: (prev[field] as string[]).filter((_, i) => i != index),
     }));
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -204,7 +204,7 @@ export function useUnitPlanForm({
   ) => {
     setFormData(prev => {
       const updated = { ...prev.differentiationStrategies };
-      updated[type] = updated[type].filter((_, i) => i !== index);
+      updated[type] = updated[type].filter((_, i) => i != index);
       return { ...prev, differentiationStrategies: updated };
     });
   }, []) // eslint-disable-line react-hooks/exhaustive-deps

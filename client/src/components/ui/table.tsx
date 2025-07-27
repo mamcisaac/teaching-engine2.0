@@ -6,12 +6,12 @@ const Table = forwardRef<
   HTMLTableElement,
   HTMLAttributes<HTMLTableElement>
 >(({ className, ...props }, ref): JSX.Element => {
-  const classNames: string = cn("w-full caption-bottom text-sm", className ?? "");
+  const classNames = cn("w-full caption-bottom text-sm", className);
   return (
     <div className="relative w-full overflow-auto">
       <table
-        className={classNames}
         ref={ref}
+        className={classNames}
         {...props}
       />
     </div>
@@ -23,8 +23,8 @@ const TableHeader = forwardRef<
   HTMLTableSectionElement,
   HTMLAttributes<HTMLTableSectionElement>
 >(({ className, ...props }, ref): JSX.Element => {
-  const classNames: string = cn("[&_tr]:border-b", className ?? "");
-  return <thead className={classNames} ref={ref} {...props} />;
+  const classNames = cn("[&_tr]:border-b", className);
+  return <thead ref={ref} className={classNames} {...props} />;
 })
 TableHeader.displayName = "TableHeader"
 
@@ -32,11 +32,11 @@ const TableBody = forwardRef<
   HTMLTableSectionElement,
   HTMLAttributes<HTMLTableSectionElement>
 >(({ className, ...props }, ref): JSX.Element => {
-  const classNames: string = cn("[&_tr:last-child]:border-0", className ?? "");
+  const classNames = cn("[&_tr:last-child]:border-0", className);
   return (
     <tbody
-      className={classNames}
       ref={ref}
+      className={classNames}
       {...props}
     />
   );
@@ -47,11 +47,11 @@ const TableFooter = forwardRef<
   HTMLTableSectionElement,
   HTMLAttributes<HTMLTableSectionElement>
 >(({ className, ...props }, ref): JSX.Element => {
-  const classNames: string = cn("border-t bg-muted/50 font-medium [&>tr]:last:border-b-0", className ?? "");
+  const classNames = cn("border-t bg-muted/50 font-medium [&>tr]:last:border-b-0", className);
   return (
     <tfoot
-      className={classNames}
       ref={ref}
+      className={classNames}
       {...props}
     />
   );
@@ -62,14 +62,14 @@ const TableRow = forwardRef<
   HTMLTableRowElement,
   HTMLAttributes<HTMLTableRowElement>
 >(({ className, ...props }, ref): JSX.Element => {
-  const classNames: string = cn(
+  const classNames = cn(
     "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
-    className ?? ""
+    className
   );
   return (
     <tr
-      className={classNames}
       ref={ref}
+      className={classNames}
       {...props}
     />
   );
@@ -80,14 +80,14 @@ const TableHead = forwardRef<
   HTMLTableCellElement,
   ThHTMLAttributes<HTMLTableCellElement>
 >(({ className, ...props }, ref): JSX.Element => {
-  const classNames: string = cn(
+  const classNames = cn(
     "h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
-    className ?? ""
+    className
   );
   return (
     <th
-      className={classNames}
       ref={ref}
+      className={classNames}
       {...props}
     />
   );
@@ -98,11 +98,11 @@ const TableCell = forwardRef<
   HTMLTableCellElement,
   TdHTMLAttributes<HTMLTableCellElement>
 >(({ className, ...props }, ref): JSX.Element => {
-  const classNames: string = cn("p-4 align-middle [&:has([role=checkbox])]:pr-0", className ?? "");
+  const classNames = cn("p-4 align-middle [&:has([role=checkbox])]:pr-0", className);
   return (
     <td
-      className={classNames}
       ref={ref}
+      className={classNames}
       {...props}
     />
   );
@@ -113,11 +113,11 @@ const TableCaption = forwardRef<
   HTMLTableCaptionElement,
   HTMLAttributes<HTMLTableCaptionElement>
 >(({ className, ...props }, ref): JSX.Element => {
-  const classNames: string = cn("mt-4 text-sm text-muted-foreground", className ?? "");
+  const classNames = cn("mt-4 text-sm text-muted-foreground", className);
   return (
     <caption
-      className={classNames}
       ref={ref}
+      className={classNames}
       {...props}
     />
   );

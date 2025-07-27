@@ -46,7 +46,7 @@ export function TemplatePreviewModal({
     return (
       <div className="space-y-4">
         {sections.map(({ key, title, content, isList, isAssessments, isDiff }) => {
-          if (content == null || (Array.isArray(content) && content.length === 0)) {
+          if (content === null || (Array.isArray(content) && content.length === 0)) {
             return null;
           }
 
@@ -86,7 +86,7 @@ export function TemplatePreviewModal({
                         <div key={_index} className="bg-gray-50 p-3 rounded">
                           <div className="font-medium">{assessment.type}</div>
                           <div className="text-gray-700">{assessment.description}</div>
-                          {assessment.timing !== undefined && assessment.timing !== '' && (
+                          {assessment.timing != undefined && assessment.timing != '' && (
                             <div className="text-sm text-gray-500 mt-1">Timing: {assessment.timing}</div>
                           )}
                         </div>
@@ -141,7 +141,7 @@ export function TemplatePreviewModal({
     return (
       <div className="space-y-4">
         {sections.map(({ key, title, content, isList, assessmentType }) => {
-          if (content == null || (Array.isArray(content) && content.length === 0)) {
+          if (content === null || (Array.isArray(content) && content.length === 0)) {
             return null;
           }
 
@@ -172,7 +172,7 @@ export function TemplatePreviewModal({
                     </ul>
                   ) : key === 'assessment' ? (
                     <div>
-                      {assessmentType !== undefined && assessmentType !== '' && (
+                      {assessmentType != undefined && assessmentType != '' && (
                         <div className="mb-2">
                           <span className="font-medium">Type:</span> <span className="capitalize">{assessmentType}</span>
                         </div>
@@ -221,7 +221,7 @@ export function TemplatePreviewModal({
         <div className="flex-1 overflow-y-auto p-6">
           {/* Metadata */}
           <div className="mb-6 grid grid-cols-2 md:grid-cols-4 gap-4">
-            {template.subject !== undefined && template.subject !== '' && (
+            {template.subject != undefined && template.subject != '' && (
               <div className="flex items-center gap-2 text-sm">
                 <Tag className="h-4 w-4 text-gray-400" />
                 <span className="capitalize">{template.subject}</span>
@@ -230,7 +230,7 @@ export function TemplatePreviewModal({
             <div className="flex items-center gap-2 text-sm">
               <Users className="h-4 w-4 text-gray-400" />
               <span>
-                {template.gradeMin !== undefined && template.gradeMax !== undefined
+                {template.gradeMin != undefined && template.gradeMax != undefined
                   ? template.gradeMin === template.gradeMax
                     ? `Grade ${template.gradeMin}`
                     : `Grades ${template.gradeMin}-${template.gradeMax}`
@@ -240,9 +240,9 @@ export function TemplatePreviewModal({
             <div className="flex items-center gap-2 text-sm">
               <Clock className="h-4 w-4 text-gray-400" />
               <span>
-                {template.type === 'UNIT_PLAN' && (template.estimatedWeeks !== undefined && template.estimatedWeeks > 0)
+                {template.type === 'UNIT_PLAN' && (template.estimatedWeeks != undefined && template.estimatedWeeks > 0)
                   ? `${template.estimatedWeeks} weeks`
-                  : template.type === 'LESSON_PLAN' && (template.estimatedMinutes !== undefined && template.estimatedMinutes > 0)
+                  : template.type === 'LESSON_PLAN' && (template.estimatedMinutes != undefined && template.estimatedMinutes > 0)
                   ? `${template.estimatedMinutes} minutes`
                   : 'Duration varies'}
               </span>
@@ -250,7 +250,7 @@ export function TemplatePreviewModal({
           </div>
 
           {/* Description */}
-          {template.description !== undefined && template.description !== '' && (
+          {template.description != undefined && template.description != '' && (
             <div className="mb-6">
               <h3 className="font-medium mb-2">Description</h3>
               <p className="text-gray-700">{template.description}</p>
@@ -291,10 +291,10 @@ export function TemplatePreviewModal({
                   {template.unitStructure.phases.map((phase, _index) => (
                     <div key={_index} className="bg-gray-50 p-4 rounded-lg">
                       <div className="font-medium">{phase.name}</div>
-                      {phase.description !== undefined && phase.description !== '' && (
+                      {phase.description != undefined && phase.description != '' && (
                         <p className="text-gray-700 text-sm mt-1">{phase.description}</p>
                       )}
-                      {(phase.estimatedDays !== undefined && phase.estimatedDays > 0) && (
+                      {(phase.estimatedDays != undefined && phase.estimatedDays > 0) && (
                         <p className="text-gray-500 text-sm mt-1">
                           Estimated: {phase.estimatedDays} days
                         </p>

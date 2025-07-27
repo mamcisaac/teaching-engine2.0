@@ -91,7 +91,7 @@ export function AISuggestionModal({
             materials: editedSuggestion.materials
               .split(',')
               .map((m) => m.trim())
-              .filter((m) => m !== ''),
+              .filter((m) => m != ''),
             duration: editedSuggestion.duration,
             theme: editedSuggestion.theme,
           }
@@ -103,7 +103,7 @@ export function AISuggestionModal({
   };
 
   return (
-    <Dialog onOpenChange={onClose} open={open}>
+    <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>AI Suggested Activity</DialogTitle>
@@ -119,6 +119,7 @@ export function AISuggestionModal({
             {isEditing ? (
               <Input
                 id="title"
+                value={editedSuggestion.title}
                 onChange={(e) => {
  setEditedSuggestion({
                     ...editedSuggestion,
@@ -126,7 +127,6 @@ export function AISuggestionModal({
                   }); 
 }
                 }
-                value={editedSuggestion.title}
               />
             ) : (
               <p className="text-sm font-medium">{suggestion.title}</p>
@@ -142,6 +142,8 @@ export function AISuggestionModal({
             {isEditing ? (
               <Input
                 id="duration"
+                type="number"
+                value={editedSuggestion.duration}
                 onChange={(e) => {
                   const parsed = parseInt(e.target.value, 10);
                   // For duration, 0 might be valid (no duration set), so keep it
@@ -151,8 +153,6 @@ export function AISuggestionModal({
                     duration,
                   });
                 }}
-                type="number"
-                value={editedSuggestion.duration}
               />
             ) : (
               <p className="text-sm">{suggestion.duration} minutes</p>
@@ -165,6 +165,8 @@ export function AISuggestionModal({
             {isEditing ? (
               <Textarea
                 id="descriptionFr"
+                rows={4}
+                value={editedSuggestion.descriptionFr}
                 onChange={(e) => {
  setEditedSuggestion({
                     ...editedSuggestion,
@@ -172,8 +174,6 @@ export function AISuggestionModal({
                   }); 
 }
                 }
-                rows={4}
-                value={editedSuggestion.descriptionFr}
               />
             ) : (
               <p className="text-sm whitespace-pre-wrap">{suggestion.descriptionFr}</p>
@@ -186,6 +186,9 @@ export function AISuggestionModal({
             {isEditing ? (
               <Textarea
                 id="descriptionEn"
+                placeholder="Optional English description for teacher reference"
+                rows={3}
+                value={editedSuggestion.descriptionEn}
                 onChange={(e) => {
  setEditedSuggestion({
                     ...editedSuggestion,
@@ -193,13 +196,10 @@ export function AISuggestionModal({
                   }); 
 }
                 }
-                placeholder="Optional English description for teacher reference"
-                rows={3}
-                value={editedSuggestion.descriptionEn}
               />
             ) : (
               <p className="text-sm whitespace-pre-wrap text-gray-600">
-                {(suggestion.descriptionEn !== undefined && suggestion.descriptionEn !== '') ? suggestion.descriptionEn : 'No English description provided'}
+                {(suggestion.descriptionEn != undefined && suggestion.descriptionEn != '') ? suggestion.descriptionEn : 'No English description provided'}
               </p>
             )}
           </div>
@@ -213,6 +213,8 @@ export function AISuggestionModal({
             {isEditing ? (
               <Input
                 id="materials"
+                placeholder="Comma-separated list of materials"
+                value={editedSuggestion.materials}
                 onChange={(e) => {
  setEditedSuggestion({
                     ...editedSuggestion,
@@ -220,13 +222,11 @@ export function AISuggestionModal({
                   }); 
 }
                 }
-                placeholder="Comma-separated list of materials"
-                value={editedSuggestion.materials}
               />
             ) : (
               <div className="flex flex-wrap gap-2">
                 {suggestion.materials.map((material, _index) => (
-                  <span className="px-2 py-1 bg-gray-100 rounded-md text-sm" key={_index}>
+                  <span key={_index} className="px-2 py-1 bg-gray-100 rounded-md text-sm">
                     {material}
                   </span>
                 ))}
@@ -235,12 +235,14 @@ export function AISuggestionModal({
           </div>
 
           {/* Theme */}
-          {((suggestion.theme !== undefined && suggestion.theme !== '') || isEditing) ? (
+          {((suggestion.theme != undefined && suggestion.theme != '') || isEditing) ? (
             <div className="space-y-2">
               <Label htmlFor="theme">Theme</Label>
               {isEditing ? (
                 <Input
                   id="theme"
+                  placeholder="Optional theme connection"
+                  value={editedSuggestion.theme}
                   onChange={(e) => {
  setEditedSuggestion({
                       ...editedSuggestion,
@@ -248,8 +250,6 @@ export function AISuggestionModal({
                     }); 
 }
                   }
-                  placeholder="Optional theme connection"
-                  value={editedSuggestion.theme}
                 />
               ) : (
                 <p className="text-sm">
@@ -271,10 +271,10 @@ export function AISuggestionModal({
             </Button>
             <Button
               disabled={deleteSuggestion.isPending}
+              variant="outline"
               onClick={() => {
  deleteSuggestion.mutate(); 
 }}
-              variant="outline"
             >
               <span className="mr-2">🗑️</span>
               Discard

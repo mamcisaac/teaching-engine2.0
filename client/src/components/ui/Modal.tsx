@@ -93,9 +93,9 @@ return null;
           ref={modalRef}
         >
           {/* Header */}
-          {(title != null && title !== '' || showCloseButton) && (
+          {(title !== null && title !== '' || showCloseButton) && (
             <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4">
-              {title != null && title !== '' && (
+              {title !== null && title !== '' && (
                 <h3 className="text-lg font-medium leading-6 text-gray-900" id="modal-title">
                   {title}
                 </h3>
@@ -131,7 +131,7 @@ return null;
           <div className="px-6 py-4">{children}</div>
 
           {/* Footer */}
-          {footer != null && (
+          {footer !== null && (
             <div className="border-t border-gray-200 bg-gray-50 px-6 py-4">
               {footer}
             </div>

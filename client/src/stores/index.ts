@@ -23,7 +23,7 @@ export * from './uiStore';
 // Store initialization utilities
 export const initializeStores = (): void => {
   // Auto-start keyboard shortcuts if enabled
-  if (typeof window !== 'undefined') {
+  if (typeof window != 'undefined') {
     void import('./keyboardShortcutsStore').then(({ useKeyboardShortcutsStore }) => {
       const keyboardStore = useKeyboardShortcutsStore.getState();
       if (keyboardStore.isEnabled && keyboardStore.preferences.enabled) {

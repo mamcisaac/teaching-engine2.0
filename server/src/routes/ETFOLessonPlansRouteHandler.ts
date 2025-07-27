@@ -143,8 +143,8 @@ class ETFOLessonPlanService extends BaseService {
 where.isSubFriendly = isSubFriendly;
 }
     if (assessmentType !== undefined && assessmentType !== '') {
-where.assessmentType = assessmentType;
-}
+      where.assessmentType = assessmentType;
+    }
 
     // Date filtering using optimized range function
     const dateWhere = optimizedQueries.createDateRangeWhere('date', startDate, endDate);
@@ -300,76 +300,76 @@ where.assessmentType = assessmentType;
 
     // Only include fields that are actually being updated
     if (updateData.title !== undefined) {
-baseUpdateData.title = updateData.title;
-}
+      baseUpdateData.title = updateData.title;
+    }
     if (updateData.unitPlanId !== undefined) {
-baseUpdateData.unitPlanId = updateData.unitPlanId;
-}
+      baseUpdateData.unitPlanId = updateData.unitPlanId;
+    }
     if (updateData.duration !== undefined) {
-baseUpdateData.duration = updateData.duration;
-}
+      baseUpdateData.duration = updateData.duration;
+    }
     if (updateData.mindsOn !== undefined) {
-baseUpdateData.mindsOn = updateData.mindsOn;
-}
+      baseUpdateData.mindsOn = updateData.mindsOn;
+    }
     if (updateData.mindsOnFr !== undefined) {
-baseUpdateData.mindsOnFr = updateData.mindsOnFr;
-}
+      baseUpdateData.mindsOnFr = updateData.mindsOnFr;
+    }
     if (updateData.action !== undefined) {
-baseUpdateData.action = updateData.action;
-}
+      baseUpdateData.action = updateData.action;
+    }
     if (updateData.actionFr !== undefined) {
-baseUpdateData.actionFr = updateData.actionFr;
-}
+      baseUpdateData.actionFr = updateData.actionFr;
+    }
     if (updateData.consolidation !== undefined) {
-baseUpdateData.consolidation = updateData.consolidation;
-}
+      baseUpdateData.consolidation = updateData.consolidation;
+    }
     if (updateData.consolidationFr !== undefined) {
-baseUpdateData.consolidationFr = updateData.consolidationFr;
-}
+      baseUpdateData.consolidationFr = updateData.consolidationFr;
+    }
     if (updateData.learningGoals !== undefined) {
-baseUpdateData.learningGoals = updateData.learningGoals;
-}
+      baseUpdateData.learningGoals = updateData.learningGoals;
+    }
     if (updateData.learningGoalsFr !== undefined) {
-baseUpdateData.learningGoalsFr = updateData.learningGoalsFr;
-}
+      baseUpdateData.learningGoalsFr = updateData.learningGoalsFr;
+    }
     if (updateData.materials !== undefined) {
-baseUpdateData.materials = updateData.materials
+      baseUpdateData.materials = updateData.materials
         ? JSON.stringify(updateData.materials)
         : undefined;
-}
+    }
     if (updateData.grouping !== undefined) {
-baseUpdateData.grouping = updateData.grouping;
-}
+      baseUpdateData.grouping = updateData.grouping;
+    }
     if (updateData.titleFr !== undefined) {
-baseUpdateData.titleFr = updateData.titleFr;
-}
+      baseUpdateData.titleFr = updateData.titleFr;
+    }
     if (updateData.accommodations !== undefined) {
-baseUpdateData.accommodations = updateData.accommodations
+      baseUpdateData.accommodations = updateData.accommodations
         ? JSON.stringify(updateData.accommodations)
         : undefined;
-}
+    }
     if (updateData.modifications !== undefined) {
-baseUpdateData.modifications = updateData.modifications
+      baseUpdateData.modifications = updateData.modifications
         ? JSON.stringify(updateData.modifications)
         : undefined;
-}
+    }
     if (updateData.extensions !== undefined) {
-baseUpdateData.extensions = updateData.extensions
+      baseUpdateData.extensions = updateData.extensions
         ? JSON.stringify(updateData.extensions)
         : undefined;
-}
+    }
     if (updateData.assessmentType !== undefined) {
-baseUpdateData.assessmentType = updateData.assessmentType;
-}
+      baseUpdateData.assessmentType = updateData.assessmentType;
+    }
     if (updateData.assessmentNotes !== undefined) {
-baseUpdateData.assessmentNotes = updateData.assessmentNotes;
-}
+      baseUpdateData.assessmentNotes = updateData.assessmentNotes;
+    }
     if (updateData.isSubFriendly !== undefined) {
-baseUpdateData.isSubFriendly = updateData.isSubFriendly;
-}
+      baseUpdateData.isSubFriendly = updateData.isSubFriendly;
+    }
     if (updateData.subNotes !== undefined) {
-baseUpdateData.subNotes = updateData.subNotes;
-}
+      baseUpdateData.subNotes = updateData.subNotes;
+    }
 
     // Handle date conversion with proper type checking
     if (hasProperty(data, 'date') && isString(data.date) && data.date !== '') {
@@ -486,7 +486,7 @@ baseUpdateData.subNotes = updateData.subNotes;
     return prisma.eTFOLessonPlan.create({
       data: {
         title: `${originalLesson.title} (Sub-Friendly)`,
-        titleFr: originalLesson.titleFr ? `${originalLesson.titleFr} (Sub-Friendly)` : undefined,
+        titleFr: originalLesson.titleFr !== null && originalLesson.titleFr !== undefined && originalLesson.titleFr !== '' ? `${originalLesson.titleFr} (Sub-Friendly)` : undefined,
         unitPlanId: originalLesson.unitPlanId,
         userId,
         date: originalLesson.date,
@@ -548,7 +548,7 @@ baseUpdateData.subNotes = updateData.subNotes;
     });
 
     // If requested, update related daybook entries
-    if (updateRelated) {
+    if (updateRelated === true) {
       await prisma.daybookEntry.updateMany({
         where: {
           lessonPlanId,
@@ -601,7 +601,7 @@ baseUpdateData.subNotes = updateData.subNotes;
         titleFr: sourceLessonPlan.titleFr,
         unitPlanId,
         userId,
-        date: date ? new Date(date) : sourceLessonPlan.date,
+        date: date !== undefined && date !== null ? new Date(date) : sourceLessonPlan.date,
         duration: sourceLessonPlan.duration,
         mindsOn: sourceLessonPlan.mindsOn,
         mindsOnFr: sourceLessonPlan.mindsOnFr,
@@ -700,7 +700,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (!userId) {
+      if (userId === undefined || userId === null || userId === 0) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -723,9 +723,9 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       const { sortBy, sortOrder, startDate, endDate, unitPlanId, ...filterBase } = filters;
       const convertedFilters = {
         ...filterBase,
-        ...(startDate && startDate !== '' && { startDate: new Date(startDate) }),
-        ...(endDate && endDate !== '' && { endDate: new Date(endDate) }),
-        ...(unitPlanId && unitPlanId !== '' && { unitPlanId: parseInt(String(unitPlanId), 10) }),
+        ...(startDate !== undefined && startDate !== null && startDate !== '' && { startDate: new Date(startDate) }),
+        ...(endDate !== undefined && endDate !== null && endDate !== '' && { endDate: new Date(endDate) }),
+        ...(unitPlanId !== undefined && unitPlanId !== null && unitPlanId !== '' && { unitPlanId: parseInt(String(unitPlanId), 10) }),
         // Convert sortBy/sortOrder to sort/order for service
         sort: sortBy,
         order: sortOrder,
@@ -796,7 +796,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (!userId) {
+      if (userId === undefined || userId === null || userId === 0) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -818,7 +818,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (!userId) {
+      if (userId === undefined || userId === null || userId === 0) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -845,7 +845,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (!userId) {
+      if (userId === undefined || userId === null || userId === 0) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -866,7 +866,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (!userId) {
+      if (userId === undefined || userId === null || userId === 0) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -893,7 +893,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (!userId) {
+      if (userId === undefined || userId === null || userId === 0) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }

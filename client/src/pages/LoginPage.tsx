@@ -80,7 +80,7 @@ function LoginPage(): React.ReactElement {
             Sign in to your account
           </h2>
         </div>
-        {(authError !== '' || localError !== '') && (
+        {(authError != '' || localError != '') && (
           <div className="bg-red-50 border-l-4 border-red-400 p-4">
             <div className="flex">
               <div className="flex-shrink-0">
@@ -139,17 +139,17 @@ function LoginPage(): React.ReactElement {
                 Email address
               </label>
               <input
+                required
                 autoComplete="email"
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 id="email-address"
                 name="email"
+                placeholder="Email address"
+                type="email"
+                value={email}
                 onChange={(e) => {
  setEmail(e.target.value); 
 }}
-                placeholder="Email address"
-                required
-                type="email"
-                value={email}
               />
             </div>
             <div>
@@ -157,17 +157,17 @@ function LoginPage(): React.ReactElement {
                 Password
               </label>
               <input
+                required
                 autoComplete="current-password"
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 id="password"
                 name="password"
+                placeholder="Password"
+                type="password"
+                value={password}
                 onChange={(e) => {
  setPassword(e.target.value); 
 }}
-                placeholder="Password"
-                required
-                type="password"
-                value={password}
               />
             </div>
           </div>

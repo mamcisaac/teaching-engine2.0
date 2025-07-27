@@ -223,7 +223,7 @@ export const useOnboardingStore = create<OnboardingState>()(
         startOnboarding: (flowId = 'main-onboarding'): void => {
           const flow = TUTORIAL_FLOWS[flowId];
           // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-          if (flow !== undefined) {
+          if (flow != undefined) {
             set((state) => {
               state.currentFlow = flow;
               state.currentStepIndex = 0;

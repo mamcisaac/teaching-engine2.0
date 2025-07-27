@@ -117,7 +117,7 @@ export function BlankTemplatePrinter({
     const IconComponent = config.icon;
 
     return (
-      <Card className="transition-all hover:shadow-md" key={key}>
+      <Card key={key} className="transition-all hover:shadow-md">
         <CardHeader className="pb-3">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-blue-100 rounded-lg">
@@ -135,33 +135,33 @@ export function BlankTemplatePrinter({
           <div className="flex gap-2">
             <Button
               className="flex items-center gap-2"
+              size="sm"
+              variant="outline"
               onClick={() => {
  handlePreview(key); 
 }}
-              size="sm"
-              variant="outline"
             >
               <Eye className="h-4 w-4" />
               Preview
             </Button>
             <Button
               className="flex items-center gap-2"
+              size="sm"
+              variant="outline"
               onClick={() => {
  handlePrint(key); 
 }}
-              size="sm"
-              variant="outline"
             >
               <Printer className="h-4 w-4" />
               Print
             </Button>
             <Button
               className="flex items-center gap-2"
+              size="sm"
+              variant="outline"
               onClick={() => {
  handleDownload(key); 
 }}
-              size="sm"
-              variant="outline"
             >
               <Download className="h-4 w-4" />
               Download
@@ -174,7 +174,7 @@ export function BlankTemplatePrinter({
 
   return (
     <>
-      <Dialog onOpenChange={onClose} open={isOpen}>
+      <Dialog open={isOpen} onOpenChange={onClose}>
         <div className="p-6 max-w-4xl max-h-[90vh] overflow-y-auto">
           <div className="mb-6">
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
@@ -199,55 +199,55 @@ export function BlankTemplatePrinter({
                   <Label htmlFor="schoolName">School Name</Label>
                   <Input
                     id="schoolName"
+                    placeholder="e.g., Maple Leaf Elementary"
+                    value={schoolInfo.schoolName ?? ''}
                     onChange={(e) => {
  handleSchoolInfoChange('schoolName', e.target.value); 
 }}
-                    placeholder="e.g., Maple Leaf Elementary"
-                    value={schoolInfo.schoolName ?? ''}
                   />
                 </div>
                 <div>
                   <Label htmlFor="teacherName">Teacher Name</Label>
                   <Input
                     id="teacherName"
+                    placeholder="e.g., Ms. Johnson"
+                    value={schoolInfo.teacherName ?? ''}
                     onChange={(e) => {
  handleSchoolInfoChange('teacherName', e.target.value); 
 }}
-                    placeholder="e.g., Ms. Johnson"
-                    value={schoolInfo.teacherName ?? ''}
                   />
                 </div>
                 <div>
                   <Label htmlFor="grade">Grade</Label>
                   <Input
                     id="grade"
+                    placeholder="e.g., Grade 3"
+                    value={schoolInfo.grade ?? ''}
                     onChange={(e) => {
  handleSchoolInfoChange('grade', e.target.value); 
 }}
-                    placeholder="e.g., Grade 3"
-                    value={schoolInfo.grade ?? ''}
                   />
                 </div>
                 <div>
                   <Label htmlFor="subject">Subject</Label>
                   <Input
                     id="subject"
+                    placeholder="e.g., Mathematics"
+                    value={schoolInfo.subject ?? ''}
                     onChange={(e) => {
  handleSchoolInfoChange('subject', e.target.value); 
 }}
-                    placeholder="e.g., Mathematics"
-                    value={schoolInfo.subject ?? ''}
                   />
                 </div>
                 <div>
                   <Label htmlFor="academicYear">Academic Year</Label>
                   <Input
                     id="academicYear"
+                    placeholder="e.g., 2024-2025"
+                    value={schoolInfo.academicYear ?? ''}
                     onChange={(e) => {
  handleSchoolInfoChange('academicYear', e.target.value); 
 }}
-                    placeholder="e.g., 2024-2025"
-                    value={schoolInfo.academicYear ?? ''}
                   />
                 </div>
               </div>
@@ -264,10 +264,10 @@ export function BlankTemplatePrinter({
                 {renderTemplateCard(selectedTemplate)}
                 <div className="flex justify-between items-center pt-4 border-t">
                   <Button
+                    variant="outline"
                     onClick={() => {
  setSelectedTemplate(null); 
 }}
-                    variant="outline"
                   >
                     View All Templates
                   </Button>
@@ -295,19 +295,19 @@ export function BlankTemplatePrinter({
       </Dialog>
 
       {/* Preview Modal */}
-      <Dialog onOpenChange={setPreviewOpen} open={previewOpen}>
+      <Dialog open={previewOpen} onOpenChange={setPreviewOpen}>
         <div className="p-4 max-w-6xl max-h-[95vh] overflow-hidden">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-lg font-semibold">Template Preview</h3>
             <div className="flex gap-2">
               <Button
+                size="sm"
+                variant="outline"
                 onClick={() => {
                   if (previewHTML) {
                     printHTML(previewHTML, 'ETFO-Template-Preview');
                   }
                 }}
-                size="sm"
-                variant="outline"
               >
                 <Printer className="h-4 w-4 mr-2" />
                 Print
@@ -367,20 +367,20 @@ return null;
       <div className="flex items-center gap-2">
         <Button
           className="flex items-center gap-2"
+          size="sm"
+          variant="outline"
           onClick={() => {
  setPrinterOpen(true); 
 }}
-          size="sm"
-          variant="outline"
         >
           <FileText className="h-4 w-4" />
           Blank Template
         </Button>
         <Button
           className="flex items-center gap-2"
-          onClick={handleQuickPrint}
           size="sm"
           variant="ghost"
+          onClick={handleQuickPrint}
         >
           <Printer className="h-4 w-4" />
           Quick Print
@@ -390,10 +390,10 @@ return null;
       <BlankTemplatePrinter
         defaultSchoolInfo={schoolInfo}
         isOpen={printerOpen}
+        templateType={templateType}
         onClose={() => {
  setPrinterOpen(false); 
 }}
-        templateType={templateType}
       />
     </>
   );

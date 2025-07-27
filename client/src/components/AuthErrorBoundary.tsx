@@ -52,7 +52,7 @@ export class AuthErrorBoundary extends Component<AuthErrorBoundaryProps, AuthErr
     this.setState({ errorInfo });
 
     // Call custom error handler if provided
-    if (this.props.onAuthError !== undefined) {
+    if (this.props.onAuthError != undefined) {
       this.props.onAuthError(error, errorInfo);
     }
 
@@ -82,10 +82,10 @@ export class AuthErrorBoundary extends Component<AuthErrorBoundaryProps, AuthErr
 
   componentWillUnmount(): void {
     // Cleanup
-    if (this.retryTimeout !== null) {
+    if (this.retryTimeout != null) {
       clearTimeout(this.retryTimeout);
     }
-    if (this.connectionCheckInterval !== null) {
+    if (this.connectionCheckInterval != null) {
       clearInterval(this.connectionCheckInterval);
     }
 
@@ -263,7 +263,7 @@ return;
 
   render(): React.ReactNode {
     if (this.state.hasError) {
-      if (this.props.fallback !== null) {
+      if (this.props.fallback != null) {
         return this.props.fallback;
       }
 

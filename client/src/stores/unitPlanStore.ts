@@ -273,7 +273,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
 
                 set((state) => {
                   const index = state.unitPlans.findIndex((p) => p.id === id);
-                  if (index !== -1) {
+                  if (index != -1) {
                     state.unitPlans[index] = { ...state.unitPlans[index], ...updatedPlan };
                   }
                   if (state.currentPlan?.id === id) {
@@ -285,7 +285,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
                 // Update offline
                 set((state) => {
                   const index = state.unitPlans.findIndex((p) => p.id === id);
-                  if (index !== -1) {
+                  if (index != -1) {
                     state.unitPlans[index] = { ...state.unitPlans[index], ...updatedPlan };
                   }
                   if (state.currentPlan?.id === id) {
@@ -324,7 +324,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
                 await apiClient.delete(`/api/unit-plans/${id}`);
 
                 set((state) => {
-                  state.unitPlans = state.unitPlans.filter((p) => p.id !== id);
+                  state.unitPlans = state.unitPlans.filter((p) => p.id != id);
                   if (state.currentPlan?.id === id) {
                     state.currentPlan = null;
                   }
@@ -333,7 +333,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
               } else {
                 // Delete offline
                 set((state) => {
-                  state.unitPlans = state.unitPlans.filter((p) => p.id !== id);
+                  state.unitPlans = state.unitPlans.filter((p) => p.id != id);
                   if (state.currentPlan?.id === id) {
                     state.currentPlan = null;
                   }
@@ -409,7 +409,7 @@ useUnitPlanStore.subscribe(
 );
 
 // Listen for online/offline events
-if (typeof window !== 'undefined') {
+if (typeof window != 'undefined') {
   window.addEventListener('online-status-change', ((event: CustomEvent<{ isOnline: boolean }>) => {
     useUnitPlanStore.getState().setOnlineStatus(event.detail.isOnline);
   }) as EventListener);

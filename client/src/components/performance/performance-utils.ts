@@ -256,7 +256,7 @@ export const PerformanceMonitor = {
    * Create a performance mark for complex operations
    */
   mark: (name: string): void => {
-    if (typeof performance !== 'undefined') {
+    if (typeof performance != 'undefined') {
       performance.mark(name);
     }
   },
@@ -265,7 +265,7 @@ export const PerformanceMonitor = {
    * Measure time between two marks
    */
   measure: (name: string, startMark: string, endMark: string): number => {
-    if (typeof performance !== 'undefined') {
+    if (typeof performance != 'undefined') {
       try {
         performance.measure(name, startMark, endMark);
         const measures = performance.getEntriesByName(name, 'measure');
@@ -296,7 +296,7 @@ return true;
     if (a === null || b === null) {
 return false;
 }
-    if (typeof a !== typeof b) {
+    if (typeof a != typeof b) {
 return false;
 }
 
@@ -304,7 +304,7 @@ return false;
       const keysA = Object.keys(a as Record<string, unknown>);
       const keysB = Object.keys(b as Record<string, unknown>);
 
-      if (keysA.length !== keysB.length) {
+      if (keysA.length != keysB.length) {
 return false;
 }
 
@@ -327,7 +327,7 @@ return false;
     const keysA = Object.keys(a);
     const keysB = Object.keys(b);
 
-    if (keysA.length !== keysB.length) {
+    if (keysA.length != keysB.length) {
 return false;
 }
 
@@ -373,13 +373,13 @@ return '';
 
     const urlObj = new URL(url, window.location.origin);
 
-    if (width !== undefined) {
+    if (width != undefined) {
 urlObj.searchParams.set('w', width.toString());
 }
-    if (height !== undefined) {
+    if (height != undefined) {
 urlObj.searchParams.set('h', height.toString());
 }
-    if (quality !== undefined) {
+    if (quality != undefined) {
 urlObj.searchParams.set('q', quality.toString());
 }
 
@@ -404,7 +404,7 @@ urlObj.searchParams.set('q', quality.toString());
     const [elementRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
 
     useEffect(() => {
-      if (isVisible && src !== '' && !isLoaded) {
+      if (isVisible && src != '' && !isLoaded) {
         const img = new Image();
         img.onload = (): void => {
           setImageSrc(src);

@@ -80,7 +80,7 @@ export function NewsletterEditor({
   };
 
   const removeSection = (sectionId: string): void => {
-    const updatedSections = localDraft.sections.filter((section): boolean => section.id !== sectionId);
+    const updatedSections = localDraft.sections.filter((section): boolean => section.id != sectionId);
     setLocalDraft({ ...localDraft, sections: updatedSections });
     setUnsavedChanges(true);
   };
@@ -273,8 +273,11 @@ export function NewsletterEditor({
           <div>
             {renderToolbar(section.id)}
             <div
-              className="p-4 min-h-[100px] focus:outline-none prose prose-sm max-w-none"
+              ref={(el): void => {
+                editorRefs.current[section.id] = el;
+              }}
               contentEditable
+              className="p-4 min-h-[100px] focus:outline-none prose prose-sm max-w-none"
               dangerouslySetInnerHTML={{ __html: content }}
               role="textbox"
               style={{ whiteSpace: 'pre-wrap' }}
@@ -288,9 +291,6 @@ export function NewsletterEditor({
               }}
               onKeyDown={(e): void => {
                 handleKeyDown(e, section.id, language === 'en' ? 'content' : 'contentFr');
-              }}
-              ref={(el): void => {
-                editorRefs.current[section.id] = el;
               }}
             />
           </div>

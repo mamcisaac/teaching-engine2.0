@@ -14,8 +14,8 @@ export function ResourceNavigationSection(): React.ReactElement {
       </h2>
       {secondaryNavItems.map((item, _index) => (
         <SidebarNavItem
-          icon={item.icon}
           key={item.path}
+          icon={item.icon}
           label={item.label}
           path={item.path}
         />

@@ -160,7 +160,7 @@ export function validateLessonPlan(data: LessonPlanFormData): ValidationResult {
     errors.title = 'Title must be 200 characters or less';
   }
 
-  if (data.learningGoals != null && data.learningGoals.length > 1000) {
+  if (data.learningGoals !== null && data.learningGoals.length > 1000) {
     errors.learningGoals = 'Learning goals must be 1000 characters or less';
   }
 

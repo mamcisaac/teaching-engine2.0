@@ -773,7 +773,7 @@ export function AILessonPlanPanel({
                             </Badge>
                           )}
                         </CardTitle>
-                        {(suggestion.rationale != null && suggestion.rationale !== '') && (
+                        {(suggestion.rationale !== null && suggestion.rationale !== '') && (
                           <CardDescription>{suggestion.rationale}</CardDescription>
                         )}
                       </CardHeader>

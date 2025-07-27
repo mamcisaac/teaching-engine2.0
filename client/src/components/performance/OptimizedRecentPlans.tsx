@@ -90,7 +90,7 @@ const PlanItem = memo(
             Draft
           </span>
         );
-      } else if (plan.progress !== undefined) {
+      } else if (plan.progress != undefined) {
         return (
           <div className="flex items-center gap-2">
             <div className="flex-1 bg-gray-200 rounded-full h-1.5 w-16">
@@ -133,7 +133,7 @@ const PlanItem = memo(
                   <span className={cn('text-xs text-gray-500', compact && 'text-xs')}>
                     {config.label}
                   </span>
-                  {(plan.subject != null && plan.subject !== '') && (
+                  {(plan.subject != null && plan.subject != '') && (
                     <>
                       <span className="text-xs text-gray-400">•</span>
                       <span className="text-xs text-gray-500">{plan.subject}</span>
@@ -146,7 +146,7 @@ const PlanItem = memo(
                     </>
                   )}
                 </div>
-                {(plan.parentTitle != null && plan.parentTitle !== '') && (
+                {(plan.parentTitle != null && plan.parentTitle != '') && (
                   <p className="text-xs text-gray-500 mt-0.5">in {plan.parentTitle}</p>
                 )}
               </div>
@@ -212,7 +212,7 @@ export const OptimizedRecentPlans = memo(
         style: React.CSSProperties;
       }) => (
         <div style={style}>
-          <PlanItem compact={compact} key={`${item.type}-${item.id}`} plan={item} />
+          <PlanItem key={`${item.type}-${item.id}`} compact={compact} plan={item} />
         </div>
       ),
       [compact],
@@ -302,7 +302,7 @@ export const OptimizedRecentPlans = memo(
           ) : (
             <div className="space-y-1">
               {processedPlans.map((plan, _index) => (
-                <PlanItem compact={compact} key={`${plan.type}-${plan.id}`} plan={plan} />
+                <PlanItem key={`${plan.type}-${plan.id}`} compact={compact} plan={plan} />
               ))}
             </div>
           )}

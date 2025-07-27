@@ -51,7 +51,7 @@ export const useKeyboardShortcuts = (): KeyboardShortcutsContextType => {
   return context;
 };
 
-const isMac = typeof window !== 'undefined' && navigator.platform.toUpperCase().includes('MAC');
+const isMac = typeof window != 'undefined' && navigator.platform.toUpperCase().includes('MAC');
 
 export const formatShortcut = (shortcut: KeyboardShortcut): string => {
   const parts: string[] = [];
@@ -89,10 +89,10 @@ export const KeyboardShortcutsProvider: React.FC<{ children: React.ReactNode }> 
     };
 
     const savedPrefs = localStorage.getItem('keyboard-shortcuts-preferences');
-    if (savedPrefs !== null) {
+    if (savedPrefs != null) {
       try {
         const parsed = safeJsonParse(savedPrefs, defaultPreferences);
-        if (parsed !== defaultPreferences) {
+        if (parsed != defaultPreferences) {
           setPreferences({ ...defaultPreferences, ...parsed });
           setIsEnabled(parsed.enabled);
         }
@@ -108,7 +108,7 @@ export const KeyboardShortcutsProvider: React.FC<{ children: React.ReactNode }> 
       const newPrefs = { ...prevPreferences, ...prefs };
       localStorage.setItem('keyboard-shortcuts-preferences', JSON.stringify(newPrefs));
       
-      if (prefs.enabled !== undefined) {
+      if (prefs.enabled != undefined) {
         setIsEnabled(prefs.enabled);
       }
       
@@ -130,7 +130,7 @@ export const KeyboardShortcutsProvider: React.FC<{ children: React.ReactNode }> 
   }, [])
 
   const unregisterShortcut = useCallback((id: string) => {
-    setShortcuts(prev => prev.filter(s => s.id !== id));
+    setShortcuts(prev => prev.filter(s => s.id != id));
   }, [])
 
   const enableShortcut = useCallback((id: string) => {
@@ -187,7 +187,7 @@ continue;
         const finalShortcut = customShortcut ? { ...shortcut, ...customShortcut } : shortcut;
 
         // Check if key matches
-        if (event.key.toLowerCase() !== finalShortcut.key.toLowerCase()) {
+        if (event.key.toLowerCase() != finalShortcut.key.toLowerCase()) {
 continue;
 }
 
@@ -209,7 +209,7 @@ continue;
 }
 
         // Check for no modifiers when none are specified
-        if (finalShortcut.ctrl !== true && finalShortcut.cmd !== true && finalShortcut.alt !== true && finalShortcut.shift !== true) {
+        if (finalShortcut.ctrl != true && finalShortcut.cmd != true && finalShortcut.alt != true && finalShortcut.shift != true) {
           if (event.ctrlKey || event.metaKey || event.altKey || event.shiftKey) {
 continue;
 }

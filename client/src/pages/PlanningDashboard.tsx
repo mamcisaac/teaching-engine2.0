@@ -86,22 +86,22 @@ export function PlanningDashboard(): React.ReactElement {
           <div className="flex items-center gap-2">
             <Button
               className="gap-2 text-blue-600 hover:text-blue-700"
+              size="sm"
+              variant="ghost"
               onClick={() => {
  startTutorial('getting-started-tour'); 
 }}
-              size="sm"
-              variant="ghost"
             >
               <HelpCircle className="h-4 w-4" />
               Aide
             </Button>
             <Button
               className="text-gray-500 hover:text-gray-700"
+              size="sm"
+              variant="ghost"
               onClick={() => {
  resetOnboarding(); 
 }}
-              size="sm"
-              variant="ghost"
             >
               Restart Tour
             </Button>
@@ -131,11 +131,11 @@ export function PlanningDashboard(): React.ReactElement {
               </div>
               <Button
                 className="text-blue-600 hover:text-blue-700"
+                size="sm"
+                variant="ghost"
                 onClick={() => {
  setShowGetStarted(false); 
 }}
-                size="sm"
-                variant="ghost"
               >
                 ×
               </Button>
@@ -173,7 +173,7 @@ export function PlanningDashboard(): React.ReactElement {
         <div className="grid gap-6 md:grid-cols-3">
           {primaryActions.map((action, _index) => {
             const actionCard = (
-              <Link id={action.id} key={action.id} to={action.path}>
+              <Link key={action.id} id={action.id} to={action.path}>
                 <Card
                   className={`h-full transition-all duration-200 hover:scale-105 hover:shadow-lg border-2 ${
                     action.isPrimary === true
@@ -202,13 +202,13 @@ export function PlanningDashboard(): React.ReactElement {
             if (action.id === 'start-planning') {
               return (
                 <OnboardingTooltip
+                  key={action.id}
                   actionText="Start planning"
                   content="This is where the magic begins! Click here to create your first French Immersion lesson plan with AI assistance."
                   id="start-planning-tooltip"
-                  key={action.id}
-                  onAction={() => (window.location.href = action.path)}
                   position="bottom"
                   title="Your First Lesson"
+                  onAction={() => (window.location.href = action.path)}
                 >
                   {actionCard}
                 </OnboardingTooltip>
@@ -216,9 +216,9 @@ export function PlanningDashboard(): React.ReactElement {
             } else if (action.id === 'ai-help') {
               return (
                 <OnboardingTooltip
+                  key={action.id}
                   content="Your bilingual AI helper understands Ontario curriculum and can suggest activities in French and English."
                   id="ai-help-tooltip"
-                  key={action.id}
                   position="bottom"
                   title="AI Teaching Assistant"
                 >
@@ -247,15 +247,15 @@ export function PlanningDashboard(): React.ReactElement {
             {recentPlansLoading ? (
               <div className="space-y-3">
                 {[1, 2, 3].map((i, _index) => (
-                  <div className="h-12 bg-gray-100 rounded-md animate-pulse" key={i} />
+                  <div key={i} className="h-12 bg-gray-100 rounded-md animate-pulse" />
                 ))}
               </div>
             ) : recentPlans.length > 0 ? (
               <div className="space-y-3">
                 {recentPlans.map((plan, _index) => (
                   <div
-                    className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 transition-colors"
                     key={plan.id}
+                    className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 transition-colors"
                   >
                     <div>
                       <h4 className="font-medium text-gray-900">{plan.title}</h4>
@@ -296,8 +296,8 @@ export function PlanningDashboard(): React.ReactElement {
             <div className="space-y-3">
               {resources.map((resource, _index) => (
                 <Link
-                  className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 transition-colors"
                   key={resource.path}
+                  className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 transition-colors"
                   to={resource.path}
                 >
                   <div className="flex items-center gap-3">

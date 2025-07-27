@@ -449,7 +449,7 @@ export function DaybookPage(): React.ReactElement {
 
   const generateInsights = (): {totalLessons: number; totalReflections: number; assessmentTypes: {diagnostic: number; formative: number; summative: number}; reflectionRate: number} => {
     const totalLessons = lessons.length;
-    const totalReflections = entries.filter((e) => (e.notes != null && e.notes !== '')).length;
+    const totalReflections = entries.filter((e) => (e.notes !== null && e.notes !== '')).length;
     const assessmentTypes = {
       diagnostic: lessons.filter((l) => l.assessmentType === 'diagnostic').length,
       formative: lessons.filter((l) => l.assessmentType === 'formative').length,

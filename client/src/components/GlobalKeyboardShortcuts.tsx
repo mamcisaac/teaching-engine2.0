@@ -192,7 +192,7 @@ const GlobalSearch: React.FC<{ onClose: () => void }> = ({ onClose }): React.Rea
 
   const handleSearch = (e: React.FormEvent): void => {
     e.preventDefault();
-    if (query.trim() !== '') {
+    if (query.trim() != '') {
       // Navigate to curriculum page with search query
       navigate(`/curriculum?search=${encodeURIComponent(query)}`);
       onClose();

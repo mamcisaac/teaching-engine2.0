@@ -77,7 +77,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
   // Fetch data
   const { data: unitPlan } = useUnitPlan(unitId ?? '');
   const { data: lessonPlans = [], isLoading: isLoadingLessons } = useETFOLessonPlans(
-    unitId !== undefined ? { unitPlanId: unitId } : {},
+    unitId != undefined ? { unitPlanId: unitId } : {},
   );
   const { data: selectedLesson } = useETFOLessonPlan(lessonId ?? '');
 
@@ -125,7 +125,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
   });
 
   // Auto-save functionality for existing lessons
-  const autoSaveData = editingLesson !== null
+  const autoSaveData = editingLesson != null
     ? {
         ...formData,
         expectationIds: formData.expectationIds,
@@ -135,19 +135,19 @@ export function ETFOLessonPlanPage(): React.ReactElement {
   const { lastSaved, isSaving, hasUnsavedChanges, saveNow } = useAutoSave({
     data: autoSaveData,
     saveFn: async (data) => {
-      if (editingLesson !== null && data !== null) {
+      if (editingLesson != null && data != null) {
         const cleanedData = {
           ...data,
           unitPlanId: unitId ?? '',
-          materials: data.materials.filter((m: string) => m.trim() !== ''),
-          accommodations: data.accommodations.filter((a: string) => a.trim() !== ''),
-          modifications: data.modifications.filter((m: string) => m.trim() !== ''),
-          extensions: data.extensions.filter((e: string) => e.trim() !== ''),
+          materials: data.materials.filter((m: string) => m.trim() != ''),
+          accommodations: data.accommodations.filter((a: string) => a.trim() != ''),
+          modifications: data.modifications.filter((m: string) => m.trim() != ''),
+          extensions: data.extensions.filter((e: string) => e.trim() != ''),
         };
         await updateLesson.mutateAsync({ id: editingLesson, data: cleanedData });
       }
     },
-    enabled: editingLesson !== null && autoSaveData !== null,
+    enabled: editingLesson != null && autoSaveData != null,
     delay: 30000, // 30 seconds
   });
 
@@ -159,13 +159,13 @@ export function ETFOLessonPlanPage(): React.ReactElement {
     const cleanedData = {
       ...formData,
       unitPlanId: unitId ?? '',
-      materials: formData.materials.filter((m) => m.trim() !== ''),
-      accommodations: formData.accommodations.filter((a) => a.trim() !== ''),
-      modifications: formData.modifications.filter((m) => m.trim() !== ''),
-      extensions: formData.extensions.filter((e) => e.trim() !== ''),
+      materials: formData.materials.filter((m) => m.trim() != ''),
+      accommodations: formData.accommodations.filter((a) => a.trim() != ''),
+      modifications: formData.modifications.filter((m) => m.trim() != ''),
+      extensions: formData.extensions.filter((e) => e.trim() != ''),
     };
 
-    if (editingLesson !== null) {
+    if (editingLesson != null) {
       await updateLesson.mutateAsync({ id: editingLesson, data: cleanedData });
       setEditingLesson(null);
     } else {
@@ -224,7 +224,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
   const removeMaterial = (index: number): void => {
     setFormData({
       ...formData,
-      materials: formData.materials.filter((_, i) => i !== index),
+      materials: formData.materials.filter((_, i) => i != index),
     });
   };
 
@@ -241,7 +241,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
   const removeAccommodation = (index: number): void => {
     setFormData({
       ...formData,
-      accommodations: formData.accommodations.filter((_, i) => i !== index),
+      accommodations: formData.accommodations.filter((_, i) => i != index),
     });
   };
 
@@ -258,7 +258,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
   const removeModification = (index: number): void => {
     setFormData({
       ...formData,
-      modifications: formData.modifications.filter((_, i) => i !== index),
+      modifications: formData.modifications.filter((_, i) => i != index),
     });
   };
 
@@ -275,7 +275,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
   const removeExtension = (index: number): void => {
     setFormData({
       ...formData,
-      extensions: formData.extensions.filter((_, i) => i !== index),
+      extensions: formData.extensions.filter((_, i) => i != index),
     });
   };
 
@@ -434,7 +434,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
             <div className="flex justify-between items-start">
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">{selectedLesson.title}</h1>
-                {selectedLesson.titleFr != null && selectedLesson.titleFr !== '' && (
+                {selectedLesson.titleFr != null && selectedLesson.titleFr != '' && (
                   <p className="text-sm text-gray-600 mt-1">{selectedLesson.titleFr}</p>
                 )}
                 <div className="flex gap-4 mt-2 text-sm text-gray-600">
@@ -547,7 +547,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
 
           {/* Three-Part Lesson Structure */}
           <div className="p-6 space-y-6">
-            {selectedLesson.learningGoals != null && selectedLesson.learningGoals !== '' && (
+            {selectedLesson.learningGoals != null && selectedLesson.learningGoals != '' && (
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Learning Goals</h3>
                 <SafeHtmlRenderer
@@ -564,7 +564,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                   <CardDescription>Activating prior knowledge</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  {selectedLesson.mindsOn != null && selectedLesson.mindsOn !== '' ? (
+                  {selectedLesson.mindsOn != null && selectedLesson.mindsOn != '' ? (
                     <SafeHtmlRenderer
                       className="prose max-w-none text-sm"
                       html={selectedLesson.mindsOn}
@@ -581,7 +581,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                   <CardDescription>Main learning activities</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  {selectedLesson.action != null && selectedLesson.action !== '' ? (
+                  {selectedLesson.action != null && selectedLesson.action != '' ? (
                     <SafeHtmlRenderer
                       className="prose max-w-none text-sm"
                       html={selectedLesson.action}
@@ -598,7 +598,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                   <CardDescription>Summarizing and reflection</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  {selectedLesson.consolidation != null && selectedLesson.consolidation !== '' ? (
+                  {selectedLesson.consolidation != null && selectedLesson.consolidation != '' ? (
                     <SafeHtmlRenderer
                       className="prose max-w-none text-sm"
                       html={selectedLesson.consolidation}
@@ -625,13 +625,13 @@ export function ETFOLessonPlanPage(): React.ReactElement {
             )}
 
             {/* Assessment */}
-            {(selectedLesson.assessmentType != null || (selectedLesson.assessmentNotes != null && selectedLesson.assessmentNotes !== '')) && (
+            {(selectedLesson.assessmentType != null || (selectedLesson.assessmentNotes != null && selectedLesson.assessmentNotes != '')) && (
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Assessment</h3>
                 {selectedLesson.assessmentType && (
                   <Badge className="mb-2">{selectedLesson.assessmentType}</Badge>
                 )}
-                {selectedLesson.assessmentNotes != null && selectedLesson.assessmentNotes !== '' && (
+                {selectedLesson.assessmentNotes != null && selectedLesson.assessmentNotes != '' && (
                   <p className="text-gray-700 mt-2">{selectedLesson.assessmentNotes}</p>
                 )}
               </div>
@@ -680,7 +680,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
             </div>
 
             {/* Sub Notes */}
-            {selectedLesson.isSubFriendly && selectedLesson.subNotes != null && selectedLesson.subNotes !== '' && (
+            {selectedLesson.isSubFriendly && selectedLesson.subNotes != null && selectedLesson.subNotes != '' && (
               <Card className="bg-yellow-50 border-yellow-200">
                 <CardHeader>
                   <CardTitle className="text-base">Substitute Teacher Notes</CardTitle>
@@ -946,9 +946,9 @@ export function ETFOLessonPlanPage(): React.ReactElement {
         <div className="p-3 sm:p-6 w-full max-w-full sm:max-w-5xl max-h-[90vh] overflow-y-auto">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold">
-              {editingLesson !== null ? 'Edit Lesson Plan' : 'Create Lesson Plan'}
+              {editingLesson != null ? 'Edit Lesson Plan' : 'Create Lesson Plan'}
             </h3>
-            {editingLesson !== null && (
+            {editingLesson != null && (
               <div className="flex items-center gap-2">
                 <AutoSaveIndicator
                   hasUnsavedChanges={hasUnsavedChanges}
@@ -1152,14 +1152,14 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                         className="w-full"
                         duration={formData.duration}
                         grade={unitPlan?.longRangePlan?.grade ?? 1}
-                        learningGoals={formData.learningGoals !== '' ? [formData.learningGoals] : []}
+                        learningGoals={formData.learningGoals != '' ? [formData.learningGoals] : []}
                         lessonTitle={formData.title}
                         subject={unitPlan?.longRangePlan?.subject ?? ''}
                         unitContext={
                           unitPlan
                             ? {
                                 title: unitPlan.title,
-                                bigIdeas: unitPlan.bigIdeas != null && unitPlan.bigIdeas !== '' ? [unitPlan.bigIdeas] : [],
+                                bigIdeas: unitPlan.bigIdeas != null && unitPlan.bigIdeas != '' ? [unitPlan.bigIdeas] : [],
                                 expectations:
                                   unitPlan.expectations && unitPlan.expectations.length > 0 ? unitPlan.expectations.map((exp, _index) => ({
                                     id: exp.expectation.id,
@@ -1534,7 +1534,7 @@ Assessment Strategies:
                 >
                   {createLesson.isPending || updateLesson.isPending || isSaving
                     ? 'Saving...'
-                    : editingLesson !== null
+                    : editingLesson != null
                       ? 'Update Lesson Plan'
                       : 'Create Lesson Plan'}
                 </Button>
@@ -1588,7 +1588,7 @@ Assessment Strategies:
                           <CardTitle className="text-base">{template.title}</CardTitle>
                           <CardDescription className="mt-1">
                             {template.category} • Grade {template.gradeMin}
-                            {template.gradeMax != null && template.gradeMax !== template.gradeMin && `-${template.gradeMax}`}
+                            {template.gradeMax != null && template.gradeMax != template.gradeMin && `-${template.gradeMax}`}
                             {template.estimatedMinutes != null && template.estimatedMinutes > 0 && ` • ${template.estimatedMinutes} minutes`}
                           </CardDescription>
                         </div>
@@ -1650,7 +1650,7 @@ Assessment Strategies:
               disabled={selectedTemplate === null || applyTemplate.isPending}
               type="button"
               onClick={(): void => {
-                if (selectedTemplate !== null) {
+                if (selectedTemplate != null) {
                   void handleApplyTemplate(selectedTemplate);
                 }
               }}
@@ -1662,7 +1662,7 @@ Assessment Strategies:
       </Dialog>
 
       {/* Delete Confirmation Dialog */}
-      <AlertDialog open={deleteConfirmId !== null} onOpenChange={() => {
+      <AlertDialog open={deleteConfirmId != null} onOpenChange={() => {
  setDeleteConfirmId(null); 
 }}>
         <AlertDialogContent>
@@ -1677,7 +1677,7 @@ Assessment Strategies:
             <AlertDialogAction
               className="bg-red-600 hover:bg-red-700"
               onClick={(): void => {
- if (deleteConfirmId !== null) { void handleDelete(deleteConfirmId); } 
+ if (deleteConfirmId != null) { void handleDelete(deleteConfirmId); } 
 }}
             >
               Delete

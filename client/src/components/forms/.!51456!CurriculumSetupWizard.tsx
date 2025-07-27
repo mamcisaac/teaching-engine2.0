@@ -106,7 +106,7 @@ export function CurriculumSetupWizard({
       id: 'basic-info',
       title: 'Basic Information',
       description: 'Enter your teaching context and academic year details',
-      completed: formData.academicYear !== '' && formData.grade !== 0 && formData.subject !== '',
+      completed: formData.academicYear != '' && formData.grade != 0 && formData.subject != '',
     },
     {
       id: 'planning-preferences',
@@ -124,7 +124,7 @@ export function CurriculumSetupWizard({
       id: 'timeline-pacing',
       title: 'Timeline & Pacing',
       description: 'Set up your academic calendar and unit pacing',
-      completed: formData.yearStartDate !== '' && formData.yearEndDate !== '' && formData.unitCount !== 0,
+      completed: formData.yearStartDate != '' && formData.yearEndDate != '' && formData.unitCount != 0,
     },
     {
       id: 'resources-materials',
@@ -162,7 +162,7 @@ export function CurriculumSetupWizard({
 
   const addToArray = (field: keyof CurriculumSetupData, value: string): void => {
     const currentArray = formData[field] as string[];
-    if (!currentArray.includes(value) && value.trim() !== '') {
+    if (!currentArray.includes(value) && value.trim() != '') {
       setFormData({
         ...formData,
         [field]: [...currentArray, value],
@@ -174,7 +174,7 @@ export function CurriculumSetupWizard({
     const currentArray = formData[field] as string[];
     setFormData({
       ...formData,
-      [field]: currentArray.filter(item => item !== value),
+      [field]: currentArray.filter(item => item != value),
     });
   };
 
@@ -334,7 +334,7 @@ export function CurriculumSetupWizard({
                   variant="outline"
                   onClick={(e) => {
                     const input = e.currentTarget.previousElementSibling as HTMLInputElement;
-                    if (input.value !== '') {
+                    if (input.value != '') {
                       addToArray('priorityStrands', input.value);
                       input.value = '';
                     }

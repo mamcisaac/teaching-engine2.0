@@ -75,7 +75,7 @@ return undefined;
         return undefined;
       } catch (error: unknown) {
         if (
-          error !== null &&
+          error != null &&
           typeof error === 'object' &&
           'errors' in error &&
           Array.isArray((error as { errors: unknown[] }).errors)
@@ -100,7 +100,7 @@ return true;
       return true;
     } catch (error: unknown) {
       if (
-        error !== null &&
+        error != null &&
         typeof error === 'object' &&
         'errors' in error &&
         Array.isArray((error as { errors: unknown[] }).errors)
@@ -237,14 +237,14 @@ return true;
       onChange: handleChange,
       onBlur: handleBlur,
       'aria-invalid': Boolean(errors[String(name)]),
-      'aria-describedby': errors[String(name)] != null && errors[String(name)] !== '' ? `${String(name)}-error` : undefined,
+      'aria-describedby': errors[String(name)] != null && errors[String(name)] != '' ? `${String(name)}-error` : undefined,
     }),
     [values, handleChange, handleBlur, errors],
   );
 
   // Check if field has error and is touched
   const getFieldError = useCallback(
-    (name: string) => touched[name] === true && errors[name] != null && errors[name] !== '' ? errors[name] : undefined,
+    (name: string) => touched[name] === true && errors[name] != null && errors[name] != '' ? errors[name] : undefined,
     [touched, errors],
   );
 

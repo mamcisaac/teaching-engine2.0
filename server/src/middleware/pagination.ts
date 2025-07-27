@@ -57,7 +57,7 @@ export function parsePagination(req: Request, res: Response, next: NextFunction)
 
     next();
   } catch (error: unknown) {
-    logger.error('Pagination parsing error:', error as string | undefined);
+    logger.error({ error: error instanceof Error ? error.message : String(error) }, 'Pagination parsing error');
     res.status(400).json({
       error: 'Invalid pagination parameters',
       details: error instanceof Error ? error.message : 'Unknown error',
@@ -127,8 +127,8 @@ export function withPagination<T extends { id: number }>(
       return repository.findManyCursor({
         where: options?.where,
         include: options?.include,
-        cursor: cursor !== null && cursor !== '' ? parseInt(cursor) : undefined,
-        limit: parseInt(limit),
+        cursor: cursor !== null && cursor !== undefined && cursor !== '' ? parseInt(cursor) : undefined,
+        limit: parseInt(limit || '20'),
       });
     },
   };

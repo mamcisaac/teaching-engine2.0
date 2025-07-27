@@ -22,7 +22,7 @@ export function ResourceSelector({
   title = 'Select Resource',
 }: ResourceSelectorProps): React.ReactElement {
   const [search, setSearch] = useState('');
-  const [selectedFileType, setSelectedFileType] = useState((fileTypeFilter !== undefined && fileTypeFilter !== '') ? fileTypeFilter : '');
+  const [selectedFileType, setSelectedFileType] = useState((fileTypeFilter != undefined && fileTypeFilter != '') ? fileTypeFilter : '');
 
   const { data: mediaData, isLoading } = useMediaResources({ userId });
   const resources = mediaData?.resources ?? [];
@@ -30,12 +30,12 @@ export function ResourceSelector({
   // Filter resources
   const filteredResources = resources.filter((resource) => {
     // File type filter
-    if (selectedFileType !== '' && resource.type !== selectedFileType) {
+    if (selectedFileType != '' && resource.type != selectedFileType) {
       return false;
     }
 
     // Search filter
-    if (search !== '' && !resource.title.toLowerCase().includes(search.toLowerCase())) {
+    if (search != '' && !resource.title.toLowerCase().includes(search.toLowerCase())) {
       return false;
     }
 
@@ -68,10 +68,10 @@ return '0 Bytes';
   };
 
   const getResourceUrl = (resource: MediaResource): string => {
-    if (resource.fileUrl !== '') {
+    if (resource.fileUrl != '') {
       return resource.fileUrl;
     }
-    if (resource.thumbnailUrl !== undefined && resource.thumbnailUrl !== '') {
+    if (resource.thumbnailUrl != undefined && resource.thumbnailUrl != '') {
       return resource.thumbnailUrl;
     }
     return '/placeholder-image.png';
@@ -112,7 +112,7 @@ return '0 Bytes';
               <label className="block text-sm font-medium mb-1" htmlFor="file-type-select">File Type</label>
               <select
                 className="w-full border rounded px-3 py-2"
-                disabled={!!(fileTypeFilter !== undefined && fileTypeFilter !== '')} // Disable if filtered from props
+                disabled={!!(fileTypeFilter != undefined && fileTypeFilter != '')} // Disable if filtered from props
                 id="file-type-select"
                 value={selectedFileType}
                 onChange={(e) => {
@@ -188,7 +188,7 @@ return '0 Bytes';
                   <div className="text-sm text-gray-500 mb-2">
                     <div className="flex items-center gap-2">
                       <span className="capitalize">{resource.type}</span>
-                      {resource.fileSize !== undefined && resource.fileSize > 0 && (
+                      {resource.fileSize != undefined && resource.fileSize > 0 && (
                         <>
                           <span>•</span>
                           <span>{formatFileSize(resource.fileSize)}</span>

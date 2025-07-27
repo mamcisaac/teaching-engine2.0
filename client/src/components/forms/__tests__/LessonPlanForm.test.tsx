@@ -34,7 +34,7 @@ vi.mock('../../planning/ExpectationSelector', () => ({
         onChange={(e) => {
           const newIds = e.target.checked
             ? [...selectedIds, 'exp-1']
-            : selectedIds.filter((id: string) => id !== 'exp-1');
+            : selectedIds.filter((id: string) => id != 'exp-1');
           onSelectionChange(newIds);
         }}
       />

@@ -420,9 +420,9 @@ export const useLanguageStore = create<LanguageState>()(
           const state = get();
           const translationValue = translations[state.language][key];
           // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-          let translation = (translationValue != null && translationValue !== '') 
+          let translation = (translationValue !== null && translationValue !== '') 
             ? translationValue 
-            : (fallback != null && fallback !== '') 
+            : (fallback !== null && fallback !== '') 
               ? fallback 
               : key;
 

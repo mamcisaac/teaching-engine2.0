@@ -46,11 +46,11 @@ interface CreateLongRangePlanResponse {
 
 // Type guards
 function isLongRangePlansArray(data: unknown): data is LongRangePlan[] {
-  return Array.isArray(data) && (data.length === 0 || (typeof data[0] === 'object' && data[0] !== null && 'id' in data[0]));
+  return Array.isArray(data) && (data.length === 0 || (typeof data[0] === 'object' && data[0] != null && 'id' in data[0]));
 }
 
 function isCreateLongRangePlanResponse(data: unknown): data is CreateLongRangePlanResponse {
-  return typeof data === 'object' && data !== null && 'id' in data && 'title' in data;
+  return typeof data === 'object' && data != null && 'id' in data && 'title' in data;
 }
 
 export default function LongRangePlanPage(): React.ReactElement {
@@ -395,7 +395,7 @@ export default function LongRangePlanPage(): React.ReactElement {
                 suggestions={aiGoalSuggestions}
                 title="AI Goal Suggestions"
                 onAcceptAll={() => {
-                  if (aiGoalSuggestions?.suggestions !== null && aiGoalSuggestions.suggestions.length > 0) {
+                  if (aiGoalSuggestions?.suggestions != null && aiGoalSuggestions.suggestions.length > 0) {
                     setFormData({
                       ...formData,
                       goals: aiGoalSuggestions.suggestions.join('\n\n'),
@@ -453,7 +453,7 @@ export default function LongRangePlanPage(): React.ReactElement {
                       onClick={() => {
  setFormData({
                           ...formData,
-                          themes: formData.themes.filter((_, i) => i !== index),
+                          themes: formData.themes.filter((_, i) => i != index),
                         }); 
 }
                       }

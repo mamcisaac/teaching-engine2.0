@@ -38,13 +38,13 @@ export function TemplateFilters({
   };
 
   const hasActiveFilters =
-    filters.type !== undefined ||
-    filters.category !== undefined ||
-    (filters.subject !== undefined && filters.subject !== '') ||
-    filters.gradeMin !== undefined ||
-    filters.gradeMax !== undefined ||
-    (filters.search !== undefined && filters.search !== '') ||
-    (filters.tags !== undefined && filters.tags.length > 0);
+    filters.type != undefined ||
+    filters.category != undefined ||
+    (filters.subject != undefined && filters.subject != '') ||
+    filters.gradeMin != undefined ||
+    filters.gradeMax != undefined ||
+    (filters.search != undefined && filters.search != '') ||
+    (filters.tags != undefined && filters.tags.length > 0);
 
   return (
     <div className="bg-gray-50 rounded-lg p-4 space-y-4">
@@ -56,9 +56,9 @@ export function TemplateFilters({
         {hasActiveFilters && (
           <Button
             className="text-gray-500 hover:text-gray-700"
-            onClick={clearFilters}
             size="sm"
             variant="ghost"
+            onClick={clearFilters}
           >
             <X className="h-4 w-4 mr-1" />
             Clear All
@@ -71,12 +71,12 @@ export function TemplateFilters({
         <div className="md:col-span-2 lg:col-span-4">
           <input
             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            onChange={(e): void => {
- updateFilter('search', e.target.value); 
-}}
             placeholder="Search templates..."
             type="text"
             value={filters.search ?? ''}
+            onChange={(e): void => {
+ updateFilter('search', e.target.value); 
+}}
           />
         </div>
 
@@ -84,10 +84,10 @@ export function TemplateFilters({
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="filter-type">Type</label>
           <Select
+            value={filters.type ?? 'all'}
             onValueChange={(value): void => {
  updateFilter('type', value === 'all' ? undefined : value); 
 }}
-            value={filters.type ?? 'all'}
           >
             <SelectTrigger id="filter-type">
               <SelectValue />
@@ -107,11 +107,11 @@ export function TemplateFilters({
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="filter-category">Category</label>
           <Select
+            value={filters.category ?? 'all'}
             onValueChange={(value): void => {
  updateFilter('category', value === 'all' ? undefined : (value as TemplateCategory)); 
 }
             }
-            value={filters.category ?? 'all'}
           >
             <SelectTrigger id="filter-category">
               <SelectValue />
@@ -131,10 +131,10 @@ export function TemplateFilters({
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="filter-subject">Subject</label>
           <Select
+            value={filters.subject ?? 'all'}
             onValueChange={(value): void => {
  updateFilter('subject', value === 'all' ? undefined : value); 
 }}
-            value={filters.subject ?? 'all'}
           >
             <SelectTrigger id="filter-subject">
               <SelectValue />
@@ -155,11 +155,11 @@ export function TemplateFilters({
           <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="filter-grade-min">Grade Level</label>
           <div className="flex gap-2 items-center">
             <Select
+              value={filters.gradeMin != undefined ? filters.gradeMin.toString() : 'all'}
               onValueChange={(value): void => {
  updateFilter('gradeMin', value === 'all' ? undefined : parseInt(value)); 
 }
               }
-              value={filters.gradeMin !== undefined ? filters.gradeMin.toString() : 'all'}
             >
               <SelectTrigger className="flex-1" id="filter-grade-min">
                 <SelectValue />
@@ -175,11 +175,11 @@ export function TemplateFilters({
             </Select>
             <span className="text-gray-500">to</span>
             <Select
+              value={filters.gradeMax != undefined ? filters.gradeMax.toString() : 'all'}
               onValueChange={(value): void => {
  updateFilter('gradeMax', value === 'all' ? undefined : parseInt(value)); 
 }
               }
-              value={filters.gradeMax !== undefined ? filters.gradeMax.toString() : 'all'}
             >
               <SelectTrigger className="flex-1">
                 <SelectValue />
@@ -202,6 +202,7 @@ export function TemplateFilters({
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="filter-sort-by">Sort By</label>
           <Select
+            value={filters.sortBy ?? 'usageCount'}
             onValueChange={(value): void => {
  updateFilter(
                 'sortBy',
@@ -209,7 +210,6 @@ export function TemplateFilters({
               ); 
 }
             }
-            value={filters.sortBy ?? 'usageCount'}
           >
             <SelectTrigger id="filter-sort-by">
               <SelectValue />
@@ -227,10 +227,10 @@ export function TemplateFilters({
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="filter-sort-order">Order</label>
           <Select
+            value={filters.sortOrder ?? 'desc'}
             onValueChange={(value): void => {
  updateFilter('sortOrder', value as 'asc' | 'desc'); 
 }}
-            value={filters.sortOrder ?? 'desc'}
           >
             <SelectTrigger id="filter-sort-order">
               <SelectValue />
@@ -249,10 +249,10 @@ export function TemplateFilters({
           <input
             checked={Boolean(filters.isSystem)}
             className="rounded border-gray-300"
+            type="checkbox"
             onChange={(e): void => {
  updateFilter('isSystem', e.target.checked ? true : undefined); 
 }}
-            type="checkbox"
           />
           <span>System Templates Only</span>
         </label>
@@ -260,10 +260,10 @@ export function TemplateFilters({
           <input
             checked={Boolean(filters.isPublic)}
             className="rounded border-gray-300"
+            type="checkbox"
             onChange={(e): void => {
  updateFilter('isPublic', e.target.checked ? true : undefined); 
 }}
-            type="checkbox"
           />
           <span>Public Templates Only</span>
         </label>

@@ -63,7 +63,7 @@ export const Switch: FC<SwitchProps> = ({
       >
         <span className={knobClasses} />
       </button>
-      {label != null && label !== '' && (
+      {label !== null && label !== '' && (
         <span
           className={clsx('ml-3 text-sm', {
             'text-gray-900': !disabled,

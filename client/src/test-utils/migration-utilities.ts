@@ -250,7 +250,7 @@ export class TestMigrationHelper {
     }> = [];
 
     // Type comparison
-    if (typeof mock !== typeof real) {
+    if (typeof mock != typeof real) {
       differences.push({
         path: path ?? 'root',
         mockValue: mock,
@@ -261,7 +261,7 @@ export class TestMigrationHelper {
 
     // Array comparison
     if (Array.isArray(mock) && Array.isArray(real)) {
-      if (mock.length !== real.length) {
+      if (mock.length != real.length) {
         differences.push({
           path: `${path}.length`,
           mockValue: mock.length,
@@ -423,7 +423,7 @@ export const migrationUtils = {
    * Conditional test skipping based on migration phase
    */
   skipIfNotReal: (testFn: () => void, reason?: string) => {
-    if (detectMigrationPhase() !== 'real') {
+    if (detectMigrationPhase() != 'real') {
       return test.skip(`Skipped - not in real mode: ${reason ?? 'requires real implementation'}`);
     }
     return testFn();
@@ -454,7 +454,7 @@ export const migrationUtils = {
  */
 export function setupMigrationEnvironment(phase: MigrationConfig['phase']) {
   // Set environment variables
-  if (typeof process !== 'undefined') {
+  if (typeof process != 'undefined') {
     process.env.VITE_MIGRATION_PHASE = phase;
     process.env.VITE_USE_REAL_API = phase === 'real' ? 'true' : 'false';
   }

@@ -28,7 +28,7 @@ export function useToast(): { toasts: Toast[]; toast: (options: ToastOptions) =>
 
       // Auto-dismiss after 5 seconds
       setTimeout(() => {
-        setToasts((prev) => prev.filter((t) => t.id !== toast.id));
+        setToasts((prev) => prev.filter((t) => t.id != toast.id));
       }, 5000);
     };
 
@@ -53,7 +53,7 @@ export function useToast(): { toasts: Toast[]; toast: (options: ToastOptions) =>
   };
 
   const dismiss = (toastId: string): void => {
-    setToasts((prev) => prev.filter((t) => t.id !== toastId));
+    setToasts((prev) => prev.filter((t) => t.id != toastId));
   };
 
   return { toasts, toast, dismiss };

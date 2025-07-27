@@ -118,10 +118,10 @@ export const KeyboardShortcutsSettings: React.FC = (): React.ReactElement => {
             </div>
             <Switch
               checked={preferences.enabled}
+              size="md"
               onChange={(enabled): void => {
  updatePreferences({ enabled }); 
 }}
-              size="md"
             />
           </div>
 
@@ -135,10 +135,10 @@ export const KeyboardShortcutsSettings: React.FC = (): React.ReactElement => {
             </div>
             <Switch
               checked={preferences.showHints}
+              size="md"
               onChange={(showHints): void => {
  updatePreferences({ showHints }); 
 }}
-              size="md"
             />
           </div>
 
@@ -170,8 +170,8 @@ export const KeyboardShortcutsSettings: React.FC = (): React.ReactElement => {
 
                     return (
                       <div
-                        className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50"
                         key={shortcut.id}
+                        className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50"
                       >
                         <div className="flex-1">
                           <p className="font-medium text-sm">{shortcut.description}</p>
@@ -186,12 +186,9 @@ export const KeyboardShortcutsSettings: React.FC = (): React.ReactElement => {
                           {isEditing ? (
                             <>
                               <Input
-                                className="w-32 text-center"
-                                onKeyDown={(e): void => {
- handleKeyCapture(e, shortcut.id); 
-}}
-                                placeholder="Press keys..."
                                 readOnly
+                                className="w-32 text-center"
+                                placeholder="Press keys..."
                                 type="text"
                                 value={
                                   captureKey
@@ -202,18 +199,23 @@ export const KeyboardShortcutsSettings: React.FC = (): React.ReactElement => {
                                       })
                                     : ''
                                 }
+                                onKeyDown={(e): void => {
+ handleKeyCapture(e, shortcut.id); 
+}}
                               />
                               <Button
                                 disabled={captureKey === ''}
+                                size="sm"
+                                variant="ghost"
                                 onClick={(): void => {
  saveCustomShortcut(shortcut.id); 
 }}
-                                size="sm"
-                                variant="ghost"
                               >
                                 <Check className="h-4 w-4" />
                               </Button>
                               <Button
+                                size="sm"
+                                variant="ghost"
                                 onClick={(): void => {
                                   setEditingShortcut(null);
                                   setCaptureKey('');
@@ -224,8 +226,6 @@ export const KeyboardShortcutsSettings: React.FC = (): React.ReactElement => {
                                     shift: false,
                                   });
                                 }}
-                                size="sm"
-                                variant="ghost"
                               >
                                 <X className="h-4 w-4" />
                               </Button>
@@ -236,22 +236,22 @@ export const KeyboardShortcutsSettings: React.FC = (): React.ReactElement => {
                                 {formatShortcut(displayShortcut)}
                               </kbd>
                               <Button
+                                size="sm"
+                                variant="ghost"
                                 onClick={(): void => {
  setEditingShortcut(shortcut.id); 
 }}
-                                size="sm"
-                                variant="ghost"
                               >
                                 <Settings className="h-4 w-4" />
                               </Button>
                               {hasCustomShortcut ? (
                                 <Button
-                                  onClick={(): void => {
- resetShortcut(shortcut.id); 
-}}
                                   size="sm"
                                   title="Reset to default"
                                   variant="ghost"
+                                  onClick={(): void => {
+ resetShortcut(shortcut.id); 
+}}
                                 >
                                   <RefreshCw className="h-4 w-4" />
                                 </Button>

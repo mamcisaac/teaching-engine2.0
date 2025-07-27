@@ -136,7 +136,7 @@ export const RecentPlans = memo(({
           Draft
         </span>
       );
-    } else if (plan.progress !== undefined) {
+    } else if (plan.progress != undefined) {
       return (
         <div className="flex items-center gap-2">
           <div className="flex-1 bg-gray-200 rounded-full h-1.5 w-16">
@@ -179,7 +179,7 @@ export const RecentPlans = memo(({
             const Icon = config.icon;
 
             return (
-              <Link className="block group" key={`${plan.type}-${plan.id}`} to={plan.planRoute}>
+              <Link key={`${plan.type}-${plan.id}`} className="block group" to={plan.planRoute}>
                 <div className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
                   <div className={cn('p-2 rounded-lg flex-shrink-0', config.color) as string}>
                     <Icon className="h-5 w-5" />
@@ -193,20 +193,20 @@ export const RecentPlans = memo(({
                         </h4>
                         <div className="flex items-center gap-2 mt-0.5">
                           <span className="text-xs text-gray-500">{config.label}</span>
-                          {(plan.subject !== undefined && plan.subject !== '') ? (
+                          {(plan.subject != undefined && plan.subject != '') ? (
                             <>
                               <span className="text-xs text-gray-400">•</span>
                               <span className="text-xs text-gray-500">{plan.subject}</span>
                             </>
                           ) : null}
-                          {(plan.grade !== undefined) ? (
+                          {(plan.grade != undefined) ? (
                             <>
                               <span className="text-xs text-gray-400">•</span>
                               <span className="text-xs text-gray-500">Grade {plan.grade}</span>
                             </>
                           ) : null}
                         </div>
-                        {(plan.parentTitle !== undefined && plan.parentTitle !== '') ? (
+                        {(plan.parentTitle != undefined && plan.parentTitle != '') ? (
                           <p className="text-xs text-gray-500 mt-0.5">in {plan.parentTitle}</p>
                         ) : null}
                       </div>

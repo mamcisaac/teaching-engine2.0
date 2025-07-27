@@ -200,7 +200,7 @@ export class TemplateDataFetcher {
             longRangePlan: true,
           },
         },
-        expectations: context.options?.includeRelations ? {
+        expectations: context.options?.includeRelations === true ? {
           include: {
             expectation: true,
           },
@@ -333,8 +333,8 @@ export class TemplateDataFetcher {
         const filters = context.filters as CustomDataFilters | undefined;
         const reportData: ReportPeriodData = {
           name: filters?.periodName ?? 'Progress Report',
-          startDate: filters?.startDate ? new Date(filters.startDate) : new Date(),
-          endDate: filters?.endDate ? new Date(filters.endDate) : new Date(),
+          startDate: filters?.startDate !== undefined && filters?.startDate !== null ? new Date(filters.startDate) : new Date(),
+          endDate: filters?.endDate !== undefined && filters?.endDate !== null ? new Date(filters.endDate) : new Date(),
           totalDays: filters?.totalDays ?? 0,
         };
         return reportData;

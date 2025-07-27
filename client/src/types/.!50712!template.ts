@@ -249,21 +249,21 @@ export function isLessonPlanTemplate(
 
 export function isUnitPlanContent(content: unknown): content is UnitPlanContent {
   return (
-    content !== null &&
+    content != null &&
     typeof content === 'object' &&
-    ((content as Record<string, unknown>).overview !== undefined ||
-      (content as Record<string, unknown>).bigIdeas !== undefined ||
-      (content as Record<string, unknown>).learningGoals !== undefined)
+    ((content as Record<string, unknown>).overview != undefined ||
+      (content as Record<string, unknown>).bigIdeas != undefined ||
+      (content as Record<string, unknown>).learningGoals != undefined)
   );
 }
 
 export function isLessonPlanContent(content: unknown): content is LessonPlanContent {
   return (
-    content !== null &&
+    content != null &&
     typeof content === 'object' &&
-    ((content as Record<string, unknown>).objectives !== undefined ||
-      (content as Record<string, unknown>).mindsOn !== undefined ||
-      (content as Record<string, unknown>).action !== undefined)
+    ((content as Record<string, unknown>).objectives != undefined ||
+      (content as Record<string, unknown>).mindsOn != undefined ||
+      (content as Record<string, unknown>).action != undefined)
   );
 }
 

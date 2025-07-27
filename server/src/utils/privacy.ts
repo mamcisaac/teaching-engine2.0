@@ -17,9 +17,9 @@ export function maskUserData(user: Record<string, unknown>, options: PrivacyOpti
     isOwner = true,
   } = options;
 
-  if (!user) {
-return null;
-}
+  if (user === null || user === undefined) {
+    return null;
+  }
 
   const masked = { ...user };
 
@@ -47,14 +47,14 @@ return null;
  * Generates a privacy-safe user identifier for logging
  */
 export function getUserIdentifier(user: Record<string, unknown>): string {
-  if (!user) {
-return 'unknown';
-}
+  if (user === null || user === undefined) {
+    return 'unknown';
+  }
   
   // Use partial email + partial ID for privacy
   const email = typeof user.email === 'string' ? user.email : 'unknown@example.com';
   const [localPart] = email.split('@');
-  const idSuffix = user.id ? String(user.id).slice(-4) : '0000';
+  const idSuffix = user.id !== null && user.id !== undefined ? String(user.id).slice(-4) : '0000';
   
   return `${localPart.slice(0, 3)}-${idSuffix}`;
 }
@@ -105,7 +105,7 @@ export function anonymizeForAnalytics(data: Record<string, unknown>): Record<str
   delete anonymized.userId;
   
   // Replace with anonymous identifiers
-  anonymized.userHash = data.userId ? hashUserId(Number(data.userId)) : 'anonymous';
+  anonymized.userHash = data.userId !== null && data.userId !== undefined ? hashUserId(Number(data.userId)) : 'anonymous';
   
   return anonymized;
 }

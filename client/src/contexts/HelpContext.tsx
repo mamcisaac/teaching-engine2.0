@@ -53,7 +53,7 @@ function helpReducer(state: HelpState, action: HelpAction): HelpState {
     case 'REMOVE_FILTER':
       return {
         ...state,
-        activeFilters: state.activeFilters.filter(filter => filter !== action.payload)
+        activeFilters: state.activeFilters.filter(filter => filter != action.payload)
       };
 
     case 'CLEAR_FILTERS':
@@ -130,7 +130,7 @@ export function HelpProvider({ children }: { children: React.ReactNode }): React
 
     try {
       const savedState = localStorage.getItem(HELP_STATE_KEY);
-      if (savedState !== null && savedState !== '') {
+      if (savedState != null && savedState != '') {
         const parsedState = safeJsonParse(savedState, initialState);
         // Convert date strings back to Date objects
         parsedState.userProgress.lastVisited = new Date(parsedState.userProgress.lastVisited);

@@ -185,7 +185,7 @@ export class CurriculumExpectationRepository {
         categories: categories.map((c) => c.category),
       };
     } catch (error) {
-      logger.error('Error getting unique values:', error);
+      logger.error({ error: error instanceof Error ? error.message : String(error) }, 'Error getting unique values');
       throw error;
     }
   }

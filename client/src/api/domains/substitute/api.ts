@@ -560,13 +560,13 @@ export const substituteApi = {
     const params = new URLSearchParams({
       startDate,
       days: days.toString(),
-      ...(options.includeGoals !== undefined && { includeGoals: options.includeGoals.toString() }),
-      ...(options.includeRoutines !== undefined && {
+      ...(options.includeGoals != undefined && { includeGoals: options.includeGoals.toString() }),
+      ...(options.includeRoutines != undefined && {
         includeRoutines: options.includeRoutines.toString(),
       }),
-      ...(options.includePlans !== undefined && { includePlans: options.includePlans.toString() }),
-      ...(options.anonymize !== undefined && { anonymize: options.anonymize.toString() }),
-      ...(options.userId !== undefined && { userId: options.userId.toString() }),
+      ...(options.includePlans != undefined && { includePlans: options.includePlans.toString() }),
+      ...(options.anonymize != undefined && { anonymize: options.anonymize.toString() }),
+      ...(options.userId != undefined && { userId: options.userId.toString() }),
     });
 
     const response = await apiClient.get(`/subplan/extract/weekly?${params.toString()}`);
@@ -586,7 +586,7 @@ export const substituteApi = {
   },
 
   autoDetectScenario: async (userId?: number): Promise<unknown> => {
-    const params = userId !== undefined ? `?userId=${userId}` : '';
+    const params = userId != undefined ? `?userId=${userId}` : '';
     const response = await apiClient.get(`/subplan/extract/scenarios/auto${params}`);
     return response.data as unknown;
   },
@@ -597,10 +597,10 @@ export const substituteApi = {
     className?: string,
   ): Promise<unknown> => {
     const params = new URLSearchParams();
-    if (teacherName !== undefined && teacherName !== '') {
+    if (teacherName != undefined && teacherName != '') {
 params.append('teacherName', teacherName);
 }
-    if (className !== undefined && className !== '') {
+    if (className != undefined && className != '') {
 params.append('className', className);
 }
 
@@ -613,7 +613,7 @@ params.append('className', className);
     format: 'organized' | 'emergency' | 'card' | 'formatted' = 'organized',
   ): Promise<unknown> => {
     const params = new URLSearchParams();
-    if (userId !== undefined) {
+    if (userId != undefined) {
       params.append('userId', userId.toString());
     }
     params.append('format', format);
@@ -627,7 +627,7 @@ params.append('className', className);
     userId?: number,
   ): Promise<unknown> => {
     const params = new URLSearchParams({ date });
-    if (userId !== undefined) {
+    if (userId != undefined) {
       params.append('userId', userId.toString());
     }
 
@@ -641,7 +641,7 @@ params.append('className', className);
     userId?: number,
   ): Promise<unknown> => {
     const params = new URLSearchParams({ startDate, days: days.toString() });
-    if (userId !== undefined) {
+    if (userId != undefined) {
       params.append('userId', userId.toString());
     }
 

@@ -138,7 +138,7 @@ export function ConflictResolutionModal({
   const [_mergedData, _setMergedData] = useState<unknown>(null);
 
   const handleResolve = (): void => {
-    if (selectedResolution === 'merge' && _mergedData !== null) {
+    if (selectedResolution === 'merge' && _mergedData != null) {
       onResolve('merge', _mergedData);
     } else {
       onResolve(selectedResolution);
@@ -271,7 +271,7 @@ const styles = `
 `;
 
 // Inject styles
-if (typeof document !== 'undefined') {
+if (typeof document != 'undefined') {
   const styleSheet = document.createElement('style');
   styleSheet.innerText = styles;
   document.head.appendChild(styleSheet);

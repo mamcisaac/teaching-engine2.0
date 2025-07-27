@@ -39,7 +39,7 @@ export function RealTestProviders({
     return () => { // Cleanup
     };
 
-    if (initialRoute !== '/') {
+    if (initialRoute != '/') {
       window.history.pushState({}, '', initialRoute);
     }
   }, [initialRoute]);

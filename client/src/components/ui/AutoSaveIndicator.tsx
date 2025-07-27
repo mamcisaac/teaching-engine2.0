@@ -72,7 +72,7 @@ export function AutoSaveIndicator({
     }
 
     // Sync error
-    if (syncStatus === 'error' && syncError != null && syncError !== '') {
+    if (syncStatus === 'error' && syncError != null && syncError != '') {
       return {
         icon: <CloudOff className="w-3 h-3" />,
         text: 'Sync failed',
@@ -100,7 +100,7 @@ export function AutoSaveIndicator({
       };
     }
 
-    if (lastSaved !== null) {
+    if (lastSaved != null) {
       return {
         icon: <Check className="w-3 h-3" />,
         text: `Saved ${formatDistanceToNow(lastSaved)} ago`,
@@ -146,9 +146,9 @@ export function AutoSaveIndicator({
         <Button
           className="h-6 px-2 text-xs bg-orange-50 border-orange-200 text-orange-700 hover:bg-orange-100"
           disabled={isSaving || syncStatus === 'syncing'}
-          onClick={onManualSave}
           size="sm"
           variant="outline"
+          onClick={onManualSave}
         >
           <Save className="w-3 h-3 mr-1" />
           Save now
@@ -189,7 +189,7 @@ const autoSaveStyles = `
 `;
 
 // Inject styles
-if (typeof document !== 'undefined') {
+if (typeof document != 'undefined') {
   const styleSheet = document.createElement('style');
   styleSheet.innerText = autoSaveStyles;
   document.head.appendChild(styleSheet);

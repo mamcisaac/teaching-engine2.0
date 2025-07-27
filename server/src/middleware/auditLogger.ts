@@ -136,19 +136,22 @@ class AuditLogger {
   }
 
   private redactEmail(email?: string): string | undefined {
-    if (email === null || email === '') {
+    if (!email || email === '') {
       return undefined;
     }
     const [local, domain] = email.split('@');
+    if (!local || !domain) {
+      return undefined;
+    }
     return `${local.substring(0, 2)}***@${domain}`;
   }
 
   private maskIP(ip?: string): string | undefined {
-    if (ip === null || ip === '') {
+    if (!ip || ip === '') {
       return undefined;
     }
     const parts = ip.split('.');
-    if (parts.length === 4) {
+    if (parts.length === 4 && parts[0] && parts[1]) {
       return `${parts[0]}.${parts[1]}.xxx.xxx`;
     }
     return 'xxx.xxx.xxx.xxx';

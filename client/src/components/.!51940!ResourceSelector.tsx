@@ -30,7 +30,7 @@ export function ResourceSelector({
   // Filter resources
   const filteredResources = resources.filter((resource) => {
     // File type filter
-    if (selectedFileType && resource.type !== selectedFileType) {
+    if (selectedFileType && resource.type != selectedFileType) {
       return false;
     }
 

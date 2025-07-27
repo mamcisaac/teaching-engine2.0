@@ -191,16 +191,16 @@ export function useCurriculumExpectations(filters?: {
     queryKey: ['curriculum-expectations', filters],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (filters?.subject !== undefined && filters.subject !== '') {
+      if (filters?.subject != undefined && filters.subject != '') {
         params.append('subject', filters.subject);
       }
-      if (filters?.grade !== undefined) {
+      if (filters?.grade != undefined) {
         params.append('grade', filters.grade.toString());
       }
-      if (filters?.strand !== undefined && filters.strand !== '') {
+      if (filters?.strand != undefined && filters.strand != '') {
         params.append('strand', filters.strand);
       }
-      if (filters?.search !== undefined && filters.search !== '') {
+      if (filters?.search != undefined && filters.search != '') {
         params.append('search', filters.search);
       }
 
@@ -217,7 +217,7 @@ export function useCurriculumExpectation(id: string): ReturnType<typeof useQuery
       const response = await apiClient.get(`/api/curriculum-expectations/${id}`);
       return response.data as CurriculumExpectation;
     },
-    enabled: id !== '',
+    enabled: id != '',
   });
 }
 
@@ -271,13 +271,13 @@ export function useLongRangePlans(filters?: {
     queryKey: ['long-range-plans', filters],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (filters?.academicYear !== undefined && filters.academicYear !== '') {
+      if (filters?.academicYear != undefined && filters.academicYear != '') {
         params.append('academicYear', filters.academicYear);
       }
-      if (filters?.subject !== undefined && filters.subject !== '') {
+      if (filters?.subject != undefined && filters.subject != '') {
         params.append('subject', filters.subject);
       }
-      if (filters?.grade !== undefined) {
+      if (filters?.grade != undefined) {
         params.append('grade', filters.grade.toString());
       }
 
@@ -294,7 +294,7 @@ export function useLongRangePlan(id: string): ReturnType<typeof useQuery<LongRan
       const response = await apiClient.get(`/api/long-range-plans/${id}`);
       return response.data as LongRangePlan;
     },
-    enabled: id !== '',
+    enabled: id != '',
   });
 }
 
@@ -361,13 +361,13 @@ export function useUnitPlans(filters?: {
     queryKey: ['unit-plans', filters],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (filters?.longRangePlanId !== undefined && filters.longRangePlanId !== '') {
+      if (filters?.longRangePlanId != undefined && filters.longRangePlanId != '') {
         params.append('longRangePlanId', filters.longRangePlanId);
       }
-      if (filters?.startDate !== undefined && filters.startDate !== '') {
+      if (filters?.startDate != undefined && filters.startDate != '') {
         params.append('startDate', filters.startDate);
       }
-      if (filters?.endDate !== undefined && filters.endDate !== '') {
+      if (filters?.endDate != undefined && filters.endDate != '') {
         params.append('endDate', filters.endDate);
       }
 
@@ -384,7 +384,7 @@ export function useUnitPlan(id: string): ReturnType<typeof useQuery<UnitPlan, Er
       const response = await apiClient.get(`/api/unit-plans/${id}`);
       return response.data as UnitPlan;
     },
-    enabled: id !== '',
+    enabled: id != '',
   });
 }
 
@@ -457,16 +457,16 @@ export function useETFOLessonPlans(filters?: {
     queryKey: ['etfo-lesson-plans', filters],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (filters?.unitPlanId !== undefined && filters.unitPlanId !== '') {
+      if (filters?.unitPlanId != undefined && filters.unitPlanId != '') {
         params.append('unitPlanId', filters.unitPlanId);
       }
-      if (filters?.startDate !== undefined && filters.startDate !== '') {
+      if (filters?.startDate != undefined && filters.startDate != '') {
         params.append('startDate', filters.startDate);
       }
-      if (filters?.endDate !== undefined && filters.endDate !== '') {
+      if (filters?.endDate != undefined && filters.endDate != '') {
         params.append('endDate', filters.endDate);
       }
-      if (filters?.isSubFriendly !== undefined) {
+      if (filters?.isSubFriendly != undefined) {
         params.append('isSubFriendly', filters.isSubFriendly.toString());
       }
 
@@ -483,7 +483,7 @@ export function useETFOLessonPlan(id: string): ReturnType<typeof useQuery<ETFOLe
       const response = await apiClient.get(`/api/etfo-lesson-plans/${id}`);
       return response.data as ETFOLessonPlan;
     },
-    enabled: id !== '',
+    enabled: id != '',
   });
 }
 
@@ -551,16 +551,16 @@ export function useDaybookEntries(filters?: {
     queryKey: ['daybook-entries', filters],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (filters?.startDate !== undefined && filters.startDate !== '') {
+      if (filters?.startDate != undefined && filters.startDate != '') {
         params.append('startDate', filters.startDate);
       }
-      if (filters?.endDate !== undefined && filters.endDate !== '') {
+      if (filters?.endDate != undefined && filters.endDate != '') {
         params.append('endDate', filters.endDate);
       }
-      if (filters?.hasLessonPlan !== undefined) {
+      if (filters?.hasLessonPlan != undefined) {
         params.append('hasLessonPlan', filters.hasLessonPlan.toString());
       }
-      if (filters?.rating !== undefined) {
+      if (filters?.rating != undefined) {
         params.append('rating', filters.rating.toString());
       }
 
@@ -577,7 +577,7 @@ export function useDaybookEntry(id: string): ReturnType<typeof useQuery<DaybookE
       const response = await apiClient.get(`/api/daybook-entries/${id}`);
       return response.data as DaybookEntry;
     },
-    enabled: id !== '',
+    enabled: id != '',
   });
 }
 
@@ -594,7 +594,7 @@ export function useCreateDaybookEntry(): ReturnType<typeof useMutation<DaybookEn
     onSuccess: (_data) => {
       void (async (): Promise<void> => {
         await queryClient.invalidateQueries({ queryKey: ['daybook-entries'] });
-        if (_data.lessonPlanId !== undefined && _data.lessonPlanId !== '') {
+        if (_data.lessonPlanId != undefined && _data.lessonPlanId != '') {
           await queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans', _data.lessonPlanId] });
         }
       })();

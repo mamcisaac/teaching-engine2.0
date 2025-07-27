@@ -23,7 +23,6 @@ return null;
       animate={{ scale: 1 }}
       className="absolute bg-transparent"
       initial={{ scale: 0 }}
-      onClick={onClick}
       style={{
         top: highlightPosition.top,
         left: highlightPosition.left,
@@ -34,6 +33,7 @@ return null;
         pointerEvents: 'none',
       }}
       transition={{ type: 'spring', damping: 25 }}
+      onClick={onClick}
     />
   );
 }

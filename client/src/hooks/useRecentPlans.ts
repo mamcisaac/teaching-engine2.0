@@ -16,7 +16,7 @@ export function useRecentPlans(options?: UseRecentPlansOptions): ReturnType<type
     queryKey: ['recent-plans', options?.limit],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (options?.limit !== undefined && options.limit !== 0) {
+      if (options?.limit != undefined && options.limit != 0) {
         params.append('limit', options.limit.toString());
       }
       const response = await apiClient.get<RecentPlan[]>(`/api/recent-plans?${params.toString()}`);

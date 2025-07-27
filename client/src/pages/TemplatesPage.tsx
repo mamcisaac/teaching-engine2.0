@@ -95,11 +95,11 @@ export function TemplatesPage(): React.ReactElement {
   // Build search options
   const searchOptions: TemplateSearchOptions = {
     search: searchTerm || undefined,
-    type: selectedType !== 'all' ? selectedType : undefined,
-    category: selectedCategory !== 'all' ? selectedCategory : undefined,
-    subject: selectedSubject !== 'all' ? selectedSubject : undefined,
-    gradeMin: selectedGrade !== 'all' ? selectedGrade : undefined,
-    gradeMax: selectedGrade !== 'all' ? selectedGrade : undefined,
+    type: selectedType != 'all' ? selectedType : undefined,
+    category: selectedCategory != 'all' ? selectedCategory : undefined,
+    subject: selectedSubject != 'all' ? selectedSubject : undefined,
+    gradeMin: selectedGrade != 'all' ? selectedGrade : undefined,
+    gradeMax: selectedGrade != 'all' ? selectedGrade : undefined,
     isSystem: view === 'system' ? true : undefined,
     isPublic: view === 'public' ? true : undefined,
     sortBy,
@@ -211,10 +211,10 @@ return;
               <CardTitle className="text-lg">{template.title}</CardTitle>
               <CardDescription className="text-sm">
                 {template.type === 'UNIT_PLAN' ? 'Unit Plan' : 'Lesson Plan'}
-                {template.subject !== undefined && template.subject !== '' && ` • ${template.subject}`}
+                {template.subject != undefined && template.subject != '' && ` • ${template.subject}`}
                 {template.gradeMin === template.gradeMax
                   ? ` • Grade ${template.gradeMin}`
-                  : (template.gradeMin !== undefined && template.gradeMax !== undefined)
+                  : (template.gradeMin != undefined && template.gradeMax != undefined)
                     ? ` • Grades ${template.gradeMin}-${template.gradeMax}`
                     : ''}
               </CardDescription>
@@ -241,7 +241,7 @@ return;
 
         <div className="flex flex-wrap gap-1 mb-4">
           {template.tags.slice(0, 3).map((tag, _index) => (
-            <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded" key={tag}>
+            <span key={tag} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">
               {tag}
             </span>
           ))}
@@ -254,7 +254,7 @@ return;
 
         <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
           <div className="flex items-center gap-4">
-            {(template.averageRating !== undefined && template.averageRating !== 0) && (
+            {(template.averageRating != undefined && template.averageRating != 0) && (
               <div className="flex items-center gap-1">
                 <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                 <span>{template.averageRating.toFixed(1)}</span>
@@ -266,13 +266,13 @@ return;
             </div>
           </div>
 
-          {(template.estimatedWeeks !== undefined && template.estimatedWeeks !== 0) && (
+          {(template.estimatedWeeks != undefined && template.estimatedWeeks != 0) && (
             <div className="flex items-center gap-1">
               <Calendar className="h-4 w-4" />
               <span>{template.estimatedWeeks}w</span>
             </div>
           )}
-          {(template.estimatedMinutes !== undefined && template.estimatedMinutes !== 0) && (
+          {(template.estimatedMinutes != undefined && template.estimatedMinutes != 0) && (
             <div className="flex items-center gap-1">
               <Clock className="h-4 w-4" />
               <span>{template.estimatedMinutes}m</span>
@@ -283,11 +283,11 @@ return;
         <div className="flex gap-2">
           <Button
             className="flex-1"
+            size="sm"
             onClick={() => {
               setSelectedTemplate(template);
               setIsPreviewModalOpen(true);
             }}
-            size="sm"
           >
             <Eye className="h-4 w-4 mr-1" />
             Preview
@@ -295,11 +295,11 @@ return;
 
           <Button
             className="flex-1"
+            size="sm"
+            variant="outline"
             onClick={() => {
  void handleApplyTemplate(template); 
 }}
-            size="sm"
-            variant="outline"
           >
             <Plus className="h-4 w-4 mr-1" />
             Use
@@ -311,14 +311,14 @@ return;
             <Copy className="h-4 w-4" />
           </Button>
 
-          {(template.createdByUserId !== undefined && !template.isSystem) && (
+          {(template.createdByUserId != undefined && !template.isSystem) && (
             <Button
+              size="sm"
+              variant="ghost"
               onClick={() => {
                 setSelectedTemplate(template);
                 setIsDeleteModalOpen(true);
               }}
-              size="sm"
-              variant="ghost"
             >
               <Trash2 className="h-4 w-4" />
             </Button>
@@ -376,20 +376,20 @@ return;
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
             <Input
               className="pl-10"
+              placeholder="Search templates..."
+              value={searchTerm}
               onChange={(e) => {
  setSearchTerm(e.target.value); 
 }}
-              placeholder="Search templates..."
-              value={searchTerm}
             />
           </div>
 
           <Button
             className="flex items-center gap-2"
+            variant="outline"
             onClick={() => {
  setShowFilters(!showFilters); 
 }}
-            variant="outline"
           >
             <Filter className="h-4 w-4" />
             Filters
@@ -409,11 +409,11 @@ return;
                   <Label htmlFor="input">View</Label>
                   <select
                     className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
+                    value={view}
                     onChange={(e) => {
  setView(e.target.value as 'all' | 'system' | 'public' | 'mine'); 
 }
                     }
-                    value={view}
                   >
                     <option value="all">All Templates</option>
                     <option value="system">System Templates</option>
@@ -426,10 +426,10 @@ return;
                   <Label htmlFor="input">Type</Label>
                   <select
                     className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
+                    value={selectedType}
                     onChange={(e) => {
  setSelectedType(e.target.value as TemplateType | 'all'); 
 }}
-                    value={selectedType}
                   >
                     <option value="all">All Types</option>
                     <option value="UNIT_PLAN">Unit Plans</option>
@@ -441,11 +441,11 @@ return;
                   <Label htmlFor="input">Category</Label>
                   <select
                     className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
+                    value={selectedCategory}
                     onChange={(e) => {
  setSelectedCategory(e.target.value as TemplateCategory | 'all'); 
 }
                     }
-                    value={selectedCategory}
                   >
                     <option value="all">All Categories</option>
                     {Object.entries(TEMPLATE_CATEGORIES).map(([key, { label }]) => (
@@ -460,10 +460,10 @@ return;
                   <Label htmlFor="input">Subject</Label>
                   <select
                     className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
+                    value={selectedSubject}
                     onChange={(e) => {
  setSelectedSubject(e.target.value); 
 }}
-                    value={selectedSubject}
                   >
                     <option value="all">All Subjects</option>
                     {filterOptions?.subjects.map((subject, _index) => (
@@ -478,11 +478,11 @@ return;
                   <Label htmlFor="input">Grade</Label>
                   <select
                     className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
+                    value={selectedGrade}
                     onChange={(e) => {
  setSelectedGrade(e.target.value === 'all' ? 'all' : parseInt(e.target.value)); 
 }
                     }
-                    value={selectedGrade}
                   >
                     <option value="all">All Grades</option>
                     {filterOptions?.grades.map((grade, _index) => (
@@ -497,13 +497,13 @@ return;
                   <Label htmlFor="input">Sort By</Label>
                   <select
                     className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
+                    value={sortBy}
                     onChange={(e) => {
  setSortBy(
                         e.target.value as 'title' | 'usageCount' | 'averageRating' | 'createdAt',
                       ); 
 }
                     }
-                    value={sortBy}
                   >
                     <option value="createdAt">Created Date</option>
                     <option value="title">Title</option>
@@ -516,10 +516,10 @@ return;
                   <Label htmlFor="input">Order</Label>
                   <select
                     className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
+                    value={sortOrder}
                     onChange={(e) => {
  setSortOrder(e.target.value as 'asc' | 'desc'); 
 }}
-                    value={sortOrder}
                   >
                     <option value="desc">Descending</option>
                     <option value="asc">Ascending</option>
@@ -569,7 +569,7 @@ return;
       )}
 
       {/* Create Template Modal */}
-      <Dialog onOpenChange={setIsCreateModalOpen} open={isCreateModalOpen}>
+      <Dialog open={isCreateModalOpen} onOpenChange={setIsCreateModalOpen}>
         <div className="p-6 max-w-2xl max-h-[90vh] overflow-y-auto">
           <h3 className="text-lg font-semibold mb-4">Create New Template</h3>
 
@@ -581,24 +581,24 @@ return;
             <div>
               <Label htmlFor="input">Title</Label>
               <Input
+                required
+                placeholder="Template title..."
+                value={formData.title}
                 onChange={(e) => {
  setFormData({ ...formData, title: e.target.value }); 
 }}
-                placeholder="Template title..."
-                required
-                value={formData.title}
               />
             </div>
 
             <div>
               <Label htmlFor="input">Description</Label>
               <Textarea
-                onChange={(e) => {
- setFormData({ ...formData, description: e.target.value }); 
-}}
                 placeholder="Describe this template..."
                 rows={3}
                 value={formData.description}
+                onChange={(e) => {
+ setFormData({ ...formData, description: e.target.value }); 
+}}
               />
             </div>
 
@@ -606,13 +606,13 @@ return;
               <div>
                 <Label htmlFor="input">Type</Label>
                 <select
+                  required
                   className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
+                  value={formData.type}
                   onChange={(e) => {
  setFormData({ ...formData, type: e.target.value as TemplateType }); 
 }
                   }
-                  required
-                  value={formData.type}
                 >
                   <option value="UNIT_PLAN">Unit Plan</option>
                   <option value="LESSON_PLAN">Lesson Plan</option>
@@ -622,13 +622,13 @@ return;
               <div>
                 <Label htmlFor="input">Category</Label>
                 <select
+                  required
                   className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
+                  value={formData.category}
                   onChange={(e) => {
  setFormData({ ...formData, category: e.target.value as TemplateCategory }); 
 }
                   }
-                  required
-                  value={formData.category}
                 >
                   {Object.entries(TEMPLATE_CATEGORIES).map(([key, { label }]) => (
                     <option key={key} value={key}>
@@ -642,11 +642,11 @@ return;
             <div>
               <Label htmlFor="input">Subject (optional)</Label>
               <Input
+                placeholder="Mathematics, Language Arts, etc."
+                value={formData.subject ?? ''}
                 onChange={(e) => {
  setFormData({ ...formData, subject: e.target.value }); 
 }}
-                placeholder="Mathematics, Language Arts, etc."
-                value={formData.subject ?? ''}
               />
             </div>
 
@@ -656,15 +656,15 @@ return;
                 <Input
                   max="12"
                   min="1"
+                  type="number"
+                  value={formData.gradeMin ?? ''}
                   onChange={(e) => {
  setFormData({
                       ...formData,
-                      gradeMin: e.target.value !== '' ? parseInt(e.target.value) : undefined,
+                      gradeMin: e.target.value != '' ? parseInt(e.target.value) : undefined,
                     }); 
 }
                   }
-                  type="number"
-                  value={formData.gradeMin ?? ''}
                 />
               </div>
 
@@ -673,15 +673,15 @@ return;
                 <Input
                   max="12"
                   min="1"
+                  type="number"
+                  value={formData.gradeMax ?? ''}
                   onChange={(e) => {
  setFormData({
                       ...formData,
-                      gradeMax: e.target.value !== '' ? parseInt(e.target.value) : undefined,
+                      gradeMax: e.target.value != '' ? parseInt(e.target.value) : undefined,
                     }); 
 }
                   }
-                  type="number"
-                  value={formData.gradeMax ?? ''}
                 />
               </div>
             </div>
@@ -691,10 +691,10 @@ return;
                 checked={formData.isPublic}
                 className="rounded"
                 id="isPublic"
+                type="checkbox"
                 onChange={(e) => {
  setFormData({ ...formData, isPublic: e.target.checked }); 
 }}
-                type="checkbox"
               />
               <Label htmlFor="isPublic">
                 Make this template public (other teachers can use it)
@@ -720,7 +720,7 @@ return;
       </Dialog>
 
       {/* Preview Modal */}
-      <Dialog onOpenChange={setIsPreviewModalOpen} open={isPreviewModalOpen}>
+      <Dialog open={isPreviewModalOpen} onOpenChange={setIsPreviewModalOpen}>
         <div className="p-6 max-w-4xl max-h-[90vh] overflow-y-auto">
           {selectedTemplate && (
             <React.Fragment>
@@ -740,10 +740,10 @@ return;
                     Use Template
                   </Button>
                   <Button
+                    variant="outline"
                     onClick={() => {
  void handleDuplicateTemplate(selectedTemplate); 
 }}
-                    variant="outline"
                   >
                     Duplicate
                   </Button>
@@ -762,13 +762,13 @@ return;
                       <span className="font-medium">Category:</span>
                       <div>{TEMPLATE_CATEGORIES[selectedTemplate.category].label}</div>
                     </div>
-                    {selectedTemplate.subject !== undefined && selectedTemplate.subject !== '' && (
+                    {selectedTemplate.subject != undefined && selectedTemplate.subject != '' && (
                       <div>
                         <span className="font-medium">Subject:</span>
                         <div>{selectedTemplate.subject}</div>
                       </div>
                     )}
-                    {(selectedTemplate.gradeMin !== undefined || selectedTemplate.gradeMax !== undefined) && (
+                    {(selectedTemplate.gradeMin != undefined || selectedTemplate.gradeMax != undefined) && (
                       <div>
                         <span className="font-medium">Grade:</span>
                         <div>
@@ -786,14 +786,14 @@ return;
                   <div className="space-y-4">
                     <h4 className="font-semibold">Unit Plan Content</h4>
 
-                    {selectedTemplate.content.overview !== undefined && selectedTemplate.content.overview !== '' && (
+                    {selectedTemplate.content.overview != undefined && selectedTemplate.content.overview != '' && (
                       <div>
                         <h5 className="font-medium mb-2">Overview</h5>
                         <p className="text-gray-700">{selectedTemplate.content.overview}</p>
                       </div>
                     )}
 
-                    {selectedTemplate.content.bigIdeas !== undefined && selectedTemplate.content.bigIdeas !== '' && (
+                    {selectedTemplate.content.bigIdeas != undefined && selectedTemplate.content.bigIdeas != '' && (
                       <div>
                         <h5 className="font-medium mb-2">Big Ideas</h5>
                         <p className="text-gray-700">{selectedTemplate.content.bigIdeas}</p>
@@ -806,7 +806,7 @@ return;
                           <h5 className="font-medium mb-2">Learning Goals</h5>
                           <ul className="list-disc list-inside space-y-1">
                             {selectedTemplate.content.learningGoals.map((goal, _index) => (
-                              <li className="text-gray-700" key={_index}>
+                              <li key={_index} className="text-gray-700">
                                 {goal}
                               </li>
                             ))}
@@ -820,7 +820,7 @@ return;
                           <h5 className="font-medium mb-2">Essential Questions</h5>
                           <ul className="list-disc list-inside space-y-1">
                             {selectedTemplate.content.essentialQuestions.map((question, _index) => (
-                              <li className="text-gray-700" key={_index}>
+                              <li key={_index} className="text-gray-700">
                                 {question}
                               </li>
                             ))}
@@ -840,7 +840,7 @@ return;
                           <h5 className="font-medium mb-2">Learning Objectives</h5>
                           <ul className="list-disc list-inside space-y-1">
                             {selectedTemplate.content.objectives.map((objective, _index) => (
-                              <li className="text-gray-700" key={_index}>
+                              <li key={_index} className="text-gray-700">
                                 {objective}
                               </li>
                             ))}
@@ -854,7 +854,7 @@ return;
                           <h5 className="font-medium mb-2">Materials</h5>
                           <ul className="list-disc list-inside space-y-1">
                             {selectedTemplate.content.materials.map((material, _index) => (
-                              <li className="text-gray-700" key={_index}>
+                              <li key={_index} className="text-gray-700">
                                 {material}
                               </li>
                             ))}
@@ -863,21 +863,21 @@ return;
                       )}
 
                     <div className="grid gap-4">
-                      {selectedTemplate.content.mindsOn !== undefined && selectedTemplate.content.mindsOn !== '' && (
+                      {selectedTemplate.content.mindsOn != undefined && selectedTemplate.content.mindsOn != '' && (
                         <div>
                           <h5 className="font-medium mb-2">Minds On</h5>
                           <p className="text-gray-700">{selectedTemplate.content.mindsOn}</p>
                         </div>
                       )}
 
-                      {selectedTemplate.content.action !== undefined && selectedTemplate.content.action !== '' && (
+                      {selectedTemplate.content.action != undefined && selectedTemplate.content.action != '' && (
                         <div>
                           <h5 className="font-medium mb-2">Action</h5>
                           <p className="text-gray-700">{selectedTemplate.content.action}</p>
                         </div>
                       )}
 
-                      {selectedTemplate.content.consolidation !== undefined && selectedTemplate.content.consolidation !== '' && (
+                      {selectedTemplate.content.consolidation != undefined && selectedTemplate.content.consolidation != '' && (
                         <div>
                           <h5 className="font-medium mb-2">Consolidation</h5>
                           <p className="text-gray-700">{selectedTemplate.content.consolidation}</p>
@@ -894,8 +894,8 @@ return;
                     <div className="flex flex-wrap gap-2">
                       {selectedTemplate.tags.map((tag, _index) => (
                         <span
-                          className="px-2 py-1 bg-gray-100 text-gray-700 text-sm rounded"
                           key={tag}
+                          className="px-2 py-1 bg-gray-100 text-gray-700 text-sm rounded"
                         >
                           {tag}
                         </span>
@@ -910,7 +910,7 @@ return;
       </Dialog>
 
       {/* Delete Confirmation Modal */}
-      <Dialog onOpenChange={setIsDeleteModalOpen} open={isDeleteModalOpen}>
+      <Dialog open={isDeleteModalOpen} onOpenChange={setIsDeleteModalOpen}>
         <div className="p-6">
           <h3 className="text-lg font-semibold mb-4">Delete Template</h3>
           <p className="text-gray-600 mb-6">

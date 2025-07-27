@@ -46,10 +46,10 @@ export function LoadingSkeleton({
   };
 
   const containerStyle: React.CSSProperties = {};
-  if (height != null && height !== '') {
+  if (height != null && height != '') {
 containerStyle.height = height;
 }
-  if (width != null && width !== '') {
+  if (width != null && width != '') {
 containerStyle.width = width;
 }
 
@@ -82,6 +82,7 @@ containerStyle.width = width;
           case 'avatar':
             return (
               <SkeletonBox
+                key={index}
                 className={cn(
                   'rounded-full flex-shrink-0',
                   ((): string => {
@@ -95,19 +96,18 @@ return 'h-16 w-16';
                   })()
                 )}
                 data-testid="skeleton-avatar"
-                key={index}
               />
             );
           case 'text':
             return (
-              <div className="flex-1 space-y-2" data-testid="skeleton-text" key={index}>
+              <div key={index} className="flex-1 space-y-2" data-testid="skeleton-text">
                 {Array.from({ length: item.lines ?? 2 }).map((_, lineIndex) => (
                   <SkeletonBox
+                    key={lineIndex}
                     className={cn(
                       'h-4',
                       lineIndex === (item.lines ?? 2) - 1 ? 'w-3/4' : 'w-full'
                     )}
-                    key={lineIndex}
                   />
                 ))}
               </div>
@@ -115,15 +115,16 @@ return 'h-16 w-16';
           case 'button':
             return (
               <SkeletonBox
+                key={index}
                 className="h-9 rounded-md"
                 data-testid="skeleton-button"
-                key={index}
                 style={{ width: item.width ?? '100px' }}
               />
             );
           case 'image':
             return (
               <SkeletonBox
+                key={index}
                 className={cn(
                   'rounded-lg',
                   ((): string => {
@@ -136,7 +137,6 @@ return 'h-48 w-48';
                     return 'h-32 w-32';
                   })()
                 )}
-                key={index}
               />
             );
           default:
@@ -188,7 +188,7 @@ return 'h-48 w-48';
           style={containerStyle}
         >
           {Array.from({ length: rows }).map((_, index) => (
-            <div className="flex items-center space-x-3" data-testid={`skeleton-row-${index}`} key={index}>
+            <div key={index} className="flex items-center space-x-3" data-testid={`skeleton-row-${index}`}>
               <SkeletonBox className="h-10 w-10 rounded-full flex-shrink-0" />
               <div className="flex-1 space-y-2">
                 <SkeletonBox className="h-4 w-3/4" />
@@ -211,19 +211,19 @@ return 'h-48 w-48';
           {/* Table Header */}
           <div className="flex space-x-4 mb-4" data-testid="skeleton-table-header">
             {Array.from({ length: columns }).map((_, index) => (
-              <SkeletonBox className="h-4 flex-1" key={index} />
+              <SkeletonBox key={index} className="h-4 flex-1" />
             ))}
           </div>
           
           {/* Table Rows */}
           <div className="space-y-3">
             {Array.from({ length: rows }).map((_, rowIndex) => (
-              <div className="flex space-x-4" data-testid={`skeleton-table-row-${rowIndex}`} key={rowIndex}>
+              <div key={rowIndex} className="flex space-x-4" data-testid={`skeleton-table-row-${rowIndex}`}>
                 {Array.from({ length: columns }).map((_, colIndex) => (
                   <SkeletonBox 
+                    key={colIndex} 
                     className="h-4 flex-1" 
-                    data-testid={`skeleton-table-cell-${rowIndex}-${colIndex}`} 
-                    key={colIndex}
+                    data-testid={`skeleton-table-cell-${rowIndex}-${colIndex}`}
                   />
                 ))}
               </div>
@@ -243,12 +243,12 @@ return 'h-48 w-48';
         >
           {Array.from({ length: lines }).map((_, index) => (
             <SkeletonBox
+              key={index}
               className={cn(
                 'h-4',
                 index === lines - 1 ? 'w-3/4' : 'w-full'
               )}
               data-testid={`skeleton-text-line-${index}`}
-              key={index}
             />
           ))}
         </div>

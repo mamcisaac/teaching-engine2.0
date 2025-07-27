@@ -82,7 +82,7 @@ return null;
         </div>
 
         {/* Big Ideas - only show if not compact and exists */}
-        {!compact && (unit.bigIdeas !== undefined && unit.bigIdeas !== '') && (
+        {!compact && (unit.bigIdeas != undefined && unit.bigIdeas != '') && (
           <div>
             <h4 className="text-sm font-medium text-gray-700 mb-1">Big Ideas</h4>
             <p className="text-sm text-gray-600 line-clamp-2">{unit.bigIdeas}</p>
@@ -99,11 +99,11 @@ return null;
           <div className="flex gap-4 text-sm text-gray-500">
             <span className="flex items-center">
               <span className="font-medium">{counts.lessons}</span>
-              <span className="ml-1">lesson{counts.lessons !== 1 ? 's' : ''}</span>
+              <span className="ml-1">lesson{counts.lessons != 1 ? 's' : ''}</span>
             </span>
             <span className="flex items-center">
               <span className="font-medium">{counts.expectations}</span>
-              <span className="ml-1">expectation{counts.expectations !== 1 ? 's' : ''}</span>
+              <span className="ml-1">expectation{counts.expectations != 1 ? 's' : ''}</span>
             </span>
           </div>
 

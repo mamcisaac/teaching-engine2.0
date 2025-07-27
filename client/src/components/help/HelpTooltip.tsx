@@ -138,11 +138,11 @@ top = 8;
       {isVisible &&
         createPortal(
           <div
+            ref={tooltipRef}
             className={clsx(
               'fixed z-50 px-3 py-2 text-sm text-white bg-gray-900 rounded-lg shadow-lg',
               'transition-opacity duration-200',
             )}
-            ref={tooltipRef}
             role="tooltip"
             style={{
               top: tooltipPosition.top,

@@ -15,7 +15,7 @@ export function PlannerFilters({ filters, onChange }: Props): React.ReactElement
     return () => { // Cleanup
     };
 
-    if (typeof window !== 'undefined') {
+    if (typeof window != 'undefined') {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(filters));
     }
   }, [filters]);
@@ -23,13 +23,13 @@ export function PlannerFilters({ filters, onChange }: Props): React.ReactElement
   return (
     <div className="flex gap-2" title="Filter suggested activities">
       {TAGS.map((t, _index) => (
-        <label className="inline-flex items-center gap-1" key={t} title={`Show ${t} activities`}>
+        <label key={t} className="inline-flex items-center gap-1" title={`Show ${t} activities`}>
           <input
             checked={filters[t] ?? true}
+            type="checkbox"
             onChange={(e) => {
  onChange({ ...filters, [t]: e.target.checked }); 
 }}
-            type="checkbox"
           />
           {t}
         </label>
@@ -43,5 +43,5 @@ export function loadPlannerFilters(): Record<string, boolean> {
 return {};
 }
   const stored = localStorage.getItem(STORAGE_KEY);
-  return (stored !== null && stored !== '') ? (safeJsonParse(stored, {}) as Record<string, boolean>) : {};
+  return (stored != null && stored != '') ? (safeJsonParse(stored, {}) as Record<string, boolean>) : {};
 }

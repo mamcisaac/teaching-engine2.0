@@ -140,9 +140,9 @@ return;
         <div className="px-6 py-4 bg-gray-50 rounded-b-lg">
           <div className="flex items-center justify-between">
             <Button
-              onClick={onSkip}
               size="sm"
               variant="ghost"
+              onClick={onSkip}
             >
               Skip Tutorial
             </Button>
@@ -150,26 +150,26 @@ return;
             <div className="flex space-x-2">
               <Button
                 disabled={isFirstStep}
-                onClick={onPrevious}
                 size="sm"
                 variant="secondary"
+                onClick={onPrevious}
               >
                 Previous
               </Button>
               
               {isLastStep ? (
                 <Button
-                  onClick={onComplete}
                   size="sm"
                   variant="primary"
+                  onClick={onComplete}
                 >
                   Complete
                 </Button>
               ) : (
                 <Button
-                  onClick={onNext}
                   size="sm"
                   variant="primary"
+                  onClick={onNext}
                 >
                   Next
                 </Button>

@@ -8,8 +8,8 @@ const ScrollArea = forwardRef<
   ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root>
 >(({ className, children, ...props }, ref): JSX.Element => (
   <ScrollAreaPrimitive.Root
-    className={cn('relative overflow-hidden', className)}
     ref={ref}
+    className={cn('relative overflow-hidden', className)}
     {...props}
   >
     <ScrollAreaPrimitive.Viewport className="h-full w-full rounded-[inherit]">
@@ -26,6 +26,7 @@ const ScrollBar = forwardRef<
   ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>
 >(({ className, orientation = 'vertical', ...props }, ref): JSX.Element => (
   <ScrollAreaPrimitive.ScrollAreaScrollbar
+    ref={ref}
     className={cn(
       'flex touch-none select-none transition-colors',
       orientation === 'vertical' && 'h-full w-2.5 border-l border-l-transparent p-[1px]',
@@ -33,7 +34,6 @@ const ScrollBar = forwardRef<
       className,
     )}
     orientation={orientation}
-    ref={ref}
     {...props}
   >
     <ScrollAreaPrimitive.ScrollAreaThumb className="relative flex-1 rounded-full bg-border" />

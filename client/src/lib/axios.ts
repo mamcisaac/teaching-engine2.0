@@ -12,7 +12,7 @@ const api = axios.create({
 
 // Type guard for checking if auth header is valid
 function isValidAuthHeader(header: string | null | undefined): header is string {
-  return header !== null && header !== undefined && header.length > 0;
+  return header != null && header != undefined && header.length > 0;
 }
 
 // Add request interceptor to include auth token
@@ -48,7 +48,7 @@ api.interceptors.response.use(
   async (error: AxiosError) => {
     const originalRequest = error.config as AxiosRequestConfig & { _retry?: boolean };
 
-    if (error.response?.status === 401 && originalRequest._retry !== true) {
+    if (error.response?.status === 401 && originalRequest._retry != true) {
       originalRequest._retry = true;
 
       // Convert AxiosResponse to standard Response for compatibility with authService

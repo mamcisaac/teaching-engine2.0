@@ -8,6 +8,7 @@ export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ className, error, ...props }, ref): ReactElement => (
       <textarea
+        ref={ref}
         className={clsx(
           'flex min-h-[80px] w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm',
           'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent',
@@ -15,7 +16,6 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           error != null && error && 'border-red-500 focus:ring-red-500',
           className,
         )}
-        ref={ref}
         {...props}
       />
     ),

@@ -32,7 +32,7 @@ export function ParentNewsletterPage(): React.ReactElement {
   const { t: _t, language } = useLanguage();
   
   // State
-  const [showCreateForm, setShowCreateForm] = useState(id == null);
+  const [showCreateForm, setShowCreateForm] = useState(id === null);
   const [selectedStudentIds, setSelectedStudentIds] = useState<number[]>([]);
   const [dateRange, setDateRange] = useState({
     from: startOfMonth(new Date()),
@@ -87,10 +87,10 @@ export function ParentNewsletterPage(): React.ReactElement {
       
       // Create draft from generated content
       const draft: NewsletterDraft = {
-        title: (result.metadata.templateType != null && result.metadata.templateType !== '') ? 
+        title: (result.metadata.templateType != null && result.metadata.templateType != '') ? 
           `${result.metadata.templateType.charAt(0).toUpperCase()}${result.metadata.templateType.slice(1)} Newsletter` :
           'Parent Newsletter',
-        titleFr: (result.metadata.templateType != null && result.metadata.templateType !== '') ? 
+        titleFr: (result.metadata.templateType != null && result.metadata.templateType != '') ? 
           `Bulletin ${result.metadata.templateType === 'weekly' ? 'Hebdomadaire' : 'Mensuel'}` :
           'Bulletin aux Parents',
         studentIds: selectedStudentIds,
@@ -145,7 +145,7 @@ return;
   };
 
   const handleSendNewsletter = async (draft: NewsletterDraft): Promise<void> => {
-    if (draft.id == null || draft.id === '') {
+    if (draft.id === null || draft.id === '') {
 return;
 }
     
@@ -176,7 +176,7 @@ return;
   };
 
   // Loading states
-  if (studentsLoading || draftsLoading || ((id != null && id !== '') && newsletterLoading)) {
+  if (studentsLoading || draftsLoading || ((id != null && id != '') && newsletterLoading)) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
@@ -211,14 +211,14 @@ return;
                   <input
                     className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     id="date-from"
+                    type="date"
+                    value={format(dateRange.from, 'yyyy-MM-dd')}
                     onChange={(e) => {
  setDateRange(prev => ({ 
                       ...prev, 
                       from: new Date(e.target.value) 
                     })); 
 }}
-                    type="date"
-                    value={format(dateRange.from, 'yyyy-MM-dd')}
                   />
                 </div>
                 <div>
@@ -226,14 +226,14 @@ return;
                   <input
                     className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     id="date-to"
+                    type="date"
+                    value={format(dateRange.to, 'yyyy-MM-dd')}
                     onChange={(e) => {
  setDateRange(prev => ({ 
                       ...prev, 
                       to: new Date(e.target.value) 
                     })); 
 }}
-                    type="date"
-                    value={format(dateRange.to, 'yyyy-MM-dd')}
                   />
                 </div>
               </div>
@@ -247,13 +247,13 @@ return;
               <div className="flex gap-3">
                 {(['friendly', 'formal', 'informative'] as NewsletterTone[]).map((toneOption, _index) => (
                   <button
+                    key={toneOption}
                     className={cn(
                       "px-4 py-2 rounded-lg border transition-colors",
                       tone === toneOption
                         ? "bg-blue-600 text-white border-blue-600"
                         : "bg-white text-gray-700 border-gray-300 hover:border-gray-400"
                     )}
-                    key={toneOption}
                     onClick={() => {
  setTone(toneOption); 
 }}
@@ -275,10 +275,10 @@ return;
                     checked={includeUpcomingEvents}
                     className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                     id="include-upcoming-events"
+                    type="checkbox"
                     onChange={(e) => {
  setIncludeUpcomingEvents(e.target.checked); 
 }}
-                    type="checkbox"
                   />
                   <span className="ml-2 text-sm text-gray-700">Upcoming events and important dates</span>
                 </label>
@@ -293,14 +293,14 @@ return;
               <input
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 id="focus-areas"
+                placeholder="e.g., Math progress, Reading milestones, Science projects"
+                type="text"
+                value={focusAreas.join(', ')}
                 onChange={(e) => {
  setFocusAreas(
                   e.target.value.split(',').map(area => area.trim()).filter(Boolean)
                 ); 
 }}
-                placeholder="e.g., Math progress, Reading milestones, Science projects"
-                type="text"
-                value={focusAreas.join(', ')}
               />
               <p className="text-xs text-gray-500 mt-1">
                 Comma-separated list of topics to emphasize
@@ -367,7 +367,7 @@ return;
               <button
                 className="flex items-center gap-2 px-4 py-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg"
                 onClick={() => {
-                  if (currentNewsletter.id != null && currentNewsletter.id !== '') {
+                  if (currentNewsletter.id != null && currentNewsletter.id != '') {
                     void handleDeleteNewsletter(currentNewsletter.id);
                   }
                 }}
@@ -430,7 +430,7 @@ return;
       {drafts && drafts.length > 0 ? (
         <div className="grid gap-6">
           {drafts.map((draft, _index) => (
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6" key={draft.id}>
+            <div key={draft.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">

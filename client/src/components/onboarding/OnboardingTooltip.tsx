@@ -103,7 +103,7 @@ function FlowTooltip({
           <span className="text-sm text-gray-500">
             Step {state.currentStepIndex + 1} of {state.currentFlow?.steps.length ?? 0}
           </span>
-          {(state.currentFlow?.estimatedTime != null && state.currentFlow.estimatedTime !== 0) ? (
+          {(state.currentFlow?.estimatedTime != null && state.currentFlow.estimatedTime != 0) ? (
             <span className="text-sm text-gray-500">
               ~{state.currentFlow.estimatedTime} min
             </span>
@@ -148,20 +148,20 @@ function FlowTooltip({
             {currentStep.showSkip === true ? (
               <Button
                 className="text-gray-500"
-                onClick={skipOnboarding}
                 size="sm"
                 variant="ghost"
+                onClick={skipOnboarding}
               >
                 {currentStep.skipButtonText ?? 'Skip tour'}
               </Button>
             ) : null}
           </div>
 
-          {currentStep.requiresAction !== true ? (
+          {currentStep.requiresAction != true ? (
             <Button
               className="gap-1 bg-blue-600 hover:bg-blue-700"
-              onClick={nextStep}
               size="sm"
+              onClick={nextStep}
             >
               {currentStep.nextButtonText ?? 'Next'}
               {canGoForward ? <ChevronRight className="h-4 w-4" /> : null}
@@ -269,11 +269,11 @@ return;
             className={getTooltipStyles()}
             exit={{ opacity: 0, scale: 0.95 }}
             initial={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
             onMouseEnter={(): void => {
  setIsVisible(true); 
 }}
             onMouseLeave={handleMouseLeave}
-            transition={{ duration: 0.2 }}
           >
             {/* Arrow */}
             <div className={getArrowStyles()} />
@@ -299,7 +299,7 @@ return;
                 </div>
               </div>
 
-              {(actionText != null && actionText !== '' && onAction != null) ? (
+              {(actionText != null && actionText != '' && onAction != null) ? (
                 <button
                   className="mt-3 text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
                   onClick={() => {

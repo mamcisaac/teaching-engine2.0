@@ -13,7 +13,7 @@ export const getWeekStartISO = (date: Date): string => {
 
 // Error handling utilities
 export const handleApiError = (error: unknown, defaultMessage: string): never => {
-  const isAxiosError = (err: unknown): err is AxiosError => typeof err === 'object' && err !== null && 'isAxiosError' in err;
+  const isAxiosError = (err: unknown): err is AxiosError => typeof err === 'object' && err != null && 'isAxiosError' in err;
 
   if (isAxiosError(error)) {
     const responseData = error.response?.data as { error?: string; message?: string } | undefined;

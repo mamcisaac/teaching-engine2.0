@@ -88,7 +88,7 @@ router.get('/status', (req: Request, res: Response): void => {
       const userId = req.user?.id;
 
     // Check OpenAI API key availability
-    const hasApiKey = process.env.OPENAI_API_KEY !== null && process.env.OPENAI_API_KEY !== '';
+    const hasApiKey = process.env.OPENAI_API_KEY !== undefined && process.env.OPENAI_API_KEY !== '';
 
     // Get service health
     const serviceHealth = await aiPlanningAssistant.getServiceHealth();
@@ -101,15 +101,15 @@ router.get('/status', (req: Request, res: Response): void => {
     };
 
     const status = {
-      available: hasApiKey === true && serviceHealth.healthy === true,
+      available: hasApiKey && serviceHealth.healthy,
       features: {
-        longRangeGoals: hasApiKey === true,
-        unitBigIdeas: hasApiKey === true,
-        lessonActivities: hasApiKey === true,
-        materialsList: hasApiKey === true,
-        assessmentStrategies: hasApiKey === true,
-        reflectionPrompts: hasApiKey === true,
-        curriculumAligned: hasApiKey === true,
+        longRangeGoals: hasApiKey,
+        unitBigIdeas: hasApiKey,
+        lessonActivities: hasApiKey,
+        materialsList: hasApiKey,
+        assessmentStrategies: hasApiKey,
+        reflectionPrompts: hasApiKey,
+        curriculumAligned: hasApiKey,
       },
       quota: userQuota,
       health: serviceHealth,
@@ -147,7 +147,7 @@ router.post(
       };
       const { subject, grade, termLength, focusAreas } = sanitizedBody;
 
-      if (subject === null || subject === '' || grade === null || termLength === null) {
+      if (!subject || !grade || !termLength) {
         res.status(400).json({
           error: 'Missing required fields: subject, grade, termLength',
         });
@@ -155,16 +155,16 @@ router.post(
       }
 
       const suggestions = await aiPlanningAssistant.generateLongRangeGoals({
-        subject: subject,
-        grade: Number(grade),
-        termLength: Number(termLength),
+        subject: subject!,
+        grade: Number(grade!),
+        termLength: Number(termLength!),
         focusAreas: focusAreas ?? [],
       });
 
         res.json(suggestions);
         return;
       } catch (_error) {
-        logger.error('Error generating long-range goals:', _error as string | undefined);
+        logger.error({ error: _error instanceof Error ? _error.message : String(_error) }, 'Error generating long-range goals');
         res.status(500).json({ error: 'Failed to generate suggestions' });
         return;
       }
@@ -188,7 +188,7 @@ router.post('/unit/big-ideas', aiRateLimit, (req: Request, res: Response): void 
     };
     const { unitTitle, subject, grade, curriculumExpectations, duration } = sanitizedBody;
 
-    if (unitTitle === null || unitTitle === '' || subject === null || subject === '' || grade === null || (curriculumExpectations === null || curriculumExpectations.length === 0) || duration === null) {
+    if (!unitTitle || !subject || !grade || !curriculumExpectations || curriculumExpectations.length === 0 || !duration) {
       res.status(400).json({
         error:
           'Missing required fields: unitTitle, subject, grade, curriculumExpectations, duration',
@@ -197,11 +197,11 @@ router.post('/unit/big-ideas', aiRateLimit, (req: Request, res: Response): void 
     }
 
     const suggestions = await aiPlanningAssistant.generateUnitBigIdeas({
-      unitTitle: unitTitle,
-      subject: subject,
-      grade: Number(grade),
-      curriculumExpectations: curriculumExpectations,
-      duration: Number(duration),
+      unitTitle: unitTitle!,
+      subject: subject!,
+      grade: Number(grade!),
+      curriculumExpectations: curriculumExpectations!,
+      duration: Number(duration!),
     });
 
     res.json(suggestions);
@@ -233,7 +233,7 @@ router.post(
       };
       const { lessonTitle, learningGoals, subject, grade, duration, materials } = sanitizedBody;
 
-      if (lessonTitle === null || lessonTitle === '' || (learningGoals === null || learningGoals.length === 0) || subject === null || subject === '' || grade === null || duration === null) {
+      if (!lessonTitle || !learningGoals || learningGoals.length === 0 || !subject || !grade || !duration) {
         res.status(400).json({
           error: 'Missing required fields: lessonTitle, learningGoals, subject, grade, duration',
         });
@@ -276,7 +276,7 @@ router.post(
       };
       const { activities, subject, grade, classSize } = sanitizedBody;
 
-      if ((activities === null || activities.length === 0) || subject === null || subject === '' || grade === null) {
+      if (!activities || activities.length === 0 || !subject || !grade) {
         res.status(400).json({
           error: 'Missing required fields: activities, subject, grade',
         });
@@ -287,7 +287,7 @@ router.post(
         activities: activities,
         subject: subject,
         grade: Number(grade),
-        classSize: classSize !== null ? Number(classSize) : 25,
+        classSize: classSize ? Number(classSize) : 25,
       });
 
       res.json(suggestions);
@@ -317,7 +317,7 @@ router.post(
       };
       const { learningGoals, activities, subject, grade } = sanitizedBody;
 
-      if (learningGoals === null || activities === null || subject === null || subject === '' || grade === null) {
+      if (!learningGoals || !activities || !subject || !grade) {
         res.status(400).json({
           error: 'Missing required fields: learningGoals, activities, subject, grade',
         });
@@ -359,7 +359,7 @@ router.post(
       };
       const { date, activities, subject, grade, previousReflections } = sanitizedBody;
 
-      if (date === null || date === '' || activities === null || subject === null || subject === '' || grade === null) {
+      if (!date || !activities || !subject || !grade) {
         res.status(400).json({
           error: 'Missing required fields: date, activities, subject, grade',
         });
@@ -399,7 +399,7 @@ router.post(
       };
       const { expectationIds, suggestionType } = sanitizedBody;
 
-      if (expectationIds === null || suggestionType === null || suggestionType === '') {
+      if (!expectationIds || !suggestionType) {
         res.status(400).json({
           error: 'Missing required fields: expectationIds, suggestionType',
         });

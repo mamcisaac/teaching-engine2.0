@@ -121,7 +121,7 @@ export function useAIStatus(): AIStatusHookReturn {
   });
 
   const isAIEnabled = userDisabledAI === false && aiStatus.available === true;
-  const canUseAI = isAIEnabled === true && aiStatus.hasApiKey === true && aiStatus.serviceHealth !== 'unavailable';
+  const canUseAI = isAIEnabled === true && aiStatus.hasApiKey === true && aiStatus.serviceHealth != 'unavailable';
 
   const getAIDisabledReason = (): string | undefined => {
     if (userDisabledAI) {
@@ -262,7 +262,7 @@ export function AIStatusIndicator({
         <span className="font-medium">AI Assistant: {getStatusText()}</span>
       </div>
       
-      {aiDisabledReason != null && aiDisabledReason !== '' && (
+      {aiDisabledReason != null && aiDisabledReason != '' && (
         <p className="text-sm text-gray-600 mb-2">{aiDisabledReason}</p>
       )}
 

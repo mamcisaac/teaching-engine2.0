@@ -22,7 +22,7 @@ const ALLOWED_FILE_TYPES = [
 export const corsOptions: cors.CorsOptions = {
   origin: (origin, callback) => {
     // Allow requests with no origin (mobile apps, Postman)
-    if (origin === null || origin === '' || ALLOWED_ORIGINS.includes(origin)) {
+    if (origin === null || origin === undefined || (origin !== null && origin !== undefined && ALLOWED_ORIGINS.includes(origin))) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
@@ -71,8 +71,9 @@ export const helmetConfig = helmet({
 // Function reserved for future use - exported for potential future use
 export function _createRateLimiter(): RateLimiterRedis | RateLimiterMemory {
   // Use Redis in production for distributed rate limiting
-  if (process.env.REDIS_URL !== null && process.env.REDIS_URL !== '' && process.env.NODE_ENV === 'production') {
-    const redis = new Redis(process.env.REDIS_URL);
+  const redisUrl = process.env.REDIS_URL;
+  if (redisUrl !== null && redisUrl !== undefined && redisUrl !== '' && process.env.NODE_ENV === 'production') {
+    const redis = new Redis(redisUrl);
     return new RateLimiterRedis({
       storeClient: redis,
       keyPrefix: 'rl:',

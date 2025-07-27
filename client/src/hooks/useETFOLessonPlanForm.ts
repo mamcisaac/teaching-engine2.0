@@ -104,15 +104,15 @@ export function useETFOLessonPlanForm({
   }));
 
   // Auto-save functionality
-  const autoSaveData = editingId !== null && editingId !== '' ? formData : null;
+  const autoSaveData = editingId != null && editingId != '' ? formData : null;
   const { lastSaved, isSaving, hasUnsavedChanges, saveNow } = useAutoSave({
     data: autoSaveData,
     saveFn: async (data) => {
-      if (editingId !== null && editingId !== '' && data && onSave) {
+      if (editingId != null && editingId != '' && data && onSave) {
         await onSave(data);
       }
     },
-    enabled: editingId !== null && editingId !== '' && !!autoSaveData && !!onSave,
+    enabled: editingId != null && editingId != '' && !!autoSaveData && !!onSave,
     delay: 30000, // 30 seconds
   });
 
@@ -166,7 +166,7 @@ export function useETFOLessonPlanForm({
   const removeArrayItem = useCallback((field: keyof LessonPlanFormData, index: number): void => {
     setFormData(prev => ({
       ...prev,
-      [field]: isArray(prev[field]) ? prev[field].filter((_, i) => i !== index) : [],
+      [field]: isArray(prev[field]) ? prev[field].filter((_, i) => i != index) : [],
     }));
   }, [])
 
@@ -193,10 +193,10 @@ export function useETFOLessonPlanForm({
   // Clean form data for submission
   const getCleanFormData = useCallback((): LessonPlanFormData => ({
       ...formData,
-      materials: formData.materials.filter(m => m.trim() !== ''),
-      accommodations: formData.accommodations.filter(a => a.trim() !== ''),
-      modifications: formData.modifications.filter(m => m.trim() !== ''),
-      extensions: formData.extensions.filter(e => e.trim() !== ''),
+      materials: formData.materials.filter(m => m.trim() != ''),
+      accommodations: formData.accommodations.filter(a => a.trim() != ''),
+      modifications: formData.modifications.filter(m => m.trim() != ''),
+      extensions: formData.extensions.filter(e => e.trim() != ''),
     }), [formData]);
 
   // Reset form
@@ -279,7 +279,7 @@ export function useETFOLessonPlanForm({
         setFormData(prev => ({ 
           ...prev, 
           materials: [
-            ...(isArray(prev.materials) ? prev.materials.filter(m => isString(m) && m.trim() !== '') : []),
+            ...(isArray(prev.materials) ? prev.materials.filter(m => isString(m) && m.trim() != '') : []),
             ...(isArray(content) ? content.filter(c => isString(c)) : [])
           ] 
         }));

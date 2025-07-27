@@ -382,13 +382,13 @@ return false;
   // Private helper methods
 
   private getFullKey(key: string): string {
-    return this.config.keyPrefix ? `${this.config.keyPrefix}:${key}` : key;
+    return this.config.keyPrefix !== undefined && this.config.keyPrefix !== null && this.config.keyPrefix !== '' ? `${this.config.keyPrefix}:${key}` : key;
   }
 
   private serializeValue<T>(value: T, compress?: boolean): string {
     const json = JSON.stringify(value);
 
-    if (compress && this.config.enableCompression && json.length > 1024) {
+    if (compress === true && this.config.enableCompression === true && json.length > 1024) {
       // In production, use zlib compression
       // For now, just return JSON
       return json;
@@ -468,7 +468,7 @@ export function cacheMiddleware(keyPattern: string, options: CacheOptions = {}):
 
     // Try to get from cache
     const cached = await cache.get(key);
-    if (cached) {
+    if (cached !== null && cached !== undefined) {
       res.setHeader('X-Cache', 'HIT');
       return res.json(cached);
     }

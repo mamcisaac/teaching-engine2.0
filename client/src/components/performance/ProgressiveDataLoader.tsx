@@ -137,7 +137,7 @@ return;
   };
 
   // Error state
-  if (error != null && error !== '' && items.length === 0) {
+  if (error !== null && error !== '' && items.length === 0) {
     return (
       <div className={`text-center py-8 ${className}`}>
         {errorState ?? (
@@ -195,7 +195,7 @@ return;
       {(total != null && !isNaN(total) && total > 0) && (
         <div className="mb-4 text-sm text-gray-500">
           Showing {items.length} of {total} items
-          {items.length < total && ` (${((items.length / total) * 100).toFixed(1)}% loaded)`}
+          {items.length < total! && ` (${((items.length / total!) * 100).toFixed(1)}% loaded)`}
         </div>
       )}
 
@@ -241,7 +241,7 @@ return;
       )}
 
       {/* Error state for load more */}
-      {(error != null && error !== '') && items.length > 0 && (
+      {(error !== null && error !== '') && items.length > 0 && (
         <div className="mt-4 text-center">
           <div className="text-red-600 text-sm mb-2">Failed to load more items</div>
           <Button aria-label="Click button" onClick={() => {

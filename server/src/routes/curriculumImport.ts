@@ -101,7 +101,7 @@ router.post(
         sourceFormat = 'csv';
       }
 
-      if (!req.user) {
+      if (req.user === null || req.user === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -136,7 +136,7 @@ router.post('/parse', asyncHandler(async (req: AuthenticatedRequest, res: Respon
   try {
     const { sessionId, useAiExtraction } = req.body;
 
-    if (!sessionId || sessionId === '') {
+    if (sessionId === null || sessionId === undefined || sessionId === '') {
       res.status(400).json({
         error: 'Session ID is required',
       });
@@ -177,7 +177,7 @@ router.post('/import-preset', asyncHandler(async (req: Request, res: Response) =
   try {
     const { presetId } = req.body;
 
-    if (!presetId || presetId === '') {
+    if (presetId === null || presetId === undefined || presetId === '') {
       res.status(400).json({
         error: 'Preset ID is required',
       });
@@ -223,7 +223,7 @@ router.get('/:id/status', asyncHandler(async (req: Request, res: Response) => {
 
     const status = await curriculumImportService.getImportProgress(importId);
 
-    if (!status) {
+    if (status === null || status === undefined) {
       res.status(404).json({
         error: 'Import not found',
       });
@@ -246,7 +246,7 @@ router.post('/:id/confirm', asyncHandler(async (req: Request, res: Response) => 
   try {
     const importId = req.params.id;
 
-    if (!req.user?.id) {
+    if (req.user?.id === null || req.user?.id === undefined || req.user?.id === 0) {
       res.status(401).json({
         error: 'User not authenticated',
       });
@@ -256,7 +256,7 @@ router.post('/:id/confirm', asyncHandler(async (req: Request, res: Response) => 
     // Check if import exists and is ready
     const progress = await curriculumImportService.getImportProgress(importId);
 
-    if (!progress) {
+    if (progress === null || progress === undefined) {
       res.status(404).json({
         error: 'Import not found',
       });
@@ -329,7 +329,7 @@ router.delete('/:id', async (req: Request, res: Response): Promise<void> => {
 
     const result = await curriculumImportService.cancelImport(importId);
 
-    if (!result) {
+    if (result === false) {
       res.status(404).json({
         error: 'Import not found',
       });
@@ -351,7 +351,7 @@ router.post('/start', async (req: Request, res: Response): Promise<void> => {
   try {
     const { grade, subject, sourceFormat } = req.body;
 
-    if (!grade || grade === '' || !subject || subject === '' || !sourceFormat || sourceFormat === '') {
+    if (grade === null || grade === undefined || grade === '' || subject === null || subject === undefined || subject === '' || sourceFormat === null || sourceFormat === undefined || sourceFormat === '') {
       res.status(400).json({ error: 'Missing required fields: grade, subject, sourceFormat' });
       return;
     }
@@ -382,7 +382,7 @@ router.get('/:importId/progress', async (req: Request, res: Response): Promise<v
     const { importId } = req.params;
     const progress = await curriculumImportService.getImportProgress(importId);
 
-    if (!progress) {
+    if (progress === null || progress === undefined) {
       res.status(404).json({ error: 'Import session not found' });
       return;
     }
@@ -401,7 +401,7 @@ router.post('/:importId/cancel', async (req: Request, res: Response): Promise<vo
     const { importId } = req.params;
     const success = await curriculumImportService.cancelImport(importId);
 
-    if (!success) {
+    if (success === false) {
       res.status(404).json({ error: 'Import session not found or already completed' });
       return;
     }
@@ -429,7 +429,7 @@ router.post('/:id', async (req: Request, res: Response): Promise<void> => {
     // Get the import session
     const importRecord = await curriculumImportService.getImportProgress(importId);
 
-    if (!importRecord) {
+    if (importRecord === null || importRecord === undefined) {
       res.status(404).json({
         error: 'Import session not found',
       });
