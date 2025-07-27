@@ -121,7 +121,7 @@ export function successResponse<T>(data: T, meta?: SuccessResponse<T>['meta']): 
   return {
     status: 'success',
     data,
-    ...(meta != null && { meta }),
+    ...(meta !== null && { meta }),
   };
 }
 
@@ -136,8 +136,8 @@ export function errorResponse(
   return {
     status: 'error',
     message,
-    ...(code != null && code !== '' && { code }),
-    ...(errors != null && { errors }),
+    ...(code !== null && code !== '' && { code }),
+    ...(errors !== null && { errors }),
   };
 }
 

@@ -247,19 +247,19 @@ return 'specific';
 
     // Fall back to code analysis
     const code = ((): string => {
-      if (row.code != null && row.code !== '') {
+      if (row.code !== null && row.code !== '') {
 return String(row.code);
 }
-      if (row.expectation_code != null && row.expectation_code !== '') {
+      if (row.expectation_code !== null && row.expectation_code !== '') {
 return String(row.expectation_code);
 }
       return '';
     })();
     const description = ((): string => {
-      if (row.description != null && row.description !== '') {
+      if (row.description !== null && row.description !== '') {
 return String(row.description);
 }
-      if (row.expectation_description != null && row.expectation_description !== '') {
+      if (row.expectation_description !== null && row.expectation_description !== '') {
 return String(row.expectation_description);
 }
       return '';

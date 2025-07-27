@@ -19,7 +19,7 @@ import {
 } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Textarea } from '@/components/ui/Textarea';
-import { useToast } from '@/components/ui/use-toast';
+import { useToast, type Toast } from '@/components/ui/use-toast';
 
 import { apiClient } from '../api/core/client';
 import { logger } from '../utils/logger';
@@ -587,7 +587,7 @@ return;
                 <div className="space-y-2">
                   <Label htmlFor="input">Code</Label>
                   <Input
-                    onChange={(e) => {
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
  setEditingExpectation({
                         ...editingExpectation,
                         code: e.target.value,
@@ -623,7 +623,7 @@ return;
               <div className="space-y-2">
                 <Label htmlFor="input">Description</Label>
                 <Textarea
-                  onChange={(e) => {
+                  onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
  setEditingExpectation({
                       ...editingExpectation,
                       description: e.target.value,
@@ -639,7 +639,7 @@ return;
                 <div className="space-y-2">
                   <Label htmlFor="input">Strand</Label>
                   <Input
-                    onChange={(e) => {
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
  setEditingExpectation({
                         ...editingExpectation,
                         strand: e.target.value,
@@ -652,7 +652,7 @@ return;
                 <div className="space-y-2">
                   <Label htmlFor="input">Substrand (Optional)</Label>
                   <Input
-                    onChange={(e) => {
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
  setEditingExpectation({
                         ...editingExpectation,
                         substrand: e.target.value,

@@ -143,7 +143,7 @@ export class ETFOLessonPlanService extends BaseService {
         where.isSubFriendly = filters.isSubFriendly;
       }
 
-      if (filters.assessmentType != null && filters.assessmentType !== '') {
+      if (filters.assessmentType !== null && filters.assessmentType !== '') {
         where.assessmentType = filters.assessmentType;
       }
 
@@ -174,7 +174,7 @@ export class ETFOLessonPlanService extends BaseService {
     try {
       const plan = await this.repository.findByIdWithRelations(id);
 
-      if (plan == null || plan.userId !== userId) {
+      if (plan === null || plan.userId !== userId) {
         return null;
       }
 
@@ -197,7 +197,7 @@ export class ETFOLessonPlanService extends BaseService {
         },
       });
 
-      if (unitPlan == null) {
+      if (unitPlan === null) {
         throw new Error('Unit plan not found or unauthorized');
       }
 
@@ -226,7 +226,7 @@ export class ETFOLessonPlanService extends BaseService {
     try {
       // Verify ownership
       const existingPlan = await this.repository.findById(id);
-      if (existingPlan == null || existingPlan.userId !== userId) {
+      if (existingPlan === null || existingPlan.userId !== userId) {
         throw new Error('Lesson plan not found or unauthorized');
       }
 
@@ -236,7 +236,7 @@ export class ETFOLessonPlanService extends BaseService {
         id,
         {
           ...updateData,
-          date: data.date != null && data.date !== '' ? new Date(data.date) : undefined,
+          date: data.date !== null && data.date !== '' ? new Date(data.date) : undefined,
         },
         (expectationIds ?? []).map((id) => String(id)),
       );
@@ -252,7 +252,7 @@ export class ETFOLessonPlanService extends BaseService {
     try {
       // Verify ownership
       const existingPlan = await this.repository.findById(id);
-      if (existingPlan == null || existingPlan.userId !== userId) {
+      if (existingPlan === null || existingPlan.userId !== userId) {
         throw new Error('Lesson plan not found or unauthorized');
       }
 
@@ -267,7 +267,7 @@ export class ETFOLessonPlanService extends BaseService {
     try {
       // Get the original plan
       const originalPlan = await this.repository.findByIdWithRelations(id);
-      if (originalPlan == null || originalPlan.userId !== userId) {
+      if (originalPlan === null || originalPlan.userId !== userId) {
         throw new Error('Lesson plan not found or unauthorized');
       }
 

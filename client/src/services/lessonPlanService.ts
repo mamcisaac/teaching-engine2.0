@@ -86,7 +86,7 @@ export class LessonPlanService {
       lesson.mindsOn !== '' &&
       lesson.action !== '' &&
       lesson.consolidation !== '' &&
-      lesson.materials.length > 0
+      lesson.materials != null && lesson.materials.length > 0
     );
   }
 

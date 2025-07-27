@@ -83,14 +83,14 @@ export class PDFParser extends CurriculumParser {
     } = {};
 
     // Try to extract from PDF metadata
-    if (pdfData != null && typeof pdfData === 'object' && 'info' in pdfData) {
+    if (pdfData !== null && typeof pdfData === 'object' && 'info' in pdfData) {
       const {info} = (pdfData as { info?: { Title?: string; Subject?: string } });
       metadata.version = info.Title ?? info.Subject;
     }
 
     // Extract from text content
     const text =
-      (pdfData != null && typeof pdfData === 'object' && 'text' in pdfData)
+      (pdfData !== null && typeof pdfData === 'object' && 'text' in pdfData)
         ? (pdfData as { text: string }).text
         : '';
 
@@ -338,7 +338,7 @@ export class PDFParser extends CurriculumParser {
    * Validate parsed curriculum
    */
   validate(data: ParsedCurriculum): boolean {
-    if (data.subject == null || data.subject === '' || data.grade == null || data.grade === 0 || data.expectations === null) {
+    if (data.subject === null || data.subject === '' || data.grade === null || data.grade === 0 || data.expectations === null) {
       return false;
     }
 

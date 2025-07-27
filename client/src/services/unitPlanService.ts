@@ -12,7 +12,7 @@ export class UnitPlanService {
     const completedLessons =
       unit.lessonPlans?.filter((lesson) => lesson.daybookEntry).length ?? 0;
 
-    return Math.round((completedLessons / unit._count.lessonPlans) * 100);
+    return Math.round((completedLessons / (unit._count?.lessonPlans ?? 1)) * 100);
   }
 
   // Validate date range
@@ -58,7 +58,7 @@ export class UnitPlanService {
       content += `## Big Ideas\n${unit.bigIdeas}\n\n`;
     }
 
-    if (unit.essentialQuestions.length > 0) {
+    if (unit.essentialQuestions != null && unit.essentialQuestions.length > 0) {
       content += `## Essential Questions\n`;
       unit.essentialQuestions.forEach((q) => {
         content += `- ${q}\n`;
@@ -66,7 +66,7 @@ export class UnitPlanService {
       content += '\n';
     }
 
-    if (unit.successCriteria.length > 0) {
+    if (unit.successCriteria != null && unit.successCriteria.length > 0) {
       content += `## Success Criteria\n`;
       unit.successCriteria.forEach((c) => {
         content += `- ${c}\n`;

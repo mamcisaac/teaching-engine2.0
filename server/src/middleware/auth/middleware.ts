@@ -77,7 +77,7 @@ export function authorize(...allowedRoles: UserRole[]) {
   return (req: Request, _res: Response, next: NextFunction): void => {
     const authReq = req as AuthRequest;
 
-    if (!authReq.user) {
+    if (authReq.user === undefined || authReq.user === null) {
       next(new AuthenticationError('User not authenticated')); return;
     }
 
@@ -85,9 +85,9 @@ export function authorize(...allowedRoles: UserRole[]) {
       next(); return;
     }
 
-    if (authReq.user.role && !allowedRoles.includes(authReq.user.role)) {
+    if (authReq.user.role !== undefined && authReq.user.role !== null && !allowedRoles.includes(authReq.user.role)) {
       logger.warn(
-        `Access denied for user ${authReq.user.email || 'unknown'} with role ${authReq.user.role || 'unknown'}. Required roles: ${allowedRoles.join(', ')}`,
+        `Access denied for user ${authReq.user.email !== undefined && authReq.user.email !== null ? authReq.user.email : 'unknown'} with role ${authReq.user.role !== undefined && authReq.user.role !== null ? authReq.user.role : 'unknown'}. Required roles: ${allowedRoles.join(', ')}`,
       );
       next(new ForbiddenError('Insufficient permissions')); return;
     }
@@ -123,11 +123,11 @@ export async function optionalAuthenticate(
       },
     });
 
-    if (user) {
+    if (user !== null && user !== undefined) {
       (req as AuthRequest).user = {
         id: user.id,
         email: user.email,
-        name: (user.name && user.name !== '') ? user.name : '',
+        name: (user.name !== undefined && user.name !== null && user.name !== '') ? user.name : '',
         role: user.role as UserRole,
       };
     }
@@ -146,7 +146,7 @@ export async function optionalAuthenticate(
 export function requireOrganization(req: Request, _res: Response, next: NextFunction): void {
   const authReq = req as AuthRequest;
 
-  if (!authReq.user) {
+  if (authReq.user === undefined || authReq.user === null) {
     next(new AuthenticationError('User not authenticated')); return;
   }
 

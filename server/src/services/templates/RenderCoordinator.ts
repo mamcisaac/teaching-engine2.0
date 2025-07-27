@@ -285,12 +285,12 @@ export class RenderCoordinator extends BaseService {
     ];
 
     // Add filters to key if present
-    if (options.filters != null && Object.keys(options.filters).length > 0) {
+    if (options.filters !== null && Object.keys(options.filters).length > 0) {
       keyParts.push(JSON.stringify(options.filters));
     }
 
     // Add data hash if provided
-    if (options.data != null && Object.keys(options.data).length > 0) {
+    if (options.data !== null && Object.keys(options.data).length > 0) {
       keyParts.push(this.hashObject(options.data));
     }
 
@@ -365,7 +365,7 @@ export class RenderCoordinator extends BaseService {
       }
 
       // Check if template exists
-      if (templateId != null && templateId !== '') {
+      if (templateId !== null && templateId !== '') {
         const template = await provider.getTemplateById(templateId);
         if (!template) {
           issues.push(`Template not found: ${templateId}`);
@@ -471,7 +471,7 @@ export class RenderCoordinator extends BaseService {
     const required = requiredPartials[templateType] ?? [];
     
     for (const partial of required) {
-      if (this.partialManager.getPartial(partial) == null) {
+      if (this.partialManager.getPartial(partial) === null) {
         missingPartials.push(partial);
       }
     }

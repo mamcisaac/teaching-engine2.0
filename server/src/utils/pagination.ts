@@ -112,7 +112,7 @@ export function createPaginatedResponse<T>(
   };
 
   // Add navigation links if base URL provided
-  if (baseUrl != null && baseUrl !== '') {
+  if (baseUrl !== null && baseUrl !== '') {
     response.links = {};
 
     const url = new URL(baseUrl);
@@ -250,7 +250,7 @@ export function createSearchFilter(
   search: string | undefined,
   fields: string[],
 ): Record<string, unknown> | undefined {
-  if (search == null || search === '' || fields.length === 0) {
+  if (search === null || search === '' || fields.length === 0) {
     return undefined;
   }
 

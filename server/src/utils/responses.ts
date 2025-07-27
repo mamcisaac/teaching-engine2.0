@@ -116,7 +116,7 @@ export const sendCreated = <T>(
     ...meta,
   });
   
-  if (location) {
+  if (location !== undefined && location !== null) {
     res.setHeader('Location', location);
   }
   
@@ -148,7 +148,7 @@ export const sendAccepted = <T>(
   data?: T,
   meta?: Record<string, unknown>
 ): void => {
-  if (data) {
+  if (data !== undefined && data !== null) {
     sendSuccess(res, data, 202, meta);
   } else {
     res.status(202).json({
@@ -170,11 +170,11 @@ export const sendFile = (
   filename?: string,
   contentType?: string
 ): void => {
-  if (contentType) {
+  if (contentType !== undefined && contentType !== null) {
     res.setHeader('Content-Type', contentType);
   }
   
-  if (filename) {
+  if (filename !== undefined && filename !== null) {
     res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
   }
   

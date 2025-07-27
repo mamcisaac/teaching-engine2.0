@@ -78,11 +78,11 @@ return '0 Bytes';
   };
 
   return (
-    <Dialog onOpenChange={(open) => {
+    <Dialog open onOpenChange={(open) => {
       if (!open) {
         onClose();
       }
-    }} open>
+    }}>
       <div className="w-full max-w-4xl max-h-[80vh] overflow-hidden flex flex-col">
         {/* Header */}
         <div className="flex justify-between items-center p-6 border-b">
@@ -100,12 +100,12 @@ return '0 Bytes';
               <input
                 className="w-full border rounded px-3 py-2"
                 id="resource-search"
-                onChange={(e) => {
-                  setSearch(e.target.value);
-                }}
                 placeholder="Search resources..."
                 type="text"
                 value={search}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                }}
               />
             </div>
             <div>
@@ -114,10 +114,10 @@ return '0 Bytes';
                 className="w-full border rounded px-3 py-2"
                 disabled={!!(fileTypeFilter !== undefined && fileTypeFilter !== '')} // Disable if filtered from props
                 id="file-type-select"
+                value={selectedFileType}
                 onChange={(e) => {
                   setSelectedFileType(e.target.value);
                 }}
-                value={selectedFileType}
               >
                 <option value="">All Types</option>
                 <option value="image">Images</option>
@@ -148,9 +148,11 @@ return '0 Bytes';
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {filteredResources.map((resource, _index) => (
                 <div
+                  key={resource.id}
                   aria-label={`Select resource: ${resource.title}`}
                   className="border rounded-lg p-4 hover:shadow-md hover:bg-blue-50 cursor-pointer transition-all"
-                  key={resource.id}
+                  role="button"
+                  tabIndex={0}
                   onClick={() => {
                     onSelect(resource);
                   }}
@@ -160,8 +162,6 @@ return '0 Bytes';
                       onSelect(resource);
                     }
                   }}
-                  role="button"
-                  tabIndex={0}
                 >
                   {/* Thumbnail */}
                   <div className="w-full h-32 mb-3 flex items-center justify-center bg-gray-100 rounded">
@@ -169,11 +169,11 @@ return '0 Bytes';
                       <img
                         alt={resource.title}
                         className="w-full h-full object-cover rounded"
+                        src={getResourceUrl(resource)}
                         onError={(e) => {
                           e.currentTarget.style.display = 'none';
                           e.currentTarget.nextElementSibling?.classList.remove('hidden');
                         }}
-                        src={getResourceUrl(resource)}
                       />
                     ) : (
                       <div className="text-4xl">
@@ -202,8 +202,8 @@ return '0 Bytes';
                     <div className="flex flex-wrap gap-1">
                       {resource.tags.slice(0, 2).map((tag, _index) => (
                         <span
-                          className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
                           key={tag}
+                          className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
                         >
                           {tag}
                         </span>

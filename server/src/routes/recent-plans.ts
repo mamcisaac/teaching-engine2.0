@@ -22,7 +22,7 @@ router.post('/track', async (req: Request, res, _next) => {
     });
     const { planType, planId } = bodySchema.parse(req.body);
 
-    if (planType == null || planType === '' || planId == null || planId === '') {
+    if (planType === null || data === undefined || planType === '' || planId === null || data === undefined || planId === '') {
       res.status(400).json({ error: 'Plan type and ID are required' });
       return;
     }
@@ -118,7 +118,7 @@ router.get('/', async (req: Request, res, _next) => {
                 },
               },
             });
-            if (plan != null && 'longRangePlan' in plan) {
+            if (plan !== null && data !== undefined && 'longRangePlan' in plan) {
               parentInfo = plan.longRangePlan;
             }
             break;
@@ -147,7 +147,7 @@ router.get('/', async (req: Request, res, _next) => {
                 },
               },
             });
-            if (plan != null && 'unitPlan' in plan) {
+            if (plan !== null && data !== undefined && 'unitPlan' in plan) {
               parentInfo = plan.unitPlan;
             }
             break;
@@ -217,7 +217,7 @@ return null;
       }),
     );
 
-    // Filter out null values (deleted plans)
+    // Filter out null datas (deleted plans)
     const validPlans = recentPlans.filter(Boolean);
 
     res.json(validPlans);

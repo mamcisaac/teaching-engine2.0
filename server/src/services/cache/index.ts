@@ -49,7 +49,7 @@ class UnifiedCache implements ICache {
 
     structuredLogger.info('Cache initialized', {
       type: this.useRedis ? 'redis' : 'memory',
-      redisUrl: process.env.REDIS_URL != null && process.env.REDIS_URL !== '' ? 'configured' : 'not configured',
+      redisUrl: process.env.REDIS_URL !== null && process.env.REDIS_URL !== '' ? 'configured' : 'not configured',
     });
   }
 

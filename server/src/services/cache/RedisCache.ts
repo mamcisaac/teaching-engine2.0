@@ -84,7 +84,7 @@ export class RedisCache {
     });
 
     this.client.on('error', (err) => {
-      structuredLogger.error('Redis client error', err);
+      structuredLogger.error('Redis client error', err as Error);
       this.stats.errors++;
     });
 
@@ -447,7 +447,7 @@ export function getCache(): RedisCache {
     // Auto-connect in non-test environments
     if (process.env.NODE_ENV !== 'test') {
       cacheInstance.connect().catch((error) => {
-        structuredLogger.error('Failed to connect to Redis on startup', error);
+        structuredLogger.error('Failed to connect to Redis on startup', error as Error);
       });
     }
   }
@@ -482,7 +482,7 @@ export function cacheMiddleware(keyPattern: string, options: CacheOptions = {}):
 
       // Cache the response asynchronously
       cache.set(key, data, options).catch((error) => {
-        structuredLogger.error('Failed to cache response', error);
+        structuredLogger.error('Failed to cache response', error as Error);
       });
 
       return originalJson(data);

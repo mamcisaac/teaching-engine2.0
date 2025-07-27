@@ -113,7 +113,7 @@ export function WorkflowGate({ level, children }: WorkflowGateProps): React.Reac
             <h3 className="font-semibold">How to Unlock</h3>
             <ol className="list-decimal list-inside space-y-2 text-sm">
               {getUnlockSteps(level).map((step, _index) => (
-                <li className="text-muted-foreground" key={_index}>
+                <li key={_index} className="text-muted-foreground">
                   {step}
                 </li>
               ))}
@@ -131,8 +131,8 @@ export function WorkflowGate({ level, children }: WorkflowGateProps): React.Reac
             )}
             <Button
               className="flex-1"
-              onClick={() => (window.location.href = '/')}
               variant="outline"
+              onClick={() => (window.location.href = '/')}
             >
               Back to Dashboard
             </Button>

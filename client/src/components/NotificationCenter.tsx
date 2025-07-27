@@ -8,7 +8,7 @@ return <div>No notifications</div>;
   return (
     <ul className="space-y-2">
       {notifications.map((n, _index) => (
-        <li className="border p-2 flex justify-between" key={n.id}>
+        <li key={n.id} className="border p-2 flex justify-between">
           <span className={n.read ? 'opacity-50' : ''}>{n.message}</span>
           {!n.read && (
             <button className="text-sm underline" onClick={() => {

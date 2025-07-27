@@ -143,16 +143,16 @@ prompt += `Materials Available: ${reqs.materials.join(', ')}\n`;
       if (reqs.groupSize !== undefined && reqs.groupSize !== '') {
 prompt += `Group Size: ${reqs.groupSize}\n`;
 }
-      if (reqs.language != null && reqs.language !== '') {
+      if (reqs.language !== null && reqs.language !== '') {
 prompt += `Language: ${reqs.language}\n`;
 }
-      if (reqs.curriculumExpectations != null && reqs.curriculumExpectations.length > 0) {
+      if (reqs.curriculumExpectations !== null && reqs.curriculumExpectations.length > 0) {
 prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`;
 }
       prompt += '\n';
     }
 
-    if (params.searchResults != null && params.searchResults.length > 0) {
+    if (params.searchResults !== null && params.searchResults.length > 0) {
       prompt += 'Consider these similar activities for inspiration:\n';
       const limitedResults = params.searchResults.slice(0, 3);
       limitedResults.forEach((result) => {
@@ -189,14 +189,14 @@ prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`
     try {
       // Extract JSON from response
       const jsonMatch = response.match(/\{[\s\S]*\}/);
-      if (jsonMatch == null) {
+      if (jsonMatch === null) {
         throw new Error('No JSON found in response');
       }
 
       const parsed = safeJsonParse(jsonMatch[0], {});
 
       // Ensure parsed is valid and has the expected structure
-      if (parsed == null || typeof parsed !== 'object') {
+      if (parsed === null || typeof parsed !== 'object') {
         throw new Error('Invalid JSON structure in response');
       }
 
@@ -204,9 +204,9 @@ prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`
       const activity = parsed as any;
 
       // Validate required fields
-      if (activity.title == null || activity.title === '' || 
-          activity.description == null || activity.description === '' || 
-          activity.detailedInstructions == null) {
+      if (activity.title === null || activity.title === '' || 
+          activity.description === null || activity.description === '' || 
+          activity.detailedInstructions === null) {
         throw new Error('Missing required fields');
       }
 

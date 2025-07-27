@@ -46,7 +46,7 @@ router.post('/generate', (req: Request, res: Response): void => {
     log(`Generating newsletter for user ${userId}`, { sinceDate });
 
     // Generate newsletter using the new template system
-    const startDate = sinceDate != null && sinceDate !== ''
+    const startDate = sinceDate !== null && sinceDate !== undefined && sinceDate !== ''
       ? new Date(sinceDate)
       : new Date(Date.now() - 7 * 24 * 60 * 60 * 1000); // Default to 1 week ago
     const endDate = new Date(); // Current date

@@ -44,7 +44,7 @@ router.get('/', asyncHandler(async (req: AuthenticatedRequest, res: Response): P
     }
     const { start, end, eventType } = queryValidation.data;
     const userId = req.user.id;
-    if (userId == null) {
+    if (userId === null || userId === undefined) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
@@ -56,15 +56,15 @@ router.get('/', asyncHandler(async (req: AuthenticatedRequest, res: Response): P
       ],
     };
 
-    if (start != null && start !== '') {
+    if (start !== null && start !== undefined && start !== '') {
       where.start = { gte: parseISO(start) };
     }
 
-    if (end != null && end !== '') {
+    if (end !== null && end !== undefined && end !== '') {
       where.end = { lte: endOfDay(parseISO(end)) };
     }
 
-    if (eventType != null) {
+    if (eventType !== null && eventType !== undefined) {
       where.eventType = eventType;
     }
 
@@ -91,7 +91,7 @@ router.post(
     try {
       const data = req.body as z.infer<typeof calendarEventSchema>;
       const userId = req.user.id;
-      if (userId == null) {
+      if (userId === null || userId === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -124,7 +124,7 @@ router.patch('/:id', asyncHandler(async (req: Request, res: Response): Promise<v
   try {
     const { id } = req.params;
     const userId = req.user.id;
-    if (userId == null) {
+    if (userId === null || userId === undefined) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
@@ -138,16 +138,16 @@ router.patch('/:id', asyncHandler(async (req: Request, res: Response): Promise<v
       },
     });
 
-    if (event == null) {
+    if (event === null || event === undefined) {
       res.status(404).json({ error: 'Event not found or unauthorized' });
       return;
     }
 
     // Convert date strings to Date objects if present
-    if (updates.start != null) {
+    if (updates.start !== null && updates.start !== undefined) {
       updates.start = new Date(updates.start);
     }
-    if (updates.end != null) {
+    if (updates.end !== null && end !== undefined) {
       updates.end = new Date(updates.end);
     }
 
@@ -183,7 +183,7 @@ router.delete('/:id', asyncHandler(async (req: AuthenticatedRequest, res: Respon
       },
     });
 
-    if (event == null) {
+    if (event === null || event === undefined) {
       res.status(404).json({ error: 'Event not found or unauthorized' });
       return;
     }

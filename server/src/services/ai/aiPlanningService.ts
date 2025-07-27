@@ -61,7 +61,7 @@ export class AIPlanningService extends BaseService {
   }
 
   public static getInstance(): AIPlanningService {
-    if (AIPlanningService.instance == null) {
+    if (AIPlanningService.instance === null) {
       AIPlanningService.instance = new AIPlanningService();
     }
     return AIPlanningService.instance;
@@ -72,7 +72,7 @@ export class AIPlanningService extends BaseService {
 
     try {
       // Check if OpenAI API key is available
-      if (process.env.OPENAI_API_KEY == null || process.env.OPENAI_API_KEY === '') {
+      if (process.env.OPENAI_API_KEY === null || process.env.OPENAI_API_KEY === '') {
         return {
           healthy: false,
           lastCheck: new Date(),

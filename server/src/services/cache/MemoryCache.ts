@@ -80,7 +80,7 @@ export class MemoryCache {
   set<T>(key: string, value: T, options: CacheOptions = {}): boolean {
     try {
       // Check max size
-      if (this.config.maxSize != null && this.cache.size >= this.config.maxSize) {
+      if (this.config.maxSize !== null && this.cache.size >= this.config.maxSize) {
         this.evictOldest();
       }
 
@@ -137,7 +137,7 @@ return false;
 
     for (const tag of tags) {
       const keys = this.tagIndex.get(tag);
-      if (keys == null) {
+      if (keys === null) {
 continue;
 }
 

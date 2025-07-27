@@ -52,11 +52,11 @@ const logFormat = format.combine(
       message: info.message,
       correlationId: context?.correlationId ?? 'no-correlation-id',
       ...(context?.userId !== undefined ? { userId: context.userId } : {}),
-      ...(context?.requestId != null && context.requestId !== '' ? { requestId: context.requestId } : {}),
-      ...(context?.sessionId != null && context.sessionId !== '' ? { sessionId: context.sessionId } : {}),
+      ...(context?.requestId !== null && context.requestId !== '' ? { requestId: context.requestId } : {}),
+      ...(context?.sessionId !== null && context.sessionId !== '' ? { sessionId: context.sessionId } : {}),
       ...(info.duration !== undefined ? { duration: info.duration } : {}),
       ...(info.meta !== undefined ? { meta: info.meta } : {}),
-      ...(info.error != null && typeof info.error === 'object' && 'message' in info.error ? {
+      ...(info.error !== null && typeof info.error === 'object' && 'message' in info.error ? {
         error: {
           message: (info.error as Error).message,
           stack: (info.error as Error).stack,
@@ -66,7 +66,7 @@ const logFormat = format.combine(
     };
 
     // Add trace context if available
-    if (context?.traceId != null && context.traceId !== '') {
+    if (context?.traceId !== null && context.traceId !== '') {
       (log as Record<string, unknown>).trace = {
         traceId: context.traceId,
         spanId: context.spanId,
@@ -128,7 +128,7 @@ export class StructuredLogger {
    */
   log(level: LogLevel, message: string, meta?: LogMeta): void {
     const context = asyncLocalStorage.getStore();
-    const duration = context?.startTime != null
+    const duration = context?.startTime !== null
       ? Math.round(performance.now() - context.startTime)
       : undefined;
 
@@ -210,7 +210,7 @@ export class StructuredLogger {
    */
   endSpan(spanId: string, name: string): void {
     const context = asyncLocalStorage.getStore();
-    const duration = context?.startTime != null
+    const duration = context?.startTime !== null
       ? Math.round(performance.now() - context.startTime)
       : undefined;
 
@@ -272,7 +272,7 @@ export function correlationMiddleware(req: Request, res: Response, next: NextFun
     res.send = function (data: unknown): Response {
       res.send = originalSend;
 
-      const duration = context.startTime != null ? Math.round(performance.now() - context.startTime) : 0;
+      const duration = context.startTime !== null ? Math.round(performance.now() - context.startTime) : 0;
 
       structuredLogger.http(`${req.method} ${req.path} ${res.statusCode}`, {
         statusCode: res.statusCode,
@@ -299,7 +299,7 @@ function sanitizeBody(body: unknown): unknown {
   const sanitized = { ...(body as Record<string, unknown>) };
 
   for (const field of sensitiveFields) {
-    if (sanitized[field] != null) {
+    if (sanitized[field] !== null) {
       sanitized[field] = '[REDACTED]';
     }
   }
@@ -319,7 +319,7 @@ function sanitizeHeaders(headers: unknown): unknown {
   const sanitized = { ...(headers as Record<string, unknown>) };
 
   for (const header of sensitiveHeaders) {
-    if (sanitized[header] != null) {
+    if (sanitized[header] !== null) {
       sanitized[header] = '[REDACTED]';
     }
   }

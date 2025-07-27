@@ -24,8 +24,8 @@ export function TagInput({ tags, onChange, placeholder }: Props): React.ReactEle
           <span key={t} className="px-1 bg-gray-200 text-sm flex items-center gap-1">
             {t}
             <button
-              type="button"
               aria-label={`Remove ${t}`}
+              type="button"
               onClick={() => {
  onChange(tags.filter((c) => c !== t)); 
 }}

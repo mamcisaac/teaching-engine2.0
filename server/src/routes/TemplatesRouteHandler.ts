@@ -95,7 +95,7 @@ const templateQuerySchema = z.object({
 
 // Helper function to safely get numeric values
 function getNumericValue(value: unknown, defaultValue: number): number {
-  if (value == null) return defaultValue;
+  if (value === null || value === undefined) return defaultValue;
   if (typeof value === 'number' && !isNaN(value)) return value;
   if (typeof value === 'string') {
     const parsed = parseInt(value, 10);

@@ -12,7 +12,7 @@ const api = axios.create({
 
 // Type guard for checking if auth header is valid
 function isValidAuthHeader(header: string | null | undefined): header is string {
-  return header !== null && header.length > 0;
+  return header !== null && header !== undefined && header.length > 0;
 }
 
 // Add request interceptor to include auth token
@@ -65,6 +65,9 @@ api.interceptors.response.use(
         // Update the authorization header with the new token
         const authHeaders = authService.getAuthHeaders();
         if (isValidAuthHeader(authHeaders.Authorization)) {
+          if (!originalRequest.headers) {
+            originalRequest.headers = {};
+          }
           originalRequest.headers.Authorization = authHeaders.Authorization;
         }
 

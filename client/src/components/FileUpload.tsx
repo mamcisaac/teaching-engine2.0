@@ -9,9 +9,9 @@ export function FileUpload(): React.ReactElement {
 
   return (
     <div className="space-y-2">
-      <input onChange={(e): void => {
+      <input type="file" onChange={(e): void => {
         setFile(e.target.files && e.target.files.length > 0 ? e.target.files[0] : null); 
-}} type="file" />
+}} />
       <button
         className="border px-2 py-1"
         disabled={!file}

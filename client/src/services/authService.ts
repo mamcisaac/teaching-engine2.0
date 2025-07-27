@@ -143,7 +143,7 @@ class AuthService implements AuthServiceInterface {
 
       if (data.tokens !== undefined) {
         this.setTokens(data.tokens);
-      } else if (data.accessToken !== '') {
+      } else if (data.accessToken != null && data.accessToken !== '') {
         // Current backend format
         this.setLegacyToken(data.accessToken);
       } else if (data.token !== undefined) {

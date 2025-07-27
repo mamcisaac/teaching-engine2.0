@@ -219,7 +219,7 @@ export const generateUnitPlanHTML = (unitPlan: UnitPlan, longRangePlan?: { title
         ${unitPlan.description !== undefined && unitPlan.description !== null && unitPlan.description !== '' ? `<p>${escapeHtml(unitPlan.description)}</p>` : ''}
       </div>
 
-      ${unitPlan.bigIdeas !== undefined && unitPlan.bigIdeas !== null && unitPlan.bigIdeas !== '' ? `
+      ${unitPlan.bigIdeas && unitPlan.bigIdeas !== '' ? `
         <div class="section no-break">
           <div class="section-title">Big Ideas</div>
           <div>${escapeHtml(unitPlan.bigIdeas)}</div>

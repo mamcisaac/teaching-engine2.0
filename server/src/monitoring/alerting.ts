@@ -150,7 +150,7 @@ const alerts: Alert[] = [
     condition: (): boolean => {
       const metrics = getMetrics();
       const histogramData = metrics.histograms.http_request_duration_ms;
-      if (histogramData == null || histogramData.count === 0) {
+      if (histogramData === null || histogramData === undefined || histogramData.count === 0) {
 return false;
 }
 
@@ -310,7 +310,7 @@ const sendAlert = async (alert: Alert, context: AlertContext): Promise<void> => 
     }
 
     // Send webhook if configured
-    if (alert.channels.includes('webhook') && ALERT_WEBHOOK_URL != null && ALERT_WEBHOOK_URL !== '') {
+    if (alert.channels.includes('webhook') && ALERT_WEBHOOK_URL !== null && ALERT_WEBHOOK_URL !== undefined && ALERT_WEBHOOK_URL !== '') {
       try {
         const response = await fetch(ALERT_WEBHOOK_URL, {
           method: 'POST',
@@ -348,7 +348,7 @@ const sendAlert = async (alert: Alert, context: AlertContext): Promise<void> => 
 // Check if alert should be triggered
 const shouldTriggerAlert = (alert: Alert): boolean => {
   const lastTriggered = alertState.lastTriggered.get(alert.id);
-  if (lastTriggered == null) {
+  if (lastTriggered === null || lastTriggered === undefined) {
     return true;
   }
 
@@ -420,7 +420,7 @@ const gatherAlertContext = async (alert: Alert): Promise<AlertContext> => {
 
     case 'slow_response_times': {
       const histogramData = metrics.histograms.http_request_duration_ms;
-      if (histogramData != null && histogramData.count > 0) {
+      if (histogramData !== null && histogramData !== undefined && histogramData.count > 0) {
         // Calculate p95 from histogram buckets
         const targetCount95 = (histogramData.count * 95) / 100;
         const targetCount99 = (histogramData.count * 99) / 100;
@@ -504,7 +504,7 @@ export const startAlertMonitoring = (): void => {
     {
       checkInterval: ALERT_CHECK_INTERVAL,
       emailEnabled: ALERT_EMAIL_ENABLED,
-      webhookEnabled: ALERT_WEBHOOK_URL != null && ALERT_WEBHOOK_URL !== '',
+      webhookEnabled: ALERT_WEBHOOK_URL !== null && ALERT_WEBHOOK_URL !== undefined && ALERT_WEBHOOK_URL !== '',
     },
     'Starting alert monitoring',
   );
@@ -556,6 +556,6 @@ export const getAlertStatus = (): { alerts: Array<{ id: string; name: string; se
       enabled: !!alertInterval,
       checkInterval: ALERT_CHECK_INTERVAL,
       emailEnabled: ALERT_EMAIL_ENABLED,
-      webhookEnabled: ALERT_WEBHOOK_URL != null && ALERT_WEBHOOK_URL !== '',
+      webhookEnabled: ALERT_WEBHOOK_URL !== null && ALERT_WEBHOOK_URL !== undefined && ALERT_WEBHOOK_URL !== '',
     },
   });

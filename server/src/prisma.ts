@@ -52,7 +52,7 @@ const globalForPrisma = globalThis as unknown as {
 };
 
 // In test environment, use the test client if available
-const isTestEnvironment = process.env.NODE_ENV === 'test' || process.env.JEST_WORKER_ID;
+const isTestEnvironment = process.env.NODE_ENV === 'test' || process.env.JEST_WORKER_ID !== undefined;
 
 // Create a getter that always returns the current test client
 const getPrisma = (): DatabasePrismaClient => {

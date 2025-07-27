@@ -125,7 +125,7 @@ export function getErrorMessage(error: unknown): string {
     return error;
   }
   
-  if (error != null && typeof error === 'object' && 'message' in error) {
+  if (error !== null && typeof error === 'object' && 'message' in error) {
     return String(error.message);
   }
   
@@ -140,7 +140,7 @@ export function getErrorCode(error: unknown): string | undefined {
     return error.code;
   }
   
-  if (error != null && typeof error === 'object' && 'code' in error) {
+  if (error !== null && typeof error === 'object' && 'code' in error) {
     const code = (error as Record<string, unknown>).code;
     return typeof code === 'string' ? code : undefined;
   }
@@ -156,7 +156,7 @@ export function getErrorStack(error: unknown): string | undefined {
     return error.stack;
   }
   
-  if (error != null && typeof error === 'object' && 'stack' in error) {
+  if (error !== null && typeof error === 'object' && 'stack' in error) {
     const stack = (error as Record<string, unknown>).stack;
     return typeof stack === 'string' ? stack : undefined;
   }

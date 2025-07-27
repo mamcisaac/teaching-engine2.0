@@ -102,7 +102,7 @@ export function useUnitPlanForm({
     ...initialFormData,
     ...initialData,
     longRangePlanId: ((): string => {
-      if (longRangePlanId !== '') {
+      if (longRangePlanId != null && longRangePlanId !== '') {
         return longRangePlanId;
       }
       if (initialData?.longRangePlanId !== undefined && initialData.longRangePlanId !== '') {

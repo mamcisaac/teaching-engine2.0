@@ -211,7 +211,7 @@ export abstract class BaseRepository<T extends BaseModel, CreateInput, UpdateInp
         orderBy,
       };
 
-      if (cursor != null) {
+      if (cursor !== null && cursor !== undefined) {
         queryArgs.cursor = { id: cursor };
         queryArgs.skip = 1; // Skip the cursor item
       }
@@ -221,7 +221,7 @@ export abstract class BaseRepository<T extends BaseModel, CreateInput, UpdateInp
       let nextCursor: number | undefined;
       if (items.length > limit) {
         const nextItem = items.pop();
-        if (nextItem != null) {
+        if (nextItem !== null && nextItem !== undefined) {
           nextCursor = nextItem.id;
         }
       }

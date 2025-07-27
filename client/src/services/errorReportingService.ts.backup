@@ -144,7 +144,7 @@ export class ErrorReportingService {
         // Filter transactions
         beforeSendTransaction: (transaction) => {
           // Don't send transactions for static assets
-          if (transaction.transaction != null && (transaction.transaction.includes('/static/') || transaction.transaction.includes('/assets/'))) {
+          if (transaction.transaction.includes('/static/') || transaction.transaction.includes('/assets/')) {
             return null;
           }
           return transaction;
@@ -234,7 +234,7 @@ export class ErrorReportingService {
 
     const sanitizedUser = {
       id: String(user.id),
-      email: user.email != null && user.email !== '' ? this.maskEmail(user.email) : undefined,
+      email: user.email !== undefined && user.email !== null && user.email !== '' ? this.maskEmail(user.email) : undefined,
       username: user.name,
       role: user.role,
       organizationId: user.organizationId !== undefined && user.organizationId !== null ? String(user.organizationId) : undefined,
@@ -394,7 +394,7 @@ export class ErrorReportingService {
     if (breadcrumb.category === 'console' && breadcrumb.level === 'warning') {
       // Filter out React development warnings
       const {message} = breadcrumb;
-      if (message != null && (message.includes('DevTools') || message.includes('React Hook') || message.includes('StrictMode'))) {
+      if (message !== undefined && message !== null && (message.includes('DevTools') || message.includes('React Hook') || message.includes('StrictMode'))) {
         return null;
       }
 

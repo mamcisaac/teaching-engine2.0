@@ -150,7 +150,7 @@ export function validateLessonPlan(data: LessonPlanFormData): ValidationResult {
   const hasAction = data.action?.trim();
   const hasConsolidation = data.consolidation?.trim();
 
-  if (hasMindsOn === false && hasAction === false && hasConsolidation === false) {
+  if (!hasMindsOn && !hasAction && !hasConsolidation) {
     errors.lessonStructure =
       'At least one lesson component (Minds On, Action, or Consolidation) must have content';
   }
@@ -160,13 +160,13 @@ export function validateLessonPlan(data: LessonPlanFormData): ValidationResult {
     errors.title = 'Title must be 200 characters or less';
   }
 
-  if (data.learningGoals.length > 1000) {
+  if (data.learningGoals != null && data.learningGoals.length > 1000) {
     errors.learningGoals = 'Learning goals must be 1000 characters or less';
   }
 
   // Materials validation - at least one meaningful material
   const hasMaterials = data.materials.some((m) => m.trim().length > 0);
-  if (hasMaterials === false) {
+  if (!hasMaterials) {
     errors.materials = 'At least one material or resource is required';
   }
 

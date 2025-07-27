@@ -92,7 +92,7 @@ export class SubstitutePlanService {
 
     plan.schedule.forEach((item) => {
       html += `<p><strong>${item.time}:</strong> ${item.activity}`;
-      if (item.notes != null && item.notes !== '') {
+      if (item.notes !== null && item.notes !== '') {
         html += ` <em>${item.notes}</em>`;
       }
       html += '</p>';
@@ -143,29 +143,29 @@ export class SubstitutePlanService {
 
   // Method reserved for future lesson formatting
   private static _formatLessonInstructions(lessonPlan: LessonPlanDetails | null | undefined): string {
-    if (lessonPlan == null || typeof lessonPlan !== 'object') {
+    if (lessonPlan === null || typeof lessonPlan !== 'object') {
       return 'Follow the activities as outlined in the lesson plan binder.';
     }
 
     let instructions = '';
 
-    if (lessonPlan.learningGoals != null && lessonPlan.learningGoals !== '') {
+    if (lessonPlan.learningGoals !== null && lessonPlan.learningGoals !== '') {
       instructions += `Learning Goals: ${lessonPlan.learningGoals}\n\n`;
     }
 
-    if (lessonPlan.mindsOnActivities != null && lessonPlan.mindsOnActivities !== '') {
+    if (lessonPlan.mindsOnActivities !== null && lessonPlan.mindsOnActivities !== '') {
       instructions += `Start (10 min): ${lessonPlan.mindsOnActivities}\n\n`;
     }
 
-    if (lessonPlan.actionActivities != null && lessonPlan.actionActivities !== '') {
+    if (lessonPlan.actionActivities !== null && lessonPlan.actionActivities !== '') {
       instructions += `Main Activity: ${lessonPlan.actionActivities}`;
       // Only add extra newlines if there are more sections coming
-      if (lessonPlan.consolidationActivities != null && lessonPlan.consolidationActivities !== '') {
+      if (lessonPlan.consolidationActivities !== null && lessonPlan.consolidationActivities !== '') {
         instructions += '\n\n';
       }
     }
 
-    if (lessonPlan.consolidationActivities != null && lessonPlan.consolidationActivities !== '') {
+    if (lessonPlan.consolidationActivities !== null && lessonPlan.consolidationActivities !== '') {
       instructions += `Wrap-up: ${lessonPlan.consolidationActivities}`;
     }
 

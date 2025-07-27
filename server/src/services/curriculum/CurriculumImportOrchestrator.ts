@@ -274,7 +274,7 @@ export class CurriculumImportOrchestrator extends BaseService {
         },
       });
 
-      if (subject == null) {
+      if (subject === null) {
         // Create subject
         const transformOptions: TransformOptions = {
           userId: options.userId,
@@ -373,11 +373,11 @@ export class CurriculumImportOrchestrator extends BaseService {
   public validateImportOptions(options: ImportOptions): { isValid: boolean; errors: string[] } {
     const errors: string[] = [];
 
-    if (options.userId == null) {
+    if (options.userId === null) {
       errors.push('User ID is required');
     }
 
-    if (options.filename == null || options.filename === '') {
+    if (options.filename === null || options.filename === '') {
       errors.push('Filename is required');
     } else if (!ParserFactory.isSupported(options.filename)) {
       errors.push(`Unsupported file type: ${options.filename}`);

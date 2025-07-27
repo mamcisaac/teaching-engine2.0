@@ -793,6 +793,7 @@ return null;
           <div className="flex justify-center space-x-2 mt-4">
             {steps.map((step, index) => (
               <button
+                key={step.id}
                 className={`w-3 h-3 rounded-full transition-colors ${
                   ((): string => {
                     if (index === currentStep) {
@@ -804,11 +805,10 @@ return 'bg-green-500';
                     return 'bg-gray-300';
                   })()
                 }`}
-                key={step.id}
+                title={step.title}
                 onClick={() => {
  skipToStep(index); 
 }}
-                title={step.title}
               />
             ))}
           </div>

@@ -55,7 +55,7 @@ export const commonValidations = {
     gradeMin: z.number().int().min(1).max(12).optional(),
     gradeMax: z.number().int().min(1).max(12).optional()
   }).refine(
-    (data) => (data.gradeMin == null || data.gradeMin === 0) || (data.gradeMax == null || data.gradeMax === 0) || data.gradeMin <= data.gradeMax,
+    (data) => (data.gradeMin === null || data.gradeMin === undefined || data.gradeMin === 0) || (data.gradeMax === null || data.gradeMax === undefined || data.gradeMax === 0) || data.gradeMin <= data.gradeMax,
     {
       message: 'Maximum grade must be greater than or equal to minimum grade',
       path: ['gradeMax']

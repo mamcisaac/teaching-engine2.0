@@ -36,8 +36,8 @@ export function SubPlanGenerator({ onClose }: Props): React.ReactElement {
       <div className="space-y-2 w-80">
         <h2 className="text-lg">Generate Sub Plan</h2>
         <input
-          type="date"
           className="border p-1 w-full"
+          type="date"
           value={date}
           onChange={(e) => {
  setDate(e.target.value); 

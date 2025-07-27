@@ -47,7 +47,7 @@ export class CurriculumSearchService extends BaseService {
    * Get singleton instance
    */
   public static getInstance(): CurriculumSearchService {
-    if (CurriculumSearchService.instance == null) {
+    if (CurriculumSearchService.instance === null) {
       CurriculumSearchService.instance = new CurriculumSearchService();
     }
     return CurriculumSearchService.instance;
@@ -68,7 +68,7 @@ export class CurriculumSearchService extends BaseService {
     const baseDeps = super.checkDependencies();
     return {
       ...baseDeps,
-      database: prisma != null,
+      database: prisma !== null,
     };
   }
 
@@ -88,7 +88,7 @@ export class CurriculumSearchService extends BaseService {
         };
 
         // Apply filters
-        if (filters.grade != null && filters.grade !== 0) {
+        if (filters.grade !== null && filters.grade !== 0) {
           where.grade = filters.grade;
         }
         
