@@ -274,7 +274,7 @@ return String(row.expectation_description);
   private extractGrade(row: CSVRow): number | undefined {
     const gradeValue = row.grade ?? row.Grade ?? row.grade_level ?? row['Grade Level'];
     
-    if (gradeValue !== undefined) {
+    if (gradeValue !== undefined && gradeValue !== null) {
       const numericGrade = typeof gradeValue === 'number' 
         ? gradeValue 
         : parseInt(gradeValue.toString().replace(/\D/g, ''));

@@ -334,7 +334,7 @@ router.post('/ai-draft', async (req: AuthenticatedRequest, res: Response) => {
     res.json(draft);
     return;
   } catch (_err) {
-    logger.error('AI draft generation error:', _err);
+    logger.error('AI draft generation error:', String(_err));
     res.status(500).json({ error: 'Failed to generate AI draft' });
     return;
   }
@@ -372,7 +372,7 @@ Expectations: ${plan.expectations.map((e: { expectation: { code: string; descrip
     res.json({ suggestions });
     return;
   } catch (_err) {
-    logger.error('AI suggestions error:', _err);
+    logger.error('AI suggestions error:', String(_err));
     res.status(500).json({ error: 'Failed to generate suggestions' });
     return;
   }

@@ -316,7 +316,7 @@ return 'specific';
       }
       
       const group = grouped.get(exp.strand);
-      if (group !== null) {
+      if (group !== undefined) {
         if (exp.type === 'overall') {
           group.overall.push(exp);
         } else {
@@ -354,7 +354,7 @@ return 'specific';
 
     // Validate each expectation
     for (const exp of data.expectations) {
-      if (exp.code === null || exp.code === '' || exp.description === null || exp.description === '' || exp.type === null || exp.type === '' || exp.strand === null || exp.strand === '') {
+      if (exp.code === null || exp.code === '' || exp.description === null || exp.description === '' || exp.type === null || exp.strand === null || exp.strand === '') {
         return false;
       }
     }

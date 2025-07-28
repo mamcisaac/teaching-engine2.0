@@ -133,7 +133,7 @@ export class SubstitutePlanService {
   }
 
   // Method reserved for future time slot management
-  private static _getTimeSlot(index: number): string {
+  public static getTimeSlot(index: number): string {
     const timeSlots = ['9:15 AM', '10:45 AM', '1:00 PM'];
     if (index < 0 || index >= timeSlots.length) {
       return timeSlots[0]; // Return first slot for out-of-bounds indices
@@ -142,7 +142,7 @@ export class SubstitutePlanService {
   }
 
   // Method reserved for future lesson formatting
-  private static _formatLessonInstructions(lessonPlan: LessonPlanDetails | null | undefined): string {
+  public static formatLessonInstructions(lessonPlan: LessonPlanDetails | null | undefined): string {
     if (lessonPlan === null || typeof lessonPlan !== 'object') {
       return 'Follow the activities as outlined in the lesson plan binder.';
     }
@@ -173,7 +173,7 @@ export class SubstitutePlanService {
   }
 
   private static createGeneralNotes(teacherName?: string | null): string {
-    const teacher = teacherName.trim() ? teacherName : 'See class information';
+    const teacher = teacherName?.trim() ? teacherName : 'See class information';
 
     return `Welcome! Thank you for substituting today.
 

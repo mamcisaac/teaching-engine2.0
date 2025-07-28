@@ -470,7 +470,8 @@ export function cacheMiddleware(keyPattern: string, options: CacheOptions = {}):
     const cached = await cache.get(key);
     if (cached !== null && cached !== undefined) {
       res.setHeader('X-Cache', 'HIT');
-      return res.json(cached);
+      res.json(cached);
+      return;
     }
 
     // Store original json method

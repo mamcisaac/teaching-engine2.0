@@ -183,7 +183,7 @@ where.isSubFriendly = isSubFriendly;
     }
     const { items: lessonPlans, total } = result;
 
-    const validatedLessonPlans = isArray(lessonPlans) ? lessonPlans : [];
+    const validatedLessonPlans = isArray(lessonPlans) ? lessonPlans as Record<string, unknown>[] : [];
     
     return {
       lessonPlans: validatedLessonPlans,
@@ -303,7 +303,9 @@ where.isSubFriendly = isSubFriendly;
       baseUpdateData.title = updateData.title;
     }
     if (updateData.unitPlanId !== undefined) {
-      baseUpdateData.unitPlanId = updateData.unitPlanId;
+      baseUpdateData.unitPlan = {
+        connect: { id: updateData.unitPlanId }
+      };
     }
     if (updateData.duration !== undefined) {
       baseUpdateData.duration = updateData.duration;
@@ -653,7 +655,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
     return this.lessonPlanService;
   }
 
-  protected getValidationSchemas(): { create: unknown; update: unknown; query: unknown } {
+  protected getValidationSchemas() {
     return {
       create: lessonPlanCreateSchema,
       update: lessonPlanUpdateSchema,
@@ -664,7 +666,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   protected getCrudOperations(): CrudOperations<unknown> {
     return {
       create: async (data: unknown, userId: number) => this.lessonPlanService.create(data as ETFOLessonPlanCreateData, userId),
-      findMany: async (filters: unknown, userId: number): Promise<unknown> => {
+      findMany: async (filters: unknown, userId: number): Promise<unknown[]> => {
         const result = await this.lessonPlanService.findMany(
           filters as {
             unitPlanId?: number;

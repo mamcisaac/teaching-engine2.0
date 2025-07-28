@@ -28,10 +28,10 @@ export class CurriculumExportService extends BaseService {
    * Get singleton instance
    */
   public static getInstance(): CurriculumExportService {
-    if (CurriculumExportService.instance === null) {
+    if (CurriculumExportService.instance === undefined) {
       CurriculumExportService.instance = new CurriculumExportService();
     }
-    return CurriculumExportService.instance;
+    return CurriculumExportService.instance!;
   }
 
   /**
@@ -60,20 +60,14 @@ export class CurriculumExportService extends BaseService {
     return this.executeWithMetrics(
       async () => {
         // Build query
-        interface CurriculumWhereClause {
-          subjectId?: string;
-          grade?: string;
-          strand?: string;
-          isActive?: boolean;
-        }
-        const where: CurriculumWhereClause = {};
+        const where: any = {};
         
-        if (options.subjectId !== null && options.subjectId !== '') {
-          where.subjectId = options.subjectId;
+        if (options.subjectId !== null && options.subjectId !== undefined) {
+          where.import = { subjectId: options.subjectId };
         }
         
         if (options.grade !== null && options.grade !== 0) {
-          where.grade = options.grade;
+          where.grade = String(options.grade);
         }
         
         if (options.strand !== null && options.strand !== '') {
@@ -181,13 +175,13 @@ export class CurriculumExportService extends BaseService {
   public validateExportOptions(options: ExportOptions): { isValid: boolean; errors: string[] } {
     const errors: string[] = [];
 
-    if (options.format === null || options.format === '') {
+    if (!options.format) {
       errors.push('Export format is required');
     } else if (!this.getSupportedFormats().includes(options.format)) {
       errors.push(`Unsupported export format: ${options.format}`);
     }
 
-    if (options.grade !== null && options.grade !== 0 && (options.grade < 1 || options.grade > 12)) {
+    if (options.grade !== undefined && options.grade !== null && options.grade !== 0 && (options.grade < 1 || options.grade > 12)) {
       errors.push('Grade must be between 1 and 12');
     }
 

@@ -144,16 +144,16 @@ export class CurriculumStatsService extends BaseService {
           where: { id: subjectId },
           // Note: Subject model doesn't have expectations relation
         });
+
+        if (!subject) {
+          throw new Error(`Subject with id ${subjectId} not found`);
+        }
         
         // Get expectations for this subject separately
         const expectations = await prisma.curriculumExpectation.findMany({
           where: { subject: subject.name },
           // Note: isActive field doesn't exist
         });
-
-        if (!subject) {
-          throw new Error(`Subject with id ${subjectId} not found`);
-        }
 
         const stats: SubjectStats = {
           subjectId: subject.id,

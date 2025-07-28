@@ -4,9 +4,12 @@
  */
 
 // Type definitions for better type safety
-type JSONValue = string | number | boolean | null | JSONObject | JSONValue[];
-
-type JSONObject = Record<string, JSONValue>;
+type JSONPrimitive = string | number | boolean | null;
+interface JSONObject {
+  [key: string]: JSONValue;
+}
+interface JSONArray extends Array<JSONValue> {}
+type JSONValue = JSONPrimitive | JSONObject | JSONArray;
 
 interface LessonInput {
   lesson: LessonPlan;
@@ -204,7 +207,7 @@ export class AIService extends BaseService {
           }
 
           // Validate and fix lesson plan structure
-          lessonPlan = this.validateAndFixLessonPlan(lessonPlan, input);
+          lessonPlan = this.validateAndFixLessonPlan(lessonPlan as unknown as JSONValue, input);
 
           logger.info(
             `Generated lesson plan for Grade ${input.grade} ${input.subject}: ${input.topic}`,
@@ -268,7 +271,7 @@ export class AIService extends BaseService {
         },
       );
 
-      return activity;
+      return activity!;
     } catch (error: unknown) {
       logger.error('Error generating activity:', error instanceof Error ? error.message : String(error));
       return this.createFallbackActivity(input);
@@ -315,7 +318,7 @@ export class AIService extends BaseService {
         },
       );
 
-      return plan;
+      return plan!;
     } catch (error: unknown) {
       logger.error('Error generating substitute plan:', error instanceof Error ? error.message : String(error));
       return this.createFallbackSubstitutePlan(input);
@@ -362,7 +365,7 @@ export class AIService extends BaseService {
         },
       );
 
-      return newsletter;
+      return newsletter!;
     } catch (error: unknown) {
       logger.error('Error generating newsletter:', error instanceof Error ? error.message : String(error));
       return this.createFallbackNewsletter(input);
@@ -443,14 +446,14 @@ export class AIService extends BaseService {
 
       const content = response.choices[0]?.message?.content;
       if (content === null || content === '') {
-        return this.createFallbackEnhancedLesson(input.lesson, input.enhancementType);
+        return this.createFallbackEnhancedLesson(input.lesson as unknown as JSONValue, input.enhancementType);
       }
 
-      const parsed = safeJsonParse(content);
-      return parsed !== undefined ? parsed : this.createFallbackEnhancedLesson(input.lesson, input.enhancementType);
+      const parsed = safeJsonParse<JSONValue>(content);
+      return parsed !== undefined ? parsed : this.createFallbackEnhancedLesson(input.lesson as unknown as JSONValue, input.enhancementType);
     } catch (error: unknown) {
       logger.error('Error enhancing lesson:', error instanceof Error ? error.message : String(error));
-      return this.createFallbackEnhancedLesson(input.lesson, input.enhancementType);
+      return this.createFallbackEnhancedLesson(input.lesson as unknown as JSONValue, input.enhancementType);
     }
   }
 
@@ -499,7 +502,7 @@ export class AIService extends BaseService {
 
       // Try to parse as JSON first
       try {
-        return safeJsonParse(content, {});
+        return safeJsonParse<JSONValue>(content, {}) ?? {};
       } catch {
         // If not JSON, return as string
         return content;
@@ -629,7 +632,7 @@ Return a JSON object with the structure: { title, dateRange, sections, footer }`
       });
     }
 
-    return lessonPlan as LessonPlan;
+    return lessonPlan as unknown as LessonPlan;
   }
 
   private createFallbackLesson(input: LessonGenerationInput): LessonPlan {
@@ -791,7 +794,7 @@ This is a fallback analysis. For more detailed analysis, please ensure AI servic
     }
 
     enhanced.fallback = true;
-    return enhanced;
+    return enhanced as JSONValue;
   }
 
   // Helper methods for type safety
@@ -801,12 +804,18 @@ This is a fallback analysis. For more detailed analysis, please ensure AI servic
       : {};
   }
 
-  private isValidLessonGenerationInput(input: Record<string, unknown>): input is LessonGenerationInput {
+  private isValidLessonGenerationInput(input: unknown): input is LessonGenerationInput {
     return (
-      typeof input.grade === 'string' &&
-      typeof input.subject === 'string' &&
-      typeof input.topic === 'string' &&
-      typeof input.duration === 'number'
+      typeof input === 'object' &&
+      input !== null &&
+      'grade' in input &&
+      'subject' in input &&
+      'topic' in input &&
+      'duration' in input &&
+      typeof (input as any).grade === 'string' &&
+      typeof (input as any).subject === 'string' &&
+      typeof (input as any).topic === 'string' &&
+      typeof (input as any).duration === 'number'
     );
   }
 }

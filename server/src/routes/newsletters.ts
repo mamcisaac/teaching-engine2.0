@@ -104,7 +104,7 @@ router.get('/status', (req: AuthenticatedRequest, res: Response): void => {
       }),
     ]);
 
-    return res.json({
+    res.json({
       success: true,
       data: {
         availableContent: {

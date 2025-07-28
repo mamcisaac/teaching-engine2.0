@@ -85,7 +85,7 @@ export class PDFParser extends CurriculumParser {
     // Try to extract from PDF metadata
     if (pdfData !== null && typeof pdfData === 'object' && 'info' in pdfData) {
       const {info} = (pdfData as { info?: { Title?: string; Subject?: string } });
-      metadata.version = info.Title ?? info.Subject;
+      metadata.version = info?.Title ?? info?.Subject;
     }
 
     // Extract from text content

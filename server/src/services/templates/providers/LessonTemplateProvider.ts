@@ -21,7 +21,7 @@ export class LessonTemplateProvider extends TemplateProvider {
         logger.error('Failed to load lesson templates:', error);
       });
     } catch (error) {
-      logger.error('Failed to initialize lesson templates:', error);
+      logger.error('Failed to initialize lesson templates:', error as string | undefined);
     }
   }
 

@@ -55,7 +55,7 @@ router.get('/api/example/basic', authenticate, async (req: AuthenticatedRequest,
 /**
  * Example: Route with performance logging
  */
-router.get('/api/example/performance', authenticate, async (_req: Request, res: Response) => {
+router.get('/api/example/performance', authenticate, async (_req: AuthenticatedRequest, res: Response) => {
   const perfLogger = new PerformanceLogger('example.performance');
 
   try {

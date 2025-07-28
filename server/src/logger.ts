@@ -65,7 +65,7 @@ const pinoConfig: pino.LoggerOptions = {
       const userData = user as { id?: string | number; email?: string; role?: string };
       return {
         id: userData.id,
-        email: userData.email !== null && userData.email !== undefined
+        email: userData.email
             ? `${userData.email.substring(0, 3)}***`
             : undefined,
         role: userData.role,

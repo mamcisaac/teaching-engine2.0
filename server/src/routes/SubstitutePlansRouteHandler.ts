@@ -340,7 +340,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
     return this.substitutePlanService;
   }
 
-  protected getValidationSchemas(): { create: unknown; update: unknown; query: unknown } {
+  protected getValidationSchemas() {
     return {
       create: substitutePlanCreateSchema,
       update: substitutePlanUpdateSchema,
@@ -351,7 +351,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
   protected getCrudOperations(): CrudOperations<unknown> {
     return {
       create: async (data: unknown, userId: number) => this.substitutePlanService.create(data as SubstitutePlanCreateData, userId),
-      findMany: async (filters: unknown, userId: number): Promise<unknown> => {
+      findMany: async (filters: unknown, userId: number): Promise<unknown[]> => {
         const result = await this.substitutePlanService.findMany(
           filters as {
             startDate?: Date;
@@ -387,18 +387,18 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
         return;
       }
       const schemas = this.getValidationSchemas();
-      const filters = schemas.query.parse(req.query);
+      const filters = schemas.query ? schemas.query.parse(req.query) : req.query;
 
       // Convert string dates to Date objects and fix types for service
       const { startDate, endDate, grade, ...filterBase } = filters;
       const convertedFilters = {
         ...filterBase,
-        ...(startDate !== null && { startDate: new Date(startDate) }),
-        ...(endDate !== null && { endDate: new Date(endDate) }),
+        ...(startDate !== null && { startDate: new Date(String(startDate)) }),
+        ...(endDate !== null && { endDate: new Date(String(endDate)) }),
         ...(grade !== null && { grade: String(grade) }),
       };
 
-      const result = await this.substitutePlanService.findMany(convertedFilters, userId);
+      const result = await this.substitutePlanService.findMany(convertedFilters, userId as number);
       res.json(result);
       return;
     } catch (_error) {
@@ -450,7 +450,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       }
       const generateData = generateSubPlanSchema.parse(req.body);
 
-      const generatedPlan = await this.substitutePlanService.generatePlan(generateData, userId);
+      const generatedPlan = await this.substitutePlanService.generatePlan(generateData, userId as number);
       res.status(201).json(generatedPlan);
     } catch (_error) {
       this.logger.error('Error generating substitute plan:', _error as string | undefined);
@@ -471,7 +471,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       }
       const { id: planId } = req.params;
 
-      const deactivatedPlan = await this.substitutePlanService.deactivatePlan(planId, userId);
+      const deactivatedPlan = await this.substitutePlanService.deactivatePlan(planId, userId as number);
       res.json(deactivatedPlan);
       return;
     } catch (_error) {
@@ -491,7 +491,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
-      const stats = await this.substitutePlanService.getStats(userId);
+      const stats = await this.substitutePlanService.getStats(userId as number);
       res.json(stats);
       return;
     } catch (_error) {
@@ -513,7 +513,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       }
       const daysAhead = req.query.days !== null ? parseInt(req.query.days as string, 10) : 30;
 
-      const upcomingDates = await this.substitutePlanService.getUpcomingDates(userId, daysAhead);
+      const upcomingDates = await this.substitutePlanService.getUpcomingDates(userId as number, daysAhead);
       res.json(upcomingDates);
       return;
     } catch (_error) {

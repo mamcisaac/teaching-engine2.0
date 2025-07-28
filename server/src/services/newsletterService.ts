@@ -39,7 +39,7 @@ interface Reflection {
 
 export class NewsletterService {
   // Method reserved for future newsletter generation
-  private static _generateTemplateContent(
+  public static generateTemplateContent(
     lessonPlans: LessonPlan[],
     reflections: Reflection[],
     fromDate: Date,
@@ -121,7 +121,7 @@ Warm regards,
   }
 
   // Method reserved for future newsletter formatting
-  private static _formatLessonSummary(lessons: LessonPlan[]): string {
+  public static formatLessonSummary(lessons: LessonPlan[]): string {
     if (lessons.length === 0) {
 return '';
 }
@@ -143,7 +143,7 @@ return '';
   }
 
   // Method reserved for future newsletter formatting
-  private static _formatReflectionHighlights(reflections: Reflection[]): string {
+  public static formatReflectionHighlights(reflections: Reflection[]): string {
     if (reflections.length === 0) {
 return '';
 }
@@ -166,13 +166,13 @@ return '';
   }
 
   // Method reserved for future user preferences
-  private static _getUserPreferences(_userId: number): Promise<unknown> {
+  public static getUserPreferences(_userId: number): Promise<unknown> {
     // Mock implementation - returns empty preferences
     return Promise.resolve({});
   }
 
   // Method reserved for future newsletter tracking
-  private static _getLastNewsletterDate(_userId: number): Promise<Date | null> {
+  public static getLastNewsletterDate(_userId: number): Promise<Date | null> {
     // Mock implementation - returns null
     return Promise.resolve(null);
   }
@@ -180,10 +180,5 @@ return '';
   static recordNewsletterGeneration(_userId: number): void {
     // Mock implementation that doesn't throw
     return;
-  }
-
-  static getUserPreferences(_userId: number): Record<string, never> {
-    // Mock implementation - returns empty object
-    return {};
   }
 }

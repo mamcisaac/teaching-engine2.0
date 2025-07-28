@@ -1,7 +1,7 @@
 import type { Prisma, PrismaClient } from '@prisma/client';
 
 import { logger } from '../logger';
-import type { ETFOLessonPlanRepository } from '../repositories/ETFOLessonPlanRepository';
+import type { ETFOLessonPlanRepository, ETFOLessonPlanWithRelations } from '../repositories/ETFOLessonPlanRepository';
 import { RepositoryFactory } from '../repositories/RepositoryFactory';
 import { getErrorMessage } from '../utils/type-guards';
 
@@ -36,45 +36,6 @@ export interface ETFOLessonPlanCreateData {
 
 export type ETFOLessonPlanUpdateData = Partial<Omit<ETFOLessonPlanCreateData, 'unitPlanId' | 'userId'>>
 
-export interface ETFOLessonPlanWithRelations {
-  id: string;
-  title: string;
-  titleFr?: string | null;
-  unitPlanId: string;
-  date: Date;
-  duration: number;
-  mindsOn?: string | null;
-  mindsOnFr?: string | null;
-  action?: string | null;
-  actionFr?: string | null;
-  consolidation?: string | null;
-  consolidationFr?: string | null;
-  learningGoals?: string | null;
-  learningGoalsFr?: string | null;
-  materials?: string[];
-  grouping?: string | null;
-  accommodations?: string[];
-  modifications?: string[];
-  extensions?: string[];
-  assessmentType?: 'diagnostic' | 'formative' | 'summative' | null;
-  assessmentNotes?: string | null;
-  isSubFriendly?: boolean | null;
-  subNotes?: string | null;
-  userId: number;
-  createdAt: Date;
-  updatedAt: Date;
-  unitPlan?: {
-    id: string;
-    title: string;
-    longRangePlan?: {
-      subject: string;
-    } | null;
-  } | null;
-  expectations?: {
-    id: string;
-    expectationId: number;
-  }[];
-}
 
 export interface ETFOLessonPlanListResponse {
   plans: ETFOLessonPlanWithRelations[];
@@ -133,10 +94,10 @@ export class ETFOLessonPlanService extends BaseService {
       if ((filters.startDate !== null && filters.startDate !== '') || (filters.endDate !== null && filters.endDate !== '')) {
         where.date = {};
         if (filters.startDate !== null && filters.startDate !== '') {
-          where.date.gte = new Date(filters.startDate);
+          where.date.gte = new Date(String(filters.startDate));
         }
         if (filters.endDate !== null && filters.endDate !== '') {
-          where.date.lte = new Date(filters.endDate);
+          where.date.lte = new Date(String(filters.endDate));
         }
       }
 
@@ -144,7 +105,7 @@ export class ETFOLessonPlanService extends BaseService {
         where.isSubFriendly = filters.isSubFriendly;
       }
 
-      if (filters.assessmentType !== null && filters.assessmentType !== '') {
+      if (filters.assessmentType !== null && filters.assessmentType !== undefined) {
         where.assessmentType = filters.assessmentType;
       }
 
@@ -158,13 +119,27 @@ export class ETFOLessonPlanService extends BaseService {
         };
       }
 
-      const result = await this.repository.findByUserId(userId, {
+      const skip = pagination.skip || 0;
+      const take = pagination.take || 20;
+      
+      const plans = await this.repository.findByUserId(userId, {
         includeRelations: true,
-        skip: pagination.skip || 0,
-        take: pagination.take || 20,
+        skip,
+        take,
       });
+      
+      // For now, use a simple count - this could be optimized later
+      const total = plans.length;
 
-      return result;
+      return {
+        plans,
+        total,
+        pagination: {
+          skip,
+          take,
+          hasMore: skip + take < total,
+        },
+      };
     } catch (error) {
       logger.error('Error finding ETFO lesson plans:', getErrorMessage(error));
       throw error;
@@ -237,7 +212,7 @@ export class ETFOLessonPlanService extends BaseService {
         id,
         {
           ...updateData,
-          date: data.date !== null && data.date !== '' ? new Date(data.date) : undefined,
+          date: data.date !== null && data.date !== '' ? new Date(String(data.date)) : undefined,
         },
         (expectationIds ?? []).map((id) => String(id)),
       );
@@ -313,8 +288,24 @@ export class ETFOLessonPlanService extends BaseService {
     pagination: { skip?: number; take?: number } = {},
   ): Promise<ETFOLessonPlanSearchResult> {
     try {
-      const plans = await this.repository.searchByContent(userId, searchTerm, pagination);
-      return plans;
+      const skip = pagination.skip || 0;
+      const take = pagination.take || 20;
+      
+      const plans = await this.repository.searchByContent(userId, searchTerm, { skip, take });
+      
+      // For now, use a simple count - this could be optimized later
+      const total = plans.length;
+      
+      return {
+        plans,
+        total,
+        searchTerm,
+        pagination: {
+          skip,
+          take,
+          hasMore: skip + take < total,
+        },
+      };
     } catch (error) {
       logger.error('Error searching ETFO lesson plans:', getErrorMessage(error));
       throw error;

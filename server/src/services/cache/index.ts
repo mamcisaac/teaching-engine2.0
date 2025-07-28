@@ -135,7 +135,7 @@ class UnifiedCache implements ICache {
     if (this.primaryCache && this.useRedis) {
       return this.primaryCache;
     }
-    return this.fallbackCache;
+    return this.fallbackCache as unknown as ICache;
   }
 
   isUsingRedis(): boolean {

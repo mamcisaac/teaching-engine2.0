@@ -59,7 +59,7 @@ export class LLMService extends BaseService {
   private readonly defaultModel = 'gpt-4o-mini';
   private readonly maxRetries = 3;
   // Reserved for future retry implementation
-  private readonly _retryDelay = 1000; // 1 second
+  public readonly retryDelay = 1000; // 1 second
 
   private constructor() {
     super('LLMService');
@@ -275,7 +275,7 @@ export class LLMService extends BaseService {
         contextParts.push(`Duration: ${request.context.duration} minutes`);
       }
 
-      if (request.context.language !== undefined && request.context.language !== '') {
+      if (request.context.language !== undefined) {
         contextParts.push(`Language: ${request.context.language}`);
       }
 
@@ -331,7 +331,7 @@ export class LLMService extends BaseService {
    * Validate content generation request
    */
   // Method reserved for future request validation
-  private _validateRequest(request: ContentGenerationRequest): void {
+  public validateRequest(request: ContentGenerationRequest): void {
     if (!request.prompt.trim()) {
       throw new Error('Prompt is required and cannot be empty');
     }

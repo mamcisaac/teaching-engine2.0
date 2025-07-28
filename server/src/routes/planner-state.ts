@@ -52,7 +52,7 @@ const csrfProtection = (
       return;
     }
 
-    const sourceUrl = origin ?? (referer !== null ? new URL(referer).origin : '');
+    const sourceUrl = origin ?? (referer !== null ? new URL(referer as string).origin : '');
     if (!allowedOrigins.includes(sourceUrl)) {
       res.status(403).json({ error: 'CSRF protection: Invalid origin' });
       return;
@@ -178,7 +178,7 @@ router.get('/state', async (req: AuthenticatedRequest, res: Response): Promise<v
     res.json(responseState);
     return;
   } catch (_error) {
-    logger.error('Error fetching planner state:', _error);
+    logger.error('Error fetching planner state:', _error as string | undefined);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -278,7 +278,7 @@ router.put(
       res.json(responseState);
       return;
     } catch (_error) {
-      logger.error('Error updating planner state:', _error);
+      logger.error('Error updating planner state:', _error as string | undefined);
       res.status(500).json({ error: 'Internal server error' });
     }
   },
@@ -393,7 +393,7 @@ router.get('/week/:weekStart/state', async (req: AuthenticatedRequest, res: Resp
     res.json(weeklyState);
     return;
   } catch (_error) {
-    logger.error('Error fetching weekly state:', _error);
+    logger.error('Error fetching weekly state:', _error as string | undefined);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -456,7 +456,7 @@ router.post(
       res.json(responseState);
       return;
     } catch (_error) {
-      logger.error('Error resetting planner state:', _error);
+      logger.error('Error resetting planner state:', _error as string | undefined);
       res.status(500).json({ error: 'Internal server error' });
     }
   },

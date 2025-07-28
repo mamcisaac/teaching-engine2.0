@@ -322,7 +322,7 @@ app.get('*', (_req, res): void => {
 // Global error handler - must be last middleware
 app.use(errorHandler);
 
-const PORT = process.env.PORT !== null && process.env.PORT !== undefined && process.env.PORT !== '' ? parseInt(process.env.PORT, 10) : 3000;
+const PORT = process.env.PORT !== undefined && process.env.PORT !== '' ? parseInt(process.env.PORT, 10) : 3000;
 log(`Starting server on port ${PORT}...`);
 // Export app before starting the server
 export { app };

@@ -61,10 +61,10 @@ export class AIPlanningService extends BaseService {
   }
 
   public static getInstance(): AIPlanningService {
-    if (AIPlanningService.instance === null) {
+    if (AIPlanningService.instance === undefined) {
       AIPlanningService.instance = new AIPlanningService();
     }
-    return AIPlanningService.instance;
+    return AIPlanningService.instance!;
   }
 
   getServiceHealth(): ServiceHealth {

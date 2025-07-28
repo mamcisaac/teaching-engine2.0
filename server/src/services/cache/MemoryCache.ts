@@ -80,7 +80,7 @@ export class MemoryCache {
   set<T>(key: string, value: T, options: CacheOptions = {}): boolean {
     try {
       // Check max size
-      if (this.config.maxSize !== null && this.cache.size >= this.config.maxSize) {
+      if (this.config.maxSize !== undefined && this.config.maxSize !== null && this.cache.size >= this.config.maxSize) {
         this.evictOldest();
       }
 
@@ -139,7 +139,7 @@ return false;
 
     for (const tag of tags) {
       const keys = this.tagIndex.get(tag);
-      if (keys === null) {
+      if (!keys) {
 continue;
 }
 
@@ -240,7 +240,7 @@ continue;
         this.tagIndex.set(tag, new Set());
       }
       const tagSet = this.tagIndex.get(tag);
-      if (tagSet !== null) {
+      if (tagSet !== undefined) {
         tagSet.add(key);
       }
     }
@@ -249,7 +249,7 @@ continue;
   private removeFromTags(key: string, tags: string[]): void {
     for (const tag of tags) {
       const keys = this.tagIndex.get(tag);
-      if (keys !== null) {
+      if (keys !== undefined) {
         keys.delete(key);
         if (keys.size === 0) {
           this.tagIndex.delete(tag);

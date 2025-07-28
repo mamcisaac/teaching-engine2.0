@@ -47,10 +47,10 @@ export class CurriculumSearchService extends BaseService {
    * Get singleton instance
    */
   public static getInstance(): CurriculumSearchService {
-    if (CurriculumSearchService.instance === null) {
+    if (CurriculumSearchService.instance === undefined) {
       CurriculumSearchService.instance = new CurriculumSearchService();
     }
-    return CurriculumSearchService.instance;
+    return CurriculumSearchService.instance!;
   }
 
   /**

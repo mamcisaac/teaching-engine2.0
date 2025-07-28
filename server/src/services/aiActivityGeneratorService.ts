@@ -104,7 +104,7 @@ export class AIActivityGeneratorService {
   }
 
   // Method reserved for future LLM integration
-  private _buildGenerationPrompt(params: GenerationParams): string {
+  public buildGenerationPrompt(params: GenerationParams): string {
     let prompt = 'Generate an engaging educational activity.\n\n';
 
     if (params.lessonContext !== undefined) {
@@ -146,13 +146,13 @@ prompt += `Group Size: ${reqs.groupSize}\n`;
       if (reqs.language !== null && reqs.language !== '') {
 prompt += `Language: ${reqs.language}\n`;
 }
-      if (reqs.curriculumExpectations !== null && reqs.curriculumExpectations.length > 0) {
+      if (reqs.curriculumExpectations !== null && reqs.curriculumExpectations !== undefined && reqs.curriculumExpectations.length > 0) {
 prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`;
 }
       prompt += '\n';
     }
 
-    if (params.searchResults !== null && params.searchResults.length > 0) {
+    if (params.searchResults !== null && params.searchResults !== undefined && params.searchResults.length > 0) {
       prompt += 'Consider these similar activities for inspiration:\n';
       const limitedResults = params.searchResults.slice(0, 3);
       limitedResults.forEach((result) => {
@@ -185,7 +185,7 @@ prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`
   }
 
   // Method reserved for future LLM integration
-  private _parseGeneratedActivity(response: string): GeneratedActivity {
+  public parseGeneratedActivity(response: string): GeneratedActivity {
     try {
       // Extract JSON from response
       const jsonMatch = response.match(/\{[\s\S]*\}/);
@@ -283,7 +283,7 @@ prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`
   }
 
   // Method reserved for future LLM integration
-  private _getSystemPrompt(): string {
+  public getSystemPrompt(): string {
     return `You are an expert elementary school teacher with extensive experience in French immersion education and the Ontario curriculum. You specialize in creating engaging, developmentally appropriate learning activities that follow ETFO best practices.
 
 Your activities should be:

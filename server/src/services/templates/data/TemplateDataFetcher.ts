@@ -274,7 +274,7 @@ export class TemplateDataFetcher {
     };
 
     if (filters?.subjectId !== undefined) {
-      where.subjectId = filters.subjectId;
+      where.subjectId = String(filters.subjectId);
     }
 
     if (filters?.grade !== undefined) {
@@ -436,7 +436,7 @@ export class TemplateDataFetcher {
       }
 
       const group = grouped.get(subject);
-      if (group !== null) {
+      if (group !== undefined) {
         group.highlights.push(lesson.title);
       }
     }

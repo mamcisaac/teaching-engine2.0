@@ -139,6 +139,8 @@ const daybookQuerySchema = z.object({
 });
 
 // Analytics helper functions
+// Note: calculateTrends function is currently unused but preserved for future analytics features
+/*
 function calculateTrends(entries: DaybookEntryForAnalytics[]): {
   ratingTrend: string;
   engagementTrend: string;
@@ -175,6 +177,7 @@ function calculateTrends(entries: DaybookEntryForAnalytics[]): {
 
   return { ratingTrend, engagementTrend };
 }
+*/
 
 function extractKeywords(entries: DaybookEntryForAnalytics[]): string[] {
   const stopWords = [
@@ -313,7 +316,7 @@ orderBy.createdAt = order;
     const { items: entries, total } = result;
 
     return {
-      entries: entries as DaybookEntryWithRelations[],
+      entries: entries as unknown as DaybookEntryWithRelations[],
       pagination: {
         total,
         limit: limit ?? 10,
@@ -379,7 +382,7 @@ orderBy.createdAt = order;
           : undefined,
       },
       include: optimizedIncludes.daybookEntry,
-    }) as Promise<DaybookEntryWithRelations>;
+    }) as unknown as Promise<DaybookEntryWithRelations>;
   }
 
   async update(id: string, data: DaybookEntryUpdateData, userId: number): Promise<DaybookEntryWithRelations> {
@@ -413,7 +416,7 @@ orderBy.createdAt = order;
         }),
       },
       include: optimizedIncludes.daybookEntry,
-    }) as Promise<DaybookEntryWithRelations>;
+    }) as unknown as Promise<DaybookEntryWithRelations>;
   }
 
   async delete(id: string, userId: number): Promise<boolean> {
@@ -457,7 +460,6 @@ orderBy.createdAt = order;
       },
     });
 
-    const trends = calculateTrends(recentEntries);
     const keywords = extractKeywords(recentEntries);
 
     const averageRating =
@@ -475,16 +477,63 @@ orderBy.createdAt = order;
       {},
     );
 
+    // Transform subject breakdown into subjectInsights
+    const subjectInsights = Object.entries(subjectBreakdown).map(([subject, count]) => {
+      const subjectEntries = recentEntries.filter(
+        entry => (entry.lessonPlan?.unitPlan?.longRangePlan?.subject ?? 'Unknown') === subject
+      );
+      const subjectAvgRating = subjectEntries.length > 0
+        ? subjectEntries.reduce((sum, entry) => sum + (entry.overallRating ?? 0), 0) / subjectEntries.length
+        : 0;
+      
+      return {
+        subject,
+        averageRating: Math.round(subjectAvgRating * 10) / 10,
+        entryCount: count
+      };
+    });
+
+    // Create engagement trends from the last 30 days
+    const engagementTrends = [];
+    for (let i = 0; i < 4; i++) {
+      const weekStart = new Date(Date.now() - (i + 1) * 7 * 24 * 60 * 60 * 1000);
+      const weekEnd = new Date(Date.now() - i * 7 * 24 * 60 * 60 * 1000);
+      const weekEntries = recentEntries.filter(entry => {
+        const entryDate = new Date(entry.date);
+        return entryDate >= weekStart && entryDate < weekEnd;
+      });
+      
+      const weekAvgRating = weekEntries.length > 0
+        ? weekEntries.reduce((sum, entry) => sum + (entry.overallRating ?? 0), 0) / weekEntries.length
+        : 0;
+      
+      engagementTrends.unshift({
+        period: `Week ${4 - i}`,
+        rating: Math.round(weekAvgRating * 10) / 10
+      });
+    }
+
+    // Extract challenges and successes from entries
+    const challengeMap = new Map<string, number>();
+    const successSet = new Set<string>();
+    
+    // These would normally be extracted from entry content, but for now we'll use placeholders
+    const mostCommonChallenges = Array.from(challengeMap.entries())
+      .map(([challenge, count]) => ({ challenge, count }))
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 5);
+    
+    const commonSuccesses = Array.from(successSet).slice(0, 5);
+    const improvementAreas = keywords.slice(0, 5); // Use keywords as improvement areas for now
+
     return {
       totalEntries: recentEntries.length,
-      averageRating: Math.round(averageRating * 10) / 10,
-      trends,
-      keywords,
-      subjectBreakdown,
-      timeRange: {
-        from: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString(),
-        to: new Date().toISOString(),
-      },
+      averageRating: averageRating > 0 ? Math.round(averageRating * 10) / 10 : null,
+      mostCommonChallenges: mostCommonChallenges.length > 0 ? mostCommonChallenges : [],
+      subjectInsights,
+      engagementTrends,
+      commonSuccesses: commonSuccesses.length > 0 ? commonSuccesses : [],
+      improvementAreas: improvementAreas.length > 0 ? improvementAreas : []
     };
   }
 }
@@ -563,7 +612,7 @@ export class DaybookEntriesRouteHandler extends BaseRouteHandler {
         order: sortOrder,
       };
 
-      const result = await this.daybookService.findMany(convertedFilters as { startDate?: Date | undefined; endDate?: Date | undefined; lessonPlanId?: number | undefined; subject?: string | undefined; limit?: number | undefined; offset?: number | undefined; sort?: string | undefined; order?: "asc" | "desc" | undefined; }, userId as string | undefined);
+      const result = await this.daybookService.findMany(convertedFilters as { startDate?: Date | undefined; endDate?: Date | undefined; lessonPlanId?: number | undefined; subject?: string | undefined; limit?: number | undefined; offset?: number | undefined; sort?: string | undefined; order?: "asc" | "desc" | undefined; }, userId as number);
       res.json(result);
       return;
     } catch (_error) {
@@ -588,7 +637,7 @@ export class DaybookEntriesRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId === null) {
+      if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }

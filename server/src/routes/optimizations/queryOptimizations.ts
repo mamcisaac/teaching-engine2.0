@@ -9,8 +9,8 @@ import { logger } from '../../logger';
 
 // Type definitions for query optimization
 interface PrismaModel {
-  findMany(args: Record<string, unknown>): Promise<unknown[]>;
-  count(args: Record<string, unknown>): Promise<number>;
+  findMany(args?: any): Promise<any[]>;
+  count(args?: any): Promise<number>;
 }
 
 interface PaginationOptions {
@@ -272,13 +272,13 @@ return {};
   ): WhereCondition {
     const where: WhereCondition = {};
 
-    if (startDate !== null || endDate !== null) {
+    if (startDate !== undefined || endDate !== undefined) {
       where[dateField] = {};
-      if (startDate !== null) {
-        (where[dateField] as Record<string, unknown>).gte = new Date(startDate);
+      if (startDate !== undefined) {
+        (where[dateField] as Record<string, unknown>).gte = startDate instanceof Date ? startDate : new Date(startDate);
       }
-      if (endDate !== null) {
-        (where[dateField] as Record<string, unknown>).lte = new Date(endDate);
+      if (endDate !== undefined) {
+        (where[dateField] as Record<string, unknown>).lte = endDate instanceof Date ? endDate : new Date(endDate);
       }
     }
 
@@ -327,7 +327,7 @@ export const queryPerformance = {
       return result;
     } catch (error) {
       const duration = Date.now() - start;
-      logger.error(`Query failed: ${queryName} failed after ${duration}ms:`, error);
+      logger.error(`Query failed: ${queryName} failed after ${duration}ms:`, error as string | undefined);
       throw error;
     }
   },

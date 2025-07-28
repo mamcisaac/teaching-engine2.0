@@ -28,7 +28,7 @@ router.get('/alerts', authenticate, async (_req: Request, res: Response) => {
       res.json(status);
       return;
     } catch (_error) {
-      logger.error('Failed to get alert status', _error);
+      logger.error('Failed to get alert status', String(_error));
       res.status(500).json({ error: 'Failed to get alert status' });
     }
     });
@@ -52,7 +52,7 @@ router.post('/alerts/:alertId/trigger', authenticate, async (req: Request, res: 
       res.json({ success: true, message: `Alert ${alertId} triggered` });
       return;
     } catch (_error) {
-      logger.error('Failed to trigger manual alert', _error);
+      logger.error('Failed to trigger manual alert', _error as string | undefined);
       res.status(500).json({ error: 'Failed to trigger alert' });
     }
     });
@@ -112,7 +112,7 @@ router.get('/health/detailed', async (_req: Request, res: Response) => {
       const statusCode = health.status === 'healthy' ? 200 : 503;
       res.status(statusCode).json(health);
     } catch (_error) {
-      logger.error('Health check failed', _error);
+      logger.error('Health check failed', _error as string | undefined);
       res.status(503).json({
         status: 'unhealthy',
         error: 'Health check failed',

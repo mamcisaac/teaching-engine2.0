@@ -200,7 +200,7 @@ class TemplateService extends BaseService {
     const finalLimit = getNumericValue(limit, 20);
     const finalOffset = getNumericValue(offset, 0);
     
-    const validatedTemplates = isArray(templates) ? templates : [];
+    const validatedTemplates = isArray(templates) ? templates as Record<string, unknown>[] : [];
     
     return {
       templates: validatedTemplates,
@@ -416,7 +416,7 @@ export class TemplatesRouteHandler extends BaseRouteHandler {
         if (!isObject(data)) {
 throw new Error('Invalid create data');
 }
-        return this.templateService.create(data as TemplateCreateData, userId);
+        return this.templateService.create(data as unknown as TemplateCreateData, userId);
       },
       findMany: async (filters: unknown, userId: number): Promise<Record<string, unknown>[]> => {
         if (!isObject(filters)) {
@@ -460,7 +460,7 @@ throw new Error('Invalid update data');
       res.json(result);
       return;
     } catch (_error) {
-      this.logger.error(`Error in ${this.routeName} list:`, _error);
+      this.logger.error(`Error in ${this.routeName} list:`, _error as string | undefined);
       next(_error); return;
     }
   }
@@ -492,7 +492,7 @@ throw new Error('Invalid update data');
       res.json(options);
       return;
     } catch (_error) {
-      this.logger.error('Error getting filter options:', _error);
+      this.logger.error('Error getting filter options:', _error as string | undefined);
       next(_error); return;
     }
   }
