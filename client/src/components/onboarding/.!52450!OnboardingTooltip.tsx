@@ -87,7 +87,7 @@ function FlowTooltip({
       transition={{ delay: 0.2 }}
     >
       {/* Close button */}
-      {currentStep.showSkip  ? (
+      {currentStep.showSkip === true ? (
         <button
           aria-label="Skip onboarding"
           className="absolute top-2 right-2 p-1 text-gray-400 hover:text-gray-600 transition-colors"
@@ -103,7 +103,7 @@ function FlowTooltip({
           <span className="text-sm text-gray-500">
             Step {state.currentStepIndex + 1} of {state.currentFlow?.steps.length ?? 0}
           </span>
-          {state.currentFlow?.!estimatedTime= null && state.currentFlow?.!estimatedTime= undefined ? (
+          {state.currentFlow?.estimatedTime != null && state.currentFlow?.estimatedTime != undefined ? (
             <span className="text-sm text-gray-500">
               ~{state.currentFlow.estimatedTime} min
             </span>
@@ -125,7 +125,7 @@ function FlowTooltip({
         </div>
 
         {/* Action hint */}
-        {currentStep.requiresAction  ? (
+        {currentStep.requiresAction === true ? (
           <div className="bg-blue-50 border border-blue-200 rounded-md p-3 text-sm text-blue-700">
             <p className="font-medium">Action required:</p>
             <p>
@@ -145,7 +145,7 @@ function FlowTooltip({
                 Previous
               </Button>
             ) : null}
-            {currentStep.showSkip  ? (
+            {currentStep.showSkip === true ? (
               <Button
                 className="text-gray-500"
                 size="sm"
@@ -157,7 +157,7 @@ function FlowTooltip({
             ) : null}
           </div>
 
-          {currentStep.!requiresAction= true ? (
+          {currentStep.requiresAction != true ? (
             <Button
               className="gap-1 bg-blue-600 hover:bg-blue-700"
               size="sm"
@@ -299,7 +299,7 @@ return;
                 </div>
               </div>
 
-              {!actionText= null && !actionText= undefined && !actionText= '' && !onAction= null && !onAction= undefined ? (
+              {actionText != null && actionText != undefined && actionText != '' && onAction != null && onAction != undefined ? (
                 <button
                   className="mt-3 text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
                   onClick={() => {

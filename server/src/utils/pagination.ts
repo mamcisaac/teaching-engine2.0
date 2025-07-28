@@ -112,7 +112,7 @@ export function createPaginatedResponse<T>(
   };
 
   // Add navigation links if base URL provided
-  if (baseUrl !== null && baseUrl !== '') {
+  if (baseUrl && baseUrl !== '') {
     response.links = {};
 
     const url = new URL(baseUrl);

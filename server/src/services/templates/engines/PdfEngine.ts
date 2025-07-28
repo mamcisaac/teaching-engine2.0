@@ -118,9 +118,9 @@ export class PdfEngine extends RenderEngine {
   /**
    * Validate template
    */
-  validate(template: Template): boolean {
+  async validate(template: Template): Promise<boolean> {
     // Validate as HTML first
-    return this.handlebarsEngine.validate(template);
+    return await this.handlebarsEngine.validate(template);
   }
 
   /**
@@ -133,9 +133,9 @@ export class PdfEngine extends RenderEngine {
   /**
    * Precompile template
    */
-  precompile(template: Template): unknown {
+  async precompile(template: Template): Promise<unknown> {
     // Precompile as Handlebars template
-    return this.handlebarsEngine.precompile(template);
+    return await this.handlebarsEngine.precompile(template);
   }
 
   /**

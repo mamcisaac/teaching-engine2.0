@@ -120,17 +120,17 @@ export function useAIStatus(): AIStatusHookReturn {
     refetchOnWindowFocus: true,
   });
 
-  const isAIEnabled = !userDisabledAI && aiStatus.available;
+  const isAIEnabled = userDisabledAI === false && aiStatus.available;
   const canUseAI = isAIEnabled && aiStatus.hasApiKey && aiStatus.serviceHealth !== 'unavailable';
 
   const getAIDisabledReason = (): string | undefined => {
     if (userDisabledAI) {
       return 'AI features have been manually disabled';
     }
-    if (aiStatus.!available) {
+    if (aiStatus.available === false) {
       return 'AI service is not available';
     }
-    if (aiStatus.!hasApiKey) {
+    if (aiStatus.hasApiKey === false) {
       return 'OpenAI API key is not configured';
     }
     if (aiStatus.serviceHealth === 'unavailable') {
@@ -176,7 +176,7 @@ export function useAIFeature(feature: keyof AIStatusInfo['features']): {
   const { aiStatus, canUseAI } = useAIStatus();
   
   return {
-    available: canUseAI  && aiStatus.features[feature] ,
+    available: canUseAI === true && aiStatus.features[feature] === true,
     status: aiStatus.serviceHealth,
     limitations: aiStatus.limitations,
   };
@@ -194,7 +194,7 @@ export function useAIQuota(): {
 } {
   const { aiStatus } = useAIStatus();
   
-  const quotaPercentage = (aiStatus.limitations !== null && aiStatus.limitations.quotaLimit !== null && aiStatus.limitations.quotaLimit > 0)
+  const quotaPercentage = (aiStatus.limitations && aiStatus.limitations.quotaLimit !== null && aiStatus.limitations.quotaLimit !== undefined && aiStatus.limitations.quotaLimit > 0)
     ? ((aiStatus.limitations.quotaUsed ?? 0) / aiStatus.limitations.quotaLimit * 100)
     : 0;
 
@@ -227,7 +227,7 @@ export function AIStatusIndicator({
   const { aiStatus, canUseAI, aiDisabledReason } = useAIStatus();
 
   const getStatusColor = (): string => {
-    if (!canUseAI) {
+    if (canUseAI === false) {
       return 'text-red-500 bg-red-100';
     }
     if (aiStatus.serviceHealth === 'degraded') {
@@ -237,7 +237,7 @@ export function AIStatusIndicator({
   };
 
   const getStatusText = (): string => {
-    if (!canUseAI) {
+    if (canUseAI === false) {
       return 'Unavailable';
     }
     if (aiStatus.serviceHealth === 'degraded') {
@@ -246,7 +246,7 @@ export function AIStatusIndicator({
     return 'Available';
   };
 
-  if (compact ) {
+  if (compact === true) {
     return (
       <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs ${getStatusColor()} ${className}`}>
         <div className="w-2 h-2 rounded-full bg-current" />
@@ -266,7 +266,7 @@ export function AIStatusIndicator({
         <p className="text-sm text-gray-600 mb-2">{aiDisabledReason}</p>
       )}
 
-      {showDetails  && canUseAI  && (
+      {showDetails === true && canUseAI === true && (
         <div className="text-sm text-gray-600">
           <div>Features: {Object.entries(aiStatus.features)
             .filter(([, enabled]) => enabled)

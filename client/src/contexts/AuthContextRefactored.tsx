@@ -43,7 +43,7 @@ export function AuthProvider({ children }: { children: ReactNode }): React.React
       try {
         // Check if we have a token first
         const hasToken = authService.isAuthenticated();
-        if (!hasToken) {
+        if (hasToken === false) {
           return null;
         }
 
@@ -104,7 +104,7 @@ export function AuthProvider({ children }: { children: ReactNode }): React.React
           errorMessage = 'Invalid email or password';
         } else if (err.response?.status !== undefined && err.response.status >= 500) {
           errorMessage = 'Server error. Please try again later.';
-        } else if (err.message !== null && err.message !== '') {
+        } else if (err.message !== undefined && err.message !== null && err.message !== '') {
           errorMessage = err.message;
         }
         
@@ -155,7 +155,7 @@ export function AuthProvider({ children }: { children: ReactNode }): React.React
     try {
       const success = await authService.refreshToken();
       
-      if (success ) {
+      if (success === true) {
         // Re-verify auth after refresh
         const userData = await checkAuth();
         return userData.data !== null;

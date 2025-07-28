@@ -143,7 +143,7 @@ class AuthService implements AuthServiceInterface {
 
       if (data.tokens !== undefined) {
         this.setTokens(data.tokens);
-      } else if (data.accessToken !== null && data.accessToken !== '') {
+      } else if (data.accessToken != null && data.accessToken !== '') {
         // Current backend format
         this.setLegacyToken(data.accessToken);
       } else if (data.token !== undefined) {
@@ -216,7 +216,7 @@ class AuthService implements AuthServiceInterface {
         } else if (data.token !== undefined) {
           this.setLegacyToken(data.token);
           return true;
-        } else if (data.accessToken !== '') {
+        } else if (data.accessToken != null && data.accessToken !== '') {
           this.setLegacyToken(data.accessToken);
           return true;
         }

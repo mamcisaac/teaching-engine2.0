@@ -3,7 +3,7 @@ import type { Request, Response, NextFunction } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
 
-import { isErrorLike } from '../../../shared/utils/typeGuards';
+import { isErrorLike } from '@shared/utils/typeGuards';
 import { logger } from '../logger';
 import { authMiddleware } from '../middleware/auth';
 const router = Router();
@@ -381,7 +381,7 @@ router.post(
 router.delete(
   '/:collectionId/activities/:activityId',
   authMiddleware,
-  asyncMiddleware(async (req: Request, res: Response) => {
+  async (req: Request, res: Response) => {
 
       try {
       if (req.user?.id === null || req.user?.id === undefined) {
@@ -432,14 +432,14 @@ router.delete(
       return;
     }
 
-  }),
+  },
 );
 
 // Get popular/trending collections
 router.get(
   '/trending/public',
   authMiddleware,
-  asyncMiddleware(async (req: Request, res: Response) => {
+  async (req: Request, res: Response) => {
 
       try {
       if (req.user?.id === null || req.user?.id === undefined) {
@@ -482,7 +482,7 @@ router.get(
       return;
     }
 
-  }),
+  },
 );
 
 export { router };

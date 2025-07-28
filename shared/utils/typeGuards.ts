@@ -102,7 +102,7 @@ export function tryParseJSON<T = unknown>(
 ): T | null {
   try {
     const parsed = JSON.parse(jsonString);
-    if (validator !== null) {
+    if (validator !== undefined) {
       return validator(parsed) ? parsed : null;
     }
     return parsed as T;

@@ -61,7 +61,7 @@ export abstract class RenderEngine {
   /**
    * Validate engine health (optional)
    */
-  validateHealth?(): boolean;
+  validateHealth?(): Promise<boolean>;
 
   /**
    * Cleanup engine resources (optional)

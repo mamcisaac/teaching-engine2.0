@@ -78,16 +78,16 @@ export function FrenchImmersionTemplateSelector({
   let allTemplates = [...lessonTemplates, ...unitTemplates];
 
   // Apply type filter if provided
-  if (!filterByType= undefined) {
+  if (filterByType != undefined) {
     allTemplates = allTemplates.filter((t) => t.type === filterByType);
   }
 
   // Apply search filter
-  if (!searchTerm= '') {
+  if (searchTerm != '') {
     allTemplates = allTemplates.filter(
       (t) =>
         t.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (t.!titleFr= undefined && t.!titleFr= '' && t.titleFr.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (t.titleFr != undefined && t.titleFr != '' && t.titleFr.toLowerCase().includes(searchTerm.toLowerCase())) ||
         t.tags.some((tag) => tag.toLowerCase().includes(searchTerm.toLowerCase())),
     );
   }
@@ -115,20 +115,20 @@ return true;
     // Check if template matches persona preferences
     if (selectedPersona === 'jean-luc') {
       return (
-        ('culturalConnections' in template.content && template.content.!culturalConnections= undefined) ||
+        ('culturalConnections' in template.content && template.content.culturalConnections != undefined) ||
         template.tags.includes('art-integration') ||
         template.tags.includes('cultural')
       );
     } else if (selectedPersona === 'sophie') {
       return (
-        ('assessments' in template.content && template.content.!assessments= undefined) ||
-        ('assessmentNotes' in template.content && template.content.!assessmentNotes= undefined && template.content.!assessmentNotes= '') ||
-        ('lessonStructure' in template && template.!lessonStructure= undefined)
+        ('assessments' in template.content && template.content.assessments != undefined) ||
+        ('assessmentNotes' in template.content && template.content.assessmentNotes != undefined && template.content.assessmentNotes != '') ||
+        ('lessonStructure' in template && template.lessonStructure != undefined)
       );
     } else if (selectedPersona === 'marie-claire') {
       return (
-        ('parentCommunication' in template.content && template.content.!parentCommunication= undefined) ||
-        (template.!description= undefined && template.!description= '' && template.description.includes('structured')) ||
+        ('parentCommunication' in template.content && template.content.parentCommunication != undefined) ||
+        (template.description != undefined && template.description != '' && template.description.includes('structured')) ||
         template.tags.includes('guided')
       );
     }

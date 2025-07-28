@@ -32,7 +32,7 @@ export class HandlebarsEngine extends RenderEngine {
       // Get or compile template
       let compiled = this.compiledTemplates.get(template.id);
       if (!compiled) {
-        compiled = this.precompile(template);
+        compiled = await this.precompile(template);
       }
 
       // Register custom helpers
@@ -69,7 +69,7 @@ export class HandlebarsEngine extends RenderEngine {
   /**
    * Validate template
    */
-  validate(template: Template): boolean {
+  async validate(template: Template): Promise<boolean> {
     try {
       // Try to compile the template
       const compiled = this.handlebars.compile(template.content);
@@ -100,7 +100,7 @@ export class HandlebarsEngine extends RenderEngine {
   /**
    * Precompile template
    */
-  precompile(template: Template): HandlebarsTemplateDelegate {
+  async precompile(template: Template): Promise<HandlebarsTemplateDelegate> {
     const compiled = this.handlebars.compile(template.content);
     this.compiledTemplates.set(template.id, compiled);
     return compiled;

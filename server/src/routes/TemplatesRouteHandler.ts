@@ -7,7 +7,7 @@ import type { Prisma } from '@teaching-engine/database';
 import type { Response, NextFunction } from 'express';
 import { z } from 'zod';
 
-import { isDefined, isObject, isArray, hasProperty, isString, isValidNumber } from '../../../shared/utils/typeGuards';
+import { isDefined, isObject, isArray, hasProperty, isString, isValidNumber } from '@shared/utils/typeGuards';
 import { prisma } from '../prisma';
 import { BaseService } from '../services/base/BaseService';
 import type { TemplateCreateData, TemplateUpdateData } from '../types/routes';
@@ -421,7 +421,7 @@ export class TemplatesRouteHandler extends BaseRouteHandler {
         return result.templates;
       },
       findById: async (id: string, userId: number) => this.templateService.findById(id, userId),
-      update: async (id: string, data: unknown, userId: number): Promise<unknown> => {
+      update: async (id: string, data: unknown, userId: number) => {
         if (!isObject(data)) throw new Error('Invalid update data');
         return this.templateService.update(id, data as TemplateUpdateData, userId);
       },

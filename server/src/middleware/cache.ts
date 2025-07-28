@@ -3,7 +3,7 @@ import crypto from 'crypto';
 import type { Request, Response, NextFunction } from 'express';
 import NodeCache from 'node-cache';
 
-import { isDefined, isErrorLike } from '../../../shared/utils/typeGuards';
+import { isDefined, isErrorLike } from '@shared/utils/typeGuards';
 import { logger } from '../logger';
 
 import { cacheMetrics } from './metrics';
@@ -117,8 +117,8 @@ export function createCacheMiddleware(
       return;
     }
 
-    // Wrap logic in void wrapper
-    ((): void => {
+    // Wrap async logic in void wrapper
+    (async (): Promise<void> => {
       try {
         // Generate cache key
         const cacheKey = skipUserSpecific
@@ -189,7 +189,7 @@ export function createCacheMiddleware(
         // Continue without caching on error
         next();
       }
-    })();
+    })().catch(next);
   };
 }
 

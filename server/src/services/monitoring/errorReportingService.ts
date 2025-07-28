@@ -3,7 +3,7 @@ import { nodeProfilingIntegration } from '@sentry/profiling-node';
 
 import { logger } from '../../logger';
 import { AppError } from '../../utils/errors';
-import { safeJsonParse } from '../../utils/type-guards';
+import { safeJsonParse, getErrorMessage } from '../../utils/type-guards';
 
 type Context = Record<string, unknown>;
 
@@ -123,7 +123,7 @@ export class ErrorReportingService {
       this.enabled = true;
       logger.info('Error reporting service initialized');
     } catch (error) {
-      logger.error('Failed to initialize error reporting:', error);
+      logger.error('Failed to initialize error reporting:', getErrorMessage(error));
     }
   }
 
@@ -178,7 +178,7 @@ export class ErrorReportingService {
     }
 
     if (this.mockMode) {
-      logger.info(`[MOCK] Would set user context for user: ${user.id}`);
+      logger.info(`[MOCK] Would set user context for user: ${user?.id ?? 'unknown'}`);
       return;
     }
 
@@ -189,10 +189,10 @@ export class ErrorReportingService {
 
     const sanitizedUser = {
       id: String(user.id),
-      email: user.email !== null && user.email !== '' ? this.maskEmail(user.email) : undefined,
+      email: user.email && user.email !== '' ? this.maskEmail(user.email) : undefined,
       username: user.name,
       role: user.role,
-      organizationId: user.organizationId !== null ? String(user.organizationId) : undefined,
+      organizationId: user.organizationId ? String(user.organizationId) : undefined,
     };
 
     Sentry.setUser(sanitizedUser);
@@ -254,7 +254,7 @@ export class ErrorReportingService {
       if (statusCode >= 400 && statusCode < 500) {
         category.severity = 'warning';
 
-        if (statusCode === 400 || errorCode.includes('VALIDATION')) {
+        if (statusCode === 400 || (errorCode && errorCode.includes('VALIDATION'))) {
           category.category = 'validation';
         } else if (statusCode === 401 || statusCode === 403) {
           category.category = 'authentication';
@@ -352,18 +352,21 @@ export class ErrorReportingService {
 
     // Sanitize extra data
     if (sanitized.extra !== null) {
-      sanitized.extra = this.sanitizeData(sanitized.extra);
+      const sanitizedExtra = this.sanitizeData(sanitized.extra);
+      sanitized.extra = (sanitizedExtra && typeof sanitizedExtra === 'object' && !Array.isArray(sanitizedExtra)) 
+        ? sanitizedExtra as Record<string, unknown>
+        : undefined;
     }
 
     // Sanitize request data
     if (sanitized.request !== null) {
-      if (sanitized.request.headers !== null) {
+      if (sanitized.request.headers !== null && sanitized.request.headers !== undefined) {
         sanitized.request.headers = this.sanitizeHeaders(sanitized.request.headers);
       }
-      if (sanitized.request.data !== null) {
+      if (sanitized.request.data !== null && sanitized.request.data !== undefined) {
         sanitized.request.data = this.sanitizeData(sanitized.request.data);
       }
-      if (sanitized.request.query_string !== null && sanitized.request.query_string !== '') {
+      if (sanitized.request.query_string !== null && sanitized.request.query_string !== undefined && sanitized.request.query_string !== '') {
         sanitized.request.query_string = this.sanitizeString(sanitized.request.query_string);
       }
     }

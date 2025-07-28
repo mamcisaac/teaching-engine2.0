@@ -380,7 +380,7 @@ export function HelpPage(): React.ReactElement {
                       <div className="text-sm text-gray-500 mt-1">{section.description}</div>
                       <div className="flex items-center mt-2 space-x-4 text-xs text-gray-400">
                         <span className="capitalize">{section.level}</span>
-                        {section.estimatedTime !== null && section.estimatedTime !== 0 && !isNaN(section.estimatedTime) && <span>{section.estimatedTime} min read</span>}
+                        {section.estimatedTime != null && section.estimatedTime !== 0 && !isNaN(section.estimatedTime) && <span>{section.estimatedTime} min read</span>}
                       </div>
                     </div>
                   </button>

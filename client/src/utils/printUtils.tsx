@@ -205,21 +205,21 @@ export const generateUnitPlanHTML = (unitPlan: UnitPlan, longRangePlan?: { title
     <body>
       <div class="header">
         <div class="title">${escapeHtml(unitPlan.title)}</div>
-        ${unitPlan.titleFr ? `<div class="subtitle">Français: ${escapeHtml(unitPlan.titleFr)}</div>` : ''}
+        ${unitPlan.titleFr !== undefined && unitPlan.titleFr !== null && unitPlan.titleFr !== '' ? `<div class="subtitle">Français: ${escapeHtml(unitPlan.titleFr)}</div>` : ''}
         ${longRangePlan ? `<div class="subtitle">Long-Range Plan: ${escapeHtml(longRangePlan.title)}</div>` : ''}
         <div class="subtitle">
           ${format(new Date(unitPlan.startDate), 'MMMM d, yyyy')} - 
           ${format(new Date(unitPlan.endDate), 'MMMM d, yyyy')}
-          ${unitPlan.estimatedHours && unitPlan.estimatedHours > 0 ? ` • ${unitPlan.estimatedHours} hours` : ''}
+          ${unitPlan.estimatedHours !== undefined && unitPlan.estimatedHours !== null && unitPlan.estimatedHours > 0 ? ` • ${unitPlan.estimatedHours} hours` : ''}
         </div>
       </div>
 
       <div class="metadata no-break">
         <div class="section-title">Unit Overview</div>
-        ${unitPlan.description ? `<p>${escapeHtml(unitPlan.description)}</p>` : ''}
+        ${unitPlan.description !== undefined && unitPlan.description !== null && unitPlan.description !== '' ? `<p>${escapeHtml(unitPlan.description)}</p>` : ''}
       </div>
 
-      ${unitPlan.bigIdeas ? `
+      ${unitPlan.bigIdeas !== undefined && unitPlan.bigIdeas !== null && unitPlan.bigIdeas !== '' ? `
         <div class="section no-break">
           <div class="section-title">Big Ideas</div>
           <div>${escapeHtml(unitPlan.bigIdeas)}</div>
@@ -520,7 +520,7 @@ export const generateLessonPlanHTML = (lessonPlan: LessonPlan, unitPlan?: { titl
           <div class="info-label">Assessment</div>
           <div class="info-value">${escapeHtml(lessonPlan.assessmentType ?? 'Not specified')}</div>
         </div>
-        ${lessonPlan.isSubFriendly  ? `
+        ${lessonPlan.isSubFriendly === true ? `
           <div class="info-item">
             <div class="info-label">Sub-Friendly</div>
             <div class="info-value">✓ Yes</div>
@@ -610,7 +610,7 @@ export const generateLessonPlanHTML = (lessonPlan: LessonPlan, unitPlan?: { titl
         </div>
       ` : ''}
 
-      ${lessonPlan.isSubFriendly  && (lessonPlan.subNotes !== undefined && lessonPlan.subNotes !== '') ? `
+      ${lessonPlan.isSubFriendly === true && (lessonPlan.subNotes !== undefined && lessonPlan.subNotes !== '') ? `
         <div class="sub-friendly no-break">
           <div class="sub-title">Notes for Substitute Teacher</div>
           <p>${escapeHtml(lessonPlan.subNotes)}</p>

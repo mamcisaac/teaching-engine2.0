@@ -7,7 +7,7 @@ import type { Prisma } from '@teaching-engine/database';
 import type { Response, NextFunction } from 'express';
 import { z } from 'zod';
 
-import { isNonEmptyArray, isObject, isString, isArray, hasProperty } from '../../../shared/utils/typeGuards';
+import { isNonEmptyArray, isObject, isString, isArray, hasProperty } from '@shared/utils/typeGuards';
 import { prisma } from '../prisma';
 import { BaseService } from '../services/base/BaseService';
 import type { ETFOLessonPlanCreateData, ETFOLessonPlanUpdateData } from '../types/routes';
@@ -162,7 +162,7 @@ where.isSubFriendly = isSubFriendly;
     }
 
     // Sorting with validation
-    const orderBy = queryPerformance.createOptimizedSort((sort !== null && sort !== undefined && sort !== '') ? sort : 'date', (order !== null && order !== undefined && order !== '') ? order : 'asc', [
+    const orderBy = queryPerformance.createOptimizedSort(sort || 'date', order || 'asc', [
       'date',
       'title',
       'duration',
@@ -333,7 +333,7 @@ where.isSubFriendly = isSubFriendly;
       baseUpdateData.learningGoalsFr = updateData.learningGoalsFr;
     }
     if (updateData.materials !== undefined) {
-      baseUpdateData.materials = (updateData.materials !== null && updateData.materials !== undefined)
+      baseUpdateData.materials = updateData.materials
         ? JSON.stringify(updateData.materials)
         : undefined;
     }
@@ -344,17 +344,17 @@ where.isSubFriendly = isSubFriendly;
       baseUpdateData.titleFr = updateData.titleFr;
     }
     if (updateData.accommodations !== undefined) {
-      baseUpdateData.accommodations = (updateData.accommodations !== null && updateData.accommodations !== undefined)
+      baseUpdateData.accommodations = updateData.accommodations
         ? JSON.stringify(updateData.accommodations)
         : undefined;
     }
     if (updateData.modifications !== undefined) {
-      baseUpdateData.modifications = (updateData.modifications !== null && updateData.modifications !== undefined)
+      baseUpdateData.modifications = updateData.modifications
         ? JSON.stringify(updateData.modifications)
         : undefined;
     }
     if (updateData.extensions !== undefined) {
-      baseUpdateData.extensions = (updateData.extensions !== null && updateData.extensions !== undefined)
+      baseUpdateData.extensions = updateData.extensions
         ? JSON.stringify(updateData.extensions)
         : undefined;
     }
@@ -486,7 +486,7 @@ where.isSubFriendly = isSubFriendly;
     return prisma.eTFOLessonPlan.create({
       data: {
         title: `${originalLesson.title} (Sub-Friendly)`,
-        titleFr: (originalLesson.titleFr !== null && originalLesson.titleFr !== undefined && originalLesson.titleFr !== '') ? `${originalLesson.titleFr} (Sub-Friendly)` : undefined,
+        titleFr: originalLesson.titleFr ? `${originalLesson.titleFr} (Sub-Friendly)` : undefined,
         unitPlanId: originalLesson.unitPlanId,
         userId,
         date: originalLesson.date,
@@ -510,12 +510,12 @@ where.isSubFriendly = isSubFriendly;
         subNotes:
           'Auto-generated substitute-friendly version. Please review and customize as needed.',
         expectations: {
-          create: originalLesson.expectations.map((exp) => ({
+          create: originalLesson.expectations?.map((exp) => ({
             expectationId: exp.expectationId,
-          })),
+          })) ?? [],
         },
         resources: {
-          create: originalLesson.resources.map((resource) => ({
+          create: originalLesson.resources?.map((resource) => ({
             title: resource.title,
             url: resource.url,
             type: resource.type,
@@ -621,12 +621,12 @@ where.isSubFriendly = isSubFriendly;
         isSubFriendly: sourceLessonPlan.isSubFriendly,
         subNotes: sourceLessonPlan.subNotes,
         expectations: {
-          create: sourceLessonPlan.expectations.map((exp) => ({
+          create: sourceLessonPlan.expectations?.map((exp) => ({
             expectationId: exp.expectationId,
-          })),
+          })) ?? [],
         },
         resources: {
-          create: sourceLessonPlan.resources.map((resource) => ({
+          create: sourceLessonPlan.resources?.map((resource) => ({
             title: resource.title,
             url: resource.url,
             type: resource.type,
@@ -700,7 +700,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId === null || userId === undefined || userId === 0) {
+      if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -723,9 +723,9 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       const { sortBy, sortOrder, startDate, endDate, unitPlanId, ...filterBase } = filters;
       const convertedFilters = {
         ...filterBase,
-        ...((startDate !== null && startDate !== undefined && startDate !== '') && { startDate: new Date(startDate) }),
-        ...((endDate !== null && endDate !== undefined && endDate !== '') && { endDate: new Date(endDate) }),
-        ...((unitPlanId !== null && unitPlanId !== undefined && unitPlanId !== '') && { unitPlanId: parseInt(String(unitPlanId), 10) }),
+        ...(startDate && { startDate: new Date(startDate) }),
+        ...(endDate && { endDate: new Date(endDate) }),
+        ...(unitPlanId && { unitPlanId: parseInt(String(unitPlanId), 10) }),
         // Convert sortBy/sortOrder to sort/order for service
         sort: sortBy,
         order: sortOrder,
@@ -796,7 +796,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId === null || userId === undefined || userId === 0) {
+      if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -818,7 +818,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId === null || userId === undefined || userId === 0) {
+      if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -845,7 +845,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId === null || userId === undefined || userId === 0) {
+      if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -866,7 +866,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId === null || userId === undefined || userId === 0) {
+      if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -893,7 +893,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId === null || userId === undefined || userId === 0) {
+      if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }

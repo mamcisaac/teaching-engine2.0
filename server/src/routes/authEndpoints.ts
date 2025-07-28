@@ -9,7 +9,7 @@ import type { Request, Response, NextFunction } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
 
-import { isNonEmptyString } from '../../../shared/utils/typeGuards';
+import { isNonEmptyString } from '@shared/utils/typeGuards';
 import {
   login,
   register,

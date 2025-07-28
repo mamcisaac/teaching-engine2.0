@@ -6,7 +6,7 @@
 import * as fs from 'fs/promises';
 import * as path from 'path';
 
-import { isObject, isString, hasProperty } from '../../../../../shared/utils/typeGuards';
+import { isObject, isString, hasProperty } from '@shared/utils/typeGuards';
 import { logger } from '../../../logger';
 
 import type { Template, TemplateContext, DataRequirement } from './TemplateProvider';
@@ -27,7 +27,7 @@ export class LessonTemplateProvider extends TemplateProvider {
   /**
    * Get template based on context
    */
-  getTemplate(context: TemplateContext): Template {
+  async getTemplate(context: TemplateContext): Promise<Template> {
     // Determine template based on parameters with safe access
     const parameters = isObject(context.parameters) ? context.parameters : {};
     const templateType = hasProperty(parameters, 'type') && isString(parameters.type) ? parameters.type : 'standard';
@@ -44,12 +44,12 @@ export class LessonTemplateProvider extends TemplateProvider {
     }
 
     // Try specific template first, fall back to general
-    let template = this.getTemplateById(templateId);
+    let template = await this.getTemplateById(templateId);
     if (!template) {
-      template = this.getTemplateById(`lesson-${templateType}`);
+      template = await this.getTemplateById(`lesson-${templateType}`);
     }
     if (!template) {
-      template = this.getTemplateById('lesson-standard');
+      template = await this.getTemplateById('lesson-standard');
     }
 
     if (!template) {
@@ -62,7 +62,7 @@ export class LessonTemplateProvider extends TemplateProvider {
   /**
    * List available templates
    */
-  listTemplates(): Template[] {
+  async listTemplates(): Promise<Template[]> {
     return Array.from(this.templates.values());
   }
 

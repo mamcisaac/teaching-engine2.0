@@ -176,7 +176,7 @@ return null;
             initial={{ opacity: 0 }}
             onClick={(e) => {
               // Allow clicking through to highlighted element
-              if (highlightPosition && currentStep.requiresAction ) {
+              if (highlightPosition && currentStep.requiresAction === true) {
                 e.stopPropagation();
               }
             }}

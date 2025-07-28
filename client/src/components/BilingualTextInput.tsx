@@ -36,17 +36,17 @@ function BilingualTextInput({
 
   // Helper function to get placeholder value
   const getPlaceholder = (langPlaceholder: string | undefined, fallback: string | undefined): string | undefined => {
-    if (!langPlaceholder= undefined && !langPlaceholder= '') {
+    if (langPlaceholder != undefined && langPlaceholder != '') {
       return langPlaceholder;
     }
-    if (!fallback= undefined && !fallback= '') {
+    if (fallback != undefined && fallback != '') {
       return fallback;
     }
     return undefined;
   };
 
   // Helper function to check if value is non-empty
-  const hasValue = (value: string): boolean => !value= '';
+  const hasValue = (value: string): boolean => value != '';
 
   // Determine which placeholder to use based on language
   const currentPlaceholder = language === 'en' 

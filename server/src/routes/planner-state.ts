@@ -10,7 +10,6 @@ import { logger } from '../logger';
 import { prisma } from '../prisma';
 import { safeJsonParse } from '../utils/type-guards';
 import { cuidSchema } from '../validation';
-import { asyncHandler } from './base/middleware';
 const router = Router();
 
 // Rate limiting for state operations
@@ -126,7 +125,7 @@ const WeeklyPlannerStateSchema = z
 // Use global Express.Request type extended with user property
 
 // GET /api/planner/state - Get user's planner state
-router.get('/state', asyncHandler(async (req: express.Request, res: express.Response): Promise<void> => {
+router.get('/state', async (req: express.Request, res: express.Response): Promise<void> => {
   try {
     if (req.user.id === null) {
       res.status(401).json({ error: 'Unauthorized' });
@@ -184,14 +183,14 @@ router.get('/state', asyncHandler(async (req: express.Request, res: express.Resp
     logger.error('Error fetching planner state:', _error);
     res.status(500).json({ error: 'Internal server error' });
   }
-}));
+});
 
 // PUT /api/planner/state - Update user's planner state
 router.put(
   '/state',
   stateRateLimit,
   csrfProtection,
-  asyncHandler(async (req: express.Request, res: Response) => {
+  async (req: express.Request, res: Response) => {
     try {
       if (req.user.id === null) {
         res.status(401).json({ error: 'Unauthorized' });
@@ -288,11 +287,11 @@ router.put(
       logger.error('Error updating planner state:', _error);
       res.status(500).json({ error: 'Internal server error' });
     }
-  }),
+  },
 );
 
 // GET /api/planner/week/:weekStart/state - Get state for specific week
-router.get('/week/:weekStart/state', asyncHandler(async (req: express.Request, res: Response): Promise<void> => {
+router.get('/week/:weekStart/state', async (req: express.Request, res: Response): Promise<void> => {
   try {
     if (req.user.id === null) {
       res.status(401).json({ error: 'Unauthorized' });
@@ -407,14 +406,14 @@ router.get('/week/:weekStart/state', asyncHandler(async (req: express.Request, r
     logger.error('Error fetching weekly state:', _error);
     res.status(500).json({ error: 'Internal server error' });
   }
-}));
+});
 
 // POST /api/planner/state/reset - Reset planner state to defaults
 router.post(
   '/state/reset',
   stateRateLimit,
   csrfProtection,
-  asyncHandler(async (req: express.Request, res: Response) => {
+  async (req: express.Request, res: Response) => {
     try {
       if (req.user.id === null) {
         res.status(401).json({ error: 'Unauthorized' });
@@ -474,7 +473,7 @@ router.post(
       logger.error('Error resetting planner state:', _error);
       res.status(500).json({ error: 'Internal server error' });
     }
-  }),
+  },
 );
 
 export { router };

@@ -44,7 +44,7 @@ export function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingFlowProps
   const [completedSteps, setCompletedSteps] = useState<string[]>(() => {
     try {
       const saved = localStorage.getItem('onboarding-completed-steps');
-      return (!saved= null && !saved= '') ? safeJsonParse(saved, []) : [];
+      return (saved != null && saved != '') ? safeJsonParse(saved, []) : [];
     } catch {
       return [];
     }

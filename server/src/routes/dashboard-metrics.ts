@@ -6,7 +6,6 @@ import { authMiddleware } from '../middleware/auth';
 import { getCacheStats } from '../middleware/cache';
 import { getPerformanceSummary, metricsStore } from '../middleware/metrics';
 import { prisma } from '../prisma';
-
 import { asyncHandler } from './base/middleware';
 
 const router = Router();

@@ -162,7 +162,7 @@ export class LLMService extends BaseService {
       }
 
       this.logger.debug(
-        `Content generated successfully - length: ${content.length}, tokens: ${response.usage.total_tokens ?? 'unknown'}`,
+        `Content generated successfully - length: ${content.length}, tokens: ${response.usage?.total_tokens ?? 'unknown'}`,
       );
 
       return content;
@@ -243,9 +243,9 @@ export class LLMService extends BaseService {
       return {
         content,
         tokensUsed: {
-          prompt: response.usage.prompt_tokens ?? 0,
-          completion: response.usage.completion_tokens ?? 0,
-          total: response.usage.total_tokens ?? 0,
+          prompt: response.usage?.prompt_tokens ?? 0,
+          completion: response.usage?.completion_tokens ?? 0,
+          total: response.usage?.total_tokens ?? 0,
         },
         model: response.model,
         finishReason: response.choices[0]?.finish_reason ?? 'unknown',

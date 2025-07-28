@@ -80,7 +80,7 @@ function isPresetImportResponse(data: unknown): data is PresetImportResponse {
 
 export function CurriculumImportPage(): React.ReactElement {
   const navigate = useNavigate();
-  const { toast }: { toast: (options: { title?: string; description?: string; variant?: 'default' | 'destructive' }) => void } = useToast();
+  const { toast } = useToast();
   const [importSession, setImportSession] = useState<ImportSession | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [selectedPreset, setSelectedPreset] = useState<string>('');

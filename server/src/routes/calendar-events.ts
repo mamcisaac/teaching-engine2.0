@@ -9,6 +9,7 @@ import { logger } from '../logger';
 import { asyncHandler } from '../middleware/errorHandler';
 import { validateRequest } from '../middleware/validateRequest';
 import { prisma } from '../prisma';
+import { getErrorMessage } from '../utils/type-guards';
 
 import type { AuthenticatedRequest } from './base/middleware';
 const router = Router();
@@ -77,7 +78,7 @@ router.get('/', asyncHandler(async (req: AuthenticatedRequest, res: Response): P
     return;
     return;
   } catch (_error) {
-    logger.error('Error fetching calendar events:', _error);
+    logger.error('Error fetching calendar events:', getErrorMessage(_error));
     res.status(500).json({ error: 'Failed to fetch calendar events' });
     return;
   }
@@ -86,7 +87,7 @@ router.get('/', asyncHandler(async (req: AuthenticatedRequest, res: Response): P
 // Create a new calendar event
 router.post(
   '/',
-  asyncHandler(validateRequest(calendarEventSchema)),
+  validateRequest(calendarEventSchema),
   asyncHandler(async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       const data = req.body as z.infer<typeof calendarEventSchema>;
@@ -112,7 +113,7 @@ router.post(
       res.status(201).json(event);
       return;
     } catch (_error) {
-      logger.error('Error creating calendar event:', _error);
+      logger.error('Error creating calendar event:', getErrorMessage(_error));
       res.status(500).json({ error: 'Failed to create calendar event' });
       return;
     }
@@ -145,10 +146,10 @@ router.patch('/:id', asyncHandler(async (req: Request, res: Response): Promise<v
 
     // Convert date strings to Date objects if present
     if (updates.start !== null && updates.start !== undefined) {
-      updates.start = new Date(updates.start as string | number | Date);
+      updates.start = new Date(updates.start);
     }
-    if (updates.end !== null && updates.end !== undefined) {
-      updates.end = new Date(updates.end as string | number | Date);
+    if (updates.end !== null && end !== undefined) {
+      updates.end = new Date(updates.end);
     }
 
     const updatedEvent = await prisma.calendarEvent.update({
@@ -159,7 +160,7 @@ router.patch('/:id', asyncHandler(async (req: Request, res: Response): Promise<v
     res.json(updatedEvent);
     return;
   } catch (_error) {
-    logger.error('Error updating calendar event:', _error);
+    logger.error('Error updating calendar event:', getErrorMessage(_error));
     res.status(500).json({ error: 'Failed to update calendar event' });
     return;
   }
@@ -195,7 +196,7 @@ router.delete('/:id', asyncHandler(async (req: AuthenticatedRequest, res: Respon
     res.status(204).send();
     return;
   } catch (_error) {
-    logger.error('Error deleting calendar event:', _error);
+    logger.error('Error deleting calendar event:', getErrorMessage(_error));
     res.status(500).json({ error: 'Failed to delete calendar event' });
     return;
   }

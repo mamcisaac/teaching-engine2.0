@@ -4,20 +4,20 @@ import { Router } from 'express';
 import { logger } from '../logger';
 import { authMiddleware } from '../middleware/auth';
 import { cache, CacheUtils } from '../services/cache';
+import { getErrorMessage } from '../utils/type-guards';
 
 import type { AuthenticatedRequest } from './base/middleware';
-import { asyncHandler } from './base/middleware';
 
 const router = Router();
 
 // All cache management endpoints require authentication
-router.use(asyncHandler(authMiddleware));
+router.use(authMiddleware);
 
 /**
  * Get cache statistics
  * GET /api/cache/stats
  */
-router.get('/stats', asyncHandler(async (_req: Request, res: Response) => {
+router.get('/stats', async (_req: Request, res: Response) => {
 
     try {
     const cacheService = cache();
@@ -35,7 +35,7 @@ router.get('/stats', asyncHandler(async (_req: Request, res: Response) => {
     });
     return;
   } catch (_error) {
-    logger.error('Error getting cache stats:', _error);
+    logger.error('Error getting cache stats:', getErrorMessage(_error));
     res.status(500).json({
       success: false,
       message: 'Failed to get cache statistics',
@@ -43,13 +43,13 @@ router.get('/stats', asyncHandler(async (_req: Request, res: Response) => {
     return;
   }
 
-}));
+});
 
 /**
  * Get cache health status
  * GET /api/cache/health
  */
-router.get('/health', asyncHandler(async (_req: Request, res: Response) => {
+router.get('/health', async (_req: Request, res: Response) => {
 
     try {
     const health = await CacheUtils.getHealth();
@@ -65,7 +65,7 @@ router.get('/health', asyncHandler(async (_req: Request, res: Response) => {
     });
     return;
   } catch (_error) {
-    logger.error('Error checking cache health:', _error);
+    logger.error('Error checking cache health:', getErrorMessage(_error));
     res.status(500).json({
       success: false,
       message: 'Failed to check cache health',
@@ -73,13 +73,13 @@ router.get('/health', asyncHandler(async (_req: Request, res: Response) => {
     return;
   }
 
-}));
+});
 
 /**
  * Warm up cache with commonly accessed data
  * POST /api/cache/warmup
  */
-router.post('/warmup', asyncHandler(async (_req: Request, res: Response) => {
+router.post('/warmup', async (_req: Request, res: Response) => {
 
     try {
     await CacheUtils.warmUp();
@@ -91,7 +91,7 @@ router.post('/warmup', asyncHandler(async (_req: Request, res: Response) => {
     });
     return;
   } catch (_error) {
-    logger.error('Error warming up cache:', _error);
+    logger.error('Error warming up cache:', getErrorMessage(_error));
     res.status(500).json({
       success: false,
       message: 'Failed to warm up cache',
@@ -99,19 +99,19 @@ router.post('/warmup', asyncHandler(async (_req: Request, res: Response) => {
     return;
   }
 
-}));
+});
 
 /**
  * Clear all caches
  * DELETE /api/cache/all
  */
-router.delete('/all', asyncHandler(async (req: AuthenticatedRequest, res: Response) => {
+router.delete('/all', async (req: AuthenticatedRequest, res: Response) => {
 
     try {
     const cacheService = cache();
     await cacheService.clear();
 
-    logger.info(`All caches cleared by user ${req.user.id}`);
+    logger.info(`All caches cleared by user ${req.user?.id}`);
 
     res.json({
       success: true,
@@ -120,7 +120,7 @@ router.delete('/all', asyncHandler(async (req: AuthenticatedRequest, res: Respon
     });
     return;
   } catch (_error) {
-    logger.error('Error clearing all caches:', _error);
+    logger.error('Error clearing all caches:', getErrorMessage(_error));
     res.status(500).json({
       success: false,
       message: 'Failed to clear caches',
@@ -128,13 +128,13 @@ router.delete('/all', asyncHandler(async (req: AuthenticatedRequest, res: Respon
     return;
   }
 
-}));
+});
 
 /**
  * Clear cache by pattern
  * DELETE /api/cache/pattern
  */
-router.delete('/pattern', asyncHandler(async (req: AuthenticatedRequest, res: Response) => {
+router.delete('/pattern', async (req: AuthenticatedRequest, res: Response) => {
 
     try {
     const { pattern } = req.body;
@@ -151,7 +151,7 @@ router.delete('/pattern', asyncHandler(async (req: AuthenticatedRequest, res: Re
     const deleted = await cacheService.deleteByPattern(pattern);
 
     logger.info(
-      `Cache cleared by pattern: ${pattern} by user ${req.user.id}, deleted: ${deleted}`,
+      `Cache cleared by pattern: ${pattern} by user ${req.user?.id}, deleted: ${deleted}`,
     );
 
     res.json({
@@ -162,7 +162,7 @@ router.delete('/pattern', asyncHandler(async (req: AuthenticatedRequest, res: Re
     });
     return;
   } catch (_error) {
-    logger.error('Error clearing cache by pattern:', _error);
+    logger.error('Error clearing cache by pattern:', getErrorMessage(_error));
     res.status(500).json({
       success: false,
       message: 'Failed to clear cache',
@@ -170,13 +170,13 @@ router.delete('/pattern', asyncHandler(async (req: AuthenticatedRequest, res: Re
     return;
   }
 
-}));
+});
 
 /**
  * Clear cache by tags
  * DELETE /api/cache/tags
  */
-router.delete('/tags', asyncHandler(async (req: AuthenticatedRequest, res: Response) => {
+router.delete('/tags', async (req: AuthenticatedRequest, res: Response) => {
 
     try {
     const { tags } = req.body;
@@ -190,10 +190,10 @@ router.delete('/tags', asyncHandler(async (req: AuthenticatedRequest, res: Respo
     }
 
     const cacheService = cache();
-    const deleted = await cacheService.invalidateByTags(tags as string[]);
+    const deleted = await cacheService.invalidateByTags(tags);
 
     logger.info(
-      `Cache invalidated by tags: ${tags.join(', ')} by user ${req.user.id}, deleted: ${deleted}`,
+      `Cache invalidated by tags: ${tags.join(', ')} by user ${req.user?.id}, deleted: ${deleted}`,
     );
 
     res.json({
@@ -204,7 +204,7 @@ router.delete('/tags', asyncHandler(async (req: AuthenticatedRequest, res: Respo
     });
     return;
   } catch (_error) {
-    logger.error('Error invalidating cache by tags:', _error);
+    logger.error('Error invalidating cache by tags:', getErrorMessage(_error));
     res.status(500).json({
       success: false,
       message: 'Failed to invalidate cache',
@@ -212,13 +212,13 @@ router.delete('/tags', asyncHandler(async (req: AuthenticatedRequest, res: Respo
     return;
   }
 
-}));
+});
 
 /**
  * Clear user-specific cache
  * DELETE /api/cache/user/:userId
  */
-router.delete('/user/:userId', asyncHandler(async (req: AuthenticatedRequest, res: Response) => {
+router.delete('/user/:userId', async (req: AuthenticatedRequest, res: Response) => {
 
     try {
     const { userId } = req.params;
@@ -234,7 +234,7 @@ router.delete('/user/:userId', asyncHandler(async (req: AuthenticatedRequest, re
 
     await CacheUtils.clearUserCache(userIdNumber);
 
-    logger.info(`User cache cleared for user ${userId} by user ${req.user.id}`);
+    logger.info(`User cache cleared for user ${userId} by user ${req.user?.id}`);
 
     res.json({
       success: true,
@@ -243,7 +243,7 @@ router.delete('/user/:userId', asyncHandler(async (req: AuthenticatedRequest, re
     });
     return;
   } catch (_error) {
-    logger.error('Error clearing user cache:', _error);
+    logger.error('Error clearing user cache:', getErrorMessage(_error));
     res.status(500).json({
       success: false,
       message: 'Failed to clear user cache',
@@ -251,6 +251,6 @@ router.delete('/user/:userId', asyncHandler(async (req: AuthenticatedRequest, re
     return;
   }
 
-}));
+});
 
 export { router };

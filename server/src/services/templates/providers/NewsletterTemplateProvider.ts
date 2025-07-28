@@ -27,14 +27,14 @@ export class NewsletterTemplateProvider extends TemplateProvider {
     const style = context.parameters?.style !== null && context.parameters?.style !== undefined ? context.parameters.style : 'standard';
     
     const templateId = `newsletter-${frequency}-${style}`;
-    let template = this.getTemplateById(templateId);
+    let template = await this.getTemplateById(templateId);
     
     if (!template) {
-      template = this.getTemplateById(`newsletter-${frequency}`);
+      template = await this.getTemplateById(`newsletter-${frequency}`);
     }
     
     if (!template) {
-      template = this.getTemplateById('newsletter-weekly-standard');
+      template = await this.getTemplateById('newsletter-weekly-standard');
     }
 
     if (!template) {
@@ -47,7 +47,7 @@ export class NewsletterTemplateProvider extends TemplateProvider {
   /**
    * List available templates
    */
-  listTemplates(): Template[] {
+  async listTemplates(): Promise<Template[]> {
     return Array.from(this.templates.values());
   }
 

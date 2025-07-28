@@ -3,6 +3,7 @@ import type { Prisma, PrismaClient } from '@prisma/client';
 import { logger } from '../logger';
 import type { ETFOLessonPlanRepository } from '../repositories/ETFOLessonPlanRepository';
 import { RepositoryFactory } from '../repositories/RepositoryFactory';
+import { getErrorMessage } from '../utils/type-guards';
 
 import { BaseService } from './base/BaseService';
 
@@ -165,7 +166,7 @@ export class ETFOLessonPlanService extends BaseService {
 
       return result;
     } catch (error) {
-      logger.error('Error finding ETFO lesson plans:', error);
+      logger.error('Error finding ETFO lesson plans:', getErrorMessage(error));
       throw error;
     }
   }
@@ -180,7 +181,7 @@ export class ETFOLessonPlanService extends BaseService {
 
       return plan;
     } catch (error) {
-      logger.error('Error finding ETFO lesson plan by id:', error);
+      logger.error('Error finding ETFO lesson plan by id:', getErrorMessage(error));
       throw error;
     }
   }
@@ -217,7 +218,7 @@ export class ETFOLessonPlanService extends BaseService {
 
       return plan;
     } catch (error) {
-      logger.error('Error creating ETFO lesson plan:', error);
+      logger.error('Error creating ETFO lesson plan:', getErrorMessage(error));
       throw error;
     }
   }
@@ -243,7 +244,7 @@ export class ETFOLessonPlanService extends BaseService {
 
       return updatedPlan;
     } catch (error) {
-      logger.error('Error updating ETFO lesson plan:', error);
+      logger.error('Error updating ETFO lesson plan:', getErrorMessage(error));
       throw error;
     }
   }
@@ -258,7 +259,7 @@ export class ETFOLessonPlanService extends BaseService {
 
       await this.repository.delete(id);
     } catch (error) {
-      logger.error('Error deleting ETFO lesson plan:', error);
+      logger.error('Error deleting ETFO lesson plan:', getErrorMessage(error));
       throw error;
     }
   }
@@ -272,7 +273,7 @@ export class ETFOLessonPlanService extends BaseService {
       }
 
       // Extract expectation IDs if they exist
-      const expectationIds = originalPlan.expectations.map((exp) => exp.expectationId) ?? [];
+      const expectationIds = originalPlan.expectations?.map((exp) => exp.expectationId) ?? [];
 
       // Create minimal duplicate data with only the essential fields
       const createData = {
@@ -301,7 +302,7 @@ export class ETFOLessonPlanService extends BaseService {
 
       return await this.create(createData, userId);
     } catch (error) {
-      logger.error('Error duplicating ETFO lesson plan:', error);
+      logger.error('Error duplicating ETFO lesson plan:', getErrorMessage(error));
       throw error;
     }
   }
@@ -315,7 +316,7 @@ export class ETFOLessonPlanService extends BaseService {
       const plans = await this.repository.searchByContent(userId, searchTerm, pagination);
       return plans;
     } catch (error) {
-      logger.error('Error searching ETFO lesson plans:', error);
+      logger.error('Error searching ETFO lesson plans:', getErrorMessage(error));
       throw error;
     }
   }

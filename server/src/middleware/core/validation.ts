@@ -3,7 +3,7 @@ import type { RequestHandler, Request, NextFunction } from 'express';
 import type { ZodSchema, ZodTypeAny } from 'zod';
 import { z, ZodError } from 'zod';
 
-import { isDefined, isError, isObject } from '../../../../shared/utils/typeGuards';
+import { isDefined, isError, isObject } from '@shared/utils/typeGuards';
 import { logger } from '../../logger';
 import type { ValidatedRequest } from '../../types/http';
 import { ValidationError } from '../../utils/errors';

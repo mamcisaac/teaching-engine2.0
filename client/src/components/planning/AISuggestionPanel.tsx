@@ -58,9 +58,10 @@ export function AISuggestionPanel({
   };
 
   const handleAcceptAll = (): void => {
-    if (onAcceptAll && suggestions && Array.isArray(suggestions.suggestions)) {
+    if (onAcceptAll && suggestions?.suggestions && Array.isArray(suggestions.suggestions)) {
       onAcceptAll();
-      const allIndices = new Set(suggestions.suggestions.map((_, i) => i));
+      const typedSuggestions = suggestions as AISuggestion;
+      const allIndices = new Set(typedSuggestions.suggestions.map((_, i) => i));
       setAcceptedIndices(allIndices);
       toast({
         title: 'All Accepted',
@@ -108,14 +109,16 @@ export function AISuggestionPanel({
           </Alert>
         )}
 
-        {suggestions && suggestions.suggestions.length > 0 && (
+        {suggestions && suggestions.suggestions && Array.isArray(suggestions.suggestions) && suggestions.suggestions.length > 0 && (() => {
+          const typedSuggestions = suggestions as AISuggestion;
+          return (
           <div className="space-y-3">
-            {suggestions.rationale && suggestions.rationale.trim() !== '' && (
-              <p className="text-sm text-muted-foreground italic">{suggestions.rationale}</p>
+            {typedSuggestions.rationale && typeof typedSuggestions.rationale === 'string' && typedSuggestions.rationale.trim() !== '' && (
+              <p className="text-sm text-muted-foreground italic">{typedSuggestions.rationale}</p>
             )}
 
             <div className="space-y-2">
-              {suggestions.suggestions.map((suggestion: string, index: number) => (
+              {typedSuggestions.suggestions.map((suggestion: string, index: number) => (
                 <div
                   key={index}
                   className={cn(
@@ -161,22 +164,26 @@ export function AISuggestionPanel({
               ))}
             </div>
 
-            {onAcceptAll && suggestions.suggestions && acceptedIndices.size < suggestions.suggestions.length && (
+            {onAcceptAll && typedSuggestions.suggestions && acceptedIndices.size < typedSuggestions.suggestions.length && (
               <Button aria-label="Click button" onClick={handleAcceptAll}>
                 Accept All Suggestions
               </Button>
             )}
           </div>
-        )}
+          );
+        })()}
 
-        {suggestions && suggestions.suggestions.length === 0 && (
+        {suggestions && suggestions.suggestions && Array.isArray(suggestions.suggestions) && suggestions.suggestions.length === 0 && (() => {
+          const typedSuggestions = suggestions as AISuggestion;
+          return (
           <div className="text-center py-8 text-muted-foreground">
             <Sparkles className="h-8 w-8 mx-auto mb-2 opacity-20" />
             <p className="text-sm">No suggestions generated. Try adjusting your input.</p>
           </div>
-        )}
+          );
+        })()}
 
-        {!suggestions && !isGenerating && !error && (
+        {(!suggestions || !suggestions.suggestions) && !isGenerating && !error && (
           <div className="text-center py-8 text-muted-foreground">
             <Sparkles className="h-8 w-8 mx-auto mb-2 opacity-20" />
             <p className="text-sm">Click generate to get AI-powered suggestions</p>

@@ -137,7 +137,7 @@ export class AIErrorBoundary extends Component<Props, State> {
     // Auto-retry with exponential backoff for retryable errors
     if (this.state.error) {
       const aiError = this.classifyError(this.state.error);
-      if (aiError.retryable ) {
+      if (aiError.retryable === true) {
       const delay = Math.pow(2, this.state.retryCount) * 1000; // 1s, 2s, 4s
       this.retryTimeout = setTimeout(() => {
         // Force re-render to trigger retry
@@ -250,7 +250,7 @@ export class AIErrorBoundary extends Component<Props, State> {
                     className="flex flex-wrap gap-2"
                     role="group"
                   >
-                    {canRetry && aiError.retryable  && (
+                    {canRetry && aiError.retryable === true && (
                       <Button
                         aria-label="Retry AI generation"
                         className="gap-2"
@@ -263,7 +263,7 @@ export class AIErrorBoundary extends Component<Props, State> {
                       </Button>
                     )}
 
-                    {this.props.enableManualFallback  && (
+                    {this.props.enableManualFallback === true && (
                       <Button
                         aria-label="Continue creating content manually without AI assistance"
                         className="gap-2"
@@ -300,7 +300,7 @@ export class AIErrorBoundary extends Component<Props, State> {
                         {aiError.statusCode !== undefined && (
                           <div><strong>Status:</strong> {aiError.statusCode}</div>
                         )}
-                        <div><strong>Retryable:</strong> {aiError.retryable  ? 'Yes' : 'No'}</div>
+                        <div><strong>Retryable:</strong> {aiError.retryable === true ? 'Yes' : 'No'}</div>
                         {this.state.errorInfo !== undefined && (
                           <details className="mt-2">
                             <summary>Component Stack</summary>

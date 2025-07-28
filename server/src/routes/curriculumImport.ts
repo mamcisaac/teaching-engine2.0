@@ -6,6 +6,7 @@ import multer, { memoryStorage } from 'multer';
 import { logger } from '../logger';
 import { asyncHandler } from '../middleware/errorHandler';
 import { curriculumImportService } from '../services';
+import { getErrorMessage } from '../utils/type-guards';
 // Clustering service removed - over-engineered for single-teacher use
 
 import type { AuthenticatedRequest } from './base/middleware';
@@ -56,7 +57,7 @@ const upload = multer({
 router.post(
   '/upload',
   upload.single('file') as unknown as express.RequestHandler,
-  asyncHandler(async (req: Request, res: Response) => {
+  async (req: Request, res: Response) => {
     try {
       if (!req.file) {
         res.status(400).json({
@@ -123,12 +124,12 @@ router.post(
       });
       return;
     } catch (_error) {
-      logger.error('Upload error:', _error);
+      logger.error('Upload error:', getErrorMessage(_error));
       res.status(500).json({
         error: _error instanceof Error ? _error.message : 'Failed to process upload',
       });
     }
-  }),
+  },
 );
 
 // POST /api/curriculum/import/parse - Parse uploaded file
@@ -164,7 +165,7 @@ router.post('/parse', asyncHandler(async (req: AuthenticatedRequest, res: Respon
     });
     return;
   } catch (_error) {
-    logger.error('Parse error:', _error);
+    logger.error('Parse error:', getErrorMessage(_error));
     res.status(500).json({
       error: _error instanceof Error ? _error.message : 'Failed to parse file',
     });
@@ -201,7 +202,7 @@ router.post('/import-preset', asyncHandler(async (req: Request, res: Response) =
     });
     return;
   } catch (_error) {
-    logger.error('Preset load error:', _error);
+    logger.error('Preset load error:', getErrorMessage(_error));
     res.status(500).json({
       error: _error instanceof Error ? _error.message : 'Failed to load preset curriculum',
     });
@@ -233,7 +234,7 @@ router.get('/:id/status', asyncHandler(async (req: Request, res: Response) => {
     res.json(status);
     return;
   } catch (_error) {
-    logger.error('Status check error:', _error);
+    logger.error('Status check error:', getErrorMessage(_error));
     res.status(500).json({
       error: _error instanceof Error ? _error.message : 'Failed to get import status',
     });
@@ -280,7 +281,7 @@ router.post('/:id/confirm', asyncHandler(async (req: Request, res: Response) => 
     });
     return;
   } catch (_error) {
-    logger.error('Confirm import error:', _error);
+    logger.error('Confirm import error:', getErrorMessage(_error));
     res.status(500).json({
       error: _error instanceof Error ? _error.message : 'Failed to confirm import',
     });
@@ -308,7 +309,7 @@ router.get('/history', async (req: Request, res: Response): Promise<void> => {
     res.json(history);
     return;
   } catch (_error) {
-    logger.error('History error:', _error);
+    logger.error('History error:', getErrorMessage(_error));
     res.status(500).json({
       error: _error instanceof Error ? _error.message : 'Failed to get import history',
     });
@@ -339,7 +340,7 @@ router.delete('/:id', async (req: Request, res: Response): Promise<void> => {
     res.json({ message: 'Import deleted successfully' });
     return;
   } catch (_error) {
-    logger.error('Delete import error:', _error);
+    logger.error('Delete import error:', getErrorMessage(_error));
     res.status(500).json({
       error: _error instanceof Error ? _error.message : 'Failed to delete import',
     });
@@ -453,7 +454,7 @@ router.post('/:id', async (req: Request, res: Response): Promise<void> => {
     });
     return;
   } catch (_error) {
-    logger.error('Finalize import error:', _error);
+    logger.error('Finalize import error:', getErrorMessage(_error));
     res.status(500).json({
       error: _error instanceof Error ? _error.message : 'Failed to finalize import',
     });

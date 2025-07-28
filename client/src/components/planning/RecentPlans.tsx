@@ -74,7 +74,7 @@ export const RecentPlans = memo(({
       planRoute: `${PLAN_TYPE_CONFIG[plan.type].route}/${plan.id}`,
     })), [plans]);
 
-  if (isLoading ) {
+  if (isLoading === true) {
     return (
       <Card className={className}>
         <CardHeader>

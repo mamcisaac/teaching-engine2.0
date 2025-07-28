@@ -179,7 +179,7 @@ export const asyncMiddleware = (
   };
 
 // Log middleware execution time
-export const timed = (name: string, middleware: Middleware): RequestHandler => (req: Request, res: Response, next: NextFunction) => {
+export const timed = (name: string, middleware: Middleware): RequestHandler => async (req: Request, res: Response, next: NextFunction) => {
     const start = Date.now();
     
     const handleNext = (err?: unknown): void => {

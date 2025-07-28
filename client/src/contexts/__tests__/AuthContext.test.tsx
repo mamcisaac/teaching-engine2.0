@@ -30,7 +30,7 @@ describe('AuthContext - Real Authentication Flows', () => {
 
   afterEach(async () => {
     // Clean up all test users and auth state
-    await Promise.all(testCleanupFunctions.filter(cleanup => !cleanup= undefined).map(cleanup => cleanup!()));
+    await Promise.all(testCleanupFunctions.filter(cleanup => cleanup != undefined).map(cleanup => cleanup!()));
     testCleanupFunctions = [];
     clearAuthState();
   });

@@ -235,7 +235,7 @@ export function LongRangePlanPage(): React.ReactElement {
                   </span>
                 </div>
 
-                {Boolean(plan.description !== null && plan.description !== '' && plan.description.trim() !== '') && (
+                {Boolean(plan.description != null && plan.description !== '' && plan.description.trim() !== '') && (
                   <p className="text-sm text-gray-600 mb-4 line-clamp-2">{plan.description}</p>
                 )}
 

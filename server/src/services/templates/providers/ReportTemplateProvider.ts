@@ -27,10 +27,10 @@ export class ReportTemplateProvider extends TemplateProvider {
     const format = context.parameters?.format !== null && context.parameters?.format !== undefined ? context.parameters.format : 'pdf';
     
     const templateId = `report-${reportType}-${format}`;
-    let template = this.getTemplateById(templateId);
+    let template = await this.getTemplateById(templateId);
     
     if (!template) {
-      template = this.getTemplateById(`report-${reportType}`);
+      template = await this.getTemplateById(`report-${reportType}`);
     }
     
     if (!template) {
@@ -43,7 +43,7 @@ export class ReportTemplateProvider extends TemplateProvider {
   /**
    * List available templates
    */
-  listTemplates(): Template[] {
+  async listTemplates(): Promise<Template[]> {
     return Array.from(this.templates.values());
   }
 

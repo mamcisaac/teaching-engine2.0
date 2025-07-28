@@ -176,7 +176,7 @@ export class TemplateRegistry extends BaseService {
    */
   public getProvider(name: string): TemplateProvider | null {
     const info = this.providers.get(name);
-    return info.isActive ? info.provider : null;
+    return info?.isActive ? info.provider : null;
   }
 
   /**
@@ -184,7 +184,7 @@ export class TemplateRegistry extends BaseService {
    */
   public getEngine(name: string): RenderEngine | null {
     const info = this.engines.get(name);
-    return info.isActive ? info.engine : null;
+    return info?.isActive ? info.engine : null;
   }
 
   /**
@@ -270,20 +270,20 @@ export class TemplateRegistry extends BaseService {
     const allTemplates = await this.listAllTemplates();
 
     return allTemplates.filter((template) => {
-      if (criteria.type && template.type !== criteria.type) {
+      if (criteria.type !== null && criteria.type !== '' && template.type !== criteria.type) {
         return false;
       }
 
-      if (criteria.format && template.supportedFormats.includes(criteria.format) === false) {
+      if (criteria.format !== null && criteria.format !== '' && template.supportedFormats.includes(criteria.format) === false) {
         return false;
       }
 
-      if (criteria.engine && template.engine !== criteria.engine) {
+      if (criteria.engine !== null && criteria.engine !== '' && template.engine !== criteria.engine) {
         return false;
       }
 
       if (criteria.tags && criteria.tags.length > 0) {
-        const templateTags = template.metadata.tags ?? [];
+        const templateTags = template.metadata?.tags ?? [];
         if (!criteria.tags.some((tag) => templateTags.includes(tag))) {
           return false;
         }
@@ -482,8 +482,9 @@ export class TemplateRegistry extends BaseService {
    */
   private inferProviderType(name: string, provider: TemplateProvider): string {
     // Try to get type from provider metadata
-    if (provider.getMetadata().type !== null) {
-      const {type} = provider.getMetadata();
+    const metadata = provider.getMetadata?.();
+    if (metadata?.type !== null) {
+      const type = metadata?.type;
       return typeof type === 'string' ? type : 'generic';
     }
 
@@ -508,7 +509,7 @@ return 'planning';
    * Get supported formats from engine
    */
   private getSupportedFormats(engine: RenderEngine): string[] {
-    if (engine.getSupportedFormats !== null) {
+    if (engine.getSupportedFormats) {
       return engine.getSupportedFormats();
     }
 

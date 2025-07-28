@@ -45,7 +45,7 @@ export class JSONParser extends CurriculumParser {
   /**
    * Parse JSON content
    */
-  parse(content: string | Buffer): ParsedCurriculum {
+  async parse(content: string | Buffer): Promise<ParsedCurriculum> {
     let stringContent: string;
     if (content instanceof Buffer) {
       stringContent = content.toString('utf-8');

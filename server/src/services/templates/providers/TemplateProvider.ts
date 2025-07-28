@@ -58,7 +58,7 @@ export abstract class TemplateProvider {
   /**
    * List available templates
    */
-  abstract listTemplates(): Template[];
+  abstract listTemplates(): Promise<Template[]>;
 
   /**
    * Validate template context
@@ -73,7 +73,7 @@ export abstract class TemplateProvider {
   /**
    * Validate provider health (optional)
    */
-  validateHealth?(): boolean;
+  validateHealth?(): Promise<boolean>;
 
   /**
    * Get provider metadata (optional)
@@ -88,7 +88,7 @@ export abstract class TemplateProvider {
   /**
    * Get template by ID
    */
-  getTemplateById(id: string): Template | null {
+  async getTemplateById(id: string): Promise<Template | null> {
     return this.templates.get(id) ?? null;
   }
 
@@ -102,8 +102,8 @@ export abstract class TemplateProvider {
   /**
    * Get data requirements for template
    */
-  getDataRequirements(templateId: string): DataRequirement[] {
-    const template = this.getTemplateById(templateId);
+  async getDataRequirements(templateId: string): Promise<DataRequirement[]> {
+    const template = await this.getTemplateById(templateId);
     return template?.dataRequirements ?? [];
   }
 

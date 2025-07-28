@@ -500,8 +500,8 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                       title: selectedLesson.title,
                       titleFr: selectedLesson.titleFr ?? '',
                       date: ((): string => {
-                        const [dateOnly] = selectedLesson.date.split('T');
-                        return dateOnly;
+                        const parts = selectedLesson.date.split('T');
+                        return parts[0] ?? selectedLesson.date;
                       })(),
                       duration: selectedLesson.duration,
                       mindsOn: selectedLesson.mindsOn ?? '',
@@ -521,7 +521,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                       assessmentNotes: selectedLesson.assessmentNotes ?? '',
                       isSubFriendly: selectedLesson.isSubFriendly,
                       subNotes: selectedLesson.subNotes ?? '',
-                      expectationIds: selectedLesson.expectations?.map((e, _index) => e.expectation.id) ?? [],
+                      expectationIds: selectedLesson.expectations?.map((e, _index) => e.expectation?.id).filter((id): id is string => id !== undefined) ?? [],
                     });
                     setIsCreateModalOpen(true);
                   }}
@@ -894,8 +894,8 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                             title: lesson.title,
                             titleFr: lesson.titleFr ?? '',
                             date: ((): string => {
-                              const [dateOnly] = lesson.date.split('T');
-                              return dateOnly;
+                              const parts = lesson.date.split('T');
+                              return parts[0] ?? lesson.date;
                             })(),
                             duration: lesson.duration,
                             mindsOn: lesson.mindsOn ?? '',
@@ -915,7 +915,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                             assessmentNotes: lesson.assessmentNotes ?? '',
                             isSubFriendly: lesson.isSubFriendly,
                             subNotes: lesson.subNotes ?? '',
-                            expectationIds: lesson.expectations?.map((e, _index) => e.expectation.id) ?? [],
+                            expectationIds: lesson.expectations?.map((e, _index) => e.expectation?.id).filter((id): id is string => id !== undefined) ?? [],
                           });
                           setIsCreateModalOpen(true);
                         }}
@@ -1159,13 +1159,13 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                           unitPlan
                             ? {
                                 title: unitPlan.title,
-                                bigIdeas: unitPlan.bigIdeas !== null && unitPlan.bigIdeas !== '' ? [unitPlan.bigIdeas] : [],
+                                bigIdeas: (unitPlan.bigIdeas !== null && unitPlan.bigIdeas !== undefined && unitPlan.bigIdeas !== '') ? [unitPlan.bigIdeas] : [],
                                 expectations:
                                   unitPlan.expectations && unitPlan.expectations.length > 0 ? unitPlan.expectations.map((exp, _index) => ({
-                                    id: exp.expectation.id,
-                                    code: exp.expectation.code,
-                                    description: exp.expectation.description,
-                                  })) : [],
+                                    id: exp.expectation?.id ?? '',
+                                    code: exp.expectation?.code ?? '',
+                                    description: exp.expectation?.description ?? '',
+                                  })).filter((exp) => exp.id !== '') : [],
                               }
                             : undefined
                         }
@@ -1589,7 +1589,7 @@ Assessment Strategies:
                           <CardDescription className="mt-1">
                             {template.category} • Grade {template.gradeMin}
                             {template.gradeMax !== null && template.gradeMax !== template.gradeMin && `-${template.gradeMax}`}
-                            {template.estimatedMinutes !== null && template.estimatedMinutes > 0 && ` • ${template.estimatedMinutes} minutes`}
+                            {template.estimatedMinutes !== null && template.estimatedMinutes !== undefined && template.estimatedMinutes > 0 && ` • ${template.estimatedMinutes} minutes`}
                           </CardDescription>
                         </div>
                         <div className="flex items-center gap-1 text-yellow-500">
@@ -1605,7 +1605,7 @@ Assessment Strategies:
                     <CardContent>
                       <p className="text-sm text-gray-700 mb-3">{template.description}</p>
                       <div className="flex flex-wrap gap-1 mb-3">
-                        {template.tags.slice(0, 3).map((tag, _index) => (
+                        {template.tags?.slice(0, 3).map((tag, _index) => (
                           <span
                             key={tag}
                             className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-full"
@@ -1613,9 +1613,9 @@ Assessment Strategies:
                             {tag}
                           </span>
                         ))}
-                        {template.tags.length > 3 && (
+                        {(template.tags?.length ?? 0) > 3 && (
                           <span className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-full">
-                            +{template.tags.length - 3} more
+                            +{(template.tags?.length ?? 0) - 3} more
                           </span>
                         )}
                       </div>
@@ -1623,7 +1623,7 @@ Assessment Strategies:
                         <span>Used {template.usageCount} times</span>
                         <span>
                           By{' '}
-                          {(template as { createdBy?: { name?: string } }).createdBy?.name ??
+                          {(template as { createdBy?: { name?: string } | null }).createdBy?.name ??
                             'Anonymous'}
                         </span>
                       </div>

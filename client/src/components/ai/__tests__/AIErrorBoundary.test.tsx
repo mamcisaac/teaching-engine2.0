@@ -21,7 +21,7 @@ vi.mock('../../../utils/logger', () => ({
 
 // Test component that can throw errors on demand
 const ThrowError: React.FC<{ shouldThrow?: boolean; error?: Error }> = ({ shouldThrow = false, error = new Error('Test error') }) => {
-  if (shouldThrow ) {
+  if (shouldThrow === true) {
     throw error;
   }
   return <div>No error</div>;
@@ -333,7 +333,7 @@ describe('AIErrorBoundary', () => {
           </AIErrorBoundary>
         );
 
-        if (retryable ) {
+        if (retryable === true) {
           expect(screen.getByRole('button', { name: /retry/i })).toBeInTheDocument();
         } else {
           expect(screen.queryByRole('button', { name: /retry/i })).not.toBeInTheDocument();

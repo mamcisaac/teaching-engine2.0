@@ -91,7 +91,7 @@ export function AISuggestionModal({
             materials: editedSuggestion.materials
               .split(',')
               .map((m) => m.trim())
-              .filter((m): m is string => !m= null && !m= undefined && !m= ''),
+              .filter((m): m is string => m != null && m != undefined && m != ''),
             duration: editedSuggestion.duration,
             theme: editedSuggestion.theme,
           }

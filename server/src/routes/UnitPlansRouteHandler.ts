@@ -476,12 +476,12 @@ updateData.endDate = new Date(data.endDate);
         communityConnections: sourceUnitPlan.communityConnections,
         longRangePlanId,
         expectations: {
-          create: sourceUnitPlan.expectations.map((exp: { expectationId: string }) => ({
+          create: sourceUnitPlan.expectations?.map((exp: { expectationId: string }) => ({
             expectationId: exp.expectationId,
-          })),
+          })) ?? [],
         },
         resources: {
-          create: sourceUnitPlan.resources.map((resource: { title: string; url: string | null; type: string; notes: string | null }) => ({
+          create: sourceUnitPlan.resources?.map((resource: { title: string; url: string | null; type: string; notes: string | null }) => ({
             title: resource.title,
             url: resource.url ?? '',
             type: resource.type,

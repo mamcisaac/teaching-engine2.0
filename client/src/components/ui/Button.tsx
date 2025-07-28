@@ -48,10 +48,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           baseStyles,
           variants[variant],
           sizes[size],
-          fullWidth  && 'w-full',
+          fullWidth === true && 'w-full',
           className,
         )}
-        disabled={disabled  || loading}
+        disabled={disabled === true || loading}
         {...props}
       >
         {loading ? (

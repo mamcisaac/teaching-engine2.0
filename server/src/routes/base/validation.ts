@@ -7,6 +7,7 @@ import { z } from 'zod';
 /**
  * Educational schema fields type
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type EducationalFields = {
   gradeMin: z.ZodOptional<z.ZodNumber>;
   gradeMax: z.ZodOptional<z.ZodNumber>;
@@ -18,6 +19,7 @@ type EducationalFields = {
 /**
  * Title and description schema fields type
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type TitleDescriptionFields = {
   title: z.ZodString;
   titleFr: z.ZodOptional<z.ZodString>;
@@ -146,7 +148,7 @@ return undefined;
 return val;
 }
       // Split comma-separated string into array
-      return val.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+      return val?.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
     })
   }),
 
@@ -164,7 +166,7 @@ export const createValidationSchema = {
   /**
    * Create a basic CRUD schema set
    */
-  crud: <T extends z.ZodRawShape>(fields: T): { create: z.ZodObject<T>; update: z.ZodObject<Partial<T>>; query: z.ZodObject<typeof commonQuerySchemas.list._type> } => {
+  crud: <T extends z.ZodRawShape>(fields: T) => {
     const baseSchema = z.object(fields);
     return {
       create: baseSchema,
@@ -176,7 +178,7 @@ export const createValidationSchema = {
   /**
    * Create educational content schema set
    */
-  educational: <T extends z.ZodRawShape>(fields: T): { create: z.ZodEffects<z.ZodObject<T & EducationalFields, "strip", z.ZodTypeAny>, z.infer<z.ZodObject<T & EducationalFields>>, z.infer<z.ZodObject<T & EducationalFields>>>; update: z.ZodObject<Partial<T & EducationalFields>>; query: z.ZodObject<z.ZodRawShape> } => {
+  educational: <T extends z.ZodRawShape>(fields: T) => {
     const baseObjectSchema = z.object({
       ...fields,
       gradeMin: z.number().int().min(1).max(12).optional(),
@@ -204,7 +206,7 @@ export const createValidationSchema = {
   /**
    * Create a schema with title and description
    */
-  withTitleDescription: <T extends z.ZodRawShape>(fields: T): { create: z.ZodObject<T & TitleDescriptionFields>; update: z.ZodObject<Partial<T & TitleDescriptionFields>>; query: z.ZodObject<z.ZodRawShape> } => {
+  withTitleDescription: <T extends z.ZodRawShape>(fields: T) => {
     const baseSchema = z.object({
       ...fields,
       title: commonValidations.title,

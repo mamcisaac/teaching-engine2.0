@@ -70,7 +70,7 @@ export function TemplatePreviewModal({
               {isExpanded && (
                 <div className="px-4 pb-3">
                   {((): React.ReactElement => {
-                    if (isList  && Array.isArray(content)) {
+                    if (isList === true && Array.isArray(content)) {
                       return (
                         <ul className="list-disc list-inside space-y-1">
                           {content.map((item, _index) => (
@@ -79,7 +79,7 @@ export function TemplatePreviewModal({
                         </ul>
                       );
                     }
-                    if (isAssessments  && Array.isArray(content)) {
+                    if (isAssessments === true && Array.isArray(content)) {
                       return (
                         <div className="space-y-2">
                       {content.map((assessment, _index) => (
@@ -94,7 +94,7 @@ export function TemplatePreviewModal({
                     </div>
                       );
                     }
-                    if (isDiff  && typeof content === 'object') {
+                    if (isDiff === true && typeof content === 'object') {
                       return (
                         <div className="space-y-2">
                           {Object.entries(content).map(([key, strategies]) => (
@@ -164,7 +164,7 @@ export function TemplatePreviewModal({
               </button>
               {isExpanded && (
                 <div className="px-4 pb-3">
-                  {isList  && Array.isArray(content) ? (
+                  {isList === true && Array.isArray(content) ? (
                     <ul className="list-disc list-inside space-y-1">
                       {content.map((item, _index) => (
                         <li key={_index} className="text-gray-700">{item}</li>

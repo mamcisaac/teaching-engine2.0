@@ -138,10 +138,10 @@ class SubstitutePlanServiceWrapper extends BaseService {
       Object.assign(where, dateWhere);
     }
 
-    if (grade !== null && grade !== undefined && grade !== '') {
+    if (grade !== null && grade !== '') {
 where.grade = parseInt(String(grade), 10);
 }
-    if (subject !== null && subject !== undefined && subject !== '') {
+    if (subject !== null && subject !== '') {
 where.subject = { contains: subject };
 }
     if (isActive !== undefined) {
@@ -198,22 +198,22 @@ where.isActive = isActive;
         userId,
         title: data.title,
         dateFor: new Date(data.dateFor),
-        grade: data.gradeLevel ? parseInt(data.gradeLevel, 10) : null,
+        grade: data.gradeLevel !== null && data.gradeLevel !== '' ? parseInt(data.gradeLevel, 10) : null,
         subject: data.subject,
-        schedule: (data.activities !== null && data.activities !== undefined && data.activities !== '')
+        schedule: data.activities !== null && data.activities !== ''
           ? [{ time: '9:00', activity: data.activities, notes: data.notes }]
           : [],
-        classroomRoutines: (data.classroomManagement !== null && data.classroomManagement !== undefined && data.classroomManagement !== '')
+        classroomRoutines: data.classroomManagement !== null && data.classroomManagement !== ''
           ? [{ category: 'other', description: data.classroomManagement }]
           : [],
-        emergencyInfo: (data.emergencyContacts !== null && data.emergencyContacts !== undefined && data.emergencyContacts !== '') ? { contacts: data.emergencyContacts } : {},
-        lessonPlans: (data.objectives !== null && data.objectives !== undefined && data.objectives !== '')
+        emergencyInfo: data.emergencyContacts !== null ? { contacts: data.emergencyContacts } : {},
+        lessonPlans: data.objectives !== null && data.objectives !== ''
           ? { objectives: data.objectives, materials: data.materials }
           : {},
         behaviorPlan: {},
         studentNotes: {},
-        materialsList: (data.materials !== null && data.materials !== undefined && data.materials !== '') ? { materials: data.materials } : {},
-        importantInfo: (data.importantNotes !== null && data.importantNotes !== undefined && data.importantNotes !== '') ? { notes: data.importantNotes } : undefined,
+        materialsList: data.materials !== null && data.materials !== '' ? { materials: data.materials } : {},
+        importantInfo: data.importantNotes !== null && data.importantNotes !== '' ? { notes: data.importantNotes } : undefined,
         isActive: data.isActive ?? true,
       },
     });
@@ -382,7 +382,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId === null || userId === undefined || userId === 0) {
+      if (userId === null) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -444,7 +444,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId === null || userId === undefined || userId === 0) {
+      if (userId === null) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -465,7 +465,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId === null || userId === undefined || userId === 0) {
+      if (userId === null) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -487,7 +487,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId === null || userId === undefined || userId === 0) {
+      if (userId === null) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -507,7 +507,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId === null || userId === undefined || userId === 0) {
+      if (userId === null) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }

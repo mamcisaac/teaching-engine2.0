@@ -74,17 +74,17 @@ export function generateRefreshToken(userId: number): string {
 function extractToken(req: Request): string | null {
   // Check Authorization header
   const authHeader = req.headers.authorization;
-  if ((authHeader !== null && authHeader !== undefined && authHeader !== '') && authHeader.startsWith('Bearer ')) {
+  if (authHeader !== null && authHeader !== undefined && authHeader.startsWith('Bearer ')) {
     return authHeader.substring(7);
   }
 
   // Check cookies
-  if ((req.cookies.token !== null && req.cookies.token !== undefined) && typeof req.cookies.token === 'string') {
+  if (req.cookies.token !== null && req.cookies.token !== undefined && typeof req.cookies.token === 'string') {
     return req.cookies.token as string;
   }
 
   // Check query parameter (for download links)
-  if ((req.query.token !== null && req.query.token !== undefined) && typeof req.query.token === 'string') {
+  if (req.query.token !== null && req.query.token !== undefined && typeof req.query.token === 'string') {
     return req.query.token;
   }
 
@@ -190,7 +190,7 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
       );
     }
 
-    if ((token === null || token === undefined) || token === '') {
+    if (!token || token === '') {
       // For consistency, always return the same error format
       res.status(401).json({
         error: 'Authentication required',
@@ -421,7 +421,7 @@ export function optionalAuthenticate(
   try {
     const token = extractToken(req);
 
-    if ((token === null || token === undefined) || token === '') {
+    if (!token || token === '') {
       next();
       return;
     }
@@ -433,7 +433,7 @@ export function optionalAuthenticate(
         id: parseInt(decoded.userId, 10),
         email: decoded.email,
         role: decoded.role,
-        organizationId: decoded.organizationId ? parseInt(decoded.organizationId, 10) : undefined,
+        organizationId: (decoded.organizationId !== null && decoded.organizationId !== undefined && decoded.organizationId !== '') ? parseInt(decoded.organizationId, 10) : undefined,
         permissions: decoded.permissions,
       };
     }

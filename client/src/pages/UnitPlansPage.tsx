@@ -267,7 +267,7 @@ function UnitPlansPage(): React.ReactElement {
         updateField('communityConnections', templateContent.communityConnections ?? '');
 
         // Set estimated duration if available
-        if (template.estimatedWeeks !== null && template.estimatedWeeks > 0) {
+        if (template.estimatedWeeks != null && template.estimatedWeeks > 0) {
           const startDate = new Date();
           const endDate = new Date();
           endDate.setDate(startDate.getDate() + template.estimatedWeeks * 7);
@@ -400,7 +400,7 @@ function UnitPlansPage(): React.ReactElement {
                 </div>
               )}
 
-              {unit.bigIdeas !== null && unit.bigIdeas !== '' && (
+              {unit.bigIdeas != null && unit.bigIdeas !== '' && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Big Ideas</h3>
                   <SafeHtmlRenderer className="prose max-w-none" html={unit.bigIdeas} />
@@ -433,7 +433,7 @@ function UnitPlansPage(): React.ReactElement {
                 </div>
               )}
 
-              {unit.assessmentPlan !== null && unit.assessmentPlan !== '' && (
+              {unit.assessmentPlan != null && unit.assessmentPlan !== '' && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Assessment Plan</h3>
                   <SafeHtmlRenderer className="prose max-w-none" html={unit.assessmentPlan} />
@@ -1206,7 +1206,7 @@ function UnitPlansPage(): React.ReactElement {
                           <CardDescription className="mt-1">
                             {template.category} • Grade {template.gradeMin}
                             {template.gradeMax !== template.gradeMin && `-${template.gradeMax}`}
-                            {template.estimatedWeeks !== 0 && ` • ${template.estimatedWeeks} weeks`}
+                            {template.estimatedWeeks != null && template.estimatedWeeks !== 0 && ` • ${template.estimatedWeeks} weeks`}
                           </CardDescription>
                         </div>
                         <div className="flex items-center gap-1 text-yellow-500">

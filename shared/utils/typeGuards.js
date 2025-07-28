@@ -98,7 +98,7 @@ function isApiResponse(value) {
 function tryParseJSON(jsonString, validator) {
     try {
         const parsed = JSON.parse(jsonString);
-        if (validator !== null) {
+        if (validator !== undefined) {
             return validator(parsed) ? parsed : null;
         }
         return parsed;

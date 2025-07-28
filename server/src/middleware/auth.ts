@@ -348,7 +348,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
       refreshToken = generateRefreshToken(user.id);
 
       logger.info(
-        { userId: user.id, hasTokens: accessToken !== undefined && refreshToken !== undefined && refreshToken !== null && refreshToken !== '' },
+        { userId: user.id, hasTokens: accessToken !== undefined && accessToken !== null && accessToken !== '' && refreshToken !== undefined && refreshToken !== null && refreshToken !== '' },
         'Tokens generated successfully',
       );
     } catch (error: unknown) {

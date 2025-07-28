@@ -12,7 +12,7 @@ export function CurriculumImportButton({ onImportSuccess, className }: Curriculu
   const [isWizardOpen, setIsWizardOpen] = useState(false);
 
   const handleImportSuccess = (): void => {
-    if (!onImportSuccess= undefined) {
+    if (onImportSuccess != undefined) {
       onImportSuccess();
     }
   };
