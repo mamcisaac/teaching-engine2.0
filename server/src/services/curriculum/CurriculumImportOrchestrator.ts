@@ -5,7 +5,6 @@
 
 import { prisma } from '../../prisma';
 import type {
-  PrismaTransactionClient,
   Subject,
   CurriculumImport,
   CurriculumExpectation,
@@ -17,6 +16,8 @@ import { BaseService } from '../base/BaseService';
 import { CurriculumExportService } from './CurriculumExportService';
 import { CurriculumSearchService } from './CurriculumSearchService';
 import { CurriculumStatsService } from './CurriculumStatsService';
+import type { ExportOptions } from './CurriculumExportService';
+import type { SearchOptions } from './CurriculumSearchService';
 import type { ParsedCurriculum } from './parsers/CurriculumParser';
 import { ParserFactory } from './parsers/ParserFactory';
 import { CurriculumTransformer } from './transformers/CurriculumTransformer';
@@ -271,7 +272,7 @@ export class CurriculumImportOrchestrator extends BaseService {
     };
 
     // Start transaction
-    const result = await prisma.$transaction(async (tx: PrismaTransactionClient) => {
+    const result = await prisma.$transaction(async (tx) => {
       // Find or create subject
       let subject = await tx.subject.findFirst({
         where: {
@@ -290,11 +291,14 @@ export class CurriculumImportOrchestrator extends BaseService {
 
         const transformed = this.transformer.transform(parsed, transformOptions);
 
+        const subjectData = {
+          name: parsed.subject,
+          userId: options.userId,
+          nameEn: transformed.subject.nameEn,
+          nameFr: transformed.subject.nameFr,
+        };
         subject = await tx.subject.create({
-          data: {
-            ...transformed.subject,
-            userId: options.userId,
-          },
+          data: subjectData,
         });
 
         this.logger.info(
@@ -402,19 +406,19 @@ export class CurriculumImportOrchestrator extends BaseService {
   }
 
   // Delegate to specialized services
-  public async export(options: Record<string, unknown>): Promise<Buffer> {
+  public async export(options: ExportOptions): Promise<Buffer> {
     return this.exportService.export(options);
   }
 
-  public async searchExpectations(options: Record<string, unknown>): Promise<unknown> {
+  public async searchExpectations(options: SearchOptions): Promise<unknown> {
     return this.searchService.searchExpectations(options);
   }
 
-  public async getImportStats(): Promise<Record<string, unknown>> {
+  public async getImportStats(): Promise<unknown> {
     return this.statsService.getOverallStats();
   }
 
-  public async getSubjectStats(subjectId: number): Promise<Record<string, unknown>> {
+  public async getSubjectStats(subjectId: number): Promise<unknown> {
     return this.statsService.getSubjectStats(subjectId);
   }
 
@@ -520,11 +524,12 @@ export class CurriculumImportOrchestrator extends BaseService {
   public async getImportHistory(userId?: number, _limit?: number): Promise<CurriculumImport[]> {
     // Get actual import history from database
     const whereClause = userId ? { userId } : {};
-    return await prisma.curriculumImport.findMany({
+    const imports = await prisma.curriculumImport.findMany({
       where: whereClause,
       orderBy: { createdAt: 'desc' },
       take: _limit ?? 50,
     });
+    return imports as CurriculumImport[];
   }
 
   /**
@@ -565,7 +570,7 @@ export class CurriculumImportService {
     return curriculumImportOrchestrator.importFromFile(fileContent, options);
   }
 
-  static async export(options: Record<string, unknown>): Promise<Buffer> {
+  static async export(options: ExportOptions): Promise<Buffer> {
     return curriculumImportOrchestrator.export(options);
   }
 
@@ -574,7 +579,7 @@ export class CurriculumImportService {
     return Array.isArray(result) ? result : [];
   }
 
-  static async getImportStats(): Promise<Record<string, unknown>> {
+  static async getImportStats(): Promise<unknown> {
     return curriculumImportOrchestrator.getImportStats();
   }
 

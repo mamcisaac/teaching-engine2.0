@@ -152,7 +152,7 @@ where.endDate = { lte: new Date(String(endDate)) };
     // Search functionality using optimized search utility
     if (search !== undefined) {
       const searchWhere = optimizedQueries.createSearchWhere(String(search), ['title', 'description', 'bigIdeas']);
-      if (searchWhere.OR) {
+      if (searchWhere.OR && Array.isArray(searchWhere.OR)) {
         where.OR = [...searchWhere.OR];
       }
     }
@@ -374,7 +374,7 @@ where.endDate = { lte: new Date(String(endDate)) };
     return true;
   }
 
-  async addResource(unitPlanId: string, resourceData: ResourceData, userId: number): Promise<Prisma.UnitPlanResourceCreateResult> {
+  async addResource(unitPlanId: string, resourceData: ResourceData, userId: number): Promise<unknown> {
     // Verify ownership
     const unitPlan = await prisma.unitPlan.findFirst({
       where: {
@@ -539,7 +539,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId === null) {
+      if (userId === null || userId === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -550,7 +550,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
       res.json(result);
       return;
     } catch (_error) {
-      this.logger.error(`Error in ${this.routeName} list:`, _error);
+      this.logger.error(`Error in ${this.routeName} list:`, String(_error));
       next(_error); return;
     }
   }
@@ -585,7 +585,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId === null) {
+      if (userId === null || userId === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -601,7 +601,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
       const resource = await this.unitPlanService.addResource(unitPlanId, resourceData, userId);
       res.status(201).json(resource);
     } catch (_error) {
-      this.logger.error('Error adding resource:', _error);
+      this.logger.error('Error adding resource:', String(_error));
       next(_error); return;
     }
   }
@@ -613,7 +613,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId === null) {
+      if (userId === null || userId === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -628,7 +628,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
 
       res.status(204).send();
     } catch (_error) {
-      this.logger.error('Error removing resource:', _error);
+      this.logger.error('Error removing resource:', String(_error));
       next(_error); return;
     }
   }
@@ -640,7 +640,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const {userId} = req;
-      if (userId === null) {
+      if (userId === null || userId === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -654,7 +654,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
       const duplicatedUnitPlan = await this.unitPlanService.duplicate(duplicateData, userId);
       res.status(201).json(duplicatedUnitPlan);
     } catch (_error) {
-      this.logger.error('Error duplicating unit plan:', _error);
+      this.logger.error('Error duplicating unit plan:', String(_error));
       next(_error); return;
     }
   }
