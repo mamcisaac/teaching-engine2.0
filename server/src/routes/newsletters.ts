@@ -4,12 +4,14 @@
  */
 
 import debug from 'debug';
-import type { Request, Response } from 'express';
+import type { Response } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
 
 import { prisma } from '../prisma';
 import { renderNewsletter } from '../services';
+import { getUserId } from '../utils/authHelpers';
+import type { AuthenticatedRequest } from './base/middleware';
 
 const log = debug('server:newsletter:routes');
 const router = Router();
@@ -23,14 +25,11 @@ const generateNewsletterSchema = z.object({
  * Generate newsletter draft
  * POST /api/newsletters/generate
  */
-router.post('/generate', (req: Request, res: Response): void => {
+router.post('/generate', (req: AuthenticatedRequest, res: Response): void => {
   void (async (): Promise<void> => {
     try {
-    const userId = req.user.id;
-    if (!userId) {
-      res.status(401).json({ error: 'Authentication required' });
-      return;
-    }
+    const userId = getUserId(req, res);
+    if (!userId) return;
 
     const validation = generateNewsletterSchema.safeParse(req.body);
     if (!validation.success) {
@@ -75,14 +74,11 @@ router.post('/generate', (req: Request, res: Response): void => {
  * Get newsletter generation status/info
  * GET /api/newsletters/status
  */
-router.get('/status', (req: Request, res: Response): void => {
+router.get('/status', (req: AuthenticatedRequest, res: Response): void => {
   void (async (): Promise<void> => {
     try {
-    const userId = req.user.id;
-    if (!userId) {
-      res.status(401).json({ error: 'Authentication required' });
-      return;
-    }
+    const userId = getUserId(req, res);
+    if (!userId) return;
 
     // Get count of recent lesson plans and reflections for preview
     const twoWeeksAgo = new Date(Date.now() - 14 * 24 * 60 * 60 * 1000);

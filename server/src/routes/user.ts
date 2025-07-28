@@ -4,7 +4,7 @@
  */
 
 import type { PrismaClient } from '@teaching-engine/database';
-import type { Request } from 'express';
+import type { Response } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
 
@@ -13,6 +13,8 @@ import { asyncHandler } from '../middleware/errorHandler';
 import { RepositoryFactory } from '../repositories/RepositoryFactory';
 // Authentication middleware available if needed
 import { validatePassword } from '../services/auth/authService';
+import { getUserId } from '../utils/authHelpers';
+import type { AuthenticatedRequest } from './base/middleware';
 
 // Use global Express Request type with user: { id: number; email: string }
 
@@ -29,16 +31,13 @@ export function userRoutes(prisma: PrismaClient): Router {
   // Get user profile
   router.get(
     '/profile',
-    asyncHandler(async (req, res): Promise<void> => {
-      if (req.user.id === null || data === undefined) {
-        res.status(401).json({ error: 'User not authenticated' });
-        return;
-      }
-      const userId = req.user.id;
+    asyncHandler(async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+      const userId = getUserId(req, res);
+      if (!userId) return;
 
       const user = await userRepository.findByIdWithoutPassword(userId);
 
-      if (user === null || data === undefined) {
+      if (user === null || user === undefined) {
         res.status(404).json({ error: 'User not found' });
         return;
       }
@@ -51,12 +50,9 @@ export function userRoutes(prisma: PrismaClient): Router {
   // Update password
   router.put(
     '/password',
-    asyncHandler(async (req, res): Promise<void> => {
-      if (req.user.id === null || data === undefined) {
-        res.status(401).json({ error: 'User not authenticated' });
-        return;
-      }
-      const userId = req.user.id;
+    asyncHandler(async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+      const userId = getUserId(req, res);
+      if (!userId) return;
       const { currentPassword, newPassword } = updatePasswordSchema.parse(req.body);
 
       // Validate new password
@@ -65,7 +61,7 @@ export function userRoutes(prisma: PrismaClient): Router {
       // Get user with password
       const user = await userRepository.findById(userId);
 
-      if (user === null || data === undefined) {
+      if (user === null || user === undefined) {
         res.status(404).json({ error: 'User not found' });
         return;
       }
@@ -88,8 +84,8 @@ export function userRoutes(prisma: PrismaClient): Router {
   // Create user (admin only)
   router.post(
     '/create',
-    asyncHandler(async (req, res): Promise<void> => {
-      const userRole = (req as Request & { user?: { role?: string } }).user.role;
+    asyncHandler(async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+      const userRole = req.user?.role;
 
       if (userRole !== 'ADMIN') {
         res.status(403).json({ error: 'Forbidden' });
@@ -122,7 +118,7 @@ export function userRoutes(prisma: PrismaClient): Router {
   // Data validation endpoint
   router.post(
     '/data/validate',
-    asyncHandler((req, res): void => {
+    asyncHandler((req: AuthenticatedRequest, res: Response): void => {
       const data = req.body as Record<string, unknown>;
 
       // Type validation

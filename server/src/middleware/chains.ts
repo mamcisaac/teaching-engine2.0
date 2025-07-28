@@ -1,5 +1,4 @@
 import type { Request, Response, NextFunction } from 'express';
-import type { RateLimitRequestHandler } from 'express-rate-limit';
 
 import { logger } from '../logger';
 

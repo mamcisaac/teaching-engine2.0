@@ -1,19 +1,18 @@
-import type { Request } from 'express';
+import type { Response } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
 
 import { logger } from '../logger';
 import { prisma } from '../prisma';
+import { getUserId } from '../utils/authHelpers';
+import type { AuthenticatedRequest } from './base/middleware';
 const router = Router();
 
 // Track plan access
-router.post('/track', async (req: Request, res, _next) => {
+router.post('/track', async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const userId = req.user.id ?? 0;
-    if (userId === 0) {
-      res.status(401).json({ error: 'Unauthorized' });
-      return;
-    }
+    const userId = getUserId(req, res);
+    if (!userId) return;
 
     // Validate request body
     const bodySchema = z.object({
@@ -22,7 +21,7 @@ router.post('/track', async (req: Request, res, _next) => {
     });
     const { planType, planId } = bodySchema.parse(req.body);
 
-    if (planType === null || data === undefined || planType === '' || planId === null || data === undefined || planId === '') {
+    if (planType === null || planType === undefined || planType === '' || planId === null || planId === undefined || planId === '') {
       res.status(400).json({ error: 'Plan type and ID are required' });
       return;
     }
@@ -58,13 +57,10 @@ router.post('/track', async (req: Request, res, _next) => {
 });
 
 // Get recent plans for user
-router.get('/', async (req: Request, res, _next) => {
+router.get('/', async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const userId = req.user.id ?? 0;
-    if (userId === 0) {
-      res.status(401).json({ error: 'Unauthorized' });
-      return;
-    }
+    const userId = getUserId(req, res);
+    if (!userId) return;
 
     // Parse limit with proper NaN checking
     const parsedLimit = parseInt(req.query.limit as string, 10);
@@ -118,7 +114,7 @@ router.get('/', async (req: Request, res, _next) => {
                 },
               },
             });
-            if (plan !== null && data !== undefined && 'longRangePlan' in plan) {
+            if (plan !== null && plan !== undefined && 'longRangePlan' in plan) {
               parentInfo = plan.longRangePlan;
             }
             break;
@@ -147,7 +143,7 @@ router.get('/', async (req: Request, res, _next) => {
                 },
               },
             });
-            if (plan !== null && data !== undefined && 'unitPlan' in plan) {
+            if (plan !== null && plan !== undefined && 'unitPlan' in plan) {
               parentInfo = plan.unitPlan;
             }
             break;
@@ -217,7 +213,7 @@ return null;
       }),
     );
 
-    // Filter out null datas (deleted plans)
+    // Filter out null values (deleted plans)
     const validPlans = recentPlans.filter(Boolean);
 
     res.json(validPlans);
@@ -229,13 +225,10 @@ return null;
 });
 
 // Clear recent plans history
-router.delete('/clear', async (req: Request, res, _next) => {
+router.delete('/clear', async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const userId = req.user.id ?? 0;
-    if (userId === 0) {
-      res.status(401).json({ error: 'Unauthorized' });
-      return;
-    }
+    const userId = getUserId(req, res);
+    if (!userId) return;
 
     await prisma.recentPlanAccess.deleteMany({
       where: { userId },

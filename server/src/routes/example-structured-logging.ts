@@ -3,38 +3,38 @@
  * This demonstrates best practices for logging in route handlers
  */
 
-import type { Request, Response, NextFunction } from 'express';
+import type { Response, NextFunction } from 'express';
 import { Router } from 'express';
 
 import { authenticate } from '../middleware/authenticate';
 import { prisma } from '../prisma';
 import { structuredLogger, PerformanceLogger } from '../utils/logger-migration';
 import { withLoggingContext } from '../utils/structuredLogger';
+import { getUserId } from '../utils/authHelpers';
+import type { AuthenticatedRequest } from './base/middleware';
 
 const router = Router();
 
 /**
  * Example: Basic route with structured logging
  */
-router.get('/api/example/basic', authenticate, async (req: Request, res: Response) => {
+router.get('/api/example/basic', authenticate, async (req: AuthenticatedRequest, res: Response) => {
+  const userId = getUserId(req, res);
+  if (!userId) return;
+
   // Log the incoming request with context
   structuredLogger.info('Processing example request', {
-    userId: req.user.id,
+    userId,
     query: req.query,
   });
 
   try {
     // Simulate some work
-    const userId = req.user.id;
-    if (!userId) {
-      res.status(401).json({ error: 'User not authenticated' });
-      return;
-    }
     const result = someBusinessLogic(userId);
 
     // Log success with relevant data
     structuredLogger.info('Example request completed successfully', {
-      userId: req.user.id,
+      userId,
       resultSize: result.length,
     });
 
@@ -43,7 +43,7 @@ router.get('/api/example/basic', authenticate, async (req: Request, res: Respons
   } catch (error) {
     // Log error with full context
     structuredLogger.error('Failed to process example request', error as Error, {
-      userId: req.user.id,
+      userId,
       query: req.query,
     });
 
@@ -93,14 +93,11 @@ router.get('/api/example/performance', authenticate, async (_req: Request, res: 
 /**
  * Example: Route with child logger context
  */
-router.post('/api/example/batch', authenticate, async (req: Request, res: Response) => {
+router.post('/api/example/batch', authenticate, async (req: AuthenticatedRequest, res: Response) => {
   const batchId = `batch-${Date.now()}`;
 
-  const userId = req.user.id;
-  if (!userId) {
-    res.status(401).json({ error: 'User not authenticated' });
-    return;
-  }
+  const userId = getUserId(req, res);
+  if (!userId) return;
 
   // Create child logger with batch context
   const batchLogger = structuredLogger.child({
@@ -153,7 +150,7 @@ router.post('/api/example/batch', authenticate, async (req: Request, res: Respon
 router.post(
   '/api/example/workflow',
   authenticate,
-  async (req: Request, res: Response, next: NextFunction) => {
+  async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
     const workflowId = `workflow-${Date.now()}`;
 
     // Run entire workflow with additional context
@@ -188,14 +185,11 @@ router.post(
 /**
  * Example: Streaming endpoint with progress logging
  */
-router.get('/api/example/stream', authenticate, async (req: Request, res: Response) => {
+router.get('/api/example/stream', authenticate, async (req: AuthenticatedRequest, res: Response) => {
   const streamId = `stream-${Date.now()}`;
   
-  const userId = req.user.id;
-  if (!userId) {
-    res.status(401).json({ error: 'User not authenticated' });
-    return;
-  }
+  const userId = getUserId(req, res);
+  if (!userId) return;
   
   const streamLogger = structuredLogger.child({ streamId, userId });
 

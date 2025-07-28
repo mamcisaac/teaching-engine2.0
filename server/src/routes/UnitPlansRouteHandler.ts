@@ -140,8 +140,8 @@ class UnitPlanService extends BaseService {
     };
 
     if (longRangePlanId !== undefined) {
-where.longRangePlanId = longRangePlanId;
-}
+      where.longRangePlanId = String(longRangePlanId);
+    }
     if (startDate !== undefined) {
 where.startDate = { gte: new Date(String(startDate)) };
 }
@@ -151,10 +151,10 @@ where.endDate = { lte: new Date(String(endDate)) };
 
     // Search functionality using optimized search utility
     if (search !== undefined) {
-      where.OR = [
-        ...optimizedQueries.createSearchWhere(String(search), ['title', 'description', 'bigIdeas'])
-          .OR,
-      ];
+      const searchWhere = optimizedQueries.createSearchWhere(String(search), ['title', 'description', 'bigIdeas']);
+      if (searchWhere.OR) {
+        where.OR = [...searchWhere.OR];
+      }
     }
 
     // Date range filtering
@@ -175,7 +175,7 @@ where.endDate = { lte: new Date(String(endDate)) };
     );
 
     const result = await queryPerformance.monitorQuery('unitPlan.findMany', () =>
-      optimizedQueries.paginatedQuery(prisma.unitPlan, where, {
+      optimizedQueries.paginatedQuery(prisma.unitPlan as any, where, {
         limit: Number(limit ?? 20),
         offset: Number(offset ?? 0),
         orderBy,
@@ -186,7 +186,7 @@ where.endDate = { lte: new Date(String(endDate)) };
     const { items: unitPlans, total } = result;
 
     return {
-      unitPlans,
+      unitPlans: unitPlans as UnitPlan[],
       pagination: {
         total,
         limit: Number(limit ?? 20),
@@ -325,12 +325,12 @@ where.endDate = { lte: new Date(String(endDate)) };
     });
 
     // Handle date conversion
-    if (data.startDate !== null && data.startDate !== '') {
-updateData.startDate = new Date(data.startDate);
-}
-    if (data.endDate !== null && data.endDate !== '') {
-updateData.endDate = new Date(data.endDate);
-}
+    if (data.startDate !== null && data.startDate !== undefined && data.startDate !== '') {
+      updateData.startDate = new Date(data.startDate);
+    }
+    if (data.endDate !== null && data.endDate !== undefined && data.endDate !== '') {
+      updateData.endDate = new Date(data.endDate);
+    }
 
     return prisma.unitPlan.update({
       where: { id },

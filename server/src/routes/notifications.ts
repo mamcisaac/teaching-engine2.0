@@ -1,19 +1,18 @@
-import type { Request } from 'express';
+import type { Response } from 'express';
 import { Router } from 'express';
 
 import { logger } from '../logger';
 import { prisma } from '../prisma';
+import { getUserId } from '../utils/authHelpers';
+import type { AuthenticatedRequest } from './base/middleware';
 const router = Router();
 
 // Get notifications for authenticated user
-router.get('/', (req: Request, res): void => {
+router.get('/', (req: AuthenticatedRequest, res: Response): void => {
   void (async (): Promise<void> => {
     try {
-    const userId = req.user.id ?? 0;
-    if (!userId) {
-      res.status(401).json({ error: 'Unauthorized' });
-      return;
-    }
+    const userId = getUserId(req, res);
+    if (!userId) return;
 
     // Parse limit with proper NaN checking
     const parsedLimit = parseInt(req.query.limit as string, 10);
@@ -62,14 +61,11 @@ router.get('/', (req: Request, res): void => {
 });
 
 // Mark notification as read
-router.patch('/:id/read', (req: Request, res): void => {
+router.patch('/:id/read', (req: AuthenticatedRequest, res: Response): void => {
   void (async (): Promise<void> => {
     try {
-    const userId = req.user.id ?? 0;
-    if (!userId) {
-      res.status(401).json({ error: 'Unauthorized' });
-      return;
-    }
+    const userId = getUserId(req, res);
+    if (!userId) return;
 
     const notificationId = parseInt(req.params.id);
     if (isNaN(notificationId)) {
@@ -103,14 +99,11 @@ router.patch('/:id/read', (req: Request, res): void => {
 });
 
 // Mark all notifications as read
-router.patch('/read-all', (req: Request, res): void => {
+router.patch('/read-all', (req: AuthenticatedRequest, res: Response): void => {
   void (async (): Promise<void> => {
     try {
-    const userId = req.user.id ?? 0;
-    if (!userId) {
-      res.status(401).json({ error: 'Unauthorized' });
-      return;
-    }
+    const userId = getUserId(req, res);
+    if (!userId) return;
 
     const result = await prisma.notification.updateMany({
       where: { userId, read: false },
@@ -127,14 +120,11 @@ router.patch('/read-all', (req: Request, res): void => {
 });
 
 // Delete notification
-router.delete('/:id', (req: Request, res): void => {
+router.delete('/:id', (req: AuthenticatedRequest, res: Response): void => {
   void (async (): Promise<void> => {
     try {
-    const userId = req.user.id ?? 0;
-    if (!userId) {
-      res.status(401).json({ error: 'Unauthorized' });
-      return;
-    }
+    const userId = getUserId(req, res);
+    if (!userId) return;
 
     const notificationId = parseInt(req.params.id);
     if (isNaN(notificationId)) {
@@ -167,14 +157,11 @@ router.delete('/:id', (req: Request, res): void => {
 });
 
 // Clear all notifications
-router.delete('/clear-all', (req: Request, res): void => {
+router.delete('/clear-all', (req: AuthenticatedRequest, res: Response): void => {
   void (async (): Promise<void> => {
     try {
-    const userId = req.user.id ?? 0;
-    if (!userId) {
-      res.status(401).json({ error: 'Unauthorized' });
-      return;
-    }
+    const userId = getUserId(req, res);
+    if (!userId) return;
 
     const result = await prisma.notification.deleteMany({
       where: { userId },
@@ -190,14 +177,11 @@ router.delete('/clear-all', (req: Request, res): void => {
 });
 
 // Create a test notification (for development)
-router.post('/test', (req: Request, res): void => {
+router.post('/test', (req: AuthenticatedRequest, res: Response): void => {
   void (async (): Promise<void> => {
     try {
-    const userId = req.user.id ?? 0;
-    if (!userId) {
-      res.status(401).json({ error: 'Unauthorized' });
-      return;
-    }
+    const userId = getUserId(req, res);
+    if (!userId) return;
 
     const notification = await prisma.notification.create({
       data: {

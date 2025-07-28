@@ -1,22 +1,20 @@
-import type { Request, Response } from 'express';
+import type { Response } from 'express';
 import { Router } from 'express';
 
 import { logger } from '../logger';
 import { prisma } from '../prisma';
+import { getUserId } from '../utils/authHelpers';
+import type { AuthenticatedRequest } from './base/middleware';
 const router = Router();
 
 /**
  * GET /api/etfo/progress
  * Get ETFO planning progress across all 5 levels
  */
-router.get('/progress', async (req: Request, res: Response) => {
+router.get('/progress', async (req: AuthenticatedRequest, res: Response) => {
   try {
-    if (!req.user.id) {
-      res.status(401).json({ error: 'User not authenticated' });
-      return;
-    }
-
-    const userId = req.user.id;
+    const userId = getUserId(req, res);
+    if (!userId) return;
 
     // Get curriculum expectations progress
     const totalExpectations = await prisma.curriculumExpectation.count({

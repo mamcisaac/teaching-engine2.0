@@ -10,6 +10,7 @@ import { asyncHandler } from '../middleware/errorHandler';
 import { validateRequest } from '../middleware/validateRequest';
 import { prisma } from '../prisma';
 import { getErrorMessage } from '../utils/type-guards';
+import { getUserId } from '../utils/authHelpers';
 
 import type { AuthenticatedRequest } from './base/middleware';
 const router = Router();
@@ -44,11 +45,8 @@ router.get('/', asyncHandler(async (req: AuthenticatedRequest, res: Response): P
       return;
     }
     const { start, end, eventType } = queryValidation.data;
-    if (!req.user) {
-      res.status(401).json({ error: 'User not authenticated' });
-      return;
-    }
-    const userId = req.user.id;
+    const userId = getUserId(req, res);
+    if (!userId) return;
 
     const where: Prisma.CalendarEventWhereInput = {
       OR: [
@@ -91,11 +89,8 @@ router.post(
   asyncHandler(async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       const data = req.body as z.infer<typeof calendarEventSchema>;
-      if (!req.user) {
-        res.status(401).json({ error: 'User not authenticated' });
-        return;
-      }
-      const userId = req.user.id;
+      const userId = getUserId(req, res);
+      if (!userId) return;
 
       const event = await prisma.calendarEvent.create({
         data: {
@@ -124,11 +119,8 @@ router.post(
 router.patch('/:id', asyncHandler(async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
-    if (!req.user) {
-      res.status(401).json({ error: 'User not authenticated' });
-      return;
-    }
-    const userId = req.user.id;
+    const userId = getUserId(req, res);
+    if (!userId) return;
     const updates = req.body;
 
     // Check ownership
@@ -170,11 +162,8 @@ router.patch('/:id', asyncHandler(async (req: AuthenticatedRequest, res: Respons
 router.delete('/:id', asyncHandler(async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
-    if (!req.user) {
-      res.status(401).json({ error: 'User not authenticated' });
-      return;
-    }
-    const userId = req.user.id;
+    const userId = getUserId(req, res);
+    if (!userId) return;
 
     // Check ownership
     const event = await prisma.calendarEvent.findFirst({

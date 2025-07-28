@@ -1,16 +1,18 @@
 import debug from 'debug';
-import type { Request, Response, NextFunction } from 'express';
+import type { Response, NextFunction } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
 
 import { logger } from '../logger';
 import { authMiddleware } from '../middleware/auth';
 import { AIActivityGeneratorService } from '../services/aiActivityGeneratorService';
+import { getUserId } from '../utils/authHelpers';
+import type { AuthenticatedRequest } from './base/middleware';
 const log = debug('server:ai-activity:error');
 
 // Async middleware wrapper to handle async route handlers
-const asyncMiddleware = (fn: (req: Request, res: Response, next: NextFunction) => Promise<void>) => 
-  (req: Request, res: Response, next: NextFunction): void => {
+const asyncMiddleware = (fn: (req: AuthenticatedRequest, res: Response, next: NextFunction) => Promise<void>) => 
+  (req: AuthenticatedRequest, res: Response, next: NextFunction): void => {
     void Promise.resolve(fn(req, res, next)).catch(next);
   };
 // ActivityDiscoveryService removed - over-engineered for single-teacher use
@@ -19,7 +21,7 @@ const router = Router();
 const aiGenerator = new AIActivityGeneratorService();
 
 // Simple rate limiting for AI endpoints (to avoid async issues)
-const aiRateLimit = (_req: Request, _res: Response, next: () => void): void => {
+const aiRateLimit = (_req: AuthenticatedRequest, _res: Response, next: () => void): void => {
   // Simple in-memory rate limiting - production should use proper rate limiter
   next();
 };
@@ -95,7 +97,7 @@ router.post(
   '/generate',
   asyncMiddleware(authMiddleware),
   aiRateLimit,
-  asyncMiddleware(async (req: Request, res: Response, _next: NextFunction) => {
+  asyncMiddleware(async (req: AuthenticatedRequest, res: Response, _next: NextFunction) => {
     try {
       const params = generateActivitySchema.parse(req.body);
       const searchResults = undefined;
@@ -132,7 +134,7 @@ router.post(
   '/generate-variations',
   asyncMiddleware(authMiddleware),
   aiRateLimit,
-  asyncMiddleware(async (req: Request, res: Response, _next: NextFunction) => {
+  asyncMiddleware(async (req: AuthenticatedRequest, res: Response, _next: NextFunction) => {
     try {
       const params = generateActivitySchema.parse(req.body);
       const count = Math.min((req.body as { count?: number }).count || 3, 5); // Max 5 variations
@@ -175,7 +177,7 @@ router.post(
 /**
  * Save a generated activity
  */
-router.post('/save', asyncMiddleware(authMiddleware), asyncMiddleware(async (req: Request, res: Response, _next: NextFunction) => {
+router.post('/save', asyncMiddleware(authMiddleware), asyncMiddleware(async (req: AuthenticatedRequest, res: Response, _next: NextFunction) => {
   try {
     const params = saveActivitySchema.parse(req.body);
 
@@ -199,11 +201,8 @@ router.post('/save', asyncMiddleware(authMiddleware), asyncMiddleware(async (req
     };
 
     // Save the generated activity
-    if (!req.user?.id) {
-      res.status(401).json({ error: 'User not authenticated' });
-      return;
-    }
-    const userId = req.user.id;
+    const userId = getUserId(req, res);
+    if (!userId) return;
     
     const savedActivity = await aiGenerator.saveGeneratedActivity(
       activityWithDefaults,

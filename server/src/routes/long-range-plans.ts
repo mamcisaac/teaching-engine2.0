@@ -1,4 +1,4 @@
-import type { Request } from 'express';
+import type { Response } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
 
@@ -7,6 +7,8 @@ import type { Prisma } from '../prisma';
 import { prisma } from '../prisma';
 import { generateLongRangePlanDraft, generatePlanSuggestions } from '../services/ai/aiDraftService';
 import { validate } from '../validation';
+import { getUserId } from '../utils/authHelpers';
+import type { AuthenticatedRequest } from './base/middleware';
 const router = Router();
 
 // Validation schemas
@@ -33,13 +35,10 @@ const longRangePlanCreateSchema = z.object({
 const longRangePlanUpdateSchema = longRangePlanCreateSchema.partial();
 
 // Get all long-range plans for the authenticated user
-router.get('/', async (req: Request, res, _next) => {
+router.get('/', async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const userId = req.user.id;
-    if (!userId) {
-      res.status(401).json({ error: 'Unauthorized' });
-      return;
-    }
+    const userId = getUserId(req, res);
+    if (!userId) return;
 
     const { academicYear, subject, grade } = req.query;
 
@@ -70,18 +69,15 @@ where.grade = Number(grade);
     res.json(plans);
     return;
   } catch (_err) {
-    _next(_err); return;
+(_err); return;
   }
 });
 
 // Get a single long-range plan
-router.get('/:id', async (req: Request, res, _next) => {
+router.get('/:id', async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const userId = req.user.id;
-    if (!userId) {
-      res.status(401).json({ error: 'Unauthorized' });
-      return;
-    }
+    const userId = getUserId(req, res);
+    if (!userId) return;
 
     const plan = await prisma.longRangePlan.findFirst({
       where: {
@@ -119,18 +115,15 @@ router.get('/:id', async (req: Request, res, _next) => {
     res.json(plan);
     return;
   } catch (_err) {
-    _next(_err); return;
+(_err); return;
   }
 });
 
 // Create a new long-range plan
-router.post('/', validate(longRangePlanCreateSchema), async (req: Request, res, _next) => {
+router.post('/', validate(longRangePlanCreateSchema), async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const userId = req.user.id;
-    if (!userId) {
-      res.status(401).json({ error: 'Unauthorized' });
-      return;
-    }
+    const userId = getUserId(req, res);
+    if (!userId) return;
 
     const { expectationIds, themes, ...planData } = req.body;
 
@@ -194,18 +187,15 @@ router.post('/', validate(longRangePlanCreateSchema), async (req: Request, res, 
     res.status(201).json(plan);
     return;
   } catch (_err) {
-    _next(_err); return;
+(_err); return;
   }
 });
 
 // Update a long-range plan
-router.put('/:id', validate(longRangePlanUpdateSchema), async (req: Request, res, _next) => {
+router.put('/:id', validate(longRangePlanUpdateSchema), async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const userId = req.user.id;
-    if (!userId) {
-      res.status(401).json({ error: 'Unauthorized' });
-      return;
-    }
+    const userId = getUserId(req, res);
+    if (!userId) return;
 
     const { expectationIds, themes, ...updateData } = req.body;
 
@@ -270,18 +260,15 @@ router.put('/:id', validate(longRangePlanUpdateSchema), async (req: Request, res
     res.json(updatedPlan);
     return;
   } catch (_err) {
-    _next(_err); return;
+(_err); return;
   }
 });
 
 // Delete a long-range plan
-router.delete('/:id', async (req: Request, res, _next) => {
+router.delete('/:id', async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const userId = req.user.id;
-    if (userId === null || userId === undefined) {
-      res.status(401).json({ error: 'Unauthorized' });
-      return;
-    }
+    const userId = getUserId(req, res);
+    if (!userId) return;
 
     // Verify ownership and check for dependencies
     const plan = await prisma.longRangePlan.findFirst({
@@ -309,18 +296,15 @@ router.delete('/:id', async (req: Request, res, _next) => {
 
     res.status(204).end();
   } catch (_err) {
-    _next(_err); return;
+(_err); return;
   }
 });
 
 // Generate AI draft for long-range plan
-router.post('/ai-draft', async (req: Request, res, _next) => {
+router.post('/ai-draft', async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const userId = req.user.id;
-    if (userId === null || userId === undefined) {
-      res.status(401).json({ error: 'Unauthorized' });
-      return;
-    }
+    const userId = getUserId(req, res);
+    if (!userId) return;
 
     const { expectationIds, subject, grade, academicYear } = req.body;
 
@@ -357,13 +341,10 @@ router.post('/ai-draft', async (req: Request, res, _next) => {
 });
 
 // Generate AI suggestions for existing plan
-router.post('/:id/ai-suggestions', async (req: Request, res, _next) => {
+router.post('/:id/ai-suggestions', async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const userId = req.user.id;
-    if (userId === null || userId === undefined) {
-      res.status(401).json({ error: 'Unauthorized' });
-      return;
-    }
+    const userId = getUserId(req, res);
+    if (!userId) return;
 
     const plan = await prisma.longRangePlan.findFirst({
       where: { id: req.params.id, userId },

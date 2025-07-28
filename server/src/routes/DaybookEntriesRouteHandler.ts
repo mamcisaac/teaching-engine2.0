@@ -313,7 +313,7 @@ orderBy.createdAt = order;
     const { items: entries, total } = result;
 
     return {
-      entries,
+      entries: entries as DaybookEntryWithRelations[],
       pagination: {
         total,
         limit: limit ?? 10,
@@ -355,7 +355,7 @@ orderBy.createdAt = order;
           },
         },
       },
-    });
+    }) as Promise<DaybookEntryWithRelations | null>;
   }
 
   async create(data: DaybookEntryCreateData, userId: number): Promise<DaybookEntryWithRelations> {
@@ -379,7 +379,7 @@ orderBy.createdAt = order;
           : undefined,
       },
       include: optimizedIncludes.daybookEntry,
-    });
+    }) as Promise<DaybookEntryWithRelations>;
   }
 
   async update(id: string, data: DaybookEntryUpdateData, userId: number): Promise<DaybookEntryWithRelations> {
@@ -413,7 +413,7 @@ orderBy.createdAt = order;
         }),
       },
       include: optimizedIncludes.daybookEntry,
-    });
+    }) as Promise<DaybookEntryWithRelations>;
   }
 
   async delete(id: string, userId: number): Promise<boolean> {
@@ -468,7 +468,7 @@ orderBy.createdAt = order;
 
     const subjectBreakdown = recentEntries.reduce<Record<string, number>>(
       (acc: Record<string, number>, entry) => {
-        const subject = entry.lessonPlan.unitPlan.longRangePlan.subject ?? 'Unknown';
+        const subject = entry.lessonPlan?.unitPlan?.longRangePlan?.subject ?? 'Unknown';
         acc[subject] = (acc[subject] ?? 0) + 1;
         return acc;
       },

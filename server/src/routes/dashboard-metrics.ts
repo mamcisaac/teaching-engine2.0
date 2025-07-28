@@ -1,4 +1,4 @@
-import type { Request, Response } from 'express';
+import type { Response } from 'express';
 import { Router } from 'express';
 
 import { logger } from '../logger';
@@ -6,7 +6,7 @@ import { authMiddleware } from '../middleware/auth';
 import { getCacheStats } from '../middleware/cache';
 import { getPerformanceSummary, metricsStore } from '../middleware/metrics';
 import { prisma } from '../prisma';
-import { getErrorMessage } from '../utils/errorHandler';
+import { getErrorMessage } from '../utils/type-guards';
 
 import { asyncHandler } from './base/middleware';
 import type { AuthenticatedRequest } from './base/middleware';
@@ -20,7 +20,7 @@ router.use(asyncHandler(authMiddleware));
  * Dashboard overview metrics
  * GET /api/dashboard/metrics
  */
-router.get('/', asyncHandler(async (_req: Request, res: Response) => {
+router.get('/', asyncHandler(async (_req: AuthenticatedRequest, res: Response) => {
   try {
     const performanceSummary = getPerformanceSummary();
     const cacheStats = getCacheStats();
@@ -88,7 +88,7 @@ router.get('/', asyncHandler(async (_req: Request, res: Response) => {
  * Performance trends over time
  * GET /api/dashboard/trends
  */
-router.get('/trends', asyncHandler(async (_req: Request, res: Response) => {
+router.get('/trends', asyncHandler(async (_req: AuthenticatedRequest, res: Response) => {
   try {
     const metrics = metricsStore.getMetrics();
 
@@ -162,7 +162,7 @@ router.get('/trends', asyncHandler(async (_req: Request, res: Response) => {
  * Resource usage insights
  * GET /api/dashboard/resources
  */
-router.get('/resources', asyncHandler(async (_req: Request, res: Response) => {
+router.get('/resources', asyncHandler(async (_req: AuthenticatedRequest, res: Response) => {
   try {
     const memUsage = process.memoryUsage();
     const cpuUsage = process.cpuUsage();

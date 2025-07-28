@@ -9,7 +9,9 @@ import { z } from 'zod';
 import { logger } from '../logger';
 import { prisma } from '../prisma';
 import { safeJsonParse } from '../utils/type-guards';
+import { getUserId } from '../utils/authHelpers';
 import { cuidSchema } from '../validation';
+import type { AuthenticatedRequest } from './base/middleware';
 const router = Router();
 
 // Rate limiting for state operations
@@ -125,14 +127,10 @@ const WeeklyPlannerStateSchema = z
 // Use global Express.Request type extended with user property
 
 // GET /api/planner/state - Get user's planner state
-router.get('/state', async (req: express.Request, res: express.Response): Promise<void> => {
+router.get('/state', async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
-    if (req.user.id === null) {
-      res.status(401).json({ error: 'Unauthorized' });
-      return;
-    }
-
-    const userId = req.user.id;
+    const userId = getUserId(req, res);
+    if (!userId) return;
 
     let plannerState = await prisma.weeklyPlannerState.findUnique({
       where: { userId },
@@ -190,14 +188,10 @@ router.put(
   '/state',
   stateRateLimit,
   csrfProtection,
-  async (req: express.Request, res: Response) => {
+  async (req: AuthenticatedRequest, res: Response) => {
     try {
-      if (req.user.id === null) {
-        res.status(401).json({ error: 'Unauthorized' });
-        return;
-      }
-
-      const userId = req.user.id;
+      const userId = getUserId(req, res);
+      if (!userId) return;
 
       // Validate the request body
       const validationResult = WeeklyPlannerStateSchema.safeParse(req.body);
@@ -291,14 +285,10 @@ router.put(
 );
 
 // GET /api/planner/week/:weekStart/state - Get state for specific week
-router.get('/week/:weekStart/state', async (req: express.Request, res: Response): Promise<void> => {
+router.get('/week/:weekStart/state', async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
-    if (req.user.id === null) {
-      res.status(401).json({ error: 'Unauthorized' });
-      return;
-    }
-
-    const userId = req.user.id;
+    const userId = getUserId(req, res);
+    if (!userId) return;
     const weekStart = new Date(req.params.weekStart);
 
     if (isNaN(weekStart.getTime())) {
@@ -413,14 +403,10 @@ router.post(
   '/state/reset',
   stateRateLimit,
   csrfProtection,
-  async (req: express.Request, res: Response) => {
+  async (req: AuthenticatedRequest, res: Response) => {
     try {
-      if (req.user.id === null) {
-        res.status(401).json({ error: 'Unauthorized' });
-        return;
-      }
-
-      const userId = req.user.id;
+      const userId = getUserId(req, res);
+      if (!userId) return;
 
       const defaultState = {
         defaultView: 'week' as const,

@@ -4,6 +4,8 @@ import { Router } from 'express';
 import { logger } from '../logger';
 import { authMiddleware } from '../middleware/auth';
 import { metricsStore, getPerformanceSummary } from '../middleware/metrics';
+import { getUserId } from '../utils/authHelpers';
+import type { AuthenticatedRequest } from './base/middleware';
 
 const router = Router();
 
@@ -27,7 +29,7 @@ router.get('/', (_req: Request, res: Response): void => {
  * JSON metrics endpoint (requires authentication)
  * GET /api/metrics/json
  */
-router.get('/json', authMiddleware, (_req: Request, res: Response): void => {
+router.get('/json', authMiddleware, (_req: AuthenticatedRequest, res: Response): void => {
   try {
     const metrics = metricsStore.getMetrics();
 
@@ -51,7 +53,7 @@ router.get('/json', authMiddleware, (_req: Request, res: Response): void => {
  * Performance summary endpoint
  * GET /api/metrics/summary
  */
-router.get('/summary', authMiddleware, (_req: Request, res: Response): void => {
+router.get('/summary', authMiddleware, (_req: AuthenticatedRequest, res: Response): void => {
   try {
     const summary = getPerformanceSummary();
 
@@ -75,7 +77,7 @@ router.get('/summary', authMiddleware, (_req: Request, res: Response): void => {
  * Health check with performance data
  * GET /api/metrics/health
  */
-router.get('/health', authMiddleware, (_req: Request, res: Response): void => {
+router.get('/health', authMiddleware, (_req: AuthenticatedRequest, res: Response): void => {
   try {
     const summary = getPerformanceSummary();
 
@@ -136,7 +138,7 @@ router.get('/health', authMiddleware, (_req: Request, res: Response): void => {
  * Reset metrics (development/testing only)
  * DELETE /api/metrics/reset
  */
-router.delete('/reset', authMiddleware, async (req: Request, res: Response): Promise<void> => {
+router.delete('/reset', authMiddleware, async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
     // Only allow in development/test environments
     if (process.env.NODE_ENV === 'production') {
@@ -149,7 +151,8 @@ router.delete('/reset', authMiddleware, async (req: Request, res: Response): Pro
 
     metricsStore.reset();
 
-    logger.info(`Metrics reset by user ${req.user.id || 'unknown'}`);
+    const userId = getUserId(req, res);
+    logger.info(`Metrics reset by user ${userId || 'unknown'}`);
 
     res.json({
       success: true,
@@ -171,7 +174,7 @@ router.delete('/reset', authMiddleware, async (req: Request, res: Response): Pro
  * Real-time metrics for dashboard
  * GET /api/metrics/realtime
  */
-router.get('/realtime', authMiddleware, async (_req: Request, res: Response): Promise<void> => {
+router.get('/realtime', authMiddleware, async (_req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
     const summary = getPerformanceSummary();
     const metrics = metricsStore.getMetrics();

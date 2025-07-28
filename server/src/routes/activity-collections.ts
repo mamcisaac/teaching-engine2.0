@@ -1,11 +1,13 @@
 import { isErrorLike } from '@shared/utils/typeGuards';
 import { prisma } from '@teaching-engine/database';
-import type { Request, Response, NextFunction } from 'express';
+import type { Response, NextFunction } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
 
 import { logger } from '../logger';
 import { authMiddleware } from '../middleware/auth';
+import { getUserId } from '../utils/authHelpers';
+import type { AuthenticatedRequest } from './base/middleware';
 const router = Router();
 
 // Helper function to safely get boolean values
@@ -32,19 +34,16 @@ return value;
 }
 
 // Async middleware wrapper to handle promises properly
-const asyncMiddleware = (fn: (req: Request, res: Response, next: NextFunction) => Promise<void>) => 
-  (req: Request, res: Response, next: NextFunction): void => {
+const asyncMiddleware = (fn: (req: AuthenticatedRequest, res: Response, next: NextFunction) => Promise<void>) => 
+  (req: AuthenticatedRequest, res: Response, next: NextFunction): void => {
     void Promise.resolve(fn(req, res, next)).catch(next);
   };
 
 // Get user's collections
-router.get('/', asyncMiddleware(authMiddleware), asyncMiddleware(async (req: Request, res: Response, _next: NextFunction) => {
+router.get('/', asyncMiddleware(authMiddleware), asyncMiddleware(async (req: AuthenticatedRequest, res: Response, _next: NextFunction) => {
   try {
-    if (req.user?.id === null || req.user?.id === undefined) {
-      res.status(401).json({ error: 'User not authenticated' });
-      return;
-    }
-    const userId = req.user.id;
+    const userId = getUserId(req, res);
+    if (!userId) return;
     
     const includePublic = getSafeBooleanValue(req.query.includePublic);
 
@@ -85,14 +84,11 @@ router.get('/', asyncMiddleware(authMiddleware), asyncMiddleware(async (req: Req
 }));
 
 // Get collection details with activities
-router.get('/:collectionId', asyncMiddleware(authMiddleware), asyncMiddleware(async (req: Request, res: Response) => {
+router.get('/:collectionId', asyncMiddleware(authMiddleware), asyncMiddleware(async (req: AuthenticatedRequest, res: Response) => {
 
     try {
-    if (req.user?.id === null || req.user?.id === undefined) {
-      res.status(401).json({ error: 'User not authenticated' });
-      return;
-    }
-    const userId = req.user.id;
+    const userId = getUserId(req, res);
+    if (!userId) return;
     
     const { collectionId } = req.params;
 
@@ -149,14 +145,11 @@ const createCollectionSchema = z.object({
   // isPublic field removed - single-teacher use only
 });
 
-router.post('/', authMiddleware, asyncMiddleware(async (req: Request, res: Response) => {
+router.post('/', authMiddleware, asyncMiddleware(async (req: AuthenticatedRequest, res: Response) => {
 
     try {
-    if (req.user?.id === null || req.user?.id === undefined) {
-      res.status(401).json({ error: 'User not authenticated' });
-      return;
-    }
-    const userId = req.user.id;
+    const userId = getUserId(req, res);
+    if (!userId) return;
     
     const data = createCollectionSchema.parse(req.body);
 
@@ -193,14 +186,11 @@ const updateCollectionSchema = z.object({
   // isPublic field removed - single-teacher use only
 });
 
-router.put('/:collectionId', authMiddleware, asyncMiddleware(async (req: Request, res: Response) => {
+router.put('/:collectionId', authMiddleware, asyncMiddleware(async (req: AuthenticatedRequest, res: Response) => {
 
     try {
-    if (req.user?.id === null || req.user?.id === undefined) {
-      res.status(401).json({ error: 'User not authenticated' });
-      return;
-    }
-    const userId = req.user.id;
+    const userId = getUserId(req, res);
+    if (!userId) return;
     
     const { collectionId } = req.params;
     const data = updateCollectionSchema.parse(req.body);
@@ -247,7 +237,7 @@ router.put('/:collectionId', authMiddleware, asyncMiddleware(async (req: Request
 router.delete(
   '/:collectionId',
   authMiddleware,
-  asyncMiddleware(async (req: Request, res: Response) => {
+  asyncMiddleware(async (req: AuthenticatedRequest, res: Response) => {
 
       try {
       if (req.user?.id === null || req.user?.id === undefined) {
@@ -304,7 +294,7 @@ const addActivitySchema = z.object({
 router.post(
   '/:collectionId/activities',
   authMiddleware,
-  asyncMiddleware(async (req: Request, res: Response) => {
+  asyncMiddleware(async (req: AuthenticatedRequest, res: Response) => {
 
       try {
       if (req.user?.id === null || req.user?.id === undefined) {
@@ -387,7 +377,7 @@ router.post(
 router.delete(
   '/:collectionId/activities/:activityId',
   authMiddleware,
-  async (req: Request, res: Response) => {
+  async (req: AuthenticatedRequest, res: Response) => {
 
       try {
       if (req.user?.id === null || req.user?.id === undefined) {
@@ -445,7 +435,7 @@ router.delete(
 router.get(
   '/trending/public',
   authMiddleware,
-  async (req: Request, res: Response) => {
+  async (req: AuthenticatedRequest, res: Response) => {
 
       try {
       if (req.user?.id === null || req.user?.id === undefined) {
