@@ -37,8 +37,10 @@ export function generateAccessToken(payload: JWTPayload): string {
     throw new Error('JWT_SECRET is not defined');
   }
 
+  const expiresIn = process.env.JWT_EXPIRES_IN ?? '7d';
   const options: SignOptions = {
-    expiresIn: process.env.JWT_EXPIRES_IN ?? '7d',
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    expiresIn: expiresIn as any, // StringValue type from ms package not properly exported
   };
   return sign(payload, secret, options);
 }
@@ -52,8 +54,10 @@ export function generateRefreshToken(payload: JWTPayload): string {
     throw new Error('JWT_REFRESH_SECRET is not defined');
   }
 
+  const expiresIn = process.env.JWT_REFRESH_EXPIRES_IN ?? '30d';
   const options: SignOptions = {
-    expiresIn: process.env.JWT_REFRESH_EXPIRES_IN ?? '30d',
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    expiresIn: expiresIn as any, // StringValue type from ms package not properly exported
   };
   return sign(payload, secret, options);
 }

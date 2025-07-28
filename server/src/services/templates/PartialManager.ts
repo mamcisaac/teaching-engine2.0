@@ -381,7 +381,7 @@ export class PartialManager extends BaseService {
     return Array.from(this.partials.values()).filter(
       (partial) =>
         partial.name.toLowerCase().includes(lowerQuery) ||
-        (partial.description !== null && partial.description.toLowerCase().includes(lowerQuery)) ||
+        (partial.description !== null && partial.description !== undefined && partial.description.toLowerCase().includes(lowerQuery)) ||
         partial.content.toLowerCase().includes(lowerQuery),
     );
   }
@@ -478,7 +478,7 @@ export class PartialManager extends BaseService {
    */
   public updatePartial(name: string, content: string, description?: string): void {
     const partial = this.partials.get(name);
-    if (partial !== null) {
+    if (partial !== null && partial !== undefined) {
       partial.content = content;
       partial.lastModified = new Date();
       partial.variables = this.extractVariables(content);
@@ -567,9 +567,9 @@ export class PartialManager extends BaseService {
 
     // Rebuild memberships
     for (const partial of this.partials.values()) {
-      if (partial.category !== null && partial.category !== '') {
+      if (partial.category !== null && partial.category !== undefined && partial.category !== '') {
         const category = this.categories.get(partial.category);
-        if (category !== null) {
+        if (category !== null && category !== undefined) {
           category.partials.push(partial.name);
         }
       }
@@ -623,7 +623,7 @@ export class PartialManager extends BaseService {
 
     for (const partial of this.partials.values()) {
       // Count by category
-      if (partial.category !== null && partial.category !== '') {
+      if (partial.category !== null && partial.category !== undefined && partial.category !== '') {
         stats.byCategory[partial.category] = (stats.byCategory[partial.category] ?? 0) + 1;
       }
 
@@ -631,7 +631,7 @@ export class PartialManager extends BaseService {
       stats.bySource[partial.source] = (stats.bySource[partial.source] ?? 0) + 1;
 
       // Count variables
-      totalVariables += partial.variables.length ?? 0;
+      totalVariables += partial.variables?.length ?? 0;
     }
 
     stats.averageVariables = this.partials.size > 0 ? totalVariables / this.partials.size : 0;

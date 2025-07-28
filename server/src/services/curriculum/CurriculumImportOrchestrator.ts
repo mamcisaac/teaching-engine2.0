@@ -8,6 +8,7 @@ import type {
   PrismaTransactionClient,
   Subject,
   CurriculumImport,
+  CurriculumExpectation,
   ValidationError
 } from '../../types/prisma-types';
 import { ImportStatus } from '../../types/prisma-types';
@@ -236,12 +237,17 @@ export class CurriculumImportOrchestrator extends BaseService {
   private validateCurriculum(
     parsed: ParsedCurriculum,
     validationOptions?: ValidationOptions,
-  ): { isValid: boolean; errors: unknown[]; warnings: unknown[] } {
+  ): { isValid: boolean; errors: ValidationError[]; warnings: ValidationError[] } {
     const validator = validationOptions
       ? new CurriculumValidator(validationOptions)
       : this.validator;
 
-    return validator.validate(parsed);
+    const result = validator.validate(parsed);
+    return {
+      isValid: result.isValid,
+      errors: result.errors as ValidationError[],
+      warnings: result.warnings as ValidationError[],
+    };
   }
 
   /**
@@ -285,7 +291,10 @@ export class CurriculumImportOrchestrator extends BaseService {
         const transformed = this.transformer.transform(parsed, transformOptions);
 
         subject = await tx.subject.create({
-          data: transformed.subject,
+          data: {
+            ...transformed.subject,
+            userId: options.userId,
+          },
         });
 
         this.logger.info(
@@ -310,11 +319,14 @@ export class CurriculumImportOrchestrator extends BaseService {
         mergeDuplicates: true,
       };
 
-      const { toCreate, toUpdate, toDeactivate } = this.transformer.transformForUpdate(
+      const transformResult = this.transformer.transformForUpdate(
         parsed,
         existingExpectations,
         transformOptions,
       );
+      const toCreate = transformResult.toCreate as Array<Omit<CurriculumExpectation, "id" | "createdAt" | "updatedAt">>;
+      const toUpdate = transformResult.toUpdate as Array<{ id: string; data: Partial<Omit<CurriculumExpectation, "id" | "createdAt">> }>;
+      const toDeactivate = transformResult.toDeactivate;
 
       // Create new expectations
       if (toCreate.length > 0) {
