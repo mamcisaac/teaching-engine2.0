@@ -203,7 +203,7 @@ throw new Error('No session');
       };
       const windowWithSpeech = window as WindowWithSpeechRecognition;
       const SpeechRecognitionConstructor: new () => SpeechRecognition =
-        ('SpeechRecognition' in window) ? windowWithSpeech.SpeechRecognition! : windowWithSpeech.webkitSpeechRecognition!;
+        ('SpeechRecognition' in window) ? windowWithSpeech.SpeechRecognition : windowWithSpeech.webkitSpeechRecognition;
       const recognition = new SpeechRecognitionConstructor();
       recognitionRef.current = recognition;
       

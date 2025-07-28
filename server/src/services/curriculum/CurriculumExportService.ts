@@ -106,7 +106,7 @@ export class CurriculumExportService extends BaseService {
         const exportData = CurriculumTransformer.transformForExport(
           expectations,
           options.format
-        ) as Array<Record<string, unknown>>;
+        ) as Record<string, unknown>[];
 
         // Convert to buffer based on format
         let buffer: Buffer;
@@ -144,7 +144,7 @@ export class CurriculumExportService extends BaseService {
    * Convert data to CSV
    */
   private convertToCSV(data: unknown[]): string {
-    if (Array.isArray(data) === false || data.length === 0) {
+    if (!Array.isArray(data) || data.length === 0) {
       return '';
     }
 
@@ -183,7 +183,7 @@ export class CurriculumExportService extends BaseService {
 
     if (options.format === null || options.format === '') {
       errors.push('Export format is required');
-    } else if (this.getSupportedFormats().includes(options.format) === false) {
+    } else if (!this.getSupportedFormats().includes(options.format)) {
       errors.push(`Unsupported export format: ${options.format}`);
     }
 

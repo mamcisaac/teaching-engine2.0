@@ -43,11 +43,11 @@ interface DaybookEntryWithRelations {
       } | null;
     } | null;
   } | null;
-  expectations?: Array<{
+  expectations?: {
     id: string;
     expectationId: string;
     coverage: string;
-  }>;
+  }[];
   createdAt: Date;
   updatedAt: Date;
 }
@@ -65,9 +65,9 @@ interface DaybookEntriesListResponse {
 interface InsightsSummary {
   totalEntries: number;
   averageRating: number | null;
-  mostCommonChallenges: Array<{ challenge: string; count: number }>;
-  subjectInsights: Array<{ subject: string; averageRating: number; entryCount: number }>;
-  engagementTrends: Array<{ period: string; rating: number }>;
+  mostCommonChallenges: { challenge: string; count: number }[];
+  subjectInsights: { subject: string; averageRating: number; entryCount: number }[];
+  engagementTrends: { period: string; rating: number }[];
   commonSuccesses: string[];
   improvementAreas: string[];
 }
@@ -262,14 +262,14 @@ class DaybookService extends BaseService {
 
     const where: Prisma.DaybookEntryWhereInput = { userId };
 
-    if (startDate !== null && endDate !== null) {
+    if (startDate !== null && startDate !== undefined && endDate !== undefined) {
       where.date = {
         gte: new Date(startDate),
         lte: new Date(endDate),
       };
-    } else if (startDate !== null) {
+    } else if (startDate !== null && startDate !== undefined) {
       where.date = { gte: new Date(startDate) };
-    } else if (endDate !== null) {
+    } else if (endDate !== null && endDate !== undefined) {
       where.date = { lte: new Date(endDate) };
     }
     if (lessonPlanId !== null) {

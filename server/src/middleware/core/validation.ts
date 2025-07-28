@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { isDefined, isError, isObject } from '@shared/utils/typeGuards';
 import type { RequestHandler, Request, NextFunction } from 'express';
 import type { ZodSchema, ZodTypeAny } from 'zod';
 import { z, ZodError } from 'zod';
 
-import { isDefined, isError, isObject } from '@shared/utils/typeGuards';
 import { logger } from '../../logger';
 import type { ValidatedRequest } from '../../types/http';
 import { ValidationError } from '../../utils/errors';
@@ -168,7 +168,7 @@ export const validateIf = <T>(
   schema: ZodSchema<T>,
   options?: ValidationOptions,
 ): RequestHandler => (req, res, next): void => {
-    if (condition(req) === true) {
+    if (condition(req)) {
       validate(schema, options)(req, res, next); return;
     }
     next();
@@ -187,8 +187,11 @@ export const validateOneOf = <T extends ZodTypeAny[]>(
           // Create a promise that resolves when validation succeeds
           await new Promise<void>((resolve, reject) => {
             validate(schema as ZodSchema<unknown>, options)(req, res, ((err?: unknown) => {
-              if (isDefined(err)) reject(err);
-              else resolve();
+              if (isDefined(err)) {
+reject(err);
+} else {
+resolve();
+}
             }) as NextFunction);
           });
           next(); return; // Success on first valid schema

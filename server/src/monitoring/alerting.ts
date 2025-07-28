@@ -543,7 +543,7 @@ export const triggerManualAlert = async (alertId: string, context?: AlertContext
 };
 
 // Get alert status
-export const getAlertStatus = (): { alerts: Array<{ id: string; name: string; severity: string; active: boolean; lastTriggered: Date | null; cooldown: number }>; monitoring: { enabled: boolean; checkInterval: number; emailEnabled: boolean; webhookEnabled: boolean } } => ({
+export const getAlertStatus = (): { alerts: { id: string; name: string; severity: string; active: boolean; lastTriggered: Date | null; cooldown: number }[]; monitoring: { enabled: boolean; checkInterval: number; emailEnabled: boolean; webhookEnabled: boolean } } => ({
     alerts: alerts.map((alert) => ({
       id: alert.id,
       name: alert.name,

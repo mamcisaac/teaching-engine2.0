@@ -137,7 +137,7 @@ export function validateFileUpload(allowedTypes: string[] = ALLOWED_FILE_TYPES):
       }
 
       // Check file type
-      if (allowedTypes.includes(file.mimetype) === false) {
+      if (!allowedTypes.includes(file.mimetype)) {
         return res.status(400).json({
           error: 'Invalid File Type',
           message: `File type ${file.mimetype} is not allowed. Allowed types: ${allowedTypes.join(', ')}`,

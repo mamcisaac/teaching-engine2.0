@@ -199,7 +199,7 @@ router.post('/save', asyncMiddleware(authMiddleware), asyncMiddleware(async (req
     };
 
     // Save the generated activity
-    if (!req.user || !req.user.id) {
+    if (!req.user?.id) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }

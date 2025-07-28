@@ -243,7 +243,7 @@ function simulateExternalApiCall(): { status: number; data: { message: string } 
   return { status: 200, data: { message: 'Success' } };
 }
 
-function processData(users: { id: number; name: string }[], apiResult: { data: unknown }): Array<{ id: number; name: string; apiData: unknown }> {
+function processData(users: { id: number; name: string }[], apiResult: { data: unknown }): { id: number; name: string; apiData: unknown }[] {
   return users.map((u) => ({ ...u, apiData: apiResult.data }));
 }
 

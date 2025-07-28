@@ -86,11 +86,11 @@ return null;
 
         {/* Modal panel */}
         <div
+          ref={modalRef}
           className={clsx(
             'inline-block transform overflow-hidden rounded-lg bg-white text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:align-middle',
             sizes[size]
           )}
-          ref={modalRef}
         >
           {/* Header */}
           {(title && title !== '' || showCloseButton) && (
@@ -103,8 +103,8 @@ return null;
               {showCloseButton && (
                 <button
                   className="ml-auto rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                  onClick={onClose}
                   type="button"
+                  onClick={onClose}
                 >
                   <span className="sr-only">Close</span>
                   <svg
@@ -165,7 +165,7 @@ export const ModalFooter: React.FC<ModalFooterProps> = ({
       <Button aria-label="Click button" disabled={loading} onClick={onCancel}>
         {cancelText}
       </Button>
-      <Button aria-label="Click button" disabled={loading} onClick={onConfirm} variant={confirmVariant}>
+      <Button aria-label="Click button" disabled={loading} variant={confirmVariant} onClick={onConfirm}>
         {confirmText}
       </Button>
     </div>

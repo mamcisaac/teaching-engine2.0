@@ -128,7 +128,7 @@ export class ErrorReportingService {
   }
 
   captureError(error: Error | unknown, context?: Record<string, unknown>): void {
-    if (this.enabled === false) {
+    if (!this.enabled) {
       logger.debug(`Error reporting disabled, skipping error: ${error}`);
       return;
     }
@@ -160,7 +160,7 @@ export class ErrorReportingService {
   }
 
   captureMessage(message: string, level: Sentry.SeverityLevel = 'info'): void {
-    if (this.enabled === false) {
+    if (!this.enabled) {
       return;
     }
 
@@ -173,7 +173,7 @@ export class ErrorReportingService {
   }
 
   setUserContext(user: UserContext | null): void {
-    if (this.enabled === false) {
+    if (!this.enabled) {
       return;
     }
 
@@ -199,7 +199,7 @@ export class ErrorReportingService {
   }
 
   addBreadcrumb(breadcrumb: BreadcrumbData): void {
-    if (this.enabled === false) {
+    if (!this.enabled) {
       return;
     }
 
@@ -220,7 +220,7 @@ export class ErrorReportingService {
   }
 
   setErrorContext(key: string, context: Record<string, unknown>): void {
-    if (this.enabled === false) {
+    if (!this.enabled) {
       return;
     }
 
@@ -313,7 +313,7 @@ export class ErrorReportingService {
     _hint?: Sentry.BreadcrumbHint,
   ): Sentry.Breadcrumb | null {
     // Sanitize breadcrumb
-    if (breadcrumb.message !== null && breadcrumb.message !== '') {
+    if (breadcrumb.message !== null && breadcrumb.message !== undefined && breadcrumb.message !== '') {
       breadcrumb.message = this.sanitizeString(breadcrumb.message);
     }
 
@@ -346,7 +346,7 @@ export class ErrorReportingService {
     const sanitized = parsed as SanitizedEvent;
 
     // Sanitize message
-    if (sanitized.message !== null && sanitized.message !== '') {
+    if (sanitized.message !== null && sanitized.message !== undefined && sanitized.message !== '') {
       sanitized.message = this.sanitizeString(sanitized.message);
     }
 
@@ -359,20 +359,20 @@ export class ErrorReportingService {
     }
 
     // Sanitize request data
-    if (sanitized.request !== null) {
+    if (sanitized.request !== null && sanitized.request !== undefined) {
       if (sanitized.request.headers !== null && sanitized.request.headers !== undefined) {
-        sanitized.request.headers = this.sanitizeHeaders(sanitized.request.headers);
+        sanitized.request.headers = this.sanitizeHeaders(sanitized.request.headers as Record<string, unknown>);
       }
       if (sanitized.request.data !== null && sanitized.request.data !== undefined) {
         sanitized.request.data = this.sanitizeData(sanitized.request.data);
       }
       if (sanitized.request.query_string !== null && sanitized.request.query_string !== undefined && sanitized.request.query_string !== '') {
-        sanitized.request.query_string = this.sanitizeString(sanitized.request.query_string);
+        sanitized.request.query_string = this.sanitizeString(sanitized.request.query_string as string);
       }
     }
 
     // Sanitize user data
-    if (sanitized.user?.email !== null && sanitized.user.email !== '') {
+    if (sanitized.user?.email !== null && sanitized.user.email !== undefined && typeof sanitized.user.email === 'string' && sanitized.user.email !== '') {
       sanitized.user.email = this.maskEmail(sanitized.user.email);
     }
 

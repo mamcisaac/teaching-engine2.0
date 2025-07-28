@@ -72,7 +72,7 @@ export function userRoutes(prisma: PrismaClient): Router {
 
       // Verify current password
       const isValidPassword: boolean = await verifyPassword(currentPassword, user.password);
-      if (isValidPassword === false) {
+      if (!isValidPassword) {
         res.status(401).json({ error: 'Current password is incorrect' });
         return;
       }

@@ -249,7 +249,7 @@ class AuthService implements AuthServiceInterface {
       
       if (isUnauthorized) {
         // Try to refresh token if available, but only if not already retrying
-        if (isRetry !== true && this.hasRefreshToken() === true && (await this.refreshToken()) === true) {
+        if (!isRetry && this.hasRefreshToken() && await this.refreshToken()) {
           // Retry with new token
           return this.verifyAuth(true);
         }
@@ -261,7 +261,7 @@ class AuthService implements AuthServiceInterface {
       logger.error('Auth verification failed:', error);
 
       // Try token refresh on network errors, but only if not already retrying
-      if (isRetry !== true && this.hasRefreshToken() === true) {
+      if (!isRetry && this.hasRefreshToken()) {
         const refreshSuccess = await this.refreshToken();
         if (refreshSuccess) {
           // Retry once after successful refresh

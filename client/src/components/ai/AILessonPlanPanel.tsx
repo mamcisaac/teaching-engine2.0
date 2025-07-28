@@ -462,7 +462,7 @@ export function AILessonPlanPanel({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Tabs className="w-full" onValueChange={setActiveTab} value={activeTab}>
+          <Tabs className="w-full" value={activeTab} onValueChange={setActiveTab}>
             <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="input">Setup</TabsTrigger>
               <TabsTrigger value="structure">3-Part Structure</TabsTrigger>
@@ -476,11 +476,11 @@ export function AILessonPlanPanel({
                   <Label htmlFor="lessonTitle">Lesson Title</Label>
                   <Input
                     id="lessonTitle"
+                    placeholder="e.g., Introduction to Force and Motion"
+                    value={formData.lessonTitle}
                     onChange={(e): void => {
  handleInputChange('lessonTitle', e.target.value); 
 }}
-                    placeholder="e.g., Introduction to Force and Motion"
-                    value={formData.lessonTitle}
                   />
                 </div>
                 <div>
@@ -489,11 +489,11 @@ export function AILessonPlanPanel({
                     id="duration"
                     max="180"
                     min="15"
+                    type="number"
+                    value={formData.duration}
                     onChange={(e): void => {
  handleInputChange('duration', e.target.value); 
 }}
-                    type="number"
-                    value={formData.duration}
                   />
                 </div>
               </div>
@@ -502,11 +502,11 @@ export function AILessonPlanPanel({
                 <div>
                   <Label htmlFor="lessonType">Lesson Type</Label>
                   <Select 
+                    value={formData.lessonType} 
                     onValueChange={(value: 'new_concept' | 'review' | 'assessment' | 'exploration'): void => {
  handleInputChange('lessonType', value); 
 }
-                    } 
-                    value={formData.lessonType}
+                    }
                   >
                     <SelectTrigger>
                       <SelectValue />
@@ -522,11 +522,11 @@ export function AILessonPlanPanel({
                 <div>
                   <Label htmlFor="groupingStrategy">Grouping Strategy</Label>
                   <Select 
+                    value={formData.groupingStrategy} 
                     onValueChange={(value: 'individual' | 'pairs' | 'small_groups' | 'whole_class' | 'mixed'): void => {
  handleInputChange('groupingStrategy', value); 
 }
-                    } 
-                    value={formData.groupingStrategy}
+                    }
                   >
                     <SelectTrigger>
                       <SelectValue />
@@ -547,12 +547,12 @@ export function AILessonPlanPanel({
                 <div className="flex gap-2 mb-2">
                   <Input
                     id="newLearningGoal"
+                    placeholder="Add learning goal"
                     onKeyPress={(e): void => {
                       if (e.key === 'Enter') {
                         addLearningGoal();
                       }
                     }}
-                    placeholder="Add learning goal"
                   />
                   <Button aria-label="Click button" onClick={addLearningGoal}>
                     <Plus className="h-4 w-4" />
@@ -560,7 +560,7 @@ export function AILessonPlanPanel({
                 </div>
                 <div className="space-y-2">
                   {formData.learningGoals.map((goal, _index) => (
-                    <div className="flex items-center gap-2 p-2 bg-gray-50 rounded" key={_index}>
+                    <div key={_index} className="flex items-center gap-2 p-2 bg-gray-50 rounded">
                       <Target className="h-4 w-4 text-purple-500 flex-shrink-0" />
                       <span className="flex-1 text-sm">{goal}</span>
                       <button
@@ -581,12 +581,12 @@ export function AILessonPlanPanel({
                 <div className="flex gap-2 mb-2">
                   <Input
                     id="newMaterial"
+                    placeholder="Add material or resource"
                     onKeyPress={(e): void => {
                       if (e.key === 'Enter') {
                         addMaterial();
                       }
                     }}
-                    placeholder="Add material or resource"
                   />
                   <Button aria-label="Click button" onClick={addMaterial}>
                     <Plus className="h-4 w-4" />
@@ -594,7 +594,7 @@ export function AILessonPlanPanel({
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {formData.materials.map((material, _index) => (
-                    <Badge className="gap-1" key={_index} variant="secondary">
+                    <Badge key={_index} className="gap-1" variant="secondary">
                       {material}
                       <button
                         className="text-xs hover:text-red-500"
@@ -614,24 +614,24 @@ export function AILessonPlanPanel({
                   <Label htmlFor="priorKnowledge">Prior Knowledge Required</Label>
                   <Textarea
                     id="priorKnowledge"
-                    onChange={(e): void => {
- handleInputChange('priorKnowledge', e.target.value); 
-}}
                     placeholder="What should students already know?"
                     rows={2}
                     value={formData.priorKnowledge}
+                    onChange={(e): void => {
+ handleInputChange('priorKnowledge', e.target.value); 
+}}
                   />
                 </div>
                 <div>
                   <Label htmlFor="accommodations">Accommodations & Modifications</Label>
                   <Textarea
                     id="accommodations"
-                    onChange={(e): void => {
- handleInputChange('accommodations', e.target.value); 
-}}
                     placeholder="Special considerations for student needs"
                     rows={2}
                     value={formData.accommodations}
+                    onChange={(e): void => {
+ handleInputChange('accommodations', e.target.value); 
+}}
                   />
                 </div>
               </div>
@@ -648,7 +648,7 @@ export function AILessonPlanPanel({
                           <span className="font-medium">Big Ideas:</span>
                           <ul className="list-disc list-inside ml-2">
                             {unitContext.bigIdeas.slice(0, 3).map((idea, _index) => (
-                              <li className="text-gray-700" key={_index}>{idea}</li>
+                              <li key={_index} className="text-gray-700">{idea}</li>
                             ))}
                           </ul>
                         </div>
@@ -690,20 +690,20 @@ export function AILessonPlanPanel({
               <div className="grid grid-cols-2 gap-2">
                 <Button 
                   disabled={isGenerating} 
+                  variant="outline"
                   onClick={(): void => {
  void generateSuggestions('materials'); 
 }}
-                  variant="outline"
                 >
                   <BookOpen className="h-4 w-4 mr-2" />
                   Materials
                 </Button>
                 <Button 
                   disabled={isGenerating} 
+                  variant="outline"
                   onClick={(): void => {
  void generateSuggestions('assessments'); 
 }}
-                  variant="outline"
                 >
                   <Target className="h-4 w-4 mr-2" />
                   Assessments
@@ -721,7 +721,7 @@ export function AILessonPlanPanel({
               ) : (
                 <div className="space-y-4">
                   {(Object.keys(threePartStructure) as (keyof ThreePartStructure)[]).map((phase, _index) => (
-                    <Card className="border-l-4 border-l-purple-500" key={phase}>
+                    <Card key={phase} className="border-l-4 border-l-purple-500">
                       <CardHeader>
                         <CardTitle className="text-base flex items-center gap-2">
                           {getPhaseIcon(phase)}
@@ -737,7 +737,7 @@ export function AILessonPlanPanel({
                       <CardContent>
                         <div className="space-y-2">
                           {threePartStructure[phase].activities.map((activity, _index) => (
-                            <div className="p-3 bg-gray-50 rounded-lg" key={_index}>
+                            <div key={_index} className="p-3 bg-gray-50 rounded-lg">
                               <p className="text-sm">{activity}</p>
                             </div>
                           ))}
@@ -785,34 +785,34 @@ export function AILessonPlanPanel({
                             
                             return (
                               <div
+                                key={itemIndex}
                                 className={`p-3 rounded-lg border transition-colors ${
                                   isAccepted
                                     ? 'bg-green-50 border-green-300'
                                     : 'bg-gray-50 hover:bg-gray-100'
                                 }`}
-                                key={itemIndex}
                               >
                                 <div className="flex items-start justify-between gap-2">
                                   <p className="text-sm flex-1">{item}</p>
                                   <div className="flex gap-1">
                                     <Button
                                       className="h-8 w-8 p-0"
+                                      size="sm"
+                                      variant="ghost"
                                       onClick={(): void => {
  copySuggestion(item); 
 }}
-                                      size="sm"
-                                      variant="ghost"
                                     >
                                       <Copy className="h-4 w-4" />
                                     </Button>
                                     {!isAccepted ? (
                                       <Button
                                         className="h-8 w-8 p-0"
+                                        size="sm"
+                                        variant="ghost"
                                         onClick={(): void => {
  acceptSuggestion(suggestion.type, item); 
 }}
-                                        size="sm"
-                                        variant="ghost"
                                       >
                                         <Check className="h-4 w-4 text-green-500" />
                                       </Button>
@@ -849,11 +849,11 @@ export function AILessonPlanPanel({
       <AILoadingIndicator
         currentStepId={loadingStep}
         isOpen={showLoadingModal}
+        state={isGenerating ? 'processing' : 'waiting'}
         onCancel={() => {
           setShowLoadingModal(false);
           setIsGenerating(false);
         }}
-        state={isGenerating ? 'processing' : 'waiting'}
         {...AI_LOADING_PRESETS.GENERATING_LESSON_PLAN}
         canCancel
       />

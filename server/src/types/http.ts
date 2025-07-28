@@ -51,11 +51,11 @@ export interface ErrorResponse {
   status: 'error';
   message: string;
   code?: string;
-  errors?: Array<{
+  errors?: {
     field: string;
     message: string;
     code?: string;
-  }>;
+  }[];
 }
 
 /**

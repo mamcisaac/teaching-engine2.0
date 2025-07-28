@@ -114,7 +114,7 @@ clearTimeout(timeoutId);
       await Promise.race([middlewarePromise, timeoutPromise]);
       next();
     } catch (_error) {
-      next(_error as unknown);
+      next(_error);
     }
   };
 
@@ -134,7 +134,7 @@ resolve();
       await Promise.all(promises);
       next();
     } catch (_error) {
-      next(_error as unknown);
+      next(_error);
     }
   };
 
@@ -205,6 +205,6 @@ export const timed = (name: string, middleware: Middleware): RequestHandler => a
     try {
       (middleware as RequestHandler)(req, res, handleNext);
     } catch (_error) {
-      handleNext(_error as unknown);
+      handleNext(_error);
     }
   };

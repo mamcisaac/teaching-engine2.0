@@ -26,7 +26,7 @@ export interface AuthenticatedRequest extends Request {
  * Authentication middleware
  */
 export const requireAuth = (req: AuthenticatedRequest, res: Response, next: NextFunction): void => {
-  if (!req.user || !req.user.id) {
+  if (!req.user?.id) {
     res.status(401).json({ error: 'Unauthorized' });
     return;
   }
@@ -42,7 +42,7 @@ export const optionalAuth = (
   _res: Response,
   next: NextFunction,
 ): void => {
-  if (req.user && req.user.id) {
+  if (req.user?.id) {
     req.userId = req.user.id;
   }
   next();
@@ -52,7 +52,7 @@ export const optionalAuth = (
  * Role-based authorization middleware
  */
 export const requireRole = (requiredRole: string) => (req: AuthenticatedRequest, res: Response, next: NextFunction): void => {
-    if (!req.user || !req.user.role || req.user.role !== requiredRole) {
+    if (!req.user?.role || req.user.role !== requiredRole) {
       res.status(403).json({ error: 'Forbidden: Insufficient permissions' });
       return;
     }

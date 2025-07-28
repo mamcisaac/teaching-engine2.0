@@ -115,7 +115,7 @@ return;
     
     // Forward all arguments to original method
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore - Complex Express method signature, let runtime handle it
+    // @ts-expect-error - Complex Express method signature, let runtime handle it
     return originalEnd.apply(this, args);
   };
 

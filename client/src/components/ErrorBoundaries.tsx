@@ -146,7 +146,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                         {this.state.error.stack}
                       </pre>
                     ) : null}
-                    {this.state.errorInfo != undefined && this.state.errorInfo.componentStack != undefined && this.state.errorInfo.componentStack != '' ? (
+                    {this.state.errorInfo?.componentStack != undefined && this.state.errorInfo.componentStack != '' ? (
                       <pre className="mt-2 text-xs text-gray-600 whitespace-pre-wrap overflow-auto">
                         Component Stack:
 {this.state.errorInfo.componentStack}

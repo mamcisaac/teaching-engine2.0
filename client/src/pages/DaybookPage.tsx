@@ -109,8 +109,8 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
           ) : (
             lessons.map((lesson, _index) => (
               <div
-                className="flex items-start justify-between p-2 bg-muted rounded-md"
                 key={lesson.id}
+                className="flex items-start justify-between p-2 bg-muted rounded-md"
               >
                 <div className="space-y-1">
                   <div className="font-medium text-sm">{lesson.title}</div>
@@ -148,12 +148,12 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
               <div className="flex items-center gap-1">
                 {[1, 2, 3, 4, 5].map((rating, _index) => (
                   <button
-                    className="p-1 hover:scale-110 transition-transform"
                     key={rating}
+                    className="p-1 hover:scale-110 transition-transform"
+                    type="button"
                     onClick={() => {
  setFormData({ ...formData, overallRating: rating }); 
 }}
-                    type="button"
                   >
                     <Star
                       className={`h-6 w-6 ${
@@ -178,12 +178,12 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
             <div className="space-y-2">
               <Label htmlFor="input">What Worked Well?</Label>
               <Textarea
-                onChange={(e) => {
- setFormData({ ...formData, whatWorked: e.target.value }); 
-}}
                 placeholder="Describe successful strategies, activities, or moments..."
                 rows={2}
                 value={formData.whatWorked}
+                onChange={(e) => {
+ setFormData({ ...formData, whatWorked: e.target.value }); 
+}}
               />
             </div>
 
@@ -191,12 +191,12 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
             <div className="space-y-2">
               <Label htmlFor="input">What Could Be Improved?</Label>
               <Textarea
-                onChange={(e) => {
- setFormData({ ...formData, whatDidntWork: e.target.value }); 
-}}
                 placeholder="Identify challenges or areas for improvement..."
                 rows={2}
                 value={formData.whatDidntWork}
+                onChange={(e) => {
+ setFormData({ ...formData, whatDidntWork: e.target.value }); 
+}}
               />
             </div>
 
@@ -204,12 +204,12 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
             <div className="space-y-2">
               <Label htmlFor="input">Next Steps</Label>
               <Textarea
-                onChange={(e) => {
- setFormData({ ...formData, nextSteps: e.target.value }); 
-}}
                 placeholder="What will you do differently next time? Follow-up needed?"
                 rows={2}
                 value={formData.nextSteps}
+                onChange={(e) => {
+ setFormData({ ...formData, nextSteps: e.target.value }); 
+}}
               />
             </div>
 
@@ -220,36 +220,36 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
               <div className="space-y-2">
                 <Label className="text-sm">Engagement Level</Label>
                 <Textarea
-                  onChange={(e) => {
- setFormData({ ...formData, studentEngagement: e.target.value }); 
-}}
                   placeholder="How engaged were students? Note participation patterns..."
                   rows={2}
                   value={formData.studentEngagement}
+                  onChange={(e) => {
+ setFormData({ ...formData, studentEngagement: e.target.value }); 
+}}
                 />
               </div>
 
               <div className="space-y-2">
                 <Label className="text-sm">Challenges Observed</Label>
                 <Textarea
-                  onChange={(e) => {
- setFormData({ ...formData, studentChallenges: e.target.value }); 
-}}
                   placeholder="What difficulties did students encounter? Who needs support?"
                   rows={2}
                   value={formData.studentChallenges}
+                  onChange={(e) => {
+ setFormData({ ...formData, studentChallenges: e.target.value }); 
+}}
                 />
               </div>
 
               <div className="space-y-2">
                 <Label className="text-sm">Successes Noted</Label>
                 <Textarea
-                  onChange={(e) => {
- setFormData({ ...formData, studentSuccesses: e.target.value }); 
-}}
                   placeholder="Notable achievements, breakthroughs, or growth observed..."
                   rows={2}
                   value={formData.studentSuccesses}
+                  onChange={(e) => {
+ setFormData({ ...formData, studentSuccesses: e.target.value }); 
+}}
                 />
               </div>
             </div>
@@ -263,12 +263,12 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
                 </Badge>
               </div>
               <Textarea
-                onChange={(e) => {
- setFormData({ ...formData, notes: e.target.value }); 
-}}
                 placeholder="Any other observations, reminders, or reflections (may be shared in newsletters)..."
                 rows={2}
                 value={formData.notes}
+                onChange={(e) => {
+ setFormData({ ...formData, notes: e.target.value }); 
+}}
               />
             </div>
 
@@ -278,10 +278,10 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
                 checked={formData.wouldReuseLesson}
                 className="rounded"
                 id="reuseLesson"
+                type="checkbox"
                 onChange={(e) => {
  setFormData({ ...formData, wouldReuseLesson: e.target.checked }); 
 }}
-                type="checkbox"
               />
               <Label className="text-sm font-normal cursor-pointer" htmlFor="reuseLesson">
                 I would use this lesson plan again
@@ -297,12 +297,12 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
                 </Badge>
               </div>
               <Textarea
-                onChange={(e) => {
- setFormData({ ...formData, privateNotes: e.target.value }); 
-}}
                 placeholder="Confidential notes, behavioral concerns, parent communications, substitute info..."
                 rows={2}
                 value={formData.privateNotes}
+                onChange={(e) => {
+ setFormData({ ...formData, privateNotes: e.target.value }); 
+}}
               />
             </div>
           </div>
@@ -315,12 +315,12 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
                 <div className="flex items-center gap-1">
                   {[1, 2, 3, 4, 5].map((rating, _index) => (
                     <Star
+                      key={rating}
                       className={`h-4 w-4 ${
                         rating <= formData.overallRating
                           ? 'fill-yellow-400 text-yellow-400'
                           : 'text-gray-300'
                       }`}
-                      key={rating}
                     />
                   ))}
                 </div>
@@ -506,11 +506,11 @@ export function DaybookPage(): React.ReactElement {
             <CardTitle>Week of {format(weekStart, 'MMMM d, yyyy')}</CardTitle>
             <div className="flex items-center gap-2">
               <Button
+                size="sm"
+                variant="outline"
                 onClick={() => {
  setSelectedWeek(addDays(selectedWeek, -7)); 
 }}
-                size="sm"
-                variant="outline"
               >
                 <ChevronLeft className="h-4 w-4" />
               </Button>
@@ -520,11 +520,11 @@ export function DaybookPage(): React.ReactElement {
                 This Week
               </Button>
               <Button
+                size="sm"
+                variant="outline"
                 onClick={() => {
  setSelectedWeek(addDays(selectedWeek, 7)); 
 }}
-                size="sm"
-                variant="outline"
               >
                 <ChevronRight className="h-4 w-4" />
               </Button>
@@ -585,13 +585,13 @@ export function DaybookPage(): React.ReactElement {
       </div>
 
       {/* Daily Entries */}
-      <div className="space-y-4" ref={printRef}>
+      <div ref={printRef} className="space-y-4">
         {weekDays.map((day, _index) => (
           <DayEntry
+            key={day.toISOString()}
             date={day}
             entry={getDayEntry(day)}
             isToday={isToday(day)}
-            key={day.toISOString()}
             lessons={getDayLessons(day)}
             onSave={(data) => {
  handleSaveEntry(day, data); 
@@ -609,11 +609,11 @@ export function DaybookPage(): React.ReactElement {
               <CardDescription>Common reflection templates and weekly prompts</CardDescription>
             </div>
             <Button
+              size="sm"
+              variant="outline"
               onClick={() => {
  setShowQuickTemplates(!showQuickTemplates); 
 }}
-              size="sm"
-              variant="outline"
             >
               {showQuickTemplates ? 'Hide' : 'Show'} Templates
             </Button>
@@ -730,7 +730,7 @@ export function DaybookPage(): React.ReactElement {
       </Card>
 
       {/* Print Dialog */}
-      <Dialog onOpenChange={setIsPrintDialogOpen} open={isPrintDialogOpen}>
+      <Dialog open={isPrintDialogOpen} onOpenChange={setIsPrintDialogOpen}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Print Daybook</DialogTitle>
@@ -740,10 +740,10 @@ export function DaybookPage(): React.ReactElement {
           </DialogHeader>
 
           <Tabs
+            value={printType}
             onValueChange={(value) => {
  setPrintType(value as 'day' | 'week' | 'substitute'); 
 }}
-            value={printType}
           >
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="day">Today</TabsTrigger>

@@ -125,7 +125,7 @@ export class LLMService extends BaseService {
    */
   public async generateContent(request: ContentGenerationRequest): Promise<string> {
     return this.executeWithMetrics(async () => {
-      if (this.isReady() === false) {
+      if (!this.isReady()) {
         throw new Error('LLM service not initialized. Please check OpenAI API key.');
       }
 
@@ -176,7 +176,7 @@ export class LLMService extends BaseService {
     request: ContentGenerationRequest,
   ): Promise<BilingualContent> {
     return this.executeWithMetrics(async () => {
-      if (this.isReady() === false) {
+      if (!this.isReady()) {
         throw new Error('LLM service not initialized. Please check OpenAI API key.');
       }
 
@@ -208,7 +208,7 @@ export class LLMService extends BaseService {
     request: ContentGenerationRequest,
   ): Promise<GenerationResult> {
     return this.executeWithMetrics(async () => {
-      if (this.isReady() === false) {
+      if (!this.isReady()) {
         throw new Error('LLM service not initialized. Please check OpenAI API key.');
       }
 
@@ -320,7 +320,7 @@ export class LLMService extends BaseService {
   protected getHealthStatus(): 'healthy' | 'degraded' | 'unhealthy' {
     const baseHealth = super.getHealthStatus();
 
-    if (this.isReady() === false) {
+    if (!this.isReady()) {
       return 'degraded'; // Service works but AI features unavailable
     }
 

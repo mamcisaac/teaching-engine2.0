@@ -133,9 +133,9 @@ export function TemplateApplyModal({
   };
 
   return (
-    <Dialog onOpenChange={() => {
+    <Dialog open={isOpen} onOpenChange={() => {
  onClose(); 
-}} open={isOpen}>
+}}>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
           <DialogTitle>Apply Template</DialogTitle>
@@ -151,14 +151,14 @@ export function TemplateApplyModal({
               Title
             </label>
             <input
+              required
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               id="title"
+              type="text"
+              value={formData.title}
               onChange={(e) => {
  setFormData({ ...formData, title: e.target.value }); 
 }}
-              required
-              type="text"
-              value={formData.title}
             />
           </div>
 
@@ -169,10 +169,10 @@ export function TemplateApplyModal({
                 Long-Range Plan
               </label>
               <Select
+                value={formData.longRangePlanId}
                 onValueChange={(value) => {
  setFormData({ ...formData, longRangePlanId: value }); 
 }}
-                value={formData.longRangePlanId}
               >
                 <SelectTrigger id="longRangePlan">
                   <SelectValue placeholder="Select a long-range plan" />
@@ -195,10 +195,10 @@ export function TemplateApplyModal({
                 Unit Plan
               </label>
               <Select
+                value={formData.unitPlanId}
                 onValueChange={(value) => {
  setFormData({ ...formData, unitPlanId: value }); 
 }}
-                value={formData.unitPlanId}
               >
                 <SelectTrigger id="unitPlan">
                   <SelectValue placeholder="Select a unit plan" />
@@ -221,14 +221,14 @@ export function TemplateApplyModal({
               {template.type === 'UNIT_PLAN' ? 'Start Date' : 'Date'}
             </label>
             <input
+              required
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               id="startDate"
+              type="date"
+              value={formData.startDate}
               onChange={(e) => {
  setFormData({ ...formData, startDate: e.target.value }); 
 }}
-              required
-              type="date"
-              value={formData.startDate}
             />
           </div>
 
@@ -256,8 +256,8 @@ export function TemplateApplyModal({
               <div className="flex flex-wrap gap-1 mt-2">
                 {template.tags.map((tag, _index) => (
                   <span
-                    className="px-2 py-1 bg-white text-gray-600 text-xs rounded-full"
                     key={tag}
+                    className="px-2 py-1 bg-white text-gray-600 text-xs rounded-full"
                   >
                     {tag}
                   </span>

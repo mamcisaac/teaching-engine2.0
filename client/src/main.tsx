@@ -19,7 +19,7 @@ const queryClient = new QueryClient({
       networkMode: 'offlineFirst',
       retry: (failureCount, error: unknown): boolean => {
         // Don't retry if offline
-        if (navigator.onLine === false) {
+        if (!navigator.onLine) {
 return false;
 }
         // Don't retry on 401 errors

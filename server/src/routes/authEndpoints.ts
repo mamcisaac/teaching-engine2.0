@@ -4,12 +4,12 @@
  * Exposes authentication middleware functions as API endpoints
  */
 
+import { isNonEmptyString } from '@shared/utils/typeGuards';
 import { prisma as defaultPrisma } from '@teaching-engine/database';
 import type { Request, Response, NextFunction } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
 
-import { isNonEmptyString } from '@shared/utils/typeGuards';
 import {
   login,
   register,
@@ -138,7 +138,7 @@ function createAuthRouter(prisma = defaultPrisma): Router {
   // Session check endpoint - authentication middleware handles all error cases
   router.get('/me', asyncHandler(authenticate), asyncHandler(async (req: Request, res: Response): Promise<void> => {
     // Always fetch fresh user data from database for /me endpoint
-    if (!req.user || !req.user.id) {
+    if (!req.user?.id) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
@@ -173,7 +173,7 @@ function createAuthRouter(prisma = defaultPrisma): Router {
 
   // Simple auth check endpoint - returns userId if authenticated
   router.get('/check', asyncHandler(authenticate), (req: Request, res: Response): void => {
-    if (!req.user || !req.user.id) {
+    if (!req.user?.id) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }

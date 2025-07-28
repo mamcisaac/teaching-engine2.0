@@ -200,7 +200,7 @@ export class RenderCoordinator extends BaseService {
     }
 
     // Validate context
-    if (provider.validateContext(context) === false) {
+    if (!provider.validateContext(context)) {
       throw new Error('Invalid template context for provider');
     }
 

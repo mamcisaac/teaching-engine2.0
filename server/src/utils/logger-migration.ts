@@ -103,10 +103,10 @@ export class StructuredLoggerTransport extends winston.transports.Stream {
     const logMethod = level as keyof typeof structuredLogger;
     if (typeof structuredLogger[logMethod] === 'function' && logMethod !== 'log') {
       // Call specific level method
-      (structuredLogger[logMethod] as (message: string, meta?: LogMeta) => void)(message as string, meta);
+      (structuredLogger[logMethod] as (message: string, meta?: LogMeta) => void)(message, meta);
     } else {
       // Default to info for unknown levels
-      structuredLogger.info(message as string, { ...meta, originalLevel: level });
+      structuredLogger.info(message, { ...meta, originalLevel: level });
     }
 
     callback();
@@ -169,7 +169,7 @@ export function requestLoggerMiddleware(
     requestId: req.id,
     method: req.method,
     path: req.path,
-  }) as StructuredLogger;
+  });
 
   // Helper methods
   const {logger} = req;

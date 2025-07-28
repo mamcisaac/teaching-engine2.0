@@ -186,9 +186,9 @@ return;
 
   return (
     <div
+      ref={containerRef}
       className={`${className} ${infiniteScroll ? 'overflow-auto' : ''}`}
       data-testid="progressive-loader-container"
-      ref={containerRef}
       style={infiniteScroll ? { maxHeight: '600px' } : undefined}
     >
       {/* Progress indicator */}
@@ -218,10 +218,10 @@ return;
             <Button
               className="min-w-[120px]"
               disabled={loadingMore}
+              variant="outline"
               onClick={(): void => {
  void loadMoreData(); 
 }}
-              variant="outline"
             >
               Load More
             </Button>

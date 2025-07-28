@@ -160,7 +160,7 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
 
   // Generate pagination buttons
   const paginationButtons = useMemo(() => {
-    if (!data || !data.totalPages) {
+    if (!data?.totalPages) {
       return [];
     }
 
@@ -375,7 +375,7 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
       )}
 
       {/* Loading overlay for data fetching */}
-      {isLoading === true && (
+      {isLoading && (
         <div
           className="absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center"
           data-testid="loading-skeleton"

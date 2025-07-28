@@ -5,9 +5,7 @@ import { createPortal } from 'react-dom';
 import { useOnboarding } from '../../contexts/OnboardingContext';
 
 // Utility to check if a string is non-empty
-const isNonEmptyString = (value: unknown): value is string => {
-  return typeof value === 'string' && value.trim() !== '';
-};
+const isNonEmptyString = (value: unknown): value is string => typeof value === 'string' && value.trim() !== '';
 
 import { OnboardingHighlight } from './OnboardingHighlight';
 import { OnboardingProgress } from './OnboardingProgress';
@@ -167,7 +165,7 @@ return null;
   return createPortal(
     <Suspense fallback={<OnboardingLoadingFallback />}>
       <AnimatePresence>
-        <div className="fixed inset-0 z-[9999]" ref={overlayRef}>
+        <div ref={overlayRef} className="fixed inset-0 z-[9999]">
           {/* Dark overlay with spotlight */}
           <motion.div
             animate={{ opacity: 1 }}

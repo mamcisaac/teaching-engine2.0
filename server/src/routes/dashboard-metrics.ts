@@ -6,7 +6,10 @@ import { authMiddleware } from '../middleware/auth';
 import { getCacheStats } from '../middleware/cache';
 import { getPerformanceSummary, metricsStore } from '../middleware/metrics';
 import { prisma } from '../prisma';
+import { getErrorMessage } from '../utils/errorHandler';
+
 import { asyncHandler } from './base/middleware';
+import type { AuthenticatedRequest } from './base/middleware';
 
 const router = Router();
 
@@ -43,7 +46,7 @@ router.get('/', asyncHandler(async (_req: Request, res: Response) => {
       };
     } catch (_error) {
       dbStatus = 'unhealthy';
-      logger.error('Database health check failed:', _error);
+      logger.error('Database health check failed:', getErrorMessage(_error));
     }
 
     res.json({
@@ -73,7 +76,7 @@ router.get('/', asyncHandler(async (_req: Request, res: Response) => {
       timestamp: new Date().toISOString(),
     });
   } catch (_error) {
-    logger.error('Error getting dashboard metrics:', _error);
+    logger.error('Error getting dashboard metrics:', getErrorMessage(_error));
     res.status(500).json({
       success: false,
       message: 'Failed to get dashboard metrics',
@@ -147,7 +150,7 @@ router.get('/trends', asyncHandler(async (_req: Request, res: Response) => {
       timestamp: new Date().toISOString(),
     });
   } catch (_error) {
-    logger.error('Error getting performance trends:', _error);
+    logger.error('Error getting performance trends:', getErrorMessage(_error));
     res.status(500).json({
       success: false,
       message: 'Failed to get performance trends',
@@ -201,7 +204,7 @@ router.get('/resources', asyncHandler(async (_req: Request, res: Response) => {
       timestamp: new Date().toISOString(),
     });
   } catch (_error) {
-    logger.error('Error getting resource usage:', _error);
+    logger.error('Error getting resource usage:', getErrorMessage(_error));
     res.status(500).json({
       success: false,
       message: 'Failed to get resource usage',
@@ -213,8 +216,12 @@ router.get('/resources', asyncHandler(async (_req: Request, res: Response) => {
  * Application insights (user activity, popular features)
  * GET /api/dashboard/insights
  */
-router.get('/insights', asyncHandler(async (req: Request, res: Response) => {
+router.get('/insights', asyncHandler(async (req: AuthenticatedRequest, res: Response) => {
   try {
+    if (!req.user) {
+      res.status(401).json({ error: 'User not authenticated' });
+      return;
+    }
     const userId = req.user.id;
 
     // Get user-specific insights
@@ -267,7 +274,7 @@ router.get('/insights', asyncHandler(async (req: Request, res: Response) => {
       timestamp: new Date().toISOString(),
     });
   } catch (_error) {
-    logger.error('Error getting application insights:', _error);
+    logger.error('Error getting application insights:', getErrorMessage(_error));
     res.status(500).json({
       success: false,
       message: 'Failed to get application insights',

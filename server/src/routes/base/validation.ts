@@ -5,29 +5,6 @@
 import { z } from 'zod';
 
 /**
- * Educational schema fields type
- */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-type EducationalFields = {
-  gradeMin: z.ZodOptional<z.ZodNumber>;
-  gradeMax: z.ZodOptional<z.ZodNumber>;
-  subject: z.ZodString;
-  tags: z.ZodArray<z.ZodString>;
-  keywords: z.ZodArray<z.ZodString>;
-};
-
-/**
- * Title and description schema fields type
- */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-type TitleDescriptionFields = {
-  title: z.ZodString;
-  titleFr: z.ZodOptional<z.ZodString>;
-  description: z.ZodOptional<z.ZodString>;
-  descriptionFr: z.ZodOptional<z.ZodString>;
-};
-
-/**
  * Common validation patterns used across routes
  */
 export const commonValidations = {
@@ -189,7 +166,7 @@ export const createValidationSchema = {
     });
     
     const baseSchema = baseObjectSchema.refine(
-      (data) => (data.gradeMin === null || data.gradeMin === undefined) || (data.gradeMax === null || data.gradeMax === undefined) || data.gradeMin <= data.gradeMax,
+      (data) => (data.gradeMin === null || data.gradeMin === undefined) || (data.gradeMax === undefined) || data.gradeMin <= data.gradeMax,
       {
         message: 'Maximum grade must be greater than or equal to minimum grade',
         path: ['gradeMax']

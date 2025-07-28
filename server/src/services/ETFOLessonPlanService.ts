@@ -70,10 +70,10 @@ export interface ETFOLessonPlanWithRelations {
       subject: string;
     } | null;
   } | null;
-  expectations?: Array<{
+  expectations?: {
     id: string;
     expectationId: number;
-  }>;
+  }[];
 }
 
 export interface ETFOLessonPlanListResponse {

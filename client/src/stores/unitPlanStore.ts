@@ -409,7 +409,7 @@ useUnitPlanStore.subscribe(
 );
 
 // Listen for online/offline events
-if (typeof window != 'undefined') {
+if (typeof window !== 'undefined') {
   window.addEventListener('online-status-change', ((event: CustomEvent<{ isOnline: boolean }>) => {
     useUnitPlanStore.getState().setOnlineStatus(event.detail.isOnline);
   }) as EventListener);

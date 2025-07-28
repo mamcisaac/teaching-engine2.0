@@ -9,7 +9,7 @@ interface CacheItem<T = unknown> {
 }
 
 export class CacheService {
-  private cache = new Map<string, CacheItem<unknown>>();
+  private cache = new Map<string, CacheItem>();
 
   constructor() {
     // Clear expired items every 5 minutes

@@ -1,6 +1,6 @@
 import type { Prisma } from '@teaching-engine/database';
 import { endOfDay, parseISO } from 'date-fns';
-import type { Request, Response } from 'express';
+import type { Response } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
 // Note: Authentication is handled at the route mounting level in index.ts
@@ -36,7 +36,7 @@ router.get('/', asyncHandler(async (req: AuthenticatedRequest, res: Response): P
   try {
     // Validate query parameters
     const queryValidation = querySchema.safeParse(req.query);
-    if (queryValidation.success === false) {
+    if (!queryValidation.success) {
       res.status(400).json({
         error: 'Invalid query parameters',
         details: queryValidation.error.errors,
@@ -44,11 +44,11 @@ router.get('/', asyncHandler(async (req: AuthenticatedRequest, res: Response): P
       return;
     }
     const { start, end, eventType } = queryValidation.data;
-    const userId = req.user.id;
-    if (userId === null || userId === undefined) {
+    if (!req.user) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
+    const userId = req.user.id;
 
     const where: Prisma.CalendarEventWhereInput = {
       OR: [
@@ -91,11 +91,11 @@ router.post(
   asyncHandler(async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       const data = req.body as z.infer<typeof calendarEventSchema>;
-      const userId = req.user.id;
-      if (userId === null || userId === undefined) {
+      if (!req.user) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
+      const userId = req.user.id;
 
       const event = await prisma.calendarEvent.create({
         data: {
@@ -121,14 +121,14 @@ router.post(
 );
 
 // Update a calendar event
-router.patch('/:id', asyncHandler(async (req: Request, res: Response): Promise<void> => {
+router.patch('/:id', asyncHandler(async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
-    const userId = req.user.id;
-    if (userId === null || userId === undefined) {
+    if (!req.user) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
+    const userId = req.user.id;
     const updates = req.body;
 
     // Check ownership
@@ -148,7 +148,7 @@ router.patch('/:id', asyncHandler(async (req: Request, res: Response): Promise<v
     if (updates.start !== null && updates.start !== undefined) {
       updates.start = new Date(updates.start);
     }
-    if (updates.end !== null && end !== undefined) {
+    if (updates.end !== null && updates.end !== undefined) {
       updates.end = new Date(updates.end);
     }
 
@@ -170,11 +170,11 @@ router.patch('/:id', asyncHandler(async (req: Request, res: Response): Promise<v
 router.delete('/:id', asyncHandler(async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
-    const userId = req.user.id;
-    if (!userId) {
+    if (!req.user) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
+    const userId = req.user.id;
 
     // Check ownership
     const event = await prisma.calendarEvent.findFirst({

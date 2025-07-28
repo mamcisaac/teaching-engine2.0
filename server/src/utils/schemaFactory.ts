@@ -145,7 +145,7 @@ export function createBilingualValidation(
     requireAtLeastOne?: boolean;
     requireAll?: boolean;
   },
-): z.ZodEffects<z.ZodObject<Record<string, z.ZodOptional<z.ZodString>>, "strip", z.ZodTypeAny>, Record<string, string | undefined>, Record<string, string | undefined>> {
+): z.ZodEffects<z.ZodObject<Record<string, z.ZodOptional<z.ZodString>>, "strip">, Record<string, string | undefined>, Record<string, string | undefined>> {
   return z
     .object({
       [fieldName]: z.string().optional(),

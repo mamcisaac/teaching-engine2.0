@@ -454,7 +454,7 @@ export class ErrorReportingService {
 
     // Sanitize user data
     if (typeof sanitized.user === 'object' && 'email' in sanitized.user) {
-      const email = sanitized.user.email;
+      const {email} = sanitized.user;
       if (email !== '' && typeof email === 'string') {
         sanitized.user.email = this.maskEmail(email);
       }

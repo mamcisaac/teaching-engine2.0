@@ -56,7 +56,7 @@ const isTestEnvironment = process.env.NODE_ENV === 'test' || process.env.JEST_WO
 
 // Create a getter that always returns the current test client
 const getPrisma = (): DatabasePrismaClient => {
-  if (isTestEnvironment === true && globalForPrisma.testPrismaClient !== undefined) {
+  if (isTestEnvironment && globalForPrisma.testPrismaClient !== undefined) {
     return globalForPrisma.testPrismaClient;
   }
   return (

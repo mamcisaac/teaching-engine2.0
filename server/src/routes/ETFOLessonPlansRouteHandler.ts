@@ -3,11 +3,11 @@
  * Extends BaseRouteHandler with ETFO lesson plan-specific business logic
  */
 
+import { isNonEmptyArray, isObject, isString, isArray, hasProperty } from '@shared/utils/typeGuards';
 import type { Prisma } from '@teaching-engine/database';
 import type { Response, NextFunction } from 'express';
 import { z } from 'zod';
 
-import { isNonEmptyArray, isObject, isString, isArray, hasProperty } from '@shared/utils/typeGuards';
 import { prisma } from '../prisma';
 import { BaseService } from '../services/base/BaseService';
 import type { ETFOLessonPlanCreateData, ETFOLessonPlanUpdateData } from '../types/routes';
@@ -120,7 +120,7 @@ class ETFOLessonPlanService extends BaseService {
       order?: 'asc' | 'desc';
     },
     userId: number,
-  ): Promise<{ lessonPlans: Array<Record<string, unknown>>; pagination: { total: number; limit: number; offset: number; hasMore: boolean } }> {
+  ): Promise<{ lessonPlans: Record<string, unknown>[]; pagination: { total: number; limit: number; offset: number; hasMore: boolean } }> {
     const {
       unitPlanId,
       startDate,
@@ -510,12 +510,12 @@ where.isSubFriendly = isSubFriendly;
         subNotes:
           'Auto-generated substitute-friendly version. Please review and customize as needed.',
         expectations: {
-          create: originalLesson.expectations?.map((exp) => ({
+          create: originalLesson.expectations.map((exp) => ({
             expectationId: exp.expectationId,
           })) ?? [],
         },
         resources: {
-          create: originalLesson.resources?.map((resource) => ({
+          create: originalLesson.resources.map((resource) => ({
             title: resource.title,
             url: resource.url,
             type: resource.type,
@@ -621,12 +621,12 @@ where.isSubFriendly = isSubFriendly;
         isSubFriendly: sourceLessonPlan.isSubFriendly,
         subNotes: sourceLessonPlan.subNotes,
         expectations: {
-          create: sourceLessonPlan.expectations?.map((exp) => ({
+          create: sourceLessonPlan.expectations.map((exp) => ({
             expectationId: exp.expectationId,
           })) ?? [],
         },
         resources: {
-          create: sourceLessonPlan.resources?.map((resource) => ({
+          create: sourceLessonPlan.resources.map((resource) => ({
             title: resource.title,
             url: resource.url,
             type: resource.type,
@@ -826,7 +826,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
 
       const success = await this.lessonPlanService.removeResource(lessonPlanId, resourceId, userId);
 
-      if (success === false) {
+      if (!success) {
         res.status(404).json({ error: 'Resource not found' });
         return;
       }

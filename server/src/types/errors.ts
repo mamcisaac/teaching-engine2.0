@@ -43,11 +43,11 @@ export interface DatabaseError extends BaseError {
  * Validation error with field-specific errors
  */
 export interface ValidationError extends BaseError {
-  errors?: Array<{
+  errors?: {
     field: string;
     message: string;
     value?: unknown;
-  }>;
+  }[];
 }
 
 /**
@@ -141,7 +141,7 @@ export function getErrorCode(error: unknown): string | undefined {
   }
   
   if (error !== null && typeof error === 'object' && 'code' in error) {
-    const code = (error as Record<string, unknown>).code;
+    const {code} = (error as Record<string, unknown>);
     return typeof code === 'string' ? code : undefined;
   }
   
@@ -157,7 +157,7 @@ export function getErrorStack(error: unknown): string | undefined {
   }
   
   if (error !== null && typeof error === 'object' && 'stack' in error) {
-    const stack = (error as Record<string, unknown>).stack;
+    const {stack} = (error as Record<string, unknown>);
     return typeof stack === 'string' ? stack : undefined;
   }
   

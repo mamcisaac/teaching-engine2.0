@@ -68,7 +68,7 @@ export abstract class BaseRouteHandler<T = unknown> {
     res: Response,
     next: NextFunction,
   ): void => {
-    if (!req.user || !req.user.id) {
+    if (!req.user?.id) {
       res.status(401).json({ error: 'Unauthorized' });
       return;
     }

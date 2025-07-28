@@ -51,7 +51,7 @@ const csrfProtection = (
     }
 
     const sourceUrl = origin ?? (referer !== null ? new URL(referer).origin : '');
-    if (allowedOrigins.includes(sourceUrl) === false) {
+    if (!allowedOrigins.includes(sourceUrl)) {
       res.status(403).json({ error: 'CSRF protection: Invalid origin' });
       return;
     }
@@ -201,7 +201,7 @@ router.put(
 
       // Validate the request body
       const validationResult = WeeklyPlannerStateSchema.safeParse(req.body);
-      if (validationResult.success === false) {
+      if (!validationResult.success) {
         res.status(400).json({
           error: 'Invalid planner state data',
           details: validationResult.error.errors,

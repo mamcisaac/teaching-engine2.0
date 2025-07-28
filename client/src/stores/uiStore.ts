@@ -250,7 +250,7 @@ export const useUIStore = create<UIState>()(
 );
 
 // Listen for system theme changes
-if (typeof window != 'undefined') {
+if (typeof window !== 'undefined') {
   const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
   mediaQuery.addEventListener('change', () => {
     const state = useUIStore.getState();

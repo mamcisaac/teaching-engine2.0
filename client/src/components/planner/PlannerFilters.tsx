@@ -15,7 +15,7 @@ export function PlannerFilters({ filters, onChange }: Props): React.ReactElement
     return () => { // Cleanup
     };
 
-    if (typeof window != 'undefined') {
+    if (typeof window !== 'undefined') {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(filters));
     }
   }, [filters]);

@@ -4,7 +4,6 @@ import { performance } from 'perf_hooks';
 // eslint-disable-next-line import/no-named-as-default
 import pino, { stdSerializers } from 'pino';
 
-
 // Log levels configuration - kept for future use
 // const _LOG_LEVELS = {
 //   fatal: 60,

@@ -51,7 +51,7 @@ const defaultPreferences: KeyboardShortcutPreferences = {
   customShortcuts: {},
 };
 
-const isMac = typeof window != 'undefined' && navigator.platform.toUpperCase().includes('MAC');
+const isMac = typeof window !== 'undefined' && navigator.platform.toUpperCase().includes('MAC');
 
 export const formatShortcut = (shortcut: KeyboardShortcut): string => {
   const parts: string[] = [];
@@ -281,7 +281,7 @@ continue;
 );
 
 // Cleanup function for when the store is no longer needed
-if (typeof window != 'undefined') {
+if (typeof window !== 'undefined') {
   window.addEventListener('beforeunload', () => {
     const state = useKeyboardShortcutsStore.getState();
     state.stopListening();

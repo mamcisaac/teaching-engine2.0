@@ -57,9 +57,9 @@ export const Switch: FC<SwitchProps> = ({
         className={switchClasses}
         disabled={disabled}
         id={switchId}
-        onClick={handleChange}
         role="switch"
         type="button"
+        onClick={handleChange}
       >
         <span className={knobClasses} />
       </button>

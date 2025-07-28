@@ -109,7 +109,7 @@ export function AISuggestionPanel({
           </Alert>
         )}
 
-        {suggestions && suggestions.suggestions && Array.isArray(suggestions.suggestions) && suggestions.suggestions.length > 0 && (() => {
+        {suggestions?.suggestions && Array.isArray(suggestions.suggestions) && suggestions.suggestions.length > 0 && (() => {
           const typedSuggestions = suggestions as AISuggestion;
           return (
           <div className="space-y-3">
@@ -135,7 +135,9 @@ export function AISuggestionPanel({
                         className="h-8 w-8 p-0"
                         size="sm"
                         variant="ghost"
-                        onClick={() => handleCopy(suggestion, index)}
+                        onClick={() => {
+ handleCopy(suggestion, index); 
+}}
                       >
                         {copiedIndex === index ? (
                           <Check className="h-4 w-4 text-green-500" />
@@ -148,7 +150,9 @@ export function AISuggestionPanel({
                           className="h-8 w-8 p-0"
                           size="sm"
                           variant="ghost"
-                          onClick={() => handleAccept(suggestion, index)}
+                          onClick={() => {
+ handleAccept(suggestion, index); 
+}}
                         >
                           <Check className="h-4 w-4 text-green-500" />
                         </Button>
@@ -173,7 +177,7 @@ export function AISuggestionPanel({
           );
         })()}
 
-        {suggestions && suggestions.suggestions && Array.isArray(suggestions.suggestions) && suggestions.suggestions.length === 0 && (() => {
+        {suggestions?.suggestions && Array.isArray(suggestions.suggestions) && suggestions.suggestions.length === 0 && (() => {
           const typedSuggestions = suggestions as AISuggestion;
           return (
           <div className="text-center py-8 text-muted-foreground">
@@ -183,7 +187,7 @@ export function AISuggestionPanel({
           );
         })()}
 
-        {(!suggestions || !suggestions.suggestions) && !isGenerating && !error && (
+        {(!suggestions?.suggestions) && !isGenerating && !error && (
           <div className="text-center py-8 text-muted-foreground">
             <Sparkles className="h-8 w-8 mx-auto mb-2 opacity-20" />
             <p className="text-sm">Click generate to get AI-powered suggestions</p>

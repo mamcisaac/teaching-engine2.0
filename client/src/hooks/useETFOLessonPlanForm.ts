@@ -154,7 +154,9 @@ export function useETFOLessonPlanForm({
   ): void => {
     setFormData(prev => {
       const currentArray = prev[field];
-      if (!isArray(currentArray)) return prev;
+      if (!isArray(currentArray)) {
+return prev;
+}
       const array = [...currentArray];
       if (index >= 0 && index < array.length) {
         array[index] = value;
@@ -233,7 +235,9 @@ export function useETFOLessonPlanForm({
       title: lesson.title,
       titleFr: lesson.titleFr ?? '',
       date: ((): string => {
-        if (isString(lesson.date) === false) return '';
+        if (!isString(lesson.date)) {
+return '';
+}
         const parts = lesson.date.split('T');
         return parts.length > 0 ? parts[0] : lesson.date;
       })(),

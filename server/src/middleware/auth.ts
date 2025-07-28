@@ -220,7 +220,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
 
     // Validate password strength
     const passwordValidation = validatePasswordStrength(password);
-    if (passwordValidation.isValid !== true) {
+    if (!passwordValidation.isValid) {
       logger.warn({ passwordValidation }, 'Password validation failed');
       throw new ValidationError(passwordValidation.errors.join('. '));
     }
@@ -439,7 +439,7 @@ export async function changePassword(
 
     // Validate new password strength
     const passwordValidation = validatePasswordStrength(newPassword);
-    if (passwordValidation.isValid !== true) {
+    if (!passwordValidation.isValid) {
       throw new ValidationError(passwordValidation.errors.join('. '));
     }
 
@@ -460,7 +460,7 @@ export async function changePassword(
 
     // Check if new password is different from current
     const isSamePassword = await verifyPassword(newPassword, user.password);
-    if (isSamePassword === true) {
+    if (isSamePassword) {
       throw new ValidationError('New password must be different from current password');
     }
 
@@ -586,7 +586,7 @@ export async function resetPassword(
 
     // Validate new password
     const passwordValidation = validatePasswordStrength(newPassword);
-    if (passwordValidation.isValid !== true) {
+    if (!passwordValidation.isValid) {
       throw new ValidationError(passwordValidation.errors.join('. '));
     }
 

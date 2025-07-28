@@ -125,14 +125,13 @@ return true;
         ('assessmentNotes' in template.content && template.content.assessmentNotes !== undefined && template.content.assessmentNotes !== '') ||
         ('lessonStructure' in template && template.lessonStructure !== undefined)
       );
-    } else {
+    } 
       // marie-claire persona
       return (
         ('parentCommunication' in template.content && template.content.parentCommunication !== undefined) ||
         (template.description !== undefined && template.description !== '' && template.description.includes('structured')) ||
         template.tags.includes('guided')
       );
-    }
 
     return true;
   };

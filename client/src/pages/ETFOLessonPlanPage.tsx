@@ -521,7 +521,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                       assessmentNotes: selectedLesson.assessmentNotes ?? '',
                       isSubFriendly: selectedLesson.isSubFriendly,
                       subNotes: selectedLesson.subNotes ?? '',
-                      expectationIds: selectedLesson.expectations?.map((e, _index) => e.expectation?.id).filter((id): id is string => id !== undefined) ?? [],
+                      expectationIds: selectedLesson.expectations?.map((e, _index) => e.expectation.id).filter((id): id is string => id !== undefined) ?? [],
                     });
                     setIsCreateModalOpen(true);
                   }}
@@ -915,7 +915,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                             assessmentNotes: lesson.assessmentNotes ?? '',
                             isSubFriendly: lesson.isSubFriendly,
                             subNotes: lesson.subNotes ?? '',
-                            expectationIds: lesson.expectations?.map((e, _index) => e.expectation?.id).filter((id): id is string => id !== undefined) ?? [],
+                            expectationIds: lesson.expectations?.map((e, _index) => e.expectation.id).filter((id): id is string => id !== undefined) ?? [],
                           });
                           setIsCreateModalOpen(true);
                         }}
@@ -1162,9 +1162,9 @@ export function ETFOLessonPlanPage(): React.ReactElement {
                                 bigIdeas: (unitPlan.bigIdeas !== null && unitPlan.bigIdeas !== undefined && unitPlan.bigIdeas !== '') ? [unitPlan.bigIdeas] : [],
                                 expectations:
                                   unitPlan.expectations && unitPlan.expectations.length > 0 ? unitPlan.expectations.map((exp, _index) => ({
-                                    id: exp.expectation?.id ?? '',
-                                    code: exp.expectation?.code ?? '',
-                                    description: exp.expectation?.description ?? '',
+                                    id: exp.expectation.id ?? '',
+                                    code: exp.expectation.code ?? '',
+                                    description: exp.expectation.description ?? '',
                                   })).filter((exp) => exp.id !== '') : [],
                               }
                             : undefined
@@ -1605,7 +1605,7 @@ Assessment Strategies:
                     <CardContent>
                       <p className="text-sm text-gray-700 mb-3">{template.description}</p>
                       <div className="flex flex-wrap gap-1 mb-3">
-                        {template.tags?.slice(0, 3).map((tag, _index) => (
+                        {template.tags.slice(0, 3).map((tag, _index) => (
                           <span
                             key={tag}
                             className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-full"
@@ -1613,9 +1613,9 @@ Assessment Strategies:
                             {tag}
                           </span>
                         ))}
-                        {(template.tags?.length ?? 0) > 3 && (
+                        {(template.tags.length ?? 0) > 3 && (
                           <span className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-full">
-                            +{(template.tags?.length ?? 0) - 3} more
+                            +{(template.tags.length ?? 0) - 3} more
                           </span>
                         )}
                       </div>
@@ -1677,7 +1677,9 @@ Assessment Strategies:
             <AlertDialogAction
               className="bg-red-600 hover:bg-red-700"
               onClick={(): void => {
- if (deleteConfirmId !== null) { void handleDelete(deleteConfirmId); } 
+ if (deleteConfirmId !== null) {
+ void handleDelete(deleteConfirmId); 
+} 
 }}
             >
               Delete

@@ -55,7 +55,7 @@ export interface PaginationMeta {
 export function getPaginationParams(req: Request): PaginationOptions {
   const result = paginationSchema.safeParse(req.query);
 
-  if (result.success === false) {
+  if (!result.success) {
     // Return defaults if validation fails
     return {
       page: 1,
@@ -213,7 +213,7 @@ export function createCursorPaginatedResponse<T>(
 export function validatePagination(req: Request, res: Response, next: NextFunction): void {
   const result = paginationSchema.safeParse(req.query);
 
-  if (result.success === false) {
+  if (!result.success) {
     res.status(400).json({
       error: 'Invalid pagination parameters',
       details: result.error.flatten(),

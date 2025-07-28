@@ -4,7 +4,7 @@
 export const arrayUtils = {
   // Remove duplicates
   unique: <T>(array: T[], key?: keyof T): T[] => {
-    if (key === null) {
+    if (key === null || key === undefined) {
       return [...new Set(array)];
     }
     

@@ -80,12 +80,12 @@ export function validateUnitPlan(data: UnitPlanFormData): ValidationResult {
 
   // Array validation - ensure at least one meaningful entry
   const hasEssentialQuestions = data.essentialQuestions.some((q) => q.trim().length > 0);
-  if (hasEssentialQuestions === false) {
+  if (!hasEssentialQuestions) {
     errors.essentialQuestions = 'At least one essential question is required';
   }
 
   const hasSuccessCriteria = data.successCriteria.some((c) => c.trim().length > 0);
-  if (hasSuccessCriteria === false) {
+  if (!hasSuccessCriteria) {
     errors.successCriteria = 'At least one success criteria is required';
   }
 
@@ -168,7 +168,7 @@ export function validateLessonPlan(data: LessonPlanFormData): ValidationResult {
 
   // Materials validation - at least one meaningful material
   const hasMaterials = data.materials.some((m) => m.trim().length > 0);
-  if (hasMaterials === false) {
+  if (!hasMaterials) {
     errors.materials = 'At least one material or resource is required';
   }
 

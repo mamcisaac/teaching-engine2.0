@@ -3,11 +3,11 @@
  * Extends BaseRouteHandler with templates-specific business logic
  */
 
+import { isDefined, isObject, isArray, hasProperty, isString, isValidNumber } from '@shared/utils/typeGuards';
 import type { Prisma } from '@teaching-engine/database';
 import type { Response, NextFunction } from 'express';
 import { z } from 'zod';
 
-import { isDefined, isObject, isArray, hasProperty, isString, isValidNumber } from '@shared/utils/typeGuards';
 import { prisma } from '../prisma';
 import { BaseService } from '../services/base/BaseService';
 import type { TemplateCreateData, TemplateUpdateData } from '../types/routes';
@@ -95,8 +95,12 @@ const templateQuerySchema = z.object({
 
 // Helper function to safely get numeric values
 function getNumericValue(value: unknown, defaultValue: number): number {
-  if (value === null || value === undefined) return defaultValue;
-  if (typeof value === 'number' && !isNaN(value)) return value;
+  if (value === null || value === undefined) {
+return defaultValue;
+}
+  if (typeof value === 'number' && !isNaN(value)) {
+return value;
+}
   if (typeof value === 'string') {
     const parsed = parseInt(value, 10);
     return !isNaN(parsed) ? parsed : defaultValue;
@@ -110,7 +114,7 @@ class TemplateService extends BaseService {
     super('TemplateService');
   }
 
-  async findMany(filters: Record<string, unknown>, userId: number): Promise<{ templates: Array<Record<string, unknown>>; pagination: { total: number; limit: number; offset: number; hasMore: boolean } }> {
+  async findMany(filters: Record<string, unknown>, userId: number): Promise<{ templates: Record<string, unknown>[]; pagination: { total: number; limit: number; offset: number; hasMore: boolean } }> {
     const {
       type,
       category,
@@ -131,7 +135,7 @@ class TemplateService extends BaseService {
     if (!isObject(ownershipWhere) || !hasProperty(ownershipWhere, 'AND') || !isArray(ownershipWhere.AND)) {
       throw new Error('Invalid ownership where clause structure');
     }
-    const where = ownershipWhere as { AND: Array<Record<string, unknown>> };
+    const where = ownershipWhere as { AND: Record<string, unknown>[] };
 
     if (isValidStringProperty(type)) {
       where.AND.push({ type });
@@ -409,11 +413,15 @@ export class TemplatesRouteHandler extends BaseRouteHandler {
   protected getCrudOperations(): CrudOperations<unknown> {
     return {
       create: async (data: unknown, userId: number): Promise<Record<string, unknown>> => {
-        if (!isObject(data)) throw new Error('Invalid create data');
+        if (!isObject(data)) {
+throw new Error('Invalid create data');
+}
         return this.templateService.create(data as TemplateCreateData, userId);
       },
-      findMany: async (filters: unknown, userId: number): Promise<Array<Record<string, unknown>>> => {
-        if (!isObject(filters)) throw new Error('Invalid filters');
+      findMany: async (filters: unknown, userId: number): Promise<Record<string, unknown>[]> => {
+        if (!isObject(filters)) {
+throw new Error('Invalid filters');
+}
         const result = await this.templateService.findMany(
           filters as Record<string, unknown>,
           userId,
@@ -422,7 +430,9 @@ export class TemplatesRouteHandler extends BaseRouteHandler {
       },
       findById: async (id: string, userId: number) => this.templateService.findById(id, userId),
       update: async (id: string, data: unknown, userId: number) => {
-        if (!isObject(data)) throw new Error('Invalid update data');
+        if (!isObject(data)) {
+throw new Error('Invalid update data');
+}
         return this.templateService.update(id, data as TemplateUpdateData, userId);
       },
       delete: async (id: string, userId: number) => this.templateService.delete(id, userId),

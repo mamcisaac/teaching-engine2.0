@@ -7,6 +7,7 @@ import * as fs from 'fs/promises';
 import * as path from 'path';
 
 import { isObject, isString, hasProperty } from '@shared/utils/typeGuards';
+
 import { logger } from '../../../logger';
 
 import type { Template, TemplateContext, DataRequirement } from './TemplateProvider';
@@ -178,7 +179,9 @@ export class LessonTemplateProvider extends TemplateProvider {
     };
 
     for (const variable of variables) {
-      if (!isString(variable)) continue;
+      if (!isString(variable)) {
+continue;
+}
       
       const baseVar = variable.split('.')[0];
       if (hasProperty(variableMap, variable) && variableMap[variable] !== undefined) {

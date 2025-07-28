@@ -1,23 +1,29 @@
+import { isErrorLike } from '@shared/utils/typeGuards';
 import { prisma } from '@teaching-engine/database';
 import type { Request, Response, NextFunction } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
 
-import { isErrorLike } from '@shared/utils/typeGuards';
 import { logger } from '../logger';
 import { authMiddleware } from '../middleware/auth';
 const router = Router();
 
 // Helper function to safely get boolean values
 function getSafeBooleanValue(value: unknown): boolean {
-  if (value === 'true' || value === true) return true;
+  if (value === 'true' || value === true) {
+return true;
+}
   return false;
 }
 
 // Helper function to safely get numeric values
 function getSafeNumericValue(value: unknown, defaultValue: number): number {
-  if (value === null || value === undefined) return defaultValue;
-  if (typeof value === 'number' && !isNaN(value)) return value;
+  if (value === null || value === undefined) {
+return defaultValue;
+}
+  if (typeof value === 'number' && !isNaN(value)) {
+return value;
+}
   if (typeof value === 'string') {
     const parsed = parseInt(value, 10);
     return !isNaN(parsed) ? parsed : defaultValue;

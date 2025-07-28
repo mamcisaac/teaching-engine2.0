@@ -229,12 +229,12 @@ export function PEICurriculumConnector({
         <div className="flex gap-4 items-center">
           <input
             className="flex-1 p-2 border rounded-lg"
-            onChange={(e): void => {
- setSearchTerm(e.target.value); 
-}}
             placeholder="Search outcomes..."
             type="text"
             value={searchTerm}
+            onChange={(e): void => {
+ setSearchTerm(e.target.value); 
+}}
           />
           <Button size="sm" variant="outline">
             Filter by Strand
@@ -244,13 +244,13 @@ export function PEICurriculumConnector({
 
       {/* Curriculum Outcomes by Subject */}
       {Object.entries(relevantOutcomes).map(([strandName, alignment]) => (
-        <Card className="overflow-hidden" key={strandName}>
+        <Card key={strandName} className="overflow-hidden">
           <button
             className="w-full p-4 bg-gray-50 cursor-pointer hover:bg-gray-100 transition-colors text-left"
+            type="button"
             onClick={() => {
  setExpandedStrand(expandedStrand === strandName ? null : strandName); 
 }}
-            type="button"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -271,12 +271,12 @@ export function PEICurriculumConnector({
             <div className="p-4 space-y-4">
               {alignment.outcomes.map((outcome, _index) => (
                 <div
+                  key={outcome.code}
                   className={`p-4 rounded-lg border-2 transition-all ${
                     isOutcomeSelected(outcome)
                       ? 'border-blue-500 bg-blue-50'
                       : 'border-gray-200 hover:border-gray-300'
                   }`}
-                  key={outcome.code}
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
@@ -299,7 +299,7 @@ export function PEICurriculumConnector({
                           </h5>
                           <ul className="text-sm text-gray-600 space-y-1">
                             {outcome.indicators.map((indicator, idx) => (
-                              <li className="flex items-start gap-2" key={idx}>
+                              <li key={idx} className="flex items-start gap-2">
                                 <span className="text-green-600 mt-0.5">✓</span>
                                 {indicator}
                               </li>
@@ -315,7 +315,7 @@ export function PEICurriculumConnector({
                           </h5>
                           <ul className="text-sm text-yellow-800 space-y-1">
                             {outcome.frenchLanguageSupport.map((support, idx) => (
-                              <li className="flex items-start gap-2" key={idx}>
+                              <li key={idx} className="flex items-start gap-2">
                                 <span>💡</span>
                                 {support}
                               </li>
@@ -327,12 +327,12 @@ export function PEICurriculumConnector({
 
                     <Button
                       className="ml-4"
-                      onClick={() => {
- toggleOutcome(outcome); 
-}}
                       size="sm"
                       type="button"
                       variant={isOutcomeSelected(outcome) ? 'primary' : 'outline'}
+                      onClick={() => {
+ toggleOutcome(outcome); 
+}}
                     >
                       {isOutcomeSelected(outcome) ? 'Selected' : 'Select'}
                     </Button>

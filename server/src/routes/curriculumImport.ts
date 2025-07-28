@@ -330,7 +330,7 @@ router.delete('/:id', async (req: Request, res: Response): Promise<void> => {
 
     const result = await curriculumImportService.cancelImport(importId);
 
-    if (result === false) {
+    if (!result.success) {
       res.status(404).json({
         error: 'Import not found',
       });
@@ -402,7 +402,7 @@ router.post('/:importId/cancel', async (req: Request, res: Response): Promise<vo
     const { importId } = req.params;
     const success = await curriculumImportService.cancelImport(importId);
 
-    if (success === false) {
+    if (!success.success) {
       res.status(404).json({ error: 'Import session not found or already completed' });
       return;
     }

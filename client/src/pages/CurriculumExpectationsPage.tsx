@@ -263,15 +263,15 @@ return;
               <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
                 className="pl-9"
+                placeholder="Search by code or description..."
+                value={searchTerm}
                 onChange={(e) => {
  setSearchTerm(e.target.value); 
 }}
-                placeholder="Search by code or description..."
-                value={searchTerm}
               />
             </div>
 
-            <Select onValueChange={setSelectedSubject} value={selectedSubject}>
+            <Select value={selectedSubject} onValueChange={setSelectedSubject}>
               <SelectTrigger>
                 <SelectValue placeholder="All subjects" />
               </SelectTrigger>
@@ -286,10 +286,10 @@ return;
             </Select>
 
             <Select
+              value={String(selectedGrade)}
               onValueChange={(value) => {
  setSelectedGrade(value === 'all' ? 'all' : Number(value)); 
 }}
-              value={String(selectedGrade)}
             >
               <SelectTrigger>
                 <SelectValue placeholder="All grades" />
@@ -305,10 +305,10 @@ return;
             </Select>
 
             <Select
+              value={selectedType}
               onValueChange={(value) => {
  setSelectedType(value as 'all' | 'overall' | 'specific'); 
 }}
-              value={selectedType}
             >
               <SelectTrigger>
                 <SelectValue placeholder="All types" />
@@ -333,7 +333,7 @@ return;
         </TabsList>
 
         {subjects.map((subject, _index) => (
-          <TabsContent className="space-y-4" key={subject} value={subject}>
+          <TabsContent key={subject} className="space-y-4" value={subject}>
             <Card>
               <CardHeader>
                 <div className="flex items-center justify-between">
@@ -370,7 +370,7 @@ return;
                       </TableRow>
                     ) : (
                       groupedExpectations[subject].map((expectation, _index) => (
-                        <ExpectationRow expectation={expectation} key={expectation.id} />
+                        <ExpectationRow key={expectation.id} expectation={expectation} />
                       ))
                     )}
                   </TableBody>
@@ -381,7 +381,7 @@ return;
         ))}
       </Tabs>
 
-      <Dialog onOpenChange={setIsEditDialogOpen} open={isEditDialogOpen}>
+      <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
         <DialogContent className="max-w-2xl">
           <DialogHeader>
             <DialogTitle>Edit Curriculum Expectation</DialogTitle>
@@ -405,6 +405,8 @@ return;
               <div className="space-y-2">
                 <Label htmlFor="input">Description (English)</Label>
                 <Textarea
+                  rows={3}
+                  value={editingExpectation.description}
                   onChange={(e) => {
  setEditingExpectation({
                       ...editingExpectation,
@@ -412,14 +414,15 @@ return;
                     }); 
 }
                   }
-                  rows={3}
-                  value={editingExpectation.description}
                 />
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="input">Description (French)</Label>
                 <Textarea
+                  placeholder="Optional French translation"
+                  rows={3}
+                  value={editingExpectation.descriptionFr !== null ? editingExpectation.descriptionFr : ''}
                   onChange={(e) => {
  setEditingExpectation({
                       ...editingExpectation,
@@ -427,9 +430,6 @@ return;
                     }); 
 }
                   }
-                  placeholder="Optional French translation"
-                  rows={3}
-                  value={editingExpectation.descriptionFr !== null ? editingExpectation.descriptionFr : ''}
                 />
               </div>
 
@@ -437,6 +437,7 @@ return;
                 <div>
                   <Label htmlFor="input">Strand</Label>
                   <Input
+                    value={editingExpectation.strand}
                     onChange={(e) => {
  setEditingExpectation({
                         ...editingExpectation,
@@ -444,12 +445,12 @@ return;
                       }); 
 }
                     }
-                    value={editingExpectation.strand}
                   />
                 </div>
                 <div>
                   <Label htmlFor="input">Substrand (Optional)</Label>
                   <Input
+                    value={editingExpectation.substrand !== null ? editingExpectation.substrand : ''}
                     onChange={(e) => {
  setEditingExpectation({
                         ...editingExpectation,
@@ -457,7 +458,6 @@ return;
                       }); 
 }
                     }
-                    value={editingExpectation.substrand !== null ? editingExpectation.substrand : ''}
                   />
                 </div>
               </div>

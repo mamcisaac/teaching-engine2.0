@@ -155,9 +155,9 @@ router.post(
       }
 
       const suggestions = await aiPlanningAssistant.generateLongRangeGoals({
-        subject: subject!,
-        grade: Number(grade!),
-        termLength: Number(termLength!),
+        subject,
+        grade: Number(grade),
+        termLength: Number(termLength),
         focusAreas: focusAreas ?? [],
       });
 
@@ -197,11 +197,11 @@ router.post('/unit/big-ideas', aiRateLimit, (req: Request, res: Response): void 
     }
 
     const suggestions = await aiPlanningAssistant.generateUnitBigIdeas({
-      unitTitle: unitTitle!,
-      subject: subject!,
-      grade: Number(grade!),
-      curriculumExpectations: curriculumExpectations!,
-      duration: Number(duration!),
+      unitTitle,
+      subject,
+      grade: Number(grade),
+      curriculumExpectations,
+      duration: Number(duration),
     });
 
     res.json(suggestions);
@@ -241,9 +241,9 @@ router.post(
       }
 
       const suggestions = await aiPlanningAssistant.generateLessonActivities({
-        lessonTitle: lessonTitle,
-        learningGoals: learningGoals,
-        subject: subject,
+        lessonTitle,
+        learningGoals,
+        subject,
         grade: Number(grade),
         duration: Number(duration),
         materials: materials ?? [],
@@ -284,8 +284,8 @@ router.post(
       }
 
       const suggestions = await aiPlanningAssistant.generateMaterialsList({
-        activities: activities,
-        subject: subject,
+        activities,
+        subject,
         grade: Number(grade),
         classSize: classSize ? Number(classSize) : 25,
       });
@@ -325,9 +325,9 @@ router.post(
       }
 
       const suggestions = await aiPlanningAssistant.generateAssessmentStrategies({
-        learningGoals: learningGoals,
-        activities: activities,
-        subject: subject,
+        learningGoals,
+        activities,
+        subject,
         grade: Number(grade),
       });
 

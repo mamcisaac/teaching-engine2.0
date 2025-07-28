@@ -457,7 +457,7 @@ export class AIService extends BaseService {
   async generateAlignedLesson(input: Record<string, unknown>): Promise<JSONValue> {
     try {
       // Validate input structure
-      if (this.isValidLessonGenerationInput(input) === false) {
+      if (!this.isValidLessonGenerationInput(input)) {
         throw new Error('Invalid lesson generation input');
       }
       
@@ -596,13 +596,13 @@ Return a JSON object with the structure: { title, dateRange, sections, footer }`
     if (lessonPlan.title === null || lessonPlan.title === '') {
       lessonPlan.title = `${input.topic} - Grade ${input.grade} ${input.subject}`;
     }
-    if (lessonPlan.objectives === null || Array.isArray(lessonPlan.objectives) === false) {
+    if (lessonPlan.objectives === null || !Array.isArray(lessonPlan.objectives)) {
       lessonPlan.objectives = ['Understand key concepts'];
     }
-    if (lessonPlan.activities === null || Array.isArray(lessonPlan.activities) === false) {
+    if (lessonPlan.activities === null || !Array.isArray(lessonPlan.activities)) {
       lessonPlan.activities = [];
     }
-    if (lessonPlan.materials === null || Array.isArray(lessonPlan.materials) === false) {
+    if (lessonPlan.materials === null || !Array.isArray(lessonPlan.materials)) {
       lessonPlan.materials = [];
     }
     if (lessonPlan.duration === null || lessonPlan.duration === 0) {

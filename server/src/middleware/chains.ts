@@ -39,7 +39,7 @@ export const coreMiddleware = chain()
 // API middleware chain - for all API routes
 export const apiMiddleware = compose(
   coreMiddleware,
-  rateLimiters.api as RateLimitRequestHandler,
+  rateLimiters.api,
   performanceLoggingMiddleware,
 );
 
@@ -49,20 +49,20 @@ export const authenticatedApiMiddleware = compose(apiMiddleware, authenticate);
 // Public API chain (no auth required)
 export const publicApiMiddleware = compose(
   apiMiddleware,
-  conditional(isProduction, rateLimiters.auth as RateLimitRequestHandler),
+  conditional(isProduction, rateLimiters.auth),
 );
 
 // Write operation chain (POST, PUT, DELETE)
 export const writeOperationMiddleware = compose(
   authenticatedApiMiddleware,
-  rateLimiters.write as RateLimitRequestHandler,
+  rateLimiters.write,
   auditMiddleware(AuditEventType.PLAN_MODIFICATION, { severity: 'medium' }),
 );
 
 // Read operation chain (GET)
 export const readOperationMiddleware = compose(
   authenticatedApiMiddleware,
-  rateLimiters.read as RateLimitRequestHandler,
+  rateLimiters.read,
   conditional((req): boolean => req.path.includes('/api/curriculum'), curriculumCache),
 );
 
@@ -70,7 +70,7 @@ export const readOperationMiddleware = compose(
 export const fileUploadMiddleware = (allowedTypes?: string[]): (req: Request, res: Response, next: NextFunction) => void =>
   compose(
     authenticatedApiMiddleware,
-    rateLimiters.upload as RateLimitRequestHandler,
+    rateLimiters.upload,
     fileUploadSecurityMiddleware(allowedTypes),
     auditMiddleware(AuditEventType.DATA_IMPORT, {
       severity: 'high',
@@ -81,7 +81,7 @@ export const fileUploadMiddleware = (allowedTypes?: string[]): (req: Request, re
 // Auth endpoint chain
 export const authEndpointMiddleware = compose(
   coreMiddleware,
-  rateLimiters.auth as RateLimitRequestHandler,
+  rateLimiters.auth,
   auditMiddleware(AuditEventType.LOGIN_SUCCESS, { severity: 'high' }),
 );
 
@@ -118,7 +118,7 @@ export const errorHandlingMiddleware = compose(errorLoggingMiddleware, errorHand
 // Specific feature chains
 export const planningOperationsMiddleware = compose(
   authenticatedApiMiddleware,
-  rateLimiters.write as RateLimitRequestHandler,
+  rateLimiters.write,
   userCache,
   auditMiddleware(AuditEventType.PLAN_CREATION, {
     severity: 'low',
@@ -128,7 +128,7 @@ export const planningOperationsMiddleware = compose(
 
 export const aiOperationsMiddleware = compose(
   authenticatedApiMiddleware,
-  rateLimiters.ai as RateLimitRequestHandler,
+  rateLimiters.ai,
   performanceLoggingMiddleware,
   auditMiddleware(AuditEventType.AI_GENERATION, {
     severity: 'medium',
@@ -138,7 +138,7 @@ export const aiOperationsMiddleware = compose(
 
 export const exportOperationsMiddleware = compose(
   authenticatedApiMiddleware,
-  rateLimiters.read as RateLimitRequestHandler,
+  rateLimiters.read,
   auditMiddleware(AuditEventType.DATA_EXPORT, {
     severity: 'high',
     targetResource: 'data_export',
@@ -156,7 +156,7 @@ export const developmentMiddleware = conditional(
 
 // Health check chain (minimal processing)
 export const healthCheckMiddleware = compose(
-  rateLimiters.public as RateLimitRequestHandler,
+  rateLimiters.public,
   (_req: Request, res: Response, next: NextFunction): void => {
     res.locals.skipLogging = true;
     next();
@@ -178,7 +178,7 @@ export const createCustomChain = (options: {
   const chainBuilder = chain().add(coreMiddleware);
 
   if (options.rateLimit) {
-    chainBuilder.add(rateLimiters[options.rateLimit] as RateLimitRequestHandler);
+    chainBuilder.add(rateLimiters[options.rateLimit]);
   }
 
   if (options.authenticate === true) {

@@ -552,7 +552,7 @@ useWeeklyPlannerStore.subscribe(
 );
 
 // Load initial state from server on app start
-if (typeof window != 'undefined') {
+if (typeof window !== 'undefined') {
   void useWeeklyPlannerStore.getState().loadFromServer().catch((error: unknown) => {
     logger.error('Error loading weekly planner from server:', error);
   });

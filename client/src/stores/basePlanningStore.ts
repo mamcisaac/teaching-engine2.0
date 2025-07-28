@@ -306,7 +306,7 @@ export function createAutoSave(
       const performSave = async (): Promise<void> => {
         const state = store.getState();
         
-        if (state.hasOfflineChanges === true && state.isSaving != true) {
+        if (state.hasOfflineChanges && state.isSaving != true) {
           try {
             await saveFunction();
           } catch (error) {
@@ -320,7 +320,7 @@ export function createAutoSave(
 }
 
 // Listen for online/offline events
-if (typeof window != 'undefined') {
+if (typeof window !== 'undefined') {
   window.addEventListener('online', () => {
     // Notify all stores about online status
     window.dispatchEvent(new CustomEvent('online-status-change', { 

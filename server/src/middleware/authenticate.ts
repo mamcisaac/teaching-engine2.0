@@ -80,7 +80,7 @@ function extractToken(req: Request): string | null {
 
   // Check cookies
   if (req.cookies.token !== null && req.cookies.token !== undefined && typeof req.cookies.token === 'string') {
-    return req.cookies.token as string;
+    return req.cookies.token;
   }
 
   // Check query parameter (for download links)

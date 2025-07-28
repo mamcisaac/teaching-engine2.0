@@ -61,7 +61,7 @@ api.interceptors.response.use(
       // Try to handle the auth error with the auth service
       const shouldRetry = await authService.handleAuthError(response);
 
-      if (shouldRetry === true) {
+      if (shouldRetry) {
         // Update the authorization header with the new token
         const authHeaders = authService.getAuthHeaders();
         if (isValidAuthHeader(authHeaders.Authorization)) {

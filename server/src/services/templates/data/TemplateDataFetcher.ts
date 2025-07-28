@@ -427,7 +427,7 @@ export class TemplateDataFetcher {
     for (const lesson of lessons) {
       const subject = lesson.subject ?? 'General';
       
-      if (grouped.has(subject) === false) {
+      if (!grouped.has(subject)) {
         grouped.set(subject, {
           subject,
           summary: '',

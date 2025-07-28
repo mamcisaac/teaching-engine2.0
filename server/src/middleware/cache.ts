@@ -1,9 +1,9 @@
 import crypto from 'crypto';
 
+import { isDefined, isErrorLike } from '@shared/utils/typeGuards';
 import type { Request, Response, NextFunction } from 'express';
 import NodeCache from 'node-cache';
 
-import { isDefined, isErrorLike } from '@shared/utils/typeGuards';
 import { logger } from '../logger';
 
 import { cacheMetrics } from './metrics';
@@ -275,7 +275,7 @@ export function invalidateCache(
       cb?: () => void,
     ): Response {
       invalidateCacheEntries();
-      return originalEnd.call(this, chunk, encoding as BufferEncoding, cb);
+      return originalEnd.call(this, chunk, encoding!, cb);
     } as Response['end'];
 
     next();

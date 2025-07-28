@@ -325,23 +325,23 @@ export function HelpPage(): React.ReactElement {
             </div>
             <HelpButton
               content="Get help anywhere in the app"
+              variant="floating"
               onClick={() => {
                 /* Handle global help */
               }}
-              variant="floating"
             />
           </div>
 
           {/* Search */}
           <div className="mt-6 max-w-2xl">
             <HelpSearch
+              showFilters
+              showSuggestions
+              placeholder="Search help topics..."
               onResultSelect={(contentId) => {
                 // In a real app, you would navigate to the specific content
                 logger.info('Selected content:', contentId);
               }}
-              placeholder="Search help topics..."
-              showFilters
-              showSuggestions
             />
             {state.searchQuery && (
               <div className="mt-2 text-sm text-gray-600">
@@ -360,6 +360,7 @@ export function HelpPage(): React.ReactElement {
               <nav className="space-y-2">
                 {filteredSections.map((section, _index) => (
                   <button
+                    key={section.id}
                     className={clsx(
                       'w-full text-left p-3 rounded-lg transition-colors',
                       'flex items-start space-x-3',
@@ -367,7 +368,6 @@ export function HelpPage(): React.ReactElement {
                         ? 'bg-blue-50 text-blue-700 border border-blue-200'
                         : 'hover:bg-gray-50 text-gray-700',
                     )}
-                    key={section.id}
                     onClick={() => {
  handleSectionSelect(section.id); 
 }}
@@ -455,8 +455,8 @@ export function HelpPage(): React.ReactElement {
                   <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
                     {HELP_SECTIONS.slice(0, 4).map((section, _index) => (
                       <button
-                        className="p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors"
                         key={section.id}
+                        className="p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors"
                         onClick={() => {
  handleSectionSelect(section.id); 
 }}

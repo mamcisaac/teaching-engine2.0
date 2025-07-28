@@ -565,4 +565,8 @@ export class CurriculumImportService {
   static async getImportStats(): Promise<Record<string, unknown>> {
     return curriculumImportOrchestrator.getImportStats();
   }
+
+  static async cancelImport(importId: string): Promise<{ success: boolean; message: string }> {
+    return curriculumImportOrchestrator.cancelImport(importId);
+  }
 }

@@ -109,7 +109,7 @@ export function useAIStatus(): AIStatusHookReturn {
     retry: (failureCount, error: unknown): boolean => {
       // Don't retry on auth errors or client errors
       const axiosError = error as { response?: { status?: number } };
-      if (axiosError.response && axiosError.response.status && axiosError.response.status < 500) {
+      if (axiosError.response?.status && axiosError.response.status < 500) {
         return false;
       }
       return failureCount < 3;
@@ -120,17 +120,17 @@ export function useAIStatus(): AIStatusHookReturn {
     refetchOnWindowFocus: true,
   });
 
-  const isAIEnabled = userDisabledAI === false && aiStatus.available;
+  const isAIEnabled = !userDisabledAI && aiStatus.available;
   const canUseAI = isAIEnabled && aiStatus.hasApiKey && aiStatus.serviceHealth !== 'unavailable';
 
   const getAIDisabledReason = (): string | undefined => {
     if (userDisabledAI) {
       return 'AI features have been manually disabled';
     }
-    if (aiStatus.available === false) {
+    if (!aiStatus.available) {
       return 'AI service is not available';
     }
-    if (aiStatus.hasApiKey === false) {
+    if (!aiStatus.hasApiKey) {
       return 'OpenAI API key is not configured';
     }
     if (aiStatus.serviceHealth === 'unavailable') {
@@ -176,7 +176,7 @@ export function useAIFeature(feature: keyof AIStatusInfo['features']): {
   const { aiStatus, canUseAI } = useAIStatus();
   
   return {
-    available: canUseAI === true && aiStatus.features[feature] === true,
+    available: canUseAI && aiStatus.features[feature],
     status: aiStatus.serviceHealth,
     limitations: aiStatus.limitations,
   };
@@ -194,8 +194,8 @@ export function useAIQuota(): {
 } {
   const { aiStatus } = useAIStatus();
   
-  const quotaPercentage = (aiStatus.limitations && aiStatus.limitations.quotaLimit !== null && aiStatus.limitations.quotaLimit !== undefined && aiStatus.limitations.quotaLimit > 0)
-    ? ((aiStatus.limitations.quotaUsed ?? 0) / aiStatus.limitations.quotaLimit * 100)
+  const quotaPercentage = (aiStatus.limitations?.quotaLimit !== null && aiStatus.limitations?.quotaLimit !== undefined && aiStatus.limitations.quotaLimit > 0)
+    ? ((aiStatus.limitations?.quotaUsed ?? 0) / aiStatus.limitations.quotaLimit * 100)
     : 0;
 
   const isNearQuotaLimit = quotaPercentage > 80;
@@ -227,7 +227,7 @@ export function AIStatusIndicator({
   const { aiStatus, canUseAI, aiDisabledReason } = useAIStatus();
 
   const getStatusColor = (): string => {
-    if (canUseAI === false) {
+    if (!canUseAI) {
       return 'text-red-500 bg-red-100';
     }
     if (aiStatus.serviceHealth === 'degraded') {
@@ -237,7 +237,7 @@ export function AIStatusIndicator({
   };
 
   const getStatusText = (): string => {
-    if (canUseAI === false) {
+    if (!canUseAI) {
       return 'Unavailable';
     }
     if (aiStatus.serviceHealth === 'degraded') {
@@ -246,7 +246,7 @@ export function AIStatusIndicator({
     return 'Available';
   };
 
-  if (compact === true) {
+  if (compact) {
     return (
       <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs ${getStatusColor()} ${className}`}>
         <div className="w-2 h-2 rounded-full bg-current" />
@@ -266,13 +266,13 @@ export function AIStatusIndicator({
         <p className="text-sm text-gray-600 mb-2">{aiDisabledReason}</p>
       )}
 
-      {showDetails === true && canUseAI === true && (
+      {showDetails && canUseAI && (
         <div className="text-sm text-gray-600">
           <div>Features: {Object.entries(aiStatus.features)
             .filter(([, enabled]) => enabled)
             .map(([feature]) => feature)
             .join(', ') || 'None'}</div>
-          {aiStatus.limitations && aiStatus.limitations.requestsRemaining !== undefined && (
+          {aiStatus.limitations?.requestsRemaining !== undefined && (
             <div>Requests remaining: {aiStatus.limitations.requestsRemaining}</div>
           )}
           {aiStatus.lastChecked && (

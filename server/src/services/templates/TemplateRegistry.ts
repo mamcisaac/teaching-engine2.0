@@ -141,7 +141,7 @@ export class TemplateRegistry extends BaseService {
     this.providers.set(name, info);
 
     // Update type index
-    if (this.providersByType.has(providerType) === false) {
+    if (!this.providersByType.has(providerType)) {
       this.providersByType.set(providerType, []);
     }
     const providers = this.providersByType.get(providerType);
@@ -274,7 +274,7 @@ export class TemplateRegistry extends BaseService {
         return false;
       }
 
-      if (criteria.format !== null && criteria.format !== '' && template.supportedFormats.includes(criteria.format) === false) {
+      if (criteria.format !== null && criteria.format !== '' && !template.supportedFormats.includes(criteria.format)) {
         return false;
       }
 

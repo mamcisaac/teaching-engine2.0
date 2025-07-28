@@ -2,26 +2,27 @@
  * Type-safe request body interfaces and utilities
  */
 
-import type { Request } from 'express';
+import type { Request, ParamsDictionary } from 'express-serve-static-core';
+import type { ParsedQs } from 'qs';
 
 /**
  * Generic typed request interface with body type
  */
-export interface TypedRequest<T = Record<string, unknown>> extends Request {
+export interface TypedRequest<T = Record<string, unknown>> extends Request<ParamsDictionary, any, T> {
   body: T;
 }
 
 /**
  * Request with typed query parameters
  */
-export interface TypedQueryRequest<T = Record<string, unknown>> extends Request {
+export interface TypedQueryRequest<T extends ParsedQs = ParsedQs> extends Request<ParamsDictionary, any, any, T> {
   query: T;
 }
 
 /**
  * Request with typed params
  */
-export interface TypedParamsRequest<T = Record<string, unknown>> extends Request {
+export interface TypedParamsRequest<T extends ParamsDictionary = ParamsDictionary> extends Request<T> {
   params: T;
 }
 
@@ -30,9 +31,9 @@ export interface TypedParamsRequest<T = Record<string, unknown>> extends Request
  */
 export interface FullyTypedRequest<
   Body = Record<string, unknown>,
-  Query = Record<string, unknown>,
-  Params = Record<string, unknown>
-> extends Request {
+  Query extends ParsedQs = ParsedQs,
+  Params extends ParamsDictionary = ParamsDictionary
+> extends Request<Params, any, Body, Query> {
   body: Body;
   query: Query;
   params: Params;

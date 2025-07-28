@@ -57,14 +57,14 @@ export class MemoryCache {
   get<T>(key: string): T | null {
     const entry = this.cache.get(key);
 
-    if (entry === null) {
+    if (entry === null || entry === undefined) {
       this.stats.misses++;
       this.updateHitRate();
       return null;
     }
 
     // Check expiration
-    if (entry.expires > 0 && entry.expires < Date.now()) {
+    if (entry && entry.expires > 0 && entry.expires < Date.now()) {
       this.cache.delete(key);
       this.removeFromTags(key, entry.tags);
       this.stats.misses++;
@@ -74,7 +74,7 @@ export class MemoryCache {
 
     this.stats.hits++;
     this.updateHitRate();
-    return entry.value as T;
+    return entry ? entry.value as T : null;
   }
 
   set<T>(key: string, value: T, options: CacheOptions = {}): boolean {
@@ -106,12 +106,14 @@ export class MemoryCache {
 
   delete(key: string): boolean {
     const entry = this.cache.get(key);
-    if (entry === null) {
+    if (entry === null || entry === undefined) {
 return false;
 }
 
     this.cache.delete(key);
-    this.removeFromTags(key, entry.tags);
+    if (entry) {
+      this.removeFromTags(key, entry.tags);
+    }
     this.stats.deletes++;
     return true;
   }
@@ -223,10 +225,10 @@ continue;
   private evictOldest(): void {
     // Simple FIFO eviction
     const firstKey = this.cache.keys().next().value;
-    if (firstKey !== null) {
+    if (firstKey !== null && firstKey !== undefined) {
       const entry = this.cache.get(firstKey);
       this.cache.delete(firstKey);
-      if (entry !== null) {
+      if (entry !== null && entry !== undefined) {
         this.removeFromTags(firstKey, entry.tags);
       }
     }
@@ -234,7 +236,7 @@ continue;
 
   private addToTags(key: string, tags: string[]): void {
     for (const tag of tags) {
-      if (this.tagIndex.has(tag) === false) {
+      if (!this.tagIndex.has(tag)) {
         this.tagIndex.set(tag, new Set());
       }
       const tagSet = this.tagIndex.get(tag);
