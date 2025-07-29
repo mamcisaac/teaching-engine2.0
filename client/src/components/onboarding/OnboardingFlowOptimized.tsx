@@ -200,7 +200,7 @@ return null;
           />
 
           {/* Completion message */}
-          {state.currentFlow !== undefined && 
+          {state.currentFlow !== null && state.currentFlow !== undefined && 
             state.currentFlow.completionMessage !== undefined && state.currentFlow.completionMessage !== '' &&
             state.currentStepIndex === state.currentFlow.steps.length - 1 ? (
               <OnboardingProgress completionMessage={state.currentFlow.completionMessage || ''} />

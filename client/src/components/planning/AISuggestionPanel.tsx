@@ -2,7 +2,10 @@
 import { Sparkles, RefreshCw, Copy, Check } from 'lucide-react';
 import React, { useState } from 'react';
 
-import { isAISuggestion } from '@/../../shared/utils/typeGuards';
+// Type guard moved locally to avoid rootDir violation
+const isAISuggestion = (value: unknown): value is { id: string; type: string } => {
+  return typeof value === 'object' && value !== null && 'id' in value && 'type' in value;
+};
 import type { AISuggestion } from '@/hooks/useAIPlanningAssistant';
 import { cn } from '@/lib/utils';
 
