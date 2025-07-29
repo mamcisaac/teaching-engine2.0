@@ -186,7 +186,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
               // First check local entries
               const localEntry = get().entries.find((e) => e.date === date);
 
-              if (localEntry != undefined) {
+              if (localEntry !== undefined) {
                 set((state) => {
                   state.currentEntry = localEntry;
                   state.isLoading = false;
@@ -201,7 +201,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
                 set((state) => {
                   state.currentEntry = entry;
                   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-                  if (entry != null && state.entries.find((e) => e.id === entry.id) === undefined) {
+                  if (entry !== null && state.entries.find((e) => e.id === entry.id) === undefined) {
                     state.entries.push(entry);
                   }
                   state.isLoading = false;
@@ -209,7 +209,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
 
                 // Cache individual entry
                 // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-                if (entry != null) {
+                if (entry !== null) {
                   await offlineStorage.cacheData(`daybook-entry-${date}`, entry as unknown as StoredData, 60);
                 }
               } else {
@@ -256,7 +256,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
                   const existingIndex = state.entries.findIndex(
                     (e) => e.date === createdEntry.date,
                   );
-                  if (existingIndex != -1) {
+                  if (existingIndex !== -1) {
                     state.entries[existingIndex] = createdEntry;
                   } else {
                     state.entries.push(createdEntry);
@@ -271,7 +271,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
                 set((state) => {
                   // Replace or add entry
                   const existingIndex = state.entries.findIndex((e) => e.date === newEntry.date);
-                  if (existingIndex != -1) {
+                  if (existingIndex !== -1) {
                     state.entries[existingIndex] = newEntry;
                   } else {
                     state.entries.push(newEntry);
@@ -317,7 +317,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
 
                 set((state) => {
                   const index = state.entries.findIndex((e) => e.id === id);
-                  if (index != -1) {
+                  if (index !== -1) {
                     state.entries[index] = { ...state.entries[index], ...updatedEntry };
                   }
                   if (state.currentEntry?.id === id) {
@@ -329,7 +329,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
                 // Update offline
                 set((state) => {
                   const index = state.entries.findIndex((e) => e.id === id);
-                  if (index != -1) {
+                  if (index !== -1) {
                     state.entries[index] = { ...state.entries[index], ...updatedEntry };
                   }
                   if (state.currentEntry?.id === id) {
@@ -368,7 +368,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
                 await apiClient.delete(`/api/daybook/${id}`);
 
                 set((state) => {
-                  state.entries = state.entries.filter((e) => e.id != id);
+                  state.entries = state.entries.filter((e) => e.id !== id);
                   if (state.currentEntry?.id === id) {
                     state.currentEntry = null;
                   }
@@ -377,7 +377,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
               } else {
                 // Delete offline
                 set((state) => {
-                  state.entries = state.entries.filter((e) => e.id != id);
+                  state.entries = state.entries.filter((e) => e.id !== id);
                   if (state.currentEntry?.id === id) {
                     state.currentEntry = null;
                   }

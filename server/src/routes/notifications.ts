@@ -4,6 +4,7 @@ import { Router } from 'express';
 import { logger } from '../logger';
 import { prisma } from '../prisma';
 import { getUserId } from '../utils/authHelpers';
+
 import type { AuthenticatedRequest } from './base/middleware';
 const router = Router();
 
@@ -12,7 +13,9 @@ router.get('/', (req: AuthenticatedRequest, res: Response): void => {
   void (async (): Promise<void> => {
     try {
     const userId = getUserId(req, res);
-    if (!userId) return;
+    if (!userId) {
+return;
+}
 
     // Parse limit with proper NaN checking
     const parsedLimit = parseInt(req.query.limit as string, 10);
@@ -65,7 +68,9 @@ router.patch('/:id/read', (req: AuthenticatedRequest, res: Response): void => {
   void (async (): Promise<void> => {
     try {
     const userId = getUserId(req, res);
-    if (!userId) return;
+    if (!userId) {
+return;
+}
 
     const notificationId = parseInt(req.params.id);
     if (isNaN(notificationId)) {
@@ -103,7 +108,9 @@ router.patch('/read-all', (req: AuthenticatedRequest, res: Response): void => {
   void (async (): Promise<void> => {
     try {
     const userId = getUserId(req, res);
-    if (!userId) return;
+    if (!userId) {
+return;
+}
 
     const result = await prisma.notification.updateMany({
       where: { userId, read: false },
@@ -124,7 +131,9 @@ router.delete('/:id', (req: AuthenticatedRequest, res: Response): void => {
   void (async (): Promise<void> => {
     try {
     const userId = getUserId(req, res);
-    if (!userId) return;
+    if (!userId) {
+return;
+}
 
     const notificationId = parseInt(req.params.id);
     if (isNaN(notificationId)) {
@@ -161,7 +170,9 @@ router.delete('/clear-all', (req: AuthenticatedRequest, res: Response): void => 
   void (async (): Promise<void> => {
     try {
     const userId = getUserId(req, res);
-    if (!userId) return;
+    if (!userId) {
+return;
+}
 
     const result = await prisma.notification.deleteMany({
       where: { userId },
@@ -181,7 +192,9 @@ router.post('/test', (req: AuthenticatedRequest, res: Response): void => {
   void (async (): Promise<void> => {
     try {
     const userId = getUserId(req, res);
-    if (!userId) return;
+    if (!userId) {
+return;
+}
 
     const notification = await prisma.notification.create({
       data: {

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { BaseService } from '../base/BaseService';
 
 interface ServiceHealth {
@@ -64,7 +63,7 @@ export class AIPlanningService extends BaseService {
     if (AIPlanningService.instance === undefined) {
       AIPlanningService.instance = new AIPlanningService();
     }
-    return AIPlanningService.instance!;
+    return AIPlanningService.instance;
   }
 
   getServiceHealth(): ServiceHealth {

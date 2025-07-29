@@ -6,9 +6,10 @@
 import type { Request, Response } from 'express';
 import * as winston from 'winston';
 
+import type { EnhancedLogger } from '../logger';
+
 import type { LogMeta, StructuredLogger } from './structuredLogger';
 import { structuredLogger } from './structuredLogger';
-import type { EnhancedLogger } from '../logger';
 
 // Legacy logger interface for backward compatibility
 interface LegacyLogger {

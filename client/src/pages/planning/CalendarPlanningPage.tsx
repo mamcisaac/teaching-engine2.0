@@ -3,7 +3,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { format, startOfMonth, endOfMonth } from 'date-fns';
 import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, Plus, Filter } from 'lucide-react';
 import { useState, useMemo, useCallback, Suspense, useEffect } from 'react';
-import type { Event, View, SlotInfo, DateLocalizer } from 'react-big-calendar';
+import type { View, SlotInfo, DateLocalizer } from 'react-big-calendar';
 import { toast } from 'sonner';
 
 import { apiClient } from '../../api/core/client';
@@ -14,6 +14,7 @@ import {
   BigCalendar,
   createMomentLocalizer,
 } from '../../components/calendar/LazyCalendarComponents';
+import type { CalendarEventType, CalendarFilter, CalendarViewEvent, ToolbarProps } from '../../components/calendar/types';
 import { Button } from '../../components/ui/Button';
 import { useAuth } from '../../contexts/AuthContext';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -23,32 +24,47 @@ import type { CalendarEvent, ETFOLessonPlan, UnitPlan } from '../../types';
 // We'll initialize this asynchronously
 let localizer: DateLocalizer | null = null;
 
-// Types for calendar events
-interface CalendarViewEvent extends Event {
-  id: string;
-  type: CalendarEventType;
-  metadata?: {
-    subject?: string;
-    unitId?: string;
-    lessonId?: string;
-    color: string;
-    isEditable: boolean;
-  };
-  originalData?: CalendarEvent | ETFOLessonPlan | UnitPlan;
+/**
+ * Type guard to check if an object is a CalendarViewEvent
+ */
+function isCalendarViewEvent(event: unknown): event is CalendarViewEvent {
+  return (
+    typeof event === 'object' &&
+    event !== null &&
+    'id' in event &&
+    'title' in event &&
+    'start' in event &&
+    'type' in event
+  );
 }
 
-type CalendarEventType =
-  | 'lesson'
-  | 'unit-boundary'
-  | 'holiday'
-  | 'pd-day'
-  | 'assessment'
-  | 'school-event';
+/**
+ * Safely get the start date from an event object
+ */
+function getEventStart(event: object): Date {
+  if (isCalendarViewEvent(event)) {
+    return event.start ?? new Date();
+  }
+  return new Date();
+}
 
-interface CalendarFilter {
-  subjects: string[];
-  eventTypes: CalendarEventType[];
-  showWeekends: boolean;
+/**
+ * Safely get the end date from an event object
+ */
+function getEventEnd(event: object): Date {
+  if (isCalendarViewEvent(event)) {
+    return event.end ?? new Date();
+  }
+  return new Date();
+}
+
+/**
+ * Safely handle event selection
+ */
+function handleEventSelect(event: object, callback: (event: CalendarViewEvent) => void): void {
+  if (isCalendarViewEvent(event)) {
+    callback(event);
+  }
 }
 
 // Subject color mapping
@@ -82,14 +98,19 @@ export function CalendarPlanningPage(): JSX.Element {
 
   // Load the localizer asynchronously
   useEffect(() => {
-    return (): void => { // Cleanup
-    };
-
+    let isMounted = true;
+    
     void createMomentLocalizer().then((loc) => {
-      localizer = loc;
-      setLocalizerReady(true);
+      if (isMounted) {
+        localizer = loc;
+        setLocalizerReady(true);
+      }
     });
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+    
+    return () => {
+      isMounted = false;
+    };
+  }, []);
   const { user: _user } = useAuth();
   const queryClient = useQueryClient();
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -278,13 +299,13 @@ return false;
   // Handle event selection
   const handleSelectEvent = useCallback((event: CalendarViewEvent) => {
     setSelectedEvent(event);
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   // Handle slot selection (for creating new events)
   const handleSelectSlot = useCallback((slotInfo: SlotInfo) => {
     setSelectedSlot(slotInfo);
     setShowEventModal(true);
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   // Handle event drop (drag and drop)
   const _handleEventDrop = useCallback(
@@ -302,37 +323,33 @@ return false;
   // Navigate calendar
   const handleNavigate = useCallback((newDate: Date) => {
     setCurrentDate(newDate);
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   // Custom toolbar component
   const CustomToolbar = useCallback(
-    ({ date, onNavigate }: { date: Date; onNavigate: (date: Date) => void }): JSX.Element => {
+    ({ date, onNavigate, view: toolbarView }: ToolbarProps): JSX.Element => {
       const goToBack = (): void => {
-        const newDate = new Date(date);
-        if (view === 'month') {
-          newDate.setMonth(date.getMonth() - 1);
-        } else if (view === 'week') {
-          newDate.setDate(date.getDate() - 7);
+        if (toolbarView === 'month') {
+          onNavigate('PREV');
+        } else if (toolbarView === 'week') {
+          onNavigate('PREV');
         } else {
-          newDate.setDate(date.getDate() - 1);
+          onNavigate('PREV');
         }
-        onNavigate(newDate);
       };
 
       const goToNext = (): void => {
-        const newDate = new Date(date);
-        if (view === 'month') {
-          newDate.setMonth(date.getMonth() + 1);
-        } else if (view === 'week') {
-          newDate.setDate(date.getDate() + 7);
+        if (toolbarView === 'month') {
+          onNavigate('NEXT');
+        } else if (toolbarView === 'week') {
+          onNavigate('NEXT');
         } else {
-          newDate.setDate(date.getDate() + 1);
+          onNavigate('NEXT');
         }
-        onNavigate(newDate);
       };
 
       const goToToday = (): void => {
-        onNavigate(new Date());
+        onNavigate('TODAY');
       };
 
       return (
@@ -416,7 +433,7 @@ return false;
         </div>
       );
     },
-    [view, showFilters],
+    [showFilters],
   );
 
   return (
@@ -439,12 +456,11 @@ return false;
             availableSubjects={[
               ...new Set(
                 lessons
-                  .map((l: ETFOLessonPlan, _index) => (l as { subject?: string }).subject)
+                  .map((l: ETFOLessonPlan) => l.unitPlan?.longRangePlan?.subject)
                   .filter((subject): subject is string => Boolean(subject)),
               ),
-            ].map((s, _index) => String(s))}
+            ]}
             filters={filters}
-            // @ts-expect-error - Type mismatch in CalendarFilter interface
             onFiltersChange={(newFilters: CalendarFilter) => {
  setFilters(newFilters); 
 }}
@@ -458,22 +474,21 @@ return false;
             <BigCalendar
               selectable
               components={{
-                // @ts-expect-error - Toolbar component type mismatch
                 toolbar: CustomToolbar,
               }}
               date={currentDate}
               defaultView={window.innerWidth < 768 ? 'agenda' : 'month'}
-              endAccessor={(event: object) => (event as CalendarViewEvent).end ?? new Date()}
-              eventPropGetter={(event: object) => eventStyleGetter(event as CalendarViewEvent)}
+              endAccessor={getEventEnd}
+              eventPropGetter={(event: object) => isCalendarViewEvent(event) ? eventStyleGetter(event) : { style: {} }}
               events={events}
               localizer={localizer}
-              startAccessor={(event: object) => (event as CalendarViewEvent).start ?? new Date()}
+              startAccessor={getEventStart}
               style={{ height: window.innerWidth < 768 ? 500 : 700 }}
               view={view}
               views={['month', 'week', 'agenda']}
               onNavigate={handleNavigate}
               onSelectEvent={(event: object) => {
- handleSelectEvent(event as CalendarViewEvent); 
+ handleEventSelect(event, handleSelectEvent); 
 }}
               onSelectSlot={handleSelectSlot}
               onView={setView}
@@ -518,7 +533,6 @@ return false;
           }
         >
           <CalendarEventDetails
-            // @ts-expect-error - CalendarViewEvent type mismatch
             event={selectedEvent}
             onClose={() => {
  setSelectedEvent(null); 

@@ -3,13 +3,9 @@
  * Coordinates AI operations across different providers with real OpenAI integration
  */
 
-// Type definitions for better type safety
+// Type definitions for better type safety - fixed circular reference
 type JSONPrimitive = string | number | boolean | null;
-interface JSONObject {
-  [key: string]: JSONValue;
-}
-interface JSONArray extends Array<JSONValue> {}
-type JSONValue = JSONPrimitive | JSONObject | JSONArray;
+type JSONValue = JSONPrimitive | { [key: string]: JSONValue } | JSONValue[];
 
 interface LessonInput {
   lesson: LessonPlan;
@@ -193,13 +189,13 @@ export class AIService extends BaseService {
           });
 
           const content = response.choices[0]?.message?.content;
-          if (content === null || content === undefined || content === '') {
+          if (!content || content === '') {
             throw new AppError(500, 'No response from AI service');
           }
 
           let lessonPlan = safeJsonParse<LessonPlan>(content);
           
-          if (lessonPlan === null) {
+          if (!lessonPlan) {
             logger.warn('Failed to parse AI response, using fallback');
             lessonPlan = this.createFallbackLesson(input);
             lessonPlan.fallback = true;
@@ -253,13 +249,13 @@ export class AIService extends BaseService {
           });
 
           const content = response.choices[0]?.message?.content;
-          if (content === null || content === undefined || content === '') {
+          if (!content || content === '') {
             throw new AppError(500, 'No response from AI service');
           }
 
           let activity = safeJsonParse<Activity>(content);
           
-          if (activity === null) {
+          if (!activity) {
             activity = this.createFallbackActivity(input);
           }
 
@@ -271,7 +267,10 @@ export class AIService extends BaseService {
         },
       );
 
-      return activity!;
+      if (!activity) {
+        return this.createFallbackActivity(input);
+      }
+      return activity;
     } catch (error: unknown) {
       logger.error('Error generating activity:', error instanceof Error ? error.message : String(error));
       return this.createFallbackActivity(input);
@@ -318,7 +317,10 @@ export class AIService extends BaseService {
         },
       );
 
-      return plan!;
+      if (plan === null || plan === undefined) {
+        return this.createFallbackSubstitutePlan(input);
+      }
+      return plan;
     } catch (error: unknown) {
       logger.error('Error generating substitute plan:', error instanceof Error ? error.message : String(error));
       return this.createFallbackSubstitutePlan(input);
@@ -365,7 +367,10 @@ export class AIService extends BaseService {
         },
       );
 
-      return newsletter!;
+      if (newsletter === null || newsletter === undefined) {
+        return this.createFallbackNewsletter(input);
+      }
+      return newsletter;
     } catch (error: unknown) {
       logger.error('Error generating newsletter:', error instanceof Error ? error.message : String(error));
       return this.createFallbackNewsletter(input);

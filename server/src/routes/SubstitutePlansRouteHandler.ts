@@ -398,7 +398,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
         ...(grade !== null && { grade: String(grade) }),
       };
 
-      const result = await this.substitutePlanService.findMany(convertedFilters, userId as number);
+      const result = await this.substitutePlanService.findMany(convertedFilters, userId!);
       res.json(result);
       return;
     } catch (_error) {
@@ -450,7 +450,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       }
       const generateData = generateSubPlanSchema.parse(req.body);
 
-      const generatedPlan = await this.substitutePlanService.generatePlan(generateData, userId as number);
+      const generatedPlan = await this.substitutePlanService.generatePlan(generateData, userId!);
       res.status(201).json(generatedPlan);
     } catch (_error) {
       this.logger.error('Error generating substitute plan:', _error as string | undefined);
@@ -471,7 +471,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       }
       const { id: planId } = req.params;
 
-      const deactivatedPlan = await this.substitutePlanService.deactivatePlan(planId, userId as number);
+      const deactivatedPlan = await this.substitutePlanService.deactivatePlan(planId, userId!);
       res.json(deactivatedPlan);
       return;
     } catch (_error) {
@@ -491,7 +491,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
-      const stats = await this.substitutePlanService.getStats(userId as number);
+      const stats = await this.substitutePlanService.getStats(userId!);
       res.json(stats);
       return;
     } catch (_error) {
@@ -513,7 +513,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       }
       const daysAhead = req.query.days !== null ? parseInt(req.query.days as string, 10) : 30;
 
-      const upcomingDates = await this.substitutePlanService.getUpcomingDates(userId as number, daysAhead);
+      const upcomingDates = await this.substitutePlanService.getUpcomingDates(userId!, daysAhead);
       res.json(upcomingDates);
       return;
     } catch (_error) {

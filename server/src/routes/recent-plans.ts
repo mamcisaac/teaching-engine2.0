@@ -5,6 +5,7 @@ import { z } from 'zod';
 import { logger } from '../logger';
 import { prisma } from '../prisma';
 import { getUserId } from '../utils/authHelpers';
+
 import type { AuthenticatedRequest } from './base/middleware';
 const router = Router();
 
@@ -12,7 +13,9 @@ const router = Router();
 router.post('/track', async (req: AuthenticatedRequest, res: Response) => {
   try {
     const userId = getUserId(req, res);
-    if (!userId) return;
+    if (!userId) {
+return;
+}
 
     // Validate request body
     const bodySchema = z.object({
@@ -60,7 +63,9 @@ router.post('/track', async (req: AuthenticatedRequest, res: Response) => {
 router.get('/', async (req: AuthenticatedRequest, res: Response) => {
   try {
     const userId = getUserId(req, res);
-    if (!userId) return;
+    if (!userId) {
+return;
+}
 
     // Parse limit with proper NaN checking
     const parsedLimit = parseInt(req.query.limit as string, 10);
@@ -228,7 +233,9 @@ return null;
 router.delete('/clear', async (req: AuthenticatedRequest, res: Response) => {
   try {
     const userId = getUserId(req, res);
-    if (!userId) return;
+    if (!userId) {
+return;
+}
 
     await prisma.recentPlanAccess.deleteMany({
       where: { userId },

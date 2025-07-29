@@ -36,7 +36,6 @@ export interface ETFOLessonPlanCreateData {
 
 export type ETFOLessonPlanUpdateData = Partial<Omit<ETFOLessonPlanCreateData, 'unitPlanId' | 'userId'>>
 
-
 export interface ETFOLessonPlanListResponse {
   plans: ETFOLessonPlanWithRelations[];
   total: number;

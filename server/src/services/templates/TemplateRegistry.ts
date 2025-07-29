@@ -274,7 +274,7 @@ export class TemplateRegistry extends BaseService {
         return false;
       }
 
-      if (criteria.format !== null && criteria.format !== '' && !template.supportedFormats.includes(criteria.format as string)) {
+      if (criteria.format !== null && criteria.format !== '' && !template.supportedFormats.includes(criteria.format!)) {
         return false;
       }
 

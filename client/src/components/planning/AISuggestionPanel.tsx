@@ -2,6 +2,7 @@
 import { Sparkles, RefreshCw, Copy, Check } from 'lucide-react';
 import React, { useState } from 'react';
 
+import { isAISuggestion } from '@/../../shared/utils/typeGuards';
 import type { AISuggestion } from '@/hooks/useAIPlanningAssistant';
 import { cn } from '@/lib/utils';
 
@@ -58,10 +59,9 @@ export function AISuggestionPanel({
   };
 
   const handleAcceptAll = (): void => {
-    if (onAcceptAll && suggestions?.suggestions && Array.isArray(suggestions.suggestions)) {
+    if (onAcceptAll !== undefined && isAISuggestion(suggestions)) {
       onAcceptAll();
-      const typedSuggestions = suggestions as AISuggestion;
-      const allIndices = new Set(typedSuggestions.suggestions.map((_, i) => i));
+      const allIndices = new Set(suggestions.suggestions.map((_, i) => i));
       setAcceptedIndices(allIndices);
       toast({
         title: 'All Accepted',
@@ -109,16 +109,14 @@ export function AISuggestionPanel({
           </Alert>
         )}
 
-        {suggestions?.suggestions && Array.isArray(suggestions.suggestions) && suggestions.suggestions.length > 0 && (() => {
-          const typedSuggestions = suggestions as AISuggestion;
-          return (
+        {isAISuggestion(suggestions) && suggestions.suggestions.length > 0 && (
           <div className="space-y-3">
-            {typedSuggestions.rationale && typeof typedSuggestions.rationale === 'string' && typedSuggestions.rationale.trim() !== '' && (
-              <p className="text-sm text-muted-foreground italic">{typedSuggestions.rationale}</p>
+            {suggestions.rationale !== undefined && suggestions.rationale.trim() !== '' && (
+              <p className="text-sm text-muted-foreground italic">{suggestions.rationale}</p>
             )}
 
             <div className="space-y-2">
-              {typedSuggestions.suggestions.map((suggestion: string, index: number) => (
+              {suggestions.suggestions.map((suggestion: string, index: number) => (
                 <div
                   key={index}
                   className={cn(
@@ -168,26 +166,22 @@ export function AISuggestionPanel({
               ))}
             </div>
 
-            {onAcceptAll && typedSuggestions.suggestions && acceptedIndices.size < typedSuggestions.suggestions.length && (
+            {onAcceptAll !== undefined && acceptedIndices.size < suggestions.suggestions.length && (
               <Button aria-label="Click button" onClick={handleAcceptAll}>
                 Accept All Suggestions
               </Button>
             )}
           </div>
-          );
-        })()}
+        )}
 
-        {suggestions?.suggestions && Array.isArray(suggestions.suggestions) && suggestions.suggestions.length === 0 && (() => {
-          const typedSuggestions = suggestions as AISuggestion;
-          return (
+        {isAISuggestion(suggestions) && suggestions.suggestions.length === 0 && (
           <div className="text-center py-8 text-muted-foreground">
             <Sparkles className="h-8 w-8 mx-auto mb-2 opacity-20" />
             <p className="text-sm">No suggestions generated. Try adjusting your input.</p>
           </div>
-          );
-        })()}
+        )}
 
-        {(!suggestions?.suggestions) && !isGenerating && !error && (
+        {!isAISuggestion(suggestions) && !isGenerating && error === undefined && (
           <div className="text-center py-8 text-muted-foreground">
             <Sparkles className="h-8 w-8 mx-auto mb-2 opacity-20" />
             <p className="text-sm">Click generate to get AI-powered suggestions</p>

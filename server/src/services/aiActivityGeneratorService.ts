@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * AI Activity Generator Service
  * Generates educational activities using AI
@@ -41,6 +40,28 @@ export interface GeneratedActivity {
   };
   safetyConsiderations?: string[];
   technologyRequirements?: string[];
+}
+
+/**
+ * Interface for raw parsed JSON activity data from LLM response
+ * Used before validation and transformation to GeneratedActivity
+ */
+interface RawParsedActivity {
+  title?: string | null;
+  description?: string | null;
+  detailedInstructions?: string[] | null;
+  duration?: number | null;
+  activityType?: string | null;
+  materials?: string[] | null;
+  groupSize?: string | null;
+  learningGoals?: string[] | null;
+  assessmentSuggestions?: string[] | null;
+  differentiation?: {
+    support?: string[] | null;
+    extension?: string[] | null;
+  } | null;
+  safetyConsiderations?: string[] | null;
+  technologyRequirements?: string[] | null;
 }
 
 export interface GenerationParams {
@@ -201,7 +222,7 @@ prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`
       }
 
       // Type assertion for the parsed object
-      const activity = parsed as any;
+      const activity = parsed as RawParsedActivity;
 
       // Validate required fields
       if (activity.title === null || activity.title === '' || 
@@ -212,8 +233,8 @@ prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`
 
       // Apply defaults for missing optional fields
       return {
-        title: activity.title,
-        description: activity.description,
+        title: activity.title ?? '',
+        description: activity.description ?? '',
         detailedInstructions: activity.detailedInstructions ?? [],
         duration: activity.duration ?? 30,
         activityType: activity.activityType ?? 'handson',
@@ -225,8 +246,8 @@ prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`
           support: activity.differentiation?.support ?? [],
           extension: activity.differentiation?.extension ?? [],
         },
-        safetyConsiderations: activity.safetyConsiderations,
-        technologyRequirements: activity.technologyRequirements,
+        safetyConsiderations: activity.safetyConsiderations ?? undefined,
+        technologyRequirements: activity.technologyRequirements ?? undefined,
       };
     } catch (error) {
       throw new Error('Failed to parse generated activity');

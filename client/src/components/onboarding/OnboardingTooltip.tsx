@@ -103,9 +103,9 @@ function FlowTooltip({
           <span className="text-sm text-gray-500">
             Step {state.currentStepIndex + 1} of {state.currentFlow?.steps.length ?? 0}
           </span>
-          {(state.currentFlow?.estimatedTime !== null && state.currentFlow?.estimatedTime !== 0) ? (
+          {(state.currentFlow?.estimatedTime !== undefined && state.currentFlow.estimatedTime !== 0) ? (
             <span className="text-sm text-gray-500">
-              ~{state.currentFlow?.estimatedTime} min
+              ~{state.currentFlow.estimatedTime} min
             </span>
           ) : null}
         </div>
@@ -299,11 +299,11 @@ return;
                 </div>
               </div>
 
-              {(actionText !== null && actionText !== '' && onAction !== null) ? (
+              {(actionText !== undefined && actionText !== '' && onAction !== undefined) ? (
                 <button
                   className="mt-3 text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
                   onClick={() => {
-                    onAction?.();
+                    onAction();
                     handleDismiss();
                   }}
                 >

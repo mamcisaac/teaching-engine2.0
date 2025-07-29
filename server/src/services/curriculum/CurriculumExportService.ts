@@ -31,7 +31,7 @@ export class CurriculumExportService extends BaseService {
     if (CurriculumExportService.instance === undefined) {
       CurriculumExportService.instance = new CurriculumExportService();
     }
-    return CurriculumExportService.instance!;
+    return CurriculumExportService.instance;
   }
 
   /**

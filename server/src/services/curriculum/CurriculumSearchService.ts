@@ -50,7 +50,7 @@ export class CurriculumSearchService extends BaseService {
     if (CurriculumSearchService.instance === undefined) {
       CurriculumSearchService.instance = new CurriculumSearchService();
     }
-    return CurriculumSearchService.instance!;
+    return CurriculumSearchService.instance;
   }
 
   /**

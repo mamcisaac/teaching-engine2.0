@@ -366,7 +366,7 @@ export class RenderCoordinator extends BaseService {
 
       // Check if template exists
       if (templateId !== null && templateId !== '') {
-        const template = await provider.getTemplateById(templateId as string);
+        const template = await provider.getTemplateById(templateId!);
         if (!template) {
           issues.push(`Template not found: ${templateId}`);
         } else {

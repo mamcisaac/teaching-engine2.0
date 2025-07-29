@@ -132,10 +132,11 @@ class TemplateService extends BaseService {
 
     // Build where clause using optimized ownership filter
     const ownershipWhere = optimizedQueries.createOwnershipWhere(userId);
+    // Type guard with explicit type assertion - createOwnershipWhere returns a known structure
     if (!isObject(ownershipWhere) || !hasProperty(ownershipWhere, 'AND') || !isArray(ownershipWhere.AND)) {
       throw new Error('Invalid ownership where clause structure');
     }
-    const where = ownershipWhere as { AND: Record<string, unknown>[] };
+    const where: { AND: Record<string, unknown>[] } = ownershipWhere as { AND: Record<string, unknown>[] };
 
     if (isValidStringProperty(type)) {
       where.AND.push({ type });
@@ -265,30 +266,55 @@ class TemplateService extends BaseService {
       throw new Error('Template not found or access denied');
     }
 
+    // Build update data with explicit type checks
+    const updateData: Partial<Record<string, unknown>> = {};
+    
+    if (data.title !== undefined && isValidStringProperty(data.title)) {
+      updateData.title = data.title;
+    }
+    if (data.titleFr !== undefined && isValidStringProperty(data.titleFr)) {
+      updateData.titleFr = data.titleFr;
+    }
+    if (data.description !== undefined && isValidStringProperty(data.description)) {
+      updateData.description = data.description;
+    }
+    if (data.descriptionFr !== undefined && isValidStringProperty(data.descriptionFr)) {
+      updateData.descriptionFr = data.descriptionFr;
+    }
+    if (data.type !== undefined && isValidStringProperty(data.type)) {
+      updateData.type = data.type as 'UNIT_PLAN' | 'LESSON_PLAN';
+    }
+    if (data.category !== undefined && isValidStringProperty(data.category)) {
+      updateData.category = data.category as
+        | 'BY_SUBJECT'
+        | 'BY_GRADE'
+        | 'BY_THEME'
+        | 'BY_SEASON'
+        | 'BY_SKILL'
+        | 'CUSTOM';
+    }
+    if (data.subject !== undefined && isValidStringProperty(data.subject)) {
+      updateData.subject = data.subject;
+    }
+    if (data.gradeMin !== undefined) {
+      updateData.gradeMin = data.gradeMin;
+    }
+    if (data.gradeMax !== undefined) {
+      updateData.gradeMax = data.gradeMax;
+    }
+    if (data.tags !== undefined) {
+      updateData.tags = data.tags;
+    }
+    if (data.content !== undefined) {
+      updateData.content = data.content;
+    }
+    if (data.templateData !== undefined) {
+      updateData.templateData = data.templateData;
+    }
+
     return prisma.planTemplate.update({
       where: { id },
-      data: {
-        ...(isDefined(data.title) && isValidStringProperty(data.title) && { title: data.title }),
-        ...(isDefined(data.titleFr) && isValidStringProperty(data.titleFr) && { titleFr: data.titleFr }),
-        ...(isDefined(data.description) && isValidStringProperty(data.description) && { description: data.description }),
-        ...(isDefined(data.descriptionFr) && isValidStringProperty(data.descriptionFr) && { descriptionFr: data.descriptionFr }),
-        ...(isDefined(data.type) && isValidStringProperty(data.type) && { type: data.type as 'UNIT_PLAN' | 'LESSON_PLAN' }),
-        ...(isDefined(data.category) && isValidStringProperty(data.category) && {
-          category: data.category as
-            | 'BY_SUBJECT'
-            | 'BY_GRADE'
-            | 'BY_THEME'
-            | 'BY_SEASON'
-            | 'BY_SKILL'
-            | 'CUSTOM',
-        }),
-        ...(isDefined(data.subject) && isValidStringProperty(data.subject) && { subject: data.subject }),
-        ...(isDefined(data.gradeMin) && { gradeMin: data.gradeMin }),
-        ...(isDefined(data.gradeMax) && { gradeMax: data.gradeMax }),
-        ...(isDefined(data.tags) && { tags: data.tags }),
-        ...(isDefined(data.content) && { content: data.content }),
-        ...(isDefined(data.templateData) && { templateData: data.templateData }),
-      },
+      data: updateData,
     });
   }
 
@@ -348,19 +374,27 @@ class TemplateService extends BaseService {
       }),
     ]);
 
+    // Type-safe processing of query results with explicit type guards
     const uniqueSubjects = subjects
-      .filter(t => isObject(t) && hasProperty(t, 'subject'))
+      .filter((t): t is { subject: string } => 
+        isObject(t) && hasProperty(t, 'subject') && isString(t.subject)
+      )
       .map((t) => t.subject)
-      .filter((s): s is string => isString(s))
       .sort();
 
     const gradeRange = grades.reduce(
       (range, template) => {
-        if (isValidNumber(template.gradeMin) && template.gradeMin !== 0) {
-          range.min = Math.min(range.min, template.gradeMin);
-        }
-        if (isValidNumber(template.gradeMax) && template.gradeMax !== 0) {
-          range.max = Math.max(range.max, template.gradeMax);
+        // Type guard to ensure template has the expected structure
+        if (isObject(template)) {
+          const gradeMin = hasProperty(template, 'gradeMin') ? template.gradeMin : null;
+          const gradeMax = hasProperty(template, 'gradeMax') ? template.gradeMax : null;
+          
+          if (isValidNumber(gradeMin) && gradeMin !== 0) {
+            range.min = Math.min(range.min, gradeMin);
+          }
+          if (isValidNumber(gradeMax) && gradeMax !== 0) {
+            range.max = Math.max(range.max, gradeMax);
+          }
         }
         return range;
       },
@@ -368,8 +402,12 @@ class TemplateService extends BaseService {
     );
 
     const allTags = tags
-      .filter(t => isObject(t) && hasProperty(t, 'tags'))
-      .flatMap((t) => isArray(t.tags) ? t.tags.filter(tag => isString(tag)) : [])
+      .filter((t) => 
+        isObject(t) && hasProperty(t, 'tags')
+      )
+      .flatMap((t) => 
+        isArray(t.tags) ? t.tags.filter((tag): tag is string => isString(tag)) : []
+      )
       .filter((tag, index, array) => array.indexOf(tag) === index)
       .sort();
 
@@ -380,8 +418,10 @@ class TemplateService extends BaseService {
         (_, i) => gradeRange.min + i,
       ),
       categories: categories
-        .filter(c => isObject(c) && hasProperty(c, 'category') && isString(c.category))
-        .map((c) => c.category as string),
+        .filter((c) => 
+          isObject(c) && hasProperty(c, 'category') && isString(c.category)
+        )
+        .map((c) => (c as { category: string }).category),
       tags: allTags,
     };
   }
@@ -413,27 +453,31 @@ export class TemplatesRouteHandler extends BaseRouteHandler {
   protected getCrudOperations(): CrudOperations<unknown> {
     return {
       create: async (data: unknown, userId: number): Promise<Record<string, unknown>> => {
+        // Type guard to ensure data is an object before casting
         if (!isObject(data)) {
-throw new Error('Invalid create data');
-}
-        return this.templateService.create(data as unknown as TemplateCreateData, userId);
+          throw new Error('Invalid create data - must be an object');
+        }
+        // Safe to cast after type guard validation
+        const validatedData = data as unknown as TemplateCreateData;
+        return this.templateService.create(validatedData, userId);
       },
       findMany: async (filters: unknown, userId: number): Promise<Record<string, unknown>[]> => {
+        // Type guard to ensure filters is an object before casting
         if (!isObject(filters)) {
-throw new Error('Invalid filters');
-}
-        const result = await this.templateService.findMany(
-          filters as Record<string, unknown>,
-          userId,
-        );
+          throw new Error('Invalid filters - must be an object');
+        }
+        const validatedFilters = filters as Record<string, unknown>;
+        const result = await this.templateService.findMany(validatedFilters, userId);
         return result.templates;
       },
       findById: async (id: string, userId: number) => this.templateService.findById(id, userId),
       update: async (id: string, data: unknown, userId: number) => {
+        // Type guard to ensure data is an object before casting
         if (!isObject(data)) {
-throw new Error('Invalid update data');
-}
-        return this.templateService.update(id, data as TemplateUpdateData, userId);
+          throw new Error('Invalid update data - must be an object');
+        }
+        const validatedData = data as unknown as TemplateUpdateData;
+        return this.templateService.update(id, validatedData, userId);
       },
       delete: async (id: string, userId: number) => this.templateService.delete(id, userId),
     };

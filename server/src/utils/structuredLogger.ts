@@ -52,8 +52,8 @@ const logFormat = format.combine(
       message: info.message,
       correlationId: context?.correlationId ?? 'no-correlation-id',
       ...(context?.userId !== undefined ? { userId: context.userId } : {}),
-      ...(context?.requestId !== null && context?.requestId !== '' ? { requestId: context?.requestId } : {}),
-      ...(context?.sessionId !== null && context?.sessionId !== '' ? { sessionId: context?.sessionId } : {}),
+      ...(context?.requestId !== undefined && context.requestId !== '' ? { requestId: context.requestId } : {}),
+      ...(context?.sessionId !== undefined && context.sessionId !== '' ? { sessionId: context.sessionId } : {}),
       ...(info.duration !== undefined ? { duration: info.duration } : {}),
       ...(info.meta !== undefined ? { meta: info.meta } : {}),
       ...(info.error !== null && typeof info.error === 'object' && 'message' in info.error ? {
@@ -66,7 +66,7 @@ const logFormat = format.combine(
     };
 
     // Add trace context if available
-    if (context?.traceId !== null && context?.traceId !== '') {
+    if (context?.traceId !== undefined && context.traceId !== '') {
       (log as Record<string, unknown>).trace = {
         traceId: context?.traceId,
         spanId: context?.spanId,
@@ -135,7 +135,7 @@ export class StructuredLogger {
     logger.log(level, message, {
       meta,
       duration,
-      ...(meta?.error ? { error: meta.error } : {}),
+      ...(meta?.error !== undefined ? { error: meta.error } : {}),
     });
   }
 
@@ -224,15 +224,15 @@ export class StructuredLogger {
 export function correlationMiddleware(req: Request, res: Response, next: NextFunction): void {
   // Generate or extract correlation ID
   const correlationId =
-    (req.headers['x-correlation-id'] as string) ??
-    (req.headers['x-request-id'] as string) ??
+    (req.headers['x-correlation-id'] as string | undefined) ??
+    (req.headers['x-request-id'] as string | undefined) ??
     uuidv4();
 
   // Generate request ID
   const requestId = uuidv4();
 
   // Extract trace context if available
-  const traceId = (req.headers['x-trace-id'] as string) ?? uuidv4();
+  const traceId = (req.headers['x-trace-id'] as string | undefined) ?? uuidv4();
   const spanId = req.headers['x-span-id'] as string;
   const parentSpanId = req.headers['x-parent-span-id'] as string;
 
@@ -241,7 +241,7 @@ export function correlationMiddleware(req: Request, res: Response, next: NextFun
     correlationId,
     requestId,
     traceId,
-    spanId: spanId ?? uuidv4(),
+    spanId: spanId !== undefined ? spanId : uuidv4(),
     parentSpanId,
     startTime: performance.now(),
     userId: (req as Request & { user?: { id: number } }).user?.id,
@@ -291,7 +291,7 @@ export function correlationMiddleware(req: Request, res: Response, next: NextFun
  * Sanitize request body to remove sensitive data
  */
 function sanitizeBody(body: unknown): unknown {
-  if (!body || typeof body !== 'object') {
+  if (body === null || body === undefined || typeof body !== 'object') {
     return body;
   }
 
@@ -311,7 +311,7 @@ function sanitizeBody(body: unknown): unknown {
  * Sanitize headers to remove sensitive data
  */
 function sanitizeHeaders(headers: unknown): unknown {
-  if (!headers || typeof headers !== 'object') {
+  if (headers === null || headers === undefined || typeof headers !== 'object') {
     return headers;
   }
 

@@ -8,11 +8,12 @@
  * - E2E Tests: PostgreSQL to match production
  */
 
-import { PrismaClient } from '@teaching-engine/database';
+import { PrismaClient, Prisma } from '@teaching-engine/database';
 import { execSync } from 'child_process';
 import { resolve } from 'path';
 import { mkdirSync, existsSync, rmSync } from 'fs';
 import { randomBytes } from 'crypto';
+import { validateTableName, validateDatabaseName } from '../../../scripts/db-security-utils';
 
 export type TestDatabaseType = 'sqlite-memory' | 'sqlite-file' | 'postgresql';
 
@@ -144,7 +145,14 @@ export class RealTestDatabase {
     const dbName = urlParts.pop();
     const baseUrl = urlParts.join('/');
 
+    if (!dbName) {
+      throw new Error('Database name could not be extracted from URL');
+    }
+
     try {
+      // Validate database name to prevent SQL injection
+      const validatedDbName = validateDatabaseName(dbName);
+      
       // Connect to postgres database to create test database
       const adminClient = new PrismaClient({
         datasources: {
@@ -155,7 +163,8 @@ export class RealTestDatabase {
       });
 
       await adminClient.$connect();
-      await adminClient.$executeRawUnsafe(`CREATE DATABASE "${dbName}"`);
+      // Use Prisma.raw() for safe identifier interpolation
+      await adminClient.$executeRaw`CREATE DATABASE ${Prisma.raw(`"${validatedDbName}"`)}`;
       await adminClient.$disconnect();
     } catch (error: any) {
       // Database might already exist, which is fine
@@ -191,15 +200,19 @@ export class RealTestDatabase {
     try {
       // Clear all tables in reverse dependency order
       for (const table of tables.reverse()) {
-        await client.$executeRawUnsafe(`DELETE FROM "${table}"`);
+        // Validate table name to prevent SQL injection
+        const validatedTableName = validateTableName(table);
+        // Use Prisma.raw() for safe identifier interpolation
+        await client.$executeRaw`DELETE FROM ${Prisma.raw(`"${validatedTableName}"`)}`;
       }
 
       // Reset sequences/auto-increment
       if (this.config.type === 'postgresql') {
         for (const table of tables) {
-          await client.$executeRawUnsafe(
-            `ALTER SEQUENCE IF EXISTS "${table}_id_seq" RESTART WITH 1`
-          );
+          // Validate table name to prevent SQL injection
+          const validatedTableName = validateTableName(table);
+          // Use Prisma.raw() for safe identifier interpolation
+          await client.$executeRaw`ALTER SEQUENCE IF EXISTS ${Prisma.raw(`"${validatedTableName}_id_seq"`)} RESTART WITH 1`;
         }
       }
     } finally {
@@ -237,11 +250,13 @@ export class RealTestDatabase {
    */
   private async setForeignKeyConstraints(client: PrismaClient, enabled: boolean): Promise<void> {
     if (this.config.type === 'postgresql') {
-      await client.$executeRawUnsafe(
-        `SET session_replication_role = ${enabled ? 'origin' : 'replica'}`
-      );
+      // Use parameterized values for boolean-based settings
+      const role = enabled ? 'origin' : 'replica';
+      await client.$executeRaw`SET session_replication_role = ${Prisma.raw(role)}`;
     } else {
-      await client.$executeRawUnsafe(`PRAGMA foreign_keys = ${enabled ? 'ON' : 'OFF'}`);
+      // Use parameterized values for PRAGMA settings
+      const setting = enabled ? 'ON' : 'OFF';
+      await client.$executeRaw`PRAGMA foreign_keys = ${Prisma.raw(setting)}`;
     }
   }
 
@@ -354,7 +369,14 @@ export class RealTestDatabase {
     const dbName = urlParts.pop();
     const baseUrl = urlParts.join('/');
 
+    if (!dbName) {
+      throw new Error('Database name could not be extracted from URL');
+    }
+
     try {
+      // Validate database name to prevent SQL injection
+      const validatedDbName = validateDatabaseName(dbName);
+      
       const adminClient = new PrismaClient({
         datasources: {
           db: {
@@ -365,17 +387,17 @@ export class RealTestDatabase {
 
       await adminClient.$connect();
       
-      // Terminate existing connections
-      await adminClient.$executeRawUnsafe(`
+      // Terminate existing connections - use parameterized query for database name
+      await adminClient.$executeRaw`
         SELECT pg_terminate_backend(pid) 
         FROM pg_stat_activity 
-        WHERE datname = '${dbName}' AND pid <> pg_backend_pid()
-      `);
+        WHERE datname = ${validatedDbName} AND pid <> pg_backend_pid()
+      `;
       
-      // Drop database
-      await adminClient.$executeRawUnsafe(`DROP DATABASE IF EXISTS "${dbName}"`);
+      // Drop database - use Prisma.raw() for safe identifier interpolation
+      await adminClient.$executeRaw`DROP DATABASE IF EXISTS ${Prisma.raw(`"${validatedDbName}"`)}`;
       await adminClient.$disconnect();
-    } catch (_error) {
+    } catch (error) {
       console.error(`Failed to drop database ${dbName}:`, error);
     }
   }

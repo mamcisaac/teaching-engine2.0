@@ -117,13 +117,13 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
               if (get().isOnline) {
                 let url = '/api/etfo-lesson-plans';
                 const params = new URLSearchParams();
-                if (startDate != null && startDate != '') {
+                if (startDate != null && startDate !== '') {
 params.append('startDate', startDate);
 }
-                if (endDate != null && endDate != '') {
+                if (endDate != null && endDate !== '') {
 params.append('endDate', endDate);
 }
-                if (params.toString() != '') {
+                if (params.toString() !== '') {
 url += `?${params.toString()}`;
 }
 
@@ -296,7 +296,7 @@ url += `?${params.toString()}`;
 
                 set((state) => {
                   const index = state.lessonPlans.findIndex((p) => p.id === id);
-                  if (index != -1) {
+                  if (index !== -1) {
                     state.lessonPlans[index] = { ...state.lessonPlans[index], ...updatedLesson };
                   }
                   if (state.currentLesson?.id === id) {
@@ -308,7 +308,7 @@ url += `?${params.toString()}`;
                 // Update offline
                 set((state) => {
                   const index = state.lessonPlans.findIndex((p) => p.id === id);
-                  if (index != -1) {
+                  if (index !== -1) {
                     state.lessonPlans[index] = { ...state.lessonPlans[index], ...updatedLesson };
                   }
                   if (state.currentLesson?.id === id) {
@@ -347,7 +347,7 @@ url += `?${params.toString()}`;
                 await apiClient.delete(`/api/etfo-lesson-plans/${id}`);
 
                 set((state) => {
-                  state.lessonPlans = state.lessonPlans.filter((p) => p.id != id);
+                  state.lessonPlans = state.lessonPlans.filter((p) => p.id !== id);
                   if (state.currentLesson?.id === id) {
                     state.currentLesson = null;
                   }
@@ -356,7 +356,7 @@ url += `?${params.toString()}`;
               } else {
                 // Delete offline
                 set((state) => {
-                  state.lessonPlans = state.lessonPlans.filter((p) => p.id != id);
+                  state.lessonPlans = state.lessonPlans.filter((p) => p.id !== id);
                   if (state.currentLesson?.id === id) {
                     state.currentLesson = null;
                   }

@@ -8,9 +8,10 @@ import { z } from 'zod';
 
 import { logger } from '../logger';
 import { prisma } from '../prisma';
-import { safeJsonParse } from '../utils/type-guards';
 import { getUserId } from '../utils/authHelpers';
+import { safeJsonParse } from '../utils/type-guards';
 import { cuidSchema } from '../validation';
+
 import type { AuthenticatedRequest } from './base/middleware';
 const router = Router();
 
@@ -52,7 +53,7 @@ const csrfProtection = (
       return;
     }
 
-    const sourceUrl = origin ?? (referer !== null ? new URL(referer as string).origin : '');
+    const sourceUrl = origin ?? (referer !== null ? new URL(referer!).origin : '');
     if (!allowedOrigins.includes(sourceUrl)) {
       res.status(403).json({ error: 'CSRF protection: Invalid origin' });
       return;
@@ -130,7 +131,9 @@ const WeeklyPlannerStateSchema = z
 router.get('/state', async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
     const userId = getUserId(req, res);
-    if (!userId) return;
+    if (!userId) {
+return;
+}
 
     let plannerState = await prisma.weeklyPlannerState.findUnique({
       where: { userId },
@@ -191,7 +194,9 @@ router.put(
   async (req: AuthenticatedRequest, res: Response) => {
     try {
       const userId = getUserId(req, res);
-      if (!userId) return;
+      if (!userId) {
+return;
+}
 
       // Validate the request body
       const validationResult = WeeklyPlannerStateSchema.safeParse(req.body);
@@ -288,7 +293,9 @@ router.put(
 router.get('/week/:weekStart/state', async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
     const userId = getUserId(req, res);
-    if (!userId) return;
+    if (!userId) {
+return;
+}
     const weekStart = new Date(req.params.weekStart);
 
     if (isNaN(weekStart.getTime())) {
@@ -406,7 +413,9 @@ router.post(
   async (req: AuthenticatedRequest, res: Response) => {
     try {
       const userId = getUserId(req, res);
-      if (!userId) return;
+      if (!userId) {
+return;
+}
 
       const defaultState = {
         defaultView: 'week' as const,

@@ -5,6 +5,7 @@ import { logger } from '../logger';
 import { authMiddleware } from '../middleware/auth';
 import { metricsStore, getPerformanceSummary } from '../middleware/metrics';
 import { getUserId } from '../utils/authHelpers';
+
 import type { AuthenticatedRequest } from './base/middleware';
 
 const router = Router();

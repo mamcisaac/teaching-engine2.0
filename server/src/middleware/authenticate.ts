@@ -74,17 +74,17 @@ export function generateRefreshToken(userId: number): string {
 function extractToken(req: Request): string | null {
   // Check Authorization header
   const authHeader = req.headers.authorization;
-  if (authHeader !== null && authHeader !== undefined && authHeader.startsWith('Bearer ')) {
+  if (authHeader && authHeader.startsWith('Bearer ')) {
     return authHeader.substring(7);
   }
 
   // Check cookies
-  if (req.cookies.token !== null && req.cookies.token !== undefined && typeof req.cookies.token === 'string') {
+  if (req.cookies.token && typeof req.cookies.token === 'string') {
     return req.cookies.token;
   }
 
   // Check query parameter (for download links)
-  if (req.query.token !== null && req.query.token !== undefined && typeof req.query.token === 'string') {
+  if (req.query.token && typeof req.query.token === 'string') {
     return req.query.token;
   }
 

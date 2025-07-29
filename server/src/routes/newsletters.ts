@@ -11,6 +11,7 @@ import { z } from 'zod';
 import { prisma } from '../prisma';
 import { renderNewsletter } from '../services';
 import { getUserId } from '../utils/authHelpers';
+
 import type { AuthenticatedRequest } from './base/middleware';
 
 const log = debug('server:newsletter:routes');
@@ -29,7 +30,9 @@ router.post('/generate', (req: AuthenticatedRequest, res: Response): void => {
   void (async (): Promise<void> => {
     try {
     const userId = getUserId(req, res);
-    if (!userId) return;
+    if (!userId) {
+return;
+}
 
     const validation = generateNewsletterSchema.safeParse(req.body);
     if (!validation.success) {
@@ -78,7 +81,9 @@ router.get('/status', (req: AuthenticatedRequest, res: Response): void => {
   void (async (): Promise<void> => {
     try {
     const userId = getUserId(req, res);
-    if (!userId) return;
+    if (!userId) {
+return;
+}
 
     // Get count of recent lesson plans and reflections for preview
     const twoWeeksAgo = new Date(Date.now() - 14 * 24 * 60 * 60 * 1000);

@@ -16,17 +16,44 @@ interface ExtendedRequest extends Request {
 }
 
 /**
+ * Type guard to check if a request has been extended with logging properties
+ */
+function isExtendedRequest(req: Request): req is ExtendedRequest {
+  return 'requestId' in req && 'startTime' in req && 'logger' in req;
+}
+
+/**
+ * Safely get extended request properties with fallbacks
+ */
+function getExtendedRequest(req: Request): ExtendedRequest {
+  if (isExtendedRequest(req)) {
+    return req;
+  }
+  // If not extended, cast and add minimal defaults
+  // This should not happen in normal flow, but provides safety
+  const extendedReq = req as ExtendedRequest;
+  extendedReq.requestId = extendedReq.requestId ?? 'unknown';
+  extendedReq.startTime = extendedReq.startTime ?? Date.now();
+  extendedReq.logger = extendedReq.logger ?? logger;
+  return extendedReq;
+}
+
+/**
  * Request logging middleware that provides structured logging for all requests
  */
 export function requestLoggingMiddleware(req: Request, res: Response, next: NextFunction): void {
-  const extendedReq = req as ExtendedRequest;
-  // Generate unique request ID
+  // Generate unique request ID and timing
   const requestId = randomUUID();
   const startTime = performance.now();
 
-  // Add request ID and timing to request object
-  extendedReq.requestId = requestId;
-  extendedReq.startTime = startTime;
+  // Extend request object with logging properties
+  Object.assign(req, {
+    requestId,
+    startTime,
+  });
+  
+  // Now safely get the extended request
+  const extendedReq = getExtendedRequest(req);
 
   // Create child logger with request context
   extendedReq.logger = logger.child({
@@ -64,7 +91,7 @@ return;
     const duration = performance.now() - startTime;
 
     extendedReq.logger.apiResponse(
-      extendedReq as Record<string, unknown>,
+      extendedReq,
       res as unknown as Record<string, unknown>,
       duration,
       {
@@ -110,13 +137,23 @@ return;
     return originalSend.call(this, body);
   };
 
-  res.end = function (this: Response, ...args: unknown[]): Response {
+  // Override res.end to match all Express Response.end() signatures
+  res.end = function (this: Response, chunk?: any, encoding?: any, cb?: any): Response {
     logResponse();
     
-    // Forward all arguments to original method
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error - Complex Express method signature, let runtime handle it
-    return originalEnd.apply(this, args);
+    // Use type assertion to bypass strict typing and call original method with arguments
+    // This handles all Express Response.end overloads correctly at runtime
+    const originalMethod = originalEnd as any;
+    
+    if (arguments.length === 0) {
+      return originalMethod.call(this);
+    } else if (arguments.length === 1) {
+      return originalMethod.call(this, chunk);
+    } else if (arguments.length === 2) {
+      return originalMethod.call(this, chunk, encoding);
+    } 
+      return originalMethod.call(this, chunk, encoding, cb);
+    
   };
 
   // Handle request completion
@@ -235,8 +272,8 @@ export function errorLoggingMiddleware(
   _res: Response,
   next: NextFunction,
 ): void {
-  const extendedReq = req as ExtendedRequest;
-  const requestLogger = extendedReq.logger ?? logger;
+  const extendedReq = getExtendedRequest(req);
+  const requestLogger = extendedReq.logger;
 
   requestLogger.error(
     {
@@ -267,8 +304,8 @@ export function logSecurityEvent(
   event: string,
   details: Record<string, unknown> = {},
 ): void {
-  const extendedReq = req as ExtendedRequest;
-  const requestLogger = extendedReq.logger ?? logger;
+  const extendedReq = getExtendedRequest(req);
+  const requestLogger = extendedReq.logger;
 
   requestLogger.security(event, {
     ...details,
@@ -288,12 +325,12 @@ export function logBusinessOperation(
   operation: string,
   context: Record<string, unknown> = {},
 ): void {
-  const extendedReq = req as ExtendedRequest;
-  const requestLogger = extendedReq.logger ?? logger;
+  const extendedReq = getExtendedRequest(req);
+  const requestLogger = extendedReq.logger;
 
   requestLogger.business(operation, {
     ...context,
-    userId: (extendedReq.user as { id?: unknown }).id,
+    userId: extendedReq.user && typeof extendedReq.user === 'object' && 'id' in extendedReq.user ? (extendedReq.user as { id: unknown }).id : undefined,
     timestamp: new Date().toISOString(),
   });
 }
@@ -306,12 +343,12 @@ export function logAuditEvent(
   operation: string,
   details: Record<string, unknown> = {},
 ): void {
-  const extendedReq = req as ExtendedRequest;
-  const requestLogger = extendedReq.logger ?? logger;
+  const extendedReq = getExtendedRequest(req);
+  const requestLogger = extendedReq.logger;
 
   requestLogger.audit(operation, {
     ...details,
-    userId: (extendedReq.user as { id?: unknown }).id,
+    userId: extendedReq.user && typeof extendedReq.user === 'object' && 'id' in extendedReq.user ? (extendedReq.user as { id: unknown }).id : undefined,
     ip: (extendedReq.ip !== null && extendedReq.ip !== undefined && extendedReq.ip !== '') ? extendedReq.ip : extendedReq.connection.remoteAddress,
     timestamp: new Date().toISOString(),
   });

@@ -101,6 +101,83 @@ class ETFOLessonPlanService extends BaseService {
     super('ETFOLessonPlanService');
   }
 
+  private buildBasicFilters(filters: {
+    unitPlanId?: number;
+    isSubFriendly?: boolean;
+    assessmentType?: string;
+  }, userId: number): Prisma.ETFOLessonPlanWhereInput {
+    const where: Prisma.ETFOLessonPlanWhereInput = { userId };
+
+    if (filters.unitPlanId !== undefined) {
+      where.unitPlanId = String(filters.unitPlanId);
+    }
+    if (filters.isSubFriendly !== undefined) {
+      where.isSubFriendly = filters.isSubFriendly;
+    }
+    if (filters.assessmentType !== undefined && filters.assessmentType !== '') {
+      where.assessmentType = filters.assessmentType;
+    }
+
+    return where;
+  }
+
+  private addDateRangeFilter(
+    where: Prisma.ETFOLessonPlanWhereInput,
+    startDate?: Date,
+    endDate?: Date
+  ): void {
+    const dateWhere = optimizedQueries.createDateRangeWhere('date', startDate, endDate);
+    if (Object.keys(dateWhere).length > 0) {
+      Object.assign(where, dateWhere);
+    }
+  }
+
+  private addExpectationsFilter(
+    where: Prisma.ETFOLessonPlanWhereInput,
+    hasExpectations?: boolean
+  ): void {
+    if (hasExpectations !== undefined) {
+      if (hasExpectations) {
+        where.expectations = { some: {} };
+      } else {
+        where.expectations = { none: {} };
+      }
+    }
+  }
+
+  private buildOrderBy(sort?: string, order?: 'asc' | 'desc'): Record<string, 'asc' | 'desc'> | undefined {
+    return queryPerformance.createOptimizedSort(sort || 'date', order || 'asc', [
+      'date',
+      'title',
+      'duration',
+      'createdAt',
+    ]) as Record<string, 'asc' | 'desc'> | undefined;
+  }
+
+  private formatFindManyResult(
+    result: unknown,
+    limit: number,
+    offset: number
+  ): { lessonPlans: Record<string, unknown>[]; pagination: { total: number; limit: number; offset: number; hasMore: boolean } } {
+    if (!isObject(result) || !hasProperty(result, 'items') || !hasProperty(result, 'total')) {
+      throw new Error('Invalid query result structure');
+    }
+    
+    const { items: lessonPlans, total } = result;
+    const validatedLessonPlans = isArray(lessonPlans) ? lessonPlans as Record<string, unknown>[] : [];
+    const validatedTotal = typeof total === 'number' ? total : 0;
+    
+    return {
+      lessonPlans: validatedLessonPlans,
+      pagination: {
+        total: validatedTotal,
+        limit,
+        offset,
+        hasMore: offset + limit < validatedTotal,
+      },
+    };
+  }
+
   async findMany(
     filters: {
       unitPlanId?: number;
@@ -121,79 +198,27 @@ class ETFOLessonPlanService extends BaseService {
     },
     userId: number,
   ): Promise<{ lessonPlans: Record<string, unknown>[]; pagination: { total: number; limit: number; offset: number; hasMore: boolean } }> {
-    const {
-      unitPlanId,
-      startDate,
-      endDate,
-      isSubFriendly,
-      assessmentType,
-      hasExpectations,
-      limit,
-      offset,
-      sort,
-      order,
-    } = filters;
+    const { startDate, endDate, hasExpectations, limit = 10, offset = 0, sort, order } = filters;
 
-    const where: Prisma.ETFOLessonPlanWhereInput = { userId };
+    // Build where clause
+    const where = this.buildBasicFilters(filters, userId);
+    this.addDateRangeFilter(where, startDate, endDate);
+    this.addExpectationsFilter(where, hasExpectations);
 
-    if (unitPlanId !== undefined) {
-      where.unitPlanId = String(unitPlanId);
-    }
-    if (isSubFriendly !== undefined) {
-where.isSubFriendly = isSubFriendly;
-}
-    if (assessmentType !== undefined && assessmentType !== '') {
-      where.assessmentType = assessmentType;
-    }
+    // Build order by
+    const orderBy = this.buildOrderBy(sort, order);
 
-    // Date filtering using optimized range function
-    const dateWhere = optimizedQueries.createDateRangeWhere('date', startDate, endDate);
-    if (Object.keys(dateWhere).length > 0) {
-      Object.assign(where, dateWhere);
-    }
-
-    // Filter by lessons with curriculum expectations
-    if (hasExpectations !== undefined) {
-      if (hasExpectations) {
-        where.expectations = { some: {} };
-      } else {
-        where.expectations = { none: {} };
-      }
-    }
-
-    // Sorting with validation
-    const orderBy = queryPerformance.createOptimizedSort(sort || 'date', order || 'asc', [
-      'date',
-      'title',
-      'duration',
-      'createdAt',
-    ]);
-
+    // Execute query
     const result = await queryPerformance.monitorQuery('etfoLessonPlan.findMany', () =>
       optimizedQueries.paginatedQuery(prisma.eTFOLessonPlan, where, {
-        limit: limit ?? 10,
-        offset: offset ?? 0,
+        limit,
+        offset,
         orderBy,
         include: optimizedIncludes.etfoLessonPlan,
       }),
     );
 
-    if (!isObject(result) || !hasProperty(result, 'items') || !hasProperty(result, 'total')) {
-      throw new Error('Invalid query result structure');
-    }
-    const { items: lessonPlans, total } = result;
-
-    const validatedLessonPlans = isArray(lessonPlans) ? lessonPlans as Record<string, unknown>[] : [];
-    
-    return {
-      lessonPlans: validatedLessonPlans,
-      pagination: {
-        total,
-        limit: limit ?? 10,
-        offset: offset ?? 0,
-        hasMore: (offset ?? 0) + (limit ?? 10) < total,
-      },
-    };
+    return this.formatFindManyResult(result, limit, offset);
   }
 
   async findById(id: string, userId: number): Promise<Record<string, unknown> | null> {
@@ -205,11 +230,10 @@ where.isSubFriendly = isSubFriendly;
     );
   }
 
-  async create(data: ETFOLessonPlanCreateData, userId: number): Promise<Record<string, unknown>> {
-    // Verify user owns the unit plan
+  private async validateUnitPlanOwnership(unitPlanId: string, userId: number): Promise<void> {
     const unitPlan = await prisma.unitPlan.findFirst({
       where: {
-        id: data.unitPlanId,
+        id: unitPlanId,
         longRangePlan: { userId },
       },
     });
@@ -217,15 +241,12 @@ where.isSubFriendly = isSubFriendly;
     if (!unitPlan) {
       throw new Error('Unit plan not found or access denied');
     }
+  }
 
-    // Safe extraction of expectationIds with type checking
-    const expectationIds = hasProperty(data, 'expectationIds') && isArray(data.expectationIds) 
-      ? data.expectationIds.filter(id => isString(id))
-      : undefined;
-
-    // Create lesson plan data that matches Prisma schema
-    const baseData = {
+  private buildCreateBaseData(data: ETFOLessonPlanCreateData, userId: number): any {
+    return {
       title: data.title,
+      titleFr: data.titleFr,
       unitPlanId: data.unitPlanId,
       date: new Date(data.date),
       duration: data.duration ?? 60, // Default 60 minutes
@@ -239,7 +260,6 @@ where.isSubFriendly = isSubFriendly;
       learningGoalsFr: data.learningGoalsFr,
       materials: data.materials ? JSON.stringify(data.materials) : undefined,
       grouping: data.grouping,
-      titleFr: data.titleFr,
       accommodations: data.accommodations ? JSON.stringify(data.accommodations) : undefined,
       modifications: data.modifications ? JSON.stringify(data.modifications) : undefined,
       extensions: data.extensions ? JSON.stringify(data.extensions) : undefined,
@@ -249,18 +269,37 @@ where.isSubFriendly = isSubFriendly;
       subNotes: data.subNotes,
       userId,
     };
+  }
+
+  private buildCreateDataWithExpectations(baseData: any, expectationIds?: string[]): any {
+    if (!isNonEmptyArray(expectationIds)) {
+      return baseData;
+    }
+
+    return {
+      ...baseData,
+      expectations: {
+        create: expectationIds.map((expectationId) => ({
+          expectationId: String(expectationId),
+        })),
+      },
+    };
+  }
+
+  async create(data: ETFOLessonPlanCreateData, userId: number): Promise<Record<string, unknown>> {
+    // Verify user owns the unit plan
+    await this.validateUnitPlanOwnership(data.unitPlanId, userId);
+
+    // Safe extraction of expectationIds with type checking
+    const expectationIds = hasProperty(data, 'expectationIds') && isArray(data.expectationIds) 
+      ? data.expectationIds.filter(id => isString(id))
+      : undefined;
+
+    // Build base data
+    const baseData = this.buildCreateBaseData(data, userId);
 
     // Add expectations relationship if provided
-    const createData = isNonEmptyArray(expectationIds)
-        ? {
-            ...baseData,
-            expectations: {
-              create: expectationIds.map((expectationId) => ({
-                expectationId: String(expectationId),
-              })),
-            },
-          }
-        : baseData;
+    const createData = this.buildCreateDataWithExpectations(baseData, expectationIds);
 
     return prisma.eTFOLessonPlan.create({
       data: createData,
@@ -274,8 +313,7 @@ where.isSubFriendly = isSubFriendly;
     });
   }
 
-  async update(id: string, data: ETFOLessonPlanUpdateData, userId: number): Promise<Record<string, unknown>> {
-    // Verify ownership
+  private async validateLessonPlanOwnership(id: string, userId: number): Promise<void> {
     const lessonPlan = await prisma.eTFOLessonPlan.findFirst({
       where: { id, userId },
     });
@@ -283,126 +321,218 @@ where.isSubFriendly = isSubFriendly;
     if (!lessonPlan) {
       throw new Error('Lesson plan not found or access denied');
     }
+  }
 
-    // Safe extraction of expectationIds with type checking
-    const expectationIds = hasProperty(data, 'expectationIds') && isArray(data.expectationIds)
-      ? data.expectationIds.filter(id => isString(id))
-      : undefined;
-    
+  private extractExpectationIds(data: ETFOLessonPlanUpdateData): string[] | undefined {
+    return this.safelyExtractStringArray(data, 'expectationIds');
+  }
+
+  private safelyExtractStringArray(data: Record<string, unknown>, key: string): string[] | undefined {
+    if (!hasProperty(data, key) || !isArray(data[key])) {
+      return undefined;
+    }
+    return data[key].filter(id => isString(id));
+  }
+
+  private buildLessonPlanUpdateData(data: ETFOLessonPlanUpdateData): Partial<Prisma.ETFOLessonPlanUpdateInput> {
     // Create a safe copy without expectationIds
+    const updateData = this.sanitizeUpdateData(data);
+    
+    const baseUpdateData: Partial<Prisma.ETFOLessonPlanUpdateInput> = {};
+
+    // Apply field mappings using focused helper methods
+    this.mapBasicFields(updateData, baseUpdateData);
+    this.mapUnitPlanRelationship(updateData, baseUpdateData);
+    this.mapLessonStructureFields(updateData, baseUpdateData);
+    this.mapLearningGoalFields(updateData, baseUpdateData);
+    this.mapJsonArrayFields(updateData, baseUpdateData);
+    this.mapAssessmentFields(updateData, baseUpdateData);
+    this.mapSubstituteTeacherFields(updateData, baseUpdateData);
+    this.mapDateField(data, baseUpdateData);
+
+    return baseUpdateData;
+  }
+
+  private sanitizeUpdateData(data: ETFOLessonPlanUpdateData): ETFOLessonPlanUpdateData {
     const updateData = { ...data };
     if (hasProperty(updateData, 'expectationIds')) {
       delete (updateData as { expectationIds?: unknown }).expectationIds;
     }
+    return updateData;
+  }
 
-    // Create update data that matches Prisma schema
-    const baseUpdateData: Partial<Prisma.ETFOLessonPlanUpdateInput> = {};
+  private mapBasicFields(
+    updateData: ETFOLessonPlanUpdateData,
+    baseUpdateData: Partial<Prisma.ETFOLessonPlanUpdateInput>
+  ): void {
+    if (updateData.title !== undefined) baseUpdateData.title = updateData.title;
+    if (updateData.titleFr !== undefined) baseUpdateData.titleFr = updateData.titleFr;
+    if (updateData.duration !== undefined) baseUpdateData.duration = updateData.duration;
+    if (updateData.grouping !== undefined) baseUpdateData.grouping = updateData.grouping;
+  }
 
-    // Only include fields that are actually being updated
-    if (updateData.title !== undefined) {
-      baseUpdateData.title = updateData.title;
-    }
+  private mapUnitPlanRelationship(
+    updateData: ETFOLessonPlanUpdateData,
+    baseUpdateData: Partial<Prisma.ETFOLessonPlanUpdateInput>
+  ): void {
     if (updateData.unitPlanId !== undefined) {
-      baseUpdateData.unitPlan = {
-        connect: { id: updateData.unitPlanId }
-      };
+      baseUpdateData.unitPlan = { connect: { id: updateData.unitPlanId } };
     }
-    if (updateData.duration !== undefined) {
-      baseUpdateData.duration = updateData.duration;
-    }
-    if (updateData.mindsOn !== undefined) {
-      baseUpdateData.mindsOn = updateData.mindsOn;
-    }
-    if (updateData.mindsOnFr !== undefined) {
-      baseUpdateData.mindsOnFr = updateData.mindsOnFr;
-    }
-    if (updateData.action !== undefined) {
-      baseUpdateData.action = updateData.action;
-    }
-    if (updateData.actionFr !== undefined) {
-      baseUpdateData.actionFr = updateData.actionFr;
-    }
-    if (updateData.consolidation !== undefined) {
-      baseUpdateData.consolidation = updateData.consolidation;
-    }
-    if (updateData.consolidationFr !== undefined) {
-      baseUpdateData.consolidationFr = updateData.consolidationFr;
-    }
-    if (updateData.learningGoals !== undefined) {
-      baseUpdateData.learningGoals = updateData.learningGoals;
-    }
-    if (updateData.learningGoalsFr !== undefined) {
-      baseUpdateData.learningGoalsFr = updateData.learningGoalsFr;
-    }
+  }
+
+  private mapLessonStructureFields(
+    updateData: ETFOLessonPlanUpdateData,
+    baseUpdateData: Partial<Prisma.ETFOLessonPlanUpdateInput>
+  ): void {
+    // Three-part lesson structure
+    if (updateData.mindsOn !== undefined) baseUpdateData.mindsOn = updateData.mindsOn;
+    if (updateData.mindsOnFr !== undefined) baseUpdateData.mindsOnFr = updateData.mindsOnFr;
+    if (updateData.action !== undefined) baseUpdateData.action = updateData.action;
+    if (updateData.actionFr !== undefined) baseUpdateData.actionFr = updateData.actionFr;
+    if (updateData.consolidation !== undefined) baseUpdateData.consolidation = updateData.consolidation;
+    if (updateData.consolidationFr !== undefined) baseUpdateData.consolidationFr = updateData.consolidationFr;
+  }
+
+  private mapLearningGoalFields(
+    updateData: ETFOLessonPlanUpdateData,
+    baseUpdateData: Partial<Prisma.ETFOLessonPlanUpdateInput>
+  ): void {
+    if (updateData.learningGoals !== undefined) baseUpdateData.learningGoals = updateData.learningGoals;
+    if (updateData.learningGoalsFr !== undefined) baseUpdateData.learningGoalsFr = updateData.learningGoalsFr;
+  }
+
+  private mapJsonArrayFields(
+    updateData: ETFOLessonPlanUpdateData,
+    baseUpdateData: Partial<Prisma.ETFOLessonPlanUpdateInput>
+  ): void {
+    // JSON fields (arrays)
     if (updateData.materials !== undefined) {
-      baseUpdateData.materials = updateData.materials
-        ? JSON.stringify(updateData.materials)
-        : undefined;
-    }
-    if (updateData.grouping !== undefined) {
-      baseUpdateData.grouping = updateData.grouping;
-    }
-    if (updateData.titleFr !== undefined) {
-      baseUpdateData.titleFr = updateData.titleFr;
+      baseUpdateData.materials = updateData.materials ? JSON.stringify(updateData.materials) : undefined;
     }
     if (updateData.accommodations !== undefined) {
-      baseUpdateData.accommodations = updateData.accommodations
-        ? JSON.stringify(updateData.accommodations)
-        : undefined;
+      baseUpdateData.accommodations = updateData.accommodations ? JSON.stringify(updateData.accommodations) : undefined;
     }
     if (updateData.modifications !== undefined) {
-      baseUpdateData.modifications = updateData.modifications
-        ? JSON.stringify(updateData.modifications)
-        : undefined;
+      baseUpdateData.modifications = updateData.modifications ? JSON.stringify(updateData.modifications) : undefined;
     }
     if (updateData.extensions !== undefined) {
-      baseUpdateData.extensions = updateData.extensions
-        ? JSON.stringify(updateData.extensions)
-        : undefined;
+      baseUpdateData.extensions = updateData.extensions ? JSON.stringify(updateData.extensions) : undefined;
     }
-    if (updateData.assessmentType !== undefined) {
-      baseUpdateData.assessmentType = updateData.assessmentType;
-    }
-    if (updateData.assessmentNotes !== undefined) {
-      baseUpdateData.assessmentNotes = updateData.assessmentNotes;
-    }
-    if (updateData.isSubFriendly !== undefined) {
-      baseUpdateData.isSubFriendly = updateData.isSubFriendly;
-    }
-    if (updateData.subNotes !== undefined) {
-      baseUpdateData.subNotes = updateData.subNotes;
-    }
+  }
 
+  private mapAssessmentFields(
+    updateData: ETFOLessonPlanUpdateData,
+    baseUpdateData: Partial<Prisma.ETFOLessonPlanUpdateInput>
+  ): void {
+    if (updateData.assessmentType !== undefined) baseUpdateData.assessmentType = updateData.assessmentType;
+    if (updateData.assessmentNotes !== undefined) baseUpdateData.assessmentNotes = updateData.assessmentNotes;
+  }
+
+  private mapSubstituteTeacherFields(
+    updateData: ETFOLessonPlanUpdateData,
+    baseUpdateData: Partial<Prisma.ETFOLessonPlanUpdateInput>
+  ): void {
+    if (updateData.isSubFriendly !== undefined) baseUpdateData.isSubFriendly = updateData.isSubFriendly;
+    if (updateData.subNotes !== undefined) baseUpdateData.subNotes = updateData.subNotes;
+  }
+
+  private mapDateField(
+    data: ETFOLessonPlanUpdateData,
+    baseUpdateData: Partial<Prisma.ETFOLessonPlanUpdateInput>
+  ): void {
     // Handle date conversion with proper type checking
     if (hasProperty(data, 'date') && isString(data.date) && data.date !== '') {
       baseUpdateData.date = new Date(data.date);
     }
+  }
 
-    // Handle expectations relationship if provided
-    const updateInput =
-      Array.isArray(expectationIds)
-        ? {
-            ...baseUpdateData,
-            expectations: {
-              deleteMany: {},
-              create: expectationIds.map((expectationId) => ({
-                expectationId: String(expectationId),
-              })),
-            },
-          }
-        : baseUpdateData;
+  private buildUpdateInputWithExpectations(
+    baseUpdateData: Partial<Prisma.ETFOLessonPlanUpdateInput>,
+    expectationIds?: string[]
+  ): Partial<Prisma.ETFOLessonPlanUpdateInput> {
+    if (!this.hasValidExpectationIds(expectationIds)) {
+      return baseUpdateData;
+    }
 
+    return {
+      ...baseUpdateData,
+      expectations: this.buildExpectationRelationshipUpdate(expectationIds!),
+    };
+  }
+
+  private hasValidExpectationIds(expectationIds?: string[]): expectationIds is string[] {
+    return Array.isArray(expectationIds) && expectationIds.length > 0;
+  }
+
+  private buildExpectationRelationshipUpdate(expectationIds: string[]): Record<string, unknown> {
+    return {
+      deleteMany: {},
+      create: expectationIds.map((expectationId) => ({
+        expectationId: String(expectationId),
+      })),
+    };
+  }
+
+  async update(id: string, data: ETFOLessonPlanUpdateData, userId: number): Promise<Record<string, unknown>> {
+    // Perform all validation steps
+    await this.performUpdateValidation(id, data, userId);
+
+    // Process update data
+    const updateInput = this.processUpdateData(data);
+
+    // Execute update with proper response formatting
+    return this.executeUpdateQuery(id, updateInput);
+  }
+
+  private async performUpdateValidation(
+    id: string,
+    data: ETFOLessonPlanUpdateData,
+    userId: number
+  ): Promise<void> {
+    // Verify ownership
+    await this.validateLessonPlanOwnership(id, userId);
+
+    // Additional validation could be added here
+    this.validateUpdateData(data);
+  }
+
+  private validateUpdateData(data: ETFOLessonPlanUpdateData): void {
+    // Basic data validation - can be extended as needed
+    if (Object.keys(data).length === 0) {
+      throw new Error('Update data cannot be empty');
+    }
+  }
+
+  private processUpdateData(data: ETFOLessonPlanUpdateData): Partial<Prisma.ETFOLessonPlanUpdateInput> {
+    // Extract expectation IDs safely
+    const expectationIds = this.extractExpectationIds(data);
+
+    // Build update data
+    const baseUpdateData = this.buildLessonPlanUpdateData(data);
+
+    // Handle expectations relationship
+    return this.buildUpdateInputWithExpectations(baseUpdateData, expectationIds);
+  }
+
+  private async executeUpdateQuery(
+    id: string,
+    updateInput: Partial<Prisma.ETFOLessonPlanUpdateInput>
+  ): Promise<Record<string, unknown>> {
     return prisma.eTFOLessonPlan.update({
       where: { id },
       data: updateInput,
-      include: {
-        expectations: {
-          include: {
-            expectation: true,
-          },
+      include: this.getUpdateResponseIncludes(),
+    });
+  }
+
+  private getUpdateResponseIncludes(): Record<string, unknown> {
+    return {
+      expectations: {
+        include: {
+          expectation: true,
         },
       },
-    });
+    };
   }
 
   async delete(id: string, userId: number): Promise<boolean> {
@@ -472,7 +602,7 @@ where.isSubFriendly = isSubFriendly;
     return true;
   }
 
-  async createSubVersion(lessonPlanId: string, userId: number): Promise<unknown> {
+  private async validateOriginalLessonPlan(lessonPlanId: string, userId: number): Promise<any> {
     const originalLesson = await prisma.eTFOLessonPlan.findFirst({
       where: { id: lessonPlanId, userId },
       include: {
@@ -485,47 +615,58 @@ where.isSubFriendly = isSubFriendly;
       throw new Error('Lesson plan not found or access denied');
     }
 
-    return prisma.eTFOLessonPlan.create({
-      data: {
-        title: `${originalLesson.title} (Sub-Friendly)`,
-        titleFr: originalLesson.titleFr ? `${originalLesson.titleFr} (Sub-Friendly)` : undefined,
-        unitPlanId: originalLesson.unitPlanId,
-        userId,
-        date: originalLesson.date,
-        duration: originalLesson.duration,
-        mindsOn: originalLesson.mindsOn,
-        mindsOnFr: originalLesson.mindsOnFr,
-        action: originalLesson.action,
-        actionFr: originalLesson.actionFr,
-        consolidation: originalLesson.consolidation,
-        consolidationFr: originalLesson.consolidationFr,
-        learningGoals: originalLesson.learningGoals,
-        learningGoalsFr: originalLesson.learningGoalsFr,
-        materials: originalLesson.materials ?? undefined,
-        grouping: originalLesson.grouping,
-        accommodations: originalLesson.accommodations ?? undefined,
-        modifications: originalLesson.modifications ?? undefined,
-        extensions: originalLesson.extensions ?? undefined,
-        assessmentType: originalLesson.assessmentType,
-        assessmentNotes: originalLesson.assessmentNotes,
-        isSubFriendly: true,
-        subNotes:
-          'Auto-generated substitute-friendly version. Please review and customize as needed.',
-        expectations: {
-          create: originalLesson.expectations.map((exp) => ({
-            expectationId: exp.expectationId,
-          })) ?? [],
-        },
-        resources: {
-          create: originalLesson.resources.map((resource) => ({
-            title: resource.title,
-            url: resource.url,
-            type: resource.type,
-            content: resource.content,
-          })),
-        },
+    return originalLesson;
+  }
+
+  private buildSubFriendlyData(originalLesson: any, userId: number): any {
+    return {
+      title: `${originalLesson.title} (Sub-Friendly)`,
+      titleFr: originalLesson.titleFr ? `${originalLesson.titleFr} (Sub-Friendly)` : undefined,
+      unitPlanId: originalLesson.unitPlanId,
+      userId,
+      date: originalLesson.date,
+      duration: originalLesson.duration,
+      mindsOn: originalLesson.mindsOn,
+      mindsOnFr: originalLesson.mindsOnFr,
+      action: originalLesson.action,
+      actionFr: originalLesson.actionFr,
+      consolidation: originalLesson.consolidation,
+      consolidationFr: originalLesson.consolidationFr,
+      learningGoals: originalLesson.learningGoals,
+      learningGoalsFr: originalLesson.learningGoalsFr,
+      materials: originalLesson.materials ?? undefined,
+      grouping: originalLesson.grouping,
+      accommodations: originalLesson.accommodations ?? undefined,
+      modifications: originalLesson.modifications ?? undefined,
+      extensions: originalLesson.extensions ?? undefined,
+      assessmentType: originalLesson.assessmentType,
+      assessmentNotes: originalLesson.assessmentNotes,
+      isSubFriendly: true,
+      subNotes: 'Auto-generated substitute-friendly version. Please review and customize as needed.',
+      expectations: {
+        create: originalLesson.expectations.map((exp: any) => ({
+          expectationId: exp.expectationId,
+        })) ?? [],
       },
-    });
+      resources: {
+        create: originalLesson.resources.map((resource: any) => ({
+          title: resource.title,
+          url: resource.url,
+          type: resource.type,
+          content: resource.content,
+        })),
+      },
+    };
+  }
+
+  async createSubVersion(lessonPlanId: string, userId: number): Promise<unknown> {
+    // Validate and fetch original lesson plan
+    const originalLesson = await this.validateOriginalLessonPlan(lessonPlanId, userId);
+
+    // Build sub-friendly version data
+    const subFriendlyData = this.buildSubFriendlyData(originalLesson, userId);
+
+    return prisma.eTFOLessonPlan.create({ data: subFriendlyData });
   }
 
   async reschedule(
@@ -565,18 +706,11 @@ where.isSubFriendly = isSubFriendly;
     return updatedLesson;
   }
 
-  async duplicate(
-    duplicateData: {
-      lessonPlanId: string;
-      unitPlanId: string;
-      date?: string | Date;
-      title?: string;
-    },
-    userId: number,
-  ): Promise<unknown> {
-    const { lessonPlanId, unitPlanId, date, title } = duplicateData;
-
-    // Verify user owns both the source lesson plan and target unit plan
+  private async validateDuplicationSources(
+    lessonPlanId: string,
+    unitPlanId: string,
+    userId: number
+  ): Promise<{ sourceLessonPlan: any; targetUnitPlan: any }> {
     const [sourceLessonPlan, targetUnitPlan] = await Promise.all([
       prisma.eTFOLessonPlan.findFirst({
         where: { id: lessonPlanId, userId },
@@ -597,46 +731,82 @@ where.isSubFriendly = isSubFriendly;
       throw new Error('Source lesson plan or target unit plan not found');
     }
 
-    return prisma.eTFOLessonPlan.create({
-      data: {
-        title: title ?? `${sourceLessonPlan.title} (Copy)`,
-        titleFr: sourceLessonPlan.titleFr,
-        unitPlanId,
-        userId,
-        date: date !== undefined && date !== null ? new Date(date) : sourceLessonPlan.date,
-        duration: sourceLessonPlan.duration,
-        mindsOn: sourceLessonPlan.mindsOn,
-        mindsOnFr: sourceLessonPlan.mindsOnFr,
-        action: sourceLessonPlan.action,
-        actionFr: sourceLessonPlan.actionFr,
-        consolidation: sourceLessonPlan.consolidation,
-        consolidationFr: sourceLessonPlan.consolidationFr,
-        learningGoals: sourceLessonPlan.learningGoals,
-        learningGoalsFr: sourceLessonPlan.learningGoalsFr,
-        materials: sourceLessonPlan.materials ?? undefined,
-        grouping: sourceLessonPlan.grouping,
-        accommodations: sourceLessonPlan.accommodations ?? undefined,
-        modifications: sourceLessonPlan.modifications ?? undefined,
-        extensions: sourceLessonPlan.extensions ?? undefined,
-        assessmentType: sourceLessonPlan.assessmentType,
-        assessmentNotes: sourceLessonPlan.assessmentNotes,
-        isSubFriendly: sourceLessonPlan.isSubFriendly,
-        subNotes: sourceLessonPlan.subNotes,
-        expectations: {
-          create: sourceLessonPlan.expectations.map((exp) => ({
-            expectationId: exp.expectationId,
-          })) ?? [],
-        },
-        resources: {
-          create: sourceLessonPlan.resources.map((resource) => ({
-            title: resource.title,
-            url: resource.url,
-            type: resource.type,
-            content: resource.content,
-          })),
-        },
+    return { sourceLessonPlan, targetUnitPlan };
+  }
+
+  private buildDuplicateCreateData(
+    sourceLessonPlan: any,
+    unitPlanId: string,
+    userId: number,
+    options: { date?: string | Date; title?: string }
+  ): any {
+    const { date, title } = options;
+
+    return {
+      title: title ?? `${sourceLessonPlan.title} (Copy)`,
+      titleFr: sourceLessonPlan.titleFr,
+      unitPlanId,
+      userId,
+      date: date !== undefined && date !== null ? new Date(date) : sourceLessonPlan.date,
+      duration: sourceLessonPlan.duration,
+      mindsOn: sourceLessonPlan.mindsOn,
+      mindsOnFr: sourceLessonPlan.mindsOnFr,
+      action: sourceLessonPlan.action,
+      actionFr: sourceLessonPlan.actionFr,
+      consolidation: sourceLessonPlan.consolidation,
+      consolidationFr: sourceLessonPlan.consolidationFr,
+      learningGoals: sourceLessonPlan.learningGoals,
+      learningGoalsFr: sourceLessonPlan.learningGoalsFr,
+      materials: sourceLessonPlan.materials ?? undefined,
+      grouping: sourceLessonPlan.grouping,
+      accommodations: sourceLessonPlan.accommodations ?? undefined,
+      modifications: sourceLessonPlan.modifications ?? undefined,
+      extensions: sourceLessonPlan.extensions ?? undefined,
+      assessmentType: sourceLessonPlan.assessmentType,
+      assessmentNotes: sourceLessonPlan.assessmentNotes,
+      isSubFriendly: sourceLessonPlan.isSubFriendly,
+      subNotes: sourceLessonPlan.subNotes,
+      expectations: {
+        create: sourceLessonPlan.expectations.map((exp: any) => ({
+          expectationId: exp.expectationId,
+        })) ?? [],
       },
+      resources: {
+        create: sourceLessonPlan.resources.map((resource: any) => ({
+          title: resource.title,
+          url: resource.url,
+          type: resource.type,
+          content: resource.content,
+        })),
+      },
+    };
+  }
+
+  async duplicate(
+    duplicateData: {
+      lessonPlanId: string;
+      unitPlanId: string;
+      date?: string | Date;
+      title?: string;
+    },
+    userId: number,
+  ): Promise<unknown> {
+    const { lessonPlanId, unitPlanId, date, title } = duplicateData;
+
+    // Validate sources
+    const { sourceLessonPlan } = await this.validateDuplicationSources(
+      lessonPlanId,
+      unitPlanId,
+      userId
+    );
+
+    // Build create data
+    const createData = this.buildDuplicateCreateData(sourceLessonPlan, unitPlanId, userId, {
+      date,
+      title,
     });
+
+    return prisma.eTFOLessonPlan.create({ data: createData });
   }
 }
 
@@ -695,58 +865,104 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
     };
   }
 
+  private validateAuthenticationForList(req: AuthenticatedRequest, res: Response): number | null {
+    const { userId } = req;
+    if (!userId) {
+      res.status(401).json({ error: 'User not authenticated' });
+      return null;
+    }
+    return userId;
+  }
+
+  private parseAndValidateListQuery(req: AuthenticatedRequest): {
+    unitPlanId?: string;
+    startDate?: string;
+    endDate?: string;
+    isSubFriendly?: boolean;
+    assessmentType?: 'diagnostic' | 'formative' | 'summative';
+    hasExpectations?: boolean;
+    limit: number;
+    offset: number;
+    sortBy: 'date' | 'title' | 'createdAt' | 'duration';
+    sortOrder: 'asc' | 'desc';
+  } {
+    const schemas = this.getValidationSchemas();
+    const querySchema = schemas.query as z.ZodSchema<{
+      unitPlanId?: string;
+      startDate?: string;
+      endDate?: string;
+      isSubFriendly?: boolean;
+      assessmentType?: 'diagnostic' | 'formative' | 'summative';
+      hasExpectations?: boolean;
+      limit: number;
+      offset: number;
+      sortBy: 'date' | 'title' | 'createdAt' | 'duration';
+      sortOrder: 'asc' | 'desc';
+    }>;
+    return querySchema.parse(req.query);
+  }
+
+  private convertFiltersForService(filters: {
+    sortBy: string;
+    sortOrder: string;
+    startDate?: string;
+    endDate?: string;
+    unitPlanId?: string;
+    [key: string]: unknown;
+  }): {
+    unitPlanId?: number;
+    startDate?: Date;
+    endDate?: Date;
+    isSubFriendly?: boolean;
+    assessmentType?: string;
+    hasExpectations?: boolean;
+    limit?: number;
+    offset?: number;
+    sort?: string;
+    order?: 'asc' | 'desc';
+  } {
+    const { sortBy, sortOrder, startDate, endDate, unitPlanId, ...filterBase } = filters;
+    return {
+      ...filterBase,
+      ...(startDate && { startDate: new Date(startDate) }),
+      ...(endDate && { endDate: new Date(endDate) }),
+      ...(unitPlanId && { unitPlanId: parseInt(String(unitPlanId), 10) }),
+      // Convert sortBy/sortOrder to sort/order for service
+      sort: sortBy,
+      order: sortOrder,
+    } as {
+      unitPlanId?: number;
+      startDate?: Date;
+      endDate?: Date;
+      isSubFriendly?: boolean;
+      assessmentType?: string;
+      hasExpectations?: boolean;
+      limit?: number;
+      offset?: number;
+      sort?: string;
+      order?: 'asc' | 'desc';
+    };
+  }
+
   protected async handleList(
     req: AuthenticatedRequest,
     res: Response,
     next: NextFunction,
   ): Promise<void> {
     try {
-      const {userId} = req;
-      if (!userId) {
-        res.status(401).json({ error: 'User not authenticated' });
-        return;
-      }
-      const schemas = this.getValidationSchemas();
-      const querySchema = schemas.query as z.ZodSchema<{
-        unitPlanId?: string;
-        startDate?: string;
-        endDate?: string;
-        isSubFriendly?: boolean;
-        assessmentType?: 'diagnostic' | 'formative' | 'summative';
-        hasExpectations?: boolean;
-        limit: number;
-        offset: number;
-        sortBy: 'date' | 'title' | 'createdAt' | 'duration';
-        sortOrder: 'asc' | 'desc';
-      }>;
-      const filters = querySchema.parse(req.query);
+      // Validate authentication
+      const userId = this.validateAuthenticationForList(req, res);
+      if (!userId) return;
 
-      // Convert string dates to Date objects and fix field names for service
-      const { sortBy, sortOrder, startDate, endDate, unitPlanId, ...filterBase } = filters;
-      const convertedFilters = {
-        ...filterBase,
-        ...(startDate && { startDate: new Date(startDate) }),
-        ...(endDate && { endDate: new Date(endDate) }),
-        ...(unitPlanId && { unitPlanId: parseInt(String(unitPlanId), 10) }),
-        // Convert sortBy/sortOrder to sort/order for service
-        sort: sortBy,
-        order: sortOrder,
-      };
+      // Parse and validate query parameters
+      const filters = this.parseAndValidateListQuery(req);
 
-      const result = await this.lessonPlanService.findMany(convertedFilters as {
-        unitPlanId?: number;
-        startDate?: Date;
-        endDate?: Date;
-        isSubFriendly?: boolean;
-        assessmentType?: string;
-        hasExpectations?: boolean;
-        limit?: number;
-        offset?: number;
-        sort?: string;
-        order?: 'asc' | 'desc';
-      }, userId);
+      // Convert filters for service layer
+      const convertedFilters = this.convertFiltersForService(filters);
+
+      // Execute query and return result
+      const result = await this.lessonPlanService.findMany(convertedFilters, userId);
       res.json(result);
-      return;
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Unknown error';
       this.logger.error(`Error in ${this.routeName} list:`, message);

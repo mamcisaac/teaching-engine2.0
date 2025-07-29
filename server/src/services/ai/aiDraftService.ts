@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { AIServiceRequestData } from '../../types/routes';
 import { BaseService } from '../base/BaseService';
 
@@ -87,7 +86,7 @@ export class AIDraftService extends BaseService {
     };
   }
 
-  generatePlanSuggestions(planType: string, _existingContent: any): string[] {
+  generatePlanSuggestions(planType: string, _existingContent: unknown): string[] {
     this.logger.info('Generating plan suggestions');
 
     const suggestions: Record<string, string[]> = {

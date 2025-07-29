@@ -6,7 +6,7 @@ import { beforeAll, afterAll } from '@jest/globals';
 // Global setup for tests
 beforeAll(async () => {
   // Ensure SQLite doesn't immediately error when the database is busy
-  await prisma.$queryRawUnsafe('PRAGMA busy_timeout = 20000');
+  await prisma.$queryRaw`PRAGMA busy_timeout = 20000`;
 });
 
 afterAll(async () => {

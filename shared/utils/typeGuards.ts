@@ -213,3 +213,134 @@ export async function validateAsync<T>(
     };
   }
 }
+
+// Domain-specific type guards for teaching engine
+
+// AI Suggestion type guard
+export interface AISuggestion {
+  type: 'goals' | 'bigIdeas' | 'activities' | 'materials' | 'assessments' | 'reflections';
+  suggestions: string[];
+  rationale?: string;
+}
+
+export function isAISuggestion(value: unknown): value is AISuggestion {
+  if (!isObject(value)) {
+    return false;
+  }
+  
+  const validTypes = ['goals', 'bigIdeas', 'activities', 'materials', 'assessments', 'reflections'];
+  
+  return (
+    hasProperty(value, 'type') && 
+    isString(value.type) && 
+    validTypes.includes(value.type) &&
+    hasProperty(value, 'suggestions') && 
+    isArrayOf(value.suggestions, isString) &&
+    (!hasProperty(value, 'rationale') || isOptional(value.rationale, isString))
+  );
+}
+
+// Event handler type guards for React events
+export function isReactEvent(value: unknown): value is { target: unknown } {
+  return isObject(value) && hasProperty(value, 'target');
+}
+
+export function isInputEvent(value: unknown): value is { target: { value: string } } {
+  return (
+    isReactEvent(value) && 
+    isObject(value.target) && 
+    hasProperty(value.target, 'value') && 
+    isString(value.target.value)
+  );
+}
+
+export function isSelectEvent(value: unknown): value is { target: { value: string; checked?: boolean } } {
+  return (
+    isReactEvent(value) && 
+    isObject(value.target) && 
+    hasProperty(value.target, 'value') && 
+    isString(value.target.value)
+  );
+}
+
+// Curriculum data type guards
+export interface CurriculumExpectation {
+  id: string;
+  code: string;
+  description: string;
+  content: string;
+}
+
+export function isCurriculumExpectation(value: unknown): value is CurriculumExpectation {
+  return (
+    isObject(value) &&
+    hasProperty(value, 'id') && isString(value.id) &&
+    hasProperty(value, 'code') && isString(value.code) &&
+    hasProperty(value, 'description') && isString(value.description) &&
+    hasProperty(value, 'content') && isString(value.content)
+  );
+}
+
+// Lesson Plan type guards
+export interface LessonPlan {
+  id?: string;
+  title: string;
+  date: string | Date;
+  duration: number;
+  expectations?: string[];
+  [key: string]: unknown;
+}
+
+export function isLessonPlan(value: unknown): value is LessonPlan {
+  return (
+    isObject(value) &&
+    hasProperty(value, 'title') && isString(value.title) &&
+    hasProperty(value, 'date') && (isString(value.date) || value.date instanceof Date) &&
+    hasProperty(value, 'duration') && isValidNumber(value.duration) &&
+    (!hasProperty(value, 'expectations') || isOptional(value.expectations, (arr): arr is string[] => isArrayOf(arr, isString)))
+  );
+}
+
+// Unit Plan type guards
+export interface UnitPlan {
+  id?: string;
+  title: string;
+  subject: string;
+  grade: number;
+  [key: string]: unknown;
+}
+
+export function isUnitPlan(value: unknown): value is UnitPlan {
+  return (
+    isObject(value) &&
+    hasProperty(value, 'title') && isString(value.title) &&
+    hasProperty(value, 'subject') && isString(value.subject) &&
+    hasProperty(value, 'grade') && isValidNumber(value.grade)
+  );
+}
+
+// School Info type guards
+export interface SchoolInfo {
+  name?: string;
+  board?: string;
+  [key: string]: unknown;
+}
+
+export function isSchoolInfo(value: unknown): value is SchoolInfo {
+  return (
+    isObject(value) &&
+    (!hasProperty(value, 'name') || isOptional(value.name, isString)) &&
+    (!hasProperty(value, 'board') || isOptional(value.board, isString))
+  );
+}
+
+// Date/Time validation
+export function isValidDateString(value: unknown): value is string {
+  if (!isString(value)) return false;
+  const date = new Date(value);
+  return !isNaN(date.getTime());
+}
+
+export function isDateLike(value: unknown): value is Date | string {
+  return value instanceof Date || isValidDateString(value);
+}

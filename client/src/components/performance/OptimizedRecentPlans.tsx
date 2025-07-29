@@ -133,20 +133,20 @@ const PlanItem = memo(
                   <span className={cn('text-xs text-gray-500', compact && 'text-xs')}>
                     {config.label}
                   </span>
-                  {(plan.subject && plan.subject !== '') && (
+                  {(plan.subject != null && plan.subject !== '') && (
                     <>
                       <span className="text-xs text-gray-400">•</span>
                       <span className="text-xs text-gray-500">{plan.subject}</span>
                     </>
                   )}
-                  {(plan.grade && !isNaN(plan.grade) && plan.grade > 0) && (
+                  {(plan.grade != null && !isNaN(plan.grade) && plan.grade > 0) && (
                     <>
                       <span className="text-xs text-gray-400">•</span>
                       <span className="text-xs text-gray-500">Grade {plan.grade}</span>
                     </>
                   )}
                 </div>
-                {(plan.parentTitle && plan.parentTitle !== '') && (
+                {(plan.parentTitle != null && plan.parentTitle !== '') && (
                   <p className="text-xs text-gray-500 mt-0.5">in {plan.parentTitle}</p>
                 )}
               </div>

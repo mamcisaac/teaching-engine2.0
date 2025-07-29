@@ -192,7 +192,7 @@ return;
       style={infiniteScroll ? { maxHeight: '600px' } : undefined}
     >
       {/* Progress indicator */}
-      {(total !== null && total !== undefined && !isNaN(total) && total > 0) && (
+      {(total !== undefined && !isNaN(total) && total > 0) && (
         <div className="mb-4 text-sm text-gray-500">
           Showing {items.length} of {total} items
           {items.length < total && ` (${((items.length / total) * 100).toFixed(1)}% loaded)`}
@@ -235,7 +235,7 @@ return;
       {!hasMore && items.length > 0 && (
         <div className="mt-6 text-center">
           <div className="text-sm text-gray-500 py-4 border-t">
-            {(total !== null && total !== undefined && !isNaN(total) && total > 0) ? `All ${total} items loaded` : 'All items loaded'}
+            {(total !== undefined && !isNaN(total) && total > 0) ? `All ${total} items loaded` : 'All items loaded'}
           </div>
         </div>
       )}

@@ -1,7 +1,8 @@
-import { PrismaClient } from '@teaching-engine/database';
+import { PrismaClient, Prisma } from '@teaching-engine/database';
 import path from 'path';
 import bcrypt from 'bcryptjs';
 import dotenv from 'dotenv';
+import { validateTableName } from './db-security-utils';
 
 // Load environment variables
 dotenv.config();
@@ -47,9 +48,13 @@ async function clearDatabase() {
 
   for (const { name } of tableNames) {
     try {
-      await prisma.$executeRawUnsafe(`DELETE FROM \`${name}\`;`);
+      // Validate table name to prevent SQL injection
+      const validatedTableName = validateTableName(name);
+      
+      // Use Prisma.raw() for safe identifier interpolation
+      await prisma.$executeRaw`DELETE FROM ${Prisma.raw(`"${validatedTableName}"`)}`;
       console.log(`  ✅ Cleared table: ${name}`);
-    } catch (_error) {
+    } catch (error) {
       console.error(
         `  ❌ Error clearing table ${name}:`,
         error instanceof Error ? error.message : String(error),

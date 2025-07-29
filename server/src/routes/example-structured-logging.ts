@@ -8,9 +8,10 @@ import { Router } from 'express';
 
 import { authenticate } from '../middleware/authenticate';
 import { prisma } from '../prisma';
+import { getUserId } from '../utils/authHelpers';
 import { structuredLogger, PerformanceLogger } from '../utils/logger-migration';
 import { withLoggingContext } from '../utils/structuredLogger';
-import { getUserId } from '../utils/authHelpers';
+
 import type { AuthenticatedRequest } from './base/middleware';
 
 const router = Router();
@@ -20,7 +21,9 @@ const router = Router();
  */
 router.get('/api/example/basic', authenticate, async (req: AuthenticatedRequest, res: Response) => {
   const userId = getUserId(req, res);
-  if (!userId) return;
+  if (!userId) {
+return;
+}
 
   // Log the incoming request with context
   structuredLogger.info('Processing example request', {
@@ -97,7 +100,9 @@ router.post('/api/example/batch', authenticate, async (req: AuthenticatedRequest
   const batchId = `batch-${Date.now()}`;
 
   const userId = getUserId(req, res);
-  if (!userId) return;
+  if (!userId) {
+return;
+}
 
   // Create child logger with batch context
   const batchLogger = structuredLogger.child({
@@ -189,7 +194,9 @@ router.get('/api/example/stream', authenticate, async (req: AuthenticatedRequest
   const streamId = `stream-${Date.now()}`;
   
   const userId = getUserId(req, res);
-  if (!userId) return;
+  if (!userId) {
+return;
+}
   
   const streamLogger = structuredLogger.child({ streamId, userId });
 

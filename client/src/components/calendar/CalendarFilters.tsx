@@ -2,11 +2,7 @@ import { X } from 'lucide-react';
 
 import { Button } from '../ui/Button';
 
-interface CalendarFilter {
-  subjects: string[];
-  eventTypes: string[];
-  showWeekends: boolean;
-}
+import type { CalendarFilter, CalendarEventType } from './types';
 
 interface CalendarFiltersProps {
   filters: CalendarFilter;
@@ -14,7 +10,7 @@ interface CalendarFiltersProps {
   availableSubjects: string[];
 }
 
-const EVENT_TYPE_OPTIONS = [
+const EVENT_TYPE_OPTIONS: { value: CalendarEventType; label: string }[] = [
   { value: 'lesson', label: 'Lessons' },
   { value: 'unit-boundary', label: 'Unit Milestones' },
   { value: 'holiday', label: 'Holidays' },
@@ -35,7 +31,7 @@ export function CalendarFilters({
     onFiltersChange({ ...filters, subjects: newSubjects });
   };
 
-  const handleEventTypeToggle = (eventType: string): void => {
+  const handleEventTypeToggle = (eventType: CalendarEventType): void => {
     const newEventTypes = filters.eventTypes.includes(eventType)
       ? filters.eventTypes.filter(t => t !== eventType)
       : [...filters.eventTypes, eventType];

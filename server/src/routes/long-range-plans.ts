@@ -6,8 +6,9 @@ import { logger } from '../logger';
 import type { Prisma } from '../prisma';
 import { prisma } from '../prisma';
 import { generateLongRangePlanDraft, generatePlanSuggestions } from '../services/ai/aiDraftService';
-import { validate } from '../validation';
 import { getUserId } from '../utils/authHelpers';
+import { validate } from '../validation';
+
 import type { AuthenticatedRequest } from './base/middleware';
 const router = Router();
 
@@ -38,7 +39,9 @@ const longRangePlanUpdateSchema = longRangePlanCreateSchema.partial();
 router.get('/', async (req: AuthenticatedRequest, res: Response) => {
   try {
     const userId = getUserId(req, res);
-    if (!userId) return;
+    if (!userId) {
+return;
+}
 
     const { academicYear, subject, grade } = req.query;
 
@@ -77,7 +80,9 @@ where.grade = Number(grade);
 router.get('/:id', async (req: AuthenticatedRequest, res: Response) => {
   try {
     const userId = getUserId(req, res);
-    if (!userId) return;
+    if (!userId) {
+return;
+}
 
     const plan = await prisma.longRangePlan.findFirst({
       where: {
@@ -123,7 +128,9 @@ router.get('/:id', async (req: AuthenticatedRequest, res: Response) => {
 router.post('/', validate(longRangePlanCreateSchema), async (req: AuthenticatedRequest, res: Response) => {
   try {
     const userId = getUserId(req, res);
-    if (!userId) return;
+    if (!userId) {
+return;
+}
 
     const { expectationIds, themes, ...planData } = req.body;
 
@@ -195,7 +202,9 @@ router.post('/', validate(longRangePlanCreateSchema), async (req: AuthenticatedR
 router.put('/:id', validate(longRangePlanUpdateSchema), async (req: AuthenticatedRequest, res: Response) => {
   try {
     const userId = getUserId(req, res);
-    if (!userId) return;
+    if (!userId) {
+return;
+}
 
     const { expectationIds, themes, ...updateData } = req.body;
 
@@ -268,7 +277,9 @@ router.put('/:id', validate(longRangePlanUpdateSchema), async (req: Authenticate
 router.delete('/:id', async (req: AuthenticatedRequest, res: Response) => {
   try {
     const userId = getUserId(req, res);
-    if (!userId) return;
+    if (!userId) {
+return;
+}
 
     // Verify ownership and check for dependencies
     const plan = await prisma.longRangePlan.findFirst({
@@ -304,7 +315,9 @@ router.delete('/:id', async (req: AuthenticatedRequest, res: Response) => {
 router.post('/ai-draft', async (req: AuthenticatedRequest, res: Response) => {
   try {
     const userId = getUserId(req, res);
-    if (!userId) return;
+    if (!userId) {
+return;
+}
 
     const { expectationIds, subject, grade, academicYear } = req.body;
 
@@ -344,7 +357,9 @@ router.post('/ai-draft', async (req: AuthenticatedRequest, res: Response) => {
 router.post('/:id/ai-suggestions', async (req: AuthenticatedRequest, res: Response) => {
   try {
     const userId = getUserId(req, res);
-    if (!userId) return;
+    if (!userId) {
+return;
+}
 
     const plan = await prisma.longRangePlan.findFirst({
       where: { id: req.params.id, userId },

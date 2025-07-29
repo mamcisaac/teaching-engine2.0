@@ -265,22 +265,22 @@ class DaybookService extends BaseService {
 
     const where: Prisma.DaybookEntryWhereInput = { userId };
 
-    if (startDate !== null && startDate !== undefined && endDate !== undefined) {
+    if (startDate && endDate) {
       where.date = {
         gte: new Date(startDate),
         lte: new Date(endDate),
       };
-    } else if (startDate !== null && startDate !== undefined) {
+    } else if (startDate) {
       where.date = { gte: new Date(startDate) };
-    } else if (endDate !== null && endDate !== undefined) {
+    } else if (endDate) {
       where.date = { lte: new Date(endDate) };
     }
-    if (lessonPlanId !== null) {
+    if (lessonPlanId) {
       where.lessonPlanId = String(lessonPlanId);
     }
 
     // Subject filtering through lesson plan relationship
-    if (subject !== null && subject !== '') {
+    if (subject && subject !== '') {
       where.lessonPlan = {
         unitPlan: {
           longRangePlan: {
@@ -470,7 +470,7 @@ orderBy.createdAt = order;
 
     const subjectBreakdown = recentEntries.reduce<Record<string, number>>(
       (acc: Record<string, number>, entry) => {
-        const subject = entry.lessonPlan?.unitPlan?.longRangePlan?.subject ?? 'Unknown';
+        const subject = entry.lessonPlan?.unitPlan.longRangePlan.subject ?? 'Unknown';
         acc[subject] = (acc[subject] ?? 0) + 1;
         return acc;
       },
@@ -480,7 +480,7 @@ orderBy.createdAt = order;
     // Transform subject breakdown into subjectInsights
     const subjectInsights = Object.entries(subjectBreakdown).map(([subject, count]) => {
       const subjectEntries = recentEntries.filter(
-        entry => (entry.lessonPlan?.unitPlan?.longRangePlan?.subject ?? 'Unknown') === subject
+        entry => (entry.lessonPlan?.unitPlan.longRangePlan.subject ?? 'Unknown') === subject
       );
       const subjectAvgRating = subjectEntries.length > 0
         ? subjectEntries.reduce((sum, entry) => sum + (entry.overallRating ?? 0), 0) / subjectEntries.length
@@ -612,7 +612,7 @@ export class DaybookEntriesRouteHandler extends BaseRouteHandler {
         order: sortOrder,
       };
 
-      const result = await this.daybookService.findMany(convertedFilters as { startDate?: Date | undefined; endDate?: Date | undefined; lessonPlanId?: number | undefined; subject?: string | undefined; limit?: number | undefined; offset?: number | undefined; sort?: string | undefined; order?: "asc" | "desc" | undefined; }, userId as number);
+      const result = await this.daybookService.findMany(convertedFilters as { startDate?: Date | undefined; endDate?: Date | undefined; lessonPlanId?: number | undefined; subject?: string | undefined; limit?: number | undefined; offset?: number | undefined; sort?: string | undefined; order?: "asc" | "desc" | undefined; }, userId!);
       res.json(result);
       return;
     } catch (_error) {

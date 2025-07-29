@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * LLM Service - Large Language Model operations for Teaching Engine 2.0
  * Handles OpenAI integration and content generation

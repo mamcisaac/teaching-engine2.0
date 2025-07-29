@@ -4,6 +4,7 @@ import { Router } from 'express';
 import { logger } from '../logger';
 import { prisma } from '../prisma';
 import { getUserId } from '../utils/authHelpers';
+
 import type { AuthenticatedRequest } from './base/middleware';
 const router = Router();
 
@@ -14,7 +15,9 @@ const router = Router();
 router.get('/progress', async (req: AuthenticatedRequest, res: Response) => {
   try {
     const userId = getUserId(req, res);
-    if (!userId) return;
+    if (!userId) {
+return;
+}
 
     // Get curriculum expectations progress
     const totalExpectations = await prisma.curriculumExpectation.count({

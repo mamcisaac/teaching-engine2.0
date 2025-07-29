@@ -7,6 +7,7 @@ import { z } from 'zod';
 import { logger } from '../logger';
 import { authMiddleware } from '../middleware/auth';
 import { getUserId } from '../utils/authHelpers';
+
 import type { AuthenticatedRequest } from './base/middleware';
 const router = Router();
 
@@ -43,7 +44,9 @@ const asyncMiddleware = (fn: (req: AuthenticatedRequest, res: Response, next: Ne
 router.get('/', asyncMiddleware(authMiddleware), asyncMiddleware(async (req: AuthenticatedRequest, res: Response, _next: NextFunction) => {
   try {
     const userId = getUserId(req, res);
-    if (!userId) return;
+    if (!userId) {
+return;
+}
     
     const includePublic = getSafeBooleanValue(req.query.includePublic);
 
@@ -88,7 +91,9 @@ router.get('/:collectionId', asyncMiddleware(authMiddleware), asyncMiddleware(as
 
     try {
     const userId = getUserId(req, res);
-    if (!userId) return;
+    if (!userId) {
+return;
+}
     
     const { collectionId } = req.params;
 
@@ -149,7 +154,9 @@ router.post('/', authMiddleware, asyncMiddleware(async (req: AuthenticatedReques
 
     try {
     const userId = getUserId(req, res);
-    if (!userId) return;
+    if (!userId) {
+return;
+}
     
     const data = createCollectionSchema.parse(req.body);
 
@@ -190,7 +197,9 @@ router.put('/:collectionId', authMiddleware, asyncMiddleware(async (req: Authent
 
     try {
     const userId = getUserId(req, res);
-    if (!userId) return;
+    if (!userId) {
+return;
+}
     
     const { collectionId } = req.params;
     const data = updateCollectionSchema.parse(req.body);

@@ -156,7 +156,7 @@ export class TemplateOrchestrator extends BaseService {
    */
   public async listTemplates(type?: string): Promise<Template[]> {
     if (type !== null && type !== '') {
-      return this.registry.listTemplatesByProvider(type as string);
+      return this.registry.listTemplatesByProvider(type!);
     }
     return this.registry.listAllTemplates();
   }

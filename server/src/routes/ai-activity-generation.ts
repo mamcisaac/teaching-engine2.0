@@ -7,6 +7,7 @@ import { logger } from '../logger';
 import { authMiddleware } from '../middleware/auth';
 import { AIActivityGeneratorService } from '../services/aiActivityGeneratorService';
 import { getUserId } from '../utils/authHelpers';
+
 import type { AuthenticatedRequest } from './base/middleware';
 const log = debug('server:ai-activity:error');
 
@@ -202,7 +203,9 @@ router.post('/save', asyncMiddleware(authMiddleware), asyncMiddleware(async (req
 
     // Save the generated activity
     const userId = getUserId(req, res);
-    if (!userId) return;
+    if (!userId) {
+return;
+}
     
     const savedActivity = await aiGenerator.saveGeneratedActivity(
       activityWithDefaults,

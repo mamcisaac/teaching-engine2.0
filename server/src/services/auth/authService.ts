@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { hash, compare } from 'bcryptjs';
 
 import { BaseService } from '../base/BaseService';

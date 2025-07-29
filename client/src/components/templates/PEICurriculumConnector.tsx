@@ -257,7 +257,7 @@ export function PEICurriculumConnector({
                 <Book className="h-5 w-5 text-blue-600" />
                 <div>
                   <h3 className="font-semibold">{alignment.subject}</h3>
-                  {alignment.strand !== null && alignment.strand !== '' && <p className="text-sm text-gray-600">{alignment.strand}</p>}
+                  {alignment.strand && alignment.strand !== '' && <p className="text-sm text-gray-600">{alignment.strand}</p>}
                 </div>
               </div>
               <div className="flex items-center gap-2">

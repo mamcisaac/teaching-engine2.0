@@ -34,7 +34,7 @@ import { AuthenticationError, ValidationError, ConflictError, AppError } from '.
 
 // Environment validation
 const {JWT_SECRET} = process.env;
-if (JWT_SECRET === undefined || JWT_SECRET === null) {
+if (!JWT_SECRET) {
   throw new Error('JWT_SECRET environment variable is required');
 }
 // TypeScript now knows JWT_SECRET is defined, but we need to help it
@@ -348,7 +348,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
       refreshToken = generateRefreshToken(user.id);
 
       logger.info(
-        { userId: user.id, hasTokens: accessToken !== undefined && accessToken !== null && accessToken !== '' && refreshToken !== undefined && refreshToken !== null && refreshToken !== '' },
+        { userId: user.id, hasTokens: accessToken && accessToken !== '' && refreshToken && refreshToken !== '' },
         'Tokens generated successfully',
       );
     } catch (error: unknown) {

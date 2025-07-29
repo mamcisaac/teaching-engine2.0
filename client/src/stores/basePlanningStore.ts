@@ -210,8 +210,8 @@ function detectConflicts(
   const localTimestamp = localData.lastModified ?? localData.updatedAt;
   const serverTimestamp = serverData.lastModified ?? serverData.updatedAt;
   
-  if (localTimestamp != null && localTimestamp != undefined && 
-      serverTimestamp != null && serverTimestamp != undefined) {
+  if (localTimestamp !== null && localTimestamp !== undefined && 
+      serverTimestamp !== null && serverTimestamp !== undefined) {
     const localTime = new Date(localTimestamp as string | number | Date).getTime();
     const serverTime = new Date(serverTimestamp as string | number | Date).getTime();
     
@@ -262,7 +262,7 @@ async function resolveConflicts(
           ))).map(item => 
             typeof item === 'string' && item.startsWith('{') ? safeJsonParse(item, {}) : item
           ) as unknown;
-        } else if (localData[key] != serverData[key]) {
+        } else if (localData[key] !== serverData[key]) {
           // For scalar values, prefer local
           merged[key] = localData[key];
         }
@@ -298,7 +298,7 @@ export function createAutoSave(
   let timeout: NodeJS.Timeout | null = null;
   
   return () => {
-    if (timeout != null) {
+    if (timeout !== null) {
       clearTimeout(timeout);
     }
     
@@ -306,7 +306,7 @@ export function createAutoSave(
       const performSave = async (): Promise<void> => {
         const state = store.getState();
         
-        if (state.hasOfflineChanges && state.isSaving != true) {
+        if (state.hasOfflineChanges && state.isSaving !== true) {
           try {
             await saveFunction();
           } catch (error) {

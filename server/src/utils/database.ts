@@ -1,5 +1,6 @@
 import { Prisma } from '@prisma/client';
 import { measureDatabaseQuery } from './performance';
+import { validateFieldName } from '../../../scripts/db-security-utils';
 
 // Type definitions for better type safety
 type PrismaModel = {
@@ -37,7 +38,7 @@ export const dbUtils = {
     return { skip, take };
   },
 
-  // Sorting helpers
+  // Sorting helpers with enhanced security validation
   getSortingParams: (
     sortBy?: string,
     sortOrder: 'asc' | 'desc' = 'asc',
@@ -47,38 +48,68 @@ export const dbUtils = {
       return undefined;
     }
 
-    return { [sortBy]: sortOrder };
+    try {
+      // Validate the field name using security utilities
+      const validatedFieldName = validateFieldName(sortBy, allowedFields);
+      return { [validatedFieldName]: sortOrder };
+    } catch (error) {
+      // Log security violation but don't expose details
+      console.warn(`Security violation: Invalid sort field attempted: ${sortBy}`);
+      return undefined;
+    }
   },
 
-  // Date range query builder
-  buildDateRangeQuery: (fieldName: string, from?: Date | string, to?: Date | string) => {
-    const conditions: { gte?: Date; lte?: Date } = {};
+  // Date range query builder with field validation
+  buildDateRangeQuery: (fieldName: string, from?: Date | string, to?: Date | string, allowedFields?: string[]) => {
+    try {
+      // Validate field name for security
+      const validatedFieldName = validateFieldName(fieldName, allowedFields);
+      
+      const conditions: { gte?: Date; lte?: Date } = {};
 
-    if (from) {
-      conditions.gte = new Date(from);
+      if (from) {
+        conditions.gte = new Date(from);
+      }
+
+      if (to) {
+        conditions.lte = new Date(to);
+      }
+
+      return Object.keys(conditions).length > 0 ? { [validatedFieldName]: conditions } : {};
+    } catch (error) {
+      console.warn(`Security violation: Invalid date range field attempted: ${fieldName}`);
+      return {};
     }
-
-    if (to) {
-      conditions.lte = new Date(to);
-    }
-
-    return Object.keys(conditions).length > 0 ? { [fieldName]: conditions } : {};
   },
 
-  // Search query builder
-  buildSearchQuery: (searchTerm: string, fields: string[]): Prisma.JsonObject => {
+  // Search query builder with field validation
+  buildSearchQuery: (searchTerm: string, fields: string[], allowedFields?: string[]): Prisma.JsonObject => {
     if (!searchTerm || fields.length === 0) {
       return {};
     }
 
-    return {
-      OR: fields.map((field) => ({
-        [field]: {
-          contains: searchTerm,
-          mode: 'insensitive' as const,
-        },
-      })),
-    };
+    try {
+      // Validate all field names for security
+      const validatedFields = fields.map(field => {
+        // If allowedFields is provided, validate against it
+        if (allowedFields && !allowedFields.includes(field)) {
+          throw new Error(`Field not in allowlist: ${field}`);
+        }
+        return validateFieldName(field, allowedFields);
+      });
+
+      return {
+        OR: validatedFields.map((field) => ({
+          [field]: {
+            contains: searchTerm,
+            mode: 'insensitive' as const,
+          },
+        })),
+      };
+    } catch (error) {
+      console.warn(`Security violation: Invalid search fields attempted: ${fields.join(', ')}`);
+      return {};
+    }
   },
 
   // User-scoped query builder
@@ -89,15 +120,28 @@ export const dbUtils = {
     };
   },
 
-  // Active record query
+  // Active record query with field validation
   buildActiveQuery: (
     isActiveField: string = 'isActive',
     additionalConditions: Prisma.JsonObject = {},
+    allowedFields?: string[],
   ) => {
-    return {
-      ...additionalConditions,
-      [isActiveField]: true,
-    };
+    try {
+      // Validate the field name for security
+      const validatedFieldName = validateFieldName(isActiveField, allowedFields);
+      
+      return {
+        ...additionalConditions,
+        [validatedFieldName]: true,
+      };
+    } catch (error) {
+      console.warn(`Security violation: Invalid active field attempted: ${isActiveField}`);
+      // Return a safe default that won't match anything
+      return {
+        ...additionalConditions,
+        __invalid_field__: true,
+      };
+    }
   },
 };
 
@@ -295,21 +339,14 @@ export const findOrCreate = async <T>(
 export const optimizedCount = async (
   model: PrismaModel,
   where: Prisma.JsonObject = {},
-  prisma: PrismaClientLike,
+  _prisma: PrismaClientLike,
 ): Promise<number> => {
-  // Use raw query for better performance on large tables
-  const tableName = model.name ?? model.constructor.name;
+  // SECURITY: Don't use raw queries with dynamic table names from model.name/constructor.name
+  // These can be manipulated and lead to SQL injection vulnerabilities
+  // Instead, always fall back to the safe Prisma count method
   
-  // For safety, use parameterized queries when dealing with dynamic where clauses
-  // This is a simplified version - in production, you'd want more robust SQL building
-  if (Object.keys(where).length === 0) {
-    const result = await prisma.$queryRaw<Array<{ count: bigint }>>`
-      SELECT COUNT(*) as count FROM ${Prisma.raw(tableName)}
-    `;
-    return Number(result[0]?.count ?? 0);
-  }
-
-  // For complex where clauses, fall back to the regular count method
+  // For production safety, we always use the Prisma count method which is safe
+  // Raw query optimization is disabled due to security concerns with dynamic table names
   return model.count({ where });
 };
 
@@ -328,15 +365,26 @@ export const getConnectionInfo = async (prisma: PrismaClientLike): Promise<{
   tableCount: number;
   sizeBytes: number;
 }> => {
-  const [version, tables, size] = await Promise.all([
-    prisma.$queryRaw<Array<{ version: string }>>`SELECT sqlite_version() as version`,
-    prisma.$queryRaw<Array<{ name: string }>>`SELECT name FROM sqlite_master WHERE type='table'`,
-    prisma.$queryRaw<Array<{ size: number }>>`SELECT page_count * page_size as size FROM pragma_page_count(), pragma_page_size()`,
-  ]);
+  try {
+    // Use safe, parameterized queries with no dynamic content
+    const [version, tables, size] = await Promise.all([
+      prisma.$queryRaw<Array<{ version: string }>>`SELECT sqlite_version() as version`,
+      prisma.$queryRaw<Array<{ name: string }>>`SELECT name FROM sqlite_master WHERE type = 'table'`,
+      prisma.$queryRaw<Array<{ size: number }>>`SELECT page_count * page_size as size FROM pragma_page_count(), pragma_page_size()`,
+    ]);
 
-  return {
-    version: version[0]?.version ?? 'unknown',
-    tableCount: tables.length,
-    sizeBytes: size[0]?.size ?? 0,
-  };
+    return {
+      version: version[0]?.version ?? 'unknown',
+      tableCount: tables.length,
+      sizeBytes: size[0]?.size ?? 0,
+    };
+  } catch (error) {
+    // Return safe defaults if queries fail
+    console.warn('Failed to get connection info:', error);
+    return {
+      version: 'unknown',
+      tableCount: 0,
+      sizeBytes: 0,
+    };
+  }
 };

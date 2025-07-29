@@ -14,10 +14,10 @@ import { ImportStatus } from '../../types/prisma-types';
 import { BaseService } from '../base/BaseService';
 
 import { CurriculumExportService } from './CurriculumExportService';
-import { CurriculumSearchService } from './CurriculumSearchService';
-import { CurriculumStatsService } from './CurriculumStatsService';
 import type { ExportOptions } from './CurriculumExportService';
+import { CurriculumSearchService } from './CurriculumSearchService';
 import type { SearchOptions } from './CurriculumSearchService';
+import { CurriculumStatsService } from './CurriculumStatsService';
 import type { ParsedCurriculum } from './parsers/CurriculumParser';
 import { ParserFactory } from './parsers/ParserFactory';
 import { CurriculumTransformer } from './transformers/CurriculumTransformer';
@@ -328,9 +328,9 @@ export class CurriculumImportOrchestrator extends BaseService {
         existingExpectations,
         transformOptions,
       );
-      const toCreate = transformResult.toCreate as Array<Omit<CurriculumExpectation, "id" | "createdAt" | "updatedAt">>;
-      const toUpdate = transformResult.toUpdate as Array<{ id: string; data: Partial<Omit<CurriculumExpectation, "id" | "createdAt">> }>;
-      const toDeactivate = transformResult.toDeactivate;
+      const toCreate = transformResult.toCreate as Omit<CurriculumExpectation, "id" | "createdAt" | "updatedAt">[];
+      const toUpdate = transformResult.toUpdate as { id: string; data: Partial<Omit<CurriculumExpectation, "id" | "createdAt">> }[];
+      const {toDeactivate} = transformResult;
 
       // Create new expectations
       if (toCreate.length > 0) {

@@ -14,6 +14,7 @@ import { RepositoryFactory } from '../repositories/RepositoryFactory';
 // Authentication middleware available if needed
 import { validatePassword } from '../services/auth/authService';
 import { getUserId } from '../utils/authHelpers';
+
 import type { AuthenticatedRequest } from './base/middleware';
 
 // Use global Express Request type with user: { id: number; email: string }
@@ -33,7 +34,9 @@ export function userRoutes(prisma: PrismaClient): Router {
     '/profile',
     asyncHandler(async (req: AuthenticatedRequest, res: Response): Promise<void> => {
       const userId = getUserId(req, res);
-      if (!userId) return;
+      if (!userId) {
+return;
+}
 
       const user = await userRepository.findByIdWithoutPassword(userId);
 
@@ -52,7 +55,9 @@ export function userRoutes(prisma: PrismaClient): Router {
     '/password',
     asyncHandler(async (req: AuthenticatedRequest, res: Response): Promise<void> => {
       const userId = getUserId(req, res);
-      if (!userId) return;
+      if (!userId) {
+return;
+}
       const { currentPassword, newPassword } = updatePasswordSchema.parse(req.body);
 
       // Validate new password

@@ -62,10 +62,10 @@ export const bilingualSchemas = {
     options?: BilingualSchemaOptions & { min?: number; max?: number },
   ): Record<string, z.ZodTypeAny> => {
     let schema = z.string();
-    if (options?.min !== undefined && options.min !== null && options.min > 0) {
+    if (options?.min !== undefined && options.min > 0) {
 schema = schema.min(options.min);
 }
-    if (options?.max !== undefined && options.max !== null && options.max > 0) {
+    if (options?.max !== undefined && options.max > 0) {
 schema = schema.max(options.max);
 }
     return createBilingualSchema(fieldName, schema, options);
@@ -77,10 +77,10 @@ schema = schema.max(options.max);
     options?: BilingualSchemaOptions & { min?: number; max?: number },
   ): Record<string, z.ZodTypeAny> => {
     let schema = z.string().min(1, `${fieldName} is required`);
-    if (options?.min !== undefined && options.min !== null && options.min > 0) {
+    if (options?.min !== undefined && options.min > 0) {
 schema = schema.min(options.min);
 }
-    if (options?.max !== undefined && options.max !== null && options.max > 0) {
+    if (options?.max !== undefined && options.max > 0) {
 schema = schema.max(options.max);
 }
     return createBilingualSchema(fieldName, schema, options);
@@ -159,19 +159,19 @@ export function createBilingualValidation(
         const fr = data[`${fieldName}Fr`];
 
         if (options?.requireAll === true) {
-          return (base !== null && base !== '') && (en !== null && en !== '') && (fr !== null && fr !== '');
+          return (base !== undefined && base !== '') && (en !== undefined && en !== '') && (fr !== undefined && fr !== '');
         }
 
         if (options?.requireAtLeastOne === true) {
-          return (base !== null && base !== '') || (en !== null && en !== '') || (fr !== null && fr !== '');
+          return (base !== undefined && base !== '') || (en !== undefined && en !== '') || (fr !== undefined && fr !== '');
         }
 
         return true;
       },
       {
-        message: options?.requireAll
+        message: options?.requireAll === true
           ? `All versions of ${fieldName} are required`
-          : options?.requireAtLeastOne
+          : options?.requireAtLeastOne === true
             ? `At least one version of ${fieldName} is required`
             : undefined,
       },
