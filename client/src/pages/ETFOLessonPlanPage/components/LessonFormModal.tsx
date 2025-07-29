@@ -1,3 +1,4 @@
+import type { UseMutationResult } from '@tanstack/react-query';
 import { Sparkles, RefreshCw, Save } from 'lucide-react';
 import React from 'react';
 
@@ -6,6 +7,7 @@ import { AutoSaveIndicator } from '../../../components/ui/AutoSaveIndicator';
 import { Button } from '../../../components/ui/Button';
 import { MobileOptimizedForm } from '../../../components/ui/MobileOptimizedForm';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../../components/ui/tabs';
+import type { UnitPlan, ETFOLessonPlan } from '../../../hooks/useETFOPlanning';
 import { useAILessonPlanIntegration } from '../hooks/useAILessonPlanIntegration';
 import { useArrayFieldHandlers } from '../hooks/useArrayFieldHandlers';
 import type { ETFOLessonPlanFormData } from '../hooks/useETFOLessonPlanForm';
@@ -18,6 +20,11 @@ import { MaterialsTab } from './tabs/MaterialsTab';
 import { OverviewTab } from './tabs/OverviewTab';
 import { ThreePartLessonTab } from './tabs/ThreePartLessonTab';
 
+// Create a type that satisfies both UnitPlan and OverviewTab's requirements
+type UnitPlanWithIndexSignature = UnitPlan & {
+  [key: string]: unknown;
+};
+
 interface LessonFormModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -27,9 +34,9 @@ interface LessonFormModalProps {
   updateFormData: (updates: Partial<ETFOLessonPlanFormData>) => void;
   resetForm: () => void;
   onSubmit: (e: React.FormEvent) => Promise<void>;
-  unitPlan?: any;
-  createLesson: any;
-  updateLesson: any;
+  unitPlan?: UnitPlanWithIndexSignature;
+  createLesson: UseMutationResult<ETFOLessonPlan, Error, Partial<ETFOLessonPlan> & { expectationIds?: string[] }, unknown>;
+  updateLesson: UseMutationResult<ETFOLessonPlan, Error, { id: string; data: Partial<ETFOLessonPlan> & { expectationIds?: string[] } }, unknown>;
   // Auto-save related props
   hasUnsavedChanges?: boolean;
   isSaving?: boolean;

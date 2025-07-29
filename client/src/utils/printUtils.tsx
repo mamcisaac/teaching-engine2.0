@@ -6,9 +6,6 @@
  * the clean, modular components internally.
  */
 
-// Re-export everything from the modular printing system
-export * from './printing';
-
 // Import specific functions for the utility functions below
 import { 
   generateUnitPlanHTML,
@@ -37,7 +34,7 @@ export type {
  * @param html - HTML content to print
  * @param filename - Optional filename (not used but kept for API compatibility)
  */
-export const printHTML = (html: string, filename = 'document'): void => {
+export const printHTML = (html: string, _filename = 'document'): void => {
   const printWindow = window.open('', '_blank');
   if (printWindow) {
     printWindow.document.write(html);

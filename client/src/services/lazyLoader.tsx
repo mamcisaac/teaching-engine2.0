@@ -273,10 +273,27 @@ class LazyLoader {
       loading: this.loadingQueue.size
     };
   }
+
+  // Cleanup method to disconnect observer and clear caches
+  cleanup(): void {
+    if (this.intersectionObserver !== null) {
+      this.intersectionObserver.disconnect();
+      this.intersectionObserver = null;
+    }
+    this.documentCache.clear();
+    this.loadingQueue.clear();
+  }
 }
 
 // Export singleton instance
 export const lazyLoader = new LazyLoader();
+
+// Cleanup on page unload
+if (typeof window !== 'undefined') {
+  window.addEventListener('beforeunload', () => {
+    lazyLoader.cleanup();
+  });
+}
 
 // React hook for lazy loading
 export function useLazyDocument(documentId: string | null, options?: LoadOptions): { document: unknown; loading: boolean; error: Error | null; progress: number } {

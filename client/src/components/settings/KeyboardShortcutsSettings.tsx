@@ -11,6 +11,7 @@ import {
 import { Alert, AlertDescription } from '../ui/alert';
 import { Button } from '../ui/Button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '../ui/Dialog';
 import { Input } from '../ui/Input';
 import { Label } from '../ui/Label';
 import { Switch } from '../ui/Switch';
@@ -25,6 +26,7 @@ export const KeyboardShortcutsSettings: React.FC = (): React.ReactElement => {
     alt: false,
     shift: false,
   });
+  const [showResetDialog, setShowResetDialog] = useState(false);
 
   // Group shortcuts by category
   const shortcutsByCategory = shortcuts
@@ -88,11 +90,12 @@ export const KeyboardShortcutsSettings: React.FC = (): React.ReactElement => {
   };
 
   const resetAllShortcuts = (): void => {
-    if (
-      window.confirm('Are you sure you want to reset all keyboard shortcuts to their defaults?')
-    ) {
-      updatePreferences({ customShortcuts: {} });
-    }
+    setShowResetDialog(true);
+  };
+
+  const handleConfirmReset = (): void => {
+    updatePreferences({ customShortcuts: {} });
+    setShowResetDialog(false);
   };
 
   return (
@@ -276,6 +279,26 @@ export const KeyboardShortcutsSettings: React.FC = (): React.ReactElement => {
           </div>
         </CardContent>
       </Card>
+
+      {/* Reset Confirmation Dialog */}
+      <Dialog open={showResetDialog} onOpenChange={setShowResetDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Reset All Shortcuts</DialogTitle>
+            <DialogDescription>
+              Are you sure you want to reset all keyboard shortcuts to their defaults? This action cannot be undone.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button variant="secondary" onClick={() => setShowResetDialog(false)}>
+              Cancel
+            </Button>
+            <Button variant="danger" onClick={handleConfirmReset}>
+              Reset All
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

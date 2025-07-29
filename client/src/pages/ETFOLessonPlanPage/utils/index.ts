@@ -6,9 +6,6 @@
  * organized and maintainable.
  */
 
-// Re-export all constants for external use
-export * from './constants';
-
 // Re-export specific constants that are commonly used
 export {
   AUTO_SAVE_CONFIG,

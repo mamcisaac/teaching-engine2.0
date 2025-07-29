@@ -172,19 +172,37 @@ export const useUIStore = create<UIState>()(
         
         // Auto-hide toast after duration
         if (duration > 0) {
-          setTimeout(() => {
+          const timeoutId = setTimeout(() => {
             get().hideToast(id);
           }, duration);
+          
+          // Store timeout ID for cleanup in a WeakMap
+          if (!window.__toastTimeouts) {
+            window.__toastTimeouts = new Map();
+          }
+          window.__toastTimeouts.set(id, timeoutId);
         }
       },
       
       hideToast: (id: string): void => {
+        // Clear timeout if exists
+        if (window.__toastTimeouts?.has(id)) {
+          clearTimeout(window.__toastTimeouts.get(id));
+          window.__toastTimeouts.delete(id);
+        }
+        
         set((state) => {
           state.activeToasts = state.activeToasts.filter(toast => toast.id !== id);
         });
       },
       
       clearAllToasts: (): void => {
+        // Clear all toast timeouts
+        if (window.__toastTimeouts) {
+          window.__toastTimeouts.forEach((timeoutId) => clearTimeout(timeoutId));
+          window.__toastTimeouts.clear();
+        }
+        
         set((state) => {
           state.activeToasts = [];
         });
@@ -252,13 +270,30 @@ export const useUIStore = create<UIState>()(
 // Listen for system theme changes
 if (typeof window !== 'undefined') {
   const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-  mediaQuery.addEventListener('change', () => {
+  const handleThemeChange = (): void => {
     const state = useUIStore.getState();
     if (state.theme === 'system') {
       const newEffectiveTheme = getSystemTheme();
       useUIStore.setState({ effectiveTheme: newEffectiveTheme });
       document.documentElement.classList.remove('light', 'dark');
       document.documentElement.classList.add(newEffectiveTheme);
+    }
+  };
+  
+  mediaQuery.addEventListener('change', handleThemeChange);
+  
+  // Store cleanup function for when the module is unloaded
+  if (!window.__uiStoreCleanup) {
+    window.__uiStoreCleanup = [];
+  }
+  window.__uiStoreCleanup.push(() => {
+    mediaQuery.removeEventListener('change', handleThemeChange);
+  });
+  
+  // Add cleanup on page unload
+  window.addEventListener('beforeunload', () => {
+    if (window.__uiStoreCleanup) {
+      window.__uiStoreCleanup.forEach(cleanup => cleanup());
     }
   });
 }

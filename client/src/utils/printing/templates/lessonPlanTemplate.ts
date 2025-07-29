@@ -83,8 +83,8 @@ export function validateLessonPlan(lessonPlan: LessonPlan): string[] {
     errors.push('Lesson plan title is required');
   }
   
-  if (!lessonPlan.date) {
-    errors.push('Lesson date is required');
+  if (isNaN(lessonPlan.date.getTime())) {
+    errors.push('Lesson date must be valid');
   }
   
   if (!lessonPlan.duration || lessonPlan.duration <= 0) {

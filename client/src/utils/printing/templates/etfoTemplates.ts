@@ -5,14 +5,10 @@
  * using reusable components. Replaces the large repetitive template functions.
  */
 
-import { format } from 'date-fns';
-
 import { escapeHtml } from '../../sanitization';
 import { 
   createBaseHTMLDocument, 
-  createTeachingEngineFooter,
-  createGridLayout,
-  createInfoCard 
+  createTeachingEngineFooter
 } from '../components/baseTemplate';
 import { 
   getETFOStyles, 

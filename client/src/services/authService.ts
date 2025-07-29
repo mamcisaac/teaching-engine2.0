@@ -143,7 +143,7 @@ class AuthService implements AuthServiceInterface {
 
       if (data.tokens !== undefined) {
         this.setTokens(data.tokens);
-      } else if (data.accessToken != null && data.accessToken !== '') {
+      } else if (data.accessToken !== null && data.accessToken !== undefined && data.accessToken !== '') {
         // Current backend format
         this.setLegacyToken(data.accessToken);
       } else if (data.token !== undefined) {
@@ -191,7 +191,7 @@ class AuthService implements AuthServiceInterface {
   }
 
   private async _performTokenRefresh(): Promise<boolean> {
-    const baseURL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+    const baseURL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:3000';
 
     try {
       // Refresh token is now sent as HTTP-only cookie automatically
@@ -216,7 +216,7 @@ class AuthService implements AuthServiceInterface {
         } else if (data.token !== undefined) {
           this.setLegacyToken(data.token);
           return true;
-        } else if (data.accessToken != null && data.accessToken !== '') {
+        } else if (data.accessToken !== null && data.accessToken !== undefined && data.accessToken !== '') {
           this.setLegacyToken(data.accessToken);
           return true;
         }

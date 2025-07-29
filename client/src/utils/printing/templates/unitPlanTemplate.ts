@@ -85,15 +85,15 @@ export function validateUnitPlan(unitPlan: UnitPlan): string[] {
     errors.push('Unit plan title is required');
   }
   
-  if (!unitPlan.startDate) {
-    errors.push('Start date is required');
+  if (isNaN(unitPlan.startDate.getTime())) {
+    errors.push('Start date must be valid');
   }
   
-  if (!unitPlan.endDate) {
-    errors.push('End date is required');
+  if (isNaN(unitPlan.endDate.getTime())) {
+    errors.push('End date must be valid');
   }
   
-  if (unitPlan.startDate && unitPlan.endDate && unitPlan.startDate > unitPlan.endDate) {
+  if (unitPlan.startDate > unitPlan.endDate) {
     errors.push('Start date cannot be after end date');
   }
   

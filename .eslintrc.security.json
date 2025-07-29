@@ -1,0 +1,52 @@
+{
+  "extends": "./.eslintrc.strict.json",
+  "rules": {
+    // Security-critical rules
+    "no-console": "error",
+    "no-debugger": "error",
+    "no-alert": "error",
+    
+    // Prevent accidental data exposure
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-unsafe-assignment": "error",
+    "@typescript-eslint/no-unsafe-member-access": "error",
+    "@typescript-eslint/no-unsafe-call": "error",
+    "@typescript-eslint/no-unsafe-return": "error",
+    
+    // Enforce secure coding patterns
+    "no-eval": "error",
+    "no-implied-eval": "error",
+    "no-new-func": "error",
+    "no-script-url": "error",
+    "no-with": "error",
+    
+    // Prevent sensitive data in code
+    "no-inline-comments": "warn",
+    "no-warning-comments": ["warn", { 
+      "terms": ["todo", "fixme", "xxx", "hack", "password", "secret", "api-key", "apikey", "token"],
+      "location": "anywhere" 
+    }]
+  },
+  "overrides": [
+    {
+      "files": ["**/auth*.ts", "**/auth*.tsx", "**/payment*.ts", "**/payment*.tsx", "**/user*.ts", "**/user*.tsx"],
+      "rules": {
+        // Extra strict for auth/payment/user files
+        "no-console": "error",
+        "complexity": ["error", 10],
+        "max-depth": ["error", 3],
+        "max-lines": ["error", { "max": 300, "skipBlankLines": true, "skipComments": true }],
+        "max-lines-per-function": ["error", { "max": 50, "skipBlankLines": true, "skipComments": true }]
+      }
+    },
+    {
+      "files": ["**/test*.ts", "**/test*.tsx", "**/*.test.ts", "**/*.test.tsx", "**/*.spec.ts", "**/*.spec.tsx"],
+      "rules": {
+        // Relax rules for test files
+        "no-console": "off",
+        "max-lines": "off",
+        "max-lines-per-function": "off"
+      }
+    }
+  ]
+}

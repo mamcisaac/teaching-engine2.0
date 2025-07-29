@@ -425,7 +425,6 @@ describe('XSS Prevention Tests', () => {
           
           setError('');
           // Process valid URL
-          console.log('Valid URL:', url);
         };
 
         return (
@@ -479,7 +478,6 @@ describe('XSS Prevention Tests', () => {
         const handleSubmit = (e: React.FormEvent) => {
           e.preventDefault();
           // Form validation should happen here
-          console.log('Form submitted:', formData);
         };
 
         return (
@@ -549,7 +547,6 @@ describe('XSS Prevention Tests', () => {
             data-testid="dynamic-button"
             onClick={() => {
               // Safe: only execute predefined functions
-              console.log('Button clicked');
             }}
           >
             Click me

@@ -24,7 +24,14 @@ import {
   getUnitPlanPreview as _getUnitPlanPreview
 } from './templates/unitPlanTemplate';
 // Import types for internal use
-import type { TemplateResult, TemplateType } from './types';
+import type { 
+  TemplateResult, 
+  TemplateType, 
+  UnitPlan, 
+  LessonPlan, 
+  ETFOSchoolInfo, 
+  LongRangePlan 
+} from './types';
 import { TemplateType as TemplateTypeEnum } from './types';
 
 // Export all types
@@ -134,10 +141,59 @@ export interface PrintUtilityOptions {
   openInNewWindow?: boolean;
 }
 
+// Template data interfaces for type safety
+export interface UnitPlanTemplateData {
+  unitPlan: UnitPlan;
+  longRangePlan: LongRangePlan;
+}
+
+export interface LessonPlanTemplateData {
+  lessonPlan: LessonPlan;
+  unitPlan: UnitPlan;  
+}
+
+export interface ETFOTemplateData {
+  schoolInfo: ETFOSchoolInfo;
+}
+
+// Union type for all template data
+export type TemplateData = 
+  | UnitPlanTemplateData
+  | LessonPlanTemplateData  
+  | ETFOTemplateData;
+
+// Preview return types
+export interface UnitPlanPreview {
+  title: string;
+  duration: string;
+  sectionsCount: number;
+  hasVocabulary: boolean;
+  hasExpectations: boolean;
+  hasDifferentiation: boolean;
+}
+
+export interface LessonPlanPreview {
+  title: string;
+  date: string;
+  duration: string;
+  timing: {
+    mindsOn: number;
+    action: number;
+    consolidation: number;
+    total: number;
+  };
+  sectionsCount: number;
+  hasMaterials: boolean;
+  hasDifferentiation: boolean;
+  isSubFriendly: boolean;
+}
+
+export type TemplatePreview = UnitPlanPreview | LessonPlanPreview | null;
+
 // Template factory function for easier usage
 export function createTemplate(
   type: TemplateType,
-  data: any,
+  data: TemplateData,
   options?: PrintUtilityOptions
 ): TemplateResult {
   let html: string;
@@ -145,47 +201,61 @@ export function createTemplate(
   let filename: string;
 
   switch (type) {
-    case TemplateTypeEnum.UNIT_PLAN:
-      html = _generateUnitPlanHTML(data.unitPlan, data.longRangePlan);
-      title = `${data.unitPlan.title} - Unit Plan`;
-      filename = options?.filename || `unit-plan-${data.unitPlan.title.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase()}`;
+    case TemplateTypeEnum.UNIT_PLAN: {
+      const unitData = data as UnitPlanTemplateData;
+      html = _generateUnitPlanHTML(unitData.unitPlan, unitData.longRangePlan);
+      title = `${unitData.unitPlan.title} - Unit Plan`;
+      filename = options?.filename || `unit-plan-${unitData.unitPlan.title.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase()}`;
       break;
+    }
       
-    case TemplateTypeEnum.LESSON_PLAN:
-      html = _generateLessonPlanHTML(data.lessonPlan, data.unitPlan);
-      title = `${data.lessonPlan.title} - Lesson Plan`;
-      filename = options?.filename || `lesson-plan-${data.lessonPlan.title.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase()}`;
+    case TemplateTypeEnum.LESSON_PLAN: {
+      const lessonData = data as LessonPlanTemplateData;
+      html = _generateLessonPlanHTML(lessonData.lessonPlan, lessonData.unitPlan);
+      title = `${lessonData.lessonPlan.title} - Lesson Plan`;
+      filename = options?.filename || `lesson-plan-${lessonData.lessonPlan.title.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase()}`;
       break;
+    }
       
-    case TemplateTypeEnum.LONG_RANGE_PLAN:
-      html = _generateLongRangePlanBlankTemplate(data.schoolInfo);
+    case TemplateTypeEnum.LONG_RANGE_PLAN: {
+      const etfoData = data as ETFOTemplateData;
+      html = _generateLongRangePlanBlankTemplate(etfoData.schoolInfo);
       title = 'ETFO Long-Range Plan Template';
       filename = options?.filename || 'etfo-long-range-plan-template';
       break;
+    }
       
-    case TemplateTypeEnum.ETFO_UNIT_PLAN:
-      html = _generateUnitPlanBlankTemplate(data.schoolInfo);
+    case TemplateTypeEnum.ETFO_UNIT_PLAN: {
+      const etfoData = data as ETFOTemplateData;
+      html = _generateUnitPlanBlankTemplate(etfoData.schoolInfo);
       title = 'ETFO Unit Plan Template';
       filename = options?.filename || 'etfo-unit-plan-template';
       break;
+    }
       
-    case TemplateTypeEnum.ETFO_LESSON_PLAN:
-      html = _generateLessonPlanBlankTemplate(data.schoolInfo);
+    case TemplateTypeEnum.ETFO_LESSON_PLAN: {
+      const etfoData = data as ETFOTemplateData;
+      html = _generateLessonPlanBlankTemplate(etfoData.schoolInfo);
       title = 'ETFO Lesson Plan Template';
       filename = options?.filename || 'etfo-lesson-plan-template';
       break;
+    }
       
-    case TemplateTypeEnum.ETFO_DAYBOOK:
-      html = _generateDaybookBlankTemplate(data.schoolInfo);
+    case TemplateTypeEnum.ETFO_DAYBOOK: {
+      const etfoData = data as ETFOTemplateData;
+      html = _generateDaybookBlankTemplate(etfoData.schoolInfo);
       title = 'ETFO Daybook Template';
       filename = options?.filename || 'etfo-daybook-template';
       break;
+    }
       
-    case TemplateTypeEnum.ETFO_WEEKLY_OVERVIEW:
-      html = _generateWeeklyOverviewBlankTemplate(data.schoolInfo);
+    case TemplateTypeEnum.ETFO_WEEKLY_OVERVIEW: {
+      const etfoData = data as ETFOTemplateData;
+      html = _generateWeeklyOverviewBlankTemplate(etfoData.schoolInfo);
       title = 'ETFO Weekly Overview Template';
       filename = options?.filename || 'etfo-weekly-overview-template';
       break;
+    }
       
     default:
       throw new Error(`Unsupported template type: ${type}`);
@@ -199,13 +269,17 @@ export function createTemplate(
 }
 
 // Validation helper that works with any template type
-export function validateTemplateInput(type: TemplateType, data: any): { isValid: boolean; errors: string[] } {
+export function validateTemplateInput(type: TemplateType, data: TemplateData): { isValid: boolean; errors: string[] } {
   switch (type) {
-    case TemplateTypeEnum.UNIT_PLAN:
-      return { isValid: true, errors: _validateUnitPlan(data.unitPlan) };
+    case TemplateTypeEnum.UNIT_PLAN: {
+      const unitData = data as UnitPlanTemplateData;
+      return { isValid: true, errors: _validateUnitPlan(unitData.unitPlan) };
+    }
       
-    case TemplateTypeEnum.LESSON_PLAN:
-      return { isValid: true, errors: _validateLessonPlan(data.lessonPlan) };
+    case TemplateTypeEnum.LESSON_PLAN: {
+      const lessonData = data as LessonPlanTemplateData;
+      return { isValid: true, errors: _validateLessonPlan(lessonData.lessonPlan) };
+    }
       
     // ETFO templates don't require validation as they're blank templates
     case TemplateTypeEnum.LONG_RANGE_PLAN:
@@ -221,13 +295,17 @@ export function validateTemplateInput(type: TemplateType, data: any): { isValid:
 }
 
 // Convenience function to get template preview information
-export function getTemplatePreview(type: TemplateType, data: any): any {
+export function getTemplatePreview(type: TemplateType, data: TemplateData): TemplatePreview {
   switch (type) {
-    case TemplateTypeEnum.UNIT_PLAN:
-      return _getUnitPlanPreview(data.unitPlan);
+    case TemplateTypeEnum.UNIT_PLAN: {
+      const unitData = data as UnitPlanTemplateData;
+      return _getUnitPlanPreview(unitData.unitPlan);
+    }
       
-    case TemplateTypeEnum.LESSON_PLAN:
-      return _getLessonPlanPreview(data.lessonPlan);
+    case TemplateTypeEnum.LESSON_PLAN: {
+      const lessonData = data as LessonPlanTemplateData;
+      return _getLessonPlanPreview(lessonData.lessonPlan);
+    }
       
     default:
       return null;

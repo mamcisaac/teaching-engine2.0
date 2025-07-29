@@ -4,6 +4,8 @@
  * Handles exporting curriculum expectations to various formats
  */
 
+import type { Prisma } from '@teaching-engine/database';
+
 import { prisma } from '../../prisma';
 import { BaseService } from '../base/BaseService';
 
@@ -60,23 +62,22 @@ export class CurriculumExportService extends BaseService {
     return this.executeWithMetrics(
       async () => {
         // Build query
-        const where: any = {};
+        const where: Prisma.CurriculumExpectationWhereInput = {};
         
         if (options.subjectId !== null && options.subjectId !== undefined) {
-          where.import = { subjectId: options.subjectId };
+          where.import = { id: String(options.subjectId) };
         }
         
         if (options.grade !== null && options.grade !== 0) {
-          where.grade = String(options.grade);
+          where.grade = options.grade;
         }
         
         if (options.strand !== null && options.strand !== '') {
           where.strand = options.strand;
         }
         
-        if (options.includeInactive !== true) {
-          where.isActive = true;
-        }
+        // Note: isActive field doesn't exist in CurriculumExpectation model
+        // This filter would need to be implemented if the field is added to the schema
 
         // Fetch expectations
         const expectations = await prisma.curriculumExpectation.findMany({

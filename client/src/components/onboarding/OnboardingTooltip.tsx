@@ -2,7 +2,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { HelpCircle, X, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 import type { ReactElement} from 'react';
-import React, { useState, cloneElement } from 'react';
+import React, { useState, cloneElement, useEffect } from 'react';
 
 import type { OnboardingStep, OnboardingState } from '../../contexts/OnboardingContext';
 import { useOnboarding } from '../../contexts/OnboardingContext';
@@ -189,6 +189,16 @@ function HoverTooltip({
   const [isVisible, setIsVisible] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
   const [hasBeenShown, setHasBeenShown] = useState(false);
+  const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (hoverTimeout) {
+        clearTimeout(hoverTimeout);
+      }
+    };
+  }, [hoverTimeout]);
 
   // Don't show if onboarding is active or user isn't new
   if (state.currentFlow || !state.isFirstTimeUser) {
@@ -202,16 +212,22 @@ function HoverTooltip({
 
   const handleMouseEnter = (): void => {
     if (hasBeenShown && showOnce) {
-return;
-}
+      return;
+    }
 
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       setIsVisible(true);
       setHasBeenShown(true);
     }, delay);
+    
+    setHoverTimeout(timeout);
   };
 
   const handleMouseLeave = (): void => {
+    if (hoverTimeout) {
+      clearTimeout(hoverTimeout);
+      setHoverTimeout(null);
+    }
     setIsVisible(false);
   };
 

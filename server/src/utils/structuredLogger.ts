@@ -68,9 +68,9 @@ const logFormat = format.combine(
     // Add trace context if available
     if (context?.traceId !== undefined && context.traceId !== '') {
       (log as Record<string, unknown>).trace = {
-        traceId: context?.traceId,
-        spanId: context?.spanId,
-        parentSpanId: context?.parentSpanId,
+        traceId: context.traceId,
+        spanId: context.spanId,
+        parentSpanId: context.parentSpanId,
       };
     }
 

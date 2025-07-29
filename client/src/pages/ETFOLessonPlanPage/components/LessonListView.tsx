@@ -6,15 +6,16 @@ import { Link } from 'react-router-dom';
 import { BlankTemplateQuickActions } from '../../../components/printing/BlankTemplatePrinter';
 import { Badge } from '../../../components/ui/Badge';
 import { Button } from '../../../components/ui/Button';
+import type { UnitPlan, ETFOLessonPlan } from '../../../hooks/useETFOPlanning';
 
 interface LessonListViewProps {
-  unitPlan: any;
+  unitPlan: UnitPlan | null | undefined;
   unitId: string;
-  lessonPlans: any[];
+  lessonPlans: ETFOLessonPlan[];
   isLoadingLessons: boolean;
   onCreateLesson: () => void;
   onCreateFromTemplate: () => void;
-  onEditLesson: (lesson: any) => void;
+  onEditLesson: (lesson: ETFOLessonPlan) => void;
   onDeleteLesson: (id: string) => void;
 }
 

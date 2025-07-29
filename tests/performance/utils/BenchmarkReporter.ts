@@ -271,16 +271,20 @@ export class BenchmarkReporter {
             <tbody>
                 ${report.results
                   .map(
-                    (result) => `
+                    (result) => {
+                      const statusClass = result.passed ? 'passed' : 'failed';
+                      const statusText = result.passed ? '✅ Passed' : '❌ Failed';
+                      return `
                     <tr>
                         <td>${result.name}</td>
                         <td>${Math.round(result.metrics.responseTime)}</td>
                         <td>${Math.round(result.metrics.memoryUsage * 100) / 100}</td>
                         <td>${Math.round(result.metrics.largestContentfulPaint)}</td>
                         <td>${Math.round(result.metrics.cumulativeLayoutShift * 1000) / 1000}</td>
-                        <td class="${result.passed ? 'passed' : 'failed'}">${result.passed ? '✅ Passed' : '❌ Failed'}</td>
+                        <td class="${statusClass}">${statusText}</td>
                     </tr>
-                `,
+                `;
+                    },
                   )
                   .join('')}
             </tbody>

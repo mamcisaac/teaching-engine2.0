@@ -325,7 +325,7 @@ test.describe('Memory Usage Tracking', () => {
 
     // Check for memory leaks
     if (measurements.length >= 10) {
-      const firstMeasurement = measurements[0];
+      const [firstMeasurement] = measurements;
       const lastMeasurement = measurements[measurements.length - 1];
       const memoryGrowth = lastMeasurement.heapUsed - firstMeasurement.heapUsed;
       const growthMB = memoryGrowth / 1024 / 1024;
@@ -539,8 +539,9 @@ test.describe('Memory Usage Tracking', () => {
     });
 
     if (measurements.length >= 2) {
-      const memoryGrowth =
-        measurements[measurements.length - 1].heapUsed - measurements[0].heapUsed;
+      const [firstMeasurement] = measurements;
+      const lastMeasurement = measurements[measurements.length - 1];
+      const memoryGrowth = lastMeasurement.heapUsed - firstMeasurement.heapUsed;
       const growthMB = memoryGrowth / 1024 / 1024;
 
       expect(
@@ -611,7 +612,8 @@ test.describe('Memory Leak Detection', () => {
     });
 
     if (results.length >= 10) {
-      const finalGrowth = results[results.length - 1].growth;
+      const lastResult = results[results.length - 1];
+      const finalGrowth = lastResult.growth;
       const growthMB = finalGrowth / 1024 / 1024;
 
       expect(

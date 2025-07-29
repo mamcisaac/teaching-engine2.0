@@ -126,7 +126,7 @@ export function AIUnitPlanPanel({
       return;
     }
 
-    if (!(formData.unitTitle != null && formData.unitTitle !== '') || !(formData.subject != null && formData.subject !== '')) {
+    if (formData.unitTitle === '' || formData.subject === '') {
       toast({
         title: 'Missing Information',
         description: 'Please provide a unit title and subject before generating suggestions.',
@@ -477,7 +477,7 @@ export function AIUnitPlanPanel({
               <div className="flex gap-2 pt-4">
                 <Button 
                   className="flex-1" 
-                  disabled={isGenerating || !formData.unitTitle || !formData.subject}
+                  disabled={isGenerating || formData.unitTitle === '' || formData.subject === ''}
                   onClick={(): void => {
  void generateCompleteUnit(); 
 }}

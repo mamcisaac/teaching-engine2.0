@@ -282,9 +282,19 @@ continue;
 
 // Cleanup function for when the store is no longer needed
 if (typeof window !== 'undefined') {
-  window.addEventListener('beforeunload', () => {
+  const handleBeforeUnload = (): void => {
     const state = useKeyboardShortcutsStore.getState();
     state.stopListening();
+  };
+  
+  window.addEventListener('beforeunload', handleBeforeUnload);
+  
+  // Store cleanup function for hot module reload or testing
+  if (!window.__keyboardStoreCleanup) {
+    window.__keyboardStoreCleanup = [];
+  }
+  window.__keyboardStoreCleanup.push(() => {
+    window.removeEventListener('beforeunload', handleBeforeUnload);
   });
 }
 

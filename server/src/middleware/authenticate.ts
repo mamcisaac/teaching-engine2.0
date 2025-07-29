@@ -139,16 +139,15 @@ export function verifyToken(token: string): TokenPayload | { error: string } | n
         // Try again without issuer/audience validation for test tokens
         const decoded = verify(token, JWT_SECRET) as TokenPayload;
 
-        if (process.env.NODE_ENV === 'test') {
-          logger.debug(
-            {
-              decoded,
-              hasUserId: decoded.userId,
-              hasEmail: decoded.email,
-            },
-            'Token decoded successfully without issuer/audience (test mode)',
-          );
-        }
+        // Debug logging for test environment
+        logger.debug(
+          {
+            decoded,
+            hasUserId: decoded.userId,
+            hasEmail: decoded.email,
+          },
+          'Token decoded successfully without issuer/audience (test mode)',
+        );
 
         return decoded;
       }

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { toast } from 'sonner';
 
 import { useHelp } from '../../contexts/HelpContext';
 import { useTutorials } from '../../hooks/useHelp';
@@ -29,8 +30,8 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }): R
       completeTutorial(activeTutorialId);
 
       // Show completion message
-      if (activeTutorial?.completionMessage != undefined && activeTutorial.completionMessage != '') {
-        alert(activeTutorial.completionMessage); // In production, use a proper notification system
+      if (activeTutorial?.completionMessage !== undefined && activeTutorial.completionMessage !== '') {
+        toast.success(activeTutorial.completionMessage);
       }
     }
   }, [activeTutorialId, completeTutorial, activeTutorial?.completionMessage]);

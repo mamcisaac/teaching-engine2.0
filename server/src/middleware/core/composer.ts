@@ -174,7 +174,6 @@ export const chain = (): MiddlewareChain => new MiddlewareChain();
 export const asyncMiddleware = (
   fn: (req: Request, res: Response, next: NextFunction) => Promise<void>
 ): RequestHandler => (req: Request, res: Response, next: NextFunction) => {
-    // eslint-disable-next-line promise/no-callback-in-promise
     Promise.resolve(fn(req, res, next)).catch(next);
   };
 

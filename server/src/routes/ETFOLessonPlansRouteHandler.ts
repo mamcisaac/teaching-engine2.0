@@ -10,6 +10,7 @@ import { z } from 'zod';
 
 import { prisma } from '../prisma';
 import { BaseService } from '../services/base/BaseService';
+import type { ETFOLessonPlan } from '../types/prisma-types';
 import type { ETFOLessonPlanCreateData, ETFOLessonPlanUpdateData } from '../types/routes';
 
 import type { AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler';
@@ -20,6 +21,28 @@ import {
   optimizedQueries,
   queryPerformance,
 } from './optimizations/queryOptimizations';
+
+// Extended interfaces for lesson plan data with relations
+interface ETFOLessonPlanExpectation {
+  expectationId: string;
+}
+
+interface ETFOLessonPlanResource {
+  title: string;
+  url?: string;
+  type: string;
+  content?: string;
+}
+
+interface ETFOLessonPlanWithRelations extends ETFOLessonPlan {
+  expectations: ETFOLessonPlanExpectation[];
+  resources: ETFOLessonPlanResource[];
+}
+
+interface LessonPlanQueryResult {
+  items: ETFOLessonPlanWithRelations[];
+  total: number;
+}
 
 // ETFO lesson plan-specific validation schemas
 const lessonPlanCreateSchema = z.object({
@@ -158,14 +181,14 @@ class ETFOLessonPlanService extends BaseService {
     result: unknown,
     limit: number,
     offset: number
-  ): { lessonPlans: Record<string, unknown>[]; pagination: { total: number; limit: number; offset: number; hasMore: boolean } } {
+  ): { lessonPlans: ETFOLessonPlanWithRelations[]; pagination: { total: number; limit: number; offset: number; hasMore: boolean } } {
     if (!isObject(result) || !hasProperty(result, 'items') || !hasProperty(result, 'total')) {
       throw new Error('Invalid query result structure');
     }
     
-    const { items: lessonPlans, total } = result;
-    const validatedLessonPlans = isArray(lessonPlans) ? lessonPlans as Record<string, unknown>[] : [];
-    const validatedTotal = typeof total === 'number' ? total : 0;
+    const typedResult = result as unknown as LessonPlanQueryResult;
+    const validatedLessonPlans = isArray(typedResult.items) ? typedResult.items : [];
+    const validatedTotal = typeof typedResult.total === 'number' ? typedResult.total : 0;
     
     return {
       lessonPlans: validatedLessonPlans,
@@ -197,7 +220,7 @@ class ETFOLessonPlanService extends BaseService {
       order?: 'asc' | 'desc';
     },
     userId: number,
-  ): Promise<{ lessonPlans: Record<string, unknown>[]; pagination: { total: number; limit: number; offset: number; hasMore: boolean } }> {
+  ): Promise<{ lessonPlans: ETFOLessonPlanWithRelations[]; pagination: { total: number; limit: number; offset: number; hasMore: boolean } }> {
     const { startDate, endDate, hasExpectations, limit = 10, offset = 0, sort, order } = filters;
 
     // Build where clause
@@ -271,7 +294,10 @@ class ETFOLessonPlanService extends BaseService {
     };
   }
 
-  private buildCreateDataWithExpectations(baseData: any, expectationIds?: string[]): any {
+  private buildCreateDataWithExpectations(
+    baseData: Prisma.ETFOLessonPlanCreateInput,
+    expectationIds?: string[]
+  ): Prisma.ETFOLessonPlanCreateInput {
     if (!isNonEmptyArray(expectationIds)) {
       return baseData;
     }
@@ -618,12 +644,15 @@ class ETFOLessonPlanService extends BaseService {
     return originalLesson;
   }
 
-  private buildSubFriendlyData(originalLesson: any, userId: number): any {
+  private buildSubFriendlyData(
+    originalLesson: ETFOLessonPlanWithRelations,
+    userId: number
+  ): Prisma.ETFOLessonPlanCreateInput {
     return {
       title: `${originalLesson.title} (Sub-Friendly)`,
       titleFr: originalLesson.titleFr ? `${originalLesson.titleFr} (Sub-Friendly)` : undefined,
-      unitPlanId: originalLesson.unitPlanId,
-      userId,
+      unitPlan: { connect: { id: originalLesson.unitPlanId } },
+      user: { connect: { id: userId } },
       date: originalLesson.date,
       duration: originalLesson.duration,
       mindsOn: originalLesson.mindsOn,
@@ -644,17 +673,19 @@ class ETFOLessonPlanService extends BaseService {
       isSubFriendly: true,
       subNotes: 'Auto-generated substitute-friendly version. Please review and customize as needed.',
       expectations: {
-        create: originalLesson.expectations.map((exp: any) => ({
-          expectationId: exp.expectationId,
-        })) ?? [],
+        create: isArray(originalLesson.expectations) ?
+          originalLesson.expectations.map((exp) => ({
+            expectationId: String(exp.expectationId),
+          })) : [],
       },
       resources: {
-        create: originalLesson.resources.map((resource: any) => ({
-          title: resource.title,
-          url: resource.url,
-          type: resource.type,
-          content: resource.content,
-        })),
+        create: isArray(originalLesson.resources) ?
+          originalLesson.resources.map((resource) => ({
+            title: String(resource.title),
+            url: resource.url ? String(resource.url) : undefined,
+            type: String(resource.type),
+            content: resource.content ? String(resource.content) : undefined,
+          })) : [],
       },
     };
   }

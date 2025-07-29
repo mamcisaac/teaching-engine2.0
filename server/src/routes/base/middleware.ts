@@ -109,7 +109,6 @@ export const validateQuery = <T>(schema: z.ZodSchema<T>) => (req: Request, res: 
 export const asyncHandler = (
   fn: (req: Request, res: Response, next: NextFunction) => Promise<void>,
 ): ((req: Request, res: Response, next: NextFunction) => void) => (req: Request, res: Response, next: NextFunction) => {
-    // eslint-disable-next-line promise/no-callback-in-promise
     Promise.resolve(fn(req, res, next)).catch(next);
   };
 

@@ -1,6 +1,6 @@
 
 import { Sparkles, RefreshCw, Copy, Check } from 'lucide-react';
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 
 import type { AISuggestion } from '@/hooks/useAIPlanningAssistant';
 import { cn } from '@/lib/utils';
@@ -22,10 +22,89 @@ interface AISuggestionPanelProps {
   error?: Error | null;
 }
 
+// Type guard to ensure suggestions object is valid
+function isValidAISuggestion(suggestions: unknown): suggestions is AISuggestion {
+  if (suggestions === null || suggestions === undefined || typeof suggestions !== 'object') {
+    return false;
+  }
+
+  // Explicit type annotation to help ESLint
+  const obj = suggestions as Record<string, unknown>;
+  
+  // Check if suggestions property exists and is an array
+  if (!('suggestions' in obj) || !Array.isArray(obj.suggestions)) {
+    return false;
+  }
+
+  // Check if all items in suggestions array are strings
+  const suggestionsArray = obj.suggestions as unknown[];
+  if (!suggestionsArray.every((item): item is string => typeof item === 'string')) {
+    return false;
+  }
+
+  // Check rationale if it exists
+  if ('rationale' in obj && obj.rationale !== undefined && typeof obj.rationale !== 'string') {
+    return false;
+  }
+
+  // Check type property exists and is valid
+  if (!('type' in obj) || typeof obj.type !== 'string') {
+    return false;
+  }
+
+  const validTypes = ['goals', 'bigIdeas', 'activities', 'materials', 'assessments', 'reflections'];
+  if (!validTypes.includes(obj.type as string)) {
+    return false;
+  }
+
+  return true;
+}
+
+// Result type for suggestion data
+interface SuggestionDataResult {
+  isValid: boolean;
+  suggestions: readonly string[];
+  rationale: string | undefined;
+}
+
+// Helper function to safely extract suggestions data
+function getSuggestionData(inputSuggestions: AISuggestion | null): SuggestionDataResult {
+  // Default invalid result
+  const invalidResult: SuggestionDataResult = {
+    isValid: false,
+    suggestions: [],
+    rationale: undefined,
+  };
+
+  // Early return for null
+  if (inputSuggestions === null) {
+    return invalidResult;
+  }
+
+  // Type guard ensures inputSuggestions is AISuggestion
+  if (!isValidAISuggestion(inputSuggestions)) {
+    return invalidResult;
+  }
+
+  // Create validated result - TypeScript knows inputSuggestions is AISuggestion here
+  // At this point, we know inputSuggestions satisfies the AISuggestion interface
+  // ESLint has trouble tracking the type narrowing from the guard, but TypeScript handles it correctly
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+  const validResult: SuggestionDataResult = {
+    isValid: true,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+    suggestions: (inputSuggestions as AISuggestion).suggestions,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+    rationale: (inputSuggestions as AISuggestion).rationale,
+  };
+
+  return validResult;
+}
+
 export function AISuggestionPanel({
   title,
   description,
-  suggestions,
+  suggestions: rawSuggestions,
   isGenerating,
   onGenerate,
   onAcceptSuggestion,
@@ -36,16 +115,31 @@ export function AISuggestionPanel({
   const [acceptedIndices, setAcceptedIndices] = useState<Set<number>>(new Set());
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
-  const handleCopy = (suggestion: string, index: number): void => {
-    void navigator.clipboard.writeText(suggestion);
-    setCopiedIndex(index);
-    setTimeout((): void => {
- setCopiedIndex(null); 
-}, 2000);
-    toast({
-      title: 'Copied',
-      description: 'Suggestion copied to clipboard',
-    });
+  // Type-safe suggestion data
+  const suggestionData = useMemo(() => {
+    return getSuggestionData(rawSuggestions);
+  }, [rawSuggestions]);
+  
+  const { isValid, suggestions: suggestionsList, rationale } = suggestionData;
+
+  const handleCopy = async (suggestion: string, index: number): Promise<void> => {
+    try {
+      await navigator.clipboard.writeText(suggestion);
+      setCopiedIndex(index);
+      setTimeout(() => {
+        setCopiedIndex(null); 
+      }, 2000);
+      toast({
+        title: 'Copied',
+        description: 'Suggestion copied to clipboard',
+      });
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: 'Failed to copy to clipboard',
+        variant: 'destructive',
+      });
+    }
   };
 
   const handleAccept = (suggestion: string, index: number): void => {
@@ -58,9 +152,9 @@ export function AISuggestionPanel({
   };
 
   const handleAcceptAll = (): void => {
-    if (onAcceptAll !== undefined && suggestions !== null) {
+    if (onAcceptAll !== undefined && isValid) {
       onAcceptAll();
-      const allIndices = new Set(suggestions.suggestions.map((_, i) => i));
+      const allIndices = new Set(suggestionsList.map((_, i) => i));
       setAcceptedIndices(allIndices);
       toast({
         title: 'All Accepted',
@@ -108,14 +202,14 @@ export function AISuggestionPanel({
           </Alert>
         )}
 
-        {suggestions !== null && suggestions.suggestions.length > 0 && (
+        {isValid && suggestionsList.length > 0 && (
           <div className="space-y-3">
-            {suggestions.rationale !== undefined && suggestions.rationale.trim() !== '' && (
-              <p className="text-sm text-muted-foreground italic">{suggestions.rationale}</p>
+            {rationale !== undefined && rationale.trim() !== '' && (
+              <p className="text-sm text-muted-foreground italic">{rationale}</p>
             )}
 
             <div className="space-y-2">
-              {suggestions.suggestions.map((suggestion: string, index: number) => (
+              {suggestionsList.map((suggestion, index) => (
                 <div
                   key={index}
                   className={cn(
@@ -132,9 +226,9 @@ export function AISuggestionPanel({
                         className="h-8 w-8 p-0"
                         size="sm"
                         variant="ghost"
-                        onClick={() => {
- handleCopy(suggestion, index); 
-}}
+                        onClick={(): void => {
+                          void handleCopy(suggestion, index); 
+                        }}
                       >
                         {copiedIndex === index ? (
                           <Check className="h-4 w-4 text-green-500" />
@@ -147,9 +241,9 @@ export function AISuggestionPanel({
                           className="h-8 w-8 p-0"
                           size="sm"
                           variant="ghost"
-                          onClick={() => {
- handleAccept(suggestion, index); 
-}}
+                          onClick={(): void => {
+                            handleAccept(suggestion, index); 
+                          }}
                         >
                           <Check className="h-4 w-4 text-green-500" />
                         </Button>
@@ -165,7 +259,7 @@ export function AISuggestionPanel({
               ))}
             </div>
 
-            {onAcceptAll !== undefined && acceptedIndices.size < suggestions.suggestions.length && (
+            {Boolean(onAcceptAll) && isValid && acceptedIndices.size < suggestionsList.length && (
               <Button aria-label="Click button" onClick={handleAcceptAll}>
                 Accept All Suggestions
               </Button>
@@ -173,14 +267,14 @@ export function AISuggestionPanel({
           </div>
         )}
 
-        {suggestions !== null && suggestions.suggestions.length === 0 && (
+        {isValid && suggestionsList.length === 0 && (
           <div className="text-center py-8 text-muted-foreground">
             <Sparkles className="h-8 w-8 mx-auto mb-2 opacity-20" />
             <p className="text-sm">No suggestions generated. Try adjusting your input.</p>
           </div>
         )}
 
-        {suggestions === null && !isGenerating && error === undefined && (
+        {rawSuggestions === null && !isGenerating && error === undefined && (
           <div className="text-center py-8 text-muted-foreground">
             <Sparkles className="h-8 w-8 mx-auto mb-2 opacity-20" />
             <p className="text-sm">Click generate to get AI-powered suggestions</p>

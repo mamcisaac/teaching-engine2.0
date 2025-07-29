@@ -38,9 +38,13 @@ export function generateAccessToken(payload: JWTPayload): string {
   }
 
   const expiresIn = process.env.JWT_EXPIRES_IN ?? '7d';
+  // Convert common time formats to seconds for TypeScript compatibility
+  const expiresInSeconds = expiresIn === '7d' ? 7 * 24 * 60 * 60 : 
+                          expiresIn === '1h' ? 60 * 60 :
+                          expiresIn === '24h' ? 24 * 60 * 60 :
+                          parseInt(expiresIn) || 7 * 24 * 60 * 60; // fallback to 7 days
   const options: SignOptions = {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    expiresIn: expiresIn as any, // StringValue type from ms package not properly exported
+    expiresIn: expiresInSeconds,
   };
   return sign(payload, secret, options);
 }
@@ -55,9 +59,13 @@ export function generateRefreshToken(payload: JWTPayload): string {
   }
 
   const expiresIn = process.env.JWT_REFRESH_EXPIRES_IN ?? '30d';
+  // Convert common time formats to seconds for TypeScript compatibility
+  const expiresInSeconds = expiresIn === '30d' ? 30 * 24 * 60 * 60 : 
+                          expiresIn === '7d' ? 7 * 24 * 60 * 60 :
+                          expiresIn === '1h' ? 60 * 60 :
+                          parseInt(expiresIn) || 30 * 24 * 60 * 60; // fallback to 30 days
   const options: SignOptions = {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    expiresIn: expiresIn as any, // StringValue type from ms package not properly exported
+    expiresIn: expiresInSeconds,
   };
   return sign(payload, secret, options);
 }

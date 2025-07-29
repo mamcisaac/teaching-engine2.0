@@ -1,7 +1,5 @@
 import { useState } from 'react';
 
-import type { LessonPlan } from '../types';
-
 /**
  * Custom hook for managing modal states in the ETFO Lesson Plan Page
  * 

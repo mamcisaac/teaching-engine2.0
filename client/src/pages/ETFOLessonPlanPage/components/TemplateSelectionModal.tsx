@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Dialog } from '../../../components/Dialog';
 import { Button } from '../../../components/ui/Button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../../components/ui/card';
+import type { UnitPlan } from '../../../hooks/useETFOPlanning';
 import type { PlanTemplate } from '../../../types/template';
 
 interface TemplateSelectionModalProps {
@@ -12,7 +13,7 @@ interface TemplateSelectionModalProps {
   templates: PlanTemplate[];
   onApplyTemplate: (template: PlanTemplate) => Promise<void>;
   isApplyingTemplate: boolean;
-  unitPlan?: any;
+  unitPlan?: UnitPlan;
 }
 
 export function TemplateSelectionModal({

@@ -155,8 +155,10 @@ export class PerformanceMonitor {
     const recentMetrics = this.metrics.slice(-5);
     const avgCpuUsage =
       recentMetrics.length > 0
-        ? recentMetrics.reduce((sum, m) => sum + (m.data.system?.loadAverage[0] || 0), 0) /
-          recentMetrics.length
+        ? recentMetrics.reduce((sum, m) => {
+            const [firstLoadAverage] = m.data.system?.loadAverage || [0];
+            return sum + firstLoadAverage;
+          }, 0) / recentMetrics.length
         : 0;
 
     return {
@@ -184,8 +186,10 @@ export class PerformanceMonitor {
     const avgMemory =
       recentMetrics.reduce((sum, m) => sum + m.data.memory.heapUsed, 0) / recentMetrics.length;
     const avgCpu =
-      recentMetrics.reduce((sum, m) => sum + (m.data.system.loadAverage[0] || 0), 0) /
-      recentMetrics.length;
+      recentMetrics.reduce((sum, m) => {
+        const [firstLoadAverage] = m.data.system.loadAverage || [0];
+        return sum + firstLoadAverage;
+      }, 0) / recentMetrics.length;
 
     return {
       memoryUsage: avgMemory / 1024 / 1024, // Convert to MB
@@ -269,8 +273,10 @@ export class PerformanceMonitor {
     }
 
     // Calculate memory growth rate
-    const initialMemory = measurements[0]?.heapUsed ?? 0;
-    const finalMemory = measurements[measurements.length - 1]?.heapUsed ?? 0;
+    const [firstMeasurement] = measurements;
+    const lastMeasurement = measurements[measurements.length - 1];
+    const initialMemory = firstMeasurement?.heapUsed ?? 0;
+    const finalMemory = lastMeasurement?.heapUsed ?? 0;
     const growthRate = (finalMemory - initialMemory) / 1024 / 1024 / (totalDuration / 60000); // MB per minute
 
     const detected = growthRate > 5; // More than 5MB growth per minute

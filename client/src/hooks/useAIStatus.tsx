@@ -194,7 +194,7 @@ export function useAIQuota(): {
 } {
   const { aiStatus } = useAIStatus();
   
-  const quotaPercentage = (aiStatus.limitations?.quotaLimit !== null && aiStatus.limitations?.quotaLimit !== undefined && aiStatus.limitations.quotaLimit > 0)
+  const quotaPercentage = (aiStatus.limitations?.quotaLimit !== undefined && aiStatus.limitations.quotaLimit > 0)
     ? ((aiStatus.limitations.quotaUsed ?? 0) / aiStatus.limitations.quotaLimit * 100)
     : 0;
 

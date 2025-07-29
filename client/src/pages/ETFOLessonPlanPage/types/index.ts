@@ -1,6 +1,3 @@
-// Re-export the form data type from the hook for convenience
-export type { ETFOLessonPlanFormData } from '../hooks/useETFOLessonPlanForm';
-
 // Re-export types from the main API client for consistency
 export type { 
   ETFOLessonPlan as LessonPlan,

@@ -19,6 +19,7 @@ import {
   useCreateETFOLessonPlan,
   useUpdateETFOLessonPlan,
   useDeleteETFOLessonPlan,
+  type UnitPlan,
 } from '../../hooks/useETFOPlanning';
 import { useTemplates } from '../../hooks/useTemplates';
 
@@ -70,7 +71,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
 
   // Form management
   const formActions = useETFOLessonPlanForm();
-  const { formData, setFormData, resetForm, updateFormData, populateFormFromLesson, getCleanedFormData } = formActions;
+  const { formData, setFormData, resetForm, updateFormData, populateFormFromLesson: _populateFormFromLesson, getCleanedFormData } = formActions;
   
   // Modal state management
   const modalState = useETFOModalState();
@@ -99,7 +100,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
   const lessonTemplates = lessonTemplatesResult?.templates ?? [];
 
   const templateActions = useTemplateIntegration(formData, setFormData);
-  const { handleApplyTemplate, isApplyingTemplate } = templateActions;
+  const { handleApplyTemplate: _handleApplyTemplate, isApplyingTemplate } = templateActions;
 
   // Action handlers using our custom hook
   const actions = useETFOLessonPlanActions({
@@ -167,7 +168,7 @@ export function ETFOLessonPlanPage(): React.ReactElement {
         lastSaved={lastSaved}
         resetForm={resetForm}
         setFormData={setFormData}
-        unitPlan={unitPlan}
+        unitPlan={unitPlan as (UnitPlan & { [key: string]: unknown }) | undefined}
         updateFormData={updateFormData}
         updateLesson={mutations.updateLesson}
         onClose={modalState.closeCreateModal}

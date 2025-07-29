@@ -54,6 +54,7 @@ export function CurriculumExpectationsPage(): React.ReactElement {
   const [selectedType, setSelectedType] = useState<'all' | 'overall' | 'specific'>('all');
   const [editingExpectation, setEditingExpectation] = useState<CurriculumExpectation | null>(null);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+  const [deletingExpectationId, setDeletingExpectationId] = useState<string | null>(null);
 
   const {
     data: expectations = [],
@@ -138,17 +139,17 @@ return;
     }
   };
 
-  const handleDelete = async (id: string): Promise<void> => {
-    if (
-      !confirm(
-        'Are you sure you want to delete this expectation? This will remove it from all linked plans.',
-      )
-    ) {
+  const handleDelete = (id: string): void => {
+    setDeletingExpectationId(id);
+  };
+
+  const handleConfirmDelete = async (): Promise<void> => {
+    if (!deletingExpectationId) {
       return;
     }
 
     try {
-      await deleteMutation.mutateAsync(id);
+      await deleteMutation.mutateAsync(deletingExpectationId);
       toast({
         title: 'Success',
         description: 'Expectation deleted successfully',
@@ -159,6 +160,8 @@ return;
         description: 'Failed to delete expectation',
         variant: 'destructive',
       });
+    } finally {
+      setDeletingExpectationId(null);
     }
   };
 
@@ -213,7 +216,7 @@ return;
             <Edit2 className="h-4 w-4" />
           </Button>
           <Button aria-label="Click button" onClick={() => {
- void handleDelete(expectation.id); 
+ handleDelete(expectation.id); 
 }}>
             <Trash2 className="h-4 w-4" />
           </Button>
@@ -474,6 +477,38 @@ return;
                 logger.error('Error saving edit:', error);
               }); 
             }}>Save Changes</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Delete Confirmation Dialog */}
+      <Dialog open={!!deletingExpectationId} onOpenChange={(isOpen) => {
+        if (!isOpen) {
+          setDeletingExpectationId(null);
+        }
+      }}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Delete Curriculum Expectation</DialogTitle>
+            <DialogDescription>
+              Are you sure you want to delete this expectation? This will remove it from all linked plans and cannot be undone.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button variant="secondary" onClick={() => setDeletingExpectationId(null)}>
+              Cancel
+            </Button>
+            <Button 
+              variant="danger" 
+              disabled={deleteMutation.isPending}
+              onClick={() => {
+                void handleConfirmDelete().catch((error: unknown) => {
+                  logger.error('Error deleting expectation:', error);
+                });
+              }}
+            >
+              Delete
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

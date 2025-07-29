@@ -9,10 +9,18 @@ import { CollapsibleSection } from '../../../../components/ui/MobileOptimizedFor
 import { Textarea } from '../../../../components/ui/Textarea';
 import type { ETFOLessonPlanFormData } from '../../hooks/useETFOLessonPlanForm';
 
+interface UnitPlanWithLongRange {
+  longRangePlan?: {
+    subject?: string;
+    grade?: number;
+  };
+  [key: string]: unknown;
+}
+
 interface OverviewTabProps {
   formData: ETFOLessonPlanFormData;
   updateFormData: (updates: Partial<ETFOLessonPlanFormData>) => void;
-  unitPlan?: any;
+  unitPlan?: UnitPlanWithLongRange;
 }
 
 export function OverviewTab({ formData, updateFormData, unitPlan }: OverviewTabProps): React.ReactElement {

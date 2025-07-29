@@ -188,6 +188,16 @@ export function CalendarPlanningPage(): JSX.Element {
     const allEvents: CalendarViewEvent[] = [];
 
     // Add calendar events (holidays, PD days, etc.)
+    const getEventColor = (eventType: CalendarEventType): string => {
+      if (eventType === 'holiday') {
+        return '#DC2626';
+      } else if (eventType === 'pd-day') {
+        return '#7C3AED';
+      } else {
+        return '#6B7280';
+      }
+    };
+
     calendarEvents.forEach((event: CalendarEvent) => {
       const eventType = event.eventType.toLowerCase().replace('_', '-') as CalendarEventType;
       allEvents.push({
@@ -197,8 +207,7 @@ export function CalendarPlanningPage(): JSX.Element {
         end: new Date(event.end),
         type: eventType,
         metadata: {
-          color:
-            eventType === 'holiday' ? '#DC2626' : eventType === 'pd-day' ? '#7C3AED' : '#6B7280',
+          color: getEventColor(eventType),
           isEditable: event.source === 'MANUAL',
         },
         originalData: event,

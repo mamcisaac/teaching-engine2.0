@@ -7,8 +7,8 @@ import { Toaster } from 'sonner';
 import { App } from './App';
 // import { TestApp as App } from './TestApp';
 import './index.css';
-import { logger } from './utils/logger';
 import { errorReportingService } from './services/errorReportingService';
+import { logger } from './utils/logger';
 
 // Initialize error reporting service
 errorReportingService.init();

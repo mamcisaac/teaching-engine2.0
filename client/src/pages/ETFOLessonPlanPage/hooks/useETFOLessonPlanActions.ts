@@ -1,11 +1,12 @@
-import { useNavigate } from 'react-router-dom';
 import type { UseMutationResult } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
+
+import type { ETFOLessonPlan } from '@/hooks/useETFOPlanning';
+import type { PlanTemplate } from '@/types/template';
+import { logger } from '@/utils/logger';
 
 import type { LessonPlan } from '../types';
 import { NAVIGATION } from '../utils/constants';
-import { logger } from '@/utils/logger';
-import type { PlanTemplate } from '@/types/template';
-import type { ETFOLessonPlan } from '@/hooks/useETFOPlanning';
 
 import type { ETFOLessonPlanFormData } from './useETFOLessonPlanForm';
 import type { ETFOModalState } from './useETFOModalState';
@@ -43,7 +44,7 @@ interface UseETFOLessonPlanActionsProps {
 export function useETFOLessonPlanActions({
   unitId,
   lessonId,
-  formData,
+  formData: _formData,
   modalState,
   formActions,
   mutations,

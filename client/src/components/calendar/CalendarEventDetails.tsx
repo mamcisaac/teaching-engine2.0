@@ -7,6 +7,7 @@ import { toast } from 'sonner';
 
 import { apiClient } from '../../api/core/client';
 import { Button } from '../ui/Button';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '../ui/Dialog';
 
 import type { CalendarViewEvent } from './types';
 
@@ -25,6 +26,7 @@ export function CalendarEventDetails({
   const queryClient = useQueryClient();
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(event.title);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
   // Delete mutation
   const deleteMutation = useMutation({
@@ -82,11 +84,12 @@ export function CalendarEventDetails({
   };
 
   const handleDelete = (): void => {
-    // Use a more accessible confirmation method
-    const userConfirmed = window.confirm('Are you sure you want to delete this event?');
-    if (userConfirmed) {
-      deleteMutation.mutate();
-    }
+    setShowDeleteDialog(true);
+  };
+
+  const handleConfirmDelete = (): void => {
+    deleteMutation.mutate();
+    setShowDeleteDialog(false);
   };
 
   const handleViewDetails = (): void => {
@@ -231,6 +234,30 @@ export function CalendarEventDetails({
           </div>
         </div>
       </div>
+
+      {/* Delete Confirmation Dialog */}
+      <Dialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Delete Event</DialogTitle>
+            <DialogDescription>
+              Are you sure you want to delete this event? This action cannot be undone.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button variant="secondary" onClick={() => setShowDeleteDialog(false)}>
+              Cancel
+            </Button>
+            <Button 
+              variant="danger" 
+              disabled={deleteMutation.isPending}
+              onClick={handleConfirmDelete}
+            >
+              Delete
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
