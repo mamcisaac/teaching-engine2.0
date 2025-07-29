@@ -92,7 +92,7 @@ export const useHelpStore = create<HelpState>()(
       
       removeFilter: (filter: string): void => {
         set((state) => {
-          state.activeFilters = state.activeFilters.filter(f => f != filter);
+          state.activeFilters = state.activeFilters.filter(f => f !== filter);
         });
       },
       

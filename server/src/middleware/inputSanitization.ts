@@ -81,7 +81,7 @@ function removeDangerousPatterns(input: string): string {
 /**
  * Recursively sanitize object properties
  */
-function sanitizeObject(obj: unknown, config: Record<string, unknown> = strictConfig): unknown {
+function sanitizeObject(obj: unknown, config: typeof strictConfig | typeof moderateConfig | typeof lenientConfig = strictConfig): unknown {
   if (obj === null) {
     return obj;
   }
@@ -180,39 +180,45 @@ export function strictSanitization(req: Request, res: Response, next: NextFuncti
     };
 
     // Sanitize request body
-    if (req.body !== null && typeof req.body === 'object' && Object.keys(req.body as Record<string, unknown>).length > 0) {
-      // Log detected XSS attempts for security monitoring
-      const bodyString = JSON.stringify(req.body);
-      if (detectXSS(bodyString)) {
-        logger.warn(
-          {
-            path: req.path,
-            ip: req.ip,
-            userAgent: req.headers['user-agent'],
-            body: bodyString.substring(0, 200),
-          },
-          'XSS attempt detected in request body',
-        );
-      }
+    if (req.body !== null && typeof req.body === 'object' && req.body !== undefined) {
+      const bodyAsUnknown: unknown = req.body;
+      if (typeof bodyAsUnknown === 'object' && bodyAsUnknown !== null && Object.keys(bodyAsUnknown).length > 0) {
+        // Log detected XSS attempts for security monitoring
+        const bodyString = JSON.stringify(bodyAsUnknown);
+        if (detectXSS(bodyString)) {
+          logger.warn(
+            {
+              path: req.path,
+              ip: req.ip,
+              userAgent: req.headers['user-agent'],
+              body: bodyString.substring(0, 200),
+            },
+            'XSS attempt detected in request body',
+          );
+        }
 
-      req.body = sanitizeObject(req.body as Record<string, unknown>, strictConfig);
+        req.body = sanitizeObject(bodyAsUnknown, strictConfig);
+      }
     }
 
     // Sanitize query parameters
-    if (req.query !== null && Object.keys(req.query).length > 0) {
-      const queryString = JSON.stringify(req.query);
-      if (detectXSS(queryString)) {
-        logger.warn(
-          {
-            path: req.path,
-            ip: req.ip,
-            query: queryString.substring(0, 200),
-          },
-          'XSS attempt detected in query parameters',
-        );
-      }
+    if (req.query !== null && req.query !== undefined) {
+      const queryAsUnknown: unknown = req.query;
+      if (typeof queryAsUnknown === 'object' && queryAsUnknown !== null && Object.keys(queryAsUnknown).length > 0) {
+        const queryString = JSON.stringify(queryAsUnknown);
+        if (detectXSS(queryString)) {
+          logger.warn(
+            {
+              path: req.path,
+              ip: req.ip,
+              query: queryString.substring(0, 200),
+            },
+            'XSS attempt detected in query parameters',
+          );
+        }
 
-      req.query = sanitizeObject(req.query, strictConfig) as ParsedQs;
+        req.query = sanitizeObject(queryAsUnknown, strictConfig) as ParsedQs;
+      }
     }
 
     // Sanitize URL parameters
@@ -235,8 +241,11 @@ export function strictSanitization(req: Request, res: Response, next: NextFuncti
  */
 export function moderateSanitization(req: Request, res: Response, next: NextFunction): void {
   try {
-    if (req.body !== null && typeof req.body === 'object' && Object.keys(req.body as Record<string, unknown>).length > 0) {
-      req.body = sanitizeObject(req.body as Record<string, unknown>, moderateConfig);
+    if (req.body !== null && typeof req.body === 'object' && req.body !== undefined) {
+      const bodyAsUnknown: unknown = req.body;
+      if (typeof bodyAsUnknown === 'object' && bodyAsUnknown !== null && Object.keys(bodyAsUnknown).length > 0) {
+        req.body = sanitizeObject(bodyAsUnknown, moderateConfig);
+      }
     }
 
     if (req.query !== null && Object.keys(req.query).length > 0) {
@@ -262,8 +271,11 @@ export function moderateSanitization(req: Request, res: Response, next: NextFunc
  */
 export function lenientSanitization(req: Request, res: Response, next: NextFunction): void {
   try {
-    if (req.body !== null && typeof req.body === 'object' && Object.keys(req.body as Record<string, unknown>).length > 0) {
-      req.body = sanitizeObject(req.body as Record<string, unknown>, lenientConfig);
+    if (req.body !== null && typeof req.body === 'object' && req.body !== undefined) {
+      const bodyAsUnknown: unknown = req.body;
+      if (typeof bodyAsUnknown === 'object' && bodyAsUnknown !== null && Object.keys(bodyAsUnknown).length > 0) {
+        req.body = sanitizeObject(bodyAsUnknown, lenientConfig);
+      }
     }
 
     if (req.query !== null && Object.keys(req.query).length > 0) {

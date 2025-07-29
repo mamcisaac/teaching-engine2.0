@@ -7,7 +7,7 @@ import { Toaster } from 'sonner';
 import { App } from './App';
 // import { TestApp as App } from './TestApp';
 import './index.css';
-// import logger from './utils/logger';
+import { logger } from './utils/logger';
 import { errorReportingService } from './services/errorReportingService';
 
 // Initialize error reporting service
@@ -97,7 +97,7 @@ if ('serviceWorker' in navigator) {
         await registration.unregister();
       }
     } catch (error) {
-      console.warn('Failed to unregister service workers:', error);
+      logger.warn('Failed to unregister service workers', { error });
     }
   })();
 }

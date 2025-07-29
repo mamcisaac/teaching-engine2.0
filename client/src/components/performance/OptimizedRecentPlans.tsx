@@ -139,7 +139,7 @@ const PlanItem = memo(
                       <span className="text-xs text-gray-500">{plan.subject}</span>
                     </>
                   )}
-                  {(plan.grade != null && !isNaN(plan.grade) && plan.grade > 0) && (
+                  {(plan.grade !== null && plan.grade !== undefined && !isNaN(plan.grade) && plan.grade > 0) && (
                     <>
                       <span className="text-xs text-gray-400">•</span>
                       <span className="text-xs text-gray-500">Grade {plan.grade}</span>

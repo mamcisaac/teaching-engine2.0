@@ -172,7 +172,7 @@ class RequestBatcher {
       };
 
       const response = await apiClient.post<{ responses: BatchResponse[] }>('/api/batch', batchData);
-      const { responses } = response.data as { responses: BatchResponse[] };
+      const { responses } = response.data;
 
       // Map responses back to promises
       const responseMap = new Map<string, BatchResponse>((responses).map((r): [string, BatchResponse] => [r.id, r]));

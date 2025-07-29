@@ -160,7 +160,7 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
 
   // Generate pagination buttons
   const paginationButtons = useMemo(() => {
-    if (data?.totalPages == null || data.totalPages <= 0) {
+    if (data?.totalPages === null || data?.totalPages === undefined || data.totalPages <= 0) {
       return [];
     }
 

@@ -1,6 +1,7 @@
 import { Prisma } from '@prisma/client';
 import { measureDatabaseQuery } from './performance';
 import { validateFieldName } from '../../../scripts/db-security-utils';
+import { logger } from '../logger';
 
 // Type definitions for better type safety
 type PrismaModel = {
@@ -54,7 +55,11 @@ export const dbUtils = {
       return { [validatedFieldName]: sortOrder };
     } catch (error) {
       // Log security violation but don't expose details
-      console.warn(`Security violation: Invalid sort field attempted: ${sortBy}`);
+      logger.warn({
+        attemptedField: sortBy,
+        allowedFields,
+        operation: 'getSortingParams'
+      }, 'Security violation: Invalid sort field attempted');
       return undefined;
     }
   },
@@ -77,7 +82,12 @@ export const dbUtils = {
 
       return Object.keys(conditions).length > 0 ? { [validatedFieldName]: conditions } : {};
     } catch (error) {
-      console.warn(`Security violation: Invalid date range field attempted: ${fieldName}`);
+      logger.warn({
+        attemptedField: fieldName,
+        allowedFields,
+        operation: 'buildDateRangeQuery',
+        error: error instanceof Error ? error.message : 'Unknown error'
+      }, 'Security violation: Invalid date range field attempted');
       return {};
     }
   },
@@ -107,7 +117,12 @@ export const dbUtils = {
         })),
       };
     } catch (error) {
-      console.warn(`Security violation: Invalid search fields attempted: ${fields.join(', ')}`);
+      logger.warn({
+        attemptedFields: fields,
+        allowedFields,
+        operation: 'buildSearchQuery',
+        error: error instanceof Error ? error.message : 'Unknown error'
+      }, 'Security violation: Invalid search fields attempted');
       return {};
     }
   },
@@ -135,7 +150,12 @@ export const dbUtils = {
         [validatedFieldName]: true,
       };
     } catch (error) {
-      console.warn(`Security violation: Invalid active field attempted: ${isActiveField}`);
+      logger.warn({
+        attemptedField: isActiveField,
+        allowedFields,
+        operation: 'buildActiveQuery',
+        error: error instanceof Error ? error.message : 'Unknown error'
+      }, 'Security violation: Invalid active field attempted');
       // Return a safe default that won't match anything
       return {
         ...additionalConditions,
@@ -380,7 +400,11 @@ export const getConnectionInfo = async (prisma: PrismaClientLike): Promise<{
     };
   } catch (error) {
     // Return safe defaults if queries fail
-    console.warn('Failed to get connection info:', error);
+    logger.warn({
+      operation: 'getConnectionInfo',
+      error: error instanceof Error ? error.message : 'Unknown error',
+      errorType: error instanceof Error ? error.constructor.name : typeof error
+    }, 'Failed to get database connection info');
     return {
       version: 'unknown',
       tableCount: 0,

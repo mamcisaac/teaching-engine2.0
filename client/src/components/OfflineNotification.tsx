@@ -138,7 +138,7 @@ export function ConflictResolutionModal({
   const [_mergedData, _setMergedData] = useState<unknown>(null);
 
   const handleResolve = (): void => {
-    if (selectedResolution === 'merge' && _mergedData != null) {
+    if (selectedResolution === 'merge' && _mergedData !== null) {
       onResolve('merge', _mergedData);
     } else {
       onResolve(selectedResolution);

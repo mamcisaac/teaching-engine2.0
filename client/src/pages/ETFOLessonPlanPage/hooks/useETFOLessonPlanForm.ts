@@ -25,6 +25,37 @@ interface ETFOLessonPlanFormData {
   expectationIds: string[];
 }
 
+interface ETFOLessonExpectation {
+  expectation: {
+    id: string;
+  };
+}
+
+interface ETFOLesson {
+  title: string;
+  titleFr?: string;
+  date: string;
+  duration: number;
+  mindsOn?: string;
+  mindsOnFr?: string;
+  action?: string;
+  actionFr?: string;
+  consolidation?: string;
+  consolidationFr?: string;
+  learningGoals?: string;
+  learningGoalsFr?: string;
+  materials?: string[];
+  grouping?: string;
+  accommodations?: string[];
+  modifications?: string[];
+  extensions?: string[];
+  assessmentType?: 'diagnostic' | 'formative' | 'summative';
+  assessmentNotes?: string;
+  isSubFriendly: boolean;
+  subNotes?: string;
+  expectations?: ETFOLessonExpectation[];
+}
+
 const initialFormData: ETFOLessonPlanFormData = {
   title: '',
   titleFr: '',
@@ -61,7 +92,7 @@ export function useETFOLessonPlanForm() {
     setFormData(prev => ({ ...prev, ...updates }));
   };
 
-  const populateFormFromLesson = (lesson: any): void => {
+  const populateFormFromLesson = (lesson: ETFOLesson): void => {
     setFormData({
       title: lesson.title,
       titleFr: lesson.titleFr ?? '',
@@ -87,7 +118,7 @@ export function useETFOLessonPlanForm() {
       assessmentNotes: lesson.assessmentNotes ?? '',
       isSubFriendly: lesson.isSubFriendly,
       subNotes: lesson.subNotes ?? '',
-      expectationIds: lesson.expectations?.map((e: any) => e.expectation.id).filter((id: any): id is string => id !== undefined) ?? [],
+      expectationIds: lesson.expectations?.map((e) => e.expectation.id).filter((id): id is string => id !== undefined) ?? [],
     });
   };
 

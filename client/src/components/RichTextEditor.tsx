@@ -32,12 +32,12 @@ export function RichTextEditor({
     const sanitizedHTML = sanitizeHtml(rawHTML);
     
     // Only update if content actually changed to prevent cursor jumping
-    if (sanitizedHTML != html) {
+    if (sanitizedHTML !== html) {
       setHtml(sanitizedHTML);
       onChange(sanitizedHTML);
       
       // If we had to sanitize, update the display
-      if (sanitizedHTML != rawHTML) {
+      if (sanitizedHTML !== rawHTML) {
         target.innerHTML = sanitizedHTML;
       }
     }

@@ -93,7 +93,7 @@ export function safeJsonParse<T = unknown>(
   validator?: (value: unknown) => value is T
 ): { success: true; data: T } | { success: false; error: string } {
   try {
-    const parsed = JSON.parse(jsonString);
+    const parsed: unknown = JSON.parse(jsonString);
     
     if (validator && !validator(parsed)) {
       return { success: false, error: 'Parsed data does not match expected format' };

@@ -26,7 +26,7 @@ export interface WindowWithErrorReporter extends Window {
 export function isApiError(error: unknown): error is ApiError {
   return (
     typeof error === 'object' &&
-    error != null &&
+    error !== null &&
     'response' in error &&
     typeof (error as ApiError).response === 'object'
   );
@@ -35,7 +35,7 @@ export function isApiError(error: unknown): error is ApiError {
 export function hasResponseStatus(error: unknown): error is { response: { status: number } } {
   return (
     isApiError(error) &&
-    error.response != undefined &&
+    error.response !== undefined &&
     typeof error.response.status === 'number'
   );
 }
@@ -44,7 +44,7 @@ export function isErrorWithMessage(error: unknown): error is Error {
   return (
     error instanceof Error ||
     (typeof error === 'object' &&
-      error != null &&
+      error !== null &&
       'message' in error &&
       typeof (error as Error).message === 'string')
   );

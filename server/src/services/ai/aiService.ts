@@ -193,17 +193,18 @@ export class AIService extends BaseService {
             throw new AppError(500, 'No response from AI service');
           }
 
-          let lessonPlan = safeJsonParse<LessonPlan>(content);
+          const parseResult = safeJsonParse<JSONValue>(content);
+          let lessonPlan: LessonPlan;
           
-          if (!lessonPlan) {
+          if (!parseResult) {
             logger.warn('Failed to parse AI response, using fallback');
             lessonPlan = this.createFallbackLesson(input);
             lessonPlan.fallback = true;
             lessonPlan.error = 'JSON parsing failed';
+          } else {
+            // Validate and fix lesson plan structure
+            lessonPlan = this.validateAndFixLessonPlan(parseResult, input);
           }
-
-          // Validate and fix lesson plan structure
-          lessonPlan = this.validateAndFixLessonPlan(lessonPlan as unknown as JSONValue, input);
 
           logger.info(
             `Generated lesson plan for Grade ${input.grade} ${input.subject}: ${input.topic}`,
@@ -598,46 +599,56 @@ Return a JSON object with the structure: { title, dateRange, sections, footer }`
 
   private validateAndFixLessonPlan(plan: JSONValue, input: LessonGenerationInput): LessonPlan {
     // Type guard to ensure plan is an object
-    const lessonPlan = this.ensureRecordObject(plan);
+    const rawPlan = this.ensureRecordObject(plan);
     
-    // Ensure required fields exist
-    if (lessonPlan.title === null || lessonPlan.title === '') {
-      lessonPlan.title = `${input.topic} - Grade ${input.grade} ${input.subject}`;
-    }
-    if (lessonPlan.objectives === null || !Array.isArray(lessonPlan.objectives)) {
-      lessonPlan.objectives = ['Understand key concepts'];
-    }
-    if (lessonPlan.activities === null || !Array.isArray(lessonPlan.activities)) {
-      lessonPlan.activities = [];
-    }
-    if (lessonPlan.materials === null || !Array.isArray(lessonPlan.materials)) {
-      lessonPlan.materials = [];
-    }
-    if (lessonPlan.duration === null || lessonPlan.duration === 0) {
-      lessonPlan.duration = input.duration;
+    // Build a properly typed lesson plan
+    const lessonPlan: LessonPlan = {
+      title: (typeof rawPlan.title === 'string' && rawPlan.title !== '') 
+        ? rawPlan.title 
+        : `${input.topic} - Grade ${input.grade} ${input.subject}`,
+      objectives: Array.isArray(rawPlan.objectives) 
+        ? rawPlan.objectives.filter((obj): obj is string => typeof obj === 'string')
+        : ['Understand key concepts'],
+      activities: [],
+      materials: Array.isArray(rawPlan.materials) 
+        ? rawPlan.materials.filter((mat): mat is string => typeof mat === 'string')
+        : [],
+      duration: (typeof rawPlan.duration === 'number' && rawPlan.duration > 0) 
+        ? rawPlan.duration 
+        : input.duration
+    };
+
+    // Process activities with proper type checking
+    if (Array.isArray(rawPlan.activities)) {
+      lessonPlan.activities = rawPlan.activities
+        .filter((activity): activity is Record<string, unknown> => 
+          typeof activity === 'object' && activity !== null && !Array.isArray(activity)
+        )
+        .map(activityObj => ({
+          name: typeof activityObj.name === 'string' ? activityObj.name : 'Activity',
+          duration: typeof activityObj.duration === 'number' ? activityObj.duration : 10,
+          materials: Array.isArray(activityObj.materials) 
+            ? activityObj.materials.filter((mat): mat is string => typeof mat === 'string')
+            : [],
+          description: typeof activityObj.description === 'string' ? activityObj.description : ''
+        }));
     }
 
     // Validate activity durations sum correctly
-    const activities = Array.isArray(lessonPlan.activities) ? lessonPlan.activities : [];
-    const totalActivityDuration = activities.reduce(
-      (sum: number, activity: JSONValue) => {
-        const activityObj = this.ensureRecordObject(activity);
-        return sum + (typeof activityObj.duration === 'number' ? activityObj.duration : 0);
-      },
-      0,
+    const totalActivityDuration = lessonPlan.activities.reduce(
+      (sum, activity) => sum + activity.duration,
+      0
     );
+    
     if (totalActivityDuration > input.duration) {
       // Adjust activities to fit duration
       const ratio = input.duration / totalActivityDuration;
-      activities.forEach((activity: JSONValue) => {
-        const activityObj = this.ensureRecordObject(activity);
-        if (typeof activityObj.duration === 'number') {
-          activityObj.duration = Math.round(activityObj.duration * ratio);
-        }
+      lessonPlan.activities.forEach(activity => {
+        activity.duration = Math.round(activity.duration * ratio);
       });
     }
 
-    return lessonPlan as unknown as LessonPlan;
+    return lessonPlan;
   }
 
   private createFallbackLesson(input: LessonGenerationInput): LessonPlan {
@@ -776,7 +787,7 @@ This is a fallback analysis. For more detailed analysis, please ensure AI servic
 
   private createFallbackEnhancedLesson(lesson: JSONValue, enhancementType: string): JSONValue {
     const lessonObj = this.ensureRecordObject(lesson);
-    const enhanced = { ...lessonObj };
+    const enhanced: Record<string, unknown> = { ...lessonObj };
 
     if (enhancementType === 'differentiation') {
       enhanced.differentiation = {
@@ -817,10 +828,10 @@ This is a fallback analysis. For more detailed analysis, please ensure AI servic
       'subject' in input &&
       'topic' in input &&
       'duration' in input &&
-      typeof (input as any).grade === 'string' &&
-      typeof (input as any).subject === 'string' &&
-      typeof (input as any).topic === 'string' &&
-      typeof (input as any).duration === 'number'
+      typeof (input as Record<string, unknown>).grade === 'string' &&
+      typeof (input as Record<string, unknown>).subject === 'string' &&
+      typeof (input as Record<string, unknown>).topic === 'string' &&
+      typeof (input as Record<string, unknown>).duration === 'number'
     );
   }
 }

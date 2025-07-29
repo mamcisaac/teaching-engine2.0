@@ -2,10 +2,6 @@
 import { Sparkles, RefreshCw, Copy, Check } from 'lucide-react';
 import React, { useState } from 'react';
 
-// Type guard moved locally to avoid rootDir violation
-const isAISuggestion = (value: unknown): value is { id: string; type: string } => {
-  return typeof value === 'object' && value !== null && 'id' in value && 'type' in value;
-};
 import type { AISuggestion } from '@/hooks/useAIPlanningAssistant';
 import { cn } from '@/lib/utils';
 
@@ -62,7 +58,7 @@ export function AISuggestionPanel({
   };
 
   const handleAcceptAll = (): void => {
-    if (onAcceptAll !== undefined && isAISuggestion(suggestions)) {
+    if (onAcceptAll !== undefined && suggestions !== null) {
       onAcceptAll();
       const allIndices = new Set(suggestions.suggestions.map((_, i) => i));
       setAcceptedIndices(allIndices);
@@ -112,7 +108,7 @@ export function AISuggestionPanel({
           </Alert>
         )}
 
-        {isAISuggestion(suggestions) && suggestions.suggestions.length > 0 && (
+        {suggestions !== null && suggestions.suggestions.length > 0 && (
           <div className="space-y-3">
             {suggestions.rationale !== undefined && suggestions.rationale.trim() !== '' && (
               <p className="text-sm text-muted-foreground italic">{suggestions.rationale}</p>
@@ -177,14 +173,14 @@ export function AISuggestionPanel({
           </div>
         )}
 
-        {isAISuggestion(suggestions) && suggestions.suggestions.length === 0 && (
+        {suggestions !== null && suggestions.suggestions.length === 0 && (
           <div className="text-center py-8 text-muted-foreground">
             <Sparkles className="h-8 w-8 mx-auto mb-2 opacity-20" />
             <p className="text-sm">No suggestions generated. Try adjusting your input.</p>
           </div>
         )}
 
-        {!isAISuggestion(suggestions) && !isGenerating && error === undefined && (
+        {suggestions === null && !isGenerating && error === undefined && (
           <div className="text-center py-8 text-muted-foreground">
             <Sparkles className="h-8 w-8 mx-auto mb-2 opacity-20" />
             <p className="text-sm">Click generate to get AI-powered suggestions</p>

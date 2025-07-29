@@ -51,6 +51,7 @@ const baseConfig = {
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.js$': '$1',
     '^@/(.*)$': '<rootDir>/src/$1',
+    '^@shared/(.*)$': '<rootDir>/../shared/$1',
     '^tests/(.*)$': '<rootDir>/tests/$1',
     // Only mock truly external dependencies that cannot be used in tests
     '^canvas$': '<rootDir>/tests/mocks/canvas.mock.ts', // Canvas rendering not available in Node
@@ -146,6 +147,7 @@ const securityTestProject = {
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.js$': '$1',
     '^@/(.*)$': '<rootDir>/src/$1',
+    '^@shared/(.*)$': '<rootDir>/../shared/$1',
     '^tests/(.*)$': '<rootDir>/tests/$1',
     // Only mock rendering libraries not available in Node
     '^canvas$': '<rootDir>/tests/mocks/canvas.mock.ts',
@@ -230,6 +232,7 @@ const integrationTestProject = {
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.js$': '$1',
     '^@/(.*)$': '<rootDir>/src/$1',
+    '^@shared/(.*)$': '<rootDir>/../shared/$1',
     '^tests/(.*)$': '<rootDir>/tests/$1',
     // Only mock rendering libraries not available in Node
     '^canvas$': '<rootDir>/tests/mocks/canvas.mock.ts',
@@ -252,6 +255,7 @@ const aiSnapshotTestProject = {
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.js$': '$1',
     '^@/(.*)$': '<rootDir>/src/$1',
+    '^@shared/(.*)$': '<rootDir>/../shared/$1',
     '^tests/(.*)$': '<rootDir>/tests/$1',
     // Only mock if API key is not available - tests should handle this gracefully
     '^openai$':
@@ -275,6 +279,7 @@ const performanceTestProject = {
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.js$': '$1',
     '^@/(.*)$': '<rootDir>/src/$1',
+    '^@shared/(.*)$': '<rootDir>/../shared/$1',
     '^tests/(.*)$': '<rootDir>/tests/$1',
     '^@/utils/logger$': '<rootDir>/src/logger',
   },

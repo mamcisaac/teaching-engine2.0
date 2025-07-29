@@ -1,10 +1,18 @@
 import { useNavigate } from 'react-router-dom';
+import type { UseMutationResult } from '@tanstack/react-query';
 
 import type { LessonPlan } from '../types';
 import { NAVIGATION } from '../utils/constants';
+import { logger } from '@/utils/logger';
+import type { PlanTemplate } from '@/types/template';
+import type { ETFOLessonPlan } from '@/hooks/useETFOPlanning';
 
 import type { ETFOLessonPlanFormData } from './useETFOLessonPlanForm';
 import type { ETFOModalState } from './useETFOModalState';
+
+interface LessonPlanData extends ETFOLessonPlanFormData {
+  unitPlanId: string;
+}
 
 interface UseETFOLessonPlanActionsProps {
   unitId: string;
@@ -13,16 +21,16 @@ interface UseETFOLessonPlanActionsProps {
   modalState: ETFOModalState;
   formActions: {
     resetForm: () => void;
-    populateFormFromLesson: (lesson: any) => void;
-    getCleanedFormData: (unitId: string) => any;
+    populateFormFromLesson: (lesson: LessonPlan) => void;
+    getCleanedFormData: (unitId: string) => LessonPlanData;
   };
   mutations: {
-    createLesson: any;
-    updateLesson: any;
-    deleteLesson: any;
+    createLesson: UseMutationResult<ETFOLessonPlan, Error, Partial<ETFOLessonPlan> & { expectationIds?: string[] }, unknown>;
+    updateLesson: UseMutationResult<ETFOLessonPlan, Error, { id: string; data: Partial<ETFOLessonPlan> & { expectationIds?: string[] } }, unknown>;
+    deleteLesson: UseMutationResult<unknown, Error, string, unknown>;
   };
   templateActions: {
-    handleApplyTemplate: (template: any) => Promise<void>;
+    handleApplyTemplate: (template: PlanTemplate) => Promise<void>;
   };
 }
 
@@ -80,7 +88,13 @@ export function useETFOLessonPlanActions({
       resetForm();
     } catch (error) {
       // Error handling is typically managed by the mutation hooks
-      console.error('Failed to save lesson plan:', error);
+      logger.error('Failed to save lesson plan', {
+        operation: editingLesson !== null ? 'update' : 'create',
+        lessonId: editingLesson,
+        unitId,
+        error: error instanceof Error ? error.message : 'Unknown error',
+        errorType: error instanceof Error ? error.constructor.name : typeof error
+      });
     }
   };
 
@@ -98,7 +112,14 @@ export function useETFOLessonPlanActions({
       }
     } catch (error) {
       // Error handling is typically managed by the mutation hooks
-      console.error('Failed to delete lesson plan:', error);
+      logger.error('Failed to delete lesson plan', {
+        operation: 'delete',
+        lessonId: id,
+        unitId,
+        currentLessonId: lessonId,
+        error: error instanceof Error ? error.message : 'Unknown error',
+        errorType: error instanceof Error ? error.constructor.name : typeof error
+      });
     }
   };
 
@@ -113,13 +134,20 @@ export function useETFOLessonPlanActions({
   /**
    * Handles template application and modal transitions
    */
-  const handleTemplateApplication = async (template: any): Promise<void> => {
+  const handleTemplateApplication = async (template: PlanTemplate): Promise<void> => {
     try {
       await handleApplyTemplate(template);
       // Transition from template modal to create modal
       handleTemplateToCreate();
     } catch (error) {
-      console.error('Failed to apply template:', error);
+      logger.error('Failed to apply template', {
+        operation: 'applyTemplate',
+        unitId,
+        templateId: template?.id,
+        templateName: template?.title,
+        error: error instanceof Error ? error.message : 'Unknown error',
+        errorType: error instanceof Error ? error.constructor.name : typeof error
+      });
       // Template modal stays open on error
     }
   };

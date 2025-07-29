@@ -43,5 +43,5 @@ export function loadPlannerFilters(): Record<string, boolean> {
 return {};
 }
   const stored = localStorage.getItem(STORAGE_KEY);
-  return (stored != null && stored != '') ? (safeJsonParse(stored, {}) as Record<string, boolean>) : {};
+  return (stored !== null && stored !== '') ? (safeJsonParse(stored, {}) as Record<string, boolean>) : {};
 }

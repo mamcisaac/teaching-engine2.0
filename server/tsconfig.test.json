@@ -16,10 +16,11 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
+      "@shared/*": ["../shared/*"],
       "@teaching-engine/database": ["tests/mocks/database.mock.ts"],
       "tests/*": ["tests/*"]
     }
   },
-  "include": ["src/**/*", "tests/**/*", "jest.setup.js", "jest.config.js"],
+  "include": ["src/**/*", "tests/**/*", "../shared/**/*", "jest.setup.js", "jest.config.js"],
   "exclude": ["node_modules", "dist"]
 }

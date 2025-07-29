@@ -59,6 +59,16 @@ const getPrisma = (): DatabasePrismaClient => {
   if (isTestEnvironment && globalForPrisma.testPrismaClient !== undefined) {
     return globalForPrisma.testPrismaClient;
   }
+  
+  // For unit tests without proper database setup, throw a helpful error
+  if (isTestEnvironment && !globalForPrisma.testPrismaClient) {
+    throw new Error(
+      'Database client not initialized for tests. ' +
+      'Unit tests should mock the database. ' +
+      'Integration tests should use proper test setup with database initialization.'
+    );
+  }
+  
   return (
     globalForPrisma.prisma ??
     new DatabasePrismaClient({

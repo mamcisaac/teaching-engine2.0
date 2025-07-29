@@ -136,7 +136,7 @@ export function createCacheMiddleware(
           : generateCacheKey(req, keyPrefix);
 
         // Try to get from cache
-        const cachedResponse = cache.get(cacheKey);
+        const cachedResponse = cache.get<unknown>(cacheKey);
 
         if (isDefined(cachedResponse)) {
           // Cache hit
@@ -158,7 +158,7 @@ export function createCacheMiddleware(
         logger.debug({ cacheType, path: req.path }, `Cache miss for key: ${cacheKey}`);
 
         // Store original json method to intercept response
-        const originalJson = res.json.bind(res);
+        const originalJson = res.json.bind(res) as (this: Response, data: unknown) => Response;
         res.json = function (data: unknown): Response {
           // Store in cache for future requests
           const cacheTTL = ttl ?? cache.options.stdTTL ?? DEFAULT_TTL;
@@ -228,8 +228,8 @@ export function invalidateCache(
 ): (req: Request, res: Response, next: NextFunction) => void {
   return (req: Request, res: Response, next: NextFunction): void => {
     // Store original methods
-    const originalJson = res.json;
-    const originalEnd = res.end;
+    const originalJson = res.json.bind(res) as (this: Response, data: unknown) => Response;
+    const originalEnd = res.end.bind(res) as Response['end'];
 
     function invalidateCacheEntries(): void {
       if (res.statusCode >= 200 && res.statusCode < 300) {
