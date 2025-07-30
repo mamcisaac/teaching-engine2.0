@@ -103,7 +103,7 @@ if ('serviceWorker' in navigator) {
         await registration.unregister();
       }
     } catch (error) {
-      logger.warn('Failed to unregister service workers', { error });
+      console.warn('Failed to unregister service workers', error);
     }
   })();
 }

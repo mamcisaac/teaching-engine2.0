@@ -85,9 +85,9 @@ export function LongRangePlanPage(): React.ReactElement {
       goals: 'Students will develop number sense, spatial reasoning, and problem-solving skills while strengthening French language',
       themes: [],
       overarchingQuestions: 'How do numbers help us understand our world? Comment les nombres nous aident-ils à comprendre notre monde?',
-      assessmentOverview: null,
-      resourceNeeds: null,
-      professionalGoals: null,
+      assessmentOverview: '',
+      resourceNeeds: '',
+      professionalGoals: '',
       _count: { unitPlans: 1, expectations: 1 }
     },
     {
@@ -102,9 +102,9 @@ export function LongRangePlanPage(): React.ReactElement {
       goals: 'Students will explore their world through French language while developing scientific thinking and social awareness',
       themes: [],
       overarchingQuestions: 'Who are we and how do we connect to our community and environment?',
-      assessmentOverview: null,
-      resourceNeeds: null,
-      professionalGoals: null,
+      assessmentOverview: '',
+      resourceNeeds: '',
+      professionalGoals: '',
       _count: { unitPlans: 1, expectations: 2 }
     }
   ];
@@ -126,7 +126,7 @@ export function LongRangePlanPage(): React.ReactElement {
       return response.data;
     },
     onSuccess: () => {
-      void queryClient.invalidateQueries({ queryKey: ['long-range-plans'] });
+      // void queryClient.invalidateQueries({ queryKey: ['long-range-plans'] });
       setIsCreateModalOpen(false);
     },
   });

