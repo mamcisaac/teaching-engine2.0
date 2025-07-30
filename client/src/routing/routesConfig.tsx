@@ -6,7 +6,7 @@ import { ETFOLevel } from '../hooks/useWorkflowState';
 
 // Lazy load pages - import based on actual export patterns
 const LoginPage = lazy(() => import('../pages/LoginPage').then(module => ({ default: module.LoginPage }))); // named export
-const LongRangePlanPage = lazy(() => import('../pages/LongRangePlanPage').then(module => ({ default: module.LongRangePlanPage }))); // named export
+const SimpleLongRangePage = lazy(() => import('../pages/SimpleLongRangePage').then(module => ({ default: module.SimpleLongRangePage }))); // named export
 const UnitPlansPage = lazy(() => import('../pages/UnitPlansPage').then(module => ({ default: module.UnitPlansPage }))); // named export
 const ETFOLessonPlanPage = lazy(() => import('../pages/ETFOLessonPlanPage').then(module => ({ default: module.ETFOLessonPlanPage }))); // named export
 const QuickLessonPage = lazy(() => import('../pages/QuickLessonPage').then(module => ({ default: module.QuickLessonPage }))); // named export
@@ -46,7 +46,7 @@ export const plannerRoutes: RouteConfig[] = [
   },
   {
     path: 'long-range',
-    element: LongRangePlanPage,
+    element: SimpleLongRangePage,
     workflowLevel: ETFOLevel.LONG_RANGE_PLANS,
   },
   {

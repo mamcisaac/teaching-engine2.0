@@ -286,6 +286,9 @@ export default defineConfig(({ mode }) => {
       include: [
         'react',
         'react-dom',
+        'react-dom/client',
+        'react/jsx-runtime',
+        'react/jsx-dev-runtime',
         'react-router-dom',
         '@tanstack/react-query',
         'axios',
@@ -296,6 +299,7 @@ export default defineConfig(({ mode }) => {
         'tailwind-merge',
         'lucide-react',
         'nanoid',
+        'sonner',
       ],
       
       // Exclude local packages and problematic deps
@@ -318,7 +322,7 @@ export default defineConfig(({ mode }) => {
     },
 
     // Cache configuration for maximum performance
-    cacheDir: '.vite-cache',
+    cacheDir: 'node_modules/.vite',
 
     // Advanced ESBuild configuration
     esbuild: {

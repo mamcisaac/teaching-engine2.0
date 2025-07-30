@@ -62,6 +62,7 @@ export function AppRouter(): JSX.Element {
   const { isLoading, isInitialized, error } = useAuth();
 
   // Add debug logging
+  console.log('[AppRouter] Rendering, auth state:', { isLoading, isInitialized, error });
   logger.debug('[AppRouter] Auth state:', { isLoading, isInitialized, error });
 
   // Show loading spinner only during initial auth check
@@ -80,13 +81,11 @@ export function AppRouter(): JSX.Element {
       {/* Public routes */}
       {publicRoutes.map((route, index) => renderRoute(route, index))}
 
-      {/* Protected routes with MainLayout */}
+      {/* Protected routes */}
       <Route
         element={
           <ProtectedRoute>
-            <MainLayout>
-              <Outlet />
-            </MainLayout>
+            <Outlet />
           </ProtectedRoute>
         }
       >

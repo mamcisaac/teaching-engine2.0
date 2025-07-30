@@ -6,7 +6,7 @@
 import { PrismaClient } from '@teaching-engine/database';
 import cors from 'cors';
 import type { Express, Request, Response, NextFunction } from 'express';
-import express, { json, urlencoded } from 'express';
+import express from 'express';
 
 import { errorHandler } from './middleware/errorHandler';
 import { router as authEndpoints } from './routes/authEndpoints';
@@ -22,8 +22,9 @@ export function createApp(prisma: PrismaClient): Express {
       credentials: true,
     }),
   );
-  app.use(json());
-  app.use(urlencoded({ extended: true }));
+  // JSON and URL-encoded parsing is now handled in index.ts to avoid conflicts
+  // app.use(json());
+  // app.use(urlencoded({ extended: true }));
 
   // Rate limiting is applied at route level, not here
 

@@ -13,7 +13,7 @@ declare global {
 }
 
 // Create base axios instance
-const baseURL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+const baseURL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
 
 export const apiClient = axios.create({
   baseURL,

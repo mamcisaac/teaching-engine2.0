@@ -35,8 +35,29 @@ const AuthContext = createContext<AuthContextValue>({
 });
 
 export function AuthProvider({ children }: { children: React.ReactNode }): React.ReactElement {
-  const [user, setUser] = useState<User | null>(null);
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  console.log('[AuthProvider] Rendering with children:', children);
+  
+  // Initialize state synchronously from localStorage to prevent race conditions
+  const initializeFromStorage = (): { user: User | null; isAuthenticated: boolean } => {
+    try {
+      const storedUser = authService.getUser();
+      const hasToken = authService.isAuthenticated();
+      
+      console.log('[AuthProvider] Initializing from storage:', { storedUser, hasToken });
+      
+      if (storedUser && hasToken) {
+        return { user: storedUser, isAuthenticated: true };
+      }
+    } catch (error) {
+      console.error('[AuthProvider] Error initializing from storage:', error);
+    }
+    
+    return { user: null, isAuthenticated: false };
+  };
+  
+  const initialState = initializeFromStorage();
+  const [user, setUser] = useState<User | null>(initialState.user);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(initialState.isAuthenticated);
   const [isLoading, setIsLoading] = useState<boolean>(true); // Start as true
   const [isInitialized, setIsInitialized] = useState<boolean>(false); // Start as false
   const [error, setError] = useState<string | null>(null);
@@ -160,87 +181,51 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
     }
   }, [updateAuthState]);
 
-  // Initial auth check with improved error handling and retry logic
+  // Simplified initialization - state is already set from localStorage
   useEffect((): (() => void) => {
     let isMounted = true;
-    const timeoutId: NodeJS.Timeout = setTimeout(() => {
-      if (isMounted && isLoading) {
-        logger.warn('Auth check timeout - assuming not authenticated');
-        setIsLoading(false);
-        setIsInitialized(true);
-        updateAuthState(null);
-      }
-    }, 2000); // 2 second timeout - reduced for better UX
-
+    
     const performInitialAuthCheck = async (): Promise<void> => {
-      logger.debug('[AuthContext] Starting initial auth check');
+      console.log('[AuthContext] Starting simplified auth check');
+      logger.debug('[AuthContext] Starting simplified auth check');
+      
       try {
-        // Check if we have any stored authentication data
-        const storedUser = authService.getUser();
-        const hasToken = authService.isAuthenticated();
-
-        // Debug logging in development
-        logger.debug('[AuthContext] Initial auth check:', {
-          hasStoredUser: storedUser !== null,
-          hasToken,
-          storedUser,
-          tokenValue: `${authService.getAccessToken()?.substring(0, 20)  }...`,
-        });
-
-        if (!hasToken) {
-          // No token, definitely not authenticated
-          if (isMounted) {
-            updateAuthState(null);
-            setIsLoading(false);
-            setIsInitialized(true);
-          }
-          return;
-        }
-
-        // If we have a stored user and token, verify with server
-        // Add a timeout to prevent hanging
-        if (storedUser !== null) {
-          const checkAuthPromise = checkAuth();
-          const timeoutPromise = new Promise<void>((_, reject) =>
-            setTimeout((): void => {
- reject(new Error('Auth check timeout')); 
-}, 1500),
-          );
-
-          try {
-            await Promise.race([checkAuthPromise, timeoutPromise]);
-          } catch (timeoutError) {
-            logger.warn('Auth verification timed out, using cached user');
-            // Use cached user data if server check times out
-            if (isMounted) {
-              updateAuthState(storedUser);
-            }
-          }
-        } else {
-          // Clear inconsistent state
-          authService.clearTokens();
-          updateAuthState(null);
+        // State is already initialized from localStorage, just verify with server if we have a user
+        if (user && authService.isAuthenticated()) {
+          console.log('[AuthContext] User already authenticated, verifying with server in background');
+          // Verify with server in background (non-blocking) 
+          checkAuth().catch((_error) => {
+            logger.warn('Background auth verification failed, but keeping cached user');
+            // Don't clear auth state on server verification failure
+          });
         }
       } catch (_error) {
         logger.error('Initial auth check failed:', _error);
-        if (isMounted) {
-          updateAuthState(null);
-        }
       } finally {
-        logger.debug('[AuthContext] Finalizing auth check, isMounted:', isMounted);
         if (isMounted) {
           setIsLoading(false);
           setIsInitialized(true);
-          logger.debug('[AuthContext] Auth initialized');
+          console.log('[AuthContext] Auth initialized - isAuthenticated:', isAuthenticated);
+          logger.debug('[AuthContext] Auth initialized successfully');
         }
       }
     };
 
     void performInitialAuthCheck();
 
+    // Backup timeout to ensure initialization completes
+    const forceInitTimeout = setTimeout(() => {
+      console.warn('[AuthContext] Force initializing due to timeout');
+      if (isMounted && !isInitialized) {
+        setIsLoading(false);
+        setIsInitialized(true);
+        console.log('[AuthContext] Force initialized - isAuthenticated:', isAuthenticated);
+      }
+    }, 1000); // Reduced timeout since we're doing less work
+
     return (): void => {
       isMounted = false;
-      clearTimeout(timeoutId);
+      clearTimeout(forceInitTimeout);
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []) // Only run once on mount - dependencies intentionally omitted to prevent re-runs

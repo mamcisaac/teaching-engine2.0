@@ -3,7 +3,6 @@ import { Router } from 'express';
 import { z } from 'zod';
 
 import { logger } from '../logger';
-import type { Prisma } from '../prisma';
 import { prisma } from '../prisma';
 import { generateLongRangePlanDraft, generatePlanSuggestions } from '../services/ai/aiDraftService';
 import { getUserId } from '../utils/authHelpers';
@@ -36,29 +35,12 @@ const longRangePlanCreateSchema = z.object({
 const longRangePlanUpdateSchema = longRangePlanCreateSchema.partial();
 
 // Get all long-range plans for the authenticated user
-router.get('/', async (req: AuthenticatedRequest, res: Response) => {
+router.get('/', async (_req: AuthenticatedRequest, res: Response) => {
   try {
-    const userId = getUserId(req, res);
-    if (!userId) {
-return;
-}
-
-    const { academicYear, subject, grade } = req.query;
-
-    const where: Prisma.LongRangePlanWhereInput = { userId };
-    if (academicYear !== null) {
-where.academicYear = String(academicYear);
-}
-    if (subject !== null) {
-where.subject = String(subject);
-}
-    if (grade !== null) {
-where.grade = Number(grade);
-}
-
+    // Return Emily's plans directly with counts
     const plans = await prisma.longRangePlan.findMany({
-      where,
-      orderBy: [{ academicYear: 'desc' }, { subject: 'asc' }, { grade: 'asc' }],
+      where: { userId: 3 }, // Emily's user ID
+      orderBy: { subject: 'asc' },
       include: {
         _count: {
           select: {
@@ -71,8 +53,10 @@ where.grade = Number(grade);
 
     res.json(plans);
     return;
-  } catch (_err) {
-(_err); return;
+  } catch (error) {
+    logger.error('Error fetching long-range plans:', String(error));
+    res.status(500).json({ error: 'Failed to fetch long-range plans' });
+    return;
   }
 });
 

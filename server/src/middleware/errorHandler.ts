@@ -188,16 +188,24 @@ function sendErrorProd(err: ErrorLike, req: Request, res: Response): void {
 function handleSpecificErrors(err: ErrorLike): AppError {
   // JSON parsing errors (malformed JSON)
   if (err instanceof SyntaxError && err.message.includes('JSON')) {
-    return new ValidationError('Invalid JSON format in request body');
+    // Extract position information from the error message if available
+    const positionMatch = err.message.match(/position (\d+)/);
+    const position = positionMatch !== null ? ` at position ${positionMatch[1]}` : '';
+    return new ValidationError(`Invalid JSON format in request body${position}. Please check your JSON syntax.`);
   }
 
   // Express JSON parser errors
   if (err.type === 'entity.parse.failed') {
-    return new ValidationError('Invalid JSON format in request body');
+    return new ValidationError('Invalid JSON format in request body. Please ensure you are sending valid JSON.');
   }
 
   if (err.type === 'entity.too.large') {
-    return new ValidationError('Request payload too large');
+    return new ValidationError('Request payload too large. Maximum size is 10MB.');
+  }
+
+  // Charset encoding errors
+  if (err.type === 'charset.unsupported') {
+    return new ValidationError('Unsupported character encoding. Please use UTF-8.');
   }
 
   // Zod validation errors

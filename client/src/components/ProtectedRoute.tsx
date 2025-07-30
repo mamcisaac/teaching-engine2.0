@@ -9,8 +9,18 @@ interface ProtectedRouteProps {
 }
 
 export function ProtectedRoute({ children }: ProtectedRouteProps): React.ReactElement {
-  const { isAuthenticated, isLoading, isInitialized } = useAuth();
+  const { isAuthenticated, isLoading, isInitialized, user } = useAuth();
   const location = useLocation();
+
+  // Enhanced debug logging
+  console.log('[ProtectedRoute] Auth state check:', {
+    isAuthenticated,
+    isLoading,
+    isInitialized,
+    hasUser: !!user,
+    user,
+    currentPath: location.pathname,
+  });
 
   // Debug logging in development
   if (process.env.NODE_ENV === 'development') {

@@ -1,64 +1,70 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
-import { Toaster } from 'sonner';
+console.log('🎉 Teaching Engine 2.0 - Direct Restoration')
 
-import { App } from './App';
-// import { TestApp as App } from './TestApp';
-import './index.css';
-import { errorReportingService } from './services/errorReportingService';
-import { logger } from './utils/logger';
+// Reset to the original working approach - JSX with static imports
+import React, { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { Toaster } from 'sonner'
 
-// Initialize error reporting service
-errorReportingService.init();
+import { AuthProvider } from './contexts/AuthContext'
+import { AppRouter } from './routing/AppRouter'
+import './index.css'
+import { errorReportingService } from './services/errorReportingService'
+
+console.log('Starting Teaching Engine 2.0...')
+
+// Initialize error reporting
+errorReportingService.init()
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      // Enable offline caching
       networkMode: 'offlineFirst',
       retry: (failureCount, error: unknown): boolean => {
-        // Don't retry if offline
-        if (!navigator.onLine) {
-return false;
-}
-        // Don't retry on 401 errors
-        const err = error as { response?: { status?: number } };
-        if (err.response?.status === 401) {
-return false;
-}
-        // Retry up to 3 times for other errors
-        return failureCount < 3;
+        if (!navigator.onLine) return false
+        const err = error as { response?: { status?: number } }
+        if (err.response?.status === 401) return false
+        return failureCount < 3
       },
     },
     mutations: {
-      // Enable offline persistence for mutations
       networkMode: 'offlineFirst',
       retry: (failureCount, error: unknown): boolean => {
-        // Don't retry on 401 errors
-        const err = error as { response?: { status?: number } };
-        if (err.response?.status === 401) {
-return false;
-}
-        // Retry up to 3 times for other errors
-        return failureCount < 3;
+        const err = error as { response?: { status?: number } }
+        if (err.response?.status === 401) return false
+        return failureCount < 3
       },
     },
   },
-});
+})
 
-const rootElement = document.getElementById('root');
+const rootElement = document.getElementById('root')
+console.log('Root element found:', !!rootElement)
+
 if (rootElement) {
-  createRoot(rootElement).render(
-    <StrictMode>
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <App />
-          <Toaster closeButton richColors position="top-right" />
-        </BrowserRouter>
-      </QueryClientProvider>
-    </StrictMode>
-  );
+  console.log('Creating React root and rendering Teaching Engine app...')
+  try {
+    const root = createRoot(rootElement)
+    root.render(
+      <StrictMode>
+        <QueryClientProvider client={queryClient}>
+          <BrowserRouter>
+            <AuthProvider>
+              <AppRouter />
+            </AuthProvider>
+            <Toaster closeButton richColors position="top-right" />
+          </BrowserRouter>
+        </QueryClientProvider>
+      </StrictMode>
+    )
+    console.log('🎉 Teaching Engine 2.0 rendered successfully!')
+  } catch (error) {
+    console.error('Failed to render Teaching Engine:', error)
+    rootElement.innerHTML = `<div style="color: red; padding: 20px;">Render Error: ${error}</div>`
+  }
+} else {
+  console.error('Root element not found!')
 }
 
 // Register service worker - TEMPORARILY DISABLED FOR DEBUGGING

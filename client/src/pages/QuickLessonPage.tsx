@@ -1,167 +1,69 @@
 
-import { Zap, FileText, ArrowLeft, Info } from 'lucide-react';
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'sonner';
 
-import { LessonPlanForm } from '../components/forms/LessonPlanForm';
-import type { LessonPlanFormData } from '../components/forms/LessonPlanForm';
-import { OnboardingTooltip } from '../components/onboarding';
-import { Button } from '../components/ui/Button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
-import { useCreateETFOLessonPlan } from '../hooks/useETFOPlanning';
-import { useShowContextualHints } from '../hooks/useFeatureTutorial';
-import { logger } from '../utils/logger';
 export function QuickLessonPage(): React.ReactElement {
   const navigate = useNavigate();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const createLesson = useCreateETFOLessonPlan();
-  const showHints = useShowContextualHints();
-
-  const handleSubmit = (data: LessonPlanFormData): void => {
-    void (async (): Promise<void> => {
-    setIsSubmitting(true);
-
-    try {
-      // Create standalone lesson without unit requirement
-      const lessonData = {
-        ...data,
-        unitPlanId: null, // Allow null for standalone lessons
-        isStandalone: true,
-      };
-
-      await createLesson.mutateAsync(
-        lessonData as LessonPlanFormData & { unitPlanId: null; isStandalone: true },
-      );
-
-      toast.success('Quick lesson created successfully!');
-      navigate('/planner/etfo-lessons');
-    } catch (_error) {
-      logger.error('Failed to create quick lesson:', _error);
-      toast.error('Failed to create lesson. Please try again.');
-    } finally {
-      setIsSubmitting(false);
-    }
-    })();
-  };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {/* Header */}
-      <div className="mb-8">
-        <Button aria-label="Click button" onClick={() => {
- navigate('/planner'); 
-}}>
-          <ArrowLeft className="h-4 w-4" />
-          Back to Dashboard
-        </Button>
-
-        <div className="flex items-center gap-3 mb-4">
-          <div className="p-2 bg-green-100 rounded-lg">
-            <Zap className="h-6 w-6 text-green-600" />
-          </div>
-          <div>
-            {showHints ? (
-              <OnboardingTooltip
-                content="Perfect for Grade 1 French Immersion! Create bilingual lessons quickly with AI assistance."
-                id="quick-lesson-title"
-                position="right"
-                title="Quick Lesson Planning"
-              >
-                <h1 className="text-3xl font-bold text-gray-900">Quick Lesson Planner</h1>
-              </OnboardingTooltip>
-            ) : (
-              <h1 className="text-3xl font-bold text-gray-900">Quick Lesson Planner</h1>
-            )}
-            <p className="text-gray-600">
-              Create a standalone lesson plan without requiring a unit plan
-            </p>
-          </div>
-        </div>
-
-        {/* Info banner */}
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-          <div className="flex gap-3">
-            <Info className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
-            <div>
-              <h3 className="text-blue-900 font-medium">Quick Lesson Mode</h3>
-              <p className="text-blue-800 text-sm mt-1">
-                Perfect for emergency planning, substitute teacher lessons, or one-off activities.
-                You can optionally link this lesson to a unit plan later.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Quick lesson benefits */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-base">⚡ No Prerequisites</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <CardDescription>
-              Create lessons without needing long-range or unit plans
-            </CardDescription>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-base">🎯 ETFO Aligned</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <CardDescription>
-              Still follows three-part lesson structure and curriculum expectations
-            </CardDescription>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-base">🔗 Link Later</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <CardDescription>Optionally connect to unit plans when you create them</CardDescription>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Lesson form */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <FileText className="h-5 w-5" />
-            Create Quick Lesson Plan
-          </CardTitle>
-          <CardDescription>
-            Fill out the essential details. Optional fields can be completed later.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <LessonPlanForm
-            initialData={{
-              title: '',
-              date: new Date().toISOString().split('T')[0],
-              duration: 60,
-              materials: [''],
-              accommodations: [''],
-              modifications: [''],
-              extensions: [''],
-              assessmentType: 'formative',
-              isSubFriendly: false,
-              expectationIds: [],
+    <div style={{ padding: '40px', backgroundColor: '#f0f9ff', minHeight: '100vh' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+        <h1 style={{ 
+          fontSize: '48px', 
+          fontWeight: 'bold', 
+          color: '#1e40af', 
+          textAlign: 'center', 
+          marginBottom: '20px' 
+        }}>
+          ⚡ Quick Lesson Planner
+        </h1>
+        
+        <div style={{ 
+          backgroundColor: 'white', 
+          padding: '30px', 
+          borderRadius: '12px', 
+          boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+          marginBottom: '30px'
+        }}>
+          <h2 style={{ color: '#059669', fontSize: '24px', marginBottom: '15px' }}>
+            ✨ Aide intelligente pour Grade 1 French Immersion
+          </h2>
+          <p style={{ fontSize: '18px', color: '#374151', lineHeight: '1.6' }}>
+            Perfect for emergency planning, substitute teacher lessons, or one-off activities for Emily's Grade 1 French Immersion class at West Kent Elementary, PEI.
+          </p>
+          <button
+            style={{
+              marginTop: '20px',
+              padding: '12px 24px',
+              backgroundColor: '#3b82f6',
+              color: 'white',
+              border: 'none',
+              borderRadius: '8px',
+              fontSize: '16px',
+              fontWeight: 'bold',
+              cursor: 'pointer'
             }}
-            isSubmitting={isSubmitting}
-            showUnitPlanSelector={false} // Hide unit plan requirement
-            onCancel={() => {
- navigate('/planner'); 
-}}
-            onSubmit={handleSubmit}
-          />
-        </CardContent>
-      </Card>
+            onClick={() => navigate('/planner/dashboard')}
+          >
+            ← Back to Dashboard
+          </button>
+        </div>
+
+        <div style={{ 
+          backgroundColor: '#fef3c7', 
+          padding: '20px', 
+          borderRadius: '8px', 
+          border: '2px solid #f59e0b',
+          textAlign: 'center'
+        }}>
+          <h3 style={{ color: '#92400e', fontSize: '22px', marginBottom: '10px' }}>
+            🚧 Quick Lesson Form Coming Soon
+          </h3>
+          <p style={{ color: '#92400e', fontSize: '16px' }}>
+            This feature is being developed. For now, Emily can use the dashboard to access long-range planning and calendar views.
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

@@ -19,9 +19,11 @@ import { rateLimiters } from './middleware/rateLimit/index';
 import { requestLoggingMiddleware, errorLoggingMiddleware } from './middleware/requestLogger';
 import {
   applySecurityMiddleware,
+  applyInputSanitization,
   authRateLimitMiddleware,
   validateFileUpload,
 } from './middleware/security';
+import { applyContentTypeValidation } from './middleware/contentTypeValidation';
 import { standardErrorHandler } from './middleware/standardErrorHandler';
 import { initTelemetry, startAlertMonitoring } from './monitoring';
 import { prisma } from './prisma';
@@ -78,14 +80,23 @@ const asyncMiddleware = (fn: (req: Request, res: Response, next: NextFunction) =
 log('Initializing Express application...');
 const app = express();
 
-// Apply comprehensive security middleware
+// Apply JSON and cookie parsing middleware FIRST
+log('Applying body parsing middleware...');
+app.use(json({ limit: '10mb' })); // Set reasonable payload limit
+app.use(urlencoded({ extended: true })); // Add URL-encoded parsing
+app.use(cookieParser());
+
+// Apply security middleware AFTER JSON parsing (excluding input sanitization)
 log('Applying comprehensive security middleware...');
 applySecurityMiddleware(app);
 
-// Apply JSON and cookie parsing middleware
-log('Applying body parsing middleware...');
-app.use(json({ limit: '10mb' })); // Set reasonable payload limit
-app.use(cookieParser());
+// Apply input sanitization AFTER JSON parsing to avoid interference
+log('Applying input sanitization middleware...');
+applyInputSanitization(app);
+
+// Apply Content-Type validation for JSON endpoints
+log('Applying Content-Type validation for auth endpoints...');
+applyContentTypeValidation(app);
 
 // Apply correlation ID middleware first
 log('Applying correlation ID middleware...');
@@ -307,9 +318,6 @@ app.use(structuredErrorLoggingMiddleware);
 app.use(standardErrorHandler);
 
 const clientDist = path.join(__dirname_index, '../../client/dist');
-log('Configuring URL-encoded and cookie parser middleware...');
-app.use(urlencoded({ extended: true }));
-app.use(cookieParser());
 log('Configuring static file serving for uploads...');
 app.use('/uploads', expressStatic(path.join(__dirname_index, '../uploads')));
 log('Configuring static file serving for client distribution...');

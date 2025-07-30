@@ -267,7 +267,7 @@ export function generateCSRFToken(): string {
 }
 
 /**
- * Apply all security middleware
+ * Apply all security middleware (excluding input sanitization)
  */
 export function applySecurityMiddleware(app: { use: (middleware: unknown) => void }): void {
   // Apply Helmet for security headers
@@ -279,8 +279,8 @@ export function applySecurityMiddleware(app: { use: (middleware: unknown) => voi
   // Apply custom security headers
   app.use(securityHeaders);
 
-  // Apply input sanitization
-  app.use(sanitizeInput);
+  // NOTE: Input sanitization is applied separately after JSON parsing
+  // to avoid interfering with body-parser
 
   // Apply general rate limiting
   // DISABLED FOR SINGLE USER APP - Using new rate limit system instead
@@ -288,6 +288,14 @@ export function applySecurityMiddleware(app: { use: (middleware: unknown) => voi
 
   // Log security middleware applied
   logger.info('Security middleware applied successfully');
+}
+
+/**
+ * Apply input sanitization after JSON parsing
+ */
+export function applyInputSanitization(app: { use: (middleware: unknown) => void }): void {
+  app.use(sanitizeInput);
+  logger.info('Input sanitization middleware applied');
 }
 
 /**
