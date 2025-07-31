@@ -31,7 +31,7 @@ import { Textarea } from '../components/ui/Textarea';
 import { UnitPlanOverviewTab } from '../components/unitPlans/UnitPlanOverviewTab';
 import { UnitPlanPlanningTab } from '../components/unitPlans/UnitPlanPlanningTab';
 import { useLongRangePlan, useLongRangePlans, useUnitPlans, useUnitPlan, useCreateUnitPlan, useUpdateUnitPlan } from '../hooks/useETFOPlanning';
-import type { UnitPlan } from '../hooks/useETFOPlanning';
+import type { UnitPlan, CurriculumExpectation } from '../hooks/useETFOPlanning';
 import { useTemplates, useApplyTemplate } from '../hooks/useTemplates';
 import { useUnitPlanForm } from '../hooks/useUnitPlanForm';
 import type { UnitPlanFormData } from '../hooks/useUnitPlanForm';
@@ -86,7 +86,7 @@ function UnitPlansPage(): React.ReactElement {
     academicYear: '2025-2026',
     grade: 1,
     subject: 'Français langue première'
-  } : null;
+  } : undefined;
 
   const allLongRangePlans = [
     {
@@ -128,8 +128,9 @@ function UnitPlansPage(): React.ReactElement {
       assessmentPlan: 'Daily observations of oral communication',
       keyVocabulary: ['Bonjour', 'Au revoir', 'S\'il vous plaît', 'Merci'],
       successCriteria: ['Students can greet others in French', 'Students can follow simple classroom instructions'],
-      _count: { lessonPlans: 20 },
+      _count: { lessonPlans: 20, expectations: 0, resources: 0 },
       expectations: [],
+      crossCurricularConnections: '',
       differentiationStrategies: {
         forStruggling: ['Visual cues and gestures', 'Peer support'],
         forAdvanced: ['Extended vocabulary', 'Leadership roles'],
@@ -153,8 +154,9 @@ function UnitPlansPage(): React.ReactElement {
       assessmentPlan: 'Performance tasks and observations',
       keyVocabulary: ['un', 'deux', 'trois', 'rouge', 'bleu', 'jaune'],
       successCriteria: ['Count to 20 in French', 'Identify and name colors'],
-      _count: { lessonPlans: 15 },
+      _count: { lessonPlans: 15, expectations: 0, resources: 0 },
       expectations: [],
+      crossCurricularConnections: '',
       differentiationStrategies: {
         forStruggling: ['Manipulatives', 'Number songs'],
         forAdvanced: ['Number patterns', 'Color mixing'],
@@ -178,8 +180,9 @@ function UnitPlansPage(): React.ReactElement {
       assessmentPlan: 'Family tree project and presentations',
       keyVocabulary: ['maman', 'papa', 'frère', 'soeur', 'ami'],
       successCriteria: ['Describe family members', 'Talk about friends'],
-      _count: { lessonPlans: 12 },
+      _count: { lessonPlans: 12, expectations: 0, resources: 0 },
       expectations: [],
+      crossCurricularConnections: '',
       differentiationStrategies: {
         forStruggling: ['Family photos', 'Simple sentences'],
         forAdvanced: ['Extended family vocabulary', 'Descriptive language'],
@@ -644,7 +647,7 @@ function UnitPlansPage(): React.ReactElement {
                     Curriculum Expectations
                   </h3>
                   <div className="grid gap-2">
-                    {unit.expectations.map(({ expectation }, _index) => (
+                    {unit.expectations.map(({ expectation }: { expectation: CurriculumExpectation }, _index) => (
                       <div key={expectation.id} className="bg-gray-50 p-3 rounded">
                         <div className="flex justify-between items-start">
                           <div>

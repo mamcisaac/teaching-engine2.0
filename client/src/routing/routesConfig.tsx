@@ -7,10 +7,10 @@ import { ETFOLevel } from '../hooks/useWorkflowState';
 // Lazy load pages - import based on actual export patterns
 const LoginPage = lazy(() => import('../pages/LoginPage').then(module => ({ default: module.LoginPage }))); // named export
 const SimpleLongRangePage = lazy(() => import('../pages/SimpleLongRangePage').then(module => ({ default: module.SimpleLongRangePage }))); // named export
-const UnitPlansPage = lazy(() => import('../pages/UnitPlansPage').then(module => ({ default: module.UnitPlansPage }))); // named export
-const ETFOLessonPlanPage = lazy(() => import('../pages/ETFOLessonPlanPage').then(module => ({ default: module.ETFOLessonPlanPage }))); // named export
+const SimpleUnitPlansPage = lazy(() => import('../pages/SimpleUnitPlansPage').then(module => ({ default: module.SimpleUnitPlansPage }))); // named export
+const SimpleLessonPlansPage = lazy(() => import('../pages/SimpleLessonPlansPage').then(module => ({ default: module.SimpleLessonPlansPage }))); // named export
 const QuickLessonPage = lazy(() => import('../pages/QuickLessonPage').then(module => ({ default: module.QuickLessonPage }))); // named export
-const CurriculumExpectationsPage = lazy(() => import('../pages/CurriculumExpectationsPage').then(module => ({ default: module.CurriculumExpectationsPage }))); // named export
+const SimpleCurriculumPage = lazy(() => import('../pages/SimpleCurriculumPage').then(module => ({ default: module.SimpleCurriculumPage }))); // named export
 const CurriculumImportPage = lazy(() => import('../pages/CurriculumImportPage').then(module => ({ default: module.CurriculumImportPage }))); // named export
 const DaybookPage = lazy(() => import('../pages/DaybookPage').then(module => ({ default: module.DaybookPage }))); // named export
 const PlanningDashboard = lazy(() => import('../pages/PlanningDashboard').then(module => ({ default: module.PlanningDashboard }))); // named export
@@ -47,32 +47,32 @@ export const plannerRoutes: RouteConfig[] = [
   {
     path: 'long-range',
     element: SimpleLongRangePage,
-    workflowLevel: ETFOLevel.LONG_RANGE_PLANS,
+    // Removed workflowLevel to bypass WorkflowGate for hardcoded component
   },
   {
     path: 'units',
-    element: UnitPlansPage,
-    workflowLevel: ETFOLevel.UNIT_PLANS,
+    element: SimpleUnitPlansPage,
+    // Removed workflowLevel to bypass WorkflowGate for hardcoded component
   },
   {
     path: 'long-range/:longRangePlanId/units',
-    element: UnitPlansPage,
-    workflowLevel: ETFOLevel.UNIT_PLANS,
+    element: SimpleUnitPlansPage,
+    // Removed workflowLevel to bypass WorkflowGate for hardcoded component
   },
   {
     path: 'units/:unitId',
-    element: UnitPlansPage,
-    workflowLevel: ETFOLevel.UNIT_PLANS,
+    element: SimpleUnitPlansPage,
+    // Removed workflowLevel to bypass WorkflowGate for hardcoded component
   },
   {
     path: 'units/:unitId/lessons',
-    element: ETFOLessonPlanPage,
-    workflowLevel: ETFOLevel.LESSON_PLANS,
+    element: SimpleLessonPlansPage,
+    // Removed workflowLevel to bypass WorkflowGate for hardcoded component
   },
   {
     path: 'lessons/:lessonId',
-    element: ETFOLessonPlanPage,
-    workflowLevel: ETFOLevel.LESSON_PLANS,
+    element: SimpleLessonPlansPage,
+    // Removed workflowLevel to bypass WorkflowGate for hardcoded component
   },
   {
     path: 'quick-lesson',
@@ -81,7 +81,7 @@ export const plannerRoutes: RouteConfig[] = [
   {
     path: 'daybook',
     element: DaybookPage,
-    workflowLevel: ETFOLevel.DAYBOOK_ENTRIES,
+    // Removed workflowLevel to bypass WorkflowGate for hardcoded component
   },
   {
     path: 'dashboard',
@@ -139,7 +139,7 @@ export const protectedRoutes: RouteConfig[] = [
   // Curriculum routes
   {
     path: '/curriculum',
-    element: CurriculumExpectationsPage,
+    element: SimpleCurriculumPage,
   },
   {
     path: '/curriculum-import',

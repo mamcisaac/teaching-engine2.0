@@ -1,48 +1,141 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useLongRangePlans, useCreateLongRangePlan, useUpdateLongRangePlan, useDeleteLongRangePlan, type LongRangePlan } from '../hooks/useETFOPlanning';
+import { toast } from 'sonner';
 
-// Simple, direct implementation that shows Emily's French immersion plans
+// Simple, direct implementation connected to real backend APIs
 export function SimpleLongRangePage(): React.ReactElement {
-  const plans = [
-    {
-      id: 'cmdp48bl40007vjb3ww717pmx',
-      title: 'Grade 1 French Language Arts - Long Range Plan',
-      subject: 'Français langue première',
-      grade: 1,
-      description: 'Comprehensive French language development through oral communication, reading, and writing in a French immersion environment',
-      goals: 'Students will develop foundational French language skills through engaging, age-appropriate activities',
-      overarchingQuestions: 'How do we communicate our thoughts and feelings in French? What stories do we want to tell?',
-      assessmentOverview: 'Ongoing assessment through observation, conversation, and authentic tasks',
-      resourceNeeds: 'French picture books, manipulatives with French labels, audio-visual materials, word wall supplies',
-      unitPlans: 1,
-      expectations: 3
-    },
-    {
-      id: 'cmdp48bl50009vjb3en1ouwf7',
-      title: 'Grade 1 Mathematics in French - Long Range Plan',
-      subject: 'Mathématiques',
-      grade: 1,
-      description: 'Mathematics instruction delivered in French to build both mathematical thinking and French vocabulary',
-      goals: 'Students will develop number sense, spatial reasoning, and problem-solving skills while strengthening French language',
-      overarchingQuestions: 'How do numbers help us understand our world? Comment les nombres nous aident-ils à comprendre notre monde?',
-      assessmentOverview: 'Formative assessment through problem-solving tasks',
-      resourceNeeds: 'French math manipulatives, bilingual number charts',
-      unitPlans: 1,
-      expectations: 1
-    },
-    {
-      id: 'cmdp48bl6000bvjb3bbu7jo37',
-      title: 'Grade 1 Integrated Studies in French - Long Range Plan',
-      subject: 'Études intégrées',
-      grade: 1,
-      description: 'Integrated approach to science and social studies delivered in French through inquiry-based learning',
-      goals: 'Students will explore their world through French language while developing scientific thinking and social awareness',
-      overarchingQuestions: 'Who are we and how do we connect to our community and environment?',
-      assessmentOverview: 'Portfolio-based assessment with reflection journals',
-      resourceNeeds: 'French science books, community resources, inquiry materials',
-      unitPlans: 1,
-      expectations: 2
+  const navigate = useNavigate();
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [editingPlan, setEditingPlan] = useState<LongRangePlan | null>(null);
+  const [formData, setFormData] = useState({
+    title: '',
+    subject: '',
+    grade: 1,
+    academicYear: '2025-2026',
+    description: '',
+    goals: '',
+  });
+
+  // Fetch real plans from backend
+  const { data: plans = [], isLoading, error } = useLongRangePlans({
+    academicYear: '2025-2026',
+  });
+
+  // Mutations
+  const createMutation = useCreateLongRangePlan();
+  const updateMutation = useUpdateLongRangePlan();
+  const deleteMutation = useDeleteLongRangePlan();
+
+  const handleCreatePlan = async (e: React.FormEvent): Promise<void> => {
+    e.preventDefault();
+    try {
+      await createMutation.mutateAsync(formData);
+      toast.success('Long range plan created successfully!');
+      setShowCreateModal(false);
+      setFormData({
+        title: '',
+        subject: '',
+        grade: 1,
+        academicYear: '2025-2026',
+        description: '',
+        goals: '',
+      });
+    } catch (error) {
+      toast.error('Failed to create long range plan');
     }
-  ];
+  };
+
+  const handleEditPlan = (plan: LongRangePlan): void => {
+    setEditingPlan(plan);
+    setFormData({
+      title: plan.title,
+      subject: plan.subject,
+      grade: plan.grade,
+      academicYear: plan.academicYear,
+      description: plan.description || '',
+      goals: plan.goals || '',
+    });
+    setShowEditModal(true);
+  };
+
+  const handleUpdatePlan = async (e: React.FormEvent): Promise<void> => {
+    e.preventDefault();
+    if (!editingPlan) return;
+    
+    try {
+      await updateMutation.mutateAsync({
+        id: editingPlan.id,
+        ...formData,
+      });
+      toast.success('Plan updated successfully!');
+      setShowEditModal(false);
+      setEditingPlan(null);
+      setFormData({
+        title: '',
+        subject: '',
+        grade: 1,
+        academicYear: '2025-2026',
+        description: '',
+        goals: '',
+      });
+    } catch (error) {
+      toast.error('Failed to update plan');
+    }
+  };
+
+  const handleDeletePlan = async (planId: string): Promise<void> => {
+    if (window.confirm('Are you sure you want to delete this plan?')) {
+      try {
+        await deleteMutation.mutateAsync(planId);
+        toast.success('Plan deleted successfully');
+      } catch (error) {
+        toast.error('Failed to delete plan');
+      }
+    }
+  };
+
+  const handlePlanClick = (planId: string): void => {
+    console.log('[SimpleLongRangePage] Navigating to units for plan:', planId);
+    navigate(`/planner/long-range/${planId}/units`);
+  };
+
+  // Show loading state
+  if (isLoading) {
+    return (
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        height: '100vh' 
+      }}>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ fontSize: '24px', marginBottom: '16px' }}>Loading plans...</div>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        height: '100vh' 
+      }}>
+        <div style={{ 
+          textAlign: 'center', 
+          color: '#dc2626' 
+        }}>
+          <div style={{ fontSize: '24px', marginBottom: '16px' }}>Error loading plans</div>
+          <div>{error.message}</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div style={{ 
@@ -96,43 +189,97 @@ export function SimpleLongRangePage(): React.ReactElement {
             <option value="2025-2026">2025-2026</option>
           </select>
         </div>
-        <button style={{
-          backgroundColor: '#4f46e5',
-          color: 'white',
-          padding: '12px 24px',
-          borderRadius: '6px',
-          border: 'none',
-          fontSize: '16px',
-          fontWeight: '500',
-          cursor: 'pointer'
-        }}>
+        <button 
+          onClick={() => setShowCreateModal(true)}
+          style={{
+            backgroundColor: '#4f46e5',
+            color: 'white',
+            padding: '12px 24px',
+            borderRadius: '6px',
+            border: 'none',
+            fontSize: '16px',
+            fontWeight: '500',
+            cursor: 'pointer'
+          }}
+        >
           Create Long Range Plan
         </button>
       </div>
 
       {/* Plans Grid */}
-      <div style={{ 
-        display: 'grid', 
-        gap: '24px',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))'
-      }}>
-        {plans.map((plan) => (
-          <div key={plan.id} style={{
-            backgroundColor: 'white',
-            borderRadius: '12px',
-            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-            border: '1px solid #e5e7eb',
-            padding: '24px',
-            transition: 'box-shadow 0.2s',
-            cursor: 'pointer'
+      {plans.length === 0 ? (
+        <div style={{
+          textAlign: 'center',
+          padding: '64px',
+          backgroundColor: '#f9fafb',
+          borderRadius: '12px',
+          border: '2px dashed #e5e7eb'
+        }}>
+          <h3 style={{ 
+            fontSize: '24px', 
+            color: '#6b7280', 
+            marginBottom: '16px' 
           }}>
+            No long range plans yet
+          </h3>
+          <p style={{ 
+            fontSize: '16px', 
+            color: '#9ca3af', 
+            marginBottom: '24px' 
+          }}>
+            Create your first long range plan to start organizing your academic year
+          </p>
+          <button
+            onClick={() => setShowCreateModal(true)}
+            style={{
+              backgroundColor: '#4f46e5',
+              color: 'white',
+              padding: '12px 24px',
+              borderRadius: '6px',
+              border: 'none',
+              fontSize: '16px',
+              fontWeight: '500',
+              cursor: 'pointer'
+            }}
+          >
+            Create Your First Plan
+          </button>
+        </div>
+      ) : (
+        <div style={{ 
+          display: 'grid', 
+          gap: '24px',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))'
+        }}>
+          {plans.map((plan) => (
+          <div 
+            key={plan.id} 
+            style={{
+              backgroundColor: 'white',
+              borderRadius: '12px',
+              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+              border: '1px solid #e5e7eb',
+              padding: '24px',
+              transition: 'box-shadow 0.2s',
+              cursor: 'pointer'
+            }}
+            onClick={() => handlePlanClick(plan.id)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handlePlanClick(plan.id);
+              }
+            }}
+            role="button"
+            tabIndex={0}
+          >
             <div style={{ 
               display: 'flex', 
               justifyContent: 'space-between', 
               alignItems: 'flex-start',
               marginBottom: '16px'
             }}>
-              <div>
+              <div style={{ flex: 1 }}>
                 <h3 style={{ 
                   fontSize: '20px', 
                   fontWeight: '600', 
@@ -148,16 +295,55 @@ export function SimpleLongRangePage(): React.ReactElement {
                   {plan.subject} - Grade {plan.grade}
                 </p>
               </div>
-              <span style={{
-                backgroundColor: '#ede9fe',
-                color: '#6d28d9',
-                padding: '4px 12px',
-                borderRadius: '16px',
-                fontSize: '12px',
-                fontWeight: '500'
-              }}>
-                Full Year
-              </span>
+              <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                <span style={{
+                  backgroundColor: '#ede9fe',
+                  color: '#6d28d9',
+                  padding: '4px 12px',
+                  borderRadius: '16px',
+                  fontSize: '12px',
+                  fontWeight: '500'
+                }}>
+                  {plan.term || 'Full Year'}
+                </span>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleEditPlan(plan);
+                  }}
+                  style={{
+                    backgroundColor: '#e0e7ff',
+                    color: '#4338ca',
+                    padding: '4px 8px',
+                    borderRadius: '4px',
+                    border: 'none',
+                    fontSize: '12px',
+                    cursor: 'pointer',
+                    marginRight: '4px'
+                  }}
+                  title="Edit plan"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleDeletePlan(plan.id);
+                  }}
+                  style={{
+                    backgroundColor: '#fee2e2',
+                    color: '#dc2626',
+                    padding: '4px 8px',
+                    borderRadius: '4px',
+                    border: 'none',
+                    fontSize: '12px',
+                    cursor: 'pointer'
+                  }}
+                  title="Delete plan"
+                >
+                  Delete
+                </button>
+              </div>
             </div>
 
             <p style={{ 
@@ -180,8 +366,8 @@ export function SimpleLongRangePage(): React.ReactElement {
                 gap: '16px', 
                 color: '#6b7280' 
               }}>
-                <span>{plan.unitPlans} units</span>
-                <span>{plan.expectations} expectations</span>
+                <span>{plan._count?.unitPlans || 0} units</span>
+                <span>{plan._count?.expectations || 0} expectations</span>
               </div>
               <svg 
                 style={{ width: '20px', height: '20px', color: '#9ca3af' }}
@@ -244,31 +430,400 @@ export function SimpleLongRangePage(): React.ReactElement {
                 color: '#78350f',
                 lineHeight: '1.4'
               }}>
-                {plan.overarchingQuestions}
+                {plan.overarchingQuestions || plan.themes?.join(', ') || 'Key themes and questions will be developed'}
               </p>
             </div>
           </div>
         ))}
-      </div>
+        </div>
+      )}
 
-      {/* Success Message */}
-      <div style={{
-        marginTop: '32px',
-        padding: '16px',
-        backgroundColor: '#d1fae5',
-        borderRadius: '8px',
-        border: '1px solid #a7f3d0'
-      }}>
-        <p style={{ 
-          color: '#065f46',
-          fontSize: '16px',
-          fontWeight: '500',
-          textAlign: 'center'
+      {/* Edit Plan Modal */}
+      {showEditModal && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 1000
         }}>
-          ✅ Teaching Engine 2.0 is 100% Operational! 
-          Emily McIsaac's Grade 1 French Immersion plans are displaying correctly.
-        </p>
-      </div>
+          <div style={{
+            backgroundColor: 'white',
+            borderRadius: '12px',
+            padding: '32px',
+            maxWidth: '600px',
+            width: '90%',
+            maxHeight: '90vh',
+            overflow: 'auto'
+          }}>
+            <h2 style={{ 
+              fontSize: '24px', 
+              fontWeight: '600', 
+              marginBottom: '24px' 
+            }}>
+              Edit Long Range Plan
+            </h2>
+            
+            <form onSubmit={handleUpdatePlan}>
+              <div style={{ marginBottom: '16px' }}>
+                <label style={{ 
+                  display: 'block', 
+                  marginBottom: '8px', 
+                  fontWeight: '500' 
+                }}>
+                  Title *
+                </label>
+                <input
+                  type="text"
+                  value={formData.title}
+                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                  required
+                  style={{
+                    width: '100%',
+                    padding: '8px 12px',
+                    borderRadius: '6px',
+                    border: '1px solid #d1d5db',
+                    fontSize: '16px'
+                  }}
+                />
+              </div>
+
+              <div style={{ marginBottom: '16px' }}>
+                <label style={{ 
+                  display: 'block', 
+                  marginBottom: '8px', 
+                  fontWeight: '500' 
+                }}>
+                  Subject *
+                </label>
+                <input
+                  type="text"
+                  value={formData.subject}
+                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                  required
+                  style={{
+                    width: '100%',
+                    padding: '8px 12px',
+                    borderRadius: '6px',
+                    border: '1px solid #d1d5db',
+                    fontSize: '16px'
+                  }}
+                />
+              </div>
+
+              <div style={{ marginBottom: '16px' }}>
+                <label style={{ 
+                  display: 'block', 
+                  marginBottom: '8px', 
+                  fontWeight: '500' 
+                }}>
+                  Grade *
+                </label>
+                <select
+                  value={formData.grade}
+                  onChange={(e) => setFormData({ ...formData, grade: parseInt(e.target.value) })}
+                  style={{
+                    width: '100%',
+                    padding: '8px 12px',
+                    borderRadius: '6px',
+                    border: '1px solid #d1d5db',
+                    fontSize: '16px'
+                  }}
+                >
+                  {[1, 2, 3, 4, 5, 6, 7, 8].map(grade => (
+                    <option key={grade} value={grade}>Grade {grade}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div style={{ marginBottom: '16px' }}>
+                <label style={{ 
+                  display: 'block', 
+                  marginBottom: '8px', 
+                  fontWeight: '500' 
+                }}>
+                  Description
+                </label>
+                <textarea
+                  value={formData.description}
+                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                  rows={3}
+                  style={{
+                    width: '100%',
+                    padding: '8px 12px',
+                    borderRadius: '6px',
+                    border: '1px solid #d1d5db',
+                    fontSize: '16px',
+                    resize: 'vertical'
+                  }}
+                />
+              </div>
+
+              <div style={{ marginBottom: '24px' }}>
+                <label style={{ 
+                  display: 'block', 
+                  marginBottom: '8px', 
+                  fontWeight: '500' 
+                }}>
+                  Goals
+                </label>
+                <textarea
+                  value={formData.goals}
+                  onChange={(e) => setFormData({ ...formData, goals: e.target.value })}
+                  rows={3}
+                  style={{
+                    width: '100%',
+                    padding: '8px 12px',
+                    borderRadius: '6px',
+                    border: '1px solid #d1d5db',
+                    fontSize: '16px',
+                    resize: 'vertical'
+                  }}
+                />
+              </div>
+
+              <div style={{ 
+                display: 'flex', 
+                gap: '12px', 
+                justifyContent: 'flex-end' 
+              }}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowEditModal(false);
+                    setEditingPlan(null);
+                  }}
+                  style={{
+                    padding: '8px 16px',
+                    borderRadius: '6px',
+                    border: '1px solid #d1d5db',
+                    backgroundColor: 'white',
+                    fontSize: '16px',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={updateMutation.isPending}
+                  style={{
+                    padding: '8px 16px',
+                    borderRadius: '6px',
+                    border: 'none',
+                    backgroundColor: updateMutation.isPending ? '#9ca3af' : '#4f46e5',
+                    color: 'white',
+                    fontSize: '16px',
+                    fontWeight: '500',
+                    cursor: updateMutation.isPending ? 'not-allowed' : 'pointer'
+                  }}
+                >
+                  {updateMutation.isPending ? 'Updating...' : 'Update Plan'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Create Plan Modal */}
+      {showCreateModal && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 1000
+        }}>
+          <div style={{
+            backgroundColor: 'white',
+            borderRadius: '12px',
+            padding: '32px',
+            maxWidth: '600px',
+            width: '90%',
+            maxHeight: '90vh',
+            overflow: 'auto'
+          }}>
+            <h2 style={{ 
+              fontSize: '24px', 
+              fontWeight: '600', 
+              marginBottom: '24px' 
+            }}>
+              Create Long Range Plan
+            </h2>
+            
+            <form onSubmit={handleCreatePlan}>
+              <div style={{ marginBottom: '16px' }}>
+                <label style={{ 
+                  display: 'block', 
+                  marginBottom: '8px', 
+                  fontWeight: '500' 
+                }}>
+                  Title *
+                </label>
+                <input
+                  type="text"
+                  value={formData.title}
+                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                  required
+                  style={{
+                    width: '100%',
+                    padding: '8px 12px',
+                    borderRadius: '6px',
+                    border: '1px solid #d1d5db',
+                    fontSize: '16px'
+                  }}
+                  placeholder="e.g., Grade 1 French Language Arts"
+                />
+              </div>
+
+              <div style={{ marginBottom: '16px' }}>
+                <label style={{ 
+                  display: 'block', 
+                  marginBottom: '8px', 
+                  fontWeight: '500' 
+                }}>
+                  Subject *
+                </label>
+                <input
+                  type="text"
+                  value={formData.subject}
+                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                  required
+                  style={{
+                    width: '100%',
+                    padding: '8px 12px',
+                    borderRadius: '6px',
+                    border: '1px solid #d1d5db',
+                    fontSize: '16px'
+                  }}
+                  placeholder="e.g., Français langue première"
+                />
+              </div>
+
+              <div style={{ marginBottom: '16px' }}>
+                <label style={{ 
+                  display: 'block', 
+                  marginBottom: '8px', 
+                  fontWeight: '500' 
+                }}>
+                  Grade *
+                </label>
+                <select
+                  value={formData.grade}
+                  onChange={(e) => setFormData({ ...formData, grade: parseInt(e.target.value) })}
+                  style={{
+                    width: '100%',
+                    padding: '8px 12px',
+                    borderRadius: '6px',
+                    border: '1px solid #d1d5db',
+                    fontSize: '16px'
+                  }}
+                >
+                  {[1, 2, 3, 4, 5, 6, 7, 8].map(grade => (
+                    <option key={grade} value={grade}>Grade {grade}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div style={{ marginBottom: '16px' }}>
+                <label style={{ 
+                  display: 'block', 
+                  marginBottom: '8px', 
+                  fontWeight: '500' 
+                }}>
+                  Description
+                </label>
+                <textarea
+                  value={formData.description}
+                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                  rows={3}
+                  style={{
+                    width: '100%',
+                    padding: '8px 12px',
+                    borderRadius: '6px',
+                    border: '1px solid #d1d5db',
+                    fontSize: '16px',
+                    resize: 'vertical'
+                  }}
+                  placeholder="Describe the focus and approach for this subject area..."
+                />
+              </div>
+
+              <div style={{ marginBottom: '24px' }}>
+                <label style={{ 
+                  display: 'block', 
+                  marginBottom: '8px', 
+                  fontWeight: '500' 
+                }}>
+                  Goals
+                </label>
+                <textarea
+                  value={formData.goals}
+                  onChange={(e) => setFormData({ ...formData, goals: e.target.value })}
+                  rows={3}
+                  style={{
+                    width: '100%',
+                    padding: '8px 12px',
+                    borderRadius: '6px',
+                    border: '1px solid #d1d5db',
+                    fontSize: '16px',
+                    resize: 'vertical'
+                  }}
+                  placeholder="What are the main learning goals for students?"
+                />
+              </div>
+
+              <div style={{ 
+                display: 'flex', 
+                gap: '12px', 
+                justifyContent: 'flex-end' 
+              }}>
+                <button
+                  type="button"
+                  onClick={() => setShowCreateModal(false)}
+                  style={{
+                    padding: '8px 16px',
+                    borderRadius: '6px',
+                    border: '1px solid #d1d5db',
+                    backgroundColor: 'white',
+                    fontSize: '16px',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={createMutation.isPending}
+                  style={{
+                    padding: '8px 16px',
+                    borderRadius: '6px',
+                    border: 'none',
+                    backgroundColor: createMutation.isPending ? '#9ca3af' : '#4f46e5',
+                    color: 'white',
+                    fontSize: '16px',
+                    fontWeight: '500',
+                    cursor: createMutation.isPending ? 'not-allowed' : 'pointer'
+                  }}
+                >
+                  {createMutation.isPending ? 'Creating...' : 'Create Plan'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

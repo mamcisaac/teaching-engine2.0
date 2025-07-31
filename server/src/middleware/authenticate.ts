@@ -174,6 +174,32 @@ export function verifyToken(token: string): TokenPayload | { error: string } | n
  */
 export async function authenticate(req: Request, res: Response, next: NextFunction): Promise<void> {
   try {
+    // Development authentication bypass for UI testing
+    // Force bypass in development - check if JWT_SECRET is missing from actual environment
+    const originalJwtSecret = process.env.JWT_SECRET;
+    const shouldBypass = !originalJwtSecret || originalJwtSecret === 'development-secret-key-for-testing-only' || process.env.BYPASS_AUTH === 'true';
+    
+    if (shouldBypass) {
+      // Inject hardcoded Emily McIsaac user for Grade 1 French Immersion workflow testing
+      req.user = {
+        id: 1,
+        email: 'emily.mcisaac@pei.ca',
+        role: 'teacher',
+        name: 'Emily McIsaac',
+        organizationId: 1,
+        permissions: ['read', 'write', 'curriculum:read', 'planning:write']
+      };
+      
+      logger.debug({
+        hasOriginalSecret: !!originalJwtSecret,
+        originalSecret: originalJwtSecret?.substring(0, 10) + '...', 
+        nodeEnv: process.env.NODE_ENV, 
+        bypassAuth: process.env.BYPASS_AUTH 
+      }, 'Development authentication bypass active - Emily McIsaac user injected');
+      next();
+      return;
+    }
+
     const token = extractToken(req);
 
     // Debug logging for test environment

@@ -7,7 +7,7 @@ import { RateLimiterMemory, RateLimiterRedis } from 'rate-limiter-flexible';
 import { logger } from '../logger';
 
 // Security configuration
-const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS ?? 'http://localhost:5173').split(',');
+const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS ?? 'http://localhost:3000,http://localhost:5173').split(',');
 const UPLOAD_SIZE_LIMIT = parseInt(process.env.UPLOAD_SIZE_LIMIT ?? '10485760'); // 10MB default
 const ALLOWED_FILE_TYPES = [
   'application/pdf',

@@ -20,6 +20,26 @@ export function PlanningDashboard(): React.ReactElement {
     navigate('/planner/quick-lesson');
   };
 
+  const handleNavigateToCurriculum = (): void => {
+    console.log('[PlanningDashboard] Navigating to curriculum');
+    navigate('/curriculum');
+  };
+
+  const handleNavigateToUnits = (): void => {
+    console.log('[PlanningDashboard] Navigating to unit plans');
+    navigate('/planner/units');
+  };
+
+  const handleNavigateToDaybook = (): void => {
+    console.log('[PlanningDashboard] Navigating to daybook');
+    navigate('/planner/daybook');
+  };
+
+  const handleNavigateToTemplates = (): void => {
+    console.log('[PlanningDashboard] Navigating to templates');
+    navigate('/templates');
+  };
+
   const cardStyle = {
     cursor: 'pointer' as const,
     transition: 'transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out',
@@ -61,12 +81,144 @@ export function PlanningDashboard(): React.ReactElement {
           </p>
         </div>
 
+        {/* Quick Actions Section */}
+        <div style={{ 
+          backgroundColor: 'white', 
+          padding: '25px', 
+          borderRadius: '12px', 
+          boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+          marginBottom: '30px'
+        }}>
+          <h2 style={{ fontSize: '20px', fontWeight: '600', color: '#374151', marginBottom: '15px' }}>
+            ⚡ Quick Actions
+          </h2>
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
+            gap: '10px'
+          }}>
+            <button
+              onClick={handleNavigateToQuickLesson}
+              style={{
+                padding: '12px 16px',
+                backgroundColor: '#3b82f6',
+                color: 'white',
+                border: 'none',
+                borderRadius: '8px',
+                fontSize: '14px',
+                fontWeight: '500',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                transition: 'background-color 0.2s'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#2563eb'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#3b82f6'}
+            >
+              ✨ Create Today's Lesson
+            </button>
+            
+            <button
+              onClick={handleNavigateToUnits}
+              style={{
+                padding: '12px 16px',
+                backgroundColor: '#10b981',
+                color: 'white',
+                border: 'none',
+                borderRadius: '8px',
+                fontSize: '14px',
+                fontWeight: '500',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                transition: 'background-color 0.2s'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#059669'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#10b981'}
+            >
+              📚 View Unit Plans
+            </button>
+            
+            <button
+              onClick={handleNavigateToDaybook}
+              style={{
+                padding: '12px 16px',
+                backgroundColor: '#8b5cf6',
+                color: 'white',
+                border: 'none',
+                borderRadius: '8px',
+                fontSize: '14px',
+                fontWeight: '500',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                transition: 'background-color 0.2s'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#7c3aed'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#8b5cf6'}
+            >
+              📖 Daily Reflections
+            </button>
+            
+            <button
+              onClick={handleNavigateToTemplates}
+              style={{
+                padding: '12px 16px',
+                backgroundColor: '#f59e0b',
+                color: 'white',
+                border: 'none',
+                borderRadius: '8px',
+                fontSize: '14px',
+                fontWeight: '500',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                transition: 'background-color 0.2s'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#d97706'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#f59e0b'}
+            >
+              📋 Use Templates
+            </button>
+          </div>
+        </div>
+
         <div style={{ 
           display: 'grid', 
           gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
           gap: '20px',
           marginBottom: '30px'
         }}>
+          <div 
+            style={{ 
+              backgroundColor: '#f0fdf4', 
+              padding: '20px', 
+              borderRadius: '8px', 
+              border: '2px solid #16a34a',
+              ...cardStyle
+            }}
+            onClick={handleNavigateToCurriculum}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handleNavigateToCurriculum();
+              }
+            }}
+            role="button"
+            tabIndex={0}
+          >
+            <h3 style={{ color: '#166534', fontSize: '20px', marginBottom: '10px' }}>
+              📋 Curriculum Expectations
+            </h3>
+            <p style={{ color: '#166534' }}>
+              Review Grade 1 French Immersion curriculum for PEI
+            </p>
+          </div>
+
           <div 
             style={{ 
               backgroundColor: '#dbeafe', 
@@ -86,10 +238,10 @@ export function PlanningDashboard(): React.ReactElement {
             tabIndex={0}
           >
             <h3 style={{ color: '#1e40af', fontSize: '20px', marginBottom: '10px' }}>
-              📚 Commencer la planification
+              📚 Long Range Plans
             </h3>
             <p style={{ color: '#1e40af' }}>
-              Create your first lesson plan for Grade 1 French Immersion
+              View your yearly planning for Grade 1 French Immersion
             </p>
           </div>
 

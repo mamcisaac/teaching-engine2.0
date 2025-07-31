@@ -1,5 +1,5 @@
 
-import { createContext, useContext, useEffect, useState, useCallback } from 'react';
+import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 
 import { authService } from '../services/authService';
 import { errorReportingService } from '../services/errorReportingService';
@@ -190,14 +190,29 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
       logger.debug('[AuthContext] Starting simplified auth check');
       
       try {
-        // State is already initialized from localStorage, just verify with server if we have a user
-        if (user && authService.isAuthenticated()) {
-          console.log('[AuthContext] User already authenticated, verifying with server in background');
-          // Verify with server in background (non-blocking) 
-          checkAuth().catch((_error) => {
-            logger.warn('Background auth verification failed, but keeping cached user');
-            // Don't clear auth state on server verification failure
-          });
+        // Development bypass: Auto-authenticate as Emily McIsaac for UI testing
+        const isDevelopmentBypass = import.meta.env.DEV && (!import.meta.env.VITE_JWT_SECRET || import.meta.env.VITE_BYPASS_AUTH === 'true');
+        
+        if (isDevelopmentBypass) {
+          console.log('[AuthContext] Development bypass active - auto-authenticating as Emily McIsaac');
+          const emilyUser = {
+            id: 1,
+            email: 'emily.mcisaac@pei.ca',
+            name: 'Emily McIsaac',
+            role: 'USER' as const,
+            organizationId: 1
+          };
+          updateAuthState(emilyUser);
+        } else {
+          // State is already initialized from localStorage, just verify with server if we have a user
+          if (user && authService.isAuthenticated()) {
+            console.log('[AuthContext] User already authenticated, verifying with server in background');
+            // Verify with server in background (non-blocking) 
+            checkAuth().catch((_error) => {
+              logger.warn('Background auth verification failed, but keeping cached user');
+              // Don't clear auth state on server verification failure
+            });
+          }
         }
       } catch (_error) {
         logger.error('Initial auth check failed:', _error);

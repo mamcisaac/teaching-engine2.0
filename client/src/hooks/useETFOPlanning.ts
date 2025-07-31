@@ -38,6 +38,10 @@ export interface LongRangePlan {
   goals?: string;
   goalsFr?: string;
   themes?: string[];
+  overarchingQuestions?: string;  // Added missing property
+  assessmentOverview?: string;
+  resourceNeeds?: string;
+  professionalGoals?: string;
   expectations?: { expectation: CurriculumExpectation }[];
   unitPlans?: UnitPlan[];
   _count?: {

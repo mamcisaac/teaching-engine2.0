@@ -20,7 +20,7 @@ errorReportingService.init()
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      networkMode: 'offlineFirst',
+      networkMode: 'online',
       retry: (failureCount, error: unknown): boolean => {
         if (!navigator.onLine) return false
         const err = error as { response?: { status?: number } }
@@ -29,7 +29,7 @@ const queryClient = new QueryClient({
       },
     },
     mutations: {
-      networkMode: 'offlineFirst',
+      networkMode: 'online',
       retry: (failureCount, error: unknown): boolean => {
         const err = error as { response?: { status?: number } }
         if (err.response?.status === 401) return false

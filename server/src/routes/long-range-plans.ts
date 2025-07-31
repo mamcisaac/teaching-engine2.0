@@ -35,11 +35,39 @@ const longRangePlanCreateSchema = z.object({
 const longRangePlanUpdateSchema = longRangePlanCreateSchema.partial();
 
 // Get all long-range plans for the authenticated user
-router.get('/', async (_req: AuthenticatedRequest, res: Response) => {
+router.get('/', async (req: AuthenticatedRequest, res: Response) => {
   try {
-    // Return Emily's plans directly with counts
+    const userId = getUserId(req, res);
+    if (!userId) return;
+
+    // Parse query parameters for filtering
+    const { academicYear, subject, grade, term } = req.query;
+    
+    // Build where clause with user ID and optional filters
+    const whereClause: any = { userId };
+    
+    if (academicYear && typeof academicYear === 'string') {
+      whereClause.academicYear = academicYear;
+    }
+    
+    if (subject && typeof subject === 'string') {
+      whereClause.subject = subject;
+    }
+    
+    if (grade && typeof grade === 'string') {
+      const gradeNum = parseInt(grade);
+      if (!isNaN(gradeNum)) {
+        whereClause.grade = gradeNum;
+      }
+    }
+    
+    if (term && typeof term === 'string') {
+      whereClause.term = term;
+    }
+
+    // Return authenticated user's plans with counts and applied filters
     const plans = await prisma.longRangePlan.findMany({
-      where: { userId: 3 }, // Emily's user ID
+      where: whereClause,
       orderBy: { subject: 'asc' },
       include: {
         _count: {
