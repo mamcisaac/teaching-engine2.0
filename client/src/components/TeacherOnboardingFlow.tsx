@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { apiClient } from '../api/core/client';
+import { STORAGE_KEYS, CORE_SUBJECTS } from '../constants/subjects';
 import { useLanguage } from '../contexts/LanguageContext';
 import { logger } from '../utils/logger';
 import { safeJsonParse } from '../utils/typeGuards';
@@ -33,10 +34,10 @@ export function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingFlowProps
   const [visible, setVisible] = useState(() => {
     try {
       const onboarded = localStorage.getItem('onboarded');
-      // Default to false to not block the UI on initial load
-      return onboarded === 'false'; // Only show if explicitly set to false
+      // Show onboarding if never seen (null) or explicitly set to false
+      return onboarded === null || onboarded === 'false';
     } catch {
-      return false; // Default to not showing
+      return true; // Default to showing onboarding if localStorage fails
     }
   });
 
@@ -50,6 +51,16 @@ export function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingFlowProps
     }
   });
   const [isCreatingSampleData, setIsCreatingSampleData] = useState(false);
+  
+  // Track selected teaching subjects
+  const [selectedSubjects, setSelectedSubjects] = useState<string[]>([
+    'Français langue première',
+    'Mathématiques',
+    'Sciences',
+    'Études sociales',
+    'English Language Arts',
+    'Arts'
+  ]);
 
   // Define completeOnboarding first
   const completeOnboarding = useCallback((): void => {
@@ -97,6 +108,14 @@ return;
     if (!completedSteps.includes(stepId)) {
       setCompletedSteps((prev) => [...prev, stepId]);
     }
+  };
+
+  const toggleSubject = (subject: string): void => {
+    setSelectedSubjects(prev => 
+      prev.includes(subject) 
+        ? prev.filter(s => s !== subject)
+        : [...prev, subject]
+    );
   };
 
   const createSampleData = async (): Promise<void> => {
@@ -602,6 +621,193 @@ return;
           }}
         />
       ),
+    },
+    {
+      id: 'subject-selection',
+      title: t('subject_selection_title', 'Select Your Teaching Subjects'),
+      description: t(
+        'subject_selection_description',
+        'Choose which subjects you teach so we can personalize your experience',
+      ),
+      content: (
+        <div className="space-y-6">
+          <div className="text-center mb-6">
+            <div className="mx-auto w-16 h-16 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-full flex items-center justify-center mb-4">
+              <svg
+                className="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                />
+              </svg>
+            </div>
+            <h3 className="text-xl font-semibold mb-2">Your Teaching Subjects</h3>
+            <p className="text-gray-600">
+              Select all the subjects you teach. Don't worry, you can change this later in settings.
+            </p>
+          </div>
+
+          <div className="bg-gray-50 rounded-lg p-6">
+            <h4 className="font-medium mb-4">Core Subjects (Usually taught by homeroom teacher):</h4>
+            <div className="space-y-3 mb-6">
+              <label className="flex items-center space-x-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="w-5 h-5 text-indigo-600 rounded focus:ring-indigo-500"
+                  checked={selectedSubjects.includes('Français langue première')}
+                  onChange={() => toggleSubject('Français langue première')}
+                />
+                <span className="text-gray-700">Français langue première (French Language Arts)</span>
+              </label>
+              <label className="flex items-center space-x-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="w-5 h-5 text-indigo-600 rounded focus:ring-indigo-500"
+                  checked={selectedSubjects.includes('Mathématiques')}
+                  onChange={() => toggleSubject('Mathématiques')}
+                />
+                <span className="text-gray-700">Mathématiques (Mathematics)</span>
+              </label>
+              <label className="flex items-center space-x-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="w-5 h-5 text-indigo-600 rounded focus:ring-indigo-500"
+                  checked={selectedSubjects.includes('Sciences')}
+                  onChange={() => toggleSubject('Sciences')}
+                />
+                <span className="text-gray-700">Sciences</span>
+              </label>
+              <label className="flex items-center space-x-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="w-5 h-5 text-indigo-600 rounded focus:ring-indigo-500"
+                  checked={selectedSubjects.includes('Études sociales')}
+                  onChange={() => toggleSubject('Études sociales')}
+                />
+                <span className="text-gray-700">Études sociales (Social Studies)</span>
+              </label>
+              <label className="flex items-center space-x-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="w-5 h-5 text-indigo-600 rounded focus:ring-indigo-500"
+                  checked={selectedSubjects.includes('English Language Arts')}
+                  onChange={() => toggleSubject('English Language Arts')}
+                />
+                <span className="text-gray-700">English Language Arts</span>
+              </label>
+              <label className="flex items-center space-x-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="w-5 h-5 text-indigo-600 rounded focus:ring-indigo-500"
+                  checked={selectedSubjects.includes('Arts')}
+                  onChange={() => toggleSubject('Arts')}
+                />
+                <span className="text-gray-700">Arts visuels et dramatiques (Visual & Drama Arts)</span>
+              </label>
+            </div>
+
+            <h4 className="font-medium mb-4">Specialist Subjects (Often taught by specialist teachers):</h4>
+            <div className="space-y-3">
+              <label className="flex items-center space-x-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="w-5 h-5 text-indigo-600 rounded focus:ring-indigo-500"
+                  checked={selectedSubjects.includes('Éducation physique')}
+                  onChange={() => toggleSubject('Éducation physique')}
+                />
+                <span className="text-gray-700">Éducation physique (Physical Education)</span>
+              </label>
+              <label className="flex items-center space-x-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="w-5 h-5 text-indigo-600 rounded focus:ring-indigo-500"
+                  checked={selectedSubjects.includes('Éducation à la santé')}
+                  onChange={() => toggleSubject('Éducation à la santé')}
+                />
+                <span className="text-gray-700">Éducation à la santé (Health Education)</span>
+              </label>
+              <label className="flex items-center space-x-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="w-5 h-5 text-indigo-600 rounded focus:ring-indigo-500"
+                  checked={selectedSubjects.includes('Musique')}
+                  onChange={() => toggleSubject('Musique')}
+                />
+                <span className="text-gray-700">Musique (Music)</span>
+              </label>
+              <label className="flex items-center space-x-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="w-5 h-5 text-indigo-600 rounded focus:ring-indigo-500"
+                  checked={selectedSubjects.includes('Technologie')}
+                  onChange={() => toggleSubject('Technologie')}
+                />
+                <span className="text-gray-700">Technologie (Technology/Digital Literacy)</span>
+              </label>
+            </div>
+          </div>
+
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="flex items-start space-x-2">
+              <svg
+                className="w-5 h-5 text-blue-600 mt-0.5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  clipRule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                  fillRule="evenodd"
+                />
+              </svg>
+              <div>
+                <h4 className="font-medium text-blue-800">Why this matters</h4>
+                <p className="text-sm text-blue-700 mt-1">
+                  We'll only show curriculum expectations and track progress for the subjects you teach. 
+                  This keeps your planning focused and relevant to your actual teaching responsibilities.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ),
+      action: {
+        label: t('save_subjects', 'Save My Subjects'),
+        onClick: (): void => {
+          // Validate that at least core subjects are selected
+          const hasRequiredSubjects = CORE_SUBJECTS.every(subject => selectedSubjects.includes(subject));
+          
+          if (selectedSubjects.length === 0) {
+            alert('Please select at least one subject to teach.');
+            return;
+          }
+          
+          if (!hasRequiredSubjects) {
+            const proceed = window.confirm(
+              'You haven\'t selected all core subjects (Français and Mathématiques). ' +
+              'These are typically required for Grade 1. Do you want to continue anyway?'
+            );
+            if (!proceed) return;
+          }
+          
+          // Save selected subjects to localStorage for now
+          // TODO: Save to user profile in database
+          try {
+            localStorage.setItem(STORAGE_KEYS.TEACHER_SUBJECTS, JSON.stringify(selectedSubjects));
+            markStepCompleted('subject-selection');
+            nextStep();
+          } catch (error) {
+            console.error('Failed to save subject selection:', error);
+            alert('Failed to save your subject selection. Please try again.');
+          }
+        },
+      },
     },
     {
       id: 'features',

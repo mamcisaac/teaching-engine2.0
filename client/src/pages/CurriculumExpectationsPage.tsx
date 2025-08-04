@@ -43,7 +43,9 @@ import {
   useUpdateCurriculumExpectation,
   useDeleteCurriculumExpectation
 } from '../hooks/useETFOPlanning';
+import { STORAGE_KEYS } from '../constants/subjects';
 import { logger } from '../utils/logger';
+import { safeJsonParse } from '../utils/typeGuards';
 
 export function CurriculumExpectationsPage(): React.ReactElement {
   const navigate = useNavigate();
@@ -55,6 +57,12 @@ export function CurriculumExpectationsPage(): React.ReactElement {
   const [editingExpectation, setEditingExpectation] = useState<CurriculumExpectation | null>(null);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [deletingExpectationId, setDeletingExpectationId] = useState<string | null>(null);
+  
+  // Get teacher's selected subjects from localStorage
+  const teacherSubjects = useMemo(() => {
+    const storedSubjects = localStorage.getItem(STORAGE_KEYS.TEACHER_SUBJECTS);
+    return storedSubjects ? safeJsonParse<string[]>(storedSubjects, []) : null;
+  }, []);
 
   const {
     data: expectations = [],
@@ -75,7 +83,10 @@ export function CurriculumExpectationsPage(): React.ReactElement {
     const gradeSet = new Set<number>();
 
     expectations.forEach((exp) => {
-      subjectSet.add(exp.subject);
+      // Only include subjects that the teacher selected (or all if no selection)
+      if (!teacherSubjects || teacherSubjects.includes(exp.subject)) {
+        subjectSet.add(exp.subject);
+      }
       gradeSet.add(exp.grade);
     });
 
@@ -83,21 +94,24 @@ export function CurriculumExpectationsPage(): React.ReactElement {
       subjects: Array.from(subjectSet).sort(),
       grades: Array.from(gradeSet).sort((a, b) => a - b),
     };
-  }, [expectations]);
+  }, [expectations, teacherSubjects]);
 
   // Group expectations by subject
   const groupedExpectations = useMemo(() => {
     const grouped: Record<string, typeof expectations> = {};
 
     expectations.forEach((exp) => {
-      if (!(exp.subject in grouped)) {
-        grouped[exp.subject] = [];
+      // Only include subjects that the teacher selected (or all if no selection)
+      if (!teacherSubjects || teacherSubjects.includes(exp.subject)) {
+        if (!(exp.subject in grouped)) {
+          grouped[exp.subject] = [];
+        }
+        grouped[exp.subject].push(exp);
       }
-      grouped[exp.subject].push(exp);
     });
 
     return grouped;
-  }, [expectations]);
+  }, [expectations, teacherSubjects]);
 
   const handleEdit = (expectation: CurriculumExpectation): void => {
     setEditingExpectation({
@@ -252,6 +266,24 @@ return;
           Import Curriculum
         </Button>
       </div>
+
+      {teacherSubjects === null || teacherSubjects.length === 0 ? (
+        <Alert variant="destructive">
+          <AlertCircle className="h-4 w-4" />
+          <AlertDescription>
+            <strong>No subjects selected!</strong> Please use the Getting Started Guide on the dashboard to select which subjects you teach.
+            Without subject selection, you won't be able to plan your curriculum effectively.
+          </AlertDescription>
+        </Alert>
+      ) : (
+        <Alert>
+          <AlertCircle className="h-4 w-4" />
+          <AlertDescription>
+            Showing curriculum expectations for your selected subjects: {teacherSubjects.join(', ')}. 
+            To change your subject selection, use the Getting Started Guide on the dashboard.
+          </AlertDescription>
+        </Alert>
+      )}
 
       <Card>
         <CardHeader>

@@ -1,43 +1,82 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+import { STORAGE_KEYS } from '../constants/subjects';
+import { useCurriculumExpectations } from '../hooks/useETFOPlanning';
+import { safeJsonParse } from '../utils/typeGuards';
 
 export function PlanningDashboard(): React.ReactElement {
-  console.log('[PlanningDashboard] Component rendering...');
+  // console.log('[PlanningDashboard] Component rendering...');
   const navigate = useNavigate();
+  const { user } = useAuth();
+  
+  // Get curriculum data to show coverage
+  const { data: expectations = [] } = useCurriculumExpectations({ grade: 1 });
+  
+  // Get teacher's selected subjects
+  const teacherSubjects = useMemo(() => {
+    const stored = localStorage.getItem(STORAGE_KEYS.TEACHER_SUBJECTS);
+    return safeJsonParse<string[]>(stored, []);
+  }, []);
+  
+  // Calculate curriculum coverage
+  const curriculumStats = useMemo(() => {
+    const stats: Record<string, { total: number; covered: number }> = {};
+    
+    expectations.forEach(exp => {
+      if (!teacherSubjects.length || teacherSubjects.includes(exp.subject)) {
+        if (!stats[exp.subject]) {
+          stats[exp.subject] = { total: 0, covered: 0 };
+        }
+        stats[exp.subject].total++;
+        if (exp.coverage && exp.coverage.percentage > 0) {
+          stats[exp.subject].covered++;
+        }
+      }
+    });
+    
+    return stats;
+  }, [expectations, teacherSubjects]);
   
   const handleNavigateToLongRange = (): void => {
-    console.log('[PlanningDashboard] Navigating to long-range planning');
+    // console.log('[PlanningDashboard] Navigating to long-range planning');
     navigate('/planner/long-range');
   };
 
   const handleNavigateToCalendar = (): void => {
-    console.log('[PlanningDashboard] Navigating to calendar view');
+    // console.log('[PlanningDashboard] Navigating to calendar view');
     navigate('/planner/calendar');
   };
 
   const handleNavigateToQuickLesson = (): void => {
-    console.log('[PlanningDashboard] Navigating to quick lesson');
+    // console.log('[PlanningDashboard] Navigating to quick lesson');
     navigate('/planner/quick-lesson');
   };
 
   const handleNavigateToCurriculum = (): void => {
-    console.log('[PlanningDashboard] Navigating to curriculum');
+    // console.log('[PlanningDashboard] Navigating to curriculum');
     navigate('/curriculum');
   };
 
   const handleNavigateToUnits = (): void => {
-    console.log('[PlanningDashboard] Navigating to unit plans');
+    // console.log('[PlanningDashboard] Navigating to unit plans');
     navigate('/planner/units');
   };
 
   const handleNavigateToDaybook = (): void => {
-    console.log('[PlanningDashboard] Navigating to daybook');
+    // console.log('[PlanningDashboard] Navigating to daybook');
     navigate('/planner/daybook');
   };
 
   const handleNavigateToTemplates = (): void => {
-    console.log('[PlanningDashboard] Navigating to templates');
+    // console.log('[PlanningDashboard] Navigating to templates');
     navigate('/templates');
+  };
+
+  const handleRestartOnboarding = (): void => {
+    // console.log('[PlanningDashboard] Restarting onboarding tour');
+    localStorage.setItem('onboarded', 'false');
+    window.location.reload(); // Reload to trigger onboarding
   };
 
   const cardStyle = {
@@ -73,13 +112,134 @@ export function PlanningDashboard(): React.ReactElement {
           marginBottom: '30px'
         }}>
           <h2 style={{ color: '#059669', fontSize: '24px', marginBottom: '15px' }}>
-            👋 Bienvenue, Emily McIsaac!
+            👋 Bienvenue, {user?.name || 'Teacher'}!
           </h2>
           <p style={{ fontSize: '18px', color: '#374151', lineHeight: '1.6' }}>
             Welcome to your Grade 1 French Immersion planning dashboard. You are successfully 
-            logged in and ready to create amazing lesson plans for your students at West Kent Elementary, PEI.
+            logged in and ready to create amazing lesson plans for your students in PEI.
           </p>
         </div>
+
+        {/* Subject Selection Status */}
+        <div style={{ 
+          backgroundColor: 'white', 
+          padding: '20px', 
+          borderRadius: '12px', 
+          boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+          marginBottom: '30px',
+          border: '1px solid #e5e7eb'
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div>
+              <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#374151', marginBottom: '8px' }}>
+                📚 My Teaching Subjects
+              </h3>
+              <p style={{ fontSize: '14px', color: '#6b7280' }}>
+                {(() => {
+                  const subjects = localStorage.getItem(STORAGE_KEYS.TEACHER_SUBJECTS);
+                  const parsed = safeJsonParse<string[]>(subjects, []);
+                  return parsed.length > 0 ? parsed.join(', ') : 'No subjects selected - click to set up';
+                })()}
+              </p>
+            </div>
+            <button
+              onClick={() => {
+                if (window.confirm('Do you want to update your subject selection? This will restart the onboarding process.')) {
+                  localStorage.removeItem(STORAGE_KEYS.TEACHER_SUBJECTS);
+                  handleRestartOnboarding();
+                }
+              }}
+              style={{
+                padding: '8px 16px',
+                backgroundColor: '#f3f4f6',
+                color: '#374151',
+                border: '1px solid #d1d5db',
+                borderRadius: '6px',
+                fontSize: '14px',
+                cursor: 'pointer',
+                transition: 'all 0.2s'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#e5e7eb';
+                e.currentTarget.style.borderColor = '#9ca3af';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#f3f4f6';
+                e.currentTarget.style.borderColor = '#d1d5db';
+              }}
+            >
+              Update Subjects
+            </button>
+          </div>
+        </div>
+
+        {/* Curriculum Coverage Section */}
+        {Object.keys(curriculumStats).length > 0 && (
+          <div style={{ 
+            backgroundColor: 'white', 
+            padding: '25px', 
+            borderRadius: '12px', 
+            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+            marginBottom: '30px'
+          }}>
+            <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#374151', marginBottom: '15px' }}>
+              📊 Curriculum Coverage Progress
+            </h3>
+            <div style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
+              gap: '12px'
+            }}>
+              {Object.entries(curriculumStats).map(([subject, stats]) => {
+                const percentage = stats.total > 0 ? Math.round((stats.covered / stats.total) * 100) : 0;
+                const color = percentage === 100 ? '#10b981' : percentage > 50 ? '#f59e0b' : '#ef4444';
+                
+                return (
+                  <div key={subject} style={{
+                    padding: '12px',
+                    backgroundColor: '#f9fafb',
+                    borderRadius: '8px',
+                    border: '1px solid #e5e7eb'
+                  }}>
+                    <div style={{ fontSize: '14px', fontWeight: '500', color: '#374151', marginBottom: '4px' }}>
+                      {subject}
+                    </div>
+                    <div style={{ fontSize: '12px', color: '#6b7280', marginBottom: '8px' }}>
+                      {stats.covered}/{stats.total} expectations planned
+                    </div>
+                    <div style={{ 
+                      width: '100%', 
+                      height: '6px', 
+                      backgroundColor: '#e5e7eb', 
+                      borderRadius: '3px',
+                      overflow: 'hidden'
+                    }}>
+                      <div style={{
+                        width: `${percentage}%`,
+                        height: '100%',
+                        backgroundColor: color,
+                        transition: 'width 0.3s ease'
+                      }} />
+                    </div>
+                    <div style={{ fontSize: '11px', color: color, marginTop: '4px', fontWeight: '600' }}>
+                      {percentage}% covered
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            {Object.values(curriculumStats).some(stats => stats.covered < stats.total) && (
+              <p style={{ 
+                fontSize: '13px', 
+                color: '#6b7280', 
+                marginTop: '15px',
+                fontStyle: 'italic'
+              }}>
+                💡 Tip: Create lesson plans to increase your curriculum coverage!
+              </p>
+            )}
+          </div>
+        )}
 
         {/* Quick Actions Section */}
         <div style={{ 
@@ -183,6 +343,28 @@ export function PlanningDashboard(): React.ReactElement {
               onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#f59e0b'}
             >
               📋 Use Templates
+            </button>
+            
+            <button
+              onClick={handleRestartOnboarding}
+              style={{
+                padding: '12px 16px',
+                backgroundColor: '#6366f1',
+                color: 'white',
+                border: 'none',
+                borderRadius: '8px',
+                fontSize: '14px',
+                fontWeight: '500',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                transition: 'background-color 0.2s'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#4f46e5'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6366f1'}
+            >
+              🎯 Getting Started Guide
             </button>
           </div>
         </div>
