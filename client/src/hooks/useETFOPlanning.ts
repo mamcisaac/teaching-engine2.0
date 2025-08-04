@@ -133,6 +133,13 @@ export interface ETFOLessonPlan {
   accommodations?: string[];
   modifications?: string[];
   extensions?: string[];
+  // New differentiation strategies fields
+  differentiationStrategies?: {
+    forStruggling?: string;
+    forAdvanced?: string;
+    forELL?: string;
+    forIEP?: string;
+  };
   assessmentType?: 'diagnostic' | 'formative' | 'summative';
   assessmentNotes?: string;
   isSubFriendly: boolean;
@@ -209,7 +216,7 @@ export function useCurriculumExpectations(filters?: {
       }
 
       const response = await apiClient.get(`/api/curriculum-expectations?${params.toString()}`);
-      return response.data as CurriculumExpectation[];
+      return response.data.data as CurriculumExpectation[];
     },
   });
 }
@@ -376,7 +383,7 @@ export function useUnitPlans(filters?: {
       }
 
       const response = await apiClient.get(`/api/unit-plans?${params.toString()}`);
-      return response.data as UnitPlan[];
+      return response.data.unitPlans as UnitPlan[];
     },
   });
 }
@@ -475,7 +482,8 @@ export function useETFOLessonPlans(filters?: {
       }
 
       const response = await apiClient.get(`/api/etfo-lesson-plans?${params.toString()}`);
-      return response.data as ETFOLessonPlan[];
+      // Ensure we always return an array
+      return Array.isArray(response.data) ? response.data as ETFOLessonPlan[] : [];
     },
   });
 }
@@ -569,7 +577,8 @@ export function useDaybookEntries(filters?: {
       }
 
       const response = await apiClient.get(`/api/daybook-entries?${params.toString()}`);
-      return response.data as DaybookEntry[];
+      // Ensure we always return an array
+      return Array.isArray(response.data) ? response.data as DaybookEntry[] : [];
     },
   });
 }

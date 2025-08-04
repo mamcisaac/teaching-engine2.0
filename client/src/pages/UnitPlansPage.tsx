@@ -78,126 +78,26 @@ function UnitPlansPage(): React.ReactElement {
   const [isTemplateModalOpen, setIsTemplateModalOpen] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState<PlanTemplate | null>(null);
 
-  // Hardcoded Emily's data to make it 100% operational
-  const longRangePlan = longRangePlanId ? {
-    id: longRangePlanId,
-    title: 'Grade 1 French Language Arts - Long Range Plan',
-    titleFr: '1re année - Français langue première - Plan à long terme',
-    academicYear: '2025-2026',
-    grade: 1,
-    subject: 'Français langue première'
-  } : undefined;
+  // Fetch real long-range plan data from API
+  const { data: longRangePlan, isLoading: longRangePlanLoading } = useLongRangePlan(longRangePlanId || '');
+  const { data: allLongRangePlans = [], isLoading: allPlansLoading } = useLongRangePlans({
+    academicYear: '2025-2026'
+  });
 
-  const allLongRangePlans = [
-    {
-      id: 'cmdp48bl40007vjb3ww717pmx',
-      title: 'Grade 1 French Language Arts - Long Range Plan',
-      academicYear: '2025-2026',
-      grade: 1,
-      subject: 'Français langue première'
-    },
-    {
-      id: 'cmdp48bl50009vjb3en1ouwf7',
-      title: 'Grade 1 Mathematics in French - Long Range Plan',
-      academicYear: '2025-2026',
-      grade: 1,
-      subject: 'Mathématiques'
-    },
-    {
-      id: 'cmdp48bl6000bvjb3bbu7jo37',
-      title: 'Grade 1 Integrated Studies in French - Long Range Plan',
-      academicYear: '2025-2026',
-      grade: 1,
-      subject: 'Études intégrées'
-    }
-  ];
-
-  // Emily's unit plans for French Language Arts
-  const unitPlans = longRangePlanId === 'cmdp48bl40007vjb3ww717pmx' ? [
-    {
-      id: 'unit-1',
-      longRangePlanId: 'cmdp48bl40007vjb3ww717pmx',
-      title: 'Bienvenue en français',
-      titleFr: 'Bienvenue en français',
-      description: 'Introduction to French immersion classroom routines, basic greetings, and foundational oral language skills',
-      startDate: '2025-09-03',
-      endDate: '2025-10-11',
-      estimatedHours: 30,
-      bigIdeas: 'Communication is essential for building classroom community',
-      essentialQuestions: ['Comment dit-on...?', 'Qui suis-je?'],
-      assessmentPlan: 'Daily observations of oral communication',
-      keyVocabulary: ['Bonjour', 'Au revoir', 'S\'il vous plaît', 'Merci'],
-      successCriteria: ['Students can greet others in French', 'Students can follow simple classroom instructions'],
-      _count: { lessonPlans: 20, expectations: 0, resources: 0 },
-      expectations: [],
-      crossCurricularConnections: '',
-      differentiationStrategies: {
-        forStruggling: ['Visual cues and gestures', 'Peer support'],
-        forAdvanced: ['Extended vocabulary', 'Leadership roles'],
-        forELL: ['First language connections', 'Extra practice time'],
-        forIEP: ['Modified expectations', 'Visual schedules']
-      },
-      progress: { percentage: 0, completed: 0, total: 20 }
-    }
-  ] : longRangePlanId === 'cmdp48bl50009vjb3en1ouwf7' ? [
-    {
-      id: 'unit-2',
-      longRangePlanId: 'cmdp48bl50009vjb3en1ouwf7',
-      title: 'Les nombres et les couleurs',
-      titleFr: 'Les nombres et les couleurs',
-      description: 'Developing number sense 1-20 and color vocabulary through hands-on activities and games',
-      startDate: '2025-09-03',
-      endDate: '2025-10-11',
-      estimatedHours: 25,
-      bigIdeas: 'Numbers and colors help us describe our world',
-      essentialQuestions: ['Combien y a-t-il?', 'De quelle couleur est-ce?'],
-      assessmentPlan: 'Performance tasks and observations',
-      keyVocabulary: ['un', 'deux', 'trois', 'rouge', 'bleu', 'jaune'],
-      successCriteria: ['Count to 20 in French', 'Identify and name colors'],
-      _count: { lessonPlans: 15, expectations: 0, resources: 0 },
-      expectations: [],
-      crossCurricularConnections: '',
-      differentiationStrategies: {
-        forStruggling: ['Manipulatives', 'Number songs'],
-        forAdvanced: ['Number patterns', 'Color mixing'],
-        forELL: ['Visual number cards', 'Concrete objects'],
-        forIEP: ['Focus on numbers 1-10', 'Tactile materials']
-      },
-      progress: { percentage: 0, completed: 0, total: 15 }
-    }
-  ] : longRangePlanId === 'cmdp48bl6000bvjb3bbu7jo37' ? [
-    {
-      id: 'unit-3',
-      longRangePlanId: 'cmdp48bl6000bvjb3bbu7jo37',
-      title: 'Ma famille et mes amis',
-      titleFr: 'Ma famille et mes amis',
-      description: 'Exploring family relationships and friendships while building community connections',
-      startDate: '2025-09-03',
-      endDate: '2025-10-11',
-      estimatedHours: 20,
-      bigIdeas: 'We all belong to different communities',
-      essentialQuestions: ['Qui est dans ma famille?', 'Qui sont mes amis?'],
-      assessmentPlan: 'Family tree project and presentations',
-      keyVocabulary: ['maman', 'papa', 'frère', 'soeur', 'ami'],
-      successCriteria: ['Describe family members', 'Talk about friends'],
-      _count: { lessonPlans: 12, expectations: 0, resources: 0 },
-      expectations: [],
-      crossCurricularConnections: '',
-      differentiationStrategies: {
-        forStruggling: ['Family photos', 'Simple sentences'],
-        forAdvanced: ['Extended family vocabulary', 'Descriptive language'],
-        forELL: ['Cultural connections', 'Visual supports'],
-        forIEP: ['Modified presentation format', 'Partner support']
-      },
-      progress: { percentage: 0, completed: 0, total: 12 }
-    }
-  ] : [];
+  // Fetch real unit plans from API
+  const { data: unitPlans = [], isLoading: unitPlansLoading } = useUnitPlans({
+    longRangePlanId: longRangePlanId || undefined
+  });
 
   const selectedUnit = unitId ? unitPlans.find(u => u.id === unitId) : undefined;
-  const isLoading = false;
-
-  // Hardcoded curriculum expectations
-  const curriculumExpectations: any[] = [];
+  
+  // Fetch curriculum expectations for Grade 1 French Immersion
+  const { data: curriculumExpectations = [], isLoading: expectationsLoading } = useCurriculumExpectations({
+    grade: 1
+    // Note: Removed subject filter to avoid type error - filtering will be done client-side if needed
+  });
+  
+  const isLoading = longRangePlanLoading || allPlansLoading || unitPlansLoading || expectationsLoading;
 
   // Mutations (simplified)
   const createUnit = { mutateAsync: async (_data: any) => {}, isPending: false };
@@ -575,62 +475,72 @@ function UnitPlansPage(): React.ReactElement {
                     Differentiation Strategies
                   </h3>
                   <div className="grid gap-4 md:grid-cols-2">
-                    {unit.differentiationStrategies.forStruggling.length > 0 && (
+                    {unit.differentiationStrategies.forStruggling && unit.differentiationStrategies.forStruggling.length > 0 && unit.differentiationStrategies.forStruggling.some(s => s.trim()) && (
                         <Card>
                           <CardHeader>
                             <CardTitle className="text-sm">For Struggling Learners</CardTitle>
                           </CardHeader>
                           <CardContent>
-                            <ul className="list-disc list-inside space-y-1 text-sm">
-                              {unit.differentiationStrategies.forStruggling.map(
-                                (strategy, index) => (
-                                  <li key={index}>{strategy}</li>
-                                ),
-                              )}
+                            <ul className="text-sm space-y-1">
+                              {unit.differentiationStrategies.forStruggling.filter(s => s.trim()).map((strategy, index) => (
+                                <li key={index} className="flex items-start">
+                                  <span className="text-gray-400 mr-2">•</span>
+                                  <span>{strategy}</span>
+                                </li>
+                              ))}
                             </ul>
                           </CardContent>
                         </Card>
                       )}
 
-                    {unit.differentiationStrategies.forAdvanced.length > 0 && (
+                    {unit.differentiationStrategies.forAdvanced && unit.differentiationStrategies.forAdvanced.length > 0 && unit.differentiationStrategies.forAdvanced.some(s => s.trim()) && (
                         <Card>
                           <CardHeader>
                             <CardTitle className="text-sm">For Advanced Learners</CardTitle>
                           </CardHeader>
                           <CardContent>
-                            <ul className="list-disc list-inside space-y-1 text-sm">
-                              {unit.differentiationStrategies.forAdvanced.map((strategy, _index) => (
-                                <li key={_index}>{strategy}</li>
+                            <ul className="text-sm space-y-1">
+                              {unit.differentiationStrategies.forAdvanced.filter(s => s.trim()).map((strategy, index) => (
+                                <li key={index} className="flex items-start">
+                                  <span className="text-gray-400 mr-2">•</span>
+                                  <span>{strategy}</span>
+                                </li>
                               ))}
                             </ul>
                           </CardContent>
                         </Card>
                       )}
 
-                    {unit.differentiationStrategies.forELL.length > 0 && (
+                    {unit.differentiationStrategies.forELL && unit.differentiationStrategies.forELL.length > 0 && unit.differentiationStrategies.forELL.some(s => s.trim()) && (
                         <Card>
                           <CardHeader>
                             <CardTitle className="text-sm">For English Language Learners</CardTitle>
                           </CardHeader>
                           <CardContent>
-                            <ul className="list-disc list-inside space-y-1 text-sm">
-                              {unit.differentiationStrategies.forELL.map((strategy, _index) => (
-                                <li key={_index}>{strategy}</li>
+                            <ul className="text-sm space-y-1">
+                              {unit.differentiationStrategies.forELL.filter(s => s.trim()).map((strategy, index) => (
+                                <li key={index} className="flex items-start">
+                                  <span className="text-gray-400 mr-2">•</span>
+                                  <span>{strategy}</span>
+                                </li>
                               ))}
                             </ul>
                           </CardContent>
                         </Card>
                       )}
 
-                    {unit.differentiationStrategies.forIEP.length > 0 && (
+                    {unit.differentiationStrategies.forIEP && unit.differentiationStrategies.forIEP.length > 0 && unit.differentiationStrategies.forIEP.some(s => s.trim()) && (
                         <Card>
                           <CardHeader>
                             <CardTitle className="text-sm">For Students with IEPs</CardTitle>
                           </CardHeader>
                           <CardContent>
-                            <ul className="list-disc list-inside space-y-1 text-sm">
-                              {unit.differentiationStrategies.forIEP.map((strategy, _index) => (
-                                <li key={_index}>{strategy}</li>
+                            <ul className="text-sm space-y-1">
+                              {unit.differentiationStrategies.forIEP.filter(s => s.trim()).map((strategy, index) => (
+                                <li key={index} className="flex items-start">
+                                  <span className="text-gray-400 mr-2">•</span>
+                                  <span>{strategy}</span>
+                                </li>
                               ))}
                             </ul>
                           </CardContent>

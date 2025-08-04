@@ -31,19 +31,22 @@ Teaching Engine 2.0 is your comprehensive digital teaching assistant, designed t
 
 ### Quick Setup Checklist
 
-**Minutes 1-5: Account Setup**
+**Minutes 1-5: Account Setup & Onboarding**
 
-- [ ] Log in with your teacher credentials
-- [ ] Complete your profile (grade, subjects, school info)
-- [ ] Set your preferred language (English/French)
-- [ ] Enable mobile notifications for important updates
+- [ ] Open the app - onboarding starts automatically for new users
+- [ ] Complete the 4-step onboarding wizard:
+  - Welcome & Introduction to ETFO planning methodology
+  - Understanding the 5-level planning workflow
+  - **CRITICAL: Subject Selection** - Choose which subjects you teach
+  - Feature overview and AI assistance tour
 
-**Minutes 6-15: Initial Configuration**
+**Minutes 6-15: Subject Selection & Configuration**
 
-- [ ] Import your curriculum expectations (or use pre-loaded PEI curriculum standards adapted from ETFO resources)
-- [ ] Set up your school calendar and holidays
-- [ ] Configure your preferred lesson template
-- [ ] Add your student roster (names only - no personal data required)
+- [ ] **Core Subjects** (typically required): Français langue première, Mathématiques
+- [ ] **Optional Subjects**: Sciences, Études sociales, English Language Arts, Arts
+- [ ] **Specialist Subjects** (only if you teach them): Éducation physique, Éducation à la santé
+- [ ] App automatically loads 68 Grade 1 French Immersion curriculum expectations for PEI
+- [ ] Curriculum coverage tracking begins immediately
 
 **Minutes 16-25: First Planning Session**
 
@@ -64,8 +67,11 @@ Teaching Engine 2.0 is your comprehensive digital teaching assistant, designed t
 By the end of your first session, you'll have:
 
 - A complete understanding of the PEI curriculum planning hierarchy using ETFO best practices
+- **Personalized subject selection** filtering all content to your teaching assignments
+- Access to **68 comprehensive Grade 1 French Immersion curriculum expectations** for PEI
+- **Curriculum coverage tracking** showing your progress across selected subjects
 - Your first AI-generated lesson plan ready to use
-- A personalized workspace tailored to your teaching style
+- A personalized workspace tailored to your teaching style and subjects
 - Confidence to begin your workload reduction journey
 
 ![Getting Started Screenshot](images/after-login.png)
@@ -84,10 +90,12 @@ Teaching Engine 2.0 follows the five-level planning framework adapted from ETFO 
 
 **Key Features**:
 
-- **AI-Powered Generation**: Upload curriculum documents and get instant yearly plans
-- **Expectation Mapping**: Automatic alignment with PEI curriculum expectations using ETFO-style organization
+- **AI-Powered Generation**: Get instant yearly plans based on your selected subjects
+- **Subject-Filtered Content**: Only see curriculum expectations for subjects you actually teach
+- **Expectation Mapping**: Automatic alignment with 68 PEI Grade 1 French Immersion expectations using ETFO-style organization
+- **Curriculum Coverage Tracking**: Real-time progress indicators for each subject
 - **Flexible Timeline**: Drag-and-drop pacing adjustments
-- **Cross-Curricular Connections**: Smart suggestions for integrated learning
+- **Cross-Curricular Connections**: Smart suggestions for integrated learning across your selected subjects
 
 **Best Practice**: Start each term by reviewing and adjusting your long-range plan based on student needs and school events.
 
@@ -557,18 +565,19 @@ For planned absences or extended sick leave:
 - Week 5-8: Full workflow integration
 - Month 3+: Advanced features and collaboration
 
-### Case Study 3: Lisa - French Immersion Teacher
+### Case Study 3: Lisa - Grade 1 French Immersion Teacher (PEI)
 
-**Challenge**: Bilingual planning, limited resources, cultural integration
-**Solution**: Bilingual templates and cultural resource integration
-**Result**: Streamlined bilingual planning, improved cultural authenticity
+**Challenge**: Bilingual planning, subject selection complexity, PEI-specific curriculum alignment
+**Solution**: Subject-filtered planning with comprehensive Grade 1 French Immersion curriculum
+**Result**: Streamlined subject-specific planning, 100% curriculum coverage confidence
 
 **Specialized Features Used**:
 
-- **Bilingual Templates**: French-English lesson structures
-- **Cultural Integration**: Indigenous and French-Canadian perspectives
-- **Resource Sharing**: Collaboration with French immersion colleagues
-- **Assessment Adaptation**: Language-sensitive evaluation methods
+- **Subject Selection Onboarding**: Chose core subjects (Français, Mathématiques) plus Sciences and Arts
+- **Filtered Curriculum Access**: Only sees relevant expectations from 68 Grade 1 standards
+- **Coverage Tracking**: Real-time progress across Français langue première, Mathématiques, Sciences, and Arts
+- **Cultural Integration**: Indigenous and French-Canadian perspectives built into PEI curriculum
+- **Specialist Coordination**: Clear separation between homeroom and specialist subject expectations
 
 ### Case Study 4: David - Special Education Support
 
@@ -591,15 +600,17 @@ For planned absences or extended sick leave:
 
 #### Week 1-2: Foundation Building
 
-**Focus**: Basic system setup and familiarization
+**Focus**: Onboarding completion and subject configuration
 **Time Investment**: 2 hours total
 **Expected Savings**: 10% (30 minutes weekly)
 
 **Action Steps**:
 
-- Complete initial setup and profile configuration
-- Import curriculum and create first long-range plan
-- Generate 2-3 lesson plans using templates
+- Complete 4-step onboarding wizard with subject selection
+- Verify your selected subjects match your teaching assignments
+- Explore the 68 Grade 1 French Immersion curriculum expectations
+- Check curriculum coverage dashboard to understand baseline
+- Generate 2-3 lesson plans using templates for your selected subjects
 - Set up basic assessment tracking
 
 #### Week 3-4: Workflow Integration

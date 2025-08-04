@@ -69,6 +69,14 @@ const lessonPlanCreateSchema = z.object({
   accommodations: z.array(z.string().max(300)).max(20).optional(),
   modifications: z.array(z.string().max(300)).max(20).optional(),
   extensions: z.array(z.string().max(300)).max(20).optional(),
+  
+  // New differentiation strategies (teacher-friendly format)
+  differentiationStrategies: z.object({
+    forStruggling: z.string().max(1000).optional(),
+    forAdvanced: z.string().max(1000).optional(),
+    forELL: z.string().max(1000).optional(),
+    forIEP: z.string().max(1000).optional(),
+  }).optional(),
 
   // Assessment
   assessmentType: z.enum(['diagnostic', 'formative', 'summative']).optional(),

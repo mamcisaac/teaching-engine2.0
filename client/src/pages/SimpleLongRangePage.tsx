@@ -145,21 +145,47 @@ export function SimpleLongRangePage(): React.ReactElement {
       fontFamily: 'system-ui, -apple-system, sans-serif'
     }}>
       {/* Header */}
-      <div style={{ marginBottom: '32px' }}>
-        <h1 style={{ 
-          fontSize: '36px', 
-          fontWeight: 'bold', 
-          color: '#1f2937',
-          marginBottom: '8px'
-        }}>
-          Long-Range Planning
-        </h1>
-        <p style={{ 
-          color: '#6b7280',
-          fontSize: '18px'
-        }}>
-          Plan your academic year with ETFO-aligned curriculum organization
-        </p>
+      <div style={{ 
+        marginBottom: '32px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start'
+      }}>
+        <div>
+          <h1 style={{ 
+            fontSize: '36px', 
+            fontWeight: 'bold', 
+            color: '#1f2937',
+            marginBottom: '8px'
+          }}>
+            Long-Range Planning
+          </h1>
+          <p style={{ 
+            color: '#6b7280',
+            fontSize: '18px'
+          }}>
+            Plan your academic year with ETFO-aligned curriculum organization
+          </p>
+        </div>
+        <button
+          onClick={() => window.print()}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            padding: '10px 20px',
+            backgroundColor: '#f3f4f6',
+            color: '#374151',
+            border: '1px solid #d1d5db',
+            borderRadius: '6px',
+            fontSize: '14px',
+            fontWeight: '500',
+            cursor: 'pointer'
+          }}
+          title="Print your long-range plans"
+        >
+          🖨️ Print Plans
+        </button>
       </div>
 
       {/* Year Selector and Actions */}
@@ -685,6 +711,9 @@ export function SimpleLongRangePage(): React.ReactElement {
                   }}
                   placeholder="e.g., Grade 1 French Language Arts"
                 />
+                <span style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', display: 'block' }}>
+                  Use a descriptive title that clearly identifies the subject and grade level
+                </span>
               </div>
 
               <div style={{ marginBottom: '16px' }}>
@@ -709,6 +738,9 @@ export function SimpleLongRangePage(): React.ReactElement {
                   }}
                   placeholder="e.g., Français langue première"
                 />
+                <span style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', display: 'block' }}>
+                  Enter the specific subject area (e.g., Mathématiques, Sciences, Arts)
+                </span>
               </div>
 
               <div style={{ marginBottom: '16px' }}>
@@ -758,6 +790,9 @@ export function SimpleLongRangePage(): React.ReactElement {
                   }}
                   placeholder="Describe the focus and approach for this subject area..."
                 />
+                <span style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', display: 'block' }}>
+                  Example: "Focus on oral communication, reading comprehension, and writing skills in French immersion context"
+                </span>
               </div>
 
               <div style={{ marginBottom: '24px' }}>
@@ -782,6 +817,9 @@ export function SimpleLongRangePage(): React.ReactElement {
                   }}
                   placeholder="What are the main learning goals for students?"
                 />
+                <span style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', display: 'block' }}>
+                  Example: "Develop French vocabulary, practice daily communication, build reading fluency with simple texts"
+                </span>
               </div>
 
               <div style={{ 

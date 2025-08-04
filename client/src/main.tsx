@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Toaster } from 'sonner'
 
 import { AuthProvider } from './contexts/AuthContext'
+import { LanguageProvider } from './contexts/LanguageContext'
 import { AppRouter } from './routing/AppRouter'
 import './index.css'
 import { errorReportingService } from './services/errorReportingService'
@@ -51,7 +52,9 @@ if (rootElement) {
         <QueryClientProvider client={queryClient}>
           <BrowserRouter>
             <AuthProvider>
-              <AppRouter />
+              <LanguageProvider>
+                <AppRouter />
+              </LanguageProvider>
             </AuthProvider>
             <Toaster closeButton richColors position="top-right" />
           </BrowserRouter>

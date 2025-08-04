@@ -25,7 +25,13 @@ export function QuickLessonPage(): React.ReactElement {
     consolidation: '',
     materials: '',
     assessmentNotes: '',
-    isSubFriendly: false
+    isSubFriendly: false,
+    differentiationStrategies: {
+      forStruggling: '',
+      forAdvanced: '',
+      forELL: '',
+      forIEP: ''
+    }
   });
 
   const handleSubmit = async (e: React.FormEvent): Promise<void> => {
@@ -55,7 +61,8 @@ export function QuickLessonPage(): React.ReactElement {
         consolidation: formData.consolidation,
         materials: formData.materials.split('\n').filter(m => m.trim()),
         assessmentNotes: formData.assessmentNotes,
-        isSubFriendly: formData.isSubFriendly
+        isSubFriendly: formData.isSubFriendly,
+        differentiationStrategies: formData.differentiationStrategies
       };
 
       await createMutation.mutateAsync(lessonData);
@@ -73,7 +80,13 @@ export function QuickLessonPage(): React.ReactElement {
         consolidation: '',
         materials: '',
         assessmentNotes: '',
-        isSubFriendly: false
+        isSubFriendly: false,
+        differentiationStrategies: {
+          forStruggling: '',
+          forAdvanced: '',
+          forELL: '',
+          forIEP: ''
+        }
       });
     } catch (error) {
       toast.error('Failed to create lesson. Please try again.');
@@ -95,18 +108,44 @@ export function QuickLessonPage(): React.ReactElement {
           { label: 'Quick Lesson Planner' }
         ]} />
         
-        <div style={{ marginBottom: '30px' }}>
-          <h1 style={{ 
-            fontSize: '36px', 
-            fontWeight: 'bold', 
-            color: '#1f2937',
-            marginBottom: '8px'
-          }}>
-            ⚡ Quick Lesson Planner
-          </h1>
-          <p style={{ color: '#6b7280', fontSize: '18px' }}>
-            Create a lesson plan quickly for today or upcoming classes
-          </p>
+        <div style={{ 
+          marginBottom: '30px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'flex-start'
+        }}>
+          <div>
+            <h1 style={{ 
+              fontSize: '36px', 
+              fontWeight: 'bold', 
+              color: '#1f2937',
+              marginBottom: '8px'
+            }}>
+              ⚡ Quick Lesson Planner
+            </h1>
+            <p style={{ color: '#6b7280', fontSize: '18px' }}>
+              Create a lesson plan quickly for today or upcoming classes
+            </p>
+          </div>
+          <button
+            onClick={() => window.print()}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '10px 20px',
+              backgroundColor: '#f3f4f6',
+              color: '#374151',
+              border: '1px solid #d1d5db',
+              borderRadius: '6px',
+              fontSize: '14px',
+              fontWeight: '500',
+              cursor: 'pointer'
+            }}
+            title="Print lesson plan"
+          >
+            🖨️ Print Lesson
+          </button>
         </div>
 
         <form onSubmit={handleSubmit} style={{ 
@@ -141,6 +180,9 @@ export function QuickLessonPage(): React.ReactElement {
                   }}
                   required
                 />
+                <span style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', display: 'block' }}>
+                  Choose a clear, descriptive title that reflects the main learning objective
+                </span>
               </div>
               
               <div>
@@ -236,18 +278,63 @@ export function QuickLessonPage(): React.ReactElement {
                 resize: 'vertical'
               }}
             />
+            <span style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', display: 'block' }}>
+              Example: "Students will identify and count numbers 1-10 in French using manipulatives"
+            </span>
           </div>
 
           {/* Three-Part Lesson Structure */}
-          <div style={{ marginBottom: '30px' }}>
-            <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#374151', marginBottom: '15px' }}>
-              Three-Part Lesson Structure
+          <div style={{ 
+            marginBottom: '30px',
+            border: '2px solid #4f46e5',
+            borderRadius: '8px',
+            padding: '20px',
+            backgroundColor: '#f0f4ff'
+          }}>
+            <h3 style={{ 
+              fontSize: '20px', 
+              fontWeight: '700', 
+              color: '#4f46e5', 
+              marginBottom: '8px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px'
+            }}>
+              📚 ETFO Three-Part Lesson Structure
+              <span style={{ 
+                fontSize: '12px', 
+                backgroundColor: '#dc2626',
+                color: 'white',
+                padding: '2px 8px',
+                borderRadius: '4px',
+                fontWeight: '600'
+              }}>
+                REQUIRED
+              </span>
             </h3>
+            <p style={{ 
+              fontSize: '14px', 
+              color: '#6b7280',
+              marginBottom: '16px',
+              fontStyle: 'italic'
+            }}>
+              All lessons must follow the ETFO-mandated three-part structure for effective teaching
+            </p>
             
             <div style={{ display: 'grid', gap: '20px' }}>
               <div>
-                <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#374151', marginBottom: '5px' }}>
-                  Minds-On (Hook/Introduction)
+                <label style={{ 
+                  display: 'block', 
+                  fontSize: '14px', 
+                  fontWeight: '600', 
+                  color: '#374151', 
+                  marginBottom: '5px',
+                  backgroundColor: '#e0f2fe',
+                  padding: '8px 12px',
+                  borderRadius: '6px',
+                  border: '1px solid #0ea5e9'
+                }}>
+                  1️⃣ Minds-On (Hook/Introduction) • ~10-15% of lesson time
                 </label>
                 <textarea
                   value={formData.mindsOn}
@@ -264,11 +351,24 @@ export function QuickLessonPage(): React.ReactElement {
                     resize: 'vertical'
                   }}
                 />
+                <span style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', display: 'block', fontStyle: 'italic' }}>
+                  Example: "Show mystery bag with counting bears. Ask: 'Combien d'ours pensez-vous qu'il y a?' Have students predict and share."
+                </span>
               </div>
               
               <div>
-                <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#374151', marginBottom: '5px' }}>
-                  Action (Main Learning Activities)
+                <label style={{ 
+                  display: 'block', 
+                  fontSize: '14px', 
+                  fontWeight: '600', 
+                  color: '#374151', 
+                  marginBottom: '5px',
+                  backgroundColor: '#d1fae5',
+                  padding: '8px 12px',
+                  borderRadius: '6px',
+                  border: '1px solid #10b981'
+                }}>
+                  2️⃣ Action (Main Learning Activities) • ~60-70% of lesson time
                 </label>
                 <textarea
                   value={formData.action}
@@ -285,11 +385,24 @@ export function QuickLessonPage(): React.ReactElement {
                     resize: 'vertical'
                   }}
                 />
+                <span style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', display: 'block', fontStyle: 'italic' }}>
+                  Example: "1) Counting station rotations with manipulatives 2) Partner counting games 3) Number writing practice on whiteboards"
+                </span>
               </div>
               
               <div>
-                <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#374151', marginBottom: '5px' }}>
-                  Consolidation (Wrap-up/Assessment)
+                <label style={{ 
+                  display: 'block', 
+                  fontSize: '14px', 
+                  fontWeight: '600', 
+                  color: '#374151', 
+                  marginBottom: '5px',
+                  backgroundColor: '#fef3c7',
+                  padding: '8px 12px',
+                  borderRadius: '6px',
+                  border: '1px solid #f59e0b'
+                }}>
+                  3️⃣ Consolidation (Wrap-up/Assessment) • ~15-20% of lesson time
                 </label>
                 <textarea
                   value={formData.consolidation}
@@ -306,6 +419,9 @@ export function QuickLessonPage(): React.ReactElement {
                     resize: 'vertical'
                   }}
                 />
+                <span style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', display: 'block', fontStyle: 'italic' }}>
+                  Example: "Gallery walk to share counting collections. Exit ticket: Draw and label 5 objects in French."
+                </span>
               </div>
             </div>
           </div>
@@ -352,6 +468,179 @@ export function QuickLessonPage(): React.ReactElement {
                   resize: 'vertical'
                 }}
               />
+            </div>
+          </div>
+
+          {/* Differentiation Strategies */}
+          <div style={{ 
+            marginBottom: '30px',
+            border: '2px solid #10b981',
+            borderRadius: '8px',
+            padding: '20px',
+            backgroundColor: '#f0fdf4'
+          }}>
+            <h3 style={{ 
+              fontSize: '18px', 
+              fontWeight: '600', 
+              color: '#059669', 
+              marginBottom: '8px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px'
+            }}>
+              🎯 Differentiation Strategies
+              <span style={{ 
+                fontSize: '12px', 
+                backgroundColor: '#10b981',
+                color: 'white',
+                padding: '2px 8px',
+                borderRadius: '4px',
+                fontWeight: '500'
+              }}>
+                INCLUSIVE
+              </span>
+            </h3>
+            <p style={{ 
+              fontSize: '14px', 
+              color: '#6b7280',
+              marginBottom: '16px',
+              fontStyle: 'italic'
+            }}>
+              Support all learners by planning differentiated approaches
+            </p>
+            
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+              <div>
+                <label style={{ 
+                  display: 'block', 
+                  fontSize: '14px', 
+                  fontWeight: '500', 
+                  color: '#374151', 
+                  marginBottom: '5px' 
+                }}>
+                  For Struggling Learners
+                </label>
+                <textarea
+                  value={formData.differentiationStrategies.forStruggling}
+                  onChange={(e) => setFormData(prev => ({
+                    ...prev,
+                    differentiationStrategies: {
+                      ...prev.differentiationStrategies,
+                      forStruggling: e.target.value
+                    }
+                  }))}
+                  placeholder="How will you support students who need extra help?"
+                  rows={2}
+                  style={{
+                    width: '100%',
+                    padding: '8px 12px',
+                    border: '1px solid #d1d5db',
+                    borderRadius: '6px',
+                    fontSize: '14px',
+                    boxSizing: 'border-box',
+                    resize: 'vertical'
+                  }}
+                />
+              </div>
+              
+              <div>
+                <label style={{ 
+                  display: 'block', 
+                  fontSize: '14px', 
+                  fontWeight: '500', 
+                  color: '#374151', 
+                  marginBottom: '5px' 
+                }}>
+                  For Advanced Learners
+                </label>
+                <textarea
+                  value={formData.differentiationStrategies.forAdvanced}
+                  onChange={(e) => setFormData(prev => ({
+                    ...prev,
+                    differentiationStrategies: {
+                      ...prev.differentiationStrategies,
+                      forAdvanced: e.target.value
+                    }
+                  }))}
+                  placeholder="How will you challenge students ready for more?"
+                  rows={2}
+                  style={{
+                    width: '100%',
+                    padding: '8px 12px',
+                    border: '1px solid #d1d5db',
+                    borderRadius: '6px',
+                    fontSize: '14px',
+                    boxSizing: 'border-box',
+                    resize: 'vertical'
+                  }}
+                />
+              </div>
+              
+              <div>
+                <label style={{ 
+                  display: 'block', 
+                  fontSize: '14px', 
+                  fontWeight: '500', 
+                  color: '#374151', 
+                  marginBottom: '5px' 
+                }}>
+                  For ELL Students
+                </label>
+                <textarea
+                  value={formData.differentiationStrategies.forELL}
+                  onChange={(e) => setFormData(prev => ({
+                    ...prev,
+                    differentiationStrategies: {
+                      ...prev.differentiationStrategies,
+                      forELL: e.target.value
+                    }
+                  }))}
+                  placeholder="Language supports for English Language Learners"
+                  rows={2}
+                  style={{
+                    width: '100%',
+                    padding: '8px 12px',
+                    border: '1px solid #d1d5db',
+                    borderRadius: '6px',
+                    fontSize: '14px',
+                    boxSizing: 'border-box',
+                    resize: 'vertical'
+                  }}
+                />
+              </div>
+              
+              <div>
+                <label style={{ 
+                  display: 'block', 
+                  fontSize: '14px', 
+                  fontWeight: '500', 
+                  color: '#374151', 
+                  marginBottom: '5px' 
+                }}>
+                  IEP Accommodations
+                </label>
+                <textarea
+                  value={formData.differentiationStrategies.forIEP}
+                  onChange={(e) => setFormData(prev => ({
+                    ...prev,
+                    differentiationStrategies: {
+                      ...prev.differentiationStrategies,
+                      forIEP: e.target.value
+                    }
+                  }))}
+                  placeholder="Specific accommodations for students with IEPs"
+                  rows={2}
+                  style={{
+                    width: '100%',
+                    padding: '8px 12px',
+                    border: '1px solid #d1d5db',
+                    borderRadius: '6px',
+                    fontSize: '14px',
+                    boxSizing: 'border-box',
+                    resize: 'vertical'
+                  }}
+                />
+              </div>
             </div>
           </div>
 

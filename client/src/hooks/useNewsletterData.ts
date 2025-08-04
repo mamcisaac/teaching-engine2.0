@@ -17,7 +17,8 @@ export function useStudents(): UseQueryResult<Student[]> {
     queryKey: ['students'],
     queryFn: async () => {
       const response = await apiClient.get('/students');
-      return response.data as Student[];
+      // Ensure we always return an array
+      return Array.isArray(response.data) ? response.data as Student[] : [];
     },
   });
 }
@@ -112,7 +113,8 @@ export function useNewsletterDrafts(): UseQueryResult<NewsletterDraft[]> {
     queryKey: ['newsletter-drafts'],
     queryFn: async () => {
       const response = await apiClient.get('/newsletters?isDraft=true');
-      return response.data as NewsletterDraft[];
+      // Ensure we always return an array
+      return Array.isArray(response.data) ? response.data as NewsletterDraft[] : [];
     },
   });
 }

@@ -201,21 +201,47 @@ export function SimpleUnitPlansPage(): React.ReactElement {
       </div>
 
       {/* Header */}
-      <div style={{ marginBottom: '32px' }}>
-        <h1 style={{ 
-          fontSize: '36px', 
-          fontWeight: 'bold', 
-          color: '#1f2937',
-          marginBottom: '8px'
-        }}>
-          Unit Plans
-        </h1>
-        <p style={{ 
-          color: '#6b7280',
-          fontSize: '18px'
-        }}>
-          {longRangePlan?.subject} - Grade {longRangePlan?.grade}
-        </p>
+      <div style={{ 
+        marginBottom: '32px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start'
+      }}>
+        <div>
+          <h1 style={{ 
+            fontSize: '36px', 
+            fontWeight: 'bold', 
+            color: '#1f2937',
+            marginBottom: '8px'
+          }}>
+            Unit Plans
+          </h1>
+          <p style={{ 
+            color: '#6b7280',
+            fontSize: '18px'
+          }}>
+            {longRangePlan?.subject} - Grade {longRangePlan?.grade}
+          </p>
+        </div>
+        <button
+          onClick={() => window.print()}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            padding: '10px 20px',
+            backgroundColor: '#f3f4f6',
+            color: '#374151',
+            border: '1px solid #d1d5db',
+            borderRadius: '6px',
+            fontSize: '14px',
+            fontWeight: '500',
+            cursor: 'pointer'
+          }}
+          title="Print unit plans"
+        >
+          🖨️ Print Units
+        </button>
       </div>
 
       {/* Actions Bar */}
@@ -584,6 +610,9 @@ function UnitFormModal({
                 }}
                 placeholder="e.g., Introduction to Numbers"
               />
+              <span style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', display: 'block' }}>
+                Give your unit a clear title that reflects the main topic or theme
+              </span>
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
@@ -656,6 +685,9 @@ function UnitFormModal({
                 }}
                 placeholder="Brief overview of what students will learn in this unit..."
               />
+              <span style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', display: 'block' }}>
+                Example: "Students will explore numbers 1-20 through hands-on activities, games, and songs in French"
+              </span>
             </div>
 
             <div>
@@ -680,6 +712,9 @@ function UnitFormModal({
                 }}
                 placeholder="Key concepts and enduring understandings..."
               />
+              <span style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', display: 'block' }}>
+                Example: "Numbers are everywhere in our daily lives. Counting helps us understand quantity and order."
+              </span>
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '16px' }}>
@@ -727,6 +762,9 @@ function UnitFormModal({
                   }}
                   placeholder="How will student learning be assessed?"
                 />
+                <span style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', display: 'block' }}>
+                  Example: "Observation checklists, counting portfolios, oral assessments in French"
+                </span>
               </div>
             </div>
 
@@ -752,6 +790,9 @@ function UnitFormModal({
                 }}
                 placeholder="Connections to other subject areas..."
               />
+              <span style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', display: 'block' }}>
+                Example: "Art - create number collages; Science - count natural objects; Music - number songs"
+              </span>
             </div>
 
             <div>
@@ -776,6 +817,9 @@ function UnitFormModal({
                 }}
                 placeholder="How will Indigenous perspectives be incorporated?"
               />
+              <span style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', display: 'block' }}>
+                Example: "Explore Mi'kmaq counting systems and traditional counting games"
+              </span>
             </div>
 
             <div>
@@ -800,6 +844,9 @@ function UnitFormModal({
                 }}
                 placeholder="How will technology enhance learning?"
               />
+              <span style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', display: 'block' }}>
+                Example: "Interactive counting apps, digital math manipulatives, online number games in French"
+              </span>
             </div>
           </div>
 

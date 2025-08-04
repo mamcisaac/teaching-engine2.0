@@ -1,6 +1,91 @@
 # Features Documentation
 
-This document describes the features in Teaching Engine 2.0.
+This document describes the features in Teaching Engine 2.0, specifically optimized for Grade 1 French Immersion teaching in PEI.
+
+## Teacher Onboarding & Subject Selection
+
+### Overview
+
+A comprehensive 4-step onboarding flow that personalizes the Teaching Engine experience based on which subjects each teacher actually teaches, recognizing that not all teachers teach every subject (e.g., specialist teachers handle PE, Health, Music).
+
+### Features
+
+- **Automatic Onboarding**: Appears for new users on first login
+- **4-Step Wizard Process**:
+  1. Welcome & ETFO Planning Introduction
+  2. 5-Level Planning Hierarchy Explanation
+  3. **Subject Selection** - Core feature for personalization
+  4. Feature Overview & AI Assistant Tour
+- **Smart Subject Selection**:
+  - **Core Subjects**: Français langue première, Mathématiques (with warnings if not selected)
+  - **Optional Subjects**: Sciences, Études sociales, English Language Arts, Arts
+  - **Specialist Subjects**: Éducation physique, Éducation à la santé
+- **Persistent Storage**: Subject selections saved to localStorage
+- **Subject Management**: Teachers can update subject selection from dashboard
+
+### Technical Implementation
+
+- React Context API for onboarding state management
+- localStorage persistence with `STORAGE_KEYS` constants
+- Validation system ensuring core subjects are addressed
+- Confirmation dialogs for missing core subjects
+
+### API Integration
+
+- No backend storage required - uses client-side localStorage
+- Integrates with curriculum filtering throughout the application
+
+## Grade 1 French Immersion Curriculum System
+
+### Overview
+
+Comprehensive curriculum database with 68 Grade 1 French Immersion expectations specifically aligned with PEI standards, organized by subject and integrated with the ETFO planning methodology.
+
+### Features
+
+- **Complete Curriculum Coverage**: 68 detailed Grade 1 expectations across all subjects
+- **Subject Organization**:
+  - **Français langue première**: 15 expectations (oral communication, reading, writing)
+  - **Mathématiques**: 20 expectations (numbers, patterns, measurement, geometry, data)
+  - **Sciences et technologie**: 10 expectations (biology, physics, earth/space, inquiry)
+  - **Études sociales**: 8 expectations (heritage/identity, people/environments)
+  - **Arts**: 10 expectations (visual arts, drama, music, dance)
+  - **English Language Arts**: 5 expectations (for French Immersion context)
+- **Subject-Based Filtering**: Teachers only see curriculum for their selected subjects
+- **Coverage Tracking**: Real-time progress indicators for each subject
+- **Search & Discovery**: Full-text search across expectations with subject filtering
+
+### Database Schema
+
+```sql
+model CurriculumExpectation {
+  id          String   @id @default(cuid())
+  code        String   @unique
+  description String
+  content     String
+  subject     String
+  strand      String?
+  substrand   String?
+  grade       Int      @default(1)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+```
+
+### API Endpoints
+
+- `GET /api/curriculum-expectations` - List expectations with subject filtering
+- `GET /api/curriculum-expectations/:id` - Get specific expectation details
+- Query parameters support for subject filtering and search
+
+### Seeded Data Structure
+
+Each expectation includes:
+- **Unique Code**: PEI curriculum reference (e.g., "FLP1.1", "M1.1")
+- **Description**: Clear learning outcome description in French
+- **Subject**: Filterable subject classification
+- **Strand & Substrand**: Detailed curriculum organization
+- **Grade Level**: Set to Grade 1 for all current expectations
 
 ## Daybook System
 
@@ -14,6 +99,7 @@ The Daybook System provides simple daily reflection tracking for teaching effect
 - **Rating System**: Simple 1-5 rating for lesson effectiveness
 - **Bilingual Support**: Reflection fields available in English and French
 - **Curriculum Tracking**: Link reflections to specific lesson plans
+- **Subject Integration**: Reflections filtered based on selected teaching subjects
 
 ### Usage
 
@@ -56,10 +142,11 @@ The AI Activity Generator helps teachers create appropriate activities for curri
 Each AI suggestion includes:
 
 - **Activity Title**: Descriptive name for the activity
-- **Description**: Detailed instructions and learning objectives
+- **Description**: Detailed instructions and learning objectives appropriate for Grade 1 French Immersion
 - **Materials**: List of required materials and resources
 - **Theme Links**: Connections to current thematic units
-- **Outcome Alignment**: Clear mapping to curriculum outcomes
+- **Outcome Alignment**: Clear mapping to Grade 1 PEI curriculum expectations
+- **Subject Filtering**: Only generates activities for teacher's selected subjects
 
 ### Technical Implementation
 
@@ -111,6 +198,13 @@ model AISuggestedActivity {
 
 ## Frontend Components
 
+### Onboarding Components
+
+- `TeacherOnboardingFlow.tsx` - 4-step onboarding wizard with subject selection
+- `PlanningDashboard.tsx` - Shows selected subjects and curriculum coverage
+- `SimpleCurriculumPage.tsx` - Subject-filtered curriculum expectations view
+- Dashboard integration with subject display and coverage tracking
+
 ### Timeline Components
 
 - `StudentTimeline.tsx` - Main timeline interface with filtering and navigation
@@ -125,6 +219,9 @@ model AISuggestedActivity {
 
 ### Navigation Updates
 
+- Subject selection accessible from dashboard
+- Curriculum page shows selected subjects prominently
+- Coverage indicators throughout planning interface
 - Timeline added to main navigation menu
 - Dashboard quick access for timeline
 - Weekly planner integration for AI suggestions
@@ -138,12 +235,20 @@ model AISuggestedActivity {
 - Accessibility testing for form labels and navigation
 - Date range handling and dynamic content testing
 
+### Onboarding & Curriculum Tests
+
+- Onboarding flow testing for all 4 steps
+- Subject selection validation and persistence testing
+- Curriculum filtering and search functionality testing
+- Coverage tracking calculation accuracy testing
+- localStorage integration and data persistence testing
+
 ### AI Generator Tests
 
 - Backend API testing for all CRUD operations
 - Frontend component testing for modal interactions
 - Integration testing with weekly planner workflow
-- Mock service testing for AI generation logic
+- Mock service testing for AI generation logic with subject filtering
 
 ## Configuration and Setup
 
@@ -160,8 +265,12 @@ OPENAI_MODEL=gpt-3.5-turbo  # or gpt-4
 
 ### Development Mode
 
-Both features work fully in development mode:
+All features work fully in development mode:
 
+- Onboarding flow with subject selection functional immediately
+- 68 Grade 1 curriculum expectations pre-seeded in database
+- Subject filtering works across all curriculum views
+- Coverage tracking calculates from existing data
 - Timeline uses existing data sources
 - AI generator uses mock responses (no API key required)
 
@@ -185,6 +294,24 @@ pnpm --filter @teaching-engine/database db:migrate
 ## Troubleshooting
 
 ### Common Issues
+
+#### Onboarding Not Appearing
+
+- Clear localStorage and refresh to reset onboarding state
+- Check that `onboarded` key is null in localStorage for new users
+- Verify TeacherOnboardingFlow component is properly integrated
+
+#### Curriculum Not Filtering by Subject
+
+- Check localStorage for `teacher-subjects` key with selected subjects
+- Verify API endpoints support subject filtering query parameters
+- Ensure Grade 1 curriculum data is properly seeded with 68 expectations
+
+#### Coverage Tracking Not Updating
+
+- Verify curriculum expectations have proper subject classifications
+- Check that teacher's selected subjects match expectation subjects exactly
+- Ensure coverage calculation includes all 68 expectations for selected subjects
 
 #### Timeline Not Loading
 

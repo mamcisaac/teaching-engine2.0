@@ -3,9 +3,7 @@
  * Parses curriculum expectations from PDF files
  */
 
-// Temporarily disabled to avoid startup issues
-// import * as pdfParse from 'pdf-parse';
-import { pdfParse } from '../../../__mocks__/pdf-parse';
+import * as pdfParse from 'pdf-parse';
 
 import type { ParsedCurriculum, ParsedExpectation } from './CurriculumParser';
 import { CurriculumParser } from './CurriculumParser';
@@ -23,7 +21,7 @@ export class PDFParser extends CurriculumParser {
   async parse(content: string | Buffer): Promise<ParsedCurriculum> {
     // Parse PDF
     const buffer = content instanceof Buffer ? content : Buffer.from(content);
-    const data = await pdfParse(buffer);
+    const data = await pdfParse.default(buffer);
 
     if (!data.text) {
       throw new Error('No text content found in PDF');

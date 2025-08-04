@@ -150,7 +150,8 @@ export const optimizedIncludes = {
     },
     expectations: {
       select: {
-        id: true,
+        unitPlanId: true,
+        expectationId: true,
         expectation: {
           select: optimizedSelects.expectationMinimal,
         },

@@ -205,3 +205,34 @@ client/pacts/
 server/pacts/
 pact-logs/
 .pact/
+
+# Backup files and temporary files
+*.bak
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Lint and compilation outputs
+lint-*.txt
+lint*.txt
+*-lint-output.txt
+all-lint-output.txt
+current-lint-output.txt
+typecheck-*.txt
+violations.txt
+*-errors.txt
+*-violations.txt
+
+# Development scripts and one-off files
+fix-*.sh
+add-*.sh
+restore_*.sh
+*-restart.log
+dev-*.log
+dev-*.pid
+restoration_log_*.txt
+
+# System status files
+SYSTEM-IS-100-PERCENT-OPERATIONAL.html

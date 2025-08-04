@@ -59,15 +59,51 @@ router.get('/search', async (req: Request, res: Response) => {
 });
 
 // Get all curriculum expectations with optional filtering
-router.get('/', async (_req: Request, res: Response) => {
+router.get('/', async (req: Request, res: Response) => {
   try {
-    // Simplified approach - just return all curriculum expectations
+    const { grade, subject, strand, search } = req.query as Record<string, string>;
+    
+    // Build where clause based on query parameters
+    const where: any = {};
+    
+    // Filter by grade if provided
+    if (grade != undefined && grade !== '') {
+      where.grade = parseInt(grade, 10);
+    }
+    
+    // Filter by subject if provided
+    if (subject != undefined && subject !== '' && subject !== 'all') {
+      where.subject = subject;
+    }
+    
+    // Filter by strand if provided
+    if (strand != undefined && strand !== '') {
+      where.strand = strand;
+    }
+    
+    // Add search functionality if search query provided
+    if (search != undefined && search !== '') {
+      where.OR = [
+        { code: { contains: search, mode: 'insensitive' } },
+        { description: { contains: search, mode: 'insensitive' } },
+        { descriptionFr: { contains: search, mode: 'insensitive' } },
+        { strand: { contains: search, mode: 'insensitive' } },
+        { strandFr: { contains: search, mode: 'insensitive' } },
+        { substrand: { contains: search, mode: 'insensitive' } },
+      ];
+    }
+    
+    // Fetch expectations with filters
     const expectations = await prisma.curriculumExpectation.findMany({
-      take: 50, // Limit to 50 for performance
-      orderBy: { code: 'asc' },
+      where,
+      orderBy: [
+        { subject: 'asc' },
+        { strand: 'asc' }, 
+        { code: 'asc' }
+      ],
     });
 
-    // Simple response format
+    // Return all matching expectations (no arbitrary limit)
     res.json({
       data: expectations,
       total: expectations.length,
