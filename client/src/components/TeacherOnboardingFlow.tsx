@@ -3,12 +3,13 @@ import { useNavigate } from 'react-router-dom';
 
 import { apiClient } from '../api/core/client';
 import { STORAGE_KEYS, CORE_SUBJECTS } from '../constants/subjects';
+import { useAuth } from '../contexts/AuthContext';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useOnboarding } from '../contexts/OnboardingContext';
 import { logger } from '../utils/logger';
 import { safeJsonParse } from '../utils/typeGuards';
 
 import { LanguageSwitcher } from './LanguageSwitcher';
-import { PreferenceWizard } from './onboarding/PreferenceWizard';
 import { Button } from './ui/Button';
 import { Progress } from './ui/Progress';
 interface OnboardingStep {
@@ -29,15 +30,28 @@ interface TeacherOnboardingFlowProps {
 export function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingFlowProps): React.ReactElement | null {
   const { t } = useLanguage();
   const navigate = useNavigate();
+  const { user, isAuthenticated } = useAuth();
+  const { state, isOnboardingActive } = useOnboarding();
 
-  // Initialize state with more stable logic to prevent flashing
+  // Focus on subject selection - show if user is authenticated AND no subjects are selected or onboarding was reset
   const [visible, setVisible] = useState(() => {
+    // Don't show if user is not authenticated
+    if (!isAuthenticated || !user) {
+      return false;
+    }
+
     try {
-      const onboarded = localStorage.getItem('onboarded');
-      // Show onboarding if never seen (null) or explicitly set to false
-      return onboarded === null || onboarded === 'false';
-    } catch {
-      return true; // Default to showing onboarding if localStorage fails
+      const subjects = localStorage.getItem(STORAGE_KEYS.TEACHER_SUBJECTS);
+      const parsedSubjects = safeJsonParse<string[]>(subjects, []);
+      const firstTimeUser = localStorage.getItem('teachingEngine_firstTimeUser');
+      const onboardingState = localStorage.getItem('teachingEngine_onboarding');
+      const onboardingData = onboardingState ? safeJsonParse<{skippedOnboarding?: boolean}>(onboardingState, {}) : {};
+      
+      // Show if no subjects selected AND user hasn't completed or skipped onboarding
+      return parsedSubjects.length === 0 && firstTimeUser !== 'false' && !onboardingData.skippedOnboarding;
+    } catch (error) {
+      console.log('[TeacherOnboardingFlow] Error in visibility check:', error);
+      return false; // Default to not showing instead of always showing
     }
   });
 
@@ -50,7 +64,6 @@ export function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingFlowProps
       return [];
     }
   });
-  const [isCreatingSampleData, setIsCreatingSampleData] = useState(false);
   
   // Track selected teaching subjects
   const [selectedSubjects, setSelectedSubjects] = useState<string[]>([
@@ -62,12 +75,75 @@ export function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingFlowProps
     'Arts'
   ]);
 
+  // Use onboarding context for completion
+  const { completeOnboarding: contextCompleteOnboarding } = useOnboarding();
+  
   // Define completeOnboarding first
   const completeOnboarding = useCallback((): void => {
-    localStorage.setItem('onboarded', 'true');
+    contextCompleteOnboarding(); // Use the context's complete function
+    localStorage.setItem('teachingEngine_firstTimeUser', 'false'); // Ensure this is set
     setVisible(false);
     onComplete?.();
-  }, [onComplete]);
+  }, [contextCompleteOnboarding, onComplete]);
+
+  // Watch for changes that should trigger subject selection
+  useEffect(() => {
+    const checkVisibility = () => {
+      // Don't show if user is not authenticated
+      if (!isAuthenticated || !user) {
+        setVisible(false);
+        return;
+      }
+
+      try {
+        const subjects = localStorage.getItem(STORAGE_KEYS.TEACHER_SUBJECTS);
+        const parsedSubjects = safeJsonParse<string[]>(subjects, []);
+        const firstTimeUser = localStorage.getItem('teachingEngine_firstTimeUser');
+        const onboardingState = localStorage.getItem('teachingEngine_onboarding');
+        const onboardingData = onboardingState ? safeJsonParse<{skippedOnboarding?: boolean}>(onboardingState, {}) : {};
+        
+        // Show if no subjects selected AND user hasn't completed or skipped onboarding  
+        const shouldShow = parsedSubjects.length === 0 && firstTimeUser !== 'false' && !onboardingData.skippedOnboarding;
+        setVisible(shouldShow);
+      } catch (error) {
+        console.log('[TeacherOnboardingFlow] Error in checkVisibility:', error);
+        setVisible(false); // Default to not showing instead of always showing
+      }
+    };
+
+    checkVisibility();
+    
+    // Listen for localStorage changes (from other tabs or the resetOnboarding call)
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === STORAGE_KEYS.TEACHER_SUBJECTS || e.key === 'onboarded') {
+        checkVisibility();
+      }
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, [isAuthenticated, user]);
+
+  // Also watch for onboarding context changes (when resetOnboarding is called)
+  useEffect(() => {
+    // Don't show if user is not authenticated
+    if (!isAuthenticated || !user) {
+      setVisible(false);
+      return;
+    }
+
+    if (state.isFirstTimeUser && !state.skippedOnboarding) {
+      setVisible(true);
+      // Force re-check after context changes
+      setTimeout(() => {
+        const subjects = localStorage.getItem(STORAGE_KEYS.TEACHER_SUBJECTS);
+        const parsedSubjects = safeJsonParse<string[]>(subjects, []);
+        if (parsedSubjects.length === 0) {
+          setVisible(true);
+        }
+      }, 100);
+    }
+  }, [state.isFirstTimeUser, state.skippedOnboarding, isAuthenticated, user]);
 
   // Save completed steps to localStorage with debouncing to prevent flashing
   useEffect(() => {
@@ -118,58 +194,6 @@ return;
     );
   };
 
-  const createSampleData = async (): Promise<void> => {
-    setIsCreatingSampleData(true);
-    try {
-      // Create sample curriculum expectations
-      await apiClient.post('/api/curriculum-expectations', {
-        grade: '1',
-        subject: 'Mathematics',
-        strand: 'Number Sense',
-        code: 'M1.NS.1',
-        description:
-          'demonstrate an understanding of numbers up to 20, including identifying number patterns and skip counting by 2s, 5s, and 10s',
-        learningGoals: ['Count to 20', 'Identify patterns', 'Skip count'],
-        successCriteria: [
-          'I can count from 1 to 20',
-          'I can find patterns in numbers',
-          'I can skip count by 2s, 5s, and 10s',
-        ],
-        isSample: true,
-      });
-
-      await apiClient.post('/api/curriculum-expectations', {
-        grade: '1',
-        subject: 'Language Arts',
-        strand: 'Reading',
-        code: 'LA1.R.1',
-        description: 'read simple texts with understanding, using various reading strategies',
-        learningGoals: ['Read simple texts', 'Use reading strategies', 'Demonstrate comprehension'],
-        successCriteria: [
-          'I can read grade-level texts',
-          'I can use different strategies when reading',
-          'I can answer questions about what I read',
-        ],
-        isSample: true,
-      });
-
-      // Create sample long-range plan
-      const _longRangePlan = await apiClient.post('/api/long-range-plans', {
-        title: 'Grade 1 Fall Term Sample Plan',
-        description: 'A sample long-range plan for Grade 1 covering September to December',
-        startDate: new Date('2024-09-01').toISOString(),
-        endDate: new Date('2024-12-20').toISOString(),
-        grade: '1',
-        isSample: true,
-      });
-
-      markStepCompleted('sample-data');
-    } catch (_error) {
-      logger.error('Error creating sample data:', _error);
-    } finally {
-      setIsCreatingSampleData(false);
-    }
-  };
 
   const skipToStep = (stepIndex: number): void => {
     setCurrentStep(stepIndex);
@@ -377,115 +401,6 @@ return;
       },
     },
     {
-      id: 'sample-data',
-      title: t('sample_data_title', 'Set Up Sample Data'),
-      description: t(
-        'sample_data_description',
-        'Let us create some sample curriculum and plans to help you explore',
-      ),
-      content: (
-        <div className="space-y-6">
-          <div className="text-center">
-            <div className="mx-auto w-16 h-16 bg-gradient-to-br from-green-500 to-blue-600 rounded-full flex items-center justify-center mb-4">
-              <svg
-                className="w-8 h-8 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                />
-              </svg>
-            </div>
-            <h3 className="text-xl font-semibold mb-2">Sample Content</h3>
-            <p className="text-gray-600 mb-6">
-              We&apos;ll create sample curriculum expectations and a long-range plan so you can
-              immediately explore all features of Teaching Engine 2.0.
-            </p>
-          </div>
-
-          <div className="bg-gray-50 rounded-lg p-6">
-            <h4 className="font-medium mb-4">Sample data includes:</h4>
-            <ul className="space-y-2 text-sm">
-              <li className="flex items-center space-x-2">
-                <svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    clipRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                <span>Grade 1 Mathematics curriculum expectations</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    clipRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                <span>Grade 1 Language Arts curriculum expectations</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    clipRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                <span>Sample long-range plan for Fall term</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    clipRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                <span>Ready-to-use templates and examples</span>
-              </li>
-            </ul>
-          </div>
-
-          {completedSteps.includes('sample-data') && (
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-              <div className="flex items-center space-x-2">
-                <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    clipRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                <span className="text-green-800 font-medium">
-                  Sample data created successfully!
-                </span>
-              </div>
-            </div>
-          )}
-        </div>
-      ),
-      action: {
-        label: completedSteps.includes('sample-data')
-          ? t('continue', 'Continue')
-          : t('create_sample_data', 'Create Sample Data'),
-        onClick: (): void => {
-          if (completedSteps.includes('sample-data')) {
-            nextStep();
-          } else {
-            void createSampleData();
-          }
-        },
-      },
-    },
-    {
       id: 'navigation',
       title: t('navigation_title', 'Navigate Your Teaching Dashboard'),
       description: t(
@@ -601,26 +516,6 @@ return;
           nextStep();
         },
       },
-    },
-    {
-      id: 'preferences',
-      title: t('customize_experience', 'Customize Your Experience'),
-      description: t(
-        'customize_experience_desc',
-        'Set your preferences to personalize Teaching Engine 2.0',
-      ),
-      content: (
-        <PreferenceWizard
-          onComplete={() => {
-            markStepCompleted('preferences');
-            nextStep();
-          }}
-          onSkip={() => {
-            markStepCompleted('preferences');
-            nextStep();
-          }}
-        />
-      ),
     },
     {
       id: 'subject-selection',
@@ -921,9 +816,8 @@ return;
           <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-6">
             <h4 className="font-medium text-indigo-900 mb-3">Ready to Start Teaching Smarter?</h4>
             <p className="text-sm text-indigo-700 mb-4">
-              You&apos;re all set! Teaching Engine 2.0 is designed to grow with you. Start with the
-              sample data we&apos;ve created, then gradually build your own comprehensive teaching
-              plans.
+              You&apos;re all set! Teaching Engine 2.0 is designed to grow with you. Start by creating
+              your own comprehensive teaching plans and explore all the powerful features.
             </p>
             <div className="flex items-center space-x-2 text-sm text-indigo-600">
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -950,9 +844,8 @@ return;
   ];
 
   if (!visible) {
-return null;
-}
-
+    return null;
+  }
   const currentStepData = steps[currentStep];
   const progress = ((currentStep + 1) / steps.length) * 100;
 
@@ -1025,25 +918,21 @@ return 'bg-green-500';
 
         {/* Actions */}
         <div className="border-t border-gray-200 p-6 flex justify-between items-center">
-          <Button aria-label="Click button" onClick={previousStep}>
-            {t('previous', 'Previous')}
-          </Button>
+          {currentStep > 0 ? (
+            <Button aria-label="Click button" onClick={previousStep}>
+              {t('previous', 'Previous')}
+            </Button>
+          ) : (
+            <div /> // Empty div to maintain flex layout spacing
+          )}
 
           <div className="flex items-center space-x-3">
             {currentStepData.action ? (
               <Button
                 className="min-w-[120px]"
-                disabled={isCreatingSampleData}
                 onClick={currentStepData.action.onClick}
               >
-                {isCreatingSampleData ? (
-                  <div className="flex items-center space-x-2">
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    <span>{t('loading', 'Loading...')}</span>
-                  </div>
-                ) : (
-                  currentStepData.action.label
-                )}
+                {currentStepData.action.label}
               </Button>
             ) : (
               currentStep < steps.length - 1 && (

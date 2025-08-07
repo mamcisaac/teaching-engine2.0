@@ -18,6 +18,8 @@ const ParentNewsletterPage = lazy(() => import('../pages/ParentNewsletterPage').
 const HelpPage = lazy(() => import('../pages/HelpPage').then(module => ({ default: module.HelpPage }))); // named export
 const TemplatesPage = lazy(() => import('../pages/TemplatesPage').then(module => ({ default: module.TemplatesPage }))); // named export
 const CalendarPlanningPage = lazy(() => import('../pages/planning/CalendarPlanningPage').then(module => ({ default: module.CalendarPlanningPage }))); // named export
+const TodayView = lazy(() => import('../pages/TodayView').then(module => ({ default: module.TodayView }))); // named export
+const WeekView = lazy(() => import('../pages/WeekView').then(module => ({ default: module.WeekView }))); // named export
 
 export interface RouteConfig {
   path?: string;
@@ -38,7 +40,15 @@ export const plannerRoutes: RouteConfig[] = [
   {
     path: '',
     index: true,
-    element: <Navigate replace to="/planner/dashboard" />,
+    element: <Navigate replace to="/planner/today" />,
+  },
+  {
+    path: 'today',
+    element: TodayView,
+  },
+  {
+    path: 'week',
+    element: WeekView,
   },
   {
     path: 'year',
@@ -117,7 +127,7 @@ export const plannerRoutes: RouteConfig[] = [
 export const protectedRoutes: RouteConfig[] = [
   {
     path: '/',
-    element: <Navigate replace to="/planner/dashboard" />,
+    element: <Navigate replace to="/planner/today" />,
   },
   {
     path: '/planner',

@@ -196,13 +196,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
         if (isDevelopmentBypass) {
           console.log('[AuthContext] Development bypass active - auto-authenticating as Emily McIsaac');
           const emilyUser = {
-            id: 1,
-            email: 'emily.mcisaac@pei.ca',
+            id: 3,  // Correct userId from database for emmcisaac@gmail.com
+            email: 'emmcisaac@gmail.com',  // Correct email from database
             name: 'Emily McIsaac',
             role: 'USER' as const,
             organizationId: 1
           };
-          updateAuthState(emilyUser);
+          
+          // Set user state directly for development bypass
+          setUser(emilyUser);
+          setIsAuthenticated(true);
+          setError(null);
+          
+          // Store in localStorage
+          authService.storeUser(emilyUser);
+          
+          console.log('[AuthContext] Development bypass - user set and authenticated');
         } else {
           // State is already initialized from localStorage, just verify with server if we have a user
           if (user && authService.isAuthenticated()) {

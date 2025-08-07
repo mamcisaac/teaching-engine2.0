@@ -161,8 +161,8 @@ export function CalendarPlanningPage(): JSX.Element {
   const { data: units = [] } = useQuery<UnitPlan[]>({
     queryKey: ['unit-plans'],
     queryFn: async (): Promise<UnitPlan[]> => {
-      const response = await apiClient.get<UnitPlan[]>('/api/unit-plans');
-      return response.data;
+      const response = await apiClient.get<{unitPlans: UnitPlan[]; pagination: any}>('/api/unit-plans');
+      return response.data.unitPlans || [];
     },
   });
 

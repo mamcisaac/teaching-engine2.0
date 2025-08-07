@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { useOnboarding } from '../contexts/OnboardingContext';
 import { STORAGE_KEYS } from '../constants/subjects';
 import { useCurriculumExpectations } from '../hooks/useETFOPlanning';
 import { safeJsonParse } from '../utils/typeGuards';
@@ -9,6 +10,7 @@ export function PlanningDashboard(): React.ReactElement {
   // console.log('[PlanningDashboard] Component rendering...');
   const navigate = useNavigate();
   const { user } = useAuth();
+  const { resetOnboarding } = useOnboarding();
   
   // Get curriculum data to show coverage
   const { data: expectations = [] } = useCurriculumExpectations({ grade: 1 });
@@ -48,6 +50,16 @@ export function PlanningDashboard(): React.ReactElement {
     navigate('/planner/calendar');
   };
 
+  const handleNavigateToWeek = (): void => {
+    // console.log('[PlanningDashboard] Navigating to week view');
+    navigate('/planner/week');
+  };
+
+  const handleNavigateToToday = (): void => {
+    // console.log('[PlanningDashboard] Navigating to today view');
+    navigate('/planner/today');
+  };
+
   const handleNavigateToQuickLesson = (): void => {
     // console.log('[PlanningDashboard] Navigating to quick lesson');
     navigate('/planner/quick-lesson');
@@ -75,8 +87,7 @@ export function PlanningDashboard(): React.ReactElement {
 
   const handleRestartOnboarding = (): void => {
     // console.log('[PlanningDashboard] Restarting onboarding tour');
-    localStorage.setItem('onboarded', 'false');
-    window.location.reload(); // Reload to trigger onboarding
+    resetOnboarding(); // This properly resets onboarding and starts it automatically
   };
 
   const cardStyle = {
@@ -120,58 +131,6 @@ export function PlanningDashboard(): React.ReactElement {
           </p>
         </div>
 
-        {/* Subject Selection Status */}
-        <div style={{ 
-          backgroundColor: 'white', 
-          padding: '20px', 
-          borderRadius: '12px', 
-          boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-          marginBottom: '30px',
-          border: '1px solid #e5e7eb'
-        }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div>
-              <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#374151', marginBottom: '8px' }}>
-                📚 My Teaching Subjects
-              </h3>
-              <p style={{ fontSize: '14px', color: '#6b7280' }}>
-                {(() => {
-                  const subjects = localStorage.getItem(STORAGE_KEYS.TEACHER_SUBJECTS);
-                  const parsed = safeJsonParse<string[]>(subjects, []);
-                  return parsed.length > 0 ? parsed.join(', ') : 'No subjects selected - click to set up';
-                })()}
-              </p>
-            </div>
-            <button
-              onClick={() => {
-                if (window.confirm('Do you want to update your subject selection? This will restart the onboarding process.')) {
-                  localStorage.removeItem(STORAGE_KEYS.TEACHER_SUBJECTS);
-                  handleRestartOnboarding();
-                }
-              }}
-              style={{
-                padding: '8px 16px',
-                backgroundColor: '#f3f4f6',
-                color: '#374151',
-                border: '1px solid #d1d5db',
-                borderRadius: '6px',
-                fontSize: '14px',
-                cursor: 'pointer',
-                transition: 'all 0.2s'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#e5e7eb';
-                e.currentTarget.style.borderColor = '#9ca3af';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = '#f3f4f6';
-                e.currentTarget.style.borderColor = '#d1d5db';
-              }}
-            >
-              Update Subjects
-            </button>
-          </div>
-        </div>
 
         {/* Curriculum Coverage Section */}
         {Object.keys(curriculumStats).length > 0 && (
@@ -240,6 +199,134 @@ export function PlanningDashboard(): React.ReactElement {
             )}
           </div>
         )}
+
+        {/* Today's Teaching - PRIMARY FOCUS */}
+        <div style={{ 
+          backgroundColor: '#eff6ff', 
+          padding: '30px', 
+          borderRadius: '16px', 
+          boxShadow: '0 4px 8px rgba(59, 130, 246, 0.15)',
+          marginBottom: '30px',
+          border: '2px solid #3b82f6'
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+            <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#1e40af' }}>
+              📚 What Am I Teaching Today?
+            </h2>
+            <button
+              onClick={handleNavigateToToday}
+              style={{
+                padding: '12px 24px',
+                backgroundColor: '#3b82f6',
+                color: 'white',
+                border: 'none',
+                borderRadius: '8px',
+                fontSize: '16px',
+                fontWeight: '600',
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+                boxShadow: '0 2px 4px rgba(59, 130, 246, 0.3)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#2563eb';
+                e.currentTarget.style.transform = 'translateY(-1px)';
+                e.currentTarget.style.boxShadow = '0 4px 8px rgba(59, 130, 246, 0.4)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#3b82f6';
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 2px 4px rgba(59, 130, 246, 0.3)';
+              }}
+            >
+              View Today's Lessons →
+            </button>
+          </div>
+          <p style={{ fontSize: '16px', color: '#3b82f6', marginBottom: '20px' }}>
+            Quick access to your daily teaching plan, materials, and lesson details
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '15px' }}>
+            <button
+              onClick={handleNavigateToToday}
+              style={{
+                padding: '10px',
+                backgroundColor: 'white',
+                border: '1px solid #3b82f6',
+                borderRadius: '8px',
+                fontSize: '14px',
+                cursor: 'pointer',
+                transition: 'all 0.2s'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#f0f9ff';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'white';
+              }}
+            >
+              🎯 Today's Plan
+            </button>
+            <button
+              onClick={handleNavigateToWeek}
+              style={{
+                padding: '10px',
+                backgroundColor: 'white',
+                border: '1px solid #3b82f6',
+                borderRadius: '8px',
+                fontSize: '14px',
+                cursor: 'pointer',
+                transition: 'all 0.2s'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#f0f9ff';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'white';
+              }}
+            >
+              📅 Week View
+            </button>
+            <button
+              onClick={handleNavigateToDaybook}
+              style={{
+                padding: '10px',
+                backgroundColor: 'white',
+                border: '1px solid #3b82f6',
+                borderRadius: '8px',
+                fontSize: '14px',
+                cursor: 'pointer',
+                transition: 'all 0.2s'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#f0f9ff';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'white';
+              }}
+            >
+              📝 Daily Notes
+            </button>
+            <button
+              onClick={handleNavigateToQuickLesson}
+              style={{
+                padding: '10px',
+                backgroundColor: 'white',
+                border: '1px solid #3b82f6',
+                borderRadius: '8px',
+                fontSize: '14px',
+                cursor: 'pointer',
+                transition: 'all 0.2s'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#f0f9ff';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'white';
+              }}
+            >
+              ➕ Quick Lesson
+            </button>
+          </div>
+        </div>
 
         {/* Quick Actions Section */}
         <div style={{ 
@@ -435,11 +522,11 @@ export function PlanningDashboard(): React.ReactElement {
               border: '2px solid #16a34a',
               ...cardStyle
             }}
-            onClick={handleNavigateToCalendar}
+            onClick={handleNavigateToWeek}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
-                handleNavigateToCalendar();
+                handleNavigateToWeek();
               }
             }}
             role="button"
@@ -477,6 +564,71 @@ export function PlanningDashboard(): React.ReactElement {
             <p style={{ color: '#7c2d12' }}>
               Get French Immersion lesson suggestions
             </p>
+          </div>
+        </div>
+
+        {/* Settings & Preferences - Very subtle */}
+        <div style={{ 
+          textAlign: 'center',
+          marginTop: '40px',
+          marginBottom: '20px',
+          paddingTop: '20px',
+          borderTop: '1px solid #e5e7eb'
+        }}>
+          <div style={{ fontSize: '13px', color: '#9ca3af' }}>
+            <button
+              onClick={handleRestartOnboarding}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: '#9ca3af',
+                fontSize: '13px',
+                cursor: 'pointer',
+                textDecoration: 'underline',
+                padding: '4px 8px',
+                marginRight: '16px'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = '#6b7280';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = '#9ca3af';
+              }}
+            >
+              Tutorial
+            </button>
+            <span style={{ color: '#e5e7eb' }}>|</span>
+            <button
+              onClick={() => {
+                const subjects = localStorage.getItem(STORAGE_KEYS.TEACHER_SUBJECTS);
+                const parsed = safeJsonParse<string[]>(subjects, []);
+                const currentSubjects = parsed.length > 0 ? parsed.join(', ') : 'None selected';
+                
+                if (window.confirm(`Current subjects: ${currentSubjects}\n\nDo you want to update your subject selection?`)) {
+                  localStorage.removeItem(STORAGE_KEYS.TEACHER_SUBJECTS);
+                  localStorage.setItem('onboarded', 'false');
+                  resetOnboarding();
+                }
+              }}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: '#9ca3af',
+                fontSize: '13px',
+                cursor: 'pointer',
+                textDecoration: 'underline',
+                padding: '4px 8px',
+                marginLeft: '16px'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = '#6b7280';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = '#9ca3af';
+              }}
+            >
+              Change Teaching Subjects
+            </button>
           </div>
         </div>
 
