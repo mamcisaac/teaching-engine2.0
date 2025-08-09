@@ -150,7 +150,7 @@ async function seedLongRangePlans() {
         term: 'Full Year',
         grade: 1,
         subject: 'Mathématiques',
-        description: 'A hands-on mathematics program building number sense, pattern recognition, and spatial reasoning through concrete-pictorial-abstract progression.',
+        description: 'A hands-on mathematics program building number sense, pattern recognition, and spatial reasoning through concrete and visual learning experiences.',
         descriptionFr: 'Un programme de mathématiques pratique développant le sens du nombre, la reconnaissance de régularités et le raisonnement spatial.',
         goals: 'Students will develop number sense to 20, understand basic operations, recognize patterns, and explore 2D/3D shapes.',
         goalsFr: 'Les élèves développeront le sens du nombre jusqu\'à 20, comprendront les opérations de base, reconnaîtront des régularités et exploreront les formes.',
