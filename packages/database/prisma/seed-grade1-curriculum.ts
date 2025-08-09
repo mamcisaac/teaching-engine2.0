@@ -38,8 +38,7 @@ async function seedGrade1Curriculum() {
             grade: 1,
             strand: exp.strand || subject,
             strandFr: exp.strand || subject,
-            substrand: exp.substrand || null,
-            source: exp.source || null
+            substrand: exp.substrand || null
           }
         });
         totalCreated++;
@@ -61,9 +60,7 @@ async function seedGrade1Curriculum() {
             grade: 1,
             strand: exp.strand || subject,
             strandFr: exp.strand || subject,
-            substrand: exp.substrand || null,
-            source: exp.source || null,
-            languageNote: exp.language_note || 'Taught in English'
+            substrand: exp.substrand || null
           }
         });
         totalCreated++;
