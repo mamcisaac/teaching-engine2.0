@@ -8,16 +8,16 @@ Emily now has **8 comprehensive unit plans** for Mathématiques, covering the en
 
 | Unit | Title | Dates | Expectations | Hours | Focus |
 |------|-------|-------|--------------|-------|-------|
-| 1 | **Les nombres tout autour de nous** | Sept 3-27 | 1.N1, 1.N2, 1.N3 | 15 | Counting, subitizing |
-| 2 | **Comprendre les nombres** | Sept 30 - Oct 25 | 1.N4, 1.N5, 1.N6 | 15 | Representation, comparison |
-| 3 | **Régularités et formes** | Oct 28 - Nov 22 | 1.RR1, 1.RR2, 1.FE2 | 15 | Patterns, shapes, sorting |
-| 4 | **Addition et soustraction** | Nov 25 - Jan 31 | 1.N7, 1.N8 | 25 | Operations, problem solving |
-| 5 | **Stratégies de calcul mental** | Feb 3-28 | 1.N9, 1.RR3 | 15 | Mental math, equality |
-| 6 | **Explorer la mesure** | Mar 3 - Apr 25 | 1.FE1 | 20 | Measurement, comparison |
-| 7 | **Aventures de résolution** | Apr 28 - May 23 | Application | 15 | Problem solving |
-| 8 | **Célébration mathématique** | May 26 - Jun 20 | Reflection | 10 | Growth celebration |
+| 1 | **Les nombres tout autour de nous** | Sept 3-27 | 1.N1, 1.N2, 1.N3 | 20 | Counting, subitizing |
+| 2 | **Comprendre les nombres** | Sept 30 - Oct 25 | 1.N4, 1.N5, 1.N6 | 20 | Representation, comparison |
+| 3 | **Régularités et formes** | Oct 28 - Nov 22 | 1.RR1, 1.RR2, 1.FE2 | 20 | Patterns, shapes, sorting |
+| 4 | **Addition et soustraction** | Nov 25 - Jan 31 | 1.N7, 1.N8 | 40 | Operations, problem solving |
+| 5 | **Stratégies de calcul mental** | Feb 3-28 | 1.N9, 1.RR3 | 20 | Mental math, equality |
+| 6 | **Explorer la mesure** | Mar 3-28 | 1.FE1 | 20 | Measurement, comparison |
+| 7 | **Aventures de résolution** | Mar 31 - May 9 | Application | 30 | Problem solving |
+| 8 | **Célébration mathématique** | May 12 - Jun 20 | Reflection | 30 | Growth celebration |
 
-**Total: 130 instructional hours across 42 weeks**
+**Total: 200 instructional hours across 42 weeks (4.8 hours/week)**
 
 ## ✨ What Makes These Plans Perfect
 
@@ -98,7 +98,7 @@ Each unit includes:
 ```
 ✅ 14/14 expectations covered
 ✅ 8/8 units with complete metadata
-✅ 130 total instructional hours
+✅ 200 total instructional hours (4.8 hours/week)
 ✅ 0 gaps in coverage
 ✅ Perfect mathematical progression
 ✅ 100% Grade 1 appropriate

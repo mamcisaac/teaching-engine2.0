@@ -90,7 +90,7 @@ async function seedMathematiquesUnitPlans() {
         ]),
         startDate: new Date('2024-09-03'),
         endDate: new Date('2024-09-27'),
-        estimatedHours: 15,
+        estimatedHours: 20,
         assessmentPlan: 'Daily observations of counting, number recognition games, subitizing assessments with dot cards, math journals.',
         successCriteria: JSON.stringify([
           'Je peux compter jusqu\'à 20',
@@ -150,7 +150,7 @@ async function seedMathematiquesUnitPlans() {
         ]),
         startDate: new Date('2024-09-30'),
         endDate: new Date('2024-10-25'),
-        estimatedHours: 15,
+        estimatedHours: 20,
         assessmentPlan: 'Number representation portfolios, comparison activities assessment, equal groups investigations, observation notes.',
         successCriteria: JSON.stringify([
           'Je peux montrer un nombre de 3 façons différentes',
@@ -210,7 +210,7 @@ async function seedMathematiquesUnitPlans() {
         ]),
         startDate: new Date('2024-10-28'),
         endDate: new Date('2024-11-22'),
-        estimatedHours: 15,
+        estimatedHours: 20,
         assessmentPlan: 'Pattern creation assessment, shape sorting activities, pattern translation tasks, observation rubric.',
         successCriteria: JSON.stringify([
           'Je peux continuer une régularité',
@@ -270,7 +270,7 @@ async function seedMathematiquesUnitPlans() {
         ]),
         startDate: new Date('2024-11-25'),
         endDate: new Date('2025-01-31'),
-        estimatedHours: 25,
+        estimatedHours: 40,
         assessmentPlan: 'Problem-solving observations, strategy documentation, fact fluency games, math stories assessment.',
         successCriteria: JSON.stringify([
           'Je peux résoudre des problèmes d\'addition',
@@ -327,7 +327,7 @@ async function seedMathematiquesUnitPlans() {
         ]),
         startDate: new Date('2025-02-03'),
         endDate: new Date('2025-02-28'),
-        estimatedHours: 15,
+        estimatedHours: 20,
         assessmentPlan: 'Mental math interviews, strategy sharing sessions, balance activities assessment, math talks.',
         successCriteria: JSON.stringify([
           'Je peux utiliser une stratégie pour calculer',
@@ -383,7 +383,7 @@ async function seedMathematiquesUnitPlans() {
           'Combien de temps cela prend-il?'
         ]),
         startDate: new Date('2025-03-03'),
-        endDate: new Date('2025-04-25'),
+        endDate: new Date('2025-03-28'),
         estimatedHours: 20,
         assessmentPlan: 'Measurement investigations portfolio, comparison activities, time awareness checks, practical measuring.',
         successCriteria: JSON.stringify([
@@ -436,9 +436,9 @@ async function seedMathematiquesUnitPlans() {
           'Quelle stratégie vas-tu essayer?',
           'Comment peux-tu vérifier ta réponse?'
         ]),
-        startDate: new Date('2025-04-28'),
-        endDate: new Date('2025-05-23'),
-        estimatedHours: 15,
+        startDate: new Date('2025-03-31'),
+        endDate: new Date('2025-05-09'),
+        estimatedHours: 30,
         assessmentPlan: 'Problem-solving rubric, strategy documentation, peer assessment, solution presentations.',
         successCriteria: JSON.stringify([
           'Je peux comprendre le problème',
@@ -486,9 +486,9 @@ async function seedMathematiquesUnitPlans() {
           'De quoi es-tu fier/fière?',
           'Qu\'est-ce que tu veux apprendre ensuite?'
         ]),
-        startDate: new Date('2025-05-26'),
+        startDate: new Date('2025-05-12'),
         endDate: new Date('2025-06-20'),
-        estimatedHours: 10,
+        estimatedHours: 30,
         assessmentPlan: 'Portfolio conferences, self-assessment reflections, peer celebrations, growth documentation.',
         successCriteria: JSON.stringify([
           'Je peux montrer ce que j\'ai appris',
