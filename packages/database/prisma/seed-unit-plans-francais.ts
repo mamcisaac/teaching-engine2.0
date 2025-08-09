@@ -279,11 +279,11 @@ async function seedFrancaisUnitPlans() {
           'tuque', 'manteau', 'patiner', 'glisser', 'flocons'
         ]),
         priorKnowledge: 'All Term 1 vocabulary and skills, experience with PEI winters.',
-        parentCommunicationPlan: 'Mid-year progress reports, winter reading challenge, outdoor learning notice.',
+        parentCommunicationPlan: 'Mid-year progress updates, winter reading challenge, outdoor learning notice.',
         differentiationStrategies: JSON.stringify({
           emerging: 'Picture dictionaries, repeated readings, peer support',
           developing: 'Graphic organizers, choice in topics, scaffolded writing',
-          extending: 'Research projects, poetry writing, leading activities'
+          extending: 'Learning projects, poetry writing, leading activities'
         }),
         indigenousPerspectives: 'Winter teachings and stories, traditional winter activities, respect for winter\'s power.',
         environmentalEducation: 'Winter wildlife needs, energy conservation, winter safety and preparation.',
@@ -390,7 +390,7 @@ async function seedFrancaisUnitPlans() {
         differentiationStrategies: JSON.stringify({
           emerging: 'Picture walks, role play, visual schedules',
           developing: 'Interview practice, map skills, guided presentations',
-          extending: 'Community improvement ideas, letter writing, research projects'
+          extending: 'Community improvement ideas, letter writing, discovery projects'
         }),
         indigenousPerspectives: 'Traditional roles in Indigenous communities, Elders as knowledge keepers, community circles.',
         environmentalEducation: 'Green jobs in the community, waste management, community gardens, sustainable transportation.',

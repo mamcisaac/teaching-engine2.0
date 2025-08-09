@@ -166,7 +166,7 @@ async function seedSciencesUnitPlans() {
         differentiationStrategies: JSON.stringify({
           emerging: 'Concrete observations, simple comparisons, visual supports',
           developing: 'Recording observations, making predictions, group investigations',
-          extending: 'Research projects, detailed explanations, teaching others'
+          extending: 'Discovery projects, detailed explanations, teaching others'
         }),
         indigenousPerspectives: 'Seasonal rounds, traditional knowledge of animal behaviors, harvest teachings.',
         environmentalEducation: 'Leave no trace principles, respecting animal homes, sustainable fall activities.',

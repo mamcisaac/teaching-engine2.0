@@ -169,7 +169,7 @@ async function seedMathematiquesUnitPlans() {
         differentiationStrategies: JSON.stringify({
           emerging: 'Numbers to 10, concrete comparisons, guided grouping',
           developing: 'Numbers to 20, pictorial representations, independent work',
-          extending: 'Larger numbers, abstract thinking, creating problems'
+          extending: 'Larger numbers, mental pictures, creating problems'
         }),
         indigenousPerspectives: 'Traditional grouping methods, sharing circles ensuring equal distribution, beadwork patterns.',
         environmentalEducation: 'Comparing leaves and seeds, equal sharing of resources, mathematical patterns in nature.',
@@ -229,7 +229,7 @@ async function seedMathematiquesUnitPlans() {
         differentiationStrategies: JSON.stringify({
           emerging: 'AB patterns, basic shapes, guided sorting',
           developing: 'ABC patterns, shape properties, independent sorting',
-          extending: 'Complex patterns, 3D objects, creating sorting rules'
+          extending: 'Harder patterns, 3D objects, creating sorting rules'
         }),
         indigenousPerspectives: 'Patterns in traditional art and crafts, medicine wheel as circular pattern, drumming patterns.',
         environmentalEducation: 'Patterns in nature (seasons, animal markings), shapes in the environment, natural sorting.',
@@ -456,7 +456,7 @@ async function seedMathematiquesUnitPlans() {
         parentCommunicationPlan: 'Family problem-solving challenges, celebrating persistence, growth mindset messages.',
         differentiationStrategies: JSON.stringify({
           emerging: 'Guided problem solving, concrete materials, peer support',
-          developing: 'Semi-independent work, choice of strategies, some abstraction',
+          developing: 'Semi-independent work, choice of strategies, thinking skills',
           extending: 'Creating problems for others, multiple solutions, leading groups'
         }),
         indigenousPerspectives: 'Problem-solving in traditional stories, community problem-solving approaches, consensus building.',
