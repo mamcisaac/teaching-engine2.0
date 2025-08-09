@@ -1,0 +1,55 @@
+{
+  "source": "resources/PE_Grade1_Fr/eelc_mathfi_1.pdf",
+  "extractionDate": "2025-08-09T15:57:21.535Z",
+  "totalPages": 83,
+  "totalChunks": 9,
+  "chunkSize": 10,
+  "textLength": 207890,
+  "chunks": [
+    {
+      "file": "eelc_mathfi_1_chunk_1.txt",
+      "size": 23099,
+      "chunkIndex": 1
+    },
+    {
+      "file": "eelc_mathfi_1_chunk_2.txt",
+      "size": 23099,
+      "chunkIndex": 2
+    },
+    {
+      "file": "eelc_mathfi_1_chunk_3.txt",
+      "size": 23099,
+      "chunkIndex": 3
+    },
+    {
+      "file": "eelc_mathfi_1_chunk_4.txt",
+      "size": 23099,
+      "chunkIndex": 4
+    },
+    {
+      "file": "eelc_mathfi_1_chunk_5.txt",
+      "size": 23099,
+      "chunkIndex": 5
+    },
+    {
+      "file": "eelc_mathfi_1_chunk_6.txt",
+      "size": 23099,
+      "chunkIndex": 6
+    },
+    {
+      "file": "eelc_mathfi_1_chunk_7.txt",
+      "size": 23099,
+      "chunkIndex": 7
+    },
+    {
+      "file": "eelc_mathfi_1_chunk_8.txt",
+      "size": 23099,
+      "chunkIndex": 8
+    },
+    {
+      "file": "eelc_mathfi_1_chunk_9.txt",
+      "size": 23098,
+      "chunkIndex": 9
+    }
+  ]
+}

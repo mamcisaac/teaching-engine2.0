@@ -1,0 +1,70 @@
+{
+  "source": "resources/PE_Grade1_Fr/k-3musiccurricula.pdf",
+  "extractionDate": "2025-08-09T14:21:15.657Z",
+  "totalPages": 111,
+  "totalChunks": 12,
+  "chunkSize": 10,
+  "textLength": 185397,
+  "chunks": [
+    {
+      "file": "k3music_chunk_1.txt",
+      "size": 15450,
+      "chunkIndex": 1
+    },
+    {
+      "file": "k3music_chunk_2.txt",
+      "size": 15450,
+      "chunkIndex": 2
+    },
+    {
+      "file": "k3music_chunk_3.txt",
+      "size": 15450,
+      "chunkIndex": 3
+    },
+    {
+      "file": "k3music_chunk_4.txt",
+      "size": 15450,
+      "chunkIndex": 4
+    },
+    {
+      "file": "k3music_chunk_5.txt",
+      "size": 15450,
+      "chunkIndex": 5
+    },
+    {
+      "file": "k3music_chunk_6.txt",
+      "size": 15450,
+      "chunkIndex": 6
+    },
+    {
+      "file": "k3music_chunk_7.txt",
+      "size": 15450,
+      "chunkIndex": 7
+    },
+    {
+      "file": "k3music_chunk_8.txt",
+      "size": 15450,
+      "chunkIndex": 8
+    },
+    {
+      "file": "k3music_chunk_9.txt",
+      "size": 15450,
+      "chunkIndex": 9
+    },
+    {
+      "file": "k3music_chunk_10.txt",
+      "size": 15450,
+      "chunkIndex": 10
+    },
+    {
+      "file": "k3music_chunk_11.txt",
+      "size": 15450,
+      "chunkIndex": 11
+    },
+    {
+      "file": "k3music_chunk_12.txt",
+      "size": 15447,
+      "chunkIndex": 12
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "source": "resources/PE_Grade1_Fr/eelc_science_1.pdf",
+  "extractionDate": "2025-08-09T14:20:51.740Z",
+  "totalPages": 45,
+  "totalChunks": 5,
+  "chunkSize": 10,
+  "textLength": 93806,
+  "chunks": [
+    {
+      "file": "eelc_science_1_chunk_1.txt",
+      "size": 18762,
+      "chunkIndex": 1
+    },
+    {
+      "file": "eelc_science_1_chunk_2.txt",
+      "size": 18762,
+      "chunkIndex": 2
+    },
+    {
+      "file": "eelc_science_1_chunk_3.txt",
+      "size": 18762,
+      "chunkIndex": 3
+    },
+    {
+      "file": "eelc_science_1_chunk_4.txt",
+      "size": 18762,
+      "chunkIndex": 4
+    },
+    {
+      "file": "eelc_science_1_chunk_5.txt",
+      "size": 18758,
+      "chunkIndex": 5
+    }
+  ]
+}

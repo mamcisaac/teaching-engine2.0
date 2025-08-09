@@ -1,0 +1,64 @@
+{
+  "metadata": {
+    "subject": "Mathématiques",
+    "grade": 1,
+    "totalExpectations": 3,
+    "extractionDate": "2025-08-09T03:57:39.947Z"
+  },
+  "expectations": [
+    {
+      "code": "1N5",
+      "description": "Comparer des ensembles comportant jusqu'à 20 éléments pour résoudre des problèmes",
+      "subject": "Mathématiques",
+      "strand": "Nombre",
+      "grade": 1,
+      "language": "FR",
+      "source": {
+        "document": "Planification dunitÃ© 3.pdf, page 6",
+        "page": null
+      },
+      "indicators": [
+        "Créer des pictogrammes collectifs pour déterminer la saison préférée des élèves"
+      ],
+      "examples": "Créer des pictogrammes collectifs pour déterminer la saison préférée des élèves",
+      "cross_curricular": [],
+      "verified": true
+    },
+    {
+      "code": "N1",
+      "description": "Comparer des ensembles comportant jusqu'à 20 éléments pour résoudre des problèmes",
+      "subject": "Mathématiques",
+      "strand": "Numératie",
+      "grade": 1,
+      "language": "FR",
+      "source": {
+        "document": "Planification dunitÃ© 2.pdf, page 7",
+        "page": null
+      },
+      "indicators": [
+        "Créer des pictogrammes collectifs pour déterminer les activités, les aliments, les besoins ou les désirs les plus populaires chez les élèves"
+      ],
+      "examples": "Créer des pictogrammes collectifs pour déterminer les activités, les aliments, les besoins ou les désirs les plus populaires chez les élèves",
+      "cross_curricular": [],
+      "verified": true
+    },
+    {
+      "code": "SP2",
+      "description": "Construire et interpréter des graphiques concrets et des pictogrammes pour résoudre des problèmes",
+      "subject": "Mathématiques",
+      "strand": "Statistiques et probabilité",
+      "grade": 1,
+      "language": "FR",
+      "source": {
+        "document": "Planification dunitÃ© 1.pdf, page 8",
+        "page": null
+      },
+      "indicators": [
+        "Consensogramme et marques de pointage pour compter"
+      ],
+      "examples": "Consensogramme et marques de pointage pour compter",
+      "cross_curricular": [],
+      "verified": true
+    }
+  ]
+}

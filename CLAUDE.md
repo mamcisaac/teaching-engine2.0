@@ -126,6 +126,84 @@ Defined in `client/src/constants/subjects.ts`:
 
 This configuration ensures optimal use of Claude Code's batch tools for swarm orchestration and parallel task execution, specifically optimized for Grade 1 French Immersion teaching in PEI.
 
+## Curriculum Extraction Guidelines
+
+### ⚠️ CRITICAL: Context Overflow Prevention
+
+**NEVER ATTEMPT TO READ THESE FILES DIRECTLY:**
+- PR 2766 - Prog. Immersion 1re année 5.30.19.pdf (1.7MB) - **WILL CRASH CONTEXT**
+- Unités transdisciplinaires 1re année (4.0MB) - **WILL CRASH CONTEXT**
+- Grade 1 Health Curriculum.pdf (3.6MB) - **WILL CRASH CONTEXT**
+- Any PDF over 1MB should be treated with extreme caution
+
+### Mandatory Extraction Process for PR 2766
+
+**Context Crash History:** Multiple failed attempts confirmed that reading PR 2766 directly causes immediate context overflow and conversation failure.
+
+**ONLY WORKING METHOD:**
+1. **Use pre-generated prompt files** (already created in project root):
+   - `extraction_pr2766_français_langue_première_prompt.txt`
+   - `extraction_pr2766_mathématiques_prompt.txt`
+   - `extraction_pr2766_sciences_de_la_nature_prompt.txt`
+   - `extraction_pr2766_sciences_humaines_prompt.txt`
+   - `extraction_pr2766_arts_prompt.txt`
+   - `extraction_pr2766_formation_personnelle_et_sociale_prompt.txt`
+
+2. **Launch parallel Task agents**:
+   - Each agent reads ONLY its prompt file
+   - Each agent extracts ONE subject area
+   - Results saved to `extraction_pr2766_[subject].json`
+
+3. **Merge results**: `node scripts/extract-chunked.js merge`
+
+### Recovery from Context Crash
+
+When extraction causes context overflow:
+1. Start new conversation
+2. Read `EXTRACTION_SUMMARY.md` for status
+3. Check existing `extraction*.json` files
+4. Continue from last successful extraction
+5. **DO NOT** attempt to read the problematic PDF again
+
+### Extraction Status Files
+- `EXTRACTION_STRATEGY.md` - Detailed extraction plan with warnings
+- `EXTRACTION_SUMMARY.md` - Quick recovery guide with integrity incident log
+- `CURRICULUM_EXTRACTION_STATUS.md` - Tracking table with progress
+- `REAL_EXPECTATIONS_ONLY.json` - Verified extraction results (no synthetic data)
+
+## Data Integrity Requirements
+
+### CRITICAL: No Synthetic Data Policy
+
+**Background:** On 2025-08-08, Task agents generated 53 synthetic curriculum expectations without reading source documents. This contaminated the curriculum database with fake educational data.
+
+**Mandatory Rules:**
+1. **NEVER** mark extraction as complete without source verification
+2. **ALWAYS** ensure agents have actual access to source documents
+3. **NEVER** generate plausible-looking data when source is unavailable
+4. **ALWAYS** fail loudly rather than produce synthetic data
+
+### Verification Requirements
+
+Every extracted expectation MUST:
+- Have a verifiable source document
+- Include specific page numbers when possible
+- Be traceable back to original text
+- Pass validation against known curriculum patterns
+
+### Extraction Validation Checklist
+- [ ] Agent had direct access to source document
+- [ ] Expectations cite correct source document
+- [ ] Data patterns match PEI curriculum standards
+- [ ] No expectations exist without source verification
+- [ ] All codes follow documented patterns
+
+### If Synthetic Data is Detected
+1. Immediately delete contaminated files
+2. Document the incident in EXTRACTION_SUMMARY.md
+3. Re-extract using verified methods only
+4. Update all tracking to reflect real state
+
 # important-instruction-reminders
 Do what has been asked; nothing more, nothing less.
 NEVER create files unless they're absolutely necessary for achieving your goal.

@@ -1,0 +1,15 @@
+{
+  "source": "resources/tableaux_ras.pdf",
+  "extractionDate": "2025-08-09T13:24:47.080Z",
+  "totalPages": 8,
+  "totalChunks": 1,
+  "chunkSize": 10,
+  "textLength": 13998,
+  "chunks": [
+    {
+      "file": "tableaux_ras_chunk_1.txt",
+      "size": 13998,
+      "chunkIndex": 1
+    }
+  ]
+}

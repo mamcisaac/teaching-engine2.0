@@ -1,0 +1,86 @@
+{
+  "extractionDate": "2025-08-09T03:57:39.948Z",
+  "filesProcessed": [
+    "extraction_agent2.json",
+    "extraction_agent5.json",
+    "extraction_agent6.json",
+    "extraction_agent8.json",
+    "extraction_pr2766_francais_REAL.json",
+    "extraction_health_grade1.json",
+    "extraction_pe_grade1.json",
+    "extraction_rafs_triangulation.json"
+  ],
+  "statistics": {
+    "total": 68,
+    "bySubject": {
+      "Arts visuels": 4,
+      "Formation personnelle et sociale": 4,
+      "Sciences de la nature": 5,
+      "Études sociales": 13,
+      "Français langue première": 15,
+      "Mathématiques": 3,
+      "Health Education": 14,
+      "Physical Education": 10
+    },
+    "byLanguage": {
+      "FR": 44,
+      "EN": 24
+    },
+    "byStrand": {
+      "Arts": 4,
+      "Choix en matière de bien-être": 2,
+      "Choix en matière de relation": 1,
+      "Choix d'apprentissage pour la vie": 1,
+      "Science de la vie": 2,
+      "Sciences physiques": 1,
+      "Science de la terre et de l'espace": 2,
+      "Citoyenneté": 3,
+      "Identité, culture et communauté": 3,
+      "Lieux et temps": 2,
+      "Pouvoir et autorité": 2,
+      "Économie et ressources": 2,
+      "Communication orale": 7,
+      "Lecture et visionnement": 5,
+      "Écriture et représentation": 3,
+      "Statistiques et probabilité": 1,
+      "Numératie": 1,
+      "Temps et chronologie": 1,
+      "Nombre": 1,
+      "Wellness Choices": 14,
+      "Health-Related Fitness": 1,
+      "Active Living": 1,
+      "Locomotor Skills": 1,
+      "Non-locomotor Skills": 1,
+      "Manipulative Skills": 1,
+      "Movement Variables": 1,
+      "Rhythmical Movement": 1,
+      "Play Strategies and Skills": 1,
+      "Safety and Co-operation": 1,
+      "Relationships": 1
+    },
+    "withIndicators": 54,
+    "withExamples": 29
+  },
+  "dataQualityChecks": {
+    "noDuplicates": true,
+    "allCodesUnique": true,
+    "allSubjectsStandardized": true,
+    "allGrade1": true,
+    "allVerified": true
+  },
+  "subjectCoverage": [
+    "Arts visuels",
+    "Formation personnelle et sociale",
+    "Français langue première",
+    "Health Education",
+    "Mathématiques",
+    "Physical Education",
+    "Sciences de la nature",
+    "Études sociales"
+  ],
+  "missingSubjects": [],
+  "recommendations": [
+    "Consider extracting Unités transdisciplinaires for cross-curricular connections",
+    "English Language Arts expectations may need additional sources"
+  ]
+}

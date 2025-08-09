@@ -1,0 +1,15 @@
+{
+  "source": "resources/unite1_special.pdf",
+  "extractionDate": "2025-08-09T13:37:27.990Z",
+  "totalPages": 6,
+  "totalChunks": 1,
+  "chunkSize": 10,
+  "textLength": 8050,
+  "chunks": [
+    {
+      "file": "unite1_special_chunk_1.txt",
+      "size": 8050,
+      "chunkIndex": 1
+    }
+  ]
+}
