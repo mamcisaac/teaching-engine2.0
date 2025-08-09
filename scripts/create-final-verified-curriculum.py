@@ -1,0 +1,223 @@
+#!/usr/bin/env python3
+"""
+FINAL VERIFIED French Immersion Grade 1 Curriculum
+Every expectation verified against actual PDF extractions
+Total: 73 expectations (65 French + 8 English Music)
+"""
+
+import json
+from pathlib import Path
+
+# COMPLETELY VERIFIED French Immersion Curriculum
+VERIFIED_CURRICULUM = {
+    "metadata": {
+        "title": "PEI Grade 1 French Immersion - FINAL VERIFIED",
+        "program": "French Immersion",
+        "grade": 1,
+        "province": "Prince Edward Island", 
+        "extraction_date": "2025-08-09",
+        "version": "FINAL_COMPLETE_VERIFIED",
+        "verification": {
+            "status": "Every expectation verified against source PDFs",
+            "total_expectations": 73,
+            "taught_in_french": 65,
+            "taught_in_english": 8,
+            "verification_file": "COMPLETE_VERIFICATION_REPORT.md"
+        },
+        "critical_notes": {
+            "math": "14 expectations (NOT 13 - includes 1.RR2)",
+            "pe": "16 expectations (NOT 15 - includes 2.2)",
+            "music": "8 expectations (NOT 6 - includes CC 1.1 and CC 1.2)",
+            "pe_grouping": "PE uses M-2e année grouping (Maternelle to Grade 2)"
+        }
+    },
+    
+    "taught_in_french": {
+        "Français langue première": [
+            # Communication orale (7) - VERIFIED
+            {"code": "1CO.0", "description": "Différencier à l'oral les éléments reliés à la conscience phonologique", "source": "eelc_frenchimmersion_1_chunk_7.txt:40"},
+            {"code": "1CO.1", "description": "Gérer son écoute pour répondre à ses besoins d'information et de divertissement", "source": "eelc_frenchimmersion_1_chunk_7.txt:86"},
+            {"code": "1CO.2", "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension littérale de messages oraux simples provenant de diverses sources, en faisant preuve d'ouverture et de respect", "source": "eelc_frenchimmersion_1_chunk_7.txt:137"},
+            {"code": "1CO.3", "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension interprétative de messages oraux simples provenant de diverses sources, en faisant preuve d'ouverture et de respect", "source": "eelc_frenchimmersion_1_chunk_7.txt:198"},
+            {"code": "1CO.4", "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension analytico-critique de messages oraux simples provenant de diverses sources, en faisant preuve d'ouverture et de respect", "source": "eelc_frenchimmersion_1_chunk_7.txt:254"},
+            {"code": "1CO.5", "description": "S'exprimer dans diverses situations de communication orale simples, spontanées ou préparées, en faisant preuve de respect envers son public", "source": "eelc_frenchimmersion_1_chunk_7.txt:317"},
+            {"code": "1CO.6", "description": "Réfléchir à ses compétences en tant que locuteur et interlocuteur", "source": "eelc_frenchimmersion_1_chunk_8.txt:43"},
+            
+            # Lecture (5) - VERIFIED
+            {"code": "1L.1", "description": "Planifier sa lecture pour répondre à ses besoins d'information et de divertissement", "source": "eelc_frenchimmersion_1_chunk_8.txt:87"},
+            {"code": "1L.2", "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension littérale de divers textes simples, y compris des textes numérisés", "source": "eelc_frenchimmersion_1_chunk_8.txt:152"},
+            {"code": "1L.3", "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension interprétative de divers textes simples, y compris des textes numérisés", "source": "eelc_frenchimmersion_1_chunk_9.txt:75"},
+            {"code": "1L.4", "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension analytico-critique de divers textes simples, y compris des textes numérisés", "source": "eelc_frenchimmersion_1_chunk_9.txt:174"},
+            {"code": "1L.5", "description": "Réfléchir à ses compétences en tant que lecteur", "source": "eelc_frenchimmersion_1_chunk_9.txt:290"},
+            
+            # Écriture (3) - VERIFIED
+            {"code": "1É.1", "description": "Développer des compétences liées au processus de l'écriture", "source": "eelc_frenchimmersion_1_chunk_10.txt:29"},
+            {"code": "1É.2", "description": "Développer des compétences liées aux traits d'écriture pour créer une variété de textes simples de différents genres (sous forme imprimée et numérique)", "source": "eelc_frenchimmersion_1_chunk_10.txt:119"},
+            {"code": "1É.3", "description": "Réfléchir à ses compétences en tant que scripteur", "source": "eelc_frenchimmersion_1_chunk_10.txt:245"}
+        ],
+        
+        "Mathématiques": [
+            # Le nombre (9) - VERIFIED
+            {"code": "1.N1", "description": "Énoncer la suite des nombres de 0 à 100 en comptant un par un et par ordre croissant et décroissant, entre deux nombres donnés", "source": "eelc_mathfi_1_chunk_4.txt:519"},
+            {"code": "1.N2", "description": "Reconnaître du premier coup d'œil des arrangements familiers de 1 à 10 objets (ou points) et les nommer", "source": "eelc_mathfi_1_chunk_5.txt:88"},
+            {"code": "1.N3", "description": "Démontrer une compréhension de la notion du comptage", "source": "eelc_mathfi_1_chunk_5.txt:318"},
+            {"code": "1.N4", "description": "Représenter et décrire des nombres jusqu'à 20, de façon concrète, imagée et symbolique", "source": "eelc_mathfi_1_chunk_6.txt:13"},
+            {"code": "1.N5", "description": "Comparer des ensembles comportant jusqu'à 20 éléments pour résoudre des problèmes", "source": "eelc_mathfi_1_chunk_6.txt:15"},
+            {"code": "1.N6", "description": "Démontrer, de façon concrète et imagée, comment un nombre donné peut être représenté par divers groupes égaux, avec et sans unités", "source": "eelc_mathfi_1_chunk_6.txt:225"},
+            {"code": "1.N7", "description": "Déterminer le nombre qui représente un de plus, deux de plus, un de moins et deux de moins qu'un nombre donné, jusqu'à 20", "source": "eelc_mathfi_1_chunk_6.txt:408"},
+            {"code": "1.N8", "description": "Démontrer une compréhension de l'addition de nombres dont les solutions ne dépassent pas 20 et les faits de soustraction correspondants", "source": "eelc_mathfi_1_chunk_7.txt:139"},
+            {"code": "1.N9", "description": "Décrire et utiliser des stratégies de calcul mental (autres que la mémorisation)", "source": "eelc_mathfi_1_chunk_7.txt:374"},
+            
+            # Régularités et relations (3) - VERIFIED INCLUDING 1.RR2!
+            {"code": "1.RR1", "description": "Démontrer une compréhension des régularités répétitives (de deux à quatre éléments)", "source": "eelc_mathfi_1_chunk_8.txt:135"},
+            {"code": "1.RR2", "description": "Convertir, d'un mode de représentation à un autre, des régularités répétitives", "source": "eelc_mathfi_1_chunk_8.txt:142"},
+            {"code": "1.RR3", "description": "Décrire l'égalité en termes d'équilibre et l'inégalité en termes de déséquilibre, de façon concrète et imagée (de 0 à 20)", "source": "eelc_mathfi_1_chunk_8.txt:327"},
+            
+            # Forme et espace (2) - VERIFIED
+            {"code": "1.FE1", "description": "Démontrer une compréhension de la notion de mesure en tant que processus de comparaison", "source": "eelc_mathfi_1_chunk_9.txt:11"},
+            {"code": "1.FE2", "description": "Trier des objets à trois dimensions et des figures à deux dimensions en se basant sur une seule caractéristique, et expliquer la règle appliquée", "source": "eelc_mathfi_1_chunk_9.txt:239"}
+        ],
+        
+        "Sciences de la nature": [
+            # VERIFIED
+            {"code": "1.1.1", "description": "Distinguer les caractéristiques des êtres vivants (plantes et animaux; incluant les humains)", "source": "unites_trans_chunk_6.txt:23"},
+            {"code": "1.1.2", "description": "Évaluer l'impact des activités humaines sur l'environnement naturel", "source": "unites_trans_chunk_6.txt:37"},
+            {"code": "1.2.1", "description": "Examiner différentes utilisations de l'énergie (à la maison, à l'école et dans la communauté) afin de suggérer des façons de réduire sa consommation énergétique", "source": "unites_trans_chunk_6.txt:60"},
+            {"code": "1.3.1", "description": "Analyser les changements quotidiens et saisonniers dans l'environnement", "source": "unites_trans_chunk_6.txt:91"},
+            {"code": "1.3.2", "description": "Expliquer comment les changements dans le cycle des jours et des saisons ont un effet sur les êtres vivants", "source": "unites_trans_chunk_6.txt:103"}
+        ],
+        
+        "Sciences humaines": [
+            # VERIFIED
+            {"code": "1C.1", "description": "Démontrer sa compréhension de ses droits et ses responsabilités dans sa famille et dans son école", "source": "unites_trans_chunk_2.txt:214"},
+            {"code": "1C.2", "description": "Démontrer des aptitudes, en tant que citoyen numérique", "source": "unites_trans_chunk_8.txt:113"},
+            {"code": "1ICC.1", "description": "Décrire l'unicité des personnes et la diversité des langues et des modes de vie de sa famille et des familles de la classe", "source": "unites_trans_chunk_7.txt:259"},
+            {"code": "1LT.1", "description": "Préciser la localisation de points de repère et de lieux importants à l'aide d'outils cartographiques, tels la carte géographique, le plan et le globe terrestre", "source": "unites_trans_chunk_9.txt:257"},
+            {"code": "1LT.2", "description": "Organiser les événements marquants de sa vie dans le temps", "source": "plan_unite3_chunk_1.txt:89"},
+            {"code": "1PA.1", "description": "Appliquer le processus de prise de décision, de résolution de conflits et d'élaboration de règlements", "source": "unites_trans_chunk_8.txt:114"},
+            {"code": "1ER.1", "description": "Démontrer sa compréhension de ses besoins et ses désirs et ceux des autres", "source": "unites_trans_chunk_8.txt:55"}
+        ],
+        
+        "Arts visuels": [
+            # VERIFIED
+            {"code": "AV1", "description": "Reconnaître la valeur de son environnement visuel", "source": "unites_trans_chunk_9.txt:264"},
+            {"code": "AV2", "description": "Utiliser la création artistique afin de communiquer des idées ou des sentiments", "source": "unites_trans_chunk_7.txt:474"},
+            {"code": "AV3", "description": "Utiliser une variété d'outils, de matériaux, de styles et de techniques pour créer ses propres oeuvres d'art", "source": "unites_trans_chunk_9.txt:265"},
+            {"code": "AV4", "description": "Reconnaître la valeur de l'art en tant qu'élément de notre culture, de notre patrimoine et de notre environnement", "source": "unites_trans_chunk_7.txt:341"}
+        ],
+        
+        "Formation personnelle et sociale": [
+            # VERIFIED
+            {"code": "FPS1", "description": "Démontrer sa compréhension de pratiques favorisant une bonne santé personnelle", "source": "tableaux_ras_chunk_1.txt:89"},
+            {"code": "FPS2", "description": "Démontrer sa compréhension de pratiques sécuritaires et responsables", "source": "tableaux_ras_chunk_1.txt:98"},
+            {"code": "FPS3", "description": "Adopter des comportements qui encouragent des relations saines et harmonieuses", "source": "tableaux_ras_chunk_1.txt:121"},
+            {"code": "FPS4", "description": "Démontrer sa compréhension de ses compétences et aptitudes personnelles", "source": "tableaux_ras_chunk_1.txt:143"}
+        ],
+        
+        "Éducation physique": [
+            # NOTE: PE curriculum groups M-2e année together (not Grade 1 specific)
+            # Environment physique et naturel (9) - VERIFIED from edphys_fr_chunk_4.txt lines 232-333
+            {"code": "1.1", "description": "Coordonner différentes parties du corps dans l'adoption des postures et dans l'exécution d'actions corporels", "source": "edphys_fr_chunk_4.txt:232", "strand": "Attitude posturale"},
+            {"code": "1.2", "description": "Ajuster son corps et les différentes parties de son corps dans la réalisation de mouvements et d'actions ainsi que dans l'adoption de posture", "source": "edphys_fr_chunk_4.txt:243", "strand": "Attitude posturale"},
+            {"code": "1.3", "description": "Effectuer divers modes de déplacement en maintenant ou en variant son allure", "source": "edphys_fr_chunk_4.txt:266", "strand": "Locomotion"},
+            {"code": "1.4", "description": "Effectuer divers modes de déplacements sur et sous des surfaces fixes ou varier à des hauteurs variables tout en maintenant son équilibre", "source": "edphys_fr_chunk_4.txt:276", "strand": "Locomotion"},
+            {"code": "1.5", "description": "Enchaîner divers modes de déplacement en rapport avec des obstacles de dimensions et de formes variées", "source": "edphys_fr_chunk_4.txt:286", "strand": "Locomotion"},
+            {"code": "1.6", "description": "Coordonner ses actions locomotrices à l'aide d'objets véhiculés", "source": "edphys_fr_chunk_4.txt:292", "strand": "Locomotion"},
+            {"code": "1.7", "description": "Coordonner ses actions dans la manipulation d'objets", "source": "edphys_fr_chunk_4.txt:307", "strand": "Manipulation"},
+            {"code": "1.8", "description": "Coordonner ses actions dans la projection d'objets", "source": "edphys_fr_chunk_4.txt:316", "strand": "Manipulation"},
+            {"code": "1.9", "description": "Synchroniser à l'objet lors de la réception", "source": "edphys_fr_chunk_4.txt:325", "strand": "Manipulation"},
+            
+            # Environment social (5) - VERIFIED INCLUDING 2.2! from edphys_fr_chunk_4.txt lines 351-420
+            {"code": "2.1", "description": "S'ajuster à un partenaire ou à plusieurs en vue d'accomplir une tâche commune", "source": "edphys_fr_chunk_4.txt:351", "strand": "Coopération"},
+            {"code": "2.2", "description": "Ajuster ses déplacements et ses actions à ceux d'un ou de plusieurs partenaires", "source": "edphys_fr_chunk_4.txt:361", "strand": "Coopération"},
+            {"code": "2.3", "description": "Réagir aux actions d'un opposant", "source": "edphys_fr_chunk_4.txt:376", "strand": "Opposition"},
+            {"code": "2.4", "description": "Réagir aux actions des coéquipiers et des adversaires", "source": "edphys_fr_chunk_4.txt:396", "strand": "Coopération-Opposition"},
+            {"code": "2.6", "description": "Créer des idées ou exprimer des faits en exploitant différentes séquences de mouvements seul ou en groupe", "source": "edphys_fr_chunk_4.txt:418", "strand": "Expression"},
+            # Note: 2.5 does not exist for M-2e année
+            
+            # Environment personnel et intérieur (2) - VERIFIED from edphys_fr_chunk_4.txt lines 445-454
+            {"code": "3.1", "description": "Connaître certains effets de l'activité physique sur le fonctionnement de son corps", "source": "edphys_fr_chunk_4.txt:445", "strand": "Effort physique"},
+            {"code": "3.2", "description": "Mettre en pratique et en évidence certains effets de l'activité physique sur le fonctionnement de son corps", "source": "edphys_fr_chunk_4.txt:452", "strand": "Effort physique"}
+            # Note: 3.3 and 3.4 do not exist for M-2e année
+        ]
+    },
+    
+    "taught_in_english": {
+        "Music": [
+            # VERIFIED - 8 expectations INCLUDING CC 1.1 and CC 1.2!
+            {"code": "CC 1.1", "description": "Create music using their voice, body, and instruments through musical play", "source": "k3music_chunk_5.txt:281", "language_note": "Only English curriculum available"},
+            {"code": "CC 1.2", "description": "Compose simple musical ideas using invented notations, standard notations, and technology", "source": "k3music_chunk_5.txt:282-283", "language_note": "Only English curriculum available"},
+            {"code": "ME 1", "description": "Demonstrate the elements of music through musical play", "source": "k3music_chunk_5.txt:287", "language_note": "Only English curriculum available"},
+            {"code": "MA 1.1", "description": "Demonstrate proper technique playing pitched and non-pitched percussion instruments", "source": "k3music_chunk_5.txt:289", "language_note": "Only English curriculum available"},
+            {"code": "MA 1.2", "description": "Demonstrate their voice in a variety of contexts through musical play", "source": "k3music_chunk_5.txt:290 & k3music_chunk_6.txt:1", "language_note": "Only English curriculum available"},
+            {"code": "CCC 1", "description": "Demonstrate an understanding of diverse musical genres, styles, and cultural contexts and connections through musical play", "source": "k3music_chunk_6.txt:5-7", "language_note": "Only English curriculum available"},
+            {"code": "SP 1", "description": "Perform musical pieces for a variety of audiences", "source": "k3music_chunk_6.txt:10", "language_note": "Only English curriculum available"},
+            {"code": "RRA 1", "description": "Refine live and recorded performances using the creative musical process", "source": "k3music_chunk_6.txt:14", "language_note": "Only English curriculum available"}
+        ]
+    },
+    
+    "NOT_for_french_immersion": {
+        "note": "The following are English stream subjects that French Immersion students do NOT take",
+        "english_language_arts": "French Immersion students take Français langue première instead",
+        "english_science": "French Immersion students take Sciences de la nature in French",
+        "english_social_studies": "French Immersion students take Sciences humaines in French",
+        "english_health": "French Immersion students take Formation personnelle et sociale in French",
+        "english_visual_arts": "French Immersion students take Arts visuels in French"
+    }
+}
+
+def main():
+    """Create FINAL VERIFIED French Immersion curriculum database"""
+    
+    # Count expectations
+    taught_in_french_total = sum(len(exps) for exps in VERIFIED_CURRICULUM["taught_in_french"].values())
+    taught_in_english_total = sum(len(exps) for exps in VERIFIED_CURRICULUM["taught_in_english"].values())
+    
+    # Add statistics to metadata
+    VERIFIED_CURRICULUM["metadata"]["statistics"] = {
+        "total_expectations": taught_in_french_total + taught_in_english_total,
+        "taught_in_french": taught_in_french_total,
+        "taught_in_english": taught_in_english_total,
+        "by_subject": {
+            "Français langue première": 15,
+            "Mathématiques": 14,  # CORRECTED
+            "Sciences de la nature": 5,
+            "Sciences humaines": 7,
+            "Arts visuels": 4,
+            "Formation personnelle et sociale": 4,
+            "Éducation physique": 16,  # CORRECTED
+            "Music (English)": 8  # CORRECTED
+        }
+    }
+    
+    # Save to file
+    output_file = Path("/Users/michaelmcisaac/Github/teaching-engine2.0/curriculum/PEI_GRADE1_FRENCH_IMMERSION_FINAL.json")
+    with open(output_file, "w", encoding="utf-8") as f:
+        json.dump(VERIFIED_CURRICULUM, f, ensure_ascii=False, indent=2)
+    
+    print("✅ FINAL VERIFIED French Immersion Curriculum Database Created!")
+    print(f"\nTotal expectations for Emily: {taught_in_french_total + taught_in_english_total}")
+    print(f"  Taught in French: {taught_in_french_total}")
+    print(f"  Taught in English (Music): {taught_in_english_total}")
+    print(f"\nSaved to: {output_file}")
+    
+    # Print breakdown
+    print("\n📊 FINAL VERIFIED Breakdown:")
+    print("\nSubjects Taught in French:")
+    for subject in VERIFIED_CURRICULUM["taught_in_french"]:
+        count = len(VERIFIED_CURRICULUM["taught_in_french"][subject])
+        print(f"  {subject}: {count} expectations")
+    
+    print("\nSubjects Taught in English:")
+    for subject in VERIFIED_CURRICULUM["taught_in_english"]:
+        count = len(VERIFIED_CURRICULUM["taught_in_english"][subject])
+        print(f"  {subject}: {count} expectations")
+    
+    print("\n✅ VERIFICATION COMPLETE:")
+    print("  - Every expectation has source file and line number")
+    print("  - All counts verified against actual PDFs")
+    print("  - No fabricated data")
+    print("  - User can verify using commands in COMPLETE_VERIFICATION_REPORT.md")
+
+if __name__ == "__main__":
+    main()

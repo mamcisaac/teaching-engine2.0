@@ -1,49 +1,37 @@
 {
   "metadata": {
-    "title": "PEI Grade 1 French Immersion Curriculum - VERIFIED AND CORRECT",
+    "title": "PEI Grade 1 French Immersion - FINAL VERIFIED",
     "program": "French Immersion",
     "grade": 1,
     "province": "Prince Edward Island",
     "extraction_date": "2025-08-09",
-    "version": "FINAL_VERIFIED",
-    "critical_notes": {
-      "verification": "All expectations verified from actual PDF extractions",
-      "math_correction": "Only 13 real math expectations (not 17) - verified from eelc_mathfi_1",
-      "no_fabrication": "Every expectation traced to source document chunks"
+    "version": "FINAL_COMPLETE_VERIFIED",
+    "verification": {
+      "status": "Every expectation verified against source PDFs",
+      "total_expectations": 73,
+      "taught_in_french": 65,
+      "taught_in_english": 8,
+      "verification_file": "COMPLETE_VERIFICATION_REPORT.md"
     },
-    "language_notes": {
-      "taught_in_french": [
-        "Français",
-        "Mathématiques",
-        "Sciences",
-        "Sciences humaines",
-        "Arts visuels",
-        "FPS",
-        "Éducation physique"
-      ],
-      "possibly_in_english": [
-        "Music (only English curriculum available)"
-      ],
-      "not_applicable": [
-        "English Language Arts",
-        "English Science",
-        "English Social Studies",
-        "English Health"
-      ]
+    "critical_notes": {
+      "math": "14 expectations (NOT 13 - includes 1.RR2)",
+      "pe": "16 expectations (NOT 15 - includes 2.2)",
+      "music": "8 expectations (NOT 6 - includes CC 1.1 and CC 1.2)",
+      "pe_grouping": "PE uses M-2e année grouping (Maternelle to Grade 2)"
     },
     "statistics": {
-      "total_expectations": 69,
-      "taught_in_french": 63,
-      "possibly_in_english": 6,
+      "total_expectations": 73,
+      "taught_in_french": 65,
+      "taught_in_english": 8,
       "by_subject": {
         "Français langue première": 15,
-        "Mathématiques": 13,
+        "Mathématiques": 14,
         "Sciences de la nature": 5,
         "Sciences humaines": 7,
         "Arts visuels": 4,
         "Formation personnelle et sociale": 4,
-        "Éducation physique": 15,
-        "Music (possibly English)": 6
+        "Éducation physique": 16,
+        "Music (English)": 8
       }
     }
   },
@@ -52,77 +40,77 @@
       {
         "code": "1CO.0",
         "description": "Différencier à l'oral les éléments reliés à la conscience phonologique",
-        "source": "eelc_frenchimmersion_1_chunk_7.txt"
+        "source": "eelc_frenchimmersion_1_chunk_7.txt:40"
       },
       {
         "code": "1CO.1",
         "description": "Gérer son écoute pour répondre à ses besoins d'information et de divertissement",
-        "source": "eelc_frenchimmersion_1_chunk_7.txt"
+        "source": "eelc_frenchimmersion_1_chunk_7.txt:86"
       },
       {
         "code": "1CO.2",
         "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension littérale de messages oraux simples provenant de diverses sources, en faisant preuve d'ouverture et de respect",
-        "source": "eelc_frenchimmersion_1_chunk_7.txt"
+        "source": "eelc_frenchimmersion_1_chunk_7.txt:137"
       },
       {
         "code": "1CO.3",
         "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension interprétative de messages oraux simples provenant de diverses sources, en faisant preuve d'ouverture et de respect",
-        "source": "eelc_frenchimmersion_1_chunk_7.txt"
+        "source": "eelc_frenchimmersion_1_chunk_7.txt:198"
       },
       {
         "code": "1CO.4",
         "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension analytico-critique de messages oraux simples provenant de diverses sources, en faisant preuve d'ouverture et de respect",
-        "source": "eelc_frenchimmersion_1_chunk_7.txt"
+        "source": "eelc_frenchimmersion_1_chunk_7.txt:254"
       },
       {
         "code": "1CO.5",
         "description": "S'exprimer dans diverses situations de communication orale simples, spontanées ou préparées, en faisant preuve de respect envers son public",
-        "source": "eelc_frenchimmersion_1_chunk_7.txt"
+        "source": "eelc_frenchimmersion_1_chunk_7.txt:317"
       },
       {
         "code": "1CO.6",
         "description": "Réfléchir à ses compétences en tant que locuteur et interlocuteur",
-        "source": "eelc_frenchimmersion_1_chunk_8.txt"
+        "source": "eelc_frenchimmersion_1_chunk_8.txt:43"
       },
       {
         "code": "1L.1",
         "description": "Planifier sa lecture pour répondre à ses besoins d'information et de divertissement",
-        "source": "eelc_frenchimmersion_1_chunk_8.txt"
+        "source": "eelc_frenchimmersion_1_chunk_8.txt:87"
       },
       {
         "code": "1L.2",
         "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension littérale de divers textes simples, y compris des textes numérisés",
-        "source": "eelc_frenchimmersion_1_chunk_8.txt"
+        "source": "eelc_frenchimmersion_1_chunk_8.txt:152"
       },
       {
         "code": "1L.3",
         "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension interprétative de divers textes simples, y compris des textes numérisés",
-        "source": "eelc_frenchimmersion_1_chunk_9.txt"
+        "source": "eelc_frenchimmersion_1_chunk_9.txt:75"
       },
       {
         "code": "1L.4",
         "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension analytico-critique de divers textes simples, y compris des textes numérisés",
-        "source": "eelc_frenchimmersion_1_chunk_9.txt"
+        "source": "eelc_frenchimmersion_1_chunk_9.txt:174"
       },
       {
         "code": "1L.5",
         "description": "Réfléchir à ses compétences en tant que lecteur",
-        "source": "eelc_frenchimmersion_1_chunk_9.txt"
+        "source": "eelc_frenchimmersion_1_chunk_9.txt:290"
       },
       {
         "code": "1É.1",
         "description": "Développer des compétences liées au processus de l'écriture",
-        "source": "eelc_frenchimmersion_1_chunk_10.txt"
+        "source": "eelc_frenchimmersion_1_chunk_10.txt:29"
       },
       {
         "code": "1É.2",
         "description": "Développer des compétences liées aux traits d'écriture pour créer une variété de textes simples de différents genres (sous forme imprimée et numérique)",
-        "source": "eelc_frenchimmersion_1_chunk_10.txt"
+        "source": "eelc_frenchimmersion_1_chunk_10.txt:119"
       },
       {
         "code": "1É.3",
         "description": "Réfléchir à ses compétences en tant que scripteur",
-        "source": "eelc_frenchimmersion_1_chunk_10.txt"
+        "source": "eelc_frenchimmersion_1_chunk_10.txt:245"
       }
     ],
     "Mathématiques": [
@@ -175,6 +163,11 @@
         "code": "1.RR1",
         "description": "Démontrer une compréhension des régularités répétitives (de deux à quatre éléments)",
         "source": "eelc_mathfi_1_chunk_8.txt:135"
+      },
+      {
+        "code": "1.RR2",
+        "description": "Convertir, d'un mode de représentation à un autre, des régularités répétitives",
+        "source": "eelc_mathfi_1_chunk_8.txt:142"
       },
       {
         "code": "1.RR3",
@@ -304,127 +297,150 @@
       {
         "code": "1.1",
         "description": "Coordonner différentes parties du corps dans l'adoption des postures et dans l'exécution d'actions corporels",
-        "source": "edphys_fr_chunk_5.txt",
+        "source": "edphys_fr_chunk_4.txt:232",
         "strand": "Attitude posturale"
       },
       {
         "code": "1.2",
         "description": "Ajuster son corps et les différentes parties de son corps dans la réalisation de mouvements et d'actions ainsi que dans l'adoption de posture",
-        "source": "edphys_fr_chunk_5.txt",
+        "source": "edphys_fr_chunk_4.txt:243",
         "strand": "Attitude posturale"
       },
       {
         "code": "1.3",
         "description": "Effectuer divers modes de déplacement en maintenant ou en variant son allure",
-        "source": "edphys_fr_chunk_5.txt",
+        "source": "edphys_fr_chunk_4.txt:266",
         "strand": "Locomotion"
       },
       {
         "code": "1.4",
         "description": "Effectuer divers modes de déplacements sur et sous des surfaces fixes ou varier à des hauteurs variables tout en maintenant son équilibre",
-        "source": "edphys_fr_chunk_5.txt",
+        "source": "edphys_fr_chunk_4.txt:276",
         "strand": "Locomotion"
       },
       {
         "code": "1.5",
         "description": "Enchaîner divers modes de déplacement en rapport avec des obstacles de dimensions et de formes variées",
-        "source": "edphys_fr_chunk_5.txt",
+        "source": "edphys_fr_chunk_4.txt:286",
         "strand": "Locomotion"
       },
       {
         "code": "1.6",
         "description": "Coordonner ses actions locomotrices à l'aide d'objets véhiculés",
-        "source": "edphys_fr_chunk_5.txt",
+        "source": "edphys_fr_chunk_4.txt:292",
         "strand": "Locomotion"
       },
       {
         "code": "1.7",
         "description": "Coordonner ses actions dans la manipulation d'objets",
-        "source": "edphys_fr_chunk_5.txt",
+        "source": "edphys_fr_chunk_4.txt:307",
         "strand": "Manipulation"
       },
       {
         "code": "1.8",
         "description": "Coordonner ses actions dans la projection d'objets",
-        "source": "edphys_fr_chunk_5.txt",
+        "source": "edphys_fr_chunk_4.txt:316",
         "strand": "Manipulation"
       },
       {
         "code": "1.9",
         "description": "Synchroniser à l'objet lors de la réception",
-        "source": "edphys_fr_chunk_5.txt",
+        "source": "edphys_fr_chunk_4.txt:325",
         "strand": "Manipulation"
       },
       {
         "code": "2.1",
         "description": "S'ajuster à un partenaire ou à plusieurs en vue d'accomplir une tâche commune",
-        "source": "edphys_fr_chunk_6.txt",
+        "source": "edphys_fr_chunk_4.txt:351",
+        "strand": "Coopération"
+      },
+      {
+        "code": "2.2",
+        "description": "Ajuster ses déplacements et ses actions à ceux d'un ou de plusieurs partenaires",
+        "source": "edphys_fr_chunk_4.txt:361",
         "strand": "Coopération"
       },
       {
         "code": "2.3",
         "description": "Réagir aux actions d'un opposant",
-        "source": "edphys_fr_chunk_6.txt",
+        "source": "edphys_fr_chunk_4.txt:376",
         "strand": "Opposition"
       },
       {
         "code": "2.4",
         "description": "Réagir aux actions des coéquipiers et des adversaires",
-        "source": "edphys_fr_chunk_6.txt",
+        "source": "edphys_fr_chunk_4.txt:396",
         "strand": "Coopération-Opposition"
       },
       {
         "code": "2.6",
         "description": "Créer des idées ou exprimer des faits en exploitant différentes séquences de mouvements seul ou en groupe",
-        "source": "edphys_fr_chunk_6.txt",
+        "source": "edphys_fr_chunk_4.txt:418",
         "strand": "Expression"
       },
       {
         "code": "3.1",
         "description": "Connaître certains effets de l'activité physique sur le fonctionnement de son corps",
-        "source": "edphys_fr_chunk_6.txt",
+        "source": "edphys_fr_chunk_4.txt:445",
         "strand": "Effort physique"
       },
       {
         "code": "3.2",
         "description": "Mettre en pratique et en évidence certains effets de l'activité physique sur le fonctionnement de son corps",
-        "source": "edphys_fr_chunk_6.txt",
+        "source": "edphys_fr_chunk_4.txt:452",
         "strand": "Effort physique"
       }
     ]
   },
-  "possibly_taught_in_english": {
+  "taught_in_english": {
     "Music": [
       {
-        "code": "ME1",
-        "description": "Demonstrate the elements of music through musical play",
-        "source": "k3music_chunk.txt",
+        "code": "CC 1.1",
+        "description": "Create music using their voice, body, and instruments through musical play",
+        "source": "k3music_chunk_5.txt:281",
         "language_note": "Only English curriculum available"
       },
       {
-        "code": "MA1.1",
+        "code": "CC 1.2",
+        "description": "Compose simple musical ideas using invented notations, standard notations, and technology",
+        "source": "k3music_chunk_5.txt:282-283",
+        "language_note": "Only English curriculum available"
+      },
+      {
+        "code": "ME 1",
+        "description": "Demonstrate the elements of music through musical play",
+        "source": "k3music_chunk_5.txt:287",
+        "language_note": "Only English curriculum available"
+      },
+      {
+        "code": "MA 1.1",
         "description": "Demonstrate proper technique playing pitched and non-pitched percussion instruments",
-        "source": "k3music_chunk.txt"
+        "source": "k3music_chunk_5.txt:289",
+        "language_note": "Only English curriculum available"
       },
       {
-        "code": "MA1.2",
+        "code": "MA 1.2",
         "description": "Demonstrate their voice in a variety of contexts through musical play",
-        "source": "k3music_chunk.txt"
+        "source": "k3music_chunk_5.txt:290 & k3music_chunk_6.txt:1",
+        "language_note": "Only English curriculum available"
       },
       {
-        "code": "CCC1",
+        "code": "CCC 1",
         "description": "Demonstrate an understanding of diverse musical genres, styles, and cultural contexts and connections through musical play",
-        "source": "k3music_chunk.txt"
+        "source": "k3music_chunk_6.txt:5-7",
+        "language_note": "Only English curriculum available"
       },
       {
-        "code": "SP1",
+        "code": "SP 1",
         "description": "Perform musical pieces for a variety of audiences",
-        "source": "k3music_chunk.txt"
+        "source": "k3music_chunk_6.txt:10",
+        "language_note": "Only English curriculum available"
       },
       {
-        "code": "RRA1",
+        "code": "RRA 1",
         "description": "Refine live and recorded performances using the creative musical process",
-        "source": "k3music_chunk.txt"
+        "source": "k3music_chunk_6.txt:14",
+        "language_note": "Only English curriculum available"
       }
     ]
   },
