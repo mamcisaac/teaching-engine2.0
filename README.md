@@ -5,13 +5,13 @@ A comprehensive digital teaching assistant designed for Grade 1 French Immersion
 ## ✨ Key Features
 
 - **🎯 Subject-Based Personalization**: Onboarding flow that personalizes the app based on which subjects you actually teach
-- **📋 Complete PEI Curriculum**: 68 Grade 1 French Immersion curriculum expectations pre-loaded and organized
+- **📋 Complete PEI Curriculum**: 73 Grade 1 French Immersion curriculum expectations pre-loaded and verified
 - **📊 Real-Time Coverage Tracking**: Monitor your progress across all curriculum expectations
 - **🤖 AI-Powered Planning**: Intelligent lesson plan generation with ETFO methodology
 - **📱 Responsive Design**: Works seamlessly on desktop, tablet, and mobile
 - **🔄 Bilingual Support**: Full English and French interface support
 
-## 🚀 Quick Start for Your Wife's Testing
+## 🚀 Quick Start
 
 ### Prerequisites
 
@@ -63,7 +63,7 @@ cd client && npm run dev
 
 ## 🏗️ Project Structure
 
-This is a **pnpm workspace** with multiple packages:
+This is a **pnpm workspace** with a clean, production-ready structure:
 
 ```
 teaching-engine2.0/
@@ -72,7 +72,11 @@ teaching-engine2.0/
 ├── packages/
 │   └── database/          # Prisma database package
 ├── shared/                # Shared utilities and types
+├── curriculum/            # Verified curriculum data
+│   └── PEI_GRADE1_FRENCH_IMMERSION_FINAL.json
+├── resources/             # Original PDF source documents
 ├── scripts/               # Build and deployment scripts
+├── tests/                 # End-to-end and integration tests
 └── docs/                  # Documentation
 ```
 
@@ -114,14 +118,16 @@ cd server && npm run build
 
 ## 📊 Grade 1 French Immersion Curriculum
 
-The app includes **68 comprehensive curriculum expectations** for PEI Grade 1 French Immersion:
+The app includes **73 verified curriculum expectations** for PEI Grade 1 French Immersion:
 
 - **Français langue première**: 15 expectations (oral, reading, writing)
-- **Mathématiques**: 20 expectations (numbers, patterns, measurement, geometry, data)
-- **Sciences et technologie**: 10 expectations (biology, physics, earth/space, inquiry)
-- **Études sociales**: 8 expectations (heritage/identity, people/environments)
-- **Arts**: 10 expectations (visual arts, drama, music, dance)
-- **English Language Arts**: 5 expectations (for French Immersion context)
+- **Mathématiques**: 14 expectations (numbers, patterns, shapes/space)
+- **Sciences de la nature**: 5 expectations (living things, energy, seasons)
+- **Sciences humaines**: 7 expectations (citizenship, identity, geography)
+- **Arts visuels**: 4 expectations (visual arts)
+- **Formation personnelle et sociale**: 4 expectations (health, safety, relationships)
+- **Éducation physique**: 16 expectations (movement, cooperation, fitness)
+- **Music (English)**: 8 expectations (creating, performing, responding)
 
 ## 🔧 Technical Specifications
 

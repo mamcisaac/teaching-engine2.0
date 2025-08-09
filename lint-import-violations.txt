@@ -1,5 +1,0 @@
-/Users/michaelmcisaac/Github/teaching-engine2.0/client/src/components/onboarding/OnboardingFlowOptimized.tsx
-   2:1   error    There should be no empty line within import group                                     import/order
-   4:1   error    `framer-motion` import should occur before import of `react`                          import/order
-   7:34  error    Unable to resolve path to module '../../utils/validation'                             import/no-unresolved
-  51:10  warning  Unexpected any value in conditional. An explicit comparison or type cast is required  @typescript-eslint/strict-boolean-expressions
