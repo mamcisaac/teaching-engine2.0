@@ -115,7 +115,7 @@ export function ShowcaseDashboard(): React.ReactElement {
       </div>
       
       {/* Impact Stats */}
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 -mt-6 sm:-mt-8">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-6">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <Card className="shadow-xl border-0 transform hover:scale-105 transition-transform">
             <CardContent className="p-4 sm:p-6 text-center">
@@ -288,7 +288,7 @@ export function ShowcaseDashboard(): React.ReactElement {
           </div>
           
           {/* Right Column - Quick Access & Info */}
-          <div className="space-y-6">
+          <div className="xl:col-span-1 space-y-6">
             
             {/* Quick Actions */}
             <Card className="shadow-lg border-2 border-blue-500">
