@@ -88,25 +88,25 @@ export function ShowcaseDashboard(): React.ReactElement {
     : allUnits.slice(0, 6); // Show first 6 if no subject selected
   
   return (
-    <div className="fixed inset-0 z-50 overflow-auto bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div className="min-h-screen overflow-auto bg-gradient-to-br from-blue-50 via-white to-purple-50">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-12 px-6">
+      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-8 sm:py-12 px-4 sm:px-6">
         <div className="container mx-auto max-w-7xl">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-5xl font-bold mb-4">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="text-center md:text-left">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
                 Welcome Emily! 🎉
               </h1>
-              <p className="text-2xl mb-2">
+              <p className="text-lg sm:text-xl lg:text-2xl mb-2">
                 Your Complete 2025-2026 School Year is Ready!
               </p>
-              <p className="text-lg opacity-90">
+              <p className="text-sm sm:text-base lg:text-lg opacity-90">
                 Grade 1 French Immersion • West Kent Elementary • PEI
               </p>
             </div>
-            <div className="text-center bg-white/20 backdrop-blur rounded-lg p-6">
-              <p className="text-6xl font-bold">{daysUntilSchool > 0 ? daysUntilSchool : 'Ready!'}</p>
-              <p className="text-lg mt-2">
+            <div className="text-center bg-white/20 backdrop-blur rounded-lg p-4 sm:p-6">
+              <p className="text-4xl sm:text-5xl lg:text-6xl font-bold">{daysUntilSchool > 0 ? daysUntilSchool : 'Ready!'}</p>
+              <p className="text-sm sm:text-base lg:text-lg mt-2">
                 {daysUntilSchool > 0 ? 'Days Until School' : 'School Year Active'}
               </p>
             </div>
@@ -115,40 +115,40 @@ export function ShowcaseDashboard(): React.ReactElement {
       </div>
       
       {/* Impact Stats */}
-      <div className="container mx-auto max-w-7xl px-6 -mt-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 -mt-6 sm:-mt-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <Card className="shadow-xl border-0 transform hover:scale-105 transition-transform">
-            <CardContent className="p-6 text-center">
-              <p className="text-4xl font-bold text-blue-600">8</p>
-              <p className="text-gray-600 mt-2">Complete Subjects</p>
+            <CardContent className="p-4 sm:p-6 text-center">
+              <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-600">8</p>
+              <p className="text-xs sm:text-sm text-gray-600 mt-1 sm:mt-2">Complete Subjects</p>
             </CardContent>
           </Card>
           <Card className="shadow-xl border-0 transform hover:scale-105 transition-transform">
-            <CardContent className="p-6 text-center">
-              <p className="text-4xl font-bold text-green-600">53</p>
-              <p className="text-gray-600 mt-2">Unit Plans Ready</p>
+            <CardContent className="p-4 sm:p-6 text-center">
+              <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-600">53</p>
+              <p className="text-xs sm:text-sm text-gray-600 mt-1 sm:mt-2">Unit Plans Ready</p>
             </CardContent>
           </Card>
           <Card className="shadow-xl border-0 transform hover:scale-105 transition-transform">
-            <CardContent className="p-6 text-center">
-              <p className="text-4xl font-bold text-purple-600">978</p>
-              <p className="text-gray-600 mt-2">Teaching Hours</p>
+            <CardContent className="p-4 sm:p-6 text-center">
+              <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-purple-600">978</p>
+              <p className="text-xs sm:text-sm text-gray-600 mt-1 sm:mt-2">Teaching Hours</p>
             </CardContent>
           </Card>
           <Card className="shadow-xl border-0 transform hover:scale-105 transition-transform">
-            <CardContent className="p-6 text-center">
-              <p className="text-4xl font-bold text-orange-600">100%</p>
-              <p className="text-gray-600 mt-2">Curriculum Covered</p>
+            <CardContent className="p-4 sm:p-6 text-center">
+              <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-orange-600">100%</p>
+              <p className="text-xs sm:text-sm text-gray-600 mt-1 sm:mt-2">Curriculum Covered</p>
             </CardContent>
           </Card>
         </div>
       </div>
       
-      <div className="container mx-auto max-w-7xl px-6 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-6 sm:py-8">
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 lg:gap-8">
           
           {/* Left Column - September Preview */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="xl:col-span-2 space-y-6">
             
             {/* September Teaching Preview */}
             <Card className="shadow-lg">
