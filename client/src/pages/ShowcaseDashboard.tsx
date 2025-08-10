@@ -115,8 +115,9 @@ export function ShowcaseDashboard(): React.ReactElement {
       </div>
       
       {/* Impact Stats */}
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-6">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
+        <div className="max-w-screen-2xl mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <Card className="shadow-xl border-0 transform hover:scale-105 transition-transform">
             <CardContent className="p-4 sm:p-6 text-center">
               <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-600">8</p>
@@ -142,13 +143,14 @@ export function ShowcaseDashboard(): React.ReactElement {
             </CardContent>
           </Card>
         </div>
+        </div>
       </div>
       
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-6 sm:py-8">
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 lg:gap-8">
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-8 overflow-x-hidden">
+        <div className="grid grid-cols-1 3xl:grid-cols-3 gap-6 lg:gap-8 max-w-screen-2xl mx-auto">
           
           {/* Left Column - September Preview */}
-          <div className="xl:col-span-2 space-y-6">
+          <div className="3xl:col-span-2 space-y-6 min-w-0">
             
             {/* September Teaching Preview */}
             <Card className="shadow-lg">
@@ -288,7 +290,7 @@ export function ShowcaseDashboard(): React.ReactElement {
           </div>
           
           {/* Right Column - Quick Access & Info */}
-          <div className="xl:col-span-1 space-y-6">
+          <div className="3xl:col-span-1 space-y-6 min-w-0">
             
             {/* Quick Actions */}
             <Card className="shadow-lg border-2 border-blue-500">
