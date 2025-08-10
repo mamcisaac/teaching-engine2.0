@@ -1,1077 +1,727 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-  provider = "prisma-client-js"
-}
-
-
-
 model Subject {
-  id         Int        @id @default(autoincrement())
-  name       String
-  nameEn     String?
-  nameFr     String?
-  userId     Int?
-  user       User?     @relation(fields: [userId], references: [id])
-  createdAt  DateTime   @default(now())
+  id        Int      @id @default(autoincrement())
+  name      String
+  nameEn    String?
+  nameFr    String?
+  userId    Int?
+  createdAt DateTime @default(now())
+  user      User?    @relation(fields: [userId], references: [id])
 }
-
-
-
-
-
-
-// TeacherPreferences model archived - see schema.archive.prisma
-// Functionality moved to User.preferredLanguage and ClassRoutine models
-
-// SubstituteInfo model archived - see schema.archive.prisma
-// Functionality moved to ClassRoutine model with category-based organization
-
-
-// MaterialList model archived - see schema.archive.prisma
-// Functionality moved to UnitPlanResource and ETFOLessonPlanResource models
-
-// Notification model archived - see schema.archive.prisma
-// Functionality integrated into ETFO planning workflow notifications
-
-// Newsletter model archived - see schema.archive.prisma
-// Functionality replaced by ClassroomAnnouncement model for general classroom updates
 
 model ClassroomAnnouncement {
-  id           Int      @id @default(autoincrement())
-  userId       Int
-  user         User     @relation(fields: [userId], references: [id])
-  title        String
-  timeframe    String
-  contentFr    String
-  contentEn    String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-  
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  title     String
+  timeframe String
+  contentFr String
+  contentEn String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
+
   @@index([userId, createdAt])
   @@index([userId, updatedAt])
 }
 
-
-
-
-
-
 model User {
-  id       Int      @id @default(autoincrement())
-  email    String   @unique
-  password String
-  name     String
-  role     String   @default("teacher")
-  preferredLanguage String @default("en")
-  subjects Subject[]
-  events    CalendarEvent[]
-  unavailableBlocks UnavailableBlock[]
-  // Archived relations - see schema.archive.prisma:
-  // reportDeadlines, yearPlanEntries, shareLinks, equipmentBookings, substituteInfos
-  // oralRoutineTemplates, dailyOralRoutines, thematicUnits, cognatePairs, mediaResources
-  // reflectionJournalEntries, aiGeneratedPlans, planningConversations
+  id                     Int                     @id @default(autoincrement())
+  email                  String                  @unique
+  password               String
+  name                   String
+  role                   String                  @default("teacher")
+  preferredLanguage      String                  @default("en")
+  activityCollections    ActivityCollection[]
+  activityImports        ActivityImport[]
+  activityRatings        ActivityRating[]
+  events                 CalendarEvent[]
+  classRoutines          ClassRoutine[]
   classroomAnnouncements ClassroomAnnouncement[]
-  curriculumImports CurriculumImport[]
-  classRoutines ClassRoutine[]
-  
-  // Key Teacher Features
-  newsletters Newsletter[]
-  substitutePlans SubstitutePlan[]
-  
-  // ETFO-aligned planning models
-  longRangePlans LongRangePlan[]
-  unitPlans UnitPlan[]
-  etfoLessonPlans ETFOLessonPlan[]
-  daybookEntries DaybookEntry[]
-  
-  // Activity Discovery
-  activityImports ActivityImport[]
-  activityRatings ActivityRating[]
-  activityCollections ActivityCollection[]
-  
-  // Weekly Planner State
-  weeklyPlannerState WeeklyPlannerState?
-  
-  // Template System
-  createdTemplates PlanTemplate[]
-  
-  // Recent Plan Access
-  recentPlanAccess RecentPlanAccess[]
-  
-  // Notifications
-  notifications Notification[]
+  curriculumImports      CurriculumImport[]
+  daybookEntries         DaybookEntry[]
+  etfoLessonPlans        ETFOLessonPlan[]
+  longRangePlans         LongRangePlan[]
+  newsletters            Newsletter[]
+  notifications          Notification[]
+  createdTemplates       PlanTemplate[]
+  recentPlanAccess       RecentPlanAccess[]
+  subjects               Subject[]
+  substitutePlans        SubstitutePlan[]
+  unavailableBlocks      UnavailableBlock[]
+  unitPlans              UnitPlan[]
+  weeklyPlannerState     WeeklyPlannerState?
 }
 
-// Notification model for user notifications
 model Notification {
   id        Int      @id @default(autoincrement())
   userId    Int
-  user      User     @relation(fields: [userId], references: [id])
-  type      String   // "info", "success", "warning", "error"
+  type      String
   title     String
   message   String
-  data      Json?    // Additional data for the notification
+  data      Json?
   read      Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  
+  user      User     @relation(fields: [userId], references: [id])
+
   @@index([userId, read])
   @@index([userId, createdAt])
 }
 
-enum CalendarEventType {
-  PD_DAY
-  ASSEMBLY
-  TRIP
-  HOLIDAY
-  CUSTOM
-}
-
-enum CalendarEventSource {
-  MANUAL
-  ICAL_FEED
-  SYSTEM
-}
-
 model CalendarEvent {
-  id          Int                 @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   title       String
   description String?
   start       DateTime
   end         DateTime
-  allDay      Boolean             @default(false)
-  eventType   CalendarEventType
-  source      CalendarEventSource @default(MANUAL)
+  allDay      Boolean  @default(false)
+  eventType   String
+  source      String   @default("MANUAL")
   teacherId   Int?
-  teacher     User?               @relation(fields: [teacherId], references: [id])
   schoolId    Int?
-  createdAt   DateTime            @default(now())
-  updatedAt   DateTime            @updatedAt
-}
-
-enum UnavailableBlockType {
-  TEACHER_ABSENCE
-  // Student-related types removed - app does not store student data
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  teacher     User?    @relation(fields: [teacherId], references: [id])
 }
 
 model UnavailableBlock {
-  id                Int                  @id @default(autoincrement())
-  teacherId         Int?
-  teacher           User?               @relation(fields: [teacherId], references: [id])
-  date              DateTime
-  startMin          Int
-  endMin            Int
-  reason            String
-  blockType         UnavailableBlockType
-  // affectedStudentIds removed - app does not store student data
-  createdAt         DateTime            @default(now())
-  updatedAt         DateTime            @updatedAt
+  id        Int      @id @default(autoincrement())
+  teacherId Int?
+  date      DateTime
+  startMin  Int
+  endMin    Int
+  reason    String
+  blockType String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  teacher   User?    @relation(fields: [teacherId], references: [id])
 }
 
-// ReportDeadline model archived - see schema.archive.prisma
-// Functionality moved to CalendarEvent with type CUSTOM for deadlines
-
-
-// YearPlanEntry model and YearPlanEntryType enum archived - see schema.archive.prisma
-// Functionality replaced by LongRangePlan and UnitPlan models
-
-// ShareLink model and ShareLinkType enum archived - see schema.archive.prisma
-// Functionality simplified - sharing now handled differently
-
-// EquipmentBooking model and EquipmentBookingStatus enum archived - see schema.archive.prisma
-// Functionality moved to external resource management systems
-
-// Holiday model archived - see schema.archive.prisma
-// Functionality moved to CalendarEvent with type HOLIDAY
-
-
-
-
-
-// OralRoutineTemplate and DailyOralRoutine models archived - see schema.archive.prisma
-// Functionality integrated into ETFOLessonPlan and DaybookEntry models
-
-
-// ThematicUnit model archived - see schema.archive.prisma
-// Functionality replaced by UnitPlan model with ETFO alignment
-
-
-
-// CognatePair model archived - see schema.archive.prisma
-// Functionality moved to external vocabulary management systems
-
-
-
-
-// MediaResource model archived - see schema.archive.prisma
-// Functionality moved to cloud storage with references in lesson plan resources
-
-
-
-
-
-// ReflectionJournalEntry model archived - see schema.archive.prisma
-// Functionality integrated into DaybookEntry for comprehensive daily reflections
-
-
-
-// AIGeneratedPlan and PlanningConversation models archived - see schema.archive.prisma
-// Functionality replaced by ETFO-aligned planning workflow with integrated AI assistance
-
-// Student-related models have been removed
-// This application does not store any student information
-// It is solely for teacher planning assistance
-
-
-
-
-
-// Newsletter model removed - teachers have better tools (Google Docs, Canva, ClassDojo)
-
-// ==================== Phase 5: Curriculum Intelligence Models ====================
-
-enum ImportStatus {
-  UPLOADING
-  PROCESSING
-  READY_FOR_REVIEW
-  CONFIRMED
-  COMPLETED
-  FAILED
-  CANCELLED
-}
-
-// Stores vector embeddings for curriculum outcomes to enable semantic search and clustering
-
-// Tracks curriculum import sessions from various file formats (PDF, DOCX, CSV)
 model CurriculumImport {
-  id                String           @id @default(cuid())
-  userId            Int
-  user              User             @relation(fields: [userId], references: [id])
-  filename          String?          // For planner agent compatibility
-  originalName      String?          // Original uploaded filename
-  mimeType          String?          // File MIME type
-  fileSize          Int?             // File size in bytes
-  filePath          String?          // Path to uploaded file
-  grade             Int?             // Grade level for import
-  subject           String?          // Subject area
-  status            ImportStatus     @default(UPLOADING)
-  sourceFormat      String?          // "pdf" | "docx" | "csv" | "manual"
-  sourceFile        String?          // Path or URL to original file
-  rawText           String?          // Extracted text from document
-  parsedData        String?          // JSON string of parsed curriculum data
-  errorMessage      String?          // Error details if parsing fails
-  totalOutcomes     Int              @default(0)
-  processedOutcomes Int              @default(0)
-  errorLog          Json?            // Array of error objects with details
-  metadata          Json?            // Additional import metadata (e.g., parsing settings)
-  processedAt       DateTime?        // When processing completed
-  createdAt         DateTime         @default(now())
-  updatedAt         DateTime         @updatedAt
-  completedAt       DateTime?
-  
-  clusters          ExpectationCluster[]
+  id                     String                  @id @default(cuid())
+  userId                 Int
+  filename               String?
+  originalName           String?
+  mimeType               String?
+  fileSize               Int?
+  filePath               String?
+  grade                  Int?
+  subject                String?
+  status                 String                  @default("UPLOADING")
+  sourceFormat           String?
+  sourceFile             String?
+  rawText                String?
+  parsedData             String?
+  errorMessage           String?
+  totalOutcomes          Int                     @default(0)
+  processedOutcomes      Int                     @default(0)
+  errorLog               Json?
+  metadata               Json?
+  processedAt            DateTime?
+  createdAt              DateTime                @default(now())
+  updatedAt              DateTime                @updatedAt
+  completedAt            DateTime?
   curriculumExpectations CurriculumExpectation[] @relation("CurriculumExpectationImport")
-  
+  user                   User                    @relation(fields: [userId], references: [id])
+  clusters               ExpectationCluster[]
+
   @@index([userId, status])
   @@index([createdAt])
-  @@index([userId, createdAt]) // User's imports by date
-  @@index([status, createdAt]) // Status with date filter
-  @@index([userId, status, createdAt]) // User's imports by status and date
+  @@index([userId, createdAt])
+  @@index([status, createdAt])
+  @@index([userId, status, createdAt])
 }
 
-// Stores clustered groups of related expectations for intelligent curriculum organization
 model ExpectationCluster {
   id             String           @id @default(cuid())
   importId       String
-  import         CurriculumImport @relation(fields: [importId], references: [id], onDelete: Cascade)
-  clusterName    String           // Human-readable cluster name
-  clusterType    String           // "theme" | "skill" | "concept"
-  expectationIds Json             // Array of expectation IDs in this cluster
-  centroid       Json?            // Centroid embedding vector for the cluster
-  confidence     Float            @default(0.0) // Clustering confidence score (0-1)
-  suggestedTheme String?          // AI-suggested theme name
-  metadata       Json?            // Additional cluster metadata
+  clusterName    String
+  clusterType    String
+  expectationIds Json
+  centroid       Json?
+  confidence     Float            @default(0.0)
+  suggestedTheme String?
+  metadata       Json?
   createdAt      DateTime         @default(now())
-  
+  import         CurriculumImport @relation(fields: [importId], references: [id], onDelete: Cascade)
+
   @@index([importId])
   @@index([clusterType])
 }
 
-// A4 Enhancement: Stores pedagogical prompts linked to curriculum outcomes
-// Stores classroom routines and procedures for substitute teachers
 model ClassRoutine {
   id          Int      @id @default(autoincrement())
   userId      Int
-  user        User     @relation(fields: [userId], references: [id])
   title       String
   description String
-  category    String   // "morning", "transition", "dismissal", "behavior", "emergency", "other"
-  timeOfDay   String?  // Optional time indicator like "9:00 AM" or "After recess"
-  priority    Int      @default(0) // Higher priority routines shown first
+  category    String
+  timeOfDay   String?
+  priority    Int      @default(0)
   isActive    Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  
+  user        User     @relation(fields: [userId], references: [id])
+
   @@index([userId, category])
   @@index([userId, isActive])
 }
 
-// SubPlanRecord model removed - teachers prefer editable document templates (Google Docs, Word)
-
-// ==================== ETFO-Aligned Planning Models ====================
-// These models implement the 5-level ETFO planning hierarchy:
-// 1. CurriculumExpectation → 2. LongRangePlan → 3. UnitPlan → 4. LessonPlan → 5. DaybookEntry
-
-// Level 1: Curriculum Expectations (replaces Outcome)
 model CurriculumExpectation {
-  id              String   @id @default(cuid())
-  code            String   @unique // e.g., "A1.2", "B2.3"
-  description     String
-  strand          String   // Major curriculum category
-  substrand       String?  // Subcategory if applicable
-  grade           Int
-  subject         String
-  
-  // Bilingual support
-  descriptionFr   String?
-  strandFr        String?
-  substrandFr     String?
-  
-  // Import tracking
-  importId        String?
-  import          CurriculumImport? @relation("CurriculumExpectationImport", fields: [importId], references: [id])
-  
-  // Relationships to planning levels
-  longRangePlans  LongRangePlanExpectation[]
-  unitPlans       UnitPlanExpectation[]
-  lessonPlans     ETFOLessonPlanExpectation[]
-  daybookEntries  DaybookEntryExpectation[]
-  
-  // AI features
-  embedding       CurriculumExpectationEmbedding?
-  
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-  
+  id             String                          @id @default(cuid())
+  code           String                          @unique
+  description    String
+  strand         String
+  substrand      String?
+  grade          Int
+  subject        String
+  descriptionFr  String?
+  strandFr       String?
+  substrandFr    String?
+  importId       String?
+  createdAt      DateTime                        @default(now())
+  updatedAt      DateTime                        @updatedAt
+  import         CurriculumImport?               @relation("CurriculumExpectationImport", fields: [importId], references: [id])
+  embedding      CurriculumExpectationEmbedding?
+  daybookEntries DaybookEntryExpectation[]
+  lessonPlans    ETFOLessonPlanExpectation[]
+  longRangePlans LongRangePlanExpectation[]
+  unitPlans      UnitPlanExpectation[]
+
   @@index([subject, grade])
   @@index([code])
-  @@index([strand, grade]) // For strand-based filtering
-  @@index([subject, strand]) // For subject-strand combinations
-  @@index([subject, grade, strand]) // Full curriculum filter
+  @@index([strand, grade])
+  @@index([subject, strand])
+  @@index([subject, grade, strand])
 }
 
-// Vector embeddings for curriculum expectations (for AI clustering)
 model CurriculumExpectationEmbedding {
   id            String                @id @default(cuid())
   expectationId String                @unique
-  expectation   CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
-  embedding     Json                  // Array of float values
-  model         String                // e.g., "text-embedding-3-small"
+  embedding     Json
+  model         String
   createdAt     DateTime              @default(now())
   updatedAt     DateTime              @updatedAt
-  
+  expectation   CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
+
   @@index([expectationId])
 }
 
-// Level 2: Long-Range Plans (yearly/term overview)
 model LongRangePlan {
-  id            String   @id @default(cuid())
-  userId        Int
-  user          User     @relation(fields: [userId], references: [id])
-  
-  title         String
-  academicYear  String   // e.g., "2024-2025"
-  term          String?  // "Full Year", "Term 1", "Term 2", etc.
-  grade         Int
-  subject       String
-  
-  // Planning details
-  description   String?
-  goals         String?  // Overall learning goals for the year/term
-  themes        Json?    // Array of major themes
-  
-  // ETFO-aligned fields
-  overarchingQuestions  String?  // Big questions that will guide the year
-  assessmentOverview    String?  // Overall assessment strategy
-  resourceNeeds         String?  // Materials, technology, resources needed
-  professionalGoals     String?  // Professional development goals
-  
-  // Bilingual support
-  titleFr       String?
-  descriptionFr String?
-  goalsFr       String?
-  
-  // Relationships
-  expectations  LongRangePlanExpectation[]
-  unitPlans     UnitPlan[]
-  
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  
+  id                   String                     @id @default(cuid())
+  userId               Int
+  title                String
+  academicYear         String
+  term                 String?
+  grade                Int
+  subject              String
+  description          String?
+  goals                String?
+  themes               Json?
+  overarchingQuestions String?
+  assessmentOverview   String?
+  resourceNeeds        String?
+  professionalGoals    String?
+  titleFr              String?
+  descriptionFr        String?
+  goalsFr              String?
+  createdAt            DateTime                   @default(now())
+  updatedAt            DateTime                   @updatedAt
+  user                 User                       @relation(fields: [userId], references: [id])
+  expectations         LongRangePlanExpectation[]
+  unitPlans            UnitPlan[]
+
   @@index([userId, academicYear])
   @@index([userId, subject, grade])
-  @@index([academicYear, grade, subject]) // For academic year overview queries
-  @@index([userId, updatedAt]) // For recent activity
-  @@index([userId, academicYear, subject]) // User's plans by year and subject
-  @@index([academicYear, subject, grade]) // Academic year overview with subject filter
+  @@index([academicYear, grade, subject])
+  @@index([userId, updatedAt])
+  @@index([userId, academicYear, subject])
+  @@index([academicYear, subject, grade])
 }
 
-// Junction table for Long-Range Plans and Curriculum Expectations
 model LongRangePlanExpectation {
-  longRangePlan   LongRangePlan         @relation(fields: [longRangePlanId], references: [id], onDelete: Cascade)
   longRangePlanId String
-  expectation     CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
   expectationId   String
-  plannedTerm     String?               // Which term this expectation is planned for
-  
+  plannedTerm     String?
+  expectation     CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
+  longRangePlan   LongRangePlan         @relation(fields: [longRangePlanId], references: [id], onDelete: Cascade)
+
   @@id([longRangePlanId, expectationId])
 }
 
-// Level 3: Unit Plans (replaces Milestone)
 model UnitPlan {
-  id              String   @id @default(cuid())
-  userId          Int
-  user            User     @relation(fields: [userId], references: [id])
-  
-  title           String
-  longRangePlanId String
-  longRangePlan   LongRangePlan @relation(fields: [longRangePlanId], references: [id])
-  
-  // Planning details
-  description     String?
-  bigIdeas        String?  // Key concepts/enduring understandings
-  essentialQuestions Json? // Array of guiding questions
-  
-  // Timeline
-  startDate       DateTime
-  endDate         DateTime
-  estimatedHours  Int?
-  
-  // Bilingual support
-  titleFr         String?
-  descriptionFr   String?
-  bigIdeasFr      String?
-  
-  // Assessment planning
-  assessmentPlan  String?  // How learning will be assessed
-  successCriteria Json?    // Array of success criteria
-  
-  // ETFO-aligned planning fields
-  crossCurricularConnections String?  // Links to other subject areas
-  learningSkills          Json?      // Array of learning skills focus
-  culminatingTask         String?    // Final assessment task description
-  keyVocabulary          Json?      // Array of key terms
-  priorKnowledge         String?    // Prerequisites for the unit
-  parentCommunicationPlan String?   // How to communicate with families
-  fieldTripsAndGuestSpeakers String? // Community connections
-  differentiationStrategies Json?   // Support for diverse learners
-  indigenousPerspectives   String?  // Indigenous knowledge integration
-  environmentalEducation   String?  // Environmental learning connections
-  socialJusticeConnections String?  // Equity and social justice themes
-  technologyIntegration    String?  // Technology use in the unit
-  communityConnections     String?  // Local partnerships and connections
-  
-  // Relationships
-  expectations    UnitPlanExpectation[]
-  lessonPlans     ETFOLessonPlan[]
-  resources       UnitPlanResource[]
-  
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-  
+  id                         String                @id @default(cuid())
+  userId                     Int
+  title                      String
+  longRangePlanId            String
+  description                String?
+  bigIdeas                   String?
+  essentialQuestions         Json?
+  startDate                  DateTime
+  endDate                    DateTime
+  estimatedHours             Int?
+  titleFr                    String?
+  descriptionFr              String?
+  bigIdeasFr                 String?
+  assessmentPlan             String?
+  successCriteria            Json?
+  crossCurricularConnections String?
+  learningSkills             Json?
+  culminatingTask            String?
+  keyVocabulary              Json?
+  priorKnowledge             String?
+  parentCommunicationPlan    String?
+  fieldTripsAndGuestSpeakers String?
+  differentiationStrategies  Json?
+  indigenousPerspectives     String?
+  environmentalEducation     String?
+  socialJusticeConnections   String?
+  technologyIntegration      String?
+  communityConnections       String?
+  createdAt                  DateTime              @default(now())
+  updatedAt                  DateTime              @updatedAt
+  lessonPlans                ETFOLessonPlan[]
+  longRangePlan              LongRangePlan         @relation(fields: [longRangePlanId], references: [id])
+  user                       User                  @relation(fields: [userId], references: [id])
+  expectations               UnitPlanExpectation[]
+  resources                  UnitPlanResource[]
+
   @@index([userId, startDate])
   @@index([longRangePlanId])
-  @@index([userId, updatedAt])  // For recent activity queries
-  @@index([startDate, endDate]) // For date range queries
-  @@index([userId, startDate, endDate]) // User's units by date range
-  @@index([longRangePlanId, startDate]) // Plan units by start date
+  @@index([userId, updatedAt])
+  @@index([startDate, endDate])
+  @@index([userId, startDate, endDate])
+  @@index([longRangePlanId, startDate])
 }
 
-// Junction table for Unit Plans and Curriculum Expectations
 model UnitPlanExpectation {
-  unitPlan      UnitPlan              @relation(fields: [unitPlanId], references: [id], onDelete: Cascade)
   unitPlanId    String
-  expectation   CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
   expectationId String
-  
+  expectation   CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
+  unitPlan      UnitPlan              @relation(fields: [unitPlanId], references: [id], onDelete: Cascade)
+
   @@id([unitPlanId, expectationId])
 }
 
-// Resources linked to unit plans
 model UnitPlanResource {
   id         String   @id @default(cuid())
   unitPlanId String
-  unitPlan   UnitPlan @relation(fields: [unitPlanId], references: [id])
-  
   title      String
-  type       String   // "document", "video", "website", "book", etc.
+  type       String
   url        String?
   notes      String?
-  
   createdAt  DateTime @default(now())
+  unitPlan   UnitPlan @relation(fields: [unitPlanId], references: [id])
 }
 
-// Level 4: Lesson Plans (ETFO version, replaces Activity)
 model ETFOLessonPlan {
-  id         String   @id @default(cuid())
-  userId     Int
-  user       User     @relation(fields: [userId], references: [id])
-  
-  title      String
-  unitPlanId String
-  unitPlan   UnitPlan @relation(fields: [unitPlanId], references: [id])
-  
-  // Denormalized fields for performance and filtering
-  grade      Int?     // Denormalized from LongRangePlan
-  subject    String?  // Denormalized from LongRangePlan
-  language   String?  // Teaching language (e.g., "en", "fr")
-  
-  // Lesson details
-  date       DateTime
-  duration   Int      // in minutes
-  
-  // Three-part lesson structure (ETFO standard)
-  mindsOn    String?  // Introduction/hook
-  action     String?  // Main learning activities
-  consolidation String? // Closure/assessment
-  
-  // Planning details
-  learningGoals String?
-  materials    Json?    // Array of required materials
-  grouping     String?  // "whole class", "small group", "pairs", "individual"
-  
-  // Bilingual support
-  titleFr      String?
-  mindsOnFr    String?
-  actionFr     String?
-  consolidationFr String?
-  learningGoalsFr String?
-  
-  // Differentiation
-  accommodations Json?  // Array of accommodations
-  modifications  Json?  // Array of modifications
-  extensions     Json?  // Array of extensions
-  differentiationStrategies Json?  // Object with forStruggling, forAdvanced, forELL, forIEP fields
-  
-  // Assessment
-  assessmentType String? // "diagnostic", "formative", "summative"
-  assessmentNotes String?
-  
-  // Substitute teacher friendly
-  isSubFriendly Boolean @default(true)
-  subNotes      String?
-  
-  // Relationships
-  expectations  ETFOLessonPlanExpectation[]
-  daybookEntry  DaybookEntry?
-  resources     ETFOLessonPlanResource[]
-  activityImports ActivityImport[]
-  
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  
+  id                        String                      @id @default(cuid())
+  userId                    Int
+  title                     String
+  unitPlanId                String
+  grade                     Int?
+  subject                   String?
+  language                  String?
+  date                      DateTime
+  duration                  Int
+  mindsOn                   String?
+  action                    String?
+  consolidation             String?
+  learningGoals             String?
+  materials                 Json?
+  grouping                  String?
+  titleFr                   String?
+  mindsOnFr                 String?
+  actionFr                  String?
+  consolidationFr           String?
+  learningGoalsFr           String?
+  accommodations            Json?
+  modifications             Json?
+  extensions                Json?
+  differentiationStrategies Json?
+  assessmentType            String?
+  assessmentNotes           String?
+  isSubFriendly             Boolean                     @default(true)
+  subNotes                  String?
+  createdAt                 DateTime                    @default(now())
+  updatedAt                 DateTime                    @updatedAt
+  activityImports           ActivityImport[]
+  daybookEntry              DaybookEntry?
+  unitPlan                  UnitPlan                    @relation(fields: [unitPlanId], references: [id])
+  user                      User                        @relation(fields: [userId], references: [id])
+  expectations              ETFOLessonPlanExpectation[]
+  resources                 ETFOLessonPlanResource[]
+
   @@index([userId, date])
   @@index([unitPlanId])
   @@index([grade, subject])
   @@index([language])
-  @@index([userId, isSubFriendly]) // For substitute-friendly lesson queries
-  @@index([userId, assessmentType]) // For assessment filtering
-  @@index([userId, updatedAt]) // For recent activity queries
-  @@index([date, duration]) // For time-based scheduling queries
-  @@index([userId, date, grade]) // User's lessons by date and grade
-  @@index([userId, date, subject]) // User's lessons by date and subject
-  @@index([grade, subject, date]) // Grade/subject with date range
-  @@index([userId, grade, subject]) // User's lessons by grade and subject
-  @@index([isSubFriendly, grade, subject]) // Sub-friendly lessons by grade/subject
+  @@index([userId, isSubFriendly])
+  @@index([userId, assessmentType])
+  @@index([userId, updatedAt])
+  @@index([date, duration])
+  @@index([userId, date, grade])
+  @@index([userId, date, subject])
+  @@index([grade, subject, date])
+  @@index([userId, grade, subject])
+  @@index([isSubFriendly, grade, subject])
 }
 
-// Junction table for Lesson Plans and Curriculum Expectations
 model ETFOLessonPlanExpectation {
-  lessonPlan    ETFOLessonPlan        @relation(fields: [lessonPlanId], references: [id], onDelete: Cascade)
   lessonPlanId  String
-  expectation   CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
   expectationId String
-  
+  expectation   CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
+  lessonPlan    ETFOLessonPlan        @relation(fields: [lessonPlanId], references: [id], onDelete: Cascade)
+
   @@id([lessonPlanId, expectationId])
 }
 
-// Resources linked to lesson plans
 model ETFOLessonPlanResource {
   id           String         @id @default(cuid())
   lessonPlanId String
-  lessonPlan   ETFOLessonPlan @relation(fields: [lessonPlanId], references: [id])
-  
   title        String
-  type         String         // "handout", "slide", "video", etc.
+  type         String
   url          String?
-  content      String?        // For inline content
-  
+  content      String?
   createdAt    DateTime       @default(now())
+  lessonPlan   ETFOLessonPlan @relation(fields: [lessonPlanId], references: [id])
 }
 
-// Level 5: Daybook Entries (daily reflections and notes)
 model DaybookEntry {
-  id           String         @id @default(cuid())
-  userId       Int
-  user         User           @relation(fields: [userId], references: [id])
-  
-  date         DateTime
-  lessonPlanId String?        @unique
-  lessonPlan   ETFOLessonPlan? @relation(fields: [lessonPlanId], references: [id])
-  
-  // Reflection prompts
-  whatWorked   String?        // What went well?
-  whatDidntWork String?       // What could be improved?
-  nextSteps    String?        // What to do differently next time?
-  
-  // General classroom observations (no individual student data)
-  classEngagement String?    // Notes on overall engagement levels
-  commonChallenges String?    // Observed class difficulties
-  notableAchievements  String?    // Class achievements and successes
-  
-  // General notes
-  notes        String?        // Any other observations
-  privateNotes String?        // Notes not for sharing
-  
-  // Bilingual support
-  whatWorkedFr String?
-  whatDidntWorkFr String?
-  nextStepsFr  String?
-  notesFr      String?
-  
-  // Quick indicators
-  overallRating Int?          // 1-5 scale
-  wouldReuseLesson Boolean?
-  
-  // Relationships
-  expectations DaybookEntryExpectation[]
-  
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-  
+  id                  String                    @id @default(cuid())
+  userId              Int
+  date                DateTime
+  lessonPlanId        String?                   @unique
+  whatWorked          String?
+  whatDidntWork       String?
+  nextSteps           String?
+  classEngagement     String?
+  commonChallenges    String?
+  notableAchievements String?
+  notes               String?
+  privateNotes        String?
+  whatWorkedFr        String?
+  whatDidntWorkFr     String?
+  nextStepsFr         String?
+  notesFr             String?
+  overallRating       Int?
+  wouldReuseLesson    Boolean?
+  createdAt           DateTime                  @default(now())
+  updatedAt           DateTime                  @updatedAt
+  lessonPlan          ETFOLessonPlan?           @relation(fields: [lessonPlanId], references: [id])
+  user                User                      @relation(fields: [userId], references: [id])
+  expectations        DaybookEntryExpectation[]
+
   @@index([userId, date])
-  @@index([userId, overallRating]) // For rating-based queries
-  @@index([userId, updatedAt]) // For recent entries
-  @@index([lessonPlanId]) // For lesson plan relationship queries
-  @@index([userId, date, overallRating]) // User's entries by date with rating filter
-  @@index([date, overallRating]) // Global date range with rating
-  @@index([userId, wouldReuseLesson]) // Filter for reusable lessons
+  @@index([userId, overallRating])
+  @@index([userId, updatedAt])
+  @@index([lessonPlanId])
+  @@index([userId, date, overallRating])
+  @@index([date, overallRating])
+  @@index([userId, wouldReuseLesson])
 }
 
-// Junction table for Daybook Entries and Curriculum Expectations
 model DaybookEntryExpectation {
-  daybookEntry  DaybookEntry          @relation(fields: [daybookEntryId], references: [id], onDelete: Cascade)
   daybookEntryId String
-  expectation   CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
-  expectationId String
-  coverage      String?               // "introduced", "developing", "consolidated"
-  
+  expectationId  String
+  coverage       String?
+  expectation    CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
+  daybookEntry   DaybookEntry          @relation(fields: [daybookEntryId], references: [id], onDelete: Cascade)
+
   @@id([daybookEntryId, expectationId])
 }
 
-// ==================== Activity Discovery Models ====================
-// These models support the Activity Search and Discovery feature
-// allowing teachers to find, import, and rate educational activities from multiple sources
-
 model ExternalActivity {
-  id                String   @id @default(cuid())
-  externalId        String   // ID from source platform
-  source            String   // "TPT", "Khan", "OER", etc.
-  url               String
-  title             String
-  description       String?
-  thumbnailUrl      String?
-  
-  // Activity details
-  duration          Int?     // in minutes
-  activityType      String   // "video", "worksheet", "game", "experiment", "handson"
-  gradeMin          Int
-  gradeMax          Int
-  subject           String
-  language          String   @default("en")
-  
-  // Materials and requirements
-  materials         Json     // Array of required materials
-  technology        Json?    // Tech requirements
-  groupSize         String?  // "individual", "pairs", "small group", "whole class"
-  
-  // Quality and ratings
-  sourceRating      Float?   // Rating from source platform
-  sourceReviews     Int?     // Number of reviews on source
-  internalRating    Float?   // Our users' ratings
-  internalReviews   Int?     // Our users' review count
-  
-  // Curriculum alignment
-  curriculumTags    Json     // Array of curriculum codes
-  learningGoals     Json?    // Extracted learning objectives
-  
-  // Metadata
-  isFree            Boolean  @default(true)
-  price             Float?
-  license           String?  // Copyright/usage terms
-  lastVerified      DateTime @default(now())
-  isActive          Boolean  @default(true)
-  
-  // Relations
-  imports           ActivityImport[]
-  ratings           ActivityRating[]
-  collections       ActivityCollectionItem[]
-  
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
-  
+  id              String                   @id @default(cuid())
+  externalId      String
+  source          String
+  url             String
+  title           String
+  description     String?
+  thumbnailUrl    String?
+  duration        Int?
+  activityType    String
+  gradeMin        Int
+  gradeMax        Int
+  subject         String
+  language        String                   @default("en")
+  materials       Json
+  technology      Json?
+  groupSize       String?
+  sourceRating    Float?
+  sourceReviews   Int?
+  internalRating  Float?
+  internalReviews Int?
+  curriculumTags  Json
+  learningGoals   Json?
+  isFree          Boolean                  @default(true)
+  price           Float?
+  license         String?
+  lastVerified    DateTime                 @default(now())
+  isActive        Boolean                  @default(true)
+  createdAt       DateTime                 @default(now())
+  updatedAt       DateTime                 @updatedAt
+  collections     ActivityCollectionItem[]
+  imports         ActivityImport[]
+  ratings         ActivityRating[]
+
   @@unique([source, externalId])
   @@index([subject, gradeMin, gradeMax])
   @@index([activityType, language])
   @@index([isActive, lastVerified])
-  @@index([isActive, subject, gradeMin, gradeMax])  // Active activities by subject/grade
-  @@index([isActive, activityType, subject])        // Active activities by type/subject
-  @@index([internalRating, subject])               // Highly rated by subject
-  @@index([isFree, subject, gradeMin, gradeMax])   // Free activities by subject/grade
+  @@index([isActive, subject, gradeMin, gradeMax])
+  @@index([isActive, activityType, subject])
+  @@index([internalRating, subject])
+  @@index([isFree, subject, gradeMin, gradeMax])
 }
 
 model ActivityImport {
-  id              String           @id @default(cuid())
-  userId          Int
-  user            User             @relation(fields: [userId], references: [id])
-  activityId      String
-  activity        ExternalActivity @relation(fields: [activityId], references: [id])
-  
-  // Where it was imported to
-  lessonPlanId    String?
-  lessonPlan      ETFOLessonPlan?  @relation(fields: [lessonPlanId], references: [id])
-  lessonSection   String?          // "mindsOn", "action", "consolidation"
-  
-  // Customizations made
-  customizations  Json?            // User's modifications
-  notes           String?          // Teacher's notes
-  
-  // Usage tracking
-  timesUsed       Int              @default(1)
-  lastUsed        DateTime         @default(now())
-  effectiveness   Int?             // 1-5 rating after use
-  
-  createdAt       DateTime         @default(now())
-  
+  id             String           @id @default(cuid())
+  userId         Int
+  activityId     String
+  lessonPlanId   String?
+  lessonSection  String?
+  customizations Json?
+  notes          String?
+  timesUsed      Int              @default(1)
+  lastUsed       DateTime         @default(now())
+  effectiveness  Int?
+  createdAt      DateTime         @default(now())
+  lessonPlan     ETFOLessonPlan?  @relation(fields: [lessonPlanId], references: [id])
+  activity       ExternalActivity @relation(fields: [activityId], references: [id])
+  user           User             @relation(fields: [userId], references: [id])
+
   @@index([userId, activityId])
   @@index([lessonPlanId])
 }
 
 model ActivityRating {
-  id          String           @id @default(cuid())
-  userId      Int
-  user        User             @relation(fields: [userId], references: [id])
-  activityId  String
-  activity    ExternalActivity @relation(fields: [activityId], references: [id])
-  
-  rating      Int              // 1-5 stars
-  review      String?
+  id             String           @id @default(cuid())
+  userId         Int
+  activityId     String
+  rating         Int
+  review         String?
   wouldRecommend Boolean?
-  
-  // Context of use
-  gradeUsed   Int?
-  subjectUsed String?
-  workedWell  String?          // What worked
-  challenges  String?          // What didn't work
-  
-  createdAt   DateTime         @default(now())
-  
+  gradeUsed      Int?
+  subjectUsed    String?
+  workedWell     String?
+  challenges     String?
+  createdAt      DateTime         @default(now())
+  activity       ExternalActivity @relation(fields: [activityId], references: [id])
+  user           User             @relation(fields: [userId], references: [id])
+
   @@unique([userId, activityId])
   @@index([activityId, rating])
 }
 
 model ActivityCollection {
-  id          String     @id @default(cuid())
+  id          String                   @id @default(cuid())
   userId      Int
-  user        User       @relation(fields: [userId], references: [id])
-  
   name        String
   description String?
-  
+  createdAt   DateTime                 @default(now())
+  updatedAt   DateTime                 @updatedAt
+  user        User                     @relation(fields: [userId], references: [id])
   items       ActivityCollectionItem[]
-  
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  
+
   @@index([userId])
 }
 
-// Junction table for ActivityCollection and ExternalActivity
 model ActivityCollectionItem {
   collectionId String
-  collection   ActivityCollection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
   activityId   String
+  addedAt      DateTime           @default(now())
   activity     ExternalActivity   @relation(fields: [activityId], references: [id], onDelete: Cascade)
-  addedAt      DateTime          @default(now())
-  
+  collection   ActivityCollection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+
   @@id([collectionId, activityId])
 }
 
-// ==================== Weekly Planner State Model ====================
-// Stores user preferences and state for the weekly planner interface
-
 model WeeklyPlannerState {
-  id                 String   @id @default(cuid())
-  userId             Int      @unique
-  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  
-  // View preferences
-  defaultView        String   @default("week") // "week" | "month" | "agenda"
-  timeSlotDuration   Int      @default(30) // minutes (15, 30, 60)
-  showWeekends       Boolean  @default(false)
-  startOfWeek        Int      @default(1) // 0=Sunday, 1=Monday
-  workingHours       String   @default("{\"start\":\"08:00\",\"end\":\"16:00\"}")
-  
-  // UI preferences  
-  sidebarExpanded    Boolean  @default(true)
-  showMiniCalendar   Boolean  @default(true)
-  showResourcePanel  Boolean  @default(true)
-  compactMode        Boolean  @default(false)
-  theme              String   @default("light") // "light" | "dark" | "system"
-  
-  // Planning preferences
-  autoSave           Boolean  @default(true)
-  autoSaveInterval   Int      @default(30) // seconds
-  showUncoveredOutcomes Boolean @default(true)
-  defaultLessonDuration Int   @default(60) // minutes
-  
-  // Current state
-  currentWeekStart   DateTime @default(now())
-  lastActiveView     String?  // For restoring user's position
-  draftChanges       String?  // Unsaved changes as JSON string
-  
-  // Advanced features
-  undoHistory        String   @default("[]") // Array of undo states as JSON string
-  redoHistory        String   @default("[]") // Array of redo states as JSON string
-  maxHistorySize     Int      @default(50)
-  
-  // Offline support
-  lastSyncedAt       DateTime @default(now())
-  hasOfflineChanges  Boolean  @default(false)
-  offlineData        String?  // IndexedDB sync data as JSON string
-  
-  createdAt          DateTime @default(now())
-  updatedAt          DateTime @updatedAt
-  
+  id                    String   @id @default(cuid())
+  userId                Int      @unique
+  defaultView           String   @default("week")
+  timeSlotDuration      Int      @default(30)
+  showWeekends          Boolean  @default(false)
+  startOfWeek           Int      @default(1)
+  workingHours          String   @default("{\"start\":\"08:00\",\"end\":\"16:00\"}")
+  sidebarExpanded       Boolean  @default(true)
+  showMiniCalendar      Boolean  @default(true)
+  showResourcePanel     Boolean  @default(true)
+  compactMode           Boolean  @default(false)
+  theme                 String   @default("light")
+  autoSave              Boolean  @default(true)
+  autoSaveInterval      Int      @default(30)
+  showUncoveredOutcomes Boolean  @default(true)
+  defaultLessonDuration Int      @default(60)
+  currentWeekStart      DateTime @default(now())
+  lastActiveView        String?
+  draftChanges          String?
+  undoHistory           String   @default("[]")
+  redoHistory           String   @default("[]")
+  maxHistorySize        Int      @default(50)
+  lastSyncedAt          DateTime @default(now())
+  hasOfflineChanges     Boolean  @default(false)
+  offlineData           String?
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  user                  User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   @@index([userId])
   @@index([userId, lastSyncedAt])
   @@index([userId, hasOfflineChanges])
   @@index([currentWeekStart])
 }
 
-// ==================== Template System Models ====================
-// Support for unit and lesson plan templates to reduce teacher workload
-
-enum TemplateType {
-  UNIT_PLAN
-  LESSON_PLAN
-}
-
-enum TemplateCategory {
-  BY_SUBJECT
-  BY_GRADE
-  BY_THEME
-  BY_SEASON
-  BY_SKILL
-  CUSTOM
-}
-
 model PlanTemplate {
-  id              String           @id @default(cuid())
-  
-  // Template identification
-  title           String
-  titleFr         String?
-  description     String?
-  descriptionFr   String?
-  type            TemplateType
-  category        TemplateCategory
-  
-  // Template metadata
-  subject         String?          // Optional subject filter
-  gradeMin        Int?             // Minimum grade level
-  gradeMax        Int?             // Maximum grade level
-  tags            Json             // Array of tags for searchability
-  keywords        Json             // Array of keywords for search
-  
-  // Template ownership
-  isSystem        Boolean          @default(false) // System-provided templates
-  createdByUserId Int?
-  createdByUser   User?            @relation(fields: [createdByUserId], references: [id])
-  
-  // Template content (JSON structure based on type)
-  content         Json             // Full template content
-  
-  // Unit Plan specific fields (when type = UNIT_PLAN)
-  estimatedWeeks  Int?             // Typical duration in weeks
-  unitStructure   Json?            // Predefined lesson sequence structure
-  
-  // Lesson Plan specific fields (when type = LESSON_PLAN)
-  estimatedMinutes Int?            // Typical duration in minutes
-  lessonStructure Json?            // Three-part lesson structure template
-  
-  // Usage tracking
-  usageCount      Int              @default(0)
-  lastUsedAt      DateTime?
-  
-  // Ratings and feedback
-  ratings         TemplateRating[]
-  averageRating   Float?           @default(0)
-  
-  // Template variations
-  variations      TemplateVariation[]
-  
-  createdAt       DateTime         @default(now())
-  updatedAt       DateTime         @updatedAt
-  
+  id               String              @id @default(cuid())
+  title            String
+  titleFr          String?
+  description      String?
+  descriptionFr    String?
+  type             String
+  category         String
+  subject          String?
+  gradeMin         Int?
+  gradeMax         Int?
+  tags             Json
+  keywords         Json
+  isSystem         Boolean             @default(false)
+  createdByUserId  Int?
+  content          Json
+  estimatedWeeks   Int?
+  unitStructure    Json?
+  estimatedMinutes Int?
+  lessonStructure  Json?
+  usageCount       Int                 @default(0)
+  lastUsedAt       DateTime?
+  averageRating    Float?              @default(0)
+  createdAt        DateTime            @default(now())
+  updatedAt        DateTime            @updatedAt
+  createdByUser    User?               @relation(fields: [createdByUserId], references: [id])
+  ratings          TemplateRating[]
+  variations       TemplateVariation[]
+
   @@index([type, category])
   @@index([subject, gradeMin, gradeMax])
   @@index([isSystem])
   @@index([createdByUserId])
   @@index([usageCount])
-  @@index([isSystem, averageRating]) // For system template ranking
-  @@index([createdByUserId, type]) // For user's templates by type
-  @@index([lastUsedAt]) // For recently used templates
+  @@index([isSystem, averageRating])
+  @@index([createdByUserId, type])
+  @@index([lastUsedAt])
 }
 
 model TemplateRating {
-  id          String       @id @default(cuid())
-  templateId  String
-  template    PlanTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
-  userId      Int
-  rating      Int          // 1-5 stars
-  comment     String?
-  createdAt   DateTime     @default(now())
-  
+  id         String       @id @default(cuid())
+  templateId String
+  userId     Int
+  rating     Int
+  comment    String?
+  createdAt  DateTime     @default(now())
+  template   PlanTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
+
   @@unique([templateId, userId])
   @@index([templateId, rating])
 }
 
-// Variations allow templates to have different versions (e.g., simplified, enriched, differentiated)
 model TemplateVariation {
-  id              String       @id @default(cuid())
-  templateId      String
-  template        PlanTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
-  
-  name            String       // e.g., "Simplified Version", "Extended Version"
-  nameFr          String?
-  description     String?
-  modificationNotes String?     // What's different in this variation
-  content         Json         // Modified template content
-  
-  createdAt       DateTime     @default(now())
-  
+  id                String       @id @default(cuid())
+  templateId        String
+  name              String
+  nameFr            String?
+  description       String?
+  modificationNotes String?
+  content           Json
+  createdAt         DateTime     @default(now())
+  template          PlanTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
+
   @@index([templateId])
 }
 
-// Recent Plan Access tracking
 model RecentPlanAccess {
-  id              String   @id @default(cuid())
-  userId          Int
-  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  
-  planType        String   // 'long-range', 'unit', 'lesson', 'daybook'
-  planId          String   // ID of the specific plan
-  lastAccessed    DateTime @default(now())
-  accessCount     Int      @default(1)
-  
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-  
+  id           String   @id @default(cuid())
+  userId       Int
+  planType     String
+  planId       String
+  lastAccessed DateTime @default(now())
+  accessCount  Int      @default(1)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   @@unique([userId, planType, planId])
   @@index([userId, lastAccessed])
   @@index([planType, planId])
 }
 
-// ==================== Key Teacher Features ====================
-// Core features requested by teachers for parent communication and substitute planning
-
-// Newsletter System - AI-powered parent communication with bilingual support
 model Newsletter {
-  id              String   @id @default(cuid())
-  userId          Int
-  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  
-  // Core newsletter data
-  title           String
-  titleFr         String?
-  dateFrom        DateTime
-  dateTo          DateTime
-  tone            String   // 'friendly' | 'formal' | 'informative'
-  templateType    String   // 'weekly' | 'monthly' | 'special'
-  
-  // Newsletter content (structured JSON with NewsletterSection objects)
-  sections        Json     // Array of { id, title, titleFr, content, contentFr, isEditable, order }
-  metadata        Json?    // Generation metadata, AI model used, context
-  
-  // Status and lifecycle
-  isDraft         Boolean  @default(true)
-  sentAt          DateTime?
-  
-  // Generation context
-  focusAreas      Json?    // Array of focus areas
-  includeUpcomingEvents Boolean @default(true)
-  lessonPlansUsed Json?    // IDs of lesson plans referenced
-  
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-  
+  id                    String    @id @default(cuid())
+  userId                Int
+  title                 String
+  titleFr               String?
+  dateFrom              DateTime
+  dateTo                DateTime
+  tone                  String
+  templateType          String
+  sections              Json
+  metadata              Json?
+  isDraft               Boolean   @default(true)
+  sentAt                DateTime?
+  focusAreas            Json?
+  includeUpcomingEvents Boolean   @default(true)
+  lessonPlansUsed       Json?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   @@index([userId, isDraft])
   @@index([userId, sentAt])
   @@index([dateFrom, dateTo])
-  @@index([userId, dateFrom, dateTo]) // User's newsletters by date range
-  @@index([isDraft, sentAt]) // Draft status with send date
-  @@index([userId, createdAt]) // User's newsletters by creation date
+  @@index([userId, dateFrom, dateTo])
+  @@index([isDraft, sentAt])
+  @@index([userId, createdAt])
 }
 
-// Substitute Plan System - Comprehensive substitute teacher planning
 model SubstitutePlan {
-  id              String   @id @default(cuid())
-  userId          Int
-  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  
-  // Plan identification
-  title           String
-  dateFor         DateTime // Date this plan is intended for
-  grade           Int?
-  subject         String?
-  
-  // Generated content (structured JSON objects)
-  schedule        Json     // Daily schedule with times: [{ time, activity, notes }]
-  classroomRoutines Json   // Morning, transition, dismissal routines
-  emergencyInfo   Json     // Emergency procedures, contacts, evacuation plans
-  lessonPlans     Json     // Simplified lesson instructions with materials
-  behaviorPlan    Json     // Behavior management strategies and procedures
-  studentNotes    Json     // General class notes (no individual student data)
-  materialsList   Json     // Required materials and their locations
-  importantInfo   Json?    // Special procedures, allergies, medication notes
-  
-  // Context and generation
-  sourceUnitPlanId     String?  // Unit plan this was generated from
-  sourceLessonPlanIds  Json?    // Lesson plan IDs used for generation
-  generationContext    Json?    // AI generation context and settings
-  
-  // Administrative details
-  teacherContact   Json?    // How to reach the regular teacher
-  adminContact     Json?    // School administration contact
-  
-  // Status and usage
-  isActive        Boolean  @default(true)
-  lastUsed        DateTime?
-  useCount        Int      @default(0)
-  
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-  
+  id                  String    @id @default(cuid())
+  userId              Int
+  title               String
+  dateFor             DateTime
+  grade               Int?
+  subject             String?
+  schedule            Json
+  classroomRoutines   Json
+  emergencyInfo       Json
+  lessonPlans         Json
+  behaviorPlan        Json
+  studentNotes        Json
+  materialsList       Json
+  importantInfo       Json?
+  sourceUnitPlanId    String?
+  sourceLessonPlanIds Json?
+  generationContext   Json?
+  teacherContact      Json?
+  adminContact        Json?
+  isActive            Boolean   @default(true)
+  lastUsed            DateTime?
+  useCount            Int       @default(0)
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+  user                User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   @@index([userId, dateFor])
   @@index([userId, isActive])
   @@index([grade, subject])
-  @@index([userId, dateFor, grade]) // User's sub plans by date and grade
-  @@index([dateFor, grade, subject]) // Date range with grade/subject
-  @@index([isActive, dateFor]) // Active plans by date
-  @@index([userId, isActive, dateFor]) // User's active plans by date
+  @@index([userId, dateFor, grade])
+  @@index([dateFor, grade, subject])
+  @@index([isActive, dateFor])
+  @@index([userId, isActive, dateFor])
 }
