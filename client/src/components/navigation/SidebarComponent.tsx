@@ -2,9 +2,8 @@ import React from 'react';
 
 import { useAuth } from '../../contexts/AuthContext';
 
-import { ETFONavigationSection } from './ETFONavigationSection';
+import { TeachingNavigationSection } from './TeachingNavigationSection';
 import { useNavigation } from './NavigationProvider';
-import { ResourceNavigationSection } from './ResourceNavigationSection';
 import { SidebarHeader } from './SidebarHeader';
 
 export function SidebarComponent(): React.ReactElement {
@@ -29,8 +28,7 @@ export function SidebarComponent(): React.ReactElement {
       <SidebarHeader />
       
       <div className="py-4 h-[calc(100%-8rem)] overflow-y-auto">
-        <ETFONavigationSection />
-        <ResourceNavigationSection />
+        <TeachingNavigationSection />
       </div>
 
       {/* Logout button at bottom */}

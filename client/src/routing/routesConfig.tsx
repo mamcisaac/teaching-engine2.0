@@ -13,7 +13,8 @@ const QuickLessonPage = lazy(() => import('../pages/QuickLessonPage').then(modul
 const SimpleCurriculumPage = lazy(() => import('../pages/SimpleCurriculumPage').then(module => ({ default: module.SimpleCurriculumPage }))); // named export
 const CurriculumImportPage = lazy(() => import('../pages/CurriculumImportPage').then(module => ({ default: module.CurriculumImportPage }))); // named export
 const DaybookPage = lazy(() => import('../pages/DaybookPage').then(module => ({ default: module.DaybookPage }))); // named export
-const PlanningDashboard = lazy(() => import('../pages/PlanningDashboard').then(module => ({ default: module.PlanningDashboard }))); // named export
+const TeachingDashboard = lazy(() => import('../pages/TeachingDashboard').then(module => ({ default: module.TeachingDashboard }))); // named export
+const ShowcaseDashboard = lazy(() => import('../pages/ShowcaseDashboard').then(module => ({ default: module.ShowcaseDashboard }))); // named export
 const ParentNewsletterPage = lazy(() => import('../pages/ParentNewsletterPage').then(module => ({ default: module.ParentNewsletterPage }))); // named export
 const HelpPage = lazy(() => import('../pages/HelpPage').then(module => ({ default: module.HelpPage }))); // named export
 const TemplatesPage = lazy(() => import('../pages/TemplatesPage').then(module => ({ default: module.TemplatesPage }))); // named export
@@ -95,7 +96,7 @@ export const plannerRoutes: RouteConfig[] = [
   },
   {
     path: 'dashboard',
-    element: PlanningDashboard,
+    element: TeachingDashboard,
   },
   {
     path: 'calendar',
@@ -127,7 +128,15 @@ export const plannerRoutes: RouteConfig[] = [
 export const protectedRoutes: RouteConfig[] = [
   {
     path: '/',
-    element: <Navigate replace to="/planner/today" />,
+    element: <Navigate replace to="/dashboard" />,
+  },
+  {
+    path: '/dashboard',
+    element: ShowcaseDashboard,
+  },
+  {
+    path: '/today',
+    element: TodayView,
   },
   {
     path: '/planner',

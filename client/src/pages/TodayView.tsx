@@ -175,6 +175,8 @@ export function TodayView(): React.ReactElement {
   const navigate = useNavigate();
   const today = new Date();
   const [quickNotes, setQuickNotes] = useState('');
+  const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
+  const [teachingMode, setTeachingMode] = useState(false);
   
   // Fetch today's lessons
   const { data: lessons = [], isLoading: lessonsLoading } = useETFOLessonPlans({
@@ -189,6 +191,7 @@ export function TodayView(): React.ReactElement {
   });
   
   const todayEntry = daybookEntries.length > 0 ? daybookEntries[0] : null;
+  const currentLesson = lessons[currentLessonIndex];
   
   // Create daybook entry mutation
   const createDaybookMutation = useCreateDaybookEntry();
@@ -223,6 +226,88 @@ export function TodayView(): React.ReactElement {
     );
   }
   
+  // Teaching mode full screen view
+  if (teachingMode && currentLesson) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 p-6">
+        <div className="max-w-4xl mx-auto">
+          {/* Teaching Mode Header */}
+          <div className="flex items-center justify-between mb-6">
+            <Badge className="bg-green-600 text-white px-3 py-1 text-lg">
+              TEACHING MODE
+            </Badge>
+            <Button 
+              variant="outline"
+              onClick={() => setTeachingMode(false)}
+            >
+              Exit Teaching Mode
+            </Button>
+          </div>
+          
+          {/* Current Lesson Display */}
+          <Card className="shadow-2xl border-2 border-green-500 mb-6">
+            <CardHeader className="bg-gradient-to-r from-green-100 to-blue-100 pb-6">
+              <CardTitle className="text-3xl">{currentLesson.titleFr || currentLesson.title}</CardTitle>
+              <CardDescription className="text-lg mt-2">{currentLesson.title}</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6 pt-6">
+              {/* Three Part Lesson in Teaching Mode */}
+              <div className="space-y-6">
+                <Card className="bg-yellow-50 border-yellow-300">
+                  <CardHeader>
+                    <CardTitle className="text-xl text-yellow-900">🧠 Minds On (15 min)</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-lg">{currentLesson.mindsOnFr || currentLesson.mindsOn}</p>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-blue-50 border-blue-300">
+                  <CardHeader>
+                    <CardTitle className="text-xl text-blue-900">🎯 Action (35 min)</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-lg">{currentLesson.actionFr || currentLesson.action}</p>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-green-50 border-green-300">
+                  <CardHeader>
+                    <CardTitle className="text-xl text-green-900">✨ Consolidation (10 min)</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-lg">{currentLesson.consolidationFr || currentLesson.consolidation}</p>
+                  </CardContent>
+                </Card>
+              </div>
+              
+              {/* Navigation */}
+              <div className="flex items-center justify-between pt-6">
+                <Button 
+                  variant="outline"
+                  disabled={currentLessonIndex === 0}
+                  onClick={() => setCurrentLessonIndex(currentLessonIndex - 1)}
+                >
+                  Previous Lesson
+                </Button>
+                <span className="text-lg font-medium">
+                  Lesson {currentLessonIndex + 1} of {lessons.length}
+                </span>
+                <Button 
+                  variant="outline"
+                  disabled={currentLessonIndex === lessons.length - 1}
+                  onClick={() => setCurrentLessonIndex(currentLessonIndex + 1)}
+                >
+                  Next Lesson
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="container mx-auto px-4 py-6 max-w-6xl">
       {/* Header */}
@@ -230,11 +315,20 @@ export function TodayView(): React.ReactElement {
         <div className="flex items-center justify-between mb-2">
           <h1 className="text-3xl font-bold flex items-center gap-3">
             <Calendar className="h-8 w-8 text-blue-600" />
-            Today's Teaching
+            Today's Teaching Plan
           </h1>
-          <div className="text-right">
-            <p className="text-lg font-medium">{format(today, 'EEEE, MMMM d, yyyy')}</p>
-            <p className="text-sm text-gray-600">{format(today, 'h:mm a')}</p>
+          <div className="flex items-center gap-3">
+            <Button
+              variant="outline"
+              onClick={() => setTeachingMode(true)}
+              disabled={lessons.length === 0}
+            >
+              📺 Teaching Mode
+            </Button>
+            <div className="text-right">
+              <p className="text-lg font-medium">{format(today, 'EEEE, MMMM d, yyyy')}</p>
+              <p className="text-sm text-gray-600">{format(today, 'h:mm a')}</p>
+            </div>
           </div>
         </div>
       </div>

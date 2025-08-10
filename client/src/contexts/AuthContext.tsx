@@ -209,7 +209,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
           setError(null);
           
           // Store in localStorage
-          authService.storeUser(emilyUser);
+          authService.setUser(emilyUser);
           
           console.log('[AuthContext] Development bypass - user set and authenticated');
         } else {
