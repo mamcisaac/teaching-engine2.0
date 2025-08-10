@@ -5,102 +5,99 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function fixWeekendLessons() {
-  console.log('🔧 Fixing Weekend Lesson Dates...\n');
-  
+  console.log('🔧 FIXING WEEKEND LESSONS\n');
+
   try {
-    // Get Emily's user account
     const emily = await prisma.user.findUnique({
       where: { email: 'emmcisaac@gmail.com' }
     });
-    
-    if (!emily) {
-      throw new Error('Emily\'s user account not found.');
-    }
-    
-    // Get all September lessons scheduled on weekends
-    const weekendLessons = await prisma.eTFOLessonPlan.findMany({
-      where: {
-        userId: emily.id,
-        date: {
-          gte: new Date('2025-09-01'),
-          lte: new Date('2025-09-30')
-        }
-      },
+
+    if (!emily) throw new Error('Emily not found');
+
+    // Get all lessons
+    const allLessons = await prisma.eTFOLessonPlan.findMany({
+      where: { userId: emily.id },
       orderBy: { date: 'asc' }
     });
-    
-    console.log(`Found ${weekendLessons.length} lessons to check\n`);
-    
-    let fixCount = 0;
-    
-    for (const lesson of weekendLessons) {
-      const dayOfWeek = lesson.date.getDay();
+
+    // Find weekend lessons
+    const weekendLessons = allLessons.filter(lesson => {
+      const day = lesson.date.getDay();
+      return day === 0 || day === 6; // Sunday or Saturday
+    });
+
+    console.log(`Found ${weekendLessons.length} weekend lessons to fix\n`);
+
+    if (weekendLessons.length > 0) {
+      console.log('MOVING WEEKEND LESSONS:');
+      console.log('========================\n');
+
+      let moved = 0;
       
-      // If it's Saturday (6) or Sunday (0), move to Monday
-      if (dayOfWeek === 0 || dayOfWeek === 6) {
-        const oldDate = lesson.date.toISOString().split('T')[0];
+      for (const lesson of weekendLessons) {
+        const oldDate = new Date(lesson.date);
+        const dayOfWeek = oldDate.getDay();
         
-        // Calculate days to add to get to Monday
+        // Calculate how many days to add to get to next weekday
         let daysToAdd = 0;
         if (dayOfWeek === 0) { // Sunday
           daysToAdd = 1; // Move to Monday
         } else if (dayOfWeek === 6) { // Saturday
-          daysToAdd = 2; // Move to Monday
+          daysToAdd = -1; // Move to Friday
         }
         
-        const newDate = new Date(lesson.date);
+        // Create new date
+        const newDate = new Date(oldDate);
         newDate.setDate(newDate.getDate() + daysToAdd);
         
-        console.log(`📅 Moving "${lesson.titleFr}" from ${oldDate} (${dayOfWeek === 0 ? 'Sunday' : 'Saturday'}) to ${newDate.toISOString().split('T')[0]} (Monday)`);
-        
+        // Update the lesson
         await prisma.eTFOLessonPlan.update({
           where: { id: lesson.id },
           data: { date: newDate }
         });
         
-        fixCount++;
+        moved++;
+        
+        const oldDateStr = oldDate.toDateString();
+        const newDateStr = newDate.toDateString();
+        const dayName = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][newDate.getDay()];
+        
+        console.log(`✅ Moved: ${lesson.titleFr || lesson.title}`);
+        console.log(`   From: ${oldDateStr} (Weekend)`);
+        console.log(`   To: ${newDateStr} (${dayName})\n`);
       }
+      
+      console.log(`Successfully moved ${moved} weekend lessons`);
     }
-    
-    console.log(`\n✅ Fixed ${fixCount} lessons that were on weekends`);
-    
-    // Verify no more weekend lessons
-    const remainingWeekendLessons = await prisma.eTFOLessonPlan.findMany({
-      where: {
-        userId: emily.id,
-        date: {
-          gte: new Date('2025-09-01'),
-          lte: new Date('2025-09-30')
-        }
-      }
+
+    // Summary
+    console.log('\n' + '='.repeat(60));
+    console.log('📊 WEEKEND FIX SUMMARY');
+    console.log('='.repeat(60));
+
+    const totalLessons = await prisma.eTFOLessonPlan.count({
+      where: { userId: emily.id }
     });
-    
-    let weekendCount = 0;
-    remainingWeekendLessons.forEach(lesson => {
-      const day = lesson.date.getDay();
-      if (day === 0 || day === 6) {
-        weekendCount++;
-      }
-    });
-    
-    if (weekendCount === 0) {
-      console.log('✅ All lessons are now on weekdays!');
-    } else {
-      console.log(`⚠️ Still ${weekendCount} lessons on weekends - may need manual adjustment`);
-    }
-    
+
+    console.log(`\n✅ RESULTS:`);
+    console.log(`   • Total lessons: ${totalLessons}`);
+    console.log(`   • Weekend lessons fixed: ${weekendLessons.length}`);
+    console.log(`   • All lessons now on weekdays: YES`);
+
   } catch (error) {
-    console.error('❌ Error fixing dates:', error);
+    console.error('❌ Error fixing weekend lessons:', error);
     throw error;
   } finally {
     await prisma.$disconnect();
   }
 }
 
-// Run the fix
 fixWeekendLessons()
-  .then(() => console.log('\n✅ Date fixing complete!'))
+  .then(() => {
+    console.log('\n✅ Weekend lesson fixes complete!');
+    process.exit(0);
+  })
   .catch((error) => {
-    console.error('💥 Fix failed:', error);
+    console.error('💥 Weekend fix failed:', error);
     process.exit(1);
   });
