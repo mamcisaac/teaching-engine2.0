@@ -22,7 +22,7 @@ async function seedFrancaisUnitPlans() {
       where: {
         userId: emily.id,
         subject: 'Français langue première',
-        academicYear: '2024-2025'
+        academicYear: '2025-2026'
       }
     });
     
@@ -88,8 +88,8 @@ async function seedFrancaisUnitPlans() {
           'Quels sons entends-tu?',
           'Comment écoute-t-on bien?'
         ]),
-        startDate: new Date('2024-09-03'),
-        endDate: new Date('2024-09-27'),
+        startDate: new Date('2025-09-04'),
+        endDate: new Date('2025-09-30'),
         estimatedHours: 20,
         assessmentPlan: 'Daily observations of oral French use, phonological awareness games assessment, listening behavior checklists.',
         successCriteria: JSON.stringify([
@@ -145,8 +145,8 @@ async function seedFrancaisUnitPlans() {
           'Comment décris-tu ta famille?',
           'Qu\'est-ce que tu aimes faire avec ta famille?'
         ]),
-        startDate: new Date('2024-09-30'),
-        endDate: new Date('2024-10-25'),
+        startDate: new Date('2025-10-01'),
+        endDate: new Date('2025-10-31'),
         estimatedHours: 20,
         assessmentPlan: 'Oral presentations about family, comprehension checks during read-alouds, observation of strategy use.',
         successCriteria: JSON.stringify([
@@ -202,8 +202,8 @@ async function seedFrancaisUnitPlans() {
           'Quelles histoires raconte-t-on?',
           'Comment puis-je écrire mes idées?'
         ]),
-        startDate: new Date('2024-10-28'),
-        endDate: new Date('2024-12-20'),
+        startDate: new Date('2025-11-03'),
+        endDate: new Date('2025-12-19'),
         estimatedHours: 30,
         assessmentPlan: 'Story retelling rubric, writing samples portfolio, guided reading observations, seasonal vocabulary assessment.',
         successCriteria: JSON.stringify([
@@ -262,8 +262,8 @@ async function seedFrancaisUnitPlans() {
           'Quelles activités faisons-nous en hiver?',
           'Comment raconter nos aventures d\'hiver?'
         ]),
-        startDate: new Date('2025-01-06'),
-        endDate: new Date('2025-01-31'),
+        startDate: new Date('2026-01-05'),
+        endDate: new Date('2026-01-30'),
         estimatedHours: 18,
         assessmentPlan: 'Mid-year reading assessment, winter journal entries, oral storytelling rubric.',
         successCriteria: JSON.stringify([
@@ -312,8 +312,8 @@ async function seedFrancaisUnitPlans() {
           'Comment les animaux vivent-ils?',
           'Comment prendre soin des animaux?'
         ]),
-        startDate: new Date('2025-02-03'),
-        endDate: new Date('2025-02-28'),
+        startDate: new Date('2026-02-02'),
+        endDate: new Date('2026-02-27'),
         estimatedHours: 20,
         assessmentPlan: 'Animal research presentations, reading comprehension activities, critical thinking discussions.',
         successCriteria: JSON.stringify([
@@ -369,9 +369,9 @@ async function seedFrancaisUnitPlans() {
           'Quels endroits visitons-nous?',
           'Comment pouvons-nous aider notre communauté?'
         ]),
-        startDate: new Date('2025-03-03'),
-        endDate: new Date('2025-03-28'),
-        estimatedHours: 20,
+        startDate: new Date('2026-03-02'),
+        endDate: new Date('2026-03-20'),
+        estimatedHours: 15,
         assessmentPlan: 'Community helper interviews, map reading skills, analytical questioning rubric, speaking assessments.',
         successCriteria: JSON.stringify([
           'Je peux expliquer le travail des aidants communautaires',
@@ -426,8 +426,8 @@ async function seedFrancaisUnitPlans() {
           'Comment ai-je grandi comme apprenant?',
           'Quelles histoires puis-je raconter?'
         ]),
-        startDate: new Date('2025-03-31'),
-        endDate: new Date('2025-05-23'),
+        startDate: new Date('2026-03-23'),
+        endDate: new Date('2026-05-15'),
         estimatedHours: 30,
         assessmentPlan: 'Self-assessment portfolios, writing conferences, reading growth documentation, reflection journals.',
         successCriteria: JSON.stringify([
@@ -486,8 +486,8 @@ async function seedFrancaisUnitPlans() {
           'De quoi suis-je fier/fière?',
           'Qu\'est-ce que je veux apprendre en 2e année?'
         ]),
-        startDate: new Date('2025-05-26'),
-        endDate: new Date('2025-06-20'),
+        startDate: new Date('2026-05-19'),
+        endDate: new Date('2026-06-25'),
         estimatedHours: 18,
         assessmentPlan: 'Final portfolio conferences, growth documentation, peer feedback, self-reflection presentations.',
         successCriteria: JSON.stringify([

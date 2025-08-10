@@ -22,7 +22,7 @@ async function seedMathematiquesUnitPlans() {
       where: {
         userId: emily.id,
         subject: 'Mathématiques',
-        academicYear: '2024-2025'
+        academicYear: '2025-2026'
       }
     });
     
@@ -88,8 +88,8 @@ async function seedMathematiquesUnitPlans() {
           'Comment sais-tu sans compter?',
           'Où vois-tu des nombres?'
         ]),
-        startDate: new Date('2024-09-03'),
-        endDate: new Date('2024-09-27'),
+        startDate: new Date('2025-09-04'),
+        endDate: new Date('2025-09-30'),
         estimatedHours: 20,
         assessmentPlan: 'Daily observations of counting, number recognition games, subitizing assessments with dot cards, math journals.',
         successCriteria: JSON.stringify([
@@ -148,8 +148,8 @@ async function seedMathematiquesUnitPlans() {
           'Lequel est plus grand?',
           'Comment faire des groupes égaux?'
         ]),
-        startDate: new Date('2024-09-30'),
-        endDate: new Date('2024-10-25'),
+        startDate: new Date('2025-10-01'),
+        endDate: new Date('2025-10-31'),
         estimatedHours: 20,
         assessmentPlan: 'Number representation portfolios, comparison activities assessment, equal groups investigations, observation notes.',
         successCriteria: JSON.stringify([
@@ -208,8 +208,8 @@ async function seedMathematiquesUnitPlans() {
           'Qu\'est-ce qui vient après?',
           'Comment peux-tu trier ces formes?'
         ]),
-        startDate: new Date('2024-10-28'),
-        endDate: new Date('2024-11-22'),
+        startDate: new Date('2025-11-03'),
+        endDate: new Date('2025-11-28'),
         estimatedHours: 20,
         assessmentPlan: 'Pattern creation assessment, shape sorting activities, pattern translation tasks, observation rubric.',
         successCriteria: JSON.stringify([
@@ -268,8 +268,8 @@ async function seedMathematiquesUnitPlans() {
           'Quelle stratégie as-tu utilisée?',
           'Comment sais-tu que c\'est correct?'
         ]),
-        startDate: new Date('2024-11-25'),
-        endDate: new Date('2025-01-31'),
+        startDate: new Date('2025-12-01'),
+        endDate: new Date('2026-01-30'),
         estimatedHours: 40,
         assessmentPlan: 'Problem-solving observations, strategy documentation, fact fluency games, math stories assessment.',
         successCriteria: JSON.stringify([
@@ -325,8 +325,8 @@ async function seedMathematiquesUnitPlans() {
           'Comment le sais-tu sans compter?',
           'Est-ce équilibré?'
         ]),
-        startDate: new Date('2025-02-03'),
-        endDate: new Date('2025-02-28'),
+        startDate: new Date('2026-02-02'),
+        endDate: new Date('2026-02-27'),
         estimatedHours: 20,
         assessmentPlan: 'Mental math interviews, strategy sharing sessions, balance activities assessment, math talks.',
         successCriteria: JSON.stringify([
@@ -382,9 +382,9 @@ async function seedMathematiquesUnitPlans() {
           'Lequel est plus long/lourd/grand?',
           'Combien de temps cela prend-il?'
         ]),
-        startDate: new Date('2025-03-03'),
-        endDate: new Date('2025-03-28'),
-        estimatedHours: 20,
+        startDate: new Date('2026-03-02'),
+        endDate: new Date('2026-03-20'),
+        estimatedHours: 15,
         assessmentPlan: 'Measurement investigations portfolio, comparison activities, time awareness checks, practical measuring.',
         successCriteria: JSON.stringify([
           'Je peux comparer des longueurs',
@@ -436,8 +436,8 @@ async function seedMathematiquesUnitPlans() {
           'Quelle stratégie vas-tu essayer?',
           'Comment peux-tu vérifier ta réponse?'
         ]),
-        startDate: new Date('2025-03-31'),
-        endDate: new Date('2025-05-09'),
+        startDate: new Date('2026-03-23'),
+        endDate: new Date('2026-05-08'),
         estimatedHours: 30,
         assessmentPlan: 'Problem-solving rubric, strategy documentation, peer assessment, solution presentations.',
         successCriteria: JSON.stringify([
@@ -486,8 +486,8 @@ async function seedMathematiquesUnitPlans() {
           'De quoi es-tu fier/fière?',
           'Qu\'est-ce que tu veux apprendre ensuite?'
         ]),
-        startDate: new Date('2025-05-12'),
-        endDate: new Date('2025-06-20'),
+        startDate: new Date('2026-05-11'),
+        endDate: new Date('2026-06-25'),
         estimatedHours: 30,
         assessmentPlan: 'Portfolio conferences, self-assessment reflections, peer celebrations, growth documentation.',
         successCriteria: JSON.stringify([

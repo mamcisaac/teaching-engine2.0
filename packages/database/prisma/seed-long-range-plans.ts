@@ -101,7 +101,7 @@ async function seedLongRangePlans() {
         userId: emily.id,
         title: 'Français langue première - Grade 1 French Immersion',
         titleFr: 'Français langue première - 1re année immersion',
-        academicYear: '2024-2025',
+        academicYear: '2025-2026',
         term: 'Full Year',
         grade: 1,
         subject: 'Français langue première',
@@ -146,7 +146,7 @@ async function seedLongRangePlans() {
         userId: emily.id,
         title: 'Mathematics - Grade 1 French Immersion',
         titleFr: 'Mathématiques - 1re année immersion',
-        academicYear: '2024-2025',
+        academicYear: '2025-2026',
         term: 'Full Year',
         grade: 1,
         subject: 'Mathématiques',
@@ -190,7 +190,7 @@ async function seedLongRangePlans() {
         userId: emily.id,
         title: 'Natural Sciences - Grade 1 French Immersion',
         titleFr: 'Sciences de la nature - 1re année immersion',
-        academicYear: '2024-2025',
+        academicYear: '2025-2026',
         term: 'Full Year',
         grade: 1,
         subject: 'Sciences de la nature',
@@ -234,7 +234,7 @@ async function seedLongRangePlans() {
         userId: emily.id,
         title: 'Social Studies - Grade 1 French Immersion',
         titleFr: 'Sciences humaines - 1re année immersion',
-        academicYear: '2024-2025',
+        academicYear: '2025-2026',
         term: 'Full Year',
         grade: 1,
         subject: 'Sciences humaines',
@@ -279,7 +279,7 @@ async function seedLongRangePlans() {
         userId: emily.id,
         title: 'Visual Arts - Grade 1 French Immersion',
         titleFr: 'Arts visuels - 1re année immersion',
-        academicYear: '2024-2025',
+        academicYear: '2025-2026',
         term: 'Full Year',
         grade: 1,
         subject: 'Arts visuels',
@@ -320,7 +320,7 @@ async function seedLongRangePlans() {
         userId: emily.id,
         title: 'Personal and Social Development - Grade 1 French Immersion',
         titleFr: 'Formation personnelle et sociale - 1re année immersion',
-        academicYear: '2024-2025',
+        academicYear: '2025-2026',
         term: 'Full Year',
         grade: 1,
         subject: 'Formation personnelle et sociale',
@@ -361,7 +361,7 @@ async function seedLongRangePlans() {
         userId: emily.id,
         title: 'Physical Education - Grade 1 French Immersion',
         titleFr: 'Éducation physique - 1re année immersion',
-        academicYear: '2024-2025',
+        academicYear: '2025-2026',
         term: 'Full Year',
         grade: 1,
         subject: 'Éducation physique',
@@ -405,7 +405,7 @@ async function seedLongRangePlans() {
         userId: emily.id,
         title: 'Music - Grade 1',
         titleFr: 'Musique - 1re année',
-        academicYear: '2024-2025',
+        academicYear: '2025-2026',
         term: 'Full Year',
         grade: 1,
         subject: 'Music',
@@ -458,7 +458,7 @@ async function seedLongRangePlans() {
     console.log('\n📊 LONG RANGE PLANS CREATED SUCCESSFULLY!');
     console.log(`✅ ${planCount} subject plans created`);
     console.log(`✅ ${expectationCount} curriculum expectations linked`);
-    console.log('✅ All 73 expectations distributed across the 2024-2025 school year');
+    console.log('✅ All 73 expectations distributed across the 2025-2026 school year');
     console.log('✅ Emily is ready to start planning units and lessons!');
     
   } catch (error) {

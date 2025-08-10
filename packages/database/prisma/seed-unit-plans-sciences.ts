@@ -22,7 +22,7 @@ async function seedSciencesUnitPlans() {
       where: {
         userId: emily.id,
         subject: 'Sciences de la nature',
-        academicYear: '2024-2025'
+        academicYear: '2025-2026'
       }
     });
     
@@ -88,8 +88,8 @@ async function seedSciencesUnitPlans() {
           'Comment change notre environnement?',
           'Comment prendre soin de notre école?'
         ]),
-        startDate: new Date('2024-09-03'),
-        endDate: new Date('2024-09-27'),
+        startDate: new Date('2025-09-04'),
+        endDate: new Date('2025-10-03'),
         estimatedHours: 12,
         assessmentPlan: 'Science journals, observation checklists, sorting activities assessment, outdoor exploration rubrics.',
         successCriteria: JSON.stringify([
@@ -145,8 +145,8 @@ async function seedSciencesUnitPlans() {
           'Comment les animaux se préparent pour l\'hiver?',
           'Pourquoi les feuilles changent de couleur?'
         ]),
-        startDate: new Date('2024-09-30'),
-        endDate: new Date('2024-11-08'),
+        startDate: new Date('2025-10-06'),
+        endDate: new Date('2025-11-14'),
         estimatedHours: 18,
         assessmentPlan: 'Seasonal observations portfolio, leaf collection and classification, animal preparation research presentations.',
         successCriteria: JSON.stringify([
@@ -199,8 +199,8 @@ async function seedSciencesUnitPlans() {
           'D\'où vient l\'énergie?',
           'Comment pouvons-nous économiser l\'énergie?'
         ]),
-        startDate: new Date('2024-11-11'),
-        endDate: new Date('2024-12-20'),
+        startDate: new Date('2025-11-17'),
+        endDate: new Date('2025-12-19'),
         estimatedHours: 18,
         assessmentPlan: 'Energy use surveys, conservation plan presentations, energy-saving poster assessment.',
         successCriteria: JSON.stringify([
@@ -253,8 +253,8 @@ async function seedSciencesUnitPlans() {
           'Comment les animaux survivent l\'hiver?',
           'Pourquoi avons-nous des saisons?'
         ]),
-        startDate: new Date('2025-01-06'),
-        endDate: new Date('2025-02-14'),
+        startDate: new Date('2026-01-05'),
+        endDate: new Date('2026-02-13'),
         estimatedHours: 18,
         assessmentPlan: 'Winter journal observations, animal adaptation research, ice experiments documentation.',
         successCriteria: JSON.stringify([
@@ -303,8 +303,8 @@ async function seedSciencesUnitPlans() {
           'Comment changent les animaux?',
           'Comment avons-nous grandi?'
         ]),
-        startDate: new Date('2025-02-17'),
-        endDate: new Date('2025-04-11'),
+        startDate: new Date('2026-02-17'),
+        endDate: new Date('2026-04-10'),
         estimatedHours: 24,
         assessmentPlan: 'Plant growth journals, life cycle diagrams, growth comparison charts, observation rubrics.',
         successCriteria: JSON.stringify([
@@ -357,8 +357,8 @@ async function seedSciencesUnitPlans() {
           'Quels changements observons-nous?',
           'Comment savons-nous que c\'est le printemps?'
         ]),
-        startDate: new Date('2025-04-14'),
-        endDate: new Date('2025-05-16'),
+        startDate: new Date('2026-04-13'),
+        endDate: new Date('2026-05-15'),
         estimatedHours: 18,
         assessmentPlan: 'Spring observation journals, seasonal comparison charts, new life documentation.',
         successCriteria: JSON.stringify([
@@ -411,8 +411,8 @@ async function seedSciencesUnitPlans() {
           'Comment pouvons-nous aider l\'environnement?',
           'Pourquoi est-ce important de protéger la nature?'
         ]),
-        startDate: new Date('2025-05-19'),
-        endDate: new Date('2025-06-20'),
+        startDate: new Date('2026-05-19'),
+        endDate: new Date('2026-06-25'),
         estimatedHours: 18,
         assessmentPlan: 'Environmental action plans, before/after comparisons, stewardship project assessment.',
         successCriteria: JSON.stringify([
