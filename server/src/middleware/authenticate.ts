@@ -182,8 +182,8 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
     if (shouldBypass) {
       // Inject hardcoded Emily McIsaac user for Grade 1 French Immersion workflow testing
       req.user = {
-        id: 1,
-        email: 'emily.mcisaac@pei.ca',
+        id: 2,
+        email: 'emmcisaac@gmail.com',
         role: 'teacher',
         name: 'Emily McIsaac',
         organizationId: 1,

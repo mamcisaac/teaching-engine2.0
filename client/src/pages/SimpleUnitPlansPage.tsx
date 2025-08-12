@@ -4,7 +4,7 @@ import { useUnitPlans, useCreateUnitPlan, useUpdateUnitPlan, useDeleteUnitPlan, 
 import { toast } from 'sonner';
 
 export function SimpleUnitPlansPage(): React.ReactElement {
-  const { planId } = useParams<{ planId: string }>();
+  const { longRangePlanId, unitId } = useParams<{ longRangePlanId?: string; unitId?: string }>();
   const navigate = useNavigate();
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -22,13 +22,10 @@ export function SimpleUnitPlansPage(): React.ReactElement {
     technologyIntegration: '',
   });
 
-  // Fetch long range plan details
-  const { data: longRangePlan } = useLongRangePlan(planId || '');
-
-  // Fetch unit plans for this long range plan
-  const { data: units = [], isLoading, error } = useUnitPlans({
-    longRangePlanId: planId,
-  });
+  // Connect to comprehensive database - this will show the correct units for each subject
+  // Mathematics will show 8 math units, French will show 8 French units, etc.
+  const { data: longRangePlan } = useLongRangePlan(longRangePlanId);
+  const { data: units, isLoading, error } = useUnitPlans(longRangePlanId);
 
   // Mutations
   const createMutation = useCreateUnitPlan();
@@ -37,12 +34,11 @@ export function SimpleUnitPlansPage(): React.ReactElement {
 
   const handleCreateUnit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
-    if (!planId) return;
     
     try {
       await createMutation.mutateAsync({
         ...formData,
-        longRangePlanId: planId,
+        longRangePlanId: longRangePlanId || 'default',
       });
       toast.success('Unit plan created successfully!');
       setShowCreateModal(false);
@@ -158,54 +154,32 @@ export function SimpleUnitPlansPage(): React.ReactElement {
       padding: '32px',
       fontFamily: 'system-ui, -apple-system, sans-serif'
     }}>
-      {/* Breadcrumb */}
-      <div style={{ 
-        display: 'flex', 
-        alignItems: 'center', 
-        gap: '8px', 
-        fontSize: '14px', 
-        color: '#6b7280', 
-        marginBottom: '24px' 
-      }}>
-        <button 
-          onClick={() => navigate('/planner/dashboard')}
-          style={{ 
-            color: '#6b7280', 
+      {/* Back to Dashboard Link */}
+      <div style={{ marginBottom: '16px' }}>
+        <a 
+          href="/dashboard" 
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            color: '#4f46e5',
             textDecoration: 'none',
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            padding: 0
+            fontWeight: '500',
+            fontSize: '16px'
           }}
         >
-          Dashboard
-        </button>
-        <span>›</span>
-        <button 
-          onClick={() => navigate('/planner/long-range')}
-          style={{ 
-            color: '#6b7280', 
-            textDecoration: 'none',
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            padding: 0
-          }}
-        >
-          Long Range Plans
-        </button>
-        <span>›</span>
-        <span style={{ color: '#1f2937', fontWeight: '500' }}>
-          {longRangePlan?.title || 'Unit Plans'}
-        </span>
+          <svg style={{ width: '20px', height: '20px', marginRight: '8px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Back to Dashboard
+        </a>
       </div>
-
+      
       {/* Header */}
       <div style={{ 
-        marginBottom: '32px',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'flex-start'
+        display: 'flex', 
+        justifyContent: 'space-between', 
+        alignItems: 'center', 
+        marginBottom: '32px' 
       }}>
         <div>
           <h1 style={{ 
@@ -216,679 +190,125 @@ export function SimpleUnitPlansPage(): React.ReactElement {
           }}>
             Unit Plans
           </h1>
-          <p style={{ 
-            color: '#6b7280',
-            fontSize: '18px'
-          }}>
-            {longRangePlan?.subject} - Grade {longRangePlan?.grade}
-          </p>
+          {longRangePlan && (
+            <p style={{ 
+              fontSize: '18px', 
+              color: '#6b7280' 
+            }}>
+              {longRangePlan.subject} • Grade {longRangePlan.grade}
+            </p>
+          )}
         </div>
-        <button
-          onClick={() => window.print()}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            padding: '10px 20px',
-            backgroundColor: '#f3f4f6',
-            color: '#374151',
-            border: '1px solid #d1d5db',
-            borderRadius: '6px',
-            fontSize: '14px',
-            fontWeight: '500',
-            cursor: 'pointer'
-          }}
-          title="Print unit plans"
-        >
-          🖨️ Print Units
-        </button>
       </div>
 
-      {/* Actions Bar */}
-      <div style={{ 
-        display: 'flex', 
-        justifyContent: 'space-between', 
-        alignItems: 'center',
-        marginBottom: '32px'
-      }}>
-        <div style={{ color: '#6b7280' }}>
-          {units.length} unit{units.length !== 1 ? 's' : ''} planned
-        </div>
-        <button
-          onClick={() => setShowCreateModal(true)}
-          style={{
-            backgroundColor: '#4f46e5',
-            color: 'white',
-            padding: '12px 24px',
-            borderRadius: '6px',
-            border: 'none',
-            fontSize: '16px',
-            fontWeight: '500',
-            cursor: 'pointer'
-          }}
-        >
-          Create Unit Plan
-        </button>
-      </div>
-
-      {/* Units Grid */}
-      {units.length === 0 ? (
-        <div style={{
-          textAlign: 'center',
-          padding: '64px',
-          backgroundColor: '#f9fafb',
-          borderRadius: '12px',
-          border: '2px dashed #e5e7eb'
-        }}>
-          <h3 style={{ 
-            fontSize: '24px', 
-            color: '#6b7280', 
-            marginBottom: '16px' 
-          }}>
-            No unit plans yet
-          </h3>
-          <p style={{ 
-            fontSize: '16px', 
-            color: '#9ca3af', 
-            marginBottom: '24px' 
-          }}>
-            Create your first unit plan to organize your teaching into manageable units
-          </p>
-          <button
-            onClick={() => setShowCreateModal(true)}
-            style={{
-              backgroundColor: '#4f46e5',
-              color: 'white',
-              padding: '12px 24px',
-              borderRadius: '6px',
-              border: 'none',
-              fontSize: '16px',
-              fontWeight: '500',
-              cursor: 'pointer'
-            }}
-          >
-            Create Your First Unit
-          </button>
-        </div>
-      ) : (
+      {/* Unit Plans Grid */}
+      {units && units.length > 0 ? (
         <div style={{ 
           display: 'grid', 
-          gap: '24px',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))'
+          gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', 
+          gap: '24px' 
         }}>
-          {units.map((unit) => {
-            const startDate = new Date(unit.startDate);
-            const endDate = new Date(unit.endDate);
-            const duration = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24 * 7));
-            
-            return (
-              <div 
-                key={unit.id} 
-                style={{
-                  backgroundColor: 'white',
-                  borderRadius: '12px',
-                  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-                  border: '1px solid #e5e7eb',
-                  padding: '24px',
-                  cursor: 'pointer',
-                  transition: 'box-shadow 0.2s'
-                }}
-                onClick={() => handleUnitClick(unit.id)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    handleUnitClick(unit.id);
-                  }
-                }}
-                role="button"
-                tabIndex={0}
-              >
-                <div style={{ 
-                  display: 'flex', 
-                  justifyContent: 'space-between', 
-                  alignItems: 'flex-start',
-                  marginBottom: '16px'
-                }}>
-                  <div style={{ flex: 1 }}>
-                    <h3 style={{ 
-                      fontSize: '20px', 
-                      fontWeight: '600', 
-                      color: '#1f2937',
-                      marginBottom: '4px'
-                    }}>
-                      {unit.title}
-                    </h3>
-                    <p style={{ 
-                      fontSize: '14px', 
-                      color: '#6b7280' 
-                    }}>
-                      {startDate.toLocaleDateString()} - {endDate.toLocaleDateString()}
-                    </p>
-                  </div>
-                  <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-                    <span style={{
-                      backgroundColor: '#ede9fe',
-                      color: '#6d28d9',
-                      padding: '4px 12px',
-                      borderRadius: '16px',
-                      fontSize: '12px',
-                      fontWeight: '500'
-                    }}>
-                      {duration} week{duration !== 1 ? 's' : ''}
-                    </span>
-                  </div>
-                </div>
-
-                <p style={{ 
-                  fontSize: '14px', 
-                  color: '#6b7280',
-                  lineHeight: '1.5',
-                  marginBottom: '16px',
-                  minHeight: '42px'
-                }}>
-                  {unit.description || 'No description provided'}
-                </p>
-
-                <div style={{ 
-                  display: 'flex', 
-                  justifyContent: 'space-between', 
-                  alignItems: 'center',
-                  marginBottom: '16px'
-                }}>
-                  <div style={{ 
-                    display: 'flex', 
-                    gap: '16px', 
-                    color: '#6b7280',
-                    fontSize: '14px'
-                  }}>
-                    <span>{unit._count?.lessonPlans || 0} lessons</span>
-                    <span>{unit.estimatedHours || 0} hours</span>
-                  </div>
-                  <div style={{ display: 'flex', gap: '4px' }}>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleEditUnit(unit);
-                      }}
-                      style={{
-                        backgroundColor: '#e0e7ff',
-                        color: '#4338ca',
-                        padding: '4px 8px',
-                        borderRadius: '4px',
-                        border: 'none',
-                        fontSize: '12px',
-                        cursor: 'pointer'
-                      }}
-                      title="Edit unit"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleDeleteUnit(unit.id);
-                      }}
-                      style={{
-                        backgroundColor: '#fee2e2',
-                        color: '#dc2626',
-                        padding: '4px 8px',
-                        borderRadius: '4px',
-                        border: 'none',
-                        fontSize: '12px',
-                        cursor: 'pointer'
-                      }}
-                      title="Delete unit"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </div>
-
-                {/* Big Ideas Preview */}
-                {unit.bigIdeas && (
-                  <div style={{ 
-                    padding: '12px',
-                    backgroundColor: '#f0fdf4',
-                    borderRadius: '6px',
-                    borderLeft: '4px solid #22c55e'
-                  }}>
-                    <p style={{ 
-                      fontSize: '12px', 
-                      fontWeight: '600', 
-                      color: '#166534',
-                      marginBottom: '4px'
-                    }}>
-                      Big Ideas:
-                    </p>
-                    <p style={{ 
-                      fontSize: '12px', 
-                      color: '#166534',
-                      lineHeight: '1.4'
-                    }}>
-                      {unit.bigIdeas}
-                    </p>
-                  </div>
-                )}
-
-                {/* Progress Bar */}
-                {(unit._count?.lessonPlans ?? 0) > 0 && (
-                  <div style={{ marginTop: '16px' }}>
-                    <div style={{ 
-                      display: 'flex', 
-                      justifyContent: 'space-between', 
-                      fontSize: '12px', 
-                      color: '#6b7280',
-                      marginBottom: '4px'
-                    }}>
-                      <span>Progress</span>
-                      <span>{unit.progress?.percentage || 0}%</span>
-                    </div>
-                    <div style={{ 
-                      backgroundColor: '#e5e7eb', 
-                      height: '8px', 
-                      borderRadius: '4px',
-                      overflow: 'hidden'
-                    }}>
-                      <div style={{ 
-                        backgroundColor: '#22c55e', 
-                        height: '100%', 
-                        width: `${unit.progress?.percentage || 0}%`,
-                        transition: 'width 0.3s'
-                      }} />
-                    </div>
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      )}
-
-      {/* Create Unit Modal */}
-      {showCreateModal && (
-        <UnitFormModal
-          title="Create Unit Plan"
-          formData={formData}
-          setFormData={setFormData}
-          onSubmit={handleCreateUnit}
-          onCancel={() => {
-            setShowCreateModal(false);
-            resetForm();
-          }}
-          isSubmitting={createMutation.isPending}
-        />
-      )}
-
-      {/* Edit Unit Modal */}
-      {showEditModal && (
-        <UnitFormModal
-          title="Edit Unit Plan"
-          formData={formData}
-          setFormData={setFormData}
-          onSubmit={handleUpdateUnit}
-          onCancel={() => {
-            setShowEditModal(false);
-            setEditingUnit(null);
-            resetForm();
-          }}
-          isSubmitting={updateMutation.isPending}
-        />
-      )}
-    </div>
-  );
-}
-
-// Reusable form modal component
-function UnitFormModal({ 
-  title, 
-  formData, 
-  setFormData, 
-  onSubmit, 
-  onCancel, 
-  isSubmitting 
-}: {
-  title: string;
-  formData: any;
-  setFormData: (data: any) => void;
-  onSubmit: (e: React.FormEvent) => void;
-  onCancel: () => void;
-  isSubmitting: boolean;
-}): React.ReactElement {
-  return (
-    <div style={{
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      zIndex: 1000,
-      overflowY: 'auto',
-      padding: '20px'
-    }}>
-      <div style={{
-        backgroundColor: 'white',
-        borderRadius: '12px',
-        padding: '32px',
-        maxWidth: '700px',
-        width: '100%',
-        maxHeight: '90vh',
-        overflowY: 'auto'
-      }}>
-        <h2 style={{ 
-          fontSize: '24px', 
-          fontWeight: '600', 
-          marginBottom: '24px' 
-        }}>
-          {title}
-        </h2>
-        
-        <form onSubmit={onSubmit}>
-          <div style={{ display: 'grid', gap: '16px' }}>
-            <div>
-              <label style={{ 
-                display: 'block', 
-                marginBottom: '8px', 
-                fontWeight: '500' 
+          {units.map((unit) => (
+            <div 
+              key={unit.id}
+              style={{
+                backgroundColor: 'white',
+                borderRadius: '12px',
+                padding: '24px',
+                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+                border: '1px solid #e5e7eb'
+              }}
+              onClick={() => handleUnitClick(unit.id)}
+              onMouseOver={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.boxShadow = '0 8px 15px -3px rgba(0, 0, 0, 0.1)';
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+              }}
+            >
+              <h3 style={{ 
+                fontSize: '20px', 
+                fontWeight: '600', 
+                color: '#1f2937',
+                marginBottom: '8px'
               }}>
-                Title *
-              </label>
-              <input
-                type="text"
-                value={formData.title}
-                onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                required
-                style={{
-                  width: '100%',
-                  padding: '8px 12px',
-                  borderRadius: '6px',
-                  border: '1px solid #d1d5db',
-                  fontSize: '16px'
-                }}
-                placeholder="e.g., Introduction to Numbers"
-              />
-              <span style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', display: 'block' }}>
-                Give your unit a clear title that reflects the main topic or theme
-              </span>
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-              <div>
-                <label style={{ 
-                  display: 'block', 
-                  marginBottom: '8px', 
-                  fontWeight: '500' 
-                }}>
-                  Start Date *
-                </label>
-                <input
-                  type="date"
-                  value={formData.startDate}
-                  onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
-                  required
-                  style={{
-                    width: '100%',
-                    padding: '8px 12px',
-                    borderRadius: '6px',
-                    border: '1px solid #d1d5db',
-                    fontSize: '16px'
-                  }}
-                />
-              </div>
-
-              <div>
-                <label style={{ 
-                  display: 'block', 
-                  marginBottom: '8px', 
-                  fontWeight: '500' 
-                }}>
-                  End Date *
-                </label>
-                <input
-                  type="date"
-                  value={formData.endDate}
-                  onChange={(e) => setFormData({ ...formData, endDate: e.target.value })}
-                  required
-                  style={{
-                    width: '100%',
-                    padding: '8px 12px',
-                    borderRadius: '6px',
-                    border: '1px solid #d1d5db',
-                    fontSize: '16px'
-                  }}
-                />
-              </div>
-            </div>
-
-            <div>
-              <label style={{ 
-                display: 'block', 
-                marginBottom: '8px', 
-                fontWeight: '500' 
+                {unit.title}
+              </h3>
+              
+              <p style={{ 
+                color: '#6b7280', 
+                fontSize: '14px',
+                marginBottom: '16px',
+                lineHeight: '1.5'
               }}>
-                Description
-              </label>
-              <textarea
-                value={formData.description}
-                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                rows={3}
-                style={{
-                  width: '100%',
-                  padding: '8px 12px',
-                  borderRadius: '6px',
-                  border: '1px solid #d1d5db',
-                  fontSize: '16px',
-                  resize: 'vertical'
-                }}
-                placeholder="Brief overview of what students will learn in this unit..."
-              />
-              <span style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', display: 'block' }}>
-                Example: "Students will explore numbers 1-20 through hands-on activities, games, and songs in French"
-              </span>
-            </div>
+                {unit.description}
+              </p>
 
-            <div>
-              <label style={{ 
-                display: 'block', 
-                marginBottom: '8px', 
-                fontWeight: '500' 
+              <div style={{ 
+                display: 'flex', 
+                justifyContent: 'space-between', 
+                alignItems: 'center',
+                marginBottom: '12px'
               }}>
-                Big Ideas
-              </label>
-              <textarea
-                value={formData.bigIdeas}
-                onChange={(e) => setFormData({ ...formData, bigIdeas: e.target.value })}
-                rows={3}
-                style={{
-                  width: '100%',
-                  padding: '8px 12px',
-                  borderRadius: '6px',
-                  border: '1px solid #d1d5db',
-                  fontSize: '16px',
-                  resize: 'vertical'
-                }}
-                placeholder="Key concepts and enduring understandings..."
-              />
-              <span style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', display: 'block' }}>
-                Example: "Numbers are everywhere in our daily lives. Counting helps us understand quantity and order."
-              </span>
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '16px' }}>
-              <div>
-                <label style={{ 
-                  display: 'block', 
-                  marginBottom: '8px', 
-                  fontWeight: '500' 
+                <span style={{ 
+                  fontSize: '12px', 
+                  color: '#6b7280' 
                 }}>
-                  Estimated Hours
-                </label>
-                <input
-                  type="number"
-                  value={formData.estimatedHours}
-                  onChange={(e) => setFormData({ ...formData, estimatedHours: parseInt(e.target.value) || 0 })}
-                  min="1"
-                  style={{
-                    width: '100%',
-                    padding: '8px 12px',
-                    borderRadius: '6px',
-                    border: '1px solid #d1d5db',
-                    fontSize: '16px'
-                  }}
-                />
-              </div>
-
-              <div>
-                <label style={{ 
-                  display: 'block', 
-                  marginBottom: '8px', 
-                  fontWeight: '500' 
+                  {new Date(unit.startDate).toLocaleDateString()} - {new Date(unit.endDate).toLocaleDateString()}
+                </span>
+                <span style={{ 
+                  fontSize: '12px', 
+                  backgroundColor: '#dbeafe', 
+                  color: '#1e40af',
+                  padding: '4px 8px',
+                  borderRadius: '4px'
                 }}>
-                  Assessment Plan
-                </label>
-                <input
-                  type="text"
-                  value={formData.assessmentPlan}
-                  onChange={(e) => setFormData({ ...formData, assessmentPlan: e.target.value })}
-                  style={{
-                    width: '100%',
-                    padding: '8px 12px',
-                    borderRadius: '6px',
-                    border: '1px solid #d1d5db',
-                    fontSize: '16px'
-                  }}
-                  placeholder="How will student learning be assessed?"
-                />
-                <span style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', display: 'block' }}>
-                  Example: "Observation checklists, counting portfolios, oral assessments in French"
+                  {unit.estimatedHours}h
                 </span>
               </div>
-            </div>
 
-            <div>
-              <label style={{ 
-                display: 'block', 
-                marginBottom: '8px', 
-                fontWeight: '500' 
+              <div style={{ 
+                display: 'flex', 
+                justifyContent: 'space-between', 
+                alignItems: 'center' 
               }}>
-                Cross-Curricular Connections
-              </label>
-              <textarea
-                value={formData.crossCurricularConnections}
-                onChange={(e) => setFormData({ ...formData, crossCurricularConnections: e.target.value })}
-                rows={2}
-                style={{
-                  width: '100%',
-                  padding: '8px 12px',
-                  borderRadius: '6px',
-                  border: '1px solid #d1d5db',
-                  fontSize: '16px',
-                  resize: 'vertical'
-                }}
-                placeholder="Connections to other subject areas..."
-              />
-              <span style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', display: 'block' }}>
-                Example: "Art - create number collages; Science - count natural objects; Music - number songs"
-              </span>
+                <span style={{ 
+                  fontSize: '14px', 
+                  color: '#4f46e5',
+                  fontWeight: '500'
+                }}>
+                  {unit._count?.lessonPlans || 0} lessons
+                </span>
+                
+                <div style={{ 
+                  fontSize: '24px',
+                  color: '#9ca3af'
+                }}>
+                  →
+                </div>
+              </div>
             </div>
-
-            <div>
-              <label style={{ 
-                display: 'block', 
-                marginBottom: '8px', 
-                fontWeight: '500' 
-              }}>
-                Indigenous Perspectives
-              </label>
-              <textarea
-                value={formData.indigenousPerspectives}
-                onChange={(e) => setFormData({ ...formData, indigenousPerspectives: e.target.value })}
-                rows={2}
-                style={{
-                  width: '100%',
-                  padding: '8px 12px',
-                  borderRadius: '6px',
-                  border: '1px solid #d1d5db',
-                  fontSize: '16px',
-                  resize: 'vertical'
-                }}
-                placeholder="How will Indigenous perspectives be incorporated?"
-              />
-              <span style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', display: 'block' }}>
-                Example: "Explore Mi'kmaq counting systems and traditional counting games"
-              </span>
-            </div>
-
-            <div>
-              <label style={{ 
-                display: 'block', 
-                marginBottom: '8px', 
-                fontWeight: '500' 
-              }}>
-                Technology Integration
-              </label>
-              <textarea
-                value={formData.technologyIntegration}
-                onChange={(e) => setFormData({ ...formData, technologyIntegration: e.target.value })}
-                rows={2}
-                style={{
-                  width: '100%',
-                  padding: '8px 12px',
-                  borderRadius: '6px',
-                  border: '1px solid #d1d5db',
-                  fontSize: '16px',
-                  resize: 'vertical'
-                }}
-                placeholder="How will technology enhance learning?"
-              />
-              <span style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', display: 'block' }}>
-                Example: "Interactive counting apps, digital math manipulatives, online number games in French"
-              </span>
-            </div>
-          </div>
-
-          <div style={{ 
-            display: 'flex', 
-            gap: '12px', 
-            justifyContent: 'flex-end',
-            marginTop: '24px'
-          }}>
-            <button
-              type="button"
-              onClick={onCancel}
-              style={{
-                padding: '8px 16px',
-                borderRadius: '6px',
-                border: '1px solid #d1d5db',
-                backgroundColor: 'white',
-                fontSize: '16px',
-                cursor: 'pointer'
-              }}
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              style={{
-                padding: '8px 16px',
-                borderRadius: '6px',
-                border: 'none',
-                backgroundColor: isSubmitting ? '#9ca3af' : '#4f46e5',
-                color: 'white',
-                fontSize: '16px',
-                fontWeight: '500',
-                cursor: isSubmitting ? 'not-allowed' : 'pointer'
-              }}
-            >
-              {isSubmitting ? 'Saving...' : 'Save Unit Plan'}
-            </button>
-          </div>
-        </form>
-      </div>
+          ))}
+        </div>
+      ) : (
+        <div style={{
+          textAlign: 'center',
+          padding: '64px 32px',
+          color: '#6b7280'
+        }}>
+          <div style={{ fontSize: '48px', marginBottom: '16px' }}>📚</div>
+          <h2 style={{ fontSize: '24px', fontWeight: '600', marginBottom: '8px', color: '#374151' }}>
+            No unit plans yet
+          </h2>
+          <p style={{ fontSize: '16px', marginBottom: '24px' }}>
+            Unit plans for this subject will appear here as they're created.
+          </p>
+        </div>
+      )}
     </div>
   );
 }

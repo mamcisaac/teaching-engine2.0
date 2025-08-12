@@ -148,6 +148,11 @@ export const optimizedIncludes = {
         grade: true,
       },
     },
+    _count: {
+      select: {
+        lessonPlans: true,
+      },
+    },
     expectations: {
       select: {
         unitPlanId: true,

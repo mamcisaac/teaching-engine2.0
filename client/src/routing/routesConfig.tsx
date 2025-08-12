@@ -18,9 +18,9 @@ const ShowcaseDashboard = lazy(() => import('../pages/ShowcaseDashboard').then(m
 const ParentNewsletterPage = lazy(() => import('../pages/ParentNewsletterPage').then(module => ({ default: module.ParentNewsletterPage }))); // named export
 const HelpPage = lazy(() => import('../pages/HelpPage').then(module => ({ default: module.HelpPage }))); // named export
 const TemplatesPage = lazy(() => import('../pages/TemplatesPage').then(module => ({ default: module.TemplatesPage }))); // named export
-const CalendarPlanningPage = lazy(() => import('../pages/planning/CalendarPlanningPage').then(module => ({ default: module.CalendarPlanningPage }))); // named export
-const TodayView = lazy(() => import('../pages/TodayView').then(module => ({ default: module.TodayView }))); // named export
-const WeekView = lazy(() => import('../pages/WeekView').then(module => ({ default: module.WeekView }))); // named export
+const SimpleCalendarPage = lazy(() => import('../pages/SimpleCalendarPage').then(module => ({ default: module.SimpleCalendarPage }))); // named export
+const SimpleTodayView = lazy(() => import('../pages/SimpleTodayView').then(module => ({ default: module.SimpleTodayView }))); // named export
+const SimpleWeekView = lazy(() => import('../pages/SimpleWeekView').then(module => ({ default: module.SimpleWeekView }))); // named export
 
 export interface RouteConfig {
   path?: string;
@@ -45,11 +45,11 @@ export const plannerRoutes: RouteConfig[] = [
   },
   {
     path: 'today',
-    element: TodayView,
+    element: SimpleTodayView,
   },
   {
     path: 'week',
-    element: WeekView,
+    element: SimpleWeekView,
   },
   {
     path: 'year',
@@ -96,11 +96,11 @@ export const plannerRoutes: RouteConfig[] = [
   },
   {
     path: 'dashboard',
-    element: TeachingDashboard,
+    element: <Navigate replace to="/dashboard" />,
   },
   {
     path: 'calendar',
-    element: CalendarPlanningPage,
+    element: SimpleCalendarPage,
   },
   // Legacy redirects
   {
@@ -136,7 +136,7 @@ export const protectedRoutes: RouteConfig[] = [
   },
   {
     path: '/today',
-    element: TodayView,
+    element: SimpleTodayView,
   },
   {
     path: '/planner',

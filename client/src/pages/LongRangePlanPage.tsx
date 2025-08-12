@@ -159,6 +159,19 @@ export function LongRangePlanPage(): React.ReactElement {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      {/* Back to Dashboard Link */}
+      <div className="mb-4">
+        <Link 
+          to="/dashboard" 
+          className="inline-flex items-center text-indigo-600 hover:text-indigo-800 font-medium"
+        >
+          <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Back to Dashboard
+        </Link>
+      </div>
+      
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Long-Range Planning</h1>

@@ -10,10 +10,10 @@ datasource db {
 model Subject {
   id        Int      @id @default(autoincrement())
   name      String
-  nameEn    String?
-  nameFr    String?
   userId    Int?
   createdAt DateTime @default(now())
+  nameEn    String?
+  nameFr    String?
   user      User?    @relation(fields: [userId], references: [id])
 }
 
@@ -33,31 +33,32 @@ model ClassroomAnnouncement {
 }
 
 model User {
-  id                     Int                     @id @default(autoincrement())
-  email                  String                  @unique
-  password               String
-  name                   String
-  role                   String                  @default("teacher")
-  preferredLanguage      String                  @default("en")
-  activityCollections    ActivityCollection[]
-  activityImports        ActivityImport[]
-  activityRatings        ActivityRating[]
-  events                 CalendarEvent[]
-  classRoutines          ClassRoutine[]
-  classroomAnnouncements ClassroomAnnouncement[]
-  curriculumImports      CurriculumImport[]
-  daybookEntries         DaybookEntry[]
-  etfoLessonPlans        ETFOLessonPlan[]
-  longRangePlans         LongRangePlan[]
-  newsletters            Newsletter[]
-  notifications          Notification[]
-  createdTemplates       PlanTemplate[]
-  recentPlanAccess       RecentPlanAccess[]
-  subjects               Subject[]
-  substitutePlans        SubstitutePlan[]
-  unavailableBlocks      UnavailableBlock[]
-  unitPlans              UnitPlan[]
-  weeklyPlannerState     WeeklyPlannerState?
+  id                       Int                       @id @default(autoincrement())
+  email                    String                    @unique
+  password                 String
+  name                     String
+  role                     String                    @default("teacher")
+  preferredLanguage        String                    @default("en")
+  activityCollections      ActivityCollection[]
+  activityImports          ActivityImport[]
+  activityRatings          ActivityRating[]
+  events                   CalendarEvent[]
+  classRoutines            ClassRoutine[]
+  classroomAnnouncements   ClassroomAnnouncement[]
+  curriculumImports        CurriculumImport[]
+  daybookEntries           DaybookEntry[]
+  etfoLessonPlans          ETFOLessonPlan[]
+  longRangePlans           LongRangePlan[]
+  newsletters              Newsletter[]
+  notifications            Notification[]
+  performanceTaskTemplates PerformanceTaskTemplate[]
+  createdTemplates         PlanTemplate[]
+  recentPlanAccess         RecentPlanAccess[]
+  subjects                 Subject[]
+  substitutePlans          SubstitutePlan[]
+  unavailableBlocks        UnavailableBlock[]
+  unitPlans                UnitPlan[]
+  weeklyPlannerState       WeeklyPlannerState?
 }
 
 model Notification {
@@ -215,28 +216,60 @@ model CurriculumExpectationEmbedding {
 }
 
 model LongRangePlan {
-  id                   String                     @id @default(cuid())
-  userId               Int
-  title                String
-  academicYear         String
-  term                 String?
-  grade                Int
-  subject              String
-  description          String?
-  goals                String?
-  themes               Json?
-  overarchingQuestions String?
-  assessmentOverview   String?
-  resourceNeeds        String?
-  professionalGoals    String?
-  titleFr              String?
-  descriptionFr        String?
-  goalsFr              String?
-  createdAt            DateTime                   @default(now())
-  updatedAt            DateTime                   @updatedAt
-  user                 User                       @relation(fields: [userId], references: [id])
-  expectations         LongRangePlanExpectation[]
-  unitPlans            UnitPlan[]
+  id                             String                     @id @default(cuid())
+  userId                         Int
+  title                          String
+  academicYear                   String
+  term                           String?
+  grade                          Int
+  subject                        String
+  description                    String?
+  goals                          String?
+  themes                         Json?
+  overarchingQuestions           String?
+  assessmentOverview             String?
+  resourceNeeds                  String?
+  professionalGoals              String?
+  titleFr                        String?
+  descriptionFr                  String?
+  goalsFr                        String?
+  createdAt                      DateTime                   @default(now())
+  updatedAt                      DateTime                   @updatedAt
+  crossCurricularConnections     Json?
+  culturalCelebrationIntegration Json?
+  diagnosticAssessments          Json?
+  differentationFramework        Json?
+  endOfYearPerformanceTasks      Json?
+  familyEngagementPlan           Json?
+  formativeStrategies            Json?
+  implementationFeasibility      Float?
+  improvementAreas               Json?
+  inclusiveMaterialsCalendar     Json?
+  interventionTriggers           Json?
+  lastOptimized                  DateTime?
+  learningProgressions           Json?
+  monthlyAdjustmentProtocols     Json?
+  monthlyPreparationGuides       Json?
+  nextYearRecommendations        Json?
+  optimizationScore              Float?
+  pedagogicalCertification       String?
+  professionalDevelopmentPlan    Json?
+  qualityVerificationData        Json?
+  realWorldApplications          Json?
+  researchComplianceScore        Float?
+  resourceTimeline               Json?
+  skillSpiraling                 Json?
+  studentSuccessPredictions      Json?
+  successfulStrategies           Json?
+  summativeMilestones            Json?
+  sustainedHooks                 Json?
+  thematicConnections            Json?
+  yearlyEngagementPlan           Json?
+  yearlyEssentialQuestions       Json?
+  yearlyTransferGoals            Json?
+  user                           User                       @relation(fields: [userId], references: [id])
+  expectations                   LongRangePlanExpectation[]
+  unitPlans                      UnitPlan[]
 
   @@index([userId, academicYear])
   @@index([userId, subject, grade])
@@ -244,6 +277,10 @@ model LongRangePlan {
   @@index([userId, updatedAt])
   @@index([userId, academicYear, subject])
   @@index([academicYear, subject, grade])
+  @@index([userId, optimizationScore])
+  @@index([pedagogicalCertification])
+  @@index([lastOptimized])
+  @@index([optimizationScore, pedagogicalCertification])
 }
 
 model LongRangePlanExpectation {
@@ -257,7 +294,7 @@ model LongRangePlanExpectation {
 }
 
 model UnitPlan {
-  id                         String                @id @default(cuid())
+  id                         String                  @id @default(cuid())
   userId                     Int
   title                      String
   longRangePlanId            String
@@ -272,26 +309,33 @@ model UnitPlan {
   bigIdeasFr                 String?
   assessmentPlan             String?
   successCriteria            Json?
+  createdAt                  DateTime                @default(now())
+  updatedAt                  DateTime                @updatedAt
+  communityConnections       String?
   crossCurricularConnections String?
-  learningSkills             Json?
   culminatingTask            String?
-  keyVocabulary              Json?
-  priorKnowledge             String?
-  parentCommunicationPlan    String?
-  fieldTripsAndGuestSpeakers String?
   differentiationStrategies  Json?
-  indigenousPerspectives     String?
   environmentalEducation     String?
+  fieldTripsAndGuestSpeakers String?
+  indigenousPerspectives     String?
+  keyVocabulary              Json?
+  learningSkills             Json?
+  parentCommunicationPlan    String?
+  priorKnowledge             String?
   socialJusticeConnections   String?
   technologyIntegration      String?
-  communityConnections       String?
-  createdAt                  DateTime              @default(now())
-  updatedAt                  DateTime              @updatedAt
+  assessmentRubric           Json?
+  enduringUnderstandings     String?
+  evidenceTypes              Json?
+  performanceIndicators      Json?
+  performanceTask            Json?
+  transferableSkills         Json?
   lessonPlans                ETFOLessonPlan[]
-  longRangePlan              LongRangePlan         @relation(fields: [longRangePlanId], references: [id])
-  user                       User                  @relation(fields: [userId], references: [id])
+  longRangePlan              LongRangePlan           @relation(fields: [longRangePlanId], references: [id])
+  user                       User                    @relation(fields: [userId], references: [id])
   expectations               UnitPlanExpectation[]
   resources                  UnitPlanResource[]
+  transferSkills             UnitPlanTransferSkill[]
 
   @@index([userId, startDate])
   @@index([longRangePlanId])
@@ -326,9 +370,6 @@ model ETFOLessonPlan {
   userId                    Int
   title                     String
   unitPlanId                String
-  grade                     Int?
-  subject                   String?
-  language                  String?
   date                      DateTime
   duration                  Int
   mindsOn                   String?
@@ -345,13 +386,23 @@ model ETFOLessonPlan {
   accommodations            Json?
   modifications             Json?
   extensions                Json?
-  differentiationStrategies Json?
   assessmentType            String?
   assessmentNotes           String?
   isSubFriendly             Boolean                     @default(true)
   subNotes                  String?
   createdAt                 DateTime                    @default(now())
   updatedAt                 DateTime                    @updatedAt
+  grade                     Int?
+  language                  String?
+  subject                   String?
+  differentiationStrategies Json?
+  engagementHooks           Json?
+  formativeCheckpoints      Json?
+  interventionStrategies    Json?
+  performanceOpportunities  String?
+  priorKnowledgeCheck       String?
+  reflectionActivities      Json?
+  wheretoFramework          Json?
   activityImports           ActivityImport[]
   daybookEntry              DaybookEntry?
   unitPlan                  UnitPlan                    @relation(fields: [unitPlanId], references: [id])
@@ -724,4 +775,74 @@ model SubstitutePlan {
   @@index([dateFor, grade, subject])
   @@index([isActive, dateFor])
   @@index([userId, isActive, dateFor])
+}
+
+model PerformanceTaskTemplate {
+  id             String   @id @default(cuid())
+  userId         Int
+  title          String
+  subject        String
+  gradeMin       Int
+  gradeMax       Int
+  scenario       String
+  role           String
+  audience       String
+  format         String
+  rubricTemplate Json?
+  isPublic       Boolean  @default(false)
+  timesUsed      Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([subject, gradeMin, gradeMax])
+  @@index([isPublic, subject])
+}
+
+model EssentialQuestionTemplate {
+  id            String   @id @default(cuid())
+  question      String   @unique
+  subject       String
+  gradeMin      Int
+  gradeMax      Int
+  category      String
+  bloomsLevel   String?
+  cognitiveLoad String?  @default("medium")
+  timesUsed     Int      @default(0)
+  rating        Float    @default(0.0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([subject, gradeMin, gradeMax])
+  @@index([category, bloomsLevel])
+  @@index([rating])
+}
+
+model TransferSkillTemplate {
+  id                    String                  @id @default(cuid())
+  skillName             String
+  description           String
+  category              String
+  gradeMin              Int
+  gradeMax              Int
+  performanceIndicators Json?
+  assessmentMethods     Json?
+  isCore                Boolean                 @default(false)
+  createdAt             DateTime                @default(now())
+  unitPlans             UnitPlanTransferSkill[]
+
+  @@index([category])
+  @@index([gradeMin, gradeMax])
+  @@index([isCore])
+}
+
+model UnitPlanTransferSkill {
+  unitPlanId      String
+  transferSkillId String
+  emphasis        String                @default("developing")
+  unitPlan        UnitPlan              @relation(fields: [unitPlanId], references: [id], onDelete: Cascade)
+  transferSkill   TransferSkillTemplate @relation(fields: [transferSkillId], references: [id], onDelete: Cascade)
+
+  @@id([unitPlanId, transferSkillId])
 }

@@ -700,13 +700,14 @@ function ExpectationFormModal({
                 }}
               >
                 <option value="">Select a subject</option>
-                <option value="Français langue première">Français langue première</option>
+                <option value="Français (Immersion)">Français (Immersion)</option>
                 <option value="Mathématiques">Mathématiques</option>
-                <option value="Sciences">Sciences</option>
-                <option value="Études sociales">Études sociales</option>
-                <option value="Arts">Arts</option>
+                <option value="Sciences de la nature">Sciences de la nature</option>
+                <option value="Sciences humaines">Sciences humaines</option>
+                <option value="Arts visuels">Arts visuels</option>
+                <option value="Musique">Musique</option>
                 <option value="Éducation physique">Éducation physique</option>
-                <option value="Anglais langue seconde">Anglais langue seconde</option>
+                <option value="Formation personnelle et sociale">Formation personnelle et sociale</option>
               </select>
             </div>
 

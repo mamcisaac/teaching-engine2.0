@@ -1,0 +1,499 @@
+{
+  "manual_perfect_grade1_french": {
+    "essential_questions": {
+      "yearly_overarching": [
+        "Comment les mots français m'aident-ils à exprimer qui je suis?",
+        "Quelles histoires nous unissent en tant que famille francophone?",
+        "Comment puis-je faire entendre ma voix en français?",
+        "Qu'est-ce qui rend une communication claire et respectueuse?",
+        "Comment les livres français ouvrent-ils des portes vers de nouveaux mondes?"
+      ],
+      "unit_specific": {
+        "septembre_identité": [
+          "Qui suis-je en français?",
+          "Comment mes mots français racontent-ils mon histoire?"
+        ],
+        "octobre_famille_communauté": [
+          "Comment ma famille vit-elle en français?",
+          "Qu'est-ce qui fait de nous une communauté francophone?"
+        ],
+        "novembre_automne_gratitude": [
+          "Comment les saisons changent-elles nos mots français?",
+          "De quoi sommes-nous reconnaissants dans notre vie française?"
+        ],
+        "décembre_traditions": [
+          "Comment nos traditions françaises nous rassemblent-elles?",
+          "Quelles histoires de Noël nous touchent le cœur?"
+        ],
+        "janvier_hiver_nature": [
+          "Comment l'hiver transforme-t-il notre monde français?",
+          "Que nous apprend la nature en français?"
+        ],
+        "février_amitié_entraide": [
+          "Comment l'amitié grandit-elle grâce aux mots français?",
+          "Comment pouvons-nous nous entraider avec nos voix françaises?"
+        ],
+        "mars_croissance_changement": [
+          "Comment grandissons-nous en tant que francophone?",
+          "Qu'est-ce qui change quand nous apprenons de nouveaux mots français?"
+        ],
+        "avril_créativité_imagination": [
+          "Comment notre imagination s'exprime-t-elle en français?",
+          "Que peuvent créer nos mots français?"
+        ],
+        "mai_environnement_responsabilité": [
+          "Comment protégeons-nous notre monde avec nos actions françaises?",
+          "Quelle est notre responsabilité envers la nature francophone?"
+        ],
+        "juin_célébration_réflexion": [
+          "Qu'avons-nous accompli avec notre français cette année?",
+          "Comment pouvons-nous célébrer notre croissance francophone?"
+        ]
+      }
+    },
+    
+    "enduring_understandings": [
+      "Le français est la langue de mon cœur et de ma pensée.",
+      "Chaque francophone a une histoire unique et précieuse à partager.",
+      "La communication respectueuse crée des ponts entre les personnes.",
+      "Les livres français sont des fenêtres vers l'imagination et l'apprentissage.",
+      "L'écoute attentive montre le respect pour les autres.",
+      "L'écriture française permet d'exprimer mes pensées et mes sentiments.",
+      "La phonétique française révèle la beauté et la musique de la langue.",
+      "Réfléchir sur mon apprentissage m'aide à grandir comme francophone.",
+      "Les stratégies de lecture m'ouvrent de nouveaux mondes de découverte.",
+      "L'expression orale française me donne une voix dans ma communauté."
+    ],
+    
+    "transferable_skills": [
+      "Écoute active et empathique",
+      "Communication claire et respectueuse",
+      "Pensée critique et analyse",
+      "Réflexion métacognitive sur l'apprentissage",
+      "Stratégies de résolution de problèmes",
+      "Créativité et expression personnelle",
+      "Collaboration et travail d'équipe",
+      "Conscience phonologique et phonétique",
+      "Planification et organisation",
+      "Persévérance face aux défis linguistiques",
+      "Appréciation de la diversité culturelle",
+      "Confiance en soi comme communicateur"
+    ],
+    
+    "authentic_performance_tasks": [
+      {
+        "title": "Mon Album de Famille Francophone",
+        "description": "Créer un album photographique personnel avec des descriptions françaises de sa famille, ses traditions et ses souvenirs. Inclut des enregistrements audio de histoires familiales racontées par l'enfant.",
+        "authentic_audience": "Familles lors de la soirée de partage culturel",
+        "timeframe": "Septembre à décembre",
+        "curriculum_connections": ["1CO.5", "1É.2", "1CO.6", "1É.3"],
+        "differentiation": {
+          "choice": "Format (livre, présentation numérique, exposition d'art)",
+          "readiness": "Support d'écriture guidée vs. écriture indépendante",
+          "interest": "Thèmes personnels choisis par l'enfant"
+        }
+      },
+      {
+        "title": "Théâtre de Lecteurs: Contes Francophones",
+        "description": "Adaptation et présentation d'un conte francophone traditionnel avec costumes, décors et narration expressive. Chaque enfant choisit son rôle selon ses forces.",
+        "authentic_audience": "Classes de maternelle et parents",
+        "timeframe": "Janvier à mars",
+        "curriculum_connections": ["1CO.2", "1CO.5", "1L.2", "1L.3"],
+        "differentiation": {
+          "choice": "Rôle dans la production (narrateur, personnage, décorateur)",
+          "readiness": "Longueur du texte selon le niveau de lecture",
+          "interest": "Choix du conte selon les préférences"
+        }
+      },
+      {
+        "title": "Journal de Découvertes Scientifiques en Français",
+        "description": "Documentation illustrée des observations de la nature au fil des saisons avec vocabulaire scientifique français, hypothèses et conclusions d'enfant.",
+        "authentic_audience": "Scientifiques communautaires et familles",
+        "timeframe": "Octobre à juin",
+        "curriculum_connections": ["1É.1", "1É.2", "1L.1", "1CO.1"],
+        "cross_curricular": "Sciences de la nature",
+        "differentiation": {
+          "choice": "Support d'expression (dessins, photos, écriture)",
+          "readiness": "Complexité du vocabulaire scientifique",
+          "interest": "Phénomènes naturels choisis par l'enfant"
+        }
+      },
+      {
+        "title": "Podcast Francophone: Nos Voix d'Enfants",
+        "description": "Création d'épisodes de podcast sur des sujets importants pour les enfants francophones, avec recherche, script et enregistrement authentique.",
+        "authentic_audience": "Communauté scolaire francophone élargie",
+        "timeframe": "Avril à juin",
+        "curriculum_connections": ["1CO.5", "1CO.1", "1É.1", "1CO.6"],
+        "differentiation": {
+          "choice": "Rôle (recherchiste, interviewer, technicien audio)",
+          "readiness": "Complexité du sujet traité",
+          "interest": "Sujets choisis par les enfants"
+        }
+      }
+    ],
+    
+    "comprehensive_differentiation": {
+      "readiness_accommodations": {
+        "emerging_francophone": {
+          "oral_communication": [
+            "Temps de réflexion supplémentaire avant de répondre",
+            "Support visuel (images, gestes, objets concrets)",
+            "Phrases modèles et structures répétitives",
+            "Partenariat avec francophone plus expérimenté"
+          ],
+          "reading": [
+            "Livres à images riches avec texte simple",
+            "Lecture partagée et lecture guidée fréquente",
+            "Support audio pour tous les textes",
+            "Prédictions basées sur les images"
+          ],
+          "writing": [
+            "Écriture inventée encouragée et valorisée",
+            "Dessins pour compléter les idées écrites",
+            "Dictée à l'adulte pour capturer les idées complexes",
+            "Modèles d'écriture et phrases cadres"
+          ]
+        },
+        "developing_francophone": {
+          "oral_communication": [
+            "Questions ouvertes pour encourager l'élaboration",
+            "Discussions en petits groupes avant le grand groupe",
+            "Encouragement à prendre des risques linguistiques",
+            "Rétroaction immédiate et positive"
+          ],
+          "reading": [
+            "Livres avec texte plus complexe mais soutien visuel",
+            "Stratégies de décodage explicitement enseignées",
+            "Connexions texte-à-soi encouragées",
+            "Choix de livres selon les intérêts"
+          ],
+          "writing": [
+            "Organisation des idées avec support graphique",
+            "Révision collaborative avec pairs",
+            "Variety de genres d'écriture explorés",
+            "Célébration des progrès individuels"
+          ]
+        },
+        "confident_francophone": {
+          "oral_communication": [
+            "Rôles de leadership dans les discussions",
+            "Questions de niveau supérieur (analyse, synthèse)",
+            "Présentation à des audiences variées",
+            "Mentorat des francophones émergents"
+          ],
+          "reading": [
+            "Textes plus complexes et nuancés",
+            "Analyse des techniques d'auteur",
+            "Lectures indépendantes étendues",
+            "Connexions intertextuelles"
+          ],
+          "writing": [
+            "Projets d'écriture créative étendus",
+            "Révision substantielle et édition",
+            "Publication pour audiences authentiques",
+            "Expérimentation avec styles et genres"
+          ]
+        }
+      },
+      
+      "interest_accommodations": {
+        "nature_lovers": {
+          "themes": ["Animaux de l'Île-du-Prince-Édouard", "Saisons et cycles naturels", "Protection de l'environnement"],
+          "activities": ["Journaux de nature", "Observations scientifiques", "Poésie de la nature"],
+          "resources": ["Livres documentaires sur la faune", "Sorties éducatives", "Invités experts"]
+        },
+        "storytellers": {
+          "themes": ["Contes traditionnels acadiens", "Histoires familiales", "Création de personnages"],
+          "activities": ["Théâtre de lecteurs", "Écriture créative", "Narration orale"],
+          "resources": ["Contes francophones", "Marionnettes", "Costumes et accessoires"]
+        },
+        "artists_creators": {
+          "themes": ["Art francophone", "Expression créative", "Projets multimédia"],
+          "activities": ["Livres d'artiste", "Bandes dessinées", "Projets numériques"],
+          "resources": ["Matériaux d'art variés", "Technologie créative", "Œuvres d'artistes francophones"]
+        },
+        "community_helpers": {
+          "themes": ["Métiers en français", "Service communautaire", "Résolution de problèmes"],
+          "activities": ["Projets de service", "Interviews de professionnels", "Écriture persuasive"],
+          "resources": ["Invités de la communauté", "Visites sur le terrain", "Projets concrets"]
+        }
+      },
+      
+      "learning_profile_accommodations": {
+        "visual_learners": {
+          "strategies": ["Organisateurs graphiques colorés", "Cartes conceptuelles", "Illustrations et schémas"],
+          "materials": ["Livres à images riches", "Affiches et références visuelles", "Technologie interactive"],
+          "assessment": ["Portfolios visuels", "Présentations illustrées", "Cartes de concepts"]
+        },
+        "auditory_learners": {
+          "strategies": ["Discussions fréquentes", "Chansons et comptines", "Écoute de livres audio"],
+          "materials": ["Enregistrements audio", "Instruments de musique", "Podcasts pour enfants"],
+          "assessment": ["Présentations orales", "Enregistrements audio", "Discussions évaluées"]
+        },
+        "kinesthetic_learners": {
+          "strategies": ["Jeux de mouvement", "Manipulatifs tactiles", "Apprentissage actif"],
+          "materials": ["Lettres texturées", "Jeux de société", "Matériel de manipulation"],
+          "assessment": ["Démonstrations physiques", "Projets de construction", "Jeux de rôle"]
+        },
+        "collaborative_learners": {
+          "strategies": ["Travail en équipe structuré", "Projets de groupe", "Apprentissage par les pairs"],
+          "materials": ["Centres d'apprentissage", "Jeux coopératifs", "Projets collaboratifs"],
+          "assessment": ["Évaluations de groupe", "Projets en équipe", "Réflections collaboratives"]
+        }
+      }
+    },
+    
+    "cultural_responsiveness_framework": {
+      "acadian_maritime_integration": {
+        "heritage_elements": [
+          "Histoire acadienne de l'Île-du-Prince-Édouard",
+          "Traditions musicales acadiennes (violon, chansons folkloriques)",
+          "Patrimoine culinaire acadien (râpure, fricot, pâtés)",
+          "Artisanat traditionnel acadien (tissage, menuiserie)",
+          "Géographie et paysages maritimes de l'Î.-P.-É.",
+          "Légendes et contes acadiens transmis oralement",
+          "Symboles acadiens (étoile de Marie, drapeau tricolore)"
+        ],
+        "contemporary_connections": [
+          "Communautés acadiennes contemporaines de l'Î.-P.-É.",
+          "Festivals acadiens annuels (Festival acadien de l'Î.-P.-É.)",
+          "Artistes acadiens contemporains",
+          "Organismes culturels francophones locaux",
+          "Écoles et centres communautaires francophones"
+        ]
+      },
+      
+      "diverse_francophone_perspectives": {
+        "global_francophonie": [
+          "Franco-Ontariens nouveaux à l'Î.-P.-É.",
+          "Familles québécoises établies dans les Maritimes",
+          "Immigrants francophones d'Afrique francophone",
+          "Familles franco-manitobaines déménagées",
+          "Perspectives franco-colombiennes",
+          "Nouveaux Canadiens de Haïti et des Antilles françaises",
+          "Familles mixtes (franco-anglophone)"
+        ],
+        "cultural_celebrations": [
+          "Jour de la Francophonie internationale (20 mars)",
+          "Fête nationale acadienne (15 août)",
+          "Célébrations diverses du patrimoine francophone mondial",
+          "Traditions de Noël franco-canadiennes variées",
+          "Fêtes familiales dans différentes cultures francophones"
+        ]
+      },
+      
+      "inclusive_practices": {
+        "family_backgrounds_honored": [
+          "Histoires d'immigration francophone documentées",
+          "Traditions culinaires familiales partagées",
+          "Chansons et berceuses de diverses origines francophones",
+          "Photos et artefacts familiaux valorisés",
+          "Métiers et professions des parents célébrés"
+        ],
+        "linguistic_diversity_supported": [
+          "Variétés régionales du français respectées",
+          "Accents et dialectes acceptés et célébrés",
+          "Code-switching naturel entre français et anglais normalisé",
+          "Apprentissage du français L2 soutenu avec patience",
+          "Expressions locales acadiennes enseignées avec fierté"
+        ]
+      }
+    },
+    
+    "cross_curricular_connections": {
+      "mathematiques": {
+        "thematic_units": [
+          "Les nombres français dans notre quotidien",
+          "Formes et espace: décrire notre monde",
+          "Temps et calendrier: nos routines françaises"
+        ],
+        "shared_vocabulary": ["nombres", "formes", "mesure", "temps", "espace", "quantité"],
+        "integrated_activities": [
+          "Comptines numériques françaises",
+          "Problèmes mathématiques racontés",
+          "Géométrie dans l'art francophone"
+        ]
+      },
+      "sciences_nature": {
+        "thematic_units": [
+          "Découverte de la nature en français",
+          "Corps humain: mots français pour se connaître",
+          "Matériaux et objets: explorer en français"
+        ],
+        "shared_vocabulary": ["observer", "questionner", "expérimenter", "prédire", "conclure"],
+        "integrated_activities": [
+          "Journal scientifique illustré",
+          "Expériences racontées en français",
+          "Documentation de phénomènes naturels"
+        ]
+      },
+      "sciences_humaines": {
+        "thematic_units": [
+          "Notre communauté francophone",
+          "Traditions et cultures francophones",
+          "Géographie de l'Île-du-Prince-Édouard"
+        ],
+        "shared_vocabulary": ["communauté", "tradition", "culture", "famille", "appartenance"],
+        "integrated_activities": [
+          "Cartes de notre quartier francophone",
+          "Histoires de famille documentées",
+          "Célébrations culturelles décrites"
+        ]
+      },
+      "arts_visuels": {
+        "thematic_units": [
+          "Couleurs et émotions en français",
+          "Art francophone de l'Île-du-Prince-Édouard",
+          "Expression créative bilingue"
+        ],
+        "shared_vocabulary": ["créer", "exprimer", "couleur", "forme", "texture", "beauté"],
+        "integrated_activities": [
+          "Livres d'artiste avec textes français",
+          "Description d'œuvres d'art",
+          "Création avec narration française"
+        ]
+      }
+    },
+    
+    "developmental_appropriateness_grade1": {
+      "six_year_old_characteristics": {
+        "cognitive_development": [
+          "Pensée concrète avec début de représentation symbolique simple",
+          "Attention soutenue de 15-20 minutes pour activités engageantes",
+          "Mémoire procédurale forte pour routines et chansons",
+          "Curiosité naturelle et questionnement constant",
+          "Apprentissage par l'exploration active et manipulation"
+        ],
+        "language_development": [
+          "Vocabulaire de 2500-5000 mots en langue première",
+          "Phrases de 4-8 mots avec structure syntaxique émergente",
+          "Conscience phonologique en développement",
+          "Narration simple d'événements personnels",
+          "Écoute active pour histoires courtes (5-10 minutes)"
+        ],
+        "social_emotional_development": [
+          "Besoin fort d'appartenance au groupe-classe",
+          "Développement de l'empathie et respect des autres",
+          "Fierté dans les accomplissements personnels",
+          "Apprentissage des règles sociales en contexte",
+          "Expression émotionnelle par les arts et le jeu"
+        ]
+      },
+      
+      "grade1_french_immersion_considerations": {
+        "linguistic_expectations": [
+          "Compréhension orale de consignes simples et familières",
+          "Expression orale émergente avec support visuel et gestuel",
+          "Reconnaissance de mots familiers en contexte imagé",
+          "Écriture inventée encouragée et valorisée",
+          "Code-switching naturel accepté et graduellement guidé"
+        ],
+        "learning_activities_appropriate": [
+          "Jeux de mouvement avec vocabulaire français",
+          "Chansons et comptines traditionnelles acadiennes",
+          "Histoires courtes avec images riches et prédictibles",
+          "Activités artistiques avec description simple en français",
+          "Centres d'apprentissage avec manipulation concrète"
+        ],
+        "assessment_developmentally_responsive": [
+          "Observation naturelle pendant le jeu et l'exploration",
+          "Portfolios visuels avec photos et échantillons de travail",
+          "Auto-évaluation avec visages souriants et images",
+          "Conversations individuelles courtes et encourageantes",
+          "Célébration de tous les efforts et tentatives linguistiques"
+        ]
+      },
+      
+      "scaffolding_support_strategies": {
+        "visual_supports": [
+          "Images et pictogrammes pour instructions courantes",
+          "Cartes visuelles pour vocabulaire thématique nouveau",
+          "Organisateurs graphiques simples avec dessins",
+          "Affiches de référence colorées et attrayantes",
+          "Gestes et mouvements accompagnant les nouveaux concepts"
+        ],
+        "guided_practice_approaches": [
+          "Modélisation explicite avec think-aloud en français",
+          "Pratique guidée en petits groupes sécurisants",
+          "Partenariats stratégiques avec pairs plus expérimentés",
+          "Répétition naturelle dans contextes variés et ludiques",
+          "Rétroaction immédiate, positive et encourageante"
+        ],
+        "independence_building": [
+          "Choix authentiques dans projets et centres d'apprentissage",
+          "Responsabilités graduelles adaptées à l'âge (6 ans)",
+          "Auto-correction encouragée avec outils visuels simples",
+          "Réflexion métacognitive avec questions concrètes simples",
+          "Célébration de la croissance et des efforts personnels"
+        ]
+      }
+    },
+    
+    "assessment_framework": {
+      "diagnostic_assessments": {
+        "september_baseline": [
+          "Évaluation de la conscience phonologique (sons français)",
+          "Portfolio de communication orale spontanée",
+          "Échantillon d'écriture libre (dessins et tentatives d'écriture)",
+          "Intérêts et expériences de lecture documentés",
+          "Observation des stratégies de communication"
+        ]
+      },
+      "formative_strategies": {
+        "daily_observational_focuses": [
+          "Lundi: Participation orale et écoute active",
+          "Mardi: Stratégies de lecture et compréhension",
+          "Mercredi: Processus d'écriture et créativité",
+          "Jeudi: Collaboration et communication respectueuse",
+          "Vendredi: Réflexion métacognitive et croissance"
+        ],
+        "student_self_reflection": [
+          "Portfolio de croissance avec photos et échantillons",
+          "Entrevues individuelles mensuelles",
+          "Autoévaluation avec visages souriants et mots simples",
+          "Objectifs personnels choisis par l'enfant"
+        ],
+        "peer_assessment": [
+          "Compliments francophone pour les pairs",
+          "Écoute respectueuse during partage",
+          "Entraide pour les stratégies d'apprentissage",
+          "Célébration des réussites ensemble"
+        ]
+      },
+      "summative_milestones": {
+        "term_culminations": [
+          {
+            "period": "Octobre",
+            "focus": "Communication orale et conscience phonologique",
+            "format": "Présentation de l'album de famille avec autoévaluation",
+            "rubric": "Clarté, créativité, réflexion personnelle"
+          },
+          {
+            "period": "Janvier",
+            "focus": "Lecture et compréhension de textes",
+            "format": "Présentation d'un livre préféré avec justifications",
+            "rubric": "Compréhension, expression personnelle, stratégies utilisées"
+          },
+          {
+            "period": "Avril",
+            "focus": "Écriture créative et traits d'écriture",
+            "format": "Publication d'une histoire originale illustrée",
+            "rubric": "Organisation des idées, créativité, processus d'écriture"
+          },
+          {
+            "period": "Juin",
+            "focus": "Intégration de tous les volets",
+            "format": "Portfolio complet avec réflexion sur la croissance",
+            "rubric": "Croissance démontrée, réflexion métacognitive, fierté francophone"
+          }
+        ],
+        "authentic_celebrations": [
+          "Soirée culturelle francophone avec familles",
+          "Festival de livres créés par les enfants",
+          "Exposition d'art avec descriptions françaises",
+          "Café littéraire avec lectures partagées"
+        ]
+      }
+    }
+  }
+}

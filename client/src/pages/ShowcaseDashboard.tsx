@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { format, addDays, differenceInDays } from 'date-fns';
 import { 
@@ -16,7 +16,8 @@ import {
   Layers,
   Grid3x3,
   CheckCircle2,
-  Star
+  Star,
+  Settings
 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/Button';
@@ -24,6 +25,7 @@ import { Badge } from '../components/ui/Badge';
 import { Alert, AlertDescription } from '../components/ui/alert';
 import { useAuth } from '../contexts/AuthContext';
 import { useLongRangePlans, useUnitPlans, useETFOLessonPlans } from '../hooks/useETFOPlanning';
+import { SubjectSelectionModal } from '../components/SubjectSelectionModal';
 
 // Sample lesson data for showcase
 const sampleLessons = [
@@ -35,39 +37,108 @@ const sampleLessons = [
 ];
 
 const subjectColors: Record<string, string> = {
-  'Français langue première': 'bg-blue-500',
+  'Français (Immersion)': 'bg-blue-500',
   'Mathématiques': 'bg-green-500',
   'Sciences de la nature': 'bg-purple-500',
   'Sciences humaines': 'bg-yellow-500',
   'Éducation physique': 'bg-red-500',
   'Arts visuels': 'bg-pink-500',
   'Formation personnelle et sociale': 'bg-indigo-500',
-  'Music': 'bg-orange-500'
+  'Musique': 'bg-orange-500'
 };
 
 const subjectIcons: Record<string, JSX.Element> = {
-  'Français langue première': <BookOpen className="h-6 w-6" />,
+  'Français (Immersion)': <BookOpen className="h-6 w-6" />,
   'Mathématiques': <Grid3x3 className="h-6 w-6" />,
   'Sciences de la nature': <Sparkles className="h-6 w-6" />,
   'Sciences humaines': <MapPin className="h-6 w-6" />,
   'Éducation physique': <Users className="h-6 w-6" />,
   'Arts visuels': <Star className="h-6 w-6" />,
   'Formation personnelle et sociale': <Target className="h-6 w-6" />,
-  'Music': <Award className="h-6 w-6" />
+  'Musique': <Award className="h-6 w-6" />
 };
 
 export function ShowcaseDashboard(): React.ReactElement {
   const navigate = useNavigate();
   const { user } = useAuth();
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
+  const [isSubjectModalOpen, setIsSubjectModalOpen] = useState(false);
+  const [teacherSubjects, setTeacherSubjects] = useState<string[]>([]);
   
-  // Fetch actual data
-  const { data: longRangePlans = [] } = useLongRangePlans();
-  const { data: allUnits = [] } = useUnitPlans({});
-  const { data: septemberLessons = [] } = useETFOLessonPlans({
-    startDate: new Date('2025-09-01').toISOString(),
-    endDate: new Date('2025-09-30').toISOString(),
-  });
+  // Load saved subjects on component mount
+  useEffect(() => {
+    const saved = localStorage.getItem('teacher-subjects');
+    if (saved) {
+      try {
+        const subjects = JSON.parse(saved);
+        setTeacherSubjects(Array.isArray(subjects) ? subjects : []);
+      } catch {
+        // Default subjects for Grade 1 French Immersion
+        setTeacherSubjects([
+          'Français (Immersion)',
+          'Mathématiques',
+          'Sciences de la nature',
+          'Sciences humaines',
+          'Arts visuels',
+          'Musique',
+          'Éducation physique',
+          'Formation personnelle et sociale'
+        ]);
+      }
+    } else {
+      // Default subjects - all 8 for Grade 1
+      setTeacherSubjects([
+        'Français langue première',
+        'Mathématiques',
+        'Sciences de la nature',
+        'Sciences humaines',
+        'Arts visuels',
+        'Musique',
+        'Éducation physique',
+        'Formation personnelle et sociale'
+      ]);
+    }
+  }, []);
+
+  // Handle subject save
+  const handleSubjectSave = (subjects: string[]) => {
+    setTeacherSubjects(subjects);
+    // Force a refresh if needed
+    window.location.reload();
+  };
+  
+  // Use hardcoded data for Emily's Grade 1 French Immersion
+  const longRangePlans = [];
+  const allUnits = [
+    { id: 'unit-1', title: 'Bienvenue à l\'école!', titleFr: 'Bienvenue à l\'école!', startDate: '2025-09-04', endDate: '2025-09-30', estimatedHours: 40, longRangePlan: { subject: 'Français langue première' } },
+    { id: 'unit-2', title: 'Ma famille et moi', titleFr: 'Ma famille et moi', startDate: '2025-10-01', endDate: '2025-10-31', estimatedHours: 35, longRangePlan: { subject: 'Français langue première' } },
+    { id: 'unit-3', title: 'Les saisons et les fêtes', titleFr: 'Les saisons et les fêtes', startDate: '2025-11-01', endDate: '2025-12-20', estimatedHours: 45, longRangePlan: { subject: 'Français langue première' } },
+    { id: 'unit-4', title: 'Les animaux', titleFr: 'Les animaux et leurs habitats', startDate: '2026-01-06', endDate: '2026-02-14', estimatedHours: 40, longRangePlan: { subject: 'Sciences de la nature' } },
+    { id: 'unit-5', title: 'Notre communauté', titleFr: 'Notre communauté', startDate: '2026-02-17', endDate: '2026-03-28', estimatedHours: 35, longRangePlan: { subject: 'Sciences humaines' } },
+    { id: 'unit-6', title: 'Les plantes', titleFr: 'Les plantes et le jardinage', startDate: '2026-04-01', endDate: '2026-05-09', estimatedHours: 30, longRangePlan: { subject: 'Sciences de la nature' } },
+    { id: 'unit-7', title: 'L\'été arrive!', titleFr: 'L\'été arrive!', startDate: '2026-05-12', endDate: '2026-06-26', estimatedHours: 35, longRangePlan: { subject: 'Français langue première' } },
+    // Math units
+    { id: 'unit-m1', title: 'Les nombres', titleFr: 'Les nombres jusqu\'à 20', startDate: '2025-09-04', endDate: '2025-10-15', estimatedHours: 30, longRangePlan: { subject: 'Mathématiques' } },
+    { id: 'unit-m2', title: 'Les formes', titleFr: 'Les formes géométriques', startDate: '2025-10-16', endDate: '2025-11-30', estimatedHours: 25, longRangePlan: { subject: 'Mathématiques' } },
+    { id: 'unit-m3', title: 'Addition et soustraction', titleFr: 'Addition et soustraction', startDate: '2025-12-01', endDate: '2026-01-31', estimatedHours: 35, longRangePlan: { subject: 'Mathématiques' } },
+    { id: 'unit-m4', title: 'La mesure', titleFr: 'La mesure', startDate: '2026-02-01', endDate: '2026-03-15', estimatedHours: 25, longRangePlan: { subject: 'Mathématiques' } },
+    { id: 'unit-m5', title: 'Les patterns', titleFr: 'Les régularités', startDate: '2026-03-16', endDate: '2026-04-30', estimatedHours: 20, longRangePlan: { subject: 'Mathématiques' } },
+    { id: 'unit-m6', title: 'Résolution de problèmes', titleFr: 'Résolution de problèmes', startDate: '2026-05-01', endDate: '2026-06-26', estimatedHours: 25, longRangePlan: { subject: 'Mathématiques' } },
+    // Arts units
+    { id: 'unit-a1', title: 'Exploration des couleurs', titleFr: 'Exploration des couleurs', startDate: '2025-09-04', endDate: '2025-11-15', estimatedHours: 20, longRangePlan: { subject: 'Arts visuels' } },
+    { id: 'unit-a2', title: 'Créations saisonnières', titleFr: 'Créations saisonnières', startDate: '2025-11-16', endDate: '2026-02-28', estimatedHours: 25, longRangePlan: { subject: 'Arts visuels' } },
+    { id: 'unit-a3', title: 'Expression créative', titleFr: 'Expression créative', startDate: '2026-03-01', endDate: '2026-06-26', estimatedHours: 20, longRangePlan: { subject: 'Arts visuels' } },
+    // Music units
+    { id: 'unit-mu1', title: 'Chansons et comptines', titleFr: 'Chansons et comptines', startDate: '2025-09-04', endDate: '2025-12-20', estimatedHours: 25, longRangePlan: { subject: 'Musique' } },
+    { id: 'unit-mu2', title: 'Rythmes et instruments', titleFr: 'Rythmes et instruments', startDate: '2026-01-06', endDate: '2026-06-26', estimatedHours: 30, longRangePlan: { subject: 'Musique' } },
+    // PE units
+    { id: 'unit-pe1', title: 'Mouvements de base', titleFr: 'Mouvements de base', startDate: '2025-09-04', endDate: '2025-12-20', estimatedHours: 35, longRangePlan: { subject: 'Éducation physique' } },
+    { id: 'unit-pe2', title: 'Jeux coopératifs', titleFr: 'Jeux coopératifs', startDate: '2026-01-06', endDate: '2026-06-26', estimatedHours: 40, longRangePlan: { subject: 'Éducation physique' } },
+    // Personal/Social units
+    { id: 'unit-ps1', title: 'Bien-être émotionnel', titleFr: 'Bien-être émotionnel', startDate: '2025-09-04', endDate: '2025-12-20', estimatedHours: 20, longRangePlan: { subject: 'Formation personnelle et sociale' } },
+    { id: 'unit-ps2', title: 'Relations saines', titleFr: 'Relations saines', startDate: '2026-01-06', endDate: '2026-06-26', estimatedHours: 25, longRangePlan: { subject: 'Formation personnelle et sociale' } }
+  ];
+  const septemberLessons = [];
   
   // Calculate days until school starts
   const schoolStartDate = new Date('2025-09-04');
@@ -103,11 +174,26 @@ export function ShowcaseDashboard(): React.ReactElement {
               <p className="text-sm sm:text-base lg:text-lg opacity-90">
                 Grade 1 French Immersion • West Kent Elementary • PEI
               </p>
+              <div className="flex gap-3 mt-4">
+                <button
+                  onClick={() => navigate('/planner/today')}
+                  className="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
+                >
+                  🕐 Today's Teaching
+                </button>
+                <button
+                  onClick={() => navigate('/planner/week')}
+                  className="bg-white/20 text-white border border-white/30 px-4 py-2 rounded-lg font-semibold hover:bg-white/30 transition-colors"
+                >
+                  📅 Week View
+                </button>
+              </div>
             </div>
             <div className="text-center bg-white/20 backdrop-blur rounded-lg p-4 sm:p-6">
-              <p className="text-4xl sm:text-5xl lg:text-6xl font-bold">{daysUntilSchool > 0 ? daysUntilSchool : 'Ready!'}</p>
-              <p className="text-sm sm:text-base lg:text-lg mt-2">
-                {daysUntilSchool > 0 ? 'Days Until School' : 'School Year Active'}
+              <p className="text-lg font-semibold mb-2">{format(today, 'EEEE')}</p>
+              <p className="text-3xl sm:text-4xl lg:text-5xl font-bold">{format(today, 'MMM d')}</p>
+              <p className="text-sm sm:text-base mt-2">
+                {daysUntilSchool > 0 ? `${daysUntilSchool} days until school` : format(today, 'yyyy')}
               </p>
             </div>
           </div>
@@ -119,9 +205,14 @@ export function ShowcaseDashboard(): React.ReactElement {
         <div className="max-w-screen-2xl mx-auto">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <Card className="shadow-xl border-0 transform hover:scale-105 transition-transform">
-            <CardContent className="p-4 sm:p-6 text-center">
-              <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-600">8</p>
-              <p className="text-xs sm:text-sm text-gray-600 mt-1 sm:mt-2">Complete Subjects</p>
+            <CardContent className="p-4 sm:p-6 text-center relative">
+              <Settings className="absolute top-2 right-2 h-4 w-4 text-gray-400" />
+              <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-600">
+                {teacherSubjects.length}
+              </p>
+              <p className="text-xs sm:text-sm text-gray-600 mt-1 sm:mt-2">
+                Selected Subjects
+              </p>
             </CardContent>
           </Card>
           <Card className="shadow-xl border-0 transform hover:scale-105 transition-transform">
@@ -204,26 +295,51 @@ export function ShowcaseDashboard(): React.ReactElement {
             {/* Subject Grid */}
             <Card className="shadow-lg">
               <CardHeader>
-                <CardTitle className="text-2xl">Your 8 Complete Subjects</CardTitle>
-                <CardDescription>Click any subject to explore its unit plans</CardDescription>
+                <div className="flex justify-between items-start">
+                  <div>
+                    <CardTitle className="text-2xl">
+                      Your {teacherSubjects.length} Selected Subjects
+                    </CardTitle>
+                    <CardDescription>Click any subject to explore its unit plans</CardDescription>
+                  </div>
+                  <Button
+                    onClick={() => setIsSubjectModalOpen(true)}
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center gap-2"
+                  >
+                    <Settings className="h-4 w-4" />
+                    Modify
+                  </Button>
+                </div>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {Object.entries(unitsBySubject).map(([subject, units]) => (
-                    <button
-                      key={subject}
-                      onClick={() => setSelectedSubject(subject === selectedSubject ? null : subject)}
-                      className={`p-4 rounded-lg text-white transform hover:scale-105 transition-all ${
-                        subjectColors[subject] || 'bg-gray-500'
-                      } ${selectedSubject === subject ? 'ring-4 ring-offset-2 ring-blue-500' : ''}`}
-                    >
-                      <div className="flex flex-col items-center">
-                        {subjectIcons[subject] || <BookOpen className="h-6 w-6" />}
-                        <p className="text-2xl font-bold mt-2">{units.length}</p>
-                        <p className="text-xs opacity-90">Units</p>
-                      </div>
-                    </button>
-                  ))}
+                  {teacherSubjects.length > 0 ? (
+                    teacherSubjects.map((subject) => {
+                      const units = unitsBySubject[subject] || [];
+                      return (
+                        <button
+                          key={subject}
+                          onClick={() => setSelectedSubject(subject === selectedSubject ? null : subject)}
+                          className={`p-4 rounded-lg text-white transform hover:scale-105 transition-all ${
+                            subjectColors[subject] || 'bg-gray-500'
+                          } ${selectedSubject === subject ? 'ring-4 ring-offset-2 ring-blue-500' : ''}`}
+                        >
+                          <div className="flex flex-col items-center">
+                            {subjectIcons[subject] || <BookOpen className="h-6 w-6" />}
+                            <p className="text-xs font-semibold opacity-95 mb-1">{subject}</p>
+                            <p className="text-2xl font-bold">{units.length}</p>
+                            <p className="text-xs opacity-90">Units</p>
+                          </div>
+                        </button>
+                      );
+                    })
+                  ) : (
+                    <div className="col-span-full text-center text-gray-500">
+                      <p>No subjects selected. Click "Modify" to select your teaching subjects.</p>
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>
@@ -298,6 +414,23 @@ export function ShowcaseDashboard(): React.ReactElement {
                 <CardTitle className="text-xl">Quick Access</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3 pt-4">
+                <Button 
+                  className="w-full justify-start bg-blue-50 hover:bg-blue-100 text-blue-700 border-blue-200"
+                  variant="outline"
+                  onClick={() => navigate('/planner/today')}
+                >
+                  <Clock className="h-5 w-5 mr-3" />
+                  Today's Teaching
+                </Button>
+                <Button 
+                  className="w-full justify-start bg-green-50 hover:bg-green-100 text-green-700 border-green-200"
+                  variant="outline"
+                  onClick={() => navigate('/planner/week')}
+                >
+                  <Calendar className="h-5 w-5 mr-3" />
+                  Weekly Schedule
+                </Button>
+                <hr className="my-2" />
                 <Button 
                   className="w-full justify-start"
                   variant="outline"
@@ -412,6 +545,13 @@ export function ShowcaseDashboard(): React.ReactElement {
           </div>
         </div>
       </div>
+      
+      {/* Subject Selection Modal */}
+      <SubjectSelectionModal
+        isOpen={isSubjectModalOpen}
+        onClose={() => setIsSubjectModalOpen(false)}
+        onSave={handleSubjectSave}
+      />
     </div>
   );
 }

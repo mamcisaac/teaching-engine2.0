@@ -7,24 +7,24 @@ export const STORAGE_KEYS = {
 } as const;
 
 export const CORE_SUBJECTS = [
-  'Français langue première',
+  'Français (Immersion)',
   'Mathématiques',
 ] as const;
 
 export const ALL_SUBJECTS = [
-  'Français langue première',
+  'Français (Immersion)',
   'Mathématiques', 
-  'Sciences',
-  'Études sociales',
-  'English Language Arts',
-  'Arts',
+  'Sciences de la nature',
+  'Sciences humaines',
+  'Arts visuels',
+  'Musique',
   'Éducation physique',
-  'Éducation à la santé',
+  'Formation personnelle et sociale',
 ] as const;
 
 export const SPECIALIST_SUBJECTS = [
   'Éducation physique',
-  'Éducation à la santé',
+  'Musique',
 ] as const;
 
 export type Subject = typeof ALL_SUBJECTS[number];
