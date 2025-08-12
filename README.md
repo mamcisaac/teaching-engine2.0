@@ -5,7 +5,7 @@ A comprehensive digital teaching assistant designed for Grade 1 French Immersion
 ## ✨ Key Features
 
 - **🎯 Subject-Based Personalization**: Onboarding flow that personalizes the app based on which subjects you actually teach
-- **📋 Complete PEI Curriculum**: 73 Grade 1 French Immersion curriculum expectations pre-loaded and verified
+- **📋 Complete PEI Curriculum**: 68 Grade 1 French Immersion curriculum expectations pre-loaded and verified
 - **📊 Real-Time Coverage Tracking**: Monitor your progress across all curriculum expectations
 - **🤖 AI-Powered Planning**: Intelligent lesson plan generation with ETFO methodology
 - **📱 Responsive Design**: Works seamlessly on desktop, tablet, and mobile
@@ -77,8 +77,33 @@ teaching-engine2.0/
 ├── resources/             # Original PDF source documents
 ├── scripts/               # Build and deployment scripts
 ├── tests/                 # End-to-end and integration tests
-└── docs/                  # Documentation
+└── docs/                  # Organized documentation
+    ├── validation/        # Pedagogical evaluation tools
+    ├── planning/          # Unit and lesson plan examples
+    ├── calendar/          # School calendar information
+    ├── system/            # Technical documentation
+    └── archive/           # Historical development docs
 ```
+
+## 📖 Documentation
+
+### Key Documents
+- `CLAUDE.md` - Project configuration and AI instructions
+- `QUICK_START.md` - Getting started guide
+- `docs/validation/` - Pedagogical evaluation checklists and guides
+- `docs/README.md` - Complete documentation index
+
+### Pedagogical Approach
+This project uses **intelligent human evaluation** rather than automated keyword-based assessment. All pedagogical plans are evaluated based on:
+- Evidence of actual implementation
+- Integration and coherence of elements  
+- Developmental appropriateness for Grade 1
+- Authentic cultural responsiveness
+- Research-based best practices (ETFO guidelines)
+
+For detailed evaluation criteria, see:
+- [Pedagogical Validation Checklists](docs/validation/PEDAGOGICAL_VALIDATION_CHECKLISTS.md)
+- [Intelligent Evaluation Guide](docs/validation/INTELLIGENT_EVALUATION_GUIDE.md)
 
 ## 🛠️ Development
 
