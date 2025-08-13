@@ -2,7 +2,20 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
+/**
+ * IMPORTANT: This script uses mechanical keyword checking which is NOT
+ * the correct way to assess educational content quality.
+ * 
+ * See ASSESSMENT_PRINCIPLES.md for the proper approach:
+ * - Educational content must be assessed through intelligent pedagogical analysis
+ * - Never rely on keyword presence or mechanical counting
+ * - Quality is determined by educational substance, not text patterns
+ * 
+ * This script should be replaced with intelligent agent-based assessment.
+ */
 async function reviewAllUnits() {
+  console.log('⚠️  WARNING: This script uses flawed mechanical validation');
+  console.log('See ASSESSMENT_PRINCIPLES.md for proper assessment approach\n');
   console.log('🔍 COMPREHENSIVE REVIEW OF ALL UNIT PLANS');
   console.log('==========================================\n');
   

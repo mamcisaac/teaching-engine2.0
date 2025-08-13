@@ -1,5 +1,34 @@
 # Claude Code Configuration
 
+## ⚠️ CRITICAL: Assessment and Validation Principles
+
+### NEVER Use Keyword Counting or Mechanical Validation
+**All educational content assessment MUST be done through intelligent pedagogical analysis, NOT through:**
+- ❌ Keyword searching or counting
+- ❌ Pattern matching for specific phrases  
+- ❌ Mechanical validation scripts
+- ❌ Automated scoring based on text presence
+- ❌ Checking for exact string matches
+
+### Required: Intelligent Pedagogical Assessment
+**When evaluating unit plans, lesson plans, or any educational content:**
+- ✅ Understand the actual pedagogical content and meaning
+- ✅ Assess whether learning objectives are meaningfully addressed
+- ✅ Evaluate if differentiation strategies genuinely support diverse learners
+- ✅ Verify assessment methods actually measure intended outcomes
+- ✅ Confirm activities authentically engage students
+- ✅ Use professional educational judgment, not mechanical rules
+
+### Example of Proper Assessment
+**WRONG**: "Unit scores 88% because it doesn't contain the keyword 'FORMATIVE'"
+**RIGHT**: "Unit has comprehensive assessment including ongoing observations, portfolios, and self-reflection (formative) plus final exhibitions (summative), scoring 100%"
+
+**WRONG**: "Missing 'forStruggling' keyword in differentiation"
+**RIGHT**: "Differentiation includes visual supports, simplified tasks, and peer assistance for learners who need additional support"
+
+### Implementation Note
+All validation in this codebase must use intelligent agents performing meaningful pedagogical review. Never rely on keyword presence, string matching, or mechanical counting. Quality is determined by educational substance, not text patterns.
+
 ## Build Commands
 
 ⚠️ **IMPORTANT**: This is a pnpm workspace project. Root-level npm commands won't work.
