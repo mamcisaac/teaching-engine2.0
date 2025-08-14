@@ -341,7 +341,7 @@ export function SimpleLessonPlansPage(): React.ReactElement {
 
   const lessons = lessonsByUnit[unitId || 'unit-1'] || lessonsByUnit['unit-1'];
   const isLoading = false;
-  const error = null;
+  const error: Error | null = null;
 
   // Mutations
   const createMutation = useCreateETFOLessonPlan();
@@ -445,24 +445,8 @@ export function SimpleLessonPlansPage(): React.ReactElement {
     );
   }
 
-  if (error) {
-    return (
-      <div style={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center', 
-        height: '100vh' 
-      }}>
-        <div style={{ 
-          textAlign: 'center', 
-          color: '#dc2626' 
-        }}>
-          <div style={{ fontSize: '24px', marginBottom: '16px' }}>Error loading lesson plans</div>
-          <div>{error.message}</div>
-        </div>
-      </div>
-    );
-  }
+  // Error handling removed - error is always null in this implementation
+  // TODO: Implement proper error handling when connecting to real API
 
   return (
     <div style={{ 
@@ -835,7 +819,7 @@ export function SimpleLessonPlansPage(): React.ReactElement {
                       paddingLeft: '20px',
                       margin: 0
                     }}>
-                      {lesson.materials.map((material, i) => (
+                      {lesson.materials.map((material: string, i: number) => (
                         <li key={i}>{material}</li>
                       ))}
                     </ul>

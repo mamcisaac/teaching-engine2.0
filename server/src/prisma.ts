@@ -37,12 +37,14 @@ export {
   type TemplateRating,
   type TemplateVariation,
   type RecentPlanAccess,
-  type CalendarEventType,
-  type CalendarEventSource,
-  type UnavailableBlockType,
-  type ImportStatus,
-  type TemplateType,
-  type TemplateCategory
+  // The following types are not exported from the database package
+  // TODO: Add these to Prisma schema or remove usage
+  // type CalendarEventType,
+  // type CalendarEventSource,
+  // type UnavailableBlockType,
+  // type ImportStatus,
+  // type TemplateType,
+  // type TemplateCategory
 } from '@teaching-engine/database';
 
 // Create singleton instance for server usage

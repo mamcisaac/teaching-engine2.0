@@ -20,10 +20,19 @@ interface TokenPayload extends JwtPayload {
  * Verifies JWT tokens and attaches user information to requests
  */
 
-// Get JWT secret from environment
-const JWT_SECRET = process.env.JWT_SECRET ?? 'your-secret-key-change-in-production';
+// Get JWT secret from environment - REQUIRED for production
+const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN ?? '24h';
 const JWT_REFRESH_EXPIRES_IN = process.env.JWT_REFRESH_EXPIRES_IN ?? '7d';
+
+// Ensure JWT_SECRET is set in production
+if (!JWT_SECRET) {
+  if (process.env.NODE_ENV === 'production') {
+    throw new Error('CRITICAL: JWT_SECRET must be set in production environment');
+  }
+  // Only log warning in development
+  logger.warn('JWT_SECRET not set - authentication will not work properly');
+}
 
 /**
  * Generate JWT token for user
@@ -35,6 +44,10 @@ export function generateToken(user: {
   organizationId?: number;
   permissions?: string[];
 }): string {
+  if (!JWT_SECRET) {
+    throw new Error('Cannot generate token: JWT_SECRET is not configured');
+  }
+  
   const payload: TokenPayload = {
     userId: user.id.toString(),
     email: user.email,

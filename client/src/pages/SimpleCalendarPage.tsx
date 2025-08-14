@@ -3,8 +3,20 @@ import { format, startOfMonth, endOfMonth, eachDayOfInterval, getDay, isSameMont
 import { useNavigate } from 'react-router-dom';
 import { Calendar, ChevronLeft, ChevronRight, Settings, Clock, Coffee, Users } from 'lucide-react';
 
+// Type definitions for schedule
+interface ScheduleSlot {
+  type: 'arrival' | 'teaching' | 'break' | 'lunch' | 'specialist' | 'dismissal';
+  title?: string;
+  subject?: string;
+  duration: number;
+}
+
+interface Schedule {
+  [time: string]: ScheduleSlot;
+}
+
 // Default daily schedule template
-const defaultSchedule = {
+const defaultSchedule: Schedule = {
   '8:30': { type: 'arrival', title: 'Arrival & Morning Routine', duration: 30 },
   '9:00': { type: 'teaching', subject: 'Français', duration: 60 },
   '10:00': { type: 'break', title: 'Recess', duration: 15 },
@@ -23,9 +35,9 @@ export function SimpleCalendarPage(): React.ReactElement {
   const navigate = useNavigate();
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [showScheduleModal, setShowScheduleModal] = useState(false);
-  const [customSchedule, setCustomSchedule] = useState(() => {
+  const [customSchedule, setCustomSchedule] = useState<Schedule>(() => {
     const saved = localStorage.getItem('teacher-schedule');
-    return saved ? JSON.parse(saved) : defaultSchedule;
+    return saved ? JSON.parse(saved) as Schedule : defaultSchedule;
   });
   
   const monthStart = startOfMonth(currentMonth);
