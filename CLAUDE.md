@@ -1,5 +1,35 @@
 # Claude Code Configuration
 
+## 🎯 CRITICAL: Emily's Teaching System - Rotation Model (OVERHAULED)
+
+### Current System Status (August 15, 2025)
+**COMPLETE OVERHAUL PERFORMED** - System restructured from broken concurrent model to proper rotation model:
+- **528 lessons** (was 784 with 312% over-coverage)
+- **27 rotation units** (was 40 overlapping units)
+- **2-3 week units** (was up to 9 weeks)
+
+### Teaching Structure (Grade 1 French Immersion)
+Emily teaches **3 subjects per day**:
+1. **French:** 75 minutes daily (morning, split block) - 195 lessons
+2. **Math:** 35 minutes daily (mid-morning) - 195 lessons
+3. **Rotating Subject:** 90 minutes daily (afternoon, double-block) - 138 lessons total
+
+### Rotation Model (Sequential, Not Concurrent)
+- **ONE subject at a time** for 2-3 weeks
+- **Double-block afternoons** (2 × 45 min same subject)
+- **Deep learning** through extended exploration
+- **Proper distribution:** No over-coverage
+
+### Lesson Distribution
+- French: 195 lessons (100% daily coverage)
+- Math: 195 lessons (100% daily coverage)
+- Science: 48 lessons (5 rotation blocks)
+- Social Studies: 30 lessons (2 rotation blocks)
+- Arts: 30 lessons (2 rotation blocks)
+- Health: 30 lessons (2 rotation blocks)
+
+See `ROTATION_SCHEDULE_FINAL.md` and `OVERHAUL_SUCCESS.md` for details.
+
 ## ⚠️ CRITICAL: Assessment and Validation Principles
 
 ### NEVER Use Keyword Counting or Mechanical Validation

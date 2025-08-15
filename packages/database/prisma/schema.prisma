@@ -178,8 +178,6 @@ model ClassRoutine {
 model CurriculumExpectation {
   id             String                          @id @default(cuid())
   code           String                          @unique
-  title          String?
-  titleFr        String?
   description    String
   strand         String
   substrand      String?
@@ -191,6 +189,8 @@ model CurriculumExpectation {
   importId       String?
   createdAt      DateTime                        @default(now())
   updatedAt      DateTime                        @updatedAt
+  title          String?
+  titleFr        String?
   import         CurriculumImport?               @relation("CurriculumExpectationImport", fields: [importId], references: [id])
   embedding      CurriculumExpectationEmbedding?
   daybookEntries DaybookEntryExpectation[]

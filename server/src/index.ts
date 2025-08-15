@@ -39,6 +39,7 @@ import { router as dashboardMetricsRoutes } from './routes/dashboard-metrics';
 import { router as daybookEntryRoutes } from './routes/daybook-entries';
 import { router as etfoLessonPlanRoutes } from './routes/etfo-lesson-plans';
 import { router as etfoProgressRoutes } from './routes/etfo-progress';
+import lessonGenerationRoutes from './routes/lesson-generation';
 import { router as longRangePlanRoutes } from './routes/long-range-plans';
 import { router as metricsRoutes } from './routes/metrics';
 import { router as monitoringRoutes } from './routes/monitoring';
@@ -240,6 +241,7 @@ app.use(
   etfoLessonPlanRoutes,
 );
 app.use('/api/daybook-entries', asyncMiddleware(authenticate), rateLimiters.write, userCache, daybookEntryRoutes);
+app.use('/api/lesson-generation', asyncMiddleware(authenticate), rateLimiters.write, lessonGenerationRoutes);
 app.use('/api/etfo', asyncMiddleware(authenticate), rateLimiters.read, etfoProgressRoutes);
 
 // State Management Routes
