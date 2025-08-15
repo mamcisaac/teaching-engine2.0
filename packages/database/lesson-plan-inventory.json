@@ -1,0 +1,460 @@
+[
+  {
+    "file": "seed-french-lessons-january-june.ts",
+    "subject": "Français",
+    "estimatedLessons": 118,
+    "unitReferences": [
+      "Winter safety presentations, local winter activities, community helpers in winter"
+    ]
+  },
+  {
+    "file": "seed-french-lessons-september.ts",
+    "subject": "Français",
+    "estimatedLessons": 0,
+    "dateRange": {
+      "start": "2025-09-04",
+      "end": "2025-09-10"
+    }
+  },
+  {
+    "file": "seed-health-fps-comprehensive-36-lessons.ts",
+    "subject": "Formation personnelle et sociale",
+    "estimatedLessons": 0,
+    "dateRange": {
+      "start": "2025-09-06",
+      "end": "2026-06-25"
+    }
+  },
+  {
+    "file": "seed-lesson-plans-arts-april.ts",
+    "subject": "Arts",
+    "estimatedLessons": 8,
+    "dateRange": {
+      "start": "2026-04-01",
+      "end": "2026-04-30"
+    },
+    "unitReferences": [
+      "\n    });\n    \n    lessons.push({\n      title: "
+    ]
+  },
+  {
+    "file": "seed-lesson-plans-arts-december.ts",
+    "subject": "Arts",
+    "estimatedLessons": 6,
+    "dateRange": {
+      "start": "2025-12-01",
+      "end": "2025-12-31"
+    }
+  },
+  {
+    "file": "seed-lesson-plans-arts-february.ts",
+    "subject": "Arts",
+    "estimatedLessons": 8,
+    "dateRange": {
+      "start": "2026-02-01",
+      "end": "2026-02-28"
+    }
+  },
+  {
+    "file": "seed-lesson-plans-arts-january.ts",
+    "subject": "Arts",
+    "estimatedLessons": 8,
+    "dateRange": {
+      "start": "2026-01-01",
+      "end": "2026-01-31"
+    }
+  },
+  {
+    "file": "seed-lesson-plans-arts-june.ts",
+    "subject": "Arts",
+    "estimatedLessons": 4,
+    "dateRange": {
+      "start": "2026-06-01",
+      "end": "2026-06-30"
+    },
+    "unitReferences": [
+      "\n    });\n    \n    lessons.push({\n      title: ",
+      "\n    });\n    \n    // WEEK 2: June 8-12 (1 lesson) - Art appreciation and future goals\n    lessons.push({\n      title: ",
+      ");\n    console.log("
+    ]
+  },
+  {
+    "file": "seed-lesson-plans-arts-march.ts",
+    "subject": "Arts",
+    "estimatedLessons": 8,
+    "dateRange": {
+      "start": "2026-03-01",
+      "end": "2026-03-31"
+    }
+  },
+  {
+    "file": "seed-lesson-plans-arts-may.ts",
+    "subject": "Arts",
+    "estimatedLessons": 8,
+    "dateRange": {
+      "start": "2026-05-01",
+      "end": "2026-05-31"
+    },
+    "unitReferences": [
+      ");\n    console.log("
+    ]
+  },
+  {
+    "file": "seed-lesson-plans-arts-november.ts",
+    "subject": "Arts",
+    "estimatedLessons": 0,
+    "dateRange": {
+      "start": "2025-11-01",
+      "end": "2025-11-30"
+    }
+  },
+  {
+    "file": "seed-lesson-plans-arts-october-extended.ts",
+    "subject": "Arts",
+    "estimatedLessons": 2
+  },
+  {
+    "file": "seed-lesson-plans-arts-october.ts",
+    "subject": "Arts",
+    "estimatedLessons": 0
+  },
+  {
+    "file": "seed-lesson-plans-arts-september.ts",
+    "subject": "Arts",
+    "estimatedLessons": 8,
+    "unitReferences": [
+      "\n    });\n    \n    // WEEK 4: 2 lessons\n    lessons.push({\n      title: "
+    ]
+  },
+  {
+    "file": "seed-lesson-plans-bienvenue-fixed.ts",
+    "subject": "Français",
+    "estimatedLessons": 20
+  },
+  {
+    "file": "seed-lesson-plans-bienvenue.ts",
+    "subject": "Français",
+    "estimatedLessons": 20,
+    "dateRange": {
+      "start": "2025-09-04",
+      "end": "2025-09-30"
+    }
+  },
+  {
+    "file": "seed-lesson-plans-december-all.ts",
+    "subject": "Unknown",
+    "estimatedLessons": 2025,
+    "dateRange": {
+      "start": "2025-12-01",
+      "end": "2025-12-31"
+    },
+    "unitReferences": [
+      ");\n    console.log("
+    ]
+  },
+  {
+    "file": "seed-lesson-plans-french-december.ts",
+    "subject": "Français",
+    "estimatedLessons": 15,
+    "dateRange": {
+      "start": "2025-12-01",
+      "end": "2025-12-19"
+    }
+  },
+  {
+    "file": "seed-lesson-plans-french-november.ts",
+    "subject": "Français",
+    "estimatedLessons": 0,
+    "dateRange": {
+      "start": "2025-11-01",
+      "end": "2025-11-30"
+    }
+  },
+  {
+    "file": "seed-lesson-plans-french-october.ts",
+    "subject": "Français",
+    "estimatedLessons": 20
+  },
+  {
+    "file": "seed-lesson-plans-math-april.ts",
+    "subject": "Mathématiques",
+    "estimatedLessons": 20,
+    "dateRange": {
+      "start": "2026-04-01",
+      "end": "2026-04-30"
+    },
+    "unitReferences": [
+      "Aventures de résolution de problèmes",
+      ");\n    \n  } catch (error) {\n    console.error("
+    ]
+  },
+  {
+    "file": "seed-lesson-plans-math-december.ts",
+    "subject": "Mathématiques",
+    "estimatedLessons": 18
+  },
+  {
+    "file": "seed-lesson-plans-math-february.ts",
+    "subject": "Mathématiques",
+    "estimatedLessons": 18,
+    "unitReferences": [
+      "Stratégies de calcul mental",
+      ");\n    \n  } catch (error) {\n    console.error("
+    ]
+  },
+  {
+    "file": "seed-lesson-plans-math-january.ts",
+    "subject": "Mathématiques",
+    "estimatedLessons": 20,
+    "unitReferences": [
+      ");\n    \n  } catch (error) {\n    console.error("
+    ]
+  },
+  {
+    "file": "seed-lesson-plans-math-june.ts",
+    "subject": "Mathématiques",
+    "estimatedLessons": 14,
+    "unitReferences": [
+      "Célébration mathématique"
+    ]
+  },
+  {
+    "file": "seed-lesson-plans-math-march.ts",
+    "subject": "Mathématiques",
+    "estimatedLessons": 19,
+    "dateRange": {
+      "start": "2026-03-16",
+      "end": "2026-03-17"
+    },
+    "unitReferences": [
+      "Explorer la mesure",
+      "trombones de long",
+      "blocs de poids",
+      ");\n    \n  } catch (error) {\n    console.error("
+    ]
+  },
+  {
+    "file": "seed-lesson-plans-math-may.ts",
+    "subject": "Mathématiques",
+    "estimatedLessons": 20,
+    "unitReferences": [
+      "Aventures de résolution de problèmes",
+      "communauté",
+      ");\n    \n  } catch (error) {\n    console.error("
+    ]
+  },
+  {
+    "file": "seed-lesson-plans-math-november.ts",
+    "subject": "Mathématiques",
+    "estimatedLessons": 0,
+    "dateRange": {
+      "start": "2025-11-01",
+      "end": "2025-11-30"
+    }
+  },
+  {
+    "file": "seed-lesson-plans-math-october.ts",
+    "subject": "Mathématiques",
+    "estimatedLessons": 20
+  },
+  {
+    "file": "seed-lesson-plans-math-september.ts",
+    "subject": "Mathématiques",
+    "estimatedLessons": 20
+  },
+  {
+    "file": "seed-lesson-plans-november-all.ts",
+    "subject": "Unknown",
+    "estimatedLessons": 2025,
+    "dateRange": {
+      "start": "2025-11-01",
+      "end": "2025-11-30"
+    },
+    "unitReferences": [
+      ",\n      mindsOn: ",
+      ");\n    console.log("
+    ]
+  },
+  {
+    "file": "seed-lesson-plans-science-april.ts",
+    "subject": "Sciences",
+    "estimatedLessons": 4,
+    "dateRange": {
+      "start": "2026-04-01",
+      "end": "2026-04-30"
+    },
+    "unitReferences": [
+      ");\n  console.log(",
+      ");\n  \n  try {\n    // Get Emily",
+      "Local naturalists, community gardens, spring festivals, agricultural knowledge sharing, elder seasonal teachings",
+      "Growth & Change",
+      ");\n    console.log("
+    ]
+  },
+  {
+    "file": "seed-lesson-plans-science-december.ts",
+    "subject": "Sciences",
+    "estimatedLessons": 5,
+    "dateRange": {
+      "start": "2025-12-01",
+      "end": "2025-12-31"
+    },
+    "unitReferences": [
+      "Maritime Electric visit, home energy audits with families, school energy conservation projects"
+    ]
+  },
+  {
+    "file": "seed-lesson-plans-science-february.ts",
+    "subject": "Sciences",
+    "estimatedLessons": 6,
+    "dateRange": {
+      "start": "2026-02-01",
+      "end": "2026-02-16"
+    },
+    "unitReferences": [
+      ");\n  \n  try {\n    // Get Emily",
+      "Local meteorologist visits, winter sports community, elder winter knowledge sharing, environmental groups"
+    ]
+  },
+  {
+    "file": "seed-lesson-plans-science-january.ts",
+    "subject": "Sciences",
+    "estimatedLessons": 17,
+    "dateRange": {
+      "start": "2026-01-01",
+      "end": "2026-01-31"
+    },
+    "unitReferences": [
+      "s impact on our world\\n",
+      "Local weather station visits, winter sports athletes, elder knowledge sharing about PEI winters, winter safety experts"
+    ]
+  },
+  {
+    "file": "seed-lesson-plans-science-june.ts",
+    "subject": "Sciences",
+    "estimatedLessons": 30,
+    "dateRange": {
+      "start": "2026-06-01",
+      "end": "2026-06-30"
+    },
+    "unitReferences": [
+      ");\n  console.log(",
+      "Environmental organizations, municipal sustainability programs, Indigenous knowledge keepers, conservation groups, family engagement",
+      ");\n    console.log("
+    ]
+  },
+  {
+    "file": "seed-lesson-plans-science-march.ts",
+    "subject": "Sciences",
+    "estimatedLessons": 6,
+    "dateRange": {
+      "start": "2026-03-01",
+      "end": "2026-03-31"
+    },
+    "unitReferences": [
+      ");\n  \n  try {\n    // Get Emily",
+      "Local farmers and gardeners, greenhouse visits, community gardens, agricultural societies"
+    ]
+  },
+  {
+    "file": "seed-lesson-plans-science-may.ts",
+    "subject": "Sciences",
+    "estimatedLessons": 6,
+    "dateRange": {
+      "start": "2026-05-01",
+      "end": "2026-05-31"
+    },
+    "unitReferences": [
+      ");\n  console.log(",
+      ");\n  \n  try {\n    // Get Emily",
+      "Local environmental groups, municipal sustainability programs, Indigenous knowledge keepers, conservation organizations",
+      "Spring Awakening",
+      ");\n    console.log("
+    ]
+  },
+  {
+    "file": "seed-lesson-plans-science-november.ts",
+    "subject": "Sciences",
+    "estimatedLessons": 0,
+    "dateRange": {
+      "start": "2025-11-01",
+      "end": "2025-11-30"
+    }
+  },
+  {
+    "file": "seed-lesson-plans-science-october.ts",
+    "subject": "Sciences",
+    "estimatedLessons": 0
+  },
+  {
+    "file": "seed-lesson-plans-science-september.ts",
+    "subject": "Sciences",
+    "estimatedLessons": 20
+  },
+  {
+    "file": "seed-music-lessons-comprehensive-72.ts",
+    "subject": "Music",
+    "estimatedLessons": 72,
+    "dateRange": {
+      "start": "2025-09-08",
+      "end": "2026-06-24"
+    },
+    "unitReferences": [
+      ",\n        action: "
+    ]
+  },
+  {
+    "file": "seed-music-lessons-sept-dec-enhanced.ts",
+    "subject": "Music",
+    "estimatedLessons": 0,
+    "dateRange": {
+      "start": "2025-09-01",
+      "end": "2025-12-20"
+    }
+  },
+  {
+    "file": "seed-music-lessons-sept-dec.ts",
+    "subject": "Music",
+    "estimatedLessons": 0,
+    "dateRange": {
+      "start": "2025-09-01",
+      "end": "2025-12-20"
+    }
+  },
+  {
+    "file": "seed-music-master-72-lessons.ts",
+    "subject": "Music",
+    "estimatedLessons": 72,
+    "dateRange": {
+      "start": "2025-09-08",
+      "end": "2026-06-24"
+    },
+    "unitReferences": [
+      "unit1",
+      "unit2",
+      "unit3",
+      " : totalLessons < 65 ? "
+    ]
+  },
+  {
+    "file": "seed-pe-comprehensive-108-lessons.ts",
+    "subject": "Éducation physique",
+    "estimatedLessons": 18,
+    "dateRange": {
+      "start": "2025-09-04",
+      "end": "2026-06-25"
+    },
+    "unitReferences": [
+      ");\n    console.log("
+    ]
+  },
+  {
+    "file": "seed-pe-lessons-sept-dec.ts",
+    "subject": "Éducation physique",
+    "estimatedLessons": 0,
+    "dateRange": {
+      "start": "2025-09-01",
+      "end": "2025-12-20"
+    }
+  }
+]

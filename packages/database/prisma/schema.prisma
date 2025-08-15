@@ -178,6 +178,8 @@ model ClassRoutine {
 model CurriculumExpectation {
   id             String                          @id @default(cuid())
   code           String                          @unique
+  title          String?
+  titleFr        String?
   description    String
   strand         String
   substrand      String?
@@ -267,6 +269,13 @@ model LongRangePlan {
   yearlyEngagementPlan           Json?
   yearlyEssentialQuestions       Json?
   yearlyTransferGoals            Json?
+  differentiationFramework       String?
+  thematicOverview               String?
+  assessmentStrategy             String?
+  differentiationPlans           String?
+  indigenousPerspectives         String?
+  resourceLibrary                String?
+  parentCommunication            String?
   user                           User                       @relation(fields: [userId], references: [id])
   expectations                   LongRangePlanExpectation[]
   unitPlans                      UnitPlan[]
@@ -403,6 +412,7 @@ model ETFOLessonPlan {
   priorKnowledgeCheck       String?
   reflectionActivities      Json?
   wheretoFramework          Json?
+  indigenousPerspectives    String?
   activityImports           ActivityImport[]
   daybookEntry              DaybookEntry?
   unitPlan                  UnitPlan                    @relation(fields: [unitPlanId], references: [id])

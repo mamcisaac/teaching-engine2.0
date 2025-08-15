@@ -71,6 +71,10 @@ export function generateToken(user: {
  * Generate refresh token
  */
 export function generateRefreshToken(userId: number): string {
+  if (!JWT_SECRET) {
+    throw new Error('Cannot generate refresh token: JWT_SECRET is not configured');
+  }
+  
   return sign(
     { userId: userId.toString(), type: 'refresh' },
     JWT_SECRET,
@@ -115,7 +119,7 @@ export function verifyToken(token: string): TokenPayload | { error: string } | n
         {
           tokenStart: `${token.substring(0, 20)}...`,
           jwtSecret: JWT_SECRET && JWT_SECRET !== '' ? 'present' : 'missing',
-          jwtSecretLength: JWT_SECRET.length,
+          jwtSecretLength: JWT_SECRET?.length ?? 0,
         },
         'Verifying token',
       );
@@ -123,10 +127,13 @@ export function verifyToken(token: string): TokenPayload | { error: string } | n
 
     // First try to verify with issuer/audience (production tokens)
     try {
+      if (!JWT_SECRET) {
+        throw new Error('JWT_SECRET is not configured');
+      }
       const decoded = verify(token, JWT_SECRET, {
         issuer: 'teaching-engine',
         audience: 'teaching-engine-users',
-      }) as TokenPayload;
+      }) as unknown as TokenPayload;
 
       // Debug logging for test environment
       if (process.env.NODE_ENV === 'test') {
@@ -150,7 +157,10 @@ export function verifyToken(token: string): TokenPayload | { error: string } | n
           issuerError.message.includes('jwt issuer invalid'))
       ) {
         // Try again without issuer/audience validation for test tokens
-        const decoded = verify(token, JWT_SECRET) as TokenPayload;
+        if (!JWT_SECRET) {
+          throw new Error('JWT_SECRET is not configured');
+        }
+        const decoded = verify(token, JWT_SECRET) as unknown as TokenPayload;
 
         // Debug logging for test environment
         logger.debug(
@@ -598,7 +608,11 @@ export async function refreshToken(req: Request, res: Response): Promise<void> {
       return;
     }
 
-    const decoded = verify(refreshToken, JWT_SECRET) as JwtPayload & {
+    if (!JWT_SECRET) {
+      throw new Error('JWT_SECRET is not configured');
+    }
+    
+    const decoded = verify(refreshToken, JWT_SECRET) as unknown as JwtPayload & {
       type: string;
       userId: string;
     };

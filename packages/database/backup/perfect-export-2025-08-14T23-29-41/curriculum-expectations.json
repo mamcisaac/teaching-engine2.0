@@ -1,0 +1,2328 @@
+[
+  {
+    "id": "cmebyc92z0000vjqu143e7oru",
+    "code": "1CO.0",
+    "title": "Phonological Awareness",
+    "titleFr": "Conscience phonologique",
+    "description": "Différencier à l'oral les éléments reliés à la conscience phonologique",
+    "strand": "Français (Immersion)",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Français (Immersion)",
+    "descriptionFr": "Différencier à l'oral les éléments reliés à la conscience phonologique",
+    "strandFr": "Français (Immersion)",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.340Z",
+    "updatedAt": "2025-08-14T23:06:27.129Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9dp0001vjr8fmooh70p",
+        "expectationId": "cmebyc92z0000vjqu143e7oru"
+      },
+      {
+        "unitPlanId": "cmebyc9dt0003vjr89qvjzg0k",
+        "expectationId": "cmebyc92z0000vjqu143e7oru"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+        "expectationId": "cmebyc92z0000vjqu143e7oru",
+        "plannedTerm": null
+      }
+    ]
+  },
+  {
+    "id": "cmebyc9300001vjqubok0gsyz",
+    "code": "1CO.1",
+    "title": "Active Listening",
+    "titleFr": "Écoute active",
+    "description": "Gérer son écoute pour répondre à ses besoins d'information et de divertissement",
+    "strand": "Français (Immersion)",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Français (Immersion)",
+    "descriptionFr": "Gérer son écoute pour répondre à ses besoins d'information et de divertissement",
+    "strandFr": "Français (Immersion)",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.341Z",
+    "updatedAt": "2025-08-14T23:06:27.134Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9dp0001vjr8fmooh70p",
+        "expectationId": "cmebyc9300001vjqubok0gsyz"
+      },
+      {
+        "unitPlanId": "cmebyc9dt0003vjr89qvjzg0k",
+        "expectationId": "cmebyc9300001vjqubok0gsyz"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+        "expectationId": "cmebyc9300001vjqubok0gsyz",
+        "plannedTerm": null
+      }
+    ]
+  },
+  {
+    "id": "cmebyc9310002vjquntjclaye",
+    "code": "1CO.2",
+    "title": "Literal Comprehension",
+    "titleFr": "Compréhension littérale",
+    "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension littérale de messages oraux simples provenant de diverses sources, en faisant preuve d'ouverture et de respect",
+    "strand": "Français (Immersion)",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Français (Immersion)",
+    "descriptionFr": "Utiliser un système d'activités stratégiques pour accéder à une compréhension littérale de messages oraux simples provenant de diverses sources, en faisant preuve d'ouverture et de respect",
+    "strandFr": "Français (Immersion)",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.342Z",
+    "updatedAt": "2025-08-14T23:06:27.136Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9dt0003vjr89qvjzg0k",
+        "expectationId": "cmebyc9310002vjquntjclaye"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+        "expectationId": "cmebyc9310002vjquntjclaye",
+        "plannedTerm": null
+      }
+    ]
+  },
+  {
+    "id": "cmebyc9320003vjquy5k4gpti",
+    "code": "1CO.3",
+    "title": "Interpretive Comprehension",
+    "titleFr": "Compréhension interprétative",
+    "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension interprétative de messages oraux simples provenant de diverses sources, en faisant preuve d'ouverture et de respect",
+    "strand": "Français (Immersion)",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Français (Immersion)",
+    "descriptionFr": "Utiliser un système d'activités stratégiques pour accéder à une compréhension interprétative de messages oraux simples provenant de diverses sources, en faisant preuve d'ouverture et de respect",
+    "strandFr": "Français (Immersion)",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.342Z",
+    "updatedAt": "2025-08-14T23:06:27.137Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9dv0005vjr8y5a7vxbp",
+        "expectationId": "cmebyc9320003vjquy5k4gpti"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+        "expectationId": "cmebyc9320003vjquy5k4gpti",
+        "plannedTerm": null
+      }
+    ]
+  },
+  {
+    "id": "cmebyc9330004vjqu428u4ml7",
+    "code": "1CO.4",
+    "title": "Critical Comprehension",
+    "titleFr": "Compréhension critique",
+    "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension analytico-critique de messages oraux simples provenant de diverses sources, en faisant preuve d'ouverture et de respect",
+    "strand": "Français (Immersion)",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Français (Immersion)",
+    "descriptionFr": "Utiliser un système d'activités stratégiques pour accéder à une compréhension analytico-critique de messages oraux simples provenant de diverses sources, en faisant preuve d'ouverture et de respect",
+    "strandFr": "Français (Immersion)",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.343Z",
+    "updatedAt": "2025-08-14T23:06:27.138Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9dx0009vjr8bsht2fp2",
+        "expectationId": "cmebyc9330004vjqu428u4ml7"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+        "expectationId": "cmebyc9330004vjqu428u4ml7",
+        "plannedTerm": null
+      }
+    ]
+  },
+  {
+    "id": "cmebyc9340005vjqugcrmr8wj",
+    "code": "1CO.5",
+    "title": "Oral Expression",
+    "titleFr": "Expression orale",
+    "description": "S'exprimer dans diverses situations de communication orale simples, spontanées ou préparées, en faisant preuve de respect envers son public",
+    "strand": "Français (Immersion)",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Français (Immersion)",
+    "descriptionFr": "S'exprimer dans diverses situations de communication orale simples, spontanées ou préparées, en faisant preuve de respect envers son public",
+    "strandFr": "Français (Immersion)",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.344Z",
+    "updatedAt": "2025-08-14T23:06:27.139Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9dz000bvjr8sqrc4svh",
+        "expectationId": "cmebyc9340005vjqugcrmr8wj"
+      },
+      {
+        "unitPlanId": "cmebyc9dx0007vjr8res8mwma",
+        "expectationId": "cmebyc9340005vjqugcrmr8wj"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+        "expectationId": "cmebyc9340005vjqugcrmr8wj",
+        "plannedTerm": null
+      }
+    ]
+  },
+  {
+    "id": "cmebyc9350006vjquoua30p81",
+    "code": "1CO.6",
+    "title": "Speaking Reflection",
+    "titleFr": "Réflexion sur la parole",
+    "description": "Réfléchir à ses compétences en tant que locuteur et interlocuteur",
+    "strand": "Français (Immersion)",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Français (Immersion)",
+    "descriptionFr": "Réfléchir à ses compétences en tant que locuteur et interlocuteur",
+    "strandFr": "Français (Immersion)",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.345Z",
+    "updatedAt": "2025-08-14T23:06:27.140Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9e0000dvjr8j06kw9u9",
+        "expectationId": "cmebyc9350006vjquoua30p81"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+        "expectationId": "cmebyc9350006vjquoua30p81",
+        "plannedTerm": null
+      }
+    ]
+  },
+  {
+    "id": "cmebyc9350007vjquzoghu8gh",
+    "code": "1L.1",
+    "title": "Reading Planning",
+    "titleFr": "Planification de lecture",
+    "description": "Planifier sa lecture pour répondre à ses besoins d'information et de divertissement",
+    "strand": "Français (Immersion)",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Français (Immersion)",
+    "descriptionFr": "Planifier sa lecture pour répondre à ses besoins d'information et de divertissement",
+    "strandFr": "Français (Immersion)",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.346Z",
+    "updatedAt": "2025-08-14T23:06:27.141Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9dt0003vjr89qvjzg0k",
+        "expectationId": "cmebyc9350007vjquzoghu8gh"
+      },
+      {
+        "unitPlanId": "cmebyc9dx0007vjr8res8mwma",
+        "expectationId": "cmebyc9350007vjquzoghu8gh"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+        "expectationId": "cmebyc9350007vjquzoghu8gh",
+        "plannedTerm": null
+      }
+    ]
+  },
+  {
+    "id": "cmebyc9360008vjqukx208f44",
+    "code": "1L.2",
+    "title": "Literal Reading",
+    "titleFr": "Lecture littérale",
+    "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension littérale de divers textes simples, y compris des textes numérisés",
+    "strand": "Français (Immersion)",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Français (Immersion)",
+    "descriptionFr": "Utiliser un système d'activités stratégiques pour accéder à une compréhension littérale de divers textes simples, y compris des textes numérisés",
+    "strandFr": "Français (Immersion)",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.347Z",
+    "updatedAt": "2025-08-14T23:06:27.142Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9dv0005vjr8y5a7vxbp",
+        "expectationId": "cmebyc9360008vjqukx208f44"
+      },
+      {
+        "unitPlanId": "cmebyc9dp0001vjr8fmooh70p",
+        "expectationId": "cmebyc9360008vjqukx208f44"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+        "expectationId": "cmebyc9360008vjqukx208f44",
+        "plannedTerm": null
+      }
+    ]
+  },
+  {
+    "id": "cmebyc9370009vjqupqp2eq2e",
+    "code": "1L.3",
+    "title": "Interpretive Reading",
+    "titleFr": "Lecture interprétative",
+    "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension interprétative de divers textes simples, y compris des textes numérisés",
+    "strand": "Français (Immersion)",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Français (Immersion)",
+    "descriptionFr": "Utiliser un système d'activités stratégiques pour accéder à une compréhension interprétative de divers textes simples, y compris des textes numérisés",
+    "strandFr": "Français (Immersion)",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.347Z",
+    "updatedAt": "2025-08-14T23:06:27.143Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9dx0009vjr8bsht2fp2",
+        "expectationId": "cmebyc9370009vjqupqp2eq2e"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+        "expectationId": "cmebyc9370009vjqupqp2eq2e",
+        "plannedTerm": null
+      }
+    ]
+  },
+  {
+    "id": "cmebyc937000avjqubxtxnxfp",
+    "code": "1L.4",
+    "title": "Critical Reading",
+    "titleFr": "Lecture critique",
+    "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension analytico-critique de divers textes simples, y compris des textes numérisés",
+    "strand": "Français (Immersion)",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Français (Immersion)",
+    "descriptionFr": "Utiliser un système d'activités stratégiques pour accéder à une compréhension analytico-critique de divers textes simples, y compris des textes numérisés",
+    "strandFr": "Français (Immersion)",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.348Z",
+    "updatedAt": "2025-08-14T23:06:27.144Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9dz000bvjr8sqrc4svh",
+        "expectationId": "cmebyc937000avjqubxtxnxfp"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+        "expectationId": "cmebyc937000avjqubxtxnxfp",
+        "plannedTerm": null
+      }
+    ]
+  },
+  {
+    "id": "cmebyc938000bvjqudr8berrm",
+    "code": "1L.5",
+    "title": "Reading Reflection",
+    "titleFr": "Réflexion sur la lecture",
+    "description": "Réfléchir à ses compétences en tant que lecteur",
+    "strand": "Français (Immersion)",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Français (Immersion)",
+    "descriptionFr": "Réfléchir à ses compétences en tant que lecteur",
+    "strandFr": "Français (Immersion)",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.348Z",
+    "updatedAt": "2025-08-14T23:06:27.145Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9e0000dvjr8j06kw9u9",
+        "expectationId": "cmebyc938000bvjqudr8berrm"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+        "expectationId": "cmebyc938000bvjqudr8berrm",
+        "plannedTerm": null
+      }
+    ]
+  },
+  {
+    "id": "cmebyc938000cvjqusb4sfi1s",
+    "code": "1É.1",
+    "title": "Writing Process",
+    "titleFr": "Processus d'écriture",
+    "description": "Développer des compétences liées au processus de l'écriture",
+    "strand": "Français (Immersion)",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Français (Immersion)",
+    "descriptionFr": "Développer des compétences liées au processus de l'écriture",
+    "strandFr": "Français (Immersion)",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.348Z",
+    "updatedAt": "2025-08-14T23:07:32.817Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9dv0005vjr8y5a7vxbp",
+        "expectationId": "cmebyc938000cvjqusb4sfi1s"
+      },
+      {
+        "unitPlanId": "cmebyc9dp0001vjr8fmooh70p",
+        "expectationId": "cmebyc938000cvjqusb4sfi1s"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+        "expectationId": "cmebyc938000cvjqusb4sfi1s",
+        "plannedTerm": null
+      }
+    ]
+  },
+  {
+    "id": "cmebyc938000dvjqulm3tonlu",
+    "code": "1É.2",
+    "title": "Writing Traits",
+    "titleFr": "Traits d'écriture",
+    "description": "Développer des compétences liées aux traits d'écriture pour créer une variété de textes simples de différents genres (sous forme imprimée et numérique)",
+    "strand": "Français (Immersion)",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Français (Immersion)",
+    "descriptionFr": "Développer des compétences liées aux traits d'écriture pour créer une variété de textes simples de différents genres (sous forme imprimée et numérique)",
+    "strandFr": "Français (Immersion)",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.349Z",
+    "updatedAt": "2025-08-14T23:07:32.819Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9e0000dvjr8j06kw9u9",
+        "expectationId": "cmebyc938000dvjqulm3tonlu"
+      },
+      {
+        "unitPlanId": "cmebyc9dx0007vjr8res8mwma",
+        "expectationId": "cmebyc938000dvjqulm3tonlu"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+        "expectationId": "cmebyc938000dvjqulm3tonlu",
+        "plannedTerm": null
+      }
+    ]
+  },
+  {
+    "id": "cmebyc939000evjquedf6damy",
+    "code": "1É.3",
+    "title": "Writing Reflection",
+    "titleFr": "Réflexion sur l'écriture",
+    "description": "Réfléchir à ses compétences en tant que scripteur",
+    "strand": "Français (Immersion)",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Français (Immersion)",
+    "descriptionFr": "Réfléchir à ses compétences en tant que scripteur",
+    "strandFr": "Français (Immersion)",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.349Z",
+    "updatedAt": "2025-08-14T23:07:32.820Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9e2000fvjr8tayiwyam",
+        "expectationId": "cmebyc939000evjquedf6damy"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+        "expectationId": "cmebyc939000evjquedf6damy",
+        "plannedTerm": null
+      }
+    ]
+  },
+  {
+    "id": "cmebyc939000fvjqu8ayagemw",
+    "code": "1.N1",
+    "title": "Counting to 100",
+    "titleFr": "Compter jusqu'à 100",
+    "description": "Énoncer la suite des nombres de 0 à 100 en comptant un par un et par ordre croissant et décroissant, entre deux nombres donnés",
+    "strand": "Mathématiques",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Mathématiques",
+    "descriptionFr": "Énoncer la suite des nombres de 0 à 100 en comptant un par un et par ordre croissant et décroissant, entre deux nombres donnés",
+    "strandFr": "Mathématiques",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.350Z",
+    "updatedAt": "2025-08-14T23:06:27.153Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9ii0001vjrfkhn13dd1",
+        "expectationId": "cmebyc939000fvjqu8ayagemw"
+      },
+      {
+        "unitPlanId": "cmebyc9im0003vjrf4bfhlo1z",
+        "expectationId": "cmebyc939000fvjqu8ayagemw"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98k0003vjr1svziz0in",
+        "expectationId": "cmebyc939000fvjqu8ayagemw",
+        "plannedTerm": "Term 1"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93a000gvjqujjkib9ln",
+    "code": "1.N2",
+    "title": "Subitizing",
+    "titleFr": "Subitisation",
+    "description": "Reconnaître du premier coup d'œil des arrangements familiers de 1 à 10 objets (ou points) et les nommer",
+    "strand": "Mathématiques",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Mathématiques",
+    "descriptionFr": "Reconnaître du premier coup d'œil des arrangements familiers de 1 à 10 objets (ou points) et les nommer",
+    "strandFr": "Mathématiques",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.350Z",
+    "updatedAt": "2025-08-14T23:06:27.154Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9ii0001vjrfkhn13dd1",
+        "expectationId": "cmebyc93a000gvjqujjkib9ln"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98k0003vjr1svziz0in",
+        "expectationId": "cmebyc93a000gvjqujjkib9ln",
+        "plannedTerm": "Term 1"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93a000hvjqu21ygjts5",
+    "code": "1.N3",
+    "title": "Number Representation",
+    "titleFr": "Représentation des nombres",
+    "description": "Démontrer une compréhension de la notion du comptage",
+    "strand": "Mathématiques",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Mathématiques",
+    "descriptionFr": "Démontrer une compréhension de la notion du comptage",
+    "strandFr": "Mathématiques",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.351Z",
+    "updatedAt": "2025-08-14T23:06:27.154Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9ii0001vjrfkhn13dd1",
+        "expectationId": "cmebyc93a000hvjqu21ygjts5"
+      },
+      {
+        "unitPlanId": "cmebyc9im0003vjrf4bfhlo1z",
+        "expectationId": "cmebyc93a000hvjqu21ygjts5"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98k0003vjr1svziz0in",
+        "expectationId": "cmebyc93a000hvjqu21ygjts5",
+        "plannedTerm": "Term 1"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93a000ivjqunv3u955n",
+    "code": "1.N4",
+    "title": "Partitioning Numbers",
+    "titleFr": "Décomposition des nombres",
+    "description": "Représenter et décrire des nombres jusqu'à 20, de façon concrète, imagée et symbolique",
+    "strand": "Mathématiques",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Mathématiques",
+    "descriptionFr": "Représenter et décrire des nombres jusqu'à 20, de façon concrète, imagée et symbolique",
+    "strandFr": "Mathématiques",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.351Z",
+    "updatedAt": "2025-08-14T23:06:27.155Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9im0003vjrf4bfhlo1z",
+        "expectationId": "cmebyc93a000ivjqunv3u955n"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98k0003vjr1svziz0in",
+        "expectationId": "cmebyc93a000ivjqunv3u955n",
+        "plannedTerm": "Term 1"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93b000jvjqu9kdvuy7u",
+    "code": "1.N5",
+    "title": "Comparing Numbers",
+    "titleFr": "Comparaison des nombres",
+    "description": "Comparer des ensembles comportant jusqu'à 20 éléments pour résoudre des problèmes",
+    "strand": "Mathématiques",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Mathématiques",
+    "descriptionFr": "Comparer des ensembles comportant jusqu'à 20 éléments pour résoudre des problèmes",
+    "strandFr": "Mathématiques",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.351Z",
+    "updatedAt": "2025-08-14T23:06:27.155Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9im0003vjrf4bfhlo1z",
+        "expectationId": "cmebyc93b000jvjqu9kdvuy7u"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98k0003vjr1svziz0in",
+        "expectationId": "cmebyc93b000jvjqu9kdvuy7u",
+        "plannedTerm": "Term 1"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93b000kvjquoo3rrzgm",
+    "code": "1.N6",
+    "title": "Estimating Quantities",
+    "titleFr": "Estimation des quantités",
+    "description": "Démontrer, de façon concrète et imagée, comment un nombre donné peut être représenté par divers groupes égaux, avec et sans unités",
+    "strand": "Mathématiques",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Mathématiques",
+    "descriptionFr": "Démontrer, de façon concrète et imagée, comment un nombre donné peut être représenté par divers groupes égaux, avec et sans unités",
+    "strandFr": "Mathématiques",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.352Z",
+    "updatedAt": "2025-08-14T23:06:27.156Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9im0003vjrf4bfhlo1z",
+        "expectationId": "cmebyc93b000kvjquoo3rrzgm"
+      },
+      {
+        "unitPlanId": "cmebyc9iu000fvjrfjz3ykc52",
+        "expectationId": "cmebyc93b000kvjquoo3rrzgm"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98k0003vjr1svziz0in",
+        "expectationId": "cmebyc93b000kvjquoo3rrzgm",
+        "plannedTerm": "Term 2"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93c000lvjqutxiw99wk",
+    "code": "1.N7",
+    "title": "One More, One Less",
+    "titleFr": "Un de plus, un de moins",
+    "description": "Déterminer le nombre qui représente un de plus, deux de plus, un de moins et deux de moins qu'un nombre donné, jusqu'à 20",
+    "strand": "Mathématiques",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Mathématiques",
+    "descriptionFr": "Déterminer le nombre qui représente un de plus, deux de plus, un de moins et deux de moins qu'un nombre donné, jusqu'à 20",
+    "strandFr": "Mathématiques",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.352Z",
+    "updatedAt": "2025-08-14T23:07:32.821Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9iq0007vjrfjbgwmvcv",
+        "expectationId": "cmebyc93c000lvjqutxiw99wk"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98k0003vjr1svziz0in",
+        "expectationId": "cmebyc93c000lvjqutxiw99wk",
+        "plannedTerm": "Term 2"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93c000mvjqu82o9dw3u",
+    "code": "1.N8",
+    "title": "Addition to 20",
+    "titleFr": "Addition jusqu'à 20",
+    "description": "Démontrer une compréhension de l'addition de nombres dont les solutions ne dépassent pas 20 et les faits de soustraction correspondants",
+    "strand": "Mathématiques",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Mathématiques",
+    "descriptionFr": "Démontrer une compréhension de l'addition de nombres dont les solutions ne dépassent pas 20 et les faits de soustraction correspondants",
+    "strandFr": "Mathématiques",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.353Z",
+    "updatedAt": "2025-08-14T23:07:32.821Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9iq0007vjrfjbgwmvcv",
+        "expectationId": "cmebyc93c000mvjqu82o9dw3u"
+      },
+      {
+        "unitPlanId": "cmebyc9ii0001vjrfkhn13dd1",
+        "expectationId": "cmebyc93c000mvjqu82o9dw3u"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98k0003vjr1svziz0in",
+        "expectationId": "cmebyc93c000mvjqu82o9dw3u",
+        "plannedTerm": "Term 2"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93d000nvjquluvo35vl",
+    "code": "1.N9",
+    "title": "Mental Math Strategies",
+    "titleFr": "Stratégies de calcul mental",
+    "description": "Décrire et utiliser des stratégies de calcul mental (autres que la mémorisation)",
+    "strand": "Mathématiques",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Mathématiques",
+    "descriptionFr": "Décrire et utiliser des stratégies de calcul mental (autres que la mémorisation)",
+    "strandFr": "Mathématiques",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.353Z",
+    "updatedAt": "2025-08-14T23:07:32.822Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9ir0009vjrf5bl8l49w",
+        "expectationId": "cmebyc93d000nvjquluvo35vl"
+      },
+      {
+        "unitPlanId": "cmebyc9it000dvjrfyiqtwj9b",
+        "expectationId": "cmebyc93d000nvjquluvo35vl"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98k0003vjr1svziz0in",
+        "expectationId": "cmebyc93d000nvjquluvo35vl",
+        "plannedTerm": "Term 2"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93d000ovjqut0tu461c",
+    "code": "1.RR1",
+    "title": "Repeating Patterns",
+    "titleFr": "Régularités répétitives",
+    "description": "Démontrer une compréhension des régularités répétitives (de deux à quatre éléments)",
+    "strand": "Mathématiques",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Mathématiques",
+    "descriptionFr": "Démontrer une compréhension des régularités répétitives (de deux à quatre éléments)",
+    "strandFr": "Mathématiques",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.353Z",
+    "updatedAt": "2025-08-14T23:07:32.822Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9io0005vjrfypcwi41t",
+        "expectationId": "cmebyc93d000ovjqut0tu461c"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98k0003vjr1svziz0in",
+        "expectationId": "cmebyc93d000ovjqut0tu461c",
+        "plannedTerm": "Term 1"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93d000pvjqur6rk3kky",
+    "code": "1.RR2",
+    "title": "Problem Solving",
+    "titleFr": "Résolution de problèmes",
+    "description": "Convertir, d'un mode de représentation à un autre, des régularités répétitives",
+    "strand": "Mathématiques",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Mathématiques",
+    "descriptionFr": "Convertir, d'un mode de représentation à un autre, des régularités répétitives",
+    "strandFr": "Mathématiques",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.354Z",
+    "updatedAt": "2025-08-14T23:06:27.160Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9io0005vjrfypcwi41t",
+        "expectationId": "cmebyc93d000pvjqur6rk3kky"
+      },
+      {
+        "unitPlanId": "cmebyc9it000dvjrfyiqtwj9b",
+        "expectationId": "cmebyc93d000pvjqur6rk3kky"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98k0003vjr1svziz0in",
+        "expectationId": "cmebyc93d000pvjqur6rk3kky",
+        "plannedTerm": "Term 2"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93e000qvjqu5u82k60v",
+    "code": "1.RR3",
+    "title": "Equality and Inequality",
+    "titleFr": "Égalité et inégalité",
+    "description": "Décrire l'égalité en termes d'équilibre et l'inégalité en termes de déséquilibre, de façon concrète et imagée (de 0 à 20)",
+    "strand": "Mathématiques",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Mathématiques",
+    "descriptionFr": "Décrire l'égalité en termes d'équilibre et l'inégalité en termes de déséquilibre, de façon concrète et imagée (de 0 à 20)",
+    "strandFr": "Mathématiques",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.354Z",
+    "updatedAt": "2025-08-14T23:07:32.823Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9ir0009vjrf5bl8l49w",
+        "expectationId": "cmebyc93e000qvjqu5u82k60v"
+      },
+      {
+        "unitPlanId": "cmebyc9it000dvjrfyiqtwj9b",
+        "expectationId": "cmebyc93e000qvjqu5u82k60v"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98k0003vjr1svziz0in",
+        "expectationId": "cmebyc93e000qvjqu5u82k60v",
+        "plannedTerm": "Term 2"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93e000rvjqu1f8cfkil",
+    "code": "1.FE1",
+    "title": "Measurement Concepts",
+    "titleFr": "Concepts de mesure",
+    "description": "Démontrer une compréhension de la notion de mesure en tant que processus de comparaison",
+    "strand": "Mathématiques",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Mathématiques",
+    "descriptionFr": "Démontrer une compréhension de la notion de mesure en tant que processus de comparaison",
+    "strandFr": "Mathématiques",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.355Z",
+    "updatedAt": "2025-08-14T23:07:32.824Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9is000bvjrfmge2bn8k",
+        "expectationId": "cmebyc93e000rvjqu1f8cfkil"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98k0003vjr1svziz0in",
+        "expectationId": "cmebyc93e000rvjqu1f8cfkil",
+        "plannedTerm": "Term 2"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93f000svjqucxi11fbz",
+    "code": "1.FE2",
+    "title": "Sorting 3D and 2D",
+    "titleFr": "Tri 3D et 2D",
+    "description": "Trier des objets à trois dimensions et des figures à deux dimensions en se basant sur une seule caractéristique, et expliquer la règle appliquée",
+    "strand": "Mathématiques",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Mathématiques",
+    "descriptionFr": "Trier des objets à trois dimensions et des figures à deux dimensions en se basant sur une seule caractéristique, et expliquer la règle appliquée",
+    "strandFr": "Mathématiques",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.355Z",
+    "updatedAt": "2025-08-14T23:07:32.824Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9io0005vjrfypcwi41t",
+        "expectationId": "cmebyc93f000svjqucxi11fbz"
+      },
+      {
+        "unitPlanId": "cmebyc9iu000fvjrfjz3ykc52",
+        "expectationId": "cmebyc93f000svjqucxi11fbz"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98k0003vjr1svziz0in",
+        "expectationId": "cmebyc93f000svjqucxi11fbz",
+        "plannedTerm": "Term 2"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93f000tvjqum3unlv08",
+    "code": "1.1.1",
+    "title": "Living Things",
+    "titleFr": "Êtres vivants",
+    "description": "Distinguer les caractéristiques des êtres vivants (plantes et animaux; incluant les humains)",
+    "strand": "Sciences de la nature",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Sciences de la nature",
+    "descriptionFr": "Distinguer les caractéristiques des êtres vivants (plantes et animaux; incluant les humains)",
+    "strandFr": "Sciences de la nature",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.355Z",
+    "updatedAt": "2025-08-14T23:07:32.825Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9nc0001vjrm7qnnwv9i",
+        "expectationId": "cmebyc93f000tvjqum3unlv08"
+      },
+      {
+        "unitPlanId": "cmebyc9nj0009vjrmfs2s58hr",
+        "expectationId": "cmebyc93f000tvjqum3unlv08"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98q0005vjr19wxzdygh",
+        "expectationId": "cmebyc93f000tvjqum3unlv08",
+        "plannedTerm": "Term 1"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93f000uvjqutggdrtlt",
+    "code": "1.1.2",
+    "title": "Human Impact",
+    "titleFr": "Impact humain",
+    "description": "Évaluer l'impact des activités humaines sur l'environnement naturel",
+    "strand": "Sciences de la nature",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Sciences de la nature",
+    "descriptionFr": "Évaluer l'impact des activités humaines sur l'environnement naturel",
+    "strandFr": "Sciences de la nature",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.356Z",
+    "updatedAt": "2025-08-14T23:07:32.825Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9nm000dvjrmv5pp403o",
+        "expectationId": "cmebyc93f000uvjqutggdrtlt"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98q0005vjr19wxzdygh",
+        "expectationId": "cmebyc93f000uvjqutggdrtlt",
+        "plannedTerm": "Term 1"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93g000vvjquz6yvto5t",
+    "code": "1.2.1",
+    "title": "Energy Uses",
+    "titleFr": "Utilisations de l'énergie",
+    "description": "Examiner différentes utilisations de l'énergie (à la maison, à l'école et dans la communauté) afin de suggérer des façons de réduire sa consommation énergétique",
+    "strand": "Sciences de la nature",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Sciences de la nature",
+    "descriptionFr": "Examiner différentes utilisations de l'énergie (à la maison, à l'école et dans la communauté) afin de suggérer des façons de réduire sa consommation énergétique",
+    "strandFr": "Sciences de la nature",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.356Z",
+    "updatedAt": "2025-08-14T23:07:32.825Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9nh0005vjrmch1x7vfb",
+        "expectationId": "cmebyc93g000vvjquz6yvto5t"
+      },
+      {
+        "unitPlanId": "cmebyc9nc0001vjrm7qnnwv9i",
+        "expectationId": "cmebyc93g000vvjquz6yvto5t"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98q0005vjr19wxzdygh",
+        "expectationId": "cmebyc93g000vvjquz6yvto5t",
+        "plannedTerm": "Term 2"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93g000wvjquz4ztiuz9",
+    "code": "1.3.1",
+    "title": "Daily and Seasonal Changes",
+    "titleFr": "Changements quotidiens et saisonniers",
+    "description": "Analyser les changements quotidiens et saisonniers dans l'environnement",
+    "strand": "Sciences de la nature",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Sciences de la nature",
+    "descriptionFr": "Analyser les changements quotidiens et saisonniers dans l'environnement",
+    "strandFr": "Sciences de la nature",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.357Z",
+    "updatedAt": "2025-08-14T23:07:32.826Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9nc0001vjrm7qnnwv9i",
+        "expectationId": "cmebyc93g000wvjquz4ztiuz9"
+      },
+      {
+        "unitPlanId": "cmebyc9nj0007vjrm5conth8n",
+        "expectationId": "cmebyc93g000wvjquz4ztiuz9"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98q0005vjr19wxzdygh",
+        "expectationId": "cmebyc93g000wvjquz4ztiuz9",
+        "plannedTerm": "Term 2"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93h000xvjquyk00z97t",
+    "code": "1.3.2",
+    "title": "Day and Night Cycle",
+    "titleFr": "Cycle jour et nuit",
+    "description": "Expliquer comment les changements dans le cycle des jours et des saisons ont un effet sur les êtres vivants",
+    "strand": "Sciences de la nature",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Sciences de la nature",
+    "descriptionFr": "Expliquer comment les changements dans le cycle des jours et des saisons ont un effet sur les êtres vivants",
+    "strandFr": "Sciences de la nature",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.357Z",
+    "updatedAt": "2025-08-14T23:07:32.826Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyc9ng0003vjrmqcj401lj",
+        "expectationId": "cmebyc93h000xvjquyk00z97t"
+      },
+      {
+        "unitPlanId": "cmebyc9nl000bvjrmog4xwret",
+        "expectationId": "cmebyc93h000xvjquyk00z97t"
+      },
+      {
+        "unitPlanId": "cmebyc9nj0007vjrm5conth8n",
+        "expectationId": "cmebyc93h000xvjquyk00z97t"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98q0005vjr19wxzdygh",
+        "expectationId": "cmebyc93h000xvjquyk00z97t",
+        "plannedTerm": "Term 2"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93h000yvjquuptaqrnc",
+    "code": "1C.1",
+    "title": "Rights and Responsibilities",
+    "titleFr": "Droits et responsabilités",
+    "description": "Démontrer sa compréhension de ses droits et ses responsabilités dans sa famille et dans son école",
+    "strand": "Sciences humaines",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Sciences humaines",
+    "descriptionFr": "Démontrer sa compréhension de ses droits et ses responsabilités dans sa famille et dans son école",
+    "strandFr": "Sciences humaines",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.358Z",
+    "updatedAt": "2025-08-14T23:07:32.827Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyzp890003vj7eo4xd65yb",
+        "expectationId": "cmebyc93h000yvjquuptaqrnc"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98s0007vjr1v0a2ibp5",
+        "expectationId": "cmebyc93h000yvjquuptaqrnc",
+        "plannedTerm": "Term 1"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93h000zvjqus3yfxqys",
+    "code": "1C.2",
+    "title": "Digital Citizenship",
+    "titleFr": "Citoyenneté numérique",
+    "description": "Démontrer des aptitudes, en tant que citoyen numérique",
+    "strand": "Sciences humaines",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Sciences humaines",
+    "descriptionFr": "Démontrer des aptitudes, en tant que citoyen numérique",
+    "strandFr": "Sciences humaines",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.358Z",
+    "updatedAt": "2025-08-14T23:07:32.828Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyzp8f0009vj7e2ji87367",
+        "expectationId": "cmebyc93h000zvjqus3yfxqys"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98s0007vjr1v0a2ibp5",
+        "expectationId": "cmebyc93h000zvjqus3yfxqys",
+        "plannedTerm": "Term 2"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93i0010vjquu9tepp43",
+    "code": "1ICC.1",
+    "title": "Diversity and Uniqueness",
+    "titleFr": "Diversité et unicité",
+    "description": "Décrire l'unicité des personnes et la diversité des langues et des modes de vie de sa famille et des familles de la classe",
+    "strand": "Sciences humaines",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Sciences humaines",
+    "descriptionFr": "Décrire l'unicité des personnes et la diversité des langues et des modes de vie de sa famille et des familles de la classe",
+    "strandFr": "Sciences humaines",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.358Z",
+    "updatedAt": "2025-08-14T23:07:32.829Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyzp840001vj7ekbous2h6",
+        "expectationId": "cmebyc93i0010vjquu9tepp43"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98s0007vjr1v0a2ibp5",
+        "expectationId": "cmebyc93i0010vjquu9tepp43",
+        "plannedTerm": "Term 1"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93i0011vjquo7lyd4hj",
+    "code": "1LT.1",
+    "title": "Landmarks and Places",
+    "titleFr": "Points de repère et lieux",
+    "description": "Préciser la localisation de points de repère et de lieux importants à l'aide d'outils cartographiques, tels la carte géographique, le plan et le globe terrestre",
+    "strand": "Sciences humaines",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Sciences humaines",
+    "descriptionFr": "Préciser la localisation de points de repère et de lieux importants à l'aide d'outils cartographiques, tels la carte géographique, le plan et le globe terrestre",
+    "strandFr": "Sciences humaines",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.359Z",
+    "updatedAt": "2025-08-14T23:07:32.830Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyzp8e0007vj7ezxkgh25g",
+        "expectationId": "cmebyc93i0011vjquo7lyd4hj"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98s0007vjr1v0a2ibp5",
+        "expectationId": "cmebyc93i0011vjquo7lyd4hj",
+        "plannedTerm": "Term 2"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93j0012vjqu1lshjexz",
+    "code": "1LT.2",
+    "title": "Life Events Timeline",
+    "titleFr": "Chronologie des événements",
+    "description": "Organiser les événements marquants de sa vie dans le temps",
+    "strand": "Sciences humaines",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Sciences humaines",
+    "descriptionFr": "Organiser les événements marquants de sa vie dans le temps",
+    "strandFr": "Sciences humaines",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.359Z",
+    "updatedAt": "2025-08-14T23:07:32.830Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyzp8c0005vj7exnzyt9p3",
+        "expectationId": "cmebyc93j0012vjqu1lshjexz"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98s0007vjr1v0a2ibp5",
+        "expectationId": "cmebyc93j0012vjqu1lshjexz",
+        "plannedTerm": "Term 2"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93j0013vjquzn5lf49q",
+    "code": "1PA.1",
+    "title": "Decision Making Process",
+    "titleFr": "Processus de décision",
+    "description": "Appliquer le processus de prise de décision, de résolution de conflits et d'élaboration de règlements",
+    "strand": "Sciences humaines",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Sciences humaines",
+    "descriptionFr": "Appliquer le processus de prise de décision, de résolution de conflits et d'élaboration de règlements",
+    "strandFr": "Sciences humaines",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.360Z",
+    "updatedAt": "2025-08-14T23:07:32.830Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyzp890003vj7eo4xd65yb",
+        "expectationId": "cmebyc93j0013vjquzn5lf49q"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98s0007vjr1v0a2ibp5",
+        "expectationId": "cmebyc93j0013vjquzn5lf49q",
+        "plannedTerm": "Term 1"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93k0014vjqubeqm2jps",
+    "code": "1ER.1",
+    "title": "Needs and Wants",
+    "titleFr": "Besoins et désirs",
+    "description": "Démontrer sa compréhension de ses besoins et ses désirs et ceux des autres",
+    "strand": "Sciences humaines",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Sciences humaines",
+    "descriptionFr": "Démontrer sa compréhension de ses besoins et ses désirs et ceux des autres",
+    "strandFr": "Sciences humaines",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.360Z",
+    "updatedAt": "2025-08-14T23:07:32.831Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyzp840001vj7ekbous2h6",
+        "expectationId": "cmebyc93k0014vjqubeqm2jps"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98s0007vjr1v0a2ibp5",
+        "expectationId": "cmebyc93k0014vjqubeqm2jps",
+        "plannedTerm": "Term 1"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93k0015vjqu9fe3tou9",
+    "code": "AV1",
+    "title": "Visual Environment",
+    "titleFr": "Environnement visuel",
+    "description": "Reconnaître la valeur de son environnement visuel",
+    "strand": "Arts visuels",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Arts visuels",
+    "descriptionFr": "Reconnaître la valeur de son environnement visuel",
+    "strandFr": "Arts visuels",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.361Z",
+    "updatedAt": "2025-08-14T23:07:32.831Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyzsu50001vje8nzahoef8",
+        "expectationId": "cmebyc93k0015vjqu9fe3tou9"
+      },
+      {
+        "unitPlanId": "cmebyzsud0007vje8xoivz73w",
+        "expectationId": "cmebyc93k0015vjqu9fe3tou9"
+      },
+      {
+        "unitPlanId": "cmebyzsug000bvje8v4uw23yk",
+        "expectationId": "cmebyc93k0015vjqu9fe3tou9"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98v0009vjr16o3e7awo",
+        "expectationId": "cmebyc93k0015vjqu9fe3tou9",
+        "plannedTerm": "Full Year"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93k0016vjquxq9bwpag",
+    "code": "AV2",
+    "title": "Artistic Communication",
+    "titleFr": "Communication artistique",
+    "description": "Utiliser la création artistique afin de communiquer des idées ou des sentiments",
+    "strand": "Arts visuels",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Arts visuels",
+    "descriptionFr": "Utiliser la création artistique afin de communiquer des idées ou des sentiments",
+    "strandFr": "Arts visuels",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.361Z",
+    "updatedAt": "2025-08-14T23:07:32.832Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyzsu80003vje8c9alierg",
+        "expectationId": "cmebyc93k0016vjquxq9bwpag"
+      },
+      {
+        "unitPlanId": "cmebyzsub0005vje8ia0l5ii0",
+        "expectationId": "cmebyc93k0016vjquxq9bwpag"
+      },
+      {
+        "unitPlanId": "cmebyzsuf0009vje87tmv8lta",
+        "expectationId": "cmebyc93k0016vjquxq9bwpag"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98v0009vjr16o3e7awo",
+        "expectationId": "cmebyc93k0016vjquxq9bwpag",
+        "plannedTerm": "Full Year"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93l0017vjquy6pkqqjv",
+    "code": "AV3",
+    "title": "Art Tools and Materials",
+    "titleFr": "Outils et matériaux",
+    "description": "Utiliser une variété d'outils, de matériaux, de styles et de techniques pour créer ses propres oeuvres d'art",
+    "strand": "Arts visuels",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Arts visuels",
+    "descriptionFr": "Utiliser une variété d'outils, de matériaux, de styles et de techniques pour créer ses propres oeuvres d'art",
+    "strandFr": "Arts visuels",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.361Z",
+    "updatedAt": "2025-08-14T23:07:32.832Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyzsu50001vje8nzahoef8",
+        "expectationId": "cmebyc93l0017vjquy6pkqqjv"
+      },
+      {
+        "unitPlanId": "cmebyzsu80003vje8c9alierg",
+        "expectationId": "cmebyc93l0017vjquy6pkqqjv"
+      },
+      {
+        "unitPlanId": "cmebyzsub0005vje8ia0l5ii0",
+        "expectationId": "cmebyc93l0017vjquy6pkqqjv"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98v0009vjr16o3e7awo",
+        "expectationId": "cmebyc93l0017vjquy6pkqqjv",
+        "plannedTerm": "Full Year"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93l0018vjqu4k7moq49",
+    "code": "AV4",
+    "title": "Art as Culture",
+    "titleFr": "Art et culture",
+    "description": "Reconnaître la valeur de l'art en tant qu'élément de notre culture, de notre patrimoine et de notre environnement",
+    "strand": "Arts visuels",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Arts visuels",
+    "descriptionFr": "Reconnaître la valeur de l'art en tant qu'élément de notre culture, de notre patrimoine et de notre environnement",
+    "strandFr": "Arts visuels",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.362Z",
+    "updatedAt": "2025-08-14T23:07:32.832Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyzsub0005vje8ia0l5ii0",
+        "expectationId": "cmebyc93l0018vjqu4k7moq49"
+      },
+      {
+        "unitPlanId": "cmebyzsud0007vje8xoivz73w",
+        "expectationId": "cmebyc93l0018vjqu4k7moq49"
+      },
+      {
+        "unitPlanId": "cmebyzsug000bvje8v4uw23yk",
+        "expectationId": "cmebyc93l0018vjqu4k7moq49"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98v0009vjr16o3e7awo",
+        "expectationId": "cmebyc93l0018vjqu4k7moq49",
+        "plannedTerm": "Full Year"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93m0019vjquagpgttcz",
+    "code": "FPS1",
+    "title": "Health and Hygiene",
+    "titleFr": "Santé et hygiène",
+    "description": "Démontrer sa compréhension de pratiques favorisant une bonne santé personnelle",
+    "strand": "Formation personnelle et sociale",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Formation personnelle et sociale",
+    "descriptionFr": "Démontrer sa compréhension de pratiques favorisant une bonne santé personnelle",
+    "strandFr": "Formation personnelle et sociale",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.362Z",
+    "updatedAt": "2025-08-14T23:07:32.833Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyzw490003vjl1pp11eawd",
+        "expectationId": "cmebyc93m0019vjquagpgttcz"
+      },
+      {
+        "unitPlanId": "cmebyzw4f0009vjl10ybnhoe1",
+        "expectationId": "cmebyc93m0019vjquagpgttcz"
+      },
+      {
+        "unitPlanId": "cmebyzw4g000bvjl1lqjeh0ea",
+        "expectationId": "cmebyc93m0019vjquagpgttcz"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98x000bvjr1finmuibw",
+        "expectationId": "cmebyc93m0019vjquagpgttcz",
+        "plannedTerm": "Full Year"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93m001avjqurnrtd5x8",
+    "code": "FPS2",
+    "title": "Safety Practices",
+    "titleFr": "Pratiques sécuritaires",
+    "description": "Démontrer sa compréhension de pratiques sécuritaires et responsables",
+    "strand": "Formation personnelle et sociale",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Formation personnelle et sociale",
+    "descriptionFr": "Démontrer sa compréhension de pratiques sécuritaires et responsables",
+    "strandFr": "Formation personnelle et sociale",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.363Z",
+    "updatedAt": "2025-08-14T23:07:32.833Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyzw4c0005vjl1hetfjme8",
+        "expectationId": "cmebyc93m001avjqurnrtd5x8"
+      },
+      {
+        "unitPlanId": "cmebyzw4g000bvjl1lqjeh0ea",
+        "expectationId": "cmebyc93m001avjqurnrtd5x8"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98x000bvjr1finmuibw",
+        "expectationId": "cmebyc93m001avjqurnrtd5x8",
+        "plannedTerm": "Full Year"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93n001bvjquln06hb69",
+    "code": "FPS3",
+    "title": "Healthy Relationships",
+    "titleFr": "Relations saines",
+    "description": "Adopter des comportements qui encouragent des relations saines et harmonieuses",
+    "strand": "Formation personnelle et sociale",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Formation personnelle et sociale",
+    "descriptionFr": "Adopter des comportements qui encouragent des relations saines et harmonieuses",
+    "strandFr": "Formation personnelle et sociale",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.363Z",
+    "updatedAt": "2025-08-14T23:07:32.833Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyzw4d0007vjl1t90o82a3",
+        "expectationId": "cmebyc93n001bvjquln06hb69"
+      },
+      {
+        "unitPlanId": "cmebyzw4g000bvjl1lqjeh0ea",
+        "expectationId": "cmebyc93n001bvjquln06hb69"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98x000bvjr1finmuibw",
+        "expectationId": "cmebyc93n001bvjquln06hb69",
+        "plannedTerm": "Full Year"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93n001cvjquqsg9b9n4",
+    "code": "FPS4",
+    "title": "Personal Skills",
+    "titleFr": "Compétences personnelles",
+    "description": "Démontrer sa compréhension de ses compétences et aptitudes personnelles",
+    "strand": "Formation personnelle et sociale",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Formation personnelle et sociale",
+    "descriptionFr": "Démontrer sa compréhension de ses compétences et aptitudes personnelles",
+    "strandFr": "Formation personnelle et sociale",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.363Z",
+    "updatedAt": "2025-08-14T23:07:32.834Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmebyzw460001vjl1l2hxjy8b",
+        "expectationId": "cmebyc93n001cvjquqsg9b9n4"
+      },
+      {
+        "unitPlanId": "cmebyzw4d0007vjl1t90o82a3",
+        "expectationId": "cmebyc93n001cvjquqsg9b9n4"
+      },
+      {
+        "unitPlanId": "cmebyzw4f0009vjl10ybnhoe1",
+        "expectationId": "cmebyc93n001cvjquqsg9b9n4"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98x000bvjr1finmuibw",
+        "expectationId": "cmebyc93n001cvjquqsg9b9n4",
+        "plannedTerm": "Full Year"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93n001dvjquo42pp7wk",
+    "code": "1.1",
+    "title": "Movement Skills",
+    "titleFr": "Habiletés motrices",
+    "description": "Coordonner différentes parties du corps dans l'adoption des postures et dans l'exécution d'actions corporels",
+    "strand": "Attitude posturale",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Éducation physique",
+    "descriptionFr": "Coordonner différentes parties du corps dans l'adoption des postures et dans l'exécution d'actions corporels",
+    "strandFr": "Attitude posturale",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.364Z",
+    "updatedAt": "2025-08-14T23:06:27.167Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmec0i16k0001vjenhzdno8m4",
+        "expectationId": "cmebyc93n001dvjquo42pp7wk"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98z000dvjr10e87e2b0",
+        "expectationId": "cmebyc93n001dvjquo42pp7wk",
+        "plannedTerm": "Term 1"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93o001evjquwvp2cp41",
+    "code": "1.2",
+    "title": "Locomotor Skills",
+    "titleFr": "Habiletés locomotrices",
+    "description": "Ajuster son corps et les différentes parties de son corps dans la réalisation de mouvements et d'actions ainsi que dans l'adoption de posture",
+    "strand": "Attitude posturale",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Éducation physique",
+    "descriptionFr": "Ajuster son corps et les différentes parties de son corps dans la réalisation de mouvements et d'actions ainsi que dans l'adoption de posture",
+    "strandFr": "Attitude posturale",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.364Z",
+    "updatedAt": "2025-08-14T23:06:27.167Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmec0i16k0001vjenhzdno8m4",
+        "expectationId": "cmebyc93o001evjquwvp2cp41"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98z000dvjr10e87e2b0",
+        "expectationId": "cmebyc93o001evjquwvp2cp41",
+        "plannedTerm": "Term 1"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93o001fvjqu2phv2b6a",
+    "code": "1.3",
+    "title": "Manipulative Skills",
+    "titleFr": "Habiletés de manipulation",
+    "description": "Effectuer divers modes de déplacement en maintenant ou en variant son allure",
+    "strand": "Locomotion",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Éducation physique",
+    "descriptionFr": "Effectuer divers modes de déplacement en maintenant ou en variant son allure",
+    "strandFr": "Locomotion",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.365Z",
+    "updatedAt": "2025-08-14T23:06:27.168Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmec0i16k0001vjenhzdno8m4",
+        "expectationId": "cmebyc93o001fvjqu2phv2b6a"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98z000dvjr10e87e2b0",
+        "expectationId": "cmebyc93o001fvjqu2phv2b6a",
+        "plannedTerm": "Term 1"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93p001gvjqu0wbv589l",
+    "code": "1.4",
+    "title": "Balance and Control",
+    "titleFr": "Équilibre et contrôle",
+    "description": "Effectuer divers modes de déplacements sur et sous des surfaces fixes ou varier à des hauteurs variables tout en maintenant son équilibre",
+    "strand": "Locomotion",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Éducation physique",
+    "descriptionFr": "Effectuer divers modes de déplacements sur et sous des surfaces fixes ou varier à des hauteurs variables tout en maintenant son équilibre",
+    "strandFr": "Locomotion",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.365Z",
+    "updatedAt": "2025-08-14T23:06:27.168Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmec0i16o0003vjenirx652j8",
+        "expectationId": "cmebyc93p001gvjqu0wbv589l"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98z000dvjr10e87e2b0",
+        "expectationId": "cmebyc93p001gvjqu0wbv589l",
+        "plannedTerm": "Term 1"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93p001hvjqu0hot9kjq",
+    "code": "1.5",
+    "title": "Spatial Awareness",
+    "titleFr": "Conscience spatiale",
+    "description": "Enchaîner divers modes de déplacement en rapport avec des obstacles de dimensions et de formes variées",
+    "strand": "Locomotion",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Éducation physique",
+    "descriptionFr": "Enchaîner divers modes de déplacement en rapport avec des obstacles de dimensions et de formes variées",
+    "strandFr": "Locomotion",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.365Z",
+    "updatedAt": "2025-08-14T23:06:27.169Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmec0i16k0001vjenhzdno8m4",
+        "expectationId": "cmebyc93p001hvjqu0hot9kjq"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98z000dvjr10e87e2b0",
+        "expectationId": "cmebyc93p001hvjqu0hot9kjq",
+        "plannedTerm": "Term 1"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93p001ivjquf5bo9ll3",
+    "code": "1.6",
+    "title": "Effort and Speed",
+    "titleFr": "Effort et vitesse",
+    "description": "Coordonner ses actions locomotrices à l'aide d'objets véhiculés",
+    "strand": "Locomotion",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Éducation physique",
+    "descriptionFr": "Coordonner ses actions locomotrices à l'aide d'objets véhiculés",
+    "strandFr": "Locomotion",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.366Z",
+    "updatedAt": "2025-08-14T23:06:27.169Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmec0i16o0003vjenirx652j8",
+        "expectationId": "cmebyc93p001ivjquf5bo9ll3"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98z000dvjr10e87e2b0",
+        "expectationId": "cmebyc93p001ivjquf5bo9ll3",
+        "plannedTerm": "Term 1"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93q001jvjqu7dx60dyk",
+    "code": "1.7",
+    "title": "Relationships in Movement",
+    "titleFr": "Relations en mouvement",
+    "description": "Coordonner ses actions dans la manipulation d'objets",
+    "strand": "Manipulation",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Éducation physique",
+    "descriptionFr": "Coordonner ses actions dans la manipulation d'objets",
+    "strandFr": "Manipulation",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.366Z",
+    "updatedAt": "2025-08-14T23:06:27.170Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmec0i16q0005vjenqkwygszd",
+        "expectationId": "cmebyc93q001jvjqu7dx60dyk"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98z000dvjr10e87e2b0",
+        "expectationId": "cmebyc93q001jvjqu7dx60dyk",
+        "plannedTerm": "Term 1"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93q001kvjqu31fuzwn6",
+    "code": "1.8",
+    "title": "Simple Tactics",
+    "titleFr": "Tactiques simples",
+    "description": "Coordonner ses actions dans la projection d'objets",
+    "strand": "Manipulation",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Éducation physique",
+    "descriptionFr": "Coordonner ses actions dans la projection d'objets",
+    "strandFr": "Manipulation",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.367Z",
+    "updatedAt": "2025-08-14T23:06:27.170Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmec0i16q0005vjenqkwygszd",
+        "expectationId": "cmebyc93q001kvjqu31fuzwn6"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98z000dvjr10e87e2b0",
+        "expectationId": "cmebyc93q001kvjqu31fuzwn6",
+        "plannedTerm": "Term 1"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93r001lvjqu7y13pgwc",
+    "code": "1.9",
+    "title": "Rules and Fair Play",
+    "titleFr": "Règles et franc-jeu",
+    "description": "Synchroniser à l'objet lors de la réception",
+    "strand": "Manipulation",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Éducation physique",
+    "descriptionFr": "Synchroniser à l'objet lors de la réception",
+    "strandFr": "Manipulation",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.367Z",
+    "updatedAt": "2025-08-14T23:06:27.171Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmec0i16k0001vjenhzdno8m4",
+        "expectationId": "cmebyc93r001lvjqu7y13pgwc"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98z000dvjr10e87e2b0",
+        "expectationId": "cmebyc93r001lvjqu7y13pgwc",
+        "plannedTerm": "Term 1"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93r001mvjqusq01uq73",
+    "code": "2.1",
+    "title": "Active Participation",
+    "titleFr": "Participation active",
+    "description": "S'ajuster à un partenaire ou à plusieurs en vue d'accomplir une tâche commune",
+    "strand": "Coopération",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Éducation physique",
+    "descriptionFr": "S'ajuster à un partenaire ou à plusieurs en vue d'accomplir une tâche commune",
+    "strandFr": "Coopération",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.367Z",
+    "updatedAt": "2025-08-14T23:06:27.171Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmec0i16k0001vjenhzdno8m4",
+        "expectationId": "cmebyc93r001mvjqusq01uq73"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98z000dvjr10e87e2b0",
+        "expectationId": "cmebyc93r001mvjqusq01uq73",
+        "plannedTerm": "Term 2"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93r001nvjqur98mfant",
+    "code": "2.2",
+    "title": "Physical Activity Benefits",
+    "titleFr": "Bienfaits de l'activité physique",
+    "description": "Ajuster ses déplacements et ses actions à ceux d'un ou de plusieurs partenaires",
+    "strand": "Coopération",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Éducation physique",
+    "descriptionFr": "Ajuster ses déplacements et ses actions à ceux d'un ou de plusieurs partenaires",
+    "strandFr": "Coopération",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.368Z",
+    "updatedAt": "2025-08-14T23:06:27.172Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmec0i16o0003vjenirx652j8",
+        "expectationId": "cmebyc93r001nvjqur98mfant"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98z000dvjr10e87e2b0",
+        "expectationId": "cmebyc93r001nvjqur98mfant",
+        "plannedTerm": "Term 2"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93s001ovjqu9m3hl0v3",
+    "code": "2.3",
+    "title": "Goal Setting",
+    "titleFr": "Établissement d'objectifs",
+    "description": "Réagir aux actions d'un opposant",
+    "strand": "Opposition",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Éducation physique",
+    "descriptionFr": "Réagir aux actions d'un opposant",
+    "strandFr": "Opposition",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.368Z",
+    "updatedAt": "2025-08-14T23:06:27.172Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmec0i16q0005vjenqkwygszd",
+        "expectationId": "cmebyc93s001ovjqu9m3hl0v3"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98z000dvjr10e87e2b0",
+        "expectationId": "cmebyc93s001ovjqu9m3hl0v3",
+        "plannedTerm": "Term 2"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93s001pvjqumhm0f1jk",
+    "code": "2.4",
+    "title": "Positive Behaviors",
+    "titleFr": "Comportements positifs",
+    "description": "Réagir aux actions des coéquipiers et des adversaires",
+    "strand": "Coopération-Opposition",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Éducation physique",
+    "descriptionFr": "Réagir aux actions des coéquipiers et des adversaires",
+    "strandFr": "Coopération-Opposition",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.369Z",
+    "updatedAt": "2025-08-14T23:06:27.172Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmec0i16q0005vjenqkwygszd",
+        "expectationId": "cmebyc93s001pvjqumhm0f1jk"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98z000dvjr10e87e2b0",
+        "expectationId": "cmebyc93s001pvjqumhm0f1jk",
+        "plannedTerm": "Term 2"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93t001qvjqu1u1etojy",
+    "code": "2.6",
+    "title": "Activity Choices",
+    "titleFr": "Choix d'activités",
+    "description": "Créer des idées ou exprimer des faits en exploitant différentes séquences de mouvements seul ou en groupe",
+    "strand": "Expression",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Éducation physique",
+    "descriptionFr": "Créer des idées ou exprimer des faits en exploitant différentes séquences de mouvements seul ou en groupe",
+    "strandFr": "Expression",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.369Z",
+    "updatedAt": "2025-08-14T23:06:27.173Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmec0i16q0005vjenqkwygszd",
+        "expectationId": "cmebyc93t001qvjqu1u1etojy"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98z000dvjr10e87e2b0",
+        "expectationId": "cmebyc93t001qvjqu1u1etojy",
+        "plannedTerm": "Term 2"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93t001rvjqug7a3lo9v",
+    "code": "3.1",
+    "title": "Safety Rules",
+    "titleFr": "Règles de sécurité",
+    "description": "Connaître certains effets de l'activité physique sur le fonctionnement de son corps",
+    "strand": "Effort physique",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Éducation physique",
+    "descriptionFr": "Connaître certains effets de l'activité physique sur le fonctionnement de son corps",
+    "strandFr": "Effort physique",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.369Z",
+    "updatedAt": "2025-08-14T23:06:27.173Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmec0i16o0003vjenirx652j8",
+        "expectationId": "cmebyc93t001rvjqug7a3lo9v"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98z000dvjr10e87e2b0",
+        "expectationId": "cmebyc93t001rvjqug7a3lo9v",
+        "plannedTerm": "Term 2"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93t001svjqugh9k8bnx",
+    "code": "3.2",
+    "title": "Safe Equipment Use",
+    "titleFr": "Utilisation sécuritaire",
+    "description": "Mettre en pratique et en évidence certains effets de l'activité physique sur le fonctionnement de son corps",
+    "strand": "Effort physique",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Éducation physique",
+    "descriptionFr": "Mettre en pratique et en évidence certains effets de l'activité physique sur le fonctionnement de son corps",
+    "strandFr": "Effort physique",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.370Z",
+    "updatedAt": "2025-08-14T23:06:27.174Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmec0i16o0003vjenirx652j8",
+        "expectationId": "cmebyc93t001svjqugh9k8bnx"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc98z000dvjr10e87e2b0",
+        "expectationId": "cmebyc93t001svjqugh9k8bnx",
+        "plannedTerm": "Term 2"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93u001tvjquijf7o7d8",
+    "code": "CC 1.1",
+    "title": "Musical Elements",
+    "titleFr": null,
+    "description": "Create music using their voice, body, and instruments through musical play",
+    "strand": "Music",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Music",
+    "descriptionFr": "Create music using their voice, body, and instruments through musical play",
+    "strandFr": "Music",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.370Z",
+    "updatedAt": "2025-08-14T23:06:27.174Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmec0i16s0007vjenvfs8bccr",
+        "expectationId": "cmebyc93u001tvjquijf7o7d8"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc994000fvjr1kj7q6zxc",
+        "expectationId": "cmebyc93u001tvjquijf7o7d8",
+        "plannedTerm": "Term 1"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93u001uvjqu9yr3poov",
+    "code": "CC 1.2",
+    "title": "Musical Vocabulary",
+    "titleFr": null,
+    "description": "Compose simple musical ideas using invented notations, standard notations, and technology",
+    "strand": "Music",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Music",
+    "descriptionFr": "Compose simple musical ideas using invented notations, standard notations, and technology",
+    "strandFr": "Music",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.371Z",
+    "updatedAt": "2025-08-14T23:06:27.175Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmec0i16s0007vjenvfs8bccr",
+        "expectationId": "cmebyc93u001uvjqu9yr3poov"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc994000fvjr1kj7q6zxc",
+        "expectationId": "cmebyc93u001uvjqu9yr3poov",
+        "plannedTerm": "Term 1"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93v001vvjqurtlyqg88",
+    "code": "ME 1",
+    "title": "Musical Expression",
+    "titleFr": null,
+    "description": "Demonstrate the elements of music through musical play",
+    "strand": "Music",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Music",
+    "descriptionFr": "Demonstrate the elements of music through musical play",
+    "strandFr": "Music",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.371Z",
+    "updatedAt": "2025-08-14T23:06:27.175Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmec0i16s0007vjenvfs8bccr",
+        "expectationId": "cmebyc93v001vvjqurtlyqg88"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc994000fvjr1kj7q6zxc",
+        "expectationId": "cmebyc93v001vvjqurtlyqg88",
+        "plannedTerm": "Term 1"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93v001wvjqug702ty9i",
+    "code": "MA 1.1",
+    "title": "Music Making",
+    "titleFr": null,
+    "description": "Demonstrate proper technique playing pitched and non-pitched percussion instruments",
+    "strand": "Music",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Music",
+    "descriptionFr": "Demonstrate proper technique playing pitched and non-pitched percussion instruments",
+    "strandFr": "Music",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.372Z",
+    "updatedAt": "2025-08-14T23:06:27.176Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmec0i16s0007vjenvfs8bccr",
+        "expectationId": "cmebyc93v001wvjqug702ty9i"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc994000fvjr1kj7q6zxc",
+        "expectationId": "cmebyc93v001wvjqug702ty9i",
+        "plannedTerm": "Term 1"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93w001xvjqub9k3jzbq",
+    "code": "MA 1.2",
+    "title": "Singing and Playing",
+    "titleFr": null,
+    "description": "Demonstrate their voice in a variety of contexts through musical play",
+    "strand": "Music",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Music",
+    "descriptionFr": "Demonstrate their voice in a variety of contexts through musical play",
+    "strandFr": "Music",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.372Z",
+    "updatedAt": "2025-08-14T23:06:27.176Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmec0i16t0009vjentg5pv2qr",
+        "expectationId": "cmebyc93w001xvjqub9k3jzbq"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc994000fvjr1kj7q6zxc",
+        "expectationId": "cmebyc93w001xvjqub9k3jzbq",
+        "plannedTerm": "Term 2"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93w001yvjquc4y1mo9e",
+    "code": "CCC 1",
+    "title": "Cultural Connections",
+    "titleFr": null,
+    "description": "Demonstrate an understanding of diverse musical genres, styles, and cultural contexts and connections through musical play",
+    "strand": "Music",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Music",
+    "descriptionFr": "Demonstrate an understanding of diverse musical genres, styles, and cultural contexts and connections through musical play",
+    "strandFr": "Music",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.372Z",
+    "updatedAt": "2025-08-14T23:06:27.176Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmec0i16t0009vjentg5pv2qr",
+        "expectationId": "cmebyc93w001yvjquc4y1mo9e"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc994000fvjr1kj7q6zxc",
+        "expectationId": "cmebyc93w001yvjquc4y1mo9e",
+        "plannedTerm": "Term 2"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93w001zvjqud2wz9ow7",
+    "code": "SP 1",
+    "title": "Safe Practices",
+    "titleFr": null,
+    "description": "Perform musical pieces for a variety of audiences",
+    "strand": "Music",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Music",
+    "descriptionFr": "Perform musical pieces for a variety of audiences",
+    "strandFr": "Music",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.373Z",
+    "updatedAt": "2025-08-14T23:06:27.177Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmec0i16t0009vjentg5pv2qr",
+        "expectationId": "cmebyc93w001zvjqud2wz9ow7"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc994000fvjr1kj7q6zxc",
+        "expectationId": "cmebyc93w001zvjqud2wz9ow7",
+        "plannedTerm": "Term 2"
+      }
+    ]
+  },
+  {
+    "id": "cmebyc93x0020vjqukvse0kv8",
+    "code": "RRA 1",
+    "title": "Reflecting on Music",
+    "titleFr": null,
+    "description": "Refine live and recorded performances using the creative musical process",
+    "strand": "Music",
+    "substrand": null,
+    "grade": 1,
+    "subject": "Music",
+    "descriptionFr": "Refine live and recorded performances using the creative musical process",
+    "strandFr": "Music",
+    "substrandFr": null,
+    "importId": null,
+    "createdAt": "2025-08-14T22:09:29.373Z",
+    "updatedAt": "2025-08-14T23:06:27.177Z",
+    "unitPlans": [
+      {
+        "unitPlanId": "cmec0i16t0009vjentg5pv2qr",
+        "expectationId": "cmebyc93x0020vjqukvse0kv8"
+      }
+    ],
+    "longRangePlans": [
+      {
+        "longRangePlanId": "cmebyc994000fvjr1kj7q6zxc",
+        "expectationId": "cmebyc93x0020vjqukvse0kv8",
+        "plannedTerm": "Term 2"
+      }
+    ]
+  }
+]

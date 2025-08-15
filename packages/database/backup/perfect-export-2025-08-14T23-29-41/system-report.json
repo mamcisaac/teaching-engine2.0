@@ -1,0 +1,89 @@
+{
+  "exportDate": "2025-08-14T23:29:41.887Z",
+  "systemVersion": "PERFECT-2025-2026",
+  "grade": 1,
+  "schoolYear": "2025-2026",
+  "statistics": {
+    "longRangePlans": 8,
+    "unitPlans": 45,
+    "curriculumExpectations": 73,
+    "totalInstructionHours": 1082,
+    "expectationsWithTitles": 73,
+    "expectationsWithFrenchTitles": 65,
+    "unitsWithExpectations": 45,
+    "frenchImmersionPercentage": 89
+  },
+  "subjects": [
+    {
+      "subject": "Français langue première",
+      "units": 8,
+      "expectations": 0,
+      "totalDays": 140,
+      "totalHours": 300
+    },
+    {
+      "subject": "Mathématiques",
+      "units": 8,
+      "expectations": 14,
+      "totalDays": 147,
+      "totalHours": 215
+    },
+    {
+      "subject": "Sciences de la nature",
+      "units": 7,
+      "expectations": 5,
+      "totalDays": 118,
+      "totalHours": 170
+    },
+    {
+      "subject": "Sciences humaines",
+      "units": 5,
+      "expectations": 7,
+      "totalDays": 95,
+      "totalHours": 125
+    },
+    {
+      "subject": "Arts visuels",
+      "units": 6,
+      "expectations": 4,
+      "totalDays": 102,
+      "totalHours": 104
+    },
+    {
+      "subject": "Formation personnelle et sociale",
+      "units": 6,
+      "expectations": 4,
+      "totalDays": 87,
+      "totalHours": 137
+    },
+    {
+      "subject": "Éducation physique",
+      "units": 3,
+      "expectations": 16,
+      "totalDays": 54,
+      "totalHours": 19
+    },
+    {
+      "subject": "Music",
+      "units": 2,
+      "expectations": 8,
+      "totalDays": 56,
+      "totalHours": 12
+    }
+  ],
+  "qualityChecks": {
+    "allLRPsHaveUnits": true,
+    "allUnitsHaveExpectations": true,
+    "allExpectationsHaveTitles": true,
+    "allExpectationsMapped": true,
+    "perfectAlignment": true,
+    "frenchImmersionCompliant": true,
+    "grade1Appropriate": true
+  },
+  "backupInfo": {
+    "databaseBackup": "backup/perfect-system-*.db",
+    "jsonExport": "/Users/michaelmcisaac/Github/teaching-engine2.0/packages/database/backup/perfect-export-2025-08-14T23-29-41",
+    "seedFiles": "backup/seeds-*",
+    "totalBackupFormats": 3
+  }
+}

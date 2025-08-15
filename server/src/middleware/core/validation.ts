@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { isDefined, isError, isObject } from '@shared/utils/typeGuards';
+import { isDefined, isError, isObject } from '../../../../shared/utils/typeGuards';
 import type { RequestHandler, Request, NextFunction } from 'express';
 import type { ZodSchema, ZodTypeAny } from 'zod';
 import { z, ZodError } from 'zod';
@@ -123,7 +123,7 @@ export const validate = <T>(
         );
 
         // Use custom _error handler if provided
-        if (isDefined(customErrorHandler)) {
+        if (customErrorHandler && typeof customErrorHandler === 'function') {
           const customError = customErrorHandler(_error, req);
           next(customError); return;
         }

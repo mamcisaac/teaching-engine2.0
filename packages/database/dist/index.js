@@ -31,3 +31,4 @@ exports.prisma = process.env.NODE_ENV === 'test' && globalForPrisma.testPrismaCl
 if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
     globalForPrisma.prisma = exports.prisma;
 }
+//# sourceMappingURL=index.js.map
