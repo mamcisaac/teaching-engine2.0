@@ -112,52 +112,45 @@
 ---
 
 ### 🏃 PHYSICAL EDUCATION (0 units, 0 lessons)
-**Quality Score: 0%** 🚨
+**Status: EXCLUDED FROM SCOPE** ⛔
 
-**Complete Absence:**
-- No units planned
-- No lessons created
-- 95 lessons needed
-
-**Required Actions:**
-- Complete program development
-- Create units and lessons
-- Estimated time: 120 hours
+**Decision:**
+- Will NOT be developed
+- Specialist teacher responsibility
+- 0 lessons will be created
+- 0 hours allocated
 
 ---
 
 ### 🎵 MUSIC (0 units, 0 lessons)
-**Quality Score: 0%** 🚨
+**Status: EXCLUDED FROM SCOPE** ⛔
 
-**Complete Absence:**
-- No programming exists
-- 40 lessons needed minimum
-
-**Required Actions:**
-- Research curriculum requirements
-- Develop complete program
-- Estimated time: 60 hours
+**Decision:**
+- Will NOT be developed
+- Specialist teacher responsibility
+- 0 lessons will be created
+- 0 hours allocated
 
 ---
 
-## TOTAL RECONSTRUCTION REQUIREMENTS
+## TOTAL RECONSTRUCTION REQUIREMENTS (REVISED SCOPE)
 
 ### Lessons Status:
 - **Created**: 339 lessons (with quality issues)
-- **Missing**: 420+ lessons
-- **Total Needed**: 759 perfect lessons
+- **Missing**: ~416 lessons (excluding PE/Music)
+- **Total Needed**: ~755 perfect lessons (6 subjects only)
 
-### Time Investment Required:
+### Time Investment Required (6 Subjects):
 - **French Enhancement**: 50 hours
 - **Math Enhancement**: 230 hours
 - **Science Creation**: 180 hours
 - **Social Studies Creation**: 120 hours
 - **Arts Refinement**: 10 hours
 - **Health/FPS Creation**: 100 hours
-- **PE Development**: 120 hours
-- **Music Development**: 60 hours
+- ~~**PE Development**: 120 hours~~ **EXCLUDED**
+- ~~**Music Development**: 60 hours~~ **EXCLUDED**
 
-**TOTAL: 870 hours** (approximately 22 weeks full-time)
+**REVISED TOTAL: 690 hours** (approximately 17.5 weeks full-time)
 
 ---
 
@@ -176,8 +169,8 @@
 ### Week 4-6:
 7. Complete Social Studies program
 8. Implement Health/FPS lessons
-9. Develop PE program
-10. Create Music curriculum
+9. Polish Arts to 95% standard
+10. Final quality validation
 
 ---
 
@@ -197,13 +190,18 @@ Every unit must achieve:
 
 ---
 
-## FINAL ASSESSMENT
+## FINAL ASSESSMENT (REVISED SCOPE)
 
 **The system is NOT ready for September 2025 implementation.**
 
-Despite having 339 lessons created, the quality issues and missing subjects represent a critical educational failure. The disconnect between reported "100% perfect" status and actual 42% quality requires immediate, intensive intervention.
+With PE and Music explicitly excluded from scope, the system requires:
+- **6 subjects** to be perfected (not 8)
+- **~755 lessons** at 95%+ quality (not 759+)
+- **690 hours** of work (not 870)
 
-**Recommendation**: Begin emergency reconstruction immediately, prioritizing September units across all subjects. Consider delaying full implementation or seeking additional development resources.
+Despite the reduced scope, the quality issues and missing core subject lessons represent a critical gap. The disconnect between reported "100% perfect" status and actual 42% quality requires immediate intervention.
+
+**Recommendation**: Begin emergency reconstruction immediately, prioritizing September units for the 6 core subjects. PE and Music will be handled by specialist teachers.
 
 ---
 
