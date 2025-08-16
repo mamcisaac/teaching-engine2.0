@@ -392,6 +392,7 @@ model ETFOLessonPlan {
   actionFr                  String?
   consolidationFr           String?
   learningGoalsFr           String?
+  vocabularyFr              Json?
   accommodations            Json?
   modifications             Json?
   extensions                Json?
