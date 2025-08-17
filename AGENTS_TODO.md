@@ -50,7 +50,7 @@
 
 #### Unit-Specific Fixes:
 1. **Our School Environment** (12 lessons) - ✅ COMPLETED - Outdoor exploration safety, buddy system, allergy warnings added
-2. **Fall Changes** (24 lessons) - Include weather appropriate clothing requirements  
+2. **Fall Changes** (48 lessons) - ✅ COMPLETED - Weather safety, rain gear, temperature monitoring, leaf safety added
 3. **Energy in Our Lives** (24 lessons) - ✅ COMPLETED - Electrical safety protocols added, all hazards eliminated
 4. **Winter Wonders** (24 lessons) - Cold weather safety, ice handling procedures
 5. **Growing and Changing** (24 lessons) - Plant/soil handling, allergy protocols
@@ -279,7 +279,7 @@
 
 ### Sciences de la nature:
 - [x] Unit 1: Our School Environment (12 lessons) ✅ COMPLETED - Outdoor safety protocols, journal integration added
-- [ ] Unit 2: Fall Changes (24 lessons)
+- [x] Unit 2: Fall Changes (48 lessons - not 24!) ✅ COMPLETED - Weather safety, seasonal observations, vocabulary added
 - [x] Unit 3: Energy in Our Lives (24 lessons) ✅ COMPLETED - All electrical hazards eliminated, safety protocols added
 - [ ] Unit 4: Winter Wonders (24 lessons)
 - [ ] Unit 5: Growing and Changing (24 lessons)
