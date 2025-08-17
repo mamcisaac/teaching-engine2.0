@@ -49,7 +49,7 @@
   - Include inquiry process assessment
 
 #### Unit-Specific Fixes:
-1. **Our School Environment** (12 lessons) - Add outdoor exploration safety
+1. **Our School Environment** (12 lessons) - ✅ COMPLETED - Outdoor exploration safety, buddy system, allergy warnings added
 2. **Fall Changes** (24 lessons) - Include weather appropriate clothing requirements  
 3. **Energy in Our Lives** (24 lessons) - ✅ COMPLETED - Electrical safety protocols added, all hazards eliminated
 4. **Winter Wonders** (24 lessons) - Cold weather safety, ice handling procedures
@@ -278,7 +278,7 @@
 ## 📁 COMPLETION TRACKING
 
 ### Sciences de la nature:
-- [ ] Unit 1: Our School Environment (12 lessons)
+- [x] Unit 1: Our School Environment (12 lessons) ✅ COMPLETED - Outdoor safety protocols, journal integration added
 - [ ] Unit 2: Fall Changes (24 lessons)
 - [x] Unit 3: Energy in Our Lives (24 lessons) ✅ COMPLETED - All electrical hazards eliminated, safety protocols added
 - [ ] Unit 4: Winter Wonders (24 lessons)
