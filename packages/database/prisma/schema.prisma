@@ -235,6 +235,8 @@ model LongRangePlan {
   titleFr                        String?
   descriptionFr                  String?
   goalsFr                        String?
+  startDate                      DateTime?
+  endDate                        DateTime?
   createdAt                      DateTime                   @default(now())
   updatedAt                      DateTime                   @updatedAt
   crossCurricularConnections     Json?
