@@ -343,8 +343,8 @@ model UnitPlan {
   lockedAt                   DateTime?
   lockedReason               String?
   lessonPlans                ETFOLessonPlan[]
-  longRangePlan              LongRangePlan           @relation(fields: [longRangePlanId], references: [id])
   user                       User                    @relation(fields: [userId], references: [id])
+  longRangePlan              LongRangePlan           @relation(fields: [longRangePlanId], references: [id])
   expectations               UnitPlanExpectation[]
   resources                  UnitPlanResource[]
   transferSkills             UnitPlanTransferSkill[]
@@ -418,8 +418,8 @@ model ETFOLessonPlan {
   indigenousPerspectives    String?
   activityImports           ActivityImport[]
   daybookEntry              DaybookEntry?
-  unitPlan                  UnitPlan                    @relation(fields: [unitPlanId], references: [id])
   user                      User                        @relation(fields: [userId], references: [id])
+  unitPlan                  UnitPlan                    @relation(fields: [unitPlanId], references: [id])
   expectations              ETFOLessonPlanExpectation[]
   resources                 ETFOLessonPlanResource[]
 
@@ -854,8 +854,8 @@ model UnitPlanTransferSkill {
   unitPlanId      String
   transferSkillId String
   emphasis        String                @default("developing")
-  unitPlan        UnitPlan              @relation(fields: [unitPlanId], references: [id], onDelete: Cascade)
   transferSkill   TransferSkillTemplate @relation(fields: [transferSkillId], references: [id], onDelete: Cascade)
+  unitPlan        UnitPlan              @relation(fields: [unitPlanId], references: [id], onDelete: Cascade)
 
   @@id([unitPlanId, transferSkillId])
 }
