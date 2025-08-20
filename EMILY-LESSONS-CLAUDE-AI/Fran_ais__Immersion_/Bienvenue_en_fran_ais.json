@@ -1,0 +1,128 @@
+{
+  "unitId": "cmejh5jow0001vjtlfqdz5cqm",
+  "unitTitle": "Bienvenue en français",
+  "unitTitleFr": "Bienvenue en français",
+  "startDate": "2025-09-03T00:00:00.000Z",
+  "endDate": "2025-09-30T00:00:00.000Z",
+  "bigIdeas": "Le français nous connecte et nous permet de découvrir le monde ensemble.",
+  "essentialQuestions": [
+    "Qui suis-je en français?",
+    "Comment communiquer?",
+    "Pourquoi apprendre ensemble?"
+  ],
+  "lessonCount": 1,
+  "generatedBy": "Claude AI Subagent",
+  "generatedAt": "2025-08-20T18:31:33.964Z",
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "title": "Test - Leçon 1",
+      "titleFr": "Test - Leçon 1",
+      "learningGoals": "Nous découvrons les concepts",
+      "successCriteria": [
+        "Je peux participer",
+        "Je peux observer",
+        "Je peux essayer"
+      ],
+      "vocabulary": [
+        "mot1",
+        "mot2",
+        "mot3",
+        "mot4",
+        "mot5",
+        "mot6",
+        "mot7",
+        "mot8"
+      ],
+      "materials": [
+        "Matériel 1",
+        "Matériel 2",
+        "Matériel 3",
+        "Matériel 4",
+        "Matériel 5"
+      ],
+      "mindsOn": {
+        "duration": 8,
+        "description": "Activation activity",
+        "grouping": "Grand groupe",
+        "teacherPrompts": [
+          "Question 1",
+          "Question 2",
+          "Question 3"
+        ]
+      },
+      "action": {
+        "duration": 27,
+        "activities": [
+          {
+            "name": "Activity 1",
+            "duration": 15,
+            "description": "Description"
+          },
+          {
+            "name": "Activity 2",
+            "duration": 12,
+            "description": "Description"
+          }
+        ],
+        "differentiation": {
+          "forStruggling": [
+            "Support 1",
+            "Support 2",
+            "Support 3",
+            "Support 4"
+          ],
+          "forAdvanced": [
+            "Challenge 1",
+            "Challenge 2",
+            "Challenge 3",
+            "Challenge 4"
+          ],
+          "forELL": [
+            "Language 1",
+            "Language 2",
+            "Language 3",
+            "Language 4"
+          ],
+          "forIEP": [
+            "Accommodation 1",
+            "Accommodation 2",
+            "Accommodation 3",
+            "Accommodation 4"
+          ]
+        }
+      },
+      "consolidation": {
+        "duration": 10,
+        "description": "Consolidation activity",
+        "assessment": "Assessment method",
+        "closingPrompts": [
+          "Prompt 1",
+          "Prompt 2",
+          "Prompt 3"
+        ]
+      },
+      "assessment": {
+        "diagnostic": "Initial assessment",
+        "formative": "Ongoing assessment",
+        "summative": null,
+        "tools": [
+          "Tool 1",
+          "Tool 2",
+          "Tool 3",
+          "Tool 4"
+        ]
+      },
+      "indigenousPerspectives": "Mi'kmaq connection",
+      "crossCurricular": [
+        "Connection 1",
+        "Connection 2"
+      ],
+      "technologyIntegration": "Tech tool",
+      "parentCommunication": "Home activity",
+      "safetyConsiderations": "Safety notes",
+      "previousLessonConnection": null,
+      "nextLessonPreview": "Tomorrow we will..."
+    }
+  ]
+}

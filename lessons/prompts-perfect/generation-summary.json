@@ -1,0 +1,42 @@
+{
+  "totalPrompts": 975,
+  "generatedAt": "2025-08-20T11:07:14.458Z",
+  "bySubject": [
+    {
+      "subject": "Français (Immersion)",
+      "count": 195,
+      "expected": 195,
+      "match": "✅"
+    },
+    {
+      "subject": "Mathématiques",
+      "count": 195,
+      "expected": 195,
+      "match": "✅"
+    },
+    {
+      "subject": "Sciences de la nature",
+      "count": 195,
+      "expected": 195,
+      "match": "✅"
+    },
+    {
+      "subject": "Arts visuels",
+      "count": 195,
+      "expected": 195,
+      "match": "✅"
+    },
+    {
+      "subject": "Sciences humaines",
+      "count": 97,
+      "expected": 97,
+      "match": "✅"
+    },
+    {
+      "subject": "Formation personnelle et sociale",
+      "count": 98,
+      "expected": 98,
+      "match": "✅"
+    }
+  ]
+}

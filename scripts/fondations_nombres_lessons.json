@@ -1,0 +1,186 @@
+[
+  {
+    "lesson_number": 1,
+    "title": "Compter et reconnaître les nombres de 1 à 10",
+    "subject": "Mathématiques",
+    "grade": "1re année",
+    "unit": "Fondations des nombres",
+    "duration": "45 minutes",
+    "learning_objectives": [
+      "Compter de 1 à 10 en ordre croissant",
+      "Reconnaître et nommer les chiffres de 1 à 10",
+      "Associer une quantité d'objets au nombre correspondant"
+    ],
+    "materials": [
+      "Cubes emboîtables",
+      "Cartes de nombres (1-10)",
+      "Objets de comptage variés (boutons, jetons, etc.)",
+      "Tableau de nombres 1-10",
+      "Dés à points"
+    ],
+    "lesson_structure": {
+      "minds_on": {
+        "duration": "8 minutes",
+        "activity": "Comptage interactif avec mouvement",
+        "description": "Les élèves se placent en cercle. L'enseignant(e) commence à compter de 1 à 10 en tapant des mains. Les élèves répètent et ajoutent un mouvement pour chaque nombre (1=lever un doigt, 2=taper des pieds, etc.). Puis, l'enseignant(e) montre des cartes de nombres dans le désordre et les élèves doivent dire le nombre et faire le mouvement correspondant.",
+        "assessment": "Observer la capacité des élèves à reconnaître les chiffres et à compter en séquence"
+      },
+      "action": {
+        "duration": "27 minutes",
+        "activities": [
+          {
+            "name": "Station 1: Construction de nombres avec manipulatifs",
+            "duration": "9 minutes",
+            "description": "Les élèves utilisent des cubes emboîtables pour construire des tours représentant chaque nombre de 1 à 10. Ils placent la carte du nombre correspondant à côté de chaque tour.",
+            "differentiation": "Soutien: commencer avec les nombres 1-5. Enrichissement: créer des patterns avec les couleurs des cubes"
+          },
+          {
+            "name": "Station 2: Jeu du dé et comptage",
+            "duration": "9 minutes",
+            "description": "En paires, les élèves lancent un dé à points, comptent les points et trouvent la carte du nombre correspondant. Ils utilisent des objets de comptage pour vérifier leur réponse.",
+            "differentiation": "Soutien: utiliser un dé avec 1-3 points. Enrichissement: utiliser deux dés et additionner"
+          },
+          {
+            "name": "Station 3: Ordre des nombres sur la droite numérique",
+            "duration": "9 minutes",
+            "description": "Les élèves placent les cartes de nombres dans l'ordre sur une droite numérique géante au sol. Ils marchent sur la droite en comptant et en nommant chaque nombre.",
+            "differentiation": "Soutien: donner seulement 5 cartes consécutives. Enrichissement: inclure des espaces vides à compléter"
+          }
+        ],
+        "assessment": "Circuler et observer les stratégies de comptage, la reconnaissance des chiffres et la correspondance nombre-quantité"
+      },
+      "consolidation": {
+        "duration": "10 minutes",
+        "activity": "Partage et réflexion mathématique",
+        "description": "Retour en grand groupe. Les élèves partagent leurs découvertes: 'Quel nombre était le plus facile/difficile à construire?' L'enseignant(e) fait une démonstration collective en comptant des objets et en écrivant les nombres au tableau. Terminer par un compte à rebours de 10 à 1 avec des gestes.",
+        "assessment": "Évaluer la compréhension à travers les explications des élèves et leur participation au compte à rebours"
+      }
+    },
+    "vocabulary": ["nombre", "chiffre", "compter", "quantité", "plus", "moins"],
+    "cross_curricular_connections": ["Sciences: compter des objets naturels", "Arts: créer des patterns numériques"],
+    "homework_extension": "Trouve 3 objets à la maison pour chaque nombre de 1 à 5"
+  },
+  {
+    "lesson_number": 2,
+    "title": "Comparer et ordonner les nombres de 1 à 20",
+    "subject": "Mathématiques",
+    "grade": "1re année",
+    "unit": "Fondations des nombres",
+    "duration": "45 minutes",
+    "learning_objectives": [
+      "Compter de 1 à 20 en ordre croissant et décroissant",
+      "Comparer deux quantités en utilisant 'plus que', 'moins que', 'égal à'",
+      "Ordonner des nombres du plus petit au plus grand"
+    ],
+    "materials": [
+      "Réglettes Cuisenaire",
+      "Cartes de nombres (1-20)",
+      "Balances à plateaux",
+      "Collections d'objets (coquillages, boutons, etc.)",
+      "Symboles de comparaison (>, <, =) agrandis"
+    ],
+    "lesson_structure": {
+      "minds_on": {
+        "duration": "8 minutes",
+        "activity": "Jeu de comparaison rapide",
+        "description": "L'enseignant(e) montre rapidement deux collections d'objets (ex: 7 crayons vs 5 crayons). Les élèves lèvent la main droite si la première collection a 'plus', la main gauche si elle a 'moins', et les deux mains si c'est 'égal'. Répéter avec différentes quantités entre 1 et 15.",
+        "assessment": "Observer la rapidité et la précision des réponses pour évaluer la compréhension intuitive des quantités"
+      },
+      "action": {
+        "duration": "27 minutes",
+        "activities": [
+          {
+            "name": "Station 1: Comparaison avec la balance",
+            "duration": "9 minutes",
+            "description": "Les élèves utilisent une balance à plateaux pour comparer des quantités d'objets. Ils placent différentes quantités sur chaque plateau et observent quel côté penche. Ils utilisent les symboles >, <, = pour représenter leurs découvertes.",
+            "differentiation": "Soutien: utiliser des différences évidentes (3 vs 8). Enrichissement: comparer des quantités très proches (12 vs 13)"
+          },
+          {
+            "name": "Station 2: Construction et comparaison avec réglettes",
+            "duration": "9 minutes",
+            "description": "Les élèves choisissent deux cartes de nombres, construisent des trains de réglettes correspondants et les comparent côte à côte. Ils expliquent leur raisonnement à leur partenaire en utilisant le vocabulaire mathématique approprié.",
+            "differentiation": "Soutien: limiter aux nombres 1-10. Enrichissement: inclure des nombres jusqu'à 20 et demander 'combien de plus/moins'"
+          },
+          {
+            "name": "Station 3: Course d'ordonnancement",
+            "duration": "9 minutes",
+            "description": "En équipes de 3-4, les élèves reçoivent des cartes mélangées (nombres 1-15) et doivent les placer en ordre le plus rapidement possible. Une fois terminé, ils vérifient en comptant ensemble.",
+            "differentiation": "Soutien: donner seulement 6-8 cartes consécutives. Enrichissement: inclure des cartes avec des nombres manquants à identifier"
+          }
+        ],
+        "assessment": "Observer l'utilisation du vocabulaire de comparaison et les stratégies utilisées pour ordonner les nombres"
+      },
+      "consolidation": {
+        "duration": "10 minutes",
+        "activity": "Résolution de problème collective",
+        "description": "Présenter un problème: 'Marie a 8 autocollants et Pierre en a 12. Qui en a le plus? Combien Pierre en a-t-il de plus que Marie?' Les élèves utilisent des manipulatifs pour résoudre et expliquent leur démarche. Créer ensemble une phrase mathématique au tableau: 8 < 12.",
+        "assessment": "Évaluer la capacité à appliquer les concepts de comparaison dans un contexte de résolution de problème"
+      }
+    },
+    "vocabulary": ["plus que", "moins que", "égal à", "comparer", "ordonner", "plus grand", "plus petit"],
+    "cross_curricular_connections": ["Sciences: comparer les tailles d'animaux", "Éducation physique: se placer en ordre de grandeur"],
+    "homework_extension": "Compare le nombre de fenêtres et de portes dans ta maison. Laquelle a le plus?"
+  },
+  {
+    "lesson_number": 3,
+    "title": "Décomposer et recomposer les nombres jusqu'à 10",
+    "subject": "Mathématiques",
+    "grade": "1re année",
+    "unit": "Fondations des nombres",
+    "duration": "45 minutes",
+    "learning_objectives": [
+      "Décomposer un nombre en différentes combinaisons d'additions",
+      "Reconnaître qu'un nombre peut être formé de plusieurs façons",
+      "Utiliser la stratégie 'faire 10' pour les calculs mentaux simples"
+    ],
+    "materials": [
+      "Boîtes à œufs (10 compartiments)",
+      "Jetons bicolores (rouge/jaune)",
+      "Cartes de décomposition vierges",
+      "Dominos mathématiques",
+      "Cadres de dix",
+      "Crayons de couleur"
+    ],
+    "lesson_structure": {
+      "minds_on": {
+        "duration": "8 minutes",
+        "activity": "Histoire mathématique des mains",
+        "description": "L'enseignant(e) raconte: 'J'ai 6 doigts levés. Peux-tu me montrer différentes façons de faire 6 avec tes doigts?' Les élèves explorent (3+3, 4+2, 5+1, etc.) et partagent leurs découvertes. Répéter avec d'autres nombres comme 7, 8, 5.",
+        "assessment": "Observer la flexibilité dans la représentation des nombres et la compréhension que plusieurs combinaisons sont possibles"
+      },
+      "action": {
+        "duration": "27 minutes",
+        "activities": [
+          {
+            "name": "Station 1: Boîtes à œufs et décomposition",
+            "duration": "9 minutes",
+            "description": "Les élèves choisissent un nombre (5-10) et utilisent des jetons dans une boîte à œufs pour trouver toutes les façons de le faire. Ils dessinent leurs découvertes sur une feuille de décomposition (ex: 6 = 4+2, 6 = 3+3, 6 = 5+1).",
+            "differentiation": "Soutien: commencer avec le nombre 5. Enrichissement: trouver des décompositions avec 3 nombres (ex: 8 = 3+3+2)"
+          },
+          {
+            "name": "Station 2: Jeu des jetons bicolores",
+            "duration": "9 minutes",
+            "description": "Les élèves lancent 8 jetons bicolores dans une boîte, comptent combien tombent de chaque couleur et écrivent l'équation correspondante (ex: 3 rouges + 5 jaunes = 8). Répéter plusieurs fois pour voir différentes combinaisons.",
+            "differentiation": "Soutien: utiliser seulement 6 jetons. Enrichissement: prédire les combinaisons possibles avant de lancer"
+          },
+          {
+            "name": "Station 3: Construction avec cadres de dix",
+            "duration": "9 minutes",
+            "description": "Les élèves utilisent des cadres de dix pour explorer la stratégie 'faire 10'. Ils placent des jetons pour voir combien il faut ajouter à différents nombres pour faire 10 (ex: 7 + ? = 10).",
+            "differentiation": "Soutien: commencer avec 'faire 5' dans un cadre de 5. Enrichissement: explorer 'faire 20' avec deux cadres de dix"
+          }
+        ],
+        "assessment": "Observer les stratégies de décomposition et la compréhension que les nombres peuvent être représentés de multiples façons"
+      },
+      "consolidation": {
+        "duration": "10 minutes",
+        "activity": "Galerie mathématique et synthèse",
+        "description": "Les élèves affichent leurs feuilles de décomposition et font une promenade mathématique pour voir les découvertes des autres. Retour en cercle: 'Qu'avez-vous remarqué? Y a-t-il des patterns?' L'enseignant(e) crée un mur de décomposition collective pour le nombre 8 avec toutes les façons trouvées par la classe.",
+        "assessment": "Évaluer la capacité à identifier des patterns dans les décompositions et à expliquer leur raisonnement mathématique"
+      }
+    },
+    "vocabulary": ["décomposer", "recomposer", "faire dix", "parties", "total", "combinaison", "équation"],
+    "cross_curricular_connections": ["Arts plastiques: créer des mosaïques avec patterns numériques", "Musique: créer des rythmes avec décompositions"],
+    "homework_extension": "Trouve 3 façons différentes de faire le nombre correspondant à ton âge en utilisant des objets à la maison"
+  }
+]

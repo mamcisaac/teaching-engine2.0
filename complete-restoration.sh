@@ -1,0 +1,55 @@
+#!/bin/bash
+
+echo "🚀 COMPLETE UNIT PLAN RESTORATION - BOTH PHASES"
+echo "==============================================="
+echo ""
+echo "This script will fully restore your perfect unit plans with:"
+echo ""
+echo "📚 PHASE 1: Rich Pedagogical Content"
+echo "  - Morning scripts (08:23-10:41) with rich content"
+echo "  - Timing fixes through 19:04"
+echo "  - STOPS before ultimate-perfection.ts that damaged content"
+echo ""
+echo "🎯 PHASE 2: Strategic Refinements"  
+echo "  - Strategic FPS redistribution (16+15+15+14+13 hours)"
+echo "  - Perfect alternating schedule with PEI holidays"
+echo "  - Hour precision and date range corrections"
+echo ""
+echo "Result: Units with BOTH rich content AND perfect timing"
+echo ""
+echo "⚠️  This will modify your current unit plans"
+echo "Current backup: packages/database/backup-before-restore-*.json"
+echo ""
+echo "Press Enter to continue or Ctrl+C to cancel..."
+read
+
+echo ""
+echo "🔄 Starting PHASE 1: Content Restoration..."
+echo "==========================================="
+./restore-perfect-sequence.sh
+
+echo ""
+echo "⏸️  PHASE 1 COMPLETE - Press Enter to start PHASE 2..."
+read
+
+echo ""
+echo "🎯 Starting PHASE 2: Strategic Refinements..."
+echo "============================================="
+./apply-strategic-refinements.sh
+
+echo ""
+echo "🎉 COMPLETE RESTORATION FINISHED!"
+echo "================================="
+echo ""
+echo "Your unit plans now have:"
+echo "✅ Rich pedagogical content (bigIdeas, essentialQuestions, etc.)"
+echo "✅ Strategic FPS hour redistribution (16+15+15+14+13)"
+echo "✅ Perfect alternating schedule (97 SS / 98 Health lessons)"
+echo "✅ Precise timing and date ranges"
+echo "✅ All subject expertise from Aug 19 morning work"
+echo ""
+echo "🔒 Recommended next step: Lock the units to protect this state"
+echo ""
+echo "To lock units:"
+echo "cd archives/development-history-complete-20250819-222927/scripts"
+echo "tsx lock-all-unit-plans.ts"

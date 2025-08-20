@@ -13,22 +13,21 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
 var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.prisma = void 0;
 // Re-export all Prisma Client types and functions
 __exportStar(require("@prisma/client"), exports);
 // Import for singleton
-const client_1 = require("@prisma/client");
+var client_1 = require("@prisma/client");
 // Create singleton instance for development
-const globalForPrisma = globalThis;
+var globalForPrisma = globalThis;
 // In test environment, use test client if available
 exports.prisma = process.env.NODE_ENV === 'test' && globalForPrisma.testPrismaClient !== undefined ?
     globalForPrisma.testPrismaClient :
-    (globalForPrisma.prisma ??
-        new client_1.PrismaClient({
-            log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
-        }));
+    ((_a = globalForPrisma.prisma) !== null && _a !== void 0 ? _a : new client_1.PrismaClient({
+        log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
+    }));
 if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
     globalForPrisma.prisma = exports.prisma;
 }
-//# sourceMappingURL=index.js.map
