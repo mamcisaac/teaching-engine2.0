@@ -1,0 +1,176 @@
+{
+  "subjects": {
+    "Arts visuels": {
+      "units": 2,
+      "lessons": 30,
+      "etfoScore": 20,
+      "etfoMaxScore": 20,
+      "etfoDetails": [
+        "Arts visuels: Perfect lesson count (30/30)",
+        "Arts visuels: Perfect block count (2/2)",
+        "Arts visuels: All lessons have three-part structure",
+        "Arts visuels: Strong accommodation coverage"
+      ],
+      "coherenceScore": 15,
+      "coherenceMaxScore": 15,
+      "coherenceDetails": [
+        "Arts visuels: Appropriate lesson duration (45 minutes)",
+        "Arts visuels: Appropriate rotation block durations (2-3 weeks)",
+        "Arts visuels: Subject content coherent and progressive"
+      ],
+      "grade1Score": 15,
+      "grade1MaxScore": 15,
+      "grade1Details": [
+        "Arts visuels: All lessons marked for Grade 1",
+        "Arts visuels: Learning goals present and age-appropriate",
+        "Arts visuels: Materials lists comprehensive and age-appropriate"
+      ]
+    },
+    "Formation personnelle et sociale": {
+      "units": 2,
+      "lessons": 30,
+      "etfoScore": 20,
+      "etfoMaxScore": 20,
+      "etfoDetails": [
+        "Formation personnelle et sociale: Perfect lesson count (30/30)",
+        "Formation personnelle et sociale: Perfect block count (2/2)",
+        "Formation personnelle et sociale: All lessons have three-part structure",
+        "Formation personnelle et sociale: Strong accommodation coverage"
+      ],
+      "coherenceScore": 15,
+      "coherenceMaxScore": 15,
+      "coherenceDetails": [
+        "Formation personnelle et sociale: Appropriate lesson duration (45 minutes)",
+        "Formation personnelle et sociale: Appropriate rotation block durations (2-3 weeks)",
+        "Formation personnelle et sociale: Subject content coherent and progressive"
+      ],
+      "grade1Score": 15,
+      "grade1MaxScore": 15,
+      "grade1Details": [
+        "Formation personnelle et sociale: All lessons marked for Grade 1",
+        "Formation personnelle et sociale: Learning goals present and age-appropriate",
+        "Formation personnelle et sociale: Materials lists comprehensive and age-appropriate"
+      ]
+    },
+    "Sciences de la nature": {
+      "units": 5,
+      "lessons": 48,
+      "etfoScore": 20,
+      "etfoMaxScore": 20,
+      "etfoDetails": [
+        "Sciences de la nature: Perfect lesson count (48/48)",
+        "Sciences de la nature: Perfect block count (5/5)",
+        "Sciences de la nature: All lessons have three-part structure",
+        "Sciences de la nature: Strong accommodation coverage"
+      ],
+      "coherenceScore": 15,
+      "coherenceMaxScore": 15,
+      "coherenceDetails": [
+        "Sciences de la nature: Appropriate lesson duration (45 minutes)",
+        "Sciences de la nature: Appropriate rotation block durations (2-3 weeks)",
+        "Sciences de la nature: Subject content coherent and progressive"
+      ],
+      "grade1Score": 15,
+      "grade1MaxScore": 15,
+      "grade1Details": [
+        "Sciences de la nature: All lessons marked for Grade 1",
+        "Sciences de la nature: Learning goals present and age-appropriate",
+        "Sciences de la nature: Materials lists comprehensive and age-appropriate"
+      ]
+    },
+    "Sciences humaines": {
+      "units": 2,
+      "lessons": 30,
+      "etfoScore": 20,
+      "etfoMaxScore": 20,
+      "etfoDetails": [
+        "Sciences humaines: Perfect lesson count (30/30)",
+        "Sciences humaines: Perfect block count (2/2)",
+        "Sciences humaines: All lessons have three-part structure",
+        "Sciences humaines: Strong accommodation coverage"
+      ],
+      "coherenceScore": 15,
+      "coherenceMaxScore": 15,
+      "coherenceDetails": [
+        "Sciences humaines: Appropriate lesson duration (45 minutes)",
+        "Sciences humaines: Appropriate rotation block durations (2-3 weeks)",
+        "Sciences humaines: Subject content coherent and progressive"
+      ],
+      "grade1Score": 15,
+      "grade1MaxScore": 15,
+      "grade1Details": [
+        "Sciences humaines: All lessons marked for Grade 1",
+        "Sciences humaines: Learning goals present and age-appropriate",
+        "Sciences humaines: Materials lists comprehensive and age-appropriate"
+      ]
+    }
+  },
+  "totalUnits": 11,
+  "totalLessons": 138,
+  "etfoCompliance": {
+    "score": 80,
+    "maxScore": 80,
+    "details": [
+      "Arts visuels: Perfect lesson count (30/30)",
+      "Arts visuels: Perfect block count (2/2)",
+      "Arts visuels: All lessons have three-part structure",
+      "Arts visuels: Strong accommodation coverage",
+      "Formation personnelle et sociale: Perfect lesson count (30/30)",
+      "Formation personnelle et sociale: Perfect block count (2/2)",
+      "Formation personnelle et sociale: All lessons have three-part structure",
+      "Formation personnelle et sociale: Strong accommodation coverage",
+      "Sciences de la nature: Perfect lesson count (48/48)",
+      "Sciences de la nature: Perfect block count (5/5)",
+      "Sciences de la nature: All lessons have three-part structure",
+      "Sciences de la nature: Strong accommodation coverage",
+      "Sciences humaines: Perfect lesson count (30/30)",
+      "Sciences humaines: Perfect block count (2/2)",
+      "Sciences humaines: All lessons have three-part structure",
+      "Sciences humaines: Strong accommodation coverage"
+    ]
+  },
+  "rotationCoherence": {
+    "score": 60,
+    "maxScore": 60,
+    "details": [
+      "Arts visuels: Appropriate lesson duration (45 minutes)",
+      "Arts visuels: Appropriate rotation block durations (2-3 weeks)",
+      "Arts visuels: Subject content coherent and progressive",
+      "Formation personnelle et sociale: Appropriate lesson duration (45 minutes)",
+      "Formation personnelle et sociale: Appropriate rotation block durations (2-3 weeks)",
+      "Formation personnelle et sociale: Subject content coherent and progressive",
+      "Sciences de la nature: Appropriate lesson duration (45 minutes)",
+      "Sciences de la nature: Appropriate rotation block durations (2-3 weeks)",
+      "Sciences de la nature: Subject content coherent and progressive",
+      "Sciences humaines: Appropriate lesson duration (45 minutes)",
+      "Sciences humaines: Appropriate rotation block durations (2-3 weeks)",
+      "Sciences humaines: Subject content coherent and progressive"
+    ]
+  },
+  "grade1Appropriateness": {
+    "score": 60,
+    "maxScore": 60,
+    "details": [
+      "Arts visuels: All lessons marked for Grade 1",
+      "Arts visuels: Learning goals present and age-appropriate",
+      "Arts visuels: Materials lists comprehensive and age-appropriate",
+      "Formation personnelle et sociale: All lessons marked for Grade 1",
+      "Formation personnelle et sociale: Learning goals present and age-appropriate",
+      "Formation personnelle et sociale: Materials lists comprehensive and age-appropriate",
+      "Sciences de la nature: All lessons marked for Grade 1",
+      "Sciences de la nature: Learning goals present and age-appropriate",
+      "Sciences de la nature: Materials lists comprehensive and age-appropriate",
+      "Sciences humaines: All lessons marked for Grade 1",
+      "Sciences humaines: Learning goals present and age-appropriate",
+      "Sciences humaines: Materials lists comprehensive and age-appropriate"
+    ]
+  },
+  "overallSuccess": true,
+  "etfoPercentage": 100,
+  "coherencePercentage": 100,
+  "grade1Percentage": 100,
+  "validationDate": "2025-08-18T15:44:53.390Z",
+  "totalRotationLessons": 138,
+  "expectedRotationLessons": 138,
+  "lessonAccuracy": "PERFECT"
+}

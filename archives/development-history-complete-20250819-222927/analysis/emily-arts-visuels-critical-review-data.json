@@ -1,0 +1,305 @@
+{
+  "totalUnits": 6,
+  "totalLessons": 96,
+  "expectedLessons": 96,
+  "criticalIssues": [
+    "Unit \"Discovering Art in Our World\" essential questions may not be age-appropriate for Grade 1",
+    "Unit \"Discovering Art in Our World\" may lack creative process expectations",
+    "Unit \"Discovering Art in Our World\" culminating task may not celebrate student creativity",
+    "Unit \"Discovering Art in Our World\" has 24 lessons with insufficient materials specification",
+    "Unit \"Winter Celebrations Through Art\" essential questions may not be age-appropriate for Grade 1",
+    "Unit \"Winter Celebrations Through Art\" may lack creative process expectations",
+    "Unit \"Winter Celebrations Through Art\" may lack French arts vocabulary development",
+    "Unit \"Winter Celebrations Through Art\" has 12 lessons with insufficient materials specification",
+    "Unit \"Textures and Patterns\" essential questions may not be age-appropriate for Grade 1",
+    "Unit \"Textures and Patterns\" may lack creative process expectations",
+    "Unit \"Textures and Patterns\" differentiation may not address Grade 1 developmental needs",
+    "Unit \"Textures and Patterns\" culminating task may not celebrate student creativity",
+    "Unit \"Textures and Patterns\" has 12 lessons with insufficient materials specification",
+    "Unit \"Our Art Gallery\" essential questions may not be age-appropriate for Grade 1",
+    "Unit \"Our Art Gallery\" may lack creative process expectations",
+    "Unit \"Our Art Gallery\" differentiation may not address Grade 1 developmental needs",
+    "Unit \"Our Art Gallery\" may lack French arts vocabulary development",
+    "Unit \"Our Art Gallery\" has 12 lessons with insufficient materials specification",
+    "Unit \"Colors and Feelings\" essential questions may not be age-appropriate for Grade 1",
+    "Unit \"Colors and Feelings\" may lack creative process expectations",
+    "Unit \"Colors and Feelings\" differentiation may not address Grade 1 developmental needs",
+    "Unit \"Colors and Feelings\" culminating task may not celebrate student creativity",
+    "Unit \"Colors and Feelings\" has 24 lessons with insufficient materials specification",
+    "Unit \"Stories in Art\" essential questions may not be age-appropriate for Grade 1",
+    "Unit \"Stories in Art\" may lack creative process expectations",
+    "Unit \"Stories in Art\" assessment may overemphasize product over process",
+    "Unit \"Stories in Art\" differentiation may not address Grade 1 developmental needs",
+    "Unit \"Stories in Art\" culminating task may not celebrate student creativity",
+    "Unit \"Stories in Art\" may lack French arts vocabulary development",
+    "Unit \"Stories in Art\" has 12 lessons with insufficient materials specification"
+  ],
+  "unitsData": [
+    {
+      "id": "cmebyzsu50001vje8nzahoef8",
+      "title": "Discovering Art in Our World",
+      "startDate": "2025-10-13T00:00:00.000Z",
+      "endDate": "2025-10-31T00:00:00.000Z",
+      "estimatedHours": 20,
+      "description": "Exploring art all around us - in nature, our classroom, and our community. Introduction to basic art materials and techniques.",
+      "bigIdeas": "Art is everywhere around us. We can create art with many different materials.",
+      "essentialQuestions": "[\"Où voyons-nous l'art?\",\"Qu'est-ce qui fait quelque chose beau?\",\"Comment puis-je créer de l'art?\"]",
+      "assessmentPlan": "Art observation journals, exploration portfolios, material experimentation documentation, peer sharing circles.",
+      "differentiationStrategies": "{\"emerging\":\"Exploration focus, large tools, sensory experiences, process over product\",\"developing\":\"Guided techniques, choice of materials, skill building activities\",\"extending\":\"Complex projects, teaching others, art research, gallery creation\"}",
+      "culminatingTask": "Create an \"Art in My World\" collection showcasing found art and personal creations.",
+      "keyVocabulary": "[\"art\",\"artiste\",\"créer\",\"couleur\",\"forme\",\"ligne\",\"texture\",\"motif\",\"beau\",\"observer\",\"matériel\",\"outil\"]",
+      "expectationsCount": 2,
+      "lessonPlansCount": 24,
+      "curriculumExpectations": [
+        {
+          "code": "AV1",
+          "title": "Visual Environment"
+        },
+        {
+          "code": "AV3",
+          "title": "Art Tools and Materials"
+        }
+      ],
+      "lessonPlanTitles": [
+        "Art Discovery: Art All Around Us",
+        "Art Discovery: Lines and Shapes in Art",
+        "Art Discovery: Colors in Nature",
+        "Art Discovery: Textures We Feel",
+        "Art Discovery: Art at Home",
+        "Art Discovery: Community Art",
+        "Art Discovery: Famous Artwork",
+        "Art Discovery: Art Materials Exploration",
+        "Art Discovery: Creating with Lines",
+        "Art Discovery: Shape Art Adventures",
+        "Art Discovery: Color Mixing Magic",
+        "Art Discovery: Our Art Gallery",
+        "Art Discovery: Art All Around Us - Unit: Discovering Art...",
+        "Art Discovery: Colors in Nature - Unit: Discovering Art...",
+        "Art Discovery: Lines and Shapes",
+        "Art Discovery: Textures We Touch",
+        "Art Discovery: Art Tools",
+        "Art Discovery: Famous Artists",
+        "Art Discovery: Art in Our School",
+        "Art Discovery: Creating Together",
+        "Art Discovery: Art Stories",
+        "Art Discovery: My Art Voice",
+        "Art Discovery: Art Gallery Walk",
+        "Art Discovery: Sharing Our Art"
+      ]
+    },
+    {
+      "id": "cmebyzsub0005vje8ia0l5ii0",
+      "title": "Winter Celebrations Through Art",
+      "startDate": "2025-12-15T00:00:00.000Z",
+      "endDate": "2026-01-09T00:00:00.000Z",
+      "estimatedHours": 20,
+      "description": "Creating art for winter celebrations, exploring cultural traditions through visual arts, and making gifts and decorations.",
+      "bigIdeas": "Art helps us celebrate special times. Different cultures celebrate in beautiful ways.",
+      "essentialQuestions": "[\"Comment l'art rend-il les célébrations spéciales?\",\"Quelles traditions artistiques existe-t-il?\",\"Comment puis-je créer de l'art pour partager?\"]",
+      "assessmentPlan": "Cultural art research presentations, gift creation process documentation, decoration portfolios, celebration art showcase.",
+      "differentiationStrategies": "{\"emerging\":\"Simple decorations, template support, partnered projects, celebration choice\",\"developing\":\"Original designs, cultural research, multi-step projects, peer collaboration\",\"extending\":\"Complex techniques, teaching others, cultural art fusion, gallery curation\"}",
+      "culminatingTask": "Winter celebration art gallery featuring student-created decorations and gifts.",
+      "keyVocabulary": "[\"célébration\",\"tradition\",\"culture\",\"décoration\",\"cadeau\",\"partager\",\"symbole\",\"motif\",\"répétition\",\"symétrie\",\"spécial\",\"fête\",\"art\",\"artiste\",\"créer\"]",
+      "expectationsCount": 3,
+      "lessonPlansCount": 12,
+      "curriculumExpectations": [
+        {
+          "code": "AV2",
+          "title": "Artistic Communication"
+        },
+        {
+          "code": "AV3",
+          "title": "Art Tools and Materials"
+        },
+        {
+          "code": "AV4",
+          "title": "Art as Culture"
+        }
+      ],
+      "lessonPlanTitles": [
+        "Winter Art: Winter Colors",
+        "Winter Art: Holiday Traditions",
+        "Winter Art: Snowflake Art",
+        "Winter Art: Winter Landscapes",
+        "Winter Art: Celebration Art",
+        "Winter Art: Gift Making",
+        "Winter Art: Decorative Arts",
+        "Winter Art: Cultural Celebrations",
+        "Winter Art: Winter Patterns",
+        "Winter Art: Festive Colors",
+        "Winter Art: Memory Art",
+        "Winter Art: Winter Art Gallery"
+      ]
+    },
+    {
+      "id": "cmebyzsud0007vje8xoivz73w",
+      "title": "Textures and Patterns",
+      "startDate": "2026-03-16T00:00:00.000Z",
+      "endDate": "2026-04-03T00:00:00.000Z",
+      "estimatedHours": 20,
+      "description": "Exploring texture through printmaking, collage, and mixed media. Creating patterns inspired by nature and culture.",
+      "bigIdeas": "Texture adds interest to art. Patterns are everywhere and can tell stories.",
+      "essentialQuestions": "[\"Comment puis-je créer différentes textures?\",\"Où voyons-nous des motifs dans notre monde?\",\"Comment les motifs racontent-ils des histoires?\"]",
+      "assessmentPlan": "Texture exploration journals, pattern creation portfolios, printmaking process documentation, mixed media experiments.",
+      "differentiationStrategies": "{\"emerging\":\"Simple patterns, texture exploration, large print tools, tactile focus\",\"developing\":\"Complex patterns, varied textures, printmaking techniques, layering\",\"extending\":\"Cultural pattern research, teaching printmaking, texture innovation, pattern mathematics\"}",
+      "culminatingTask": "Create a textured pattern quilt square for a collaborative class quilt.",
+      "keyVocabulary": "[\"texture\",\"lisse\",\"rugueux\",\"doux\",\"dur\",\"motif\",\"répétition\",\"impression\",\"collage\",\"frotter\",\"estamper\",\"couche\",\"art\",\"artiste\",\"créer\"]",
+      "expectationsCount": 2,
+      "lessonPlansCount": 12,
+      "curriculumExpectations": [
+        {
+          "code": "AV1",
+          "title": "Visual Environment"
+        },
+        {
+          "code": "AV4",
+          "title": "Art as Culture"
+        }
+      ],
+      "lessonPlanTitles": [
+        "Textures & Patterns: Rough and Smooth",
+        "Textures & Patterns: Pattern Printing",
+        "Textures & Patterns: Texture Rubbings",
+        "Textures & Patterns: Nature Patterns",
+        "Textures & Patterns: Fabric Textures",
+        "Textures & Patterns: Pattern Design",
+        "Textures & Patterns: Repeating Patterns",
+        "Textures & Patterns: Texture Collages",
+        "Textures & Patterns: Pattern Stories",
+        "Textures & Patterns: Touch and See Art",
+        "Textures & Patterns: Mixed Media Textures",
+        "Textures & Patterns: Pattern Gallery"
+      ]
+    },
+    {
+      "id": "cmebyzsug000bvje8v4uw23yk",
+      "title": "Our Art Gallery",
+      "startDate": "2026-06-08T00:00:00.000Z",
+      "endDate": "2026-06-20T00:00:00.000Z",
+      "estimatedHours": 20,
+      "description": "Celebrating our growth as artists, curating exhibitions, and reflecting on our artistic journey throughout the year.",
+      "bigIdeas": "We are all artists. Art galleries help us share and celebrate art with our community.",
+      "essentialQuestions": "[\"Comment ai-je grandi comme artiste?\",\"Comment présenter mon art aux autres?\",\"Pourquoi l'art est-il important?\"]",
+      "assessmentPlan": "Portfolio conferences, artist statements, gallery presentation skills, peer appreciation feedback, growth documentation.",
+      "differentiationStrategies": "{\"emerging\":\"Supported selection, simple statements, paired presentations, celebration focus\",\"developing\":\"Independent curation, detailed statements, gallery roles, peer support\",\"extending\":\"Gallery design leadership, mentoring others, critical appreciation, future goals\"}",
+      "culminatingTask": "Student-curated art gallery exhibition for families and community.",
+      "keyVocabulary": "[\"galerie\",\"exposition\",\"artiste\",\"portfolio\",\"présenter\",\"célébrer\",\"admirer\",\"critiquer\",\"choisir\",\"expliquer\",\"fierté\",\"croissance\"]",
+      "expectationsCount": 2,
+      "lessonPlansCount": 12,
+      "curriculumExpectations": [
+        {
+          "code": "AV1",
+          "title": "Visual Environment"
+        },
+        {
+          "code": "AV4",
+          "title": "Art as Culture"
+        }
+      ],
+      "lessonPlanTitles": [
+        "Art Gallery: Curating Our Art",
+        "Art Gallery: Artist Statements",
+        "Art Gallery: Gallery Preparation",
+        "Art Gallery: Art Presentation",
+        "Art Gallery: Art Appreciation",
+        "Art Gallery: Critique and Feedback",
+        "Art Gallery: Art Reflection",
+        "Art Gallery: Artist Identity",
+        "Art Gallery: Art Celebration",
+        "Art Gallery: Gallery Opening",
+        "Art Gallery: Art Journey Review",
+        "Art Gallery: Future Artist Goals"
+      ]
+    },
+    {
+      "id": "cmebyzsu80003vje8c9alierg",
+      "title": "Colors and Feelings",
+      "startDate": "2026-06-21T00:00:00.000Z",
+      "endDate": "2026-06-22T00:00:00.000Z",
+      "estimatedHours": 20,
+      "description": "[ARCHIVED - Not in rotation schedule] Exploring how colors express emotions and ideas. Learning color mixing and creating art that communicates feelings.",
+      "bigIdeas": "Colors can show how we feel. Artists use colors to tell stories and share emotions.",
+      "essentialQuestions": "[\"Comment les couleurs nous font-elles sentir?\",\"Comment puis-je montrer mes sentiments avec l'art?\",\"Quelles couleurs vont bien ensemble?\"]",
+      "assessmentPlan": "Color exploration experiments, emotion artwork portfolios, color mixing documentation, artist statements.",
+      "differentiationStrategies": "{\"emerging\":\"Primary colors focus, large brushes, feeling cards support, process emphasis\",\"developing\":\"Color mixing exploration, emotion-color connections, varied tools\",\"extending\":\"Color theory introduction, complex emotions, teaching color mixing, artist research\"}",
+      "culminatingTask": "Create a \"Feelings Rainbow\" artwork showing different emotions through color choices.",
+      "keyVocabulary": "[\"couleur\",\"rouge\",\"bleu\",\"jaune\",\"vert\",\"orange\",\"violet\",\"mélanger\",\"primaire\",\"secondaire\",\"sentiment\",\"émotion\",\"exprimer\",\"art\",\"peinture\",\"artiste\"]",
+      "expectationsCount": 2,
+      "lessonPlansCount": 24,
+      "curriculumExpectations": [
+        {
+          "code": "AV2",
+          "title": "Artistic Communication"
+        },
+        {
+          "code": "AV3",
+          "title": "Art Tools and Materials"
+        }
+      ],
+      "lessonPlanTitles": [
+        "Colors & Feelings: Happy Colors",
+        "Colors & Feelings: Sad Colors",
+        "Colors & Feelings: Angry Colors",
+        "Colors & Feelings: Calm Colors",
+        "Colors & Feelings: Primary Colors",
+        "Colors & Feelings: Color Mixing",
+        "Colors & Feelings: Warm and Cool Colors",
+        "Colors & Feelings: Color Stories",
+        "Colors & Feelings: Feelings Art",
+        "Colors & Feelings: Color Emotions",
+        "Colors & Feelings: Mood Colors",
+        "Colors & Feelings: Rainbow Feelings",
+        "Colors & Feelings: Happy Colors - Unit: Colors and Feel...",
+        "Colors & Feelings: Sad Colors - Unit: Colors and Feel...",
+        "Colors & Feelings: Angry Colors - Unit: Colors and Feel...",
+        "Colors & Feelings: Calm Colors - Unit: Colors and Feel...",
+        "Colors & Feelings: Color Mixing - Unit: Colors and Feel...",
+        "Colors & Feelings: Warm Colors",
+        "Colors & Feelings: Cool Colors",
+        "Colors & Feelings: Favorite Colors",
+        "Colors & Feelings: Color Stories - Unit: Colors and Feel...",
+        "Colors & Feelings: Emotions in Art",
+        "Colors & Feelings: Color Patterns",
+        "Colors & Feelings: Rainbow Art"
+      ]
+    },
+    {
+      "id": "cmebyzsuf0009vje87tmv8lta",
+      "title": "Stories in Art",
+      "startDate": "2026-06-21T00:00:00.000Z",
+      "endDate": "2026-06-22T00:00:00.000Z",
+      "estimatedHours": 20,
+      "description": "[ARCHIVED - Not in rotation schedule] Using visual art to tell stories, illustrate books, and communicate ideas through sequential art and illustration.",
+      "bigIdeas": "Art can tell stories without words. We can be illustrators and visual storytellers.",
+      "essentialQuestions": "[\"Comment l'art raconte-t-il une histoire?\",\"Comment puis-je illustrer mes idées?\",\"Qu'est-ce qui fait une bonne illustration?\"]",
+      "assessmentPlan": "Story illustration portfolios, visual narrative sequences, character design documentation, peer story interpretations.",
+      "differentiationStrategies": "{\"emerging\":\"Single scene illustrations, story dictation with art, character templates, partner work\",\"developing\":\"Multi-scene stories, original characters, book format exploration, peer collaboration\",\"extending\":\"Complex narratives, teaching illustration, digital storytelling, author-illustrator study\"}",
+      "culminatingTask": "Create and publish a class illustrated storybook featuring student artwork.",
+      "keyVocabulary": "[\"histoire\",\"illustrer\",\"personnage\",\"scène\",\"début\",\"milieu\",\"fin\",\"détail\",\"expression\",\"mouvement\",\"livre\",\"page\",\"art\",\"artiste\",\"dessin\"]",
+      "expectationsCount": 1,
+      "lessonPlansCount": 12,
+      "curriculumExpectations": [
+        {
+          "code": "AV2",
+          "title": "Artistic Communication"
+        }
+      ],
+      "lessonPlanTitles": [
+        "Stories in Art: Picture Stories",
+        "Stories in Art: Storytelling Art",
+        "Stories in Art: Character Creation",
+        "Stories in Art: Setting Scenes",
+        "Stories in Art: Illustration Adventures",
+        "Stories in Art: Art and Books",
+        "Stories in Art: Story Murals",
+        "Stories in Art: Narrative Art",
+        "Stories in Art: Personal Story Art",
+        "Stories in Art: Fairy Tale Art",
+        "Stories in Art: Family Story Art",
+        "Stories in Art: Story Art Exhibition"
+      ]
+    }
+  ],
+  "rotationStatus": "PERFECT",
+  "rotationDifference": 0
+}

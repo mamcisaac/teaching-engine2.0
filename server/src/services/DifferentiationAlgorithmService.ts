@@ -910,7 +910,7 @@ export class DifferentiationAlgorithmService extends BaseService {
   private getGradeLevelConcepts(subject: string, objective: string): string[] {
     const concepts: Record<string, string[]> = {
       'Mathematics': ['Number recognition 1-10', 'Basic counting', 'Simple patterns', 'Shape identification'],
-      'Français langue première': ['Letter sounds', 'Simple vocabulary', 'Sentence structure', 'Oral expression'],
+      'Français (Immersion)': ['Letter sounds', 'Simple vocabulary', 'Sentence structure', 'Oral expression'],
       'Sciences et technologie': ['Living vs non-living', 'Basic needs of living things', 'Simple observations'],
       'Études sociales': ['Family roles', 'Community helpers', 'Rules and fairness', 'Cultural celebrations']
     };
@@ -940,7 +940,7 @@ export class DifferentiationAlgorithmService extends BaseService {
   private getStandardMaterials(subject: string, grade: number): string[] {
     const materials: Record<string, string[]> = {
       'Mathematics': ['Counting bears', 'Number cards', 'Hundred chart', 'Pattern blocks'],
-      'Français langue première': ['Picture books', 'Vocabulary cards', 'Letter tiles', 'Audio recordings']
+      'Français (Immersion)': ['Picture books', 'Vocabulary cards', 'Letter tiles', 'Audio recordings']
     };
     return materials[subject] || ['Paper', 'Pencils', 'Visual aids'];
   }

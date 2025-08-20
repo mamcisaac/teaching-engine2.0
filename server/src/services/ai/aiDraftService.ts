@@ -102,7 +102,7 @@ export class AIDraftService extends BaseService {
         grade: request.grade,
         academic_year: request.academicYear,
         experience_level: request.teacherExperienceLevel || 'experienced',
-        french_immersion_certified: request.frenchImmersionCertified || (request.subject === 'Français langue première')
+        french_immersion_certified: request.frenchImmersionCertified || (request.subject === 'Français (Immersion)')
       },
       plan_specs: {
         subject: request.subject,

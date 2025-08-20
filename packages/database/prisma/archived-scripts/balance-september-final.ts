@@ -41,7 +41,7 @@ async function balanceSeptemberFinal() {
   const targetRemovals = 7;
 
   // Priority: Keep core subjects (French, Math, Science)
-  const corePriority = ['Français langue première', 'Mathématiques', 'Sciences de la nature'];
+  const corePriority = ['Français (Immersion)', 'Mathématiques', 'Sciences de la nature'];
 
   Object.entries(lessonsByDate).forEach(([date, lessons]) => {
     if (removed >= targetRemovals) return;

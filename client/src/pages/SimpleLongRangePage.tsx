@@ -988,7 +988,7 @@ export function SimpleLongRangePage(): React.ReactElement {
                     border: '1px solid #d1d5db',
                     fontSize: '16px'
                   }}
-                  placeholder="e.g., Français langue première"
+                  placeholder="e.g., Français (Immersion)"
                 />
                 <span style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', display: 'block' }}>
                   Enter the specific subject area (e.g., Mathématiques, Sciences, Arts)
@@ -1288,7 +1288,7 @@ export function SimpleLongRangePage(): React.ReactElement {
                     }}
                   >
                     <option value="">Select Subject</option>
-                    <option value="Français langue première">Français langue première</option>
+                    <option value="Français (Immersion)">Français (Immersion)</option>
                     <option value="Mathématiques">Mathématiques</option>
                     <option value="Sciences et technologie">Sciences et technologie</option>
                     <option value="Études sociales">Études sociales</option>

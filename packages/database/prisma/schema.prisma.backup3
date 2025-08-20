@@ -1,0 +1,795 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Subject {
+  id        Int      @id @default(autoincrement())
+  name      String
+  userId    Int?
+  createdAt DateTime @default(now())
+  nameEn    String?
+  nameFr    String?
+  user      User?    @relation(fields: [userId], references: [id])
+}
+
+model ClassroomAnnouncement {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  title     String
+  timeframe String
+  contentFr String
+  contentEn String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@index([userId, createdAt])
+  @@index([userId, updatedAt])
+}
+
+model User {
+  id                       Int                       @id @default(autoincrement())
+  email                    String                    @unique
+  password                 String
+  name                     String
+  role                     String                    @default("teacher")
+  preferredLanguage        String                    @default("en")
+  activityCollections      ActivityCollection[]
+  activityImports          ActivityImport[]
+  activityRatings          ActivityRating[]
+  events                   CalendarEvent[]
+  classRoutines            ClassRoutine[]
+  classroomAnnouncements   ClassroomAnnouncement[]
+  curriculumImports        CurriculumImport[]
+  daybookEntries           DaybookEntry[]
+  etfoLessonPlans          ETFOLessonPlan[]
+  longRangePlans           LongRangePlan[]
+  newsletters              Newsletter[]
+  notifications            Notification[]
+  performanceTaskTemplates PerformanceTaskTemplate[]
+  createdTemplates         PlanTemplate[]
+  recentPlanAccess         RecentPlanAccess[]
+  subjects                 Subject[]
+  substitutePlans          SubstitutePlan[]
+  unavailableBlocks        UnavailableBlock[]
+  unitPlans                UnitPlan[]
+  weeklyPlannerState       WeeklyPlannerState?
+}
+
+model Notification {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  type      String
+  title     String
+  message   String
+  data      Json?
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@index([userId, read])
+  @@index([userId, createdAt])
+}
+
+model CalendarEvent {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  start       DateTime
+  end         DateTime
+  allDay      Boolean  @default(false)
+  eventType   String
+  source      String   @default("MANUAL")
+  teacherId   Int?
+  schoolId    Int?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  teacher     User?    @relation(fields: [teacherId], references: [id])
+}
+
+model UnavailableBlock {
+  id        Int      @id @default(autoincrement())
+  teacherId Int?
+  date      DateTime
+  startMin  Int
+  endMin    Int
+  reason    String
+  blockType String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  teacher   User?    @relation(fields: [teacherId], references: [id])
+}
+
+model CurriculumImport {
+  id                     String                  @id @default(cuid())
+  userId                 Int
+  filename               String?
+  originalName           String?
+  mimeType               String?
+  fileSize               Int?
+  filePath               String?
+  grade                  Int?
+  subject                String?
+  status                 String                  @default("UPLOADING")
+  sourceFormat           String?
+  sourceFile             String?
+  rawText                String?
+  parsedData             String?
+  errorMessage           String?
+  totalOutcomes          Int                     @default(0)
+  processedOutcomes      Int                     @default(0)
+  errorLog               Json?
+  metadata               Json?
+  processedAt            DateTime?
+  createdAt              DateTime                @default(now())
+  updatedAt              DateTime                @updatedAt
+  completedAt            DateTime?
+  curriculumExpectations CurriculumExpectation[] @relation("CurriculumExpectationImport")
+  user                   User                    @relation(fields: [userId], references: [id])
+  clusters               ExpectationCluster[]
+
+  @@index([userId, status])
+  @@index([createdAt])
+  @@index([userId, createdAt])
+  @@index([status, createdAt])
+  @@index([userId, status, createdAt])
+}
+
+model ExpectationCluster {
+  id             String           @id @default(cuid())
+  importId       String
+  clusterName    String
+  clusterType    String
+  expectationIds Json
+  centroid       Json?
+  confidence     Float            @default(0.0)
+  suggestedTheme String?
+  metadata       Json?
+  createdAt      DateTime         @default(now())
+  import         CurriculumImport @relation(fields: [importId], references: [id], onDelete: Cascade)
+
+  @@index([importId])
+  @@index([clusterType])
+}
+
+model ClassRoutine {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  title       String
+  description String
+  category    String
+  timeOfDay   String?
+  priority    Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id])
+
+  @@index([userId, category])
+  @@index([userId, isActive])
+}
+
+model CurriculumExpectation {
+  id             String                          @id @default(cuid())
+  code           String                          @unique
+  description    String
+  strand         String
+  substrand      String?
+  grade          Int
+  subject        String
+  descriptionFr  String?
+  strandFr       String?
+  substrandFr    String?
+  importId       String?
+  createdAt      DateTime                        @default(now())
+  updatedAt      DateTime                        @updatedAt
+  title          String?
+  titleFr        String?
+  import         CurriculumImport?               @relation("CurriculumExpectationImport", fields: [importId], references: [id])
+  embedding      CurriculumExpectationEmbedding?
+  daybookEntries DaybookEntryExpectation[]
+  lessonPlans    ETFOLessonPlanExpectation[]
+  longRangePlans LongRangePlanExpectation[]
+  unitPlans      UnitPlanExpectation[]
+
+  @@index([subject, grade])
+  @@index([code])
+  @@index([strand, grade])
+  @@index([subject, strand])
+  @@index([subject, grade, strand])
+}
+
+model CurriculumExpectationEmbedding {
+  id            String                @id @default(cuid())
+  expectationId String                @unique
+  embedding     Json
+  model         String
+  createdAt     DateTime              @default(now())
+  updatedAt     DateTime              @updatedAt
+  expectation   CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
+
+  @@index([expectationId])
+}
+
+model LongRangePlan {
+  id                             String                     @id @default(cuid())
+  userId                         Int
+  title                          String
+  academicYear                   String
+  term                           String?
+  grade                          Int
+  subject                        String
+  description                    String?
+  goals                          String?
+  themes                         Json?
+  overarchingQuestions           String?
+  assessmentOverview             String?
+  resourceNeeds                  String?
+  titleFr                        String?
+  descriptionFr                  String?
+  goalsFr                        String?
+  startDate                      DateTime?
+  endDate                        DateTime?
+  createdAt                      DateTime                   @default(now())
+  updatedAt                      DateTime                   @updatedAt
+  indigenousPerspectives         String?
+  parentCommunication            String?
+  user                           User                       @relation(fields: [userId], references: [id])
+  expectations                   LongRangePlanExpectation[]
+  unitPlans                      UnitPlan[]
+
+  @@index([userId, academicYear])
+  @@index([userId, subject, grade])
+  @@index([academicYear, grade, subject])
+  @@index([userId, updatedAt])
+  @@index([userId, academicYear, subject])
+  @@index([academicYear, subject, grade])
+}
+
+model LongRangePlanExpectation {
+  longRangePlanId String
+  expectationId   String
+  plannedTerm     String?
+  expectation     CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
+  longRangePlan   LongRangePlan         @relation(fields: [longRangePlanId], references: [id], onDelete: Cascade)
+
+  @@id([longRangePlanId, expectationId])
+}
+
+model UnitPlan {
+  id                         String                  @id @default(cuid())
+  userId                     Int
+  title                      String
+  longRangePlanId            String
+  description                String?
+  bigIdeas                   String?
+  essentialQuestions         String?
+  startDate                  DateTime
+  endDate                    DateTime
+  estimatedHours             Int?
+  titleFr                    String?
+  descriptionFr              String?
+  bigIdeasFr                 String?
+  assessmentPlan             String?
+  createdAt                  DateTime                @default(now())
+  updatedAt                  DateTime                @updatedAt
+  communityConnections       String?
+  culminatingTask            String?
+  differentiationStrategies  String?
+  indigenousPerspectives     String?
+  keyVocabulary              String?
+  parentCommunicationPlan    String?
+  priorKnowledge             String?
+  lessonPlans                ETFOLessonPlan[]
+  longRangePlan              LongRangePlan           @relation(fields: [longRangePlanId], references: [id])
+  user                       User                    @relation(fields: [userId], references: [id])
+  expectations               UnitPlanExpectation[]
+  resources                  UnitPlanResource[]
+  transferSkills             UnitPlanTransferSkill[]
+
+  @@index([userId, startDate])
+  @@index([longRangePlanId])
+  @@index([userId, updatedAt])
+  @@index([startDate, endDate])
+  @@index([userId, startDate, endDate])
+  @@index([longRangePlanId, startDate])
+}
+
+model UnitPlanExpectation {
+  unitPlanId    String
+  expectationId String
+  expectation   CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
+  unitPlan      UnitPlan              @relation(fields: [unitPlanId], references: [id], onDelete: Cascade)
+
+  @@id([unitPlanId, expectationId])
+}
+
+model UnitPlanResource {
+  id         String   @id @default(cuid())
+  unitPlanId String
+  title      String
+  type       String
+  url        String?
+  notes      String?
+  createdAt  DateTime @default(now())
+  unitPlan   UnitPlan @relation(fields: [unitPlanId], references: [id])
+}
+
+model ETFOLessonPlan {
+  id                        String                      @id @default(cuid())
+  userId                    Int
+  title                     String
+  unitPlanId                String
+  date                      DateTime
+  duration                  Int
+  mindsOn                   String?
+  action                    String?
+  consolidation             String?
+  learningGoals             String?
+  materials                 String?
+  grouping                  String?
+  titleFr                   String?
+  mindsOnFr                 String?
+  actionFr                  String?
+  consolidationFr           String?
+  learningGoalsFr           String?
+  differentiation           String?
+  assessmentType            String?
+  assessmentNotes           String?
+  isSubFriendly             Boolean                     @default(true)
+  subNotes                  String?
+  createdAt                 DateTime                    @default(now())
+  updatedAt                 DateTime                    @updatedAt
+  grade                     Int?
+  language                  String?
+  subject                   String?
+  indigenousPerspectives    String?
+  activityImports           ActivityImport[]
+  daybookEntry              DaybookEntry?
+  unitPlan                  UnitPlan                    @relation(fields: [unitPlanId], references: [id])
+  user                      User                        @relation(fields: [userId], references: [id])
+  expectations              ETFOLessonPlanExpectation[]
+  resources                 ETFOLessonPlanResource[]
+
+  @@index([userId, date])
+  @@index([unitPlanId])
+  @@index([grade, subject])
+  @@index([language])
+  @@index([userId, isSubFriendly])
+  @@index([userId, assessmentType])
+  @@index([userId, updatedAt])
+  @@index([date, duration])
+  @@index([userId, date, grade])
+  @@index([userId, date, subject])
+  @@index([grade, subject, date])
+  @@index([userId, grade, subject])
+  @@index([isSubFriendly, grade, subject])
+}
+
+model ETFOLessonPlanExpectation {
+  lessonPlanId  String
+  expectationId String
+  expectation   CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
+  lessonPlan    ETFOLessonPlan        @relation(fields: [lessonPlanId], references: [id], onDelete: Cascade)
+
+  @@id([lessonPlanId, expectationId])
+}
+
+model ETFOLessonPlanResource {
+  id           String         @id @default(cuid())
+  lessonPlanId String
+  title        String
+  type         String
+  url          String?
+  content      String?
+  createdAt    DateTime       @default(now())
+  lessonPlan   ETFOLessonPlan @relation(fields: [lessonPlanId], references: [id])
+}
+
+model DaybookEntry {
+  id                  String                    @id @default(cuid())
+  userId              Int
+  date                DateTime
+  lessonPlanId        String?                   @unique
+  whatWorked          String?
+  whatDidntWork       String?
+  nextSteps           String?
+  classEngagement     String?
+  commonChallenges    String?
+  notableAchievements String?
+  notes               String?
+  privateNotes        String?
+  whatWorkedFr        String?
+  whatDidntWorkFr     String?
+  nextStepsFr         String?
+  notesFr             String?
+  overallRating       Int?
+  wouldReuseLesson    Boolean?
+  createdAt           DateTime                  @default(now())
+  updatedAt           DateTime                  @updatedAt
+  lessonPlan          ETFOLessonPlan?           @relation(fields: [lessonPlanId], references: [id])
+  user                User                      @relation(fields: [userId], references: [id])
+  expectations        DaybookEntryExpectation[]
+
+  @@index([userId, date])
+  @@index([userId, overallRating])
+  @@index([userId, updatedAt])
+  @@index([lessonPlanId])
+  @@index([userId, date, overallRating])
+  @@index([date, overallRating])
+  @@index([userId, wouldReuseLesson])
+}
+
+model DaybookEntryExpectation {
+  daybookEntryId String
+  expectationId  String
+  coverage       String?
+  expectation    CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
+  daybookEntry   DaybookEntry          @relation(fields: [daybookEntryId], references: [id], onDelete: Cascade)
+
+  @@id([daybookEntryId, expectationId])
+}
+
+model ExternalActivity {
+  id              String                   @id @default(cuid())
+  externalId      String
+  source          String
+  url             String
+  title           String
+  description     String?
+  thumbnailUrl    String?
+  duration        Int?
+  activityType    String
+  gradeMin        Int
+  gradeMax        Int
+  subject         String
+  language        String                   @default("en")
+  materials       Json
+  technology      Json?
+  groupSize       String?
+  sourceRating    Float?
+  sourceReviews   Int?
+  internalRating  Float?
+  internalReviews Int?
+  curriculumTags  Json
+  learningGoals   Json?
+  isFree          Boolean                  @default(true)
+  price           Float?
+  license         String?
+  lastVerified    DateTime                 @default(now())
+  isActive        Boolean                  @default(true)
+  createdAt       DateTime                 @default(now())
+  updatedAt       DateTime                 @updatedAt
+  collections     ActivityCollectionItem[]
+  imports         ActivityImport[]
+  ratings         ActivityRating[]
+
+  @@unique([source, externalId])
+  @@index([subject, gradeMin, gradeMax])
+  @@index([activityType, language])
+  @@index([isActive, lastVerified])
+  @@index([isActive, subject, gradeMin, gradeMax])
+  @@index([isActive, activityType, subject])
+  @@index([internalRating, subject])
+  @@index([isFree, subject, gradeMin, gradeMax])
+}
+
+model ActivityImport {
+  id             String           @id @default(cuid())
+  userId         Int
+  activityId     String
+  lessonPlanId   String?
+  lessonSection  String?
+  customizations Json?
+  notes          String?
+  timesUsed      Int              @default(1)
+  lastUsed       DateTime         @default(now())
+  effectiveness  Int?
+  createdAt      DateTime         @default(now())
+  lessonPlan     ETFOLessonPlan?  @relation(fields: [lessonPlanId], references: [id])
+  activity       ExternalActivity @relation(fields: [activityId], references: [id])
+  user           User             @relation(fields: [userId], references: [id])
+
+  @@index([userId, activityId])
+  @@index([lessonPlanId])
+}
+
+model ActivityRating {
+  id             String           @id @default(cuid())
+  userId         Int
+  activityId     String
+  rating         Int
+  review         String?
+  wouldRecommend Boolean?
+  gradeUsed      Int?
+  subjectUsed    String?
+  workedWell     String?
+  challenges     String?
+  createdAt      DateTime         @default(now())
+  activity       ExternalActivity @relation(fields: [activityId], references: [id])
+  user           User             @relation(fields: [userId], references: [id])
+
+  @@unique([userId, activityId])
+  @@index([activityId, rating])
+}
+
+model ActivityCollection {
+  id          String                   @id @default(cuid())
+  userId      Int
+  name        String
+  description String?
+  createdAt   DateTime                 @default(now())
+  updatedAt   DateTime                 @updatedAt
+  user        User                     @relation(fields: [userId], references: [id])
+  items       ActivityCollectionItem[]
+
+  @@index([userId])
+}
+
+model ActivityCollectionItem {
+  collectionId String
+  activityId   String
+  addedAt      DateTime           @default(now())
+  activity     ExternalActivity   @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  collection   ActivityCollection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+
+  @@id([collectionId, activityId])
+}
+
+model WeeklyPlannerState {
+  id                    String   @id @default(cuid())
+  userId                Int      @unique
+  defaultView           String   @default("week")
+  timeSlotDuration      Int      @default(30)
+  showWeekends          Boolean  @default(false)
+  startOfWeek           Int      @default(1)
+  workingHours          String   @default("{\"start\":\"08:00\",\"end\":\"16:00\"}")
+  sidebarExpanded       Boolean  @default(true)
+  showMiniCalendar      Boolean  @default(true)
+  showResourcePanel     Boolean  @default(true)
+  compactMode           Boolean  @default(false)
+  theme                 String   @default("light")
+  autoSave              Boolean  @default(true)
+  autoSaveInterval      Int      @default(30)
+  showUncoveredOutcomes Boolean  @default(true)
+  defaultLessonDuration Int      @default(60)
+  currentWeekStart      DateTime @default(now())
+  lastActiveView        String?
+  draftChanges          String?
+  undoHistory           String   @default("[]")
+  redoHistory           String   @default("[]")
+  maxHistorySize        Int      @default(50)
+  lastSyncedAt          DateTime @default(now())
+  hasOfflineChanges     Boolean  @default(false)
+  offlineData           String?
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  user                  User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([userId, lastSyncedAt])
+  @@index([userId, hasOfflineChanges])
+  @@index([currentWeekStart])
+}
+
+model PlanTemplate {
+  id               String              @id @default(cuid())
+  title            String
+  titleFr          String?
+  description      String?
+  descriptionFr    String?
+  type             String
+  category         String
+  subject          String?
+  gradeMin         Int?
+  gradeMax         Int?
+  tags             Json
+  keywords         Json
+  isSystem         Boolean             @default(false)
+  createdByUserId  Int?
+  content          Json
+  estimatedWeeks   Int?
+  unitStructure    Json?
+  estimatedMinutes Int?
+  lessonStructure  Json?
+  usageCount       Int                 @default(0)
+  lastUsedAt       DateTime?
+  averageRating    Float?              @default(0)
+  createdAt        DateTime            @default(now())
+  updatedAt        DateTime            @updatedAt
+  createdByUser    User?               @relation(fields: [createdByUserId], references: [id])
+  ratings          TemplateRating[]
+  variations       TemplateVariation[]
+
+  @@index([type, category])
+  @@index([subject, gradeMin, gradeMax])
+  @@index([isSystem])
+  @@index([createdByUserId])
+  @@index([usageCount])
+  @@index([isSystem, averageRating])
+  @@index([createdByUserId, type])
+  @@index([lastUsedAt])
+}
+
+model TemplateRating {
+  id         String       @id @default(cuid())
+  templateId String
+  userId     Int
+  rating     Int
+  comment    String?
+  createdAt  DateTime     @default(now())
+  template   PlanTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
+
+  @@unique([templateId, userId])
+  @@index([templateId, rating])
+}
+
+model TemplateVariation {
+  id                String       @id @default(cuid())
+  templateId        String
+  name              String
+  nameFr            String?
+  description       String?
+  modificationNotes String?
+  content           Json
+  createdAt         DateTime     @default(now())
+  template          PlanTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
+
+  @@index([templateId])
+}
+
+model RecentPlanAccess {
+  id           String   @id @default(cuid())
+  userId       Int
+  planType     String
+  planId       String
+  lastAccessed DateTime @default(now())
+  accessCount  Int      @default(1)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, planType, planId])
+  @@index([userId, lastAccessed])
+  @@index([planType, planId])
+}
+
+model Newsletter {
+  id                    String    @id @default(cuid())
+  userId                Int
+  title                 String
+  titleFr               String?
+  dateFrom              DateTime
+  dateTo                DateTime
+  tone                  String
+  templateType          String
+  sections              Json
+  metadata              Json?
+  isDraft               Boolean   @default(true)
+  sentAt                DateTime?
+  focusAreas            Json?
+  includeUpcomingEvents Boolean   @default(true)
+  lessonPlansUsed       Json?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, isDraft])
+  @@index([userId, sentAt])
+  @@index([dateFrom, dateTo])
+  @@index([userId, dateFrom, dateTo])
+  @@index([isDraft, sentAt])
+  @@index([userId, createdAt])
+}
+
+model SubstitutePlan {
+  id                  String    @id @default(cuid())
+  userId              Int
+  title               String
+  dateFor             DateTime
+  grade               Int?
+  subject             String?
+  schedule            Json
+  classroomRoutines   Json
+  emergencyInfo       Json
+  lessonPlans         Json
+  behaviorPlan        Json
+  studentNotes        Json
+  materialsList       Json
+  importantInfo       Json?
+  sourceUnitPlanId    String?
+  sourceLessonPlanIds Json?
+  generationContext   Json?
+  teacherContact      Json?
+  adminContact        Json?
+  isActive            Boolean   @default(true)
+  lastUsed            DateTime?
+  useCount            Int       @default(0)
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+  user                User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, dateFor])
+  @@index([userId, isActive])
+  @@index([grade, subject])
+  @@index([userId, dateFor, grade])
+  @@index([dateFor, grade, subject])
+  @@index([isActive, dateFor])
+  @@index([userId, isActive, dateFor])
+}
+
+model PerformanceTaskTemplate {
+  id             String   @id @default(cuid())
+  userId         Int
+  title          String
+  subject        String
+  gradeMin       Int
+  gradeMax       Int
+  scenario       String
+  role           String
+  audience       String
+  format         String
+  rubricTemplate Json?
+  isPublic       Boolean  @default(false)
+  timesUsed      Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([subject, gradeMin, gradeMax])
+  @@index([isPublic, subject])
+}
+
+model EssentialQuestionTemplate {
+  id            String   @id @default(cuid())
+  question      String   @unique
+  subject       String
+  gradeMin      Int
+  gradeMax      Int
+  category      String
+  bloomsLevel   String?
+  cognitiveLoad String?  @default("medium")
+  timesUsed     Int      @default(0)
+  rating        Float    @default(0.0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([subject, gradeMin, gradeMax])
+  @@index([category, bloomsLevel])
+  @@index([rating])
+}
+
+model TransferSkillTemplate {
+  id                    String                  @id @default(cuid())
+  skillName             String
+  description           String
+  category              String
+  gradeMin              Int
+  gradeMax              Int
+  performanceIndicators Json?
+  assessmentMethods     Json?
+  isCore                Boolean                 @default(false)
+  createdAt             DateTime                @default(now())
+  unitPlans             UnitPlanTransferSkill[]
+
+  @@index([category])
+  @@index([gradeMin, gradeMax])
+  @@index([isCore])
+}
+
+model UnitPlanTransferSkill {
+  unitPlanId      String
+  transferSkillId String
+  emphasis        String                @default("developing")
+  unitPlan        UnitPlan              @relation(fields: [unitPlanId], references: [id], onDelete: Cascade)
+  transferSkill   TransferSkillTemplate @relation(fields: [transferSkillId], references: [id], onDelete: Cascade)
+
+  @@id([unitPlanId, transferSkillId])
+}

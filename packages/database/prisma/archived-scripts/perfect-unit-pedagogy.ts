@@ -201,7 +201,7 @@ async function perfectUnitPedagogy() {
     ];
     
     const frenchLRP = await prisma.longRangePlan.findFirst({
-      where: { userId: emily.id, subject: 'Français langue première' }
+      where: { userId: emily.id, subject: 'Français (Immersion)' }
     });
     
     if (frenchLRP) {

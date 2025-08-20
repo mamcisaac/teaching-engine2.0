@@ -52,7 +52,7 @@ async function testSystem() {
     console.log(`✅ Emily is tracking ${allExpectations} expectation links`);
     
     // Test each subject
-    const subjects = ['Français langue première', 'Mathématiques', 'Sciences de la nature', 
+    const subjects = ['Français (Immersion)', 'Mathématiques', 'Sciences de la nature', 
                      'Sciences humaines', 'Éducation physique', 'Arts visuels'];
     
     console.log('\nSubject breakdown:');

@@ -307,10 +307,27 @@ where.endDate = { lte: new Date(String(endDate)) };
         id,
         longRangePlan: { userId },
       },
+      select: {
+        id: true,
+        title: true,
+        isLocked: true,
+        lockedAt: true,
+        lockedReason: true
+      }
     });
 
     if (unitPlan === null) {
       throw new Error('Unit plan not found or access denied');
+    }
+
+    // Check if unit plan is protected
+    if (unitPlan.isLocked) {
+      throw new Error(
+        `🔒 PROTECTED: Unit plan "${unitPlan.title}" is locked and cannot be modified. ` +
+        `Locked on: ${unitPlan.lockedAt?.toISOString()} ` +
+        `Reason: ${unitPlan.lockedReason || 'Certified as perfect'} ` +
+        `See UNIT_PLANS_PROTECTION_PROTOCOL.md for override procedures.`
+      );
     }
 
     const { expectationIds, ...updateDataBase } = data as unknown as Record<string, unknown>;
@@ -361,10 +378,27 @@ where.endDate = { lte: new Date(String(endDate)) };
         id,
         longRangePlan: { userId },
       },
+      select: {
+        id: true,
+        title: true,
+        isLocked: true,
+        lockedAt: true,
+        lockedReason: true
+      }
     });
 
     if (unitPlan === null) {
       return false;
+    }
+
+    // Check if unit plan is protected
+    if (unitPlan.isLocked) {
+      throw new Error(
+        `🔒 PROTECTED: Unit plan "${unitPlan.title}" is locked and cannot be deleted. ` +
+        `Locked on: ${unitPlan.lockedAt?.toISOString()} ` +
+        `Reason: ${unitPlan.lockedReason || 'Certified as perfect'} ` +
+        `See UNIT_PLANS_PROTECTION_PROTOCOL.md for override procedures.`
+      );
     }
 
     await prisma.unitPlan.delete({
@@ -381,10 +415,25 @@ where.endDate = { lte: new Date(String(endDate)) };
         id: unitPlanId,
         longRangePlan: { userId },
       },
+      select: {
+        id: true,
+        title: true,
+        isLocked: true,
+        lockedAt: true,
+        lockedReason: true
+      }
     });
 
     if (unitPlan === null) {
       throw new Error('Unit plan not found or access denied');
+    }
+
+    // Check if unit plan is protected
+    if (unitPlan.isLocked) {
+      throw new Error(
+        `🔒 PROTECTED: Cannot add resources to locked unit plan "${unitPlan.title}". ` +
+        `See UNIT_PLANS_PROTECTION_PROTOCOL.md for override procedures.`
+      );
     }
 
     return prisma.unitPlanResource.create({
@@ -396,7 +445,7 @@ where.endDate = { lte: new Date(String(endDate)) };
   }
 
   async removeResource(unitPlanId: string, resourceId: string, userId: number): Promise<boolean> {
-    // Verify ownership through unit plan
+    // Verify ownership through unit plan and check protection status
     const resource = await prisma.unitPlanResource.findFirst({
       where: {
         id: resourceId,
@@ -405,10 +454,29 @@ where.endDate = { lte: new Date(String(endDate)) };
           longRangePlan: { userId },
         },
       },
+      include: {
+        unitPlan: {
+          select: {
+            id: true,
+            title: true,
+            isLocked: true,
+            lockedAt: true,
+            lockedReason: true
+          }
+        }
+      }
     });
 
     if (resource === null) {
       return false;
+    }
+
+    // Check if unit plan is protected
+    if (resource.unitPlan.isLocked) {
+      throw new Error(
+        `🔒 PROTECTED: Cannot remove resources from locked unit plan "${resource.unitPlan.title}". ` +
+        `See UNIT_PLANS_PROTECTION_PROTOCOL.md for override procedures.`
+      );
     }
 
     await prisma.unitPlanResource.delete({

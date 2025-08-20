@@ -125,7 +125,7 @@ function extractSubjectFromFilename(filename: string): string {
   const name = filename.toLowerCase();
   
   if (name.includes('français') || name.includes('french') || name.includes('immersion')) {
-    return 'Français langue première';
+    return 'Français (Immersion)';
   }
   if (name.includes('math')) {
     return 'Mathématiques';
@@ -150,7 +150,7 @@ function extractSubjectFromFilename(filename: string): string {
   }
   
   // Default to French Language Arts for French immersion
-  return 'Français langue première';
+  return 'Français (Immersion)';
 }
 
 // Run the import if this script is executed directly

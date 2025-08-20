@@ -59,11 +59,11 @@ export function LongRangePlanPage(): React.ReactElement {
     {
       id: 'cmdp48bl40007vjb3ww717pmx',
       title: 'Grade 1 French Language Arts - Long Range Plan',
-      titleFr: '1re année - Français langue première - Plan à long terme',
+      titleFr: '1re année - Français (Immersion) - Plan à long terme',
       academicYear: '2025-2026',
       term: 'Full Year',
       grade: 1,
-      subject: 'Français langue première',
+      subject: 'Français (Immersion)',
       description: 'Comprehensive French language development through oral communication, reading, and writing in a French immersion environment',
       goals: 'Students will develop foundational French language skills through engaging, age-appropriate activities',
       themes: [],

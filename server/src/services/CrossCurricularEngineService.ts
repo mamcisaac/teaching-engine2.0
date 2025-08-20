@@ -105,7 +105,7 @@ export class CrossCurricularEngineService extends BaseService {
   
   // Subject connection matrix - defines natural connections between subjects
   private readonly connectionMatrix = {
-    'Français langue première': {
+    'Français (Immersion)': {
       'Mathématiques': { strength: 'strong', types: ['vocabulary', 'communication', 'problem_solving'] },
       'Sciences et technologie': { strength: 'strong', types: ['vocabulary', 'observation', 'communication'] },
       'Études sociales': { strength: 'strong', types: ['communication', 'cultural', 'storytelling'] },
@@ -513,19 +513,19 @@ export class CrossCurricularEngineService extends BaseService {
     const realWorldScenarios = [
       {
         name: 'Planning a Class Garden',
-        subjects: ['Sciences et technologie', 'Mathématiques', 'Français langue première'],
+        subjects: ['Sciences et technologie', 'Mathématiques', 'Français (Immersion)'],
         description: 'Students plan, plant, and maintain a class garden',
         cultural_connections: ['Traditional gardening practices', 'Cultural food preferences']
       },
       {
         name: 'Creating a Class Cookbook',
-        subjects: ['Français langue première', 'Mathématiques', 'Études sociales', 'Arts'],
+        subjects: ['Français (Immersion)', 'Mathématiques', 'Études sociales', 'Arts'],
         description: 'Students collect family recipes and create a multicultural cookbook',
         cultural_connections: ['Family traditions', 'Cultural foods', 'Celebration foods']
       },
       {
         name: 'Weather Station Project',
-        subjects: ['Sciences et technologie', 'Mathématiques', 'Français langue première'],
+        subjects: ['Sciences et technologie', 'Mathématiques', 'Français (Immersion)'],
         description: 'Students create and maintain a weather monitoring station',
         cultural_connections: ['Traditional weather prediction', 'Cultural responses to weather']
       }
@@ -618,7 +618,7 @@ export class CrossCurricularEngineService extends BaseService {
     activities: string[];
   }> {
     const skillsBySubject: Record<string, any[]> = {
-      'Français langue première': [
+      'Français (Immersion)': [
         {
           name: 'Communication',
           rationale: 'Communication skills transfer to all subjects',
@@ -649,9 +649,9 @@ export class CrossCurricularEngineService extends BaseService {
 
   private findSubjectsForSkill(skill: { name: string; rationale: string; activities: string[]; }, grade: number): string[] {
     const skillSubjectMap: Record<string, string[]> = {
-      'Communication': ['Français langue première', 'English Language Arts', 'Études sociales'],
+      'Communication': ['Français (Immersion)', 'English Language Arts', 'Études sociales'],
       'Problem Solving': ['Mathématiques', 'Sciences et technologie'],
-      'Pattern Recognition': ['Mathématiques', 'Arts', 'Français langue première'],
+      'Pattern Recognition': ['Mathématiques', 'Arts', 'Français (Immersion)'],
       'Listening and Following Directions': ['All subjects']
     };
 
@@ -688,13 +688,13 @@ export class CrossCurricularEngineService extends BaseService {
 
   private findSubjectsForTheme(theme: string, expectations: string[]): string[] {
     const themeSubjectMap: Record<string, string[]> = {
-      'Our Community': ['Études sociales', 'Français langue première', 'Mathématiques'],
-      'Growing and Changing': ['Sciences et technologie', 'Français langue première', 'Arts'],
+      'Our Community': ['Études sociales', 'Français (Immersion)', 'Mathématiques'],
+      'Growing and Changing': ['Sciences et technologie', 'Français (Immersion)', 'Arts'],
       'Seasons and Weather': ['Sciences et technologie', 'Mathématiques', 'Arts'],
-      'Families Around the World': ['Études sociales', 'Français langue première', 'Arts'],
-      'Animals and Their Homes': ['Sciences et technologie', 'Français langue première', 'Arts', 'Mathématiques'],
+      'Families Around the World': ['Études sociales', 'Français (Immersion)', 'Arts'],
+      'Animals and Their Homes': ['Sciences et technologie', 'Français (Immersion)', 'Arts', 'Mathématiques'],
       'Transportation': ['Sciences et technologie', 'Mathématiques', 'Études sociales'],
-      'Food and Nutrition': ['Sciences et technologie', 'Mathématiques', 'Études sociales', 'Français langue première']
+      'Food and Nutrition': ['Sciences et technologie', 'Mathématiques', 'Études sociales', 'Français (Immersion)']
     };
 
     return themeSubjectMap[theme] || [];
@@ -801,7 +801,7 @@ export class CrossCurricularEngineService extends BaseService {
 
   private getSubjectKeyConcepts(subject: string): string[] {
     const concepts: Record<string, string[]> = {
-      'Français langue première': ['Communication orale', 'Lecture', 'Écriture', 'Vocabulaire'],
+      'Français (Immersion)': ['Communication orale', 'Lecture', 'Écriture', 'Vocabulaire'],
       'Mathématiques': ['Numbers', 'Patterns', 'Measurement', 'Geometry'],
       'Sciences et technologie': ['Living things', 'Materials', 'Observation', 'Prediction'],
       'Études sociales': ['Community', 'Culture', 'Relationships', 'Environment'],
@@ -812,7 +812,7 @@ export class CrossCurricularEngineService extends BaseService {
 
   private getSubjectAssessmentFocus(subject: string): string[] {
     const focus: Record<string, string[]> = {
-      'Français langue première': ['Oral communication', 'Reading comprehension', 'Writing expression'],
+      'Français (Immersion)': ['Oral communication', 'Reading comprehension', 'Writing expression'],
       'Mathématiques': ['Problem solving', 'Mathematical reasoning', 'Communication of thinking'],
       'Sciences et technologie': ['Inquiry skills', 'Scientific thinking', 'Communication of findings'],
       'Études sociales': ['Understanding of concepts', 'Application to real life', 'Respectful communication'],
@@ -989,7 +989,7 @@ export class CrossCurricularEngineService extends BaseService {
       'Mathématiques': ['Counting materials', 'Measuring tools'],
       'Sciences et technologie': ['Magnifying glasses', 'Collection containers'],
       'Arts': ['Art supplies', 'Creation materials'],
-      'Français langue première': ['Books', 'Vocabulary cards']
+      'Français (Immersion)': ['Books', 'Vocabulary cards']
     };
     return materials[subject] || [];
   }

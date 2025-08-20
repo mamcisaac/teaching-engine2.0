@@ -110,7 +110,7 @@ async function finalVerification() {
     
     // Core readiness check
     const coreSubjectsWithUnits = emily.longRangePlans.filter(p => 
-      ['Français langue première', 'Mathématiques', 'Sciences de la nature'].includes(p.subject) &&
+      ['Français (Immersion)', 'Mathématiques', 'Sciences de la nature'].includes(p.subject) &&
       p.unitPlans.length > 0
     ).length;
     

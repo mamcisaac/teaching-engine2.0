@@ -27,7 +27,7 @@ async function fixUnitTimelinesFinal() {
     
     // French - need to shorten last 2 units
     const frenchLRP = await prisma.longRangePlan.findFirst({
-      where: { userId: emily.id, subject: 'Français langue première' }
+      where: { userId: emily.id, subject: 'Français (Immersion)' }
     });
     
     if (frenchLRP) {
@@ -236,7 +236,7 @@ async function fixUnitTimelinesFinal() {
     console.log('\n⏱️ PHASE 4: Recalculating all unit hours...\n');
     
     const lessonDistribution = {
-      'Français langue première': { lessons: 181, minutes: 60 },
+      'Français (Immersion)': { lessons: 181, minutes: 60 },
       'Mathématiques': { lessons: 181, minutes: 45 },
       'Arts visuels': { lessons: 90, minutes: 45 },
       'Sciences humaines': { lessons: 91, minutes: 45 },

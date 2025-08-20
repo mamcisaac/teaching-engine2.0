@@ -23,7 +23,7 @@ async function addGrade1FrenchImmersionCurriculum() {
       descriptionFr: 'Suivre des instructions simples à plusieurs étapes en français',
       strand: 'Communication orale',
       strandFr: 'Communication orale',
-      subject: 'Français langue première',
+      subject: 'Français (Immersion)',
       grade: 1,
     },
     {
@@ -32,7 +32,7 @@ async function addGrade1FrenchImmersionCurriculum() {
       descriptionFr: 'Exprimer des besoins et désirs de base en français en utilisant des phrases simples',
       strand: 'Communication orale',
       strandFr: 'Communication orale',
-      subject: 'Français langue première',
+      subject: 'Français (Immersion)',
       grade: 1,
     },
     {
@@ -41,7 +41,7 @@ async function addGrade1FrenchImmersionCurriculum() {
       descriptionFr: 'Reconnaître et nommer les lettres de l\'alphabet français',
       strand: 'Lecture',
       strandFr: 'Lecture',
-      subject: 'Français langue première',
+      subject: 'Français (Immersion)',
       grade: 1,
     },
     {
@@ -50,7 +50,7 @@ async function addGrade1FrenchImmersionCurriculum() {
       descriptionFr: 'Lire les mots français fréquents à vue',
       strand: 'Lecture',
       strandFr: 'Lecture',
-      subject: 'Français langue première',
+      subject: 'Français (Immersion)',
       grade: 1,
     },
     {
@@ -59,7 +59,7 @@ async function addGrade1FrenchImmersionCurriculum() {
       descriptionFr: 'Écrire des lettres et des mots simples en français avec une formation appropriée',
       strand: 'Écriture',
       strandFr: 'Écriture',
-      subject: 'Français langue première',
+      subject: 'Français (Immersion)',
       grade: 1,
     },
   ];
@@ -277,7 +277,7 @@ async function addGrade1FrenchImmersionCurriculum() {
       }),
       metadata: {
         grade: 1,
-        subject: 'Français langue première',
+        subject: 'Français (Immersion)',
         source: 'PEI Grade 1 French Immersion Curriculum',
         importedBy: 'Emily McIsaac',
         importDate: new Date().toISOString()

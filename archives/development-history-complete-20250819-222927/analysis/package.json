@@ -1,0 +1,22 @@
+{
+  "name": "teaching-engine-2.0",
+  "version": "2.0.0",
+  "private": true,
+  "description": "A comprehensive digital teaching assistant for Grade 1 French Immersion teachers in PEI",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "scripts": {
+    "dev": "echo 'Please use: cd server && npm run dev & cd client && npm run dev'",
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.0",
+    "@commitlint/config-conventional": "^17.0.0",
+    "husky": "^8.0.0"
+  }
+}

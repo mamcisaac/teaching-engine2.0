@@ -72,7 +72,7 @@ async function removeDuplicateSeptemberLessons() {
       console.log(`\n📅 ${date} has ${lessons.length} lessons (max should be ${targetDailyMax})`);
       
       // Sort by subject priority (keep core subjects first)
-      const corePriority = ['Français langue première', 'Mathématiques', 'Sciences de la nature'];
+      const corePriority = ['Français (Immersion)', 'Mathématiques', 'Sciences de la nature'];
       lessons.sort((a, b) => {
         const aSubject = a.unitPlan?.longRangePlan?.subject || '';
         const bSubject = b.unitPlan?.longRangePlan?.subject || '';

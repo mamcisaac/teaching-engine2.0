@@ -1,0 +1,536 @@
+{
+  "timestamp": "2025-08-19T01:14:28.686Z",
+  "units": [
+    {
+      "id": "cmehpo4gs0001vjzcm31egrwc",
+      "userId": 23,
+      "title": "Bienvenue à l'école française",
+      "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+      "description": "Unité d'arts langagiers français axée sur: Oral communication, School vocabulary, Listening comprehension, Basic writing. Support d'intégration: Math: nombres, compter, formes; Science: observer, expérience, découverte; Arts: couleurs, dessiner, créer; Social Studies: communauté, règles, partager.",
+      "bigIdeas": "French communication allows us to express ourselves, connect with others, and understand the world around us. Daily practice in French builds confidence and fluency. School community creates a safe environment for language learning.",
+      "essentialQuestions": [
+        "Comment puis-je communiquer en français à l'école?",
+        "Que puis-je découvrir en apprenant en français?",
+        "Comment notre classe devient-elle une communauté française?",
+        "Quels sont mes premiers mots français importants?"
+      ],
+      "startDate": "2025-09-04T00:00:00.000Z",
+      "endDate": "2025-10-02T00:00:00.000Z",
+      "estimatedHours": 17,
+      "titleFr": "Bienvenue à l'école française",
+      "descriptionFr": "Unité d'arts langagiers français qui accueille les élèves dans l'apprentissage quotidien du français. Chaque jour, les élèves développent leurs compétences en communication orale, écoute, lecture émergente et écriture de base. Cette unité établit les routines et le vocabulaire essentiel pour l'immersion française complète dans toutes les matières.",
+      "bigIdeasFr": "La communication en français nous permet de nous exprimer, de nous connecter et de comprendre le monde qui nous entoure.",
+      "assessmentPlan": "Évaluation formative quotidienne: observations, conversations, échantillons d'écriture. Portfolio des progrès en lecture et écriture. Auto-évaluation avec échelles visuelles. Évaluation sommative: présentations orales, projets d'écriture, démonstrations de lecture.",
+      "successCriteria": {
+        "oral": [
+          "Je peux me présenter en français",
+          "Je peux saluer et dire au revoir",
+          "Je peux nommer les objets de la classe",
+          "Je peux suivre des instructions simples"
+        ],
+        "reading": [
+          "Je peux reconnaître mon nom écrit",
+          "Je peux identifier les lettres de l'alphabet",
+          "Je peux associer des images aux mots"
+        ],
+        "writing": [
+          "Je peux écrire mon prénom",
+          "Je peux copier des mots simples",
+          "Je peux tracer les lettres correctement"
+        ]
+      },
+      "createdAt": "2025-08-18T22:53:23.740Z",
+      "updatedAt": "2025-08-18T23:21:17.479Z",
+      "communityConnections": "Partenariats avec la bibliothèque francophone locale, auteurs francophones invités, échanges avec d'autres classes françaises, participation à des événements culturels francophones, connexions avec les familles francophones.",
+      "crossCurricularConnections": "MATHÉMATIQUES: Utilisation du vocabulaire des nombres (un, deux, trois), formes géométriques (cercle, carré, triangle), et concepts de mesure (grand, petit, long, court) pendant les activités de français. SCIENCES: Vocabulaire d'observation (regarder, toucher, sentir, écouter) et de découverte (expérience, observer, découvrir) intégré dans les activités de lecture et d'écriture. ARTS VISUELS: Termes de couleurs (rouge, bleu, jaune, vert), techniques artistiques (dessiner, peindre, créer, colorier) utilisés dans les projets d'écriture créative. SCIENCES HUMAINES: Vocabulaire de communauté (ami, famille, école, quartier, règles, respect) intégré dans les discussions et les activités d'écriture personnelle.",
+      "culminatingTask": null,
+      "differentiationStrategies": {
+        "emerging": "Support visuel, modélisation, travail guidé, vocabulaire simplifié",
+        "developing": "Instructions étape par étape, exemples multiples, pratique guidée",
+        "proficient": "Travail autonome, choix d'activités, défis appropriés",
+        "extending": "Projets enrichis, rôles de leadership, recherche approfondie"
+      },
+      "environmentalEducation": null,
+      "fieldTripsAndGuestSpeakers": null,
+      "indigenousPerspectives": "Respect des traditions orales Mi'kmaq, appréciation des histoires et légendes autochtones, reconnaissance des langues autochtones d'Epekwitk, inclusion de perspectives autochtones dans la littérature étudiée.",
+      "keyVocabulary": "[\"bonjour\",\"au revoir\",\"merci\",\"s'il vous plaît\",\"école\",\"classe\",\"bureau\",\"livre\",\"crayon\",\"ami\"]",
+      "learningSkills": null,
+      "parentCommunicationPlan": "Communication hebdomadaire en français et anglais sur les apprentissages. Suggestions d'activités familiales pour pratiquer le français à la maison. Partage du vocabulaire essentiel avec les familles. Célébration des progrès des élèves. Ressources pour soutenir l'immersion française à la maison.",
+      "priorKnowledge": null,
+      "socialJusticeConnections": null,
+      "technologyIntegration": "Utilisation de tableaux interactifs pour les comptines et chansons françaises. Applications de lecture émergente en français. Enregistrements vocaux pour pratiquer la prononciation. Jeux éducatifs numériques pour le vocabulaire de base. Portfolio numérique pour documenter les progrès.",
+      "assessmentRubric": null,
+      "enduringUnderstandings": "L'école française est notre communauté d'apprentissage où nous développons nos compétences en communication française.",
+      "evidenceTypes": null,
+      "performanceIndicators": null,
+      "performanceTask": null,
+      "transferableSkills": null,
+      "expectations": []
+    },
+    {
+      "id": "cmehpo4gs0003vjzcljulreua",
+      "userId": 23,
+      "title": "Mes histoires personnelles",
+      "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+      "description": "Unité d'arts langagiers français axée sur: Personal narrative, Family vocabulary, Sentence building, Storytelling. Support d'intégration: Math: plus que, moins que, égal; Science: grandir, changer, temps; Arts: portrait, expression, sentiments; Social Studies: famille, traditions, culture.",
+      "bigIdeas": "Personal stories connect us to our identity and community. Every family has unique traditions and experiences worth sharing. French language helps us express our feelings and experiences. Daily storytelling builds confidence and language fluency.",
+      "essentialQuestions": [
+        "Quelles sont mes histoires importantes?",
+        "Comment ma famille est-elle spéciale?",
+        "Que puis-je raconter sur moi en français?",
+        "Comment les histoires nous connectent-elles?"
+      ],
+      "startDate": "2025-10-03T00:00:00.000Z",
+      "endDate": "2025-11-06T00:00:00.000Z",
+      "estimatedHours": 19,
+      "titleFr": "Mes histoires personnelles",
+      "descriptionFr": "Unité d'arts langagiers français centrée sur les récits personnels et familiaux. Chaque jour, les élèves développent leurs compétences narratives, explorent le vocabulaire familial, et construisent des phrases simples pour raconter leurs expériences. Cette unité renforce l'identité culturelle et linguistique des élèves en immersion française.",
+      "bigIdeasFr": "Nos histoires personnelles nous connectent à notre identité et à notre communauté. Chaque famille a des traditions et expériences uniques à partager. Le français nous aide à exprimer nos sentiments et expériences.",
+      "assessmentPlan": "Évaluation formative quotidienne: observations, conversations, échantillons d'écriture. Portfolio des progrès en lecture et écriture. Auto-évaluation avec échelles visuelles. Évaluation sommative: présentations orales, projets d'écriture, démonstrations de lecture.",
+      "successCriteria": {
+        "oral": [
+          "Je peux parler de ma famille",
+          "Je peux raconter une histoire simple",
+          "Je peux décrire mes activités préférées",
+          "Je peux poser des questions simples"
+        ],
+        "reading": [
+          "Je peux lire des mots familiers",
+          "Je peux comprendre des phrases simples",
+          "Je peux suivre une histoire avec des images"
+        ],
+        "writing": [
+          "Je peux écrire des phrases courtes",
+          "Je peux compléter des phrases",
+          "Je peux écrire sur ma famille"
+        ]
+      },
+      "createdAt": "2025-08-18T22:53:23.741Z",
+      "updatedAt": "2025-08-18T23:21:58.115Z",
+      "communityConnections": "Partenariats avec la bibliothèque francophone locale, auteurs francophones invités, échanges avec d'autres classes françaises, participation à des événements culturels francophones, connexions avec les familles francophones.",
+      "crossCurricularConnections": "MATHÉMATIQUES: Vocabulaire des quantités familiales (combien, plus, moins, âge des membres), concepts de temps (avant, après, maintenant, hier) et comparaisons (plus grand, plus petit, plus âgé). SCIENCES: Observation des caractéristiques familiales (ressemblances, différences), vocabulaire de croissance (grandir, changer, développer) et concepts de temps naturel. ARTS VISUELS: Techniques de portrait (dessiner, portrait, couleurs de peau, cheveux), composition familiale (arrière-plan, premier plan) et expression artistique de l'identité. SCIENCES HUMAINES: Concepts familiaux (traditions, célébrations, coutumes), géographie personnelle (où j'habite, d'où je viens), et diversité culturelle.",
+      "culminatingTask": null,
+      "differentiationStrategies": {
+        "emerging": "Support visuel, modélisation, travail guidé, vocabulaire simplifié",
+        "developing": "Instructions étape par étape, exemples multiples, pratique guidée",
+        "proficient": "Travail autonome, choix d'activités, défis appropriés",
+        "extending": "Projets enrichis, rôles de leadership, recherche approfondie"
+      },
+      "environmentalEducation": null,
+      "fieldTripsAndGuestSpeakers": null,
+      "indigenousPerspectives": "Respect des traditions orales Mi'kmaq, appréciation des histoires et légendes autochtones, reconnaissance des langues autochtones d'Epekwitk, inclusion de perspectives autochtones dans la littérature étudiée.",
+      "keyVocabulary": "[\"famille\",\"maman\",\"papa\",\"frère\",\"sœur\",\"grand-maman\",\"grand-papa\",\"maison\",\"aimer\",\"jouer\"]",
+      "learningSkills": null,
+      "parentCommunicationPlan": "Invitation des familles à partager leurs histoires et traditions. Communication sur l'importance des récits familiaux. Suggestions pour encourager la narration en français à la maison. Célébration de la diversité culturelle des familles. Ressources pour développer le vocabulaire familial en français.",
+      "priorKnowledge": null,
+      "socialJusticeConnections": null,
+      "technologyIntegration": "Enregistrements audio des histoires personnelles. Création de livres numériques familiaux. Vidéoconférences avec membres de la famille éloignée. Applications de collage photo pour albums familiaux. Portfolio numérique des récits personnels.",
+      "assessmentRubric": null,
+      "enduringUnderstandings": "Nos histoires personnelles nous aident à nous connecter avec les autres et à développer notre identité en français.",
+      "evidenceTypes": null,
+      "performanceIndicators": null,
+      "performanceTask": null,
+      "transferableSkills": null,
+      "expectations": []
+    },
+    {
+      "id": "cmehpo4gt0005vjzcczi3x7j8",
+      "userId": 23,
+      "title": "Les contes d'automne",
+      "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+      "description": "Unité d'arts langagiers français axée sur: Story comprehension, Seasonal vocabulary, Phonics, Creative writing. Support d'intégration: Math: mesurer, comparer, graphiques; Science: saisons, changements, nature; Arts: couleurs chaudes, textures, formes; Social Studies: traditions, célébrations, communauté.",
+      "bigIdeas": "Stories help us understand seasonal changes and connect with nature. Autumn brings transformation that we can explore through tales and narratives. French storytelling traditions enrich our cultural understanding. Daily reading builds comprehension and vocabulary.",
+      "essentialQuestions": [
+        "Que nous enseignent les contes d'automne?",
+        "Comment la nature change-t-elle en automne?",
+        "Quelles histoires pouvons-nous créer sur l'automne?",
+        "Comment les personnages vivent-ils l'automne?"
+      ],
+      "startDate": "2025-11-07T00:00:00.000Z",
+      "endDate": "2025-12-04T00:00:00.000Z",
+      "estimatedHours": 18,
+      "titleFr": "Les contes d'automne",
+      "descriptionFr": "Unité d'arts langagiers français explorant les contes et récits d'automne. Chaque jour, les élèves développent leur compréhension narrative, enrichissent leur vocabulaire saisonnier, et pratiquent la phonétique à travers des histoires captivantes. Cette unité renforce les stratégies de lecture et l'expression créative.",
+      "bigIdeasFr": "Les histoires nous aident à comprendre les changements saisonniers et nous connectent à la nature. L'automne apporte des transformations que nous pouvons explorer à travers les contes.",
+      "assessmentPlan": "Évaluation formative quotidienne: observations, conversations, échantillons d'écriture. Portfolio des progrès en lecture et écriture. Auto-évaluation avec échelles visuelles. Évaluation sommative: présentations orales, projets d'écriture, démonstrations de lecture.",
+      "successCriteria": {
+        "oral": [
+          "Je peux raconter un conte simple",
+          "Je peux décrire les changements d'automne",
+          "Je peux utiliser des mots descriptifs",
+          "Je peux participer à des discussions"
+        ],
+        "reading": [
+          "Je peux lire des contes simples",
+          "Je peux identifier les personnages",
+          "Je peux prédire ce qui va arriver"
+        ],
+        "writing": [
+          "Je peux inventer une histoire courte",
+          "Je peux utiliser des mots d'automne",
+          "Je peux écrire avec des détails"
+        ]
+      },
+      "createdAt": "2025-08-18T22:53:23.742Z",
+      "updatedAt": "2025-08-18T23:22:29.456Z",
+      "communityConnections": "Partenariats avec la bibliothèque francophone locale, auteurs francophones invités, échanges avec d'autres classes françaises, participation à des événements culturels francophones, connexions avec les familles francophones.",
+      "crossCurricularConnections": "MATHÉMATIQUES: Concepts de mesure automnale (hauteur des arbres, longueur des feuilles), dénombrement saisonnier (compter les feuilles, les graines), et formes géométriques naturelles (ovale, losange des feuilles). SCIENCES: Vocabulaire de changements naturels (feuilles qui tombent, migration, hibernation), observation scientifique (couleurs, textures, température) et cycle des saisons. ARTS VISUELS: Techniques d'automne (mélange de couleurs chaudes, collage de feuilles, peinture texturée), composition saisonnière et expression artistique des contes. SCIENCES HUMAINES: Traditions automnales (récoltes, célébrations, préparation hivernale) et géographie saisonnière (changements régionaux, météo).",
+      "culminatingTask": null,
+      "differentiationStrategies": {
+        "emerging": "Support visuel, modélisation, travail guidé, vocabulaire simplifié",
+        "developing": "Instructions étape par étape, exemples multiples, pratique guidée",
+        "proficient": "Travail autonome, choix d'activités, défis appropriés",
+        "extending": "Projets enrichis, rôles de leadership, recherche approfondie"
+      },
+      "environmentalEducation": null,
+      "fieldTripsAndGuestSpeakers": null,
+      "indigenousPerspectives": "Respect des traditions orales Mi'kmaq, appréciation des histoires et légendes autochtones, reconnaissance des langues autochtones d'Epekwitk, inclusion de perspectives autochtones dans la littérature étudiée.",
+      "keyVocabulary": "[\"conte\",\"histoire\",\"personnage\",\"automne\",\"feuilles\",\"arbre\",\"vent\",\"couleurs\",\"orange\",\"rouge\"]",
+      "learningSkills": null,
+      "parentCommunicationPlan": "Partage de contes d'automne à lire en famille. Suggestions d'activités automnales pour enrichir le vocabulaire. Communication sur les stratégies de lecture à la maison. Célébration des traditions familiales d'automne. Ressources pour explorer la nature en français.",
+      "priorKnowledge": null,
+      "socialJusticeConnections": null,
+      "technologyIntegration": "Livres numériques de contes d'automne. Enregistrements audio d'histoires saisonnières. Applications de création d'histoires interactives. Recherche d'images automnales en ligne. Portfolio numérique des créations littéraires.",
+      "assessmentRubric": null,
+      "enduringUnderstandings": "Les contes nous transportent dans des mondes imaginaires et nous enseignent des leçons importantes.",
+      "evidenceTypes": null,
+      "performanceIndicators": null,
+      "performanceTask": null,
+      "transferableSkills": null,
+      "expectations": []
+    },
+    {
+      "id": "cmehpo4gu0007vjzcmhf0lp3o",
+      "userId": 23,
+      "title": "Poésie et chansons d'hiver",
+      "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+      "description": "Unité d'arts langagiers français axée sur: Rhythm and rhyme, Poetry appreciation, Musical language, Memorization. Support d'intégration: Math: motifs, répétition, séquences; Science: mouvement, son, vibration; Arts: rythme, mouvement, expression; Social Studies: célébrations, culture, partage.",
+      "bigIdeas": "Poetry and music are universal languages that express emotions and experiences. Winter themes inspire creativity and reflection. Rhythm and rhyme help us remember and enjoy language. Daily practice with sounds builds French pronunciation skills.",
+      "essentialQuestions": [
+        "Comment la poésie exprime-t-elle l'hiver?",
+        "Quels rythmes et rimes découvrons-nous en français?",
+        "Comment les chansons nous aident-elles à apprendre?",
+        "Que ressentons-nous pendant l'hiver?"
+      ],
+      "startDate": "2025-12-05T00:00:00.000Z",
+      "endDate": "2026-01-30T00:00:00.000Z",
+      "estimatedHours": 17,
+      "titleFr": "Poésie et chansons d'hiver",
+      "descriptionFr": "Unité d'arts langagiers français célébrant la poésie et les chansons hivernales. Chaque jour, les élèves explorent le rythme, la rime, et la musicalité du français à travers des poèmes et chansons de saison. Cette unité développe la conscience phonologique et l'appréciation artistique.",
+      "bigIdeasFr": "La poésie et la musique sont des langages universels qui expriment nos émotions et expériences. Les thèmes d'hiver inspirent la créativité et la réflexion.",
+      "assessmentPlan": "Évaluation formative quotidienne: observations, conversations, échantillons d'écriture. Portfolio des progrès en lecture et écriture. Auto-évaluation avec échelles visuelles. Évaluation sommative: présentations orales, projets d'écriture, démonstrations de lecture.",
+      "successCriteria": {
+        "oral": [
+          "Je peux réciter un poème simple",
+          "Je peux chanter en français",
+          "Je peux jouer avec les sons",
+          "Je peux créer des rimes"
+        ],
+        "reading": [
+          "Je peux lire avec expression",
+          "Je peux reconnaître les rimes",
+          "Je peux suivre le rythme des mots"
+        ],
+        "writing": [
+          "Je peux écrire un petit poème",
+          "Je peux utiliser des mots qui riment",
+          "Je peux jouer avec les mots"
+        ]
+      },
+      "createdAt": "2025-08-18T22:53:23.742Z",
+      "updatedAt": "2025-08-18T23:22:47.852Z",
+      "communityConnections": "Partenariats avec la bibliothèque francophone locale, auteurs francophones invités, échanges avec d'autres classes françaises, participation à des événements culturels francophones, connexions avec les familles francophones.",
+      "crossCurricularConnections": "MATHÉMATIQUES: Patterns rythmiques (répétition, séquences, compter les syllabes), mesure temporelle (temps fort, durée des notes) et géométrie musicale (lignes mélodiques, formes de chansons). SCIENCES: Phénomènes hivernaux (cristaux de neige, gel, lumière du jour), acoustique simple (vibrations, échos) et propriétés de l'air froid. ARTS VISUELS: Expression artistique de la musique (dessins rythmiques, couleurs de l'hiver, mouvement créatif) et illustration poétique. SCIENCES HUMAINES: Traditions hivernales mondiales (célébrations, musiques folkloriques) et expression culturelle.",
+      "culminatingTask": null,
+      "differentiationStrategies": {
+        "emerging": "Support visuel, modélisation, travail guidé, vocabulaire simplifié",
+        "developing": "Instructions étape par étape, exemples multiples, pratique guidée",
+        "proficient": "Travail autonome, choix d'activités, défis appropriés",
+        "extending": "Projets enrichis, rôles de leadership, recherche approfondie"
+      },
+      "environmentalEducation": null,
+      "fieldTripsAndGuestSpeakers": null,
+      "indigenousPerspectives": "Respect des traditions orales Mi'kmaq, appréciation des histoires et légendes autochtones, reconnaissance des langues autochtones d'Epekwitk, inclusion de perspectives autochtones dans la littérature étudiée.",
+      "keyVocabulary": "[\"poème\",\"chanson\",\"rythme\",\"rime\",\"hiver\",\"neige\",\"froid\",\"blanc\",\"briller\",\"danser\"]",
+      "learningSkills": null,
+      "parentCommunicationPlan": "Partage de poèmes et chansons à pratiquer en famille. Suggestions d'activités musicales hivernales. Communication sur l'importance de la musicalité du français. Célébration des performances des élèves. Ressources de chansons françaises pour la maison.",
+      "priorKnowledge": null,
+      "socialJusticeConnections": null,
+      "technologyIntegration": "Enregistrements de récitations poétiques. Applications de création musicale simple. Vidéos de chansons françaises traditionnelles. Logiciels de rythme et métronome. Portfolio audio des performances.",
+      "assessmentRubric": null,
+      "enduringUnderstandings": "La poésie et la musique donnent une beauté spéciale à la langue française et nous aident à exprimer nos sentiments.",
+      "evidenceTypes": null,
+      "performanceIndicators": null,
+      "performanceTask": null,
+      "transferableSkills": null,
+      "expectations": []
+    },
+    {
+      "id": "cmehpo4gu0009vjzchypvtg5y",
+      "userId": 23,
+      "title": "Lecture et découvertes",
+      "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+      "description": "Unité d'arts langagiers français axée sur: Reading strategies, Information texts, Research skills, Question formation. Support d'intégration: Math: données, graphiques, problèmes; Science: recherche, hypothèse, conclusion; Arts: observation, détails, inspiration; Social Studies: recherche, faits, histoire.",
+      "bigIdeas": "Reading opens doors to knowledge and discovery. Different texts serve different purposes and require different strategies. Questions guide our learning journey. Daily reading practice builds fluency and comprehension.",
+      "essentialQuestions": [
+        "Comment puis-je devenir un meilleur lecteur?",
+        "Que puis-je découvrir à travers la lecture?",
+        "Quelles stratégies m'aident à comprendre?",
+        "Comment les livres répondent-ils à mes questions?"
+      ],
+      "startDate": "2026-01-31T00:00:00.000Z",
+      "endDate": "2026-02-27T00:00:00.000Z",
+      "estimatedHours": 18,
+      "titleFr": "Lecture et découvertes",
+      "descriptionFr": "Unité d'arts langagiers français développant les stratégies de lecture et la recherche d'information. Chaque jour, les élèves pratiquent des techniques de lecture, explorent des textes informatifs, et développent leurs compétences de recherche. Cette unité renforce l'autonomie en lecture et la curiosité intellectuelle.",
+      "bigIdeasFr": "La lecture ouvre les portes de la connaissance et de la découverte. Différents textes servent différents buts et nécessitent différentes stratégies.",
+      "assessmentPlan": "Évaluation formative quotidienne: observations, conversations, échantillons d'écriture. Portfolio des progrès en lecture et écriture. Auto-évaluation avec échelles visuelles. Évaluation sommative: présentations orales, projets d'écriture, démonstrations de lecture.",
+      "successCriteria": {
+        "oral": [
+          "Je peux poser des questions sur un texte",
+          "Je peux partager mes découvertes",
+          "Je peux expliquer ce que j'ai appris",
+          "Je peux discuter avec mes amis"
+        ],
+        "reading": [
+          "Je peux utiliser des stratégies de lecture",
+          "Je peux comprendre des textes informatifs",
+          "Je peux trouver des réponses dans un texte"
+        ],
+        "writing": [
+          "Je peux écrire mes découvertes",
+          "Je peux poser des questions par écrit",
+          "Je peux faire une liste d'informations"
+        ]
+      },
+      "createdAt": "2025-08-18T22:53:23.743Z",
+      "updatedAt": "2025-08-18T23:23:14.770Z",
+      "communityConnections": "Partenariats avec la bibliothèque francophone locale, auteurs francophones invités, échanges avec d'autres classes françaises, participation à des événements culturels francophones, connexions avec les familles francophones.",
+      "crossCurricularConnections": "MATHÉMATIQUES: Lecture de données (graphiques simples, tableaux, diagrammes), concepts de mesure dans les textes, et résolution de problèmes écrits. SCIENCES: Lecture de textes scientifiques adaptés (animaux, plantes, expériences), vocabulaire de recherche (hypothèse, observation, conclusion) et documentation des découvertes. ARTS VISUELS: Lecture d'images (interprétation visuelle, symboles, couleurs expressives) et illustration de textes. SCIENCES HUMAINES: Lecture de cartes simples, exploration de différentes cultures à travers les textes, et recherche sur la communauté.",
+      "culminatingTask": null,
+      "differentiationStrategies": {
+        "emerging": "Support visuel, modélisation, travail guidé, vocabulaire simplifié",
+        "developing": "Instructions étape par étape, exemples multiples, pratique guidée",
+        "proficient": "Travail autonome, choix d'activités, défis appropriés",
+        "extending": "Projets enrichis, rôles de leadership, recherche approfondie"
+      },
+      "environmentalEducation": null,
+      "fieldTripsAndGuestSpeakers": null,
+      "indigenousPerspectives": "Respect des traditions orales Mi'kmaq, appréciation des histoires et légendes autochtones, reconnaissance des langues autochtones d'Epekwitk, inclusion de perspectives autochtones dans la littérature étudiée.",
+      "keyVocabulary": "[\"lire\",\"découvrir\",\"apprendre\",\"question\",\"réponse\",\"information\",\"chercher\",\"trouver\",\"savoir\",\"comprendre\"]",
+      "learningSkills": null,
+      "parentCommunicationPlan": "Strategies de lecture à pratiquer à la maison. Suggestions de livres appropriés en français. Communication sur les progrès en lecture. Célébration des découvertes des élèves. Ressources pour encourager la lecture familiale en français.",
+      "priorKnowledge": null,
+      "socialJusticeConnections": null,
+      "technologyIntegration": "Livres numériques interactifs. Moteurs de recherche adaptés aux enfants. Applications de lecture guidée. Enregistrements audio pour modèles de lecture. Portfolio numérique de découvertes.",
+      "assessmentRubric": null,
+      "enduringUnderstandings": "La lecture nous ouvre les portes du savoir et nous aide à découvrir le monde qui nous entoure.",
+      "evidenceTypes": null,
+      "performanceIndicators": null,
+      "performanceTask": null,
+      "transferableSkills": null,
+      "expectations": []
+    },
+    {
+      "id": "cmehpo4gv000bvjzcj4rdhukv",
+      "userId": 23,
+      "title": "Écriture créative",
+      "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+      "description": "Unité d'arts langagiers français axée sur: Creative writing, Story structure, Character development, Editing skills. Support d'intégration: Math: séquences, ordre, organisation; Science: processus, étapes, méthode; Arts: créativité, expression, originalité; Social Studies: perspectives, points de vue, communication.",
+      "bigIdeas": "Writing is a powerful tool for creative expression and communication. Stories have structure that helps readers understand and enjoy them. Characters and settings come alive through descriptive language. Daily writing practice develops voice and fluency.",
+      "essentialQuestions": [
+        "Comment puis-je exprimer mes idées par l'écriture?",
+        "Qu'est-ce qui rend une histoire intéressante?",
+        "Comment créer des personnages vivants?",
+        "Comment améliorer mon écriture?"
+      ],
+      "startDate": "2026-02-28T00:00:00.000Z",
+      "endDate": "2026-04-03T00:00:00.000Z",
+      "estimatedHours": 18,
+      "titleFr": "Écriture créative",
+      "descriptionFr": "Unité d'arts langagiers français développant l'expression écrite créative. Chaque jour, les élèves explorent différentes formes d'écriture, développent leur structure narrative, et créent des personnages imaginaires. Cette unité cultive l'imagination et les compétences de rédaction.",
+      "bigIdeasFr": "L'écriture est un outil puissant d'expression créative et de communication. Les histoires ont une structure qui aide les lecteurs à comprendre et apprécier.",
+      "assessmentPlan": "Évaluation formative quotidienne: observations, conversations, échantillons d'écriture. Portfolio des progrès en lecture et écriture. Auto-évaluation avec échelles visuelles. Évaluation sommative: présentations orales, projets d'écriture, démonstrations de lecture.",
+      "successCriteria": {
+        "oral": [
+          "Je peux partager mes histoires",
+          "Je peux donner des commentaires gentils",
+          "Je peux expliquer mes idées créatives",
+          "Je peux présenter mon travail"
+        ],
+        "reading": [
+          "Je peux lire mes histoires à haute voix",
+          "Je peux réviser mon travail",
+          "Je peux lire les histoires de mes amis"
+        ],
+        "writing": [
+          "Je peux créer des histoires originales",
+          "Je peux développer mes personnages",
+          "Je peux améliorer mes textes",
+          "Je peux utiliser la ponctuation de base"
+        ]
+      },
+      "createdAt": "2025-08-18T22:53:23.744Z",
+      "updatedAt": "2025-08-18T23:23:14.774Z",
+      "communityConnections": "Partenariats avec la bibliothèque francophone locale, auteurs francophones invités, échanges avec d'autres classes françaises, participation à des événements culturels francophones, connexions avec les familles francophones.",
+      "crossCurricularConnections": "MATHÉMATIQUES: Écriture de problèmes mathématiques créatifs, descriptions de formes et mesures, et narration de processus de résolution. SCIENCES: Journalisation d'observations scientifiques, création d'histoires sur la nature, et documentation d'expériences. ARTS VISUELS: Écriture descriptive d'œuvres d'art, création de bandes dessinées, et narration visuelle. SCIENCES HUMAINES: Récits historiques imaginaires, descriptions de lieux et cultures, et écriture de règles communautaires.",
+      "culminatingTask": null,
+      "differentiationStrategies": {
+        "emerging": "Support visuel, modélisation, travail guidé, vocabulaire simplifié",
+        "developing": "Instructions étape par étape, exemples multiples, pratique guidée",
+        "proficient": "Travail autonome, choix d'activités, défis appropriés",
+        "extending": "Projets enrichis, rôles de leadership, recherche approfondie"
+      },
+      "environmentalEducation": null,
+      "fieldTripsAndGuestSpeakers": null,
+      "indigenousPerspectives": "Respect des traditions orales Mi'kmaq, appréciation des histoires et légendes autochtones, reconnaissance des langues autochtones d'Epekwitk, inclusion de perspectives autochtones dans la littérature étudiée.",
+      "keyVocabulary": "[\"écrire\",\"créer\",\"histoire\",\"personnage\",\"idée\",\"imagination\",\"réviser\",\"améliorer\",\"original\",\"partager\"]",
+      "learningSkills": null,
+      "parentCommunicationPlan": "Encouragement de l'écriture créative à la maison. Partage des créations des élèves avec les familles. Suggestions d'activités d'écriture familiale. Célébration de l'expression créative. Ressources pour soutenir l'écriture en français.",
+      "priorKnowledge": null,
+      "socialJusticeConnections": null,
+      "technologyIntegration": "Logiciels de traitement de texte adapté. Applications de création d'histoires interactives. Enregistrements audio des créations. Outils de collaboration pour l'écriture. Portfolio numérique des œuvres créatives.",
+      "assessmentRubric": null,
+      "enduringUnderstandings": "L'écriture créative nous permet d'exprimer notre imagination et de partager nos idées uniques avec le monde.",
+      "evidenceTypes": null,
+      "performanceIndicators": null,
+      "performanceTask": null,
+      "transferableSkills": null,
+      "expectations": []
+    },
+    {
+      "id": "cmehpo4gw000dvjzcjaj763lb",
+      "userId": 23,
+      "title": "Littérature jeunesse",
+      "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+      "description": "Unité d'arts langagiers français axée sur: Literature appreciation, Character analysis, Theme understanding, Comparison skills. Support d'intégration: Math: comparer, analyser, graphiques; Science: classification, observation, hypothèse; Arts: illustration, design, composition; Social Studies: cultures, perspectives, diversité.",
+      "bigIdeas": "Literature reflects human experiences and emotions across cultures. Characters in stories face challenges similar to our own. Different authors bring unique perspectives and styles. Daily exposure to quality literature enriches language and imagination.",
+      "essentialQuestions": [
+        "Que nous enseignent les livres sur la vie?",
+        "Comment les personnages nous ressemblent-ils?",
+        "Qu'est-ce qui fait un bon livre?",
+        "Comment les auteurs créent-ils des histoires?"
+      ],
+      "startDate": "2026-04-04T00:00:00.000Z",
+      "endDate": "2026-05-29T00:00:00.000Z",
+      "estimatedHours": 19,
+      "titleFr": "Littérature jeunesse",
+      "descriptionFr": "Unité d'arts langagiers français explorant la richesse de la littérature jeunesse francophone. Chaque jour, les élèves analysent des personnages, comprennent des thèmes universels, et développent leur appréciation littéraire. Cette unité élargit les horizons culturels et développe l'esprit critique.",
+      "bigIdeasFr": "La littérature reflète les expériences humaines et les émotions à travers les cultures. Les personnages des histoires font face à des défis similaires aux nôtres.",
+      "assessmentPlan": "Évaluation formative quotidienne: observations, conversations, échantillons d'écriture. Portfolio des progrès en lecture et écriture. Auto-évaluation avec échelles visuelles. Évaluation sommative: présentations orales, projets d'écriture, démonstrations de lecture.",
+      "successCriteria": {
+        "oral": [
+          "Je peux discuter des livres que je lis",
+          "Je peux comparer différentes histoires",
+          "Je peux expliquer pourquoi j'aime un livre",
+          "Je peux recommander des livres"
+        ],
+        "reading": [
+          "Je peux lire des livres plus longs",
+          "Je peux comprendre les thèmes",
+          "Je peux analyser les personnages",
+          "Je peux faire des connections"
+        ],
+        "writing": [
+          "Je peux écrire des critiques de livres",
+          "Je peux comparer des histoires",
+          "Je peux exprimer mes opinions",
+          "Je peux résumer des histoires"
+        ]
+      },
+      "createdAt": "2025-08-18T22:53:23.744Z",
+      "updatedAt": "2025-08-18T23:23:45.028Z",
+      "communityConnections": "Partenariats avec la bibliothèque francophone locale, auteurs francophones invités, échanges avec d'autres classes françaises, participation à des événements culturels francophones, connexions avec les familles francophones.",
+      "crossCurricularConnections": "MATHÉMATIQUES: Analyse de données dans les histoires (âges des personnages, quantités, durées), patterns narratifs et séquences logiques. SCIENCES: Exploration de livres scientifiques pour enfants, analyse d'environnements naturels dans la littérature, et concepts scientifiques dans les histoires. ARTS VISUELS: Appréciation des illustrations, analyse des techniques artistiques dans les livres, et création d'art inspiré par la littérature. SCIENCES HUMAINES: Exploration de cultures à travers la littérature, analyse de contextes historiques et géographiques dans les histoires.",
+      "culminatingTask": null,
+      "differentiationStrategies": {
+        "emerging": "Support visuel, modélisation, travail guidé, vocabulaire simplifié",
+        "developing": "Instructions étape par étape, exemples multiples, pratique guidée",
+        "proficient": "Travail autonome, choix d'activités, défis appropriés",
+        "extending": "Projets enrichis, rôles de leadership, recherche approfondie"
+      },
+      "environmentalEducation": null,
+      "fieldTripsAndGuestSpeakers": null,
+      "indigenousPerspectives": "Respect des traditions orales Mi'kmaq, appréciation des histoires et légendes autochtones, reconnaissance des langues autochtones d'Epekwitk, inclusion de perspectives autochtones dans la littérature étudiée.",
+      "keyVocabulary": "[\"littérature\",\"auteur\",\"illustrateur\",\"personnage\",\"thème\",\"comparer\",\"opinion\",\"critique\",\"recommander\",\"analyser\"]",
+      "learningSkills": null,
+      "parentCommunicationPlan": "Recommandations de livres jeunesse francophones. Suggestions pour discussions littéraires en famille. Communication sur l'importance de la lecture variée. Célébration des découvertes littéraires. Ressources pour explorer la littérature francophone ensemble.",
+      "priorKnowledge": null,
+      "socialJusticeConnections": null,
+      "technologyIntegration": "Bibliothèques numériques et livres électroniques. Enregistrements audio d'auteurs francophones. Applications d'analyse littéraire adaptées. Vidéoconférences avec auteurs. Portfolio numérique de critiques littéraires.",
+      "assessmentRubric": null,
+      "enduringUnderstandings": "La littérature jeunesse nous enrichit en nous présentant des mondes diversifiés et des perspectives variées.",
+      "evidenceTypes": null,
+      "performanceIndicators": null,
+      "performanceTask": null,
+      "transferableSkills": null,
+      "expectations": []
+    },
+    {
+      "id": "cmehpo4gw000fvjzcrzcjhabk",
+      "userId": 23,
+      "title": "Célébration de nos apprentissages",
+      "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+      "description": "Unité d'arts langagiers français axée sur: Portfolio presentation, Self-reflection, Goal setting, Celebration of growth. Support d'intégration: Math: mesurer les progrès, graphiques personnels; Science: croissance, changement, développement; Arts: portfolio, présentation, créativité; Social Studies: communauté, célébration, tradition.",
+      "bigIdeas": "Reflection helps us recognize our growth and learning journey. Sharing our achievements builds confidence and community. Setting goals motivates future learning. Celebrating progress acknowledges effort and success.",
+      "essentialQuestions": [
+        "Comment ai-je grandi cette année en français?",
+        "Quels sont mes plus grands succès?",
+        "Que veux-je apprendre l'année prochaine?",
+        "Comment puis-je partager mes apprentissages?"
+      ],
+      "startDate": "2026-05-30T00:00:00.000Z",
+      "endDate": "2026-06-25T00:00:00.000Z",
+      "estimatedHours": 20,
+      "titleFr": "Célébration de nos apprentissages",
+      "descriptionFr": "Unité d'arts langagiers français culminante célébrant les progrès et apprentissages de l'année. Chaque jour, les élèves réfléchissent sur leur croissance, présentent leurs portfolios, et se fixent des objectifs futurs. Cette unité consolide les acquis et prépare la transition vers la prochaine étape.",
+      "bigIdeasFr": "La réflexion nous aide à reconnaître notre croissance et notre parcours d'apprentissage. Partager nos réussites construit la confiance et la communauté.",
+      "assessmentPlan": "Évaluation formative quotidienne: observations, conversations, échantillons d'écriture. Portfolio des progrès en lecture et écriture. Auto-évaluation avec échelles visuelles. Évaluation sommative: présentations orales, projets d'écriture, démonstrations de lecture.",
+      "successCriteria": {
+        "oral": [
+          "Je peux présenter mes meilleurs travaux",
+          "Je peux parler de mes progrès",
+          "Je peux remercier ceux qui m'ont aidé",
+          "Je peux fixer des objectifs pour l'avenir"
+        ],
+        "reading": [
+          "Je peux relire mes anciens travaux",
+          "Je peux voir mes progrès en lecture",
+          "Je peux partager mes livres préférés"
+        ],
+        "writing": [
+          "Je peux écrire une réflexion sur l'année",
+          "Je peux créer un livre de souvenirs",
+          "Je peux écrire une lettre à mon futur moi"
+        ]
+      },
+      "createdAt": "2025-08-18T22:53:23.745Z",
+      "updatedAt": "2025-08-18T23:23:45.030Z",
+      "communityConnections": "Partenariats avec la bibliothèque francophone locale, auteurs francophones invités, échanges avec d'autres classes françaises, participation à des événements culturels francophones, connexions avec les familles francophones.",
+      "crossCurricularConnections": "MATHÉMATIQUES: Réflexion sur les progrès mathématiques en français, mesure de la croissance personnelle, et planification future avec données. SCIENCES: Célébration des découvertes scientifiques, documentation des expériences réussies, et planification d'explorations futures. ARTS VISUELS: Création d'un portfolio artistique, réflexion sur l'évolution créative, et expression artistique des apprentissages. SCIENCES HUMAINES: Réflexion sur la croissance comme membre de la communauté, célébration de la diversité culturelle apprise, et planification d'engagement futur.",
+      "culminatingTask": null,
+      "differentiationStrategies": {
+        "emerging": "Support visuel, modélisation, travail guidé, vocabulaire simplifié",
+        "developing": "Instructions étape par étape, exemples multiples, pratique guidée",
+        "proficient": "Travail autonome, choix d'activités, défis appropriés",
+        "extending": "Projets enrichis, rôles de leadership, recherche approfondie"
+      },
+      "environmentalEducation": null,
+      "fieldTripsAndGuestSpeakers": null,
+      "indigenousPerspectives": "Respect des traditions orales Mi'kmaq, appréciation des histoires et légendes autochtones, reconnaissance des langues autochtones d'Epekwitk, inclusion de perspectives autochtones dans la littérature étudiée.",
+      "keyVocabulary": "[\"célébrer\",\"apprendre\",\"grandir\",\"progrès\",\"réfléchir\",\"objectif\",\"avenir\",\"souvenir\",\"fierté\",\"réussir\"]",
+      "learningSkills": null,
+      "parentCommunicationPlan": "Invitation des familles aux présentations finales. Partage des portfolios et progrès annuels. Communication sur les préparatifs pour l'année suivante. Célébration des réussites avec les familles. Ressources pour maintenir le français pendant l'été.",
+      "priorKnowledge": null,
+      "socialJusticeConnections": null,
+      "technologyIntegration": "Création de portfolios numériques complets. Enregistrements de présentations finales. Applications de réflexion et planification. Partage numérique avec les familles. Archives numériques des accomplissements.",
+      "assessmentRubric": null,
+      "enduringUnderstandings": "Célébrer nos apprentissages nous aide à apprécier notre croissance et à nous préparer pour de nouveaux défis.",
+      "evidenceTypes": null,
+      "performanceIndicators": null,
+      "performanceTask": null,
+      "transferableSkills": null,
+      "expectations": []
+    }
+  ]
+}

@@ -85,7 +85,7 @@ async function main() {
       descriptionFr: 'Écouter et répondre à des instructions et questions simples en français',
       strand: 'Communication orale',
       strandFr: 'Communication orale',
-      subject: 'Français langue première',
+      subject: 'Français (Immersion)',
       grade: 1,
     },
   });
@@ -99,7 +99,7 @@ async function main() {
         'Lire des textes simples avec un vocabulaire familier et des structures prévisibles',
       strand: 'Lecture',
       strandFr: 'Lecture',
-      subject: 'Français langue première',
+      subject: 'Français (Immersion)',
       grade: 1,
     },
   });
@@ -113,7 +113,7 @@ async function main() {
         'Écrire des phrases simples et des textes courts en utilisant un vocabulaire familier',
       strand: 'Écriture',
       strandFr: 'Écriture',
-      subject: 'Français langue première',
+      subject: 'Français (Immersion)',
       grade: 1,
     },
   });
@@ -168,9 +168,9 @@ async function main() {
     data: {
       userId: emilyUser.id,
       title: 'Grade 1 French Language Arts - Long Range Plan',
-      titleFr: '1re année - Français langue première - Plan à long terme',
+      titleFr: '1re année - Français (Immersion) - Plan à long terme',
       grade: 1,
-      subject: 'Français langue première',
+      subject: 'Français (Immersion)',
       academicYear: '2025-2026',
       term: 'Full Year',
       description:
@@ -414,7 +414,7 @@ async function main() {
       date: new Date('2025-09-08'), // First day of school
       duration: 45,
       grade: 1,
-      subject: 'Français langue première',
+      subject: 'Français (Immersion)',
       language: 'fr',
       learningGoals:
         'Students will learn basic French greetings and identify 5 classroom objects in French',

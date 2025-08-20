@@ -17,7 +17,7 @@ A comprehensive 4-step onboarding flow that personalizes the Teaching Engine exp
   3. **Subject Selection** - Core feature for personalization
   4. Feature Overview & AI Assistant Tour
 - **Smart Subject Selection**:
-  - **Core Subjects**: Français langue première, Mathématiques (with warnings if not selected)
+  - **Core Subjects**: Français (Immersion), Mathématiques (with warnings if not selected)
   - **Optional Subjects**: Sciences, Études sociales, English Language Arts, Arts
   - **Specialist Subjects**: Éducation physique, Éducation à la santé
 - **Persistent Storage**: Subject selections saved to localStorage
@@ -45,7 +45,7 @@ Comprehensive curriculum database with 68 Grade 1 French Immersion expectations 
 
 - **Complete Curriculum Coverage**: 68 detailed Grade 1 expectations across all subjects
 - **Subject Organization**:
-  - **Français langue première**: 15 expectations (oral communication, reading, writing)
+  - **Français (Immersion)**: 15 expectations (oral communication, reading, writing)
   - **Mathématiques**: 20 expectations (numbers, patterns, measurement, geometry, data)
   - **Sciences et technologie**: 10 expectations (biology, physics, earth/space, inquiry)
   - **Études sociales**: 8 expectations (heritage/identity, people/environments)

@@ -15,7 +15,7 @@ async function addCrossCurricularToLRPs() {
   
   // Define cross-curricular connections for each subject
   const crossCurricularConnections = {
-    'Français langue première': {
+    'Français (Immersion)': {
       'Mathématiques': 'Number vocabulary, counting rhymes, word problems, mathematical language in French',
       'Sciences de la nature': 'Nature vocabulary, observation journals, scientific descriptions, environmental texts',
       'Sciences humaines': 'Community vocabulary, cultural stories, historical narratives, citizenship language',
@@ -23,35 +23,35 @@ async function addCrossCurricularToLRPs() {
       'Formation personnelle et sociale': 'Emotion vocabulary, social language, conflict resolution dialogues, wellness journals'
     },
     'Mathématiques': {
-      'Français langue première': 'Mathematical vocabulary in French, oral problem explanations, number stories',
+      'Français (Immersion)': 'Mathematical vocabulary in French, oral problem explanations, number stories',
       'Sciences de la nature': 'Data collection, measurement in experiments, patterns in nature, graphing observations',
       'Sciences humaines': 'Time concepts, dates, mapping, demographics, community statistics',
       'Arts visuels': 'Geometric art, patterns in design, symmetry, proportions in art',
       'Formation personnelle et sociale': 'Fair sharing concepts, taking turns, growth tracking, wellness statistics'
     },
     'Sciences de la nature': {
-      'Français langue première': 'Science vocabulary, observation reports, hypothesis writing, nature journals',
+      'Français (Immersion)': 'Science vocabulary, observation reports, hypothesis writing, nature journals',
       'Mathématiques': 'Measuring, counting specimens, graphing data, analyzing patterns',
       'Sciences humaines': 'Human-environment interaction, seasonal traditions, environmental citizenship',
       'Arts visuels': 'Scientific drawing, nature art, observational sketching, environmental art',
       'Formation personnelle et sociale': 'Safety procedures, health habits, environmental responsibility, body awareness'
     },
     'Sciences humaines': {
-      'Français langue première': 'Community stories, interviews, cultural narratives, citizenship vocabulary',
+      'Français (Immersion)': 'Community stories, interviews, cultural narratives, citizenship vocabulary',
       'Mathématiques': 'Timelines, maps with scale, population data, calendar systems',
       'Sciences de la nature': 'Environment and community, seasonal impacts, natural resources',
       'Arts visuels': 'Cultural art, community murals, historical illustrations, identity expression',
       'Formation personnelle et sociale': 'Rights and responsibilities, identity development, social roles, citizenship'
     },
     'Arts visuels': {
-      'Français langue première': 'Art vocabulary, artist statements, critiques, storytelling through art',
+      'Français (Immersion)': 'Art vocabulary, artist statements, critiques, storytelling through art',
       'Mathématiques': 'Shapes and forms, patterns, symmetry, proportions, measuring for art',
       'Sciences de la nature': 'Nature drawing, scientific illustration, environmental art, seasonal art',
       'Sciences humaines': 'Cultural art traditions, community projects, historical art, identity expression',
       'Formation personnelle et sociale': 'Self-expression, emotions through art, therapeutic art, identity exploration'
     },
     'Formation personnelle et sociale': {
-      'Français langue première': 'Social vocabulary, feelings journal, communication skills, story sharing',
+      'Français (Immersion)': 'Social vocabulary, feelings journal, communication skills, story sharing',
       'Mathématiques': 'Growth charts, fair sharing problems, time management, wellness tracking',
       'Sciences de la nature': 'Body systems, health habits, environmental wellness, nature and wellbeing',
       'Sciences humaines': 'Community roles, citizenship, cultural identity, social responsibility',

@@ -31,16 +31,16 @@ async function createAllUnitPlans() {
   // Unit plans for each subject by month
   const unitPlans = [
     // French units
-    { titleFr: 'Bienvenue à l\\'école', title: 'Welcome to School', subject: 'Français langue première', startDate: new Date('2025-09-01'), endDate: new Date('2025-09-30') },
-    { titleFr: 'Ma famille et moi', title: 'My Family and I', subject: 'Français langue première', startDate: new Date('2025-10-01'), endDate: new Date('2025-10-31') },
-    { titleFr: 'Les célébrations d\\'automne', title: 'Fall Celebrations', subject: 'Français langue première', startDate: new Date('2025-11-01'), endDate: new Date('2025-11-30') },
-    { titleFr: 'L\\'hiver arrive', title: 'Winter is Coming', subject: 'Français langue première', startDate: new Date('2025-12-01'), endDate: new Date('2025-12-31') },
-    { titleFr: 'Nouvelle année, nouveaux amis', title: 'New Year New Friends', subject: 'Français langue première', startDate: new Date('2026-01-01'), endDate: new Date('2026-01-31') },
-    { titleFr: 'Les histoires d\\'hiver', title: 'Winter Stories', subject: 'Français langue première', startDate: new Date('2026-02-01'), endDate: new Date('2026-02-28') },
-    { titleFr: 'Le printemps arrive', title: 'Spring is Coming', subject: 'Français langue première', startDate: new Date('2026-03-01'), endDate: new Date('2026-03-31') },
-    { titleFr: 'La nature se réveille', title: 'Nature Awakens', subject: 'Français langue première', startDate: new Date('2026-04-01'), endDate: new Date('2026-04-30') },
-    { titleFr: 'Nos communautés', title: 'Our Communities', subject: 'Français langue première', startDate: new Date('2026-05-01'), endDate: new Date('2026-05-31') },
-    { titleFr: 'Célébrons nos apprentissages', title: 'Celebrating Our Learning', subject: 'Français langue première', startDate: new Date('2026-06-01'), endDate: new Date('2026-06-30') },
+    { titleFr: 'Bienvenue à l\\'école', title: 'Welcome to School', subject: 'Français (Immersion)', startDate: new Date('2025-09-01'), endDate: new Date('2025-09-30') },
+    { titleFr: 'Ma famille et moi', title: 'My Family and I', subject: 'Français (Immersion)', startDate: new Date('2025-10-01'), endDate: new Date('2025-10-31') },
+    { titleFr: 'Les célébrations d\\'automne', title: 'Fall Celebrations', subject: 'Français (Immersion)', startDate: new Date('2025-11-01'), endDate: new Date('2025-11-30') },
+    { titleFr: 'L\\'hiver arrive', title: 'Winter is Coming', subject: 'Français (Immersion)', startDate: new Date('2025-12-01'), endDate: new Date('2025-12-31') },
+    { titleFr: 'Nouvelle année, nouveaux amis', title: 'New Year New Friends', subject: 'Français (Immersion)', startDate: new Date('2026-01-01'), endDate: new Date('2026-01-31') },
+    { titleFr: 'Les histoires d\\'hiver', title: 'Winter Stories', subject: 'Français (Immersion)', startDate: new Date('2026-02-01'), endDate: new Date('2026-02-28') },
+    { titleFr: 'Le printemps arrive', title: 'Spring is Coming', subject: 'Français (Immersion)', startDate: new Date('2026-03-01'), endDate: new Date('2026-03-31') },
+    { titleFr: 'La nature se réveille', title: 'Nature Awakens', subject: 'Français (Immersion)', startDate: new Date('2026-04-01'), endDate: new Date('2026-04-30') },
+    { titleFr: 'Nos communautés', title: 'Our Communities', subject: 'Français (Immersion)', startDate: new Date('2026-05-01'), endDate: new Date('2026-05-31') },
+    { titleFr: 'Célébrons nos apprentissages', title: 'Celebrating Our Learning', subject: 'Français (Immersion)', startDate: new Date('2026-06-01'), endDate: new Date('2026-06-30') },
     
     // Math units
     { titleFr: 'Explorer les nombres', title: 'Exploring Numbers', subject: 'Mathématiques', startDate: new Date('2025-09-01'), endDate: new Date('2025-09-30') },

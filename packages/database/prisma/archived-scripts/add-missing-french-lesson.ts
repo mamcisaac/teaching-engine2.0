@@ -20,7 +20,7 @@ async function addMissingFrenchLesson() {
     where: {
       title: 'Magical Winter',
       longRangePlan: {
-        subject: 'Français langue première',
+        subject: 'Français (Immersion)',
         userId: emily.id
       }
     },
@@ -46,7 +46,7 @@ async function addMissingFrenchLesson() {
       title: 'Vocabulaire d\'hiver',
       date: new Date('2025-12-18T09:00:00'),
       duration: 45,
-      subject: 'Français langue première',
+      subject: 'Français (Immersion)',
       mindsOn: 'Discussion: Quels mots d\'hiver connaissez-vous?',
       action: 'Créer un dictionnaire illustré des mots d\'hiver. Utiliser les nouveaux mots dans des phrases.',
       consolidation: 'Partager nos mots d\'hiver préférés. Jeu de vocabulaire.',
@@ -65,7 +65,7 @@ async function addMissingFrenchLesson() {
   // Check final totals
   const frenchTotal = await prisma.eTFOLessonPlan.count({
     where: {
-      subject: 'Français langue première'
+      subject: 'Français (Immersion)'
     }
   });
 

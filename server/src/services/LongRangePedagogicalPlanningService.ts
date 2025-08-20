@@ -1167,7 +1167,7 @@ export class LongRangePedagogicalPlanningService extends BaseService {
   private generateDefaultTransferGoals(subject: string): any {
     // Subject-specific default transfer goals for Grade 1
     const defaultGoals: Record<string, any> = {
-      'Français langue première': {
+      'Français (Immersion)': {
         enduring_understandings: [
           'Language is a powerful tool for communication and connection',
           'Stories help us understand ourselves and our world',
@@ -1214,7 +1214,7 @@ export class LongRangePedagogicalPlanningService extends BaseService {
       }
     };
 
-    return defaultGoals[subject] || defaultGoals['Français langue première'];
+    return defaultGoals[subject] || defaultGoals['Français (Immersion)'];
   }
 
   private synthesizeEnduringUnderstandings(
@@ -1275,7 +1275,7 @@ export class LongRangePedagogicalPlanningService extends BaseService {
 
   private getSubjectSpecificUnderstandings(subject: string, themes: string[]): string[] {
     const subjectUnderstandings: Record<string, string[]> = {
-      'Français langue première': [
+      'Français (Immersion)': [
         'French helps us connect with our families and community',
         'Stories in French teach us about different ways of living',
         'We can express our feelings and ideas beautifully in French'
@@ -1326,7 +1326,7 @@ export class LongRangePedagogicalPlanningService extends BaseService {
 
     // Add subject-specific transferable skills
     const subjectSkills: Record<string, string[]> = {
-      'Français langue première': ['Oral fluency', 'Narrative comprehension', 'Phonological awareness'],
+      'Français (Immersion)': ['Oral fluency', 'Narrative comprehension', 'Phonological awareness'],
       'Mathématiques': ['Quantitative reasoning', 'Spatial visualization', 'Pattern analysis'],
       'Sciences et technologie': ['Scientific observation', 'Hypothesis formation', 'Data interpretation'],
       'Études sociales': ['Empathy and perspective-taking', 'Cultural understanding', 'Civic responsibility'],
@@ -1443,7 +1443,7 @@ export class LongRangePedagogicalPlanningService extends BaseService {
 
   private extractAudienceContext(description: string, subject: string): string {
     const subjectAudiences: Record<string, string[]> = {
-      'Français langue première': ['French-speaking family members', 'French immersion peers', 'Francophone community'],
+      'Français (Immersion)': ['French-speaking family members', 'French immersion peers', 'Francophone community'],
       'Mathématiques': ['classmates solving problems', 'family members learning math', 'younger students'],
       'Sciences et technologie': ['curious family members', 'fellow scientists', 'nature enthusiasts'],
       'Arts': ['art appreciation audience', 'creative community', 'family art gallery visitors']
@@ -1497,7 +1497,7 @@ export class LongRangePedagogicalPlanningService extends BaseService {
   ): any {
     // Subject-specific culminating performance tasks for Grade 1
     const culminatingTasks: Record<string, any> = {
-      'Français langue première': {
+      'Français (Immersion)': {
         task_name: 'Mon Histoire de Première Année (My Grade 1 Story)',
         description: 'Students create and share a bilingual story about their Grade 1 learning journey, incorporating oral presentation, visual arts, and written reflection',
         performance_format: 'Interactive storytelling presentation with visual supports',
@@ -1580,10 +1580,10 @@ export class LongRangePedagogicalPlanningService extends BaseService {
       }
     };
 
-    const task = culminatingTasks[subject] || culminatingTasks['Français langue première'];
+    const task = culminatingTasks[subject] || culminatingTasks['Français (Immersion)'];
     
     // Enhance for French immersion context
-    if (frenchImmersion && subject !== 'Français langue première') {
+    if (frenchImmersion && subject !== 'Français (Immersion)') {
       task.bilingual_component = 'Students incorporate French vocabulary and concepts where appropriate';
       task.assessment_criteria.push('Integration of French language learning');
     }

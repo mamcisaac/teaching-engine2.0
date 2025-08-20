@@ -97,7 +97,7 @@ async function analyzeAllPlans() {
     // Check for reasonable weekly hours
     console.log('\n⏰ WEEKLY HOURS ANALYSIS:');
     
-    const frenchHours = bySubject['Français langue première']?.reduce((sum, u) => sum + (u.estimatedHours || 0), 0) || 0;
+    const frenchHours = bySubject['Français (Immersion)']?.reduce((sum, u) => sum + (u.estimatedHours || 0), 0) || 0;
     const mathHours = bySubject['Mathématiques']?.reduce((sum, u) => sum + (u.estimatedHours || 0), 0) || 0;
     const totalCore = frenchHours + mathHours;
     
@@ -119,11 +119,11 @@ async function analyzeAllPlans() {
     if (mathHours > 210) issues.push('Math hours too high (max 5 hours/week)');
     
     // Check expectation coverage
-    const frenchExpCount = bySubject['Français langue première']?.[0]?.longRangePlan?.expectations?.length || 0;
+    const frenchExpCount = bySubject['Français (Immersion)']?.[0]?.longRangePlan?.expectations?.length || 0;
     const mathExpCount = bySubject['Mathématiques']?.[0]?.longRangePlan?.expectations?.length || 0;
     
     console.log(`\nExpectation Coverage:`);
-    console.log(`French: ${new Set(bySubject['Français langue première']?.flatMap(u => u.expectations.map(e => e.expectation.code))).size}/15 expectations`);
+    console.log(`French: ${new Set(bySubject['Français (Immersion)']?.flatMap(u => u.expectations.map(e => e.expectation.code))).size}/15 expectations`);
     console.log(`Math: ${new Set(bySubject['Mathématiques']?.flatMap(u => u.expectations.map(e => e.expectation.code))).size}/14 expectations`);
     
     if (issues.length === 0) {

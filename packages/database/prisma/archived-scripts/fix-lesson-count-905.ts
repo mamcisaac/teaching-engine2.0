@@ -26,7 +26,7 @@ async function fixLessonCount905() {
     
     // Correct distribution to total 905
     const correctDistribution = {
-      'Français langue première': 181,    // Daily (Period 1)
+      'Français (Immersion)': 181,    // Daily (Period 1)
       'Mathématiques': 181,               // Daily (Period 2)
       'Arts visuels': 90,                 // Day A (Period 3)
       'Sciences humaines': 91,            // Day B (Period 3)

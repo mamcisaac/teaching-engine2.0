@@ -179,7 +179,7 @@ async function fixCurriculumPerfect() {
     
     // Define correct timelines for each subject (NO OVERLAPS)
     const correctTimelines: Record<string, Array<{title: string, start: string, end: string, hours: number}>> = {
-      'Français langue première': [
+      'Français (Immersion)': [
         { title: 'Welcome', start: 'Sept 4, 2025', end: 'Sept 26, 2025', hours: 17 },
         { title: 'Family', start: 'Sept 29, 2025', end: 'Oct 24, 2025', hours: 20 },
         { title: 'Fall', start: 'Oct 27, 2025', end: 'Nov 21, 2025', hours: 20 },
@@ -288,7 +288,7 @@ async function fixCurriculumPerfect() {
     const frenchLRP = await prisma.longRangePlan.findFirst({
       where: {
         userId: emily.id,
-        subject: 'Français langue première'
+        subject: 'Français (Immersion)'
       }
     });
     
@@ -323,7 +323,7 @@ async function fixCurriculumPerfect() {
     console.log('\n📊 PHASE 4: Updating for 905 total lessons...');
     
     const lessonDistribution = {
-      'Français langue première': 181,
+      'Français (Immersion)': 181,
       'Mathématiques': 181,
       'Sciences de la nature': 108,
       'Sciences humaines': 72,

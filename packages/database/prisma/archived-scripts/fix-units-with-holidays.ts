@@ -103,7 +103,7 @@ async function fixUnitsWithHolidays() {
     
     // Subject block distributions (from our 1810 total blocks)
     const subjectBlocks = {
-      'Français langue première': 362,
+      'Français (Immersion)': 362,
       'Mathématiques': 362,
       'Sciences de la nature': 181,
       'Music': 91,

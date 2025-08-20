@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 
 // Mapping of lesson seed files to current unit plans
 const LESSON_TO_UNIT_MAPPING = {
-  'Français langue première': {
+  'Français (Immersion)': {
     currentUnits: [
       { id: 'cmebyc9dp0001vjr8fmooh70p', title: 'Bienvenue à l\'école!', start: '2025-09-04', end: '2025-09-17' },
       { id: 'cmebyc9dt0003vjr89qvjzg0k', title: 'Ma famille et moi', start: '2025-10-01', end: '2025-10-20' },

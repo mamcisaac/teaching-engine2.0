@@ -88,7 +88,7 @@ export function ShowcaseDashboard(): React.ReactElement {
     } else {
       // Default subjects - all 8 for Grade 1
       setTeacherSubjects([
-        'Français langue première',
+        'Français (Immersion)',
         'Mathématiques',
         'Sciences de la nature',
         'Sciences humaines',
@@ -110,13 +110,13 @@ export function ShowcaseDashboard(): React.ReactElement {
   // Use hardcoded data for Emily's Grade 1 French Immersion
   const longRangePlans = [];
   const allUnits = [
-    { id: 'unit-1', title: 'Bienvenue à l\'école!', titleFr: 'Bienvenue à l\'école!', startDate: '2025-09-04', endDate: '2025-09-30', estimatedHours: 40, longRangePlan: { subject: 'Français langue première' } },
-    { id: 'unit-2', title: 'Ma famille et moi', titleFr: 'Ma famille et moi', startDate: '2025-10-01', endDate: '2025-10-31', estimatedHours: 35, longRangePlan: { subject: 'Français langue première' } },
-    { id: 'unit-3', title: 'Les saisons et les fêtes', titleFr: 'Les saisons et les fêtes', startDate: '2025-11-01', endDate: '2025-12-20', estimatedHours: 45, longRangePlan: { subject: 'Français langue première' } },
+    { id: 'unit-1', title: 'Bienvenue à l\'école!', titleFr: 'Bienvenue à l\'école!', startDate: '2025-09-04', endDate: '2025-09-30', estimatedHours: 40, longRangePlan: { subject: 'Français (Immersion)' } },
+    { id: 'unit-2', title: 'Ma famille et moi', titleFr: 'Ma famille et moi', startDate: '2025-10-01', endDate: '2025-10-31', estimatedHours: 35, longRangePlan: { subject: 'Français (Immersion)' } },
+    { id: 'unit-3', title: 'Les saisons et les fêtes', titleFr: 'Les saisons et les fêtes', startDate: '2025-11-01', endDate: '2025-12-20', estimatedHours: 45, longRangePlan: { subject: 'Français (Immersion)' } },
     { id: 'unit-4', title: 'Les animaux', titleFr: 'Les animaux et leurs habitats', startDate: '2026-01-06', endDate: '2026-02-14', estimatedHours: 40, longRangePlan: { subject: 'Sciences de la nature' } },
     { id: 'unit-5', title: 'Notre communauté', titleFr: 'Notre communauté', startDate: '2026-02-17', endDate: '2026-03-28', estimatedHours: 35, longRangePlan: { subject: 'Sciences humaines' } },
     { id: 'unit-6', title: 'Les plantes', titleFr: 'Les plantes et le jardinage', startDate: '2026-04-01', endDate: '2026-05-09', estimatedHours: 30, longRangePlan: { subject: 'Sciences de la nature' } },
-    { id: 'unit-7', title: 'L\'été arrive!', titleFr: 'L\'été arrive!', startDate: '2026-05-12', endDate: '2026-06-26', estimatedHours: 35, longRangePlan: { subject: 'Français langue première' } },
+    { id: 'unit-7', title: 'L\'été arrive!', titleFr: 'L\'été arrive!', startDate: '2026-05-12', endDate: '2026-06-26', estimatedHours: 35, longRangePlan: { subject: 'Français (Immersion)' } },
     // Math units
     { id: 'unit-m1', title: 'Les nombres', titleFr: 'Les nombres jusqu\'à 20', startDate: '2025-09-04', endDate: '2025-10-15', estimatedHours: 30, longRangePlan: { subject: 'Mathématiques' } },
     { id: 'unit-m2', title: 'Les formes', titleFr: 'Les formes géométriques', startDate: '2025-10-16', endDate: '2025-11-30', estimatedHours: 25, longRangePlan: { subject: 'Mathématiques' } },

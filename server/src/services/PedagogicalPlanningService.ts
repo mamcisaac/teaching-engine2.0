@@ -293,7 +293,7 @@ export class PedagogicalPlanningService extends BaseService {
         'Problem-solving strategies can be applied across different mathematical contexts',
         'Mathematical reasoning builds from concrete to abstract thinking'
       ],
-      'Français langue première': [
+      'Français (Immersion)': [
         'Language is a powerful tool for communication and self-expression',
         'Reading comprehension deepens through active engagement with texts',
         'Writing is a process of discovery and refinement'
@@ -323,7 +323,7 @@ export class PedagogicalPlanningService extends BaseService {
         'When is an estimate good enough?',
         'How do we know our answer makes sense?'
       ],
-      'Français langue première': [
+      'Français (Immersion)': [
         'Comment les mots nous aident-ils à partager nos idées?',
         'Que nous révèlent les histoires sur nous-mêmes et le monde?',
         'Comment pouvons-nous améliorer notre communication?'
@@ -359,7 +359,7 @@ export class PedagogicalPlanningService extends BaseService {
   private createPerformanceTask(transferGoals: TransferGoals, subject: string, grade: number): AssessmentDesign['performance_task'] {
     const scenarios: Record<string, string> = {
       'Mathematics': `You are a young architect designing a playground for your school. You need to create a design that uses geometric shapes and follows safety guidelines.`,
-      'Français langue première': `Vous êtes journaliste pour le journal de l'école. Vous devez écrire un article sur un événement important dans votre communauté.`,
+      'Français (Immersion)': `Vous êtes journaliste pour le journal de l'école. Vous devez écrire un article sur un événement important dans votre communauté.`,
       'Sciences et technologie': `You are a young scientist who has discovered a new type of plant in your backyard. You need to study it and share your findings.`
     };
 

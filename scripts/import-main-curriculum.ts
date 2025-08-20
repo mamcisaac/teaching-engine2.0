@@ -83,7 +83,7 @@ function extractExpectationsFromText(text: string) {
   const lines = text.split('\n');
   
   let currentStrand = '';
-  let currentSubject = 'Français langue première';
+  let currentSubject = 'Français (Immersion)';
   
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i].trim();
@@ -159,9 +159,9 @@ function parseAlternativeFormat(text: string) {
           code: `FR1.${codeCounter}`,
           description: description,
           descriptionFr: description,
-          strand: 'Français langue première',
-          strandFr: 'Français langue première',
-          subject: 'Français langue première',
+          strand: 'Français (Immersion)',
+          strandFr: 'Français (Immersion)',
+          subject: 'Français (Immersion)',
           type: 'specific'
         });
         codeCounter++;

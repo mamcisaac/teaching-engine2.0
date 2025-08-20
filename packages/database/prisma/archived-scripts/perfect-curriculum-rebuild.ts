@@ -96,7 +96,7 @@ async function rebuildCurriculum() {
     
     // Define perfect structure for each subject
     const perfectStructures = {
-      'Français langue première': {
+      'Français (Immersion)': {
         bigIdeas: [
           "La communication orale est la base de l'apprentissage",
           "La lecture développe l'imagination et la compréhension", 
@@ -269,7 +269,7 @@ async function rebuildCurriculum() {
     
     // Define unit timelines for each subject
     const unitTimelines = {
-      'Français langue première': [
+      'Français (Immersion)': [
         { title: 'Bienvenue', timeline: 'Sept 4-27, 2025', hours: 18, lessons: 18 },
         { title: 'Ma famille', timeline: 'Sept 30 - Oct 24, 2025', hours: 19, lessons: 19 },
         { title: 'Automne', timeline: 'Oct 27 - Nov 21, 2025', hours: 18, lessons: 18 },
@@ -422,7 +422,7 @@ async function rebuildCurriculum() {
     // Distribute expectations across units
     const expectationsBySubject = {};
     expectations.forEach(exp => {
-      const subject = exp.subject === 'Français (Immersion)' ? 'Français langue première' : exp.subject;
+      const subject = exp.subject === 'Français (Immersion)' ? 'Français (Immersion)' : exp.subject;
       if (!expectationsBySubject[subject]) {
         expectationsBySubject[subject] = [];
       }

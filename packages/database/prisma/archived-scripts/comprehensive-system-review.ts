@@ -312,7 +312,7 @@ async function comprehensiveSystemReview() {
       console.log(`${subject}: ${weekly.toFixed(1)} hrs/week`);
       
       // Check reasonableness
-      if (subject === 'Français langue première' && (weekly < 3.5 || weekly > 6)) {
+      if (subject === 'Français (Immersion)' && (weekly < 3.5 || weekly > 6)) {
         warnings.push(`French hours (${weekly.toFixed(1)}/week) might be outside optimal range`);
       }
       if (subject === 'Mathématiques' && (weekly < 3.5 || weekly > 6)) {

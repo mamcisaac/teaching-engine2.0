@@ -1,0 +1,80 @@
+{
+  "subjects": [
+    {
+      "name": "Sciences de la nature",
+      "lrpExists": true,
+      "units": 7,
+      "lessons": 156,
+      "expected": 48,
+      "status": "OVER",
+      "issues": [
+        "Unit \"Fall Changes\" has 24 lessons - may be too long for Grade 1",
+        "Unit \"Energy in Our Lives\" has 24 lessons - may be too long for Grade 1",
+        "Unit \"Growing and Changing\" has 24 lessons - may be too long for Grade 1",
+        "Unit \"Winter Wonders\" has 24 lessons - may be too long for Grade 1",
+        "Unit \"Spring Awakening\" has 24 lessons - may be too long for Grade 1",
+        "Unit \"Our Impact on Nature\" has 24 lessons - may be too long for Grade 1",
+        "Sciences de la nature has excess lessons: 108 over"
+      ]
+    },
+    {
+      "name": "Sciences humaines",
+      "lrpExists": true,
+      "units": 5,
+      "lessons": 84,
+      "expected": 30,
+      "status": "OVER",
+      "issues": [
+        "Unit \"My Family and Our Class\" has 24 lessons - may be too long for Grade 1",
+        "Unit \"Our Rights and Responsibilities\" has 24 lessons - may be too long for Grade 1",
+        "Sciences humaines has excess lessons: 54 over"
+      ]
+    },
+    {
+      "name": "Arts visuels",
+      "lrpExists": true,
+      "units": 6,
+      "lessons": 96,
+      "expected": 30,
+      "status": "OVER",
+      "issues": [
+        "Unit \"Discovering Art in Our World\" has 24 lessons - may be too long for Grade 1",
+        "Unit \"Colors and Feelings\" has 24 lessons - may be too long for Grade 1",
+        "Arts visuels has excess lessons: 66 over"
+      ]
+    },
+    {
+      "name": "Formation personnelle et sociale",
+      "lrpExists": true,
+      "units": 6,
+      "lessons": 96,
+      "expected": 30,
+      "status": "OVER",
+      "issues": [
+        "Unit \"Me, Myself, and I\" has 24 lessons - may be too long for Grade 1",
+        "Unit \"Healthy Me\" has 24 lessons - may be too long for Grade 1",
+        "Formation personnelle et sociale has excess lessons: 66 over"
+      ]
+    }
+  ],
+  "totalUnits": 24,
+  "totalLessons": 432,
+  "criticalIssues": [
+    "Unit \"Fall Changes\" has 24 lessons - may be too long for Grade 1",
+    "Unit \"Energy in Our Lives\" has 24 lessons - may be too long for Grade 1",
+    "Unit \"Growing and Changing\" has 24 lessons - may be too long for Grade 1",
+    "Unit \"Winter Wonders\" has 24 lessons - may be too long for Grade 1",
+    "Unit \"Spring Awakening\" has 24 lessons - may be too long for Grade 1",
+    "Unit \"Our Impact on Nature\" has 24 lessons - may be too long for Grade 1",
+    "Sciences de la nature has excess lessons: 108 over",
+    "Unit \"My Family and Our Class\" has 24 lessons - may be too long for Grade 1",
+    "Unit \"Our Rights and Responsibilities\" has 24 lessons - may be too long for Grade 1",
+    "Sciences humaines has excess lessons: 54 over",
+    "Unit \"Discovering Art in Our World\" has 24 lessons - may be too long for Grade 1",
+    "Unit \"Colors and Feelings\" has 24 lessons - may be too long for Grade 1",
+    "Arts visuels has excess lessons: 66 over",
+    "Unit \"Me, Myself, and I\" has 24 lessons - may be too long for Grade 1",
+    "Unit \"Healthy Me\" has 24 lessons - may be too long for Grade 1",
+    "Formation personnelle et sociale has excess lessons: 66 over"
+  ]
+}

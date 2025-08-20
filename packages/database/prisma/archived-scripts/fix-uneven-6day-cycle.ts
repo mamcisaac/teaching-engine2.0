@@ -50,7 +50,7 @@ async function fixUneven6DayCycle() {
     
     // Calculate exact block distribution
     const blockDistribution = {
-      'Français langue première': {
+      'Français (Immersion)': {
         blocks: schoolDays * 2, // 2 blocks every day
         hours: (schoolDays * 2 * 30) / 60,
         teacher: 'Emily'

@@ -213,7 +213,7 @@ export class AssessmentFirstPlanningService extends BaseService {
       });
     }
 
-    if (parameters.subject === 'Français langue première') {
+    if (parameters.subject === 'Français (Immersion)') {
       scenarios.push({
         scenario: 'Vous devez créer un livre d\'histoires pour les plus jeunes élèves de l\'école pour les aider à apprendre le français.',
         role: 'Auteur de livres pour enfants',
@@ -489,7 +489,7 @@ export class AssessmentFirstPlanningService extends BaseService {
         'I can explain why my answer makes sense',
         'I can find and describe patterns'
       ],
-      'Français langue première': [
+      'Français (Immersion)': [
         'Je peux exprimer mes idées clairement en français',
         'Je peux comprendre des textes appropriés à mon niveau',
         'Je peux écouter et répondre aux autres'

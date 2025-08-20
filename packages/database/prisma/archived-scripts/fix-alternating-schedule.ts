@@ -50,7 +50,7 @@ async function fixAlternatingSchedule() {
     
     // New distribution with alternating Art/Social Studies
     const newDistribution = {
-      'Français langue première': 181,    // Daily
+      'Français (Immersion)': 181,    // Daily
       'Mathématiques': 181,               // Daily
       'Arts visuels': 90,                 // Day A (alternating)
       'Sciences humaines': 91,            // Day B (alternating)
@@ -88,7 +88,7 @@ async function fixAlternatingSchedule() {
     // Update hours for each subject based on new distribution
     for (const [subject, subjectUnits] of Object.entries(unitsBySubject)) {
       const totalLessons = newDistribution[subject] || 0;
-      const minutesPerLesson = subject === 'Français langue première' ? 60 : 45;
+      const minutesPerLesson = subject === 'Français (Immersion)' ? 60 : 45;
       const hoursPerLesson = minutesPerLesson / 60;
       
       if (totalLessons > 0 && subjectUnits.length > 0) {
@@ -115,7 +115,7 @@ async function fixAlternatingSchedule() {
     console.log('\n📝 PHASE 4: Updating long range plans with schedule pattern...');
     
     const scheduleNotes = {
-      'Français langue première': 'Daily instruction (Period 1, 60 minutes)',
+      'Français (Immersion)': 'Daily instruction (Period 1, 60 minutes)',
       'Mathématiques': 'Daily instruction (Period 2, 45 minutes)',
       'Arts visuels': 'Day A rotation (Period 3, 45 minutes) - alternates with Social Studies',
       'Sciences humaines': 'Day B rotation (Period 3, 45 minutes) - alternates with Arts',
@@ -173,7 +173,7 @@ This pattern continues regardless of the day of the week. For example:
 - Monday Sept 11: Day B (Social Studies) [continues from Friday]
 
 ## Lesson Distribution (905 total)
-- Français langue première: 181 lessons (daily)
+- Français (Immersion): 181 lessons (daily)
 - Mathématiques: 181 lessons (daily)
 - Arts visuels: 90 lessons (Day A)
 - Sciences humaines: 91 lessons (Day B)

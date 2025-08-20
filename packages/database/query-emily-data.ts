@@ -25,7 +25,7 @@ async function queryEmilyData() {
     const francaisLessons = await prisma.eTFOLessonPlan.findMany({
       where: {
         userId: emily.id,
-        subject: 'Français langue première'
+        subject: 'Français (Immersion)'
       },
       select: {
         id: true,

@@ -235,8 +235,6 @@ model LongRangePlan {
   titleFr                        String?
   descriptionFr                  String?
   goalsFr                        String?
-  startDate                      DateTime?
-  endDate                        DateTime?
   createdAt                      DateTime                   @default(now())
   updatedAt                      DateTime                   @updatedAt
   crossCurricularConnections     Json?
@@ -286,12 +284,12 @@ model LongRangePlan {
   @@index([userId, subject, grade])
   @@index([academicYear, grade, subject])
   @@index([userId, updatedAt])
-  @@index([userId, academicYear, subject])
-  @@index([academicYear, subject, grade])
-  @@index([userId, optimizationScore])
-  @@index([pedagogicalCertification])
-  @@index([lastOptimized])
   @@index([optimizationScore, pedagogicalCertification])
+  @@index([lastOptimized])
+  @@index([pedagogicalCertification])
+  @@index([userId, optimizationScore])
+  @@index([academicYear, subject, grade])
+  @@index([userId, academicYear, subject])
 }
 
 model LongRangePlanExpectation {
@@ -341,6 +339,9 @@ model UnitPlan {
   performanceIndicators      Json?
   performanceTask            Json?
   transferableSkills         Json?
+  isLocked                   Boolean                 @default(false)
+  lockedAt                   DateTime?
+  lockedReason               String?
   lessonPlans                ETFOLessonPlan[]
   longRangePlan              LongRangePlan           @relation(fields: [longRangePlanId], references: [id])
   user                       User                    @relation(fields: [userId], references: [id])
@@ -352,8 +353,8 @@ model UnitPlan {
   @@index([longRangePlanId])
   @@index([userId, updatedAt])
   @@index([startDate, endDate])
-  @@index([userId, startDate, endDate])
   @@index([longRangePlanId, startDate])
+  @@index([userId, startDate, endDate])
 }
 
 model UnitPlanExpectation {
@@ -427,14 +428,14 @@ model ETFOLessonPlan {
   @@index([grade, subject])
   @@index([language])
   @@index([userId, isSubFriendly])
-  @@index([userId, assessmentType])
   @@index([userId, updatedAt])
-  @@index([date, duration])
-  @@index([userId, date, grade])
-  @@index([userId, date, subject])
-  @@index([grade, subject, date])
-  @@index([userId, grade, subject])
   @@index([isSubFriendly, grade, subject])
+  @@index([userId, grade, subject])
+  @@index([grade, subject, date])
+  @@index([userId, date, subject])
+  @@index([userId, date, grade])
+  @@index([date, duration])
+  @@index([userId, assessmentType])
 }
 
 model ETFOLessonPlanExpectation {

@@ -70,7 +70,7 @@ async function implementSpecialistTeaching() {
     console.log('\n📊 PHASE 2: Calculating Emily\'s teaching load...\n');
     
     const emilyTeaches = {
-      'Français langue première': 181,
+      'Français (Immersion)': 181,
       'Mathématiques': 181,
       'Arts visuels': 90,
       'Sciences humaines': 91,

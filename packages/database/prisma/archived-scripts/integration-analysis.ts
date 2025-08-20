@@ -160,7 +160,7 @@ async function integrationAnalysis() {
       
       const connections = unit.crossCurricularConnections || '';
       if (connections.includes('Math')) connectionMatrix[subject].add('Mathématiques');
-      if (connections.includes('French') || connections.includes('Français')) connectionMatrix[subject].add('Français langue première');
+      if (connections.includes('French') || connections.includes('Français')) connectionMatrix[subject].add('Français (Immersion)');
       if (connections.includes('Science')) connectionMatrix[subject].add('Sciences de la nature');
       if (connections.includes('Social')) connectionMatrix[subject].add('Sciences humaines');
       if (connections.includes('PE') || connections.includes('Physical')) connectionMatrix[subject].add('Éducation physique');

@@ -219,7 +219,7 @@ export class EssentialQuestionsEngine extends BaseService {
           }
         ]
       },
-      'Français langue première': {
+      'Français (Immersion)': {
         1: [
           {
             question: 'Comment les mots nous aident-ils à partager nos idées?',
@@ -421,7 +421,7 @@ export class EssentialQuestionsEngine extends BaseService {
 
     const subjectOverarching: Record<string, string> = {
       'Mathematics': 'How does mathematical thinking help us solve problems and understand patterns?',
-      'Français langue première': 'Comment la langue française nous permet-elle de nous exprimer et de communiquer efficacement?',
+      'Français (Immersion)': 'Comment la langue française nous permet-elle de nous exprimer et de communiquer efficacement?',
       'Sciences et technologie': 'How can we use scientific thinking to understand and improve our world?',
       'Études sociales': 'How do we live together and make our communities better places for everyone?',
       'Arts': 'How does artistic expression help us share our ideas and connect with others?',
@@ -474,7 +474,7 @@ export class EssentialQuestionsEngine extends BaseService {
           await this.prisma.essentialQuestionTemplate.create({
             data: {
               question: q.question,
-              subject: q.question.includes('français') || q.question.includes('nous') ? 'Français langue première' : 'General',
+              subject: q.question.includes('français') || q.question.includes('nous') ? 'Français (Immersion)' : 'General',
               gradeMin: 1,
               gradeMax: 8,
               category: q.category,

@@ -20,7 +20,7 @@ Teaching Engine 2.0 helps elementary teachers create comprehensive, curriculum-a
 1. **Welcome & Introduction** - Learn about ETFO planning methodology
 2. **Planning Hierarchy** - Understand the 5-level planning framework
 3. **Subject Selection** - **CRITICAL STEP**: Choose which subjects you teach:
-   - ✅ **Core Subjects**: Français langue première, Mathématiques
+   - ✅ **Core Subjects**: Français (Immersion), Mathématiques
    - ✅ **Optional Subjects**: Sciences, Études sociales, English Language Arts, Arts
    - ⚠️ **Specialist Subjects**: Only select Éducation physique, Éducation à la santé if you actually teach them
 4. **Feature Tour** - Overview of AI assistant and key features

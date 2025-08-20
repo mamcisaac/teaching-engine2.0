@@ -1,0 +1,1871 @@
+{
+  "timestamp": "2025-08-19T01:40:17.576Z",
+  "purpose": "Backup before complete reconstruction for perfection",
+  "issues": [
+    "Wrong start date (Sept 2 vs Sept 4)",
+    "Hours calculation error (145 vs 146.25)",
+    "Poor thematic progression",
+    "Vague assessment criteria",
+    "Token Indigenous perspectives",
+    "Unbalanced curriculum expectation distribution"
+  ],
+  "units": [
+    {
+      "id": "cmehuts790001vjh8lqyuigsh",
+      "userId": 23,
+      "title": "Bienvenue à l'école française",
+      "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+      "description": "Foundation unit introducing school vocabulary, classroom routines, and basic French communication. Daily lessons build confidence in greeting, introducing oneself, and navigating the French immersion environment. This unit establishes essential classroom language that will be used throughout the year.",
+      "bigIdeas": "School is a safe place to learn French. Daily routines help us feel comfortable. French words help us communicate our needs. Everyone can learn to speak French.",
+      "essentialQuestions": [
+        "Semaine 1: Qui suis-je dans cette classe française?",
+        "Semaine 2: Comment puis-je communiquer mes besoins en français?",
+        "Semaine 3: Qu'est-ce qui rend notre classe spéciale?",
+        "Semaine 4: Comment notre classe devient-elle une famille française?"
+      ],
+      "startDate": "2025-09-03T00:00:00.000Z",
+      "endDate": "2025-09-27T00:00:00.000Z",
+      "estimatedHours": 14,
+      "titleFr": "Bienvenue à l'école française",
+      "descriptionFr": "Unité fondamentale introduisant le vocabulaire scolaire, les routines de classe et la communication de base en français. Les leçons quotidiennes développent la confiance pour saluer, se présenter et naviguer dans l'environnement d'immersion française.",
+      "bigIdeasFr": "L'école est un endroit sûr pour apprendre le français. Les routines quotidiennes nous aident à nous sentir à l'aise. Les mots français nous aident à communiquer.",
+      "assessmentPlan": "QUOTIDIEN: Exit tickets avec 2-3 comportements observables (prononciation du prénom, utilisation de 'bonjour/au revoir', identification d'objets). HEBDOMADAIRE: Performance de communication orale (rubrique 4 niveaux: émergent, en développement, compétent, avancé). BI-HEBDOMADAIRE: Portfolio - ajout de première écriture du nom, enregistrement vocal. CULMINATION: Tour guidé de la classe en français avec auto-évaluation.",
+      "successCriteria": {
+        "daily": [
+          "Je prononce mon nom clairement",
+          "J'utilise les salutations appropriées",
+          "Je nomme 3 nouveaux objets par jour"
+        ],
+        "weekly": [
+          "Je participe aux routines de classe",
+          "Je pose des questions simples",
+          "J'écris mon prénom correctement"
+        ],
+        "unit": [
+          "Je peux présenter ma classe en français",
+          "Je connais 30+ mots essentiels",
+          "Je me sens à l'aise en français"
+        ]
+      },
+      "createdAt": "2025-08-19T01:17:45.862Z",
+      "updatedAt": "2025-08-19T01:30:58.950Z",
+      "communityConnections": "School tour in French. Meeting French-speaking staff members. Virtual connection with French immersion classes.",
+      "crossCurricularConnections": "MATH: Counting students, days, objects (un, deux, trois). Shapes in classroom (cercle, carré). SCIENCE: Observing our classroom (regarder, toucher, écouter). ARTS: Colors for art supplies (rouge, bleu, jaune). SOCIAL STUDIES: Our classroom community (ami, professeur, ensemble).",
+      "culminatingTask": "Présentation: 'Voici mon école' - Students give a tour of their classroom in French to another class.",
+      "differentiationStrategies": {
+        "emerging": "Visual supports for all vocabulary, gesture cues, repetition with actions",
+        "developing": "Sentence frames, partner support, choice in response mode",
+        "proficient": "Extended conversations, helping peers, creating word books",
+        "extending": "Teaching words to others, creating classroom labels, leading routines"
+      },
+      "environmentalEducation": null,
+      "fieldTripsAndGuestSpeakers": null,
+      "indigenousPerspectives": "Acknowledging Mi'kmaq territory of Epekwitk. Learning greetings in Mi'kmaq alongside French. Recognizing that Indigenous peoples speak many languages.",
+      "keyVocabulary": [
+        "bonjour",
+        "au revoir",
+        "merci",
+        "s'il vous plaît",
+        "oui",
+        "non",
+        "école",
+        "classe",
+        "professeur",
+        "ami",
+        "livre",
+        "crayon",
+        "papier",
+        "bureau",
+        "chaise",
+        "porte",
+        "fenêtre",
+        "tableau",
+        "Je m'appelle",
+        "Comment ça va?"
+      ],
+      "learningSkills": null,
+      "parentCommunicationPlan": "Welcome letter in English and French explaining immersion approach. Weekly vocabulary list for home practice. Tips for supporting French learning without speaking French.",
+      "priorKnowledge": null,
+      "socialJusticeConnections": null,
+      "technologyIntegration": "Interactive whiteboard for morning greetings. Recording devices for practicing pronunciation. Simple French learning apps for vocabulary practice.",
+      "assessmentRubric": null,
+      "enduringUnderstandings": null,
+      "evidenceTypes": null,
+      "performanceIndicators": null,
+      "performanceTask": null,
+      "transferableSkills": null,
+      "expectations": [
+        {
+          "unitPlanId": "cmehuts790001vjh8lqyuigsh",
+          "expectationId": "cmebyc92z0000vjqu143e7oru",
+          "expectation": {
+            "id": "cmebyc92z0000vjqu143e7oru",
+            "code": "1CO.0",
+            "description": "Différencier à l'oral les éléments reliés à la conscience phonologique",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Différencier à l'oral les éléments reliés à la conscience phonologique",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.340Z",
+            "updatedAt": "2025-08-14T23:06:27.129Z",
+            "title": "Phonological Awareness",
+            "titleFr": "Conscience phonologique"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts790001vjh8lqyuigsh",
+          "expectationId": "cmebyc9300001vjqubok0gsyz",
+          "expectation": {
+            "id": "cmebyc9300001vjqubok0gsyz",
+            "code": "1CO.1",
+            "description": "Gérer son écoute pour répondre à ses besoins d'information et de divertissement",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Gérer son écoute pour répondre à ses besoins d'information et de divertissement",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.341Z",
+            "updatedAt": "2025-08-14T23:06:27.134Z",
+            "title": "Active Listening",
+            "titleFr": "Écoute active"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts790001vjh8lqyuigsh",
+          "expectationId": "cmebyc9310002vjquntjclaye",
+          "expectation": {
+            "id": "cmebyc9310002vjquntjclaye",
+            "code": "1CO.2",
+            "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension littérale de messages oraux simples provenant de diverses sources, en faisant preuve d'ouverture et de respect",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Utiliser un système d'activités stratégiques pour accéder à une compréhension littérale de messages oraux simples provenant de diverses sources, en faisant preuve d'ouverture et de respect",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.342Z",
+            "updatedAt": "2025-08-14T23:06:27.136Z",
+            "title": "Literal Comprehension",
+            "titleFr": "Compréhension littérale"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts790001vjh8lqyuigsh",
+          "expectationId": "cmebyc938000cvjqusb4sfi1s",
+          "expectation": {
+            "id": "cmebyc938000cvjqusb4sfi1s",
+            "code": "1É.1",
+            "description": "Développer des compétences liées au processus de l'écriture",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Développer des compétences liées au processus de l'écriture",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.348Z",
+            "updatedAt": "2025-08-14T23:07:32.817Z",
+            "title": "Writing Process",
+            "titleFr": "Processus d'écriture"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmehuts7c0003vjh8c5wkyb7z",
+      "userId": 23,
+      "title": "Ma famille et moi",
+      "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+      "description": "Essential vocabulary unit focusing on high-frequency words and phrases needed for daily classroom interaction. Students develop foundational communication skills through songs, games, and interactive activities. This unit builds the core vocabulary bank for the year.",
+      "bigIdeas": "Some words are used every day and are very important. Words can be combined to make meaning. French sounds are fun to make. Practice makes our French better.",
+      "essentialQuestions": [
+        "Semaine 1: Qui sont les membres importants de ma famille?",
+        "Semaine 2: Qu'est-ce qui rend ma famille unique?",
+        "Semaine 3: Comment ma famille fait-elle partie de la communauté?",
+        "Semaine 4: Quelles histoires puis-je raconter sur ma famille?"
+      ],
+      "startDate": "2025-09-30T00:00:00.000Z",
+      "endDate": "2025-10-24T00:00:00.000Z",
+      "estimatedHours": 15,
+      "titleFr": "Mes premiers mots importants",
+      "descriptionFr": "Unité explorant l'identité personnelle et familiale comme pont vers la communauté. Les élèves développent le vocabulaire familial tout en construisant des phrases complètes pour raconter leurs histoires personnelles. Cette unité crée une transition naturelle de l'individu vers le collectif.",
+      "bigIdeasFr": "Certains mots sont utilisés chaque jour et sont très importants. Les mots peuvent être combinés pour créer du sens. Les sons français sont amusants à faire.",
+      "assessmentPlan": "QUOTIDIEN: Vérification du vocabulaire familial (cartes éclairs, associations image-mot). HEBDOMADAIRE: Présentation orale sur un membre de famille (rubrique: prononciation, vocabulaire, structure de phrase). BI-HEBDOMADAIRE: Page de livre familial avec description écrite. CULMINATION: 'Mon livre de famille' avec présentation aux parents.",
+      "successCriteria": {
+        "daily": [
+          "Je nomme tous les membres de ma famille",
+          "J'utilise des adjectifs descriptifs",
+          "Je fais des phrases complètes"
+        ],
+        "weekly": [
+          "Je présente un membre de famille",
+          "J'écris 3 phrases sur ma famille",
+          "Je pose des questions sur les familles"
+        ],
+        "unit": [
+          "Je crée mon livre de famille",
+          "Je raconte 3 histoires familiales",
+          "Je compare les familles respectueusement"
+        ]
+      },
+      "createdAt": "2025-08-19T01:17:45.864Z",
+      "updatedAt": "2025-08-19T01:30:58.955Z",
+      "communityConnections": "Word hunt around the school. Creating French labels for school spaces. Sharing words with other classes.",
+      "crossCurricularConnections": "MATH: Number words to 20, position words (sur, sous, dans, à côté). SCIENCE: Action words for experiments (mélanger, verser, observer). ARTS: Descriptive words (grand, petit, beau, brillant). SOCIAL STUDIES: Community helper words (aide, travaille, partage).",
+      "culminatingTask": "Mon dictionnaire personnel - Students create their own illustrated dictionary of essential words.",
+      "differentiationStrategies": {
+        "emerging": "Picture cards for all vocabulary, total physical response activities",
+        "developing": "Word walls with images, sentence starters, peer modeling",
+        "proficient": "Creating own sentences, word combinations, mini-conversations",
+        "extending": "Creating word games for class, teaching vocabulary to younger students"
+      },
+      "environmentalEducation": null,
+      "fieldTripsAndGuestSpeakers": null,
+      "indigenousPerspectives": "Exploring how different languages express similar ideas. Recognizing the importance of preserving Indigenous languages. Learning key words in Mi'kmaq.",
+      "keyVocabulary": [
+        "je",
+        "tu",
+        "il",
+        "elle",
+        "nous",
+        "est",
+        "sont",
+        "j'ai",
+        "j'aime",
+        "je veux",
+        "je peux",
+        "avec",
+        "pour",
+        "dans",
+        "sur",
+        "et",
+        "mais",
+        "parce que",
+        "aujourd'hui",
+        "maintenant"
+      ],
+      "learningSkills": null,
+      "parentCommunicationPlan": "High-frequency word list for home. Simple games families can play. Progress celebration certificates.",
+      "priorKnowledge": null,
+      "socialJusticeConnections": null,
+      "technologyIntegration": "Digital flashcards with audio pronunciation. Interactive word games on tablets. Recording and playback for self-assessment.",
+      "assessmentRubric": null,
+      "enduringUnderstandings": null,
+      "evidenceTypes": null,
+      "performanceIndicators": null,
+      "performanceTask": null,
+      "transferableSkills": null,
+      "expectations": [
+        {
+          "unitPlanId": "cmehuts7c0003vjh8c5wkyb7z",
+          "expectationId": "cmebyc9340005vjqugcrmr8wj",
+          "expectation": {
+            "id": "cmebyc9340005vjqugcrmr8wj",
+            "code": "1CO.5",
+            "description": "S'exprimer dans diverses situations de communication orale simples, spontanées ou préparées, en faisant preuve de respect envers son public",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "S'exprimer dans diverses situations de communication orale simples, spontanées ou préparées, en faisant preuve de respect envers son public",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.344Z",
+            "updatedAt": "2025-08-14T23:06:27.139Z",
+            "title": "Oral Expression",
+            "titleFr": "Expression orale"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7c0003vjh8c5wkyb7z",
+          "expectationId": "cmebyc9350007vjquzoghu8gh",
+          "expectation": {
+            "id": "cmebyc9350007vjquzoghu8gh",
+            "code": "1L.1",
+            "description": "Planifier sa lecture pour répondre à ses besoins d'information et de divertissement",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Planifier sa lecture pour répondre à ses besoins d'information et de divertissement",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.346Z",
+            "updatedAt": "2025-08-14T23:06:27.141Z",
+            "title": "Reading Planning",
+            "titleFr": "Planification de lecture"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7c0003vjh8c5wkyb7z",
+          "expectationId": "cmebyc9360008vjqukx208f44",
+          "expectation": {
+            "id": "cmebyc9360008vjqukx208f44",
+            "code": "1L.2",
+            "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension littérale de divers textes simples, y compris des textes numérisés",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Utiliser un système d'activités stratégiques pour accéder à une compréhension littérale de divers textes simples, y compris des textes numérisés",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.347Z",
+            "updatedAt": "2025-08-14T23:06:27.142Z",
+            "title": "Literal Reading",
+            "titleFr": "Lecture littérale"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7c0003vjh8c5wkyb7z",
+          "expectationId": "cmebyc938000dvjqulm3tonlu",
+          "expectation": {
+            "id": "cmebyc938000dvjqulm3tonlu",
+            "code": "1É.2",
+            "description": "Développer des compétences liées aux traits d'écriture pour créer une variété de textes simples de différents genres (sous forme imprimée et numérique)",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Développer des compétences liées aux traits d'écriture pour créer une variété de textes simples de différents genres (sous forme imprimée et numérique)",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.349Z",
+            "updatedAt": "2025-08-14T23:07:32.819Z",
+            "title": "Writing Traits",
+            "titleFr": "Traits d'écriture"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmehuts7d0005vjh8t77cd7mr",
+      "userId": 23,
+      "title": "Notre communauté scolaire",
+      "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+      "description": "Unit exploring the school community expanding to the neighborhood. Students learn about community helpers, places, and relationships while developing descriptive language. This unit bridges family unit to broader community understanding.",
+      "bigIdeas": "Our school is a community where everyone has a role. Communities help us learn and grow together. We can contribute to our community in French. Understanding our community helps us belong.",
+      "essentialQuestions": [
+        "Semaine 1: Qui nous aide dans notre école?",
+        "Semaine 2: Quels sont les endroits importants de notre école?",
+        "Semaine 3: Comment notre école se connecte-t-elle au quartier?",
+        "Semaine 4: Comment contribuons-nous à notre communauté?"
+      ],
+      "startDate": "2025-10-28T00:00:00.000Z",
+      "endDate": "2025-11-21T00:00:00.000Z",
+      "estimatedHours": 14,
+      "titleFr": "Notre communauté scolaire",
+      "descriptionFr": "Unité explorant la communauté scolaire s'étendant au quartier. Les élèves apprennent sur les aides communautaires, les lieux et les relations tout en développant le langage descriptif.",
+      "bigIdeasFr": "Notre école est une communauté où chacun a un rôle. Les communautés nous aident à apprendre et grandir ensemble.",
+      "assessmentPlan": "QUOTIDIEN: Interviews de membres du personnel (grille d'observation: questions posées, écoute active). HEBDOMADAIRE: Carte de la communauté avec légendes en français. BI-HEBDOMADAIRE: Description écrite d'un lieu communautaire. CULMINATION: Guide touristique de notre école pour les visiteurs.",
+      "successCriteria": {
+        "daily": [
+          "J'identifie 3 nouveaux lieux",
+          "Je décris le travail des gens",
+          "Je pose des questions pertinentes"
+        ],
+        "weekly": [
+          "Je présente un aide communautaire",
+          "Je crée une carte avec légendes",
+          "J'écris sur notre communauté"
+        ],
+        "unit": [
+          "Je guide un tour en français",
+          "Je connais 20+ rôles communautaires",
+          "Je participe activement"
+        ]
+      },
+      "createdAt": "2025-08-19T01:17:45.865Z",
+      "updatedAt": "2025-08-19T01:30:58.951Z",
+      "communityConnections": "Family guest speakers. Community helpers who are like family. Comparing families around the world.",
+      "crossCurricularConnections": "MATH: Mapping distances, counting community helpers, graphing favorite places. SCIENCE: Observing community environments, exploring school gardens. ARTS: Drawing community maps, creating helper portraits. SOCIAL STUDIES: Understanding roles and responsibilities, community symbols.",
+      "culminatingTask": "Mon livre de famille - Students create a book about their family with photos, drawings, and descriptions.",
+      "differentiationStrategies": {
+        "emerging": "Family photos for support, sentence frames, drawing before writing",
+        "developing": "Graphic organizers for family trees, word banks, partner sharing",
+        "proficient": "Extended descriptions, comparing families, writing family stories",
+        "extending": "Interviewing family members, creating family books, researching family origins"
+      },
+      "environmentalEducation": null,
+      "fieldTripsAndGuestSpeakers": null,
+      "indigenousPerspectives": "Extended family importance in Mi'kmaq culture. Different ways families are structured. Respect for elders in Indigenous communities.",
+      "keyVocabulary": [
+        "directeur",
+        "secrétaire",
+        "concierge",
+        "bibliothécaire",
+        "infirmière",
+        "chauffeur",
+        "cafétéria",
+        "gymnase",
+        "bibliothèque",
+        "bureau",
+        "couloir",
+        "cour de récréation",
+        "quartier",
+        "rue",
+        "parc",
+        "magasin",
+        "aide",
+        "travaille",
+        "enseigne",
+        "apprend"
+      ],
+      "learningSkills": null,
+      "parentCommunicationPlan": "Family involvement in sharing stories. Home language connections. Celebrating family diversity. Family vocabulary practice games.",
+      "priorKnowledge": null,
+      "socialJusticeConnections": null,
+      "technologyIntegration": "Digital family trees. Recording family stories. Video messages from extended family. Photo collages with captions.",
+      "assessmentRubric": null,
+      "enduringUnderstandings": null,
+      "evidenceTypes": null,
+      "performanceIndicators": null,
+      "performanceTask": null,
+      "transferableSkills": null,
+      "expectations": [
+        {
+          "unitPlanId": "cmehuts7d0005vjh8t77cd7mr",
+          "expectationId": "cmebyc9320003vjquy5k4gpti",
+          "expectation": {
+            "id": "cmebyc9320003vjquy5k4gpti",
+            "code": "1CO.3",
+            "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension interprétative de messages oraux simples provenant de diverses sources, en faisant preuve d'ouverture et de respect",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Utiliser un système d'activités stratégiques pour accéder à une compréhension interprétative de messages oraux simples provenant de diverses sources, en faisant preuve d'ouverture et de respect",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.342Z",
+            "updatedAt": "2025-08-14T23:06:27.137Z",
+            "title": "Interpretive Comprehension",
+            "titleFr": "Compréhension interprétative"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7d0005vjh8t77cd7mr",
+          "expectationId": "cmebyc9370009vjqupqp2eq2e",
+          "expectation": {
+            "id": "cmebyc9370009vjqupqp2eq2e",
+            "code": "1L.3",
+            "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension interprétative de divers textes simples, y compris des textes numérisés",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Utiliser un système d'activités stratégiques pour accéder à une compréhension interprétative de divers textes simples, y compris des textes numérisés",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.347Z",
+            "updatedAt": "2025-08-14T23:06:27.143Z",
+            "title": "Interpretive Reading",
+            "titleFr": "Lecture interprétative"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7d0005vjh8t77cd7mr",
+          "expectationId": "cmebyc938000cvjqusb4sfi1s",
+          "expectation": {
+            "id": "cmebyc938000cvjqusb4sfi1s",
+            "code": "1É.1",
+            "description": "Développer des compétences liées au processus de l'écriture",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Développer des compétences liées au processus de l'écriture",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.348Z",
+            "updatedAt": "2025-08-14T23:07:32.817Z",
+            "title": "Writing Process",
+            "titleFr": "Processus d'écriture"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7d0005vjh8t77cd7mr",
+          "expectationId": "cmebyc938000dvjqulm3tonlu",
+          "expectation": {
+            "id": "cmebyc938000dvjqulm3tonlu",
+            "code": "1É.2",
+            "description": "Développer des compétences liées aux traits d'écriture pour créer une variété de textes simples de différents genres (sous forme imprimée et numérique)",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Développer des compétences liées aux traits d'écriture pour créer une variété de textes simples de différents genres (sous forme imprimée et numérique)",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.349Z",
+            "updatedAt": "2025-08-14T23:07:32.819Z",
+            "title": "Writing Traits",
+            "titleFr": "Traits d'écriture"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmehuts7e0007vjh8alh6rzxj",
+      "userId": 23,
+      "title": "Les merveilles de l'automne",
+      "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+      "description": "Nature observation unit focusing on autumn changes with scientific vocabulary integration. Students develop precise descriptive language while documenting seasonal transformations. This unit emphasizes observation skills and scientific thinking in French.",
+      "bigIdeas": "Nature follows predictable patterns we can observe and describe. Scientific vocabulary helps us explain natural phenomena. Autumn teaches us about cycles and change. Observation is the foundation of scientific thinking.",
+      "essentialQuestions": [
+        "Semaine 1: Quels changements observons-nous dehors?",
+        "Semaine 2: Pourquoi les feuilles changent-elles de couleur?",
+        "Semaine 3: Comment les animaux se préparent-ils pour l'hiver?",
+        "Semaine 4: Qu'est-ce que l'automne nous enseigne sur les cycles?"
+      ],
+      "startDate": "2025-11-24T00:00:00.000Z",
+      "endDate": "2025-12-19T00:00:00.000Z",
+      "estimatedHours": 15,
+      "titleFr": "Les merveilles de l'automne",
+      "descriptionFr": "Unité d'observation de la nature axée sur les changements automnaux avec intégration du vocabulaire scientifique. Les élèves développent un langage descriptif précis tout en documentant les transformations saisonnières.",
+      "bigIdeasFr": "La nature suit des modèles prévisibles que nous pouvons observer et décrire. Le vocabulaire scientifique nous aide à expliquer les phénomènes naturels.",
+      "assessmentPlan": "QUOTIDIEN: Journal d'observations naturelles (critères: précision du vocabulaire, utilisation d'adjectifs). HEBDOMADAIRE: Présentation d'une collection naturelle avec descriptions. BI-HEBDOMADAIRE: Rapport scientifique simple sur un phénomène automnal. CULMINATION: Exposition scientifique d'automne avec explications.",
+      "successCriteria": {
+        "daily": [
+          "J'observe 3 détails naturels",
+          "J'utilise le vocabulaire scientifique",
+          "Je fais des prédictions"
+        ],
+        "weekly": [
+          "Je présente mes observations",
+          "J'explique un changement naturel",
+          "Je compare avant/après"
+        ],
+        "unit": [
+          "Je crée une exposition scientifique",
+          "J'explique les cycles naturels",
+          "J'utilise 40+ mots scientifiques"
+        ]
+      },
+      "createdAt": "2025-08-19T01:17:45.866Z",
+      "updatedAt": "2025-08-19T01:30:58.955Z",
+      "communityConnections": "Visit to local farm or orchard. Autumn festival participation. Weather station connections. Indigenous autumn celebrations.",
+      "crossCurricularConnections": "MATH: Counting leaves, sorting by color/size, measuring temperature changes. SCIENCE: Seasonal changes, animal preparation for winter, weather patterns. ARTS: Leaf printing, autumn colors mixing, nature collages. SOCIAL STUDIES: Harvest celebrations, Thanksgiving traditions, seasonal community events.",
+      "culminatingTask": "Notre livre d'automne - Class creates a collaborative autumn book with observations, photos, and descriptions.",
+      "differentiationStrategies": {
+        "emerging": "Real objects for vocabulary, outdoor exploration, color matching games",
+        "developing": "Nature collection labels, descriptive word banks, guided observations",
+        "proficient": "Detailed nature journals, comparing changes, weather descriptions",
+        "extending": "Research on why leaves change, creating nature guides, teaching others"
+      },
+      "environmentalEducation": null,
+      "fieldTripsAndGuestSpeakers": null,
+      "indigenousPerspectives": "Mi'kmaq autumn traditions and ceremonies. Traditional harvest practices. Seasonal teachings and stories. Respect for nature's cycles.",
+      "keyVocabulary": [
+        "automne",
+        "feuille",
+        "arbre",
+        "orange",
+        "rouge",
+        "jaune",
+        "brun",
+        "tomber",
+        "vent",
+        "froid",
+        "récolte",
+        "citrouille",
+        "pomme",
+        "thanksgiving",
+        "il fait frais",
+        "les jours raccourcissent",
+        "migration",
+        "hibernation",
+        "changement",
+        "nature"
+      ],
+      "learningSkills": null,
+      "parentCommunicationPlan": "Family nature walks with French vocabulary. Autumn traditions sharing. Seasonal cooking with French names. Home observation activities.",
+      "priorKnowledge": null,
+      "socialJusticeConnections": null,
+      "technologyIntegration": "Digital nature photography with captions. Weather tracking apps in French. Virtual autumn walks. Seasonal change videos.",
+      "assessmentRubric": null,
+      "enduringUnderstandings": null,
+      "evidenceTypes": null,
+      "performanceIndicators": null,
+      "performanceTask": null,
+      "transferableSkills": null,
+      "expectations": [
+        {
+          "unitPlanId": "cmehuts7e0007vjh8alh6rzxj",
+          "expectationId": "cmebyc92z0000vjqu143e7oru",
+          "expectation": {
+            "id": "cmebyc92z0000vjqu143e7oru",
+            "code": "1CO.0",
+            "description": "Différencier à l'oral les éléments reliés à la conscience phonologique",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Différencier à l'oral les éléments reliés à la conscience phonologique",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.340Z",
+            "updatedAt": "2025-08-14T23:06:27.129Z",
+            "title": "Phonological Awareness",
+            "titleFr": "Conscience phonologique"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7e0007vjh8alh6rzxj",
+          "expectationId": "cmebyc9330004vjqu428u4ml7",
+          "expectation": {
+            "id": "cmebyc9330004vjqu428u4ml7",
+            "code": "1CO.4",
+            "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension analytico-critique de messages oraux simples provenant de diverses sources, en faisant preuve d'ouverture et de respect",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Utiliser un système d'activités stratégiques pour accéder à une compréhension analytico-critique de messages oraux simples provenant de diverses sources, en faisant preuve d'ouverture et de respect",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.343Z",
+            "updatedAt": "2025-08-14T23:06:27.138Z",
+            "title": "Critical Comprehension",
+            "titleFr": "Compréhension critique"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7e0007vjh8alh6rzxj",
+          "expectationId": "cmebyc937000avjqubxtxnxfp",
+          "expectation": {
+            "id": "cmebyc937000avjqubxtxnxfp",
+            "code": "1L.4",
+            "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension analytico-critique de divers textes simples, y compris des textes numérisés",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Utiliser un système d'activités stratégiques pour accéder à une compréhension analytico-critique de divers textes simples, y compris des textes numérisés",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.348Z",
+            "updatedAt": "2025-08-14T23:06:27.144Z",
+            "title": "Critical Reading",
+            "titleFr": "Lecture critique"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7e0007vjh8alh6rzxj",
+          "expectationId": "cmebyc939000evjquedf6damy",
+          "expectation": {
+            "id": "cmebyc939000evjquedf6damy",
+            "code": "1É.3",
+            "description": "Réfléchir à ses compétences en tant que scripteur",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Réfléchir à ses compétences en tant que scripteur",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.349Z",
+            "updatedAt": "2025-08-14T23:07:32.820Z",
+            "title": "Writing Reflection",
+            "titleFr": "Réflexion sur l'écriture"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmehuts7f0009vjh8ainnojnx",
+      "userId": 23,
+      "title": "Célébrations et traditions",
+      "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+      "description": "Cultural celebrations unit exploring diverse winter traditions after the holiday break. Students share their celebration experiences while learning about global traditions. This timing allows for authentic sharing of recent holiday experiences.",
+      "bigIdeas": "Celebrations connect us to our cultures and communities. Every tradition has meaning and value. Sharing traditions builds understanding. Winter celebrations bring light to dark times.",
+      "essentialQuestions": [
+        "Semaine 1: Comment avons-nous célébré pendant les vacances?",
+        "Semaine 2: Quelles traditions existent dans notre classe?",
+        "Semaine 3: Comment différentes cultures célèbrent-elles l'hiver?",
+        "Semaine 4: Qu'est-ce que les célébrations nous enseignent?"
+      ],
+      "startDate": "2026-01-06T00:00:00.000Z",
+      "endDate": "2026-01-30T00:00:00.000Z",
+      "estimatedHours": 14,
+      "titleFr": "Célébrations et traditions",
+      "descriptionFr": "Unité sur les célébrations culturelles explorant diverses traditions hivernales après les vacances. Les élèves partagent leurs expériences de célébration tout en apprenant sur les traditions mondiales.",
+      "bigIdeasFr": "Les célébrations nous connectent à nos cultures et communautés. Chaque tradition a une signification et une valeur.",
+      "assessmentPlan": "QUOTIDIEN: Partage de traditions (grille: clarté, vocabulaire, respect culturel). HEBDOMADAIRE: Comparaison de célébrations (diagramme de Venn commenté). BI-HEBDOMADAIRE: Création d'invitation pour une célébration. CULMINATION: Festival multiculturel avec présentations familiales.",
+      "successCriteria": {
+        "daily": [
+          "Je partage mes expériences",
+          "J'écoute respectueusement",
+          "J'apprends 3 nouvelles traditions"
+        ],
+        "weekly": [
+          "Je compare 2 célébrations",
+          "J'explique une tradition",
+          "Je pose des questions culturelles"
+        ],
+        "unit": [
+          "Je présente ma tradition familiale",
+          "Je respecte toutes les traditions",
+          "Je connais 10+ célébrations"
+        ]
+      },
+      "createdAt": "2025-08-19T01:17:45.867Z",
+      "updatedAt": "2025-08-19T01:30:58.953Z",
+      "communityConnections": "Elder storytellers visit. Library winter reading program. Cultural center visits. Community celebration participation.",
+      "crossCurricularConnections": "MATH: Calendar counting to holidays, patterns in decorations, story sequencing. SCIENCE: Winter weather, snow and ice properties, light and darkness. ARTS: Holiday crafts, winter scene painting, celebration music. SOCIAL STUDIES: Global winter celebrations, family traditions, community helpers in winter.",
+      "culminatingTask": "Festival des contes d'hiver - Students present favorite winter stories or traditions to families.",
+      "differentiationStrategies": {
+        "emerging": "Picture walk before reading, story props, repeated readings with actions",
+        "developing": "Story maps, prediction activities, partner retelling",
+        "proficient": "Compare different versions, create alternate endings, character analysis",
+        "extending": "Write own winter tales, research celebrations globally, lead story time"
+      },
+      "environmentalEducation": null,
+      "fieldTripsAndGuestSpeakers": null,
+      "indigenousPerspectives": "Indigenous winter stories and teachings. Traditional winter ceremonies. Respect for winter as a time of rest and renewal. Elder storytelling traditions.",
+      "keyVocabulary": [
+        "hiver",
+        "neige",
+        "froid",
+        "conte",
+        "histoire",
+        "personnage",
+        "Noël",
+        "Hanoukka",
+        "Kwanzaa",
+        "Nouvel An",
+        "cadeau",
+        "famille",
+        "célébrer",
+        "tradition",
+        "lumière",
+        "étoile",
+        "bonhomme de neige",
+        "il était une fois",
+        "ensuite",
+        "fin"
+      ],
+      "learningSkills": null,
+      "parentCommunicationPlan": "Family tradition sharing project. Home reading of winter stories. Celebration vocabulary for families. Multicultural celebration respect.",
+      "priorKnowledge": null,
+      "socialJusticeConnections": null,
+      "technologyIntegration": "Digital storybooks with audio. Creating digital winter cards. Recording story retellings. Virtual author visits.",
+      "assessmentRubric": null,
+      "enduringUnderstandings": null,
+      "evidenceTypes": null,
+      "performanceIndicators": null,
+      "performanceTask": null,
+      "transferableSkills": null,
+      "expectations": [
+        {
+          "unitPlanId": "cmehuts7f0009vjh8ainnojnx",
+          "expectationId": "cmebyc9310002vjquntjclaye",
+          "expectation": {
+            "id": "cmebyc9310002vjquntjclaye",
+            "code": "1CO.2",
+            "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension littérale de messages oraux simples provenant de diverses sources, en faisant preuve d'ouverture et de respect",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Utiliser un système d'activités stratégiques pour accéder à une compréhension littérale de messages oraux simples provenant de diverses sources, en faisant preuve d'ouverture et de respect",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.342Z",
+            "updatedAt": "2025-08-14T23:06:27.136Z",
+            "title": "Literal Comprehension",
+            "titleFr": "Compréhension littérale"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7f0009vjh8ainnojnx",
+          "expectationId": "cmebyc9350006vjquoua30p81",
+          "expectation": {
+            "id": "cmebyc9350006vjquoua30p81",
+            "code": "1CO.6",
+            "description": "Réfléchir à ses compétences en tant que locuteur et interlocuteur",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Réfléchir à ses compétences en tant que locuteur et interlocuteur",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.345Z",
+            "updatedAt": "2025-08-14T23:06:27.140Z",
+            "title": "Speaking Reflection",
+            "titleFr": "Réflexion sur la parole"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7f0009vjh8ainnojnx",
+          "expectationId": "cmebyc9360008vjqukx208f44",
+          "expectation": {
+            "id": "cmebyc9360008vjqukx208f44",
+            "code": "1L.2",
+            "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension littérale de divers textes simples, y compris des textes numérisés",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Utiliser un système d'activités stratégiques pour accéder à une compréhension littérale de divers textes simples, y compris des textes numérisés",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.347Z",
+            "updatedAt": "2025-08-14T23:06:27.142Z",
+            "title": "Literal Reading",
+            "titleFr": "Lecture littérale"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7f0009vjh8ainnojnx",
+          "expectationId": "cmebyc938000bvjqudr8berrm",
+          "expectation": {
+            "id": "cmebyc938000bvjqudr8berrm",
+            "code": "1L.5",
+            "description": "Réfléchir à ses compétences en tant que lecteur",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Réfléchir à ses compétences en tant que lecteur",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.348Z",
+            "updatedAt": "2025-08-14T23:06:27.145Z",
+            "title": "Reading Reflection",
+            "titleFr": "Réflexion sur la lecture"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7f0009vjh8ainnojnx",
+          "expectationId": "cmebyc938000cvjqusb4sfi1s",
+          "expectation": {
+            "id": "cmebyc938000cvjqusb4sfi1s",
+            "code": "1É.1",
+            "description": "Développer des compétences liées au processus de l'écriture",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Développer des compétences liées au processus de l'écriture",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.348Z",
+            "updatedAt": "2025-08-14T23:07:32.817Z",
+            "title": "Writing Process",
+            "titleFr": "Processus d'écriture"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmehuts7g000bvjh8edstnto8",
+      "userId": 23,
+      "title": "Poésie, rythme et mouvement",
+      "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+      "description": "Phonological awareness unit emphasizing French sounds through poetry, songs, and movement. Students develop pronunciation and rhythm while exploring the musicality of French. This unit strengthens oral fluency through playful language exploration.",
+      "bigIdeas": "French has unique sounds and rhythms that make it musical. Poetry and songs help us remember language patterns. Movement reinforces language learning. Phonological awareness is the foundation of reading.",
+      "essentialQuestions": [
+        "Semaine 1: Quels sons riment en français?",
+        "Semaine 2: Comment le rythme aide-t-il la mémorisation?",
+        "Semaine 3: Comment créer des poèmes amusants?",
+        "Semaine 4: Comment la musique enrichit-elle le français?"
+      ],
+      "startDate": "2026-02-03T00:00:00.000Z",
+      "endDate": "2026-02-27T00:00:00.000Z",
+      "estimatedHours": 15,
+      "titleFr": "Poésie, rythme et mouvement",
+      "descriptionFr": "Unité de conscience phonologique mettant l'accent sur les sons français à travers la poésie, les chansons et le mouvement. Les élèves développent la prononciation et le rythme tout en explorant la musicalité du français.",
+      "bigIdeasFr": "Le français a des sons et rythmes uniques qui le rendent musical. La poésie et les chansons nous aident à mémoriser les modèles linguistiques.",
+      "assessmentPlan": "QUOTIDIEN: Identification de rimes et sons (checklist phonologique). HEBDOMADAIRE: Performance de poème ou chanson (rubrique: prononciation, rythme, expression). BI-HEBDOMADAIRE: Création de vers rimés. CULMINATION: Café de poésie avec performances et créations originales.",
+      "successCriteria": {
+        "daily": [
+          "J'identifie les rimes",
+          "Je maintiens le rythme",
+          "Je prononce clairement"
+        ],
+        "weekly": [
+          "Je récite un poème",
+          "Je crée des rimes",
+          "Je chante avec confiance"
+        ],
+        "unit": [
+          "Je performe au café poésie",
+          "Je crée 5 poèmes",
+          "Je maîtrise 20 comptines"
+        ]
+      },
+      "createdAt": "2025-08-19T01:17:45.868Z",
+      "updatedAt": "2025-08-19T01:30:58.956Z",
+      "communityConnections": "Local French musicians visit. School concert participation. Radio station poetry reading. Community cultural events.",
+      "crossCurricularConnections": "MATH: Counting syllables, pattern in verses, beats in music. SCIENCE: Sound vibrations, echo, volume and pitch. ARTS: Illustrating poems, movement with music, creating instruments. SOCIAL STUDIES: Songs from different French regions, cultural music traditions.",
+      "culminatingTask": "Café de poésie - Students host a poetry café, performing poems and songs for families.",
+      "differentiationStrategies": {
+        "emerging": "Actions with songs, echo reading, rhythm instruments",
+        "developing": "Illustrated poem books, partner performances, rhyme matching",
+        "proficient": "Create own verses, lead songs, perform for others",
+        "extending": "Research French poets, create poetry books, organize poetry café"
+      },
+      "environmentalEducation": null,
+      "fieldTripsAndGuestSpeakers": null,
+      "indigenousPerspectives": "Traditional Mi'kmaq songs and chants. Oral tradition through music. Drum circles and rhythm. Songs as teaching tools.",
+      "keyVocabulary": [
+        "poème",
+        "chanson",
+        "rime",
+        "rythme",
+        "vers",
+        "refrain",
+        "syllabe",
+        "son",
+        "musique",
+        "chanter",
+        "danser",
+        "répéter",
+        "fort",
+        "doux",
+        "vite",
+        "lentement",
+        "battement",
+        "mélodie",
+        "voix",
+        "ensemble"
+      ],
+      "learningSkills": null,
+      "parentCommunicationPlan": "Family poetry night invitation. Home singing of French songs. Sharing family songs. Rhyme games for home.",
+      "priorKnowledge": null,
+      "socialJusticeConnections": null,
+      "technologyIntegration": "Recording poetry performances. Music creation apps. French song videos. Digital poetry illustrations.",
+      "assessmentRubric": null,
+      "enduringUnderstandings": null,
+      "evidenceTypes": null,
+      "performanceIndicators": null,
+      "performanceTask": null,
+      "transferableSkills": null,
+      "expectations": [
+        {
+          "unitPlanId": "cmehuts7g000bvjh8edstnto8",
+          "expectationId": "cmebyc92z0000vjqu143e7oru",
+          "expectation": {
+            "id": "cmebyc92z0000vjqu143e7oru",
+            "code": "1CO.0",
+            "description": "Différencier à l'oral les éléments reliés à la conscience phonologique",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Différencier à l'oral les éléments reliés à la conscience phonologique",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.340Z",
+            "updatedAt": "2025-08-14T23:06:27.129Z",
+            "title": "Phonological Awareness",
+            "titleFr": "Conscience phonologique"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7g000bvjh8edstnto8",
+          "expectationId": "cmebyc9300001vjqubok0gsyz",
+          "expectation": {
+            "id": "cmebyc9300001vjqubok0gsyz",
+            "code": "1CO.1",
+            "description": "Gérer son écoute pour répondre à ses besoins d'information et de divertissement",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Gérer son écoute pour répondre à ses besoins d'information et de divertissement",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.341Z",
+            "updatedAt": "2025-08-14T23:06:27.134Z",
+            "title": "Active Listening",
+            "titleFr": "Écoute active"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7g000bvjh8edstnto8",
+          "expectationId": "cmebyc9370009vjqupqp2eq2e",
+          "expectation": {
+            "id": "cmebyc9370009vjqupqp2eq2e",
+            "code": "1L.3",
+            "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension interprétative de divers textes simples, y compris des textes numérisés",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Utiliser un système d'activités stratégiques pour accéder à une compréhension interprétative de divers textes simples, y compris des textes numérisés",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.347Z",
+            "updatedAt": "2025-08-14T23:06:27.143Z",
+            "title": "Interpretive Reading",
+            "titleFr": "Lecture interprétative"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7g000bvjh8edstnto8",
+          "expectationId": "cmebyc938000dvjqulm3tonlu",
+          "expectation": {
+            "id": "cmebyc938000dvjqulm3tonlu",
+            "code": "1É.2",
+            "description": "Développer des compétences liées aux traits d'écriture pour créer une variété de textes simples de différents genres (sous forme imprimée et numérique)",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Développer des compétences liées aux traits d'écriture pour créer une variété de textes simples de différents genres (sous forme imprimée et numérique)",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.349Z",
+            "updatedAt": "2025-08-14T23:07:32.819Z",
+            "title": "Writing Traits",
+            "titleFr": "Traits d'écriture"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmehuts7g000dvjh8tgovkgvj",
+      "userId": 23,
+      "title": "Explorons les textes informatifs",
+      "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+      "description": "Research skills unit developing information literacy through exploration of non-fiction texts. Students learn to find answers, ask questions, and share discoveries. This unit builds critical thinking and research foundations.",
+      "bigIdeas": "Questions drive learning and discovery. Information texts have special features that help us learn. Research skills help us find reliable information. Sharing discoveries multiplies learning.",
+      "essentialQuestions": [
+        "Semaine 1: Comment trouver des informations dans les livres?",
+        "Semaine 2: Quelles questions nous aident à apprendre?",
+        "Semaine 3: Comment vérifier si l'information est vraie?",
+        "Semaine 4: Comment partager nos découvertes?"
+      ],
+      "startDate": "2026-03-03T00:00:00.000Z",
+      "endDate": "2026-03-27T00:00:00.000Z",
+      "estimatedHours": 14,
+      "titleFr": "Explorons les textes informatifs",
+      "descriptionFr": "Unité de compétences de recherche développant la littératie informationnelle à travers l'exploration de textes non-fictionnels. Les élèves apprennent à trouver des réponses, poser des questions et partager des découvertes.",
+      "bigIdeasFr": "Les questions stimulent l'apprentissage et la découverte. Les textes informatifs ont des caractéristiques spéciales qui nous aident à apprendre.",
+      "assessmentPlan": "QUOTIDIEN: Formulation de questions (qualité et pertinence des questions). HEBDOMADAIRE: Mission de recherche avec présentation de découvertes. BI-HEBDOMADAIRE: Création de page informative illustrée. CULMINATION: Foire aux découvertes avec stations d'information.",
+      "successCriteria": {
+        "daily": [
+          "Je pose 3 bonnes questions",
+          "Je trouve des réponses",
+          "J'utilise les indices du texte"
+        ],
+        "weekly": [
+          "Je présente une découverte",
+          "Je vérifie l'information",
+          "Je prends des notes simples"
+        ],
+        "unit": [
+          "Je mène une recherche complète",
+          "Je crée une station d'information",
+          "Je deviens expert d'un sujet"
+        ]
+      },
+      "createdAt": "2025-08-19T01:17:45.869Z",
+      "updatedAt": "2025-08-19T01:30:58.953Z",
+      "communityConnections": "Library visits and card registration. Author visits or video calls. Book store field trip. Reading buddies program.",
+      "crossCurricularConnections": "MATH: Reading math problems, data in charts, number stories. SCIENCE: Science texts, experiment instructions, nature guides. ARTS: Reading about artists, following art instructions. SOCIAL STUDIES: Maps and globes, community information, historical stories.",
+      "culminatingTask": "Ma découverte préférée - Students present a discovery they made through reading, teaching others what they learned.",
+      "differentiationStrategies": {
+        "emerging": "Picture walks, shared reading, audio support, simplified texts",
+        "developing": "Partner reading, graphic organizers, guided practice",
+        "proficient": "Independent reading, book recommendations, reading logs",
+        "extending": "Research projects, teaching reading strategies, book reviews"
+      },
+      "environmentalEducation": null,
+      "fieldTripsAndGuestSpeakers": null,
+      "indigenousPerspectives": "Indigenous authors and stories. Traditional knowledge in texts. Different ways of sharing information. Oral versus written traditions.",
+      "keyVocabulary": [
+        "lire",
+        "livre",
+        "texte",
+        "titre",
+        "auteur",
+        "illustration",
+        "page",
+        "chapitre",
+        "comprendre",
+        "question",
+        "réponse",
+        "chercher",
+        "trouver",
+        "information",
+        "histoire",
+        "début",
+        "milieu",
+        "fin",
+        "apprendre",
+        "découvrir"
+      ],
+      "learningSkills": null,
+      "parentCommunicationPlan": "Reading at home strategies. Library card importance. Book recommendations list. Family reading time tips.",
+      "priorKnowledge": null,
+      "socialJusticeConnections": null,
+      "technologyIntegration": "Digital library access. E-books with highlighting. Research using safe search engines. Creating digital book reports.",
+      "assessmentRubric": null,
+      "enduringUnderstandings": null,
+      "evidenceTypes": null,
+      "performanceIndicators": null,
+      "performanceTask": null,
+      "transferableSkills": null,
+      "expectations": [
+        {
+          "unitPlanId": "cmehuts7g000dvjh8tgovkgvj",
+          "expectationId": "cmebyc9320003vjquy5k4gpti",
+          "expectation": {
+            "id": "cmebyc9320003vjquy5k4gpti",
+            "code": "1CO.3",
+            "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension interprétative de messages oraux simples provenant de diverses sources, en faisant preuve d'ouverture et de respect",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Utiliser un système d'activités stratégiques pour accéder à une compréhension interprétative de messages oraux simples provenant de diverses sources, en faisant preuve d'ouverture et de respect",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.342Z",
+            "updatedAt": "2025-08-14T23:06:27.137Z",
+            "title": "Interpretive Comprehension",
+            "titleFr": "Compréhension interprétative"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7g000dvjh8tgovkgvj",
+          "expectationId": "cmebyc9350007vjquzoghu8gh",
+          "expectation": {
+            "id": "cmebyc9350007vjquzoghu8gh",
+            "code": "1L.1",
+            "description": "Planifier sa lecture pour répondre à ses besoins d'information et de divertissement",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Planifier sa lecture pour répondre à ses besoins d'information et de divertissement",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.346Z",
+            "updatedAt": "2025-08-14T23:06:27.141Z",
+            "title": "Reading Planning",
+            "titleFr": "Planification de lecture"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7g000dvjh8tgovkgvj",
+          "expectationId": "cmebyc937000avjqubxtxnxfp",
+          "expectation": {
+            "id": "cmebyc937000avjqubxtxnxfp",
+            "code": "1L.4",
+            "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension analytico-critique de divers textes simples, y compris des textes numérisés",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Utiliser un système d'activités stratégiques pour accéder à une compréhension analytico-critique de divers textes simples, y compris des textes numérisés",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.348Z",
+            "updatedAt": "2025-08-14T23:06:27.144Z",
+            "title": "Critical Reading",
+            "titleFr": "Lecture critique"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7g000dvjh8tgovkgvj",
+          "expectationId": "cmebyc939000evjquedf6damy",
+          "expectation": {
+            "id": "cmebyc939000evjquedf6damy",
+            "code": "1É.3",
+            "description": "Réfléchir à ses compétences en tant que scripteur",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Réfléchir à ses compétences en tant que scripteur",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.349Z",
+            "updatedAt": "2025-08-14T23:07:32.820Z",
+            "title": "Writing Reflection",
+            "titleFr": "Réflexion sur l'écriture"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmehuts7h000fvjh8sbuk2efh",
+      "userId": 23,
+      "title": "Créateurs d'histoires",
+      "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+      "description": "Creative writing unit emphasizing all writing traits through story creation. Students develop characters, settings, and plots while learning revision strategies. This unit celebrates imagination and the writing process.",
+      "bigIdeas": "Everyone has stories waiting to be told. Writing is a process of creation and revision. Stories have elements that work together. Authors make choices to engage readers.",
+      "essentialQuestions": [
+        "Semaine 1: D'où viennent les idées pour les histoires?",
+        "Semaine 2: Comment créer des personnages mémorables?",
+        "Semaine 3: Qu'est-ce qui rend une histoire captivante?",
+        "Semaine 4: Comment améliorer notre écriture?"
+      ],
+      "startDate": "2026-03-31T00:00:00.000Z",
+      "endDate": "2026-04-24T00:00:00.000Z",
+      "estimatedHours": 15,
+      "titleFr": "Créateurs d'histoires",
+      "descriptionFr": "Unité d'écriture créative mettant l'accent sur tous les traits d'écriture à travers la création d'histoires. Les élèves développent des personnages, des décors et des intrigues tout en apprenant des stratégies de révision.",
+      "bigIdeasFr": "Tout le monde a des histoires à raconter. L'écriture est un processus de création et de révision.",
+      "assessmentPlan": "QUOTIDIEN: Développement d'histoire (idées, organisation, voix). HEBDOMADAIRE: Atelier d'écriture avec rétroaction par les pairs. BI-HEBDOMADAIRE: Révision et amélioration d'une histoire. CULMINATION: Festival des auteurs avec publication et présentation.",
+      "successCriteria": {
+        "daily": [
+          "Je génère 3 idées",
+          "Je développe mes personnages",
+          "J'ajoute des détails"
+        ],
+        "weekly": [
+          "Je structure mon histoire",
+          "Je révise mon travail",
+          "Je donne des suggestions utiles"
+        ],
+        "unit": [
+          "Je publie une histoire complète",
+          "J'utilise tous les traits d'écriture",
+          "Je célèbre mon écriture"
+        ]
+      },
+      "createdAt": "2025-08-19T01:17:45.870Z",
+      "updatedAt": "2025-08-19T01:30:58.957Z",
+      "communityConnections": "Local author visits. Story contest participation. Library story display. Senior center story sharing.",
+      "crossCurricularConnections": "MATH: Story problems creation, counting story elements, time in narratives. SCIENCE: Spring observations in writing, life cycle stories, weather descriptions. ARTS: Illustrating stories, cover design, character drawings. SOCIAL STUDIES: Community stories, historical fiction, cultural tales.",
+      "culminatingTask": "Festival des auteurs - Students publish and present their stories at an author's festival for families and community.",
+      "differentiationStrategies": {
+        "emerging": "Drawing before writing, dictation options, story templates",
+        "developing": "Story planners, word banks, sentence starters",
+        "proficient": "Multi-paragraph stories, dialogue addition, setting descriptions",
+        "extending": "Chapter books, multiple characters, publishing for others"
+      },
+      "environmentalEducation": null,
+      "fieldTripsAndGuestSpeakers": null,
+      "indigenousPerspectives": "Indigenous storytelling structures. Spring renewal in Indigenous cultures. Stories as teaching tools. Respect for creative expression.",
+      "keyVocabulary": [
+        "écrire",
+        "histoire",
+        "personnage",
+        "début",
+        "problème",
+        "solution",
+        "fin",
+        "créer",
+        "imaginer",
+        "décrire",
+        "printemps",
+        "fleur",
+        "grandir",
+        "nouveau",
+        "idée",
+        "brouillon",
+        "réviser",
+        "améliorer",
+        "publier",
+        "partager"
+      ],
+      "learningSkills": null,
+      "parentCommunicationPlan": "Writing celebration invitation. Home story prompts. Family story sharing. Progress portfolio sharing.",
+      "priorKnowledge": null,
+      "socialJusticeConnections": null,
+      "technologyIntegration": "Digital story creation tools. Word processing with images. Audio recording of stories. Online story sharing.",
+      "assessmentRubric": null,
+      "enduringUnderstandings": null,
+      "evidenceTypes": null,
+      "performanceIndicators": null,
+      "performanceTask": null,
+      "transferableSkills": null,
+      "expectations": [
+        {
+          "unitPlanId": "cmehuts7h000fvjh8sbuk2efh",
+          "expectationId": "cmebyc9340005vjqugcrmr8wj",
+          "expectation": {
+            "id": "cmebyc9340005vjqugcrmr8wj",
+            "code": "1CO.5",
+            "description": "S'exprimer dans diverses situations de communication orale simples, spontanées ou préparées, en faisant preuve de respect envers son public",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "S'exprimer dans diverses situations de communication orale simples, spontanées ou préparées, en faisant preuve de respect envers son public",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.344Z",
+            "updatedAt": "2025-08-14T23:06:27.139Z",
+            "title": "Oral Expression",
+            "titleFr": "Expression orale"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7h000fvjh8sbuk2efh",
+          "expectationId": "cmebyc938000bvjqudr8berrm",
+          "expectation": {
+            "id": "cmebyc938000bvjqudr8berrm",
+            "code": "1L.5",
+            "description": "Réfléchir à ses compétences en tant que lecteur",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Réfléchir à ses compétences en tant que lecteur",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.348Z",
+            "updatedAt": "2025-08-14T23:06:27.145Z",
+            "title": "Reading Reflection",
+            "titleFr": "Réflexion sur la lecture"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7h000fvjh8sbuk2efh",
+          "expectationId": "cmebyc938000cvjqusb4sfi1s",
+          "expectation": {
+            "id": "cmebyc938000cvjqusb4sfi1s",
+            "code": "1É.1",
+            "description": "Développer des compétences liées au processus de l'écriture",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Développer des compétences liées au processus de l'écriture",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.348Z",
+            "updatedAt": "2025-08-14T23:07:32.817Z",
+            "title": "Writing Process",
+            "titleFr": "Processus d'écriture"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7h000fvjh8sbuk2efh",
+          "expectationId": "cmebyc938000dvjqulm3tonlu",
+          "expectation": {
+            "id": "cmebyc938000dvjqulm3tonlu",
+            "code": "1É.2",
+            "description": "Développer des compétences liées aux traits d'écriture pour créer une variété de textes simples de différents genres (sous forme imprimée et numérique)",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Développer des compétences liées aux traits d'écriture pour créer une variété de textes simples de différents genres (sous forme imprimée et numérique)",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.349Z",
+            "updatedAt": "2025-08-14T23:07:32.819Z",
+            "title": "Writing Traits",
+            "titleFr": "Traits d'écriture"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmehuts7i000hvjh82072rte4",
+      "userId": 23,
+      "title": "Découvertes littéraires",
+      "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+      "description": "Genre exploration unit discovering different types of French literature. Students explore fiction, non-fiction, poetry, and graphic texts while developing preferences and critical thinking. This unit builds literary appreciation.",
+      "bigIdeas": "Literature comes in many forms, each with unique purposes. Different genres appeal to different readers. Understanding genres helps us choose books. Literary appreciation enriches our lives.",
+      "essentialQuestions": [
+        "Semaine 1: Quels types de livres existent?",
+        "Semaine 2: Comment chaque genre est-il spécial?",
+        "Semaine 3: Quels genres préférons-nous et pourquoi?",
+        "Semaine 4: Comment les auteurs créent-ils différents genres?"
+      ],
+      "startDate": "2026-04-28T00:00:00.000Z",
+      "endDate": "2026-05-22T00:00:00.000Z",
+      "estimatedHours": 14,
+      "titleFr": "Découvertes littéraires",
+      "descriptionFr": "Unité d'exploration des genres découvrant différents types de littérature française. Les élèves explorent la fiction, la non-fiction, la poésie et les textes graphiques tout en développant des préférences et la pensée critique.",
+      "bigIdeasFr": "La littérature prend plusieurs formes, chacune avec des buts uniques. Différents genres attirent différents lecteurs.",
+      "assessmentPlan": "QUOTIDIEN: Exploration de genre (identification des caractéristiques). HEBDOMADAIRE: Critique de livre avec justification de préférence. BI-HEBDOMADAIRE: Comparaison de deux genres différents. CULMINATION: Salon du livre avec recommandations par genre.",
+      "successCriteria": {
+        "daily": [
+          "J'identifie le genre",
+          "Je nomme les caractéristiques",
+          "J'explore avec curiosité"
+        ],
+        "weekly": [
+          "Je critique un livre",
+          "Je compare des genres",
+          "Je justifie mes préférences"
+        ],
+        "unit": [
+          "Je recommande par genre",
+          "Je connais 8+ genres",
+          "J'apprécie la diversité littéraire"
+        ]
+      },
+      "createdAt": "2025-08-19T01:17:45.871Z",
+      "updatedAt": "2025-08-19T01:30:58.954Z",
+      "communityConnections": "Bookstore field trips. Author school visits. Library reading programs. Book donation drives.",
+      "crossCurricularConnections": "MATH: Graphing book preferences, story timelines, page counting. SCIENCE: Science in fiction, animal characters, environmental themes. ARTS: Book illustration styles, creating book art, dramatizing scenes. SOCIAL STUDIES: Stories from different cultures, historical fiction, geographic settings.",
+      "culminatingTask": "Salon du livre - Students create a book fair showcasing their favorite French books with reviews and recommendations.",
+      "differentiationStrategies": {
+        "emerging": "Picture book focus, read-alouds, story discussions",
+        "developing": "Guided literature circles, character drawings, simple reviews",
+        "proficient": "Independent book clubs, comparative analysis, book trailers",
+        "extending": "Author research, literary criticism, creating reading guides"
+      },
+      "environmentalEducation": null,
+      "fieldTripsAndGuestSpeakers": null,
+      "indigenousPerspectives": "Indigenous authors and illustrators. Traditional stories in written form. Oral tradition influences on literature. Representation in children's books.",
+      "keyVocabulary": [
+        "littérature",
+        "auteur",
+        "illustrateur",
+        "personnage",
+        "héros",
+        "aventure",
+        "thème",
+        "message",
+        "chapitre",
+        "collection",
+        "série",
+        "préféré",
+        "recommander",
+        "critiquer",
+        "comparer",
+        "bibliothèque",
+        "édition",
+        "couverture",
+        "dédicace",
+        "publier"
+      ],
+      "learningSkills": null,
+      "parentCommunicationPlan": "Family book club suggestions. Reading recommendation lists. Library visit encouragement. Book fair participation.",
+      "priorKnowledge": null,
+      "socialJusticeConnections": null,
+      "technologyIntegration": "Virtual author visits. Book trailer creation. Online book discussions. Digital book collections.",
+      "assessmentRubric": null,
+      "enduringUnderstandings": null,
+      "evidenceTypes": null,
+      "performanceIndicators": null,
+      "performanceTask": null,
+      "transferableSkills": null,
+      "expectations": [
+        {
+          "unitPlanId": "cmehuts7i000hvjh82072rte4",
+          "expectationId": "cmebyc9330004vjqu428u4ml7",
+          "expectation": {
+            "id": "cmebyc9330004vjqu428u4ml7",
+            "code": "1CO.4",
+            "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension analytico-critique de messages oraux simples provenant de diverses sources, en faisant preuve d'ouverture et de respect",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Utiliser un système d'activités stratégiques pour accéder à une compréhension analytico-critique de messages oraux simples provenant de diverses sources, en faisant preuve d'ouverture et de respect",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.343Z",
+            "updatedAt": "2025-08-14T23:06:27.138Z",
+            "title": "Critical Comprehension",
+            "titleFr": "Compréhension critique"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7i000hvjh82072rte4",
+          "expectationId": "cmebyc9350006vjquoua30p81",
+          "expectation": {
+            "id": "cmebyc9350006vjquoua30p81",
+            "code": "1CO.6",
+            "description": "Réfléchir à ses compétences en tant que locuteur et interlocuteur",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Réfléchir à ses compétences en tant que locuteur et interlocuteur",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.345Z",
+            "updatedAt": "2025-08-14T23:06:27.140Z",
+            "title": "Speaking Reflection",
+            "titleFr": "Réflexion sur la parole"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7i000hvjh82072rte4",
+          "expectationId": "cmebyc9370009vjqupqp2eq2e",
+          "expectation": {
+            "id": "cmebyc9370009vjqupqp2eq2e",
+            "code": "1L.3",
+            "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension interprétative de divers textes simples, y compris des textes numérisés",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Utiliser un système d'activités stratégiques pour accéder à une compréhension interprétative de divers textes simples, y compris des textes numérisés",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.347Z",
+            "updatedAt": "2025-08-14T23:06:27.143Z",
+            "title": "Interpretive Reading",
+            "titleFr": "Lecture interprétative"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7i000hvjh82072rte4",
+          "expectationId": "cmebyc937000avjqubxtxnxfp",
+          "expectation": {
+            "id": "cmebyc937000avjqubxtxnxfp",
+            "code": "1L.4",
+            "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension analytico-critique de divers textes simples, y compris des textes numérisés",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Utiliser un système d'activités stratégiques pour accéder à une compréhension analytico-critique de divers textes simples, y compris des textes numérisés",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.348Z",
+            "updatedAt": "2025-08-14T23:06:27.144Z",
+            "title": "Critical Reading",
+            "titleFr": "Lecture critique"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmehuts7j000jvjh81z9neuhg",
+      "userId": 23,
+      "title": "Notre voyage continue",
+      "longRangePlanId": "cmebyc98h0001vjr1cvh4knsh",
+      "description": "Culminating celebration unit where students reflect on their French learning journey, showcase growth across ALL curriculum expectations, and prepare for Grade 2. This unit provides spiral review while celebrating achievements.",
+      "bigIdeas": "Reflection reveals our growth and progress. Celebrating achievements motivates future learning. We have become confident French speakers. Our French journey continues beyond Grade 1.",
+      "essentialQuestions": [
+        "Semaine 1: Comment ai-je grandi comme francophone?",
+        "Semaine 2: Quelles sont mes plus grandes réussites?",
+        "Semaine 3: Comment puis-je aider les autres à apprendre?",
+        "Semaine 4: Que vais-je accomplir en 2e année?"
+      ],
+      "startDate": "2026-05-26T00:00:00.000Z",
+      "endDate": "2026-06-24T00:00:00.000Z",
+      "estimatedHours": 15,
+      "titleFr": "Notre voyage continue",
+      "descriptionFr": "Unité culminante où les élèves réfléchissent sur leur parcours d'apprentissage du français, présentent leur croissance à travers TOUTES les attentes du curriculum, et se préparent pour la 2e année.",
+      "bigIdeasFr": "La réflexion révèle notre croissance et nos progrès. Célébrer les réussites motive l'apprentissage futur. Nous sommes devenus des francophones confiants.",
+      "assessmentPlan": "QUOTIDIEN: Auto-évaluation de croissance (portfolio de preuves). HEBDOMADAIRE: Démonstration de compétences acquises. BI-HEBDOMADAIRE: Mentorat des élèves de maternelle. CULMINATION: Spectacle de fin d'année présentant tous les apprentissages.",
+      "successCriteria": {
+        "daily": [
+          "Je documente ma croissance",
+          "Je pratique toutes les compétences",
+          "Je mens des autres"
+        ],
+        "weekly": [
+          "Je démontre mes apprentissages",
+          "Je réfléchis profondément",
+          "Je fixe des objectifs"
+        ],
+        "unit": [
+          "Je célèbre mon parcours",
+          "Je maîtrise les 15 attentes",
+          "Je suis prêt pour la 2e année"
+        ]
+      },
+      "createdAt": "2025-08-19T01:17:45.871Z",
+      "updatedAt": "2025-08-19T01:30:58.958Z",
+      "communityConnections": "Community showcase participation. Kindergarten visit to share learning. Thank you to community helpers. Summer French opportunities.",
+      "crossCurricularConnections": "MATH: Graphing growth, counting achievements, measuring progress. SCIENCE: Growth and change concepts, year-long observations. ARTS: Portfolio decoration, performance preparation, memory books. SOCIAL STUDIES: Class community celebration, future goals, summer plans.",
+      "culminatingTask": "Spectacle de fin d'année - Students present a year-end showcase demonstrating all aspects of their French learning journey.",
+      "differentiationStrategies": {
+        "emerging": "Visual portfolio, supported presentations, celebration participation",
+        "developing": "Guided reflection, partner presentations, choice in sharing",
+        "proficient": "Detailed portfolios, solo presentations, helping others reflect",
+        "extending": "Mentoring kindergarten students, creating Grade 2 guides, leading celebrations"
+      },
+      "environmentalEducation": null,
+      "fieldTripsAndGuestSpeakers": null,
+      "indigenousPerspectives": "Celebrating growth in Indigenous traditions. Community celebration importance. Honoring the learning journey. Gratitude practices.",
+      "keyVocabulary": [
+        "célébrer",
+        "grandir",
+        "apprendre",
+        "progrès",
+        "portfolio",
+        "réflexion",
+        "objectif",
+        "futur",
+        "fier",
+        "réussir",
+        "se souvenir",
+        "année",
+        "été",
+        "Grade 2",
+        "continuer",
+        "merci",
+        "bravo",
+        "félicitations",
+        "au revoir",
+        "à bientôt"
+      ],
+      "learningSkills": null,
+      "parentCommunicationPlan": "Portfolio sharing events. Celebration invitations. Summer French maintenance tips. Grade 2 preparation information.",
+      "priorKnowledge": null,
+      "socialJusticeConnections": null,
+      "technologyIntegration": "Digital portfolios. Video reflections. Online celebration sharing. Summer learning apps.",
+      "assessmentRubric": null,
+      "enduringUnderstandings": null,
+      "evidenceTypes": null,
+      "performanceIndicators": null,
+      "performanceTask": null,
+      "transferableSkills": null,
+      "expectations": [
+        {
+          "unitPlanId": "cmehuts7j000jvjh81z9neuhg",
+          "expectationId": "cmebyc9300001vjqubok0gsyz",
+          "expectation": {
+            "id": "cmebyc9300001vjqubok0gsyz",
+            "code": "1CO.1",
+            "description": "Gérer son écoute pour répondre à ses besoins d'information et de divertissement",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Gérer son écoute pour répondre à ses besoins d'information et de divertissement",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.341Z",
+            "updatedAt": "2025-08-14T23:06:27.134Z",
+            "title": "Active Listening",
+            "titleFr": "Écoute active"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7j000jvjh81z9neuhg",
+          "expectationId": "cmebyc9310002vjquntjclaye",
+          "expectation": {
+            "id": "cmebyc9310002vjquntjclaye",
+            "code": "1CO.2",
+            "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension littérale de messages oraux simples provenant de diverses sources, en faisant preuve d'ouverture et de respect",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Utiliser un système d'activités stratégiques pour accéder à une compréhension littérale de messages oraux simples provenant de diverses sources, en faisant preuve d'ouverture et de respect",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.342Z",
+            "updatedAt": "2025-08-14T23:06:27.136Z",
+            "title": "Literal Comprehension",
+            "titleFr": "Compréhension littérale"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7j000jvjh81z9neuhg",
+          "expectationId": "cmebyc9320003vjquy5k4gpti",
+          "expectation": {
+            "id": "cmebyc9320003vjquy5k4gpti",
+            "code": "1CO.3",
+            "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension interprétative de messages oraux simples provenant de diverses sources, en faisant preuve d'ouverture et de respect",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Utiliser un système d'activités stratégiques pour accéder à une compréhension interprétative de messages oraux simples provenant de diverses sources, en faisant preuve d'ouverture et de respect",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.342Z",
+            "updatedAt": "2025-08-14T23:06:27.137Z",
+            "title": "Interpretive Comprehension",
+            "titleFr": "Compréhension interprétative"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7j000jvjh81z9neuhg",
+          "expectationId": "cmebyc9330004vjqu428u4ml7",
+          "expectation": {
+            "id": "cmebyc9330004vjqu428u4ml7",
+            "code": "1CO.4",
+            "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension analytico-critique de messages oraux simples provenant de diverses sources, en faisant preuve d'ouverture et de respect",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Utiliser un système d'activités stratégiques pour accéder à une compréhension analytico-critique de messages oraux simples provenant de diverses sources, en faisant preuve d'ouverture et de respect",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.343Z",
+            "updatedAt": "2025-08-14T23:06:27.138Z",
+            "title": "Critical Comprehension",
+            "titleFr": "Compréhension critique"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7j000jvjh81z9neuhg",
+          "expectationId": "cmebyc9340005vjqugcrmr8wj",
+          "expectation": {
+            "id": "cmebyc9340005vjqugcrmr8wj",
+            "code": "1CO.5",
+            "description": "S'exprimer dans diverses situations de communication orale simples, spontanées ou préparées, en faisant preuve de respect envers son public",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "S'exprimer dans diverses situations de communication orale simples, spontanées ou préparées, en faisant preuve de respect envers son public",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.344Z",
+            "updatedAt": "2025-08-14T23:06:27.139Z",
+            "title": "Oral Expression",
+            "titleFr": "Expression orale"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7j000jvjh81z9neuhg",
+          "expectationId": "cmebyc9350006vjquoua30p81",
+          "expectation": {
+            "id": "cmebyc9350006vjquoua30p81",
+            "code": "1CO.6",
+            "description": "Réfléchir à ses compétences en tant que locuteur et interlocuteur",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Réfléchir à ses compétences en tant que locuteur et interlocuteur",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.345Z",
+            "updatedAt": "2025-08-14T23:06:27.140Z",
+            "title": "Speaking Reflection",
+            "titleFr": "Réflexion sur la parole"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7j000jvjh81z9neuhg",
+          "expectationId": "cmebyc9350007vjquzoghu8gh",
+          "expectation": {
+            "id": "cmebyc9350007vjquzoghu8gh",
+            "code": "1L.1",
+            "description": "Planifier sa lecture pour répondre à ses besoins d'information et de divertissement",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Planifier sa lecture pour répondre à ses besoins d'information et de divertissement",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.346Z",
+            "updatedAt": "2025-08-14T23:06:27.141Z",
+            "title": "Reading Planning",
+            "titleFr": "Planification de lecture"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7j000jvjh81z9neuhg",
+          "expectationId": "cmebyc9360008vjqukx208f44",
+          "expectation": {
+            "id": "cmebyc9360008vjqukx208f44",
+            "code": "1L.2",
+            "description": "Utiliser un système d'activités stratégiques pour accéder à une compréhension littérale de divers textes simples, y compris des textes numérisés",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Utiliser un système d'activités stratégiques pour accéder à une compréhension littérale de divers textes simples, y compris des textes numérisés",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.347Z",
+            "updatedAt": "2025-08-14T23:06:27.142Z",
+            "title": "Literal Reading",
+            "titleFr": "Lecture littérale"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7j000jvjh81z9neuhg",
+          "expectationId": "cmebyc938000bvjqudr8berrm",
+          "expectation": {
+            "id": "cmebyc938000bvjqudr8berrm",
+            "code": "1L.5",
+            "description": "Réfléchir à ses compétences en tant que lecteur",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Réfléchir à ses compétences en tant que lecteur",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.348Z",
+            "updatedAt": "2025-08-14T23:06:27.145Z",
+            "title": "Reading Reflection",
+            "titleFr": "Réflexion sur la lecture"
+          }
+        },
+        {
+          "unitPlanId": "cmehuts7j000jvjh81z9neuhg",
+          "expectationId": "cmebyc939000evjquedf6damy",
+          "expectation": {
+            "id": "cmebyc939000evjquedf6damy",
+            "code": "1É.3",
+            "description": "Réfléchir à ses compétences en tant que scripteur",
+            "strand": "Français (Immersion)",
+            "substrand": null,
+            "grade": 1,
+            "subject": "Français (Immersion)",
+            "descriptionFr": "Réfléchir à ses compétences en tant que scripteur",
+            "strandFr": "Français (Immersion)",
+            "substrandFr": null,
+            "importId": null,
+            "createdAt": "2025-08-14T22:09:29.349Z",
+            "updatedAt": "2025-08-14T23:07:32.820Z",
+            "title": "Writing Reflection",
+            "titleFr": "Réflexion sur l'écriture"
+          }
+        }
+      ]
+    }
+  ]
+}

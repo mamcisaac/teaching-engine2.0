@@ -67,7 +67,7 @@ export function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingFlowProps
   
   // Track selected teaching subjects
   const [selectedSubjects, setSelectedSubjects] = useState<string[]>([
-    'Français langue première',
+    'Français (Immersion)',
     'Mathématiques',
     'Sciences',
     'Études sociales',
@@ -555,10 +555,10 @@ return;
                 <input
                   type="checkbox"
                   className="w-5 h-5 text-indigo-600 rounded focus:ring-indigo-500"
-                  checked={selectedSubjects.includes('Français langue première')}
-                  onChange={() => toggleSubject('Français langue première')}
+                  checked={selectedSubjects.includes('Français (Immersion)')}
+                  onChange={() => toggleSubject('Français (Immersion)')}
                 />
-                <span className="text-gray-700">Français langue première (French Language Arts)</span>
+                <span className="text-gray-700">Français (Immersion) (French Language Arts)</span>
               </label>
               <label className="flex items-center space-x-3 cursor-pointer">
                 <input

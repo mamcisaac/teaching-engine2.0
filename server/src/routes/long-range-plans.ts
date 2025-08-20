@@ -451,8 +451,6 @@ router.post('/ai-optimized-draft', validate(optimizedDraftSchema), async (req: A
       ...optimizedDraft,
       optimization_info: {
         is_optimized: optimizedDraft.isOptimized,
-        score: optimizedDraft.optimizationScore,
-        certification: optimizedDraft.pedagogicalCertification,
         frameworks_applied: [
           'Understanding by Design (UbD)',
           'ETFO Best Practices', 
@@ -497,27 +495,8 @@ router.post('/:id/optimize', async (req: AuthenticatedRequest, res: Response) =>
     const updatedPlan = await prisma.longRangePlan.update({
       where: { id: planId },
       data: {
-        optimizationScore: optimizedPlan.plan_metadata.optimization_score,
-        pedagogicalCertification: optimizedPlan.plan_metadata.pedagogical_certification,
-        lastOptimized: new Date(),
-        qualityVerificationData: optimizedPlan.quality_verification,
-        researchComplianceScore: optimizedPlan.quality_verification.pedagogical_soundness.ubd_implementation,
-        implementationFeasibility: optimizedPlan.quality_verification.implementation_feasibility.resource_requirements_met ? 1.0 : 0.7,
-        
-        // Store all optimization data  
-        yearlyEssentialQuestions: optimizedPlan.desired_results.yearly_transfer_goals.essential_questions,
-        endOfYearPerformanceTasks: optimizedPlan.desired_results.year_end_performance_tasks,
-        learningProgressions: optimizedPlan.desired_results.learning_progressions,
-        diagnosticAssessments: optimizedPlan.assessment_evidence.diagnostic_assessments,
-        formativeStrategies: optimizedPlan.assessment_evidence.formative_strategies,
-        summativeMilestones: optimizedPlan.assessment_evidence.summative_milestones,
-        yearlyEngagementPlan: optimizedPlan.learning_plan.yearly_engagement_framework,
-        thematicConnections: optimizedPlan.integration_framework.thematic_connections,
-        differentationFramework: optimizedPlan.yearly_differentiation,
-        familyEngagementPlan: optimizedPlan.yearly_differentiation.cultural_responsiveness.family_engagement_plan,
-        monthlyPreparationGuides: optimizedPlan.implementation_package.monthly_preparation_guides,
-        studentSuccessPredictions: optimizedPlan.optimization_insights.predictive_analytics.student_success_predictions,
-        nextYearRecommendations: optimizedPlan.optimization_insights.next_year_preparation
+        // Store simplified optimization data
+        // Note: Complex JSON fields have been removed from schema for Grade 1 simplicity
       }
     });
 
@@ -563,10 +542,8 @@ router.get('/:id/quality-assessment', async (req: AuthenticatedRequest, res: Res
       plan_id: planId,
       quality_assessment: qualityAssessment,
       current_optimization_data: {
-        score: plan.optimizationScore,
-        certification: plan.pedagogicalCertification,
-        last_optimized: plan.lastOptimized,
-        research_compliance: plan.researchComplianceScore
+        has_essential_questions: !!plan.yearlyEssentialQuestions,
+        has_differentiation: !!plan.differentationFramework
       },
       recommendations: {
         should_optimize: qualityAssessment.current_score < 85,
@@ -606,9 +583,7 @@ router.get('/:id/yearly-predictions', async (req: AuthenticatedRequest, res: Res
 
     // Extract predictions from stored optimization data
     const predictions = {
-      student_success_predictions: plan.studentSuccessPredictions || [],
       monthly_focuses: extractMonthlyFocuses(plan),
-      intervention_opportunities: plan.interventionTriggers || [],
       cross_curricular_connections: plan.thematicConnections || [],
       family_engagement_timeline: plan.familyEngagementPlan || [],
       assessment_milestones: plan.summativeMilestones || [],
@@ -623,9 +598,8 @@ router.get('/:id/yearly-predictions', async (req: AuthenticatedRequest, res: Res
       academic_year: plan.academicYear,
       predictions,
       optimization_metadata: {
-        last_updated: plan.lastOptimized,
-        confidence_score: plan.optimizationScore,
-        data_quality: plan.qualityVerificationData ? 'high' : 'medium'
+        last_updated: plan.updatedAt,
+        data_quality: plan.yearlyEssentialQuestions ? 'high' : 'medium'
       }
     });
     return;
@@ -650,31 +624,20 @@ router.get('/optimization-dashboard', async (req: AuthenticatedRequest, res: Res
         subject: true,
         grade: true,
         academicYear: true,
-        optimizationScore: true,
-        pedagogicalCertification: true,
-        lastOptimized: true,
-        researchComplianceScore: true,
+        updatedAt: true,
         _count: { select: { expectations: true, unitPlans: true } }
       },
       orderBy: [
-        { optimizationScore: 'desc' },
-        { lastOptimized: 'desc' }
+        { updatedAt: 'desc' }
       ]
     });
 
     const dashboard = {
       summary: {
         total_plans: plans.length,
-        optimized_plans: plans.filter(p => p.optimizationScore && p.optimizationScore >= 85).length,
-        average_score: plans.filter(p => p.optimizationScore).reduce((sum, p) => sum + (p.optimizationScore || 0), 0) / plans.filter(p => p.optimizationScore).length || 0,
-        needs_optimization: plans.filter(p => !p.optimizationScore || p.optimizationScore < 85).length
-      },
-      certification_breakdown: {
-        exemplary: plans.filter(p => p.pedagogicalCertification === 'exemplary').length,
-        proficient: plans.filter(p => p.pedagogicalCertification === 'proficient').length,
-        acceptable: plans.filter(p => p.pedagogicalCertification === 'acceptable').length,
-        needs_improvement: plans.filter(p => p.pedagogicalCertification === 'needs_improvement').length,
-        unoptimized: plans.filter(p => !p.pedagogicalCertification).length
+        plans_with_descriptions: plans.filter(p => p.description).length,
+        plans_with_indigenous_perspectives: plans.filter(p => p.indigenousPerspectives).length,
+        needs_improvement: plans.filter(p => !p.description).length
       },
       plans: plans.map(plan => ({
         ...plan,
@@ -723,25 +686,26 @@ function extractProfessionalDevelopment(plan: any): string[] {
 }
 
 function getOptimizationStatus(plan: any): string {
-  if (!plan.optimizationScore) return 'unoptimized';
-  if (plan.optimizationScore >= 95) return 'exemplary';
-  if (plan.optimizationScore >= 85) return 'optimized';
-  if (plan.optimizationScore >= 75) return 'needs_improvement';
-  return 'requires_optimization';
+  if (plan.description && plan.goals && plan.assessmentOverview) return 'complete';
+  if (plan.description || plan.goals) return 'partial';
+  return 'incomplete';
 }
 
 function getQuickRecommendations(plan: any): string[] {
   const recommendations: string[] = [];
   
-  if (!plan.optimizationScore) {
-    recommendations.push('Run pedagogical optimization');
-  } else if (plan.optimizationScore < 85) {
-    recommendations.push('Enhance UbD implementation');
-    recommendations.push('Add differentiation strategies');
+  if (!plan.description) {
+    recommendations.push('Add plan description');
+  }
+  if (!plan.goals) {
+    recommendations.push('Add learning goals');
+  }
+  if (!plan.assessmentOverview) {
+    recommendations.push('Add assessment overview');
   }
   
-  if (!plan.lastOptimized || new Date(plan.lastOptimized) < new Date(Date.now() - 90 * 24 * 60 * 60 * 1000)) {
-    recommendations.push('Refresh optimization (90+ days old)');
+  if (!plan.updatedAt || new Date(plan.updatedAt) < new Date(Date.now() - 90 * 24 * 60 * 60 * 1000)) {
+    recommendations.push('Review and update plan (90+ days old)');
   }
   
   return recommendations;

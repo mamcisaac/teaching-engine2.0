@@ -27,7 +27,7 @@ async function implement6DayCycle() {
     
     // Lesson distribution over full year (30 cycles × blocks per cycle)
     const lessonDistribution = {
-      'Français langue première': { 
+      'Français (Immersion)': { 
         blocksPerCycle: 12, 
         totalBlocks: 360, 
         minutesPerBlock: 30,

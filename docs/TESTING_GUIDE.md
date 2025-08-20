@@ -28,7 +28,7 @@ Go to: **http://localhost:5173**
    - Welcome & Introduction to ETFO planning
    - Understanding the 5-level planning workflow
    - **CRITICAL: Subject Selection** - Choose which subjects you teach:
-     - ✅ **Core subjects:** Français langue première, Mathématiques
+     - ✅ **Core subjects:** Français (Immersion), Mathématiques
      - ✅ **Optional:** Sciences, Études sociales, English Language Arts, Arts
      - ⚠️ **Specialist:** Éducation physique, Éducation à la santé (only if you teach these)
    - Feature overview and AI assistance tour

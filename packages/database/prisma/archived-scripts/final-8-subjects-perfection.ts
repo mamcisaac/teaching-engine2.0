@@ -63,7 +63,7 @@ async function final8SubjectsPerfection() {
     console.log('All 8 Subjects:');
     const subjectOrder = [
       'Mathématiques', 
-      'Français langue première', 
+      'Français (Immersion)', 
       'Éducation physique',
       'Sciences de la nature',
       'Sciences humaines',
@@ -202,7 +202,7 @@ async function final8SubjectsPerfection() {
     console.log('\n5. BILINGUAL BALANCE CHECK');
     console.log('-'.repeat(80));
     
-    const frenchTaughtHours = subjectStats['Français langue première']?.hours || 0;
+    const frenchTaughtHours = subjectStats['Français (Immersion)']?.hours || 0;
     const mathHours = subjectStats['Mathématiques']?.hours || 0;
     const scienceHours = subjectStats['Sciences de la nature']?.hours || 0;
     const socialHours = subjectStats['Sciences humaines']?.hours || 0;

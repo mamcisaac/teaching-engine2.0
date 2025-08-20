@@ -42,7 +42,7 @@ async function fixRemainingOverlaps() {
     
     // Define exact non-overlapping timelines for each subject
     const timelines: Record<string, Array<{start: Date, end: Date}>> = {
-      'Français langue première': [
+      'Français (Immersion)': [
         { start: new Date(2025, 8, 4), end: new Date(2025, 8, 26) },
         { start: new Date(2025, 8, 29), end: new Date(2025, 9, 24) },
         { start: new Date(2025, 9, 27), end: new Date(2025, 10, 21) },

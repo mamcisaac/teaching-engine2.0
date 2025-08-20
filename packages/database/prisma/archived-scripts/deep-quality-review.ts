@@ -82,7 +82,7 @@ async function deepQualityReview() {
       console.log(`${subject}: ${hours} total, ${weeklyHours} hrs/week`);
       
       // Validate reasonable hours
-      if (subject === 'Français langue première' && hours < 160) {
+      if (subject === 'Français (Immersion)' && hours < 160) {
         qualityIssues.push(`French hours too low: ${hours}`);
       }
       if (subject === 'Mathématiques' && hours < 160) {

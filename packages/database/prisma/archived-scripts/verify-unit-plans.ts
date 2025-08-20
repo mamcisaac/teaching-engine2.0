@@ -22,7 +22,7 @@ async function verifyUnitPlans() {
     const francaisPlan = await prisma.longRangePlan.findFirst({
       where: {
         userId: emily.id,
-        subject: 'Français langue première',
+        subject: 'Français (Immersion)',
         academicYear: '2024-2025'
       }
     });
@@ -134,7 +134,7 @@ async function verifyUnitPlans() {
     // Get all French expectations
     const allExpectations = await prisma.curriculumExpectation.findMany({
       where: {
-        subject: 'Français langue première',
+        subject: 'Français (Immersion)',
         grade: 1
       },
       orderBy: { code: 'asc' }
@@ -205,7 +205,7 @@ async function verifyUnitPlans() {
       console.log('- Logical progression through the year');
       console.log('- Age-appropriate themes and activities');
       console.log('- Rich differentiation and assessment strategies');
-      console.log('\nEmily has perfect unit plans for Français langue première!');
+      console.log('\nEmily has perfect unit plans for Français (Immersion)!');
     } else {
       console.log('⚠️  ISSUES FOUND:');
       issues.forEach(i => console.log(`  - ${i}`));

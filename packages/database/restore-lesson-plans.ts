@@ -499,7 +499,7 @@ Options:
 
 Examples:
   npx tsx restore-lesson-plans.ts --dry-run
-  npx tsx restore-lesson-plans.ts --subject "Français langue première"
+  npx tsx restore-lesson-plans.ts --subject "Français (Immersion)"
   npx tsx restore-lesson-plans.ts --subject "Mathématiques" --limit 10
 `);
   process.exit(0);

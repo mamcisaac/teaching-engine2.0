@@ -535,7 +535,7 @@ export class PedagogicalOptimizationService extends BaseService {
 
   private async identifyIntegrationOpportunities(parameters: OptimizationParameters): Promise<any[]> {
     const availableSubjects = [
-      'Français langue première',
+      'Français (Immersion)',
       'Mathématiques', 
       'Sciences et technologie',
       'Études sociales',

@@ -42,7 +42,7 @@ async function validateEmilyAccount() {
     console.log(`   ✅ Found ${curriculumExpectations.length} Grade 1 curriculum expectations`);
 
     const frenchExpectations = curriculumExpectations.filter(e => 
-      e.subject === 'Français langue première'
+      e.subject === 'Français (Immersion)'
     );
     const mathExpectations = curriculumExpectations.filter(e => 
       e.subject === 'Mathématiques'

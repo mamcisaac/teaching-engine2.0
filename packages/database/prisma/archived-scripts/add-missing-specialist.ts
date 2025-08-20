@@ -129,7 +129,7 @@ async function addMissingSpecialistLessons() {
   });
 
   const target = {
-    'Français langue première': 63,
+    'Français (Immersion)': 63,
     'Mathématiques': 58,
     'Sciences de la nature': 30,
     'Arts visuels': 22,

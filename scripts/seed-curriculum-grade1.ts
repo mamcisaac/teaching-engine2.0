@@ -51,7 +51,7 @@ async function seedGrade1Curriculum() {
           ...exp,
           descriptionFr: exp.description,
           strandFr: exp.strand,
-          subject: 'Français langue première',
+          subject: 'Français (Immersion)',
           grade: 1,
         }
       });
@@ -77,7 +77,7 @@ async function seedGrade1Curriculum() {
           ...exp,
           descriptionFr: exp.description,
           strandFr: exp.strand,
-          subject: 'Français langue première',
+          subject: 'Français (Immersion)',
           grade: 1,
         }
       });
@@ -101,7 +101,7 @@ async function seedGrade1Curriculum() {
           ...exp,
           descriptionFr: exp.description,
           strandFr: exp.strand,
-          subject: 'Français langue première',
+          subject: 'Français (Immersion)',
           grade: 1,
         }
       });

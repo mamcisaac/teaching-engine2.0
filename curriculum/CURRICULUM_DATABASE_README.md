@@ -13,7 +13,7 @@ This database contains the complete curriculum expectations for Grade 1 in Princ
 ## Subject Coverage
 
 ### French Language Subjects
-- **Français langue première**: 15 expectations
+- **Français (Immersion)**: 15 expectations
   - Communication orale (7)
   - Lecture et visionnement (5)
   - Écriture et représentation (3)
@@ -84,7 +84,7 @@ const allExpectations = curriculum.expectations;
 
 ### Query by Subject
 ```javascript
-const frenchExpectations = curriculum.bySubject['Français langue première'];
+const frenchExpectations = curriculum.bySubject['Français (Immersion)'];
 ```
 
 ### Query by Language

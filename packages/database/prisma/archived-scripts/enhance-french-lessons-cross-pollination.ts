@@ -270,7 +270,7 @@ async function enhanceFrenchLessons() {
           gte: new Date('2025-09-01'),
           lte: new Date('2025-09-30')
         },
-        subject: 'Français langue première'
+        subject: 'Français (Immersion)'
       },
       orderBy: { date: 'asc' }
     });

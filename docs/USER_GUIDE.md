@@ -42,7 +42,7 @@ Teaching Engine 2.0 is your comprehensive digital teaching assistant, designed t
 
 **Minutes 6-15: Subject Selection & Configuration**
 
-- [ ] **Core Subjects** (typically required): Français langue première, Mathématiques
+- [ ] **Core Subjects** (typically required): Français (Immersion), Mathématiques
 - [ ] **Optional Subjects**: Sciences, Études sociales, English Language Arts, Arts
 - [ ] **Specialist Subjects** (only if you teach them): Éducation physique, Éducation à la santé
 - [ ] App automatically loads 68 Grade 1 French Immersion curriculum expectations for PEI
@@ -575,7 +575,7 @@ For planned absences or extended sick leave:
 
 - **Subject Selection Onboarding**: Chose core subjects (Français, Mathématiques) plus Sciences and Arts
 - **Filtered Curriculum Access**: Only sees relevant expectations from 68 Grade 1 standards
-- **Coverage Tracking**: Real-time progress across Français langue première, Mathématiques, Sciences, and Arts
+- **Coverage Tracking**: Real-time progress across Français (Immersion), Mathématiques, Sciences, and Arts
 - **Cultural Integration**: Indigenous and French-Canadian perspectives built into PEI curriculum
 - **Specialist Coordination**: Clear separation between homeroom and specialist subject expectations
 

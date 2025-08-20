@@ -42,7 +42,7 @@ const CONTENT_MAPPINGS = {
       'achievement', 'réussite', 'final', 'juin'
     ]
   },
-  'Français langue première': {
+  'Français (Immersion)': {
     'Bienvenue à l\'école!': [
       'bienvenue', 'welcome', 'école', 'school', 'classroom', 'classe',
       'routine', 'alphabet', 'prénom', 'name', 'règles'
@@ -236,7 +236,7 @@ async function restoreLessonsByContent() {
     // Get all units by subject
     const unitsBySubject: Record<string, any[]> = {};
     const subjects = [
-      'Français langue première',
+      'Français (Immersion)',
       'Mathématiques',
       'Sciences',
       'Sciences humaines',
@@ -262,7 +262,7 @@ async function restoreLessonsByContent() {
     // Map of seed files to subjects - more specific patterns
     const seedMappings = [
       { pattern: /seed-lesson-plans-math/i, subject: 'Mathématiques' },
-      { pattern: /seed-lesson-plans-french|seed-lesson-plans-bienvenue|seed-french-lessons/i, subject: 'Français langue première' },
+      { pattern: /seed-lesson-plans-french|seed-lesson-plans-bienvenue|seed-french-lessons/i, subject: 'Français (Immersion)' },
       { pattern: /seed-lesson-plans-science/i, subject: 'Sciences' },
       { pattern: /seed-lesson-plans-arts/i, subject: 'Arts' },
       { pattern: /seed-health-fps|seed-lesson-plans-health/i, subject: 'Formation personnelle et sociale' }

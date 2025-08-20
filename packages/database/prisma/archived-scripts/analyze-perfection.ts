@@ -24,7 +24,7 @@ async function analyzePerfection() {
 
   console.log('TARGET DISTRIBUTION (from ABSOLUTE_PERFECTION):');
   console.log('================================================');
-  console.log('Français langue première: 63 lessons (32%)');
+  console.log('Français (Immersion): 63 lessons (32%)');
   console.log('Mathématiques: 58 lessons (29%)');
   console.log('Sciences de la nature: 30 lessons (15%)');
   console.log('Arts visuels: 22 lessons (11%)');
@@ -35,7 +35,7 @@ async function analyzePerfection() {
   console.log('REQUIRED ADJUSTMENTS:');
   console.log('=====================');
   const current: Record<string, number> = {
-    'Français langue première': 0,
+    'Français (Immersion)': 0,
     'Mathématiques': 0,
     'Sciences de la nature': 0,
     'Arts visuels': 0,
@@ -49,7 +49,7 @@ async function analyzePerfection() {
   });
 
   const target = {
-    'Français langue première': 63,
+    'Français (Immersion)': 63,
     'Mathématiques': 58,
     'Sciences de la nature': 30,
     'Arts visuels': 22,

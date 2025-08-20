@@ -17,7 +17,7 @@ After thorough analysis, we have identified significant gaps and issues in the c
 ### 1. Do we have ALL expectations? ❌ NO
 
 **What We Have:**
-- ✅ Français langue première: 15 expectations (complete)
+- ✅ Français (Immersion): 15 expectations (complete)
 - ❌ Mathématiques: 3 expectations (need 20-30)
 - ❌ Sciences de la nature: 5 expectations (need 10-15)
 - ✅ Études sociales: 13 expectations (adequate)
@@ -61,7 +61,7 @@ After remediation:
 ### French Immersion Grade 1 Structure
 
 **Taught in French:**
-- Français langue première (French Language Arts)
+- Français (Immersion) (French Language Arts)
 - Mathématiques (Mathematics)
 - Sciences de la nature (Science)
 - Études sociales/Sciences humaines (Social Studies)

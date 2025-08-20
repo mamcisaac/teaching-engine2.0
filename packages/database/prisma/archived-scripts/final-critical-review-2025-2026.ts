@@ -169,7 +169,7 @@ async function finalCriticalReview() {
       console.log(`  Weekly average: ${weeklyAvg} hours`);
       
       // Check appropriateness
-      if (subject === 'Français langue première' && (subjectHours < 160 || subjectHours > 210)) {
+      if (subject === 'Français (Immersion)' && (subjectHours < 160 || subjectHours > 210)) {
         console.log(`  ⚠️ French hours may be outside typical range (4-5 hrs/week)`);
       }
       if (subject === 'Mathématiques' && (subjectHours < 160 || subjectHours > 210)) {
