@@ -114,13 +114,14 @@ A JSON array of ${totalLessons} lesson outlines, each with:
   "lessonNumber": 1-20,
   "title": "Simple French title",
   "oneGoal": "The ONE thing students will learn",
-  "keyVocabulary": ["3-5 words max"],
+  "keyVocabulary": ["3 words MAXIMUM - spread curriculum terms across lessons"],
   "decisionPoints": [
     "How are students feeling today?",
     "What support level needed?",
-    "Time flexibility needed?"
+    "Learning style adjustment needed?"
   ],
-  "progression": "How this builds on previous lesson"
+  "progression": "Explicitly: Builds on Lesson X by...",
+  "realWorldConnection": "How this applies in daily life"
 }
 
 Remember: This is about supporting real teachers with real 6-year-olds learning French for the first time.
@@ -151,9 +152,11 @@ For each lesson provide:
 - Materials needed (keep minimal)
 
 VOCABULARY GUIDANCE:
-- Use curriculum terms for alignment
+- MAXIMUM 3 new words per lesson (even if curriculum has more)
+- Use curriculum terms for alignment but spread across lessons
 - Teach using simplified language
 - Example: "reconnaître" → teach as "voir"
+- Include diverse family structures when relevant
 
 VISUAL SUPPORTS (MANDATORY):
 - Every activity needs visual/gestural support
@@ -168,9 +171,11 @@ AVOID:
 
 INCLUDE:
 - Explicit connection to previous lesson
+- Real-world applications (How do people use this daily?)
 - Teacher thinking support
 - Flexibility for real classrooms
 - Focus on relationship over compliance
+- Learning style considerations in decision points
 
 Generate lessons that a substitute could use with 30 minutes notice.
 `;
@@ -207,15 +212,18 @@ Provide specific feedback for improvement.
 Remember: Simple and useful beats sophisticated and overwhelming.
 `;
 
-  // Save prompts for agents
-  await fs.writeFile('design-agent-prompt.txt', designAgentPrompt);
-  await fs.writeFile('teaching-agent-prompt.txt', teachingAgentPrompt);
-  await fs.writeFile('critic-agent-prompt.txt', criticAgentPrompt);
+  // Save prompts for agents in pipeline-docs directory
+  const pipelineDocsDir = path.join(__dirname, '..', 'pipeline-docs');
+  await fs.mkdir(pipelineDocsDir, { recursive: true });
   
-  console.log('\n✅ Agent prompts created:');
-  console.log('   - design-agent-prompt.txt');
-  console.log('   - teaching-agent-prompt.txt');
-  console.log('   - critic-agent-prompt.txt');
+  await fs.writeFile(path.join(pipelineDocsDir, 'design-agent-prompt.txt'), designAgentPrompt);
+  await fs.writeFile(path.join(pipelineDocsDir, 'teaching-agent-prompt.txt'), teachingAgentPrompt);
+  await fs.writeFile(path.join(pipelineDocsDir, 'critic-agent-prompt.txt'), criticAgentPrompt);
+  
+  console.log('\n✅ Agent prompts created in pipeline-docs/:');
+  console.log('   - pipeline-docs/design-agent-prompt.txt');
+  console.log('   - pipeline-docs/teaching-agent-prompt.txt');
+  console.log('   - pipeline-docs/critic-agent-prompt.txt');
   
   console.log('\n📋 Next Steps:');
   console.log('1. Run Design Agent to create progression map');

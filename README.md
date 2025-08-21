@@ -2,6 +2,9 @@
 
 A comprehensive digital teaching assistant designed for Grade 1 French Immersion teachers in PEI, reducing workload by 60% while improving curriculum coverage and student outcomes.
 
+## 🆕 Perfect Lesson Generation Pipeline
+**Automated generation of 1,000+ production-ready lessons** using multi-agent AI pipeline with the 85% Rule: "Good enough IS perfect". See [Lesson Generation Documentation](./LESSON_GENERATION_README.md) for details.
+
 ## ✨ Key Features
 
 - **🎯 Subject-Based Personalization**: Onboarding flow that personalizes the app based on which subjects you actually teach

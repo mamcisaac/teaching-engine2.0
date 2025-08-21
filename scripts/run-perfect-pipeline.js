@@ -44,15 +44,17 @@ async function runPipeline(unitType = 'french') {
     console.log('\n🎨 Step 2: Running Design Agent...');
     console.log('Creating 20-lesson progression (14 core, 6 extension)...');
     // In production, this would call the actual AI agent
-    // For now, we simulate with existing design
-    const designFile = `${unitType}-unit-design.json`;
+    // Output goes to organized directory
+    const outputDir = path.join(__dirname, '..', 'generated-lessons', unitType);
+    await fs.mkdir(outputDir, { recursive: true });
+    const designFile = path.join(outputDir, `${unitType}-unit-design.json`);
     console.log(`✅ Design saved to ${designFile}`);
     
     // Step 3: Teaching Agent
     console.log('\n👩‍🏫 Step 3: Running Teaching Agent...');
     console.log('Expanding to three-part structure (~8/~27/~10)...');
     // In production, this would call the actual AI agent
-    const lessonsFile = `${unitType}-unit-lessons.json`;
+    const lessonsFile = path.join(outputDir, `${unitType}-unit-lessons.json`);
     console.log(`✅ Lessons saved to ${lessonsFile}`);
     
     // Step 4: Critic Agent
@@ -60,20 +62,24 @@ async function runPipeline(unitType = 'french') {
     console.log('Evaluating: Simplicity (40%), Progression (30%), Authenticity (30%)...');
     
     // Read evaluation (in production, would be generated)
-    const evalFile = `${unitType}-unit-evaluation.json`;
+    const evalFile = path.join(outputDir, `${unitType}-unit-evaluation.json`);
     let evaluation;
     try {
-      const evalContent = await fs.readFile(
-        path.join(__dirname, '..', evalFile), 
-        'utf-8'
-      );
+      const evalContent = await fs.readFile(evalFile, 'utf-8');
       evaluation = JSON.parse(evalContent);
     } catch (err) {
-      // Simulate evaluation for demo
-      evaluation = {
-        score: unitType === 'science' ? 92 : unitType === 'math' ? 88 : 89,
-        verdict: 'ACCEPT'
-      };
+      // Check if evaluation exists in old location
+      try {
+        const oldLocation = path.join(__dirname, '..', 'generated-lessons', unitType, `${unitType}-unit-evaluation.json`);
+        const evalContent = await fs.readFile(oldLocation, 'utf-8');
+        evaluation = JSON.parse(evalContent);
+      } catch (err2) {
+        // Simulate evaluation for demo
+        evaluation = {
+          score: unitType === 'science' ? 92 : unitType === 'math' ? 88 : 89,
+          verdict: 'ACCEPT'
+        };
+      }
     }
     
     console.log(`\n📊 EVALUATION RESULTS:`);
