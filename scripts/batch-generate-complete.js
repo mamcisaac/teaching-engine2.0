@@ -230,9 +230,8 @@ async function batchGenerateAll() {
   console.log('   Total time: ~4 hours for all units');
   console.log('='.repeat(60));
   
-  // For demonstration, we'll only show structure
-  // In production, remove this limitation
-  const DEMO_MODE = true;
+  // Production mode enabled - generate all units
+  const DEMO_MODE = false;
   if (DEMO_MODE) {
     console.log('\n📋 DEMO MODE: Showing structure only');
     console.log('   To actually generate, set DEMO_MODE = false');
