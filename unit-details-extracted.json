@@ -1,0 +1,1383 @@
+{
+  "timestamp": "2025-08-21T13:23:45.958Z",
+  "totalUnits": 50,
+  "totalLessons": 977,
+  "subjectTotals": {
+    "Arts visuels": {
+      "units": 10,
+      "lessons": 195
+    },
+    "Formation personnelle et sociale": {
+      "units": 5,
+      "lessons": 100
+    },
+    "Français (Immersion)": {
+      "units": 10,
+      "lessons": 195
+    },
+    "Mathématiques": {
+      "units": 10,
+      "lessons": 195
+    },
+    "Sciences de la nature": {
+      "units": 10,
+      "lessons": 195
+    },
+    "Sciences humaines": {
+      "units": 5,
+      "lessons": 97
+    }
+  },
+  "units": [
+    {
+      "id": "cmeiu1ygt001pvjnij7flz2l5",
+      "title": "Premiers pas artistiques",
+      "subject": "Arts visuels",
+      "lessonCount": 20,
+      "coreCount": 14,
+      "extensionCount": 6,
+      "startDate": "2025-09-03T00:00:00.000Z",
+      "endDate": "2025-09-30T00:00:00.000Z",
+      "estimatedHours": 15,
+      "bigIdeas": "Explorer Arts visuels ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Arts visuels?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "AV1",
+          "description": "Reconnaître la valeur de son environnement visuel"
+        },
+        {
+          "code": "AV2",
+          "description": "Utiliser la création artistique afin de communiquer des idées ou des sentiments"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1ygu001rvjnih636t1rt",
+      "title": "L'aventure des lignes et formes",
+      "subject": "Arts visuels",
+      "lessonCount": 20,
+      "coreCount": 14,
+      "extensionCount": 6,
+      "startDate": "2025-10-01T00:00:00.000Z",
+      "endDate": "2025-10-28T00:00:00.000Z",
+      "estimatedHours": 15,
+      "bigIdeas": "Explorer Arts visuels ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Arts visuels?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "AV1",
+          "description": "Reconnaître la valeur de son environnement visuel"
+        },
+        {
+          "code": "AV2",
+          "description": "Utiliser la création artistique afin de communiquer des idées ou des sentiments"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1ygv001tvjni7oifjka1",
+      "title": "La magie des couleurs",
+      "subject": "Arts visuels",
+      "lessonCount": 20,
+      "coreCount": 14,
+      "extensionCount": 6,
+      "startDate": "2025-10-29T00:00:00.000Z",
+      "endDate": "2025-11-25T01:00:00.000Z",
+      "estimatedHours": 15,
+      "bigIdeas": "Explorer Arts visuels ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Arts visuels?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "AV1",
+          "description": "Reconnaître la valeur de son environnement visuel"
+        },
+        {
+          "code": "AV2",
+          "description": "Utiliser la création artistique afin de communiquer des idées ou des sentiments"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1ygw001vvjniijuhtu2e",
+      "title": "Arts des fêtes hivernales",
+      "subject": "Arts visuels",
+      "lessonCount": 20,
+      "coreCount": 14,
+      "extensionCount": 6,
+      "startDate": "2025-11-26T01:00:00.000Z",
+      "endDate": "2026-01-02T01:00:00.000Z",
+      "estimatedHours": 15,
+      "bigIdeas": "Explorer Arts visuels ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Arts visuels?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "AV1",
+          "description": "Reconnaître la valeur de son environnement visuel"
+        },
+        {
+          "code": "AV2",
+          "description": "Utiliser la création artistique afin de communiquer des idées ou des sentiments"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1ygw001xvjnihbthktti",
+      "title": "Textures et matériaux",
+      "subject": "Arts visuels",
+      "lessonCount": 20,
+      "coreCount": 14,
+      "extensionCount": 6,
+      "startDate": "2026-01-03T01:00:00.000Z",
+      "endDate": "2026-01-30T01:00:00.000Z",
+      "estimatedHours": 15,
+      "bigIdeas": "Explorer Arts visuels ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Arts visuels?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "AV1",
+          "description": "Reconnaître la valeur de son environnement visuel"
+        },
+        {
+          "code": "AV2",
+          "description": "Utiliser la création artistique afin de communiquer des idées ou des sentiments"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1ygx001zvjnib0denycs",
+      "title": "Impression et motifs",
+      "subject": "Arts visuels",
+      "lessonCount": 19,
+      "coreCount": 13,
+      "extensionCount": 6,
+      "startDate": "2026-01-31T01:00:00.000Z",
+      "endDate": "2026-02-26T01:00:00.000Z",
+      "estimatedHours": 14.25,
+      "bigIdeas": "Explorer Arts visuels ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Arts visuels?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "AV1",
+          "description": "Reconnaître la valeur de son environnement visuel"
+        },
+        {
+          "code": "AV2",
+          "description": "Utiliser la création artistique afin de communiquer des idées ou des sentiments"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1ygy0021vjniv0oapabm",
+      "title": "Exploration 3D et sculpture",
+      "subject": "Arts visuels",
+      "lessonCount": 19,
+      "coreCount": 13,
+      "extensionCount": 6,
+      "startDate": "2026-02-27T01:00:00.000Z",
+      "endDate": "2026-03-31T00:00:00.000Z",
+      "estimatedHours": 14.25,
+      "bigIdeas": "Explorer Arts visuels ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Arts visuels?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "AV1",
+          "description": "Reconnaître la valeur de son environnement visuel"
+        },
+        {
+          "code": "AV2",
+          "description": "Utiliser la création artistique afin de communiquer des idées ou des sentiments"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1ygy0023vjniglrtrpwa",
+      "title": "Art environnemental printanier",
+      "subject": "Arts visuels",
+      "lessonCount": 19,
+      "coreCount": 13,
+      "extensionCount": 6,
+      "startDate": "2026-04-01T00:00:00.000Z",
+      "endDate": "2026-04-29T00:00:00.000Z",
+      "estimatedHours": 14.25,
+      "bigIdeas": "Explorer Arts visuels ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Arts visuels?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "AV1",
+          "description": "Reconnaître la valeur de son environnement visuel"
+        },
+        {
+          "code": "AV2",
+          "description": "Utiliser la création artistique afin de communiquer des idées ou des sentiments"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1ygz0025vjnijl3ivm1c",
+      "title": "Techniques artistiques avancées",
+      "subject": "Arts visuels",
+      "lessonCount": 19,
+      "coreCount": 13,
+      "extensionCount": 6,
+      "startDate": "2026-04-30T00:00:00.000Z",
+      "endDate": "2026-05-26T00:00:00.000Z",
+      "estimatedHours": 14.25,
+      "bigIdeas": "Explorer Arts visuels ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Arts visuels?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "AV1",
+          "description": "Reconnaître la valeur de son environnement visuel"
+        },
+        {
+          "code": "AV2",
+          "description": "Utiliser la création artistique afin de communiquer des idées ou des sentiments"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1yh00027vjni8x0itiog",
+      "title": "Notre galerie d'art française",
+      "subject": "Arts visuels",
+      "lessonCount": 19,
+      "coreCount": 13,
+      "extensionCount": 6,
+      "startDate": "2026-05-27T00:00:00.000Z",
+      "endDate": "2026-06-20T00:00:00.000Z",
+      "estimatedHours": 14.25,
+      "bigIdeas": "Explorer Arts visuels ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Arts visuels?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "AV1",
+          "description": "Reconnaître la valeur de son environnement visuel"
+        },
+        {
+          "code": "AV2",
+          "description": "Utiliser la création artistique afin de communiquer des idées ou des sentiments"
+        }
+      ]
+    },
+    {
+      "id": "cmej2ruqu0001vjxq7n9zbh35",
+      "title": "Mon corps et ma sécurité",
+      "subject": "Formation personnelle et sociale",
+      "lessonCount": 20,
+      "coreCount": 14,
+      "extensionCount": 6,
+      "startDate": "2025-09-12T00:00:00.000Z",
+      "endDate": "2025-10-15T00:00:00.000Z",
+      "estimatedHours": 15,
+      "bigIdeas": "Explorer Formation personnelle et sociale ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Formation personnelle et sociale?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "FPS1",
+          "description": "Démontrer sa compréhension de pratiques favorisant une bonne santé personnelle"
+        },
+        {
+          "code": "FPS2",
+          "description": "Démontrer sa compréhension de pratiques sécuritaires et responsables"
+        }
+      ]
+    },
+    {
+      "id": "cmej2ruqw0003vjxqya3ah7tj",
+      "title": "Mes émotions et sentiments",
+      "subject": "Formation personnelle et sociale",
+      "lessonCount": 20,
+      "coreCount": 14,
+      "extensionCount": 6,
+      "startDate": "2025-11-06T01:00:00.000Z",
+      "endDate": "2025-12-04T01:00:00.000Z",
+      "estimatedHours": 15,
+      "bigIdeas": "Explorer Formation personnelle et sociale ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Formation personnelle et sociale?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "FPS1",
+          "description": "Démontrer sa compréhension de pratiques favorisant une bonne santé personnelle"
+        },
+        {
+          "code": "FPS2",
+          "description": "Démontrer sa compréhension de pratiques sécuritaires et responsables"
+        }
+      ]
+    },
+    {
+      "id": "cmej2ruqx0005vjxqjk8k73mx",
+      "title": "Amitiés et relations positives",
+      "subject": "Formation personnelle et sociale",
+      "lessonCount": 20,
+      "coreCount": 14,
+      "extensionCount": 6,
+      "startDate": "2026-01-09T01:00:00.000Z",
+      "endDate": "2026-02-05T01:00:00.000Z",
+      "estimatedHours": 15,
+      "bigIdeas": "Explorer Formation personnelle et sociale ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Formation personnelle et sociale?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "FPS1",
+          "description": "Démontrer sa compréhension de pratiques favorisant une bonne santé personnelle"
+        },
+        {
+          "code": "FPS2",
+          "description": "Démontrer sa compréhension de pratiques sécuritaires et responsables"
+        }
+      ]
+    },
+    {
+      "id": "cmej2ruqy0007vjxqewy3numi",
+      "title": "Nutrition et mode de vie sain",
+      "subject": "Formation personnelle et sociale",
+      "lessonCount": 20,
+      "coreCount": 14,
+      "extensionCount": 6,
+      "startDate": "2026-02-28T01:00:00.000Z",
+      "endDate": "2026-04-01T00:00:00.000Z",
+      "estimatedHours": 15,
+      "bigIdeas": "Explorer Formation personnelle et sociale ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Formation personnelle et sociale?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "FPS1",
+          "description": "Démontrer sa compréhension de pratiques favorisant une bonne santé personnelle"
+        },
+        {
+          "code": "FPS2",
+          "description": "Démontrer sa compréhension de pratiques sécuritaires et responsables"
+        }
+      ]
+    },
+    {
+      "id": "cmej2ruqy0009vjxqs86ss1te",
+      "title": "Grandir, changer et célébrer ensemble",
+      "subject": "Formation personnelle et sociale",
+      "lessonCount": 20,
+      "coreCount": 14,
+      "extensionCount": 6,
+      "startDate": "2026-04-25T00:00:00.000Z",
+      "endDate": "2026-05-20T00:00:00.000Z",
+      "estimatedHours": 15,
+      "bigIdeas": "Explorer Formation personnelle et sociale ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Formation personnelle et sociale?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "FPS1",
+          "description": "Démontrer sa compréhension de pratiques favorisant une bonne santé personnelle"
+        },
+        {
+          "code": "FPS2",
+          "description": "Démontrer sa compréhension de pratiques sécuritaires et responsables"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1yge000lvjni4jaead1l",
+      "title": "Bienvenue en français",
+      "subject": "Français (Immersion)",
+      "lessonCount": 20,
+      "coreCount": 14,
+      "extensionCount": 6,
+      "startDate": "2025-09-03T00:00:00.000Z",
+      "endDate": "2025-09-30T00:00:00.000Z",
+      "estimatedHours": 15,
+      "bigIdeas": "Explorer Français (Immersion) ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Français (Immersion)?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1CO.0",
+          "description": "Différencier à l'oral les éléments reliés à la conscience phonologique"
+        },
+        {
+          "code": "1CO.1",
+          "description": "Gérer son écoute pour répondre à ses besoins d'information et de divertissement"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1ygf000nvjnivcadbd1e",
+      "title": "Histoires d'automne",
+      "subject": "Français (Immersion)",
+      "lessonCount": 20,
+      "coreCount": 14,
+      "extensionCount": 6,
+      "startDate": "2025-10-01T00:00:00.000Z",
+      "endDate": "2025-10-28T00:00:00.000Z",
+      "estimatedHours": 15,
+      "bigIdeas": "Explorer Français (Immersion) ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Français (Immersion)?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1CO.0",
+          "description": "Différencier à l'oral les éléments reliés à la conscience phonologique"
+        },
+        {
+          "code": "1CO.1",
+          "description": "Gérer son écoute pour répondre à ses besoins d'information et de divertissement"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1ygg000pvjni7hvke0b5",
+      "title": "Ma famille française",
+      "subject": "Français (Immersion)",
+      "lessonCount": 20,
+      "coreCount": 14,
+      "extensionCount": 6,
+      "startDate": "2025-10-29T00:00:00.000Z",
+      "endDate": "2025-11-25T01:00:00.000Z",
+      "estimatedHours": 15,
+      "bigIdeas": "Explorer Français (Immersion) ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Français (Immersion)?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1CO.0",
+          "description": "Différencier à l'oral les éléments reliés à la conscience phonologique"
+        },
+        {
+          "code": "1CO.1",
+          "description": "Gérer son écoute pour répondre à ses besoins d'information et de divertissement"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1ygh000rvjni0jyp40g4",
+      "title": "Célébrations d'hiver",
+      "subject": "Français (Immersion)",
+      "lessonCount": 20,
+      "coreCount": 14,
+      "extensionCount": 6,
+      "startDate": "2025-11-26T01:00:00.000Z",
+      "endDate": "2026-01-02T01:00:00.000Z",
+      "estimatedHours": 15,
+      "bigIdeas": "Explorer Français (Immersion) ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Français (Immersion)?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1CO.0",
+          "description": "Différencier à l'oral les éléments reliés à la conscience phonologique"
+        },
+        {
+          "code": "1CO.1",
+          "description": "Gérer son écoute pour répondre à ses besoins d'information et de divertissement"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1ygh000tvjnia93whmy2",
+      "title": "Poésie et rythmes",
+      "subject": "Français (Immersion)",
+      "lessonCount": 20,
+      "coreCount": 14,
+      "extensionCount": 6,
+      "startDate": "2026-01-03T01:00:00.000Z",
+      "endDate": "2026-01-30T01:00:00.000Z",
+      "estimatedHours": 15,
+      "bigIdeas": "Explorer Français (Immersion) ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Français (Immersion)?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1CO.0",
+          "description": "Différencier à l'oral les éléments reliés à la conscience phonologique"
+        },
+        {
+          "code": "1CO.1",
+          "description": "Gérer son écoute pour répondre à ses besoins d'information et de divertissement"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1ygi000vvjniaqmize6z",
+      "title": "Jeunes auteurs créatifs",
+      "subject": "Français (Immersion)",
+      "lessonCount": 19,
+      "coreCount": 13,
+      "extensionCount": 6,
+      "startDate": "2026-01-31T01:00:00.000Z",
+      "endDate": "2026-02-26T01:00:00.000Z",
+      "estimatedHours": 14.25,
+      "bigIdeas": "Explorer Français (Immersion) ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Français (Immersion)?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1CO.0",
+          "description": "Différencier à l'oral les éléments reliés à la conscience phonologique"
+        },
+        {
+          "code": "1CO.1",
+          "description": "Gérer son écoute pour répondre à ses besoins d'information et de divertissement"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1ygj000xvjnicaylsslt",
+      "title": "Exploration de textes",
+      "subject": "Français (Immersion)",
+      "lessonCount": 19,
+      "coreCount": 13,
+      "extensionCount": 6,
+      "startDate": "2026-02-27T01:00:00.000Z",
+      "endDate": "2026-03-31T00:00:00.000Z",
+      "estimatedHours": 14.25,
+      "bigIdeas": "Explorer Français (Immersion) ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Français (Immersion)?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1CO.0",
+          "description": "Différencier à l'oral les éléments reliés à la conscience phonologique"
+        },
+        {
+          "code": "1CO.1",
+          "description": "Gérer son écoute pour répondre à ses besoins d'information et de divertissement"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1ygk000zvjni3rs6vw3i",
+      "title": "Communication créative",
+      "subject": "Français (Immersion)",
+      "lessonCount": 19,
+      "coreCount": 13,
+      "extensionCount": 6,
+      "startDate": "2026-04-01T00:00:00.000Z",
+      "endDate": "2026-04-29T00:00:00.000Z",
+      "estimatedHours": 14.25,
+      "bigIdeas": "Explorer Français (Immersion) ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Français (Immersion)?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1CO.0",
+          "description": "Différencier à l'oral les éléments reliés à la conscience phonologique"
+        },
+        {
+          "code": "1CO.1",
+          "description": "Gérer son écoute pour répondre à ses besoins d'information et de divertissement"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1ygk0011vjni2jzj8jx8",
+      "title": "Explorateurs de mots",
+      "subject": "Français (Immersion)",
+      "lessonCount": 19,
+      "coreCount": 13,
+      "extensionCount": 6,
+      "startDate": "2026-04-30T00:00:00.000Z",
+      "endDate": "2026-05-26T00:00:00.000Z",
+      "estimatedHours": 14.25,
+      "bigIdeas": "Explorer Français (Immersion) ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Français (Immersion)?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1CO.0",
+          "description": "Différencier à l'oral les éléments reliés à la conscience phonologique"
+        },
+        {
+          "code": "1CO.1",
+          "description": "Gérer son écoute pour répondre à ses besoins d'information et de divertissement"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1ygl0013vjnibxwwaoz2",
+      "title": "Notre année française",
+      "subject": "Français (Immersion)",
+      "lessonCount": 19,
+      "coreCount": 13,
+      "extensionCount": 6,
+      "startDate": "2026-05-27T00:00:00.000Z",
+      "endDate": "2026-06-20T00:00:00.000Z",
+      "estimatedHours": 14.25,
+      "bigIdeas": "Explorer Français (Immersion) ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Français (Immersion)?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1CO.0",
+          "description": "Différencier à l'oral les éléments reliés à la conscience phonologique"
+        },
+        {
+          "code": "1CO.1",
+          "description": "Gérer son écoute pour répondre à ses besoins d'information et de divertissement"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1yg40001vjnis7mliklf",
+      "title": "Fondations des nombres 0-10",
+      "subject": "Mathématiques",
+      "lessonCount": 20,
+      "coreCount": 14,
+      "extensionCount": 6,
+      "startDate": "2025-09-03T00:00:00.000Z",
+      "endDate": "2025-09-30T00:00:00.000Z",
+      "estimatedHours": 15,
+      "bigIdeas": "Explorer Mathématiques ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Mathématiques?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1.N1",
+          "description": "Énoncer la suite des nombres de 0 à 100 en comptant un par un et par ordre croissant et décroissant, entre deux nombres donnés"
+        },
+        {
+          "code": "1.N2",
+          "description": "Reconnaître du premier coup d'œil des arrangements familiers de 1 à 10 objets (ou points) et les nommer"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1yg60003vjnimkwr0olw",
+      "title": "Régularités et relations",
+      "subject": "Mathématiques",
+      "lessonCount": 20,
+      "coreCount": 14,
+      "extensionCount": 6,
+      "startDate": "2025-10-01T00:00:00.000Z",
+      "endDate": "2025-10-28T00:00:00.000Z",
+      "estimatedHours": 15,
+      "bigIdeas": "Explorer Mathématiques ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Mathématiques?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1.N1",
+          "description": "Énoncer la suite des nombres de 0 à 100 en comptant un par un et par ordre croissant et décroissant, entre deux nombres donnés"
+        },
+        {
+          "code": "1.N2",
+          "description": "Reconnaître du premier coup d'œil des arrangements familiers de 1 à 10 objets (ou points) et les nommer"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1yg70005vjniiuraq9ss",
+      "title": "Addition jusqu'à 10",
+      "subject": "Mathématiques",
+      "lessonCount": 20,
+      "coreCount": 14,
+      "extensionCount": 6,
+      "startDate": "2025-10-29T00:00:00.000Z",
+      "endDate": "2025-11-25T01:00:00.000Z",
+      "estimatedHours": 15,
+      "bigIdeas": "Explorer Mathématiques ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Mathématiques?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1.N1",
+          "description": "Énoncer la suite des nombres de 0 à 100 en comptant un par un et par ordre croissant et décroissant, entre deux nombres donnés"
+        },
+        {
+          "code": "1.N2",
+          "description": "Reconnaître du premier coup d'œil des arrangements familiers de 1 à 10 objets (ou points) et les nommer"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1yg80007vjnibrhtznsv",
+      "title": "Formes 2D et solides 3D",
+      "subject": "Mathématiques",
+      "lessonCount": 20,
+      "coreCount": 14,
+      "extensionCount": 6,
+      "startDate": "2025-11-26T01:00:00.000Z",
+      "endDate": "2026-01-02T01:00:00.000Z",
+      "estimatedHours": 15,
+      "bigIdeas": "Explorer Mathématiques ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Mathématiques?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1.N1",
+          "description": "Énoncer la suite des nombres de 0 à 100 en comptant un par un et par ordre croissant et décroissant, entre deux nombres donnés"
+        },
+        {
+          "code": "1.N2",
+          "description": "Reconnaître du premier coup d'œil des arrangements familiers de 1 à 10 objets (ou points) et les nommer"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1yg90009vjnih43c73e8",
+      "title": "Soustraction et relations inverses",
+      "subject": "Mathématiques",
+      "lessonCount": 20,
+      "coreCount": 14,
+      "extensionCount": 6,
+      "startDate": "2026-01-03T01:00:00.000Z",
+      "endDate": "2026-01-30T01:00:00.000Z",
+      "estimatedHours": 15,
+      "bigIdeas": "Explorer Mathématiques ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Mathématiques?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1.N1",
+          "description": "Énoncer la suite des nombres de 0 à 100 en comptant un par un et par ordre croissant et décroissant, entre deux nombres donnés"
+        },
+        {
+          "code": "1.N2",
+          "description": "Reconnaître du premier coup d'œil des arrangements familiers de 1 à 10 objets (ou points) et les nommer"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1yga000bvjni524qixcb",
+      "title": "Nombres 11-20 et base dix",
+      "subject": "Mathématiques",
+      "lessonCount": 19,
+      "coreCount": 13,
+      "extensionCount": 6,
+      "startDate": "2026-01-31T01:00:00.000Z",
+      "endDate": "2026-02-26T01:00:00.000Z",
+      "estimatedHours": 14.25,
+      "bigIdeas": "Explorer Mathématiques ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Mathématiques?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1.N1",
+          "description": "Énoncer la suite des nombres de 0 à 100 en comptant un par un et par ordre croissant et décroissant, entre deux nombres donnés"
+        },
+        {
+          "code": "1.N2",
+          "description": "Reconnaître du premier coup d'œil des arrangements familiers de 1 à 10 objets (ou points) et les nommer"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1yga000dvjnizsme3vt2",
+      "title": "Mesure non-standard",
+      "subject": "Mathématiques",
+      "lessonCount": 19,
+      "coreCount": 13,
+      "extensionCount": 6,
+      "startDate": "2026-02-27T01:00:00.000Z",
+      "endDate": "2026-03-31T00:00:00.000Z",
+      "estimatedHours": 14.25,
+      "bigIdeas": "Explorer Mathématiques ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Mathématiques?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1.N1",
+          "description": "Énoncer la suite des nombres de 0 à 100 en comptant un par un et par ordre croissant et décroissant, entre deux nombres donnés"
+        },
+        {
+          "code": "1.N2",
+          "description": "Reconnaître du premier coup d'œil des arrangements familiers de 1 à 10 objets (ou points) et les nommer"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1ygb000fvjnidw0rkhnw",
+      "title": "Comparaison et ordonnancement",
+      "subject": "Mathématiques",
+      "lessonCount": 19,
+      "coreCount": 13,
+      "extensionCount": 6,
+      "startDate": "2026-04-01T00:00:00.000Z",
+      "endDate": "2026-04-29T00:00:00.000Z",
+      "estimatedHours": 14.25,
+      "bigIdeas": "Explorer Mathématiques ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Mathématiques?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1.N1",
+          "description": "Énoncer la suite des nombres de 0 à 100 en comptant un par un et par ordre croissant et décroissant, entre deux nombres donnés"
+        },
+        {
+          "code": "1.N2",
+          "description": "Reconnaître du premier coup d'œil des arrangements familiers de 1 à 10 objets (ou points) et les nommer"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1ygc000hvjni0chfpmdo",
+      "title": "Stratégies de calcul mental",
+      "subject": "Mathématiques",
+      "lessonCount": 19,
+      "coreCount": 13,
+      "extensionCount": 6,
+      "startDate": "2026-04-30T00:00:00.000Z",
+      "endDate": "2026-05-26T00:00:00.000Z",
+      "estimatedHours": 14.25,
+      "bigIdeas": "Explorer Mathématiques ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Mathématiques?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1.N1",
+          "description": "Énoncer la suite des nombres de 0 à 100 en comptant un par un et par ordre croissant et décroissant, entre deux nombres donnés"
+        },
+        {
+          "code": "1.N2",
+          "description": "Reconnaître du premier coup d'œil des arrangements familiers de 1 à 10 objets (ou points) et les nommer"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1ygd000jvjniikqm7nc3",
+      "title": "Égalité et célébration mathématique",
+      "subject": "Mathématiques",
+      "lessonCount": 19,
+      "coreCount": 13,
+      "extensionCount": 6,
+      "startDate": "2026-05-27T00:00:00.000Z",
+      "endDate": "2026-06-20T00:00:00.000Z",
+      "estimatedHours": 14.25,
+      "bigIdeas": "Explorer Mathématiques ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Mathématiques?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1.N1",
+          "description": "Énoncer la suite des nombres de 0 à 100 en comptant un par un et par ordre croissant et décroissant, entre deux nombres donnés"
+        },
+        {
+          "code": "1.N2",
+          "description": "Reconnaître du premier coup d'œil des arrangements familiers de 1 à 10 objets (ou points) et les nommer"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1ygm0015vjnil0ab4e9b",
+      "title": "Petits scientifiques sécuritaires",
+      "subject": "Sciences de la nature",
+      "lessonCount": 20,
+      "coreCount": 14,
+      "extensionCount": 6,
+      "startDate": "2025-09-03T00:00:00.000Z",
+      "endDate": "2025-09-30T00:00:00.000Z",
+      "estimatedHours": 15,
+      "bigIdeas": "Explorer Sciences de la nature ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Sciences de la nature?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1.1.1",
+          "description": "Distinguer les caractéristiques des êtres vivants (plantes et animaux; incluant les humains)"
+        },
+        {
+          "code": "1.1.2",
+          "description": "Évaluer l'impact des activités humaines sur l'environnement naturel"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1ygn0017vjni0h8x9s4w",
+      "title": "Matériaux de notre environnement",
+      "subject": "Sciences de la nature",
+      "lessonCount": 20,
+      "coreCount": 14,
+      "extensionCount": 6,
+      "startDate": "2025-10-01T00:00:00.000Z",
+      "endDate": "2025-10-28T00:00:00.000Z",
+      "estimatedHours": 15,
+      "bigIdeas": "Explorer Sciences de la nature ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Sciences de la nature?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1.1.1",
+          "description": "Distinguer les caractéristiques des êtres vivants (plantes et animaux; incluant les humains)"
+        },
+        {
+          "code": "1.1.2",
+          "description": "Évaluer l'impact des activités humaines sur l'environnement naturel"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1ygn0019vjnikgna5roc",
+      "title": "Changements saisonniers d'automne",
+      "subject": "Sciences de la nature",
+      "lessonCount": 20,
+      "coreCount": 14,
+      "extensionCount": 6,
+      "startDate": "2025-10-29T00:00:00.000Z",
+      "endDate": "2025-11-25T01:00:00.000Z",
+      "estimatedHours": 15,
+      "bigIdeas": "Explorer Sciences de la nature ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Sciences de la nature?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1.1.1",
+          "description": "Distinguer les caractéristiques des êtres vivants (plantes et animaux; incluant les humains)"
+        },
+        {
+          "code": "1.1.2",
+          "description": "Évaluer l'impact des activités humaines sur l'environnement naturel"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1ygo001bvjnia40g2fju",
+      "title": "Lumière et chaleur hivernales",
+      "subject": "Sciences de la nature",
+      "lessonCount": 20,
+      "coreCount": 14,
+      "extensionCount": 6,
+      "startDate": "2025-11-26T01:00:00.000Z",
+      "endDate": "2026-01-02T01:00:00.000Z",
+      "estimatedHours": 15,
+      "bigIdeas": "Explorer Sciences de la nature ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Sciences de la nature?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1.1.1",
+          "description": "Distinguer les caractéristiques des êtres vivants (plantes et animaux; incluant les humains)"
+        },
+        {
+          "code": "1.1.2",
+          "description": "Évaluer l'impact des activités humaines sur l'environnement naturel"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1ygp001dvjni7pxafaip",
+      "title": "Croissance et besoins des vivants",
+      "subject": "Sciences de la nature",
+      "lessonCount": 20,
+      "coreCount": 14,
+      "extensionCount": 6,
+      "startDate": "2026-01-03T01:00:00.000Z",
+      "endDate": "2026-01-30T01:00:00.000Z",
+      "estimatedHours": 15,
+      "bigIdeas": "Explorer Sciences de la nature ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Sciences de la nature?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1.1.1",
+          "description": "Distinguer les caractéristiques des êtres vivants (plantes et animaux; incluant les humains)"
+        },
+        {
+          "code": "1.1.2",
+          "description": "Évaluer l'impact des activités humaines sur l'environnement naturel"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1ygq001fvjnirh42g18a",
+      "title": "Forces et mouvements simples",
+      "subject": "Sciences de la nature",
+      "lessonCount": 19,
+      "coreCount": 13,
+      "extensionCount": 6,
+      "startDate": "2026-01-31T01:00:00.000Z",
+      "endDate": "2026-02-26T01:00:00.000Z",
+      "estimatedHours": 14.25,
+      "bigIdeas": "Explorer Sciences de la nature ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Sciences de la nature?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1.1.1",
+          "description": "Distinguer les caractéristiques des êtres vivants (plantes et animaux; incluant les humains)"
+        },
+        {
+          "code": "1.1.2",
+          "description": "Évaluer l'impact des activités humaines sur l'environnement naturel"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1ygq001hvjni7oafgxwc",
+      "title": "Éveil du printemps",
+      "subject": "Sciences de la nature",
+      "lessonCount": 19,
+      "coreCount": 13,
+      "extensionCount": 6,
+      "startDate": "2026-02-27T01:00:00.000Z",
+      "endDate": "2026-03-31T00:00:00.000Z",
+      "estimatedHours": 14.25,
+      "bigIdeas": "Explorer Sciences de la nature ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Sciences de la nature?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1.1.1",
+          "description": "Distinguer les caractéristiques des êtres vivants (plantes et animaux; incluant les humains)"
+        },
+        {
+          "code": "1.1.2",
+          "description": "Évaluer l'impact des activités humaines sur l'environnement naturel"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1ygr001jvjnisvv61z1a",
+      "title": "Notre environnement partagé",
+      "subject": "Sciences de la nature",
+      "lessonCount": 19,
+      "coreCount": 13,
+      "extensionCount": 6,
+      "startDate": "2026-04-01T00:00:00.000Z",
+      "endDate": "2026-04-29T00:00:00.000Z",
+      "estimatedHours": 14.25,
+      "bigIdeas": "Explorer Sciences de la nature ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Sciences de la nature?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1.1.1",
+          "description": "Distinguer les caractéristiques des êtres vivants (plantes et animaux; incluant les humains)"
+        },
+        {
+          "code": "1.1.2",
+          "description": "Évaluer l'impact des activités humaines sur l'environnement naturel"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1ygs001lvjnic2uwz5ad",
+      "title": "Sons et vibrations fascinants",
+      "subject": "Sciences de la nature",
+      "lessonCount": 19,
+      "coreCount": 13,
+      "extensionCount": 6,
+      "startDate": "2026-04-30T00:00:00.000Z",
+      "endDate": "2026-05-26T00:00:00.000Z",
+      "estimatedHours": 14.25,
+      "bigIdeas": "Explorer Sciences de la nature ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Sciences de la nature?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1.1.1",
+          "description": "Distinguer les caractéristiques des êtres vivants (plantes et animaux; incluant les humains)"
+        },
+        {
+          "code": "1.1.2",
+          "description": "Évaluer l'impact des activités humaines sur l'environnement naturel"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1ygt001nvjnirxj3iua4",
+      "title": "Exposition scientifique de fin d'année",
+      "subject": "Sciences de la nature",
+      "lessonCount": 19,
+      "coreCount": 13,
+      "extensionCount": 6,
+      "startDate": "2026-05-27T00:00:00.000Z",
+      "endDate": "2026-06-20T00:00:00.000Z",
+      "estimatedHours": 14.25,
+      "bigIdeas": "Explorer Sciences de la nature ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Sciences de la nature?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1.1.1",
+          "description": "Distinguer les caractéristiques des êtres vivants (plantes et animaux; incluant les humains)"
+        },
+        {
+          "code": "1.1.2",
+          "description": "Évaluer l'impact des activités humaines sur l'environnement naturel"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1yh10029vjnimebu5cou",
+      "title": "Moi et mon école",
+      "subject": "Sciences humaines",
+      "lessonCount": 20,
+      "coreCount": 14,
+      "extensionCount": 6,
+      "startDate": "2025-09-03T00:00:00.000Z",
+      "endDate": "2025-09-30T00:00:00.000Z",
+      "estimatedHours": 15,
+      "bigIdeas": "Explorer Sciences humaines ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Sciences humaines?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1C.1",
+          "description": "Démontrer sa compréhension de ses droits et ses responsabilités dans sa famille et dans son école"
+        },
+        {
+          "code": "1C.2",
+          "description": "Démontrer des aptitudes, en tant que citoyen numérique"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1yh1002bvjnigcsb51uk",
+      "title": "Ma famille et mon foyer",
+      "subject": "Sciences humaines",
+      "lessonCount": 20,
+      "coreCount": 14,
+      "extensionCount": 6,
+      "startDate": "2025-11-03T00:00:00.000Z",
+      "endDate": "2025-11-28T00:00:00.000Z",
+      "estimatedHours": 15,
+      "bigIdeas": "Explorer Sciences humaines ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Sciences humaines?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1C.1",
+          "description": "Démontrer sa compréhension de ses droits et ses responsabilités dans sa famille et dans son école"
+        },
+        {
+          "code": "1C.2",
+          "description": "Démontrer des aptitudes, en tant que citoyen numérique"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1yh2002dvjnirb30c7pb",
+      "title": "Notre communauté automnale",
+      "subject": "Sciences humaines",
+      "lessonCount": 20,
+      "coreCount": 14,
+      "extensionCount": 6,
+      "startDate": "2026-01-06T00:00:00.000Z",
+      "endDate": "2026-01-31T00:00:00.000Z",
+      "estimatedHours": 15,
+      "bigIdeas": "Explorer Sciences humaines ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Sciences humaines?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1C.1",
+          "description": "Démontrer sa compréhension de ses droits et ses responsabilités dans sa famille et dans son école"
+        },
+        {
+          "code": "1C.2",
+          "description": "Démontrer des aptitudes, en tant que citoyen numérique"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1yh3002fvjnimp445m4q",
+      "title": "Célébrations et traditions hivernales",
+      "subject": "Sciences humaines",
+      "lessonCount": 19,
+      "coreCount": 13,
+      "extensionCount": 6,
+      "startDate": "2026-03-16T00:00:00.000Z",
+      "endDate": "2026-04-11T00:00:00.000Z",
+      "estimatedHours": 14.25,
+      "bigIdeas": "Explorer Sciences humaines ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Sciences humaines?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1C.1",
+          "description": "Démontrer sa compréhension de ses droits et ses responsabilités dans sa famille et dans son école"
+        },
+        {
+          "code": "1C.2",
+          "description": "Démontrer des aptitudes, en tant que citoyen numérique"
+        }
+      ]
+    },
+    {
+      "id": "cmeiu1yh4002hvjniufrbdd42",
+      "title": "Notre quartier et voisinage",
+      "subject": "Sciences humaines",
+      "lessonCount": 18,
+      "coreCount": 12,
+      "extensionCount": 6,
+      "startDate": "2026-05-05T00:00:00.000Z",
+      "endDate": "2026-05-30T00:00:00.000Z",
+      "estimatedHours": 13.5,
+      "bigIdeas": "Explorer Sciences humaines ensemble",
+      "essentialQuestions": [
+        "Qu'est-ce que Sciences humaines?",
+        "Comment apprendre ensemble?",
+        "Pourquoi est-ce important?"
+      ],
+      "expectations": [
+        {
+          "code": "1C.1",
+          "description": "Démontrer sa compréhension de ses droits et ses responsabilités dans sa famille et dans son école"
+        },
+        {
+          "code": "1C.2",
+          "description": "Démontrer des aptitudes, en tant que citoyen numérique"
+        }
+      ]
+    }
+  ]
+}
