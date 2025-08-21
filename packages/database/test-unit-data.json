@@ -1,0 +1,24 @@
+{
+  "unitPlan": {
+    "title": "Bienvenue en français",
+    "bigIdeas": "Le français nous connecte et nous permet de découvrir le monde ensemble.",
+    "essentialQuestions": [
+      "Qui suis-je en français?",
+      "Comment communiquer?",
+      "Pourquoi apprendre ensemble?"
+    ],
+    "startDate": "2025-09-03T00:00:00.000Z",
+    "endDate": "2025-09-30T00:00:00.000Z"
+  },
+  "subject": "Français (Immersion)",
+  "expectations": [
+    {
+      "code": "1CO.0",
+      "description": "Différencier à l'oral les éléments reliés à la conscience phonologique"
+    },
+    {
+      "code": "1CO.1",
+      "description": "Gérer son écoute pour répondre à ses besoins d'information et de divertissement"
+    }
+  ]
+}

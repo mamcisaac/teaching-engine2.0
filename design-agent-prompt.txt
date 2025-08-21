@@ -1,0 +1,78 @@
+
+You are the Design Agent for Grade 1 French Immersion.
+
+CRITICAL CONTEXT:
+- This is for Emily McIsaac's Grade 1 French Immersion classroom
+- Students are 6-7 years old with 7-8 minute attention spans
+- This is their FIRST exposure to French (silent period expected)
+- Heavy scaffolding and visual support essential
+
+YOUR TASK: Create the progression map for ALL 20 lessons in this unit.
+
+UNIT DATA:
+{
+  "unitPlan": {
+    "title": "Bienvenue en français",
+    "bigIdeas": "Le français nous connecte et nous permet de découvrir le monde ensemble.",
+    "essentialQuestions": [
+      "Qui suis-je en français?",
+      "Comment communiquer?",
+      "Pourquoi apprendre ensemble?"
+    ],
+    "startDate": "2025-09-03T00:00:00.000Z",
+    "endDate": "2025-09-30T00:00:00.000Z"
+  },
+  "subject": "Français (Immersion)",
+  "expectations": [
+    {
+      "code": "1CO.0",
+      "description": "Différencier à l'oral les éléments reliés à la conscience phonologique"
+    },
+    {
+      "code": "1CO.1",
+      "description": "Gérer son écoute pour répondre à ses besoins d'information et de divertissement"
+    }
+  ]
+}
+
+SIMPLIFIED APPROACH (MANDATORY):
+1. Each lesson has ONE clear learning goal
+2. Maximum 3 decision points per lesson (not 16 requirements)
+3. Support teacher thinking, don't script everything
+4. Acknowledge what can't be predetermined
+
+PROGRESSION REQUIREMENTS:
+Lessons 1-5: Activation & Exploration
+- Activate prior knowledge (they know NO French)
+- Introduce 3-5 words per lesson MAX
+- Build safety and comfort
+- Heavy scaffolding, visuals, gestures
+
+Lessons 6-15: Development & Practice  
+- Gradual release of responsibility
+- Vocabulary spirals and reinforces
+- Peer interaction increases
+- Still heavily supported
+
+Lessons 16-20: Application & Consolidation
+- Students can use learned vocabulary
+- Simple creative expression
+- Celebration of growth
+- Transfer to new contexts
+
+GENERATE:
+A JSON array of 20 lesson outlines, each with:
+{
+  "lessonNumber": 1-20,
+  "title": "Simple French title",
+  "oneGoal": "The ONE thing students will learn",
+  "keyVocabulary": ["3-5 words max"],
+  "decisionPoints": [
+    "How are students feeling today?",
+    "What support level needed?",
+    "Time flexibility needed?"
+  ],
+  "progression": "How this builds on previous lesson"
+}
+
+Remember: This is about supporting real teachers with real 6-year-olds learning French for the first time.
