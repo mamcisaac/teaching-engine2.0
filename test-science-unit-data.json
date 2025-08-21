@@ -1,0 +1,36 @@
+{
+  "unitPlan": {
+    "title": "Petits scientifiques sécuritaires",
+    "bigIdeas": "La sécurité et l'observation attentive sont les fondements de la découverte scientifique.",
+    "essentialQuestions": [
+      "Comment être sécuritaire en science?",
+      "Qu'est-ce qu'observer veut dire?",
+      "Comment utiliser nos sens pour apprendre?"
+    ],
+    "startDate": "2025-09-03T00:00:00.000Z",
+    "endDate": "2025-09-30T00:00:00.000Z",
+    "estimatedHours": 15,
+    "differentiationStrategies": {
+      "structure": "14 leçons core établissant les pratiques sécuritaires essentielles, 6 leçons d'extension pour exploration approfondie"
+    }
+  },
+  "subject": "Sciences de la nature",
+  "expectations": [
+    {
+      "code": "1ST.1",
+      "description": "Appliquer les règles de sécurité en classe de sciences"
+    },
+    {
+      "code": "1ST.2",
+      "description": "Utiliser ses sens de façon sécuritaire pour observer et explorer"
+    },
+    {
+      "code": "1ST.3",
+      "description": "Manipuler de façon sécuritaire des objets et des matériaux"
+    },
+    {
+      "code": "1SN.1",
+      "description": "Distinguer les caractéristiques des êtres vivants (plantes et animaux; incluant les humains)"
+    }
+  ]
+}

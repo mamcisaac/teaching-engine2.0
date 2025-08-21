@@ -12,15 +12,48 @@ import path from 'path';
 const require = createRequire(import.meta.url);
 const { ETFO_BEST_PRACTICES, generateUnitGenerationPrompt } = require('./knowledge/best-practices-library.cjs');
 
-// Load unit data
-const unitData = require('../packages/database/test-unit-data.json');
+// Load unit data based on command line argument
+const unitType = process.argv[2] || 'french';
+let unitData;
+
+switch(unitType) {
+  case 'math':
+    unitData = require('../test-math-unit-data.json');
+    break;
+  case 'science':
+    unitData = require('../test-science-unit-data.json');
+    break;
+  case 'french':
+  default:
+    unitData = require('../packages/database/test-unit-data.json');
+    break;
+}
+
+console.log(`Loading ${unitType} unit data...`);
+
+// Extract core lesson count from differentiation strategies
+function extractCoreCount(diffStrategies) {
+  const text = JSON.stringify(diffStrategies);
+  const match = text.match(/(\d+)\s*(essentielles|core|principales)/i);
+  return match ? parseInt(match[1]) : null;
+}
 
 async function generatePerfectUnit() {
   console.log('🎯 PERFECT UNIT GENERATION SYSTEM');
   console.log('==================================');
   console.log('Unit:', unitData.unitPlan.title);
   console.log('Subject:', unitData.subject);
-  console.log('Lessons to generate: 20');
+  
+  // Extract lesson count from unit plan
+  const totalHours = unitData.unitPlan.estimatedHours || 15;
+  const totalLessons = Math.round(totalHours / 0.75); // 45 min lessons
+  
+  // Extract core/extension split from differentiation strategies
+  const diffStrategies = unitData.unitPlan.differentiationStrategies || {};
+  const coreCount = extractCoreCount(diffStrategies) || Math.floor(totalLessons * 0.7);
+  const extensionCount = totalLessons - coreCount;
+  
+  console.log(`Lessons to generate: ${totalLessons} (${coreCount} core, ${extensionCount} extension)`);
   console.log('\nPrinciples:');
   console.log('- ONE clear goal per lesson');
   console.log('- Maximum 3 decision points');
@@ -29,15 +62,17 @@ async function generatePerfectUnit() {
   
   // Create agent prompts
   const designAgentPrompt = `
-You are the Design Agent for Grade 1 French Immersion.
+You are the Design Agent for Grade 1 ${unitData.subject}.
 
 CRITICAL CONTEXT:
 - This is for Emily McIsaac's Grade 1 French Immersion classroom
 - Students are 6-7 years old with 7-8 minute attention spans
-- This is their FIRST exposure to French (silent period expected)
+- ${unitData.subject === 'Français (Immersion)' ? 'This is their FIRST exposure to French (silent period expected)' : 'All instruction in French'}
 - Heavy scaffolding and visual support essential
 
-YOUR TASK: Create the progression map for ALL 20 lessons in this unit.
+YOUR TASK: Create the progression map for ALL ${totalLessons} lessons in this unit.
+- Lessons 1-${coreCount}: CORE (must cover all expectations)
+- Lessons ${coreCount + 1}-${totalLessons}: EXTENSIONS (practice only)
 
 UNIT DATA:
 ${JSON.stringify(unitData, null, 2)}
@@ -49,26 +84,31 @@ SIMPLIFIED APPROACH (MANDATORY):
 4. Acknowledge what can't be predetermined
 
 PROGRESSION REQUIREMENTS:
-Lessons 1-5: Activation & Exploration
-- Activate prior knowledge (they know NO French)
-- Introduce 3-5 words per lesson MAX
+Lessons 1-${Math.floor(coreCount * 0.3)}: Activation & Exploration
+- Activate prior knowledge
+- Introduce key vocabulary gradually
 - Build safety and comfort
 - Heavy scaffolding, visuals, gestures
 
-Lessons 6-15: Development & Practice  
+Lessons ${Math.floor(coreCount * 0.3) + 1}-${Math.floor(coreCount * 0.8)}: Development & Practice  
 - Gradual release of responsibility
 - Vocabulary spirals and reinforces
 - Peer interaction increases
 - Still heavily supported
 
-Lessons 16-20: Application & Consolidation
-- Students can use learned vocabulary
-- Simple creative expression
-- Celebration of growth
-- Transfer to new contexts
+Lessons ${Math.floor(coreCount * 0.8) + 1}-${coreCount}: Complete Coverage
+- Ensure ALL curriculum expectations met
+- Assessment opportunities
+- Students demonstrate learning
+
+Lessons ${coreCount + 1}-${totalLessons}: Extensions (Practice Only)
+- NO new curriculum content
+- Creative applications
+- Additional practice
+- Support and enrichment
 
 GENERATE:
-A JSON array of 20 lesson outlines, each with:
+A JSON array of ${totalLessons} lesson outlines, each with:
 {
   "lessonNumber": 1-20,
   "title": "Simple French title",
