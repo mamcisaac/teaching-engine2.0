@@ -1,0 +1,825 @@
+[
+  {
+    "lessonNumber": 1,
+    "title": "Qu'est-ce qu'un nombre?",
+    "oneGoal": "Students recognize that numbers are everywhere in their world",
+    "isCore": true,
+    "curriculumAlignment": ["1NS.3"],
+    
+    "mindsOn": {
+      "activity": "Chanson des nombres avec mouvements - compter avec les doigts de 1 à 5",
+      "materials": ["affiche avec nombres 1-5", "musique douce"],
+      "duration": "environ 8 minutes ou selon le rythme de la classe",
+      "decisionPoint": "If high energy → add jumping; If low → gentle finger counting",
+      "alternative": "Option calme: simple comptage avec doigts sans musique"
+    },
+    
+    "action": {
+      "activities": ["Chasse aux nombres dans la classe (environ 9 min)", "Montrer les nombres trouvés au groupe (environ 9 min)", "Jeu 'Toucher le nombre' avec cartes géantes (environ 9 min)"],
+      "materials": ["cartes de nombres géantes 1-5", "objets numérotés dans la classe", "sac pour collection"],
+      "duration": "environ 25-30 minutes selon l'engagement",
+      "decisionPoint": "If understanding → extend hunt to hallway; If struggling → focus on 1-3 only",
+      "alternative": "Option libre: exploration autonome des nombres avec documentation par dessins"
+    },
+    
+    "consolidation": {
+      "activity": "Cercle de partage - chaque élève montre un nombre trouvé",
+      "assessmentChecklist": ["Can point to numbers", "Recognizes 1-3", "Participates in French"],
+      "duration": "environ 10 minutes ou jusqu'à ce que tous aient partagé",
+      "decisionPoint": "If time short → show numbers without explanation",
+      "alternative": "Option créative: dessiner son nombre préféré et expliquer pourquoi"
+    },
+    
+    "vocabulary": {
+      "nombre": "nome-bruh",
+      "un": "uhn",
+      "deux": "duh",
+      "trois": "twah"
+    },
+    
+    "emergencyBackup": "Point to numbers around room, count fingers 1-2-3, use visual number cards",
+    "materials": ["affiche avec nombres 1-5", "musique douce", "cartes de nombres géantes 1-5", "objets numérotés dans la classe", "sac pour collection"]
+  },
+  
+  {
+    "lessonNumber": 2,
+    "title": "Compter ensemble",
+    "oneGoal": "Students can count from 0 to 5 with objects",
+    "isCore": true,
+    "curriculumAlignment": ["1NS.1", "1NS.3"],
+    
+    "mindsOn": {
+      "activity": "Chanson de comptage avec ours en peluche - ajouter un ours à chaque nombre",
+      "materials": ["5 ours en peluche", "panier", "chanson de comptage"],
+      "duration": "environ 8 minutes ou selon l'intérêt",
+      "decisionPoint": "If restless → let students help place bears; If attentive → add gestures",
+      "alternative": "Option participative: les élèves placent les ours à tour de rôle"
+    },
+    
+    "action": {
+      "activities": ["Compter les blocs avec partenaire 0-3 (environ 9 min)", "Compter les crayons ensemble 0-5 (environ 9 min)", "Jeu du fermier - compter les animaux (environ 9 min)"],
+      "materials": ["blocs de construction", "crayons colorés", "animaux de ferme en plastique", "cartes nombres 0-5"],
+      "duration": "environ 25-30 minutes selon le rythme",
+      "decisionPoint": "If confident with 0-3 → extend to 5; If struggling → practice 0-3 more",
+      "alternative": "Option ouverte: comptage libre d'objets choisis par les élèves"
+    },
+    
+    "consolidation": {
+      "activity": "Chacun compte 3 objets et les montre au groupe",
+      "assessmentChecklist": ["Counts in sequence", "Uses correct French numbers", "Can count 0-3 independently"],
+      "duration": "environ 10 minutes selon le nombre d'élèves",
+      "decisionPoint": "If time short → count together as class",
+      "alternative": "Option collaborative: comptage en équipes avec présentation"
+    },
+    
+    "vocabulary": {
+      "zéro": "zay-roh",
+      "quatre": "cat-ruh",
+      "cinq": "sank",
+      "compter": "cone-tay"
+    },
+    
+    "emergencyBackup": "Count fingers repeatedly, use classroom objects, sing counting song with actions",
+    "materials": ["5 ours en peluche", "panier", "chanson de comptage", "blocs de construction", "crayons colorés", "animaux de ferme en plastique", "cartes nombres 0-5"]
+  },
+  
+  {
+    "lessonNumber": 3,
+    "title": "Voir les nombres",
+    "oneGoal": "Students recognize dot patterns for numbers 1-3 without counting",
+    "isCore": true,
+    "curriculumAlignment": ["1NS.2"],
+    
+    "mindsOn": {
+      "activity": "Jeu 'Flash des points' - montrer cartes à points rapidement",
+      "materials": ["cartes à points 1-3", "minuteur"],
+      "duration": "environ 8 minutes ou selon la concentration",
+      "decisionPoint": "If excited → speed up flashing; If overwhelmed → slow down and discuss",
+      "alternative": "Option douce: regarder les points calmement et discuter ensemble"
+    },
+    
+    "action": {
+      "activities": ["Dominos géants - voir sans compter (environ 9 min)", "Dés mousse - lancer et dire vite (environ 9 min)", "Bingo des points avec cartes (environ 9 min)"],
+      "materials": ["dominos géants", "dés en mousse", "cartes bingo avec points", "jetons"],
+      "duration": "environ 25-30 minutes selon l'engagement",
+      "decisionPoint": "If seeing patterns → add pattern 4; If still counting → practice 1-2 only",
+      "alternative": "Option créative: créer ses propres patterns avec autocollants"
+    },
+    
+    "consolidation": {
+      "activity": "Test rapide - lever la main quand on voit le nombre dit",
+      "assessmentChecklist": ["Recognizes 1 instantly", "Recognizes 2 instantly", "Attempts 3 without counting"],
+      "duration": "environ 10 minutes ou selon la réussite",
+      "decisionPoint": "If time short → test with 2 patterns only",
+      "alternative": "Option jeu: 'Simon dit' avec les patterns de points"
+    },
+    
+    "vocabulary": {
+      "voir": "vwahr",
+      "points": "pwahn",
+      "vite": "veet"
+    },
+    
+    "emergencyBackup": "Show dot patterns on fingers, use simple dot cards, practice 1-2 only",
+    "materials": ["cartes à points 1-3", "minuteur", "dominos géants", "dés en mousse", "cartes bingo avec points", "jetons"]
+  },
+  
+  {
+    "lessonNumber": 4,
+    "title": "Plus de nombres",
+    "oneGoal": "Students can count and recognize patterns for numbers 6-8",
+    "isCore": true,
+    "curriculumAlignment": ["1NS.1", "1NS.2", "1NS.3"],
+    
+    "mindsOn": {
+      "activity": "Révision 0-5 avec chanson, puis découverte de 6-8 avec objets",
+      "materials": ["objets à compter (boutons)", "cartes 6-8", "chanson nombres"],
+      "duration": "environ 8 minutes ou selon les besoins de révision",
+      "decisionPoint": "If solid with 0-5 → introduce all to 8; If shaky → focus on 6-7",
+      "alternative": "Option exploration: découverte libre des nouveaux nombres"
+    },
+    
+    "action": {
+      "activities": ["Compter les perles sur fils de 6-8 (environ 9 min)", "Cartes éclair nouveaux nombres (environ 9 min)", "Jeu de tri - grouper par quantité (environ 9 min)"],
+      "materials": ["perles et fils", "cartes éclair 6-8", "objets variés pour tri", "bacs de tri"],
+      "duration": "environ 25-30 minutes selon le rythme d'apprentissage",
+      "decisionPoint": "If comfortable → work independently; If struggling → work in pairs",
+      "alternative": "Option libre: centre de manipulation avec objets variés"
+    },
+    
+    "consolidation": {
+      "activity": "Tour de table - chacun montre un groupe de 6, 7 ou 8",
+      "assessmentChecklist": ["Can count to 6", "Attempts 7-8", "Uses new vocabulary"],
+      "duration": "environ 10 minutes selon la participation",
+      "decisionPoint": "If time short → show 6 only as group",
+      "alternative": "Option artistique: dessiner son nombre préféré entre 6-8"
+    },
+    
+    "vocabulary": {
+      "six": "sees",
+      "sept": "set",
+      "huit": "weet",
+      "plus": "ploo"
+    },
+    
+    "emergencyBackup": "Count classroom objects to 6, use fingers plus objects, focus on 6 only",
+    "materials": ["objets à compter (boutons)", "cartes 6-8", "chanson nombres", "perles et fils", "cartes éclair 6-8", "objets variés pour tri", "bacs de tri"]
+  },
+  
+  {
+    "lessonNumber": 5,
+    "title": "Compter en arrière",
+    "oneGoal": "Students can count backwards from 5 to 0",
+    "isCore": true,
+    "curriculumAlignment": ["1NS.1"],
+    
+    "mindsOn": {
+      "activity": "Histoire de l'escalier magique - descendre en comptant avec marionnette",
+      "materials": ["marionnette", "escalier dessiné", "cartes nombres 5-0"],
+      "duration": "environ 8 minutes ou selon l'intérêt pour l'histoire",
+      "decisionPoint": "If engaged → let students help marionnette; If restless → add movement",
+      "alternative": "Option active: descendre un vrai escalier en comptant"
+    },
+    
+    "action": {
+      "activities": ["Escalier physique - monter et descendre (environ 9 min)", "Enlever des objets en comptant arrière (environ 9 min)", "Jeu de la fusée - décompte avant décollage (environ 9 min)"],
+      "materials": ["blocs pour escalier", "objets à enlever (cubes)", "image fusée", "cartes décompte"],
+      "duration": "environ 25-30 minutes selon l'énergie de la classe",
+      "decisionPoint": "If need support → start from 3; If confident → try from 8",
+      "alternative": "Option calme: comptage arrière avec gestes des mains"
+    },
+    
+    "consolidation": {
+      "activity": "Cercle de décompte - chacun dit un nombre en descendant",
+      "assessmentChecklist": ["Counts backwards from 3", "Attempts backwards from 5", "Uses French numbers correctly"],
+      "duration": "environ 10 minutes ou selon la réussite collective",
+      "decisionPoint": "If time short → count backwards together as group",
+      "alternative": "Option créative: inventer une chanson de décompte ensemble"
+    },
+    
+    "vocabulary": {
+      "arrière": "ah-ree-air",
+      "moins": "mwahn",
+      "descendre": "day-sahn-druh"
+    },
+    
+    "emergencyBackup": "Use fingers to count down, remove classroom objects while counting, sing countdown song",
+    "materials": ["marionnette", "escalier dessiné", "cartes nombres 5-0", "blocs pour escalier", "objets à enlever (cubes)", "image fusée", "cartes décompte"]
+  },
+  
+  {
+    "lessonNumber": 6,
+    "title": "Neuf et dix",
+    "oneGoal": "Students recognize and count to 10 using various representations",
+    "isCore": true,
+    "curriculumAlignment": ["1NS.1", "1NS.2", "1NS.3"],
+    
+    "mindsOn": {
+      "activity": "Chanson des doigts jusqu'à 10 - utiliser les deux mains",
+      "materials": ["chanson des doigts", "affiches mains", "cartes 9-10"],
+      "duration": "environ 8 minutes ou selon la coordination",
+      "decisionPoint": "If coordinated → add clapping; If struggling → go slower",
+      "alternative": "Option simple: compter seulement avec les doigts, sans chanson"
+    },
+    
+    "action": {
+      "activities": ["Compter avec deux mains 0-10 (environ 9 min)", "Collection de 9 et 10 objets (environ 9 min)", "Jeu des représentations - dessins, objets, doigts (environ 9 min)"],
+      "materials": ["objets de collection", "papier pour dessiner", "crayons", "cartes représentations"],
+      "duration": "environ 25-30 minutes selon l'intérêt",
+      "decisionPoint": "If ready for 10 → practice both 9 and 10; If not → focus on 9",
+      "alternative": "Option libre: explorer différentes façons de montrer 10"
+    },
+    
+    "consolidation": {
+      "activity": "Démonstration personnelle - montrer 10 de sa façon préférée",
+      "assessmentChecklist": ["Can count to 9", "Attempts counting to 10", "Uses multiple representations"],
+      "duration": "environ 10 minutes selon les présentations",
+      "decisionPoint": "If time short → demonstrate 10 together with fingers",
+      "alternative": "Option groupe: créer ensemble une grande collection de 10"
+    },
+    
+    "vocabulary": {
+      "neuf": "nuhf",
+      "dix": "dees",
+      "montrer": "mone-tray"
+    },
+    
+    "emergencyBackup": "Use all 10 fingers, count classroom chairs/desks, practice with simple objects",
+    "materials": ["chanson des doigts", "affiches mains", "cartes 9-10", "objets de collection", "papier pour dessiner", "crayons", "cartes représentations"]
+  },
+  
+  {
+    "lessonNumber": 7,
+    "title": "Patterns de points",
+    "oneGoal": "Students quickly recognize dot patterns for 4-6 without counting",
+    "isCore": true,
+    "curriculumAlignment": ["1NS.2"],
+    
+    "mindsOn": {
+      "activity": "Révision patterns 1-3, puis introduction patterns 4-6 avec cartes flash",
+      "materials": ["cartes flash patterns 1-6", "minuteur", "tableau aimanté"],
+      "duration": "environ 8 minutes ou selon la maîtrise",
+      "decisionPoint": "If solid with 1-3 → add 4-6; If not → practice 1-3 more",
+      "alternative": "Option douce: explorer patterns lentement sans pression de temps"
+    },
+    
+    "action": {
+      "activities": ["Dés géants avec patterns 4-6 (environ 9 min)", "Jeu memory avec patterns (environ 9 min)", "Création de patterns avec manipulatifs (environ 9 min)"],
+      "materials": ["dés géants", "cartes memory patterns", "manipulatifs (jetons)", "cartes vierges"],
+      "duration": "environ 25-30 minutes selon l'engagement",
+      "decisionPoint": "If recognizing patterns → speed up games; If still counting → slow down",
+      "alternative": "Option créative: inventer de nouveaux patterns avec matériel libre"
+    },
+    
+    "consolidation": {
+      "activity": "Test éclair - lever doigts pour montrer combien de points vus",
+      "assessmentChecklist": ["Recognizes 4 pattern", "Attempts 5-6 patterns", "Responds quickly"],
+      "duration": "environ 10 minutes ou selon la réussite",
+      "decisionPoint": "If time short → test 4 only",
+      "alternative": "Option jeu: chacun montre un pattern et les autres devinent"
+    },
+    
+    "vocabulary": {
+      "patterns": "pat-terns",
+      "vite": "veet",
+      "voir": "vwahr"
+    },
+    
+    "emergencyBackup": "Use simple dot cards, practice with 4 only, show patterns with fingers",
+    "materials": ["cartes flash patterns 1-6", "minuteur", "tableau aimanté", "dés géants", "cartes memory patterns", "manipulatifs (jetons)", "cartes vierges"]
+  },
+  
+  {
+    "lessonNumber": 8,
+    "title": "Comparer les groupes",
+    "oneGoal": "Students compare groups using words 'plus que' and 'moins que'",
+    "isCore": true,
+    "curriculumAlignment": ["1NS.4"],
+    
+    "mindsOn": {
+      "activity": "Histoire des deux paniers - comparer visuellement les quantités",
+      "materials": ["2 paniers", "fruits en plastique", "livre d'images"],
+      "duration": "environ 8 minutes ou selon l'intérêt",
+      "decisionPoint": "If understanding comparison → add third basket; If confused → use obvious differences",
+      "alternative": "Option concrète: comparer directement les objets sans histoire"
+    },
+    
+    "action": {
+      "activities": ["Comparer avec manipulatifs en paires (environ 9 min)", "Jeu des collections - qui a plus? (environ 9 min)", "Dessiner plus que/moins que (environ 9 min)"],
+      "materials": ["manipulatifs variés", "cartes de comparaison", "papier", "crayons"],
+      "duration": "environ 25-30 minutes selon la compréhension",
+      "decisionPoint": "If ready for égal → introduce concept; If not → focus on more/less",
+      "alternative": "Option libre: exploration de comparaisons dans la classe"
+    },
+    
+    "consolidation": {
+      "activity": "Cercle de comparaison - comparer nos collections faites",
+      "assessmentChecklist": ["Uses 'plus que' correctly", "Uses 'moins que' correctly", "Can visually compare groups"],
+      "duration": "environ 10 minutes selon les comparaisons",
+      "decisionPoint": "If time short → compare two collections only",
+      "alternative": "Option jeu: trouver dans la classe quelque chose qui a plus/moins"
+    },
+    
+    "vocabulary": {
+      "comparer": "come-par-ay",
+      "plus que": "ploo kuh",
+      "moins que": "mwahn kuh",
+      "égal": "ay-gal"
+    },
+    
+    "emergencyBackup": "Compare obvious groups (1 vs 5), use hand gestures for more/less, visual comparison only",
+    "materials": ["2 paniers", "fruits en plastique", "livre d'images", "manipulatifs variés", "cartes de comparaison", "papier", "crayons"]
+  },
+  
+  {
+    "lessonNumber": 9,
+    "title": "Cadre magique",
+    "oneGoal": "Students use ten frames to represent numbers 1-10",
+    "isCore": true,
+    "curriculumAlignment": ["1NS.2", "1NS.3"],
+    
+    "mindsOn": {
+      "activity": "Introduction du cadre magique avec histoire - maison pour les nombres",
+      "materials": ["grand ten frame aimanté", "jetons aimantés", "histoire ten frame"],
+      "duration": "environ 8 minutes ou selon la curiosité",
+      "decisionPoint": "If curious → let students try placing; If overwhelmed → demonstrate slowly",
+      "alternative": "Option simple: exploration libre du cadre sans histoire"
+    },
+    
+    "action": {
+      "activities": ["Remplir ten frames 1-5 avec jetons (environ 9 min)", "Construire ten frames 6-10 (environ 9 min)", "Jeu devine le nombre caché (environ 9 min)"],
+      "materials": ["ten frames individuels", "jetons colorés", "cartes nombres", "couvertures pour cacher"],
+      "duration": "environ 25-30 minutes selon l'exploration",
+      "decisionPoint": "If systematic filling → extend to 10; If random → practice structure",
+      "alternative": "Option créative: utiliser différents objets dans les cadres"
+    },
+    
+    "consolidation": {
+      "activity": "Montrer son nombre préféré sur ten frame",
+      "assessmentChecklist": ["Fills ten frame systematically", "Can represent 1-5", "Attempts 6-10"],
+      "duration": "environ 10 minutes selon les présentations",
+      "decisionPoint": "If time short → show 5 on ten frame together",
+      "alternative": "Option collaborative: créer un grand ten frame au sol ensemble"
+    },
+    
+    "vocabulary": {
+      "cadre": "cah-druh",
+      "dix": "dees",
+      "montrer": "mone-tray"
+    },
+    
+    "emergencyBackup": "Use simple grid drawn on board, place objects in order, practice with 5 only",
+    "materials": ["grand ten frame aimanté", "jetons aimantés", "histoire ten frame", "ten frames individuels", "jetons colorés", "cartes nombres", "couvertures pour cacher"]
+  },
+  
+  {
+    "lessonNumber": 10,
+    "title": "Grands patterns",
+    "oneGoal": "Students recognize patterns for 7-10 using ten frames and other arrangements",
+    "isCore": true,
+    "curriculumAlignment": ["1NS.2"],
+    
+    "mindsOn": {
+      "activity": "Révision patterns 1-6, découverte patterns 7-10 sur ten frame",
+      "materials": ["ten frames avec patterns", "cartes flash 7-10", "pointeur"],
+      "duration": "environ 8 minutes ou selon la maîtrise précédente",
+      "decisionPoint": "If solid with 1-6 → show all 7-10; If not → focus on 7-8",
+      "alternative": "Option progressive: découvrir un seul nouveau pattern par jour"
+    },
+    
+    "action": {
+      "activities": ["Ten frames patterns 7-10 avec partenaire (environ 9 min)", "Dés spéciaux et dominos 7-10 (environ 9 min)", "Créer ses propres arrangements (environ 9 min)"],
+      "materials": ["ten frames partenaires", "dés 7-10", "dominos grands", "manipulatifs libres"],
+      "duration": "environ 25-30 minutes selon l'intérêt créatif",
+      "decisionPoint": "If seeing patterns → work independently; If counting → use ten frame support",
+      "alternative": "Option libre: centre de patterns avec matériel varié"
+    },
+    
+    "consolidation": {
+      "activity": "Galerie de patterns - présenter ses arrangements créés",
+      "assessmentChecklist": ["Recognizes 7-8 patterns", "Attempts 9-10 patterns", "Creates organized arrangements"],
+      "duration": "environ 10 minutes selon les créations",
+      "decisionPoint": "If time short → show one arrangement each",
+      "alternative": "Option tour: visiter les créations comme dans un musée"
+    },
+    
+    "vocabulary": {
+      "grands": "grahn",
+      "arrangements": "ah-rahnge-mahn",
+      "créer": "cray-ay"
+    },
+    
+    "emergencyBackup": "Use ten frame for all numbers, practice 7 only, count if needed",
+    "materials": ["ten frames avec patterns", "cartes flash 7-10", "pointeur", "ten frames partenaires", "dés 7-10", "dominos grands", "manipulatifs libres"]
+  },
+  
+  {
+    "lessonNumber": 11,
+    "title": "Résoudre des problèmes",
+    "oneGoal": "Students solve simple comparison problems using manipulatives and referents",
+    "isCore": true,
+    "curriculumAlignment": ["1NS.4"],
+    
+    "mindsOn": {
+      "activity": "Histoire problème simple avec marionnettes - qui a plus de pommes?",
+      "materials": ["marionnettes", "pommes en plastique", "livre problème"],
+      "duration": "environ 8 minutes ou selon l'engagement",
+      "decisionPoint": "If engaged → let students help solve; If confused → act out slowly",
+      "alternative": "Option concrète: problème réel avec objets de la classe"
+    },
+    
+    "action": {
+      "activities": ["Problèmes visuels avec objets réels (environ 9 min)", "Problèmes en paires avec ten frames (environ 9 min)", "Créer un problème pour un ami (environ 9 min)"],
+      "materials": ["objets problèmes", "cartes problèmes visuels", "ten frames", "papier problème"],
+      "duration": "environ 25-30 minutes selon les solutions trouvées",
+      "decisionPoint": "If solving easily → create own problems; If struggling → use smaller numbers",
+      "alternative": "Option libre: inventer et résoudre des problèmes personnels"
+    },
+    
+    "consolidation": {
+      "activity": "Partager solutions et stratégies utilisées",
+      "assessmentChecklist": ["Uses manipulatives to solve", "Explains thinking simply", "Compares to find answers"],
+      "duration": "environ 10 minutes selon les explications",
+      "decisionPoint": "If time short → share one solution together",
+      "alternative": "Option démonstration: montrer sa solution avec actions"
+    },
+    
+    "vocabulary": {
+      "problème": "pro-blem",
+      "résoudre": "ray-zoo-druh",
+      "utiliser": "oo-tee-lee-zay"
+    },
+    
+    "emergencyBackup": "Act out problems with students, use very small numbers (1-3), show with hands",
+    "materials": ["marionnettes", "pommes en plastique", "livre problème", "objets problèmes", "cartes problèmes visuels", "ten frames", "papier problème"]
+  },
+  
+  {
+    "lessonNumber": 12,
+    "title": "Compter partout",
+    "oneGoal": "Students demonstrate counting skills from 0-20 and backwards from 10",
+    "isCore": true,
+    "curriculumAlignment": ["1NS.1"],
+    
+    "mindsOn": {
+      "activity": "Chanson de comptage étendue 0-15 avec mouvements",
+      "materials": ["chanson étendue", "cartes 11-20", "instruments simples"],
+      "duration": "environ 8 minutes ou selon l'énergie",
+      "decisionPoint": "If ready → go to 20; If challenging → stop at 15",
+      "alternative": "Option calme: comptage parlé sans chanson ni mouvements"
+    },
+    
+    "action": {
+      "activities": ["Compter objets classe jusqu'à 15+ (environ 9 min)", "Compter en arrière de 10 avec mouvements (environ 9 min)", "Défis de comptage en équipes (environ 9 min)"],
+      "materials": ["objets à compter", "cartes défi", "minuteur", "autocollants récompense"],
+      "duration": "environ 25-30 minutes selon les défis choisis",
+      "decisionPoint": "If confident → add skip counting by 2; If not → perfect forward/backward",
+      "alternative": "Option exploration: comptage libre dans différents espaces"
+    },
+    
+    "consolidation": {
+      "activity": "Démonstration individuelle - choisir son défi de comptage",
+      "assessmentChecklist": ["Counts forward to 15+", "Counts backward from 10", "Shows counting confidence"],
+      "duration": "environ 10 minutes selon les choix individuels",
+      "decisionPoint": "If time short → count together to highest number possible",
+      "alternative": "Option fierté: partager son plus grand succès de comptage"
+    },
+    
+    "vocabulary": {
+      "vingt": "vahn",
+      "partout": "par-too",
+      "montrer": "mone-tray"
+    },
+    
+    "emergencyBackup": "Count classroom objects, use number line on wall, count to 10 only if needed",
+    "materials": ["chanson étendue", "cartes 11-20", "instruments simples", "objets à compter", "cartes défi", "minuteur", "autocollants récompense"]
+  },
+  
+  {
+    "lessonNumber": 13,
+    "title": "Montrer ce que je sais",
+    "oneGoal": "Students demonstrate recognition of arrangements 1-10 and solve comparison problems",
+    "isCore": true,
+    "curriculumAlignment": ["1NS.2", "1NS.4"],
+    
+    "mindsOn": {
+      "activity": "Jeu confiance - révision rapide de tous les patterns appris",
+      "materials": ["cartes révision", "tableau de confiance", "autocollants"],
+      "duration": "environ 8 minutes ou selon le besoin de confiance",
+      "decisionPoint": "If nervous → start with easy patterns; If confident → mix all patterns",
+      "alternative": "Option douce: révision tranquille avec partenaire de confiance"
+    },
+    
+    "action": {
+      "activities": ["Stations d'évaluation - patterns, comptage, comparaison (environ 9 min)", "Auto-évaluation avec checklist simple (environ 9 min)", "Aide un ami avec concept difficile (environ 9 min)"],
+      "materials": ["stations évaluation", "checklist élève", "cartes aide", "matériel stations"],
+      "duration": "environ 25-30 minutes selon le rythme individuel",
+      "decisionPoint": "If need support → work with teacher; If independent → help others",
+      "alternative": "Option choix: sélectionner les stations selon ses forces"
+    },
+    
+    "consolidation": {
+      "activity": "Célébration des apprentissages - fierté de montrer",
+      "assessmentChecklist": ["Recognizes patterns 1-10", "Solves comparison problems", "Explains thinking in French"],
+      "duration": "environ 10 minutes selon le partage",
+      "decisionPoint": "If time short → celebrate biggest accomplishment",
+      "alternative": "Option créative: présenter son apprentissage de façon originale"
+    },
+    
+    "vocabulary": {
+      "montrer": "mone-tray",
+      "savoir": "sah-vwahr",
+      "fier": "fee-air"
+    },
+    
+    "emergencyBackup": "Use visual cards only, work with partner, focus on strongest skill area",
+    "materials": ["cartes révision", "tableau de confiance", "autocollants", "stations évaluation", "checklist élève", "cartes aide", "matériel stations"]
+  },
+  
+  {
+    "lessonNumber": 14,
+    "title": "Célébrer les nombres",
+    "oneGoal": "Students demonstrate complete understanding of counting and number concepts 0-10",
+    "isCore": true,
+    "curriculumAlignment": ["1NS.1", "1NS.2", "1NS.3", "1NS.4"],
+    
+    "mindsOn": {
+      "activity": "Cercle de fierté - partager son apprentissage préféré des nombres",
+      "materials": ["certificats", "couronne de nombres", "miroir de fierté"],
+      "duration": "environ 8 minutes ou selon le partage émotionnel",
+      "decisionPoint": "If emotional → take time for sharing; If energetic → add celebration song",
+      "alternative": "Option calme: réflexion silencieuse puis partage volontaire"
+    },
+    
+    "action": {
+      "activities": ["Performances de nombres - chansons, danses, jeux (environ 9 min)", "Portfolio de nombres - regarder progrès (environ 9 min)", "Jeu de révision amusant choisi par classe (environ 9 min)"],
+      "materials": ["portfolios", "matériel performance", "jeux favoris", "appareil photo"],
+      "duration": "environ 25-30 minutes selon les choix de célébration",
+      "decisionPoint": "If want performance → prepare mini-show; If prefer games → tournament",
+      "alternative": "Option libre: chacun choisit sa façon de célébrer"
+    },
+    
+    "consolidation": {
+      "activity": "Promesse pour continuer à aimer les nombres",
+      "assessmentChecklist": ["Demonstrates all concepts", "Shows confidence with numbers", "Celebrates growth"],
+      "duration": "environ 10 minutes selon l'émotion du moment",
+      "decisionPoint": "If emotional → keep simple; If excited → plan next learning",
+      "alternative": "Option simple: dire merci aux nombres dans sa tête"
+    },
+    
+    "vocabulary": {
+      "célébrer": "say-lay-bray",
+      "réussir": "ray-oo-seer",
+      "ensemble": "ahn-sahm-bluh"
+    },
+    
+    "emergencyBackup": "Sing favorite counting song, show favorite number with manipulatives, group hug",
+    "materials": ["certificats", "couronne de nombres", "miroir de fierté", "portfolios", "matériel performance", "jeux favoris", "appareil photo"]
+  },
+  
+  {
+    "lessonNumber": 15,
+    "title": "Jeux de nombres",
+    "oneGoal": "Students practice number recognition through engaging games",
+    "isCore": false,
+    "curriculumAlignment": ["1NS.2"],
+    
+    "mindsOn": {
+      "activity": "Choix de jeu - vote pour le jeu de nombres préféré",
+      "materials": ["cartes de jeux", "tableau de vote", "autocollants vote"],
+      "duration": "environ 8 minutes ou selon le processus de décision",
+      "decisionPoint": "If excited about choice → play immediately; If indecisive → teacher chooses",
+      "alternative": "Option simple: l'enseignant propose 2-3 jeux favoris"
+    },
+    
+    "action": {
+      "activities": ["Station jeu 1 - selon vote (environ 9 min)", "Station jeu 2 - selon vote (environ 9 min)", "Station jeu 3 - selon vote (environ 9 min)"],
+      "materials": ["matériel jeux variés", "minuteur rotation", "cartes instructions"],
+      "duration": "environ 25-30 minutes selon l'engagement dans les jeux",
+      "decisionPoint": "If loving game → extend time; If bored → change quickly",
+      "alternative": "Option libre: jeu continu sans rotation si très engagés"
+    },
+    
+    "consolidation": {
+      "activity": "Partager le jeu préféré et pourquoi",
+      "assessmentChecklist": ["Engages with number games", "Shows number recognition", "Has fun with math"],
+      "duration": "environ 10 minutes selon l'enthousiasme",
+      "decisionPoint": "If time short → thumbs up pour jeu préféré",
+      "alternative": "Option créative: inventer ensemble un nouveau jeu de nombres"
+    },
+    
+    "vocabulary": {
+      "jeux": "zhuh",
+      "amusant": "ah-moo-zahn",
+      "jouer": "zhoo-ay"
+    },
+    
+    "emergencyBackup": "Simple number card games, counting race, number hide and seek",
+    "materials": ["cartes de jeux", "tableau de vote", "autocollants vote", "matériel jeux variés", "minuteur rotation", "cartes instructions"]
+  },
+  
+  {
+    "lessonNumber": 16,
+    "title": "Histoire de nombres",
+    "oneGoal": "Students create and share stories using numbers 0-10",
+    "isCore": false,
+    "curriculumAlignment": ["1NS.3"],
+    
+    "mindsOn": {
+      "activity": "Histoire modèle - 'Il était une fois 3 petits ours'",
+      "materials": ["livre histoire", "marionnettes", "props histoire"],
+      "duration": "environ 8 minutes ou selon la captivation",
+      "decisionPoint": "If captivated → extend story; If restless → move to creation",
+      "alternative": "Option participative: les élèves aident à raconter l'histoire"
+    },
+    
+    "action": {
+      "activities": ["Créer histoire avec dessins (environ 9 min)", "Pratiquer histoire avec partenaire (environ 9 min)", "Ajouter accessoires et mouvements (environ 9 min)"],
+      "materials": ["papier histoire", "crayons", "accessoires variés", "costume box"],
+      "duration": "environ 25-30 minutes selon la créativité",
+      "decisionPoint": "If creative → individual stories; If need support → paired stories",
+      "alternative": "Option simple: histoire collective avec chacun qui ajoute une partie"
+    },
+    
+    "consolidation": {
+      "activity": "Théâtre d'histoires - présenter aux autres",
+      "assessmentChecklist": ["Includes numbers in story", "Uses French numbers", "Shares creative ideas"],
+      "duration": "environ 10 minutes selon les présentations",
+      "decisionPoint": "If time short → tell story to one person",
+      "alternative": "Option intime: partager son histoire en petit cercle"
+    },
+    
+    "vocabulary": {
+      "histoire": "ees-twahr",
+      "créer": "cray-ay",
+      "partager": "par-tah-zhay"
+    },
+    
+    "emergencyBackup": "Tell simple number story together, act out story with movements, draw story instead of telling",
+    "materials": ["livre histoire", "marionnettes", "props histoire", "papier histoire", "crayons", "accessoires variés", "costume box"]
+  },
+  
+  {
+    "lessonNumber": 17,
+    "title": "Chasse aux nombres",
+    "oneGoal": "Students find and document numbers in their school environment",
+    "isCore": false,
+    "curriculumAlignment": ["1NS.3"],
+    
+    "mindsOn": {
+      "activity": "Préparation de l'exploration - carte de chasse et équipes",
+      "materials": ["cartes de chasse", "crayons", "clipboard", "badges explorateur"],
+      "duration": "environ 8 minutes ou selon l'excitation",
+      "decisionPoint": "If excited → go immediately; If need structure → review expectations",
+      "alternative": "Option calme: exploration individuelle à son rythme"
+    },
+    
+    "action": {
+      "activities": ["Exploration en équipes dans école (environ 9 min)", "Documentation avec dessins/photos (environ 9 min)", "Retour et organisation des trouvailles (environ 9 min)"],
+      "materials": ["tablettes/appareils photo", "sacs collection", "cartes documentation"],
+      "duration": "environ 25-30 minutes selon les découvertes",
+      "decisionPoint": "If finding lots → extend hunt; If struggling → give hints",
+      "alternative": "Option libre: chasse sans contrainte de temps ni d'équipe"
+    },
+    
+    "consolidation": {
+      "activity": "Partage des découvertes les plus surprenantes",
+      "assessmentChecklist": ["Finds numbers in environment", "Documents findings", "Shares discoveries"],
+      "duration": "environ 10 minutes selon l'enthousiasme du partage",
+      "decisionPoint": "If excited sharing → extend time; If tired → quick show and tell",
+      "alternative": "Option créative: créer une carte des nombres trouvés dans l'école"
+    },
+    
+    "vocabulary": {
+      "chasse": "shahs",
+      "trouver": "troo-vay",
+      "découvrir": "day-coo-vreer"
+    },
+    
+    "emergencyBackup": "Hunt in classroom only, look for obvious numbers (clock, calendar), draw what you find",
+    "materials": ["cartes de chasse", "crayons", "clipboard", "badges explorateur", "tablettes/appareils photo", "sacs collection", "cartes documentation"]
+  },
+  
+  {
+    "lessonNumber": 18,
+    "title": "Art de nombres",
+    "oneGoal": "Students create artistic representations of numbers using various materials",
+    "isCore": false,
+    "curriculumAlignment": ["1NS.2"],
+    
+    "mindsOn": {
+      "activity": "Galerie d'art de nombres - exemples inspirants d'art mathématique",
+      "materials": ["exemples art", "musique douce", "blouses art"],
+      "duration": "environ 8 minutes ou selon l'inspiration",
+      "decisionPoint": "If inspired → start creating; If overwhelmed → show simpler examples",
+      "alternative": "Option simple: regarder quelques exemples seulement puis créer"
+    },
+    
+    "action": {
+      "activities": ["Choisir matériaux et nombre préféré (environ 9 min)", "Création artistique libre (environ 9 min)", "Finition et présentation (environ 9 min)"],
+      "materials": ["peinture", "collage matériaux", "pâte à modeler", "papier spéciaux"],
+      "duration": "environ 25-30 minutes selon le processus créatif",
+      "decisionPoint": "If perfectionist → encourage process; If rushing → slow down",
+      "alternative": "Option ouverte: création sans contrainte de temps ni de matériel"
+    },
+    
+    "consolidation": {
+      "activity": "Vernissage - exposition des œuvres créées",
+      "assessmentChecklist": ["Represents number artistically", "Uses creative materials", "Explains artistic choices"],
+      "duration": "environ 10 minutes selon les présentations artistiques",
+      "decisionPoint": "If proud → extended sharing; If shy → quiet appreciation",
+      "alternative": "Option douce: admirer en silence puis partager avec un ami"
+    },
+    
+    "vocabulary": {
+      "art": "ahr",
+      "créatif": "cray-ah-teef",
+      "beau": "boh"
+    },
+    
+    "emergencyBackup": "Simple coloring of numbers, use basic materials only, copy teacher example",
+    "materials": ["exemples art", "musique douce", "blouses art", "peinture", "collage matériaux", "pâte à modeler", "papier spéciaux"]
+  },
+  
+  {
+    "lessonNumber": 19,
+    "title": "Défis de comptage",
+    "oneGoal": "Students engage in challenging counting activities and puzzles",
+    "isCore": false,
+    "curriculumAlignment": ["1NS.1"],
+    
+    "mindsOn": {
+      "activity": "Échauffement de cerveau - énigmes simples de comptage",
+      "materials": ["cartes énigmes", "objets mystère", "boîte surprise"],
+      "duration": "environ 8 minutes ou selon l'intérêt pour les énigmes",
+      "decisionPoint": "If loving challenge → increase difficulty; If frustrated → simplify",
+      "alternative": "Option douce: énigmes très simples avec support visuel"
+    },
+    
+    "action": {
+      "activities": ["Défi comptage par 2s (environ 9 min)", "Puzzle de nombres mélangés (environ 9 min)", "Course de comptage en équipes (environ 9 min)"],
+      "materials": ["objets pour compter par 2", "puzzles nombres", "minuteur course"],
+      "duration": "environ 25-30 minutes selon l'engagement dans les défis",
+      "decisionPoint": "If competitive → tournament style; If collaborative → team challenges",
+      "alternative": "Option coopérative: défis sans compétition, juste pour s'amuser"
+    },
+    
+    "consolidation": {
+      "activity": "Célébration des efforts et stratégies intelligentes",
+      "assessmentChecklist": ["Attempts challenges", "Uses counting strategies", "Perseveres with difficulty"],
+      "duration": "environ 10 minutes selon l'énergie restante",
+      "decisionPoint": "If tired → quiet celebration; If energized → victory dance",
+      "alternative": "Option calme: partager une chose qu'on a apprise sur soi"
+    },
+    
+    "vocabulary": {
+      "défis": "day-fee",
+      "difficile": "dee-fee-seel",
+      "essayer": "eh-say-yay"
+    },
+    
+    "emergencyBackup": "Count by 1s only, use simple counting challenges, support with partner",
+    "materials": ["cartes énigmes", "objets mystère", "boîte surprise", "objets pour compter par 2", "puzzles nombres", "minuteur course"]
+  },
+  
+  {
+    "lessonNumber": 20,
+    "title": "Fête des nombres",
+    "oneGoal": "Students celebrate their number learning journey through multiple activities",
+    "isCore": false,
+    "curriculumAlignment": ["1NS.1", "1NS.2", "1NS.3", "1NS.4"],
+    
+    "mindsOn": {
+      "activity": "Cérémonie d'ouverture - réflexion sur le voyage d'apprentissage",
+      "materials": ["photos du parcours", "musique festive", "décorations"],
+      "duration": "environ 8 minutes ou selon l'émotion du moment",
+      "decisionPoint": "If emotional → take time; If excited → move to celebration",
+      "alternative": "Option simple: moment de silence pour apprécier le chemin parcouru"
+    },
+    
+    "action": {
+      "activities": ["Stations de fête - jeux, art, performances (environ 9 min)", "Partage avec invités spéciaux (environ 9 min)", "Activité surprise finale (environ 9 min)"],
+      "materials": ["stations préparées", "surprises", "appareils photo", "rafraîchissements"],
+      "duration": "environ 25-30 minutes selon l'esprit de fête",
+      "decisionPoint": "If guests present → formal presentation; If class only → intimate celebration",
+      "alternative": "Option libre: chacun choisit comment célébrer son apprentissage"
+    },
+    
+    "consolidation": {
+      "activity": "Cercle final - promesses pour le futur apprentissage",
+      "assessmentChecklist": ["Celebrates learning journey", "Shows number confidence", "Excited for future math"],
+      "duration": "environ 10 minutes ou selon les partages finaux",
+      "decisionPoint": "If continuing unit → preview next; If ending → focus on pride",
+      "alternative": "Option douce: dire merci silencieusement à ses apprentissages"
+    },
+    
+    "vocabulary": {
+      "fête": "fet",
+      "voyage": "voy-ahge",
+      "merci": "mer-see"
+    },
+    
+    "emergencyBackup": "Simple party games, share favorite learning moment, group photo with numbers",
+    "materials": ["photos du parcours", "musique festive", "décorations", "stations préparées", "surprises", "appareils photo", "rafraîchissements"]
+  }
+]

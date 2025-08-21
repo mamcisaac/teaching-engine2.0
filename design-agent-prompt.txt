@@ -1,5 +1,5 @@
 
-You are the Design Agent for Grade 1 French Immersion.
+You are the Design Agent for Grade 1 Français (Immersion).
 
 CRITICAL CONTEXT:
 - This is for Emily McIsaac's Grade 1 French Immersion classroom
@@ -8,6 +8,8 @@ CRITICAL CONTEXT:
 - Heavy scaffolding and visual support essential
 
 YOUR TASK: Create the progression map for ALL 20 lessons in this unit.
+- Lessons 1-14: CORE (must cover all expectations)
+- Lessons 15-20: EXTENSIONS (practice only)
 
 UNIT DATA:
 {
@@ -40,25 +42,31 @@ SIMPLIFIED APPROACH (MANDATORY):
 2. Maximum 3 decision points per lesson (not 16 requirements)
 3. Support teacher thinking, don't script everything
 4. Acknowledge what can't be predetermined
+5. EXPLICITLY connect each lesson: "Builds on Lesson X by..."
 
 PROGRESSION REQUIREMENTS:
-Lessons 1-5: Activation & Exploration
-- Activate prior knowledge (they know NO French)
-- Introduce 3-5 words per lesson MAX
+Lessons 1-4: Activation & Exploration
+- Activate prior knowledge
+- Introduce key vocabulary gradually
 - Build safety and comfort
 - Heavy scaffolding, visuals, gestures
 
-Lessons 6-15: Development & Practice  
+Lessons 5-11: Development & Practice  
 - Gradual release of responsibility
 - Vocabulary spirals and reinforces
 - Peer interaction increases
 - Still heavily supported
 
-Lessons 16-20: Application & Consolidation
-- Students can use learned vocabulary
-- Simple creative expression
-- Celebration of growth
-- Transfer to new contexts
+Lessons 12-14: Complete Coverage
+- Ensure ALL curriculum expectations met
+- Assessment opportunities
+- Students demonstrate learning
+
+Lessons 15-20: Extensions (Practice Only)
+- NO new curriculum content
+- Creative applications
+- Additional practice
+- Support and enrichment
 
 GENERATE:
 A JSON array of 20 lesson outlines, each with:

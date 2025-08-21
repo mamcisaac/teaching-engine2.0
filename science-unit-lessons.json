@@ -1,0 +1,781 @@
+[
+  {
+    "lessonNumber": 1,
+    "title": "Les règles de sécurité",
+    "oneGoal": "Students learn the basic safety rules for science class",
+    "isCore": true,
+    "curriculumAlignment": ["1ST.1"],
+    
+    "mindsOn": {
+      "activity": "Safety symbol circle time with gestures",
+      "materials": ["safety symbols cards", "circle carpet"],
+      "duration": "~8 min",
+      "decisionPoint": "If students are restless → add movement; If focused → continue with symbols"
+    },
+    
+    "action": {
+      "activities": ["Practice safety gestures (~9 min)", "Role-play unsafe situations (~9 min)", "Create class safety poster (~9 min)"],
+      "materials": ["safety symbols", "poster paper", "markers", "scenario cards"],
+      "duration": "~27 min",
+      "decisionPoint": "If students struggle with French → use more gestures; If confident → add vocabulary practice"
+    },
+    
+    "consolidation": {
+      "activity": "Safety rule demonstration and commitment",
+      "assessmentChecklist": ["Shows safety gesture correctly", "Identifies unsafe situation", "States one safety rule in French"],
+      "duration": "~10 min",
+      "decisionPoint": "If students need more practice → extend to next lesson"
+    },
+    
+    "vocabulary": {
+      "sécurité": "say-koo-ree-TAY",
+      "règles": "REG-luh",
+      "attention": "ah-tahn-see-OHN"
+    },
+    
+    "emergencyBackup": "Safety song with actions and picture book",
+    "materials": ["safety symbols cards", "circle carpet", "poster paper", "markers", "scenario cards"],
+    "safetyNote": "Establish clear stop signal and practice it multiple times"
+  },
+  
+  {
+    "lessonNumber": 2,
+    "title": "Mes yeux observent",
+    "oneGoal": "Students learn to observe safely with their eyes only",
+    "isCore": true,
+    "curriculumAlignment": ["1ST.1", "1ST.2"],
+    
+    "mindsOn": {
+      "activity": "Eye observation game with mystery box",
+      "materials": ["mystery box", "safe objects", "eye patches"],
+      "duration": "~8 min",
+      "decisionPoint": "If students want to touch → remind safety rules; If following rules → add more objects"
+    },
+    
+    "action": {
+      "activities": ["Look-only exploration stations (~9 min)", "Drawing what we see (~9 min)", "I Spy in French (~9 min)"],
+      "materials": ["various safe objects", "magnifying glasses", "drawing paper", "crayons"],
+      "duration": "~27 min",
+      "decisionPoint": "If students forgetting safety → pause for reminder; If engaged → extend observation time"
+    },
+    
+    "consolidation": {
+      "activity": "Share one observation drawing and describe",
+      "assessmentChecklist": ["Uses eyes only to observe", "Describes object in simple French", "Follows safety rules independently"],
+      "duration": "~10 min",
+      "decisionPoint": "If vocabulary challenging → focus on gestures and simple words"
+    },
+    
+    "vocabulary": {
+      "yeux": "yuh",
+      "observer": "ob-ser-VAY",
+      "regarder": "ruh-gar-DAY"
+    },
+    
+    "emergencyBackup": "Look and find game with classroom objects",
+    "materials": ["mystery box", "safe objects", "eye patches", "magnifying glasses", "drawing paper", "crayons"],
+    "safetyNote": "Hands behind back rule when observing with eyes only"
+  },
+  
+  {
+    "lessonNumber": 3,
+    "title": "Toucher en sécurité",
+    "oneGoal": "Students learn safe touching rules and gentle exploration",
+    "isCore": true,
+    "curriculumAlignment": ["1ST.1", "1ST.2", "1ST.3"],
+    
+    "mindsOn": {
+      "activity": "Gentle touch practice with stuffed animals",
+      "materials": ["stuffed animals", "texture cards"],
+      "duration": "~8 min",
+      "decisionPoint": "If too rough → model gentleness more; If gentle → introduce texture vocabulary"
+    },
+    
+    "action": {
+      "activities": ["Safe touch exploration boxes (~9 min)", "Texture sorting game (~9 min)", "Gentle scientist practice (~9 min)"],
+      "materials": ["texture boxes", "various safe textures", "sorting mats", "scientist badges"],
+      "duration": "~27 min",
+      "decisionPoint": "If students rushing → slow down practice; If ready → add describing textures"
+    },
+    
+    "consolidation": {
+      "activity": "Touch and describe circle sharing",
+      "assessmentChecklist": ["Touches gently and safely", "Describes texture in French", "Waits for permission before touching"],
+      "duration": "~10 min",
+      "decisionPoint": "If need more practice → repeat with different textures"
+    },
+    
+    "vocabulary": {
+      "toucher": "too-SHAY",
+      "doux": "doo",
+      "gentil": "zhahn-TEEL"
+    },
+    
+    "emergencyBackup": "Texture guessing game with simple objects",
+    "materials": ["stuffed animals", "texture cards", "texture boxes", "various safe textures", "sorting mats", "scientist badges"],
+    "safetyNote": "Always ask permission before touching any object or material"
+  },
+  
+  {
+    "lessonNumber": 4,
+    "title": "Écouter les sons",
+    "oneGoal": "Students use their ears safely to explore sounds",
+    "isCore": true,
+    "curriculumAlignment": ["1ST.1", "1ST.2"],
+    
+    "mindsOn": {
+      "activity": "Silent listening circle with nature sounds",
+      "materials": ["sound recording", "listening ears headbands"],
+      "duration": "~8 min",
+      "decisionPoint": "If too noisy → establish quiet signal; If focused → add more sounds"
+    },
+    
+    "action": {
+      "activities": ["Sound matching game (~9 min)", "Make safe sounds stations (~9 min)", "Sound hunt around classroom (~9 min)"],
+      "materials": ["sound containers", "musical instruments", "recording device", "sound cards"],
+      "duration": "~27 min",
+      "decisionPoint": "If volume too high → establish sound limits; If engaged → create sound patterns"
+    },
+    
+    "consolidation": {
+      "activity": "Favorite sound sharing and imitation",
+      "assessmentChecklist": ["Listens quietly and safely", "Identifies different sounds", "Makes appropriate volume sounds"],
+      "duration": "~10 min",
+      "decisionPoint": "If too excited → calm with quiet sounds"
+    },
+    
+    "vocabulary": {
+      "écouter": "ay-koo-TAY",
+      "sons": "sohn",
+      "oreilles": "or-AY"
+    },
+    
+    "emergencyBackup": "Sound story with actions and simple instruments",
+    "materials": ["sound recording", "listening ears headbands", "sound containers", "musical instruments", "recording device", "sound cards"],
+    "safetyNote": "Keep all sounds at safe volume levels for young ears"
+  },
+  
+  {
+    "lessonNumber": 5,
+    "title": "Sentir avec prudence",
+    "oneGoal": "Students learn safe smelling techniques with appropriate materials",
+    "isCore": true,
+    "curriculumAlignment": ["1ST.1", "1ST.2"],
+    
+    "mindsOn": {
+      "activity": "Safe smelling demonstration with teacher modeling",
+      "materials": ["safe scent containers", "demonstration materials"],
+      "duration": "~8 min",
+      "decisionPoint": "If students want to smell immediately → practice technique first; If patient → continue modeling"
+    },
+    
+    "action": {
+      "activities": ["Guided smelling stations (~9 min)", "Scent matching memory game (~9 min)", "Describe the smell drawing (~9 min)"],
+      "materials": ["scent containers", "safe natural scents", "matching cards", "drawing paper"],
+      "duration": "~27 min",
+      "decisionPoint": "If allergies appear → remove scent immediately; If comfortable → add scent vocabulary"
+    },
+    
+    "consolidation": {
+      "activity": "Favorite smell sharing with safe technique demo",
+      "assessmentChecklist": ["Uses proper wafting technique", "Identifies familiar scents", "Follows smelling safety rules"],
+      "duration": "~10 min",
+      "decisionPoint": "If technique needs work → practice more before moving on"
+    },
+    
+    "vocabulary": {
+      "sentir": "sahn-TEER",
+      "nez": "nay",
+      "odeur": "oh-DUR"
+    },
+    
+    "emergencyBackup": "Smell memory game with common safe scents",
+    "materials": ["safe scent containers", "demonstration materials", "scent containers", "safe natural scents", "matching cards", "drawing paper"],
+    "safetyNote": "Never smell unknown substances - only teacher-approved safe materials"
+  },
+  
+  {
+    "lessonNumber": 6,
+    "title": "Objets sécuritaires",
+    "oneGoal": "Students identify and safely manipulate classroom science materials",
+    "isCore": true,
+    "curriculumAlignment": ["1ST.1", "1ST.3"],
+    
+    "mindsOn": {
+      "activity": "Safe vs unsafe sorting with material cards",
+      "materials": ["material picture cards", "sorting mats"],
+      "duration": "~8 min",
+      "decisionPoint": "If unsure about safety → discuss more examples; If confident → introduce real materials"
+    },
+    
+    "action": {
+      "activities": ["Safe material exploration (~9 min)", "Proper handling practice (~9 min)", "Material care demonstration (~9 min)"],
+      "materials": ["classroom science materials", "magnifying glasses", "measuring tools", "storage containers"],
+      "duration": "~27 min",
+      "decisionPoint": "If rough handling → pause for gentle reminder; If careful → add more complex materials"
+    },
+    
+    "consolidation": {
+      "activity": "Demonstrate proper care of one science tool",
+      "assessmentChecklist": ["Handles materials gently", "Identifies safe materials", "Shows proper storage technique"],
+      "duration": "~10 min",
+      "decisionPoint": "If need more practice → repeat with different materials"
+    },
+    
+    "vocabulary": {
+      "objets": "ob-ZHAY",
+      "matériaux": "ma-tay-ree-OH",
+      "manipuler": "ma-nee-poo-LAY"
+    },
+    
+    "emergencyBackup": "Material matching game with pictures and real objects",
+    "materials": ["material picture cards", "sorting mats", "classroom science materials", "magnifying glasses", "measuring tools", "storage containers"],
+    "safetyNote": "Only touch materials after teacher permission and demonstration"
+  },
+  
+  {
+    "lessonNumber": 7,
+    "title": "Observer ensemble",
+    "oneGoal": "Students work together to observe materials using all senses safely",
+    "isCore": true,
+    "curriculumAlignment": ["1ST.1", "1ST.2", "1ST.3"],
+    
+    "mindsOn": {
+      "activity": "Partner observation practice with simple objects",
+      "materials": ["partner cards", "simple objects", "observation sheets"],
+      "duration": "~8 min",
+      "decisionPoint": "If partners struggling → model turn-taking; If working well → add communication prompts"
+    },
+    
+    "action": {
+      "activities": ["Partner observation stations (~9 min)", "Share and compare findings (~9 min)", "Group observation challenge (~9 min)"],
+      "materials": ["various materials", "observation tools", "sharing mats", "recording sheets"],
+      "duration": "~27 min",
+      "decisionPoint": "If conflicts arise → practice sharing rules; If collaborating well → add vocabulary challenges"
+    },
+    
+    "consolidation": {
+      "activity": "Team presentation of one shared observation",
+      "assessmentChecklist": ["Takes turns observing", "Shares materials safely", "Communicates findings in simple French"],
+      "duration": "~10 min",
+      "decisionPoint": "If presentations too long → set time limits"
+    },
+    
+    "vocabulary": {
+      "ensemble": "ahn-SAHM-bluh",
+      "équipe": "ay-KEEP",
+      "partager": "par-ta-ZHAY"
+    },
+    
+    "emergencyBackup": "Whole class observation of one interesting object",
+    "materials": ["partner cards", "simple objects", "observation sheets", "various materials", "observation tools", "sharing mats", "recording sheets"],
+    "safetyNote": "Wait for your turn and respect your partner's observations"
+  },
+  
+  {
+    "lessonNumber": 8,
+    "title": "Vivant ou non-vivant?",
+    "oneGoal": "Students begin to distinguish between living and non-living things safely",
+    "isCore": true,
+    "curriculumAlignment": ["1ST.1", "1ST.2", "1SN.1"],
+    
+    "mindsOn": {
+      "activity": "Living things movement game and discussion",
+      "materials": ["movement cards", "picture examples"],
+      "duration": "~8 min",
+      "decisionPoint": "If concept confusing → use more concrete examples; If understanding → add edge cases"
+    },
+    
+    "action": {
+      "activities": ["Sort living/non-living pictures (~9 min)", "Safe observation of classroom plants (~9 min)", "Living things needs discussion (~9 min)"],
+      "materials": ["sorting cards", "classroom plants", "magnifying glasses", "needs chart"],
+      "duration": "~27 min",
+      "decisionPoint": "If sorting difficult → focus on clear examples; If confident → introduce borderline cases"
+    },
+    
+    "consolidation": {
+      "activity": "Explain one living and one non-living thing choice",
+      "assessmentChecklist": ["Sorts most items correctly", "Explains living thing characteristics", "Observes living things gently"],
+      "duration": "~10 min",
+      "decisionPoint": "If explanations unclear → provide sentence starters"
+    },
+    
+    "vocabulary": {
+      "vivant": "vee-VAHN",
+      "non-vivant": "nohn-vee-VAHN",
+      "différent": "dee-fay-RAHN"
+    },
+    
+    "emergencyBackup": "Living things picture book with simple sorting",
+    "materials": ["movement cards", "picture examples", "sorting cards", "classroom plants", "magnifying glasses", "needs chart"],
+    "safetyNote": "Be extra gentle with all living things - they can be hurt"
+  },
+  
+  {
+    "lessonNumber": 9,
+    "title": "Les plantes autour de nous",
+    "oneGoal": "Students safely observe and identify basic plant characteristics",
+    "isCore": true,
+    "curriculumAlignment": ["1ST.1", "1ST.2", "1SN.1"],
+    
+    "mindsOn": {
+      "activity": "Plant part identification with real plants",
+      "materials": ["classroom plants", "plant part cards"],
+      "duration": "~8 min",
+      "decisionPoint": "If vocabulary challenging → focus on fewer parts; If learning quickly → add functions"
+    },
+    
+    "action": {
+      "activities": ["Gentle plant observation (~9 min)", "Plant part drawing and labeling (~9 min)", "Plant needs investigation (~9 min)"],
+      "materials": ["various plants", "magnifying glasses", "drawing paper", "labels", "watering supplies"],
+      "duration": "~27 min",
+      "decisionPoint": "If too rough with plants → reinforce gentleness; If careful → explore more plant varieties"
+    },
+    
+    "consolidation": {
+      "activity": "Show and name plant parts on classroom plant",
+      "assessmentChecklist": ["Handles plants very gently", "Names basic plant parts", "Describes plant characteristics"],
+      "duration": "~10 min",
+      "decisionPoint": "If need more practice → use additional plants next lesson"
+    },
+    
+    "vocabulary": {
+      "plantes": "plahnts",
+      "feuilles": "fuh-EE",
+      "racines": "ra-SEEN"
+    },
+    
+    "emergencyBackup": "Plant part matching game with pictures and real examples",
+    "materials": ["classroom plants", "plant part cards", "various plants", "magnifying glasses", "drawing paper", "labels", "watering supplies"],
+    "safetyNote": "Plants are living - touch only with permission and be very gentle"
+  },
+  
+  {
+    "lessonNumber": 10,
+    "title": "Les animaux et nous",
+    "oneGoal": "Students safely observe and discuss animal characteristics including humans",
+    "isCore": true,
+    "curriculumAlignment": ["1ST.1", "1ST.2", "1SN.1"],
+    
+    "mindsOn": {
+      "activity": "Animal movement imitation and characteristic guessing",
+      "materials": ["animal picture cards", "movement space"],
+      "duration": "~8 min",
+      "decisionPoint": "If too excited → calm with quieter animals; If focused → add characteristic discussion"
+    },
+    
+    "action": {
+      "activities": ["Animal characteristic sorting (~9 min)", "Human as animal exploration (~9 min)", "Safe animal observation (pictures/videos) (~9 min)"],
+      "materials": ["animal cards", "sorting mats", "mirrors", "animal videos", "characteristic charts"],
+      "duration": "~27 min",
+      "decisionPoint": "If self-comparison difficult → use more concrete examples; If understanding → add similarities discussion"
+    },
+    
+    "consolidation": {
+      "activity": "Share one way humans are like other animals",
+      "assessmentChecklist": ["Identifies animal characteristics", "Connects humans to animal kingdom", "Uses gentle observation practices"],
+      "duration": "~10 min",
+      "decisionPoint": "If connections unclear → provide more guided examples"
+    },
+    
+    "vocabulary": {
+      "animaux": "ah-nee-MOH",
+      "humains": "oo-MAHN",
+      "comment c'est": "koh-mahn say"
+    },
+    
+    "emergencyBackup": "Animal sounds and movement game with characteristic discussion",
+    "materials": ["animal picture cards", "movement space", "animal cards", "sorting mats", "mirrors", "animal videos", "characteristic charts"],
+    "safetyNote": "Only observe real animals from safe distance with adult supervision"
+  },
+  
+  {
+    "lessonNumber": 11,
+    "title": "Comparer les vivants",
+    "oneGoal": "Students compare characteristics between plants, animals, and humans safely",
+    "isCore": true,
+    "curriculumAlignment": ["1ST.1", "1ST.2", "1SN.1"],
+    
+    "mindsOn": {
+      "activity": "Three-way comparison sorting with living things",
+      "materials": ["comparison chart", "living things cards"],
+      "duration": "~8 min",
+      "decisionPoint": "If sorting confusing → focus on obvious differences; If confident → add subtle comparisons"
+    },
+    
+    "action": {
+      "activities": ["Venn diagram creation with pictures (~9 min)", "Living things needs comparison (~9 min)", "Similarities and differences discussion (~9 min)"],
+      "materials": ["Venn diagram sheets", "picture cards", "needs cards", "chart paper"],
+      "duration": "~27 min",
+      "decisionPoint": "If Venn diagram difficult → use simpler sorting; If successful → add more categories"
+    },
+    
+    "consolidation": {
+      "activity": "Explain one similarity and one difference between groups",
+      "assessmentChecklist": ["Identifies similarities between living things", "Notes key differences", "Uses comparison vocabulary"],
+      "duration": "~10 min",
+      "decisionPoint": "If vocabulary challenging → accept gestures and simple words"
+    },
+    
+    "vocabulary": {
+      "comparer": "koh-pa-RAY",
+      "similaire": "see-mee-LAIR",
+      "différence": "dee-fay-RAHNS"
+    },
+    
+    "emergencyBackup": "Simple comparison game with obvious examples",
+    "materials": ["comparison chart", "living things cards", "Venn diagram sheets", "picture cards", "needs cards", "chart paper"],
+    "safetyNote": "Remember gentle observation rules when comparing living things"
+  },
+  
+  {
+    "lessonNumber": 12,
+    "title": "Scientifiques sécuritaires",
+    "oneGoal": "Students demonstrate all safety skills while exploring like scientists",
+    "isCore": true,
+    "curriculumAlignment": ["1ST.1", "1ST.2", "1ST.3"],
+    
+    "mindsOn": {
+      "activity": "Scientist badge ceremony and safety pledge",
+      "materials": ["scientist badges", "safety checklist"],
+      "duration": "~8 min",
+      "decisionPoint": "If not ready for independence → review safety rules; If confident → begin exploration"
+    },
+    
+    "action": {
+      "activities": ["Independent exploration stations (~9 min)", "Safety buddy check-ins (~9 min)", "Discovery documentation (~9 min)"],
+      "materials": ["exploration materials", "safety buddy cards", "discovery journals", "various science tools"],
+      "duration": "~27 min",
+      "decisionPoint": "If safety issues → pause and review; If exploring well → extend exploration time"
+    },
+    
+    "consolidation": {
+      "activity": "Scientist reflection and safety demonstration",
+      "assessmentChecklist": ["Follows all safety rules independently", "Uses all senses safely", "Acts like a responsible scientist"],
+      "duration": "~10 min",
+      "decisionPoint": "If not demonstrating mastery → plan additional practice"
+    },
+    
+    "vocabulary": {
+      "scientifiques": "see-ahn-tee-FEEK",
+      "découvrir": "day-koo-VREER",
+      "explorer": "ex-plo-RAY"
+    },
+    
+    "emergencyBackup": "Guided science exploration with strong teacher support",
+    "materials": ["scientist badges", "safety checklist", "exploration materials", "safety buddy cards", "discovery journals", "various science tools"],
+    "safetyNote": "Scientists always put safety first in everything they do"
+  },
+  
+  {
+    "lessonNumber": 13,
+    "title": "Nos découvertes",
+    "oneGoal": "Students share and explain their observations using proper science vocabulary",
+    "isCore": true,
+    "curriculumAlignment": ["1ST.1", "1ST.2", "1SN.1"],
+    
+    "mindsOn": {
+      "activity": "Discovery show-and-tell preparation with vocabulary cards",
+      "materials": ["vocabulary cards", "discovery collection"],
+      "duration": "~8 min",
+      "decisionPoint": "If vocabulary overwhelming → focus on key words; If confident → encourage elaboration"
+    },
+    
+    "action": {
+      "activities": ["Prepare discovery presentations (~9 min)", "Peer discovery sharing (~9 min)", "Vocabulary practice with discoveries (~9 min)"],
+      "materials": ["presentation materials", "discovery items", "vocabulary supports", "recording sheets"],
+      "duration": "~27 min",
+      "decisionPoint": "If presentations too long → set time limits; If engaged → allow more sharing time"
+    },
+    
+    "consolidation": {
+      "activity": "Celebration of learning with vocabulary review",
+      "assessmentChecklist": ["Uses science vocabulary correctly", "Explains observations clearly", "Listens respectfully to others"],
+      "duration": "~10 min",
+      "decisionPoint": "If vocabulary needs work → plan more practice activities"
+    },
+    
+    "vocabulary": {
+      "découvertes": "day-koo-VAIR-tuh",
+      "expliquer": "ex-plee-KAY",
+      "vocabulaire": "vo-ka-boo-LAIR"
+    },
+    
+    "emergencyBackup": "Simple discovery sharing circle with picture supports",
+    "materials": ["vocabulary cards", "discovery collection", "presentation materials", "discovery items", "vocabulary supports", "recording sheets"],
+    "safetyNote": "Handle all discovery items with the same safety rules we learned"
+  },
+  
+  {
+    "lessonNumber": 14,
+    "title": "Révision complète",
+    "oneGoal": "Students demonstrate mastery of all safety rules and observation skills",
+    "isCore": true,
+    "curriculumAlignment": ["1ST.1", "1ST.2", "1ST.3", "1SN.1"],
+    
+    "mindsOn": {
+      "activity": "Science skills assessment station setup and preview",
+      "materials": ["assessment stations", "skill checklists"],
+      "duration": "~8 min",
+      "decisionPoint": "If anxious about assessment → reassure it's celebration; If confident → explain station expectations"
+    },
+    
+    "action": {
+      "activities": ["Safety skills demonstration (~9 min)", "Observation skills showcase (~9 min)", "Living things knowledge check (~9 min)"],
+      "materials": ["all previous materials", "assessment checklists", "demonstration areas"],
+      "duration": "~27 min",
+      "decisionPoint": "If struggling with skills → note for additional support; If mastering → celebrate achievements"
+    },
+    
+    "consolidation": {
+      "activity": "Individual conference and goal setting for extensions",
+      "assessmentChecklist": ["Demonstrates all safety rules", "Uses all senses appropriately", "Shows understanding of living things"],
+      "duration": "~10 min",
+      "decisionPoint": "If additional practice needed → plan review sessions"
+    },
+    
+    "vocabulary": {
+      "révision": "ray-vee-see-OHN",
+      "maîtrise": "may-TREEZ",
+      "démontrer": "day-mohn-TRAY"
+    },
+    
+    "emergencyBackup": "Science skills review game with gentle assessment",
+    "materials": ["assessment stations", "skill checklists", "all previous materials", "assessment checklists", "demonstration areas"],
+    "safetyNote": "Show your best safety skills - you've learned so much!"
+  },
+  
+  {
+    "lessonNumber": 15,
+    "title": "Jardin d'exploration",
+    "oneGoal": "Students apply safety skills while exploring outdoor living things",
+    "isCore": false,
+    "curriculumAlignment": ["1ST.1", "1ST.2"],
+    
+    "mindsOn": {
+      "activity": "Outdoor safety rules discussion and preparation",
+      "materials": ["outdoor safety cards", "collection bags"],
+      "duration": "~8 min",
+      "decisionPoint": "If weather inappropriate → use window observations; If good conditions → proceed outdoors"
+    },
+    
+    "action": {
+      "activities": ["Guided outdoor plant observation (~9 min)", "Safe nature collection (~9 min)", "Outdoor living things hunt (~9 min)"],
+      "materials": ["magnifying glasses", "collection containers", "observation sheets", "clipboards"],
+      "duration": "~27 min",
+      "decisionPoint": "If students too excited → pause for safety reminders; If focused → extend exploration time"
+    },
+    
+    "consolidation": {
+      "activity": "Share outdoor discoveries and compare to indoor learning",
+      "assessmentChecklist": ["Follows outdoor safety rules", "Observes outdoor living things safely", "Makes connections to previous learning"],
+      "duration": "~10 min",
+      "decisionPoint": "If too stimulated by outdoor experience → use calming activities"
+    },
+    
+    "vocabulary": {
+      "jardin": "zhar-DAHN",
+      "extérieur": "ex-tay-ree-UR",
+      "nature": "na-TOOR"
+    },
+    
+    "emergencyBackup": "Indoor nature observation with window view and potted plants",
+    "materials": ["outdoor safety cards", "collection bags", "magnifying glasses", "collection containers", "observation sheets", "clipboards"],
+    "safetyNote": "Outdoor safety is even more important - stay with the group and ask before touching anything"
+  },
+  
+  {
+    "lessonNumber": 16,
+    "title": "Créer des collections",
+    "oneGoal": "Students safely collect and organize non-living natural materials",
+    "isCore": false,
+    "curriculumAlignment": ["1ST.1", "1ST.3"],
+    
+    "mindsOn": {
+      "activity": "Collection examples exploration and sorting ideas",
+      "materials": ["example collections", "sorting trays"],
+      "duration": "~8 min",
+      "decisionPoint": "If overwhelmed by choices → suggest simple categories; If excited → encourage creative sorting"
+    },
+    
+    "action": {
+      "activities": ["Safe material collection (~9 min)", "Organize collections by characteristics (~9 min)", "Create collection displays (~9 min)"],
+      "materials": ["collection bags", "sorting materials", "display containers", "labels"],
+      "duration": "~27 min",
+      "decisionPoint": "If collecting unsafe items → review safety rules; If good choices → encourage organization creativity"
+    },
+    
+    "consolidation": {
+      "activity": "Present collection organization and explain sorting choices",
+      "assessmentChecklist": ["Collects only safe materials", "Organizes collection logically", "Explains organizing choices"],
+      "duration": "~10 min",
+      "decisionPoint": "If presentations too complex → focus on simple explanations"
+    },
+    
+    "vocabulary": {
+      "collections": "kol-lek-see-OHN",
+      "organiser": "or-ga-nee-ZAY",
+      "trier": "tree-AY"
+    },
+    
+    "emergencyBackup": "Classroom material collection and sorting activity",
+    "materials": ["example collections", "sorting trays", "collection bags", "sorting materials", "display containers", "labels"],
+    "safetyNote": "Only collect non-living things and always check with teacher first"
+  },
+  
+  {
+    "lessonNumber": 17,
+    "title": "Art scientifique",
+    "oneGoal": "Students create art representations of their scientific observations",
+    "isCore": false,
+    "curriculumAlignment": ["1ST.2", "1SN.1"],
+    
+    "mindsOn": {
+      "activity": "Scientific art examples and technique demonstration",
+      "materials": ["scientific art examples", "art supplies preview"],
+      "duration": "~8 min",
+      "decisionPoint": "If focused on accuracy → encourage creativity too; If too creative → remind of scientific purpose"
+    },
+    
+    "action": {
+      "activities": ["Observation and sketching (~9 min)", "Art creation with scientific focus (~9 min)", "Add scientific labels and descriptions (~9 min)"],
+      "materials": ["art supplies", "observation objects", "paper", "labeling materials"],
+      "duration": "~27 min",
+      "decisionPoint": "If rushing through art → slow down for observation; If too detailed → encourage completion"
+    },
+    
+    "consolidation": {
+      "activity": "Art gallery walk with scientific explanations",
+      "assessmentChecklist": ["Art shows scientific observation", "Includes accurate details", "Uses scientific vocabulary in explanations"],
+      "duration": "~10 min",
+      "decisionPoint": "If explanations too long → set time limits for sharing"
+    },
+    
+    "vocabulary": {
+      "art": "ar",
+      "représenter": "ruh-pray-zahn-TAY",
+      "dessiner": "deh-see-NAY"
+    },
+    
+    "emergencyBackup": "Simple scientific drawing with basic labeling",
+    "materials": ["scientific art examples", "art supplies preview", "art supplies", "observation objects", "paper", "labeling materials"],
+    "safetyNote": "Use art materials safely and continue gentle observation of subjects"
+  },
+  
+  {
+    "lessonNumber": 18,
+    "title": "Histoires de science",
+    "oneGoal": "Students tell stories about their scientific discoveries and observations",
+    "isCore": false,
+    "curriculumAlignment": ["1ST.1", "1SN.1"],
+    
+    "mindsOn": {
+      "activity": "Science story examples and story elements discussion",
+      "materials": ["example science stories", "story element cards"],
+      "duration": "~8 min",
+      "decisionPoint": "If stories too complex → focus on simple structure; If understanding → encourage creativity"
+    },
+    
+    "action": {
+      "activities": ["Plan science story with safety focus (~9 min)", "Create story with pictures or props (~9 min)", "Practice telling stories (~9 min)"],
+      "materials": ["story planning sheets", "art supplies", "props", "story prompts"],
+      "duration": "~27 min",
+      "decisionPoint": "If stories getting unrealistic → guide back to science accuracy; If too factual → encourage story elements"
+    },
+    
+    "consolidation": {
+      "activity": "Share science stories with emphasis on safety messages",
+      "assessmentChecklist": ["Story includes scientific elements", "Incorporates safety messages", "Uses scientific vocabulary"],
+      "duration": "~10 min",
+      "decisionPoint": "If sharing time too long → limit to key elements"
+    },
+    
+    "vocabulary": {
+      "histoires": "ees-TWAR",
+      "raconter": "ra-kohn-TAY",
+      "aventures": "ah-vahn-TOOR"
+    },
+    
+    "emergencyBackup": "Collaborative class science story with everyone contributing",
+    "materials": ["example science stories", "story element cards", "story planning sheets", "art supplies", "props", "story prompts"],
+    "safetyNote": "Include safety heroes and safe choices in all science stories"
+  },
+  
+  {
+    "lessonNumber": 19,
+    "title": "Enseigner aux autres",
+    "oneGoal": "Students teach safety rules and observation skills to younger students",
+    "isCore": false,
+    "curriculumAlignment": ["1ST.1", "1ST.2"],
+    
+    "mindsOn": {
+      "activity": "Teacher role-play preparation and teaching tips",
+      "materials": ["teaching props", "safety rule cards"],
+      "duration": "~8 min",
+      "decisionPoint": "If nervous about teaching → provide more support; If excited → practice teaching techniques"
+    },
+    
+    "action": {
+      "activities": ["Prepare safety lessons for younger students (~9 min)", "Practice teaching with partners (~9 min)", "Teach actual younger students or stuffed animals (~9 min)"],
+      "materials": ["teaching materials", "safety demonstrations", "younger student props"],
+      "duration": "~27 min",
+      "decisionPoint": "If teaching too advanced → simplify lessons; If effective → encourage more demonstration"
+    },
+    
+    "consolidation": {
+      "activity": "Reflect on teaching experience and effective strategies",
+      "assessmentChecklist": ["Teaches safety rules clearly", "Demonstrates skills accurately", "Shows patience with learners"],
+      "duration": "~10 min",
+      "decisionPoint": "If frustrated with teaching → discuss teaching challenges"
+    },
+    
+    "vocabulary": {
+      "enseigner": "ahn-say-NYAY",
+      "aider": "ay-DAY",
+      "montrer": "mohn-TRAY"
+    },
+    
+    "emergencyBackup": "Teaching demonstration to whole class with feedback",
+    "materials": ["teaching props", "safety rule cards", "teaching materials", "safety demonstrations", "younger student props"],
+    "safetyNote": "Good teachers always model perfect safety for their students"
+  },
+  
+  {
+    "lessonNumber": 20,
+    "title": "Célébration scientifique",
+    "oneGoal": "Students celebrate their growth as safe, observant young scientists",
+    "isCore": false,
+    "curriculumAlignment": ["1ST.1", "1ST.2", "1ST.3", "1SN.1"],
+    
+    "mindsOn": {
+      "activity": "Growth reflection with before and after comparisons",
+      "materials": ["growth portfolios", "reflection prompts"],
+      "duration": "~8 min",
+      "decisionPoint": "If not seeing growth → highlight specific improvements; If proud → encourage sharing"
+    },
+    
+    "action": {
+      "activities": ["Create celebration displays (~9 min)", "Science skills demonstration fair (~9 min)", "Awards and recognition ceremony (~9 min)"],
+      "materials": ["display materials", "demonstration stations", "certificates", "celebration supplies"],
+      "duration": "~27 min",
+      "decisionPoint": "If overwhelmed by celebration → simplify activities; If enjoying → extend celebration time"
+    },
+    
+    "consolidation": {
+      "activity": "Commitment to continue being safe scientists",
+      "assessmentChecklist": ["Recognizes own growth", "Demonstrates mastered skills", "Commits to continued safe practices"],
+      "duration": "~10 min",
+      "decisionPoint": "If not ready to commit → discuss continued support needed"
+    },
+    
+    "vocabulary": {
+      "célébration": "say-lay-bra-see-OHN",
+      "croissance": "krwa-SAHNS",
+      "fiers": "fee-AIR"
+    },
+    
+    "emergencyBackup": "Simple celebration circle with sharing and certificates",
+    "materials": ["growth portfolios", "reflection prompts", "display materials", "demonstration stations", "certificates", "celebration supplies"],
+    "safetyNote": "Celebrate how much you've learned about being safe scientists!"
+  }
+]

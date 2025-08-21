@@ -1,0 +1,867 @@
+[
+  {
+    "lessonNumber": 1,
+    "title": "Bonjour tout le monde!",
+    "oneGoal": "Students will recognize and respond to basic French greetings",
+    "isCore": true,
+    "curriculumAlignment": ["1CO.0", "1CO.1"],
+    
+    "mindsOn": {
+      "activity": "Welcome circle with French greeting song and friendly wave gestures - teacher models 'Bonjour!' with big smile and wave",
+      "materials": ["greeting song audio", "visual greeting cards"],
+      "duration": "~8 min",
+      "decisionPoint": "If students seem nervous → use more English transition; If engaged → continue full French",
+      "visualSupport": "Large greeting cards with pictures, exaggerated facial expressions, welcoming gestures"
+    },
+    
+    "action": {
+      "activities": ["Greeting puppet show with different characters saying hello (~9 min)", "Mirror greeting practice with gestures and facial expressions (~9 min)", "Walk-around greeting game with simple hand signals (~9 min)"],
+      "materials": ["hand puppets", "greeting cards", "mirror", "soft background music"],
+      "duration": "~27 min",
+      "decisionPoint": "If students hesitant to speak → emphasize listening and gestures; If ready to participate → encourage attempts at sounds",
+      "tprElements": "Wave hello, nod yes/no, point to self, big smiles, hand to ear for listening"
+    },
+    
+    "consolidation": {
+      "activity": "Goodbye circle where each student waves or says goodbye in their comfort zone",
+      "assessmentChecklist": ["Responds to 'bonjour' with gesture or sound", "Shows recognition of greeting sounds", "Participates willingly in greeting activities"],
+      "duration": "~10 min",
+      "decisionPoint": "If tired → shorter sharing circle; If energized → extend with extra greeting song",
+      "nonVerbalOptions": "Wave, nod, smile, point to greeting card, thumbs up"
+    },
+    
+    "vocabulary": {
+      "bonjour": "bon-ZHOOR",
+      "salut": "sah-LUU",
+      "au revoir": "oh ruh-VWAHR"
+    },
+    
+    "emergencyBackup": "Play greeting song repeatedly with simple TPR actions - teacher models, students copy",
+    "materials": ["greeting song audio", "hand puppets", "greeting picture cards", "mirror", "soft music"],
+    
+    "languageNote": "Use 'hello' and 'say hello' alongside 'reconnaître' and 'répondre' - focus on welcoming feeling"
+  },
+
+  {
+    "lessonNumber": 2,
+    "title": "Je m'appelle...",
+    "oneGoal": "Students will understand and attempt to say their name in French",
+    "isCore": true,
+    "curriculumAlignment": ["1CO.0", "1CO.1"],
+    
+    "mindsOn": {
+      "activity": "Review yesterday's greetings with puppet friends, then puppet introduces itself with name - connects to previous lesson",
+      "materials": ["same greeting puppets", "name tags", "pointing gesture cards"],
+      "duration": "~8 min",
+      "decisionPoint": "If students remember greetings → build quickly to names; If need review → spend more time on 'bonjour'",
+      "visualSupport": "Name tags with pictures, puppet pointing to itself, clear pointing gestures"
+    },
+    
+    "action": {
+      "activities": ["Puppet name introductions with dramatic pointing to self (~9 min)", "Name card matching game with pictures (~9 min)", "Pass the special name hat activity with gentle encouragement (~9 min)"],
+      "materials": ["hand puppets", "name cards with student photos", "special introduction hat", "mirror"],
+      "duration": "~27 min",
+      "decisionPoint": "If students ready to speak → encourage 'je m'appelle'; If silent period → focus on understanding and pointing",
+      "tprElements": "Point to self, tap chest, hold up name card, nod yes/no, thumbs up for recognition"
+    },
+    
+    "consolidation": {
+      "activity": "Name celebration circle where students share comfort level - hold name card, point, or attempt phrase",
+      "assessmentChecklist": ["Points to self when hearing own name", "Shows understanding of 'je m'appelle'", "Attempts name sharing in any form"],
+      "duration": "~10 min",
+      "decisionPoint": "If overwhelmed → just hold name cards and wave",
+      "nonVerbalOptions": "Hold name card up, point to self, nod when name called, thumbs up"
+    },
+    
+    "vocabulary": {
+      "je": "zhuh",
+      "m'appelle": "mah-PELL",
+      "nom": "nohn"
+    },
+    
+    "emergencyBackup": "Simple name song with pointing actions - teacher sings, students point to themselves when they hear their name",
+    "materials": ["greeting puppets", "name cards with photos", "special hat", "mirror", "name song"],
+    
+    "languageNote": "Use 'my name is' alongside 'je m'appelle' - emphasize identity and belonging"
+  },
+
+  {
+    "lessonNumber": 3,
+    "title": "Comment ça va?",
+    "oneGoal": "Students will recognize feelings words and simple responses",
+    "isCore": true,
+    "curriculumAlignment": ["1CO.0", "1CO.1"],
+    
+    "mindsOn": {
+      "activity": "Greet students by name from yesterday, then show different feeling faces asking 'Comment ça va?' - builds on name recognition",
+      "materials": ["feeling face cards", "mirror", "emotion puppets"],
+      "duration": "~8 min",
+      "decisionPoint": "If students respond to names well → add feeling check-in; If need more name practice → combine name/feeling",
+      "visualSupport": "Large emotion face cards, exaggerated facial expressions, body language demonstration"
+    },
+    
+    "action": {
+      "activities": ["Feeling faces matching game with mirror practice (~9 min)", "Emotion charades with simple gestures (~9 min)", "Feeling weather report with thumbs up/down (~9 min)"],
+      "materials": ["emotion cards", "large mirror", "feeling puppets", "simple props for emotions"],
+      "duration": "~27 min",
+      "decisionPoint": "If students connect with certain emotions → spend more time there; If overwhelmed by choices → limit to happy/sad",
+      "tprElements": "Big smile for 'content', sad face for 'triste', thumbs up/down, clapping for happy, slow movements for sad"
+    },
+    
+    "consolidation": {
+      "activity": "Feeling circle where students show how they feel right now using cards, faces, or thumbs",
+      "assessmentChecklist": ["Recognizes basic feeling words", "Responds to 'comment ça va' with gesture", "Shows understanding through facial expressions"],
+      "duration": "~10 min",
+      "decisionPoint": "If energy low → keep simple with happy/sad only",
+      "nonVerbalOptions": "Point to feeling card, make face, thumbs up/down, clap or move slowly"
+    },
+    
+    "vocabulary": {
+      "ça va": "sah VAH",
+      "bien": "bee-AHN",
+      "content": "con-TAHN",
+      "triste": "TREEST"
+    },
+    
+    "emergencyBackup": "Simple emotion song with actions - students copy teacher's facial expressions and gestures",
+    "materials": ["emotion face cards", "large mirror", "feeling puppets", "emotion props", "feeling song"],
+    
+    "languageNote": "Use 'how are you' and 'feeling' alongside curriculum terms - focus on emotional connection"
+  },
+
+  {
+    "lessonNumber": 4,
+    "title": "Mes couleurs préférées",
+    "oneGoal": "Students will identify and name basic colors in French",
+    "isCore": true,
+    "curriculumAlignment": ["1CO.0", "1CO.1"],
+    
+    "mindsOn": {
+      "activity": "Feeling check-in with color connections - 'I feel happy like yellow sunshine' - builds on emotion vocabulary from yesterday",
+      "materials": ["colored scarves", "color feeling cards", "colored objects"],
+      "duration": "~8 min",
+      "decisionPoint": "If students remember feelings → connect to colors quickly; If need feeling review → slower transition",
+      "visualSupport": "Brightly colored scarves, real colored objects, color-emotion connection cards"
+    },
+    
+    "action": {
+      "activities": ["Color scavenger hunt around classroom (~9 min)", "Color sorting game with movement (~9 min)", "Color dance with scarves and music (~9 min)"],
+      "materials": ["colored scarves", "colored classroom objects", "color sorting containers", "upbeat music"],
+      "duration": "~27 min",
+      "decisionPoint": "If students drawn to specific colors → explore those more; If need movement → emphasize dance activity",
+      "tprElements": "Point to colors, hold up colored objects, wave scarves, march to color stations, clap for color matches"
+    },
+    
+    "consolidation": {
+      "activity": "Color preference sharing - students point to or hold their favorite color while teacher names it in French",
+      "assessmentChecklist": ["Points to colors when named", "Shows preference through selection", "Connects colors to objects"],
+      "duration": "~10 min",
+      "decisionPoint": "If excited about colors → extend with color mixing talk",
+      "nonVerbalOptions": "Point to colors, hold colored objects, nod yes/no for color preferences, sort into groups"
+    },
+    
+    "vocabulary": {
+      "rouge": "ROOZH",
+      "bleu": "BLUH",
+      "jaune": "ZHOHN",
+      "vert": "VEHR"
+    },
+    
+    "emergencyBackup": "Simple color song with colored scarves - wave the color when you hear its name",
+    "materials": ["colored scarves", "colored classroom objects", "sorting containers", "music", "color song"],
+    
+    "languageNote": "Use 'colors' and 'favorite' alongside 'couleurs préférées' - emphasize visual learning"
+  },
+
+  {
+    "lessonNumber": 5,
+    "title": "Ma famille",
+    "oneGoal": "Students will recognize family member words and relate to their own family",
+    "isCore": true,
+    "curriculumAlignment": ["1CO.0", "1CO.1"],
+    
+    "mindsOn": {
+      "activity": "Show family colors - 'My family's favorite colors' - connects yesterday's color learning to family introduction",
+      "materials": ["family photo examples", "colored frames", "family drawing templates"],
+      "duration": "~8 min",
+      "decisionPoint": "If students eager to share families → encourage; If private → use example families only",
+      "visualSupport": "Diverse family photos, simple family drawings, picture frames in different colors"
+    },
+    
+    "action": {
+      "activities": ["Family puppet show with different family types (~9 min)", "Family picture sharing and pointing (~9 min)", "Family movement song with actions (~9 min)"],
+      "materials": ["family puppets", "family photos", "drawing paper", "family song audio"],
+      "duration": "~27 min",
+      "decisionPoint": "If students want to share own families → provide time; If need structure → use puppet families primarily",
+      "tprElements": "Point to family members, hug gesture for family love, counting family members on fingers, protective arm gestures"
+    },
+    
+    "consolidation": {
+      "activity": "Family appreciation circle - students show or draw one family member they want to share",
+      "assessmentChecklist": ["Points to family members when named", "Shows recognition of family words", "Connects words to own family experience"],
+      "duration": "~10 min",
+      "decisionPoint": "If emotional about families → keep gentle and optional",
+      "nonVerbalOptions": "Point to family pictures, hold up drawings, nod for family recognition, hug gesture"
+    },
+    
+    "vocabulary": {
+      "maman": "mah-MAHN",
+      "papa": "pah-PAH",
+      "famille": "fah-MEEL"
+    },
+    
+    "emergencyBackup": "Simple family song with pointing actions - point to different family members in pictures",
+    "materials": ["family puppets", "diverse family photos", "drawing paper", "colored frames", "family song"],
+    
+    "languageNote": "Use 'family' and 'mom/dad' alongside French terms - honor all family structures sensitively"
+  },
+
+  {
+    "lessonNumber": 6,
+    "title": "J'aime, je n'aime pas",
+    "oneGoal": "Students will express simple preferences using 'j'aime'",
+    "isCore": true,
+    "curriculumAlignment": ["1CO.0", "1CO.1"],
+    
+    "mindsOn": {
+      "activity": "Family preference sharing - 'My family likes...' using pictures from yesterday - builds on family vocabulary",
+      "materials": ["preference picture cards", "thumbs up/down signs", "family activity pictures"],
+      "duration": "~8 min",
+      "decisionPoint": "If students remember family words → connect to preferences; If need family review → slower bridge",
+      "visualSupport": "Clear preference cards with happy/sad faces, thumbs up/down visual cues, family activity pictures"
+    },
+    
+    "action": {
+      "activities": ["Like/don't like sorting game with food pictures (~9 min)", "Preference movement game - jump for like, sit for don't like (~9 min)", "Thumbs up/down preference survey (~9 min)"],
+      "materials": ["food picture cards", "activity picture cards", "sorting mats", "preference recording sheet"],
+      "duration": "~27 min",
+      "decisionPoint": "If students love food topic → focus there; If restless → emphasize movement activities",
+      "tprElements": "Thumbs up/down, happy/sad face expressions, jumping for likes, sitting for dislikes, clapping for favorites"
+    },
+    
+    "consolidation": {
+      "activity": "Preference gallery walk - students point to pictures of things they like and give thumbs up",
+      "assessmentChecklist": ["Uses thumbs up/down appropriately", "Shows understanding of like/don't like", "Connects preferences to visual cues"],
+      "duration": "~10 min",
+      "decisionPoint": "If engaged with preferences → extend discussion",
+      "nonVerbalOptions": "Thumbs up/down, point to pictures, nod/shake head, sort into like/don't like piles"
+    },
+    
+    "vocabulary": {
+      "j'aime": "zheh-MEH",
+      "n'aime pas": "neh-MEH PAH",
+      "beaucoup": "boh-KOO"
+    },
+    
+    "emergencyBackup": "Simple like/don't like chant with thumbs up/down actions for common items",
+    "materials": ["food/activity picture cards", "sorting mats", "thumbs up/down signs", "preference recording sheet"],
+    
+    "languageNote": "Use 'I like' and 'I don't like' alongside French - emphasize personal choice and opinion"
+  },
+
+  {
+    "lessonNumber": 7,
+    "title": "Les nombres magiques",
+    "oneGoal": "Students will recognize and count to 5 in French",
+    "isCore": true,
+    "curriculumAlignment": ["1CO.0", "1CO.1"],
+    
+    "mindsOn": {
+      "activity": "Count the things we like - 'I like 3 foods' using yesterday's preferences - connects counting to personal interests",
+      "materials": ["number cards 1-5", "counting manipulatives", "preference items from yesterday"],
+      "duration": "~8 min",
+      "decisionPoint": "If students remember preferences → use for counting; If need simpler start → just finger counting",
+      "visualSupport": "Large number cards with dots, finger counting charts, number/object matching visuals"
+    },
+    
+    "action": {
+      "activities": ["Magic number finger song with actions (~9 min)", "Number hunt around classroom with counting objects (~9 min)", "Number dance - different movements for each number (~9 min)"],
+      "materials": ["number song audio", "small counting objects", "number cards", "magical counting wand"],
+      "duration": "~27 min",
+      "decisionPoint": "If students love songs → repeat number song; If kinesthetic learners → emphasize movement counting",
+      "tprElements": "Hold up fingers for each number, march steps for counting, clap number patterns, point to counted objects"
+    },
+    
+    "consolidation": {
+      "activity": "Magic number show - students demonstrate counting in their preferred way (fingers, objects, sounds)",
+      "assessmentChecklist": ["Shows numbers 1-5 with fingers", "Recognizes number words when heard", "Counts objects accurately"],
+      "duration": "~10 min",
+      "decisionPoint": "If excited about numbers → preview number 6 briefly",
+      "nonVerbalOptions": "Hold up fingers, point to number cards, arrange counting objects, nod for correct numbers"
+    },
+    
+    "vocabulary": {
+      "un": "UHN",
+      "deux": "DUH",
+      "trois": "TWAH",
+      "quatre": "KAH-truh",
+      "cinq": "SANK"
+    },
+    
+    "emergencyBackup": "Simple counting song with finger actions - count along with teacher using fingers",
+    "materials": ["number cards 1-5", "small counting objects", "number song audio", "magical wand", "finger counting chart"],
+    
+    "languageNote": "Use 'numbers' and 'counting' alongside 'nombres' - emphasize math connection and magic feeling"
+  },
+
+  {
+    "lessonNumber": 8,
+    "title": "Mon corps en français",
+    "oneGoal": "Students will identify basic body parts in French",
+    "isCore": true,
+    "curriculumAlignment": ["1CO.0", "1CO.1"],
+    
+    "mindsOn": {
+      "activity": "Count our body parts - 'We have 2 hands, 5 fingers' - connects yesterday's numbers to body awareness",
+      "materials": ["body part picture cards", "full-length mirror", "counting from yesterday"],
+      "duration": "~8 min",
+      "decisionPoint": "If students remember numbers → count body parts; If need number review → slower counting",
+      "visualSupport": "Large body part picture cards, mirror for self-observation, simple body outline poster"
+    },
+    
+    "action": {
+      "activities": ["Body part Simon Says with gentle touches (~9 min)", "Body part song with movements (~9 min)", "Partner body part pointing game (~9 min)"],
+      "materials": ["body part cards", "action song audio", "safe pointing sticks", "body outline poster"],
+      "duration": "~27 min",
+      "decisionPoint": "If students need movement → emphasize dance; If need calm → focus on gentle pointing",
+      "tprElements": "Touch own head, wave arms, stomp feet, clap hands, point to body parts safely"
+    },
+    
+    "consolidation": {
+      "activity": "Body appreciation circle - students point to one body part they're grateful for",
+      "assessmentChecklist": ["Points to correct body part when named", "Follows simple body part commands", "Shows awareness of own body"],
+      "duration": "~10 min",
+      "decisionPoint": "If wiggly → keep active with continued movement",
+      "nonVerbalOptions": "Point to body parts, nod yes/no for correct parts, gentle self-touches, follow simple movements"
+    },
+    
+    "vocabulary": {
+      "tête": "TEHT",
+      "bras": "BRAH",
+      "jambes": "ZHAHM-buh",
+      "mains": "MAHN"
+    },
+    
+    "emergencyBackup": "Simple body part song with pointing actions - touch each part as it's named",
+    "materials": ["body part picture cards", "mirror", "action song audio", "safe pointing sticks", "body outline poster"],
+    
+    "languageNote": "Use 'body parts' alongside 'corps' - emphasize self-awareness and health connection"
+  },
+
+  {
+    "lessonNumber": 9,
+    "title": "Dans ma classe",
+    "oneGoal": "Students will name common classroom objects in French",
+    "isCore": true,
+    "curriculumAlignment": ["1CO.0", "1CO.1"],
+    
+    "mindsOn": {
+      "activity": "Use our hands to point to classroom things - connects yesterday's body part learning to environment exploration",
+      "materials": ["classroom object cards", "pointing gestures", "labeled classroom items"],
+      "duration": "~8 min",
+      "decisionPoint": "If students remember body parts → use for pointing; If need review → practice pointing first",
+      "visualSupport": "Picture cards of classroom objects, actual labeled items around room, pointing gesture cards"
+    },
+    
+    "action": {
+      "activities": ["Classroom scavenger hunt with picture matching (~9 min)", "Object touching game with safe exploration (~9 min)", "Classroom item sorting by use (~9 min)"],
+      "materials": ["object picture cards", "actual classroom items", "sorting containers", "magnifying glass for exploration"],
+      "duration": "~27 min",
+      "decisionPoint": "If students enjoy exploration → extend scavenger hunt; If need structure → focus on sorting",
+      "tprElements": "Point to objects, pick up and show items, sort into containers, walk around classroom, touch safely"
+    },
+    
+    "consolidation": {
+      "activity": "Classroom gratitude sharing - students point to one classroom item they're thankful for",
+      "assessmentChecklist": ["Points to correct classroom objects", "Matches pictures to real objects", "Shows familiarity with classroom environment"],
+      "duration": "~10 min",
+      "decisionPoint": "If excited about classroom → discuss how items help learning",
+      "nonVerbalOptions": "Point to objects, hold up picture cards, nod for correct matches, arrange objects"
+    },
+    
+    "vocabulary": {
+      "table": "TAH-bluh",
+      "chaise": "SHEHZ",
+      "livre": "LEE-vruh",
+      "crayon": "kreh-YOHN"
+    },
+    
+    "emergencyBackup": "Simple classroom object song with pointing to each item as named",
+    "materials": ["classroom object picture cards", "actual classroom items", "sorting containers", "magnifying glass"],
+    
+    "languageNote": "Use 'classroom things' alongside 'objets de classe' - emphasize learning environment connection"
+  },
+
+  {
+    "lessonNumber": 10,
+    "title": "Écouter et comprendre",
+    "oneGoal": "Students will demonstrate listening comprehension through actions",
+    "isCore": true,
+    "curriculumAlignment": ["1CO.0", "1CO.1"],
+    
+    "mindsOn": {
+      "activity": "Listening to classroom sounds - connects yesterday's classroom objects to active listening in the environment",
+      "materials": ["classroom sound cards", "listening ears gesture", "quiet signal"],
+      "duration": "~8 min",
+      "decisionPoint": "If students ready for challenges → add complex listening; If need support → simple sound recognition",
+      "visualSupport": "Listening ear gestures, sound picture cards, quiet hand signals"
+    },
+    
+    "action": {
+      "activities": ["French Simon Says with all learned vocabulary (~9 min)", "Listen and do action stories (~9 min)", "Sound recognition game with French words (~9 min)"],
+      "materials": ["Simon Says cards", "action story props", "sound cards", "quiet music background"],
+      "duration": "~27 min",
+      "decisionPoint": "If students follow well → increase complexity; If overwhelmed → slower, clearer instructions",
+      "tprElements": "Hand to ear for listening, follow action commands, stop and go movements, quiet tip-toe walking"
+    },
+    
+    "consolidation": {
+      "activity": "Listening celebration - students show their best listening position and respond to simple French commands",
+      "assessmentChecklist": ["Follows simple French commands", "Shows listening posture", "Responds appropriately to instructions"],
+      "duration": "~10 min",
+      "decisionPoint": "If tired from listening → gentler, slower commands",
+      "nonVerbalOptions": "Follow actions, point to demonstrate understanding, nod yes/no, copy teacher movements"
+    },
+    
+    "vocabulary": {
+      "écoute": "eh-KOOT",
+      "regarde": "ruh-GAHR-duh",
+      "montre": "MOHN-truh"
+    },
+    
+    "emergencyBackup": "Simple listening song with clear actions - students copy teacher's movements",
+    "materials": ["Simon Says cards", "action story props", "sound cards", "quiet background music"],
+    
+    "languageNote": "Use 'listen' and 'show me' alongside French commands - emphasize comprehension over production"
+  },
+
+  {
+    "lessonNumber": 11,
+    "title": "Sons et rythmes",
+    "oneGoal": "Students will identify French sounds and rhythm patterns",
+    "isCore": true,
+    "curriculumAlignment": ["1CO.0", "1CO.1"],
+    
+    "mindsOn": {
+      "activity": "Listen to the rhythm of French words from yesterday - connects listening skills to sound patterns and music",
+      "materials": ["rhythm instruments", "French word cards", "recorded French sounds"],
+      "duration": "~8 min",
+      "decisionPoint": "If students love music → emphasize rhythm; If need quiet → focus on gentle sound patterns",
+      "visualSupport": "Rhythm pattern cards, musical note pictures, French sound mouth position pictures"
+    },
+    
+    "action": {
+      "activities": ["French word rhythm clapping (~9 min)", "Sound pattern echo games (~9 min)", "French music and movement exploration (~9 min)"],
+      "materials": ["rhythm instruments", "French music audio", "sound pattern cards", "scarves for movement"],
+      "duration": "~27 min",
+      "decisionPoint": "If students connect with instruments → extend music time; If overstimulated → reduce volume and complexity",
+      "tprElements": "Clap rhythm patterns, sway to French music, tap feet to beats, echo hand movements"
+    },
+    
+    "consolidation": {
+      "activity": "Sound pattern sharing - students create their own simple rhythm with French words",
+      "assessmentChecklist": ["Recognizes French sound patterns", "Claps simple rhythms", "Shows enjoyment of French music"],
+      "duration": "~10 min",
+      "decisionPoint": "If energized by music → continue with quiet French lullaby",
+      "nonVerbalOptions": "Clap patterns, move to music, point to sound cards, nod with rhythm"
+    },
+    
+    "vocabulary": {
+      "chanson": "shahn-SOHN",
+      "musique": "muu-ZEEK",
+      "rythme": "REET-muh"
+    },
+    
+    "emergencyBackup": "Simple French children's song with clapping - repeat rhythm patterns together",
+    "materials": ["rhythm instruments", "French music audio", "sound pattern cards", "movement scarves"],
+    
+    "languageNote": "Use 'songs' and 'music' alongside French terms - emphasize joy and sound awareness"
+  },
+
+  {
+    "lessonNumber": 12,
+    "title": "Je peux parler français",
+    "oneGoal": "Students will demonstrate confidence in using learned French vocabulary",
+    "isCore": true,
+    "curriculumAlignment": ["1CO.0", "1CO.1"],
+    
+    "mindsOn": {
+      "activity": "French sound confidence building - 'Listen to all the French sounds we know' - connects yesterday's sound awareness to speaking confidence",
+      "materials": ["vocabulary review cards", "confidence building props", "encouraging music"],
+      "duration": "~8 min",
+      "decisionPoint": "If students feeling confident → encourage more speaking; If hesitant → focus on celebration of understanding",
+      "visualSupport": "All previous vocabulary cards, confidence building posters, celebration stickers"
+    },
+    
+    "action": {
+      "activities": ["French vocabulary show and tell with choice (~9 min)", "Partner French conversation with pictures (~9 min)", "French confidence building games (~9 min)"],
+      "materials": ["all vocabulary cards", "conversation picture prompts", "confidence building activities", "celebration materials"],
+      "duration": "~27 min",
+      "decisionPoint": "If students ready to speak → provide more opportunities; If still in silent period → celebrate understanding",
+      "tprElements": "Point proudly to vocabulary, give thumbs up for French attempts, clap for peers, confident standing posture"
+    },
+    
+    "consolidation": {
+      "activity": "French celebration circle - students share one French word or phrase they feel proud of",
+      "assessmentChecklist": ["Uses some French vocabulary confidently", "Shows pride in French learning", "Encourages others' French attempts"],
+      "duration": "~10 min",
+      "decisionPoint": "If overwhelmed → keep sharing optional and celebratory",
+      "nonVerbalOptions": "Point to favorite French words, give thumbs up, nod with pride, hold up vocabulary cards"
+    },
+    
+    "vocabulary": {
+      "je peux": "zhuh PUH",
+      "parler": "par-LAY",
+      "français": "frahn-SEH"
+    },
+    
+    "emergencyBackup": "Confidence building song with all learned French words - celebrate every attempt",
+    "materials": ["all vocabulary cards", "conversation prompts", "confidence activities", "celebration materials"],
+    
+    "languageNote": "Use 'I can' and 'French' alongside curriculum terms - emphasize capability and pride"
+  },
+
+  {
+    "lessonNumber": 13,
+    "title": "Montrer ce que je sais",
+    "oneGoal": "Students will demonstrate their French learning through chosen activities",
+    "isCore": true,
+    "curriculumAlignment": ["1CO.0", "1CO.1"],
+    
+    "mindsOn": {
+      "activity": "French confidence review - 'Show me what French you know' - builds on yesterday's confidence building",
+      "materials": ["choice activity cards", "assessment materials", "celebration prep"],
+      "duration": "~8 min",
+      "decisionPoint": "If students eager to share → provide multiple options; If nervous → emphasize choice and comfort",
+      "visualSupport": "Choice cards showing different ways to share learning, celebration preparation materials"
+    },
+    
+    "action": {
+      "activities": ["Student choice demonstrations - drawing, acting, pointing (~9 min)", "Peer appreciation and French sharing (~9 min)", "French learning portfolio creation (~9 min)"],
+      "materials": ["choice demonstration materials", "drawing supplies", "portfolio folders", "appreciation stickers"],
+      "duration": "~27 min",
+      "decisionPoint": "If students love choice → extend demonstration time; If need structure → provide clearer guidelines",
+      "tprElements": "Point to learning achievements, give appreciation gestures, organize portfolio materials, celebrate peer success"
+    },
+    
+    "consolidation": {
+      "activity": "Learning celebration and goal setting - students show pride in growth and think about future French learning",
+      "assessmentChecklist": ["Demonstrates French learning in chosen format", "Shows pride in progress", "Appreciates others' learning"],
+      "duration": "~10 min",
+      "decisionPoint": "If emotional about progress → provide gentle encouragement",
+      "nonVerbalOptions": "Point to favorite learning, organize portfolio, give thumbs up to peers, nod with pride"
+    },
+    
+    "vocabulary": {
+      "montrer": "mohn-TRAY",
+      "savoir": "sah-VWAHR",
+      "choisir": "shwah-ZEER"
+    },
+    
+    "emergencyBackup": "Simple portfolio sharing - students point to their favorite French learning moments",
+    "materials": ["choice demonstration materials", "drawing supplies", "portfolio folders", "celebration stickers"],
+    
+    "languageNote": "Use 'show' and 'know' alongside French terms - emphasize learning demonstration and choice"
+  },
+
+  {
+    "lessonNumber": 14,
+    "title": "Célébrer notre français",
+    "oneGoal": "Students will reflect on and celebrate their French learning journey",
+    "isCore": true,
+    "curriculumAlignment": ["1CO.0", "1CO.1"],
+    
+    "mindsOn": {
+      "activity": "French journey reflection - look at all our learning from yesterday's portfolios and celebrate growth",
+      "materials": ["journey timeline", "celebration materials", "learning portfolios"],
+      "duration": "~8 min",
+      "decisionPoint": "If students excited about progress → extend celebration; If overwhelmed → gentle acknowledgment",
+      "visualSupport": "Learning journey timeline, celebration banners, achievement certificates"
+    },
+    
+    "action": {
+      "activities": ["French learning celebration activities (~9 min)", "Appreciation circle for French growth (~9 min)", "Future French goal setting (~9 min)"],
+      "materials": ["celebration activities", "appreciation materials", "goal setting cards", "festive music"],
+      "duration": "~27 min",
+      "decisionPoint": "If students want big celebration → provide party atmosphere; If prefer quiet → gentle acknowledgment",
+      "tprElements": "Clap for achievements, give appreciation gestures, point to future goals, celebratory movements"
+    },
+    
+    "consolidation": {
+      "activity": "French celebration finale - students share what they're most proud of in their French learning",
+      "assessmentChecklist": ["Reflects positively on French learning", "Shows pride in progress", "Sets positive intentions for future learning"],
+      "duration": "~10 min",
+      "decisionPoint": "If emotional about celebration → provide comfort and encouragement",
+      "nonVerbalOptions": "Point to proudest moments, give thumbs up, hug learning portfolio, smile with achievement"
+    },
+    
+    "vocabulary": {
+      "célébrer": "say-lay-BRAY",
+      "apprendre": "ah-PRAHN-druh",
+      "ensemble": "ahn-SAHM-bluh"
+    },
+    
+    "emergencyBackup": "Simple celebration song with all learned French vocabulary included",
+    "materials": ["celebration activities", "learning portfolios", "goal setting cards", "festive music", "certificates"],
+    
+    "languageNote": "Use 'celebrate' and 'learning together' alongside French terms - emphasize community and achievement"
+  },
+
+  {
+    "lessonNumber": 15,
+    "title": "Jeux de français",
+    "oneGoal": "Students will practice vocabulary through games and play",
+    "isCore": false,
+    "curriculumAlignment": [],
+    
+    "mindsOn": {
+      "activity": "Game excitement building - 'Let's play with our French words!' - connects celebration energy to playful learning",
+      "materials": ["game selection cards", "playful music", "game materials"],
+      "duration": "~8 min",
+      "decisionPoint": "If students high energy → active games; If calm mood → quiet games",
+      "visualSupport": "Game choice cards with pictures, fun game props, playful visual cues"
+    },
+    
+    "action": {
+      "activities": ["French vocabulary bingo (~9 min)", "French word movement games (~9 min)", "French memory matching games (~9 min)"],
+      "materials": ["bingo cards", "game pieces", "memory cards", "movement props"],
+      "duration": "~27 min",
+      "decisionPoint": "If students love competition → tournament style; If prefer cooperation → team games",
+      "tprElements": "Jump for bingo wins, dance for correct matches, clap for game success, move between game stations"
+    },
+    
+    "consolidation": {
+      "activity": "Game reflection - students vote for favorite French game and suggest new game ideas",
+      "assessmentChecklist": ["Participates enthusiastically in French games", "Uses French vocabulary during play", "Suggests creative game variations"],
+      "duration": "~10 min",
+      "decisionPoint": "If energized → plan next game session",
+      "nonVerbalOptions": "Point to favorite games, thumbs up for preferences, organize game materials, smile with enjoyment"
+    },
+    
+    "vocabulary": {
+      "jeux": "ZHUH",
+      "jouer": "zhoo-AY",
+      "amusant": "ah-muu-ZAHN"
+    },
+    
+    "emergencyBackup": "Simple French vocabulary charades - act out learned words for others to guess",
+    "materials": ["game cards", "bingo materials", "memory cards", "movement props", "game prizes"],
+    
+    "languageNote": "Use 'games' and 'fun' alongside French terms - emphasize joy in language learning"
+  },
+
+  {
+    "lessonNumber": 16,
+    "title": "Histoires en français",
+    "oneGoal": "Students will enjoy and respond to simple French stories",
+    "isCore": false,
+    "curriculumAlignment": [],
+    
+    "mindsOn": {
+      "activity": "Story excitement building using games from yesterday - 'Let's play story games!' - connects playful energy to narrative",
+      "materials": ["storybooks", "story props", "comfortable seating"],
+      "duration": "~8 min",
+      "decisionPoint": "If students love listening → longer stories; If restless → interactive stories",
+      "visualSupport": "Picture storybooks, story props, comfortable reading corner setup"
+    },
+    
+    "action": {
+      "activities": ["Interactive French story with vocabulary (~9 min)", "Story acting and movement (~9 min)", "Story retelling with pictures (~9 min)"],
+      "materials": ["picture books", "story props", "retelling cards", "costume pieces"],
+      "duration": "~27 min",
+      "decisionPoint": "If students captivated by story → extend reading time; If need movement → emphasize acting",
+      "tprElements": "Act out story characters, point to story pictures, move like story animals, gesture story actions"
+    },
+    
+    "consolidation": {
+      "activity": "Story sharing circle - students share favorite story moment using pictures or actions",
+      "assessmentChecklist": ["Shows engagement with French stories", "Responds to story elements", "Connects stories to learned vocabulary"],
+      "duration": "~10 min",
+      "decisionPoint": "If love stories → plan story extension activities",
+      "nonVerbalOptions": "Point to favorite story parts, act out characters, organize story props, nod with story enjoyment"
+    },
+    
+    "vocabulary": {
+      "histoire": "ees-TWAHR",
+      "livre": "LEE-vruh",
+      "écouter": "eh-koo-TAY"
+    },
+    
+    "emergencyBackup": "Simple picture story with familiar vocabulary - point and respond to story elements",
+    "materials": ["picture storybooks", "story props", "retelling cards", "costume pieces", "comfortable seating"],
+    
+    "languageNote": "Use 'story' and 'book' alongside French terms - emphasize narrative enjoyment and literacy connection"
+  },
+
+  {
+    "lessonNumber": 17,
+    "title": "Chansons et danses",
+    "oneGoal": "Students will participate in French songs and movement activities",
+    "isCore": false,
+    "curriculumAlignment": [],
+    
+    "mindsOn": {
+      "activity": "Story songs connection - 'Let's sing the story!' - connects yesterday's narrative experience to musical expression",
+      "materials": ["French children's songs", "movement scarves", "rhythm instruments"],
+      "duration": "~8 min",
+      "decisionPoint": "If students love music → extend singing; If shy → gentle encouragement only",
+      "visualSupport": "Song picture cards, dance movement cards, musical instruments display"
+    },
+    
+    "action": {
+      "activities": ["French children's songs with actions (~9 min)", "Dance creation with French words (~9 min)", "Musical French vocabulary games (~9 min)"],
+      "materials": ["song audio", "movement scarves", "instruments", "dance space"],
+      "duration": "~27 min",
+      "decisionPoint": "If students create amazing dances → showcase time; If need calmer activity → gentle swaying",
+      "tprElements": "Dance with scarves, play rhythm instruments, march to music, create movement patterns"
+    },
+    
+    "consolidation": {
+      "activity": "Musical sharing circle - students perform their favorite French song move or rhythm",
+      "assessmentChecklist": ["Participates in French songs", "Creates movement to French rhythm", "Shows musical enjoyment"],
+      "duration": "~10 min",
+      "decisionPoint": "If energized → continue with quiet music wind-down",
+      "nonVerbalOptions": "Dance or sway to music, play instruments, point to favorite songs, move scarves rhythmically"
+    },
+    
+    "vocabulary": {
+      "chanson": "shahn-SOHN",
+      "danser": "dahn-SAY",
+      "bouger": "boo-ZHAY"
+    },
+    
+    "emergencyBackup": "Simple French action song - copy teacher's movements while singing along",
+    "materials": ["French song audio", "movement scarves", "rhythm instruments", "dance space markers"],
+    
+    "languageNote": "Use 'songs' and 'dance' alongside French terms - emphasize physical and musical expression"
+  },
+
+  {
+    "lessonNumber": 18,
+    "title": "Art en français",
+    "oneGoal": "Students will create art while using French vocabulary",
+    "isCore": false,
+    "curriculumAlignment": [],
+    
+    "mindsOn": {
+      "activity": "Art movement connection - 'Let's paint our dance!' - connects yesterday's movement and music to visual creation",
+      "materials": ["art supplies", "color vocabulary cards", "creative examples"],
+      "duration": "~8 min",
+      "decisionPoint": "If students excited about art → provide variety of materials; If hesitant → simple options",
+      "visualSupport": "Art supply picture cards, color words with art examples, creative process posters"
+    },
+    
+    "action": {
+      "activities": ["French color art creation (~9 min)", "Vocabulary art projects (~9 min)", "Art sharing with French descriptions (~9 min)"],
+      "materials": ["art supplies", "color cards", "vocabulary templates", "display materials"],
+      "duration": "~27 min",
+      "decisionPoint": "If students absorbed in creating → extend art time; If finished quickly → add art appreciation",
+      "tprElements": "Point to colors while creating, show art proudly, arrange art supplies, gesture art descriptions"
+    },
+    
+    "consolidation": {
+      "activity": "Art gallery walk - students display and appreciate French-inspired artwork",
+      "assessmentChecklist": ["Creates art using French vocabulary", "Describes art with French words", "Appreciates others' artistic expression"],
+      "duration": "~10 min",
+      "decisionPoint": "If proud of art → plan display for families",
+      "nonVerbalOptions": "Point to art elements, arrange displays, nod appreciation, organize art supplies"
+    },
+    
+    "vocabulary": {
+      "art": "ART",
+      "créer": "kray-AY",
+      "couleurs": "koo-LUHR"
+    },
+    
+    "emergencyBackup": "Simple French color collage - arrange colored papers while naming colors in French",
+    "materials": ["art supplies", "colored papers", "vocabulary cards", "display materials", "art examples"],
+    
+    "languageNote": "Use 'art' and 'create' alongside French terms - emphasize creative expression and visual learning"
+  },
+
+  {
+    "lessonNumber": 19,
+    "title": "Français partout",
+    "oneGoal": "Students will discover French in their world beyond the classroom",
+    "isCore": false,
+    "curriculumAlignment": [],
+    
+    "mindsOn": {
+      "activity": "Art world connection - 'French art everywhere!' - connects yesterday's art creation to French culture in the world",
+      "materials": ["world map", "French culture pictures", "community French examples"],
+      "duration": "~8 min",
+      "decisionPoint": "If students curious about world → explore more cultures; If overwhelming → focus on local French",
+      "visualSupport": "World map with French regions, local French signs and labels, cultural picture cards"
+    },
+    
+    "action": {
+      "activities": ["French discovery hunt in school (~9 min)", "Virtual French culture exploration (~9 min)", "French in our community discussion (~9 min)"],
+      "materials": ["discovery clipboards", "cultural videos", "community French photos", "world map"],
+      "duration": "~27 min",
+      "decisionPoint": "If students find French everywhere → extend discovery; If need focus → choose one area deeply",
+      "tprElements": "Point to French discoveries, walk around school searching, gesture excitement for findings"
+    },
+    
+    "consolidation": {
+      "activity": "French world sharing - students share one place they've discovered French or want to find French",
+      "assessmentChecklist": ["Identifies French beyond classroom", "Shows curiosity about French culture", "Connects learning to wider world"],
+      "duration": "~10 min",
+      "decisionPoint": "If excited about world → plan family French discovery homework",
+      "nonVerbalOptions": "Point to world locations, show discovery findings, nod with recognition, organize cultural materials"
+    },
+    
+    "vocabulary": {
+      "partout": "par-TOO",
+      "monde": "MOHND",
+      "découvrir": "day-koo-VREER"
+    },
+    
+    "emergencyBackup": "Simple French culture picture sharing - look at pictures of French-speaking places and point to interesting things",
+    "materials": ["world map", "cultural pictures", "discovery clipboards", "community French examples"],
+    
+    "languageNote": "Use 'everywhere' and 'world' alongside French terms - emphasize global connection and cultural awareness"
+  },
+
+  {
+    "lessonNumber": 20,
+    "title": "Au revoir pour maintenant",
+    "oneGoal": "Students will reflect on their French journey and look forward to continued learning",
+    "isCore": false,
+    "curriculumAlignment": [],
+    
+    "mindsOn": {
+      "activity": "French world reflection - 'We found French everywhere, including in our hearts!' - connects yesterday's discovery to personal growth",
+      "materials": ["journey reflection materials", "memory books", "celebration supplies"],
+      "duration": "~8 min",
+      "decisionPoint": "If emotional about ending → focus on continuation; If excited → celebrate fully",
+      "visualSupport": "Learning journey timeline, memory book pages, future learning possibility cards"
+    },
+    
+    "action": {
+      "activities": ["French learning memory creation (~9 min)", "Future French goal setting (~9 min)", "Celebration preparation and sharing (~9 min)"],
+      "materials": ["memory books", "goal setting cards", "celebration materials", "French journey timeline"],
+      "duration": "~27 min",
+      "decisionPoint": "If students want big celebration → provide special ceremony; If prefer quiet → gentle reflection",
+      "tprElements": "Point to favorite memories, hug memory books, clap for achievements, gesture future excitement"
+    },
+    
+    "consolidation": {
+      "activity": "French farewell circle - students share gratitude and excitement for future French learning",
+      "assessmentChecklist": ["Reflects positively on French journey", "Shows excitement for continued learning", "Expresses gratitude for learning experience"],
+      "duration": "~10 min",
+      "decisionPoint": "If tearful about ending → emphasize continuation and connection",
+      "nonVerbalOptions": "Point to grateful moments, hug friends, give thumbs up for future, wave goodbye lovingly"
+    },
+    
+    "vocabulary": {
+      "au revoir": "oh ruh-VWAHR",
+      "continuer": "kon-tee-nuu-AY",
+      "fier": "fee-YEHR"
+    },
+    
+    "emergencyBackup": "Simple gratitude circle with French words - each student says one French word they'll remember",
+    "materials": ["memory books", "celebration supplies", "French journey timeline", "goal setting cards"],
+    
+    "languageNote": "Use 'goodbye for now' and 'proud' alongside French terms - emphasize continuation and achievement"
+  }
+]

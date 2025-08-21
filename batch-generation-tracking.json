@@ -1,0 +1,38 @@
+{
+  "timestamp": "2025-08-21T04:59:18.310Z",
+  "totalUnits": 50,
+  "completedUnits": 3,
+  "pendingUnits": 47,
+  "unitsBySubject": {
+    "Arts visuels": {
+      "total": 10,
+      "completed": 0,
+      "pending": 10
+    },
+    "Formation personnelle et sociale": {
+      "total": 5,
+      "completed": 0,
+      "pending": 5
+    },
+    "Français (Immersion)": {
+      "total": 9,
+      "completed": 0,
+      "pending": 9
+    },
+    "Mathématiques": {
+      "total": 9,
+      "completed": 0,
+      "pending": 9
+    },
+    "Sciences de la nature": {
+      "total": 9,
+      "completed": 0,
+      "pending": 9
+    },
+    "Sciences humaines": {
+      "total": 5,
+      "completed": 0,
+      "pending": 5
+    }
+  }
+}

@@ -102,9 +102,15 @@ async function importLessons() {
           duration: 45,
           
           // Three-part lesson as strings
-          mindsOn: `Opening (8 min): ${lesson.simpleActivities || 'Activation activity'}`,
-          action: `Main Activity (27 min): ${lesson.simpleActivities || 'Core learning activity'}`,
-          consolidation: `Closing (10 min): Reflection and assessment`,
+          mindsOn: lesson.mindsOn 
+            ? `${lesson.mindsOn.activity} (${lesson.mindsOn.duration || '~8 min'})`
+            : `Opening (8 min): ${lesson.simpleActivities || 'Activation activity'}`,
+          action: lesson.action
+            ? lesson.action.activities.join('; ')
+            : `Main Activity (27 min): ${lesson.simpleActivities || 'Core learning activity'}`,
+          consolidation: lesson.consolidation
+            ? `${lesson.consolidation.activity} - ${lesson.consolidation.assessmentChecklist?.join(', ') || 'Reflection'}`
+            : `Closing (10 min): Reflection and assessment`,
           
           // Learning goals
           learningGoals: lesson.oneGoal || 'Students will engage with French language',

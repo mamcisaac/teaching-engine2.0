@@ -1,0 +1,282 @@
+[
+  {
+    "lessonNumber": 1,
+    "title": "Les règles de sécurité",
+    "oneGoal": "Students learn the basic safety rules for science class",
+    "keyVocabulary": ["sécurité", "règles", "attention"],
+    "decisionPoints": [
+      "How comfortable are students with French science vocabulary?",
+      "Should we practice safety gestures more or move to examples?",
+      "Are students ready to identify unsafe situations?"
+    ],
+    "progression": "Foundation lesson - establishing essential safety practices before any exploration",
+    "isCore": true,
+    "curriculumAlignment": ["1ST.1"]
+  },
+  {
+    "lessonNumber": 2,
+    "title": "Mes yeux observent",
+    "oneGoal": "Students learn to observe safely with their eyes only",
+    "keyVocabulary": ["yeux", "observer", "regarder"],
+    "decisionPoints": [
+      "Are students remembering safety rules from lesson 1?",
+      "Should we extend looking activities or move to drawing?",
+      "What level of French support is needed for describing?"
+    ],
+    "progression": "Builds on safety foundation by introducing safe observation using sight only",
+    "isCore": true,
+    "curriculumAlignment": ["1ST.1", "1ST.2"]
+  },
+  {
+    "lessonNumber": 3,
+    "title": "Toucher en sécurité",
+    "oneGoal": "Students learn safe touching rules and gentle exploration",
+    "keyVocabulary": ["toucher", "doux", "gentil"],
+    "decisionPoints": [
+      "Are students following safe looking rules consistently?",
+      "Should we practice gentle touch more or introduce new materials?",
+      "How are students responding to French instructions?"
+    ],
+    "progression": "Expands safe observation to include careful touching after establishing visual observation",
+    "isCore": true,
+    "curriculumAlignment": ["1ST.1", "1ST.2", "1ST.3"]
+  },
+  {
+    "lessonNumber": 4,
+    "title": "Écouter les sons",
+    "oneGoal": "Students use their ears safely to explore sounds",
+    "keyVocabulary": ["écouter", "sons", "oreilles"],
+    "decisionPoints": [
+      "Are students maintaining safe touching practices?",
+      "Should we make more sounds or focus on identifying them?",
+      "Is the noise level appropriate for learning?"
+    ],
+    "progression": "Adds safe listening to observation skills while reinforcing previous safety practices",
+    "isCore": true,
+    "curriculumAlignment": ["1ST.1", "1ST.2"]
+  },
+  {
+    "lessonNumber": 5,
+    "title": "Sentir avec prudence",
+    "oneGoal": "Students learn safe smelling techniques with appropriate materials",
+    "keyVocabulary": ["sentir", "nez", "odeur"],
+    "decisionPoints": [
+      "Are students comfortable with all previous senses?",
+      "Should we try more scents or focus on describing them?",
+      "Are students using proper smelling technique?"
+    ],
+    "progression": "Introduces safe smelling while integrating all previously learned observation skills",
+    "isCore": true,
+    "curriculumAlignment": ["1ST.1", "1ST.2"]
+  },
+  {
+    "lessonNumber": 6,
+    "title": "Objets sécuritaires",
+    "oneGoal": "Students identify and safely manipulate classroom science materials",
+    "keyVocabulary": ["objets", "matériaux", "manipuler"],
+    "decisionPoints": [
+      "Are students applying all sense safety rules consistently?",
+      "Should we introduce more materials or practice with current ones?",
+      "How confident are students with safe manipulation?"
+    ],
+    "progression": "Applies all learned safety skills to handling appropriate science materials",
+    "isCore": true,
+    "curriculumAlignment": ["1ST.1", "1ST.3"]
+  },
+  {
+    "lessonNumber": 7,
+    "title": "Observer ensemble",
+    "oneGoal": "Students work together to observe materials using all senses safely",
+    "keyVocabulary": ["ensemble", "équipe", "partager"],
+    "decisionPoints": [
+      "Are students ready for partner work or need more individual practice?",
+      "Should we focus on turn-taking or expand observations?",
+      "How are students communicating their observations in French?"
+    ],
+    "progression": "Combines individual safety skills with collaborative observation practices",
+    "isCore": true,
+    "curriculumAlignment": ["1ST.1", "1ST.2", "1ST.3"]
+  },
+  {
+    "lessonNumber": 8,
+    "title": "Vivant ou non-vivant?",
+    "oneGoal": "Students begin to distinguish between living and non-living things safely",
+    "keyVocabulary": ["vivant", "non-vivant", "différent"],
+    "decisionPoints": [
+      "Are students maintaining safety with all observation tools?",
+      "Should we use more examples or focus on student explanations?",
+      "Are students ready to observe actual living things?"
+    ],
+    "progression": "Introduces living things concept using safe observation skills from previous lessons",
+    "isCore": true,
+    "curriculumAlignment": ["1ST.1", "1ST.2", "1SN.1"]
+  },
+  {
+    "lessonNumber": 9,
+    "title": "Les plantes autour de nous",
+    "oneGoal": "Students safely observe and identify basic plant characteristics",
+    "keyVocabulary": ["plantes", "feuilles", "racines"],
+    "decisionPoints": [
+      "Are students applying safety rules with living materials?",
+      "Should we observe more plant parts or focus on current ones?",
+      "How detailed should plant observations be?"
+    ],
+    "progression": "Applies safe observation skills to explore plant characteristics and features",
+    "isCore": true,
+    "curriculumAlignment": ["1ST.1", "1ST.2", "1SN.1"]
+  },
+  {
+    "lessonNumber": 10,
+    "title": "Les animaux et nous",
+    "oneGoal": "Students safely observe and discuss animal characteristics including humans",
+    "keyVocabulary": ["animaux", "humains", "caractéristiques"],
+    "decisionPoints": [
+      "Are students maintaining gentle observation practices?",
+      "Should we compare more animals or focus on similarities?",
+      "Are students making connections to themselves as animals?"
+    ],
+    "progression": "Extends living things understanding to animals while maintaining all safety practices",
+    "isCore": true,
+    "curriculumAlignment": ["1ST.1", "1ST.2", "1SN.1"]
+  },
+  {
+    "lessonNumber": 11,
+    "title": "Comparer les vivants",
+    "oneGoal": "Students compare characteristics between plants, animals, and humans safely",
+    "keyVocabulary": ["comparer", "similaire", "différence"],
+    "decisionPoints": [
+      "Are students confident distinguishing living categories?",
+      "Should we add more examples or deepen current comparisons?",
+      "How are students expressing comparisons in French?"
+    ],
+    "progression": "Synthesizes plant and animal learning to make comparisons while using safe practices",
+    "isCore": true,
+    "curriculumAlignment": ["1ST.1", "1ST.2", "1SN.1"]
+  },
+  {
+    "lessonNumber": 12,
+    "title": "Scientifiques sécuritaires",
+    "oneGoal": "Students demonstrate all safety skills while exploring like scientists",
+    "keyVocabulary": ["scientifiques", "découvrir", "explorer"],
+    "decisionPoints": [
+      "Are students independently applying all safety rules?",
+      "Should we extend exploration time or focus on sharing discoveries?",
+      "How confident are students as young scientists?"
+    ],
+    "progression": "Integrates all safety and observation skills in independent scientific exploration",
+    "isCore": true,
+    "curriculumAlignment": ["1ST.1", "1ST.2", "1ST.3"]
+  },
+  {
+    "lessonNumber": 13,
+    "title": "Nos découvertes",
+    "oneGoal": "Students share and explain their observations using proper science vocabulary",
+    "keyVocabulary": ["découvertes", "expliquer", "vocabulaire"],
+    "decisionPoints": [
+      "Are students using science vocabulary confidently?",
+      "Should we practice more explanations or celebrate discoveries?",
+      "How can we support students' French expression?"
+    ],
+    "progression": "Consolidates learning by having students communicate discoveries using acquired vocabulary",
+    "isCore": true,
+    "curriculumAlignment": ["1ST.1", "1ST.2", "1SN.1"]
+  },
+  {
+    "lessonNumber": 14,
+    "title": "Révision complète",
+    "oneGoal": "Students demonstrate mastery of all safety rules and observation skills",
+    "keyVocabulary": ["révision", "maîtrise", "démontrer"],
+    "decisionPoints": [
+      "Which skills need more reinforcement before extensions?",
+      "Are students ready for independent science exploration?",
+      "Should we assess formally or through observation?"
+    ],
+    "progression": "Final core lesson ensuring all curriculum expectations are met and assessed",
+    "isCore": true,
+    "curriculumAlignment": ["1ST.1", "1ST.2", "1ST.3", "1SN.1"]
+  },
+  {
+    "lessonNumber": 15,
+    "title": "Jardin d'exploration",
+    "oneGoal": "Students apply safety skills while exploring outdoor living things",
+    "keyVocabulary": ["jardin", "extérieur", "nature"],
+    "decisionPoints": [
+      "How are students adapting safety rules to outdoor environment?",
+      "Should we explore more areas or deepen current observations?",
+      "What additional safety considerations are needed outside?"
+    ],
+    "progression": "Extension activity applying learned skills in new outdoor environment",
+    "isCore": false,
+    "curriculumAlignment": ["1ST.1", "1ST.2"]
+  },
+  {
+    "lessonNumber": 16,
+    "title": "Créer des collections",
+    "oneGoal": "Students safely collect and organize non-living natural materials",
+    "keyVocabulary": ["collections", "organiser", "trier"],
+    "decisionPoints": [
+      "Are students selecting safe materials for collections?",
+      "Should we focus on sorting methods or finding more items?",
+      "How can students explain their organizing choices?"
+    ],
+    "progression": "Creative extension allowing students to practice classification skills safely",
+    "isCore": false,
+    "curriculumAlignment": ["1ST.1", "1ST.3"]
+  },
+  {
+    "lessonNumber": 17,
+    "title": "Art scientifique",
+    "oneGoal": "Students create art representations of their scientific observations",
+    "keyVocabulary": ["art", "représenter", "dessiner"],
+    "decisionPoints": [
+      "Should we focus on accuracy or creativity in representations?",
+      "Are students incorporating scientific vocabulary into art descriptions?",
+      "How can we display student work to celebrate learning?"
+    ],
+    "progression": "Creative extension connecting science observations with artistic expression",
+    "isCore": false,
+    "curriculumAlignment": ["1ST.2", "1SN.1"]
+  },
+  {
+    "lessonNumber": 18,
+    "title": "Histoires de science",
+    "oneGoal": "Students tell stories about their scientific discoveries and observations",
+    "keyVocabulary": ["histoires", "raconter", "aventures"],
+    "decisionPoints": [
+      "Are students incorporating safety messages in their stories?",
+      "Should we focus on storytelling skills or science content?",
+      "How can we encourage creativity while maintaining accuracy?"
+    ],
+    "progression": "Language-rich extension connecting science learning with narrative skills",
+    "isCore": false,
+    "curriculumAlignment": ["1ST.1", "1SN.1"]
+  },
+  {
+    "lessonNumber": 19,
+    "title": "Enseigner aux autres",
+    "oneGoal": "Students teach safety rules and observation skills to younger students",
+    "keyVocabulary": ["enseigner", "aider", "montrer"],
+    "decisionPoints": [
+      "Are students confident enough to teach others?",
+      "Should we practice teaching more or focus on actual interactions?",
+      "How can we support students as they explain concepts?"
+    ],
+    "progression": "Leadership extension where students demonstrate mastery by teaching others",
+    "isCore": false,
+    "curriculumAlignment": ["1ST.1", "1ST.2"]
+  },
+  {
+    "lessonNumber": 20,
+    "title": "Célébration scientifique",
+    "oneGoal": "Students celebrate their growth as safe, observant young scientists",
+    "keyVocabulary": ["célébration", "croissance", "fiers"],
+    "decisionPoints": [
+      "How can we best showcase student learning and growth?",
+      "Should we focus on individual achievements or group success?",
+      "What evidence of learning should be highlighted?"
+    ],
+    "progression": "Culminating celebration recognizing student growth and scientific thinking development",
+    "isCore": false,
+    "curriculumAlignment": ["1ST.1", "1ST.2", "1ST.3", "1SN.1"]
+  }
+]

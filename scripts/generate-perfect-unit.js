@@ -82,6 +82,7 @@ SIMPLIFIED APPROACH (MANDATORY):
 2. Maximum 3 decision points per lesson (not 16 requirements)
 3. Support teacher thinking, don't script everything
 4. Acknowledge what can't be predetermined
+5. EXPLICITLY connect each lesson: "Builds on Lesson X by..."
 
 PROGRESSION REQUIREMENTS:
 Lessons 1-${Math.floor(coreCount * 0.3)}: Activation & Exploration
@@ -138,9 +139,9 @@ CRITICAL CONTEXT:
 YOUR TASK: Transform the design into 20 complete lessons.
 
 LESSON STRUCTURE (Simplified):
-1. Opening (5-10 min): How to start based on student energy
-2. Main Activity (20-30 min): Core learning with flexibility
-3. Closing (5-10 min): Simple consolidation
+1. Opening (~8 min): Start with connection to previous lesson
+2. Main Activity (~27 min): Core learning with flexibility
+3. Closing (~10 min): Simple consolidation
 
 For each lesson provide:
 - The ONE clear goal
@@ -149,16 +150,26 @@ For each lesson provide:
 - What to do when things go wrong
 - Materials needed (keep minimal)
 
+VOCABULARY GUIDANCE:
+- Use curriculum terms for alignment
+- Teach using simplified language
+- Example: "reconnaître" → teach as "voir"
+
+VISUAL SUPPORTS (MANDATORY):
+- Every activity needs visual/gestural support
+- Include TPR (Total Physical Response)
+- Provide non-verbal comprehension options
+
 AVOID:
-- Rigid timing (8 min, 27 min, 10 min)
+- Over-complicating timing (keep ~X min)
 - 16 differentiation strategies
 - Scripts and predetermined paths
 - Fake precision
 
 INCLUDE:
+- Explicit connection to previous lesson
 - Teacher thinking support
 - Flexibility for real classrooms
-- Acknowledgment of unpredictability
 - Focus on relationship over compliance
 
 Generate lessons that a substitute could use with 30 minutes notice.
