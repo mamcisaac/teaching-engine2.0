@@ -761,19 +761,1068 @@
     }
   ],
   "assessmentTools": {
-    "observationChecklist": [],
-    "rubrics": [],
-    "selfAssessment": [],
-    "portfolioGuidelines": ""
+    "observationChecklist": [
+      {
+        "category": "Créativité",
+        "items": [
+          "Démontre une compréhension de base en créativité",
+          "Participe activement aux activités de créativité",
+          "Montre du progrès dans créativité",
+          "Applique les apprentissages de créativité dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Utilisation des matériaux",
+        "items": [
+          "Démontre une compréhension de base en utilisation des matériaux",
+          "Participe activement aux activités de utilisation des matériaux",
+          "Montre du progrès dans utilisation des matériaux",
+          "Applique les apprentissages de utilisation des matériaux dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Expression personnelle",
+        "items": [
+          "Démontre une compréhension de base en expression personnelle",
+          "Participe activement aux activités de expression personnelle",
+          "Montre du progrès dans expression personnelle",
+          "Applique les apprentissages de expression personnelle dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Appréciation artistique",
+        "items": [
+          "Démontre une compréhension de base en appréciation artistique",
+          "Participe activement aux activités de appréciation artistique",
+          "Montre du progrès dans appréciation artistique",
+          "Applique les apprentissages de appréciation artistique dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      }
+    ],
+    "rubrics": {
+      "title": "Rubrique d'évaluation - Textures et matériaux",
+      "levels": [
+        {
+          "level": "Émergent",
+          "emoji": "🌱",
+          "description": "L'élève commence à développer les compétences",
+          "criteria": [
+            "Nécessite un soutien constant",
+            "Démontre une compréhension partielle",
+            "Participe avec encouragement",
+            "Essaie les nouvelles activités"
+          ]
+        },
+        {
+          "level": "En développement",
+          "emoji": "🌿",
+          "description": "L'élève progresse vers les attentes",
+          "criteria": [
+            "Nécessite un soutien occasionnel",
+            "Démontre une bonne compréhension",
+            "Participe régulièrement",
+            "Applique les apprentissages avec aide"
+          ]
+        },
+        {
+          "level": "Maîtrise",
+          "emoji": "🌳",
+          "description": "L'élève répond aux attentes",
+          "criteria": [
+            "Travaille de façon autonome",
+            "Démontre une compréhension solide",
+            "Participe activement et aide les autres",
+            "Applique les apprentissages de façon créative"
+          ]
+        }
+      ],
+      "focusAreas": [
+        "Créativité",
+        "Utilisation des matériaux",
+        "Expression personnelle",
+        "Appréciation artistique"
+      ]
+    },
+    "selfAssessment": {
+      "visualScale": {
+        "title": "Comment je me sens sur mon apprentissage",
+        "options": [
+          "🎨",
+          "🖌️",
+          "✏️"
+        ],
+        "meanings": [
+          "Je peux le faire seul",
+          "J'ai besoin d'un peu d'aide",
+          "J'ai besoin de beaucoup d'aide"
+        ]
+      },
+      "simpleQuestions": [
+        {
+          "question": "J'ai essayé de mon mieux aujourd'hui",
+          "responseType": "emoji",
+          "options": [
+            "😊 Oui!",
+            "😐 Un peu",
+            "😟 Pas vraiment"
+          ]
+        },
+        {
+          "question": "J'ai appris quelque chose de nouveau",
+          "responseType": "emoji",
+          "options": [
+            "🌟 Beaucoup!",
+            "⭐ Un peu",
+            "☆ Pas sûr"
+          ]
+        },
+        {
+          "question": "J'ai aidé un ami",
+          "responseType": "emoji",
+          "options": [
+            "✓ Oui",
+            "~ Parfois",
+            "? Non"
+          ]
+        },
+        {
+          "question": "Je peux expliquer ce que j'ai appris",
+          "responseType": "drawing",
+          "prompt": "Dessine ou montre ce que tu as appris"
+        }
+      ],
+      "reflectionPrompts": [
+        "Ma partie préférée était...",
+        "J'étais fier quand...",
+        "La prochaine fois, je veux essayer..."
+      ]
+    },
+    "portfolioGuidelines": {
+      "purpose": "Documenter le parcours d'apprentissage de chaque élève",
+      "collectionGuidelines": [
+        "Inclure des échantillons de travail datés",
+        "Photographier les créations 3D ou temporaires",
+        "Noter les observations orales importantes",
+        "Inclure les autoévaluations de l'élève",
+        "Documenter les moments de fierté"
+      ],
+      "organizationTips": [
+        "Organiser par date ou par compétence",
+        "Inclure des réflexions de l'élève",
+        "Ajouter des notes sur le contexte",
+        "Partager régulièrement avec les familles"
+      ],
+      "evidenceTypes": {
+        "Travaux écrits": "Échantillons de début, milieu et fin d'unité",
+        "Photos": "Processus de création, produits finaux, collaboration",
+        "Enregistrements": "Présentations orales, explications, chansons",
+        "Observations": "Notes anecdotiques, listes de vérification complétées"
+      }
+    }
   },
   "familyConnections": {
-    "unitLetter": "",
-    "homeActivities": [],
-    "vocabularyList": []
+    "unitLetter": "Chers parents et familles,\n\nNous sommes ravis de commencer notre nouvelle unité: \"Textures et matériaux\"\n\nCette unité permettra à votre enfant de:\n• Explorer des concepts importants en arts visuels\n• Développer du vocabulaire en français\n• Pratiquer de nouvelles compétences\n• Faire des connexions avec la vie quotidienne\n\nQuelques thèmes que nous explorerons:\nDécouverte tactile: Qu'est-ce qu'une texture?, Chasse aux textures dans notre environnement, Premiers frottages: Technique de base, Frottages créatifs: Exploration avancée, Matériaux naturels: Découverte et collection\n\nComment vous pouvez aider à la maison:\n• Demandez à votre enfant de partager ce qu'il/elle a appris\n• Pratiquez le nouveau vocabulaire ensemble (voir la liste ci-jointe)\n• Essayez les activités suggérées quand vous avez du temps\n• Célébrez les efforts et les progrès, pas seulement les résultats\n\nValorisez le processus créatif autant que le produit final.\n\nN'hésitez pas à me contacter si vous avez des questions ou si vous souhaitez partager des ressources culturelles liées à cette unité.\n\nLa créativité s'épanouit avec votre encouragement!\n\nCordialement,\n[Nom de l'enseignant(e)]",
+    "homeActivities": [
+      {
+        "title": "Conversation quotidienne",
+        "description": "Demandez chaque jour: 'Qu'as-tu appris de nouveau aujourd'hui?'",
+        "timeRequired": "5 minutes",
+        "materials": "Aucun",
+        "frenchSupport": "C'est correct si votre enfant répond en anglais!"
+      },
+      {
+        "title": "Chasse au trésor vocabulaire",
+        "description": "Cherchez ensemble les mots de vocabulaire dans votre environnement",
+        "timeRequired": "10-15 minutes",
+        "materials": "Liste de vocabulaire",
+        "frenchSupport": "Utilisez des gestes si la prononciation est difficile"
+      },
+      {
+        "title": "Création artistique libre",
+        "description": "Créez de l'art ensemble en utilisant les techniques apprises",
+        "timeRequired": "20 minutes",
+        "materials": "Matériaux d'art disponibles",
+        "frenchSupport": "L'art transcende les langues!"
+      },
+      {
+        "title": "Galerie maison",
+        "description": "Créez un espace pour exposer les créations de votre enfant",
+        "timeRequired": "10 minutes",
+        "materials": "Espace mural ou table",
+        "frenchSupport": "Demandez à votre enfant d'expliquer ses œuvres"
+      },
+      {
+        "title": "Projet créatif familial",
+        "description": "Créez quelque chose ensemble en lien avec l'unité (dessin, construction, histoire)",
+        "timeRequired": "30 minutes (optionnel)",
+        "materials": "Matériaux créatifs disponibles",
+        "frenchSupport": "L'important est de s'amuser ensemble, peu importe la langue!"
+      }
+    ],
+    "vocabularyList": [
+      {
+        "word": "texture",
+        "lesson": 1,
+        "context": "Découverte tactile: Qu'est-ce qu'une texture?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"texture\"",
+          "Utilisez \"texture\" dans une phrase simple",
+          "Trouvez des images représentant \"texture\"",
+          "Faites des gestes pour \"texture\""
+        ]
+      },
+      {
+        "word": "rugueux",
+        "lesson": 1,
+        "context": "Découverte tactile: Qu'est-ce qu'une texture?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"rugueux\"",
+          "Utilisez \"rugueux\" dans une phrase simple",
+          "Trouvez des images représentant \"rugueux\"",
+          "Faites des gestes pour \"rugueux\""
+        ]
+      },
+      {
+        "word": "lisse",
+        "lesson": 1,
+        "context": "Découverte tactile: Qu'est-ce qu'une texture?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"lisse\"",
+          "Utilisez \"lisse\" dans une phrase simple",
+          "Trouvez des images représentant \"lisse\"",
+          "Faites des gestes pour \"lisse\""
+        ]
+      },
+      {
+        "word": "doux",
+        "lesson": 1,
+        "context": "Découverte tactile: Qu'est-ce qu'une texture?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"doux\"",
+          "Utilisez \"doux\" dans une phrase simple",
+          "Trouvez des images représentant \"doux\"",
+          "Faites des gestes pour \"doux\""
+        ]
+      },
+      {
+        "word": "dur",
+        "lesson": 1,
+        "context": "Découverte tactile: Qu'est-ce qu'une texture?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"dur\"",
+          "Utilisez \"dur\" dans une phrase simple",
+          "Trouvez des images représentant \"dur\"",
+          "Faites des gestes pour \"dur\""
+        ]
+      },
+      {
+        "word": "bosselé",
+        "lesson": 1,
+        "context": "Découverte tactile: Qu'est-ce qu'une texture?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"bosselé\"",
+          "Utilisez \"bosselé\" dans une phrase simple",
+          "Trouvez des images représentant \"bosselé\"",
+          "Faites des gestes pour \"bosselé\""
+        ]
+      },
+      {
+        "word": "ondulé",
+        "lesson": 1,
+        "context": "Découverte tactile: Qu'est-ce qu'une texture?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"ondulé\"",
+          "Utilisez \"ondulé\" dans une phrase simple",
+          "Trouvez des images représentant \"ondulé\"",
+          "Faites des gestes pour \"ondulé\""
+        ]
+      },
+      {
+        "word": "observer",
+        "lesson": 2,
+        "context": "Chasse aux textures dans notre environnement",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"observer\"",
+          "Utilisez \"observer\" dans une phrase simple",
+          "Trouvez des images représentant \"observer\"",
+          "Faites des gestes pour \"observer\""
+        ]
+      },
+      {
+        "word": "documenter",
+        "lesson": 2,
+        "context": "Chasse aux textures dans notre environnement",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"documenter\"",
+          "Utilisez \"documenter\" dans une phrase simple",
+          "Trouvez des images représentant \"documenter\"",
+          "Faites des gestes pour \"documenter\""
+        ]
+      },
+      {
+        "word": "environnement",
+        "lesson": 2,
+        "context": "Chasse aux textures dans notre environnement",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"environnement\"",
+          "Utilisez \"environnement\" dans une phrase simple",
+          "Trouvez des images représentant \"environnement\"",
+          "Faites des gestes pour \"environnement\""
+        ]
+      },
+      {
+        "word": "naturel",
+        "lesson": 2,
+        "context": "Chasse aux textures dans notre environnement",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"naturel\"",
+          "Utilisez \"naturel\" dans une phrase simple",
+          "Trouvez des images représentant \"naturel\"",
+          "Faites des gestes pour \"naturel\""
+        ]
+      },
+      {
+        "word": "artificiel",
+        "lesson": 2,
+        "context": "Chasse aux textures dans notre environnement",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"artificiel\"",
+          "Utilisez \"artificiel\" dans une phrase simple",
+          "Trouvez des images représentant \"artificiel\"",
+          "Faites des gestes pour \"artificiel\""
+        ]
+      },
+      {
+        "word": "classifier",
+        "lesson": 2,
+        "context": "Chasse aux textures dans notre environnement",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"classifier\"",
+          "Utilisez \"classifier\" dans une phrase simple",
+          "Trouvez des images représentant \"classifier\"",
+          "Faites des gestes pour \"classifier\""
+        ]
+      },
+      {
+        "word": "frottage",
+        "lesson": 3,
+        "context": "Premiers frottages: Technique de base",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"frottage\"",
+          "Utilisez \"frottage\" dans une phrase simple",
+          "Trouvez des images représentant \"frottage\"",
+          "Faites des gestes pour \"frottage\""
+        ]
+      },
+      {
+        "word": "pression",
+        "lesson": 3,
+        "context": "Premiers frottages: Technique de base",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"pression\"",
+          "Utilisez \"pression\" dans une phrase simple",
+          "Trouvez des images représentant \"pression\"",
+          "Faites des gestes pour \"pression\""
+        ]
+      },
+      {
+        "word": "mouvement",
+        "lesson": 3,
+        "context": "Premiers frottages: Technique de base",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"mouvement\"",
+          "Utilisez \"mouvement\" dans une phrase simple",
+          "Trouvez des images représentant \"mouvement\"",
+          "Faites des gestes pour \"mouvement\""
+        ]
+      },
+      {
+        "word": "impression",
+        "lesson": 3,
+        "context": "Premiers frottages: Technique de base",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"impression\"",
+          "Utilisez \"impression\" dans une phrase simple",
+          "Trouvez des images représentant \"impression\"",
+          "Faites des gestes pour \"impression\""
+        ]
+      },
+      {
+        "word": "révéler",
+        "lesson": 3,
+        "context": "Premiers frottages: Technique de base",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"révéler\"",
+          "Utilisez \"révéler\" dans une phrase simple",
+          "Trouvez des images représentant \"révéler\"",
+          "Faites des gestes pour \"révéler\""
+        ]
+      },
+      {
+        "word": "technique",
+        "lesson": 3,
+        "context": "Premiers frottages: Technique de base",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"technique\"",
+          "Utilisez \"technique\" dans une phrase simple",
+          "Trouvez des images représentant \"technique\"",
+          "Faites des gestes pour \"technique\""
+        ]
+      },
+      {
+        "word": "superposition",
+        "lesson": 4,
+        "context": "Frottages créatifs: Exploration avancée",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"superposition\"",
+          "Utilisez \"superposition\" dans une phrase simple",
+          "Trouvez des images représentant \"superposition\"",
+          "Faites des gestes pour \"superposition\""
+        ]
+      },
+      {
+        "word": "composition",
+        "lesson": 4,
+        "context": "Frottages créatifs: Exploration avancée",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"composition\"",
+          "Utilisez \"composition\" dans une phrase simple",
+          "Trouvez des images représentant \"composition\"",
+          "Faites des gestes pour \"composition\""
+        ]
+      },
+      {
+        "word": "contraste",
+        "lesson": 4,
+        "context": "Frottages créatifs: Exploration avancée",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"contraste\"",
+          "Utilisez \"contraste\" dans une phrase simple",
+          "Trouvez des images représentant \"contraste\"",
+          "Faites des gestes pour \"contraste\""
+        ]
+      },
+      {
+        "word": "harmonie",
+        "lesson": 4,
+        "context": "Frottages créatifs: Exploration avancée",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"harmonie\"",
+          "Utilisez \"harmonie\" dans une phrase simple",
+          "Trouvez des images représentant \"harmonie\"",
+          "Faites des gestes pour \"harmonie\""
+        ]
+      },
+      {
+        "word": "effet",
+        "lesson": 4,
+        "context": "Frottages créatifs: Exploration avancée",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"effet\"",
+          "Utilisez \"effet\" dans une phrase simple",
+          "Trouvez des images représentant \"effet\"",
+          "Faites des gestes pour \"effet\""
+        ]
+      },
+      {
+        "word": "créatif",
+        "lesson": 4,
+        "context": "Frottages créatifs: Exploration avancée",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"créatif\"",
+          "Utilisez \"créatif\" dans une phrase simple",
+          "Trouvez des images représentant \"créatif\"",
+          "Faites des gestes pour \"créatif\""
+        ]
+      },
+      {
+        "word": "collecter",
+        "lesson": 5,
+        "context": "Matériaux naturels: Découverte et collection",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"collecter\"",
+          "Utilisez \"collecter\" dans une phrase simple",
+          "Trouvez des images représentant \"collecter\"",
+          "Faites des gestes pour \"collecter\""
+        ]
+      },
+      {
+        "word": "respectueux",
+        "lesson": 5,
+        "context": "Matériaux naturels: Découverte et collection",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"respectueux\"",
+          "Utilisez \"respectueux\" dans une phrase simple",
+          "Trouvez des images représentant \"respectueux\"",
+          "Faites des gestes pour \"respectueux\""
+        ]
+      },
+      {
+        "word": "diversité",
+        "lesson": 5,
+        "context": "Matériaux naturels: Découverte et collection",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"diversité\"",
+          "Utilisez \"diversité\" dans une phrase simple",
+          "Trouvez des images représentant \"diversité\"",
+          "Faites des gestes pour \"diversité\""
+        ]
+      },
+      {
+        "word": "propriétés",
+        "lesson": 5,
+        "context": "Matériaux naturels: Découverte et collection",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"propriétés\"",
+          "Utilisez \"propriétés\" dans une phrase simple",
+          "Trouvez des images représentant \"propriétés\"",
+          "Faites des gestes pour \"propriétés\""
+        ]
+      },
+      {
+        "word": "éphémère",
+        "lesson": 6,
+        "context": "Art avec la nature: Créations éphémères",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"éphémère\"",
+          "Utilisez \"éphémère\" dans une phrase simple",
+          "Trouvez des images représentant \"éphémère\"",
+          "Faites des gestes pour \"éphémère\""
+        ]
+      },
+      {
+        "word": "temporaire",
+        "lesson": 6,
+        "context": "Art avec la nature: Créations éphémères",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"temporaire\"",
+          "Utilisez \"temporaire\" dans une phrase simple",
+          "Trouvez des images représentant \"temporaire\"",
+          "Faites des gestes pour \"temporaire\""
+        ]
+      },
+      {
+        "word": "arrangement",
+        "lesson": 6,
+        "context": "Art avec la nature: Créations éphémères",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"arrangement\"",
+          "Utilisez \"arrangement\" dans une phrase simple",
+          "Trouvez des images représentant \"arrangement\"",
+          "Faites des gestes pour \"arrangement\""
+        ]
+      },
+      {
+        "word": "land art",
+        "lesson": 6,
+        "context": "Art avec la nature: Créations éphémères",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"land art\"",
+          "Utilisez \"land art\" dans une phrase simple",
+          "Trouvez des images représentant \"land art\"",
+          "Faites des gestes pour \"land art\""
+        ]
+      },
+      {
+        "word": "perspective",
+        "lesson": 6,
+        "context": "Art avec la nature: Créations éphémères",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"perspective\"",
+          "Utilisez \"perspective\" dans une phrase simple",
+          "Trouvez des images représentant \"perspective\"",
+          "Faites des gestes pour \"perspective\""
+        ]
+      },
+      {
+        "word": "collage",
+        "lesson": 7,
+        "context": "Introduction au collage: Techniques de base",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"collage\"",
+          "Utilisez \"collage\" dans une phrase simple",
+          "Trouvez des images représentant \"collage\"",
+          "Faites des gestes pour \"collage\""
+        ]
+      },
+      {
+        "word": "adhésif",
+        "lesson": 7,
+        "context": "Introduction au collage: Techniques de base",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"adhésif\"",
+          "Utilisez \"adhésif\" dans une phrase simple",
+          "Trouvez des images représentant \"adhésif\"",
+          "Faites des gestes pour \"adhésif\""
+        ]
+      },
+      {
+        "word": "support",
+        "lesson": 7,
+        "context": "Introduction au collage: Techniques de base",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"support\"",
+          "Utilisez \"support\" dans une phrase simple",
+          "Trouvez des images représentant \"support\"",
+          "Faites des gestes pour \"support\""
+        ]
+      },
+      {
+        "word": "superposer",
+        "lesson": 7,
+        "context": "Introduction au collage: Techniques de base",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"superposer\"",
+          "Utilisez \"superposer\" dans une phrase simple",
+          "Trouvez des images représentant \"superposer\"",
+          "Faites des gestes pour \"superposer\""
+        ]
+      },
+      {
+        "word": "intégrer",
+        "lesson": 8,
+        "context": "Collage texturé: Intégration des matériaux",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"intégrer\"",
+          "Utilisez \"intégrer\" dans une phrase simple",
+          "Trouvez des images représentant \"intégrer\"",
+          "Faites des gestes pour \"intégrer\""
+        ]
+      },
+      {
+        "word": "combiner",
+        "lesson": 8,
+        "context": "Collage texturé: Intégration des matériaux",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"combiner\"",
+          "Utilisez \"combiner\" dans une phrase simple",
+          "Trouvez des images représentant \"combiner\"",
+          "Faites des gestes pour \"combiner\""
+        ]
+      },
+      {
+        "word": "mixte",
+        "lesson": 8,
+        "context": "Collage texturé: Intégration des matériaux",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"mixte\"",
+          "Utilisez \"mixte\" dans une phrase simple",
+          "Trouvez des images représentant \"mixte\"",
+          "Faites des gestes pour \"mixte\""
+        ]
+      },
+      {
+        "word": "style",
+        "lesson": 8,
+        "context": "Collage texturé: Intégration des matériaux",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"style\"",
+          "Utilisez \"style\" dans une phrase simple",
+          "Trouvez des images représentant \"style\"",
+          "Faites des gestes pour \"style\""
+        ]
+      },
+      {
+        "word": "personnel",
+        "lesson": 8,
+        "context": "Collage texturé: Intégration des matériaux",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"personnel\"",
+          "Utilisez \"personnel\" dans une phrase simple",
+          "Trouvez des images représentant \"personnel\"",
+          "Faites des gestes pour \"personnel\""
+        ]
+      },
+      {
+        "word": "portfolio",
+        "lesson": 9,
+        "context": "Palette de textures: Organisation et présentation",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"portfolio\"",
+          "Utilisez \"portfolio\" dans une phrase simple",
+          "Trouvez des images représentant \"portfolio\"",
+          "Faites des gestes pour \"portfolio\""
+        ]
+      },
+      {
+        "word": "organiser",
+        "lesson": 9,
+        "context": "Palette de textures: Organisation et présentation",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"organiser\"",
+          "Utilisez \"organiser\" dans une phrase simple",
+          "Trouvez des images représentant \"organiser\"",
+          "Faites des gestes pour \"organiser\""
+        ]
+      },
+      {
+        "word": "présenter",
+        "lesson": 9,
+        "context": "Palette de textures: Organisation et présentation",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"présenter\"",
+          "Utilisez \"présenter\" dans une phrase simple",
+          "Trouvez des images représentant \"présenter\"",
+          "Faites des gestes pour \"présenter\""
+        ]
+      },
+      {
+        "word": "répertoire",
+        "lesson": 9,
+        "context": "Palette de textures: Organisation et présentation",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"répertoire\"",
+          "Utilisez \"répertoire\" dans une phrase simple",
+          "Trouvez des images représentant \"répertoire\"",
+          "Faites des gestes pour \"répertoire\""
+        ]
+      },
+      {
+        "word": "référence",
+        "lesson": 9,
+        "context": "Palette de textures: Organisation et présentation",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"référence\"",
+          "Utilisez \"référence\" dans une phrase simple",
+          "Trouvez des images représentant \"référence\"",
+          "Faites des gestes pour \"référence\""
+        ]
+      },
+      {
+        "word": "documentation",
+        "lesson": 9,
+        "context": "Palette de textures: Organisation et présentation",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"documentation\"",
+          "Utilisez \"documentation\" dans une phrase simple",
+          "Trouvez des images représentant \"documentation\"",
+          "Faites des gestes pour \"documentation\""
+        ]
+      },
+      {
+        "word": "planifier",
+        "lesson": 10,
+        "context": "Projet personnel: Planification",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"planifier\"",
+          "Utilisez \"planifier\" dans une phrase simple",
+          "Trouvez des images représentant \"planifier\"",
+          "Faites des gestes pour \"planifier\""
+        ]
+      },
+      {
+        "word": "projet",
+        "lesson": 10,
+        "context": "Projet personnel: Planification",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"projet\"",
+          "Utilisez \"projet\" dans une phrase simple",
+          "Trouvez des images représentant \"projet\"",
+          "Faites des gestes pour \"projet\""
+        ]
+      },
+      {
+        "word": "étapes",
+        "lesson": 10,
+        "context": "Projet personnel: Planification",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"étapes\"",
+          "Utilisez \"étapes\" dans une phrase simple",
+          "Trouvez des images représentant \"étapes\"",
+          "Faites des gestes pour \"étapes\""
+        ]
+      },
+      {
+        "word": "anticiper",
+        "lesson": 10,
+        "context": "Projet personnel: Planification",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"anticiper\"",
+          "Utilisez \"anticiper\" dans une phrase simple",
+          "Trouvez des images représentant \"anticiper\"",
+          "Faites des gestes pour \"anticiper\""
+        ]
+      },
+      {
+        "word": "réfléchi",
+        "lesson": 10,
+        "context": "Projet personnel: Planification",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"réfléchi\"",
+          "Utilisez \"réfléchi\" dans une phrase simple",
+          "Trouvez des images représentant \"réfléchi\"",
+          "Faites des gestes pour \"réfléchi\""
+        ]
+      },
+      {
+        "word": "réalisation",
+        "lesson": 11,
+        "context": "Projet personnel: Création (Partie 1)",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"réalisation\"",
+          "Utilisez \"réalisation\" dans une phrase simple",
+          "Trouvez des images représentant \"réalisation\"",
+          "Faites des gestes pour \"réalisation\""
+        ]
+      },
+      {
+        "word": "autonome",
+        "lesson": 11,
+        "context": "Projet personnel: Création (Partie 1)",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"autonome\"",
+          "Utilisez \"autonome\" dans une phrase simple",
+          "Trouvez des images représentant \"autonome\"",
+          "Faites des gestes pour \"autonome\""
+        ]
+      },
+      {
+        "word": "persévérer",
+        "lesson": 11,
+        "context": "Projet personnel: Création (Partie 1)",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"persévérer\"",
+          "Utilisez \"persévérer\" dans une phrase simple",
+          "Trouvez des images représentant \"persévérer\"",
+          "Faites des gestes pour \"persévérer\""
+        ]
+      },
+      {
+        "word": "défis",
+        "lesson": 11,
+        "context": "Projet personnel: Création (Partie 1)",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"défis\"",
+          "Utilisez \"défis\" dans une phrase simple",
+          "Trouvez des images représentant \"défis\"",
+          "Faites des gestes pour \"défis\""
+        ]
+      },
+      {
+        "word": "ajustements",
+        "lesson": 11,
+        "context": "Projet personnel: Création (Partie 1)",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"ajustements\"",
+          "Utilisez \"ajustements\" dans une phrase simple",
+          "Trouvez des images représentant \"ajustements\"",
+          "Faites des gestes pour \"ajustements\""
+        ]
+      },
+      {
+        "word": "finaliser",
+        "lesson": 12,
+        "context": "Projet personnel: Création (Partie 2)",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"finaliser\"",
+          "Utilisez \"finaliser\" dans une phrase simple",
+          "Trouvez des images représentant \"finaliser\"",
+          "Faites des gestes pour \"finaliser\""
+        ]
+      },
+      {
+        "word": "finition",
+        "lesson": 12,
+        "context": "Projet personnel: Création (Partie 2)",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"finition\"",
+          "Utilisez \"finition\" dans une phrase simple",
+          "Trouvez des images représentant \"finition\"",
+          "Faites des gestes pour \"finition\""
+        ]
+      },
+      {
+        "word": "évaluer",
+        "lesson": 12,
+        "context": "Projet personnel: Création (Partie 2)",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"évaluer\"",
+          "Utilisez \"évaluer\" dans une phrase simple",
+          "Trouvez des images représentant \"évaluer\"",
+          "Faites des gestes pour \"évaluer\""
+        ]
+      },
+      {
+        "word": "critique",
+        "lesson": 12,
+        "context": "Projet personnel: Création (Partie 2)",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"critique\"",
+          "Utilisez \"critique\" dans une phrase simple",
+          "Trouvez des images représentant \"critique\"",
+          "Faites des gestes pour \"critique\""
+        ]
+      },
+      {
+        "word": "constructif",
+        "lesson": 12,
+        "context": "Projet personnel: Création (Partie 2)",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"constructif\"",
+          "Utilisez \"constructif\" dans une phrase simple",
+          "Trouvez des images représentant \"constructif\"",
+          "Faites des gestes pour \"constructif\""
+        ]
+      },
+      {
+        "word": "fierté",
+        "lesson": 13,
+        "context": "Présentation et partage",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"fierté\"",
+          "Utilisez \"fierté\" dans une phrase simple",
+          "Trouvez des images représentant \"fierté\"",
+          "Faites des gestes pour \"fierté\""
+        ]
+      },
+      {
+        "word": "communication",
+        "lesson": 13,
+        "context": "Présentation et partage",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"communication\"",
+          "Utilisez \"communication\" dans une phrase simple",
+          "Trouvez des images représentant \"communication\"",
+          "Faites des gestes pour \"communication\""
+        ]
+      },
+      {
+        "word": "apprécier",
+        "lesson": 13,
+        "context": "Présentation et partage",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"apprécier\"",
+          "Utilisez \"apprécier\" dans une phrase simple",
+          "Trouvez des images représentant \"apprécier\"",
+          "Faites des gestes pour \"apprécier\""
+        ]
+      },
+      {
+        "word": "respecter",
+        "lesson": 13,
+        "context": "Présentation et partage",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"respecter\"",
+          "Utilisez \"respecter\" dans une phrase simple",
+          "Trouvez des images représentant \"respecter\"",
+          "Faites des gestes pour \"respecter\""
+        ]
+      },
+      {
+        "word": "réfléchir",
+        "lesson": 14,
+        "context": "Réflexion et évaluation de l'unité",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"réfléchir\"",
+          "Utilisez \"réfléchir\" dans une phrase simple",
+          "Trouvez des images représentant \"réfléchir\"",
+          "Faites des gestes pour \"réfléchir\""
+        ]
+      },
+      {
+        "word": "progrès",
+        "lesson": 14,
+        "context": "Réflexion et évaluation de l'unité",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"progrès\"",
+          "Utilisez \"progrès\" dans une phrase simple",
+          "Trouvez des images représentant \"progrès\"",
+          "Faites des gestes pour \"progrès\""
+        ]
+      },
+      {
+        "word": "connexions",
+        "lesson": 14,
+        "context": "Réflexion et évaluation de l'unité",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"connexions\"",
+          "Utilisez \"connexions\" dans une phrase simple",
+          "Trouvez des images représentant \"connexions\"",
+          "Faites des gestes pour \"connexions\""
+        ]
+      },
+      {
+        "word": "quotidien",
+        "lesson": 14,
+        "context": "Réflexion et évaluation de l'unité",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"quotidien\"",
+          "Utilisez \"quotidien\" dans une phrase simple",
+          "Trouvez des images représentant \"quotidien\"",
+          "Faites des gestes pour \"quotidien\""
+        ]
+      }
+    ]
   },
   "resourceAlternatives": {
-    "materials": {},
-    "digitalResources": []
+    "materials": {
+      "lowCost": [
+        "Matériaux recyclés (boîtes, papier, carton)",
+        "Objets de la nature (feuilles, pierres, branches)",
+        "Matériaux quotidiens (boutons, pâtes, haricots)",
+        "Papier et crayons de base"
+      ],
+      "noCost": [
+        "Observation de l'environnement",
+        "Discussion et partage oral",
+        "Mouvements et gestes",
+        "Jeux d'imagination"
+      ],
+      "digital": [
+        "Applications éducatives gratuites",
+        "Vidéos éducatives en ligne",
+        "Livres numériques de la bibliothèque",
+        "Jeux éducatifs en ligne"
+      ]
+    },
+    "digitalResources": [
+      {
+        "type": "Sites web éducatifs",
+        "examples": [
+          "Radio-Canada Jeunesse",
+          "TFO Éducation",
+          "Bibliothèque numérique locale"
+        ],
+        "note": "Ressources gratuites en français"
+      },
+      {
+        "type": "Applications",
+        "examples": [
+          "Applications de lecture",
+          "Jeux mathématiques",
+          "Exploration scientifique"
+        ],
+        "note": "Cherchez des options gratuites"
+      }
+    ]
   },
   "metadata": {
     "lastUpdated": "2025-08-22T21:43:10.366Z",

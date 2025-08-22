@@ -1,0 +1,66 @@
+{
+  "title": "Guide des leçons d'extension - 1re année immersion française",
+  "purpose": "Les leçons d'extension offrent flexibilité et différenciation pour répondre aux besoins variés",
+  "structure": {
+    "coreVsExtension": "14 leçons principales (70%) + 6 leçons d'extension (30%)",
+    "flexibility": "Les extensions peuvent être utilisées selon les besoins, pas nécessairement dans l'ordre",
+    "adaptation": "Chaque extension peut être modifiée pour différents contextes"
+  },
+  "categories": {
+    "enrichment": {
+      "label": "Enrichissement",
+      "icon": "🌟",
+      "purpose": "Pour approfondir et enrichir les apprentissages",
+      "when": "Quand les élèves maîtrisent les concepts de base"
+    },
+    "practice": {
+      "label": "Pratique supplémentaire",
+      "icon": "🔄",
+      "purpose": "Pour consolider les apprentissages essentiels",
+      "when": "Quand les élèves ont besoin de plus de pratique"
+    },
+    "exploration": {
+      "label": "Exploration créative",
+      "icon": "🎨",
+      "purpose": "Pour explorer les concepts de manière créative",
+      "when": "Pour les journées spéciales ou projets libres"
+    },
+    "integration": {
+      "label": "Intégration",
+      "icon": "🔗",
+      "purpose": "Pour connecter à d'autres matières ou thèmes",
+      "when": "Pour faire des liens interdisciplinaires"
+    },
+    "celebration": {
+      "label": "Célébration",
+      "icon": "🎉",
+      "purpose": "Pour célébrer et partager les apprentissages",
+      "when": "À la fin de l'unité ou pour des événements spéciaux"
+    },
+    "differentiation": {
+      "label": "Différenciation",
+      "icon": "🎯",
+      "purpose": "Pour répondre aux besoins variés des élèves",
+      "when": "Pour adapter aux différents styles d'apprentissage"
+    }
+  },
+  "usageScenarios": {
+    "fastFinishers": "Utiliser les extensions d'enrichissement pour les élèves qui terminent rapidement",
+    "needMorePractice": "Utiliser les extensions de pratique pour consolider les apprentissages",
+    "specialDays": "Utiliser les extensions d'exploration pour les journées spéciales",
+    "assessment": "Utiliser les extensions de célébration pour l'évaluation sommative",
+    "differentiation": "Adapter toute extension selon les besoins individuels"
+  },
+  "planningTips": {
+    "weekly": "Planifier 1-2 extensions par semaine selon les besoins",
+    "flexible": "Garder les extensions flexibles pour s'adapter au rythme de la classe",
+    "studentChoice": "Permettre parfois aux élèves de choisir leur extension",
+    "documentation": "Documenter quelles extensions fonctionnent bien avec votre groupe"
+  },
+  "commonChallenges": {
+    "time": "Solution: Utiliser des versions courtes des extensions",
+    "resources": "Solution: Adapter avec les matériaux disponibles",
+    "engagement": "Solution: Laisser les élèves choisir ou modifier l'activité",
+    "differentiation": "Solution: Préparer 2-3 niveaux de la même extension"
+  }
+}

@@ -1071,7 +1071,47 @@
       "assessmentCriteria": {
         "observable": [],
         "checkpoints": []
-      }
+      },
+      "extensionGuidance": {
+        "category": "Exploration créative",
+        "icon": "🎨",
+        "purpose": "Pour explorer les concepts de manière créative",
+        "whenToUse": "Pour les journées spéciales ou projets libres",
+        "teacherTips": {
+          "preparation": [
+            "Rassembler divers matériaux créatifs",
+            "Créer un environnement ouvert à l'exploration",
+            "Préparer peu de directives, plus de possibilités"
+          ],
+          "implementation": [
+            "Donner du temps pour explorer librement",
+            "Poser des questions ouvertes",
+            "Valoriser toutes les découvertes"
+          ],
+          "assessment": "Documenter le processus d'exploration et les découvertes",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension exploration créative renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Journée thématique",
+          "Projet d'art libre",
+          "Activité de fin de journée"
+        ]
+      },
+      "extensionCategory": "exploration"
     },
     {
       "lessonNumber": 16,
@@ -1141,7 +1181,47 @@
       "assessmentCriteria": {
         "observable": [],
         "checkpoints": []
-      }
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
     },
     {
       "lessonNumber": 17,
@@ -1211,7 +1291,47 @@
       "assessmentCriteria": {
         "observable": [],
         "checkpoints": []
-      }
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
     },
     {
       "lessonNumber": 18,
@@ -1281,7 +1401,47 @@
       "assessmentCriteria": {
         "observable": [],
         "checkpoints": []
-      }
+      },
+      "extensionGuidance": {
+        "category": "Exploration créative",
+        "icon": "🎨",
+        "purpose": "Pour explorer les concepts de manière créative",
+        "whenToUse": "Pour les journées spéciales ou projets libres",
+        "teacherTips": {
+          "preparation": [
+            "Rassembler divers matériaux créatifs",
+            "Créer un environnement ouvert à l'exploration",
+            "Préparer peu de directives, plus de possibilités"
+          ],
+          "implementation": [
+            "Donner du temps pour explorer librement",
+            "Poser des questions ouvertes",
+            "Valoriser toutes les découvertes"
+          ],
+          "assessment": "Documenter le processus d'exploration et les découvertes",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension exploration créative renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Journée thématique",
+          "Projet d'art libre",
+          "Activité de fin de journée"
+        ]
+      },
+      "extensionCategory": "exploration"
     },
     {
       "lessonNumber": 19,
@@ -1352,7 +1512,47 @@
       "assessmentCriteria": {
         "observable": [],
         "checkpoints": []
-      }
+      },
+      "extensionGuidance": {
+        "category": "Exploration créative",
+        "icon": "🎨",
+        "purpose": "Pour explorer les concepts de manière créative",
+        "whenToUse": "Pour les journées spéciales ou projets libres",
+        "teacherTips": {
+          "preparation": [
+            "Rassembler divers matériaux créatifs",
+            "Créer un environnement ouvert à l'exploration",
+            "Préparer peu de directives, plus de possibilités"
+          ],
+          "implementation": [
+            "Donner du temps pour explorer librement",
+            "Poser des questions ouvertes",
+            "Valoriser toutes les découvertes"
+          ],
+          "assessment": "Documenter le processus d'exploration et les découvertes",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension exploration créative renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Journée thématique",
+          "Projet d'art libre",
+          "Activité de fin de journée"
+        ]
+      },
+      "extensionCategory": "exploration"
     },
     {
       "lessonNumber": 20,
@@ -1423,23 +1623,782 @@
       "assessmentCriteria": {
         "observable": [],
         "checkpoints": []
-      }
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
     }
   ],
   "assessmentTools": {
-    "observationChecklist": [],
-    "rubrics": [],
-    "selfAssessment": [],
-    "portfolioGuidelines": ""
+    "observationChecklist": [
+      {
+        "category": "Observation",
+        "items": [
+          "Démontre une compréhension de base en observation",
+          "Participe activement aux activités de observation",
+          "Montre du progrès dans observation",
+          "Applique les apprentissages de observation dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Questionnement",
+        "items": [
+          "Démontre une compréhension de base en questionnement",
+          "Participe activement aux activités de questionnement",
+          "Montre du progrès dans questionnement",
+          "Applique les apprentissages de questionnement dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Exploration sécuritaire",
+        "items": [
+          "Démontre une compréhension de base en exploration sécuritaire",
+          "Participe activement aux activités de exploration sécuritaire",
+          "Montre du progrès dans exploration sécuritaire",
+          "Applique les apprentissages de exploration sécuritaire dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Communication des découvertes",
+        "items": [
+          "Démontre une compréhension de base en communication des découvertes",
+          "Participe activement aux activités de communication des découvertes",
+          "Montre du progrès dans communication des découvertes",
+          "Applique les apprentissages de communication des découvertes dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      }
+    ],
+    "rubrics": {
+      "title": "Rubrique d'évaluation - ",
+      "levels": [
+        {
+          "level": "Émergent",
+          "emoji": "🌱",
+          "description": "L'élève commence à développer les compétences",
+          "criteria": [
+            "Nécessite un soutien constant",
+            "Démontre une compréhension partielle",
+            "Participe avec encouragement",
+            "Essaie les nouvelles activités"
+          ]
+        },
+        {
+          "level": "En développement",
+          "emoji": "🌿",
+          "description": "L'élève progresse vers les attentes",
+          "criteria": [
+            "Nécessite un soutien occasionnel",
+            "Démontre une bonne compréhension",
+            "Participe régulièrement",
+            "Applique les apprentissages avec aide"
+          ]
+        },
+        {
+          "level": "Maîtrise",
+          "emoji": "🌳",
+          "description": "L'élève répond aux attentes",
+          "criteria": [
+            "Travaille de façon autonome",
+            "Démontre une compréhension solide",
+            "Participe activement et aide les autres",
+            "Applique les apprentissages de façon créative"
+          ]
+        }
+      ],
+      "focusAreas": [
+        "Observation",
+        "Questionnement",
+        "Exploration sécuritaire",
+        "Communication des découvertes"
+      ]
+    },
+    "selfAssessment": {
+      "visualScale": {
+        "title": "Comment je me sens sur mon apprentissage",
+        "options": [
+          "🌟",
+          "⭐",
+          "☆"
+        ],
+        "meanings": [
+          "Je peux le faire seul",
+          "J'ai besoin d'un peu d'aide",
+          "J'ai besoin de beaucoup d'aide"
+        ]
+      },
+      "simpleQuestions": [
+        {
+          "question": "J'ai essayé de mon mieux aujourd'hui",
+          "responseType": "emoji",
+          "options": [
+            "😊 Oui!",
+            "😐 Un peu",
+            "😟 Pas vraiment"
+          ]
+        },
+        {
+          "question": "J'ai appris quelque chose de nouveau",
+          "responseType": "emoji",
+          "options": [
+            "🌟 Beaucoup!",
+            "⭐ Un peu",
+            "☆ Pas sûr"
+          ]
+        },
+        {
+          "question": "J'ai aidé un ami",
+          "responseType": "emoji",
+          "options": [
+            "✓ Oui",
+            "~ Parfois",
+            "? Non"
+          ]
+        },
+        {
+          "question": "Je peux expliquer ce que j'ai appris",
+          "responseType": "drawing",
+          "prompt": "Dessine ou montre ce que tu as appris"
+        }
+      ],
+      "reflectionPrompts": [
+        "Ma partie préférée était...",
+        "J'étais fier quand...",
+        "La prochaine fois, je veux essayer..."
+      ]
+    },
+    "portfolioGuidelines": {
+      "purpose": "Documenter le parcours d'apprentissage de chaque élève",
+      "collectionGuidelines": [
+        "Inclure des échantillons de travail datés",
+        "Photographier les créations 3D ou temporaires",
+        "Noter les observations orales importantes",
+        "Inclure les autoévaluations de l'élève",
+        "Documenter les moments de fierté"
+      ],
+      "organizationTips": [
+        "Organiser par date ou par compétence",
+        "Inclure des réflexions de l'élève",
+        "Ajouter des notes sur le contexte",
+        "Partager régulièrement avec les familles"
+      ],
+      "evidenceTypes": {
+        "Travaux écrits": "Échantillons de début, milieu et fin d'unité",
+        "Photos": "Processus de création, produits finaux, collaboration",
+        "Enregistrements": "Présentations orales, explications, chansons",
+        "Observations": "Notes anecdotiques, listes de vérification complétées"
+      }
+    }
   },
   "familyConnections": {
-    "unitLetter": "",
-    "homeActivities": [],
-    "vocabularyList": []
+    "unitLetter": "Chers parents et familles,\n\nNous sommes ravis de commencer notre nouvelle unité: \"\"\n\nCette unité permettra à votre enfant de:\n• Explorer des concepts importants en sciences\n• Développer du vocabulaire en français\n• Pratiquer de nouvelles compétences\n• Faire des connexions avec la vie quotidienne\n\nQuelques thèmes que nous explorerons:\nDécouvrir les sons autour de nous, Sons forts et sons doux, Sons aigus et sons graves, D'où viennent les sons?, Sentir les vibrations\n\nComment vous pouvez aider à la maison:\n• Demandez à votre enfant de partager ce qu'il/elle a appris\n• Pratiquez le nouveau vocabulaire ensemble (voir la liste ci-jointe)\n• Essayez les activités suggérées quand vous avez du temps\n• Célébrez les efforts et les progrès, pas seulement les résultats\n\nEncouragez les questions 'pourquoi' et explorez ensemble les réponses.\n\nN'hésitez pas à me contacter si vous avez des questions ou si vous souhaitez partager des ressources culturelles liées à cette unité.\n\nLa curiosité scientifique commence à la maison!\n\nCordialement,\n[Nom de l'enseignant(e)]",
+    "homeActivities": [
+      {
+        "title": "Conversation quotidienne",
+        "description": "Demandez chaque jour: 'Qu'as-tu appris de nouveau aujourd'hui?'",
+        "timeRequired": "5 minutes",
+        "materials": "Aucun",
+        "frenchSupport": "C'est correct si votre enfant répond en anglais!"
+      },
+      {
+        "title": "Chasse au trésor vocabulaire",
+        "description": "Cherchez ensemble les mots de vocabulaire dans votre environnement",
+        "timeRequired": "10-15 minutes",
+        "materials": "Liste de vocabulaire",
+        "frenchSupport": "Utilisez des gestes si la prononciation est difficile"
+      },
+      {
+        "title": "Observations de la nature",
+        "description": "Observez et discutez des phénomènes naturels liés à l'unité",
+        "timeRequired": "15 minutes",
+        "materials": "Carnet d'observations",
+        "frenchSupport": "Dessiner les observations aide la communication"
+      },
+      {
+        "title": "Expérience simple",
+        "description": "Faites une expérience sécuritaire liée au thème",
+        "timeRequired": "20 minutes",
+        "materials": "Matériaux simples du quotidien",
+        "frenchSupport": "Utilisez les mots scientifiques en français"
+      },
+      {
+        "title": "Projet créatif familial",
+        "description": "Créez quelque chose ensemble en lien avec l'unité (dessin, construction, histoire)",
+        "timeRequired": "30 minutes (optionnel)",
+        "materials": "Matériaux créatifs disponibles",
+        "frenchSupport": "L'important est de s'amuser ensemble, peu importe la langue!"
+      }
+    ],
+    "vocabularyList": [
+      {
+        "word": "son",
+        "lesson": 1,
+        "context": "Découvrir les sons autour de nous",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"son\"",
+          "Utilisez \"son\" dans une phrase simple",
+          "Trouvez des images représentant \"son\"",
+          "Faites des gestes pour \"son\""
+        ]
+      },
+      {
+        "word": "entendre",
+        "lesson": 1,
+        "context": "Découvrir les sons autour de nous",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"entendre\"",
+          "Utilisez \"entendre\" dans une phrase simple",
+          "Trouvez des images représentant \"entendre\"",
+          "Faites des gestes pour \"entendre\""
+        ]
+      },
+      {
+        "word": "écouter",
+        "lesson": 1,
+        "context": "Découvrir les sons autour de nous",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"écouter\"",
+          "Utilisez \"écouter\" dans une phrase simple",
+          "Trouvez des images représentant \"écouter\"",
+          "Faites des gestes pour \"écouter\""
+        ]
+      },
+      {
+        "word": "fort",
+        "lesson": 2,
+        "context": "Sons forts et sons doux",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"fort\"",
+          "Utilisez \"fort\" dans une phrase simple",
+          "Trouvez des images représentant \"fort\"",
+          "Faites des gestes pour \"fort\""
+        ]
+      },
+      {
+        "word": "doux",
+        "lesson": 2,
+        "context": "Sons forts et sons doux",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"doux\"",
+          "Utilisez \"doux\" dans une phrase simple",
+          "Trouvez des images représentant \"doux\"",
+          "Faites des gestes pour \"doux\""
+        ]
+      },
+      {
+        "word": "volume",
+        "lesson": 2,
+        "context": "Sons forts et sons doux",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"volume\"",
+          "Utilisez \"volume\" dans une phrase simple",
+          "Trouvez des images représentant \"volume\"",
+          "Faites des gestes pour \"volume\""
+        ]
+      },
+      {
+        "word": "aigu",
+        "lesson": 3,
+        "context": "Sons aigus et sons graves",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"aigu\"",
+          "Utilisez \"aigu\" dans une phrase simple",
+          "Trouvez des images représentant \"aigu\"",
+          "Faites des gestes pour \"aigu\""
+        ]
+      },
+      {
+        "word": "grave",
+        "lesson": 3,
+        "context": "Sons aigus et sons graves",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"grave\"",
+          "Utilisez \"grave\" dans une phrase simple",
+          "Trouvez des images représentant \"grave\"",
+          "Faites des gestes pour \"grave\""
+        ]
+      },
+      {
+        "word": "hauteur",
+        "lesson": 3,
+        "context": "Sons aigus et sons graves",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"hauteur\"",
+          "Utilisez \"hauteur\" dans une phrase simple",
+          "Trouvez des images représentant \"hauteur\"",
+          "Faites des gestes pour \"hauteur\""
+        ]
+      },
+      {
+        "word": "source",
+        "lesson": 4,
+        "context": "D'où viennent les sons?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"source\"",
+          "Utilisez \"source\" dans une phrase simple",
+          "Trouvez des images représentant \"source\"",
+          "Faites des gestes pour \"source\""
+        ]
+      },
+      {
+        "word": "vibrer",
+        "lesson": 4,
+        "context": "D'où viennent les sons?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"vibrer\"",
+          "Utilisez \"vibrer\" dans une phrase simple",
+          "Trouvez des images représentant \"vibrer\"",
+          "Faites des gestes pour \"vibrer\""
+        ]
+      },
+      {
+        "word": "mouvement",
+        "lesson": 4,
+        "context": "D'où viennent les sons?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"mouvement\"",
+          "Utilisez \"mouvement\" dans une phrase simple",
+          "Trouvez des images représentant \"mouvement\"",
+          "Faites des gestes pour \"mouvement\""
+        ]
+      },
+      {
+        "word": "sentir",
+        "lesson": 5,
+        "context": "Sentir les vibrations",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"sentir\"",
+          "Utilisez \"sentir\" dans une phrase simple",
+          "Trouvez des images représentant \"sentir\"",
+          "Faites des gestes pour \"sentir\""
+        ]
+      },
+      {
+        "word": "toucher",
+        "lesson": 5,
+        "context": "Sentir les vibrations",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"toucher\"",
+          "Utilisez \"toucher\" dans une phrase simple",
+          "Trouvez des images représentant \"toucher\"",
+          "Faites des gestes pour \"toucher\""
+        ]
+      },
+      {
+        "word": "vibration",
+        "lesson": 5,
+        "context": "Sentir les vibrations",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"vibration\"",
+          "Utilisez \"vibration\" dans une phrase simple",
+          "Trouvez des images représentant \"vibration\"",
+          "Faites des gestes pour \"vibration\""
+        ]
+      },
+      {
+        "word": "téléphone",
+        "lesson": 6,
+        "context": "Fabriquer un téléphone à ficelle",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"téléphone\"",
+          "Utilisez \"téléphone\" dans une phrase simple",
+          "Trouvez des images représentant \"téléphone\"",
+          "Faites des gestes pour \"téléphone\""
+        ]
+      },
+      {
+        "word": "ficelle",
+        "lesson": 6,
+        "context": "Fabriquer un téléphone à ficelle",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"ficelle\"",
+          "Utilisez \"ficelle\" dans une phrase simple",
+          "Trouvez des images représentant \"ficelle\"",
+          "Faites des gestes pour \"ficelle\""
+        ]
+      },
+      {
+        "word": "message",
+        "lesson": 6,
+        "context": "Fabriquer un téléphone à ficelle",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"message\"",
+          "Utilisez \"message\" dans une phrase simple",
+          "Trouvez des images représentant \"message\"",
+          "Faites des gestes pour \"message\""
+        ]
+      },
+      {
+        "word": "tambour",
+        "lesson": 7,
+        "context": "Explorer les tambours",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"tambour\"",
+          "Utilisez \"tambour\" dans une phrase simple",
+          "Trouvez des images représentant \"tambour\"",
+          "Faites des gestes pour \"tambour\""
+        ]
+      },
+      {
+        "word": "rythme",
+        "lesson": 7,
+        "context": "Explorer les tambours",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"rythme\"",
+          "Utilisez \"rythme\" dans une phrase simple",
+          "Trouvez des images représentant \"rythme\"",
+          "Faites des gestes pour \"rythme\""
+        ]
+      },
+      {
+        "word": "battre",
+        "lesson": 7,
+        "context": "Explorer les tambours",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"battre\"",
+          "Utilisez \"battre\" dans une phrase simple",
+          "Trouvez des images représentant \"battre\"",
+          "Faites des gestes pour \"battre\""
+        ]
+      },
+      {
+        "word": "kazoo",
+        "lesson": 8,
+        "context": "Construire un kazoo",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"kazoo\"",
+          "Utilisez \"kazoo\" dans une phrase simple",
+          "Trouvez des images représentant \"kazoo\"",
+          "Faites des gestes pour \"kazoo\""
+        ]
+      },
+      {
+        "word": "voix",
+        "lesson": 8,
+        "context": "Construire un kazoo",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"voix\"",
+          "Utilisez \"voix\" dans une phrase simple",
+          "Trouvez des images représentant \"voix\"",
+          "Faites des gestes pour \"voix\""
+        ]
+      },
+      {
+        "word": "chanter",
+        "lesson": 8,
+        "context": "Construire un kazoo",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"chanter\"",
+          "Utilisez \"chanter\" dans une phrase simple",
+          "Trouvez des images représentant \"chanter\"",
+          "Faites des gestes pour \"chanter\""
+        ]
+      },
+      {
+        "word": "bouteille",
+        "lesson": 9,
+        "context": "Bouteilles musicales",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"bouteille\"",
+          "Utilisez \"bouteille\" dans une phrase simple",
+          "Trouvez des images représentant \"bouteille\"",
+          "Faites des gestes pour \"bouteille\""
+        ]
+      },
+      {
+        "word": "eau",
+        "lesson": 9,
+        "context": "Bouteilles musicales",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"eau\"",
+          "Utilisez \"eau\" dans une phrase simple",
+          "Trouvez des images représentant \"eau\"",
+          "Faites des gestes pour \"eau\""
+        ]
+      },
+      {
+        "word": "musique",
+        "lesson": 9,
+        "context": "Bouteilles musicales",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"musique\"",
+          "Utilisez \"musique\" dans une phrase simple",
+          "Trouvez des images représentant \"musique\"",
+          "Faites des gestes pour \"musique\""
+        ]
+      },
+      {
+        "word": "maracas",
+        "lesson": 10,
+        "context": "Maracas et shakers",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"maracas\"",
+          "Utilisez \"maracas\" dans une phrase simple",
+          "Trouvez des images représentant \"maracas\"",
+          "Faites des gestes pour \"maracas\""
+        ]
+      },
+      {
+        "word": "secouer",
+        "lesson": 10,
+        "context": "Maracas et shakers",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"secouer\"",
+          "Utilisez \"secouer\" dans une phrase simple",
+          "Trouvez des images représentant \"secouer\"",
+          "Faites des gestes pour \"secouer\""
+        ]
+      },
+      {
+        "word": "remplir",
+        "lesson": 10,
+        "context": "Maracas et shakers",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"remplir\"",
+          "Utilisez \"remplir\" dans une phrase simple",
+          "Trouvez des images représentant \"remplir\"",
+          "Faites des gestes pour \"remplir\""
+        ]
+      },
+      {
+        "word": "guitare",
+        "lesson": 11,
+        "context": "Guitare en boîte",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"guitare\"",
+          "Utilisez \"guitare\" dans une phrase simple",
+          "Trouvez des images représentant \"guitare\"",
+          "Faites des gestes pour \"guitare\""
+        ]
+      },
+      {
+        "word": "élastiques",
+        "lesson": 11,
+        "context": "Guitare en boîte",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"élastiques\"",
+          "Utilisez \"élastiques\" dans une phrase simple",
+          "Trouvez des images représentant \"élastiques\"",
+          "Faites des gestes pour \"élastiques\""
+        ]
+      },
+      {
+        "word": "cordes",
+        "lesson": 11,
+        "context": "Guitare en boîte",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"cordes\"",
+          "Utilisez \"cordes\" dans une phrase simple",
+          "Trouvez des images représentant \"cordes\"",
+          "Faites des gestes pour \"cordes\""
+        ]
+      },
+      {
+        "word": "flûte",
+        "lesson": 12,
+        "context": "Flûte de Pan avec pailles",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"flûte\"",
+          "Utilisez \"flûte\" dans une phrase simple",
+          "Trouvez des images représentant \"flûte\"",
+          "Faites des gestes pour \"flûte\""
+        ]
+      },
+      {
+        "word": "pailles",
+        "lesson": 12,
+        "context": "Flûte de Pan avec pailles",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"pailles\"",
+          "Utilisez \"pailles\" dans une phrase simple",
+          "Trouvez des images représentant \"pailles\"",
+          "Faites des gestes pour \"pailles\""
+        ]
+      },
+      {
+        "word": "longueur",
+        "lesson": 12,
+        "context": "Flûte de Pan avec pailles",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"longueur\"",
+          "Utilisez \"longueur\" dans une phrase simple",
+          "Trouvez des images représentant \"longueur\"",
+          "Faites des gestes pour \"longueur\""
+        ]
+      },
+      {
+        "word": "orchestre",
+        "lesson": 13,
+        "context": "Orchestre de la classe",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"orchestre\"",
+          "Utilisez \"orchestre\" dans une phrase simple",
+          "Trouvez des images représentant \"orchestre\"",
+          "Faites des gestes pour \"orchestre\""
+        ]
+      },
+      {
+        "word": "ensemble",
+        "lesson": 13,
+        "context": "Orchestre de la classe",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"ensemble\"",
+          "Utilisez \"ensemble\" dans une phrase simple",
+          "Trouvez des images représentant \"ensemble\"",
+          "Faites des gestes pour \"ensemble\""
+        ]
+      },
+      {
+        "word": "jouer",
+        "lesson": 13,
+        "context": "Orchestre de la classe",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"jouer\"",
+          "Utilisez \"jouer\" dans une phrase simple",
+          "Trouvez des images représentant \"jouer\"",
+          "Faites des gestes pour \"jouer\""
+        ]
+      },
+      {
+        "word": "concert",
+        "lesson": 14,
+        "context": "Concert de démonstration",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"concert\"",
+          "Utilisez \"concert\" dans une phrase simple",
+          "Trouvez des images représentant \"concert\"",
+          "Faites des gestes pour \"concert\""
+        ]
+      },
+      {
+        "word": "expliquer",
+        "lesson": 14,
+        "context": "Concert de démonstration",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"expliquer\"",
+          "Utilisez \"expliquer\" dans une phrase simple",
+          "Trouvez des images représentant \"expliquer\"",
+          "Faites des gestes pour \"expliquer\""
+        ]
+      },
+      {
+        "word": "démontrer",
+        "lesson": 14,
+        "context": "Concert de démonstration",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"démontrer\"",
+          "Utilisez \"démontrer\" dans une phrase simple",
+          "Trouvez des images représentant \"démontrer\"",
+          "Faites des gestes pour \"démontrer\""
+        ]
+      }
+    ]
   },
   "resourceAlternatives": {
-    "materials": {},
-    "digitalResources": []
+    "materials": {
+      "lowCost": [
+        "Matériaux recyclés (boîtes, papier, carton)",
+        "Objets de la nature (feuilles, pierres, branches)",
+        "Matériaux quotidiens (boutons, pâtes, haricots)",
+        "Papier et crayons de base"
+      ],
+      "noCost": [
+        "Observation de l'environnement",
+        "Discussion et partage oral",
+        "Mouvements et gestes",
+        "Jeux d'imagination"
+      ],
+      "digital": [
+        "Applications éducatives gratuites",
+        "Vidéos éducatives en ligne",
+        "Livres numériques de la bibliothèque",
+        "Jeux éducatifs en ligne"
+      ]
+    },
+    "digitalResources": [
+      {
+        "type": "Sites web éducatifs",
+        "examples": [
+          "Radio-Canada Jeunesse",
+          "TFO Éducation",
+          "Bibliothèque numérique locale"
+        ],
+        "note": "Ressources gratuites en français"
+      },
+      {
+        "type": "Applications",
+        "examples": [
+          "Applications de lecture",
+          "Jeux mathématiques",
+          "Exploration scientifique"
+        ],
+        "note": "Cherchez des options gratuites"
+      }
+    ]
   },
   "metadata": {
     "lastUpdated": "2025-08-22T21:43:10.366Z",

@@ -843,23 +843,771 @@
       "assessmentCriteria": {
         "observable": [],
         "checkpoints": []
-      }
+      },
+      "extensionGuidance": {
+        "category": "Célébration",
+        "icon": "🎉",
+        "purpose": "Pour célébrer et partager les apprentissages",
+        "whenToUse": "À la fin de l'unité ou pour des événements spéciaux",
+        "teacherTips": {
+          "preparation": [
+            "Organiser l'espace pour la présentation",
+            "Inviter les familles si approprié",
+            "Préparer des certificats ou reconnaissances"
+          ],
+          "implementation": [
+            "Créer une atmosphère festive",
+            "Permettre à chaque élève de briller",
+            "Documenter les accomplissements"
+          ],
+          "assessment": "Célébrer les accomplissements sans évaluation formelle",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension célébration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Événement de fin d'unité",
+          "Présentation aux parents",
+          "Assemblée scolaire"
+        ]
+      },
+      "extensionCategory": "celebration"
     }
   ],
   "assessmentTools": {
-    "observationChecklist": [],
-    "rubrics": [],
-    "selfAssessment": [],
-    "portfolioGuidelines": ""
+    "observationChecklist": [
+      {
+        "category": "Créativité",
+        "items": [
+          "Démontre une compréhension de base en créativité",
+          "Participe activement aux activités de créativité",
+          "Montre du progrès dans créativité",
+          "Applique les apprentissages de créativité dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Utilisation des matériaux",
+        "items": [
+          "Démontre une compréhension de base en utilisation des matériaux",
+          "Participe activement aux activités de utilisation des matériaux",
+          "Montre du progrès dans utilisation des matériaux",
+          "Applique les apprentissages de utilisation des matériaux dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Expression personnelle",
+        "items": [
+          "Démontre une compréhension de base en expression personnelle",
+          "Participe activement aux activités de expression personnelle",
+          "Montre du progrès dans expression personnelle",
+          "Applique les apprentissages de expression personnelle dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Appréciation artistique",
+        "items": [
+          "Démontre une compréhension de base en appréciation artistique",
+          "Participe activement aux activités de appréciation artistique",
+          "Montre du progrès dans appréciation artistique",
+          "Applique les apprentissages de appréciation artistique dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      }
+    ],
+    "rubrics": {
+      "title": "Rubrique d'évaluation - ",
+      "levels": [
+        {
+          "level": "Émergent",
+          "emoji": "🌱",
+          "description": "L'élève commence à développer les compétences",
+          "criteria": [
+            "Nécessite un soutien constant",
+            "Démontre une compréhension partielle",
+            "Participe avec encouragement",
+            "Essaie les nouvelles activités"
+          ]
+        },
+        {
+          "level": "En développement",
+          "emoji": "🌿",
+          "description": "L'élève progresse vers les attentes",
+          "criteria": [
+            "Nécessite un soutien occasionnel",
+            "Démontre une bonne compréhension",
+            "Participe régulièrement",
+            "Applique les apprentissages avec aide"
+          ]
+        },
+        {
+          "level": "Maîtrise",
+          "emoji": "🌳",
+          "description": "L'élève répond aux attentes",
+          "criteria": [
+            "Travaille de façon autonome",
+            "Démontre une compréhension solide",
+            "Participe activement et aide les autres",
+            "Applique les apprentissages de façon créative"
+          ]
+        }
+      ],
+      "focusAreas": [
+        "Créativité",
+        "Utilisation des matériaux",
+        "Expression personnelle",
+        "Appréciation artistique"
+      ]
+    },
+    "selfAssessment": {
+      "visualScale": {
+        "title": "Comment je me sens sur mon apprentissage",
+        "options": [
+          "🎨",
+          "🖌️",
+          "✏️"
+        ],
+        "meanings": [
+          "Je peux le faire seul",
+          "J'ai besoin d'un peu d'aide",
+          "J'ai besoin de beaucoup d'aide"
+        ]
+      },
+      "simpleQuestions": [
+        {
+          "question": "J'ai essayé de mon mieux aujourd'hui",
+          "responseType": "emoji",
+          "options": [
+            "😊 Oui!",
+            "😐 Un peu",
+            "😟 Pas vraiment"
+          ]
+        },
+        {
+          "question": "J'ai appris quelque chose de nouveau",
+          "responseType": "emoji",
+          "options": [
+            "🌟 Beaucoup!",
+            "⭐ Un peu",
+            "☆ Pas sûr"
+          ]
+        },
+        {
+          "question": "J'ai aidé un ami",
+          "responseType": "emoji",
+          "options": [
+            "✓ Oui",
+            "~ Parfois",
+            "? Non"
+          ]
+        },
+        {
+          "question": "Je peux expliquer ce que j'ai appris",
+          "responseType": "drawing",
+          "prompt": "Dessine ou montre ce que tu as appris"
+        }
+      ],
+      "reflectionPrompts": [
+        "Ma partie préférée était...",
+        "J'étais fier quand...",
+        "La prochaine fois, je veux essayer..."
+      ]
+    },
+    "portfolioGuidelines": {
+      "purpose": "Documenter le parcours d'apprentissage de chaque élève",
+      "collectionGuidelines": [
+        "Inclure des échantillons de travail datés",
+        "Photographier les créations 3D ou temporaires",
+        "Noter les observations orales importantes",
+        "Inclure les autoévaluations de l'élève",
+        "Documenter les moments de fierté"
+      ],
+      "organizationTips": [
+        "Organiser par date ou par compétence",
+        "Inclure des réflexions de l'élève",
+        "Ajouter des notes sur le contexte",
+        "Partager régulièrement avec les familles"
+      ],
+      "evidenceTypes": {
+        "Travaux écrits": "Échantillons de début, milieu et fin d'unité",
+        "Photos": "Processus de création, produits finaux, collaboration",
+        "Enregistrements": "Présentations orales, explications, chansons",
+        "Observations": "Notes anecdotiques, listes de vérification complétées"
+      }
+    }
   },
   "familyConnections": {
-    "unitLetter": "",
-    "homeActivities": [],
-    "vocabularyList": []
+    "unitLetter": "Chers parents et familles,\n\nNous sommes ravis de commencer notre nouvelle unité: \"\"\n\nCette unité permettra à votre enfant de:\n• Explorer des concepts importants en arts visuels\n• Développer du vocabulaire en français\n• Pratiquer de nouvelles compétences\n• Faire des connexions avec la vie quotidienne\n\nQuelques thèmes que nous explorerons:\nQu'est-ce qu'une galerie?, Rôles dans une galerie, Sélection d'œuvres, Présentation et affichage, Étiquettes et information\n\nComment vous pouvez aider à la maison:\n• Demandez à votre enfant de partager ce qu'il/elle a appris\n• Pratiquez le nouveau vocabulaire ensemble (voir la liste ci-jointe)\n• Essayez les activités suggérées quand vous avez du temps\n• Célébrez les efforts et les progrès, pas seulement les résultats\n\nValorisez le processus créatif autant que le produit final.\n\nN'hésitez pas à me contacter si vous avez des questions ou si vous souhaitez partager des ressources culturelles liées à cette unité.\n\nLa créativité s'épanouit avec votre encouragement!\n\nCordialement,\n[Nom de l'enseignant(e)]",
+    "homeActivities": [
+      {
+        "title": "Conversation quotidienne",
+        "description": "Demandez chaque jour: 'Qu'as-tu appris de nouveau aujourd'hui?'",
+        "timeRequired": "5 minutes",
+        "materials": "Aucun",
+        "frenchSupport": "C'est correct si votre enfant répond en anglais!"
+      },
+      {
+        "title": "Chasse au trésor vocabulaire",
+        "description": "Cherchez ensemble les mots de vocabulaire dans votre environnement",
+        "timeRequired": "10-15 minutes",
+        "materials": "Liste de vocabulaire",
+        "frenchSupport": "Utilisez des gestes si la prononciation est difficile"
+      },
+      {
+        "title": "Création artistique libre",
+        "description": "Créez de l'art ensemble en utilisant les techniques apprises",
+        "timeRequired": "20 minutes",
+        "materials": "Matériaux d'art disponibles",
+        "frenchSupport": "L'art transcende les langues!"
+      },
+      {
+        "title": "Galerie maison",
+        "description": "Créez un espace pour exposer les créations de votre enfant",
+        "timeRequired": "10 minutes",
+        "materials": "Espace mural ou table",
+        "frenchSupport": "Demandez à votre enfant d'expliquer ses œuvres"
+      },
+      {
+        "title": "Projet créatif familial",
+        "description": "Créez quelque chose ensemble en lien avec l'unité (dessin, construction, histoire)",
+        "timeRequired": "30 minutes (optionnel)",
+        "materials": "Matériaux créatifs disponibles",
+        "frenchSupport": "L'important est de s'amuser ensemble, peu importe la langue!"
+      }
+    ],
+    "vocabularyList": [
+      {
+        "word": "galerie",
+        "lesson": 1,
+        "context": "Qu'est-ce qu'une galerie?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"galerie\"",
+          "Utilisez \"galerie\" dans une phrase simple",
+          "Trouvez des images représentant \"galerie\"",
+          "Faites des gestes pour \"galerie\""
+        ]
+      },
+      {
+        "word": "exposition",
+        "lesson": 1,
+        "context": "Qu'est-ce qu'une galerie?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"exposition\"",
+          "Utilisez \"exposition\" dans une phrase simple",
+          "Trouvez des images représentant \"exposition\"",
+          "Faites des gestes pour \"exposition\""
+        ]
+      },
+      {
+        "word": "visiteur",
+        "lesson": 1,
+        "context": "Qu'est-ce qu'une galerie?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"visiteur\"",
+          "Utilisez \"visiteur\" dans une phrase simple",
+          "Trouvez des images représentant \"visiteur\"",
+          "Faites des gestes pour \"visiteur\""
+        ]
+      },
+      {
+        "word": "conservateur",
+        "lesson": 2,
+        "context": "Rôles dans une galerie",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"conservateur\"",
+          "Utilisez \"conservateur\" dans une phrase simple",
+          "Trouvez des images représentant \"conservateur\"",
+          "Faites des gestes pour \"conservateur\""
+        ]
+      },
+      {
+        "word": "guide",
+        "lesson": 2,
+        "context": "Rôles dans une galerie",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"guide\"",
+          "Utilisez \"guide\" dans une phrase simple",
+          "Trouvez des images représentant \"guide\"",
+          "Faites des gestes pour \"guide\""
+        ]
+      },
+      {
+        "word": "artiste",
+        "lesson": 2,
+        "context": "Rôles dans une galerie",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"artiste\"",
+          "Utilisez \"artiste\" dans une phrase simple",
+          "Trouvez des images représentant \"artiste\"",
+          "Faites des gestes pour \"artiste\""
+        ]
+      },
+      {
+        "word": "sélectionner",
+        "lesson": 3,
+        "context": "Sélection d'œuvres",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"sélectionner\"",
+          "Utilisez \"sélectionner\" dans une phrase simple",
+          "Trouvez des images représentant \"sélectionner\"",
+          "Faites des gestes pour \"sélectionner\""
+        ]
+      },
+      {
+        "word": "qualité",
+        "lesson": 3,
+        "context": "Sélection d'œuvres",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"qualité\"",
+          "Utilisez \"qualité\" dans une phrase simple",
+          "Trouvez des images représentant \"qualité\"",
+          "Faites des gestes pour \"qualité\""
+        ]
+      },
+      {
+        "word": "thème",
+        "lesson": 3,
+        "context": "Sélection d'œuvres",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"thème\"",
+          "Utilisez \"thème\" dans une phrase simple",
+          "Trouvez des images représentant \"thème\"",
+          "Faites des gestes pour \"thème\""
+        ]
+      },
+      {
+        "word": "afficher",
+        "lesson": 4,
+        "context": "Présentation et affichage",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"afficher\"",
+          "Utilisez \"afficher\" dans une phrase simple",
+          "Trouvez des images représentant \"afficher\"",
+          "Faites des gestes pour \"afficher\""
+        ]
+      },
+      {
+        "word": "cadre",
+        "lesson": 4,
+        "context": "Présentation et affichage",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"cadre\"",
+          "Utilisez \"cadre\" dans une phrase simple",
+          "Trouvez des images représentant \"cadre\"",
+          "Faites des gestes pour \"cadre\""
+        ]
+      },
+      {
+        "word": "éclairage",
+        "lesson": 4,
+        "context": "Présentation et affichage",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"éclairage\"",
+          "Utilisez \"éclairage\" dans une phrase simple",
+          "Trouvez des images représentant \"éclairage\"",
+          "Faites des gestes pour \"éclairage\""
+        ]
+      },
+      {
+        "word": "étiquette",
+        "lesson": 5,
+        "context": "Étiquettes et information",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"étiquette\"",
+          "Utilisez \"étiquette\" dans une phrase simple",
+          "Trouvez des images représentant \"étiquette\"",
+          "Faites des gestes pour \"étiquette\""
+        ]
+      },
+      {
+        "word": "description",
+        "lesson": 5,
+        "context": "Étiquettes et information",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"description\"",
+          "Utilisez \"description\" dans une phrase simple",
+          "Trouvez des images représentant \"description\"",
+          "Faites des gestes pour \"description\""
+        ]
+      },
+      {
+        "word": "information",
+        "lesson": 5,
+        "context": "Étiquettes et information",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"information\"",
+          "Utilisez \"information\" dans une phrase simple",
+          "Trouvez des images représentant \"information\"",
+          "Faites des gestes pour \"information\""
+        ]
+      },
+      {
+        "word": "parcours",
+        "lesson": 6,
+        "context": "Parcours de visite",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"parcours\"",
+          "Utilisez \"parcours\" dans une phrase simple",
+          "Trouvez des images représentant \"parcours\"",
+          "Faites des gestes pour \"parcours\""
+        ]
+      },
+      {
+        "word": "séquence",
+        "lesson": 6,
+        "context": "Parcours de visite",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"séquence\"",
+          "Utilisez \"séquence\" dans une phrase simple",
+          "Trouvez des images représentant \"séquence\"",
+          "Faites des gestes pour \"séquence\""
+        ]
+      },
+      {
+        "word": "flux",
+        "lesson": 6,
+        "context": "Parcours de visite",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"flux\"",
+          "Utilisez \"flux\" dans une phrase simple",
+          "Trouvez des images représentant \"flux\"",
+          "Faites des gestes pour \"flux\""
+        ]
+      },
+      {
+        "word": "vernissage",
+        "lesson": 7,
+        "context": "Vernissage et inauguration",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"vernissage\"",
+          "Utilisez \"vernissage\" dans une phrase simple",
+          "Trouvez des images représentant \"vernissage\"",
+          "Faites des gestes pour \"vernissage\""
+        ]
+      },
+      {
+        "word": "invité",
+        "lesson": 7,
+        "context": "Vernissage et inauguration",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"invité\"",
+          "Utilisez \"invité\" dans une phrase simple",
+          "Trouvez des images représentant \"invité\"",
+          "Faites des gestes pour \"invité\""
+        ]
+      },
+      {
+        "word": "célébration",
+        "lesson": 7,
+        "context": "Vernissage et inauguration",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"célébration\"",
+          "Utilisez \"célébration\" dans une phrase simple",
+          "Trouvez des images représentant \"célébration\"",
+          "Faites des gestes pour \"célébration\""
+        ]
+      },
+      {
+        "word": "expliquer",
+        "lesson": 8,
+        "context": "Visite guidée",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"expliquer\"",
+          "Utilisez \"expliquer\" dans une phrase simple",
+          "Trouvez des images représentant \"expliquer\"",
+          "Faites des gestes pour \"expliquer\""
+        ]
+      },
+      {
+        "word": "présenter",
+        "lesson": 8,
+        "context": "Visite guidée",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"présenter\"",
+          "Utilisez \"présenter\" dans une phrase simple",
+          "Trouvez des images représentant \"présenter\"",
+          "Faites des gestes pour \"présenter\""
+        ]
+      },
+      {
+        "word": "critique",
+        "lesson": 9,
+        "context": "Critique et évaluation",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"critique\"",
+          "Utilisez \"critique\" dans une phrase simple",
+          "Trouvez des images représentant \"critique\"",
+          "Faites des gestes pour \"critique\""
+        ]
+      },
+      {
+        "word": "amélioration",
+        "lesson": 9,
+        "context": "Critique et évaluation",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"amélioration\"",
+          "Utilisez \"amélioration\" dans une phrase simple",
+          "Trouvez des images représentant \"amélioration\"",
+          "Faites des gestes pour \"amélioration\""
+        ]
+      },
+      {
+        "word": "feedback",
+        "lesson": 9,
+        "context": "Critique et évaluation",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"feedback\"",
+          "Utilisez \"feedback\" dans une phrase simple",
+          "Trouvez des images représentant \"feedback\"",
+          "Faites des gestes pour \"feedback\""
+        ]
+      },
+      {
+        "word": "célèbre",
+        "lesson": 10,
+        "context": "Art français célèbre",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"célèbre\"",
+          "Utilisez \"célèbre\" dans une phrase simple",
+          "Trouvez des images représentant \"célèbre\"",
+          "Faites des gestes pour \"célèbre\""
+        ]
+      },
+      {
+        "word": "français",
+        "lesson": 10,
+        "context": "Art français célèbre",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"français\"",
+          "Utilisez \"français\" dans une phrase simple",
+          "Trouvez des images représentant \"français\"",
+          "Faites des gestes pour \"français\""
+        ]
+      },
+      {
+        "word": "patrimoine",
+        "lesson": 10,
+        "context": "Art français célèbre",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"patrimoine\"",
+          "Utilisez \"patrimoine\" dans une phrase simple",
+          "Trouvez des images représentant \"patrimoine\"",
+          "Faites des gestes pour \"patrimoine\""
+        ]
+      },
+      {
+        "word": "traditionnel",
+        "lesson": 11,
+        "context": "Techniques françaises traditionnelles",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"traditionnel\"",
+          "Utilisez \"traditionnel\" dans une phrase simple",
+          "Trouvez des images représentant \"traditionnel\"",
+          "Faites des gestes pour \"traditionnel\""
+        ]
+      },
+      {
+        "word": "technique",
+        "lesson": 11,
+        "context": "Techniques françaises traditionnelles",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"technique\"",
+          "Utilisez \"technique\" dans une phrase simple",
+          "Trouvez des images représentant \"technique\"",
+          "Faites des gestes pour \"technique\""
+        ]
+      },
+      {
+        "word": "héritage",
+        "lesson": 11,
+        "context": "Techniques françaises traditionnelles",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"héritage\"",
+          "Utilisez \"héritage\" dans une phrase simple",
+          "Trouvez des images représentant \"héritage\"",
+          "Faites des gestes pour \"héritage\""
+        ]
+      },
+      {
+        "word": "virtuel",
+        "lesson": 12,
+        "context": "Galerie virtuelle",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"virtuel\"",
+          "Utilisez \"virtuel\" dans une phrase simple",
+          "Trouvez des images représentant \"virtuel\"",
+          "Faites des gestes pour \"virtuel\""
+        ]
+      },
+      {
+        "word": "numérique",
+        "lesson": 12,
+        "context": "Galerie virtuelle",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"numérique\"",
+          "Utilisez \"numérique\" dans une phrase simple",
+          "Trouvez des images représentant \"numérique\"",
+          "Faites des gestes pour \"numérique\""
+        ]
+      },
+      {
+        "word": "documentation",
+        "lesson": 12,
+        "context": "Galerie virtuelle",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"documentation\"",
+          "Utilisez \"documentation\" dans une phrase simple",
+          "Trouvez des images représentant \"documentation\"",
+          "Faites des gestes pour \"documentation\""
+        ]
+      },
+      {
+        "word": "échange",
+        "lesson": 13,
+        "context": "Échange avec d'autres galeries",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"échange\"",
+          "Utilisez \"échange\" dans une phrase simple",
+          "Trouvez des images représentant \"échange\"",
+          "Faites des gestes pour \"échange\""
+        ]
+      },
+      {
+        "word": "partager",
+        "lesson": 13,
+        "context": "Échange avec d'autres galeries",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"partager\"",
+          "Utilisez \"partager\" dans une phrase simple",
+          "Trouvez des images représentant \"partager\"",
+          "Faites des gestes pour \"partager\""
+        ]
+      },
+      {
+        "word": "collaboration",
+        "lesson": 13,
+        "context": "Échange avec d'autres galeries",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"collaboration\"",
+          "Utilisez \"collaboration\" dans une phrase simple",
+          "Trouvez des images représentant \"collaboration\"",
+          "Faites des gestes pour \"collaboration\""
+        ]
+      },
+      {
+        "word": "évolution",
+        "lesson": 14,
+        "context": "Évolution de la galerie",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"évolution\"",
+          "Utilisez \"évolution\" dans une phrase simple",
+          "Trouvez des images représentant \"évolution\"",
+          "Faites des gestes pour \"évolution\""
+        ]
+      },
+      {
+        "word": "changement",
+        "lesson": 14,
+        "context": "Évolution de la galerie",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"changement\"",
+          "Utilisez \"changement\" dans une phrase simple",
+          "Trouvez des images représentant \"changement\"",
+          "Faites des gestes pour \"changement\""
+        ]
+      },
+      {
+        "word": "croissance",
+        "lesson": 14,
+        "context": "Évolution de la galerie",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"croissance\"",
+          "Utilisez \"croissance\" dans une phrase simple",
+          "Trouvez des images représentant \"croissance\"",
+          "Faites des gestes pour \"croissance\""
+        ]
+      }
+    ]
   },
   "resourceAlternatives": {
-    "materials": {},
-    "digitalResources": []
+    "materials": {
+      "lowCost": [
+        "Matériaux recyclés (boîtes, papier, carton)",
+        "Objets de la nature (feuilles, pierres, branches)",
+        "Matériaux quotidiens (boutons, pâtes, haricots)",
+        "Papier et crayons de base"
+      ],
+      "noCost": [
+        "Observation de l'environnement",
+        "Discussion et partage oral",
+        "Mouvements et gestes",
+        "Jeux d'imagination"
+      ],
+      "digital": [
+        "Applications éducatives gratuites",
+        "Vidéos éducatives en ligne",
+        "Livres numériques de la bibliothèque",
+        "Jeux éducatifs en ligne"
+      ]
+    },
+    "digitalResources": [
+      {
+        "type": "Sites web éducatifs",
+        "examples": [
+          "Radio-Canada Jeunesse",
+          "TFO Éducation",
+          "Bibliothèque numérique locale"
+        ],
+        "note": "Ressources gratuites en français"
+      },
+      {
+        "type": "Applications",
+        "examples": [
+          "Applications de lecture",
+          "Jeux mathématiques",
+          "Exploration scientifique"
+        ],
+        "note": "Cherchez des options gratuites"
+      }
+    ]
   },
   "metadata": {
     "lastUpdated": "2025-08-22T21:43:10.366Z",
