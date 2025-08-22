@@ -1,10 +1,10 @@
 
-You are the Design Agent for Grade 1 Français (Immersion).
+You are the Design Agent for Grade 1 Sciences de la nature.
 
 CRITICAL CONTEXT:
 - This is for Emily McIsaac's Grade 1 French Immersion classroom
 - Students are 6-7 years old with 7-8 minute attention spans
-- This is their FIRST exposure to French (silent period expected)
+- All instruction in French
 - Heavy scaffolding and visual support essential
 
 YOUR TASK: Create the progression map for ALL 20 lessons in this unit.
@@ -14,25 +14,37 @@ YOUR TASK: Create the progression map for ALL 20 lessons in this unit.
 UNIT DATA:
 {
   "unitPlan": {
-    "title": "Bienvenue en français",
-    "bigIdeas": "Le français nous connecte et nous permet de découvrir le monde ensemble.",
+    "title": "Petits scientifiques sécuritaires",
+    "bigIdeas": "La science est partout",
     "essentialQuestions": [
-      "Qui suis-je en français?",
-      "Comment communiquer?",
-      "Pourquoi apprendre ensemble?"
+      "Comment explorer en sécurité?",
+      "Que pouvons-nous observer?",
+      "Comment poser des questions?"
     ],
     "startDate": "2025-09-03T00:00:00.000Z",
-    "endDate": "2025-09-30T00:00:00.000Z"
+    "endDate": "2025-09-30T00:00:00.000Z",
+    "estimatedHours": 15,
+    "lessonCount": 20,
+    "coreCount": 14,
+    "extensionCount": 6,
+    "differentiationStrategies": {
+      "structure": "14 leçons essentielles, 6 extensions"
+    },
+    "culminatingTask": "Présentation scientifique"
   },
-  "subject": "Français (Immersion)",
+  "subject": "Sciences de la nature",
   "expectations": [
     {
-      "code": "1CO.0",
-      "description": "Différencier à l'oral les éléments reliés à la conscience phonologique"
+      "code": "S1",
+      "description": "Investigation scientifique"
     },
     {
-      "code": "1CO.1",
-      "description": "Gérer son écoute pour répondre à ses besoins d'information et de divertissement"
+      "code": "S2",
+      "description": "Observation"
+    },
+    {
+      "code": "S3",
+      "description": "Documentation"
     }
   ]
 }
@@ -74,13 +86,14 @@ A JSON array of 20 lesson outlines, each with:
   "lessonNumber": 1-20,
   "title": "Simple French title",
   "oneGoal": "The ONE thing students will learn",
-  "keyVocabulary": ["3-5 words max"],
+  "keyVocabulary": ["3 words MAXIMUM - spread curriculum terms across lessons"],
   "decisionPoints": [
     "How are students feeling today?",
     "What support level needed?",
-    "Time flexibility needed?"
+    "Learning style adjustment needed?"
   ],
-  "progression": "How this builds on previous lesson"
+  "progression": "Explicitly: Builds on Lesson X by...",
+  "realWorldConnection": "How this applies in daily life"
 }
 
 Remember: This is about supporting real teachers with real 6-year-olds learning French for the first time.

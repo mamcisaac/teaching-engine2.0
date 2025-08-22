@@ -1,0 +1,886 @@
+{
+  "fullLessons": {
+    "unitTitle": "Exploration 3D et sculpture",
+    "grade": "1",
+    "subject": "Arts visuels",
+    "totalLessons": 20,
+    "coreLessons": 14,
+    "extensionLessons": 6,
+    
+    "lessons": [
+      {
+        "lessonNumber": 1,
+        "title": "Qu'est-ce que la 3D?",
+        "duration": "45 minutes",
+        "objective": "Distinguer les formes 2D et 3D dans l'environnement",
+        "expectations": ["AV1", "AV3"],
+        "materials": ["Objets 2D et 3D variés", "Sacs de collecte", "Tableau de tri"],
+        
+        "structure": {
+          "warmUp": {
+            "duration": "10 minutes",
+            "activity": "Cercle de discussion : Qu'est-ce qui nous entoure?",
+            "description": "Les élèves s'assoient en cercle et nomment des objets dans la classe. L'enseignant guide vers les concepts 'plat' et 'qui a du volume'.",
+            "questions": [
+              "Que voyez-vous autour de nous?",
+              "Quels objets sont plats comme une feuille?",
+              "Quels objets ont de l'épaisseur?"
+            ]
+          },
+          "mainActivity": {
+            "duration": "25 minutes",
+            "activity": "Chasse aux formes et tri 2D/3D",
+            "description": "Les élèves explorent la classe pour collecter ou identifier des objets 2D et 3D, puis les classent sur un grand tableau de tri.",
+            "steps": [
+              "Formation d'équipes de 2-3 élèves",
+              "Distribution des sacs de collecte",
+              "Exploration guidée de 10 minutes",
+              "Retour au tapis pour le tri collectif",
+              "Discussion des découvertes"
+            ],
+            "differentiation": {
+              "support": "Accompagnement individuel, objets pré-sélectionnés",
+              "enrichment": "Recherche d'objets plus complexes, explication aux pairs"
+            }
+          },
+          "closure": {
+            "duration": "10 minutes",
+            "activity": "Synthèse et introduction du vocabulaire",
+            "description": "Introduction des termes '2D/bidimensionnel' et '3D/tridimensionnel' avec gestuelle.",
+            "assessment": "Observation des capacités de classification et usage du vocabulaire"
+          }
+        }
+      },
+      
+      {
+        "lessonNumber": 2,
+        "title": "Toucher et explorer",
+        "duration": "45 minutes",
+        "objective": "Développer la sensibilité tactile aux textures et formes",
+        "expectations": ["AV1", "AV3"],
+        "materials": ["Boîtes mystères", "Objets de textures variées", "Vocabulaire tactile affiché"],
+        
+        "structure": {
+          "warmUp": {
+            "duration": "10 minutes",
+            "activity": "Révision 2D/3D avec les mains",
+            "description": "Les élèves forment des objets 2D (plats) et 3D (volumineux) avec leurs mains et corps.",
+            "questions": [
+              "Montrez-moi quelque chose de plat avec vos mains",
+              "Montrez-moi quelque chose de rond et gros"
+            ]
+          },
+          "mainActivity": {
+            "duration": "25 minutes",
+            "activity": "Exploration tactile en stations",
+            "description": "Rotation dans 4 stations : boîte mystère, textures douces/rugueuses, formes géométriques, création libre avec pâte.",
+            "steps": [
+              "Présentation des stations (5 min)",
+              "Rotation de 5 minutes par station",
+              "Partage des découvertes tactiles"
+            ],
+            "differentiation": {
+              "support": "Objets plus gros, textures contrastées",
+              "enrichment": "Description détaillée des sensations, comparaisons complexes"
+            }
+          },
+          "closure": {
+            "duration": "10 minutes",
+            "activity": "Cercle de partage sensoriel",
+            "description": "Partage des mots de texture découverts et création d'un mur de vocabulaire tactile.",
+            "assessment": "Richesse du vocabulaire tactile utilisé"
+          }
+        }
+      },
+      
+      {
+        "lessonNumber": 3,
+        "title": "Formes géométriques en 3D",
+        "duration": "45 minutes",
+        "objective": "Identifier et nommer les formes géométriques de base",
+        "expectations": ["AV1", "AV3"],
+        "materials": ["Solides géométriques", "Blocs de construction", "Cartes d'association"],
+        
+        "structure": {
+          "warmUp": {
+            "duration": "10 minutes",
+            "activity": "Jeu des formes cachées",
+            "description": "L'enseignant cache un solide géométrique et donne des indices tactiles pour le faire deviner.",
+            "questions": [
+              "Cette forme roule-t-elle?",
+              "Combien de faces plates a-t-elle?"
+            ]
+          },
+          "mainActivity": {
+            "duration": "25 minutes",
+            "activity": "Construction et classification des solides",
+            "description": "Les élèves manipulent, trient et construisent avec des solides géométriques variés.",
+            "steps": [
+              "Exploration libre des solides (5 min)",
+              "Tri par caractéristiques (10 min)",
+              "Construction de tours et structures (10 min)"
+            ],
+            "differentiation": {
+              "support": "Solides plus grands, aide pour le tri",
+              "enrichment": "Comptage des faces/arêtes, créations complexes"
+            }
+          },
+          "closure": {
+            "duration": "10 minutes",
+            "activity": "Galerie des constructions",
+            "description": "Présentation des constructions et introduction du vocabulaire : cube, sphère, cylindre, cône.",
+            "assessment": "Capacité à nommer et décrire les formes utilisées"
+          }
+        }
+      },
+      
+      {
+        "lessonNumber": 4,
+        "title": "Première rencontre avec l'argile",
+        "duration": "45 minutes",
+        "objective": "Se familiariser avec les propriétés de l'argile",
+        "expectations": ["AV2", "AV3"],
+        "materials": ["Argile ou pâte à modeler", "Nappes de protection", "Bassine d'eau", "Linges humides"],
+        
+        "structure": {
+          "warmUp": {
+            "duration": "10 minutes",
+            "activity": "Préparation et présentation de l'argile",
+            "description": "Installation de l'espace de travail et première approche sensorielle de l'argile.",
+            "questions": [
+              "Que ressentez-vous en touchant l'argile?",
+              "À quoi cela vous fait-il penser?"
+            ]
+          },
+          "mainActivity": {
+            "duration": "25 minutes",
+            "activity": "Exploration libre et techniques de base",
+            "description": "Manipulation libre puis apprentissage des techniques : pétrir, rouler, pincer, aplatir.",
+            "steps": [
+              "Exploration tactile libre (5 min)",
+              "Démonstration du pétrissage (5 min)",
+              "Création de boules et serpentins (10 min)",
+              "Expérimentation personnelle (5 min)"
+            ],
+            "differentiation": {
+              "support": "Argile plus molle, démonstrations répétées",
+              "enrichment": "Techniques avancées, formes plus complexes"
+            }
+          },
+          "closure": {
+            "duration": "10 minutes",
+            "activity": "Nettoyage et réflexion",
+            "description": "Rangement collectif et discussion sur les découvertes avec l'argile.",
+            "assessment": "Aisance dans la manipulation et respect du matériel"
+          }
+        }
+      },
+      
+      {
+        "lessonNumber": 5,
+        "title": "Pincer et modeler",
+        "duration": "45 minutes",
+        "objective": "Apprendre les techniques de pincement",
+        "expectations": ["AV2", "AV3"],
+        "materials": ["Argile", "Outils de modelage simples", "Modèles d'animaux"],
+        
+        "structure": {
+          "warmUp": {
+            "duration": "10 minutes",
+            "activity": "Échauffement des mains et révision",
+            "description": "Exercices de doigts et rappel des techniques apprises précédemment.",
+            "questions": [
+              "Comment fait-on une boule parfaite?",
+              "Que peut-on créer avec un serpentin?"
+            ]
+          },
+          "mainActivity": {
+            "duration": "25 minutes",
+            "activity": "Création de bols et animaux simples",
+            "description": "Apprentissage de la technique du pincement pour créer des contenants et des formes animales.",
+            "steps": [
+              "Démonstration du pincement (5 min)",
+              "Création d'un petit bol (10 min)",
+              "Modelage d'un animal simple (10 min)"
+            ],
+            "differentiation": {
+              "support": "Guidage physique, formes simplifiées",
+              "enrichment": "Détails ajoutés, animaux plus complexes"
+            }
+          },
+          "closure": {
+            "duration": "10 minutes",
+            "activity": "Présentation des créations",
+            "description": "Chaque élève présente sa création et explique sa technique.",
+            "assessment": "Maîtrise de la technique du pincement et créativité"
+          }
+        }
+      },
+      
+      {
+        "lessonNumber": 6,
+        "title": "Empreintes et motifs",
+        "duration": "45 minutes",
+        "objective": "Créer des textures et motifs dans l'argile",
+        "expectations": ["AV2", "AV3"],
+        "materials": ["Argile", "Objets texturés variés", "Rouleaux", "Plaques de support"],
+        
+        "structure": {
+          "warmUp": {
+            "duration": "10 minutes",
+            "activity": "Exploration des objets texturés",
+            "description": "Découverte tactile d'objets aux textures variées avant de les utiliser pour les empreintes.",
+            "questions": [
+              "Quelle texture préférez-vous?",
+              "Que va donner cet objet dans l'argile?"
+            ]
+          },
+          "mainActivity": {
+            "duration": "25 minutes",
+            "activity": "Création de plaques décoratives",
+            "description": "Création de plaques d'argile décorées avec diverses empreintes et motifs.",
+            "steps": [
+              "Aplatissage de l'argile en plaque (5 min)",
+              "Test d'empreintes sur chutes (5 min)",
+              "Décoration de la plaque personnelle (15 min)"
+            ],
+            "differentiation": {
+              "support": "Aide pour l'aplatissage, objets plus faciles à manipuler",
+              "enrichment": "Motifs complexes, combinaisons créatives"
+            }
+          },
+          "closure": {
+            "duration": "10 minutes",
+            "activity": "Exposition temporaire",
+            "description": "Présentation des plaques sur la table d'exposition et discussion des motifs créés.",
+            "assessment": "Diversité des textures utilisées et composition"
+          }
+        }
+      },
+      
+      {
+        "lessonNumber": 7,
+        "title": "Construire avec du papier",
+        "duration": "45 minutes",
+        "objective": "Explorer les possibilités du papier en 3D",
+        "expectations": ["AV2", "AV3"],
+        "materials": ["Papier de construction", "Colle", "Ciseaux", "Agrafes"],
+        
+        "structure": {
+          "warmUp": {
+            "duration": "10 minutes",
+            "activity": "Transformation du papier plat",
+            "description": "Expérimentation avec une feuille : pliage, froissage, roulage pour créer du volume.",
+            "questions": [
+              "Comment transformer ce papier plat en 3D?",
+              "Que se passe-t-il quand on le plie?"
+            ]
+          },
+          "mainActivity": {
+            "duration": "25 minutes",
+            "activity": "Construction de sculptures en papier",
+            "description": "Création de sculptures en utilisant différentes techniques de manipulation du papier.",
+            "steps": [
+              "Exploration des techniques (5 min)",
+              "Planification de la sculpture (5 min)",
+              "Construction libre (15 min)"
+            ],
+            "differentiation": {
+              "support": "Techniques pré-démontrées, aide au découpage",
+              "enrichment": "Techniques avancées, structures complexes"
+            }
+          },
+          "closure": {
+            "duration": "10 minutes",
+            "activity": "Défilé des sculptures",
+            "description": "Présentation mobile des créations et discussion des techniques utilisées.",
+            "assessment": "Innovation dans l'usage du papier et solidité des constructions"
+          }
+        }
+      },
+      
+      {
+        "lessonNumber": 8,
+        "title": "Assemblage créatif",
+        "duration": "45 minutes",
+        "objective": "Combiner différents matériaux pour créer",
+        "expectations": ["AV2", "AV3"],
+        "materials": ["Matériaux de recyclage variés", "Colle forte", "Pistolet à colle (enseignant)", "Fil de fer souple"],
+        
+        "structure": {
+          "warmUp": {
+            "duration": "10 minutes",
+            "activity": "Brainstorming créatif",
+            "description": "Discussion sur les possibilités créatives des matériaux de récupération présentés.",
+            "questions": [
+              "Que peut-on faire avec ces matériaux?",
+              "Comment les assembler?"
+            ]
+          },
+          "mainActivity": {
+            "duration": "25 minutes",
+            "activity": "Création d'une sculpture d'assemblage",
+            "description": "Assemblage libre de matériaux divers pour créer une sculpture personnelle.",
+            "steps": [
+              "Sélection des matériaux (5 min)",
+              "Tests d'assemblage (5 min)",
+              "Construction finale (15 min)"
+            ],
+            "differentiation": {
+              "support": "Matériaux pré-sélectionnés, aide à l'assemblage",
+              "enrichment": "Défis techniques, intégration de mouvement"
+            }
+          },
+          "closure": {
+            "duration": "10 minutes",
+            "activity": "Vernissage d'atelier",
+            "description": "Exposition des œuvres avec explications des choix artistiques.",
+            "assessment": "Créativité dans l'assemblage et cohérence artistique"
+          }
+        }
+      },
+      
+      {
+        "lessonNumber": 9,
+        "title": "Équilibre et stabilité",
+        "duration": "45 minutes",
+        "objective": "Comprendre les principes d'équilibre en sculpture",
+        "expectations": ["AV1", "AV3"],
+        "materials": ["Blocs variés", "Bâtonnets", "Pâte à fixation", "Objets à suspendre"],
+        
+        "structure": {
+          "warmUp": {
+            "duration": "10 minutes",
+            "activity": "Jeu d'équilibre corporel",
+            "description": "Exercices d'équilibre avec le corps pour comprendre le concept physiquement.",
+            "questions": [
+              "Comment garder l'équilibre?",
+              "Qu'est-ce qui nous fait tomber?"
+            ]
+          },
+          "mainActivity": {
+            "duration": "25 minutes",
+            "activity": "Défis d'équilibre et construction de mobiles",
+            "description": "Expérimentation avec l'équilibre dans différentes constructions.",
+            "steps": [
+              "Tour la plus haute possible (8 min)",
+              "Pont sans support central (8 min)",
+              "Mobile simple suspendu (9 min)"
+            ],
+            "differentiation": {
+              "support": "Matériaux plus stables, aide au placement",
+              "enrichment": "Défis d'équilibre complexes, mobiles multi-niveaux"
+            }
+          },
+          "closure": {
+            "duration": "10 minutes",
+            "activity": "Analyse des réussites",
+            "description": "Discussion collective sur les stratégies qui ont fonctionné pour maintenir l'équilibre.",
+            "assessment": "Compréhension des principes d'équilibre et persévérance"
+          }
+        }
+      },
+      
+      {
+        "lessonNumber": 10,
+        "title": "Sculptures d'émotions",
+        "duration": "45 minutes",
+        "objective": "Exprimer des sentiments par la forme",
+        "expectations": ["AV2"],
+        "materials": ["Argile colorée", "Miroirs", "Images d'émotions", "Outils de modelage"],
+        
+        "structure": {
+          "warmUp": {
+            "duration": "10 minutes",
+            "activity": "Mime des émotions",
+            "description": "Expression corporelle d'émotions différentes et observation dans le miroir.",
+            "questions": [
+              "Comment votre corps montre-t-il la joie?",
+              "Quelle forme prend la tristesse?"
+            ]
+          },
+          "mainActivity": {
+            "duration": "25 minutes",
+            "activity": "Modelage d'émotions en argile",
+            "description": "Création de formes abstraites ou figuratives représentant des émotions choisies.",
+            "steps": [
+              "Choix d'une émotion (3 min)",
+              "Exploration gestuelle (5 min)",
+              "Modelage expressif (17 min)"
+            ],
+            "differentiation": {
+              "support": "Émotions de base, formes simples",
+              "enrichment": "Émotions complexes, détails expressifs"
+            }
+          },
+          "closure": {
+            "duration": "10 minutes",
+            "activity": "Galerie des émotions",
+            "description": "Présentation des sculptures avec devinettes sur les émotions représentées.",
+            "assessment": "Capacité d'expression artistique et reconnaissance émotionnelle"
+          }
+        }
+      },
+      
+      {
+        "lessonNumber": 11,
+        "title": "Personnages imaginaires",
+        "duration": "45 minutes",
+        "objective": "Créer des personnages en 3D",
+        "expectations": ["AV2", "AV3"],
+        "materials": ["Divers matériaux de construction", "Yeux mobiles", "Cure-pipes", "Feutres"],
+        
+        "structure": {
+          "warmUp": {
+            "duration": "10 minutes",
+            "activity": "Invention de personnages",
+            "description": "Création imaginaire de personnages fantastiques par description orale collective.",
+            "questions": [
+              "À quoi ressemble votre créature imaginaire?",
+              "Que fait-elle de spécial?"
+            ]
+          },
+          "mainActivity": {
+            "duration": "25 minutes",
+            "activity": "Construction de créatures fantastiques",
+            "description": "Réalisation en 3D des personnages imaginés avec matériaux variés.",
+            "steps": [
+              "Planification du personnage (5 min)",
+              "Construction du corps (10 min)",
+              "Ajout des détails caractéristiques (10 min)"
+            ],
+            "differentiation": {
+              "support": "Modèles simples, aide à l'assemblage",
+              "enrichment": "Personnages complexes, articulations mobiles"
+            }
+          },
+          "closure": {
+            "duration": "10 minutes",
+            "activity": "Théâtre de marionnettes improvisé",
+            "description": "Présentation des personnages avec voix et mouvement improvisés.",
+            "assessment": "Originalité du personnage et capacité de présentation"
+          }
+        }
+      },
+      
+      {
+        "lessonNumber": 12,
+        "title": "Raconter avec la sculpture",
+        "duration": "45 minutes",
+        "objective": "Utiliser la sculpture pour narrer",
+        "expectations": ["AV2"],
+        "materials": ["Boîtes de diorama", "Figurines", "Éléments de décor miniatures", "Pâte à modeler"],
+        
+        "structure": {
+          "warmUp": {
+            "duration": "10 minutes",
+            "activity": "Histoires en images",
+            "description": "Observation d'images séquentielles et discussion sur la narration visuelle.",
+            "questions": [
+              "Que raconte cette image?",
+              "Comment continuer l'histoire?"
+            ]
+          },
+          "mainActivity": {
+            "duration": "25 minutes",
+            "activity": "Création de dioramas narratifs",
+            "description": "Construction de scènes en 3D racontant une histoire simple.",
+            "steps": [
+              "Choix de l'histoire à raconter (5 min)",
+              "Construction du décor (10 min)",
+              "Placement des personnages (10 min)"
+            ],
+            "differentiation": {
+              "support": "Histoires familières, éléments pré-fabriqués",
+              "enrichment": "Histoires originales, détails narratifs complexes"
+            }
+          },
+          "closure": {
+            "duration": "10 minutes",
+            "activity": "Contes de dioramas",
+            "description": "Narration orale des histoires créées en utilisant les dioramas.",
+            "assessment": "Cohérence narrative et expressivité de la présentation"
+          }
+        }
+      },
+      
+      {
+        "lessonNumber": 13,
+        "title": "Portfolio 3D",
+        "duration": "45 minutes",
+        "objective": "Documenter et réfléchir sur ses créations",
+        "expectations": ["AV1", "AV2"],
+        "materials": ["Appareils photo/tablettes", "Cahiers de portfolio", "Feuilles de réflexion"],
+        
+        "structure": {
+          "warmUp": {
+            "duration": "10 minutes",
+            "activity": "Retour sur le parcours",
+            "description": "Rassemblement de toutes les créations de l'unité et discussion sur l'évolution.",
+            "questions": [
+              "Quelle création préférez-vous?",
+              "Qu'avez-vous appris de nouveau?"
+            ]
+          },
+          "mainActivity": {
+            "duration": "25 minutes",
+            "activity": "Documentation photographique et écrite",
+            "description": "Prise de photos des œuvres et rédaction de réflexions personnelles.",
+            "steps": [
+              "Photographie des créations (10 min)",
+              "Sélection des meilleures œuvres (5 min)",
+              "Rédaction de commentaires (10 min)"
+            ],
+            "differentiation": {
+              "support": "Aide à la rédaction, phrases à compléter",
+              "enrichment": "Réflexions détaillées, comparaisons techniques"
+            }
+          },
+          "closure": {
+            "duration": "10 minutes",
+            "activity": "Préparation de l'exposition",
+            "description": "Organisation du portfolio et préparation de la présentation finale.",
+            "assessment": "Capacité de réflexion et qualité de la documentation"
+          }
+        }
+      },
+      
+      {
+        "lessonNumber": 14,
+        "title": "Exposition de classe",
+        "duration": "45 minutes",
+        "objective": "Présenter et partager ses œuvres",
+        "expectations": ["AV1", "AV2"],
+        "materials": ["Espaces d'exposition", "Étiquettes", "Carnets de visiteurs"],
+        
+        "structure": {
+          "warmUp": {
+            "duration": "10 minutes",
+            "activity": "Installation de l'exposition",
+            "description": "Mise en place collective de l'exposition avec disposition réfléchie des œuvres.",
+            "questions": [
+              "Comment organiser notre exposition?",
+              "Que veulent voir les visiteurs?"
+            ]
+          },
+          "mainActivity": {
+            "duration": "25 minutes",
+            "activity": "Vernissage et présentations",
+            "description": "Ouverture officielle avec présentations individuelles et visite guidée.",
+            "steps": [
+              "Présentations individuelles (15 min)",
+              "Visite libre et commentaires (10 min)"
+            ],
+            "differentiation": {
+              "support": "Présentation en binôme, phrases préparées",
+              "enrichment": "Guide de l'exposition, questions aux visiteurs"
+            }
+          },
+          "closure": {
+            "duration": "10 minutes",
+            "activity": "Célébration et bilan",
+            "description": "Moment de célébration des apprentissages et évaluation collective de l'unité.",
+            "assessment": "Qualité de la présentation et fierté du travail accompli"
+          }
+        }
+      },
+      
+      {
+        "lessonNumber": "E1",
+        "title": "Art 3D dans la nature",
+        "duration": "60 minutes",
+        "objective": "Observer et documenter les formes naturelles",
+        "expectations": ["AV1", "AV3"],
+        "materials": ["Sacs de collecte", "Loupes", "Carnets nature", "Matériaux naturels"],
+        "type": "extension",
+        
+        "structure": {
+          "warmUp": {
+            "duration": "10 minutes",
+            "activity": "Préparation de l'exploration",
+            "description": "Discussion sur l'art dans la nature et consignes de collecte respectueuse.",
+            "questions": [
+              "Où trouve-t-on de l'art dans la nature?",
+              "Comment respecter l'environnement?"
+            ]
+          },
+          "mainActivity": {
+            "duration": "40 minutes",
+            "activity": "Exploration et création en nature",
+            "description": "Sortie extérieure pour observer, collecter et créer avec les éléments naturels.",
+            "steps": [
+              "Observation guidée (10 min)",
+              "Collecte respectueuse (15 min)",
+              "Création de mandalas naturels (15 min)"
+            ],
+            "differentiation": {
+              "support": "Accompagnement rapproché, objectifs simplifiés",
+              "enrichment": "Documentation détaillée, créations complexes"
+            }
+          },
+          "closure": {
+            "duration": "10 minutes",
+            "activity": "Partage des découvertes",
+            "description": "Présentation des créations naturelles et discussion sur l'art éphémère.",
+            "assessment": "Respect de la nature et créativité avec les matériaux naturels"
+          }
+        }
+      },
+      
+      {
+        "lessonNumber": "E2",
+        "title": "Sculptures d'argile inspirées",
+        "duration": "60 minutes",
+        "objective": "Créer une sculpture personnelle en argile",
+        "expectations": ["AV2", "AV3"],
+        "materials": ["Argile", "Outils variés", "Images d'inspiration", "Support de séchage"],
+        "type": "extension",
+        
+        "structure": {
+          "warmUp": {
+            "duration": "10 minutes",
+            "activity": "Inspiration artistique",
+            "description": "Observation d'œuvres d'artistes sculpteurs et discussion sur les techniques.",
+            "questions": [
+              "Comment l'artiste a-t-il fait cela?",
+              "Qu'est-ce qui vous inspire?"
+            ]
+          },
+          "mainActivity": {
+            "duration": "40 minutes",
+            "activity": "Projet personnel de sculpture",
+            "description": "Réalisation d'une sculpture personnelle en appliquant toutes les techniques apprises.",
+            "steps": [
+              "Planification et esquisse (10 min)",
+              "Réalisation guidée (25 min)",
+              "Finitions et détails (5 min)"
+            ],
+            "differentiation": {
+              "support": "Projet simplifié, aide technique constante",
+              "enrichment": "Techniques avancées, projet ambitieux"
+            }
+          },
+          "closure": {
+            "duration": "10 minutes",
+            "activity": "Critique constructive",
+            "description": "Présentation des œuvres et commentaires positifs entre pairs.",
+            "assessment": "Maîtrise technique et expression personnelle"
+          }
+        }
+      },
+      
+      {
+        "lessonNumber": "E3",
+        "title": "Architecture en miniature",
+        "duration": "60 minutes",
+        "objective": "Construire des structures architecturales",
+        "expectations": ["AV2", "AV3"],
+        "materials": ["Cartons variés", "Matériaux de construction", "Outils de découpe", "Plans simples"],
+        "type": "extension",
+        
+        "structure": {
+          "warmUp": {
+            "duration": "10 minutes",
+            "activity": "Observation architecturale",
+            "description": "Analyse de photos de bâtiments et discussion sur les formes architecturales.",
+            "questions": [
+              "Qu'est-ce qui rend ce bâtiment solide?",
+              "Quelles formes voyez-vous?"
+            ]
+          },
+          "mainActivity": {
+            "duration": "40 minutes",
+            "activity": "Construction de maquettes",
+            "description": "Réalisation de maquettes architecturales avec attention aux détails structurels.",
+            "steps": [
+              "Choix du projet architectural (5 min)",
+              "Construction de la structure (25 min)",
+              "Ajout des détails décoratifs (10 min)"
+            ],
+            "differentiation": {
+              "support": "Structures simples, aide au montage",
+              "enrichment": "Architectures complexes, innovations structurelles"
+            }
+          },
+          "closure": {
+            "duration": "10 minutes",
+            "activity": "Ville miniature collaborative",
+            "description": "Assemblage des créations individuelles en une ville collective.",
+            "assessment": "Solidité de la construction et intégration collaborative"
+          }
+        }
+      },
+      
+      {
+        "lessonNumber": "E4",
+        "title": "Installation artistique collective",
+        "duration": "60 minutes",
+        "objective": "Créer une œuvre collaborative",
+        "expectations": ["AV1", "AV2", "AV3"],
+        "materials": ["Matériaux variés", "Grand support", "Outils de fixation"],
+        "type": "extension",
+        
+        "structure": {
+          "warmUp": {
+            "duration": "10 minutes",
+            "activity": "Planification collaborative",
+            "description": "Discussion de groupe pour planifier une installation artistique commune.",
+            "questions": [
+              "Quel message voulons-nous transmettre?",
+              "Comment travailler ensemble?"
+            ]
+          },
+          "mainActivity": {
+            "duration": "40 minutes",
+            "activity": "Réalisation de l'installation",
+            "description": "Travail collaboratif pour créer une grande installation artistique.",
+            "steps": [
+              "Attribution des rôles (5 min)",
+              "Réalisation par équipes (30 min)",
+              "Assemblage final (5 min)"
+            ],
+            "differentiation": {
+              "support": "Rôles adaptés aux capacités",
+              "enrichment": "Coordination d'équipe, vision d'ensemble"
+            }
+          },
+          "closure": {
+            "duration": "10 minutes",
+            "activity": "Inauguration artistique",
+            "description": "Présentation officielle de l'installation avec explication collective.",
+            "assessment": "Collaboration efficace et contribution personnelle"
+          }
+        }
+      },
+      
+      {
+        "lessonNumber": "E5",
+        "title": "Critique d'art junior",
+        "duration": "45 minutes",
+        "objective": "Analyser et discuter les œuvres d'art 3D",
+        "expectations": ["AV1"],
+        "materials": ["Reproductions d'œuvres", "Vocabulaire critique", "Grilles d'observation"],
+        "type": "extension",
+        
+        "structure": {
+          "warmUp": {
+            "duration": "10 minutes",
+            "activity": "Introduction à la critique d'art",
+            "description": "Présentation du vocabulaire de base pour décrire et analyser l'art.",
+            "questions": [
+              "Que voit-on dans cette œuvre?",
+              "Quels mots utiliser pour en parler?"
+            ]
+          },
+          "mainActivity": {
+            "duration": "25 minutes",
+            "activity": "Analyse guidée d'œuvres célèbres",
+            "description": "Observation et discussion structurée d'œuvres de sculpteurs reconnus.",
+            "steps": [
+              "Observation silencieuse (5 min)",
+              "Description collective (10 min)",
+              "Interprétation et ressenti (10 min)"
+            ],
+            "differentiation": {
+              "support": "Questions guidées, vocabulaire simplifié",
+              "enrichment": "Analyses approfondies, comparaisons d'œuvres"
+            }
+          },
+          "closure": {
+            "duration": "10 minutes",
+            "activity": "Critique de nos propres œuvres",
+            "description": "Application du vocabulaire critique aux créations de la classe.",
+            "assessment": "Usage approprié du vocabulaire artistique"
+          }
+        }
+      },
+      
+      {
+        "lessonNumber": "E6",
+        "title": "Projet libre créatif",
+        "duration": "60 minutes",
+        "objective": "Créer une œuvre personnelle intégrant tous les apprentissages",
+        "expectations": ["AV1", "AV2", "AV3"],
+        "materials": ["Tous matériaux disponibles", "Outils variés", "Support de planification"],
+        "type": "extension",
+        
+        "structure": {
+          "warmUp": {
+            "duration": "10 minutes",
+            "activity": "Synthèse des apprentissages",
+            "description": "Récapitulatif de toutes les techniques et approches découvertes dans l'unité.",
+            "questions": [
+              "Quelles techniques maîtrisez-vous maintenant?",
+              "Que voulez-vous créer?"
+            ]
+          },
+          "mainActivity": {
+            "duration": "40 minutes",
+            "activity": "Projet personnel libre",
+            "description": "Réalisation autonome d'un projet personnel intégrant les apprentissages de l'unité.",
+            "steps": [
+              "Planification détaillée (10 min)",
+              "Réalisation autonome (25 min)",
+              "Finitions et présentation (5 min)"
+            ],
+            "differentiation": {
+              "support": "Accompagnement selon les besoins",
+              "enrichment": "Défis techniques personnalisés"
+            }
+          },
+          "closure": {
+            "duration": "10 minutes",
+            "activity": "Présentation finale personnalisée",
+            "description": "Présentation libre et créative du projet personnel réalisé.",
+            "assessment": "Intégration des apprentissages et expression personnelle"
+          }
+        }
+      }
+    ],
+    
+    "assessment": {
+      "formativeStrategies": [
+        "Observation continue pendant les activités",
+        "Questions ouvertes pendant les discussions",
+        "Auto-évaluation guidée après chaque création",
+        "Feedback immédiat et encourageant",
+        "Documentation photographique des processus"
+      ],
+      "summativeElements": [
+        "Portfolio de créations avec réflexions",
+        "Présentation finale à l'exposition",
+        "Évaluation par critères adaptes au niveau",
+        "Observation de l'engagement et de la persévérance",
+        "Maîtrise progressive des techniques 3D"
+      ],
+      "criteria": [
+        "Exploration créative des matériaux",
+        "Application des techniques enseignées",
+        "Expression personnelle et originalité",
+        "Persévérance dans les défis techniques",
+        "Respect du matériel et sécurité",
+        "Participation aux discussions et présentations"
+      ]
+    },
+    
+    "resources": {
+      "books": [
+        "Albums sur la sculpture pour enfants",
+        "Livres de techniques artistiques simples",
+        "Documentaires sur les artistes sculpteurs"
+      ],
+      "digital": [
+        "Vidéos de techniques de modelage",
+        "Galeries virtuelles de sculptures",
+        "Applications de création 3D adaptées"
+      ],
+      "materials": [
+        "Argile et pâtes à modeler variées",
+        "Outils de modelage sécurisés",
+        "Matériaux de récupération triés",
+        "Espaces de travail adaptés",
+        "Matériel de protection et nettoyage"
+      ]
+    }
+  }
+}

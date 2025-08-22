@@ -1,0 +1,568 @@
+{
+  "unitTitle": "Exploration de textes",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "title": "Qu'est-ce qu'un texte?",
+      "oneGoal": "Students identify different types of texts around them",
+      "keyVocabulary": ["texte", "livre", "écrit"],
+      "materials": ["Various text examples (books, signs, labels, lists)", "Text hunt clipboards", "Magnifying glasses"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Look around classroom and point to different texts. Use gestures: point and say 'texte', 'livre', 'écrit'. Make discovery exciting!"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Text hunt around school - students find and point to different texts with teacher. Practice saying 'C'est un texte!' Use magnifying glasses for fun detective work.",
+        "flexibility": "Some may spot many texts, others just a few. Celebrate all discoveries equally."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Share discoveries in circle. Count how many different texts we found. Preview tomorrow's picture exploration."
+      },
+      "decisionPoints": [
+        "If students overwhelmed by text variety → Focus on just books and signs initially",
+        "If students want to read everything → Remind them we're just identifying texts today",
+        "If mobility needed → Make text hunt more active with walking and pointing"
+      ],
+      "troubleshooting": "If concept is too abstract, start with familiar books and gradually add other text types",
+      "realWorldConnection": "Texts are all around us - signs help us find places, books tell stories, labels tell us what things are",
+      "progression": "Foundation lesson - introduces the concept of texts everywhere"
+    },
+    {
+      "lessonNumber": 2,
+      "title": "Images parlent aussi",
+      "oneGoal": "Students understand that pictures give information just like words",
+      "keyVocabulary": ["image", "information", "comprendre"],
+      "materials": ["Wordless picture books", "Picture cards", "Simple comics"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review yesterday's text hunt. Show book with only pictures. 'Est-ce que c'est un texte? Les images peuvent parler!'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Explore wordless books together. Students 'read' pictures and tell what they see. Practice getting information from images without words.",
+        "flexibility": "Some students may create elaborate stories, others just describe what they see. Both are perfect."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Share one thing they learned from pictures today. Introduce tomorrow's prediction activity."
+      },
+      "decisionPoints": [
+        "If students try to find hidden words → Celebrate picture-only texts as special and valuable",
+        "If students create long stories → Encourage but keep focus on information from pictures",
+        "If students say they can't read → Emphasize they ARE reading when they understand pictures"
+      ],
+      "troubleshooting": "If students insist pictures aren't 'real reading', use familiar signs and symbols as examples",
+      "realWorldConnection": "Pictures help us understand when we can't read all the words - like bathroom signs or traffic lights",
+      "progression": "Builds on Lesson 1 by showing that texts include pictures that tell stories"
+    },
+    {
+      "lessonNumber": 3,
+      "title": "Prédire avec les images",
+      "oneGoal": "Students make predictions about stories using cover pictures",
+      "keyVocabulary": ["prédire", "penser", "deviner"],
+      "materials": ["Books with interesting covers", "Prediction charts", "Crystal ball prop (optional)"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review how pictures give information. Today we use pictures to guess what might happen. Model with familiar book cover."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Show various book covers. Students make predictions based on pictures. Record predictions on chart. Use 'Je pense que...' sentence starter.",
+        "flexibility": "Accept wild predictions - the goal is thinking about pictures, not being correct."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Choose one book to read tomorrow to check predictions. Students excited to see if they were right!"
+      },
+      "decisionPoints": [
+        "If students make unrealistic predictions → Validate creativity while asking what picture clues they used",
+        "If students copy each other → Encourage but ask for different details they notice",
+        "If students worry about being wrong → Emphasize that all guesses help us think about stories"
+      ],
+      "troubleshooting": "If students can't make predictions, ask guided questions about what they see in pictures",
+      "realWorldConnection": "We guess what might happen based on clues we see - like predicting weather from clouds",
+      "progression": "Builds on Lesson 2 by using pictures to guess what might happen"
+    },
+    {
+      "lessonNumber": 4,
+      "title": "Écouter et découvrir",
+      "oneGoal": "Students listen to a simple story and check their predictions",
+      "keyVocabulary": ["écouter", "découvrir", "vérifier"],
+      "materials": ["Book chosen yesterday", "Prediction chart from yesterday", "Listening ears props"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review yesterday's predictions. Put on 'listening ears' to check if guesses were right."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Read chosen story with expression and pictures. Stop periodically to check predictions. Celebrate both correct and incorrect predictions as good thinking.",
+        "flexibility": "If story is too long, read part and continue tomorrow. If students are very engaged, finish the whole story."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Compare predictions to actual story. Discuss what surprised them. Preview tomorrow's retelling activity."
+      },
+      "decisionPoints": [
+        "If students disappointed about wrong predictions → Emphasize how predictions helped them think about story",
+        "If story too complex → Focus on pictures and simple events",
+        "If students want to interrupt → Allow some comments but keep story flowing"
+      ],
+      "troubleshooting": "If students can't follow story, use more gestures and pause for picture discussions",
+      "realWorldConnection": "Sometimes our guesses are right, sometimes we learn something new - both help us understand better",
+      "progression": "Builds on Lesson 3 by checking if predictions were right"
+    },
+    {
+      "lessonNumber": 5,
+      "title": "Reconter ensemble",
+      "oneGoal": "Students retell story parts using simple words and gestures",
+      "keyVocabulary": ["reconter", "partie", "expliquer"],
+      "materials": ["Story from yesterday", "Retelling props", "Sequence cards"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review yesterday's story briefly. 'Maintenant, nous recontons l'histoire ensemble!'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Students retell story parts in sequence. Use props, gestures, and simple French words. Support with 'D'abord... Ensuite... Finalement...'",
+        "flexibility": "Some students may retell with lots of details, others just main events. Support all levels."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Whole group retelling with everyone contributing. Celebrate successful storytelling."
+      },
+      "decisionPoints": [
+        "If students mix up sequence → Use picture cues to help with order",
+        "If students use too much English → Model French words but accept mixed language",
+        "If students forget parts → Use prompting questions and pictures to support memory"
+      ],
+      "troubleshooting": "If retelling is too challenging, let students just point to pictures and say one word about each",
+      "realWorldConnection": "We tell family about stories and movies we enjoyed - sharing helps us remember and enjoy more",
+      "progression": "Builds on Lesson 4 by retelling what they heard"
+    },
+    {
+      "lessonNumber": 6,
+      "title": "Textes différents partout",
+      "oneGoal": "Students explore different types of texts (signs, lists, letters)",
+      "keyVocabulary": ["différent", "sorte", "type"],
+      "materials": ["Collection of different text types", "Sorting bins", "Real-world text examples"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review that we've been reading stories. 'Il y a d'autres sortes de textes aussi!' Show variety of examples."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Explore different text types - shopping lists, signs, letters, recipes. Discuss purpose of each type. Sort into categories.",
+        "flexibility": "Some may understand purposes quickly, others need more explanation. Use real examples they recognize."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Share different text types they found. Discuss which ones they see at home."
+      },
+      "decisionPoints": [
+        "If students confused by variety → Focus on just 2-3 clear examples first",
+        "If students excited about one type → Allow deeper exploration while covering others briefly",
+        "If students don't see purpose differences → Use concrete examples they can relate to"
+      ],
+      "troubleshooting": "If concept is too abstract, use texts from their daily life - lunch menus, name tags, etc.",
+      "realWorldConnection": "Different texts help us in different ways - signs tell us where to go, lists help us remember things",
+      "progression": "Builds on Lesson 5 by discovering that not all texts are stories"
+    },
+    {
+      "lessonNumber": 7,
+      "title": "Lire les indices",
+      "oneGoal": "Students use context clues to understand unfamiliar words",
+      "keyVocabulary": ["indice", "contexte", "deviner"],
+      "materials": ["Books with clear picture clues", "Detective hats", "Clue cards"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Become detectives! When we don't know a word, we look for clues. Model with obvious picture-word connection."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Practice finding clues in pictures and context when encountering unknown words. Use detective approach - what clues help us guess meaning?",
+        "flexibility": "Some students natural detectives, others need more guidance. Celebrate all attempts at clue-finding."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Share best clues they found today. Remind them they can be word detectives with any text."
+      },
+      "decisionPoints": [
+        "If students guess wildly without using clues → Guide them to look at pictures and surrounding words",
+        "If students get frustrated with unknown words → Emphasize that good readers use clues, don't know every word",
+        "If students want exact definitions → Focus on general meaning from context rather than precision"
+      ],
+      "troubleshooting": "If clue-finding is too difficult, start with very obvious picture-word matches",
+      "realWorldConnection": "We figure out new words by looking at pictures and other clues - like learning new things from context",
+      "progression": "Builds on Lesson 6 by learning strategies for unknown words"
+    },
+    {
+      "lessonNumber": 8,
+      "title": "Questions importantes",
+      "oneGoal": "Students ask 'who, what, where' questions about texts",
+      "keyVocabulary": ["question", "qui", "quoi"],
+      "materials": ["Question word cards", "Simple texts", "Question mark props"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review being text detectives. 'Les détectives posent des questions!' Introduce question words with gestures."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Practice asking 'Qui?' 'Quoi?' 'Où?' questions about familiar texts. Use question words cards as supports.",
+        "flexibility": "Some may generate many questions, others need prompting. Support question formation with sentence starters."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Share best questions they asked. Explain how questions help us understand stories better."
+      },
+      "decisionPoints": [
+        "If students struggle with question formation → Provide sentence frames and model questioning",
+        "If students ask very complex questions → Simplify to basic who/what/where format",
+        "If students answer instead of ask → Remind them we're practicing making questions today"
+      ],
+      "troubleshooting": "If questioning is too abstract, use familiar story and model each question type with clear examples",
+      "realWorldConnection": "Asking questions helps us understand better - like asking questions when learning something new",
+      "progression": "Builds on Lesson 7 by actively questioning texts for understanding"
+    },
+    {
+      "lessonNumber": 9,
+      "title": "Mes livres préférés",
+      "oneGoal": "Students share favorite books and explain why they like them",
+      "keyVocabulary": ["préféré", "aimer", "choisir"],
+      "materials": ["Student favorite books", "Sharing circle setup", "Simple reason cards"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Everyone has favorite books! Share teacher's favorite and explain why. Model simple reasons."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Students share favorite books with partners and simple reasons why they like them. Use 'J'aime... parce que...' structure with supports.",
+        "flexibility": "Some students articulate detailed reasons, others just express like/dislike. Both are valuable."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Few students share favorites with whole class. Create class list of favorite books."
+      },
+      "decisionPoints": [
+        "If students can't explain why they like books → Offer simple reason prompts like 'funny' or 'pretty pictures'",
+        "If students say they don't have favorites → Help them think about books they remember or enjoyed",
+        "If students want to share many books → Encourage but help them choose one special favorite"
+      ],
+      "troubleshooting": "If students don't have book preferences yet, let them choose from classroom books they've enjoyed",
+      "realWorldConnection": "Everyone has different favorite books and stories - just like having favorite foods or activities",
+      "progression": "Builds on Lesson 8 by expressing personal preferences about texts"
+    },
+    {
+      "lessonNumber": 10,
+      "title": "Comparer les histoires",
+      "oneGoal": "Students compare two simple stories and find similarities/differences",
+      "keyVocabulary": ["comparer", "même", "différent"],
+      "materials": ["Two similar simple stories", "Comparison chart", "Same/different sorting cards"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review favorite books. Today we compare two stories to see what's the same and different."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Read/review two simple stories. Use chart to record what's the same and what's different. Support with visual comparisons.",
+        "flexibility": "Some may notice detailed similarities/differences, others just basic ones. All observations valuable."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Discuss what they learned from comparing stories. Some stories share ideas but tell them differently."
+      },
+      "decisionPoints": [
+        "If students focus only on differences → Guide them to look for similarities too",
+        "If students can't see comparisons → Use very obvious examples like character types or settings",
+        "If comparison is too complex → Focus on just one element like characters or main events"
+      ],
+      "troubleshooting": "If comparing is too abstract, use familiar stories with clear visual similarities",
+      "realWorldConnection": "Some stories are similar to our own experiences - we can connect new stories to ones we know",
+      "progression": "Builds on Lesson 9 by analyzing relationships between texts"
+    },
+    {
+      "lessonNumber": 11,
+      "title": "Textes informatifs",
+      "oneGoal": "Students explore non-fiction texts about familiar topics",
+      "keyVocabulary": ["informatif", "apprendre", "vrai"],
+      "materials": ["Simple non-fiction books", "Real photos", "Fact cards"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review story books. 'Certains livres nous enseignent des choses vraies!' Show non-fiction examples."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Explore simple non-fiction texts about animals, families, or familiar topics. Discuss how these teach real facts.",
+        "flexibility": "Some may grasp fiction/non-fiction distinction quickly, others need more concrete examples."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Share one new fact they learned today. Discuss difference between learning facts and enjoying stories."
+      },
+      "decisionPoints": [
+        "If students confused about real vs. story → Use clear examples like real animal photos vs. cartoon animals",
+        "If students prefer stories → Validate preference while showing value of learning facts",
+        "If content too complex → Focus on pictures and simple facts they can understand"
+      ],
+      "troubleshooting": "If fiction/non-fiction distinction is unclear, use familiar examples they know are real or pretend",
+      "realWorldConnection": "Some books teach us true facts about the world - like how animals live or how things work",
+      "progression": "Builds on Lesson 10 by distinguishing fiction from non-fiction"
+    },
+    {
+      "lessonNumber": 12,
+      "title": "Lire ensemble fort",
+      "oneGoal": "Students participate in shared reading with expression",
+      "keyVocabulary": ["ensemble", "voix", "expression"],
+      "materials": ["Big book or projected text", "Pointer", "Expression cards"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review different types of texts. Today we read together with strong voices! Model expressive reading."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Shared reading of familiar text with expression. Students join in on repeated phrases, practice different voices for characters.",
+        "flexibility": "Some students may read along confidently, others just listen and join in occasionally."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Discuss how reading with expression makes stories more fun. Practice reading one sentence with different emotions."
+      },
+      "decisionPoints": [
+        "If students too shy to read aloud → Let them just listen or whisper along initially",
+        "If students very enthusiastic → Channel energy into expressive reading without overwhelming quiet students",
+        "If text too difficult → Focus on repetitive parts and familiar words students can join"
+      ],
+      "troubleshooting": "If shared reading is challenging, use very familiar songs or chants in text form",
+      "realWorldConnection": "Reading aloud helps us understand and enjoy stories more - like how family reads bedtime stories",
+      "progression": "Builds on Lesson 11 by practicing reading skills together"
+    },
+    {
+      "lessonNumber": 13,
+      "title": "Création de questions",
+      "oneGoal": "Students create their own questions about a familiar text",
+      "keyVocabulary": ["créer", "questionner", "curiosité"],
+      "materials": ["Familiar text", "Question word prompts", "Student question books"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review asking questions about texts. Today students become the question creators! Model making questions."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Students create their own questions about familiar text using question word prompts. Support with sentence frames and encouragement.",
+        "flexibility": "Some may create many questions, others need lots of support. Celebrate all question-making attempts."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Students ask their questions to partners. Celebrate being good questioners who help others think."
+      },
+      "decisionPoints": [
+        "If students struggle creating questions → Provide question stems and help them complete",
+        "If students create questions too complex → Guide them toward simpler, answerable questions",
+        "If students copy each other's questions → Validate similarities and encourage different question words"
+      ],
+      "troubleshooting": "If question creation is too difficult, let students choose from pre-made question options to ask",
+      "realWorldConnection": "Good readers ask questions to understand better - questioning shows we're thinking about what we read",
+      "progression": "Builds on Lesson 12 by becoming active questioners of texts"
+    },
+    {
+      "lessonNumber": 14,
+      "title": "Portfolio de lecture",
+      "oneGoal": "Students compile favorite texts and explain their reading journey",
+      "keyVocabulary": ["portfolio", "voyage", "progrès"],
+      "materials": ["Portfolio folders", "Text examples from unit", "Journey reflection sheets"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Look back at all the texts and skills from this unit. 'Regardez tout ce que nous avons appris sur les textes!'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Students create reading portfolio with favorite texts, pictures of learning activities, and simple reflections on their growth.",
+        "flexibility": "Some students may want elaborate portfolios, others simple collections. Support all approaches."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Students share one thing they learned about texts. Celebrate growth as text explorers and readers."
+      },
+      "decisionPoints": [
+        "If students overwhelmed by portfolio creation → Help them choose just 2-3 meaningful items",
+        "If students don't see their progress → Point out specific skills they've gained during unit",
+        "If students want to include everything → Help them select most important or favorite examples"
+      ],
+      "troubleshooting": "If reflection is too abstract, use concrete examples of what they can do now that they couldn't before",
+      "realWorldConnection": "We can look back and see how much we've learned - like looking at baby photos to see how we've grown",
+      "progression": "Builds on Lesson 13 by reflecting on learning and growth"
+    },
+    {
+      "lessonNumber": 15,
+      "title": "Explorateurs de genres",
+      "oneGoal": "Students explore poetry, fairy tales, and other genres through play",
+      "keyVocabulary": ["genre", "poésie", "conte"],
+      "materials": ["Various genre examples", "Genre sorting game", "Props for different genres"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review all different text types learned. Today explore special kinds of stories - poetry, fairy tales, etc."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Playful exploration of different genres through listening, acting, and simple identification games. Focus on enjoyment over analysis.",
+        "flexibility": "Let students gravitate toward genres that interest them while ensuring exposure to variety."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Share which genre was most interesting today. Discuss how many different ways there are to tell stories."
+      },
+      "decisionPoints": [
+        "If students prefer familiar story types → Validate preferences while gently introducing new genres",
+        "If students confused by genre differences → Focus on obvious distinctions like rhyming vs. non-rhyming",
+        "If students very engaged with one genre → Allow deeper exploration while touching on others"
+      ],
+      "troubleshooting": "If genre concept is too complex, focus on obvious features like 'stories that rhyme' vs. 'regular stories'",
+      "realWorldConnection": "There are many different kinds of stories and texts to enjoy - like different types of games or music",
+      "progression": "Extension - applies text exploration skills to new genres"
+    },
+    {
+      "lessonNumber": 16,
+      "title": "Détectives de mots",
+      "oneGoal": "Students hunt for familiar words in new texts",
+      "keyVocabulary": ["détective", "chercher", "trouver"],
+      "materials": ["New texts with familiar words", "Word hunting tools", "Found word collection sheets"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Return to detective theme! Today hunt for words we know in new places. Model finding familiar word in new text."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Word hunting game in new texts - students search for and collect familiar words they can recognize and understand.",
+        "flexibility": "Some may find many words, others just a few. Celebrate all discoveries and growing word knowledge."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Share word hunting successes. Discuss how knowing some words helps us read new things."
+      },
+      "decisionPoints": [
+        "If students can't find familiar words → Provide texts with obvious high-frequency words they know",
+        "If students want to sound out everything → Encourage but keep focus on recognizing familiar words",
+        "If word hunting takes too long → Set timer and celebrate whatever they find in time limit"
+      ],
+      "troubleshooting": "If students frustrated by unknown words, remind them they're looking for words they already know",
+      "realWorldConnection": "Finding words we know helps us read new things - like recognizing friend's names in new places",
+      "progression": "Extension - deepens word recognition skills through games"
+    },
+    {
+      "lessonNumber": 17,
+      "title": "Théâtre des histoires",
+      "oneGoal": "Students act out favorite stories to show comprehension",
+      "keyVocabulary": ["théâtre", "jouer", "montrer"],
+      "materials": ["Simple props and costumes", "Familiar stories", "Stage area"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review favorite stories from unit. Today we become actors and show stories with our bodies and voices!"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Students choose familiar stories to act out in small groups. Focus on showing understanding through movement and simple dialogue.",
+        "flexibility": "Some groups may create elaborate performances, others simple scenes. Support all levels of dramatic expression."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Mini performances for class. Celebrate how acting helps us understand and remember stories better."
+      },
+      "decisionPoints": [
+        "If students too shy for performance → Start with just movements or let them be props/scenery",
+        "If students get too excited → Channel energy into character actions while maintaining focus",
+        "If groups can't agree on story → Help them choose or suggest familiar group favorites"
+      ],
+      "troubleshooting": "If acting is too challenging, let students just show one scene or character action from story",
+      "realWorldConnection": "Acting out stories helps us understand characters and events - like how we act out games we play",
+      "progression": "Extension - demonstrates understanding through creative expression"
+    },
+    {
+      "lessonNumber": 18,
+      "title": "Bibliothécaires experts",
+      "oneGoal": "Students recommend books to classmates based on interests",
+      "keyVocabulary": ["recommander", "expert", "suggestion"],
+      "materials": ["Classroom library", "Recommendation cards", "Student interest surveys"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Discuss how librarians help people find good books. Today students become book experts who help friends!"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Students interview classmates about interests, then recommend books from classroom library. Practice giving simple reasons for recommendations.",
+        "flexibility": "Some students natural matchmakers, others need guidance. Support all attempts at thoughtful matching."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Share successful recommendations made today. Discuss how helping others find good books makes reading more fun."
+      },
+      "decisionPoints": [
+        "If students recommend same books to everyone → Help them think about different interests and preferences",
+        "If students can't explain recommendations → Provide simple reason prompts like 'funny' or 'has animals'",
+        "If students disagree with recommendations → Validate that people like different things"
+      ],
+      "troubleshooting": "If recommendation process is complex, let students just share favorite books with reasons they like them",
+      "realWorldConnection": "Librarians and friends help us find books we'll enjoy - sharing good books spreads the fun of reading",
+      "progression": "Extension - uses text knowledge to help others"
+    },
+    {
+      "lessonNumber": 19,
+      "title": "Textes de chez nous",
+      "oneGoal": "Students explore texts from their own cultures and families",
+      "keyVocabulary": ["culture", "famille", "tradition"],
+      "materials": ["Family photos and texts (if available)", "Cultural story examples", "Sharing circle setup"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Discuss how every family and culture has special stories and texts. Invite sharing about texts from home."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Students share texts, stories, or traditions from their families/cultures. Celebrate diversity and different ways of telling stories.",
+        "flexibility": "Some students may have lots to share, others little. Support all levels of cultural connection."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Reflect on how many different types of stories and texts exist in our classroom community."
+      },
+      "decisionPoints": [
+        "If students don't have cultural texts to share → Help them think about family stories or traditions",
+        "If students share very personal stories → Support with sensitivity and respect",
+        "If students feel left out → Emphasize that all families have stories, even simple everyday ones"
+      ],
+      "troubleshooting": "If students don't connect with cultural aspect, focus on any family stories or special books from home",
+      "realWorldConnection": "Every family and culture has special stories and texts - like recipes, songs, or bedtime stories",
+      "progression": "Extension - connects text exploration to personal identity"
+    },
+    {
+      "lessonNumber": 20,
+      "title": "Célébration de lecteurs",
+      "oneGoal": "Students celebrate their growth as text explorers and readers",
+      "keyVocabulary": ["célébrer", "lecteur", "explorer"],
+      "materials": ["Portfolios from Lesson 14", "Reading certificates", "Celebration supplies"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Look back at journey from Lesson 1 to now. 'Vous êtes maintenant des explorateurs de textes experts!'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Celebration of reading growth with sharing of portfolios, presentation of certificates, and reflection on favorite discoveries.",
+        "flexibility": "Let students highlight what they're most proud of learning during the unit."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Final circle: each student completes 'Je suis un explorateur de textes parce que...' Group celebration photo."
+      },
+      "decisionPoints": [
+        "If students don't feel like 'real' readers → Emphasize all the text skills they've developed",
+        "If students want to keep exploring → Encourage continued text exploration in free time",
+        "If celebration feels overwhelming → Keep it simple with just sharing and recognition"
+      ],
+      "troubleshooting": "If students don't recognize their growth, use specific examples of skills they've gained during unit",
+      "realWorldConnection": "Readers celebrate discovering new worlds through texts - every text they explore makes them stronger readers",
+      "progression": "Extension - culminates unit with reflection on reading journey"
+    }
+  ]
+}

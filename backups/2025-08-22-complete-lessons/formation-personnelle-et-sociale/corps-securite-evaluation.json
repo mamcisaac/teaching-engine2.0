@@ -1,0 +1,114 @@
+{
+  "criticAgentEvaluation": {
+    "unitTitle": "Mon corps et ma sécurité",
+    "evaluationDate": "2025-08-21",
+    "overallScore": 88,
+    "passingThreshold": 85,
+    "status": "APPROVED",
+    "criteriaBreakdown": {
+      "simplicity": {
+        "weight": 40,
+        "score": 90,
+        "weightedScore": 36,
+        "evaluation": {
+          "oneGoalPerLesson": {
+            "score": 95,
+            "feedback": "Each lesson has one clear, focused goal. Examples: 'Students will identify basic body parts and understand that every body is unique and special' (Lesson 1), 'Students will practice saying no clearly and understand they have the right to refuse uncomfortable touch' (Lesson 6). Goals are age-appropriate and measurable."
+          },
+          "threeDecisionPoints": {
+            "score": 90,
+            "feedback": "Each lesson contains exactly 3 decision points that are practical and realistic. They address real classroom situations like 'How comfortable are students with body vocabulary?' and provide if-then guidance that supports teacher decision-making."
+          },
+          "substituteUsability": {
+            "score": 85,
+            "feedback": "Lessons are structured clearly with materials listed, safety considerations provided, and emergency backup plans included. A substitute could understand the lesson structure and key concepts, though some French immersion expertise would be helpful."
+          }
+        }
+      },
+      "progression": {
+        "weight": 30,
+        "score": 92,
+        "weightedScore": 27.6,
+        "evaluation": {
+          "lessonConnection": {
+            "score": 95,
+            "feedback": "Excellent explicit connections between lessons. Each lesson clearly states 'Builds on Lesson X by...' Examples: Lesson 4 'Builds on Lesson 3 by introducing that our bodies that do amazing things also belong to us.' Progression is logical and developmentally appropriate."
+          },
+          "vocabularySpiral": {
+            "score": 90,
+            "feedback": "Vocabulary is introduced gradually with maximum 3 new words per lesson. Body parts vocabulary is introduced first (corps, tête, bras), then safety concepts (toucher, espace, confort), then help-seeking vocabulary (aide, adulte, confiance). Vocabulary spirals and reinforces appropriately."
+          },
+          "clearGrowth": {
+            "score": 90,
+            "feedback": "Clear progression from basic body awareness (Lessons 1-3) to personal boundaries (Lessons 4-6) to safety systems (Lessons 7-12) to integration and application (Lessons 13-20). Students move from concrete to abstract concepts appropriately."
+          }
+        }
+      },
+      "authenticity": {
+        "weight": 30,
+        "score": 82,
+        "weightedScore": 24.6,
+        "evaluation": {
+          "teacherThinkingSupport": {
+            "score": 85,
+            "feedback": "Decision points support teacher thinking well by addressing real classroom concerns. Safety considerations are thoughtful and practical. Real-world connections help teachers understand the purpose. Some areas could use more teacher reflection prompts."
+          },
+          "flexibilityBuiltIn": {
+            "score": 80,
+            "feedback": "Good flexibility through decision points and emergency backup plans. Activities can be adjusted based on student needs. However, some lessons could benefit from more variation options within the main activities."
+          },
+          "acknowledgeUnpredictability": {
+            "score": 80,
+            "feedback": "Emergency backup plans acknowledge that lessons may need adjustment. Safety considerations show awareness of sensitive nature of content. Could better acknowledge the unpredictable nature of young children's questions and reactions to body/safety topics."
+          }
+        }
+      }
+    },
+    "detailedFeedback": {
+      "strengths": [
+        "Highly sensitive and age-appropriate approach to difficult safety topics",
+        "Excellent progression from concrete (body parts) to abstract (feelings and safety)",
+        "Strong emphasis on empowerment rather than fear-based approach",
+        "Comprehensive coverage of all safety areas: personal boundaries, trusted adults, emergency procedures",
+        "Inclusive approach that respects family diversity and different cultural approaches",
+        "Clear structure with three-part lessons that match Grade 1 attention spans",
+        "Practical materials lists that are realistic for classroom implementation",
+        "Strong visual and kinesthetic support throughout all lessons",
+        "Good balance between core lessons (1-14) and extension activities (15-20)",
+        "Safety considerations show deep understanding of sensitive nature of content"
+      ],
+      "areasForImprovement": [
+        "Some lessons could benefit from more variation within main activities",
+        "Teacher reflection prompts could be enhanced to support professional growth",
+        "Emergency backup plans could be more specific for different types of student reactions",
+        "Could include more specific guidance for handling student disclosures",
+        "Assessment opportunities could be more detailed and specific"
+      ],
+      "specificConcerns": [
+        "Lesson timing may be ambitious for some activities (27-minute main activities)",
+        "French vocabulary load might be challenging for some students",
+        "Some safety concepts may require more scaffolding for different developmental levels"
+      ]
+    },
+    "sensitiveContentHandling": {
+      "score": 95,
+      "feedback": "Excellent handling of sensitive safety content. Maintains age-appropriate approach while covering essential safety concepts. Emphasizes empowerment over fear, includes family diversity, provides clear safety considerations for teachers. Strong focus on body positivity and consent education appropriate for Grade 1."
+    },
+    "curriculumAlignment": {
+      "score": 90,
+      "feedback": "Strong alignment with Formation personnelle et sociale expectations: FPS1 (developing understanding of self and others), FPS2 (developing personal and interpersonal skills), FPS3 (adopting healthy and safe behaviors). Unit comprehensively addresses all three expectation areas."
+    },
+    "ageAppropriateness": {
+      "score": 92,
+      "feedback": "Content is highly appropriate for Grade 1 (ages 6-7). Language is simple, concepts are concrete, activities include movement and visual supports. Safety concepts are presented in empowering, non-frightening ways suitable for young children."
+    },
+    "recommendations": [
+      "Consider adding more specific protocols for handling student disclosures about safety concerns",
+      "Include more detailed assessment rubrics for tracking student understanding of safety concepts",
+      "Add more variation options within main activities to support different learning styles",
+      "Consider creating parent communication materials to support home-school connection on safety topics",
+      "Include more specific guidance for differentiating instruction for students with different safety experiences"
+    ],
+    "overallAssessment": "This is a well-designed, sensitive, and comprehensive unit that successfully addresses the challenging topic of body safety for Grade 1 students. The progression is logical, the content is age-appropriate, and the approach is empowering rather than fear-based. The unit meets all criteria for approval with a score of 88%, exceeding the 85% threshold. The sensitive nature of the content is handled with exceptional care and professionalism."
+  }
+}

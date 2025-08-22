@@ -1,0 +1,36 @@
+{
+  "unitPlan": {
+    "title": "Petits scientifiques sécuritaires",
+    "bigIdeas": "La science est partout",
+    "essentialQuestions": [
+      "Comment explorer en sécurité?",
+      "Que pouvons-nous observer?",
+      "Comment poser des questions?"
+    ],
+    "startDate": "2025-09-03T00:00:00.000Z",
+    "endDate": "2025-09-30T00:00:00.000Z",
+    "estimatedHours": 15,
+    "lessonCount": 20,
+    "coreCount": 14,
+    "extensionCount": 6,
+    "differentiationStrategies": {
+      "structure": "14 leçons essentielles, 6 extensions"
+    },
+    "culminatingTask": "Présentation scientifique"
+  },
+  "subject": "Sciences de la nature",
+  "expectations": [
+    {
+      "code": "S1",
+      "description": "Investigation scientifique"
+    },
+    {
+      "code": "S2",
+      "description": "Observation"
+    },
+    {
+      "code": "S3",
+      "description": "Documentation"
+    }
+  ]
+}

@@ -1,0 +1,805 @@
+{
+  "unitTitle": "Comparaison et ordonnancement",
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "title": "Découvrir plus et moins",
+      "oneGoal": "Les élèves comparent des collections de 2-5 objets en utilisant 'plus' et 'moins'",
+      "estimatedTime": "45 minutes",
+      "materials": ["Blocs de différentes couleurs", "Jetons", "Deux bols par élève", "Images de collections"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Chanson d'introduction avec gestes: 'Plus de ceci, moins de cela, comparer c'est rigolo!' Montrer ses mains: une avec beaucoup de doigts, une avec peu."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Jeu des bols magiques: Chaque élève a deux bols. Mettre 2 blocs dans un bol, 4 dans l'autre. Explorer en touchant, comptant. Répéter avec différentes quantités (3 vs 1, 5 vs 2).",
+        "visualSupports": "Affiches visuelles: sourire pour 'plus', visage triste pour 'moins'. Gestes: mains ouvertes largement pour 'plus', mains rapprochées pour 'moins'",
+        "tprElements": "Lever les bras haut pour 'plus', baisser les bras pour 'moins'. Marcher à grands pas pour 'plus', petits pas pour 'moins'",
+        "adaptations": "Objets de textures différentes pour élèves tactiles, collections très contrastées (2 vs 5) pour clarifier"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Cercle de partage: Chaque élève montre une collection avec 'plus' ou 'moins'. Chanson de fermeture: 'Plus ou moins, on a appris, bravo les amis!'"
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves comprennent-ils les termes plus et moins?",
+          "ifThen": "Si non, utiliser le langage corporel et les gestes plus expressifs. Si oui, introduire plus de variété dans les collections."
+        },
+        {
+          "situation": "Ont-ils besoin d'objets plus variés pour comparer?",
+          "ifThen": "Si oui, sortir les ours de comptage et perles colorées. Si non, continuer avec les blocs simples."
+        },
+        {
+          "situation": "Faut-il démontrer plus clairement la comparaison?",
+          "ifThen": "Si oui, aligner les objets côte à côte pour visualiser. Si non, laisser explorer librement."
+        }
+      ],
+      "whatWhenWrong": "Si confusion entre plus/moins: retourner aux gestes corporels et démonstrations visuelles claires. Si élèves distraits: varier les objets et introduire le mouvement.",
+      "keyVocabulary": ["plus", "moins", "collection"],
+      "realWorldConnection": "Comparer qui a plus de jouets, plus de crayons, moins de livres à la maison",
+      "progressionNote": "Première leçon - établit les concepts fondamentaux de comparaison avec de petites collections"
+    },
+    {
+      "lessonNumber": 2,
+      "title": "Aligner pour comparer",
+      "oneGoal": "Les élèves alignent des objets pour comparer visuellement des collections de 3-7 éléments",
+      "estimatedTime": "45 minutes",
+      "materials": ["Ours de comptage", "Tapis d'alignement", "Règles ou bandes de papier", "Jetons colorés"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Jeu d'alignement corporel: Les élèves se mettent en ligne par taille, puis comptent pour voir qui a 'plus' d'élèves dans chaque rangée formée."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Station d'alignement: Sur tapis, placer 4 ours rouges en ligne, puis 6 ours bleus en ligne parallèle. Observer, compter, comparer. Répéter avec d'autres quantités. Les élèves manipulent et créent leurs propres alignements.",
+        "visualSupports": "Tapis avec lignes tracées pour guider l'alignement. Flèches pointant vers les rangées pour diriger l'attention",
+        "tprElements": "Geste de 'tracer une ligne' avec l'index. Pointer alternativement chaque rangée en comptant",
+        "adaptations": "Lignes plus larges et colorées pour élèves ayant besoin de support visuel. Objets plus gros pour faciliter la manipulation"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Galerie d'alignements: Élèves font le tour pour admirer les alignements créés. Chacun explique sa comparaison avec 'plus' ou 'moins'."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves alignent-ils correctement les objets?",
+          "ifThen": "Si non, modéliser lentement et guider les mains. Si oui, les laisser expérimenter différents alignements."
+        },
+        {
+          "situation": "Comprennent-ils pourquoi on aligne?",
+          "ifThen": "Si non, montrer comparaison avec et sans alignement. Si oui, introduire des défis plus complexes."
+        },
+        {
+          "situation": "Ont-ils besoin de support pour organiser les objets?",
+          "ifThen": "Si oui, utiliser les tapis avec lignes guides. Si non, laisser organiser librement sur tables."
+        }
+      ],
+      "whatWhenWrong": "Si alignements désordonnés: revenir à la démonstration guidée. Si perte d'attention: introduire des objets plus colorés ou permettre plus de mouvement.",
+      "keyVocabulary": ["aligner", "voir", "comparer"],
+      "realWorldConnection": "Aligner les chaussettes par paires, comparer les rangées de plantes dans un jardin",
+      "progressionNote": "Builds on Lesson 1 by introducing visual alignment strategy for comparison"
+    },
+    {
+      "lessonNumber": 3,
+      "title": "Grand et petit avec nos mains",
+      "oneGoal": "Les élèves comparent la taille d'objets en utilisant 'grand' et 'petit'",
+      "estimatedTime": "45 minutes",
+      "materials": ["Objets de tailles variées (blocs, livres, jouets)", "Boîtes de différentes tailles", "Images d'animaux"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Chanson des tailles avec mouvements: 'Grand comme un éléphant' (bras levés), 'Petit comme une souris' (accroupi). Répéter avec différents animaux."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Centre d'exploration des tailles: Tables avec objets variés. Élèves touchent, soupèsent, comparent. Créer des paires 'grand/petit' avec même type d'objet (grand livre/petit livre). Utiliser les mains pour 'mesurer' et comparer.",
+        "visualSupports": "Affiches d'animaux grands et petits. Gestes: bras écartés pour 'grand', mains rapprochées pour 'petit'",
+        "tprElements": "S'étirer haut pour 'grand', se recroqueviller pour 'petit'. Écarter les bras largement vs. serrer les bras",
+        "adaptations": "Objets avec différences de taille très marquées. Permettre comparaison tactile pour élèves ayant des difficultés visuelles"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Défilé des tailles: Élèves choisissent un objet grand et un petit, défilent en montrant la différence aux amis."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves distinguent-ils quantité et taille?",
+          "ifThen": "Si non, utiliser objets identiques en quantité mais différents en taille. Si oui, mélanger quantité et taille pour défis."
+        },
+        {
+          "situation": "Ont-ils besoin d'objets de tailles plus contrastées?",
+          "ifThen": "Si oui, utiliser très gros vs très petits objets. Si non, introduire tailles plus nuancées."
+        },
+        {
+          "situation": "Comprennent-ils qu'on peut comparer la taille?",
+          "ifThen": "Si non, revenir aux démonstrations corporelles. Si oui, introduire comparaisons plus subtiles."
+        }
+      ],
+      "whatWhenWrong": "Si confusion taille/quantité: séparer clairement les deux concepts avec exemples distincts. Si difficultés de vocabulaire: utiliser plus de gestes et expressions corporelles.",
+      "keyVocabulary": ["grand", "petit", "taille"],
+      "realWorldConnection": "Comparer la taille des animaux, des fruits, des jouets à la maison",
+      "progressionNote": "Builds on Lesson 2 by introducing size comparison alongside quantity comparison"
+    },
+    {
+      "lessonNumber": 4,
+      "title": "Jeux de comparaison",
+      "oneGoal": "Les élèves pratiquent plus/moins et grand/petit avec des jeux de cartes simples",
+      "estimatedTime": "45 minutes",
+      "materials": ["Cartes avec points (1-7)", "Cartes d'images d'objets de tailles différentes", "Sablier 30 secondes", "Jetons de récompense"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Échauffement de comparaison: Montrer deux cartes, élèves lèvent la main droite pour 'plus' et gauche pour 'moins'. Démarrer lentement, accélérer graduellement."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Jeu 'Bataille de comparaison': En paires, chaque élève retourne une carte. Celui qui a 'plus' garde les deux cartes. Variante taille: comparer les objets sur les cartes pour 'grand' vs 'petit'. Rotation des partenaires à mi-parcours.",
+        "visualSupports": "Affiches des règles du jeu avec images. Signaux visuels pour 'gagner' (pouce en l'air) et 'égalité' (mains plates)",
+        "tprElements": "Applaudir pour victoire, hausser les épaules pour égalité. Gestes de célébration pour maintenir l'engagement",
+        "adaptations": "Cartes avec symboles plus gros pour élèves ayant des difficultés visuelles. Assistant pour élèves ayant besoin de support pour les règles"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Cercle de célébration: Chaque élève partage son moment préféré du jeu. Chanson: 'Jouer et comparer, c'est amusant!'"
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves sont-ils engagés dans le jeu?",
+          "ifThen": "Si non, changer les partenaires ou ajouter plus de mouvement. Si oui, introduire variantes plus complexes."
+        },
+        {
+          "situation": "Comprennent-ils les règles de comparaison?",
+          "ifThen": "Si non, revenir à la démonstration lente avec un partenaire. Si oui, laisser jouer de façon autonome."
+        },
+        {
+          "situation": "Le jeu va-t-il trop vite pour certains?",
+          "ifThen": "Si oui, éliminer le sablier et permettre plus de temps. Si non, maintenir le rythme énergique."
+        }
+      ],
+      "whatWhenWrong": "Si disputes sur les règles: arrêter, clarifier avec tout le groupe. Si élèves frustrés: rappeler que l'objectif est d'apprendre en s'amusant.",
+      "keyVocabulary": ["jeu", "carte", "gagner"],
+      "realWorldConnection": "Jouer aux cartes en famille, comparer les scores dans les jeux",
+      "progressionNote": "Builds on Lesson 3 by applying comparison skills in engaging game format"
+    },
+    {
+      "lessonNumber": 5,
+      "title": "Ordre croissant avec 3 objets",
+      "oneGoal": "Les élèves placent 3 collections en ordre du plus petit au plus grand",
+      "estimatedTime": "45 minutes",
+      "materials": ["Trois groupes de blocs (2, 4, 6 blocs)", "Images séquentielles", "Flèches directionnelles", "Ours de comptage"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Alignement physique: Trois élèves se placent en ordre de taille devant la classe. Les autres observent et commentent l'ordre 'petit, moyen, grand'."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Station d'ordonnancement: Présenter 3 collections mélangées (2 ours, 6 ours, 4 ours). Élèves les placent en ordre croissant en utilisant leurs mains pour vérifier. Répéter avec différentes combinaisons. Utiliser flèches pour montrer la direction 'croissant'.",
+        "visualSupports": "Ligne numérique 1-6 affichée. Flèches montrant direction croissante. Images séquentielles pour modéliser",
+        "tprElements": "Geste de la main montant graduellement. Marcher en escalier imaginaire pour montrer 'croissant'",
+        "adaptations": "Commencer avec seulement 2 collections pour élèves ayant des difficultés. Objets de couleurs distinctes pour faciliter l'organisation"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Parade ordonnée: Élèves présentent leurs arrangements en expliquant 'petit, moyen, grand' ou 'moins, plus, beaucoup'."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves comprennent-ils l'ordre croissant?",
+          "ifThen": "Si non, démontrer avec objets physiques (élèves, livres). Si oui, introduire 4 collections à ordonner."
+        },
+        {
+          "situation": "Ont-ils besoin de plus de modélisation?",
+          "ifThen": "Si oui, refaire la démonstration étape par étape. Si non, les laisser explorer différentes collections."
+        },
+        {
+          "situation": "Faut-il commencer avec seulement 2 objets?",
+          "ifThen": "Si oui, maîtriser 'petit vs grand' d'abord. Si non, procéder avec les 3 collections."
+        }
+      ],
+      "whatWhenWrong": "Si élèves mélangent l'ordre: revenir aux objets très contrastés et utiliser plus de gestes directionnels. Si confusion: utiliser escalier physique pour démontrer.",
+      "keyVocabulary": ["ordre", "premier", "dernier"],
+      "realWorldConnection": "Ranger les chaussures par taille, ordonner les livres par hauteur",
+      "progressionNote": "Builds on Lesson 4 by introducing basic ordering concept with manageable quantities"
+    },
+    {
+      "lessonNumber": 6,
+      "title": "Construire des tours de comparaison",
+      "oneGoal": "Les élèves construisent des tours de différentes hauteurs et les ordonnent",
+      "estimatedTime": "45 minutes",
+      "materials": ["Blocs de construction identiques", "Règles ou bandes de mesure", "Appareil photo pour documenter", "Graphique de hauteurs"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Réveil des constructeurs: Mimer la construction d'une tour en empilant des blocs imaginaires, commencer petit et grandir progressivement avec sons 'ding!' à chaque bloc."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Atelier de construction: En équipes de 2, construire 3 tours: une petite (2-3 blocs), une moyenne (4-5 blocs), une grande (6-8 blocs). Les placer en ordre de hauteur. Comparer avec autres équipes. Documenter avec photos.",
+        "visualSupports": "Exemples de tours photographiées en ordre. Graphique montrant progression des hauteurs",
+        "tprElements": "Gestes d'empilement. Pointer vers le haut pour 'haut', vers le bas pour 'bas'. Célébrer les réussites avec applaudissements",
+        "adaptations": "Blocs plus gros et stables pour élèves ayant des difficultés de motricité fine. Assistance pour stabiliser les tours"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Galerie des tours: Tour de classe pour admirer les créations. Chaque équipe explique son ordre de hauteur."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves construisent-ils des tours stables?",
+          "ifThen": "Si non, fournir plus d'aide technique et blocs plus larges. Si oui, encourager tours plus créatives."
+        },
+        {
+          "situation": "Voient-ils clairement les différences de hauteur?",
+          "ifThen": "Si non, créer des différences plus marquées (2 vs 8 blocs). Si oui, permettre différences plus subtiles."
+        },
+        {
+          "situation": "Ont-ils besoin de blocs plus uniformes?",
+          "ifThen": "Si oui, utiliser blocs tous identiques. Si non, permettre variété de formes pour créativité."
+        }
+      ],
+      "whatWhenWrong": "Si tours s'effondrent: rassurer et encourager reconstruction. Si frustrations: offrir aide technique et blocs plus stables.",
+      "keyVocabulary": ["tour", "haut", "bas"],
+      "realWorldConnection": "Comparer la hauteur des bâtiments, des arbres, des membres de la famille",
+      "progressionNote": "Builds on Lesson 5 by using hands-on construction to explore ordering"
+    },
+    {
+      "lessonNumber": 7,
+      "title": "Ordre décroissant - du grand au petit",
+      "oneGoal": "Les élèves ordonnent 3-4 collections du plus grand au plus petit",
+      "estimatedTime": "45 minutes",
+      "materials": ["Collections variées (3, 5, 7, 9 objets)", "Flèches pointant vers le bas", "Images de séquences décroissantes", "Tapis d'organisation"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Danse décroissante: Commencer debout avec bras levés (grand), graduellement s'accroupir (moyen), finir assis (petit). Répéter avec musique."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Défi décroissant: Présenter 4 collections mélangées (9, 3, 7, 5 objets). Élèves les ordonnent de 'beaucoup' à 'peu'. Utiliser flèches descendantes pour guider. Comparer avec ordre croissant fait précédemment.",
+        "visualSupports": "Flèches pointant vers le bas colorées. Exemples visuels d'ordre décroissant (escalier descendant)",
+        "tprElements": "Geste de la main descendant graduellement. Compter à rebours avec doigts. Sons décroissants",
+        "adaptations": "Commencer avec seulement 3 collections très contrastées. Utiliser couleurs distinctes pour chaque collection"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Présentation décroissante: Élèves montrent leur ordre en comptant à rebours 'beaucoup, moyen, peu, rien' avec gestes."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves comprennent-ils l'ordre inverse?",
+          "ifThen": "Si non, contraster clairement avec ordre croissant vu avant. Si oui, mélanger les deux types d'ordre."
+        },
+        {
+          "situation": "Confondent-ils croissant et décroissant?",
+          "ifThen": "Si oui, utiliser plus de gestes directionnels et exemples physiques. Si non, introduire choix libre d'ordre."
+        },
+        {
+          "situation": "Ont-ils besoin de gestes pour comprendre?",
+          "ifThen": "Si oui, exagérer les mouvements corporels et sons. Si non, se concentrer sur manipulation d'objets."
+        }
+      ],
+      "whatWhenWrong": "Si confusion entre croissant/décroissant: utiliser exemples très physiques (escalier, pente). Si difficultés: revenir à 2 collections seulement.",
+      "keyVocabulary": ["décroissant", "diminuer", "plus petit"],
+      "realWorldConnection": "Ranger du plus gros au plus petit fruit, organiser les vêtements par taille",
+      "progressionNote": "Builds on Lesson 6 by introducing reverse ordering concept"
+    },
+    {
+      "lessonNumber": 8,
+      "title": "Comparer avec les nombres 1-10",
+      "oneGoal": "Les élèves comparent des groupes d'objets en comptant jusqu'à 10",
+      "estimatedTime": "45 minutes",
+      "materials": ["Jetons colorés", "Cartes numériques 1-10", "Tapis de comptage", "Dés à 10 faces"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Comptage rythmé: Compter de 1 à 10 en tapant des mains, puis de 10 à 1. Associer chaque nombre à un geste corporel."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Station numériques: Créer collections de 3, 7, et 5 jetons. Compter chaque collection, associer à carte numérique correspondante. Ordonner les cartes, puis vérifier en comparant les collections. Répéter avec nouvelles quantités tirées aux dés.",
+        "visualSupports": "Ligne numérique 1-10 affichée. Cartes numériques colorées avec points correspondants",
+        "tprElements": "Compter sur les doigts. Pointer chaque objet en comptant. Célébrer avec applaudissements à chaque compte réussi",
+        "adaptations": "Commencer avec nombres 1-5 pour élèves ayant des difficultés. Objets plus gros pour faciliter le comptage"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Défi numérique: Enseignant montre un nombre, élèves créent rapidement une collection correspondante et la comparent à leur voisin."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves comptent-ils correctement?",
+          "ifThen": "Si non, revenir au comptage guidé un-à-un. Si oui, introduire comptage par bonds de 2."
+        },
+        {
+          "situation": "Associent-ils le comptage à la comparaison?",
+          "ifThen": "Si non, démontrer explicitement lien nombre-quantité. Si oui, introduire comparaisons plus complexes."
+        },
+        {
+          "situation": "Ont-ils besoin de réviser le comptage d'abord?",
+          "ifThen": "Si oui, faire plus d'activités de comptage pur. Si non, se concentrer sur la comparaison."
+        }
+      ],
+      "whatWhenWrong": "Si erreurs de comptage: ralentir et pointer chaque objet clairement. Si confusion nombre/quantité: utiliser plus d'objets concrets.",
+      "keyVocabulary": ["compter", "combien", "nombre"],
+      "realWorldConnection": "Compter et comparer les bonbons, les autocollants, les jouets",
+      "progressionNote": "Builds on Lesson 7 by connecting counting skills to comparison"
+    },
+    {
+      "lessonNumber": 9,
+      "title": "Dessiner pour comparer",
+      "oneGoal": "Les élèves dessinent des collections pour montrer plus, moins et égal",
+      "estimatedTime": "45 minutes",
+      "materials": ["Papier grand format", "Crayons colorés", "Modèles de dessins", "Objets de référence"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Dessin dans l'air: Dessiner des collections invisibles dans l'air en comptant. Commencer par 3 cercles, puis 5, puis montrer qu'ils sont différents."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Atelier d'illustration: Dessiner 3 collections différentes sur papier. Une avec 4 étoiles, une avec 4 cœurs (égal), une avec 7 triangles (plus). Utiliser objets concrets comme référence. Comparer avec partenaire et expliquer.",
+        "visualSupports": "Exemples de dessins simples affichés. Modèles de formes de base (cercle, carré, triangle)",
+        "tprElements": "Gestes de dessin dans l'air. Montrer 'égal' avec mains parallèles, 'plus' et 'moins' avec gestes connus",
+        "adaptations": "Pochoirs pour élèves ayant des difficultés de motricité fine. Autoriser collage d'autocollants au lieu de dessins"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Galerie d'art mathématique: Afficher les dessins, élèves visitent et identifient les comparaisons dans chaque œuvre."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves dessinent-ils clairement?",
+          "ifThen": "Si non, permettre formes simples ou autocollants. Si oui, encourager plus de détails créatifs."
+        },
+        {
+          "situation": "Comprennent-ils le concept d'égalité?",
+          "ifThen": "Si non, démontrer avec objets identiques côte à côte. Si oui, introduire égalités plus complexes."
+        },
+        {
+          "situation": "Leurs dessins reflètent-ils la quantité voulue?",
+          "ifThen": "Si non, compter ensemble en pointant chaque dessin. Si oui, encourager vérification autonome."
+        }
+      ],
+      "whatWhenWrong": "Si dessins peu clairs: accepter toute tentative et compter ensemble. Si frustration avec dessin: offrir alternatives (autocollants, tampons).",
+      "keyVocabulary": ["dessiner", "égal", "pareil"],
+      "realWorldConnection": "Dessiner des collections égales, illustrer des comparaisons",
+      "progressionNote": "Builds on Lesson 8 by introducing visual representation and equality concept"
+    },
+    {
+      "lessonNumber": 10,
+      "title": "Égal ou différent?",
+      "oneGoal": "Les élèves identifient des collections égales et expliquent leur raisonnement",
+      "estimatedTime": "45 minutes",
+      "materials": ["Plateaux de balance", "Objets identiques (cubes, jetons)", "Cartes 'égal' et 'différent'", "Étiquettes visuelles"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Balance humaine: Deux élèves tiennent même nombre d'objets, se balancent d'avant en arrière pour montrer 'équilibre'. Essayer avec nombres différents."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Centre de balance: Utiliser vraies balances avec objets. Placer 5 cubes d'un côté, essayer différentes quantités de l'autre côté jusqu'à équilibre. Découvrir que 5=5. Tester d'autres égalités. Utiliser cartes pour identifier 'égal' ou 'différent'.",
+        "visualSupports": "Affiches montrant balance équilibrée = égal, déséquilibrée = différent. Symboles visuels pour égalité",
+        "tprElements": "Mimer balance avec bras. Hocher la tête pour 'égal', secouer pour 'différent'. Applaudir pour découvertes",
+        "adaptations": "Balances plus simples ou support pour manipulation. Commencer avec très petites quantités (2-3 objets)"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Concours d'égalité: Élèves créent rapidement des collections égales et vérifient avec partenaire. Célébrer toutes les réussites."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves voient-ils quand les quantités sont égales?",
+          "ifThen": "Si non, utiliser objets identiques alignés parfaitement. Si oui, introduire arrangements différents mais égaux."
+        },
+        {
+          "situation": "Peuvent-ils expliquer leur raisonnement?",
+          "ifThen": "Si non, modéliser langage simple 'même nombre'. Si oui, encourager explications plus détaillées."
+        },
+        {
+          "situation": "Ont-ils besoin de stratégies de vérification?",
+          "ifThen": "Si oui, enseigner comptage un-à-un ou alignement. Si non, laisser développer leurs propres méthodes."
+        }
+      ],
+      "whatWhenWrong": "Si difficultés avec égalité: revenir aux objets très concrets et identiques. Si confusion: utiliser plus d'exemples visuels avec balances.",
+      "keyVocabulary": ["égal", "même", "différent"],
+      "realWorldConnection": "Partager équitablement les collations, vérifier des portions égales",
+      "progressionNote": "Builds on Lesson 9 by developing deeper understanding of equality"
+    },
+    {
+      "lessonNumber": 11,
+      "title": "Comparer jusqu'à 15",
+      "oneGoal": "Les élèves comparent des ensembles d'objets allant jusqu'à 15 éléments",
+      "estimatedTime": "45 minutes",
+      "materials": ["Grandes collections d'objets", "Bacs de tri", "Cartes numériques jusqu'à 15", "Compteurs à grouper par 5"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Compte géant: Compter tous ensemble jusqu'à 15 en utilisant voix forte et gestes expressifs. Chaque multiple de 5, faire pause et applaudir."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Défi des grandes collections: Présenter bacs avec 8, 12, et 15 objets. Élèves comptent en groupant par 5 (comme doigts d'une main). Comparer les quantités et les ordonner. Vérifier en recomptant. Créer leurs propres grandes collections.",
+        "visualSupports": "Modèles de groupement par 5 affichés. Ligne numérique jusqu'à 15 avec marques aux multiples de 5",
+        "tprElements": "Compter par groupes de 5 en montrant mains. Gestes de 'beaucoup' pour grandes quantités",
+        "adaptations": "Commencer avec nombres plus petits si difficultés. Objets colorés pour faciliter groupement par 5"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Parade des grandes collections: Chaque groupe présente sa plus grande collection et explique comment ils l'ont comptée."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves gèrent-ils les plus grandes quantités?",
+          "ifThen": "Si non, réduire à 10-12 objets maximum. Si oui, introduire jusqu'à 20 objets."
+        },
+        {
+          "situation": "Utilisent-ils des stratégies de groupement?",
+          "ifThen": "Si non, modéliser groupement par 5 explicitement. Si oui, permettre leurs propres stratégies."
+        },
+        {
+          "situation": "Ont-ils besoin de plus de temps pour compter?",
+          "ifThen": "Si oui, permettre plus de temps et support. Si non, introduire défis de vitesse."
+        }
+      ],
+      "whatWhenWrong": "Si perte de compte: encourager recommencer et grouper. Si surcharge: réduire quantités et se concentrer sur stratégies.",
+      "keyVocabulary": ["beaucoup", "plusieurs", "grouper"],
+      "realWorldConnection": "Comparer des collections de crayons, de livres, d'objets en classe",
+      "progressionNote": "Builds on Lesson 10 by extending to larger quantities requiring new strategies"
+    },
+    {
+      "lessonNumber": 12,
+      "title": "Régularités dans l'ordre",
+      "oneGoal": "Les élèves créent et continuent des séquences ordonnées simples",
+      "estimatedTime": "45 minutes",
+      "materials": ["Objets de tailles graduées", "Blocs de couleurs", "Cartes de séquences", "Autocollants variés"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Séquence corporelle: Faire séquence 'petit-moyen-grand' avec positions du corps. Répéter plusieurs fois, puis demander aux élèves de prédire la suivante."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Atelier de séquences: Créer séquences avec objets (petit bloc, moyen bloc, grand bloc, petit bloc...). Élèves continuent la séquence et expliquent la règle. Créer leurs propres séquences pour que partenaires devinent la suite.",
+        "visualSupports": "Exemples de séquences affichés avec flèches montrant progression. Cartes aide-mémoire pour types de séquences",
+        "tprElements": "Gestes répétitifs pour montrer séquences. Pointer en rythme pour souligner régularités",
+        "adaptations": "Séquences plus courtes et simples pour débuter. Objets très contrastés pour faciliter reconnaissance"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Défilé de séquences: Élèves présentent leurs créations en expliquant la règle. Classe essaie de continuer chaque séquence."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves voient-ils la régularité?",
+          "ifThen": "Si non, utiliser séquences plus simples avec 2 éléments seulement. Si oui, introduire séquences plus complexes."
+        },
+        {
+          "situation": "Peuvent-ils prédire le suivant?",
+          "ifThen": "Si non, guider en pointant chaque élément. Si oui, les laisser créer leurs propres séquences."
+        },
+        {
+          "situation": "La séquence est-elle trop complexe?",
+          "ifThen": "Si oui, simplifier à AB AB AB. Si non, essayer ABC ABC ABC."
+        }
+      ],
+      "whatWhenWrong": "Si confusion avec régularités: revenir à séquences très simples et répétitives. Si perte d'attention: introduire mouvement et musique.",
+      "keyVocabulary": ["séquence", "continuer", "suivant"],
+      "realWorldConnection": "Continuer des motifs de taille, compléter des séries d'objets",
+      "progressionNote": "Builds on Lesson 11 by introducing pattern recognition in ordered sequences"
+    },
+    {
+      "lessonNumber": 13,
+      "title": "Ordonner 5 objets différents",
+      "oneGoal": "Les élèves ordonnent 5 collections ou objets selon différents critères",
+      "estimatedTime": "45 minutes",
+      "materials": ["5 collections d'objets variés", "Objets de 5 tailles différentes", "Critères visuels", "Tapis d'organisation"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "File indienne à 5: Cinq élèves se placent en ordre de taille. Autres observent et commentent. Réorganiser selon d'autres critères (âge, longueur des cheveux)."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Défi des 5 éléments: Présenter 5 collections mélangées (2, 5, 8, 3, 7 objets). Élèves les ordonnent de plus petit à plus grand. Répéter avec 5 objets de tailles différentes. Essayer ordre décroissant. Créer leurs propres défis à 5 éléments.",
+        "visualSupports": "Exemples d'ordres à 5 éléments affichés. Numéros 1-5 pour marquer positions",
+        "tprElements": "Compter sur une main pour 5 éléments. Gestes pour montrer progression croissante ou décroissante",
+        "adaptations": "Commencer avec 4 éléments si difficultés. Utiliser couleurs très distinctes pour faciliter organisation"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Exposition des 5: Chaque groupe affiche son ordre de 5 éléments et explique son critère d'organisation."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves comprennent-ils le critère choisi?",
+          "ifThen": "Si non, clarifier avec exemples concrets. Si oui, laisser choisir leurs propres critères."
+        },
+        {
+          "situation": "Peuvent-ils ordonner 5 éléments?",
+          "ifThen": "Si non, réduire à 4 éléments temporairement. Si oui, introduire défis avec 6 éléments."
+        },
+        {
+          "situation": "Ont-ils besoin d'aide pour maintenir l'ordre?",
+          "ifThen": "Si oui, utiliser emplacements numérotés sur tapis. Si non, laisser organiser librement."
+        }
+      ],
+      "whatWhenWrong": "Si désorganisation: fournir supports visuels plus clairs (emplacements marqués). Si frustration: commencer avec moins d'éléments.",
+      "keyVocabulary": ["critère", "organiser", "classer"],
+      "realWorldConnection": "Classer les livres par taille, organiser les ustensiles par longueur",
+      "progressionNote": "Builds on Lesson 12 by managing more complex ordering tasks"
+    },
+    {
+      "lessonNumber": 14,
+      "title": "Problèmes de comparaison",
+      "oneGoal": "Les élèves résolvent des problèmes simples nécessitant des comparaisons",
+      "estimatedTime": "45 minutes",
+      "materials": ["Cartes de problèmes illustrées", "Objets pour résoudre", "Tableaux de solutions", "Jetons de récompense"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Histoire-problème collective: 'Marie a 3 pommes, Jean a 5 pommes. Qui en a plus?' Résoudre ensemble avec objets concrets et gestes."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Centre de résolution: Stations avec problèmes illustrés simples. Ex: 'Pour faire des équipes égales pour un jeu, combien d'enfants dans chaque équipe?' Utiliser objets pour tester solutions. Expliquer raisonnement à partenaire.",
+        "visualSupports": "Cartes-problèmes avec images claires. Étapes de résolution affichées: lire, manipuler, vérifier, expliquer",
+        "tprElements": "Mimer les actions des problèmes. Utiliser gestes pour 'plus', 'moins', 'égal' en expliquant",
+        "adaptations": "Problèmes avec nombres plus petits pour élèves ayant des difficultés. Images très explicites pour clarifier situations"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Partage de solutions: Élèves présentent un problème résolu et expliquent leur démarche. Célébrer toutes les stratégies."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves comprennent-ils le problème posé?",
+          "ifThen": "Si non, relire ensemble et mimer la situation. Si oui, les laisser résoudre de façon autonome."
+        },
+        {
+          "situation": "Utilisent-ils les bonnes stratégies de comparaison?",
+          "ifThen": "Si non, rappeler strategies apprises (alignement, comptage). Si oui, encourager nouvelles stratégies."
+        },
+        {
+          "situation": "Ont-ils besoin d'objets concrets pour résoudre?",
+          "ifThen": "Si oui, fournir manipulatives variées. Si non, encourager visualisation mentale."
+        }
+      ],
+      "whatWhenWrong": "Si blocage sur problèmes: simplifier le langage et utiliser plus d'images. Si erreurs: encourager vérification avec objets concrets.",
+      "keyVocabulary": ["problème", "solution", "résoudre"],
+      "realWorldConnection": "Résoudre qui a besoin de plus de matériel, partager équitablement",
+      "progressionNote": "Builds on Lesson 13 by applying comparison skills to problem-solving"
+    },
+    {
+      "lessonNumber": 15,
+      "title": "Comparer jusqu'à 20",
+      "oneGoal": "Les élèves comparent efficacement des ensembles allant jusqu'à 20 éléments",
+      "estimatedTime": "45 minutes",
+      "materials": ["Grandes collections d'objets", "Compteurs groupés par 10", "Cartes numériques jusqu'à 20", "Chronomètre"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Compte collectif jusqu'à 20: Tous ensemble, compter jusqu'à 20 en applaudissant aux multiples de 10. Répéter en utilisant différentes parties du corps."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Maîtrise des 20: Présenter collections de 13, 18, et 16 objets. Élèves développent stratégies efficaces (grouper par 10 et 5). Comparer rapidement en utilisant leurs stratégies. Créer défis chronométrés pour développer fluence.",
+        "visualSupports": "Modèles de groupement par 10 affichés. Ligne numérique jusqu'à 20 avec repères visuels",
+        "tprElements": "Utiliser deux mains pour montrer groupes de 10. Compter par bonds avec mouvements rythmés",
+        "adaptations": "Permettre plus de temps pour élèves ayant des difficultés. Objets pré-groupés pour faciliter comptage"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Célébration des 20: Élèves partagent leurs stratégies préférées pour comparer de grandes quantités. Applaudir les progrès."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves ont-ils des stratégies efficaces?",
+          "ifThen": "Si non, enseigner explicitement groupement par 10. Si oui, encourager raffiner leurs méthodes."
+        },
+        {
+          "situation": "Gèrent-ils bien les quantités de 20?",
+          "ifThen": "Si non, réduire temporairement à 15. Si oui, introduire défis jusqu'à 25."
+        },
+        {
+          "situation": "Utilisent-ils le groupement par 5 ou 10?",
+          "ifThen": "Si non, modéliser avec objets concrets. Si oui, encourager flexibilité entre stratégies."
+        }
+      ],
+      "whatWhenWrong": "Si surcharge cognitive: réduire quantités et se concentrer sur stratégies. Si erreurs de comptage: revenir aux groupements plus petits.",
+      "keyVocabulary": ["efficace", "stratégie", "rapidement"],
+      "realWorldConnection": "Comparer de grandes collections d'autocollants, de cartes, de jetons",
+      "progressionNote": "Builds on Lesson 14 by reaching curriculum goal of comparing up to 20 elements"
+    },
+    {
+      "lessonNumber": 16,
+      "title": "Course aux comparaisons",
+      "oneGoal": "Les élèves participent à des jeux de comparaison rapide et précise",
+      "estimatedTime": "45 minutes",
+      "materials": ["Cartes de collections variées", "Chronomètre", "Tableaux de scores", "Médailles de participation"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Échauffement de vitesse: Montrer rapidement deux cartes, élèves lèvent main droite pour 'plus' ou gauche pour 'moins'. Commencer lentement, accélérer."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Olympiades de comparaison: Stations avec jeux chronométrés: comparaison rapide de cartes, course d'ordonnancement, défis d'égalité. Élèves tournent entre stations. Emphase sur précision avant vitesse. Encouragements constants.",
+        "visualSupports": "Instructions visuelles à chaque station. Tableaux pour noter participation (non compétition)",
+        "tprElements": "Célébrations après chaque réussite. Gestes d'encouragement entre élèves",
+        "adaptations": "Temps supplémentaire pour élèves ayant besoin. Focus sur participation plutôt que vitesse"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Cérémonie de célébration: Tous reçoivent médaille de participation. Partager moments préférés des jeux."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves maintiennent-ils la précision en vitesse?",
+          "ifThen": "Si non, ralentir le rythme et rappeler l'importance de la précision. Si oui, maintenir défis chronométrés."
+        },
+        {
+          "situation": "Le jeu est-il trop compétitif?",
+          "ifThen": "Si oui, emphasizer participation et effort. Si non, ajouter éléments de défi amusant."
+        },
+        {
+          "situation": "Certains ont-ils besoin de plus de temps?",
+          "ifThen": "Si oui, créer station 'temps libre' sans chronomètre. Si non, maintenir rythme énergique."
+        }
+      ],
+      "whatWhenWrong": "Si stress de performance: rassurer que l'objectif est s'amuser en apprenant. Si frustrations: ajuster difficultés et offrir plus de support.",
+      "keyVocabulary": ["rapide", "précis", "course"],
+      "realWorldConnection": "Jeux familiaux de comparaison, défis amusants avec les amis",
+      "progressionNote": "Extension: Develops fluency and speed in comparison skills"
+    },
+    {
+      "lessonNumber": 17,
+      "title": "Art ordonné - créations séquentielles",
+      "oneGoal": "Les élèves créent des œuvres d'art utilisant des séquences ordonnées",
+      "estimatedTime": "45 minutes",
+      "materials": ["Matériel artistique varié", "Objets de tailles graduées", "Exemples d'art séquentiel", "Supports de présentation"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Inspiration artistique: Observer exemples d'art utilisant séquences (escaliers, spirales, gradations). Discuter ce qu'on remarque dans les ordres."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Atelier créatif: Créer œuvres d'art incorporant séquences ordonnées. Options: collage avec formes graduées, peinture avec couleurs progressives, sculpture avec objets croissants. Expliquer choix artistiques liés aux séquences.",
+        "visualSupports": "Exemples d'art séquentiel affichés. Modèles de techniques artistiques simples",
+        "tprElements": "Gestes créatifs pour inspiration. Mouvements artistiques pour exprimer séquences",
+        "adaptations": "Matériel pré-découpé pour élèves ayant des difficultés de motricité fine. Assistance pour manipulation d'outils"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Vernissage artistique: Exposer créations, élèves expliquent leurs séquences artistiques. Admirer diversité créative."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves intègrent-ils l'ordre dans leur art?",
+          "ifThen": "Si non, suggérer idées concrètes (tailles croissantes). Si oui, encourager exploration libre."
+        },
+        {
+          "situation": "Sont-ils créatifs avec les séquences?",
+          "ifThen": "Si non, offrir plus d'exemples et inspiration. Si oui, laisser expression totalement libre."
+        },
+        {
+          "situation": "Le matériel artistique est-il varié?",
+          "ifThen": "Si non, ajouter plus d'options créatives. Si oui, laisser choisir selon préférences."
+        }
+      ],
+      "whatWhenWrong": "Si blocage créatif: offrir suggestions simples et encourager expérimentation. Si perfectionnisme: rappeler que l'exploration est l'objectif.",
+      "keyVocabulary": ["création", "artistique", "séquentiel"],
+      "realWorldConnection": "Créer des motifs ordonnés, décorer avec des séquences",
+      "progressionNote": "Extension: Integrates comparison and ordering into creative expression"
+    },
+    {
+      "lessonNumber": 18,
+      "title": "Enquête de comparaison dans l'école",
+      "oneGoal": "Les élèves explorent l'école pour trouver et comparer différents objets",
+      "estimatedTime": "45 minutes",
+      "materials": ["Carnets d'enquête", "Crayons", "Appareils photo", "Listes de vérification", "Cartes des lieux"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Briefing d'enquêteurs: Expliquer mission de trouver objets à comparer dans l'école. Réviser règles de sécurité et comportement respectueux."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Expédition comparative: En petits groupes, explorer différentes zones de l'école. Trouver objets de tailles différentes, collections à comparer, séquences naturelles. Documenter découvertes dans carnets. Photographier exemples intéressants.",
+        "visualSupports": "Cartes simples des zones à explorer. Exemples de ce qu'on cherche (grand/petit, plus/moins)",
+        "tprElements": "Gestes discrets pour communication silencieuse. Signaux pour partager découvertes",
+        "adaptations": "Groupes plus petits pour élèves ayant besoin de plus de support. Assistant accompagnateur si nécessaire"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Rapport d'enquête: Retour en classe, chaque groupe partage sa découverte la plus intéressante. Créer affichage collectif."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves peuvent-ils se déplacer en sécurité?",
+          "ifThen": "Si non, limiter à certaines zones ou ajouter supervision. Si oui, permettre exploration plus large."
+        },
+        {
+          "situation": "Trouvent-ils des objets intéressants à comparer?",
+          "ifThen": "Si non, donner indices plus spécifiques. Si oui, encourager documentation détaillée."
+        },
+        {
+          "situation": "Documentent-ils leurs découvertes?",
+          "ifThen": "Si non, rappeler l'importance et aider avec l'écriture. Si oui, encourager descriptions détaillées."
+        }
+      ],
+      "whatWhenWrong": "Si comportement inapproprié: rappeler règles et ajuster supervision. Si peu de découvertes: donner indices plus directs.",
+      "keyVocabulary": ["enquête", "explorer", "découvrir"],
+      "realWorldConnection": "Comparer les objets dans différents environnements",
+      "progressionNote": "Extension: Applies skills in authentic exploration context"
+    },
+    {
+      "lessonNumber": 19,
+      "title": "Histoires de comparaison",
+      "oneGoal": "Les élèves inventent des histoires mettant en scène des comparaisons",
+      "estimatedTime": "45 minutes",
+      "materials": ["Cartes de personnages", "Objets pour inspiration", "Supports de narration", "Matériel d'enregistrement"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Histoire exemple: Raconter histoire simple impliquant comparaisons ('Trois ours et leurs bols de différentes tailles'). Identifier éléments de comparaison."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Atelier de narration: En paires, créer histoires originales avec comparaisons. Utiliser cartes de personnages et objets comme inspiration. Répéter histoires plusieurs fois pour les perfectionner. Enregistrer versions finales si possible.",
+        "visualSupports": "Structure d'histoire affichée (début, milieu, fin). Banque de mots de comparaison disponible",
+        "tprElements": "Gestes narratifs pour accompagner histoires. Expressions faciales pour personnages",
+        "adaptations": "Amorces d'histoire pour élèves ayant besoin d'aide. Permettre histoires très courtes pour débutants"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Théâtre d'histoires: Quelques groupes présentent leurs histoires à la classe. Applaudir créativité et comparaisons intégrées."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves créent-ils des histoires cohérentes?",
+          "ifThen": "Si non, offrir structure plus guidée. Si oui, encourager ajout de détails créatifs."
+        },
+        {
+          "situation": "Intègrent-ils naturellement les comparaisons?",
+          "ifThen": "Si non, suggérer moments où ajouter comparaisons. Si oui, laisser créativité libre."
+        },
+        {
+          "situation": "Ont-ils besoin d'amorces d'histoire?",
+          "ifThen": "Si oui, fournir débuts d'histoires ou personnages. Si non, encourager invention complète."
+        }
+      ],
+      "whatWhenWrong": "Si blocage créatif: offrir plus d'exemples et inspiration. Si histoires trop complexes: encourager simplicité et clarté.",
+      "keyVocabulary": ["histoire", "personnage", "comparer"],
+      "realWorldConnection": "Raconter des histoires impliquant des comparaisons à la famille",
+      "progressionNote": "Extension: Develops narrative skills while reinforcing mathematical concepts"
+    },
+    {
+      "lessonNumber": 20,
+      "title": "Festival des comparaisons",
+      "oneGoal": "Les élèves célèbrent leurs apprentissages en présentant leurs compétences de comparaison",
+      "estimatedTime": "45 minutes",
+      "materials": ["Décorations festives", "Stations d'activités", "Certificats de réussite", "Matériel de documentation"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Ouverture festive: Chanson de célébration des apprentissages. Réviser brièvement tout ce qui a été appris sur les comparaisons."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Stations de célébration: Élèves circulent entre stations montrant différentes compétences: comparaisons rapides, ordonnancement créatif, résolution de problèmes, art séquentiel. Inviter autres classes ou familles si possible. Documenter réussites.",
+        "visualSupports": "Affichage de tous les apprentissages de l'unité. Photos des activités réalisées ensemble",
+        "tprElements": "Gestes de célébration et fierté. Applaudissements pour toutes les démonstrations",
+        "adaptations": "Permettre choix de stations selon conforts des élèves. Support pour présentation si nécessaire"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Cérémonie de clôture: Chaque élève reçoit certificat reconnaissant ses progrès. Partage collectif des apprentissages préférés."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves sont-ils fiers de montrer leurs apprentissages?",
+          "ifThen": "Si non, encourager et rassurer sur leurs progrès. Si oui, permettre présentation aux autres."
+        },
+        {
+          "situation": "Veulent-ils partager avec d'autres classes?",
+          "ifThen": "Si oui, organiser mini-présentation. Si non, célébrer en groupe classe seulement."
+        },
+        {
+          "situation": "Comment peuvent-ils démontrer leurs compétences?",
+          "ifThen": "Offrir variété d'options: démonstrations, créations, explications, jeux."
+        }
+      ],
+      "whatWhenWrong": "Si nervosité de présentation: rassurer et permettre présentation en petits groupes. Si surexcitation: canaliser énergie positivement.",
+      "keyVocabulary": ["festival", "présenter", "célébrer"],
+      "realWorldConnection": "Partager ses compétences de comparaison avec la famille et les amis",
+      "progressionNote": "Extension: Culminates unit with celebration and demonstration of learning"
+    }
+  ]
+}

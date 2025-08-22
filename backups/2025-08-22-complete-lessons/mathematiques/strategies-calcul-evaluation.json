@@ -1,0 +1,191 @@
+{
+  "unitTitle": "Stratégies de calcul mental",
+  "evaluationDate": "2025-08-22",
+  "overallScore": 93,
+  "passingScore": 85,
+  "result": "PASSED - EXCELLENCE",
+  
+  "criteriaScores": {
+    "simplicity": {
+      "weight": 40,
+      "score": 96,
+      "weightedScore": 38.4,
+      "evaluation": "Exceptional adherence to simplicity principles with clear, focused lessons"
+    },
+    "progression": {
+      "weight": 30,
+      "score": 92,
+      "weightedScore": 27.6,
+      "evaluation": "Outstanding progression from concrete to abstract mental math strategies"
+    },
+    "authenticity": {
+      "weight": 30,
+      "score": 89,
+      "weightedScore": 26.7,
+      "evaluation": "Highly authentic for Grade 1 classrooms with practical implementation"
+    }
+  },
+  
+  "detailedEvaluation": {
+    "simplicity": {
+      "strengths": [
+        "Each lesson has ONE crystal-clear goal focused on specific mental math strategies",
+        "Perfect 3 decision points per lesson addressing real teaching moments",
+        "Language is substitute-teacher friendly while maintaining pedagogical depth",
+        "45-minute lessons with realistic timing breakdowns (8-27-10 minute structure)",
+        "Materials are classroom-accessible: fingers, manipulatives, ten frames, basic supplies",
+        "Vocabulary introduction is gradual with maximum 4 new terms per lesson",
+        "Activities described with sufficient detail but not over-scripted",
+        "Progressive complexity from fingers to mental strategies maintains simplicity"
+      ],
+      "areas_for_improvement": [
+        "Some lessons could benefit from even more concrete transition activities",
+        "Extension activities in lessons 15-20 could be more streamlined"
+      ],
+      "score_justification": "96/100 - Exceptional simplicity. Each lesson is focused, manageable, and clear for any teacher to implement successfully."
+    },
+    
+    "progression": {
+      "strengths": [
+        "Logical sequence: fingers → counting on → doubles → near doubles → making 10 → advanced strategies",
+        "Each strategy builds on previously mastered skills systematically",
+        "Concrete-to-abstract progression: physical objects → visual supports → mental strategies",
+        "Core mental math strategies (counting on, doubles, making 10) introduced before extensions",
+        "Vocabulary spirals appropriately: 'calcul mental' → 'stratégie' → specific strategy names",
+        "Lessons 1-14 establish foundations, lessons 15-20 provide fluency and application",
+        "Explicit connections between lessons noted in progression notes",
+        "Portfolio culmination (Lesson 19) allows demonstration of all strategies learned",
+        "Celebration finale (Lesson 20) reinforces positive mathematical identity"
+      ],
+      "areas_for_improvement": [
+        "Could strengthen explicit connections between estimation and other strategies",
+        "Some advanced strategies might benefit from additional scaffolding steps"
+      ],
+      "score_justification": "92/100 - Outstanding progression with clear scaffolding from concrete finger counting to sophisticated mental math strategies."
+    },
+    
+    "authenticity": {
+      "strengths": [
+        "Decision points address real classroom scenarios teachers encounter daily",
+        "Age-appropriate for 6-7 year olds with attention spans and developmental needs considered",
+        "TPR (Total Physical Response) integrated naturally for French immersion context",
+        "Manipulatives and visual supports specified for kinesthetic and visual learners",
+        "Real-world connections meaningful to students: counting toys, biscuits, money",
+        "Differentiation built into lesson structure, not added as afterthought",
+        "Flexible 'whatWhenWrong' sections acknowledge classroom unpredictability",
+        "Materials realistic for typical classrooms (no expensive technology required)",
+        "Respects teacher professionalism while providing essential support",
+        "Mental math strategies aligned with research-based best practices",
+        "French vocabulary integrated naturally without overwhelming content"
+      ],
+      "areas_for_improvement": [
+        "Could include more specific assessment strategies throughout the unit",
+        "Some lessons could benefit from additional home-school connection suggestions",
+        "Extension lessons could offer more variety in challenge levels"
+      ],
+      "score_justification": "89/100 - Highly authentic and practical for real Grade 1 French immersion classrooms with excellent teacher support."
+    }
+  },
+  
+  "mentalMathStrategiesEvaluation": {
+    "countingOn": {
+      "coverage": "Excellent",
+      "lessons": [2, 8],
+      "progression": "Introduced systematically with finger counting foundation, extended to subtraction",
+      "authenticity": "Age-appropriate with physical movement and visual supports"
+    },
+    "doubles": {
+      "coverage": "Outstanding", 
+      "lessons": [3, 10, 11],
+      "progression": "Simple doubles (1+1 to 5+5) → extended doubles (6+6 to 10+10) → near doubles",
+      "authenticity": "Highly engaging with mirrors, symmetry, and real-world connections"
+    },
+    "nearDoubles": {
+      "coverage": "Excellent",
+      "lessons": [4, 11],
+      "progression": "Built directly on doubles foundation with clear +1/-1 connections",
+      "authenticity": "Concrete supports with color-coded manipulatives and visual schemas"
+    },
+    "making10": {
+      "coverage": "Outstanding",
+      "lessons": [5, 6, 12],
+      "progression": "Ten frames → basic links to 10 → applying strategy to calculations → extended to larger numbers",
+      "authenticity": "Concrete materials (ten frames, egg cartons) support conceptual understanding"
+    },
+    "additionalStrategies": {
+      "skipCounting": "Lessons 7, 13 - Counting by 2s, 5s, 10s with physical movement",
+      "regrouping": "Lesson 14 - Flexible number combinations for easier calculation",
+      "estimation": "Lesson 18 - Practical application of strategies for approximate answers",
+      "problemSolving": "Lesson 16 - Authentic contexts for strategy application"
+    }
+  },
+  
+  "specificStrengths": [
+    "Comprehensive coverage of all four core mental math strategies with research-based progression",
+    "Perfect integration of French immersion context with TPR and vocabulary development", 
+    "Concrete-to-abstract progression honoring Grade 1 developmental needs",
+    "Exceptional use of manipulatives, visual supports, and kinesthetic activities",
+    "Real substitute-teacher friendly with decision points addressing actual classroom scenarios",
+    "Mental math strategies introduced systematically with proper foundation building",
+    "Portfolio assessment allows authentic demonstration of strategy mastery",
+    "Extension lessons provide meaningful practice and application without content overload",
+    "Celebration finale builds positive mathematical identity and confidence",
+    "Materials are accessible and realistic for typical classroom budgets",
+    "Strategy selection and metacognition developed appropriately for Grade 1 level",
+    "Clear connections between mental math and problem-solving applications"
+  ],
+  
+  "recommendationsForImprovement": [
+    "Consider adding brief assessment checkpoints throughout the unit for progress monitoring",
+    "Could include more specific home practice suggestions for family engagement",
+    "Extension lessons could offer tiered challenges for advanced learners",
+    "Consider adding specific support strategies for students with math anxiety",
+    "Could strengthen connections between mental math and written algorithms preparation"
+  ],
+  
+  "curriculumAlignment": {
+    "gradeLevel": "Perfect for Grade 1 developmental stage and attention spans",
+    "frenchImmersion": "Excellent integration of French vocabulary and TPR methods",
+    "mentalMathStandards": "Outstanding coverage of research-based mental math strategies",
+    "concreteAbstract": "Exemplary progression from concrete manipulatives to abstract thinking",
+    "assessmentIntegration": "Portfolio assessment allows authentic demonstration of learning",
+    "differentiation": "Built-in supports for diverse learners without complexity"
+  },
+  
+  "implementationReadiness": {
+    "teacherPreparation": "Minimal - lessons are clear and materials are basic",
+    "materialAccessibility": "Excellent - common classroom materials",
+    "timeRealistic": "Yes - 45 minutes fits standard Grade 1 math block",
+    "substituteTeacherFriendly": "Outstanding - clear instructions with decision support",
+    "flexibilityForInterruptions": "Excellent - modular structure allows adaptation"
+  },
+  
+  "pedagogicalExcellence": {
+    "researchBased": "All mental math strategies align with current educational research",
+    "developmentallyAppropriate": "Perfect for Grade 1 cognitive and physical development",
+    "engagementStrategies": "Outstanding use of movement, games, songs, and hands-on activities",
+    "metacognitionDevelopment": "Strategy selection and reflection appropriately scaffolded",
+    "positiveIdentityBuilding": "Excellent focus on mathematical confidence and celebration"
+  },
+  
+  "finalRecommendation": {
+    "implementationApproval": "STRONGLY RECOMMENDED",
+    "readinessLevel": "READY FOR IMMEDIATE CLASSROOM IMPLEMENTATION",
+    "qualityRating": "EXEMPLARY - Exceeds expectations for Grade 1 mental math instruction",
+    "teacherSupport": "Comprehensive support provided while respecting teacher professionalism",
+    "studentImpact": "High likelihood of positive learning outcomes and mathematical confidence building"
+  },
+  
+  "evaluatorNotes": [
+    "This curriculum represents exemplary Grade 1 mental math instruction",
+    "Perfect balance of structure and flexibility for real classroom implementation", 
+    "Outstanding progression from concrete finger counting to sophisticated mental strategies",
+    "Exceptional integration of French immersion pedagogy with mathematics content",
+    "Materials and timing are realistic for typical classroom constraints",
+    "Portfolio assessment provides meaningful culmination of learning",
+    "Celebration component builds essential positive mathematical identity",
+    "All four core mental math strategies covered with research-based progression",
+    "Differentiation embedded naturally without added complexity",
+    "Decision points address real teaching moments with practical guidance"
+  ]
+}

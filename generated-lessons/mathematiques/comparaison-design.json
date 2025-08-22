@@ -1,0 +1,262 @@
+[
+  {
+    "lessonNumber": 1,
+    "title": "Découvrir plus et moins",
+    "oneGoal": "Les élèves comparent des collections de 2-5 objets en utilisant 'plus' et 'moins'",
+    "keyVocabulary": ["plus", "moins", "collection"],
+    "decisionPoints": [
+      "Les élèves comprennent-ils les termes plus et moins?",
+      "Ont-ils besoin d'objets plus variés pour comparer?",
+      "Faut-il démontrer plus clairement la comparaison?"
+    ],
+    "progression": "Première leçon - établit les concepts fondamentaux de comparaison avec de petites collections",
+    "realWorldConnection": "Comparer qui a plus de jouets, plus de crayons, moins de livres à la maison"
+  },
+  {
+    "lessonNumber": 2,
+    "title": "Aligner pour comparer",
+    "oneGoal": "Les élèves alignent des objets pour comparer visuellement des collections de 3-7 éléments",
+    "keyVocabulary": ["aligner", "voir", "comparer"],
+    "decisionPoints": [
+      "Les élèves alignent-ils correctement les objets?",
+      "Comprennent-ils pourquoi on aligne?",
+      "Ont-ils besoin de support pour organiser les objets?"
+    ],
+    "progression": "Builds on Lesson 1 by introducing visual alignment strategy for comparison",
+    "realWorldConnection": "Aligner les chaussettes par paires, comparer les rangées de plantes dans un jardin"
+  },
+  {
+    "lessonNumber": 3,
+    "title": "Grand et petit avec nos mains",
+    "oneGoal": "Les élèves comparent la taille d'objets en utilisant 'grand' et 'petit'",
+    "keyVocabulary": ["grand", "petit", "taille"],
+    "decisionPoints": [
+      "Les élèves distinguent-ils quantité et taille?",
+      "Ont-ils besoin d'objets de tailles plus contrastées?",
+      "Comprennent-ils qu'on peut comparer la taille?"
+    ],
+    "progression": "Builds on Lesson 2 by introducing size comparison alongside quantity comparison",
+    "realWorldConnection": "Comparer la taille des animaux, des fruits, des jouets à la maison"
+  },
+  {
+    "lessonNumber": 4,
+    "title": "Jeux de comparaison",
+    "oneGoal": "Les élèves pratiquent plus/moins et grand/petit avec des jeux de cartes simples",
+    "keyVocabulary": ["jeu", "carte", "gagner"],
+    "decisionPoints": [
+      "Les élèves sont-ils engagés dans le jeu?",
+      "Comprennent-ils les règles de comparaison?",
+      "Le jeu va-t-il trop vite pour certains?"
+    ],
+    "progression": "Builds on Lesson 3 by applying comparison skills in engaging game format",
+    "realWorldConnection": "Jouer aux cartes en famille, comparer les scores dans les jeux"
+  },
+  {
+    "lessonNumber": 5,
+    "title": "Ordre croissant avec 3 objets",
+    "oneGoal": "Les élèves placent 3 collections en ordre du plus petit au plus grand",
+    "keyVocabulary": ["ordre", "premier", "dernier"],
+    "decisionPoints": [
+      "Les élèves comprennent-ils l'ordre croissant?",
+      "Ont-ils besoin de plus de modélisation?",
+      "Faut-il commencer avec seulement 2 objets?"
+    ],
+    "progression": "Builds on Lesson 4 by introducing basic ordering concept with manageable quantities",
+    "realWorldConnection": "Ranger les chaussures par taille, ordonner les livres par hauteur"
+  },
+  {
+    "lessonNumber": 6,
+    "title": "Construire des tours de comparaison",
+    "oneGoal": "Les élèves construisent des tours de différentes hauteurs et les ordonnent",
+    "keyVocabulary": ["tour", "haut", "bas"],
+    "decisionPoints": [
+      "Les élèves construisent-ils des tours stables?",
+      "Voient-ils clairement les différences de hauteur?",
+      "Ont-ils besoin de blocs plus uniformes?"
+    ],
+    "progression": "Builds on Lesson 5 by using hands-on construction to explore ordering",
+    "realWorldConnection": "Comparer la hauteur des bâtiments, des arbres, des membres de la famille"
+  },
+  {
+    "lessonNumber": 7,
+    "title": "Ordre décroissant - du grand au petit",
+    "oneGoal": "Les élèves ordonnent 3-4 collections du plus grand au plus petit",
+    "keyVocabulary": ["décroissant", "diminuer", "plus petit"],
+    "decisionPoints": [
+      "Les élèves comprennent-ils l'ordre inverse?",
+      "Confondent-ils croissant et décroissant?",
+      "Ont-ils besoin de gestes pour comprendre?"
+    ],
+    "progression": "Builds on Lesson 6 by introducing reverse ordering concept",
+    "realWorldConnection": "Ranger du plus gros au plus petit fruit, organiser les vêtements par taille"
+  },
+  {
+    "lessonNumber": 8,
+    "title": "Comparer avec les nombres 1-10",
+    "oneGoal": "Les élèves comparent des groupes d'objets en comptant jusqu'à 10",
+    "keyVocabulary": ["compter", "combien", "nombre"],
+    "decisionPoints": [
+      "Les élèves comptent-ils correctement?",
+      "Associent-ils le comptage à la comparaison?",
+      "Ont-ils besoin de réviser le comptage d'abord?"
+    ],
+    "progression": "Builds on Lesson 7 by connecting counting skills to comparison",
+    "realWorldConnection": "Compter et comparer les bonbons, les autocollants, les jouets"
+  },
+  {
+    "lessonNumber": 9,
+    "title": "Dessiner pour comparer",
+    "oneGoal": "Les élèves dessinent des collections pour montrer plus, moins et égal",
+    "keyVocabulary": ["dessiner", "égal", "pareil"],
+    "decisionPoints": [
+      "Les élèves dessinent-ils clairement?",
+      "Comprennent-ils le concept d'égalité?",
+      "Leurs dessins reflètent-ils la quantité voulue?"
+    ],
+    "progression": "Builds on Lesson 8 by introducing visual representation and equality concept",
+    "realWorldConnection": "Dessiner des collections égales, illustrer des comparaisons"
+  },
+  {
+    "lessonNumber": 10,
+    "title": "Égal ou différent?",
+    "oneGoal": "Les élèves identifient des collections égales et expliquent leur raisonnement",
+    "keyVocabulary": ["égal", "même", "différent"],
+    "decisionPoints": [
+      "Les élèves voient-ils quand les quantités sont égales?",
+      "Peuvent-ils expliquer leur raisonnement?",
+      "Ont-ils besoin de stratégies de vérification?"
+    ],
+    "progression": "Builds on Lesson 9 by developing deeper understanding of equality",
+    "realWorldConnection": "Partager équitablement les collations, vérifier des portions égales"
+  },
+  {
+    "lessonNumber": 11,
+    "title": "Comparer jusqu'à 15",
+    "oneGoal": "Les élèves comparent des ensembles d'objets allant jusqu'à 15 éléments",
+    "keyVocabulary": ["beaucoup", "plusieurs", "grouper"],
+    "decisionPoints": [
+      "Les élèves gèrent-ils les plus grandes quantités?",
+      "Utilisent-ils des stratégies de groupement?",
+      "Ont-ils besoin de plus de temps pour compter?"
+    ],
+    "progression": "Builds on Lesson 10 by extending to larger quantities requiring new strategies",
+    "realWorldConnection": "Comparer des collections de crayons, de livres, d'objets en classe"
+  },
+  {
+    "lessonNumber": 12,
+    "title": "Régularités dans l'ordre",
+    "oneGoal": "Les élèves créent et continuent des séquences ordonnées simples",
+    "keyVocabulary": ["séquence", "continuer", "suivant"],
+    "decisionPoints": [
+      "Les élèves voient-ils la régularité?",
+      "Peuvent-ils prédire le suivant?",
+      "La séquence est-elle trop complexe?"
+    ],
+    "progression": "Builds on Lesson 11 by introducing pattern recognition in ordered sequences",
+    "realWorldConnection": "Continuer des motifs de taille, compléter des séries d'objets"
+  },
+  {
+    "lessonNumber": 13,
+    "title": "Ordonner 5 objets différents",
+    "oneGoal": "Les élèves ordonnent 5 collections ou objets selon différents critères",
+    "keyVocabulary": ["critère", "organiser", "classer"],
+    "decisionPoints": [
+      "Les élèves comprennent-ils le critère choisi?",
+      "Peuvent-ils ordonner 5 éléments?",
+      "Ont-ils besoin d'aide pour maintenir l'ordre?"
+    ],
+    "progression": "Builds on Lesson 12 by managing more complex ordering tasks",
+    "realWorldConnection": "Classer les livres par taille, organiser les ustensiles par longueur"
+  },
+  {
+    "lessonNumber": 14,
+    "title": "Problèmes de comparaison",
+    "oneGoal": "Les élèves résolvent des problèmes simples nécessitant des comparaisons",
+    "keyVocabulary": ["problème", "solution", "résoudre"],
+    "decisionPoints": [
+      "Les élèves comprennent-ils le problème posé?",
+      "Utilisent-ils les bonnes stratégies de comparaison?",
+      "Ont-ils besoin d'objets concrets pour résoudre?"
+    ],
+    "progression": "Builds on Lesson 13 by applying comparison skills to problem-solving",
+    "realWorldConnection": "Résoudre qui a besoin de plus de matériel, partager équitablement"
+  },
+  {
+    "lessonNumber": 15,
+    "title": "Comparer jusqu'à 20",
+    "oneGoal": "Les élèves comparent efficacement des ensembles allant jusqu'à 20 éléments",
+    "keyVocabulary": ["efficace", "stratégie", "rapidement"],
+    "decisionPoints": [
+      "Les élèves ont-ils des stratégies efficaces?",
+      "Gèrent-ils bien les quantités de 20?",
+      "Utilisent-ils le groupement par 5 ou 10?"
+    ],
+    "progression": "Builds on Lesson 14 by reaching curriculum goal of comparing up to 20 elements",
+    "realWorldConnection": "Comparer de grandes collections d'autocollants, de cartes, de jetons"
+  },
+  {
+    "lessonNumber": 16,
+    "title": "Course aux comparaisons",
+    "oneGoal": "Les élèves participent à des jeux de comparaison rapide et précise",
+    "keyVocabulary": ["rapide", "précis", "course"],
+    "decisionPoints": [
+      "Les élèves maintiennent-ils la précision en vitesse?",
+      "Le jeu est-il trop compétitif?",
+      "Certains ont-ils besoin de plus de temps?"
+    ],
+    "progression": "Extension: Develops fluency and speed in comparison skills",
+    "realWorldConnection": "Jeux familiaux de comparaison, défis amusants avec les amis"
+  },
+  {
+    "lessonNumber": 17,
+    "title": "Art ordonné - créations séquentielles",
+    "oneGoal": "Les élèves créent des œuvres d'art utilisant des séquences ordonnées",
+    "keyVocabulary": ["création", "artistique", "séquentiel"],
+    "decisionPoints": [
+      "Les élèves intègrent-ils l'ordre dans leur art?",
+      "Sont-ils créatifs avec les séquences?",
+      "Le matériel artistique est-il varié?"
+    ],
+    "progression": "Extension: Integrates comparison and ordering into creative expression",
+    "realWorldConnection": "Créer des motifs ordonnés, décorer avec des séquences"
+  },
+  {
+    "lessonNumber": 18,
+    "title": "Enquête de comparaison dans l'école",
+    "oneGoal": "Les élèves explorent l'école pour trouver et comparer différents objets",
+    "keyVocabulary": ["enquête", "explorer", "découvrir"],
+    "decisionPoints": [
+      "Les élèves peuvent-ils se déplacer en sécurité?",
+      "Trouvent-ils des objets intéressants à comparer?",
+      "Documentent-ils leurs découvertes?"
+    ],
+    "progression": "Extension: Applies skills in authentic exploration context",
+    "realWorldConnection": "Comparer les objets dans différents environnements"
+  },
+  {
+    "lessonNumber": 19,
+    "title": "Histoires de comparaison",
+    "oneGoal": "Les élèves inventent des histoires mettant en scène des comparaisons",
+    "keyVocabulary": ["histoire", "personnage", "comparer"],
+    "decisionPoints": [
+      "Les élèves créent-ils des histoires cohérentes?",
+      "Intègrent-ils naturellement les comparaisons?",
+      "Ont-ils besoin d'amorces d'histoire?"
+    ],
+    "progression": "Extension: Develops narrative skills while reinforcing mathematical concepts",
+    "realWorldConnection": "Raconter des histoires impliquant des comparaisons à la famille"
+  },
+  {
+    "lessonNumber": 20,
+    "title": "Festival des comparaisons",
+    "oneGoal": "Les élèves célèbrent leurs apprentissages en présentant leurs compétences de comparaison",
+    "keyVocabulary": ["festival", "présenter", "célébrer"],
+    "decisionPoints": [
+      "Les élèves sont-ils fiers de montrer leurs apprentissages?",
+      "Veulent-ils partager avec d'autres classes?",
+      "Comment peuvent-ils démontrer leurs compétences?"
+    ],
+    "progression": "Extension: Culminates unit with celebration and demonstration of learning",
+    "realWorldConnection": "Partager ses compétences de comparaison avec la famille et les amis"
+  }
+]

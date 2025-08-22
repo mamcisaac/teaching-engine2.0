@@ -1,0 +1,1526 @@
+{
+  "unitTitle": "Mon corps et ma sécurité",
+  "subject": "Formation personnelle et sociale",
+  "grade": 1,
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "title": "Mon corps spécial",
+      "duration": "45 minutes",
+      "goal": "Students will identify basic body parts and understand that every body is unique and special",
+      "keyVocabulary": ["corps", "tête", "bras"],
+      "materials": [
+        "Miroir de classe",
+        "Images diverses de corps (différentes capacités, couleurs de peau)",
+        "Chanson 'Tête, épaules, genoux et orteils' en français",
+        "Marionnette ou poupée"
+      ],
+      "safetyConsiderations": [
+        "Utiliser des images inclusives représentant diverses capacités",
+        "Éviter de comparer les corps des enfants",
+        "Créer un environnement sécuritaire pour parler du corps"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Introduction unit with curiosity and respect",
+          "activities": [
+            "Regarder dans le miroir de classe ensemble",
+            "Chanter 'Bonjour mon corps' (chanson simple)",
+            "Présenter la marionnette qui va nous aider à apprendre"
+          ],
+          "visualSupports": "Miroir, gestes d'accueil, marionnette expressive"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Explore body parts with respect and wonder",
+          "activities": [
+            "Explorer 'tête, bras, corps' avec la marionnette",
+            "Regarder des images de familles diverses",
+            "Jeu 'Simon dit' simple avec parties du corps",
+            "Chanson 'Tête, épaules' adaptée pour l'âge"
+          ],
+          "visualSupports": "Images inclusives, gestes TPR, marionnette démonstrative",
+          "movementBreak": "Danse libre avec la musique corporelle"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Celebrate uniqueness and specialness",
+          "activities": [
+            "Partage: 'Mon corps est spécial parce que...'",
+            "Dessin simple de soi-même",
+            "Chanson de fermeture douce"
+          ],
+          "visualSupports": "Papier pour dessiner, crayons, images positives"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "How comfortable are students with body vocabulary?",
+          "ifThen": "IF students seem shy → use marionnette more, keep vocabulary very simple | IF students are engaged → add 2-3 more basic words"
+        },
+        {
+          "situation": "What visual supports are needed?",
+          "ifThen": "IF students need more support → use more gestures, real photos | IF students are following well → include book with diverse bodies"
+        },
+        {
+          "situation": "How to include diverse body representations?",
+          "ifThen": "IF this is new for students → start with very positive language | IF students ask questions → answer simply and positively"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Focus only on 'tête, bras, corps' with lots of pointing and repetition",
+        "ifNotEngaged": "More movement, dancing, and marionnette interaction",
+        "ifSensitive": "Keep everything very positive, avoid any comparisons, use inclusive language only"
+      },
+      "realWorldConnection": "We use words for our body parts when we talk to doctors, parents, and teachers",
+      "assessmentOpportunities": "Observe students pointing to body parts, listen to vocabulary use",
+      "differentiationSupport": "Visual learners: more images | Kinesthetic: more movement | Language: simple gestures and pointing"
+    },
+    {
+      "lessonNumber": 2,
+      "title": "Mes parties du corps",
+      "duration": "45 minutes",
+      "goal": "Students will name and point to major body parts using French vocabulary",
+      "keyVocabulary": ["jambes", "pieds", "ventre"],
+      "connectionToPrevious": "Builds on Lesson 1 by adding more body vocabulary while keeping the respectful, positive approach",
+      "materials": [
+        "Affiche du corps humain simple",
+        "Autocollants colorés",
+        "Musique pour mouvement",
+        "Livre 'Mon corps' (simple, inclusif)"
+      ],
+      "safetyConsiderations": [
+        "Maintenir le respect pour tous les corps",
+        "Répondre aux questions simplement et positivement",
+        "Éviter la sur-stimulation corporelle"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Review and connect to previous learning",
+          "activities": [
+            "Révision: pointer à 'corps, tête, bras'",
+            "Chanson de bienvenue corporelle",
+            "Introduction des nouvelles parties"
+          ],
+          "visualSupports": "Affiche corporelle, gestes de révision"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Learn new body vocabulary through movement and songs",
+          "activities": [
+            "Explorer 'jambes, pieds, ventre' avec mouvements",
+            "Jeu d'autocollants sur l'affiche",
+            "Marche et danse avec 'pieds' et 'jambes'",
+            "Histoire simple avec le livre corporel"
+          ],
+          "visualSupports": "Affiche interactive, autocollants, livre illustré",
+          "movementBreak": "Marche de différentes façons avec nos 'pieds'"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Practice new vocabulary with gentle assessment",
+          "activities": [
+            "Jeu 'Toucher doucement' (pointer seulement)",
+            "Chanson avec toutes les parties apprises",
+            "Moment calme de reconnaissance corporelle"
+          ],
+          "visualSupports": "Musique douce, gestes lents"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "Are students ready for more body vocabulary?",
+          "ifThen": "IF students know first 3 words well → add new ones confidently | IF still learning → review more, slow down"
+        },
+        {
+          "situation": "What movement activities work best?",
+          "ifThen": "IF students have high energy → more walking/dancing | IF students seem tired → seated movements with hands"
+        },
+        {
+          "situation": "How to address student questions naturally?",
+          "ifThen": "IF questions about bodies → answer positively and simply | IF inappropriate questions → redirect gently to learning"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Focus on just one new word, lots of repetition with pointing",
+        "ifNotEngaged": "More music and movement, less sitting",
+        "ifSensitive": "Keep all activities very gentle, no touching others, just self"
+      },
+      "realWorldConnection": "When we hurt our jambes, pieds, or ventre, we can tell adults exactly where it hurts",
+      "assessmentOpportunities": "Listen for vocabulary in movement activities, observe pointing accuracy",
+      "differentiationSupport": "ELL support: more gestures and visuals | Shy students: no pressure to speak aloud"
+    },
+    {
+      "lessonNumber": 3,
+      "title": "Mon corps fait des choses",
+      "duration": "45 minutes",
+      "goal": "Students will understand that different body parts have different functions",
+      "keyVocabulary": ["yeux", "bouche", "mains"],
+      "connectionToPrevious": "Builds on Lesson 2 by connecting the body parts we've learned to what they actually do for us",
+      "materials": [
+        "Objets sensoriels (texture, goût sécuritaire)",
+        "Images d'actions (voir, parler, toucher)",
+        "Loupe ou miroirs de poche",
+        "Gants souples pour exploration tactile"
+      ],
+      "safetyConsiderations": [
+        "Objets sensoriels propres et sécuritaires",
+        "Allergies alimentaires connues",
+        "Exploration tactile respectueuse et consensuelle"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Connect body parts to their amazing functions",
+          "activities": [
+            "Révision corporelle avec mouvements",
+            "Introduction: 'Mon corps fait des choses incroyables!'",
+            "Demonstration avec yeux (regarder autour)"
+          ],
+          "visualSupports": "Gestes expressifs, démonstrations visuelles"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Explore what body parts do through safe sensory activities",
+          "activities": [
+            "Station 'yeux': regarder avec loupes",
+            "Station 'bouche': goûter sécuritaire (crackers)",
+            "Station 'mains': explorer textures avec gants",
+            "Chanson 'Mes yeux voient, ma bouche goûte'"
+          ],
+          "visualSupports": "Stations sensorielles, images d'actions, objets manipulables",
+          "movementBreak": "Mime des actions corporelles"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Celebrate what our bodies can do",
+          "activities": [
+            "Partage: 'Mes yeux peuvent...'",
+            "Dessin de nos parties du corps en action",
+            "Remerciement à notre corps"
+          ],
+          "visualSupports": "Papier de dessin, images positives"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "How are students connecting vocabulary to functions?",
+          "ifThen": "IF students understand connections → add more complex functions | IF confused → simplify to basic actions only"
+        },
+        {
+          "situation": "What sensory activities are most engaging?",
+          "ifThen": "IF students love tactile → more texture exploration | IF students prefer visual → more looking activities"
+        },
+        {
+          "situation": "Are all students participating comfortably?",
+          "ifThen": "IF some students hesitant → offer alternatives, no pressure | IF all engaged → extend activities longer"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Focus on just pointing and naming: yeux→see, bouche→talk",
+        "ifNotEngaged": "More dramatic demonstrations, silly voices and faces",
+        "ifSensitive": "Skip tasting, focus on looking and gentle touching of safe objects only"
+      },
+      "realWorldConnection": "Understanding what our body parts do helps us take good care of them and use them safely",
+      "assessmentOpportunities": "Observe connections between body parts and functions in play",
+      "differentiationSupport": "Sensory sensitive: provide alternatives | Non-verbal: focus on demonstration and pointing"
+    },
+    {
+      "lessonNumber": 4,
+      "title": "Qui peut toucher?",
+      "duration": "45 minutes",
+      "goal": "Students will understand the concept of personal space and appropriate touch",
+      "keyVocabulary": ["toucher", "espace", "confort"],
+      "connectionToPrevious": "Builds on Lesson 3 by introducing that our bodies that do amazing things also belong to us",
+      "materials": [
+        "Cerceau ou cordes pour espace personnel",
+        "Marionnettes pour démonstrations",
+        "Images de touches appropriées (high-five, hand-shake)",
+        "Livre sur l'espace personnel (si disponible)"
+      ],
+      "safetyConsiderations": [
+        "Approche très douce et positive",
+        "Pas de touches entre enfants sans permission",
+        "Préparer des réponses pour questions sensibles",
+        "Créer un environnement de confiance"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Introduce personal space in a positive, gentle way",
+          "activities": [
+            "Révision: 'Mon corps est spécial'",
+            "Introduction de l'espace personnel avec cerceau",
+            "Démonstration douce avec marionnettes"
+          ],
+          "visualSupports": "Cerceau pour démonstration, marionnettes expressives"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Explore personal space and comfortable touch",
+          "activities": [
+            "Jeu de l'espace personnel avec cerceaux",
+            "Marionnettes montrent touches confortables/inconfortables",
+            "Pratique: demander avant de toucher",
+            "Images de touches d'aide (médecin, parent)"
+          ],
+          "visualSupports": "Marionnettes démonstration, images claires, cerceaux visuels",
+          "movementBreak": "Danse dans notre espace personnel"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Reinforce that our bodies belong to us",
+          "activities": [
+            "Affirmation: 'Mon corps m'appartient'",
+            "Dessin de soi dans son espace spécial",
+            "Chanson douce de fermeture"
+          ],
+          "visualSupports": "Papier de dessin, images positives de soi"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "How to introduce boundaries age-appropriately?",
+          "ifThen": "IF students seem ready → use clear, simple language | IF students seem confused → more demonstrations with marionnettes"
+        },
+        {
+          "situation": "What examples resonate with students?",
+          "ifThen": "IF students connect to family examples → include diverse families | IF medical examples needed → use doctor/nurse scenarios"
+        },
+        {
+          "situation": "How to address different family cultures?",
+          "ifThen": "IF cultural differences arise → acknowledge 'families are different' | IF questions about differences → focus on comfort and choice"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Focus only on 'asking first' and 'my space' with marionnettes",
+        "ifNotEngaged": "More active space games, dancing in personal space",
+        "ifSensitive": "Keep everything very positive, no scary scenarios, just 'comfortable' vs 'ask first'"
+      },
+      "realWorldConnection": "Understanding personal space helps us feel comfortable and helps others feel comfortable too",
+      "assessmentOpportunities": "Observe understanding of personal space in play, listen to language about comfort",
+      "differentiationSupport": "Visual learners: more demonstrations | Sensitive students: extra gentleness and choice"
+    },
+    {
+      "lessonNumber": 5,
+      "title": "Touches qui aident",
+      "duration": "45 minutes",
+      "goal": "Students will distinguish between helpful touches and touches that make them uncomfortable",
+      "keyVocabulary": ["aider", "docteur", "soin"],
+      "connectionToPrevious": "Builds on Lesson 4 by exploring when and why people might need to touch us to help us, while keeping our comfort important",
+      "materials": [
+        "Kit de docteur jouet",
+        "Poupée ou peluche pour démonstrations",
+        "Images de professionnels de la santé",
+        "Cartes visuelles 'aider' vs 'inconfortable'"
+      ],
+      "safetyConsiderations": [
+        "Garder les exemples médicaux simples et non-effrayants",
+        "Emphasizer le choix et le confort",
+        "Préparer pour questions sur expériences personnelles",
+        "Maintenir un ton positif et sécuritaire"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Connect helping touches to caring and safety",
+          "activities": [
+            "Révision: 'Mon espace personnel'",
+            "Introduction: 'Parfois on a besoin d'aide'",
+            "Montrer kit de docteur avec respect"
+          ],
+          "visualSupports": "Kit médical jouet, expressions faciales douces"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Explore helping touches through safe scenarios",
+          "activities": [
+            "Jeu de rôle: docteur aide la poupée doucement",
+            "Images de personnes qui aident (docteur, infirmière, parent)",
+            "Tri d'images: 'aide' ou 'demander d'abord'",
+            "Pratique: dire comment on se sent"
+          ],
+          "visualSupports": "Jeu de rôle avec jouets, cartes de tri, images positives",
+          "movementBreak": "Mime des gestes d'aide douce"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Reinforce that help should feel safe and comfortable",
+          "activities": [
+            "Discussion: 'L'aide me fait sentir...'",
+            "Dessin de quelqu'un qui nous aide",
+            "Rappel: 'Je peux toujours dire comment je me sens'"
+          ],
+          "visualSupports": "Papier de dessin, images de sentiments"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "How are students processing touch concepts?",
+          "ifThen": "IF students understand well → add more scenarios | IF confused → simplify to just 'helping' vs 'asking first'"
+        },
+        {
+          "situation": "What scenarios are most relatable?",
+          "ifThen": "IF medical scenarios work → continue with doctor/nurse | IF family scenarios better → focus on parent helping"
+        },
+        {
+          "situation": "How to handle student disclosures appropriately?",
+          "ifThen": "IF student shares concerning info → listen calmly, follow school protocol | IF normal sharing → validate and redirect to learning"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Focus only on 'helper people' and 'gentle help' with toys",
+        "ifNotEngaged": "More dramatic play with helping scenarios",
+        "ifSensitive": "Keep all scenarios very positive, focus on feeling safe and comfortable"
+      },
+      "realWorldConnection": "Understanding helpful touch prepares us for doctor visits and getting help when we're hurt",
+      "assessmentOpportunities": "Listen to language about comfort and helping, observe understanding in play",
+      "differentiationSupport": "Anxious students: extra emphasis on choice and comfort | Experienced students: validation of their knowledge"
+    },
+    {
+      "lessonNumber": 6,
+      "title": "Dire non",
+      "duration": "45 minutes",
+      "goal": "Students will practice saying 'no' clearly and understand they have the right to refuse uncomfortable touch",
+      "keyVocabulary": ["non", "arrête", "droit"],
+      "connectionToPrevious": "Builds on Lesson 5 by empowering students to communicate when something doesn't feel like helpful or comfortable touch",
+      "materials": [
+        "Marionnettes pour jeu de rôle",
+        "Affiche 'Mots puissants' (Non, Arrête)",
+        "Miroir pour pratique d'expression",
+        "Cloche ou signal pour 'arrête'"
+      ],
+      "safetyConsiderations": [
+        "Empowerment positif sans créer de peur",
+        "Pratiquer avec scenarios sécuritaires",
+        "Balancer assertivité avec respect",
+        "Préparer pour questions sur autorité d'adultes"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Introduce the power and importance of 'no'",
+          "activities": [
+            "Révision: touches d'aide vs inconfortables",
+            "Introduction: 'Non' est un mot puissant",
+            "Pratique de dire 'non' fort et clair"
+          ],
+          "visualSupports": "Affiche 'Non', gestes forts et clairs"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Practice saying no in safe, empowering ways",
+          "activities": [
+            "Jeu de rôle avec marionnettes: scenarios simples",
+            "Pratique dans le miroir: 'Non' et 'Arrête'",
+            "Jeu 'Stop et Go': s'arrêter quand on entend 'arrête'",
+            "Discussion: 'C'est correct de dire non'"
+          ],
+          "visualSupports": "Marionnettes expressives, miroir, cloche/signal",
+          "movementBreak": "Jeu actif 'Stop et Go' avec tout le corps"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Reinforce the right to say no with confidence",
+          "activities": [
+            "Affirmation: 'J'ai le droit de dire non'",
+            "Pratique calme: dire 'non' avec confiance",
+            "Rappel: 'Les adultes de confiance m'écoutent'"
+          ],
+          "visualSupports": "Affiche d'affirmation, gestes confiants"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "How comfortable are students with assertiveness?",
+          "ifThen": "IF students confident → practice more complex scenarios | IF hesitant → more encouragement and simple practice"
+        },
+        {
+          "situation": "What practice scenarios are appropriate?",
+          "ifThen": "IF students ready → unwanted hugs, tickling scenarios | IF need simpler → just practicing the words clearly"
+        },
+        {
+          "situation": "How to balance respect with boundaries?",
+          "ifThen": "IF questions about authority → explain 'polite but firm' | IF confusion about respect → 'respect includes respecting my no'"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Focus only on practicing 'non' and 'arrête' with marionnettes",
+        "ifNotEngaged": "Make it more game-like with signals and movement",
+        "ifSensitive": "Keep scenarios very light and positive, focus on empowerment not fear"
+      },
+      "realWorldConnection": "Learning to say 'no' clearly helps us communicate our feelings and stay comfortable in all situations",
+      "assessmentOpportunities": "Observe confidence in saying 'no', listen to understanding of rights",
+      "differentiationSupport": "Shy students: whisper practice first | Confident students: help model for others"
+    },
+    {
+      "lessonNumber": 7,
+      "title": "Adultes de confiance",
+      "duration": "45 minutes",
+      "goal": "Students will identify trusted adults in their lives who can help them",
+      "keyVocabulary": ["confiance", "adulte", "famille"],
+      "connectionToPrevious": "Builds on Lesson 6 by identifying the important people who will listen when we say 'no' and help us stay safe",
+      "materials": [
+        "Photos de famille (si partagées)",
+        "Images de rôles d'adultes (enseignant, parent, grand-parent)",
+        "Cercles de confiance (papier)",
+        "Livre sur les familles diverses"
+      ],
+      "safetyConsiderations": [
+        "Respecter toutes les structures familiales",
+        "Être sensible aux situations familiales difficiles",
+        "Éviter les assumptions sur les familles",
+        "Préparer pour enfants avec peu d'adultes de confiance"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Introduce trusted adults as helpers and listeners",
+          "activities": [
+            "Révision: 'J'ai le droit de dire non'",
+            "Introduction: 'Les adultes de confiance m'aident'",
+            "Partage simple: 'Un adulte qui m'aide'"
+          ],
+          "visualSupports": "Images d'adultes bienveillants, cercles visuels"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Identify and appreciate trusted adults",
+          "activities": [
+            "Créer un cercle de confiance personnel",
+            "Discussion: 'Qu'est-ce qu'un adulte de confiance?'",
+            "Livre sur familles diverses",
+            "Dessin d'un adulte de confiance"
+          ],
+          "visualSupports": "Cercles de confiance, livre illustré, papier de dessin",
+          "movementBreak": "Mime des façons que les adultes nous aident"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Celebrate the adults who care for us",
+          "activities": [
+            "Partage volontaire: 'Mon adulte de confiance'",
+            "Affirmation: 'J'ai des adultes qui m'aiment'",
+            "Plan: 'Je peux parler à...' (si besoin d'aide)"
+          ],
+          "visualSupports": "Dessins des élèves, expressions positives"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "Who are the trusted adults in each student's life?",
+          "ifThen": "IF students have many → help them choose top 2-3 | IF students have few → validate who they have, include school staff"
+        },
+        {
+          "situation": "How to include diverse family structures?",
+          "ifThen": "IF diverse families present → celebrate all family types | IF questions arise → 'families are different and special'"
+        },
+        {
+          "situation": "What if a student has limited trusted adults?",
+          "ifThen": "IF student struggling → include teacher, counselor as options | IF student shares concerns → listen and follow protocol"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Focus on drawing one trusted adult and saying why they help",
+        "ifNotEngaged": "More sharing and interactive discussion about helpers",
+        "ifSensitive": "Keep focus very positive, include school adults as trusted people"
+      },
+      "realWorldConnection": "Knowing our trusted adults gives us people to talk to when we need help, advice, or feel worried",
+      "assessmentOpportunities": "Listen to students' identification of trusted adults, observe understanding of trust concept",
+      "differentiationSupport": "Family diversity: validate all family structures | Shy students: drawing instead of verbal sharing"
+    },
+    {
+      "lessonNumber": 8,
+      "title": "Chercher de l'aide",
+      "duration": "45 minutes",
+      "goal": "Students will understand when and how to seek help from trusted adults",
+      "keyVocabulary": ["aide", "parler", "sécurité"],
+      "connectionToPrevious": "Builds on Lesson 7 by learning how to actually talk to our trusted adults when we need help",
+      "materials": [
+        "Téléphone jouet pour pratique",
+        "Cartes de scenarios d'aide",
+        "Marionnettes pour démonstrations",
+        "Affiche 'Comment demander de l'aide'"
+      ],
+      "safetyConsiderations": [
+        "Scenarios âge-appropriés seulement",
+        "Emphasizer que chercher de l'aide est bon",
+        "Préparer pour divulgations possibles",
+        "Garder tout positif et encourageant"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Connect help-seeking to safety and care",
+          "activities": [
+            "Révision: 'Mes adultes de confiance'",
+            "Introduction: 'Demander de l'aide est intelligent'",
+            "Démonstration simple avec marionnettes"
+          ],
+          "visualSupports": "Marionnettes, affiche d'aide, gestes encourageants"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Practice asking for help in different ways",
+          "activities": [
+            "Cartes de scenarios: quand chercher de l'aide",
+            "Pratique avec téléphone: 'J'ai besoin d'aide'",
+            "Jeu de rôle: parler à un adulte de confiance",
+            "Discussion: 'C'est normal de demander de l'aide'"
+          ],
+          "visualSupports": "Cartes illustrées, téléphone jouet, marionnettes expressives",
+          "movementBreak": "Mime de chercher et trouver de l'aide"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Reinforce that asking for help shows wisdom",
+          "activities": [
+            "Affirmation: 'Demander de l'aide me garde en sécurité'",
+            "Plan personnel: 'Si j'ai besoin d'aide, je...'",
+            "Rappel: 'Les adultes veulent m'aider'"
+          ],
+          "visualSupports": "Affiche personnelle, images rassurantes"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "How well do students understand help-seeking?",
+          "ifThen": "IF students understand → practice more complex scenarios | IF confused → simplify to basic 'I need help' practice"
+        },
+        {
+          "situation": "What communication methods work best?",
+          "ifThen": "IF verbal works → practice speaking clearly | IF non-verbal needed → include gestures and showing"
+        },
+        {
+          "situation": "How to address barriers to asking for help?",
+          "ifThen": "IF students seem worried → emphasize adults want to help | IF students confident → validate their knowledge"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Focus on practicing 'J'ai besoin d'aide' with different adults",
+        "ifNotEngaged": "More dramatic play and role-playing scenarios",
+        "ifSensitive": "Keep all scenarios very positive and simple"
+      },
+      "realWorldConnection": "Knowing how to ask for help keeps us safe and helps us solve problems in life",
+      "assessmentOpportunities": "Observe comfort with help-seeking, listen to language about asking for help",
+      "differentiationSupport": "Non-verbal: practice showing instead of just saying | Confident: help model for others"
+    },
+    {
+      "lessonNumber": 9,
+      "title": "Sécurité à la maison",
+      "duration": "45 minutes",
+      "goal": "Students will identify home safety rules and safe places in their homes",
+      "keyVocabulary": ["maison", "règles", "danger"],
+      "connectionToPrevious": "Builds on Lesson 8 by learning about staying safe in the place where we spend most time - our homes",
+      "materials": [
+        "Images de maisons diverses",
+        "Cartes de sécurité domestique",
+        "Maison en carton ou livre-maison",
+        "Autocollants de sécurité"
+      ],
+      "safetyConsiderations": [
+        "Respecter différents types de logements",
+        "Éviter de créer peur ou anxiété",
+        "Garder conseils simples et positifs",
+        "Être sensible aux situations de logement"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Connect safety to the comfort of home",
+          "activities": [
+            "Révision: 'Chercher de l'aide'",
+            "Partage: 'Ma maison est...'",
+            "Introduction: 'Rester en sécurité à la maison'"
+          ],
+          "visualSupports": "Images de maisons diverses, expressions accueillantes"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Explore home safety through positive examples",
+          "activities": [
+            "Explorer la maison en carton: endroits sécuritaires",
+            "Tri de cartes: sécuritaire vs faire attention",
+            "Discussion: 'Règles de ma famille'",
+            "Créer un plan de sécurité simple"
+          ],
+          "visualSupports": "Maison interactive, cartes de tri, autocollants",
+          "movementBreak": "Marche sécuritaire dans la 'maison' classe"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Appreciate safety rules as caring",
+          "activities": [
+            "Partage: 'Une règle qui me garde en sécurité'",
+            "Dessin de son endroit sûr à la maison",
+            "Affirmation: 'Les règles me protègent'"
+          ],
+          "visualSupports": "Papier de dessin, images de sécurité"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "What are common home safety concerns for this age?",
+          "ifThen": "IF students mention specific dangers → address calmly and positively | IF students seem worried → focus on safety helpers and rules"
+        },
+        {
+          "situation": "How to address different home environments?",
+          "ifThen": "IF diverse housing situations → validate all homes | IF students compare homes → redirect to 'different and safe'"
+        },
+        {
+          "situation": "What safety rules are most important?",
+          "ifThen": "IF students know many rules → celebrate their knowledge | IF students know few → focus on 2-3 key ones"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Focus on drawing safe places and one simple rule",
+        "ifNotEngaged": "More interactive exploration of toy house",
+        "ifSensitive": "Keep all examples very positive, focus on care not danger"
+      },
+      "realWorldConnection": "Home safety rules protect us and our families every day, showing love and care",
+      "assessmentOpportunities": "Listen to understanding of safety rules, observe connection to home experience",
+      "differentiationSupport": "Different housing: validate all living situations | Worried students: extra emphasis on safety and care"
+    },
+    {
+      "lessonNumber": 10,
+      "title": "Sécurité à l'école",
+      "duration": "45 minutes",
+      "goal": "Students will understand school safety rules and procedures",
+      "keyVocabulary": ["école", "enseignant", "directeur"],
+      "connectionToPrevious": "Builds on Lesson 9 by extending safety awareness from home to our second most important place - school",
+      "materials": [
+        "Plan de l'école simple",
+        "Photos des adultes de l'école",
+        "Cartes de procédures scolaires",
+        "Sifflet ou signal pour urgence"
+      ],
+      "safetyConsiderations": [
+        "Réviser vraies procédures d'urgence école",
+        "Éviter de créer anxiété scolaire",
+        "Inclure tous les adultes de sécurité école",
+        "Pratiquer calmement sans peur"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Connect school to safety and learning",
+          "activities": [
+            "Révision: 'Sécurité à la maison'",
+            "Tour virtuel: 'Notre école sécuritaire'",
+            "Introduction des adultes qui nous aident"
+          ],
+          "visualSupports": "Plan d'école, photos du personnel, gestes accueillants"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Learn school safety through familiar examples",
+          "activities": [
+            "Identifier les adultes de sécurité à l'école",
+            "Pratique des procédures simples (rang, écouter)",
+            "Jeu: 'Où aller si...' avec le plan",
+            "Discussion: 'Règles qui nous aident à apprendre'"
+          ],
+          "visualSupports": "Photos du personnel, plan interactif, cartes de procédures",
+          "movementBreak": "Pratique de marcher en sécurité dans les corridors"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Appreciate school as a safe learning space",
+          "activities": [
+            "Partage: 'À l'école, je me sens en sécurité parce que...'",
+            "Dessin de son endroit préféré sécuritaire à l'école",
+            "Rappel: 'Beaucoup d'adultes nous aident à l'école'"
+          ],
+          "visualSupports": "Papier de dessin, images positives de l'école"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "Which school safety procedures need emphasis?",
+          "ifThen": "IF fire drill needed → practice calmly | IF lockdown needed → very simple, calm explanation"
+        },
+        {
+          "situation": "How are students feeling about school safety?",
+          "ifThen": "IF students confident → reinforce their knowledge | IF students worried → extra reassurance about helpful adults"
+        },
+        {
+          "situation": "What school-specific concerns exist?",
+          "ifThen": "IF specific concerns arise → address with facts and reassurance | IF no concerns → celebrate feeling safe"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Focus on identifying 2-3 key helping adults and basic 'stay with teacher' rule",
+        "ifNotEngaged": "More movement and exploration of school spaces",
+        "ifSensitive": "Keep everything very positive and reassuring about school"
+      },
+      "realWorldConnection": "School safety rules help everyone learn and play together safely every day",
+      "assessmentOpportunities": "Observe understanding of school procedures, listen to comfort level with school safety",
+      "differentiationSupport": "Anxious students: extra reassurance about helping adults | New students: gentle introduction to school helpers"
+    },
+    {
+      "lessonNumber": 11,
+      "title": "Sécurité dans la communauté",
+      "duration": "45 minutes",
+      "goal": "Students will identify community helpers and basic community safety",
+      "keyVocabulary": ["communauté", "police", "pompier"],
+      "connectionToPrevious": "Builds on Lesson 10 by expanding safety awareness from school to the bigger community around us",
+      "materials": [
+        "Images de travailleurs communautaires",
+        "Costumes simples ou chapeaux de rôles",
+        "Carte de la communauté locale",
+        "Véhicules d'urgence (jouets)"
+      ],
+      "safetyConsiderations": [
+        "Présenter police et pompiers positivement",
+        "Éviter de créer peur de la communauté",
+        "Inclure divers travailleurs communautaires",
+        "Respecter diverses expériences avec autorités"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Introduce community as extended family of helpers",
+          "activities": [
+            "Révision: 'Sécurité à l'école'",
+            "Introduction: 'Notre communauté nous aide'",
+            "Montrer images de travailleurs communautaires"
+          ],
+          "visualSupports": "Images diverses de travailleurs, carte simple"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Meet community helpers through positive interactions",
+          "activities": [
+            "Jeu de rôle: pompier aide avec chapeau",
+            "Discussion: 'Comment ils nous aident'",
+            "Explorer véhicules d'urgence (jouets)",
+            "Carte: 'Où trouve-t-on ces helpers?'"
+          ],
+          "visualSupports": "Costumes/chapeaux, véhicules jouets, carte interactive",
+          "movementBreak": "Mime des actions de helpers (conduire camion, aider)"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Appreciate community support system",
+          "activities": [
+            "Partage: 'Un helper que j'ai vu'",
+            "Dessin de son helper communautaire préféré",
+            "Affirmation: 'Ma communauté prend soin de moi'"
+          ],
+          "visualSupports": "Papier de dessin, images positives de communauté"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "Which community helpers are most familiar to students?",
+          "ifThen": "IF students know many → explore roles more deeply | IF students know few → focus on 2-3 main ones"
+        },
+        {
+          "situation": "How to address community safety without fear?",
+          "ifThen": "IF students seem worried → emphasize helpers and care | IF students confident → share more helper roles"
+        },
+        {
+          "situation": "What community resources exist locally?",
+          "ifThen": "IF local resources known → include specific local examples | IF unsure → use general helper categories"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Focus on recognizing police and firefighter uniforms and their helping job",
+        "ifNotEngaged": "More dramatic play with costumes and vehicles",
+        "ifSensitive": "Keep all interactions very positive, focus on helping not authority"
+      },
+      "realWorldConnection": "Community helpers and safety rules keep our neighborhoods safe for everyone to live and play",
+      "assessmentOpportunities": "Listen to understanding of helper roles, observe recognition of community support",
+      "differentiationSupport": "Diverse experiences: validate all experiences with community helpers | Visual learners: more images and role-play"
+    },
+    {
+      "lessonNumber": 12,
+      "title": "Numéros d'urgence",
+      "duration": "45 minutes",
+      "goal": "Students will learn about emergency numbers and when to use them",
+      "keyVocabulary": ["urgence", "téléphone", "911"],
+      "connectionToPrevious": "Builds on Lesson 11 by learning how to contact the community helpers when we really need them",
+      "materials": [
+        "Téléphones jouets",
+        "Cartes avec 911 visuel",
+        "Images de situations d'urgence âge-appropriées",
+        "Affiche 'Quand appeler 911'"
+      ],
+      "safetyConsiderations": [
+        "Scenarios d'urgence simples et non-effrayants",
+        "Emphasizer quand NE PAS appeler 911",
+        "Pratiquer calmement sans créer anxiété",
+        "Inclure quand appeler adulte de confiance d'abord"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Introduce emergency help as special community support",
+          "activities": [
+            "Révision: 'Helpers de la communauté'",
+            "Introduction: '911 pour vraies urgences'",
+            "Montrer numéro 911 visuel simple"
+          ],
+          "visualSupports": "Cartes 911 grandes, téléphones jouets"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Learn emergency response through careful practice",
+          "activities": [
+            "Discussion: 'Qu'est-ce qu'une urgence?'",
+            "Tri: urgence vs pas urgence",
+            "Pratique calme: dire son nom et lieu",
+            "Jeu de rôle très simple avec téléphone"
+          ],
+          "visualSupports": "Images de tri, téléphones, affiche claire",
+          "movementBreak": "Mime de rester calme dans urgence"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Reinforce emergency preparedness as empowerment",
+          "activities": [
+            "Révision: 'Quand appeler 911'",
+            "Pratique: dire son nom clairement",
+            "Rappel: 'Les adultes m'aident en premier'"
+          ],
+          "visualSupports": "Affiche de révision, practice cards"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "Are students ready to learn about emergencies?",
+          "ifThen": "IF students seem ready → practice simple scenarios | IF students seem worried → more emphasis on adults helping first"
+        },
+        {
+          "situation": "How to teach emergency response without fear?",
+          "ifThen": "IF students calm → continue with practice | IF students anxious → more reassurance about rare events"
+        },
+        {
+          "situation": "What emergency scenarios are age-appropriate?",
+          "ifThen": "IF students handle well → medical emergency basics | IF too complex → focus only on 'get adult help first'"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Focus only on knowing 911 exists and getting adult first",
+        "ifNotEngaged": "More hands-on practice with toy phones",
+        "ifSensitive": "Emphasize that emergencies are rare and adults usually help us"
+      },
+      "realWorldConnection": "Knowing emergency numbers can help save lives and get help when it's really needed",
+      "assessmentOpportunities": "Listen to understanding of emergency vs non-emergency, observe comfort with concept",
+      "differentiationSupport": "Anxious students: extra emphasis on adult help first | Confident students: practice saying name and address"
+    },
+    {
+      "lessonNumber": 13,
+      "title": "Sentiments et sécurité",
+      "duration": "45 minutes",
+      "goal": "Students will connect their feelings to safety and learn to trust their instincts",
+      "keyVocabulary": ["sentiments", "inquiet", "content"],
+      "connectionToPrevious": "Builds on Lesson 12 by connecting all our safety learning to our inner feelings and instincts",
+      "materials": [
+        "Cartes d'émotions avec visages",
+        "Miroir pour reconnaissance d'émotions",
+        "Thermomètre des sentiments",
+        "Livre sur les émotions"
+      ],
+      "safetyConsiderations": [
+        "Valider tous les sentiments comme normaux",
+        "Éviter de juger les émotions",
+        "Connecter émotions à sécurité positivement",
+        "Préparer pour partage d'émotions difficiles"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Connect feelings to safety awareness",
+          "activities": [
+            "Révision: 'Appeler à l'aide'",
+            "Introduction: 'Mes sentiments m'aident'",
+            "Explorer sentiments avec miroir"
+          ],
+          "visualSupports": "Cartes d'émotions, miroir, expressions faciales"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Explore feelings as safety guides",
+          "activities": [
+            "Identifier sentiments avec cartes",
+            "Thermomètre: content vs inquiet",
+            "Discussion: 'Quand je me sens en sécurité'",
+            "Histoire: personnage qui écoute ses sentiments"
+          ],
+          "visualSupports": "Cartes émotionnelles, thermomètre visuel, livre illustré",
+          "movementBreak": "Mouvements corporels pour différents sentiments"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Trust feelings as important information",
+          "activities": [
+            "Affirmation: 'Mes sentiments sont importants'",
+            "Plan: 'Si je me sens inquiet, je...'",
+            "Rappel: 'Les sentiments m'aident à rester en sécurité'"
+          ],
+          "visualSupports": "Affiche d'affirmation, plan personnel"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "How are students connecting feelings to safety?",
+          "ifThen": "IF students understand connection → explore more complex feelings | IF confused → simplify to happy/worried"
+        },
+        {
+          "situation": "What emotional vocabulary do they need?",
+          "ifThen": "IF students have good vocabulary → add nuanced words | IF limited vocabulary → stick to basic feeling words"
+        },
+        {
+          "situation": "How to validate all feelings appropriately?",
+          "ifThen": "IF students share difficult feelings → validate and support | IF students only share positive → gently include that worried is okay too"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Focus on happy vs worried faces and trusting worried feelings",
+        "ifNotEngaged": "More active emotion games and movement",
+        "ifSensitive": "Extra validation that all feelings are okay and helpful"
+      },
+      "realWorldConnection": "Our feelings help us know when we're safe and when we might need to ask for help",
+      "assessmentOpportunities": "Listen to emotional vocabulary, observe connection between feelings and safety",
+      "differentiationSupport": "Emotional learners: more feeling exploration | Logical learners: clear if-then connections"
+    },
+    {
+      "lessonNumber": 14,
+      "title": "Portfolio de sécurité",
+      "duration": "45 minutes",
+      "goal": "Students will create their personal safety portfolio showing what they've learned",
+      "keyVocabulary": ["portfolio", "montrer", "apprendre"],
+      "connectionToPrevious": "Builds on Lesson 13 by bringing together all our safety learning into a personal collection we can keep and remember",
+      "materials": [
+        "Cahier ou cartable pour portfolio",
+        "Dessins des leçons précédentes",
+        "Autocollants de célébration",
+        "Appareils photo pour documentation"
+      ],
+      "safetyConsiderations": [
+        "Respecter confidentialité personnelle",
+        "Permettre choix dans le partage",
+        "Célébrer tous les niveaux d'apprentissage",
+        "Garder focus positif sur croissance"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Celebrate learning journey together",
+          "activities": [
+            "Révision: 'Mes sentiments et ma sécurité'",
+            "Introduction: 'Montrer tout ce qu'on a appris'",
+            "Explorer exemples de portfolios"
+          ],
+          "visualSupports": "Portfolios exemples, autocollants, cahiers"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Create personal safety portfolio",
+          "activities": [
+            "Rassembler dessins et travaux précédents",
+            "Créer page couverture personnelle",
+            "Ajouter photos d'apprentissage",
+            "Écrire/dicter une chose importante apprise"
+          ],
+          "visualSupports": "Matériaux de portfolio, dessins précédents, photos",
+          "movementBreak": "Galerie walk pour voir les portfolios en progrès"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Celebrate safety learning achievement",
+          "activities": [
+            "Partage volontaire: 'Dans mon portfolio'",
+            "Affirmation: 'J'ai appris beaucoup sur la sécurité'",
+            "Plan: 'Comment utiliser ce que j'ai appris'"
+          ],
+          "visualSupports": "Portfolios terminés, certificats simples"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "How can students best demonstrate their learning?",
+          "ifThen": "IF students prefer speaking → more oral presentation | IF students prefer showing → more visual demonstration"
+        },
+        {
+          "situation": "What format works for different learners?",
+          "ifThen": "IF students like art → more drawing and creating | IF students like writing → more dictation and simple writing"
+        },
+        {
+          "situation": "How to celebrate growth and learning?",
+          "ifThen": "IF students proud of work → encourage sharing | IF students shy → private celebration with teacher"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Focus on putting together 3-4 favorite drawings with simple labels",
+        "ifNotEngaged": "More hands-on assembly and decoration of portfolio",
+        "ifSensitive": "Private portfolio creation with optional sharing"
+      },
+      "realWorldConnection": "Creating a safety portfolio helps us remember important safety information and shows our families what we learned",
+      "assessmentOpportunities": "Comprehensive assessment through portfolio contents and student explanations",
+      "differentiationSupport": "Multiple ways to show learning: visual, oral, written, demonstration"
+    },
+    {
+      "lessonNumber": 15,
+      "title": "Jeux de rôle sécurité",
+      "duration": "45 minutes",
+      "goal": "Students will practice safety scenarios through role-play",
+      "keyVocabulary": [],
+      "connectionToPrevious": "Extension: Provides additional practice of core safety concepts through drama and role-play",
+      "materials": [
+        "Costumes simples pour jeux de rôle",
+        "Cartes de scenarios",
+        "Marionnettes diverses",
+        "Espace de jeu défini"
+      ],
+      "safetyConsiderations": [
+        "Scenarios positifs et âge-appropriés seulement",
+        "Surveiller les interactions entre enfants",
+        "Garder jeux légers et éducatifs",
+        "Intervention douce si needed"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Set up safe role-play environment",
+          "activities": [
+            "Révision rapide des concepts de sécurité",
+            "Introduction aux jeux de rôle sécuritaires",
+            "Établir règles de jeu respectueux"
+          ],
+          "visualSupports": "Cartes de règles, espace de jeu défini"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Practice safety through structured drama",
+          "activities": [
+            "Jeu de rôle: demander de l'aide",
+            "Scenario: dire non poliment",
+            "Pratique: appeler un adulte de confiance",
+            "Rotation entre différents scenarios"
+          ],
+          "visualSupports": "Costumes, cartes de scenarios, marionnettes",
+          "movementBreak": "Included in role-play activities"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Reflect on practice and learning",
+          "activities": [
+            "Discussion: 'Qu'est-ce qui était facile/difficile?'",
+            "Partage de stratégies qui marchent",
+            "Appréciation du jeu et apprentissage"
+          ],
+          "visualSupports": "Cartes de réflection, gestes d'appréciation"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "Which scenarios need more practice?",
+          "ifThen": "IF students struggle with saying no → more assertiveness practice | IF students need help-seeking → more adult interaction scenarios"
+        },
+        {
+          "situation": "How comfortable are students with role-play?",
+          "ifThen": "IF students love drama → extend scenarios | IF students shy → more marionnette play, less personal acting"
+        },
+        {
+          "situation": "What situations are most relevant?",
+          "ifThen": "IF students suggest scenarios → incorporate appropriate ones | IF teacher observes needs → focus practice there"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Simplify to marionnette demonstrations only",
+        "ifNotEngaged": "More active scenarios, less talking",
+        "ifSensitive": "Keep all scenarios very light and positive"
+      },
+      "realWorldConnection": "Practicing safety scenarios helps us be ready and confident in real situations",
+      "assessmentOpportunities": "Observe application of safety concepts in role-play",
+      "differentiationSupport": "Drama lovers: lead role opportunities | Shy students: behind-scenes or marionnette roles"
+    },
+    {
+      "lessonNumber": 16,
+      "title": "Histoires de sécurité",
+      "duration": "45 minutes",
+      "goal": "Students will explore safety concepts through storytelling",
+      "keyVocabulary": [],
+      "connectionToPrevious": "Extension: Reinforces safety learning through narrative and discussion",
+      "materials": [
+        "Livres de sécurité âge-appropriés",
+        "Images pour raconter des histoires",
+        "Matériaux pour créer livre de classe",
+        "Enregistreur pour histoires orales"
+      ],
+      "safetyConsiderations": [
+        "Choisir histoires positives et empowerment",
+        "Éviter histoires qui créent peur",
+        "Inclure diversité dans les personnages",
+        "Préparer pour questions sur histoires"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Connect stories to learning and safety",
+          "activities": [
+            "Révision: expériences de jeux de rôle",
+            "Introduction: 'Les histoires nous enseignent'",
+            "Prédictions sur histoire du jour"
+          ],
+          "visualSupports": "Livres attractifs, images d'histoire"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Explore safety through narrative",
+          "activities": [
+            "Lecture d'histoire de sécurité choisie",
+            "Discussion: personnages et choix sécuritaires",
+            "Créer fin alternative ou nouvelle histoire",
+            "Commencer livre de classe sur sécurité"
+          ],
+          "visualSupports": "Livre illustré, images pour discussion, matériaux de création",
+          "movementBreak": "Mime des actions de l'histoire"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Connect story lessons to real life",
+          "activities": [
+            "Discussion: 'Comment cette histoire m'aide'",
+            "Partage d'idées pour notre livre de classe",
+            "Appréciation des histoires comme teachers"
+          ],
+          "visualSupports": "Images de l'histoire, début du livre de classe"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "Which stories resonate most with students?",
+          "ifThen": "IF students connect to family stories → include more family safety | IF students like adventure → choose empowering adventure stories"
+        },
+        {
+          "situation": "How to choose diverse, inclusive stories?",
+          "ifThen": "IF class is diverse → ensure representation in story characters | IF limited diversity → still choose inclusive stories"
+        },
+        {
+          "situation": "What discussion questions are most valuable?",
+          "ifThen": "IF students analytical → deeper 'why' questions | IF students concrete → 'what would you do' questions"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Focus on simple story listening and one discussion question",
+        "ifNotEngaged": "More interactive storytelling with student participation",
+        "ifSensitive": "Choose very gentle, positive stories only"
+      },
+      "realWorldConnection": "Stories help us understand how safety concepts work in different situations and places",
+      "assessmentOpportunities": "Listen to story discussions and connections to safety learning",
+      "differentiationSupport": "Story lovers: opportunities to retell | Visual learners: focus on illustrations"
+    },
+    {
+      "lessonNumber": 17,
+      "title": "Art corporel positif",
+      "duration": "45 minutes",
+      "goal": "Students will create art celebrating body diversity and self-acceptance",
+      "keyVocabulary": [],
+      "connectionToPrevious": "Extension: Reinforces body positivity and safety concepts through creative expression",
+      "materials": [
+        "Matériaux d'art variés",
+        "Papier de différentes tailles",
+        "Crayons de couleur diverses de peau",
+        "Magazines avec images corporelles positives"
+      ],
+      "safetyConsiderations": [
+        "Célébrer toutes les formes de corps",
+        "Éviter comparaisons entre étudiants",
+        "Inclure capacités diverses dans art",
+        "Maintenir focus positif sur unicité"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Set up body-positive art creation",
+          "activities": [
+            "Révision: 'Mon corps est spécial'",
+            "Introduction: 'Art qui célèbre nos corps'",
+            "Explorer matériaux d'art disponibles"
+          ],
+          "visualSupports": "Matériaux colorés, exemples d'art corporel positif"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Create art celebrating body diversity",
+          "activities": [
+            "Créer autoportrait ou portrait de famille",
+            "Collage de corps divers et beaux",
+            "Art des 'super pouvoirs' de nos corps",
+            "Galerie informelle des créations"
+          ],
+          "visualSupports": "Matériaux variés, exemples inspirants, espace d'exposition",
+          "movementBreak": "Danse libre célébrant nos corps en mouvement"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Celebrate artistic expression and body positivity",
+          "activities": [
+            "Partage volontaire des créations artistiques",
+            "Discussion: 'Ce que j'aime de mon art'",
+            "Affirmation: 'Mon corps et mon art sont uniques'"
+          ],
+          "visualSupports": "Art des étudiants, expressions positives"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "How to celebrate all body types and abilities?",
+          "ifThen": "IF students focus on differences → redirect to 'different and wonderful' | IF students compare → emphasize uniqueness as strength"
+        },
+        {
+          "situation": "What art materials work best?",
+          "ifThen": "IF students prefer drawing → more drawing materials | IF students like 3D → add clay or construction materials"
+        },
+        {
+          "situation": "How to address body image positively?",
+          "ifThen": "IF negative comments arise → gently redirect to positive aspects | IF students confident → celebrate and model positivity"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Simple drawings of happy people with focus on smiles",
+        "ifNotEngaged": "More hands-on materials and collaborative art",
+        "ifSensitive": "Very positive focus, avoid any body details, focus on faces and hearts"
+      },
+      "realWorldConnection": "Art helps us express our feelings about ourselves and celebrate what makes each person special",
+      "assessmentOpportunities": "Observe body-positive language and self-acceptance in art creation",
+      "differentiationSupport": "Artistic students: more complex projects | Less confident: guided step-by-step creation"
+    },
+    {
+      "lessonNumber": 18,
+      "title": "Chansons de sécurité",
+      "duration": "45 minutes",
+      "goal": "Students will learn and create songs about safety concepts",
+      "keyVocabulary": [],
+      "connectionToPrevious": "Extension: Reinforces safety vocabulary and concepts through music and rhythm",
+      "materials": [
+        "Instruments simples",
+        "Fiches de chansons sécurité",
+        "Enregistreur pour créations",
+        "Objets pour rythme (shakers, tambours)"
+      ],
+      "safetyConsiderations": [
+        "Garder chansons positives et empowerment",
+        "Éviter mélodies qui créent anxiété",
+        "Inclure concepts de sécurité clés",
+        "Permettre créativité dans limites sécuritaires"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Connect music to learning and memory",
+          "activities": [
+            "Révision en chantant une chanson connue",
+            "Introduction: 'La musique nous aide à apprendre'",
+            "Explorer instruments et rythmes"
+          ],
+          "visualSupports": "Instruments visuels, fiches de chansons"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Learn and create safety songs",
+          "activities": [
+            "Apprendre chanson de sécurité existante",
+            "Créer nouveaux verses pour mélodie connue",
+            "Ajouter instruments et rythmes",
+            "Mini-concert de chansons de sécurité"
+          ],
+          "visualSupports": "Instruments, paroles visuelles, espace de performance",
+          "movementBreak": "Included in musical activities and dancing"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Celebrate musical safety learning",
+          "activities": [
+            "Performance finale de chanson préférée",
+            "Discussion: 'Comment la musique aide à retenir'",
+            "Plan pour partager chansons avec familles"
+          ],
+          "visualSupports": "Espace de performance, enregistrements des chansons"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "Which safety concepts work well in song?",
+          "ifThen": "IF students remember body parts song → add safety rules song | IF students like rhythm → focus on chanted safety rules"
+        },
+        {
+          "situation": "What musical styles engage students?",
+          "ifThen": "IF students like fast music → upbeat safety songs | IF students prefer calm → gentle, reassuring songs"
+        },
+        {
+          "situation": "How to make songs memorable and fun?",
+          "ifThen": "IF students love repetition → songs with choruses | IF students like movement → action songs with gestures"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Simple singing of one safety song with clapping",
+        "ifNotEngaged": "More movement and instruments, less complex creation",
+        "ifSensitive": "Very gentle, reassuring songs only"
+      },
+      "realWorldConnection": "Songs help us remember important safety rules and make learning fun and memorable",
+      "assessmentOpportunities": "Listen to safety vocabulary retention through songs",
+      "differentiationSupport": "Musical learners: lead song creation | Shy students: instrument playing instead of singing"
+    },
+    {
+      "lessonNumber": 19,
+      "title": "Famille et sécurité",
+      "duration": "45 minutes",
+      "goal": "Students will explore how different families talk about and practice safety",
+      "keyVocabulary": [],
+      "connectionToPrevious": "Extension: Connects school safety learning with home and family practices",
+      "materials": [
+        "Photos de familles diverses",
+        "Cartes de traditions familiales",
+        "Espace pour partage familial",
+        "Matériaux pour projet famille"
+      ],
+      "safetyConsiderations": [
+        "Respecter toutes structures familiales",
+        "Éviter assumptions sur familles",
+        "Permettre confidentialité si needed",
+        "Célébrer diversité familiale positivement"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Honor family diversity and safety practices",
+          "activities": [
+            "Révision: 'Mes adultes de confiance'",
+            "Introduction: 'Familles différentes, sécurité similaire'",
+            "Regarder photos de familles diverses"
+          ],
+          "visualSupports": "Photos inclusives, images familiales positives"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Explore family safety practices",
+          "activities": [
+            "Partage volontaire: 'Ma famille et la sécurité'",
+            "Discussion: traditions de sécurité familiales",
+            "Créer carte de remerciement pour famille",
+            "Plannifier partage avec familles"
+          ],
+          "visualSupports": "Espace de partage, matériaux de création, cartes familiales",
+          "movementBreak": "Mime des activités familiales sécuritaires"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Appreciate family support in safety",
+          "activities": [
+            "Affirmation: 'Ma famille m'aide à rester en sécurité'",
+            "Plan pour partager apprentissage avec famille",
+            "Appréciation de diversité familiale"
+          ],
+          "visualSupports": "Cartes pour familles, plans de partage"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "How to honor diverse family approaches to safety?",
+          "ifThen": "IF cultural differences emerge → celebrate 'different ways to care' | IF conflicts arise → focus on 'all families want us safe'"
+        },
+        {
+          "situation": "What family sharing is appropriate?",
+          "ifThen": "IF students share openly → guide to appropriate details | IF students private → respect and don't pressure"
+        },
+        {
+          "situation": "How to support all family structures?",
+          "ifThen": "IF diverse structures → explicitly include all in language | IF questions arise → 'families come in many wonderful forms'"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Simple drawing of family keeping us safe",
+        "ifNotEngaged": "More hands-on family appreciation activities",
+        "ifSensitive": "Keep focus very positive, avoid detailed family sharing"
+      },
+      "realWorldConnection": "Families are important partners in keeping us safe, each in their own special way",
+      "assessmentOpportunities": "Listen to understanding of family role in safety",
+      "differentiationSupport": "Diverse families: validate all family types | Private students: alternative expression methods"
+    },
+    {
+      "lessonNumber": 20,
+      "title": "Célébration de sécurité",
+      "duration": "45 minutes",
+      "goal": "Students will celebrate their safety learning and commit to ongoing safety practices",
+      "keyVocabulary": [],
+      "connectionToPrevious": "Extension: Culminates the unit with celebration and commitment to safety practices",
+      "materials": [
+        "Certificats de sécurité",
+        "Portfolios complétés",
+        "Matériaux de célébration",
+        "Espace pour cérémonie spéciale"
+      ],
+      "safetyConsiderations": [
+        "Célébrer tous les niveaux d'apprentissage",
+        "Inclure tous les étudiants dans célébration",
+        "Maintenir focus positif sur croissance",
+        "Préparer pour émotions de fin d'unité"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Set up celebration of learning journey",
+          "activities": [
+            "Révision du chemin d'apprentissage ensemble",
+            "Introduction: 'Célébrer notre apprentissage'",
+            "Préparation pour cérémonie spéciale"
+          ],
+          "visualSupports": "Portfolios, certificats, décorations de célébration"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Celebrate safety learning achievements",
+          "activities": [
+            "Présentation des portfolios (volontaire)",
+            "Remise de certificats de sécurité",
+            "Partage: 'La chose la plus importante que j'ai apprise'",
+            "Engagement: 'Comment je vais utiliser cet apprentissage'"
+          ],
+          "visualSupports": "Portfolios complets, certificats, espace de présentation",
+          "movementBreak": "Danse de célébration de la sécurité"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Commit to ongoing safety practices with confidence",
+          "activities": [
+            "Cercle d'appréciation final",
+            "Affirmation: 'Je sais comment rester en sécurité'",
+            "Plan pour continuer à apprendre sur la sécurité"
+          ],
+          "visualSupports": "Cercle d'appréciation, affirmations finales"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "How can we celebrate learning appropriately?",
+          "ifThen": "IF students love ceremony → formal certificate presentation | IF students prefer low-key → quiet individual recognition"
+        },
+        {
+          "situation": "What commitments are realistic for students?",
+          "ifThen": "IF students ready for commitments → specific safety promises | IF students need simpler → general 'I will stay safe' promise"
+        },
+        {
+          "situation": "How to end the unit positively and confidently?",
+          "ifThen": "IF students confident → celebrate independence | IF students need reassurance → emphasize continued adult support"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Simple certificate ceremony with one sharing opportunity",
+        "ifNotEngaged": "More active celebration with music and movement",
+        "ifSensitive": "Quiet, gentle celebration focusing on growth and care"
+      },
+      "realWorldConnection": "Celebrating our learning helps us remember how important safety knowledge is in our daily lives",
+      "assessmentOpportunities": "Final comprehensive assessment through portfolios and presentations",
+      "differentiationSupport": "All learning styles: multiple ways to celebrate and demonstrate growth"
+    }
+  ]
+}

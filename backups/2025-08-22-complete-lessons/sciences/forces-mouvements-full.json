@@ -1,0 +1,551 @@
+{
+  "unitPlan": {
+    "title": "Forces et mouvements simples",
+    "bigIdeas": "Explorer les forces qui causent le mouvement et découvrir des machines simples qui nous aident",
+    "totalLessons": 20,
+    "coreCount": 14,
+    "extensionCount": 6
+  },
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "title": "Pousser et tirer - découvrir les forces",
+      "oneGoal": "Students will explore pushing and pulling as two different types of forces through hands-on play and movement",
+      "keyVocabulary": ["pousser", "tirer", "force"],
+      "decisionPoints": [
+        {
+          "question": "Which classroom objects are safest for push/pull exploration?",
+          "guidance": "If sturdy furniture available: Use chairs, desks for pushing practice. If limited safe objects: Use soft blocks, bean bags, or playground balls."
+        },
+        {
+          "question": "Should we focus on body movements or object movements first?",
+          "guidance": "If students need movement: Start with body actions (push walls, pull scarves). If ready for objects: Begin with moving classroom items."
+        },
+        {
+          "question": "Are students ready for comparing push vs pull effectiveness?",
+          "guidance": "If understanding basic actions: Add comparisons of which works better. If still learning actions: Focus on identifying push vs pull only."
+        }
+      ],
+      "opening": "Force discovery circle (5 min): Students stand and demonstrate pushing air with hands, then pulling imaginary rope. Name actions: 'Nous poussons!' and 'Nous tirons!' Introduce: these are called 'forces' - pushes and pulls that make things move.",
+      "mainActivity": "Push and pull exploration stations (25 min): Station 1: Push toy cars across table, observe movement. Station 2: Pull scarves or ribbons, feel resistance. Station 3: Push classroom door open, pull it closed. Station 4: Push and pull same object (box with rope) to compare. Students practice vocabulary: 'Je pousse la voiture' and 'Je tire la corde.' Create class chart showing push actions vs pull actions with drawings.",
+      "closing": "Push-pull parade (10 min): Students march around room demonstrating push and pull actions while chanting: 'Pousser, tirer, c'est une force! Pousser, tirer, ça fait bouger!' End by having students show one push and one pull.",
+      "materials": ["Toy cars", "Scarves or ribbons", "Small boxes with ropes attached", "Chart paper", "Colored markers", "Safe classroom objects for moving"],
+      "whenThingsGoWrong": "If students push too hard: Demonstrate gentle forces. If objects break or tip: Use softer, more stable items. If too excited: Use 'scientist hands' signal for careful exploration.",
+      "realWorldConnection": "Students recognize push and pull forces they use every day: pushing doors, pulling drawers, pushing swings, pulling wagons",
+      "visualSupports": "Push/pull action cards with pictures, hand gesture demonstrations, force vocabulary chart with illustrations"
+    },
+    {
+      "lessonNumber": 2,
+      "title": "Force forte, force faible",
+      "oneGoal": "Students will discover that forces can be strong or weak and observe how force strength affects movement",
+      "keyVocabulary": ["fort", "faible", "mouvement"],
+      "decisionPoints": [
+        {
+          "question": "How can we make force strength visible and measurable for young learners?",
+          "guidance": "If measurement tools available: Use scales or distance markers. If basic exploration: Focus on obvious differences (gentle vs strong pushes)."
+        },
+        {
+          "question": "Should we use the same objects or different objects for force comparisons?",
+          "guidance": "If clear comparisons needed: Use identical objects with different forces. If variety preferred: Test force strength on various objects."
+        },
+        {
+          "question": "Are students ready for predicting outcomes based on force strength?",
+          "guidance": "If prediction skills developing: Ask 'What will happen if...?' questions. If advanced: Have students make specific movement predictions."
+        }
+      ],
+      "opening": "Strong and gentle demonstration (5 min): Teacher demonstrates gentle push on toy car (moves slowly) then strong push (moves quickly/far). Students practice gentle and strong pushes in air. Introduce vocabulary: 'force forte' and 'force faible'.",
+      "mainActivity": "Force strength investigation (25 min): Students test strong vs gentle forces on same objects. Push balls gently (short roll) vs strongly (long roll). Pull scarves gently vs strongly. Use playground balls to show how force strength affects bounce height. Create 'force strength chart' showing gentle force results vs strong force results with drawings and measurements (using non-standard units like hand spans).",
+      "closing": "Force strength song and movement (10 min): Sing simple song about strong and gentle forces with corresponding movements. Students demonstrate 'force forte' with big arm movements and 'force faible' with small gentle movements. Practice saying: 'Une force forte fait bouger beaucoup, une force faible fait bouger un peu.'",
+      "materials": ["Various balls (different sizes)", "Scarves", "Toy cars", "Measuring tools (rulers or hand span cards)", "Chart paper", "Markers", "Non-standard measurement units"],
+      "whenThingsGoWrong": "If students use excessive force: Model appropriate 'strong' vs unsafe force. If objects break: Switch to more durable items. If measurements confusing: Focus on 'far vs near' observations only.",
+      "realWorldConnection": "Students understand why they use gentle touches with pets and strong pushes to move heavy playground equipment",
+      "visualSupports": "Force strength comparison chart (big arrow = strong, small arrow = gentle), measurement cards, before/after position markers"
+    },
+    {
+      "lessonNumber": 3,
+      "title": "Faire rouler - les objets qui roulent",
+      "oneGoal": "Students will investigate how pushing and pulling forces make round objects roll and move in different ways",
+      "keyVocabulary": ["rouler", "rond", "direction"],
+      "decisionPoints": [
+        {
+          "question": "Which round objects are safest and most effective for rolling experiments?",
+          "guidance": "If variety available: Use balls, cylinders, wheels of different sizes. If limited materials: Focus on tennis balls and paper towel tubes."
+        },
+        {
+          "question": "Should we focus on rolling speed, rolling distance, or rolling direction?",
+          "guidance": "If one aspect interests students most: Deep dive into that element. If broad interest: Touch on all aspects briefly."
+        },
+        {
+          "question": "Are students ready for controlling rolling direction through force application?",
+          "guidance": "If spatial skills developing: Practice aiming at targets. If basic rolling mastered: Add direction control challenges."
+        }
+      ],
+      "opening": "Round shape exploration (5 min): Students examine different shapes - some round, some square/flat. Try rolling each type. Discover only round objects roll well. Practice vocabulary: 'C'est rond, ça roule!' Show how push direction affects rolling direction.",
+      "mainActivity": "Rolling investigation stations (25 min): Station 1: Roll balls at different speeds using gentle vs strong pushes. Station 2: Roll cylinders (paper towel tubes) and observe how they move differently than balls. Station 3: Try rolling non-round objects (blocks) vs round objects - compare ease of movement. Station 4: Rolling target practice - push balls toward specific targets to control direction. Create rolling observation chart showing what rolls well vs what doesn't roll.",
+      "closing": "Rolling race and reflection (10 min): Students choose their favorite rolling object and have gentle rolling races. Discuss: 'Pourquoi les objets ronds roulent-ils mieux?' Practice directional vocabulary: 'à droite', 'à gauche', 'tout droit'.",
+      "materials": ["Various balls", "Paper towel tubes/cylinders", "Wooden blocks", "Target markers (cones or tape)", "Chart paper", "Rolling observation sheets"],
+      "whenThingsGoWrong": "If objects roll too far: Use shorter distances or softer pushes. If direction control difficult: Use larger targets and closer distances. If non-rolling objects frustrate: Emphasize discovery rather than success.",
+      "realWorldConnection": "Students understand why balls work for sports, why car wheels are round, and how to aim when rolling toys to friends",
+      "visualSupports": "Shape comparison chart (round vs square), directional arrows, rolling distance markers, target practice guides"
+    },
+    {
+      "lessonNumber": 4,
+      "title": "Expérience de roulement",
+      "oneGoal": "Students will conduct simple experiments to test how different forces affect rolling distance and speed",
+      "keyVocabulary": ["expérience", "distance", "vitesse"],
+      "decisionPoints": [
+        {
+          "question": "What materials create the clearest rolling distance demonstrations?",
+          "guidance": "If long space available: Use tennis balls on smooth floor. If limited space: Use smaller balls and measure in hand spans."
+        },
+        {
+          "question": "Should we measure distance with non-standard or standard units?",
+          "guidance": "If measurement skills emerging: Use hand spans, foot steps, or blocks. If ready for tools: Introduce measuring tapes or rulers."
+        },
+        {
+          "question": "Are students ready for hypothesis-making about force and distance relationships?",
+          "guidance": "If prediction skills developing: Ask simple 'What do you think?' questions. If advanced: Have students explain their reasoning."
+        }
+      ],
+      "opening": "Experiment scientist preparation (5 min): Students put on 'scientist thinking caps' (real or imaginary). Introduce experiment question: 'How does push strength affect how far a ball rolls?' Show prediction sheet with gentle push vs strong push sections.",
+      "mainActivity": "Rolling experiment (25 min): Students work in pairs to test ball rolling. First, predict whether gentle or strong push will make ball roll farther. Then test: one partner pushes ball gently, measure distance (using non-standard units like footsteps). Next, same partner pushes ball strongly, measure distance again. Record results with drawings and simple numbers on experiment sheet. Compare predictions with actual results. Repeat experiment three times for consistency.",
+      "closing": "Scientist sharing circle (10 min): Students share experiment results: 'Mon expérience montre que...' Create class results chart showing whether gentle or strong pushes made balls roll farther. Discuss: why do stronger pushes usually make things go farther?",
+      "materials": ["Tennis balls (one per pair)", "Measuring tools (footstep cards, hand span cards)", "Experiment recording sheets", "Clipboards", "Pencils", "Class results chart"],
+      "whenThingsGoWrong": "If measuring too complex: Focus on 'farther vs closer' observations. If results inconsistent: Emphasize that real experiments sometimes have different results. If floor too slippery/rough: Adjust or change testing surface.",
+      "realWorldConnection": "Students understand why they need to throw balls harder to reach distant friends and why bowling requires controlled force",
+      "visualSupports": "Experiment steps poster, prediction vs results chart, distance measurement guides, scientific vocabulary cards"
+    },
+    {
+      "lessonNumber": 5,
+      "title": "Faire glisser sur différentes surfaces",
+      "oneGoal": "Students will explore how different surfaces affect the movement of objects when pushed or pulled",
+      "keyVocabulary": ["glisser", "surface", "facile"],
+      "decisionPoints": [
+        {
+          "question": "Which surface types provide the clearest movement differences?",
+          "guidance": "If variety available: Use smooth (table), rough (carpet), slippery (wax paper). If limited: Focus on smooth floor vs carpet comparison."
+        },
+        {
+          "question": "Should we test sliding with the same object on different surfaces?",
+          "guidance": "If clear comparisons wanted: Use identical objects on different surfaces. If exploring variables: Try different objects on same surface."
+        },
+        {
+          "question": "Are students ready for discussions about friction without using the term?",
+          "guidance": "If concept understanding developing: Focus on 'easy vs hard to move'. If ready for explanations: Discuss how surfaces grab or let go of objects."
+        }
+      ],
+      "opening": "Surface feeling exploration (5 min): Students feel different surfaces around classroom with hands - smooth desk, rough carpet, bumpy wall. Predict which surfaces would be easiest for sliding objects across. Introduce vocabulary: 'surface lisse' (smooth) and 'surface rugueuse' (rough).",
+      "mainActivity": "Surface testing investigation (25 min): Students test sliding same object (wooden block) across different surfaces. Surface 1: Smooth table - observe how easily block slides. Surface 2: Carpet - notice increased difficulty. Surface 3: Sandpaper or rough surface - observe very difficult sliding. Surface 4: Wax paper - observe very easy sliding. Students push with same gentle force on each surface and observe differences. Create surface comparison chart showing easy vs hard sliding surfaces.",
+      "closing": "Surface sliding demonstrations (10 min): Students demonstrate easiest and hardest sliding surfaces for class. Practice vocabulary: 'C'est facile de glisser sur...', 'C'est difficile de glisser sur...' Discuss why some surfaces make sliding easier than others.",
+      "materials": ["Wooden blocks (identical)", "Different surface materials (sandpaper, wax paper, carpet squares)", "Testing tables", "Surface comparison chart", "Markers"],
+      "whenThingsGoWrong": "If surface differences subtle: Use more extreme examples (ice vs sandpaper). If blocks stick or tip: Use flatter, more stable sliding objects. If testing area too small: Focus on smaller movements or demonstration by teacher.",
+      "realWorldConnection": "Students understand why socks slide on smooth floors, why cars need good tires on wet roads, and why sleds work on snow",
+      "visualSupports": "Surface texture cards with pictures, easy/difficult comparison chart, sliding action demonstration cards"
+    },
+    {
+      "lessonNumber": 6,
+      "title": "Les roues nous aident - introduction aux machines simples",
+      "oneGoal": "Students will discover that wheels make moving objects easier and are examples of simple machines that help us",
+      "keyVocabulary": ["roues", "aider", "machine"],
+      "decisionPoints": [
+        {
+          "question": "Which wheeled objects are most familiar and accessible to students?",
+          "guidance": "If toy cars available: Use cars and trucks for exploration. If real examples preferred: Examine school carts, chairs with wheels."
+        },
+        {
+          "question": "Should we compare with-wheels vs without-wheels using same objects?",
+          "guidance": "If clear comparison wanted: Use boxes with and without wheels attached. If observation focus: Examine various wheeled items."
+        },
+        {
+          "question": "Are students ready for identifying wheels in their environment?",
+          "guidance": "If observation skills strong: Go on classroom 'wheel hunt'. If developing: Focus on obvious examples like toy cars."
+        }
+      ],
+      "opening": "Wheel wonder introduction (5 min): Show toy car and identical box without wheels. Try pushing both across table. Ask: 'Lequel bouge plus facilement?' Introduce: wheels are special tools called 'machines' that help us move things easily.",
+      "mainActivity": "Wheel exploration and comparison (25 min): Students examine various wheeled objects: toy cars, rolling carts, wheeled backpacks, office chairs. Try moving objects with wheels vs similar objects without wheels. Create experiment: attach wheels to small box, compare pushing effort needed with and without wheels. Go on classroom 'wheel hunt' to find all the wheels that help us daily. Create class chart showing 'Objects with wheels' vs 'Objects without wheels' and discuss which are easier to move.",
+      "closing": "Wheel appreciation circle (10 min): Students share their favorite wheeled object and explain how wheels help. Practice saying: 'Les roues nous aident à bouger les choses facilement.' Introduce concept: wheels are 'machines simples' - tools that make work easier.",
+      "materials": ["Toy cars and trucks", "Small boxes", "Toy wheels or bottle caps", "Tape", "Wheeled classroom items", "Chart paper", "Wheel hunt recording sheets"],
+      "whenThingsGoWrong": "If wheel attachment difficult: Use pre-prepared wheeled boxes or focus on observation only. If students get distracted by toys: Use 'scientist observation' focus signals. If wheel hunt too chaotic: Limit to specific classroom areas.",
+      "realWorldConnection": "Students recognize how shopping carts, strollers, wheelchairs, and bikes use wheels to help people move things easily",
+      "visualSupports": "Wheeled vs non-wheeled comparison chart, simple machine introduction poster, wheel identification cards"
+    },
+    {
+      "lessonNumber": 7,
+      "title": "Expérience: avec et sans roues",
+      "oneGoal": "Students will experiment with moving objects with and without wheels to understand how wheels reduce effort needed",
+      "keyVocabulary": ["avec", "sans", "effort"],
+      "decisionPoints": [
+        {
+          "question": "What objects can safely be tested both with and without wheels?",
+          "guidance": "If materials allow: Use identical boxes, some with wheels attached. If limited supplies: Use toy cars vs blocks of similar weight."
+        },
+        {
+          "question": "Should we focus on effort needed or distance achieved?",
+          "guidance": "If effort concept developing: Have students feel how hard they push. If distance measurable: Compare how far objects move with same push."
+        },
+        {
+          "question": "Are students ready for making predictions before testing?",
+          "guidance": "If prediction skills emerging: Use simple 'easier or harder?' questions. If advanced: Ask students to explain their reasoning."
+        }
+      ],
+      "opening": "Effort prediction activity (5 min): Show students two identical boxes - one with wheels, one without. Ask them to predict which will be easier to move. Have students demonstrate 'easy push' (gentle arm movement) vs 'hard push' (strong arm movement).",
+      "mainActivity": "Wheels vs no-wheels experiment (25 min): Students work in pairs to test effort needed. First, push/pull box without wheels across table or floor - notice how much effort needed. Then push/pull identical box with wheels - observe effort difference. Students record observations using simple drawings and effort scale (easy/medium/hard). Test with different weights inside boxes. Create class comparison chart showing effort needed with and without wheels. Discuss findings: 'Avec les roues, c'est plus facile!'",
+      "closing": "Effort comparison sharing (10 min): Students demonstrate easy vs hard pushing for class. Share experiment results: 'Sans roues, c'est difficile. Avec les roues, c'est facile!' Practice effort vocabulary and introduce: wheels are machines that help reduce effort.",
+      "materials": ["Identical small boxes", "Toy wheels or bottle caps for attachment", "Tape", "Various small weights (books, toys)", "Effort recording sheets", "Class comparison chart"],
+      "whenThingsGoWrong": "If wheel attachment fails: Use pre-made wheeled boxes or toy cars vs blocks. If effort differences subtle: Use heavier objects or rougher surfaces. If recording too complex: Focus on verbal sharing only.",
+      "realWorldConnection": "Students understand why people use wheelchairs instead of carrying people, and why luggage has wheels for easy transport",
+      "visualSupports": "Effort scale visual (easy/medium/hard faces), with/without wheels comparison chart, experiment steps poster"
+    },
+    {
+      "lessonNumber": 8,
+      "title": "Les leviers - soulever avec un bâton",
+      "oneGoal": "Students will explore how levers help us lift heavy objects using less force through simple lever activities",
+      "keyVocabulary": ["levier", "soulever", "bâton"],
+      "decisionPoints": [
+        {
+          "question": "What safe fulcrum and lever materials are available for Grade 1 exploration?",
+          "guidance": "If proper materials available: Use rulers and blocks for fulcrums. If improvising: Use wooden spoons and books as simple levers."
+        },
+        {
+          "question": "Should we focus on lifting effectiveness or balancing concepts?",
+          "guidance": "If lifting concept clear: Focus on how levers help lift heavy things. If balance interests students: Explore seesaw-type balancing."
+        },
+        {
+          "question": "Are students ready for understanding how levers multiply force?",
+          "guidance": "If force concepts developing: Focus on 'makes lifting easier' concept. If understanding forces: Discuss how small push becomes big lift."
+        }
+      ],
+      "opening": "Lever introduction demonstration (5 min): Teacher demonstrates trying to lift heavy book with hands (difficult) vs using ruler as lever with block fulcrum (easier). Ask students: 'Why is the stick method easier?' Introduce vocabulary: 'levier' (lever) - a stick that helps us lift things.",
+      "mainActivity": "Lever exploration and experimentation (25 min): Students build simple levers using rulers (lever arm) and blocks (fulcrum). Practice lifting various objects: erasers, books, small toys. Compare effort needed to lift with hands vs with lever. Try different fulcrum positions - closer to object vs farther from object - observe lifting differences. Students create lever observation drawings showing what they lifted and how the lever helped. Explore classroom for lever examples: scissors (handles are levers), bottle opener.",
+      "closing": "Lever demonstration circle (10 min): Students demonstrate their best lever creation and explain how it helps: 'Mon levier m'aide à soulever...' Practice lever vocabulary and connect to simple machines concept: levers make lifting easier like wheels make moving easier.",
+      "materials": ["Rulers or wooden sticks", "Small blocks for fulcrums", "Various objects to lift (books, erasers, toys)", "Drawing paper", "Pencils", "Classroom lever examples (scissors, bottle opener)"],
+      "whenThingsGoWrong": "If fulcrum unstable: Use larger, more stable blocks or books. If lever slips: Show proper hand placement and fulcrum positioning. If objects too heavy: Use lighter items appropriate for small levers.",
+      "realWorldConnection": "Students understand how playground seesaws work, why bottle openers make opening easier, and how crowbars help move heavy objects",
+      "visualSupports": "Lever parts diagram (lever arm, fulcrum, load), simple lever examples chart, lifting comparison pictures (with/without lever)"
+    },
+    {
+      "lessonNumber": 9,
+      "title": "Expérience de leviers",
+      "oneGoal": "Students will conduct experiments with makeshift levers to lift objects and compare effort with and without levers",
+      "keyVocabulary": ["expérience", "comparer", "efficace"],
+      "decisionPoints": [
+        {
+          "question": "Which lever experiments are safest and most demonstrative for young children?",
+          "guidance": "If safety priority: Use lightweight objects and sturdy fulcrums. If demonstration needed: Choose experiments with obvious effort differences."
+        },
+        {
+          "question": "Should we use identical objects or vary the objects being lifted?",
+          "guidance": "If clear comparison wanted: Use same object with and without lever. If exploring capacity: Try different objects with same lever."
+        },
+        {
+          "question": "Are students ready for discussing why levers work without complex physics?",
+          "guidance": "If mechanical understanding developing: Focus on 'stick helps us push better'. If conceptual thinking advanced: Discuss how levers multiply our push."
+        }
+      ],
+      "opening": "Lever scientist preparation (5 min): Students review lever parts using hand gestures: fulcrum (make triangle with hands), lever arm (extend arm straight), load (pretend to hold heavy object). Set up experiment question: 'Do levers really make lifting easier?'",
+      "mainActivity": "Lever effectiveness experiment (25 min): Students systematically test lever effectiveness. First, try lifting object (book) with hands only - rate effort as easy/medium/hard. Then, set up lever (ruler and block) and lift same object using lever - rate effort again. Test different lever setups: fulcrum close to object vs far from object. Record results on experiment sheet with drawings and effort ratings. Try lifting different objects with same lever setup. Create class results chart comparing hand lifting vs lever lifting efforts.",
+      "closing": "Lever experiment conclusions (10 min): Students share their findings: 'Les leviers rendent le soulèvement plus facile!' Discuss why levers help: the stick gives us better push power. Connect to daily life: when do we use lever-like tools to make lifting easier?",
+      "materials": ["Rulers or sticks", "Block fulcrums", "Test objects (books, small boxes)", "Experiment recording sheets", "Effort rating cards", "Class results chart", "Pencils"],
+      "whenThingsGoWrong": "If lever setup difficult: Pre-position fulcrums or provide setup guides. If effort differences unclear: Use heavier test objects or ask students to focus on 'feels easier' vs measurement. If experiments take too long: Limit to two setup comparisons.",
+      "realWorldConnection": "Students verify that tools like bottle openers, scissors, and pry bars really do make difficult tasks easier through lever action",
+      "visualSupports": "Experiment setup guide with pictures, effort rating scale, lever effectiveness comparison chart"
+    },
+    {
+      "lessonNumber": 10,
+      "title": "Les plans inclinés - rendre les pentes utiles",
+      "oneGoal": "Students will discover how ramps and slopes help move objects up to higher places with less force",
+      "keyVocabulary": ["rampe", "pente", "monter"],
+      "decisionPoints": [
+        {
+          "question": "What ramp materials and angles are safest for classroom exploration?",
+          "guidance": "If boards available: Use wooden boards with book supports. If improvising: Use large cardboard pieces or book ramps."
+        },
+        {
+          "question": "Should we focus on ease of movement or height achievement?",
+          "guidance": "If effort concept clear: Compare pushing up ramp vs lifting straight up. If achievement focus: Measure how high objects can go using ramps."
+        },
+        {
+          "question": "Are students ready for comparing steep vs gentle ramp effectiveness?",
+          "guidance": "If angle concepts developing: Test obvious steep vs gentle differences. If understanding angles: Explore multiple ramp steepness levels."
+        }
+      ],
+      "opening": "Ramp discovery challenge (5 min): Show students a toy car and a 'mountain' (stack of books). Challenge: 'How can we get the car to the top without picking it up?' Let students suggest solutions. Introduce: ramps (rampes) help things go up easily.",
+      "mainActivity": "Ramp exploration and comparison (25 min): Students build ramps using boards and books at different heights. Test moving toy cars up ramps vs trying to place them directly on top. Compare effort: pushing car up gentle ramp vs steep ramp vs lifting straight up. Students test different ramp materials: smooth board vs textured surface. Create ramp effectiveness chart showing which ramps work best for different objects. Explore school for real ramps: wheelchair ramps, loading dock ramps.",
+      "closing": "Ramp appreciation discussion (10 min): Students share where they've seen ramps and how they help people. Practice saying: 'Les rampes nous aident à monter les choses facilement.' Connect ramps to simple machines family: wheels help move sideways, levers help lift up, ramps help go up slopes.",
+      "materials": ["Wooden boards or large cardboard", "Books for ramp supports", "Toy cars", "Various ramp surface materials", "Chart paper", "School ramp examples (if accessible)"],
+      "whenThingsGoWrong": "If ramps slide or unstable: Use non-slip materials under supports or tape ramps down. If cars roll back: Use cars with more traction or gentler ramps. If ramp exploration overwhelming: Focus on one simple ramp setup for whole class.",
+      "realWorldConnection": "Students understand why wheelchair ramps exist, how moving trucks use ramps, and why mountain roads wind up gradually instead of going straight up",
+      "visualSupports": "Ramp angle comparison pictures (steep vs gentle), ramp uses in real world poster, simple machines family chart"
+    },
+    {
+      "lessonNumber": 11,
+      "title": "Expérience de rampes",
+      "oneGoal": "Students will experiment with different ramp angles and surfaces to find the most effective ways to move objects upward",
+      "keyVocabulary": ["angle", "efficace", "tester"],
+      "decisionPoints": [
+        {
+          "question": "Which ramp angles provide clear differences in ease of movement?",
+          "guidance": "If obvious differences needed: Compare very gentle (1 book) vs steep (3 books) ramps. If subtle exploration: Test multiple book heights."
+        },
+        {
+          "question": "Should we test multiple objects or focus on one object with various ramps?",
+          "guidance": "If systematic approach preferred: Use same car on different ramps. If variety interests students: Test different objects on same ramp."
+        },
+        {
+          "question": "Are students ready for systematic testing and recording results?",
+          "guidance": "If recording skills developing: Use simple drawings and checkmarks. If systematic skills emerging: Try controlled variable testing."
+        }
+      ],
+      "opening": "Ramp experiment setup (5 min): Students predict which ramp will be easiest for moving toy car to top: gentle ramp (supported by 1 book) or steep ramp (supported by 3 books). Introduce experiment vocabulary: we will 'test' different ramps to find the most 'effective' one.",
+      "mainActivity": "Systematic ramp testing (25 min): Students set up three different ramp angles using 1, 2, and 3 books as supports. Test pushing same toy car up each ramp, rating effort as easy/medium/hard. Test rolling balls down ramps to see speed differences. Experiment with different ramp surfaces: smooth paper vs sandpaper vs fabric. Record results on ramp experiment sheet with drawings and effort ratings. Create class comparison showing which ramp angles work best for different purposes.",
+      "closing": "Ramp experiment conclusions (10 min): Students share findings: 'La rampe douce est plus facile' or 'La rampe raide est plus rapide.' Discuss: why might people choose different ramp steepness for different jobs? Connect to real world: why are wheelchair ramps gentle but waterslides steep?",
+      "materials": ["Boards for ramps", "Books (1, 2, 3 per ramp)", "Toy cars", "Balls", "Different surface materials", "Ramp experiment recording sheets", "Effort rating cards"],
+      "whenThingsGoWrong": "If ramp differences unclear: Use more extreme angle differences or heavier objects. If recording overwhelming: Focus on verbal observations and demonstrations. If ramps unstable: Secure with tape or use more stable supports.",
+      "realWorldConnection": "Students understand why some ramps are steep (for speed) while others are gentle (for ease), and how this applies to slides, roads, and accessibility ramps",
+      "visualSupports": "Ramp angle comparison diagram, experiment recording template, effectiveness rating scale (easy/medium/hard)"
+    },
+    {
+      "lessonNumber": 12,
+      "title": "Les poulies - soulever avec des cordes",
+      "oneGoal": "Students will explore simple pulleys and discover how they help lift objects by changing force direction",
+      "keyVocabulary": ["poulie", "corde", "soulever"],
+      "decisionPoints": [
+        {
+          "question": "What safe pulley systems can be created or demonstrated in the classroom?",
+          "guidance": "If pulley wheels available: Create simple fixed pulleys with rope. If improvising: Use thread spools and string for demonstration."
+        },
+        {
+          "question": "Should we focus on lifting ease or directional change of force?",
+          "guidance": "If directional concept clear: Emphasize pulling down to lift up. If lifting focus preferred: Compare effort with and without pulley."
+        },
+        {
+          "question": "Are students ready for understanding how pulleys redirect pulling force?",
+          "guidance": "If direction concepts developing: Use 'magic' language about changing pull direction. If spatial skills strong: Discuss how pulleys change force direction."
+        }
+      ],
+      "opening": "Pulley magic demonstration (5 min): Teacher demonstrates lifting object by pulling up (difficult) vs using simple pulley system to pull down and lift object up (easier/different). Ask: 'How did pulling down make the object go up?' Introduce: this 'magic' tool is called a pulley.",
+      "mainActivity": "Pulley exploration and construction (25 min): Students examine simple pulley systems (if available) or watch teacher demonstrations. Try lifting small objects by pulling straight up vs using pulley to pull down. Students create simple pulleys using thread spools, string, and small objects (erasers, toy cars). Test their pulley systems: does pulling down lift the object up? Compare effort needed and direction of pull with and without pulley. Explore school for pulley examples: flag poles, window blinds.",
+      "closing": "Pulley appreciation circle (10 min): Students demonstrate their pulleys and explain: 'Ma poulie change la direction de ma force.' Practice pulley vocabulary and add to simple machines collection: wheels help move sideways, levers help lift, ramps help go up slopes, pulleys help lift by pulling down.",
+      "materials": ["Thread spools or small wheels", "String or thin rope", "Small objects to lift", "Pulley demonstration setup", "Simple pulley examples from school"],
+      "whenThingsGoWrong": "If string breaks: Use stronger cord or reduce lifted weight. If pulleys don't work smoothly: Ensure spools turn freely or demonstrate concept instead of construction. If concept too abstract: Focus on 'pull down, object goes up' observation.",
+      "realWorldConnection": "Students understand how flagpoles work, why construction cranes use pulleys, and how window blinds let us pull down to raise the blind up",
+      "visualSupports": "Pulley direction arrows (down pull → up lift), simple machines collection poster, pulley examples in daily life pictures"
+    },
+    {
+      "lessonNumber": 13,
+      "title": "Identifier les machines simples autour de nous",
+      "oneGoal": "Students will identify examples of simple machines (wheels, levers, ramps, pulleys) in their classroom and daily environment",
+      "keyVocabulary": ["identifier", "exemple", "environnement"],
+      "decisionPoints": [
+        {
+          "question": "Which simple machines are most visible and recognizable in the school environment?",
+          "guidance": "If many examples visible: Create systematic hunt for each machine type. If limited examples: Focus on most obvious ones and use pictures for others."
+        },
+        {
+          "question": "Should we focus on one type of machine per exploration or survey all types?",
+          "guidance": "If thorough exploration preferred: Dedicate time to finding each machine type. If overview approach: Quick survey of all types together."
+        },
+        {
+          "question": "Are students ready for explaining how identified machines help people?",
+          "guidance": "If explanation skills developing: Have students describe what each machine does. If analytical thinking emerging: Discuss why each machine makes tasks easier."
+        }
+      ],
+      "opening": "Simple machines review game (5 min): Students use body actions to show each simple machine learned: wheels (rolling arms), levers (seesaw motion), ramps (slanted hands), pulleys (pull down/up motions). Challenge: 'Let's find these machines hiding around our school!'",
+      "mainActivity": "Simple machines scavenger hunt (25 min): Students work in pairs with simple machines identification sheets. Search classroom and accessible school areas for examples: wheels (on chairs, carts, toys), levers (scissors, door handles, staplers), ramps (wheelchair ramps, entrance ramps), pulleys (flagpoles, blinds). Students draw or check off machines they find and write/dictate how each helps people. Create class 'Simple Machines Around Us' display with drawings and photos of discovered machines.",
+      "closing": "Simple machines sharing celebration (10 min): Each pair presents their favorite discovered simple machine and demonstrates how it helps: 'Nous avons trouvé une roue sur... Elle nous aide à...' Celebrate how many simple machines help us every day without us noticing!",
+      "materials": ["Simple machines identification sheets", "Clipboards", "Pencils", "Cameras (optional)", "Display board", "Simple machines review cards"],
+      "whenThingsGoWrong": "If hunt becomes disruptive: Limit to classroom only or use pictures. If machines hard to identify: Provide more obvious examples or teacher guidance. If time runs short: Focus on most clear examples found.",
+      "realWorldConnection": "Students realize simple machines are everywhere helping people: at home, at school, in cars, and in playgrounds",
+      "visualSupports": "Simple machines identification cards with pictures, examples checklist, 'machines around us' display template"
+    },
+    {
+      "lessonNumber": 14,
+      "title": "Construire nos propres machines simples",
+      "oneGoal": "Students will design and build simple machines using classroom materials to solve movement problems",
+      "keyVocabulary": ["construire", "concevoir", "résoudre"],
+      "decisionPoints": [
+        {
+          "question": "What construction materials are safe and effective for Grade 1 simple machine building?",
+          "guidance": "If variety available: Use cardboard, tape, wheels, strings, blocks. If limited materials: Focus on one machine type with available supplies."
+        },
+        {
+          "question": "Should students work individually or in collaborative groups?",
+          "guidance": "If collaboration skills strong: Use pairs or small groups. If individual focus preferred: Let each student build their own machine."
+        },
+        {
+          "question": "Are students ready for design challenges or should they follow guided construction?",
+          "guidance": "If creative skills emerging: Provide open-ended challenges. If structure needed: Offer step-by-step building guides with choices."
+        }
+      ],
+      "opening": "Engineer introduction ceremony (5 min): Students receive 'engineer badges' (real or imaginary) and learn that engineers are people who build machines to solve problems. Today they become engineers building simple machines to help with classroom tasks.",
+      "mainActivity": "Simple machine construction workshop (25 min): Students choose a classroom problem to solve: moving books across room, lifting objects to high shelf, getting toy car up to desk level, lifting flag to top of pole. Design and build simple machine solution using available materials: cardboard ramps, wheel attachments, lever systems, pulley setups. Students work individually or in pairs, with teacher support for construction challenges. Test their machines to see if they solve the chosen problem. Make adjustments as needed.",
+      "closing": "Engineer showcase (10 min): Students present their built machines and demonstrate how they solve problems: 'Mon machine aide à...' Celebrate engineering success and discuss what they learned about building: some ideas work, some need changes, engineers keep trying until solutions work.",
+      "materials": ["Cardboard pieces", "Tape", "String", "Small wheels or bottle caps", "Wooden sticks", "Blocks", "Small objects for testing", "Engineer badges (optional)"],
+      "whenThingsGoWrong": "If construction too complex: Simplify to basic machine modifications. If materials insufficient: Share supplies or demonstrate one group construction. If machines don't work: Emphasize learning process over perfect results.",
+      "realWorldConnection": "Students experience how real engineers design machines to solve problems, just like the simple machines they built help with classroom tasks",
+      "visualSupports": "Construction steps guides, problem-solution matching cards, engineer process poster (design → build → test → improve)"
+    },
+    {
+      "lessonNumber": 15,
+      "title": "Tester nos machines - est-ce que ça marche?",
+      "oneGoal": "Students will test their constructed simple machines and evaluate their effectiveness in making movement easier (extension)",
+      "keyVocabulary": ["tester", "marcher", "évaluer"],
+      "decisionPoints": [
+        {
+          "question": "What testing criteria help students evaluate machine effectiveness?",
+          "guidance": "If evaluation skills developing: Use simple 'works/doesn't work' assessment. If analytical thinking emerging: Compare effectiveness to doing task without machine."
+        },
+        {
+          "question": "Should we focus on successful function or comparative improvement?",
+          "guidance": "If success focus preferred: Celebrate machines that work as intended. If improvement focus: Compare machine-assisted vs non-machine task completion."
+        },
+        {
+          "question": "Are students ready for redesigning machines that don't work well?",
+          "guidance": "If problem-solving skills developing: Guide students through simple modifications. If design thinking advanced: Let students identify and fix problems independently."
+        }
+      ],
+      "opening": "Machine testing laboratory setup (5 min): Transform classroom into 'testing laboratory' where engineers test their inventions. Review testing process: try the machine, see if it works, decide if it helps make the job easier.",
+      "mainActivity": "Systematic machine testing (25 min): Students test their built machines systematically. First, try completing their chosen task without the machine - observe effort and success. Then, use their machine to complete same task - compare effort and results. Students rate their machines: works great/works okay/needs fixing. For machines that don't work well, students identify problems and try simple modifications. Create class testing results chart showing which types of machines worked best and what problems were discovered.",
+      "closing": "Testing results sharing (10 min): Students share testing outcomes: 'Ma machine marche bien parce que...' or 'Ma machine a besoin d'amélioration parce que...' Discuss: real engineers test their machines many times and keep making improvements.",
+      "materials": ["Built machines from previous lesson", "Testing tasks materials", "Machine evaluation sheets", "Modification materials (extra tape, cardboard)", "Class results chart"],
+      "whenThingsGoWrong": "If many machines don't work: Emphasize learning from problems rather than perfect success. If testing becomes frustrating: Focus on effort and learning process. If modifications too complex: Provide teacher assistance or simpler modification options.",
+      "realWorldConnection": "Students learn that real inventors and engineers test their machines carefully and improve designs based on testing results",
+      "visualSupports": "Machine testing checklist, evaluation rating scale, problem-solving process poster"
+    },
+    {
+      "lessonNumber": 16,
+      "title": "Améliorer nos machines",
+      "oneGoal": "Students will modify and improve their simple machines based on testing results and new ideas (extension)",
+      "keyVocabulary": ["améliorer", "modifier", "idée"],
+      "decisionPoints": [
+        {
+          "question": "Which improvements are most achievable with available materials and time?",
+          "guidance": "If time/materials limited: Focus on simple modifications like repositioning or adding tape. If resources available: Allow more substantial redesign."
+        },
+        {
+          "question": "Should students redesign from scratch or modify existing machines?",
+          "guidance": "If existing machines partially work: Focus on improvements and modifications. If complete redesign needed: Allow fresh start with same problem."
+        },
+        {
+          "question": "Are students ready for collaborative improvement sharing and helping?",
+          "guidance": "If sharing skills strong: Encourage peer consultation and shared problem-solving. If individual focus better: Let students work independently with teacher support."
+        }
+      ],
+      "opening": "Improvement engineers meeting (5 min): Students review their machine testing results and identify what worked well vs what needs improvement. Introduce: engineers always make their inventions better - this process is called 'improving' or 'modifying' designs.",
+      "mainActivity": "Machine improvement workshop (25 min): Students work to improve their machines based on testing feedback. Possible improvements: make ramps less steep, add more wheels, strengthen lever fulcrums, adjust pulley positions, reinforce weak joints. Students may also get new ideas from seeing other students' successful machines. Test improved machines and compare results to original versions. Some students may choose to build completely new machines if original designs need major changes.",
+      "closing": "Improvement celebration (10 min): Students present their improved machines and explain changes made: 'J'ai amélioré ma machine en...' Discuss how making improvements is normal part of engineering - even professional engineers redesign their inventions many times.",
+      "materials": ["Original machines from previous lessons", "Additional construction materials", "Tape", "Glue", "Scissors", "Improvement tracking sheets"],
+      "whenThingsGoWrong": "If improvements don't work better: Emphasize that trying new ideas is valuable learning. If students frustrated with changes: Allow return to previous design or teacher assistance. If time insufficient: Focus on planning improvements rather than complete reconstruction.",
+      "realWorldConnection": "Students understand that cars, computers, and other machines keep getting better because engineers constantly improve their designs",
+      "visualSupports": "Before/after improvement comparison sheets, improvement ideas poster, engineering design cycle diagram"
+    },
+    {
+      "lessonNumber": 17,
+      "title": "Forces et mouvements dans les jeux",
+      "oneGoal": "Students will analyze playground games and sports to identify forces and simple machines in recreational activities (extension)",
+      "keyVocabulary": ["jeux", "sport", "analyser"],
+      "decisionPoints": [
+        {
+          "question": "Which playground activities show the clearest examples of forces and simple machines?",
+          "guidance": "If playground accessible: Visit and observe swings, slides, seesaws directly. If indoor lesson: Use photos and videos of playground equipment."
+        },
+        {
+          "question": "Should we focus on games students know well or introduce new examples?",
+          "guidance": "If familiar games preferred: Start with activities students play regularly. If expanding knowledge: Introduce sports or games with obvious force applications."
+        },
+        {
+          "question": "Are students ready for making connections between play and physics concepts?",
+          "guidance": "If connections developing: Help students see push/pull forces in games. If analytical thinking emerging: Discuss why certain games work the way they do."
+        }
+      ],
+      "opening": "Playground science detectives (5 min): Students recall their favorite playground activities and games. Challenge: 'Let's discover the forces and machines hiding in our favorite games!' Review push, pull, and simple machines vocabulary.",
+      "mainActivity": "Games and forces exploration (25 min): Students examine playground activities for forces and machines. Swings: pushing and pulling forces, pendulum motion. Slides: ramps (inclined planes) that use gravity. Seesaws: levers in action with fulcrum in middle. Ball games: pushing forces to make balls move, rolling forces. Jump rope: pulling forces and circular motion. Students create 'Forces in Games' chart showing push/pull examples and simple machines found in recreational activities.",
+      "closing": "Games science sharing (10 min): Students share discoveries: 'Dans ce jeu, j'utilise une force de...' or 'Cette activité utilise une machine simple qui est...' Appreciate how science makes play more fun and how playing helps us understand science naturally.",
+      "materials": ["Playground access or photos", "Sports equipment examples", "Games observation sheets", "Chart paper", "Markers", "Force and machine identification cards"],
+      "whenThingsGoWrong": "If playground not accessible: Use clear photos, videos, or demonstrate with classroom examples. If connections too abstract: Focus on obvious push/pull examples only. If students get distracted by play: Use 'scientist observer' focus signals.",
+      "realWorldConnection": "Students recognize that their favorite activities naturally involve the same forces and machines they've been studying in science",
+      "visualSupports": "Games and forces connection chart, playground equipment diagrams showing simple machines, force identification cards"
+    },
+    {
+      "lessonNumber": 18,
+      "title": "Inventeur de machines - résoudre des problèmes",
+      "oneGoal": "Students will identify everyday problems and design simple machines to solve them like real inventors (extension)",
+      "keyVocabulary": ["inventeur", "problème", "solution"],
+      "decisionPoints": [
+        {
+          "question": "Which everyday problems are most relatable and solvable for Grade 1 students?",
+          "guidance": "If age-appropriate problems: Focus on classroom or home challenges students recognize. If creative thinking encouraged: Allow students to identify their own problems to solve."
+        },
+        {
+          "question": "Should students choose their own problems or work from teacher-provided challenges?",
+          "guidance": "If open-ended exploration preferred: Let students identify problems they've noticed. If structured approach: Provide list of solvable problems to choose from."
+        },
+        {
+          "question": "Are students ready for presenting their inventions and explaining how they work?",
+          "guidance": "If presentation skills developing: Use show-and-tell format with simple explanations. If communication skills strong: Include how invention solves problem and why design works."
+        }
+      ],
+      "opening": "Problem-solving inventors introduction (5 min): Students learn that inventors are people who see problems and create machines to solve them. Examples: someone invented wheels because carrying heavy things was hard, someone invented ramps because lifting things up high was difficult. Challenge: 'What problems do you notice that a simple machine could solve?'",
+      "mainActivity": "Invention design process (25 min): Students identify problems they've observed: reaching high shelves, moving heavy backpacks, organizing scattered toys, getting objects across room quickly. Choose one problem to solve using simple machines. Design invention on paper first: draw their machine, label parts, explain how it works. Build simple prototype using available materials. Test invention and make adjustments. Prepare to present invention as 'inventors' explaining their problem-solution creation.",
+      "closing": "Inventor presentations (10 min): Students present inventions: 'Le problème était... Mon invention résout le problème parce que...' Celebrate creative problem-solving and connect to real inventors who help make life easier through simple machines.",
+      "materials": ["Problem identification sheets", "Design paper", "Drawing materials", "Construction supplies (cardboard, tape, wheels, etc.)", "Invention presentation cards"],
+      "whenThingsGoWrong": "If problems too complex: Guide toward simpler, more solvable challenges. If inventions don't work: Emphasize creative thinking and design process over perfect function. If presentations overwhelming: Use partner sharing or small group presentations.",
+      "realWorldConnection": "Students experience the invention process and understand how everyday objects were created to solve problems people noticed",
+      "visualSupports": "Invention process poster (see problem → design solution → build → test), famous simple machine inventions examples, problem-solution matching activities"
+    },
+    {
+      "lessonNumber": 19,
+      "title": "Exposition de machines simples",
+      "oneGoal": "Students will create an exhibition showcasing their simple machines and explaining how forces make movement possible (extension)",
+      "keyVocabulary": ["exposition", "expliquer", "démontrer"],
+      "decisionPoints": [
+        {
+          "question": "What exhibition format best allows students to demonstrate their learning?",
+          "guidance": "If space available: Create museum-style displays with student explanations. If limited space: Use rotating presentation stations with small groups."
+        },
+        {
+          "question": "Should students present individually or in collaborative groups?",
+          "guidance": "If individual recognition important: Give each student presentation opportunity. If collaboration preferred: Allow pairs to co-present their work."
+        },
+        {
+          "question": "Are students ready for teaching others about forces and simple machines?",
+          "guidance": "If teaching skills developing: Provide sentence starters and key points to cover. If confidence high: Allow free-form explanations with audience questions."
+        }
+      ],
+      "opening": "Exhibition preparation (5 min): Students transform into 'museum curators' preparing to teach visitors about forces and simple machines. Review key concepts: push/pull forces, wheels, levers, ramps, pulleys, and how machines make work easier.",
+      "mainActivity": "Simple machines exhibition (25 min): Students set up exhibition stations displaying their built machines, invention designs, and experiment results from throughout the unit. Each student or pair becomes 'expert guide' for their station, explaining to visitors (classmates, other classes, or family members): what forces are, how their machines work, what problems their inventions solve. Include hands-on demonstrations where visitors can try simple machines and feel the difference they make. Create exhibition signs with student drawings and explanations.",
+      "closing": "Exhibition reflection celebration (10 min): Students reflect on their exhibition experience: what they enjoyed about teaching others, what they learned by explaining their work, how it felt to be science experts. Celebrate becoming forces and simple machines experts who can teach others.",
+      "materials": ["All built machines and inventions from unit", "Display boards", "Exhibition signs", "Demonstration materials", "Visitor feedback sheets (optional)"],
+      "whenThingsGoWrong": "If exhibitions overwhelming: Use smaller audience or rotate visitors. If explanations difficult: Provide key phrase cards or demonstration scripts. If machines break during exhibition: Have backup examples or focus on explanations with drawings.",
+      "realWorldConnection": "Students experience how science museums and technology exhibitions help people learn about machines and inventions that improve daily life",
+      "visualSupports": "Exhibition station setup guides, key explanation phrases, visitor information cards about simple machines"
+    },
+    {
+      "lessonNumber": 20,
+      "title": "Célébration des petits ingénieurs",
+      "oneGoal": "Students will celebrate their engineering achievements with families by demonstrating forces and simple machines (extension)",
+      "keyVocabulary": ["célébration", "ingénieur", "réussite"],
+      "decisionPoints": [
+        {
+          "question": "How can the celebration highlight each student's understanding of forces and movement?",
+          "guidance": "If individual achievement focus: Create personal engineering portfolios showing growth. If group celebration preferred: Highlight class accomplishments and collaborative learning."
+        },
+        {
+          "question": "Should we include interactive demonstrations or display completed projects?",
+          "guidance": "If hands-on engagement desired: Set up activity stations where families try simple machines. If showcase approach: Display student work with explanations and demonstrations."
+        },
+        {
+          "question": "What activities best show families how students learned about simple machines?",
+          "guidance": "If learning process important: Include before/after examples and learning journey displays. If final products focus: Showcase best inventions and most successful machines."
+        }
+      ],
+      "opening": "Engineering celebration preparation (5 min): Students put on engineer hats or badges and prepare to share their forces and simple machines journey with families. Review celebration goals: show what we learned, demonstrate our machines, teach families about forces.",
+      "mainActivity": "Engineering achievements celebration (25 min): Families rotate through student-led stations: Forces Discovery Station (students demonstrate push/pull with various objects), Simple Machines Showcase (students explain and demonstrate wheels, levers, ramps, pulleys), Invention Fair (students present their problem-solving machines), Engineering Challenge Station (families work with students to build simple machines together). Students guide families through hands-on experiences and explain scientific concepts using vocabulary learned throughout unit.",
+      "closing": "Engineer achievement ceremony (10 min): Celebrate student growth as engineers and scientists. Present certificates recognizing specific achievements: creative problem-solver, excellent experimenter, clear explainer, persistent builder. Students share favorite discovery from forces and simple machines unit with families.",
+      "materials": ["All unit materials and inventions", "Activity station supplies", "Engineering achievement certificates", "Celebration decorations", "Family activity guides", "Learning journey displays"],
+      "whenThingsGoWrong": "If family participation varies: Provide alternative activities for students without family present. If stations overwhelming: Focus on 2-3 key demonstrations. If timing challenges: Allow flexible participation and longer station time.",
+      "realWorldConnection": "Students proudly share engineering and science learning with families, building community appreciation for STEM education and hands-on learning",
+      "visualSupports": "Learning journey timeline showing unit progression, engineering achievement posters, simple machines family reference guide"
+    }
+  ]
+}

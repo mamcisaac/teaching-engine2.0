@@ -1,0 +1,245 @@
+{
+  "unitDesign": {
+    "title": "Impression et motifs",
+    "subject": "Arts visuels",
+    "grade": "1ère année",
+    "duration": "15 heures sur 4 semaines",
+    "startDate": "2026-01-31",
+    "endDate": "2026-02-26",
+    "bigIdeas": [
+      "L'impression et les motifs sont partout dans notre environnement",
+      "Les objets du quotidien peuvent devenir des outils artistiques",
+      "La répétition crée des patterns visuellement intéressants"
+    ],
+    "essentialQuestions": [
+      "Comment peut-on créer des impressions avec des objets simples?",
+      "Qu'est-ce qui rend un motif intéressant?",
+      "Comment la répétition transforme-t-elle un dessin simple en œuvre d'art?"
+    ],
+    "coreSkills": [
+      "Technique d'impression avec tampon",
+      "Création de motifs répétitifs",
+      "Exploration des formes et textures",
+      "Utilisation d'objets naturels et manufacturés"
+    ],
+    "expectations": [
+      {
+        "code": "AV1",
+        "description": "Reconnaître la valeur de son environnement visuel",
+        "application": "Observer et identifier des motifs dans l'environnement de la classe et de la nature"
+      },
+      {
+        "code": "AV2", 
+        "description": "Utiliser la création artistique afin de communiquer des idées ou des sentiments",
+        "application": "Exprimer des émotions à travers la création de motifs et d'impressions"
+      },
+      {
+        "code": "AV3",
+        "description": "Utiliser une variété d'outils, de matériaux, de styles et de techniques",
+        "application": "Explorer divers objets comme tampons et techniques d'impression"
+      }
+    ]
+  },
+  "lessonProgression": {
+    "coreSequence": [
+      {
+        "lesson": 1,
+        "title": "Découverte des impressions",
+        "focus": "Explorer les concepts d'impression et de motif",
+        "keySkills": ["Observation", "Vocabulaire artistique"],
+        "materials": ["Objets variés", "Peinture", "Papier"],
+        "duration": "45 minutes"
+      },
+      {
+        "lesson": 2,
+        "title": "Mes premiers tampons",
+        "focus": "Créer des impressions avec des objets du quotidien",
+        "keySkills": ["Technique de tamponnage", "Contrôle moteur"],
+        "materials": ["Bouchons", "Éponges", "Peinture tempera"],
+        "duration": "45 minutes"
+      },
+      {
+        "lesson": 3,
+        "title": "Impressions de la nature",
+        "focus": "Utiliser des éléments naturels comme tampons",
+        "keySkills": ["Observation de textures", "Impression naturelle"],
+        "materials": ["Feuilles", "Fleurs", "Branches", "Peinture"],
+        "duration": "45 minutes"
+      },
+      {
+        "lesson": 4,
+        "title": "Création de motifs simples",
+        "focus": "Répéter une forme pour créer un motif",
+        "keySkills": ["Répétition", "Planification spatiale"],
+        "materials": ["Tampons personnalisés", "Papier grand format"],
+        "duration": "45 minutes"
+      },
+      {
+        "lesson": 5,
+        "title": "Motifs géométriques",
+        "focus": "Explorer les formes géométriques en motifs",
+        "keySkills": ["Formes de base", "Organisation spatiale"],
+        "materials": ["Formes découpées", "Peinture acrylique"],
+        "duration": "45 minutes"
+      },
+      {
+        "lesson": 6,
+        "title": "Couleurs et contrastes",
+        "focus": "Expérimenter avec les couleurs dans les motifs",
+        "keySkills": ["Théorie des couleurs de base", "Contraste"],
+        "materials": ["Peintures primaires", "Tampons variés"],
+        "duration": "45 minutes"
+      },
+      {
+        "lesson": 7,
+        "title": "Textures et impressions",
+        "focus": "Créer différentes textures par impression",
+        "keySkills": ["Exploration tactile", "Création de textures"],
+        "materials": ["Matériaux texturés", "Rouleau", "Encre"],
+        "duration": "45 minutes"
+      },
+      {
+        "lesson": 8,
+        "title": "Motifs narratifs",
+        "focus": "Créer des motifs qui racontent une histoire",
+        "keySkills": ["Narration visuelle", "Séquence"],
+        "materials": ["Tampons thématiques", "Papier de couleur"],
+        "duration": "45 minutes"
+      },
+      {
+        "lesson": 9,
+        "title": "Impression collective",
+        "focus": "Créer une œuvre de groupe avec motifs répétitifs",
+        "keySkills": ["Collaboration", "Planification collective"],
+        "materials": ["Grand papier mural", "Tampons partagés"],
+        "duration": "45 minutes"
+      },
+      {
+        "lesson": 10,
+        "title": "Techniques mixtes",
+        "focus": "Combiner impression et autres techniques",
+        "keySkills": ["Intégration technique", "Créativité"],
+        "materials": ["Crayons", "Tampons", "Collage"],
+        "duration": "45 minutes"
+      },
+      {
+        "lesson": 11,
+        "title": "Motifs de saisons",
+        "focus": "Créer des motifs inspirés de l'hiver",
+        "keySkills": ["Observation saisonnière", "Thématisation"],
+        "materials": ["Tampons flocon", "Peinture blanche et bleue"],
+        "duration": "45 minutes"
+      },
+      {
+        "lesson": 12,
+        "title": "Auto-évaluation artistique",
+        "focus": "Réfléchir sur ses créations et techniques",
+        "keySkills": ["Réflexion", "Vocabulaire critique"],
+        "materials": ["Portfolio", "Fiche d'auto-évaluation"],
+        "duration": "45 minutes"
+      },
+      {
+        "lesson": 13,
+        "title": "Préparation d'exposition",
+        "focus": "Préparer ses œuvres pour le partage",
+        "keySkills": ["Présentation", "Organisation"],
+        "materials": ["Cadres simples", "Étiquettes"],
+        "duration": "45 minutes"
+      },
+      {
+        "lesson": 14,
+        "title": "Partage et célébration",
+        "focus": "Présenter et célébrer les créations",
+        "keySkills": ["Communication", "Appréciation"],
+        "materials": ["Œuvres finalisées", "Espace d'exposition"],
+        "duration": "45 minutes"
+      }
+    ],
+    "extensionActivities": [
+      {
+        "lesson": 15,
+        "title": "Impressions 3D",
+        "focus": "Explorer l'impression avec des objets tridimensionnels",
+        "keySkills": ["Perception spatiale", "Technique avancée"],
+        "materials": ["Objets 3D", "Pâte à modeler", "Peinture"],
+        "duration": "45 minutes"
+      },
+      {
+        "lesson": 16,
+        "title": "Motifs culturels",
+        "focus": "Découvrir des motifs de différentes cultures",
+        "keySkills": ["Ouverture culturelle", "Recherche visuelle"],
+        "materials": ["Images culturelles", "Tampons inspirés"],
+        "duration": "45 minutes"
+      },
+      {
+        "lesson": 17,
+        "title": "Art numérique simple",
+        "focus": "Créer des motifs avec outils numériques simples",
+        "keySkills": ["Technologie créative", "Adaptation"],
+        "materials": ["Tablettes", "Application dessin simple"],
+        "duration": "45 minutes"
+      },
+      {
+        "lesson": 18,
+        "title": "Impression sur textiles",
+        "focus": "Expérimenter l'impression sur tissus",
+        "keySkills": ["Adaptation matérielle", "Application pratique"],
+        "materials": ["Tissus", "Peinture textile", "Tampons"],
+        "duration": "45 minutes"
+      },
+      {
+        "lesson": 19,
+        "title": "Motifs mathématiques",
+        "focus": "Explorer les patterns mathématiques en art",
+        "keySkills": ["Interdisciplinarité", "Logic spatiale"],
+        "materials": ["Règles", "Compas simple", "Tampons géométriques"],
+        "duration": "45 minutes"
+      },
+      {
+        "lesson": 20,
+        "title": "Projet final personnel",
+        "focus": "Créer une œuvre personnelle intégrant tous les apprentissages",
+        "keySkills": ["Synthèse", "Autonomie créative"],
+        "materials": ["Matériaux au choix", "Techniques mixtes"],
+        "duration": "45 minutes"
+      }
+    ]
+  },
+  "assessment": {
+    "formativeStrategies": [
+      "Observation quotidienne des techniques",
+      "Questions guidées pendant la création",
+      "Auto-évaluation simple avec pictogrammes",
+      "Pairs discussions sur les œuvres"
+    ],
+    "summativeOptions": [
+      {
+        "minimal": "Portfolio de 5 œuvres avec auto-évaluation simple",
+        "complete": "Portfolio complet avec réflexions écrites et présentation orale"
+      }
+    ],
+    "differentiationSupports": [
+      "Gabarits pour motifs complexes",
+      "Tampons pré-faits pour difficultés motrices",
+      "Extensions créatives pour élèves avancés",
+      "Support visuel étape par étape"
+    ]
+  },
+  "resources": {
+    "materials": [
+      "Peinture tempera et acrylique",
+      "Papier de formats variés",
+      "Bouchons, éponges, objets divers",
+      "Éléments naturels (feuilles, branches)",
+      "Pinceaux et rouleaux",
+      "Tabliers de protection"
+    ],
+    "connections": {
+      "mathematics": "Patterns, formes géométriques, comptage",
+      "sciences": "Observation de la nature, textures",
+      "français": "Vocabulaire artistique, narration visuelle",
+      "études_sociales": "Motifs culturels, traditions artistiques"
+    ]
+  }
+}

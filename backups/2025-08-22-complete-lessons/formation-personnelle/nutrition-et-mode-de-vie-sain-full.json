@@ -1,0 +1,955 @@
+{
+  "unitTitle": "Nutrition et mode de vie sain",
+  "totalLessons": 20,
+  "estimatedHours": 15,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "title": "Qu'est-ce que la nutrition?",
+      "duration": "45 minutes",
+      "oneGoal": "Comprendre que la nutrition signifie nourrir notre corps",
+      "keyVocabulary": ["nutrition", "corps", "nourriture"],
+      "materials": ["Images d'aliments", "Poster du corps humain", "Livre illustré sur la nutrition"],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Chanson de bienvenue et question du jour : 'Qu'avez-vous mangé ce matin?'",
+        "connection": "Activation des connaissances sur l'alimentation quotidienne"
+      },
+      "mainActivity": {
+        "duration": "27 minutes",
+        "structure": [
+          {
+            "phase": "Introduction (10 min)",
+            "description": "Présenter le mot 'nutrition' avec des gestes. Montrer des images d'aliments et connecter au corps humain."
+          },
+          {
+            "phase": "Exploration (12 min)",
+            "description": "Les élèves trient des images d'aliments et expliquent pourquoi nous mangeons. Discussion guidée sur nourrir notre corps."
+          },
+          {
+            "phase": "Application (5 min)",
+            "description": "Dessiner un aliment préféré et expliquer comment il aide notre corps."
+          }
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Récapitulatif avec gestes : 'La nutrition, c'est donner à manger à notre corps pour qu'il soit fort!'",
+        "consolidation": "Chaque élève partage son dessin"
+      },
+      "decisionPoints": [
+        "Si les élèves semblent confus : utiliser plus de gestes et d'exemples concrets",
+        "Si l'énergie baisse : faire une pause mouvement avec des étirements",
+        "Si certains élèves parlent beaucoup en anglais : encourager avec des phrases simples en français"
+      ],
+      "differentiation": {
+        "support": "Images visuelles supplémentaires, aide individuelle pour le dessin",
+        "extension": "Demander aux élèves d'expliquer davantage leurs choix alimentaires"
+      },
+      "assessment": "Observation des réponses orales et qualité des dessins",
+      "realWorldConnection": "Nous mangeons tous les jours pour donner de l'énergie à notre corps",
+      "homeConnection": "Demander aux parents de nommer les aliments du souper en français"
+    },
+    {
+      "lessonNumber": 2,
+      "title": "Mon corps a faim",
+      "duration": "45 minutes",
+      "oneGoal": "Reconnaître les signaux de faim et de satiété du corps",
+      "keyVocabulary": ["faim", "ventre", "rassasié"],
+      "materials": ["Marionnette ou personnage", "Images de visages expressifs", "Miroirs"],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Révision avec la chanson de la nutrition et question : 'Comment vous sentez-vous dans votre ventre maintenant?'",
+        "connection": "Builds on Lesson 1 by connecting nutrition to body awareness"
+      },
+      "mainActivity": {
+        "duration": "27 minutes",
+        "structure": [
+          {
+            "phase": "Découverte corporelle (10 min)",
+            "description": "Utiliser une marionnette qui a 'faim'. Les élèves placent leurs mains sur leur ventre et identifient les sensations."
+          },
+          {
+            "phase": "Jeu de rôle (12 min)",
+            "description": "Mimer différents états : très faim, un peu faim, rassasié, trop plein. Utiliser des expressions faciales avec des miroirs."
+          },
+          {
+            "phase": "Application pratique (5 min)",
+            "description": "Les élèves pratiquent à écouter leur ventre et utilisent les nouveaux mots."
+          }
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Cercle de partage : chacun montre comment son ventre se sent maintenant",
+        "consolidation": "Récapituler les signaux du corps avec des gestes"
+      },
+      "decisionPoints": [
+        "Si les élèves ne comprennent pas les sensations : utiliser des exemples concrets (bruit du ventre)",
+        "Si certains sont gênés de toucher leur ventre : respecter leur espace et montrer avec la marionnette",
+        "Si l'activité devient trop excitante : ramener le calme avec des respirations profondes"
+      ],
+      "differentiation": {
+        "support": "Assistance individuelle pour identifier les sensations, vocabulaire simplifié",
+        "extension": "Demander aux élèves de dessiner leurs sensations de faim"
+      },
+      "assessment": "Capacité à identifier et nommer les sensations de faim/satiété",
+      "realWorldConnection": "Écouter notre ventre nous dit quand manger et quand arrêter",
+      "homeConnection": "Encourager les élèves à dire à leurs parents quand ils ont faim ou sont rassasiés"
+    },
+    {
+      "lessonNumber": 3,
+      "title": "Les couleurs dans mon assiette",
+      "duration": "45 minutes",
+      "oneGoal": "Identifier que les aliments ont différentes couleurs et que c'est important",
+      "keyVocabulary": ["couleurs", "assiette", "arc-en-ciel"],
+      "materials": ["Aliments colorés vrais ou en plastique", "Assiettes", "Livre sur l'arc-en-ciel alimentaire", "Papier coloré"],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Chanson des couleurs et révision des signaux du corps",
+        "connection": "Builds on Lesson 2 by introducing food variety through colors"
+      },
+      "mainActivity": {
+        "duration": "27 minutes",
+        "structure": [
+          {
+            "phase": "Exploration des couleurs (10 min)",
+            "description": "Présenter des aliments de différentes couleurs. Les élèves nomment les couleurs et trient les aliments."
+          },
+          {
+            "phase": "Création d'arc-en-ciel (12 min)",
+            "description": "Chaque élève crée un arc-en-ciel alimentaire sur son assiette en utilisant différents aliments colorés."
+          },
+          {
+            "phase": "Jeu de couleurs (5 min)",
+            "description": "Jeu 'Jacques a dit' avec les couleurs d'aliments : 'Jacques a dit touchez quelque chose de rouge!'"
+          }
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Galerie d'art : admirer les arc-en-ciel alimentaires de chacun",
+        "consolidation": "Chanter ensemble : 'Rouge, orange, jaune, vert, dans mon assiette c'est ouvert!'"
+      },
+      "decisionPoints": [
+        "Si les élèves ont du mal avec les couleurs : se concentrer sur 3-4 couleurs principales",
+        "Si certains n'aiment pas toucher les aliments : offrir des gants ou utiliser des ustensiles",
+        "Si le groupe devient agité : faire une pause danse avec la chanson des couleurs"
+      ],
+      "differentiation": {
+        "support": "Cartes de couleurs pour référence, aide pour trier",
+        "extension": "Demander aux élèves de nommer d'autres aliments de chaque couleur"
+      },
+      "assessment": "Capacité à identifier les couleurs et créer un arrangement coloré",
+      "realWorldConnection": "Un repas coloré comme un arc-en-ciel est plus nutritif",
+      "homeConnection": "Demander aux familles de créer un arc-en-ciel alimentaire au souper"
+    },
+    {
+      "lessonNumber": 4,
+      "title": "Les fruits et légumes",
+      "duration": "45 minutes",
+      "oneGoal": "Reconnaître les fruits et légumes comme un groupe alimentaire important",
+      "keyVocabulary": ["fruits", "légumes", "vitamines"],
+      "materials": ["Variété de fruits et légumes frais", "Panier de chaque catégorie", "Loupes pour examiner", "Cartes visuelles"],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Révision de l'arc-en-ciel alimentaire et devinettes avec des indices sur des fruits/légumes",
+        "connection": "Builds on Lesson 3 by focusing on the colorful fruit and vegetable group"
+      },
+      "mainActivity": {
+        "duration": "27 minutes",
+        "structure": [
+          {
+            "phase": "Exploration sensorielle (12 min)",
+            "description": "Les élèves touchent, sentent et observent différents fruits et légumes. Utiliser des loupes pour les détails."
+          },
+          {
+            "phase": "Tri et catégorisation (10 min)",
+            "description": "Placer les aliments dans le bon panier : fruits ou légumes. Discuter des différences."
+          },
+          {
+            "phase": "Jeu de vitamines (5 min)",
+            "description": "Marcher comme des robots en panne, puis 'recharger' avec des vitamines de fruits et légumes."
+          }
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Cercle de dégustation : goûter un petit morceau de fruit et légume nouveaux",
+        "consolidation": "Récapituler : 'Les fruits et légumes nous donnent des vitamines pour grandir!'"
+      },
+      "decisionPoints": [
+        "Si des élèves refusent de goûter : respecter leur choix, encourager seulement à sentir",
+        "Si allergies connues : avoir des alternatives préparées",
+        "Si certains trouvent les textures déplaisantes : offrir des fruits/légumes familiers"
+      ],
+      "differentiation": {
+        "support": "Commencer avec des fruits/légumes familiers, aide pour la manipulation",
+        "extension": "Demander de nommer des fruits/légumes de leur pays d'origine"
+      },
+      "assessment": "Capacité à différencier fruits et légumes, participation à l'exploration",
+      "realWorldConnection": "Les fruits et légumes nous donnent des vitamines pour grandir",
+      "homeConnection": "Encourager à identifier un fruit et un légume lors du prochain repas familial"
+    },
+    {
+      "lessonNumber": 5,
+      "title": "Les céréales et grains",
+      "duration": "45 minutes",
+      "oneGoal": "Identifier les céréales et grains comme source d'énergie",
+      "keyVocabulary": ["céréales", "pain", "énergie"],
+      "materials": ["Différents types de pain et céréales", "Grains de riz, avoine", "Images d'activités énergiques", "Boîtes de céréales vides"],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Révision fruits/légumes avec un jeu de mémoire et introduction énergique avec des sauts",
+        "connection": "Builds on Lesson 4 by introducing a second food group"
+      },
+      "mainActivity": {
+        "duration": "27 minutes",
+        "structure": [
+          {
+            "phase": "Découverte des grains (10 min)",
+            "description": "Explorer différents types de pain, céréales, et grains. Les toucher et observer les textures."
+          },
+          {
+            "phase": "Connexion énergie (12 min)",
+            "description": "Mimer être fatigué, puis 'manger' des céréales et retrouver l'énergie pour courir, sauter, danser."
+          },
+          {
+            "phase": "Activité créative (5 min)",
+            "description": "Coller des images de céréales sur une silhouette de corps pour montrer où va l'énergie."
+          }
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Danse de l'énergie : danser avec enthousiasme en chantant 'Les céréales me donnent de l'énergie!'",
+        "consolidation": "Récapituler le lien entre céréales et énergie corporelle"
+      },
+      "decisionPoints": [
+        "Si les élèves ont des restrictions de gluten : avoir des alternatives sans gluten",
+        "Si certains n'aiment pas toucher les grains : utiliser des cuillères ou pinces",
+        "Si l'énergie devient trop haute : alterner avec des moments de calme"
+      ],
+      "differentiation": {
+        "support": "Images visuelles pour comprendre l'énergie, aide pour le collage",
+        "extension": "Identifier des céréales qu'ils mangent à la maison"
+      },
+      "assessment": "Compréhension du lien céréales-énergie, participation aux activités",
+      "realWorldConnection": "Le pain et les céréales nous donnent l'énergie pour jouer",
+      "homeConnection": "Remarquer les céréales au petit-déjeuner et comment ils se sentent après"
+    },
+    {
+      "lessonNumber": 6,
+      "title": "Le lait et les produits laitiers",
+      "duration": "45 minutes",
+      "oneGoal": "Reconnaître les produits laitiers comme importants pour les os",
+      "keyVocabulary": ["lait", "fromage", "os"],
+      "materials": ["Produits laitiers variés", "Modèle de squelette ou images d'os", "Verres et ustensiles", "Alternatives végétales"],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Révision énergique des céréales et introduction en touchant nos os (bras, jambes)",
+        "connection": "Builds on Lesson 5 by adding the dairy food group"
+      },
+      "mainActivity": {
+        "duration": "27 minutes",
+        "structure": [
+          {
+            "phase": "Exploration des produits laitiers (10 min)",
+            "description": "Observer et sentir lait, fromage, yaourt. Discuter de leur origine (vache) avec des sons d'animaux."
+          },
+          {
+            "phase": "Connexion avec les os (12 min)",
+            "description": "Toucher nos os et comprendre qu'ils ont besoin de calcium. Marcher avec des os 'mous' vs 'forts'."
+          },
+          {
+            "phase": "Alternatives inclusives (5 min)",
+            "description": "Présenter les alternatives au lait (soja, amande) pour tous les besoins alimentaires."
+          }
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Marche des os forts : marcher fièrement en montrant nos os solides grâce aux produits laitiers",
+        "consolidation": "Chanter : 'Le lait et le fromage, c'est pour mon squelette sage!'"
+      },
+      "decisionPoints": [
+        "Si élèves avec intolérance lactose : mettre l'accent sur les alternatives",
+        "Si certains trouvent l'odeur du fromage désagréable : respecter et offrir d'autres options",
+        "Si confusion sur les alternatives : expliquer simplement que différentes familles ont différents choix"
+      ],
+      "differentiation": {
+        "support": "Images claires des produits, aide pour comprendre les os",
+        "extension": "Nommer d'autres sources de calcium (légumes verts)"
+      },
+      "assessment": "Identification des produits laitiers, compréhension du lien avec les os",
+      "realWorldConnection": "Le lait et le fromage aident nos os à devenir forts",
+      "homeConnection": "Observer quels produits laitiers ou alternatives la famille utilise"
+    },
+    {
+      "lessonNumber": 7,
+      "title": "Les protéines",
+      "duration": "45 minutes",
+      "oneGoal": "Identifier les sources de protéines pour les muscles",
+      "keyVocabulary": ["protéines", "muscles", "viande"],
+      "materials": ["Images de sources de protéines", "Légumineuses (haricots, lentilles)", "Noix", "Haltères légers ou bouteilles d'eau"],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Révision des os forts et flexion des muscles pour introduire les protéines",
+        "connection": "Builds on Lesson 6 by completing the main food groups"
+      },
+      "mainActivity": {
+        "duration": "27 minutes",
+        "structure": [
+          {
+            "phase": "Découverte des protéines (10 min)",
+            "description": "Explorer viande, poisson, œufs, haricots, noix. Toucher et observer les différentes textures."
+          },
+          {
+            "phase": "Connexion muscles (12 min)",
+            "description": "Utiliser des 'haltères' légers, fléchir les muscles, comprendre que les protéines aident les muscles à grandir."
+          },
+          {
+            "phase": "Options inclusives (5 min)",
+            "description": "Montrer que les végétariens peuvent avoir des protéines avec les haricots, noix, et autres alternatives."
+          }
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Pose du super-héros : montrer nos muscles forts grâce aux protéines",
+        "consolidation": "Récapituler tous les groupes alimentaires appris jusqu'à maintenant"
+      },
+      "decisionPoints": [
+        "Si élèves végétariens : mettre l'accent sur les protéines végétales",
+        "Si allergies aux noix : avoir des alternatives sûres disponibles",
+        "Si certains sont sensibles aux images de viande : utiliser des illustrations simples"
+      ],
+      "differentiation": {
+        "support": "Images claires, aide pour manipuler les haltères",
+        "extension": "Identifier quelles protéines ils mangent à la maison"
+      },
+      "assessment": "Identification des sources de protéines, compréhension du lien avec les muscles",
+      "realWorldConnection": "Les protéines aident nos muscles à grandir et être forts",
+      "homeConnection": "Chercher des protéines dans leur assiette au souper"
+    },
+    {
+      "lessonNumber": 8,
+      "title": "L'eau, c'est la vie",
+      "duration": "45 minutes",
+      "oneGoal": "Comprendre l'importance de boire de l'eau chaque jour",
+      "keyVocabulary": ["eau", "soif", "hydratation"],
+      "materials": ["Verres d'eau", "Images de plantes avec/sans eau", "Bouteilles d'eau personnalisées", "Autocollants"],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Révision de tous les groupes alimentaires et question : 'Qu'est-ce qui n'est pas de la nourriture mais est essentiel?'",
+        "connection": "Builds on Lesson 7 by adding hydration to nutrition knowledge"
+      },
+      "mainActivity": {
+        "duration": "27 minutes",
+        "structure": [
+          {
+            "phase": "Expérience avec les plantes (10 min)",
+            "description": "Comparer des plantes arrosées vs non arrosées. Faire le lien avec notre corps qui a besoin d'eau."
+          },
+          {
+            "phase": "Reconnaissance de la soif (12 min)",
+            "description": "Identifier les signes de soif, goûter l'eau, comprendre combien nous devons boire chaque jour."
+          },
+          {
+            "phase": "Personnalisation (5 min)",
+            "description": "Décorer sa bouteille d'eau personnelle avec des autocollants pour encourager à boire plus."
+          }
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Chanson de l'eau : 'Glou glou glou, l'eau c'est bon pour nous!'",
+        "consolidation": "Promesse de boire plus d'eau et utiliser nos bouteilles spéciales"
+      },
+      "decisionPoints": [
+        "Si certains élèves n'aiment pas l'eau : suggérer d'ajouter un peu de fruit",
+        "Si accès limité à l'eau potable : s'assurer que tous ont accès pendant l'activité",
+        "Si certains boivent trop peu : encourager doucement sans forcer"
+      ],
+      "differentiation": {
+        "support": "Aide pour décorer la bouteille, rappels visuels pour boire",
+        "extension": "Calculer combien de verres ils boivent par jour"
+      },
+      "assessment": "Compréhension de l'importance de l'eau, engagement à boire plus",
+      "realWorldConnection": "Notre corps a besoin d'eau pour fonctionner, comme une plante",
+      "homeConnection": "Utiliser la bouteille personnalisée à la maison et compter les verres d'eau"
+    },
+    {
+      "lessonNumber": 9,
+      "title": "Bouger pour être en santé",
+      "duration": "45 minutes",
+      "oneGoal": "Comprendre que l'activité physique est importante pour la santé",
+      "keyVocabulary": ["bouger", "exercice", "santé"],
+      "materials": ["Musique entraînante", "Images d'activités physiques", "Espace pour bouger", "Cartes d'exercices"],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Révision de l'hydratation en buvant un peu d'eau, puis stretching matinal",
+        "connection": "Builds on Lesson 8 by connecting physical activity to healthy living"
+      },
+      "mainActivity": {
+        "duration": "27 minutes",
+        "structure": [
+          {
+            "phase": "Découverte du mouvement (10 min)",
+            "description": "Explorer différents types de mouvement : marcher, courir, danser, étirer. Observer comment notre corps se sent."
+          },
+          {
+            "phase": "Connexion santé (12 min)",
+            "description": "Comprendre que bouger aide notre cœur, nos muscles, et nous rend heureux. Écouter notre cœur battre après l'exercice."
+          },
+          {
+            "phase": "Création de routine (5 min)",
+            "description": "Choisir 3 mouvements préférés pour créer une mini-routine d'exercice personnelle."
+          }
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Danse collective avec la nouvelle routine de chacun",
+        "consolidation": "Récapituler comment bouger nous aide à être en santé et heureux"
+      },
+      "decisionPoints": [
+        "Si certains élèves ont des limitations physiques : adapter les mouvements à leurs capacités",
+        "Si l'énergie devient trop intense : inclure des mouvements calmes et relaxants",
+        "Si certains sont timides pour bouger : encourager sans forcer, modeler les mouvements"
+      ],
+      "differentiation": {
+        "support": "Mouvements adaptés, aide pour créer la routine",
+        "extension": "Créer une routine plus complexe ou enseigner un mouvement aux autres"
+      },
+      "assessment": "Participation aux activités, compréhension du lien mouvement-santé",
+      "realWorldConnection": "Bouger et jouer dehors nous aide à rester en bonne santé",
+      "homeConnection": "Partager la routine d'exercice avec la famille et la pratiquer ensemble"
+    },
+    {
+      "lessonNumber": 10,
+      "title": "Jeux actifs et amusants",
+      "duration": "45 minutes",
+      "oneGoal": "Découvrir que l'exercice peut être amusant à travers les jeux",
+      "keyVocabulary": ["jeux", "amusant", "actif"],
+      "materials": ["Balles légères", "Cônes ou marqueurs", "Musique de jeu", "Foulards colorés"],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Révision de la routine d'exercice personnelle et échauffement collectif",
+        "connection": "Builds on Lesson 9 by making physical activity enjoyable and accessible"
+      },
+      "mainActivity": {
+        "duration": "27 minutes",
+        "structure": [
+          {
+            "phase": "Jeux de mouvement (12 min)",
+            "description": "Jouer à 'Jacques a dit' actif, 'statue musicale', et course aux couleurs avec les foulards."
+          },
+          {
+            "phase": "Jeux coopératifs (10 min)",
+            "description": "Jeux d'équipe comme passer la balle en cercle, marcher en parachute (avec un drap), défis d'équilibre."
+          },
+          {
+            "phase": "Jeux inventés (5 min)",
+            "description": "Les élèves proposent leurs propres variations de jeux ou inventent un nouveau jeu simple."
+          }
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Cercle de relaxation : respirations profondes et partage du jeu préféré",
+        "consolidation": "Comprendre que s'amuser en bougeant, c'est de l'exercice aussi!"
+      },
+      "decisionPoints": [
+        "Si certains jeux ne fonctionnent pas : avoir des alternatives simples prêtes",
+        "Si des conflits surgissent : rappeler l'esprit de coopération et de plaisir",
+        "Si certains élèves ne participent pas : trouver un rôle qui leur convient (arbitre, compteur)"
+      ],
+      "differentiation": {
+        "support": "Jeux adaptés aux capacités, partenaire buddy system",
+        "extension": "Leadership dans l'organisation des jeux, création de règles"
+      },
+      "assessment": "Participation, coopération, invention créative de jeux",
+      "realWorldConnection": "On peut s'amuser tout en faisant de l'exercice avec nos amis",
+      "homeConnection": "Enseigner un jeu appris en classe à quelqu'un à la maison"
+    },
+    {
+      "lessonNumber": 11,
+      "title": "Le sommeil réparateur",
+      "duration": "45 minutes",
+      "oneGoal": "Comprendre pourquoi dormir suffisamment est important pour grandir",
+      "keyVocabulary": ["sommeil", "dormir", "repos"],
+      "materials": ["Couvertures douces", "Musique relaxante", "Images de routines du soir", "Horloges simples"],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Révision des jeux actifs avec des étirements doux, puis transition vers le calme",
+        "connection": "Builds on Lesson 10 by adding rest as essential to healthy living"
+      },
+      "mainActivity": {
+        "duration": "27 minutes",
+        "structure": [
+          {
+            "phase": "Importance du sommeil (10 min)",
+            "description": "Comprendre que notre corps et cerveau ont besoin de repos pour grandir et récupérer. Observer des bébés qui dorment beaucoup."
+          },
+          {
+            "phase": "Routines du soir (12 min)",
+            "description": "Partager nos routines du soir, créer une routine idéale avec des images séquentielles."
+          },
+          {
+            "phase": "Relaxation guidée (5 min)",
+            "description": "Pratiquer des techniques de relaxation : respiration profonde, détente musculaire progressive."
+          }
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Moment de détente avec musique douce et couvertures, visualisation d'un sommeil paisible",
+        "consolidation": "Récapituler l'importance du sommeil pour grandir fort et intelligent"
+      },
+      "decisionPoints": [
+        "Si certains élèves ont des troubles du sommeil : offrir des stratégies simples sans donner de conseils médicaux",
+        "Si l'activité relaxante rend certains élèves endormis : ajuster l'intensité et garder engageant",
+        "Si certains partagent des préoccupations du soir : écouter avec empathie et suggérer de parler aux parents"
+      ],
+      "differentiation": {
+        "support": "Aide pour séquencer la routine, techniques de relaxation adaptées",
+        "extension": "Créer un guide illustré de routine du soir pour la maison"
+      },
+      "assessment": "Compréhension de l'importance du sommeil, création de routine personnelle",
+      "realWorldConnection": "Dormir aide notre corps et notre cerveau à grandir et récupérer",
+      "homeConnection": "Essayer la nouvelle routine du soir et noter comment ils se sentent le matin"
+    },
+    {
+      "lessonNumber": 12,
+      "title": "Se laver les mains",
+      "duration": "45 minutes",
+      "oneGoal": "Apprendre la technique correcte pour se laver les mains",
+      "keyVocabulary": ["laver", "mains", "propre"],
+      "materials": ["Savon", "Serviettes", "Accès aux lavabos", "Paillettes ou peinture lavable", "Chanson du lavage des mains"],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Révision du sommeil réparateur et observation de nos mains",
+        "connection": "Builds on Lesson 11 by introducing hygiene as part of healthy habits"
+      },
+      "mainActivity": {
+        "duration": "27 minutes",
+        "structure": [
+          {
+            "phase": "Démonstration des microbes (10 min)",
+            "description": "Utiliser des paillettes pour représenter les microbes invisibles sur nos mains. Montrer comment ils se transfèrent."
+          },
+          {
+            "phase": "Technique de lavage (12 min)",
+            "description": "Apprendre la technique correcte : eau, savon, frotter 20 secondes (chanson), rincer, sécher. Pratiquer étape par étape."
+          },
+          {
+            "phase": "Moments importants (5 min)",
+            "description": "Identifier quand se laver les mains : avant manger, après toilettes, après jouer dehors, etc."
+          }
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Chanson finale du lavage des mains avec tous les gestes",
+        "consolidation": "Engagement à bien se laver les mains pour rester en santé"
+      },
+      "decisionPoints": [
+        "Si certains élèves ne peuvent pas atteindre le lavabo : utiliser des marchepied ou s'adapter",
+        "Si certains ont la peau sensible : offrir du savon doux ou sans parfum",
+        "Si certains évitent l'eau : explorer doucement les raisons et adapter"
+      ],
+      "differentiation": {
+        "support": "Aide physique pour la technique, rappels visuels",
+        "extension": "Devenir un 'expert' qui aide les autres à bien se laver les mains"
+      },
+      "assessment": "Maîtrise de la technique de lavage, identification des moments appropriés",
+      "realWorldConnection": "Se laver les mains nous protège des microbes et maladies",
+      "homeConnection": "Pratiquer la chanson du lavage des mains avec la famille"
+    },
+    {
+      "lessonNumber": 13,
+      "title": "Hygiène personnelle quotidienne",
+      "duration": "45 minutes",
+      "oneGoal": "Établir une routine d'hygiène personnelle quotidienne",
+      "keyVocabulary": ["hygiène", "routine", "quotidien"],
+      "materials": ["Cartes de routine d'hygiène", "Brosses à dents factices", "Miroirs", "Calendrier d'hygiène"],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Révision du lavage des mains avec la chanson et introduction de l'hygiène complète",
+        "connection": "Builds on Lesson 12 by expanding hygiene beyond handwashing"
+      },
+      "mainActivity": {
+        "duration": "27 minutes",
+        "structure": [
+          {
+            "phase": "Exploration de l'hygiène (10 min)",
+            "description": "Identifier toutes les parties du corps qui ont besoin d'hygiène : dents, cheveux, corps, vêtements."
+          },
+          {
+            "phase": "Création de routine (12 min)",
+            "description": "Utiliser les cartes pour créer une routine personnelle matin/soir. Pratiquer le brossage des dents."
+          },
+          {
+            "phase": "Calendrier personnel (5 min)",
+            "description": "Créer un calendrier d'hygiène avec des autocollants pour suivre les bonnes habitudes."
+          }
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Partage des routines créées et engagement à les suivre",
+        "consolidation": "Comprendre que l'hygiène nous aide à nous sentir bien et en santé"
+      },
+      "decisionPoints": [
+        "Si certains élèves ont des routines familiales différentes : respecter et valoriser la diversité",
+        "Si certains n'ont pas accès à tous les produits d'hygiène : se concentrer sur les essentiels accessibles",
+        "Si certains sont gênés de parler d'hygiène : créer un environnement bienveillant et sans jugement"
+      ],
+      "differentiation": {
+        "support": "Cartes visuelles simples, aide pour organiser la routine",
+        "extension": "Créer un guide d'hygiène illustré pour aider à la maison"
+      },
+      "assessment": "Création d'une routine réaliste, compréhension de l'importance de l'hygiène",
+      "realWorldConnection": "Une routine d'hygiène nous aide à nous sentir bien et en santé",
+      "homeConnection": "Utiliser le calendrier d'hygiène et demander l'aide de la famille si nécessaire"
+    },
+    {
+      "lessonNumber": 14,
+      "title": "Ma collation santé",
+      "duration": "45 minutes",
+      "oneGoal": "Planifier et préparer une collation nutritive simple",
+      "keyVocabulary": ["collation", "préparer", "nutritif"],
+      "materials": ["Ingrédients pour collations simples", "Ustensiles sécuritaires", "Assiettes", "Serviettes", "Guide des groupes alimentaires"],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Révision de l'hygiène en se lavant les mains avant de manipuler de la nourriture",
+        "connection": "Builds on all previous lessons by applying nutrition knowledge practically"
+      },
+      "mainActivity": {
+        "duration": "27 minutes",
+        "structure": [
+          {
+            "phase": "Planification (10 min)",
+            "description": "Choisir des aliments de différents groupes pour créer une collation équilibrée. Utiliser le guide visuel."
+          },
+          {
+            "phase": "Préparation sécuritaire (12 min)",
+            "description": "Préparer la collation ensemble : laver les fruits, tartiner, assembler. Pratiquer la sécurité alimentaire."
+          },
+          {
+            "phase": "Dégustation réfléchie (5 min)",
+            "description": "Déguster la collation en identifiant les groupes alimentaires présents et les bienfaits."
+          }
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Partage des créations et discussion sur ce qui fait une bonne collation",
+        "consolidation": "Récapituler tous les apprentissages de nutrition appliqués dans cette activité"
+      },
+      "decisionPoints": [
+        "Si allergies alimentaires : avoir des alternatives sûres préparées",
+        "Si certains n'aiment pas certains ingrédients : offrir des choix et respecter les préférences",
+        "Si certains ont de la difficulté avec les ustensiles : offrir aide et ustensiles adaptés"
+      ],
+      "differentiation": {
+        "support": "Aide pour la planification et préparation, choix d'ingrédients simples",
+        "extension": "Créer une recette écrite de leur collation favorite"
+      },
+      "assessment": "Application des connaissances nutritionnelles, habiletés de préparation sécuritaire",
+      "realWorldConnection": "Préparer nos propres collations nous aide à faire de bons choix",
+      "homeConnection": "Partager la recette de collation avec la famille et la préparer ensemble"
+    },
+    {
+      "lessonNumber": 15,
+      "title": "Chef en herbe - salade de fruits",
+      "duration": "45 minutes",
+      "oneGoal": "Créer une salade de fruits colorée en suivant une recette simple",
+      "keyVocabulary": ["chef", "recette", "mélanger"],
+      "materials": ["Variété de fruits", "Couteaux en plastique sécuritaires", "Bols", "Cuillères", "Recette illustrée", "Tabliers"],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Révision des collations santé et transformation en chefs avec tabliers",
+        "connection": "Extension - applies fruit and vegetable knowledge creatively"
+      },
+      "mainActivity": {
+        "duration": "27 minutes",
+        "structure": [
+          {
+            "phase": "Lecture de recette (8 min)",
+            "description": "Examiner la recette illustrée étape par étape. Identifier les fruits nécessaires et les étapes."
+          },
+          {
+            "phase": "Préparation collaborative (15 min)",
+            "description": "Travailler en équipes pour laver, couper (supervision), et mélanger les fruits selon la recette."
+          },
+          {
+            "phase": "Présentation culinaire (4 min)",
+            "description": "Présenter fièrement les créations comme de vrais chefs, décrire les couleurs et saveurs."
+          }
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Dégustation communautaire et célébration des chefs en herbe",
+        "consolidation": "Réflexion sur l'expérience culinaire et les habiletés développées"
+      },
+      "decisionPoints": [
+        "Si certains fruits ne sont pas aimés : encourager à goûter sans forcer",
+        "Si difficultés avec les couteaux : s'assurer de la supervision constante et adapter au besoin",
+        "Si certains préfèrent ne pas partager leur création : respecter et offrir une portion individuelle"
+      ],
+      "differentiation": {
+        "support": "Partenaire d'aide, étapes simplifiées, ustensiles adaptés",
+        "extension": "Inventer une variation personnelle de la recette"
+      },
+      "assessment": "Capacité à suivre une recette, habiletés culinaires de base, créativité",
+      "realWorldConnection": "Cuisiner ensemble est amusant et nous enseigne de nouvelles habiletés",
+      "homeConnection": "Préparer une salade de fruits à la maison et enseigner la recette à quelqu'un"
+    },
+    {
+      "lessonNumber": 16,
+      "title": "Petit restaurant santé",
+      "duration": "45 minutes",
+      "oneGoal": "Jouer au restaurant en créant un menu avec des choix santé",
+      "keyVocabulary": ["restaurant", "menu", "servir"],
+      "materials": ["Papier pour menus", "Crayons", "Aliments factices", "Carnets de commande", "Argent de jeu", "Tabliers de serveur"],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Révision de l'expérience de chef et transformation de la classe en restaurant",
+        "connection": "Extension - reinforces all food groups through dramatic play"
+      },
+      "mainActivity": {
+        "duration": "27 minutes",
+        "structure": [
+          {
+            "phase": "Création du menu (10 min)",
+            "description": "En équipes, créer des menus avec des plats de tous les groupes alimentaires, inclure des prix simples."
+          },
+          {
+            "phase": "Jeu de restaurant (12 min)",
+            "description": "Jouer les rôles de serveurs, cuisiniers, et clients. Commander des repas équilibrés."
+          },
+          {
+            "phase": "Évaluation des menus (5 min)",
+            "description": "Discuter quels menus offrent les choix les plus santé et pourquoi."
+          }
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Cérémonie de remise de prix pour les menus les plus créatifs et nutritifs",
+        "consolidation": "Réflexion sur les choix santé dans les vrais restaurants"
+      },
+      "decisionPoints": [
+        "Si certains élèves dominent le jeu de rôle : assurer que tous ont un rôle valorisant",
+        "Si confusion sur les prix : simplifier ou éliminer l'aspect monétaire",
+        "Si certains créent des menus uniquement avec leurs aliments préférés : guider vers l'équilibre"
+      ],
+      "differentiation": {
+        "support": "Aide pour écrire le menu, rôles adaptés aux capacités",
+        "extension": "Calculer le 'coût nutritionnel' des repas ou créer des desserts santé"
+      },
+      "assessment": "Application des connaissances nutritionnelles, créativité, coopération",
+      "realWorldConnection": "Dans les restaurants, nous pouvons choisir des options santé",
+      "homeConnection": "Aider à choisir des options santé lors de la prochaine sortie au restaurant familial"
+    },
+    {
+      "lessonNumber": 17,
+      "title": "Olympiques de la santé",
+      "duration": "45 minutes",
+      "oneGoal": "Participer à des activités physiques variées en équipe",
+      "keyVocabulary": ["équipe", "olympiques", "participer"],
+      "materials": ["Équipement sportif varié", "Médailles factices", "Musique olympique", "Stations d'activités", "Cartes de défis"],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Cérémonie d'ouverture des Olympiques de la santé avec hymne et formation d'équipes",
+        "connection": "Extension - celebrates physical activity through fun competition"
+      },
+      "mainActivity": {
+        "duration": "27 minutes",
+        "structure": [
+          {
+            "phase": "Épreuves variées (18 min)",
+            "description": "Rotation entre stations : course, saut, équilibre, lancer, yoga, danse. Chaque équipe participe à toutes."
+          },
+          {
+            "phase": "Défi coopératif (6 min)",
+            "description": "Défi final où toutes les équipes travaillent ensemble pour atteindre un objectif commun."
+          },
+          {
+            "phase": "Célébration (3 min)",
+            "description": "Remise de médailles à tous pour la participation et l'esprit sportif."
+          }
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Cérémonie de clôture avec réflexion sur le plaisir de bouger ensemble",
+        "consolidation": "Comprendre que l'important c'est de participer et s'amuser ensemble"
+      },
+      "decisionPoints": [
+        "Si certains élèves sont moins sportifs : adapter les défis et célébrer tous les efforts",
+        "Si compétition devient trop intense : ramener l'accent sur la coopération et le plaisir",
+        "Si fatigue excessive : inclure plus de pauses et d'hydratation"
+      ],
+      "differentiation": {
+        "support": "Activités adaptées, partenaire d'aide, rôles alternatifs (arbitre, encourageur)",
+        "extension": "Leadership dans l'organisation d'une station, création d'un nouveau défi"
+      },
+      "assessment": "Participation inclusive, esprit sportif, appréciation de l'activité physique",
+      "realWorldConnection": "Faire partie d'une équipe rend l'exercice plus motivant",
+      "homeConnection": "Organiser une mini-olympique familiale avec les activités apprises"
+    },
+    {
+      "lessonNumber": 18,
+      "title": "Détectives de la nutrition",
+      "duration": "45 minutes",
+      "oneGoal": "Analyser des repas et identifier les groupes alimentaires présents",
+      "keyVocabulary": ["détective", "analyser", "identifier"],
+      "materials": ["Loupes", "Carnet de détective", "Images de repas variés", "Autocollants de groupes alimentaires", "Badge de détective"],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Transformation en détectives avec badges et mission spéciale d'enquête nutritionnelle",
+        "connection": "Extension - reinforces food group knowledge through investigation"
+      },
+      "mainActivity": {
+        "duration": "27 minutes",
+        "structure": [
+          {
+            "phase": "Formation détective (8 min)",
+            "description": "Apprendre les techniques d'investigation : observer attentivement, noter les indices, analyser les preuves."
+          },
+          {
+            "phase": "Enquêtes de repas (15 min)",
+            "description": "Analyser différentes images de repas avec les loupes, identifier tous les groupes alimentaires présents."
+          },
+          {
+            "phase": "Rapport de mission (4 min)",
+            "description": "Présenter les résultats d'enquête et suggérer des améliorations pour les repas analysés."
+          }
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Cérémonie de remise de diplômes de détectives experts en nutrition",
+        "consolidation": "Réflexion sur l'importance d'analyser nos repas pour s'assurer qu'ils sont équilibrés"
+      },
+      "decisionPoints": [
+        "Si certains ont de la difficulté à identifier les groupes : offrir des cartes de référence",
+        "Si l'analyse devient frustrante : simplifier en se concentrant sur 2-3 groupes principaux",
+        "Si certains critiquent trop sévèrement les repas : rappeler qu'on cherche à améliorer, pas critiquer"
+      ],
+      "differentiation": {
+        "support": "Images plus simples, aide pour l'analyse, travail en équipe",
+        "extension": "Analyser leurs propres repas de la semaine et créer des recommandations"
+      },
+      "assessment": "Capacité d'identification des groupes alimentaires, analyse critique constructive",
+      "realWorldConnection": "Nous pouvons analyser nos repas pour nous assurer qu'ils sont équilibrés",
+      "homeConnection": "Jouer au détective avec un repas familial et partager les découvertes"
+    },
+    {
+      "lessonNumber": 19,
+      "title": "Jardinage en classe",
+      "duration": "45 minutes",
+      "oneGoal": "Planter des graines et comprendre d'où viennent nos aliments",
+      "keyVocabulary": ["jardinage", "graines", "pousser"],
+      "materials": ["Graines variées", "Petits pots", "Terre", "Arrosoirs", "Étiquettes", "Gants de jardinage", "Tablier"],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Révision de l'enquête nutritionnelle et introduction au jardinage comme source d'aliments",
+        "connection": "Extension - connects food to its natural origins"
+      },
+      "mainActivity": {
+        "duration": "27 minutes",
+        "structure": [
+          {
+            "phase": "Préparation du jardin (10 min)",
+            "description": "Préparer les pots, examiner les graines, comprendre les besoins des plantes : terre, eau, soleil."
+          },
+          {
+            "phase": "Plantation (12 min)",
+            "description": "Planter les graines avec soin, arroser doucement, étiqueter avec le nom de la plante et de l'élève."
+          },
+          {
+            "phase": "Plan de soin (5 min)",
+            "description": "Créer un calendrier de soins pour les plantes et assigner des responsabilités de classe."
+          }
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Cercle de prédictions : imaginer comment les plantes vont grandir et ce qu'on va pouvoir manger",
+        "consolidation": "Comprendre le lien entre jardinage, patience, soins, et alimentation"
+      },
+      "decisionPoints": [
+        "Si certains n'aiment pas toucher la terre : offrir des gants ou des outils",
+        "Si espace limité pour le jardinage : utiliser des contenants adaptés à l'espace disponible",
+        "Si certains arrosent trop : enseigner la modération et superviser"
+      ],
+      "differentiation": {
+        "support": "Aide pour manipuler les outils, instructions étape par étape",
+        "extension": "Rechercher d'autres légumes qu'on pourrait faire pousser, devenir expert jardinier"
+      },
+      "assessment": "Capacité à suivre les étapes de plantation, compréhension de l'origine des aliments",
+      "realWorldConnection": "Les fruits et légumes poussent dans la terre avant d'arriver à l'épicerie",
+      "homeConnection": "Partager l'expérience de jardinage et peut-être commencer un petit jardin à la maison"
+    },
+    {
+      "lessonNumber": 20,
+      "title": "Célébration de la vie saine",
+      "duration": "45 minutes",
+      "oneGoal": "Célébrer tout ce qu'on a appris sur la vie saine et partager nos créations",
+      "keyVocabulary": ["célébration", "partager", "fier"],
+      "materials": ["Tous les projets de l'unité", "Guirlandes", "Certificats", "Livre de recettes de classe", "Appareil photo"],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Préparation festive de la classe et récapitulatif de tous les apprentissages de l'unité",
+        "connection": "Extension - culminating activity that showcases all learning"
+      },
+      "mainActivity": {
+        "duration": "27 minutes",
+        "structure": [
+          {
+            "phase": "Exposition de nos créations (12 min)",
+            "description": "Galerie d'art avec tous les projets : menus, calendriers d'hygiène, jardins, photos des activités."
+          },
+          {
+            "phase": "Présentation des apprentissages (10 min)",
+            "description": "Chaque élève partage une chose importante qu'il a apprise sur la vie saine."
+          },
+          {
+            "phase": "Compilation du livre de classe (5 min)",
+            "description": "Assembler toutes les recettes et conseils santé créés pendant l'unité dans un livre de classe."
+          }
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Cérémonie de remise de certificats 'Expert en vie saine' et engagement pour l'avenir",
+        "consolidation": "Célébrer les progrès et s'engager à continuer les bonnes habitudes"
+      },
+      "decisionPoints": [
+        "Si certains élèves sont timides pour présenter : offrir des alternatives comme montrer leur projet sans parler",
+        "Si manque de temps : prioriser ce qui est le plus significatif pour les élèves",
+        "Si émotions fortes à la fin de l'unité : valider les sentiments et célébrer les liens créés"
+      ],
+      "differentiation": {
+        "support": "Aide pour la présentation, participation selon les capacités",
+        "extension": "Devenir ambassadeur de la vie saine pour aider d'autres classes"
+      },
+      "assessment": "Portfolio complet, présentation des apprentissages, engagement envers la vie saine",
+      "realWorldConnection": "Nous pouvons être fiers de prendre soin de notre santé et inspirer les autres",
+      "homeConnection": "Partager le livre de recettes et les certificats avec la famille, continuer les bonnes habitudes apprises"
+    }
+  ],
+  "coreExpectationsCoverage": {
+    "FPS1": "Covered in lessons 4-7 (food groups identification and benefits)",
+    "FPS2": "Covered in lessons 8, 12-14 (healthy eating habits and personal hygiene)",
+    "FPS3": "Covered in lessons 9-11 (importance of physical activity and sleep)",
+    "FPS4": "Covered in lessons 14-15 (basic cooking skills and food safety)"
+  },
+  "extensionActivities": "Lessons 15-20 provide creative applications without new curriculum content",
+  "culminatingTask": "Lesson 20 compilation of personal healthy living book with recipes, habits, and reflections"
+}

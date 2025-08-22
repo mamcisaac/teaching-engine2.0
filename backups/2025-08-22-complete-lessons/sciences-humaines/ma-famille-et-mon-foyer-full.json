@@ -1,0 +1,822 @@
+[
+  {
+    "lessonNumber": 1,
+    "title": "Qu'est-ce qu'une famille?",
+    "oneGoal": "Students will understand that families come in many different forms and all families are special and important",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Family circle where students share one special thing about their family without naming specific members. Introduce the word 'famille' with warm, inclusive gestures.",
+      "materials": ["family photos from diverse sources", "heart-shaped cards", "welcoming music"],
+      "visualSupports": "Open arms for inclusion, heart gestures for love, smiling faces for celebration"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Family diversity exploration using picture books and photos showing different family structures. Students create a 'Families are Special' gallery wall, adding drawings or words about what makes families special. Emphasize that ALL families are wonderful.",
+      "materials": ["diverse family books", "family structure photos", "gallery wall space", "art supplies"],
+      "visualSupports": "Pointing to different family types with equal celebration, diversity hand gestures, appreciation expressions",
+      "decisionPoints": [
+        {
+          "question": "How comfortable are students sharing about their family structure?",
+          "ifYes": "Encourage specific sharing while maintaining privacy boundaries",
+          "ifNo": "Keep discussions general and use book examples rather than personal sharing"
+        },
+        {
+          "question": "What level of emotional support do students need when discussing family?",
+          "ifYes": "Use extra reassurance and validate all feelings about family",
+          "ifNo": "Focus on celebration and positive aspects of family diversity"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Family appreciation circle where students share one word that describes how families make them feel. End with group chant: 'Toutes les familles sont spéciales!'",
+      "assessment": "Observe student comfort discussing family diversity and recognition that all family types are valuable"
+    },
+    "vocabulary": ["famille", "différent", "spécial"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Students feeling that their family is different or unusual",
+      "then": "Emphasize that different is wonderful and provide extra examples of their family type being celebrated"
+    },
+    "realWorldConnection": "Every person belongs to a family that loves and cares for them in their own special way"
+  },
+  {
+    "lessonNumber": 2,
+    "title": "Ma famille à moi",
+    "oneGoal": "Students will share and celebrate their own family structure and members with pride and confidence",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Family pride circle where students hold a mirror and say 'Je suis fier de ma famille' (I am proud of my family). Practice proud posture and confident expressions.",
+      "materials": ["hand mirrors", "family pride badges", "confident posture cards"],
+      "visualSupports": "Proud chest out posture, happy confident faces, thumbs up gestures"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "My family creation station where students choose how to represent their family - drawing, photos, puppet show, or storytelling. Create family portraits with emphasis on what makes each family special and loved.",
+      "materials": ["art supplies", "family template options", "puppet materials", "story-sharing space"],
+      "visualSupports": "Creative expression gestures, family love symbols, celebration movements",
+      "decisionPoints": [
+        {
+          "question": "How do we ensure all family structures feel valued and included?",
+          "ifYes": "Celebrate each family presentation equally with specific positive feedback",
+          "ifNo": "Focus on universal family themes like love, care, and togetherness"
+        },
+        {
+          "question": "Should students draw, tell, or show photos of their families?",
+          "ifYes": "Offer multiple options and let students choose their comfort level",
+          "ifNo": "Use drawing as the main activity with optional sharing"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Family gallery walk where students admire each other's family representations and share one positive observation about a classmate's family.",
+      "assessment": "Note student pride in sharing family and respect for diverse family structures"
+    },
+    "vocabulary": ["ma", "membre", "fier"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Students reluctant to share family information",
+      "then": "Respect privacy completely and offer alternative ways to participate like helping others or general family discussions"
+    },
+    "realWorldConnection": "Being proud of our family helps us feel confident and secure in who we are"
+  },
+  {
+    "lessonNumber": 3,
+    "title": "Les personnes dans ma famille",
+    "oneGoal": "Students will identify different family members and understand the special relationships within families",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Family member movement game where students act out different family roles (parent, grandparent, sibling, etc.) while others guess. Use inclusive language and actions.",
+      "materials": ["family role cards", "movement space", "guessing game props"],
+      "visualSupports": "Age-appropriate movements, caring gestures, family relationship symbols"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Family relationship mapping where students create a simple family tree or family circle showing the people in their family. Focus on relationships and connections rather than traditional structures.",
+      "materials": ["family tree templates", "relationship circles", "photo spaces", "connecting lines"],
+      "visualSupports": "Connection gestures, relationship pointing, family bond symbols",
+      "decisionPoints": [
+        {
+          "question": "Which family roles are most common in our classroom community?",
+          "ifYes": "Include those roles prominently while also showing other family structures",
+          "ifNo": "Use diverse examples from books and media to show variety"
+        },
+        {
+          "question": "How do we include non-traditional family structures in our vocabulary?",
+          "ifYes": "Introduce inclusive terms like 'family member' alongside specific roles",
+          "ifNo": "Focus on universal relationship concepts like love, care, and support"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Family bond celebration where students share one special thing about a family member's relationship to them.",
+      "assessment": "Observe student understanding of family relationships and inclusive family vocabulary"
+    },
+    "vocabulary": ["maman", "papa", "grand-parent"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Students whose family structures don't match traditional vocabulary",
+      "then": "Expand vocabulary to include 'special adult,' 'family member,' and other inclusive terms"
+    },
+    "realWorldConnection": "Each family member has a special place and important role in the family"
+  },
+  {
+    "lessonNumber": 4,
+    "title": "Qui fait quoi dans ma famille?",
+    "oneGoal": "Students will explore different family roles and understand how everyone contributes to family life",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Family work charades where students act out different things family members do together - cooking, cleaning, playing, working, caring for each other.",
+      "materials": ["family activity cards", "charades props", "guess-and-celebrate materials"],
+      "visualSupports": "Work action gestures, helping hands motions, teamwork symbols"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Family contribution wheel where students create a visual showing how everyone in their family helps make family life work. Include emotional contributions, fun contributions, and practical help.",
+      "materials": ["wheel templates", "contribution examples", "family work pictures", "celebration stickers"],
+      "visualSupports": "Circular motion for wheel, helping gestures, appreciation movements",
+      "decisionPoints": [
+        {
+          "question": "How do we present family work without reinforcing gender stereotypes?",
+          "ifYes": "Show diverse examples of who does what work and emphasize flexibility",
+          "ifNo": "Focus on the concept that everyone helps without specific task assignments"
+        },
+        {
+          "question": "Should we focus on traditional chores or emotional support roles?",
+          "ifYes": "Include both practical help and emotional support like hugs, listening, playing",
+          "ifNo": "Emphasize emotional support and care as equally important family work"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Family teamwork celebration where students share how their family works together as a team.",
+      "assessment": "Note student understanding that all family members contribute in important ways"
+    },
+    "vocabulary": ["travail", "aider", "ensemble"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Students feeling that they don't help enough or their family doesn't work together",
+      "then": "Emphasize that even small helps are important and that families are always learning to work together better"
+    },
+    "realWorldConnection": "Families work best when everyone helps and contributes in their own special way"
+  },
+  {
+    "lessonNumber": 5,
+    "title": "Comment ma famille prend soin de moi",
+    "oneGoal": "Students will recognize the many ways their family members care for and support them",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Care and comfort sharing circle where students think about times they felt cared for by family. Use gentle, warm expressions and universal examples.",
+      "materials": ["comfort objects", "care examples cards", "warm blanket for circle"],
+      "visualSupports": "Gentle hugging motions, care-giving gestures, comfort expressions"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Family care mapping where students create a visual showing different ways their family takes care of them - physical care, emotional care, safety, fun, learning support.",
+      "materials": ["care category cards", "mapping materials", "care symbols", "appreciation materials"],
+      "visualSupports": "Care-giving motions, protection gestures, love symbols",
+      "decisionPoints": [
+        {
+          "question": "How do we highlight care without making students feel guilty about family challenges?",
+          "ifYes": "Focus on what students notice and appreciate without judgment about what's missing",
+          "ifNo": "Use universal examples of care that all students can relate to"
+        },
+        {
+          "question": "Should we focus on physical care or emotional care first?",
+          "ifYes": "Include both and let students share what feels most important to them",
+          "ifNo": "Start with emotional care as it's more universal across family situations"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Gratitude expression where students share one way they feel cared for and practice saying 'merci' to family in their hearts.",
+      "assessment": "Observe student recognition of family care and expression of appreciation"
+    },
+    "vocabulary": ["soin", "protection", "amour"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Students from families experiencing stress or challenges",
+      "then": "Focus on any positive care they receive and validate that families try their best even when things are hard"
+    },
+    "realWorldConnection": "Being cared for by family helps us grow strong, healthy, and confident"
+  },
+  {
+    "lessonNumber": 6,
+    "title": "Comment j'aide ma famille",
+    "oneGoal": "Students will identify ways they contribute to their family and understand their important role as family members",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Helper hero circle where students share one way they help their family and strike a superhero pose to show their importance as family helpers.",
+      "materials": ["superhero capes", "helper badges", "proud posture examples"],
+      "visualSupports": "Strong helper postures, superhero gestures, pride expressions"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Family contribution portfolio where students document the many ways they help their family - practical help, emotional support, bringing joy, learning and growing.",
+      "materials": ["contribution books", "helper examples", "family impact pictures", "celebration materials"],
+      "visualSupports": "Helping hand gestures, contribution movements, impact symbols",
+      "decisionPoints": [
+        {
+          "question": "What level of responsibility do Grade 1 students actually have at home?",
+          "ifYes": "Include both big and small ways they help, emphasizing that all help matters",
+          "ifNo": "Focus on emotional contributions and simple helps that all students can relate to"
+        },
+        {
+          "question": "Should we focus on helping tasks or emotional contributions?",
+          "ifYes": "Include both practical help and emotional support like hugs, smiles, cooperation",
+          "ifNo": "Emphasize emotional contributions as equally valuable as practical help"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Helper appreciation ceremony where students celebrate their role as important family contributors.",
+      "assessment": "Note student recognition of their value and contributions to family life"
+    },
+    "vocabulary": ["contribuer", "responsabilité", "important"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Students feeling they don't help enough or aren't important to their family",
+      "then": "Emphasize that just being themselves and growing is a huge help to families, and love doesn't depend on tasks"
+    },
+    "realWorldConnection": "Even young people have important ways to help and support their families"
+  },
+  {
+    "lessonNumber": 7,
+    "title": "Les familles de mes amis",
+    "oneGoal": "Students will explore and appreciate the diversity of family structures in their classroom community",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Friendship and family appreciation circle where students think about their friends' families with curiosity and appreciation.",
+      "materials": ["friendship circles", "appreciation symbols", "curious expressions cards"],
+      "visualSupports": "Open curiosity gestures, appreciation movements, friendship symbols"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Family diversity celebration through anonymous family sharing - students contribute family facts to a class diversity chart without names, showing the beautiful variety in our classroom community.",
+      "materials": ["anonymous sharing system", "diversity chart", "celebration materials", "variety symbols"],
+      "visualSupports": "Diversity gestures, celebration movements, inclusion symbols",
+      "decisionPoints": [
+        {
+          "question": "How do we celebrate differences without making any student feel 'different'?",
+          "ifYes": "Emphasize that diversity makes our classroom community richer and more interesting",
+          "ifNo": "Focus on common family themes while gently acknowledging variety"
+        },
+        {
+          "question": "Should students share about friends' families or discuss in general terms?",
+          "ifYes": "Keep all sharing general and anonymous to protect privacy",
+          "ifNo": "Use book examples and imaginary families to explore diversity"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Community appreciation where students celebrate how family diversity makes their classroom community special and interesting.",
+      "assessment": "Observe student appreciation for family diversity and respectful curiosity about differences"
+    },
+    "vocabulary": ["amis", "diversité", "apprécier"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Students making comparisons or judgments about different family types",
+      "then": "Redirect to appreciation and emphasize that different families have different strengths and all are wonderful"
+    },
+    "realWorldConnection": "Learning about different families helps us understand and appreciate our community better"
+  },
+  {
+    "lessonNumber": 8,
+    "title": "Les traditions de ma famille",
+    "oneGoal": "Students will identify and share family traditions and understand how traditions connect families across time",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Tradition discovery circle where students think about special things their family does together regularly - big or small, formal or informal.",
+      "materials": ["tradition examples", "memory prompts", "sharing circles"],
+      "visualSupports": "Repetitive motion gestures, memory symbols, tradition representations"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Family tradition gallery where students create representations of their family traditions - daily routines, special celebrations, ways of doing things, or family sayings.",
+      "materials": ["tradition creation materials", "gallery space", "tradition categories", "celebration supplies"],
+      "visualSupports": "Tradition gestures, celebration movements, memory symbols",
+      "decisionPoints": [
+        {
+          "question": "How do we include families with few established traditions or recent immigration?",
+          "ifYes": "Emphasize that new traditions can start anytime and small daily practices count",
+          "ifNo": "Focus on universal family practices like bedtime routines, meals, or weekend activities"
+        },
+        {
+          "question": "Should we focus on holiday traditions or daily family habits?",
+          "ifYes": "Include both special occasions and daily family practices as traditions",
+          "ifNo": "Emphasize daily traditions since they're more universal and accessible"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Tradition appreciation walk where students view each other's traditions and share appreciation for the variety of ways families create special moments.",
+      "assessment": "Note student understanding of traditions and appreciation for diverse family practices"
+    },
+    "vocabulary": ["tradition", "célébrer", "mémoire"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Students feeling their family doesn't have traditions",
+      "then": "Help them identify simple family practices like bedtime routines, favorite foods, or ways of greeting each other as traditions"
+    },
+    "realWorldConnection": "Family traditions help us remember who we are and stay connected to our family history"
+  },
+  {
+    "lessonNumber": 9,
+    "title": "Comment ma famille célèbre",
+    "oneGoal": "Students will explore different ways families celebrate special moments and understand celebration as family bonding",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Celebration dance circle where students move and express joy while thinking about how their families celebrate and have fun together.",
+      "materials": ["celebration music", "joy movement cards", "celebration props"],
+      "visualSupports": "Joyful dancing, celebration gestures, happiness expressions"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Family celebration showcase where students create displays showing how their families mark special times - birthdays, achievements, holidays, or everyday joys.",
+      "materials": ["celebration creation materials", "showcase space", "joy symbols", "family celebration examples"],
+      "visualSupports": "Celebration movements, joy expressions, family happiness symbols",
+      "decisionPoints": [
+        {
+          "question": "How do we include families who celebrate in quiet or non-religious ways?",
+          "ifYes": "Show that celebrations can be big or small, loud or quiet, and all are wonderful",
+          "ifNo": "Focus on universal celebration concepts like appreciation, joy, and togetherness"
+        },
+        {
+          "question": "Should we focus on big celebrations or small daily moments?",
+          "ifYes": "Include both major celebrations and small daily joys like family dinners or bedtime stories",
+          "ifNo": "Emphasize small daily celebrations since they're more accessible to all families"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Joy sharing circle where students share how celebrations make them feel and practice gratitude for family joy.",
+      "assessment": "Observe student understanding of family celebration diversity and connection to family bonding"
+    },
+    "vocabulary": ["célébration", "moments", "joie"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Students whose families don't celebrate much or celebrate differently",
+      "then": "Help them identify any moments of family joy or togetherness as celebrations, no matter how small"
+    },
+    "realWorldConnection": "Celebrating together helps families feel close and creates happy memories to treasure"
+  },
+  {
+    "lessonNumber": 10,
+    "title": "La nourriture dans ma famille",
+    "oneGoal": "Students will explore family food traditions and understand how sharing meals connects families",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Food appreciation circle where students think about favorite family foods and practice gratitude for food and family meals together.",
+      "materials": ["food appreciation cards", "gratitude symbols", "family meal pictures"],
+      "visualSupports": "Eating gestures, appreciation movements, sharing symbols"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Family food traditions exploration where students create representations of special family foods, family meal practices, or ways their family shares food together.",
+      "materials": ["food tradition materials", "family meal examples", "sharing symbols", "cultural food pictures"],
+      "visualSupports": "Food sharing gestures, cultural appreciation movements, family meal symbols",
+      "decisionPoints": [
+        {
+          "question": "How do we handle students with food insecurity or dietary restrictions sensitively?",
+          "ifYes": "Focus on any positive food experiences and family meal memories, however simple",
+          "ifNo": "Emphasize the connection and love in family meals rather than specific foods"
+        },
+        {
+          "question": "Should we focus on special occasion foods or daily family meals?",
+          "ifYes": "Include both special foods and everyday family meal practices",
+          "ifNo": "Focus on everyday family meal connection since it's more universal"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Family meal appreciation where students share how food brings their family together and practice gratitude for family meals.",
+      "assessment": "Note student understanding of food as family connection and appreciation for diverse food traditions"
+    },
+    "vocabulary": ["nourriture", "partager", "goût"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Students whose families have limited food resources or no regular family meals",
+      "then": "Focus on any positive food memories or the idea that sharing any food shows love and care"
+    },
+    "realWorldConnection": "Sharing food is one of the ways families show love and stay connected every day"
+  },
+  {
+    "lessonNumber": 11,
+    "title": "Où vit ma famille?",
+    "oneGoal": "Students will explore different types of homes and understand that all homes provide families with shelter and belonging",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Home appreciation circle where students think about what makes their family's place feel like home - love, safety, belonging, not the building itself.",
+      "materials": ["home feeling cards", "belonging symbols", "safety representations"],
+      "visualSupports": "Home safety gestures, belonging movements, love symbols"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Family home celebration where students create representations of what makes their family's living space special - the people, feelings, safety, and love, not the building type.",
+      "materials": ["home creation materials", "feeling symbols", "family space examples", "belonging representations"],
+      "visualSupports": "Home comfort gestures, family space symbols, belonging movements",
+      "decisionPoints": [
+        {
+          "question": "How do we discuss housing without highlighting economic differences?",
+          "ifYes": "Focus entirely on feelings of home rather than physical building characteristics",
+          "ifNo": "Emphasize that homes are about family love and safety, not size or type of building"
+        },
+        {
+          "question": "Should we focus on house types or what makes a place feel like home?",
+          "ifYes": "Focus completely on feelings, safety, love, and family connection in any space",
+          "ifNo": "Avoid discussing building types and focus on universal home feelings"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Home gratitude circle where students share what makes them feel at home with their family, regardless of where they live.",
+      "assessment": "Observe student understanding that homes are about family love and belonging, not building types"
+    },
+    "vocabulary": ["maison", "chez-nous", "abri"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Students whose housing situation is unstable or temporary",
+      "then": "Emphasize that home is wherever their family is together with love and safety"
+    },
+    "realWorldConnection": "Having a safe place to live with family helps us feel secure and ready to learn and grow"
+  },
+  {
+    "lessonNumber": 12,
+    "title": "Les espaces spéciaux de ma famille",
+    "oneGoal": "Students will identify special family spaces and understand how physical spaces can hold family memories and meaning",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Special space memory circle where students think about places where their family spends time together and feels happy and connected.",
+      "materials": ["memory symbols", "special space examples", "family connection representations"],
+      "visualSupports": "Memory gestures, space appreciation movements, family connection symbols"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Family space appreciation where students create representations of special family spaces - not fancy rooms, but places where family feels close and makes memories.",
+      "materials": ["space creation materials", "memory symbols", "family togetherness examples", "connection representations"],
+      "visualSupports": "Family togetherness gestures, memory symbols, special space movements",
+      "decisionPoints": [
+        {
+          "question": "How do we help students find meaning in any family space, regardless of size or luxury?",
+          "ifYes": "Focus on family connection and memories in any space, however small or simple",
+          "ifNo": "Emphasize that special spaces are about family time together, not about fancy rooms"
+        },
+        {
+          "question": "Should we focus on rooms, outdoor spaces, or specific objects?",
+          "ifYes": "Include any space where family feels close - indoor, outdoor, or even a special chair",
+          "ifNo": "Focus on the concept of family togetherness in any meaningful space"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Special space appreciation where students share how family spaces help them feel connected and loved.",
+      "assessment": "Note student understanding that special family spaces are about connection and memories, not material things"
+    },
+    "vocabulary": ["espace", "spécial", "souvenir"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Students who don't have permanent or private family spaces",
+      "then": "Help them identify any place where family feels close together, even if shared or temporary"
+    },
+    "realWorldConnection": "Special family spaces help us feel connected to our family and hold our important memories"
+  },
+  {
+    "lessonNumber": 13,
+    "title": "Comment les familles communiquent",
+    "oneGoal": "Students will explore different ways families communicate and understand communication as essential for family connection",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Communication practice circle where students explore different ways families talk, listen, and share feelings with each other.",
+      "materials": ["communication examples", "listening symbols", "expression cards"],
+      "visualSupports": "Speaking gestures, listening movements, expression symbols"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Family communication celebration where students explore the many ways their families share thoughts and feelings - talking, listening, hugs, notes, or special looks.",
+      "materials": ["communication creation materials", "expression examples", "family connection symbols", "sharing representations"],
+      "visualSupports": "Communication gestures, family connection movements, sharing symbols",
+      "decisionPoints": [
+        {
+          "question": "How do we include families who communicate in multiple languages?",
+          "ifYes": "Celebrate multilingual communication as a special family gift and strength",
+          "ifNo": "Focus on universal communication concepts like listening, caring, and understanding"
+        },
+        {
+          "question": "Should we focus on verbal communication or include non-verbal family communication?",
+          "ifYes": "Include talking, listening, hugs, smiles, and other ways families share feelings",
+          "ifNo": "Emphasize all forms of family communication as important and valuable"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Communication appreciation where students share how their family communicates love and connection.",
+      "assessment": "Observe student understanding of diverse family communication styles and appreciation for family connection"
+    },
+    "vocabulary": ["parler", "écouter", "communiquer"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Students whose families may have communication challenges",
+      "then": "Focus on any positive family communication and emphasize that families are always learning better ways to connect"
+    },
+    "realWorldConnection": "Good communication helps families solve problems, share love, and stay close to each other"
+  },
+  {
+    "lessonNumber": 14,
+    "title": "Les familles dans notre communauté",
+    "oneGoal": "Students will understand how families connect with other families and contribute to community life",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Community connection circle where students think about how their family connects with neighbors, friends, and community members.",
+      "materials": ["community connection examples", "neighborhood symbols", "family network representations"],
+      "visualSupports": "Connection gestures, community movements, network symbols"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Family community web where students explore how their families connect with other families and contribute to making their community better and stronger.",
+      "materials": ["community web materials", "connection symbols", "family contribution examples", "community strength representations"],
+      "visualSupports": "Web connection gestures, community building movements, contribution symbols",
+      "decisionPoints": [
+        {
+          "question": "How connected are students' families to the local community?",
+          "ifYes": "Build on existing connections and celebrate family community involvement",
+          "ifNo": "Focus on simple community connections like school, neighbors, or local places"
+        },
+        {
+          "question": "Should we focus on neighborhood connections or broader community involvement?",
+          "ifYes": "Include both close neighbors and broader community connections like school and local businesses",
+          "ifNo": "Focus on immediate community connections that students can observe and understand"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Community appreciation where students celebrate how families working together make communities strong and caring.",
+      "assessment": "Note student understanding of family connections to community and appreciation for community cooperation"
+    },
+    "vocabulary": ["communauté", "voisin", "connecter"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Students whose families may be isolated or new to the community",
+      "then": "Focus on school community connections and emphasize that community connections can grow over time"
+    },
+    "realWorldConnection": "Families are stronger when they connect with other families and help their community"
+  },
+  {
+    "lessonNumber": 15,
+    "title": "Créer un livre de famille",
+    "oneGoal": "Students will create a family book celebrating their family's unique story and characteristics",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Story celebration circle where students think about their family as having a special, important story worth sharing and remembering.",
+      "materials": ["story symbols", "celebration examples", "family story inspiration"],
+      "visualSupports": "Story-telling gestures, celebration movements, book creation symbols"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Family story book creation where students compile their family learning into a personal book celebrating their family's uniqueness, love, and special characteristics.",
+      "materials": ["book creation materials", "family celebration pages", "story organization tools", "decoration supplies"],
+      "visualSupports": "Book creation gestures, family celebration movements, story organization symbols",
+      "decisionPoints": [
+        {
+          "question": "What format would work best for students with different fine motor skills?",
+          "ifYes": "Offer multiple formats including drawing, dictating, photo books, or digital creation",
+          "ifNo": "Focus on simple formats that emphasize content over complex construction"
+        },
+        {
+          "question": "Should books focus on current family or include family history?",
+          "ifYes": "Focus primarily on current family with option to include family history if available",
+          "ifNo": "Emphasize current family relationships and experiences students know well"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Author celebration where students appreciate their creation and their family's special story.",
+      "assessment": "Observe student ability to synthesize family learning and express family appreciation"
+    },
+    "vocabulary": ["livre", "histoire", "créer"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Students who may need help gathering family information",
+      "then": "Support with family interviews or help them create books based on their own family experiences and observations"
+    },
+    "realWorldConnection": "Creating family stories helps us remember and share what makes our family special"
+  },
+  {
+    "lessonNumber": 16,
+    "title": "Exposition de familles",
+    "oneGoal": "Students will share their family celebrations with classmates and appreciate the diversity of all families",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Gallery preparation circle where students prepare to share their family stories with appreciation and to receive others' stories with respect and curiosity.",
+      "materials": ["gallery setup materials", "appreciation symbols", "respectful sharing examples"],
+      "visualSupports": "Gallery gestures, appreciation movements, respectful sharing symbols"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Family story gallery where students share their family books and celebrate the beautiful diversity of families in their classroom community.",
+      "materials": ["gallery display space", "sharing organization", "appreciation materials", "family celebration symbols"],
+      "visualSupports": "Gallery sharing gestures, family appreciation movements, diversity celebration symbols",
+      "decisionPoints": [
+        {
+          "question": "How do we create a safe, celebratory atmosphere for family sharing?",
+          "ifYes": "Establish clear appreciation guidelines and model respectful, positive responses",
+          "ifNo": "Keep sharing optional and provide alternative ways for students to participate"
+        },
+        {
+          "question": "Should presentations be formal or informal, individual or small group?",
+          "ifYes": "Use informal sharing in small groups to reduce pressure and increase connection",
+          "ifNo": "Allow students to choose their comfort level for sharing"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Family diversity celebration where students appreciate the variety and beauty of all the families in their classroom.",
+      "assessment": "Note student respect for family diversity and ability to share family appreciation"
+    },
+    "vocabulary": ["exposition", "présenter", "admirer"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Students feeling nervous about sharing or comparing families",
+      "then": "Emphasize that every family is wonderful and provide support for comfortable sharing levels"
+    },
+    "realWorldConnection": "Sharing our family stories helps others understand and appreciate different ways of being a family"
+  },
+  {
+    "lessonNumber": 17,
+    "title": "Jeu de rôles: Ma famille",
+    "oneGoal": "Students will role-play family scenarios to practice family vocabulary and explore family relationships",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Family role-play preparation where students explore different family roles with appreciation and understanding.",
+      "materials": ["role-play props", "family scenario cards", "character appreciation examples"],
+      "visualSupports": "Role-play gestures, family relationship movements, character appreciation symbols"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Family scenario exploration where students act out positive family interactions, practice family vocabulary, and explore family relationships through creative play.",
+      "materials": ["family scenario materials", "role-play space", "family interaction examples", "vocabulary practice tools"],
+      "visualSupports": "Family interaction gestures, role-play movements, vocabulary practice symbols",
+      "decisionPoints": [
+        {
+          "question": "Which family scenarios would be most engaging and appropriate for role-play?",
+          "ifYes": "Focus on positive family interactions like meals, celebrations, problem-solving, and care-giving",
+          "ifNo": "Use universal family scenarios that all students can relate to and enjoy"
+        },
+        {
+          "question": "Should students play their own family roles or explore different family structures?",
+          "ifYes": "Allow students to explore different family roles to build empathy and understanding",
+          "ifNo": "Let students choose whether to play familiar or unfamiliar family roles"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Role-play reflection where students share what they learned about family relationships through creative exploration.",
+      "assessment": "Observe student comfort with family vocabulary and understanding of positive family interactions"
+    },
+    "vocabulary": ["jouer", "rôle", "pratiquer"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Students uncomfortable with role-play or family scenarios",
+      "then": "Provide alternative participation like being directors, helping with props, or observing and commenting"
+    },
+    "realWorldConnection": "Playing family roles helps us understand different perspectives and practice family relationships"
+  },
+  {
+    "lessonNumber": 18,
+    "title": "Lettres à ma famille",
+    "oneGoal": "Students will write simple letters to family members expressing appreciation and love",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Letter writing inspiration circle where students think about what they want their family members to know about their love and appreciation.",
+      "materials": ["letter inspiration cards", "appreciation examples", "love expression symbols"],
+      "visualSupports": "Letter writing gestures, appreciation movements, love expression symbols"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Family appreciation letters where students create simple letters, cards, or messages expressing their feelings for family members using words, pictures, or symbols.",
+      "materials": ["letter writing materials", "appreciation templates", "decoration supplies", "expression tools"],
+      "visualSupports": "Writing gestures, appreciation movements, love expression symbols",
+      "decisionPoints": [
+        {
+          "question": "What writing level is appropriate for Grade 1 students' letter writing?",
+          "ifYes": "Support with templates, pictures, and simple words while encouraging personal expression",
+          "ifNo": "Focus on the expression of feelings rather than perfect writing mechanics"
+        },
+        {
+          "question": "Should letters focus on gratitude, love, or sharing school learning?",
+          "ifYes": "Include appreciation, love, and sharing of school family learning",
+          "ifNo": "Focus primarily on expressing love and appreciation for family"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Letter appreciation where students share (if comfortable) their messages and prepare to deliver their family love.",
+      "assessment": "Note student ability to express family appreciation and use family vocabulary in personal context"
+    },
+    "vocabulary": ["lettre", "merci", "gratitude"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Students who may need help expressing their feelings",
+      "then": "Provide feeling words, pictures, and templates to support emotional expression"
+    },
+    "realWorldConnection": "Telling family members how we feel about them helps strengthen family relationships"
+  },
+  {
+    "lessonNumber": 19,
+    "title": "Célébration des familles",
+    "oneGoal": "Students will plan and participate in a classroom celebration honoring all types of families",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Celebration planning circle where students think about how to honor and celebrate all the wonderful families in their classroom.",
+      "materials": ["celebration planning materials", "family honor examples", "inclusive celebration ideas"],
+      "visualSupports": "Celebration gestures, planning movements, family honor symbols"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Family celebration preparation where students work together to create a classroom event that honors all family types and celebrates family diversity and love.",
+      "materials": ["celebration creation materials", "family honor supplies", "diversity celebration tools", "inclusive activity materials"],
+      "visualSupports": "Celebration preparation gestures, family honor movements, diversity celebration symbols",
+      "decisionPoints": [
+        {
+          "question": "What type of celebration would include and honor all family structures?",
+          "ifYes": "Focus on universal family themes like love, care, support, and belonging",
+          "ifNo": "Create celebration activities that work for all family types without exclusion"
+        },
+        {
+          "question": "Should families be invited to participate or should this be a classroom-only event?",
+          "ifYes": "Consider family availability and comfort while focusing on student celebration of families",
+          "ifNo": "Keep celebration student-focused while honoring families through student appreciation"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Celebration culmination where students participate in their family appreciation celebration and share joy about family diversity.",
+      "assessment": "Observe student appreciation for family diversity and ability to participate in inclusive celebration"
+    },
+    "vocabulary": ["fête", "honorer", "tous"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Students whose families cannot participate or feel different",
+      "then": "Ensure celebration focuses on student appreciation for families rather than family presence or participation"
+    },
+    "realWorldConnection": "Celebrating families together helps us appreciate that all families are important and valuable"
+  },
+  {
+    "lessonNumber": 20,
+    "title": "Je suis fier de ma famille",
+    "oneGoal": "Students will reflect on their learning about families and express pride in their own family relationships",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Pride reflection circle where students think about how their understanding of families has grown and how they feel about their own family.",
+      "materials": ["reflection symbols", "pride expressions", "learning growth examples"],
+      "visualSupports": "Pride gestures, reflection movements, growth symbols"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Family pride culmination where students reflect on their family learning journey and create a final expression of family pride and appreciation.",
+      "materials": ["culmination creation materials", "pride expression tools", "learning reflection supplies", "family appreciation symbols"],
+      "visualSupports": "Pride expressions, reflection gestures, family appreciation movements",
+      "decisionPoints": [
+        {
+          "question": "How do we help students articulate what they've learned about families?",
+          "ifYes": "Use reflection prompts and examples to help students recognize their learning growth",
+          "ifNo": "Focus on feelings and appreciation rather than academic articulation"
+        },
+        {
+          "question": "Should reflection focus on personal growth or family appreciation?",
+          "ifYes": "Include both personal learning growth and deepened family appreciation",
+          "ifNo": "Emphasize family appreciation and pride as the primary focus"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Family pride celebration where students share their final reflections and celebrate their growth in understanding and appreciating families.",
+      "assessment": "Note student growth in family appreciation, understanding of family diversity, and confidence in family pride"
+    },
+    "vocabulary": ["fier", "réflexion", "apprendre"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Students who still feel uncertain about their family or family pride",
+      "then": "Provide individual support and emphasize that all families are learning and growing, just like students"
+    },
+    "realWorldConnection": "Being proud of our family gives us confidence and helps us appreciate other families too"
+  }
+]

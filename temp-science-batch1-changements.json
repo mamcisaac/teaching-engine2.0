@@ -1,0 +1,36 @@
+{
+  "unitPlan": {
+    "title": "Changements saisonniers d'automne",
+    "bigIdeas": "La nature change avec les saisons",
+    "essentialQuestions": [
+      "Que se passe-t-il en automne?",
+      "Comment les arbres changent-ils?",
+      "Comment les animaux se préparent-ils?"
+    ],
+    "startDate": "2025-10-01T00:00:00.000Z",
+    "endDate": "2025-10-28T00:00:00.000Z",
+    "estimatedHours": 15,
+    "lessonCount": 20,
+    "coreCount": 14,
+    "extensionCount": 6,
+    "differentiationStrategies": {
+      "structure": "14 leçons essentielles, 6 extensions"
+    },
+    "culminatingTask": "Expo d'automne"
+  },
+  "subject": "Sciences de la nature",
+  "expectations": [
+    {
+      "code": "S1",
+      "description": "Investigation scientifique"
+    },
+    {
+      "code": "S2",
+      "description": "Observation"
+    },
+    {
+      "code": "S3",
+      "description": "Documentation"
+    }
+  ]
+}

@@ -1,0 +1,262 @@
+[
+  {
+    "lessonNumber": 1,
+    "title": "Qu'est-ce que la nutrition?",
+    "oneGoal": "Comprendre que la nutrition signifie nourrir notre corps",
+    "keyVocabulary": ["nutrition", "corps", "nourriture"],
+    "decisionPoints": [
+      "Les élèves sont-ils à l'aise pour partager leurs idées?",
+      "Ont-ils besoin de plus d'exemples visuels?",
+      "Faut-il ralentir le rythme?"
+    ],
+    "progression": "Leçon d'introduction - établit les fondations pour toute l'unité",
+    "realWorldConnection": "Nous mangeons tous les jours pour donner de l'énergie à notre corps"
+  },
+  {
+    "lessonNumber": 2,
+    "title": "Mon corps a faim",
+    "oneGoal": "Reconnaître les signaux de faim et de satiété du corps",
+    "keyVocabulary": ["faim", "ventre", "rassasié"],
+    "decisionPoints": [
+      "Les élèves comprennent-ils les sensations corporelles?",
+      "Ont-ils besoin d'activités de mouvement pour comprendre?",
+      "Peuvent-ils faire des liens avec leurs expériences?"
+    ],
+    "progression": "Builds on Lesson 1 by connecting nutrition to body awareness",
+    "realWorldConnection": "Écouter notre ventre nous dit quand manger et quand arrêter"
+  },
+  {
+    "lessonNumber": 3,
+    "title": "Les couleurs dans mon assiette",
+    "oneGoal": "Identifier que les aliments ont différentes couleurs et que c'est important",
+    "keyVocabulary": ["couleurs", "assiette", "arc-en-ciel"],
+    "decisionPoints": [
+      "Les élèves peuvent-ils nommer les couleurs en français?",
+      "Faut-il utiliser de vrais aliments ou des images?",
+      "Comprennent-ils le concept d'arc-en-ciel alimentaire?"
+    ],
+    "progression": "Builds on Lesson 2 by introducing food variety through colors",
+    "realWorldConnection": "Un repas coloré comme un arc-en-ciel est plus nutritif"
+  },
+  {
+    "lessonNumber": 4,
+    "title": "Les fruits et légumes",
+    "oneGoal": "Reconnaître les fruits et légumes comme un groupe alimentaire important",
+    "keyVocabulary": ["fruits", "légumes", "vitamines"],
+    "decisionPoints": [
+      "Les élèves connaissent-ils ces aliments dans leur langue maternelle?",
+      "Ont-ils besoin de toucher et sentir les aliments?",
+      "Peuvent-ils faire des catégories simples?"
+    ],
+    "progression": "Builds on Lesson 3 by focusing on the colorful fruit and vegetable group",
+    "realWorldConnection": "Les fruits et légumes nous donnent des vitamines pour grandir"
+  },
+  {
+    "lessonNumber": 5,
+    "title": "Les céréales et grains",
+    "oneGoal": "Identifier les céréales et grains comme source d'énergie",
+    "keyVocabulary": ["céréales", "pain", "énergie"],
+    "decisionPoints": [
+      "Les élèves peuvent-ils différencier les types de grains?",
+      "Comprennent-ils le concept d'énergie?",
+      "Ont-ils besoin d'exemples de leur petit-déjeuner?"
+    ],
+    "progression": "Builds on Lesson 4 by introducing a second food group",
+    "realWorldConnection": "Le pain et les céréales nous donnent l'énergie pour jouer"
+  },
+  {
+    "lessonNumber": 6,
+    "title": "Le lait et les produits laitiers",
+    "oneGoal": "Reconnaître les produits laitiers comme importants pour les os",
+    "keyVocabulary": ["lait", "fromage", "os"],
+    "decisionPoints": [
+      "Y a-t-il des élèves avec des allergies ou intolérances?",
+      "Comprennent-ils que les os ont besoin de calcium?",
+      "Peuvent-ils nommer des alternatives au lait?"
+    ],
+    "progression": "Builds on Lesson 5 by adding the dairy food group",
+    "realWorldConnection": "Le lait et le fromage aident nos os à devenir forts"
+  },
+  {
+    "lessonNumber": 7,
+    "title": "Les protéines",
+    "oneGoal": "Identifier les sources de protéines pour les muscles",
+    "keyVocabulary": ["protéines", "muscles", "viande"],
+    "decisionPoints": [
+      "Y a-t-il des élèves végétariens dans la classe?",
+      "Comprennent-ils le lien entre protéines et muscles?",
+      "Ont-ils besoin d'exemples de protéines végétales?"
+    ],
+    "progression": "Builds on Lesson 6 by completing the main food groups",
+    "realWorldConnection": "Les protéines aident nos muscles à grandir et être forts"
+  },
+  {
+    "lessonNumber": 8,
+    "title": "L'eau, c'est la vie",
+    "oneGoal": "Comprendre l'importance de boire de l'eau chaque jour",
+    "keyVocabulary": ["eau", "soif", "hydratation"],
+    "decisionPoints": [
+      "Les élèves boivent-ils assez d'eau pendant la journée?",
+      "Comprennent-ils pourquoi l'eau est importante?",
+      "Peuvent-ils reconnaître les signes de soif?"
+    ],
+    "progression": "Builds on Lesson 7 by adding hydration to nutrition knowledge",
+    "realWorldConnection": "Notre corps a besoin d'eau pour fonctionner, comme une plante"
+  },
+  {
+    "lessonNumber": 9,
+    "title": "Bouger pour être en santé",
+    "oneGoal": "Comprendre que l'activité physique est importante pour la santé",
+    "keyVocabulary": ["bouger", "exercice", "santé"],
+    "decisionPoints": [
+      "Les élèves aiment-ils bouger et être actifs?",
+      "Ont-ils besoin de pauses de mouvement?",
+      "Comprennent-ils le lien entre mouvement et santé?"
+    ],
+    "progression": "Builds on Lesson 8 by connecting physical activity to healthy living",
+    "realWorldConnection": "Bouger et jouer dehors nous aide à rester en bonne santé"
+  },
+  {
+    "lessonNumber": 10,
+    "title": "Jeux actifs et amusants",
+    "oneGoal": "Découvrir que l'exercice peut être amusant à travers les jeux",
+    "keyVocabulary": ["jeux", "amusant", "actif"],
+    "decisionPoints": [
+      "Quels jeux motivent le plus les élèves?",
+      "Ont-ils tous l'occasion de participer?",
+      "Faut-il adapter les jeux pour tous les niveaux?"
+    ],
+    "progression": "Builds on Lesson 9 by making physical activity enjoyable and accessible",
+    "realWorldConnection": "On peut s'amuser tout en faisant de l'exercice avec nos amis"
+  },
+  {
+    "lessonNumber": 11,
+    "title": "Le sommeil réparateur",
+    "oneGoal": "Comprendre pourquoi dormir suffisamment est important pour grandir",
+    "keyVocabulary": ["sommeil", "dormir", "repos"],
+    "decisionPoints": [
+      "Les élèves ont-ils de bonnes habitudes de sommeil?",
+      "Comprennent-ils pourquoi on a besoin de dormir?",
+      "Peuvent-ils partager leurs routines du soir?"
+    ],
+    "progression": "Builds on Lesson 10 by adding rest as essential to healthy living",
+    "realWorldConnection": "Dormir aide notre corps et notre cerveau à grandir et récupérer"
+  },
+  {
+    "lessonNumber": 12,
+    "title": "Se laver les mains",
+    "oneGoal": "Apprendre la technique correcte pour se laver les mains",
+    "keyVocabulary": ["laver", "mains", "propre"],
+    "decisionPoints": [
+      "Tous les élèves peuvent-ils atteindre le lavabo?",
+      "Comprennent-ils quand se laver les mains?",
+      "Ont-ils maîtrisé la technique?"
+    ],
+    "progression": "Builds on Lesson 11 by introducing hygiene as part of healthy habits",
+    "realWorldConnection": "Se laver les mains nous protège des microbes et maladies"
+  },
+  {
+    "lessonNumber": 13,
+    "title": "Hygiène personnelle quotidienne",
+    "oneGoal": "Établir une routine d'hygiène personnelle quotidienne",
+    "keyVocabulary": ["hygiène", "routine", "quotidien"],
+    "decisionPoints": [
+      "Les élèves ont-ils déjà des routines établies?",
+      "Comprennent-ils l'importance de l'hygiène?",
+      "Ont-ils besoin d'aide pour organiser leur routine?"
+    ],
+    "progression": "Builds on Lesson 12 by expanding hygiene beyond handwashing",
+    "realWorldConnection": "Une routine d'hygiène nous aide à nous sentir bien et en santé"
+  },
+  {
+    "lessonNumber": 14,
+    "title": "Ma collation santé",
+    "oneGoal": "Planifier et préparer une collation nutritive simple",
+    "keyVocabulary": ["collation", "préparer", "nutritif"],
+    "decisionPoints": [
+      "Les élèves peuvent-ils utiliser des ustensiles sécuritaires?",
+      "Ont-ils des allergies alimentaires?",
+      "Comprennent-ils ce qui fait une bonne collation?"
+    ],
+    "progression": "Builds on all previous lessons by applying nutrition knowledge practically",
+    "realWorldConnection": "Préparer nos propres collations nous aide à faire de bons choix"
+  },
+  {
+    "lessonNumber": 15,
+    "title": "Chef en herbe - salade de fruits",
+    "oneGoal": "Créer une salade de fruits colorée en suivant une recette simple",
+    "keyVocabulary": ["chef", "recette", "mélanger"],
+    "decisionPoints": [
+      "Les élèves peuvent-ils couper en sécurité avec supervision?",
+      "Aiment-ils tous les fruits disponibles?",
+      "Comprennent-ils les étapes de la recette?"
+    ],
+    "progression": "Extension - applies fruit and vegetable knowledge creatively",
+    "realWorldConnection": "Cuisiner ensemble est amusant et nous enseigne de nouvelles habiletés"
+  },
+  {
+    "lessonNumber": 16,
+    "title": "Petit restaurant santé",
+    "oneGoal": "Jouer au restaurant en créant un menu avec des choix santé",
+    "keyVocabulary": ["restaurant", "menu", "servir"],
+    "decisionPoints": [
+      "Les élèves comprennent-ils le jeu de rôle?",
+      "Peuvent-ils appliquer leurs connaissances nutritionnelles?",
+      "Ont-ils besoin d'aide pour créer le menu?"
+    ],
+    "progression": "Extension - reinforces all food groups through dramatic play",
+    "realWorldConnection": "Dans les restaurants, nous pouvons choisir des options santé"
+  },
+  {
+    "lessonNumber": 17,
+    "title": "Olympiques de la santé",
+    "oneGoal": "Participer à des activités physiques variées en équipe",
+    "keyVocabulary": ["équipe", "olympiques", "participer"],
+    "decisionPoints": [
+      "Tous les élèves peuvent-ils participer selon leurs capacités?",
+      "Les activités sont-elles inclusives et amusantes?",
+      "Comprennent-ils l'esprit sportif?"
+    ],
+    "progression": "Extension - celebrates physical activity through fun competition",
+    "realWorldConnection": "Faire partie d'une équipe rend l'exercice plus motivant"
+  },
+  {
+    "lessonNumber": 18,
+    "title": "Détectives de la nutrition",
+    "oneGoal": "Analyser des repas et identifier les groupes alimentaires présents",
+    "keyVocabulary": ["détective", "analyser", "identifier"],
+    "decisionPoints": [
+      "Les élèves peuvent-ils reconnaître tous les groupes alimentaires?",
+      "Comprennent-ils le jeu d'enquête?",
+      "Ont-ils besoin d'indices supplémentaires?"
+    ],
+    "progression": "Extension - reinforces food group knowledge through investigation",
+    "realWorldConnection": "Nous pouvons analyser nos repas pour nous assurer qu'ils sont équilibrés"
+  },
+  {
+    "lessonNumber": 19,
+    "title": "Jardinage en classe",
+    "oneGoal": "Planter des graines et comprendre d'où viennent nos aliments",
+    "keyVocabulary": ["jardinage", "graines", "pousser"],
+    "decisionPoints": [
+      "Les élèves peuvent-ils manipuler la terre et les graines?",
+      "Comprennent-ils le processus de croissance?",
+      "Sont-ils excités de voir leurs plantes grandir?"
+    ],
+    "progression": "Extension - connects food to its natural origins",
+    "realWorldConnection": "Les fruits et légumes poussent dans la terre avant d'arriver à l'épicerie"
+  },
+  {
+    "lessonNumber": 20,
+    "title": "Célébration de la vie saine",
+    "oneGoal": "Célébrer tout ce qu'on a appris sur la vie saine et partager nos créations",
+    "keyVocabulary": ["célébration", "partager", "fier"],
+    "decisionPoints": [
+      "Les élèves sont-ils prêts à présenter leur travail?",
+      "Comprennent-ils tout ce qu'ils ont appris?",
+      "Peuvent-ils expliquer leurs habitudes de vie saine?"
+    ],
+    "progression": "Extension - culminating activity that showcases all learning",
+    "realWorldConnection": "Nous pouvons être fiers de prendre soin de notre santé et inspirer les autres"
+  }
+]

@@ -1,0 +1,722 @@
+[
+  {
+    "lessonNumber": 1,
+    "title": "Introduction à l'équilibre",
+    "oneGoal": "Les élèves découvrent le concept d'équilibre avec des objets simples et leur corps",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Jeu d'équilibre corporel - tenir sur un pied, marcher en ligne droite",
+      "materials": ["lignes de masquage au sol", "musique douce"],
+      "visualSupports": "Images d'animaux en équilibre (flamant, équilibriste)"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Exploration libre avec balance simple et objets identiques (blocs, crayons)",
+      "materials": ["balance à plateaux", "blocs uniformes", "crayons", "livres identiques"],
+      "visualSupports": "Affiche montrant balance équilibrée vs déséquilibrée",
+      "decisionPoints": [
+        {
+          "question": "Les élèves comprennent-ils le concept physique d'équilibre?",
+          "ifYes": "Passer à des objets différents pour comparer",
+          "ifNo": "Utiliser plus d'exemples corporels et objets identiques"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Cercle de partage - qu'est-ce qui était en équilibre aujourd'hui?",
+      "assessment": "Observer si les élèves utilisent le mot 'équilibre' dans leurs exemples"
+    },
+    "vocabulary": ["équilibre", "égal", "balance"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Concept abstrait d'équilibre",
+      "then": "Utiliser des exemples corporels concrets (balançoire, vélo)"
+    },
+    "realWorldConnection": "Balancer sur un pied, balançoire dans la cour, plateau équilibré sur la tête"
+  },
+  {
+    "lessonNumber": 2,
+    "title": "Balances et objets égaux",
+    "oneGoal": "Les élèves utilisent une balance simple pour découvrir quand deux groupes d'objets sont égaux",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Révision - imiter des objets en équilibre (balançoire, balance)",
+      "materials": ["images de balances", "gestes corporels"],
+      "visualSupports": "Photos de balances dans différents contextes (cuisine, magasin)"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Manipulation guidée de balance avec groupes d'objets identiques puis différents",
+      "materials": ["balance à plateaux", "cubes uniformes", "billes", "jetons", "petits jouets"],
+      "visualSupports": "Cartes visuelles montrant groupes égaux/inégaux",
+      "decisionPoints": [
+        {
+          "question": "Les élèves manipulent-ils la balance correctement?",
+          "ifYes": "Introduire objets de tailles différentes",
+          "ifNo": "Démonstration guidée avec aide physique"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Prédiction - deviner si deux groupes vont s'équilibrer avant de tester",
+      "assessment": "Noter les stratégies de prédiction des élèves"
+    },
+    "vocabulary": ["balance", "même", "différent"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Manipulation de la balance",
+      "then": "Travail en paires avec un élève plus habile"
+    },
+    "realWorldConnection": "Peser des ingrédients en cuisine, balances au magasin"
+  },
+  {
+    "lessonNumber": 3,
+    "title": "Groupes égaux avec manipulatives",
+    "oneGoal": "Les élèves créent des groupes égaux d'objets sans utiliser de balance",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Jeu de partage - distribuer des objets équitablement entre poupées",
+      "materials": ["petites poupées", "bonbons en plastique", "assiettes"],
+      "visualSupports": "Images de partage équitable (pizza, gâteau)"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Création libre de groupes égaux avec divers manipulatives, vérification visuelle",
+      "materials": ["ours compteurs", "blocs", "jetons", "crayons", "plateaux"],
+      "visualSupports": "Tapis avec cercles pour organiser les groupes",
+      "decisionPoints": [
+        {
+          "question": "Les élèves font-ils naturellement des groupes égaux?",
+          "ifYes": "Défier avec des nombres plus grands",
+          "ifNo": "Modéliser le processus étape par étape"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Galerie d'exposition - admirer les groupes égaux créés par chacun",
+      "assessment": "Observer la précision des groupes égaux créés"
+    },
+    "vocabulary": ["groupe", "pareil", "autant"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Reconnaissance visuelle d'égalité",
+      "then": "Utiliser correspondance un-à-un avec lignes ou colonnes"
+    },
+    "realWorldConnection": "Partager équitablement des collations, distribuer des crayons"
+  },
+  {
+    "lessonNumber": 4,
+    "title": "Dessiner l'égalité",
+    "oneGoal": "Les élèves représentent visuellement l'égalité en dessinant des groupes égaux",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Jeu de mime - représenter des objets égaux avec gestes",
+      "materials": ["cartes d'objets pairés", "espace pour bouger"],
+      "visualSupports": "Exemples de paires dans la nature (yeux, oreilles)"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Dessin guidé puis libre de groupes égaux, progression du simple au complexe",
+      "materials": ["papier", "crayons", "marqueurs", "tampons", "règles"],
+      "visualSupports": "Modèles de dessins montrant l'égalité clairement",
+      "decisionPoints": [
+        {
+          "question": "Les élèves peuvent-ils représenter l'égalité sans objets concrets?",
+          "ifYes": "Encourager la créativité dans les représentations",
+          "ifNo": "Fournir objets concrets comme référence"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Présentation - expliquer son dessin d'égalité à un partenaire",
+      "assessment": "Évaluer la clarté des représentations visuelles"
+    },
+    "vocabulary": ["dessiner", "montrer", "égalité"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Représentation claire de l'égalité",
+      "then": "Utiliser tampons ou autocollants pour uniformité"
+    },
+    "realWorldConnection": "Dessiner des paires (chaussettes, gants), illustrer des partages équitables"
+  },
+  {
+    "lessonNumber": 5,
+    "title": "Le signe égal mystérieux",
+    "oneGoal": "Les élèves découvrent et explorent le symbole = comme pont entre deux groupes égaux",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Chasse au trésor - trouver le symbole = dans la classe",
+      "materials": ["cartes avec =", "loupes", "carnet d'exploration"],
+      "visualSupports": "Symbole = géant coloré affiché"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Construction de 'ponts égaux' avec objets, puis introduction du symbole =",
+      "materials": ["blocs", "= en carton géant", "objets divers", "cartes symboles"],
+      "visualSupports": "Diagramme montrant = comme pont entre deux côtés",
+      "decisionPoints": [
+        {
+          "question": "Les élèves comprennent-ils que = relie deux choses égales?",
+          "ifYes": "Permettre manipulation libre du symbole",
+          "ifNo": "Utiliser métaphore du pont plus concrètement"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Jeu du symbole magique - placer = entre groupes égaux",
+      "assessment": "Observer l'utilisation appropriée du symbole ="
+    },
+    "vocabulary": ["signe", "égal", "pont"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Compréhension du symbole abstrait",
+      "then": "Utiliser = physique manipulable et coloré"
+    },
+    "realWorldConnection": "Voir le signe = sur une calculatrice, dans des livres"
+  },
+  {
+    "lessonNumber": 6,
+    "title": "Équations avec objets",
+    "oneGoal": "Les élèves créent leurs premières équations simples en utilisant objets et symboles",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Histoire mathématique - raconter avec objets (3 ours = 3 ours)",
+      "materials": ["ours compteurs", "cartes numériques", "="],
+      "visualSupports": "Livre d'images montrant équations simples"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Construction d'équations concrètes puis ajout des symboles numériques",
+      "materials": ["manipulatives divers", "cartes numériques 1-10", "= géants", "plateaux"],
+      "visualSupports": "Modèle d'équation avec images et nombres",
+      "decisionPoints": [
+        {
+          "question": "Les élèves relient-ils les objets aux nombres dans l'équation?",
+          "ifYes": "Encourager création d'équations personnalisées",
+          "ifNo": "Pratiquer correspondance un-à-un objet-nombre"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Lecture d'équations - 'raconter l'histoire' de chaque équation créée",
+      "assessment": "Vérifier la compréhension objets-nombres-symboles"
+    },
+    "vocabulary": ["équation", "nombre", "symbole"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Lien entre objets et nombres",
+      "then": "Compter ensemble en pointant chaque objet"
+    },
+    "realWorldConnection": "Compter ses jouets et écrire le nombre, recettes de cuisine simples"
+  },
+  {
+    "lessonNumber": 7,
+    "title": "Balances numériques",
+    "oneGoal": "Les élèves utilisent des balances avec nombres pour explorer l'égalité mathématique",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Jeu de prédiction - deviner si des cartes numériques s'équilibreront",
+      "materials": ["cartes numériques grandes", "balance visible"],
+      "visualSupports": "Balance avec poches pour insérer cartes numériques"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Expérimentation avec balance numérique et vérification avec objets",
+      "materials": ["balance numérique", "cartes numériques", "objets pour vérifier", "feuilles d'enregistrement"],
+      "visualSupports": "Tableau de correspondance nombre-quantité",
+      "decisionPoints": [
+        {
+          "question": "Les élèves comprennent-ils que les nombres peuvent être 'pesés'?",
+          "ifYes": "Introduire nombres plus grands (jusqu'à 10)",
+          "ifNo": "Revenir aux objets concrets pour chaque nombre"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Prédictions réussies - célébrer les bonnes prédictions d'équilibre",
+      "assessment": "Noter la précision des prédictions numériques"
+    },
+    "vocabulary": ["numérique", "balance", "vrai"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Concept abstrait des 'nombres pesés'",
+      "then": "Toujours montrer avec objets concrets d'abord"
+    },
+    "realWorldConnection": "Calculatrices qui vérifient l'égalité, jeux de nombres équilibrés"
+  },
+  {
+    "lessonNumber": 8,
+    "title": "Vrai ou faux - équations simples",
+    "oneGoal": "Les élèves déterminent si des équations simples sont vraies ou fausses",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Jeu de mouvement - lever la main si c'est vrai, s'accroupir si c'est faux",
+      "materials": ["cartes équations simples", "musique"],
+      "visualSupports": "Panneaux VRAI (vert) et FAUX (rouge)"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Investigation d'équations avec matériel de vérification disponible",
+      "materials": ["cartes équations", "manipulatives pour vérifier", "balance", "panneaux vrai/faux"],
+      "visualSupports": "Stratégies de vérification illustrées",
+      "decisionPoints": [
+        {
+          "question": "Les élèves peuvent-ils justifier leurs réponses?",
+          "ifYes": "Présenter équations plus complexes",
+          "ifNo": "Encourager utilisation d'objets pour expliquer"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Détective mathématique - expliquer comment on a découvert si c'était vrai ou faux",
+      "assessment": "Évaluer la qualité des justifications données"
+    },
+    "vocabulary": ["vrai", "faux", "vérifier"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Justification des réponses",
+      "then": "Modéliser le processus de pensée à voix haute"
+    },
+    "realWorldConnection": "Vérifier si on a le bon nombre d'assiettes pour les invités"
+  },
+  {
+    "lessonNumber": 9,
+    "title": "Construire des équations vraies",
+    "oneGoal": "Les élèves créent leurs propres équations vraies en utilisant nombres et objets",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Inspiration créative - regarder des équations artistiques colorées",
+      "materials": ["équations décorées", "exemples créatifs"],
+      "visualSupports": "Galerie d'équations créatives d'autres classes"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Atelier de création libre d'équations avec vérification par les pairs",
+      "materials": ["cartes numériques", "= multiples", "objets variés", "papier coloré", "marqueurs"],
+      "visualSupports": "Guide de création d'équations étape par étape",
+      "decisionPoints": [
+        {
+          "question": "Les élèves sont-ils créatifs dans leurs équations?",
+          "ifYes": "Encourager équations avec leur nom, âge, etc.",
+          "ifNo": "Fournir cadres d'équations à compléter"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Exposition d'équations - présenter sa création favorite",
+      "assessment": "Vérifier l'exactitude des équations créées"
+    },
+    "vocabulary": ["construire", "créer", "inventer"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Créativité dans les équations",
+      "then": "Partir de leurs intérêts (animaux, couleurs préférées)"
+    },
+    "realWorldConnection": "Inventer des défis mathématiques pour la famille"
+  },
+  {
+    "lessonNumber": 10,
+    "title": "Égalité avec addition simple",
+    "oneGoal": "Les élèves explorent l'égalité dans des situations d'addition avec petits nombres",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Histoire d'addition - conter avec objets (2 oiseaux + 1 oiseau = 3 oiseaux)",
+      "materials": ["petits animaux", "livret d'histoire", "cartes +"],
+      "visualSupports": "Images séquentielles d'histoires d'addition"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Manipulation d'additions simples avec vérification d'égalité",
+      "materials": ["objets comptables", "cartes +", "cartes =", "cartes numériques 1-5", "balance"],
+      "visualSupports": "Modèle visuel d'addition (groupe + groupe = total)",
+      "decisionPoints": [
+        {
+          "question": "Les élèves comprennent-ils que 2+1 peut égaler 3?",
+          "ifYes": "Expérimenter avec différentes combinaisons pour même total",
+          "ifNo": "Pratiquer addition concrète sans égalité d'abord"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Partage de découvertes - quelle addition était la plus intéressante?",
+      "assessment": "Observer la compréhension de l'addition dans l'égalité"
+    },
+    "vocabulary": ["addition", "ajouter", "total"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Addition compliquant l'égalité",
+      "then": "Séparer apprentissage addition et égalité temporairement"
+    },
+    "realWorldConnection": "Ajouter des éléments à une collection et compter le nouveau total"
+  },
+  {
+    "lessonNumber": 11,
+    "title": "Patterns d'égalité",
+    "oneGoal": "Les élèves découvrent des régularités et patterns dans les équations égales",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Chasse aux patterns - trouver des régularités dans la classe",
+      "materials": ["objets avec patterns", "loupes", "carnet d'observation"],
+      "visualSupports": "Exemples de patterns mathématiques colorés"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Exploration de séquences d'équations avec patterns évidents",
+      "materials": ["cartes équations en séquence", "objets pour construire patterns", "papier quadrillé"],
+      "visualSupports": "Exemples de patterns d'équations (1=1, 2=2, 3=3...)",
+      "decisionPoints": [
+        {
+          "question": "Les élèves voient-ils les patterns dans les équations?",
+          "ifYes": "Les laisser créer leurs propres séquences de patterns",
+          "ifNo": "Utiliser couleurs et formes pour rendre patterns plus visibles"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Prédiction de pattern - deviner la prochaine équation dans la séquence",
+      "assessment": "Évaluer la reconnaissance et continuation de patterns"
+    },
+    "vocabulary": ["pattern", "régularité", "suite"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Reconnaissance de patterns",
+      "then": "Commencer avec patterns très simples et visuels"
+    },
+    "realWorldConnection": "Patterns dans la nature qui montrent l'équilibre et la symétrie"
+  },
+  {
+    "lessonNumber": 12,
+    "title": "Équilibrer des équations",
+    "oneGoal": "Les élèves apprennent à 'réparer' des équations déséquilibrées en ajoutant ou enlevant",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Jeu du réparateur - identifier ce qui est 'cassé' dans des images",
+      "materials": ["images d'objets déséquilibrés", "outils de jouet"],
+      "visualSupports": "Avant/après de réparations simples"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Manipulation d'équations déséquilibrées avec matériel pour les 'réparer'",
+      "materials": ["équations déséquilibrées", "objets à ajouter/enlever", "balance", "cartes numériques"],
+      "visualSupports": "Guide de réparation d'équations illustré",
+      "decisionPoints": [
+        {
+          "question": "Les élèves comprennent-ils comment équilibrer une équation?",
+          "ifYes": "Présenter équations nécessitant plusieurs ajustements",
+          "ifNo": "Se concentrer sur ajustements d'un seul objet/nombre"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Célébration des réparations - montrer les équations réparées",
+      "assessment": "Vérifier les stratégies d'équilibrage utilisées"
+    },
+    "vocabulary": ["réparer", "équilibrer", "ajuster"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Concept de réparation d'équations",
+      "then": "Utiliser balance physique pour démonstration concrète"
+    },
+    "realWorldConnection": "Ajuster une recette pour avoir la bonne quantité"
+  },
+  {
+    "lessonNumber": 13,
+    "title": "Jeux d'égalité",
+    "oneGoal": "Les élèves pratiquent les concepts d'égalité à travers des jeux coopératifs et compétitifs",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Échauffement ludique - jeu de rapidité avec cartes égales",
+      "materials": ["cartes équations", "minuteur", "cloche"],
+      "visualSupports": "Règles de jeu illustrées simplement"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Rotation entre 3 jeux d'égalité : mémoire, dominos d'équations, course aux balances",
+      "materials": ["jeux de cartes", "dominos équations", "balances miniatures", "objets comptables", "sabliers"],
+      "visualSupports": "Instructions visuelles pour chaque station de jeu",
+      "decisionPoints": [
+        {
+          "question": "Les jeux engagent-ils tous les élèves?",
+          "ifYes": "Ajouter variations plus complexes",
+          "ifNo": "Ajuster règles pour inclusion de tous"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Cercle de réflexion - quel jeu a été le plus amusant et pourquoi?",
+      "assessment": "Observer l'application des concepts dans le contexte ludique"
+    },
+    "vocabulary": ["jeu", "équipe", "gagner"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Compétition stressante",
+      "then": "Emphasiser la collaboration et l'apprentissage mutuel"
+    },
+    "realWorldConnection": "Jeux de société familiaux qui impliquent l'égalité"
+  },
+  {
+    "lessonNumber": 14,
+    "title": "Art de l'égalité",
+    "oneGoal": "Les élèves créent des œuvres artistiques qui représentent l'équilibre et l'égalité",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Galerie d'art mathématique - observer des œuvres avec symétrie et équilibre",
+      "materials": ["reproductions d'art", "loupes", "carnet d'artiste"],
+      "visualSupports": "Œuvres célèbres montrant équilibre et symétrie"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Création artistique libre incorporant concepts d'égalité et équilibre",
+      "materials": ["papier varié", "peinture", "pinceaux", "tampons", "règles", "compas simple", "miroirs"],
+      "visualSupports": "Techniques artistiques pour créer équilibre et symétrie",
+      "decisionPoints": [
+        {
+          "question": "Les élèves intègrent-ils naturellement les concepts mathématiques?",
+          "ifYes": "Encourager expérimentation avec techniques avancées",
+          "ifNo": "Fournir gabarits et guides pour structure"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Vernissage - présenter son œuvre et expliquer l'égalité qu'elle montre",
+      "assessment": "Évaluer l'intégration des concepts mathématiques dans l'art"
+    },
+    "vocabulary": ["art", "symétrie", "beauté"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Intégration art-mathématiques",
+      "then": "Commencer par symétrie simple avec peinture miroir"
+    },
+    "realWorldConnection": "Observer la symétrie dans l'art et l'architecture"
+  },
+  {
+    "lessonNumber": 15,
+    "title": "Équations mystère",
+    "oneGoal": "Les élèves résolvent des équations simples avec un élément manquant (?)",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Jeu du détective - trouver l'objet caché dans une boîte mystère",
+      "materials": ["boîtes opaques", "objets familiers", "loupes de détective"],
+      "visualSupports": "Badges de détective et indices visuels"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Résolution d'équations avec ? à différentes positions, utilisation d'objets pour découvrir",
+      "materials": ["cartes équations avec ?", "objets comptables", "balance", "cartes numériques"],
+      "visualSupports": "Guide de résolution d'équations mystère étape par étape",
+      "decisionPoints": [
+        {
+          "question": "Les élèves comprennent-ils qu'un nombre est caché?",
+          "ifYes": "Varier position du ? dans l'équation",
+          "ifNo": "Utiliser boîtes physiques pour cacher objets d'abord"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Partage de stratégies - comment avez-vous trouvé le nombre mystère?",
+      "assessment": "Noter les stratégies de résolution utilisées"
+    },
+    "vocabulary": ["mystère", "manquant", "résoudre"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Concept d'inconnue",
+      "then": "Utiliser jeux de cache-cache avec objets avant symboles"
+    },
+    "realWorldConnection": "Résoudre des énigmes et mystères dans la vie quotidienne"
+  },
+  {
+    "lessonNumber": 16,
+    "title": "Balance familiale",
+    "oneGoal": "Les élèves explorent l'égalité dans le contexte familial et les relations",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Partage de photos - montrer sa famille et parler de partage équitable",
+      "materials": ["photos de famille apportées", "album de classe"],
+      "visualSupports": "Images diverses de familles partageant équitablement"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Jeux de rôle sur partage équitable et résolution de problèmes familiaux d'égalité",
+      "materials": ["poupées représentant famille", "objets à partager", "balance", "cartes de situations"],
+      "visualSupports": "Scénarios illustrés de partage familial équitable",
+      "decisionPoints": [
+        {
+          "question": "Les élèves connectent-ils l'égalité mathématique à l'équité sociale?",
+          "ifYes": "Explorer situations plus complexes de fairness",
+          "ifNo": "Se concentrer sur partages simples et concrets"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Promesses de partage - comment vais-je partager équitablement à la maison?",
+      "assessment": "Évaluer la compréhension de l'équité dans les relations"
+    },
+    "vocabulary": ["famille", "partage", "juste"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Connexion égalité-équité sociale",
+      "then": "Utiliser exemples très concrets (partage de collation)"
+    },
+    "realWorldConnection": "Partager équitablement dans la famille, prendre des tours"
+  },
+  {
+    "lessonNumber": 17,
+    "title": "Égalité dans la nature",
+    "oneGoal": "Les élèves découvrent l'équilibre et l'égalité dans le monde naturel",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Observation de la nature - regarder des images d'éléments naturels symétriques",
+      "materials": ["photos de nature", "loupes", "carnet d'explorateur"],
+      "visualSupports": "Collection d'images de symétrie naturelle (feuilles, papillons)"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Exploration extérieure ou observation d'éléments naturels, création d'équations basées sur observations",
+      "materials": ["objets naturels collectés", "règles", "papier", "crayons", "balance"],
+      "visualSupports": "Guide d'observation de patterns naturels",
+      "decisionPoints": [
+        {
+          "question": "Les élèves voient-ils les patterns d'égalité dans la nature?",
+          "ifYes": "Les encourager à mesurer et quantifier leurs observations",
+          "ifNo": "Pointer explicitement la symétrie dans objets naturels"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Musée de nature - présenter sa découverte d'égalité naturelle favorite",
+      "assessment": "Vérifier la connexion entre observations naturelles et concepts mathématiques"
+    },
+    "vocabulary": ["nature", "équilibre", "harmonie"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Connexion nature-mathématiques",
+      "then": "Commencer par symétrie très évidente (visage, papillon)"
+    },
+    "realWorldConnection": "Observer la symétrie des feuilles, l'équilibre des écosystèmes"
+  },
+  {
+    "lessonNumber": 18,
+    "title": "Défis d'égalité",
+    "oneGoal": "Les élèves relèvent des défis mathématiques progressifs liés à l'égalité",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Échauffement de confiance - rappeler toutes nos réussites en égalité",
+      "materials": ["portfolio de travaux", "autocollants de réussite"],
+      "visualSupports": "Affichage des progrès et accomplissements de la classe"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Centres de défis progressifs avec choix personnel du niveau de difficulté",
+      "materials": ["défis à plusieurs niveaux", "matériel de manipulation", "sabliers", "carnets de progression"],
+      "visualSupports": "Système de niveaux colorés et choix d'autonomie",
+      "decisionPoints": [
+        {
+          "question": "Les défis sont-ils appropriés au niveau des élèves?",
+          "ifYes": "Ajouter éléments de créativité aux défis",
+          "ifNo": "Ajuster difficultés et fournir plus de support"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Célébration des efforts - reconnaître persévérance et strategies utilisées",
+      "assessment": "Évaluer la persévérance et les stratégies de résolution"
+    },
+    "vocabulary": ["défi", "difficile", "persévérer"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Frustration devant difficulté",
+      "then": "Emphasiser processus d'apprentissage plutôt que résultat"
+    },
+    "realWorldConnection": "Résoudre des problèmes de la vie réelle avec patience"
+  },
+  {
+    "lessonNumber": 19,
+    "title": "Portfolio d'égalité",
+    "oneGoal": "Les élèves compilent et présentent leurs apprentissages sur l'égalité mathématique",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Voyage dans le temps - regarder tous nos travaux depuis la première leçon",
+      "materials": ["tous les travaux précédents", "photos de activités"],
+      "visualSupports": "Chronologie visuelle de notre parcours d'apprentissage"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Organisation et décoration de portfolio personnel, préparation de présentation",
+      "materials": ["cartables", "papier coloré", "autocollants", "photos", "marqueurs", "rubans"],
+      "visualSupports": "Exemples de portfolios organisés et créatifs",
+      "decisionPoints": [
+        {
+          "question": "Les élèves peuvent-ils expliquer leurs apprentissages?",
+          "ifYes": "Les encourager à enseigner à un camarade",
+          "ifNo": "Pratiquer explication avec support visuel"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Répétition de présentation - s'entraîner à présenter son apprentissage favori",
+      "assessment": "Évaluer la capacité d'auto-réflexion et d'explication"
+    },
+    "vocabulary": ["portfolio", "montrer", "fier"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Explication de ses apprentissages",
+      "then": "Utiliser questions guidées et support visuel"
+    },
+    "realWorldConnection": "Partager ses apprentissages avec la famille"
+  },
+  {
+    "lessonNumber": 20,
+    "title": "Grande célébration mathématique",
+    "oneGoal": "Les élèves célèbrent leurs apprentissages et découvertes en égalité mathématique",
+    "duration": 45,
+    "opening": {
+      "duration": 8,
+      "activity": "Cérémonie d'ouverture - chanson ou poème sur l'égalité mathématique",
+      "materials": ["paroles de chanson", "décorations festives", "appareils photo"],
+      "visualSupports": "Bannières et décorations célébrant les mathématiques"
+    },
+    "main": {
+      "duration": 27,
+      "activity": "Présentation de portfolios, démonstrations d'apprentissages, jeux favoris revisités",
+      "materials": ["portfolios complétés", "stations d'activités favorites", "matériel de toutes les leçons"],
+      "visualSupports": "Exposition de tous les travaux et créations de l'année",
+      "decisionPoints": [
+        {
+          "question": "La célébration honore-t-elle tous les types d'apprentissages?",
+          "ifYes": "Capturer moments spéciaux pour mémoires",
+          "ifNo": "Ajuster pour inclure contributions de chaque élève"
+        }
+      ]
+    },
+    "closing": {
+      "duration": 10,
+      "activity": "Cercle de gratitude - remercier et partager nos moments mathématiques favoris",
+      "assessment": "Célébrer la croissance et l'identité mathématique positive développée"
+    },
+    "vocabulary": ["célébration", "réussite", "mathématiques"],
+    "troubleshooting": {
+      "ifStrugglingWith": "Émotion ou timidité pendant célébration",
+      "then": "Créer atmosphere bienveillante et options de participation variées"
+    },
+    "realWorldConnection": "Célébrer les réussites et partager la joie d'apprendre"
+  }
+]

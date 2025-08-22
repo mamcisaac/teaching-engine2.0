@@ -1,0 +1,36 @@
+{
+  "unitPlan": {
+    "title": "Lumière et chaleur hivernales",
+    "bigIdeas": "La lumière et la chaleur nous entourent",
+    "essentialQuestions": [
+      "D'où vient la lumière?",
+      "Comment créer de la chaleur?",
+      "Comment rester au chaud?"
+    ],
+    "startDate": "2025-12-01T00:00:00.000Z",
+    "endDate": "2026-01-02T00:00:00.000Z",
+    "estimatedHours": 15,
+    "lessonCount": 20,
+    "coreCount": 14,
+    "extensionCount": 6,
+    "differentiationStrategies": {
+      "structure": "14 leçons essentielles, 6 extensions"
+    },
+    "culminatingTask": "Expo lumière et chaleur"
+  },
+  "subject": "Sciences de la nature",
+  "expectations": [
+    {
+      "code": "S1",
+      "description": "Investigation scientifique"
+    },
+    {
+      "code": "S2",
+      "description": "Observation"
+    },
+    {
+      "code": "S3",
+      "description": "Documentation"
+    }
+  ]
+}

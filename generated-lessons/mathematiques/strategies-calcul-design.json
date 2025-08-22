@@ -1,0 +1,282 @@
+[
+  {
+    "lessonNumber": 1,
+    "title": "Découvrir le calcul mental avec nos doigts",
+    "oneGoal": "Les élèves explorent leurs doigts comme premier outil de calcul mental pour additionner jusqu'à 5",
+    "keyVocabulary": ["calcul mental", "doigts", "additionner", "stratégie"],
+    "decisionPoints": [
+      "Les élèves comprennent-ils que leurs doigts sont des outils mathématiques?",
+      "Ont-ils besoin de plus de démonstrations visuelles?",
+      "Sont-ils à l'aise avec les concepts d'addition simple?"
+    ],
+    "progression": "Première leçon - établit les doigts comme outil fondamental de calcul mental",
+    "realWorldConnection": "Compter sur ses doigts pour savoir combien de biscuits manger",
+    "mentalMathStrategy": "Comptage avec les doigts"
+  },
+  {
+    "lessonNumber": 2,
+    "title": "Compter à partir d'un nombre",
+    "oneGoal": "Les élèves apprennent la stratégie 'compter en partant de' pour additionner efficacement",
+    "keyVocabulary": ["compter en partant de", "efficace", "plus rapide"],
+    "decisionPoints": [
+      "Les élèves voient-ils pourquoi commencer par le plus grand nombre est plus efficace?",
+      "Ont-ils besoin de plus d'exemples concrets?",
+      "Comprennent-ils la différence avec compter depuis 1?"
+    ],
+    "progression": "S'appuie sur la Leçon 1 en introduisant une stratégie plus efficace que compter depuis 1",
+    "realWorldConnection": "Ajouter des nouveaux livres à une pile existante en comptant depuis le nombre déjà là",
+    "mentalMathStrategy": "Counting on (compter en partant de)"
+  },
+  {
+    "lessonNumber": 3,
+    "title": "Mes premiers doubles magiques",
+    "oneGoal": "Les élèves découvrent et mémorisent les doubles simples (1+1, 2+2, 3+3, 4+4, 5+5)",
+    "keyVocabulary": ["doubles", "même nombre", "magique", "facile"],
+    "decisionPoints": [
+      "Les élèves reconnaissent-ils visuellement les doubles?",
+      "Ont-ils besoin d'objets symétriques pour comprendre?",
+      "Les doubles deviennent-ils automatiques?"
+    ],
+    "progression": "Introduit les faits de base les plus simples à mémoriser après le comptage",
+    "realWorldConnection": "Voir ses deux mains, deux chaussures, deux yeux - tout vient en paires",
+    "mentalMathStrategy": "Doubles"
+  },
+  {
+    "lessonNumber": 4,
+    "title": "Doubles plus un",
+    "oneGoal": "Les élèves utilisent leur connaissance des doubles pour calculer 'doubles plus un' (3+4, 5+6)",
+    "keyVocabulary": ["doubles plus un", "presque double", "un de plus"],
+    "decisionPoints": [
+      "Les élèves font-ils le lien avec les doubles connus?",
+      "Ont-ils besoin de visualiser avec des objets?",
+      "Voient-ils que c'est plus facile que compter?"
+    ],
+    "progression": "S'appuie sur la Leçon 3 en étendant la stratégie des doubles",
+    "realWorldConnection": "Avoir 3 biscuits et en recevoir 4 autres - c'est presque un double!",
+    "mentalMathStrategy": "Near doubles (presque doubles)"
+  },
+  {
+    "lessonNumber": 5,
+    "title": "La famille du 10 magique",
+    "oneGoal": "Les élèves découvrent tous les liens vers 10 (1+9, 2+8, 3+7, 4+6, 5+5)",
+    "keyVocabulary": ["faire 10", "partenaires de 10", "liens vers 10"],
+    "decisionPoints": [
+      "Les élèves voient-ils les relations entre les nombres?",
+      "Ont-ils besoin de matériel de base 10?",
+      "Comprennent-ils que 10 est spécial?"
+    ],
+    "progression": "Introduit le concept fondamental des liens vers 10 pour le calcul mental",
+    "realWorldConnection": "Remplir une boîte d'œufs de 10 - différentes façons d'arriver à 10",
+    "mentalMathStrategy": "Making 10 (faire 10)"
+  },
+  {
+    "lessonNumber": 6,
+    "title": "Utiliser 10 pour additionner",
+    "oneGoal": "Les élèves utilisent la stratégie 'faire 10' pour calculer des additions comme 8+5",
+    "keyVocabulary": ["décomposer", "faire 10 d'abord", "puis ajouter"],
+    "decisionPoints": [
+      "Les élèves peuvent-ils décomposer le deuxième nombre?",
+      "Voient-ils comment faire 10 aide?",
+      "Ont-ils besoin de supports visuels pour décomposer?"
+    ],
+    "progression": "S'appuie sur la Leçon 5 en appliquant les liens vers 10 dans des calculs",
+    "realWorldConnection": "Mettre 8 jouets dans une boîte de 10, puis ajouter les 5 restants",
+    "mentalMathStrategy": "Making 10 strategy (stratégie faire 10)"
+  },
+  {
+    "lessonNumber": 7,
+    "title": "Compter par bonds de 2",
+    "oneGoal": "Les élèves apprennent à compter par 2 comme stratégie de calcul mental pour l'addition",
+    "keyVocabulary": ["bonds de 2", "sauter", "plus vite", "paires"],
+    "decisionPoints": [
+      "Les élèves voient-ils le pattern des nombres pairs?",
+      "Peuvent-ils maintenir le rythme de comptage par 2?",
+      "Comprennent-ils quand utiliser cette stratégie?"
+    ],
+    "progression": "Introduit le comptage par bonds comme extension des stratégies précédentes",
+    "realWorldConnection": "Compter les chaussures de la classe par paires",
+    "mentalMathStrategy": "Skip counting by 2s (comptage par bonds de 2)"
+  },
+  {
+    "lessonNumber": 8,
+    "title": "Stratégies pour la soustraction",
+    "oneGoal": "Les élèves adaptent leurs stratégies d'addition pour la soustraction (compter en arrière, enlever)",
+    "keyVocabulary": ["compter en arrière", "enlever", "stratégie inverse"],
+    "decisionPoints": [
+      "Les élèves peuvent-ils compter en arrière efficacement?",
+      "Comprennent-ils le lien entre addition et soustraction?",
+      "Ont-ils besoin de supports concrets pour 'enlever'?"
+    ],
+    "progression": "Étend les stratégies de calcul mental à la soustraction",
+    "realWorldConnection": "Enlever des biscuits d'une assiette en comptant combien il en reste",
+    "mentalMathStrategy": "Counting back (compter en arrière)"
+  },
+  {
+    "lessonNumber": 9,
+    "title": "Choisir la meilleure stratégie",
+    "oneGoal": "Les élèves évaluent différents problèmes et choisissent la stratégie de calcul mental la plus efficace",
+    "keyVocabulary": ["choisir", "meilleure stratégie", "efficace", "comparer"],
+    "decisionPoints": [
+      "Les élèves peuvent-ils expliquer leur choix de stratégie?",
+      "Reconnaissent-ils quand une stratégie est plus efficace?",
+      "Ont-ils besoin de guidance pour choisir?"
+    ],
+    "progression": "Développe la métacognition en comparant et choisissant entre stratégies",
+    "realWorldConnection": "Choisir la façon la plus rapide de compter ses cadeaux d'anniversaire",
+    "mentalMathStrategy": "Strategy selection (sélection de stratégie)"
+  },
+  {
+    "lessonNumber": 10,
+    "title": "Doubles jusqu'à 10+10",
+    "oneGoal": "Les élèves étendent leur connaissance des doubles aux nombres plus grands (6+6, 7+7, 8+8, 9+9, 10+10)",
+    "keyVocabulary": ["grands doubles", "étendre", "pattern", "mémoriser"],
+    "decisionPoints": [
+      "Les élèves voient-ils le pattern dans les doubles?",
+      "Peuvent-ils visualiser ces doubles plus grands?",
+      "Ont-ils besoin de plus de pratique avec les petits doubles?"
+    ],
+    "progression": "Étend la stratégie des doubles à une gamme plus large de nombres",
+    "realWorldConnection": "Compter les roues de plusieurs voitures (4+4, 6+6 pour 3 voitures)",
+    "mentalMathStrategy": "Extended doubles (doubles étendus)"
+  },
+  {
+    "lessonNumber": 11,
+    "title": "Presque doubles avancés",
+    "oneGoal": "Les élèves utilisent les grands doubles pour calculer des 'presque doubles' (7+8, 9+10)",
+    "keyVocabulary": ["presque doubles avancés", "grands nombres", "un de plus", "un de moins"],
+    "decisionPoints": [
+      "Les élèves maîtrisent-ils les doubles de base?",
+      "Peuvent-ils faire le lien rapidement?",
+      "Ont-ils besoin de plus de pratique avec les ajustements +1/-1?"
+    ],
+    "progression": "S'appuie sur la Leçon 10 en appliquant la stratégie aux nombres plus grands",
+    "realWorldConnection": "Compter les doigts de 7 amis plus les 8 doigts d'un autre ami",
+    "mentalMathStrategy": "Advanced near doubles (presque doubles avancés)"
+  },
+  {
+    "lessonNumber": 12,
+    "title": "Faire 10 avec des nombres plus grands",
+    "oneGoal": "Les élèves appliquent la stratégie 'faire 10' à des problèmes avec des nombres jusqu'à 20",
+    "keyVocabulary": ["nombres plus grands", "décomposer", "faire 10 d'abord", "puis continuer"],
+    "decisionPoints": [
+      "Les élèves peuvent-ils décomposer des nombres à deux chiffres?",
+      "Voient-ils comment faire 10 reste utile?",
+      "Ont-ils besoin de matériel de base 10 pour visualiser?"
+    ],
+    "progression": "Étend la stratégie fondamentale 'faire 10' aux nombres plus complexes",
+    "realWorldConnection": "Ajouter des crayons à une boîte qui en contient déjà 7 pour faire des groupes de 10",
+    "mentalMathStrategy": "Making 10 with larger numbers (faire 10 avec grands nombres)"
+  },
+  {
+    "lessonNumber": 13,
+    "title": "Compter par bonds de 5 et 10",
+    "oneGoal": "Les élèves maîtrisent le comptage par bonds de 5 et 10 comme stratégies de calcul mental",
+    "keyVocabulary": ["bonds de 5", "bonds de 10", "patterns", "plus efficace"],
+    "decisionPoints": [
+      "Les élèves voient-ils les patterns dans les bonds de 5?",
+      "Comprennent-ils pourquoi les bonds de 10 sont faciles?",
+      "Peuvent-ils choisir entre différents bonds?"
+    ],
+    "progression": "Étend les stratégies de comptage par bonds aux multiples utiles",
+    "realWorldConnection": "Compter les doigts de plusieurs mains (5, 10, 15...) ou des pièces de 10 cents",
+    "mentalMathStrategy": "Skip counting by 5s and 10s (bonds de 5 et 10)"
+  },
+  {
+    "lessonNumber": 14,
+    "title": "Stratégies de regroupement",
+    "oneGoal": "Les élèves apprennent à regrouper des nombres pour faciliter le calcul mental (3+7+2 = 10+2)",
+    "keyVocabulary": ["regrouper", "réorganiser", "plus facile", "liens"],
+    "decisionPoints": [
+      "Les élèves voient-ils comment réorganiser aide?",
+      "Peuvent-ils identifier les liens vers 10 dans un groupe?",
+      "Comprennent-ils qu'on peut changer l'ordre?"
+    ],
+    "progression": "Introduit la flexibilité dans l'organisation des calculs",
+    "realWorldConnection": "Réorganiser des jouets en groupes pour les compter plus facilement",
+    "mentalMathStrategy": "Regrouping/reorganizing (regroupement)"
+  },
+  {
+    "lessonNumber": 15,
+    "title": "Calcul mental rapide - défis amusants",
+    "oneGoal": "Les élèves pratiquent toutes leurs stratégies dans des jeux de calcul mental rapide",
+    "keyVocabulary": ["rapide", "défi", "stratégies", "automatique"],
+    "decisionPoints": [
+      "Les élèves peuvent-ils choisir des stratégies rapidement?",
+      "Sont-ils motivés par les défis?",
+      "Ont-ils besoin de plus de temps pour réfléchir?"
+    ],
+    "progression": "Consolide toutes les stratégies dans des contextes de rapidité et de jeu",
+    "realWorldConnection": "Jeux de mathématiques en famille, calculs rapides au magasin",
+    "mentalMathStrategy": "Strategy fluency (fluidité des stratégies)"
+  },
+  {
+    "lessonNumber": 16,
+    "title": "Résolution de problèmes avec le calcul mental",
+    "oneGoal": "Les élèves appliquent leurs stratégies de calcul mental pour résoudre des problèmes concrets",
+    "keyVocabulary": ["problèmes réels", "appliquer", "stratégies", "résoudre"],
+    "decisionPoints": [
+      "Les élèves peuvent-ils identifier quelle stratégie utiliser?",
+      "Comprennent-ils le problème avant de calculer?",
+      "Leurs stratégies les aident-elles à résoudre plus facilement?"
+    ],
+    "progression": "Applique les stratégies dans des contextes authentiques de résolution de problèmes",
+    "realWorldConnection": "Calculer combien d'argent de poche on aura après deux semaines",
+    "mentalMathStrategy": "Problem-solving application (application en résolution de problèmes)"
+  },
+  {
+    "lessonNumber": 17,
+    "title": "Enseigner nos stratégies",
+    "oneGoal": "Les élèves expliquent et enseignent leurs stratégies de calcul mental préférées à leurs pairs",
+    "keyVocabulary": ["enseigner", "expliquer", "partager", "stratégie préférée"],
+    "decisionPoints": [
+      "Les élèves peuvent-ils expliquer clairement leur pensée?",
+      "Sont-ils confiants pour enseigner aux autres?",
+      "Comprennent-ils pourquoi une stratégie fonctionne?"
+    ],
+    "progression": "Développe la métacognition en enseignant et expliquant les stratégies",
+    "realWorldConnection": "Aider un petit frère ou une petite sœur avec ses devoirs de mathématiques",
+    "mentalMathStrategy": "Teaching strategies (enseigner les stratégies)"
+  },
+  {
+    "lessonNumber": 18,
+    "title": "Estimation avec le calcul mental",
+    "oneGoal": "Les élèves utilisent leurs stratégies pour faire des estimations rapides et raisonnables",
+    "keyVocabulary": ["estimation", "environ", "raisonnable", "proche"],
+    "decisionPoints": [
+      "Les élèves comprennent-ils qu'une estimation n'est pas exacte?",
+      "Peuvent-ils utiliser leurs stratégies pour estimer?",
+      "Leurs estimations sont-elles raisonnables?"
+    ],
+    "progression": "Étend l'utilisation des stratégies au domaine de l'estimation",
+    "realWorldConnection": "Estimer combien de bonbons il y a dans un bocal avant de compter",
+    "mentalMathStrategy": "Estimation strategies (stratégies d'estimation)"
+  },
+  {
+    "lessonNumber": 19,
+    "title": "Portfolio de stratégies personnelles",
+    "oneGoal": "Les élèves créent un portfolio démontrant leur maîtrise des différentes stratégies de calcul mental",
+    "keyVocabulary": ["portfolio", "maîtrise", "démontrer", "stratégies personnelles"],
+    "decisionPoints": [
+      "Les élèves peuvent-ils choisir leurs meilleures démonstrations?",
+      "Comprennent-ils leurs propres forces en calcul mental?",
+      "Peuvent-ils réfléchir à leurs apprentissages?"
+    ],
+    "progression": "Évalue et consolide toutes les stratégies apprises dans un format authentique",
+    "realWorldConnection": "Créer un guide personnel de mathématiques pour la famille",
+    "mentalMathStrategy": "Strategy portfolio (portfolio de stratégies)"
+  },
+  {
+    "lessonNumber": 20,
+    "title": "Célébration des mathématiciens en herbe",
+    "oneGoal": "Les élèves célèbrent leurs progrès en calcul mental et partagent leurs réussites",
+    "keyVocabulary": ["célébrer", "mathématiciens", "progrès", "réussites"],
+    "decisionPoints": [
+      "Les élèves sont-ils fiers de leurs apprentissages?",
+      "Veulent-ils partager avec d'autres?",
+      "Se voient-ils comme des mathématiciens compétents?"
+    ],
+    "progression": "Consolide l'unité par la célébration et renforce l'identité mathématique positive",
+    "realWorldConnection": "Partager ses nouvelles compétences mathématiques avec la famille et les amis",
+    "mentalMathStrategy": "Mathematical identity (identité mathématique)"
+  }
+]

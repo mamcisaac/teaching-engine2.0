@@ -1,0 +1,568 @@
+{
+  "unitTitle": "Communication créative",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "title": "Ma voix spéciale",
+      "oneGoal": "Students discover their voice as a tool for communication",
+      "keyVocabulary": ["voix", "parler", "écouter"],
+      "materials": ["Microphone (real or toy)", "Voice recording app", "Listening ears props"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Explore different voices - whisper, loud, high, low. Point to throat and say 'voix'. Everyone practices saying their name with their special voice."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Voice exploration games - students experiment with volume, pitch, and expression. Practice 'Bonjour' in different ways. Record some voices if technology available.",
+        "flexibility": "Some students may be naturally expressive, others shy. Support all comfort levels with voice exploration."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Circle sharing - each student says one word in their special voice. Celebrate the uniqueness of each voice."
+      },
+      "decisionPoints": [
+        "If students too shy to use voices → Start with whispering or humming, gradually increase comfort",
+        "If students get too loud → Channel energy into controlled voice exploration with volume levels",
+        "If students have speech differences → Celebrate all voices as special and valuable communication tools"
+      ],
+      "troubleshooting": "If voice exploration feels uncomfortable, use familiar songs or chants as starting point",
+      "realWorldConnection": "We use our voices every day to talk to family and friends - our voice is special and unique",
+      "progression": "Foundation lesson - introduces voice as communication tool"
+    },
+    {
+      "lessonNumber": 2,
+      "title": "Montrer et dire",
+      "oneGoal": "Students bring something special to share with simple French words",
+      "keyVocabulary": ["montrer", "dire", "partager"],
+      "materials": ["Students' special items from home", "Sharing circle setup", "Simple sentence starters"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review using our voices. Today we use voice to share special things. Model with teacher's special item."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Traditional show and tell with French vocabulary support. Students show item and say 2-3 simple French words about it. Use 'Voici...' and 'J'aime...' sentence starters.",
+        "flexibility": "Some students may have elaborate presentations, others just show and say one word. Both are perfect."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Reflection on sharing - students say one thing they learned about a classmate today."
+      },
+      "decisionPoints": [
+        "If students forgot to bring items → Use classroom objects or let them share about favorite thing at home",
+        "If students use only English → Provide French word cards and gentle modeling",
+        "If presentations take too long → Use timer and celebrate concise sharing"
+      ],
+      "troubleshooting": "If students are nervous about presenting, let them share with just teacher or one friend first",
+      "realWorldConnection": "Show and tell helps us share what's important to us - just like telling family about special things",
+      "progression": "Builds on Lesson 1 by using voice to share personal items"
+    },
+    {
+      "lessonNumber": 3,
+      "title": "Gestes qui parlent",
+      "oneGoal": "Students use gestures and body language to communicate meaning",
+      "keyVocabulary": ["geste", "corps", "communication"],
+      "materials": ["Gesture cards", "Mirror (optional)", "Simple action prompts"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review using voice to share. Today explore how body 'talks' too. Model gestures for hello, goodbye, happy, sad."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Gesture games - students communicate ideas using only body language, then add French words. Practice common gestures and their meanings.",
+        "flexibility": "Some students natural movers, others more reserved. Support all styles of physical expression."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Silent communication challenge - students communicate one idea to partner using only gestures."
+      },
+      "decisionPoints": [
+        "If students uncomfortable with movement → Start with simple hand gestures before full body movement",
+        "If students get too silly → Channel energy into purposeful gesture communication",
+        "If students have mobility differences → Adapt gestures to individual abilities"
+      ],
+      "troubleshooting": "If gesture communication feels abstract, use familiar actions like waving, clapping, pointing",
+      "realWorldConnection": "Our bodies help us communicate even without words - like waving hello or pointing to things we want",
+      "progression": "Builds on Lesson 2 by adding non-verbal communication"
+    },
+    {
+      "lessonNumber": 4,
+      "title": "Écouter avec attention",
+      "oneGoal": "Students practice being good listeners and asking simple questions",
+      "keyVocabulary": ["attention", "question", "répondre"],
+      "materials": ["Listening ears props", "Question word cards", "Speaking/listening partner cards"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review using voice and body to communicate. Today focus on the other side - listening! Put on 'listening ears'."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Listening practice with partners - one student shares, other practices active listening and asking simple questions using 'Qu'est-ce que...?' and 'Pourquoi...?'",
+        "flexibility": "Some students naturally good listeners, others need reminders. Support development of listening skills."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Reflect on what makes good listening. Students share what they learned by listening carefully today."
+      },
+      "decisionPoints": [
+        "If students struggle with listening → Use visual cues and shorter sharing segments",
+        "If students ask too many questions → Help them focus on just one good question",
+        "If students interrupt often → Practice taking turns with visual or physical cues"
+      ],
+      "troubleshooting": "If listening skills are challenging, use structured turn-taking with clear signals for speaker/listener roles",
+      "realWorldConnection": "Good communication means both talking and listening - like how family members take turns sharing",
+      "progression": "Builds on Lesson 3 by focusing on the listening side of communication"
+    },
+    {
+      "lessonNumber": 5,
+      "title": "Raconter mes aventures",
+      "oneGoal": "Students tell simple personal stories using sequence words",
+      "keyVocabulary": ["aventure", "d'abord", "ensuite"],
+      "materials": ["Sequence word cards", "Adventure picture prompts", "Timeline visual supports"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review good listening and sharing. Today tell adventure stories! Model simple adventure with sequence words."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Students share simple personal adventures (playground, home, weekend) using 'D'abord...', 'Ensuite...', 'Finalement...' Support with visual sequence cards.",
+        "flexibility": "Some students may have elaborate adventures, others simple daily experiences. All stories are valuable."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Celebrate adventurous storytellers. Practice sequence words together as group."
+      },
+      "decisionPoints": [
+        "If students can't think of adventures → Help them identify simple daily experiences as adventures",
+        "If students get confused with sequence → Use visual timeline supports and practice with simple examples",
+        "If stories become very long → Help them focus on just 3 main parts"
+      ],
+      "troubleshooting": "If sequence concepts are difficult, use familiar classroom routine as practice for 'first, then, last'",
+      "realWorldConnection": "We tell family about our adventures and experiences - sharing stories helps us remember and connect",
+      "progression": "Builds on Lesson 4 by structuring personal storytelling"
+    },
+    {
+      "lessonNumber": 6,
+      "title": "Personnages vivants",
+      "oneGoal": "Students use different voices and movements for simple characters",
+      "keyVocabulary": ["personnage", "voix", "bouger"],
+      "materials": ["Character cards", "Simple props (hats, scarves)", "Voice modulation examples"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review adventure storytelling. Today make characters come alive with special voices and movements!"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Character exploration - students practice different character voices (big/small, happy/sad, fast/slow) and movements. Create simple character scenarios.",
+        "flexibility": "Some students natural performers, others more reserved. Support all levels of character exploration."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Character parade - students briefly demonstrate their favorite character voice and movement."
+      },
+      "decisionPoints": [
+        "If students too shy for character work → Start with just voice changes, add movement gradually",
+        "If students get overly silly → Channel creativity into purposeful character development",
+        "If students copy each other → Encourage unique interpretations while validating similarities"
+      ],
+      "troubleshooting": "If character work feels too complex, start with familiar animals or family member voices",
+      "realWorldConnection": "We change our voices when we pretend to be different people - like when playing with toys or telling stories",
+      "progression": "Builds on Lesson 5 by adding character work to storytelling"
+    },
+    {
+      "lessonNumber": 7,
+      "title": "Émotions expressives",
+      "oneGoal": "Students express different emotions through voice and face",
+      "keyVocabulary": ["émotion", "content", "triste"],
+      "materials": ["Emotion cards with faces", "Mirrors", "Emotion scenario cards"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review character voices. Today explore how emotions change our voice and face. Model happy vs. sad voice."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Emotion exploration - students practice expressing different emotions through facial expressions and voice tone. Use scenarios to practice appropriate emotional responses.",
+        "flexibility": "Some students very expressive, others more subtle. Support all styles of emotional expression."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Emotion check-in - students share how they're feeling using French emotion words and expressions."
+      },
+      "decisionPoints": [
+        "If students uncomfortable with emotional expression → Start with basic happy/sad, gradually add complexity",
+        "If students get too dramatic → Help them find appropriate levels of emotional expression",
+        "If students struggle identifying emotions → Use clear visual supports and modeling"
+      ],
+      "troubleshooting": "If emotion work feels too personal, use characters or stuffed animals to explore emotional expression",
+      "realWorldConnection": "Our faces and voices show how we feel - helping others understand our emotions",
+      "progression": "Builds on Lesson 6 by adding emotional expression"
+    },
+    {
+      "lessonNumber": 8,
+      "title": "Jouer des scènes",
+      "oneGoal": "Students act out simple everyday scenarios with partners",
+      "keyVocabulary": ["jouer", "scène", "ensemble"],
+      "materials": ["Scenario cards", "Simple props", "Partner assignment cards"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review expressing emotions. Today combine everything to act out real-life scenes with partners!"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Partner drama - students act out simple scenarios (ordering food, asking for help, greeting friends) using voice, emotion, and character skills.",
+        "flexibility": "Some pairs may work smoothly, others need more structure. Support collaboration skills."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Mini performances - few pairs share their scenes with class. Celebrate teamwork and creativity."
+      },
+      "decisionPoints": [
+        "If partners have conflicts → Provide structured roles and clear expectations for cooperation",
+        "If students too shy for performance → Let them practice with teacher or perform for just one other pair",
+        "If scenes become too complex → Help simplify to just 2-3 exchanges"
+      ],
+      "troubleshooting": "If partner work is challenging, let students work individually or provide very structured role assignments",
+      "realWorldConnection": "We act out different situations in our daily play - practicing helps us in real situations",
+      "progression": "Builds on Lesson 7 by combining skills in dramatic play"
+    },
+    {
+      "lessonNumber": 9,
+      "title": "Présenter mes créations",
+      "oneGoal": "Students present their artwork or projects with simple descriptions",
+      "keyVocabulary": ["présenter", "création", "expliquer"],
+      "materials": ["Student artwork or projects", "Presentation podium", "Simple description prompts"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review acting scenes together. Today be solo presenters sharing our own special creations!"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Art presentation - students present their artwork or projects using simple French descriptions. Practice explaining process and meaning.",
+        "flexibility": "Some students may give detailed presentations, others just show and say few words. Support all levels."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Audience appreciation - students practice giving positive feedback using simple French phrases."
+      },
+      "decisionPoints": [
+        "If students don't have artwork ready → Use any classroom work or let them draw simple picture quickly",
+        "If presentations too long → Use timer and help students focus on main points",
+        "If students very nervous → Let them present to small group first or have friend support them"
+      ],
+      "troubleshooting": "If presentation anxiety is high, let students practice explanation with just teacher before group presentation",
+      "realWorldConnection": "Artists explain their work to help others understand - sharing our creations spreads joy",
+      "progression": "Builds on Lesson 8 by presenting personal work"
+    },
+    {
+      "lessonNumber": 10,
+      "title": "Questions curieuses",
+      "oneGoal": "Students ask thoughtful questions about classmates' presentations",
+      "keyVocabulary": ["curieux", "intéressant", "pourquoi"],
+      "materials": ["Question prompt cards", "Curiosity props", "Good question examples"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review presenting our work. Today be curious audience members who ask great questions!"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Question practice - students present briefly while others practice asking thoughtful questions using 'Pourquoi...?', 'Comment...?', 'Qu'est-ce que...?'",
+        "flexibility": "Some students natural questioners, others need prompting. Support development of curiosity skills."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Celebrate good questions asked today. Discuss how questions help us learn about each other."
+      },
+      "decisionPoints": [
+        "If students ask inappropriate questions → Model respectful, relevant questioning",
+        "If students too shy to ask questions → Provide question sentence starters and encouragement",
+        "If same students always ask questions → Encourage quieter students with gentle prompting"
+      ],
+      "troubleshooting": "If questioning feels awkward, use familiar topics and model enthusiastic curiosity about simple things",
+      "realWorldConnection": "Asking questions shows we're interested in others - curiosity helps us learn and make friends",
+      "progression": "Builds on Lesson 9 by becoming active audience members"
+    },
+    {
+      "lessonNumber": 11,
+      "title": "Instructions claires",
+      "oneGoal": "Students give simple instructions for games or activities",
+      "keyVocabulary": ["instruction", "faire", "suivre"],
+      "materials": ["Simple games/activities", "Instruction cards", "Step-by-step visual supports"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review asking good questions. Today give clear instructions to help others learn new things!"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Instruction practice - students teach classmates simple games, activities, or skills using clear French instructions. Practice giving and following instructions.",
+        "flexibility": "Some students natural teachers, others need support organizing thoughts. Help all students practice instruction-giving."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Reflect on what makes instructions easy to follow. Celebrate successful teaching moments."
+      },
+      "decisionPoints": [
+        "If instructions too complex → Help students break down into simple steps",
+        "If students frustrated when others don't understand → Model patience and repeat instructions differently",
+        "If students can't think of what to teach → Provide simple activity options or classroom routines"
+      ],
+      "troubleshooting": "If instruction-giving is overwhelming, start with very familiar activities like hand-washing or line-up procedures",
+      "realWorldConnection": "We give instructions to help others learn new things - like teaching friends games or showing family how to do something",
+      "progression": "Builds on Lesson 10 by using communication to guide others"
+    },
+    {
+      "lessonNumber": 12,
+      "title": "Descriptions vivantes",
+      "oneGoal": "Students describe people, places, or things with vivid details",
+      "keyVocabulary": ["décrire", "détail", "imaginer"],
+      "materials": ["Interesting pictures", "Descriptive word cards", "Sensory experience props"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review giving clear instructions. Today paint pictures with words using vivid descriptions!"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Description practice - students describe pictures, objects, or experiences using sensory details and descriptive French words. Help others 'see' through words.",
+        "flexibility": "Some students naturally descriptive, others need prompting for details. Support development of descriptive language."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Guessing game - students give descriptions while others guess what they're describing."
+      },
+      "decisionPoints": [
+        "If students use only basic words → Provide descriptive word banks and model rich language",
+        "If descriptions too long → Help students focus on most important or interesting details",
+        "If students struggle with details → Use guided questions about colors, size, feelings, etc."
+      ],
+      "troubleshooting": "If descriptive language feels difficult, start with familiar objects and use sensory exploration",
+      "realWorldConnection": "Good descriptions help others picture what we're talking about - like describing a movie to someone who hasn't seen it",
+      "progression": "Builds on Lesson 11 by adding descriptive language skills"
+    },
+    {
+      "lessonNumber": 13,
+      "title": "Spectacle de classe",
+      "oneGoal": "Students perform in a simple class presentation showcasing their skills",
+      "keyVocabulary": ["spectacle", "performance", "applaudir"],
+      "materials": ["Simple stage area", "Props and costumes", "Program cards"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review all communication skills learned. Today put everything together in special class performance!"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Class show - students choose how to showcase their communication skills (storytelling, character work, presentations, etc.) in mini-performances.",
+        "flexibility": "Some students may want elaborate performances, others simple sharing. Support all performance comfort levels."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Audience appreciation and celebration of everyone's communication growth. Take photos of proud performers."
+      },
+      "decisionPoints": [
+        "If students nervous about performing → Offer options like partnering or performing for smaller groups",
+        "If students want very long performances → Help them choose one or two skills to showcase",
+        "If technical issues arise → Focus on celebrating effort and communication growth over perfection"
+      ],
+      "troubleshooting": "If performance anxiety is high, make it optional or offer alternative ways to showcase learning",
+      "realWorldConnection": "Performers share their talents with audiences - celebrating what we've learned makes us proud",
+      "progression": "Builds on Lesson 12 by combining all communication skills"
+    },
+    {
+      "lessonNumber": 14,
+      "title": "Portfolio de communication",
+      "oneGoal": "Students reflect on their growth as French communicators",
+      "keyVocabulary": ["portfolio", "grandir", "communication"],
+      "materials": ["Portfolio folders", "Reflection sheets", "Photos/videos from unit"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review class performance success. Today look back at amazing communication journey from Lesson 1 to now!"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Portfolio creation - students compile examples of their communication growth, reflections on learning, and goals for continued French communication.",
+        "flexibility": "Some students may create elaborate portfolios, others simple collections. Support all reflection styles."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Portfolio sharing - students share one thing they're most proud of in their communication growth."
+      },
+      "decisionPoints": [
+        "If students don't see their growth → Use specific examples and before/after comparisons",
+        "If portfolio creation overwhelming → Help them choose just 2-3 meaningful examples of growth",
+        "If students want to include everything → Guide them toward most significant learning moments"
+      ],
+      "troubleshooting": "If reflection feels abstract, use concrete examples like 'remember when you were shy to speak, now you love presenting!'",
+      "realWorldConnection": "We can see how much better we've become at sharing ideas - like looking at old photos to see how we've grown",
+      "progression": "Builds on Lesson 13 by reflecting on communication journey"
+    },
+    {
+      "lessonNumber": 15,
+      "title": "Conteurs d'histoires",
+      "oneGoal": "Students create and tell elaborate stories with multiple characters",
+      "keyVocabulary": ["conteur", "histoire", "créatif"],
+      "materials": ["Story creation props", "Character development sheets", "Storytelling throne"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Celebrate communication portfolio completion. Today become master storytellers creating elaborate tales!"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Advanced storytelling - students create and tell complex stories using multiple characters, different voices, and rich details. Focus on creative expression.",
+        "flexibility": "Some students may create epic tales, others simple but creative stories. Celebrate all storytelling attempts."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Storyteller appreciation circle - audience gives specific compliments about storytelling techniques."
+      },
+      "decisionPoints": [
+        "If stories become too complex → Help students focus on 2-3 main characters and simple plot",
+        "If students struggle with creativity → Provide story starter prompts and character suggestions",
+        "If students want to tell very long stories → Help them practice concise, engaging storytelling"
+      ],
+      "troubleshooting": "If elaborate storytelling feels overwhelming, let students adapt familiar stories with their own creative twists",
+      "realWorldConnection": "Storytellers entertain people with creative tales - sharing stories brings joy to listeners",
+      "progression": "Extension - applies storytelling skills to complex narratives"
+    },
+    {
+      "lessonNumber": 16,
+      "title": "Reporters de nouvelles",
+      "oneGoal": "Students report on classroom or school events like news reporters",
+      "keyVocabulary": ["reporter", "nouvelles", "événement"],
+      "materials": ["Toy microphones", "Reporter notebooks", "News anchor desk setup"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review creative storytelling. Today be news reporters sharing real information about our school!"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "News reporting - students research and report on classroom or school events using reporter techniques. Practice clear, informative communication.",
+        "flexibility": "Some students may love reporter role, others prefer different communication styles. Support all approaches."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Evening news show - students present their news reports to 'television audience' (class)."
+      },
+      "decisionPoints": [
+        "If students struggle finding news → Help them identify simple classroom or school events to report",
+        "If reports become too silly → Guide them toward respectful, informative reporting",
+        "If students nervous about formal reporting → Let them practice with partners first"
+      ],
+      "troubleshooting": "If news reporting feels too formal, start with sharing simple announcements or describing class activities",
+      "realWorldConnection": "Reporters tell people about important events - sharing information helps our community stay connected",
+      "progression": "Extension - uses communication skills for informational purposes"
+    },
+    {
+      "lessonNumber": 17,
+      "title": "Débat amical",
+      "oneGoal": "Students share different opinions respectfully on simple topics",
+      "keyVocabulary": ["opinion", "différent", "respecter"],
+      "materials": ["Simple debate topics", "Opinion cards", "Respectful language prompts"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review news reporting. Today learn that people can have different ideas and still be friends!"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Gentle debate practice - students share different opinions on simple topics (favorite seasons, best playground games) while practicing respectful disagreement.",
+        "flexibility": "Some students may enjoy debate, others prefer agreement. Support all comfort levels with different opinions."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Reflection on respectful disagreement - students share what they learned about different opinions."
+      },
+      "decisionPoints": [
+        "If students get upset about disagreement → Reinforce that different opinions are normal and okay",
+        "If students avoid sharing opinions → Provide very safe, low-stakes topics and encourage gentle participation",
+        "If debates become arguments → Model respectful language and redirect to listening skills"
+      ],
+      "troubleshooting": "If debate concept is too challenging, focus on sharing preferences and asking 'why do you think that?'",
+      "realWorldConnection": "People can have different ideas and still be friends - listening to different opinions helps us learn",
+      "progression": "Extension - explores respectful disagreement and discussion"
+    },
+    {
+      "lessonNumber": 18,
+      "title": "Enseignants experts",
+      "oneGoal": "Students teach younger students or family members something new",
+      "keyVocabulary": ["enseigner", "expert", "apprendre"],
+      "materials": ["Teaching materials", "Expert badges", "Simple lesson plan templates"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review respectful opinion sharing. Today become teachers sharing expertise with others!"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Teaching practice - students plan and practice teaching something they know well to younger students, family members, or classmates.",
+        "flexibility": "Some students natural teachers, others need support organizing knowledge for teaching. Help all develop teaching skills."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Teacher appreciation - students reflect on what makes good teaching and how it feels to help others learn."
+      },
+      "decisionPoints": [
+        "If students can't think what to teach → Help them identify skills they've mastered (tying shoes, games, etc.)",
+        "If teaching feels overwhelming → Start with very simple skills or let them teach stuffed animals",
+        "If students frustrated when others don't learn quickly → Model patience and different teaching approaches"
+      ],
+      "troubleshooting": "If teaching concept is too abstract, let students demonstrate rather than formally teach",
+      "realWorldConnection": "We can teach others what we've learned - sharing knowledge helps everyone grow",
+      "progression": "Extension - uses communication skills to teach others"
+    },
+    {
+      "lessonNumber": 19,
+      "title": "Ambassadeurs culturels",
+      "oneGoal": "Students share aspects of their culture through creative communication",
+      "keyVocabulary": ["culture", "ambassadeur", "tradition"],
+      "materials": ["Cultural sharing props", "Family photos", "Traditional items (if available)"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review being teachers and experts. Today be cultural ambassadors sharing special traditions from our families!"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Cultural sharing - students present aspects of their family culture, traditions, or heritage using communication skills developed throughout unit.",
+        "flexibility": "Some students may have rich cultural traditions to share, others simpler family customs. All sharing is valuable."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Cultural appreciation - celebrate the diversity in classroom and what we learned about each other's backgrounds."
+      },
+      "decisionPoints": [
+        "If students don't identify with specific culture → Help them share any family traditions or special customs",
+        "If students share very personal information → Guide with sensitivity and respect",
+        "If students feel left out → Emphasize that all families have special ways of doing things"
+      ],
+      "troubleshooting": "If cultural sharing feels uncomfortable, focus on simple family traditions like holiday celebrations or favorite foods",
+      "realWorldConnection": "We can share our family traditions with others - learning about different cultures makes our community richer",
+      "progression": "Extension - connects communication to cultural identity"
+    },
+    {
+      "lessonNumber": 20,
+      "title": "Célébration de communicateurs",
+      "oneGoal": "Students celebrate their growth as confident French communicators",
+      "keyVocabulary": ["célébrer", "confiant", "succès"],
+      "materials": ["Communication certificates", "Celebration supplies", "Photo album of communication journey"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Look back at incredible communication journey from shy beginners to confident communicators!"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Communication celebration - students showcase their favorite communication skills, receive certificates, and reflect on amazing growth as French speakers.",
+        "flexibility": "Let students choose how they want to demonstrate their communication growth - all achievements celebrated equally."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Final circle: each student completes 'Je suis un communicateur confiant parce que...' Group celebration photo with certificates."
+      },
+      "decisionPoints": [
+        "If students don't feel confident → Point out specific examples of communication growth throughout unit",
+        "If students want to keep practicing → Encourage continued French communication in daily activities",
+        "If celebration feels overwhelming → Keep it simple with just recognition and certificate presentation"
+      ],
+      "troubleshooting": "If students don't recognize their progress, use before/after examples from beginning of unit",
+      "realWorldConnection": "Confident communicators can share ideas with anyone - our voices can now reach the French-speaking world!",
+      "progression": "Extension - culminates unit with celebration of communication growth"
+    }
+  ]
+}

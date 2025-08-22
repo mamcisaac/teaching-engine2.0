@@ -1,0 +1,568 @@
+{
+  "unitTitle": "Jeunes auteurs créatifs",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "title": "Premiers mots d'auteur",
+      "oneGoal": "Students discover what an author does using simple French words",
+      "keyVocabulary": ["auteur", "livre", "histoire"],
+      "materials": ["Picture books by different authors", "Author photos", "Simple props (pen, paper)"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Show pictures of authors writing. Use gestures: point to self 'Je suis...', point to book 'livre', make writing motion 'auteur écrit'."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Look at familiar books and find author names. Students practice saying 'auteur' while pointing to author name. Play 'author actions' - pretend to write, think, read.",
+        "flexibility": "If students are shy, let them watch first. If excited, let them act out author actions together."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Circle time: Each student says 'auteur' and makes writing gesture. Show tomorrow we'll think of our own ideas."
+      },
+      "decisionPoints": [
+        "If students seem overwhelmed → Use more gestures, fewer words",
+        "If students are engaged → Add more author books to explore",
+        "If movement needed → Do author actions (writing, thinking, reading)"
+      ],
+      "troubleshooting": "If vocabulary is too hard, just use 'livre' and gestures for writing",
+      "realWorldConnection": "Authors write the books we read every day - just like the ones in our classroom",
+      "progression": "Foundation lesson - introduces the concept of being an author"
+    },
+    {
+      "lessonNumber": 2,
+      "title": "Mes idées spéciales",
+      "oneGoal": "Students share one idea they could write about",
+      "keyVocabulary": ["idée", "penser", "créer"],
+      "materials": ["Thought bubble cutouts", "Simple picture prompts", "Idea jar"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review: 'Hier, nous avons parlé d'auteur.' Point to head 'idée', make thinking gesture. 'Auteurs ont des idées.'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Show picture prompts (family, pets, toys, food). Students point to what gives them ideas. Use thought bubbles - students hold bubble and share one idea through pictures or words.",
+        "flexibility": "Let shy students just point. Excited students can share multiple ideas."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Put ideas in 'idea jar' (pictures or words). 'Demain, nous dessinerons nos idées.'"
+      },
+      "decisionPoints": [
+        "If students can't think of ideas → Use family photos or favorite toy prompts",
+        "If students have many ideas → Let them draw or say multiple quickly",
+        "If language barrier → Accept pointing, gestures, or English mixed in"
+      ],
+      "troubleshooting": "If no ideas come, start with 'Qu'est-ce que tu aimes?' and accept any response",
+      "realWorldConnection": "Everyone has special ideas worth sharing - just like when we tell family about our day",
+      "progression": "Builds on Lesson 1 by moving from understanding authors to having personal ideas"
+    },
+    {
+      "lessonNumber": 3,
+      "title": "Dessiner mes histoires",
+      "oneGoal": "Students draw pictures to show their story ideas",
+      "keyVocabulary": ["dessiner", "image", "montrer"],
+      "materials": ["Paper", "Crayons/markers", "Idea jar from yesterday"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review yesterday's ideas from jar. Model: take idea, say 'Je vais dessiner', draw simple picture while talking."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Students choose their idea and draw. Teacher circulates: 'Qu'est-ce que tu dessines?' Encourage details through questions and gestures.",
+        "flexibility": "Some may finish quickly - let them add details or start second picture. Others may need encouragement to just draw anything."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Gallery walk - students hold pictures and walk around to see others. Simple comments: 'J'aime ton image.'"
+      },
+      "decisionPoints": [
+        "If students worry about 'perfect' drawing → Emphasize that ideas matter more than perfect pictures",
+        "If students finish early → Let them add background details or colors",
+        "If students are stuck → Help them start with simple shapes or stick figures"
+      ],
+      "troubleshooting": "If perfectionism blocks drawing, model 'good enough' drawing yourself",
+      "realWorldConnection": "Pictures help us tell stories when words are hard - like when we draw for family",
+      "progression": "Builds on Lesson 2 by using pictures to express ideas before words"
+    },
+    {
+      "lessonNumber": 4,
+      "title": "Mots simples, grandes histoires",
+      "oneGoal": "Students use 2-3 French words to describe their drawings",
+      "keyVocabulary": ["mot", "parler", "décrire"],
+      "materials": ["Yesterday's drawings", "Word cards with pictures", "Voice recording app (optional)"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Look at yesterday's drawings together. Model: show drawing, say 2-3 simple words 'chat, maison, content'."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Students practice saying 2-3 French words about their picture with partner. Teacher provides word cards as supports. Record some students if they want.",
+        "flexibility": "Accept mix of French/English. Help with pronunciation but don't correct heavily."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Few volunteers share their words with class. Celebrate effort over perfection."
+      },
+      "decisionPoints": [
+        "If students only know English words → Provide French word cards with pictures",
+        "If students are confident → Encourage them to try 4-5 words",
+        "If pronunciation is difficult → Focus on communication over perfect accent"
+      ],
+      "troubleshooting": "If students are silent, let them point to word cards instead of speaking",
+      "realWorldConnection": "We use words to help others understand our pictures - like when we explain our drawings to family",
+      "progression": "Builds on Lesson 3 by adding simple French words to pictures"
+    },
+    {
+      "lessonNumber": 5,
+      "title": "Écouter les histoires",
+      "oneGoal": "Students listen to simple French stories and identify key elements",
+      "keyVocabulary": ["écouter", "comprendre", "élément"],
+      "materials": ["Simple French picture books", "Story element cards (character, place, action)", "Listening ears props"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review: 'Nous avons créé nos images et mots.' Today: 'Écouter d'autres auteurs.' Put on 'listening ears' (hands cupped to ears)."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Read simple French story with lots of pictures and gestures. Stop to ask 'Qui?' (character), 'Où?' (place), 'Quoi?' (action). Students respond with gestures or simple words.",
+        "flexibility": "If story is too long, just do part. If students are engaged, read second short story."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Students use story element cards to show what they heard. Simple sharing in circle."
+      },
+      "decisionPoints": [
+        "If students can't follow story → Use more gestures and pause more frequently",
+        "If students understand well → Ask simple 'Pourquoi?' questions",
+        "If attention wavers → Add movement actions for characters"
+      ],
+      "troubleshooting": "If story is too complex, just focus on pictures and ask 'Qu'est-ce que tu vois?'",
+      "realWorldConnection": "We learn by listening to stories around us - just like when family tells us stories",
+      "progression": "Builds on Lesson 4 by learning from other authors' work"
+    },
+    {
+      "lessonNumber": 6,
+      "title": "Personnages amusants",
+      "oneGoal": "Students create and name a simple character",
+      "keyVocabulary": ["personnage", "nom", "caractère"],
+      "materials": ["Character templates", "Name tags", "Simple character props (hats, glasses)"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review yesterday's story characters. 'Qui était dans l'histoire?' Show character cards from story."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Students create their own character - draw or use template. Give character a name (French or English OK). Practice introducing character: 'Voici [name]'.",
+        "flexibility": "Some may want to make animal characters, others people. All choices are good."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Character parade - students introduce their characters to the class. Quick and fun, no pressure."
+      },
+      "decisionPoints": [
+        "If students can't think of names → Provide list of simple French names with pronunciation",
+        "If students want complex characters → Keep it simple but validate their ideas",
+        "If students copy others → Celebrate similarities and point out unique details"
+      ],
+      "troubleshooting": "If students are stuck on names, let them use their own name or favorite toy's name",
+      "realWorldConnection": "Stories need characters just like our lives have people - family, friends, pets",
+      "progression": "Builds on Lesson 5 by creating their own story elements"
+    },
+    {
+      "lessonNumber": 7,
+      "title": "Où se passe l'histoire?",
+      "oneGoal": "Students choose and describe a simple setting",
+      "keyVocabulary": ["lieu", "où", "endroit"],
+      "materials": ["Place picture cards", "Background drawing paper", "Character from yesterday"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Bring back characters from yesterday. 'Où habite ton personnage?' Show place cards (maison, école, parc)."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Students choose a place for their character and draw simple background. Practice saying where character lives: '[Name] habite [lieu]'.",
+        "flexibility": "Accept creative places like space, underwater. Support with vocabulary as needed."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Students place character in their setting and share with partner. Simple presentations if time allows."
+      },
+      "decisionPoints": [
+        "If students can't decide on place → Offer choice between 2-3 familiar places",
+        "If students choose unusual places → Help them find French words or use gestures",
+        "If drawing takes too long → Remind that simple is good, focus on the story"
+      ],
+      "troubleshooting": "If students get frustrated with drawing, use place cards they can choose and point to",
+      "realWorldConnection": "Everything happens somewhere - stories need places too, just like where we live and play",
+      "progression": "Builds on Lesson 6 by adding setting to their character"
+    },
+    {
+      "lessonNumber": 8,
+      "title": "Que fait mon personnage?",
+      "oneGoal": "Students plan one simple action for their character",
+      "keyVocabulary": ["action", "faire", "bouger"],
+      "materials": ["Action cards with pictures", "Character and setting from previous lessons"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review: character and place. Now 'Que fait [character name]?' Model actions with gestures."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Students choose one action for their character (courir, manger, jouer). Act out the action, then add it to their character story.",
+        "flexibility": "Let energetic students act out multiple actions. Quieter students can just point to action cards."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Action circle - students say their character's name and action, class repeats the action together."
+      },
+      "decisionPoints": [
+        "If students choose complex actions → Help simplify to basic verbs",
+        "If students are very active → Channel energy into character actions",
+        "If students are hesitant → Let them copy actions from classmates"
+      ],
+      "troubleshooting": "If students can't think of actions, start with basic ones they know: walk, eat, sleep",
+      "realWorldConnection": "People do things - our characters should too, just like how we do different activities all day",
+      "progression": "Builds on Lesson 7 by adding action to character and setting"
+    },
+    {
+      "lessonNumber": 9,
+      "title": "Première page d'auteur",
+      "oneGoal": "Students create their first story page with picture and one sentence",
+      "keyVocabulary": ["page", "phrase", "première"],
+      "materials": ["Story page template", "Character, setting, action from previous lessons", "Sentence starters"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review all elements: character, setting, action. 'Maintenant, nous créons notre première page d'histoire!'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Students combine their character, setting, and action into one page. Draw picture and write/copy one simple sentence with support.",
+        "flexibility": "Some may write independently, others may need sentence starters or teacher scribing."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Students admire their first story page. Celebrate: 'Vous êtes des auteurs!' Save pages carefully for tomorrow."
+      },
+      "decisionPoints": [
+        "If writing is too difficult → Let students dictate sentence to teacher or use pictures only",
+        "If students want to write more → Encourage but keep focus on one clear sentence",
+        "If students struggle with combining elements → Help them focus on just character + action"
+      ],
+      "troubleshooting": "If perfectionism stops progress, remind students that first drafts don't need to be perfect",
+      "realWorldConnection": "Every book starts with the first page - just like how we start anything new step by step",
+      "progression": "Builds on Lesson 8 by combining all elements into first page"
+    },
+    {
+      "lessonNumber": 10,
+      "title": "Partager avec la classe",
+      "oneGoal": "Students show their page and read their sentence to a partner",
+      "keyVocabulary": ["partager", "lire", "ami"],
+      "materials": ["Story pages from yesterday", "Partner cards", "Listening ears props"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Bring out story pages. 'Hier, nous avons créé nos premières pages. Aujourd'hui, nous partageons avec nos amis.'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Partner sharing - students take turns showing their page and reading/telling their sentence. Switch partners halfway through.",
+        "flexibility": "Some may read fluently, others may just show pictures and tell in simple words."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Circle sharing - few volunteers share with whole class. Focus on celebration and encouragement."
+      },
+      "decisionPoints": [
+        "If students are shy about sharing → Let them share with teacher first, then partner",
+        "If students want to share everything → Set timer for each share to keep it manageable",
+        "If reading is difficult → Let students tell their story in their own words"
+      ],
+      "troubleshooting": "If students are too nervous to share, let them just show their picture without words",
+      "realWorldConnection": "Authors share their work so others can enjoy it - just like when we show family our artwork",
+      "progression": "Builds on Lesson 9 by sharing their creation with others"
+    },
+    {
+      "lessonNumber": 11,
+      "title": "Améliorer mon histoire",
+      "oneGoal": "Students add one detail to make their story better",
+      "keyVocabulary": ["améliorer", "détail", "mieux"],
+      "materials": ["Story pages", "Detail cards (colors, feelings, sizes)", "Extra art supplies"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Look at story pages together. 'Comment pouvons-nous améliorer nos histoires?' Show examples of adding details."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Students choose one detail to add - color words, feeling words, or size words. Add to picture or sentence with support.",
+        "flexibility": "Some may add lots of details, others just one color word. Both are perfect."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Compare before and after pages. Celebrate improvements: 'Regardez comme c'est mieux!'"
+      },
+      "decisionPoints": [
+        "If students want to change everything → Help them focus on just one small improvement",
+        "If students think their story is perfect → Validate but offer one small addition idea",
+        "If students are overwhelmed by choices → Offer just two detail options"
+      ],
+      "troubleshooting": "If students are resistant to changes, frame it as 'adding' rather than 'fixing'",
+      "realWorldConnection": "We can always make our work a little better - just like when we tidy our room or improve our bike riding",
+      "progression": "Builds on Lesson 10 by learning to revise and improve"
+    },
+    {
+      "lessonNumber": 12,
+      "title": "Deuxième page magique",
+      "oneGoal": "Students create a second page continuing their story",
+      "keyVocabulary": ["continuer", "deuxième", "suivant"],
+      "materials": ["Second page template", "First pages", "Transition words cards"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review first pages. 'Que se passe-t-il après?' Model continuing a story with simple transition."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Students create second page showing what happens next in their story. Support with 'Et puis...' or 'Après...' starters.",
+        "flexibility": "Some may create complex continuations, others may just show character in new position."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Students put pages together and see their two-page story. Celebrate growth: 'Vous avez écrit une histoire de deux pages!'"
+      },
+      "decisionPoints": [
+        "If students can't think what happens next → Suggest simple changes like character moving or feeling different",
+        "If students want many pages → Encourage but keep focus on just two pages for now",
+        "If students repeat first page → Help them think of one small change or addition"
+      ],
+      "troubleshooting": "If continuing is too hard, let students create a second scene with same character in different activity",
+      "realWorldConnection": "Stories continue - there's always more to tell, just like our day has many different parts",
+      "progression": "Builds on Lesson 11 by extending their story to multiple pages"
+    },
+    {
+      "lessonNumber": 13,
+      "title": "Chaise d'auteur spéciale",
+      "oneGoal": "Students sit in the author's chair and read their story to the class",
+      "keyVocabulary": ["chaise", "fier", "présenter"],
+      "materials": ["Special author's chair", "Completed two-page stories", "Audience cards"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Introduce the special author's chair. 'Cette chaise est pour les vrais auteurs. Vous êtes des auteurs!'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Each student takes turn in author's chair reading their two-page story. Class gives positive comments using simple phrases.",
+        "flexibility": "Some may read fluently, others may tell story in own words. All are celebrated equally."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Group celebration. Students say what they liked about being authors. Take photo of each student in author's chair."
+      },
+      "decisionPoints": [
+        "If students are nervous → Let them share with just teacher first, or have friend sit nearby",
+        "If some students want to skip → Make it optional but encourage gently",
+        "If stories are hard to understand → Focus on effort and celebration over comprehension"
+      ],
+      "troubleshooting": "If students freeze up, let them just show their pictures and tell one thing about their story",
+      "realWorldConnection": "Authors share their finished work with audiences - just like when musicians perform or artists show paintings",
+      "progression": "Builds on Lesson 12 by celebrating their authorship publicly"
+    },
+    {
+      "lessonNumber": 14,
+      "title": "Mon livre fini",
+      "oneGoal": "Students complete their mini-book and add a cover",
+      "keyVocabulary": ["couverture", "titre", "fini"],
+      "materials": ["Cover templates", "Stapler", "Art supplies", "Completed story pages"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Show real books with covers. 'Tous les livres ont une couverture. Nous créons nos couvertures aujourd'hui.'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Students create cover with title and illustration. Staple pages together to make complete book. Practice being proud of their creation.",
+        "flexibility": "Some may want elaborate covers, others simple ones. Support all choices."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Book parade - students walk around showing completed books. Add books to classroom library with special 'authored by' labels."
+      },
+      "decisionPoints": [
+        "If students struggle with titles → Help them use character name or main action",
+        "If students want to keep working → Set gentle time limit but validate their dedication",
+        "If students are disappointed with results → Focus on the amazing accomplishment of writing a book"
+      ],
+      "troubleshooting": "If perfectionism delays completion, remind students that published authors also revise after first books",
+      "realWorldConnection": "Finished books have covers and titles like real books - now their book can sit with other books on the shelf",
+      "progression": "Builds on Lesson 13 by completing the full book format"
+    },
+    {
+      "lessonNumber": 15,
+      "title": "Nouvelle aventure créative",
+      "oneGoal": "Students explore different story types through play",
+      "keyVocabulary": ["aventure", "différent", "explorer"],
+      "materials": ["Story type cards", "Props for different genres", "New paper"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review completed books. 'Maintenant, explorons différents types d'histoires!' Show examples: funny, scary, adventure."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Students experiment with different story types through drawing and play. No pressure to complete, just explore creativity.",
+        "flexibility": "Let students follow their interests - some may prefer funny stories, others adventure or animal stories."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Share discoveries: 'Quel type d'histoire préférez-vous?' Light discussion about different story preferences."
+      },
+      "decisionPoints": [
+        "If students want to stick with original story type → Support their preference while showing other options",
+        "If students are overwhelmed by choices → Offer just two story types to choose from",
+        "If students create inappropriate content → Redirect gently to classroom-appropriate topics"
+      ],
+      "troubleshooting": "If students can't think of new ideas, let them modify their original character into new situation",
+      "realWorldConnection": "There are many different types of stories to create - just like there are different types of games and activities",
+      "progression": "Extension - applies learned skills to new creative challenges"
+    },
+    {
+      "lessonNumber": 16,
+      "title": "Illustrateur professionnel",
+      "oneGoal": "Students focus on creating detailed illustrations for stories",
+      "keyVocabulary": ["illustrateur", "détaillé", "artistique"],
+      "materials": ["High-quality art supplies", "Illustration examples", "Magnifying glasses"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Look at detailed illustrations in picture books. 'Certaines personnes sont illustrateurs - ils créent les images pour les livres.'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Students create detailed illustrations focusing on artistic technique. Encourage attention to details, colors, backgrounds.",
+        "flexibility": "Some students may be naturally artistic, others need encouragement to try details. All efforts celebrated."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Art gallery walk - students display illustrations and admire each other's artistic work with positive comments."
+      },
+      "decisionPoints": [
+        "If students get frustrated with details → Remind them that practice makes better, not perfect",
+        "If students finish quickly → Encourage them to add one more detail or help a friend",
+        "If students compare their work negatively → Emphasize unique style and personal expression"
+      ],
+      "troubleshooting": "If students are afraid to 'mess up' good paper, remind them that artists make many drafts",
+      "realWorldConnection": "Some people specialize in making pictures for books - their art helps stories come alive",
+      "progression": "Extension - deepens illustration skills beyond basic requirements"
+    },
+    {
+      "lessonNumber": 17,
+      "title": "Histoires ensemble",
+      "oneGoal": "Students collaborate to create a group story",
+      "keyVocabulary": ["ensemble", "collaborer", "équipe"],
+      "materials": ["Large paper", "Shared art supplies", "Story planning sheet"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Discuss working together: 'Parfois, les auteurs travaillent ensemble.' Model how to share ideas respectfully."
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Small groups (3-4 students) create one story together. Each student contributes one element. Practice compromise and sharing ideas.",
+        "flexibility": "Some groups may work smoothly, others need more teacher support for cooperation."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Groups share their collaborative stories. Celebrate teamwork and different perspectives in one story."
+      },
+      "decisionPoints": [
+        "If groups have conflicts → Teach simple compromise strategies like taking turns",
+        "If one student dominates → Gently structure so each student has specific role",
+        "If groups finish at different times → Have extension activities ready for early finishers"
+      ],
+      "troubleshooting": "If collaboration is too challenging, let students work in pairs instead of larger groups",
+      "realWorldConnection": "Sometimes authors work together to create stories - just like how families work together on projects",
+      "progression": "Extension - applies individual skills to collaborative creation"
+    },
+    {
+      "lessonNumber": 18,
+      "title": "Bibliothèque de classe",
+      "oneGoal": "Students organize their books into a class library",
+      "keyVocabulary": ["bibliothèque", "organiser", "collection"],
+      "materials": ["All student-created books", "Book bins", "Library labels", "Checkout cards"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Look at all the books students have created. 'Regardez tous ces livres! Nous avons une bibliothèque d'auteurs!'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Students help organize their books into class library. Create categories, make labels, set up checkout system for reading each other's books.",
+        "flexibility": "Some students may be very organized, others need support with categorizing. Let interests guide organization."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Admire the completed class library. Students choose one book written by classmate to 'check out' for reading."
+      },
+      "decisionPoints": [
+        "If students have trouble categorizing → Use simple categories like 'funny stories' or 'animal stories'",
+        "If students want to keep their own books → Explain that libraries let everyone enjoy books",
+        "If organization takes too long → Focus on just getting books displayed nicely"
+      ],
+      "troubleshooting": "If students are protective of their books, start with just displaying them before implementing checkout",
+      "realWorldConnection": "Libraries collect books so everyone can read them - now classmates can enjoy each other's stories",
+      "progression": "Extension - celebrates collective authorship achievement"
+    },
+    {
+      "lessonNumber": 19,
+      "title": "Lire aux petits",
+      "oneGoal": "Students practice reading their books to younger students",
+      "keyVocabulary": ["enseigner", "petits", "responsabilité"],
+      "materials": ["Student books", "Props for reading aloud", "Kindergarten buddy class (if available)"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Discuss being 'big kids' who can teach. 'Vous pouvez partager vos histoires avec les petits enfants.'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Students practice reading their books aloud with expression. If possible, visit kindergarten class to share stories, or practice with stuffed animals.",
+        "flexibility": "Some students may be natural performers, others need encouragement. Support all comfort levels."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Reflect on being teachers and authors. Discuss how it feels to share stories with others."
+      },
+      "decisionPoints": [
+        "If students are nervous about reading to others → Let them practice with toys or teacher first",
+        "If no younger class available → Use stuffed animals or dolls as audience",
+        "If students want to read multiple books → Support enthusiasm but manage time"
+      ],
+      "troubleshooting": "If reading aloud is too challenging, let students just show pictures and tell story in simple words",
+      "realWorldConnection": "Older students can share stories with younger ones - just like how family members read to each other",
+      "progression": "Extension - uses authorship skills to teach others"
+    },
+    {
+      "lessonNumber": 20,
+      "title": "Célébration d'auteurs",
+      "oneGoal": "Students celebrate their growth as young French authors",
+      "keyVocabulary": ["célébrer", "grandir", "réussir"],
+      "materials": ["All student work from unit", "Author certificates", "Photo album of writing journey"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Look back at journey from Lesson 1 to now. 'Regardez comme vous avez grandi comme auteurs!'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "activity": "Celebration party with sharing of favorite parts of being authors. Present author certificates. Create memory book of writing journey.",
+        "flexibility": "Let students share what they're most proud of. Some may focus on writing, others on pictures or sharing."
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Final circle: each student completes 'Je suis un auteur parce que...' Group picture with all their books."
+      },
+      "decisionPoints": [
+        "If students want to keep working → Encourage continued writing in free time",
+        "If students don't feel like 'real' authors → Emphasize that all writers start somewhere",
+        "If celebration feels overwhelming → Keep it simple with just sharing and certificates"
+      ],
+      "troubleshooting": "If some students feel their work isn't good enough, emphasize effort and growth over perfection",
+      "realWorldConnection": "Authors celebrate when they finish their work - just like any accomplishment deserves recognition",
+      "progression": "Extension - culminates the unit with reflection and celebration"
+    }
+  ]
+}

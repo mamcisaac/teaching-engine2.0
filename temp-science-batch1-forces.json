@@ -1,0 +1,36 @@
+{
+  "unitPlan": {
+    "title": "Forces et mouvements simples",
+    "bigIdeas": "Les forces font bouger les choses",
+    "essentialQuestions": [
+      "Comment faire bouger?",
+      "Comment arrêter?",
+      "Qu'est-ce qui pousse et tire?"
+    ],
+    "startDate": "2026-03-01T00:00:00.000Z",
+    "endDate": "2026-03-31T00:00:00.000Z",
+    "estimatedHours": 15,
+    "lessonCount": 20,
+    "coreCount": 14,
+    "extensionCount": 6,
+    "differentiationStrategies": {
+      "structure": "14 leçons essentielles, 6 extensions"
+    },
+    "culminatingTask": "Expo de machines simples"
+  },
+  "subject": "Sciences de la nature",
+  "expectations": [
+    {
+      "code": "S1",
+      "description": "Investigation scientifique"
+    },
+    {
+      "code": "S2",
+      "description": "Observation"
+    },
+    {
+      "code": "S3",
+      "description": "Documentation"
+    }
+  ]
+}

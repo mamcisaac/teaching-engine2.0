@@ -8,7 +8,10 @@
 import { createRequire } from 'module';
 import { promises as fs } from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const require = createRequire(import.meta.url);
 const { ETFO_BEST_PRACTICES, generateUnitGenerationPrompt } = require('./knowledge/best-practices-library.cjs');
 
@@ -17,6 +20,9 @@ const unitType = process.argv[2] || 'french';
 let unitData;
 
 switch(unitType) {
+  case 'temp':
+    unitData = require('../temp-unit-data.json');
+    break;
   case 'math':
     unitData = require('../test-math-unit-data.json');
     break;

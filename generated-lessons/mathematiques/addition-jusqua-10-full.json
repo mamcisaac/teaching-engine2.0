@@ -1,0 +1,805 @@
+{
+  "unitTitle": "Addition jusqu'à 10",
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "title": "Assembler nos collections",
+      "oneGoal": "Les élèves comprennent l'addition comme l'action d'assembler deux groupes d'objets",
+      "estimatedTime": "45 minutes",
+      "materials": ["Petits jouets variés", "Contenants transparents", "Tapis de travail", "Cartes visuelles d'histoires"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Histoire d'assemblage: 'Regardez! J'ai 2 voitures rouges ici et 3 voitures bleues là. Si je les mets ensemble, combien ai-je en tout?'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Exploration d'assemblage: Stations avec différents objets (blocs, animaux, crayons). Élèves créent deux groupes, les assemblent et comptent le total. Narrent leurs actions: 'J'avais... et j'avais... maintenant j'ai...'",
+        "visualSupports": "Cartes d'histoires visuelles, contenants étiquetés 'Groupe 1' et 'Groupe 2'",
+        "tprElements": "Gestes de rassemblement avec les bras, mouvements de comptage, manipulation physique",
+        "adaptations": "Objets de tailles variées, groupes plus petits pour élèves ayant besoin de support, contrastes visuels clairs"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Cercle de partage: Élèves montrent leurs assemblages et expliquent: 'J'ai assemblé ___ et ___, maintenant j'ai ___'"
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves comprennent-ils 'assembler' vs 'mélanger'?",
+          "ifThen": "Si non, démontrer clairement en gardant groupes visibles avant assemblage. Si oui, encourager exploration libre."
+        },
+        {
+          "situation": "Comptent-ils correctement après assemblage?",
+          "ifThen": "Si non, modéliser comptage lent avec pointage. Si oui, défier avec groupes plus grands."
+        },
+        {
+          "situation": "Utilisent-ils le langage mathématique approprié?",
+          "ifThen": "Si non, modéliser phrases complètes. Si oui, encourager descriptions détaillées."
+        }
+      ],
+      "whatWhenWrong": "Si confusion sur assemblage: utiliser objets très différents (animaux vs voitures). Si erreurs de comptage: revenir à nombres plus petits.",
+      "keyVocabulary": ["assembler", "ensemble", "en tout", "groupe"],
+      "realWorldConnection": "Rassembler tous ses jouets, compter nourriture sur l'assiette",
+      "progressionNote": "Fondation - établit le concept concret d'addition comme assemblage physique"
+    },
+    {
+      "lessonNumber": 2,
+      "title": "Histoires de 'plus'",
+      "oneGoal": "Les élèves résolvent des problèmes d'addition simples racontés dans des histoires",
+      "estimatedTime": "45 minutes",
+      "materials": ["Livres d'images simples", "Objets pour agir les histoires", "Cartes d'histoires", "Marionnettes"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Théâtre mathématique: Présenter histoire avec marionnettes: '3 lapins mangent. 2 lapins de plus arrivent. Combien de lapins maintenant?'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Ateliers d'histoires: Station 1 - Agir histoires avec objets. Station 2 - Dessiner histoires d'addition. Station 3 - Inventer histoires avec marionnettes. Rotation toutes les 8 minutes.",
+        "visualSupports": "Images séquentielles d'histoires, cartes de personnages, décors simples",
+        "tprElements": "Jeu de rôle complet, mouvements narratifs, expressions de personnages",
+        "adaptations": "Histoires plus courtes, objets plus grands, support visuel pour séquences"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Spectacle d'histoires: Groupes présentent leurs histoires d'addition favorite."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves suivent-ils la séquence narrative?",
+          "ifThen": "Si non, décomposer en étapes plus simples. Si oui, introduire histoires plus complexes."
+        },
+        {
+          "situation": "Relient-ils l'histoire au comptage?",
+          "ifThen": "Si non, souligner moments de comptage. Si oui, encourager prédictions avant comptage."
+        },
+        {
+          "situation": "Peuvent-ils créer leurs propres histoires?",
+          "ifThen": "Si non, fournir structures d'histoires. Si oui, encourager créativité narrative."
+        }
+      ],
+      "whatWhenWrong": "Si confusion narrative: utiliser histoires très simples et répétitives. Si perte d'attention: varier rythme et interactivité.",
+      "keyVocabulary": ["plus", "arrivent", "maintenant", "combien"],
+      "realWorldConnection": "Histoires de famille, animaux qui arrivent, amis qui se joignent",
+      "progressionNote": "Builds on Lesson 1 by embedding addition in meaningful narrative contexts"
+    },
+    {
+      "lessonNumber": 3,
+      "title": "Compter pour additionner",
+      "oneGoal": "Les élèves développent des stratégies de comptage pour résoudre additions simples",
+      "estimatedTime": "45 minutes",
+      "materials": ["Objets à compter variés", "Ligne de nombres au sol", "Doigts colorés", "Cartes de comptage"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Échauffement de comptage: 'Montrez-moi 3 doigts... maintenant 2 de plus... comptez-les tous!'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Stratégies de comptage: Enseigner 'tout compter' puis 'compter à partir de'. Pratiquer avec objets, doigts, ligne de nombres. Comparer efficacité des méthodes.",
+        "visualSupports": "Cartes de stratégies illustrées, ligne de nombres colorée, tableaux de comparaison",
+        "tprElements": "Marcher sur ligne de nombres, compter avec tout le corps, gestes de stratégies",
+        "adaptations": "Nombres plus petits pour débutants, objets tactiles, couleurs pour différencier stratégies"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Championnat de comptage: Élèves montrent leur stratégie préférée et expliquent pourquoi."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves maîtrisent-ils 'tout compter'?",
+          "ifThen": "Si non, plus de pratique avec objets concrets. Si oui, introduire 'compter à partir de'."
+        },
+        {
+          "situation": "Voient-ils l'efficacité de 'compter à partir de'?",
+          "ifThen": "Si non, démontrer avec nombres plus grands. Si oui, pratiquer jusqu'à automatisation."
+        },
+        {
+          "situation": "Peuvent-ils choisir la stratégie appropriée?",
+          "ifThen": "Si non, guider le choix. Si oui, encourager flexibilité stratégique."
+        }
+      ],
+      "whatWhenWrong": "Si erreurs de comptage: ralentir et utiliser pointage. Si confusion de stratégie: une seule méthode à la fois.",
+      "keyVocabulary": ["compter", "commencer", "continuer", "stratégie"],
+      "realWorldConnection": "Compter argent de poche, marches d'escalier, jouets rangés",
+      "progressionNote": "Builds on Lesson 2 by developing systematic counting strategies for addition"
+    },
+    {
+      "lessonNumber": 4,
+      "title": "Nos doigts calculateurs",
+      "oneGoal": "Les élèves utilisent leurs doigts comme outil de calcul pour l'addition",
+      "estimatedTime": "45 minutes",
+      "materials": ["Gants colorés", "Marqueurs de doigts", "Miroirs", "Cartes de doigts"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Danse des doigts: 'Nos doigts sont des calculateurs magiques! Montrez-moi 4... maintenant ajoutez 2...'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Techniques de doigts: Apprendre à représenter nombres sur doigts. Pratiquer additions simples. Utiliser miroirs pour voir stratégies. Comparer méthodes avec partenaires.",
+        "visualSupports": "Cartes de positions de doigts, affiches de techniques, modèles visuels",
+        "tprElements": "Mouvements de doigts expressifs, symétrie corporelle, coordination bilatérale",
+        "adaptations": "Gants pour visibilité, marqueurs temporaires, aide pour coordination fine"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Exhibition de doigts: Élèves démontrent leur technique favorite et enseignent aux autres."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves maîtrisent-ils les positions de doigts?",
+          "ifThen": "Si non, pratiquer lentement avec modélisation. Si oui, accélérer vers calcul fluide."
+        },
+        {
+          "situation": "Comprennent-ils que doigts représentent nombres?",
+          "ifThen": "Si non, connecter explicitement doigts-nombres. Si oui, utiliser pour résoudre problèmes."
+        },
+        {
+          "situation": "Développent-ils préférence pour méthode spécifique?",
+          "ifThen": "Si oui, respecter préférence. Si non, explorer différentes approches."
+        }
+      ],
+      "whatWhenWrong": "Si confusion motrice: simplifier à une main d'abord. Si dépendance excessive: alterner avec autres outils.",
+      "keyVocabulary": ["doigts", "représenter", "calculer", "montrer"],
+      "realWorldConnection": "Compter âge, montrer quantités, jeux de doigts familiaux",
+      "progressionNote": "Builds on Lesson 3 by establishing fingers as portable calculation tools"
+    },
+    {
+      "lessonNumber": 5,
+      "title": "Dessiner nos additions",
+      "oneGoal": "Les élèves représentent visuellement des additions par des dessins et diagrammes",
+      "estimatedTime": "45 minutes",
+      "materials": ["Papier pointé", "Crayons colorés", "Autocollants", "Cartes de dessins modèles"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Artistes mathématiques: 'Aujourd'hui nous devenons artistes des mathématiques! Dessiner pour calculer!'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Atelier de représentation: Dessiner additions avec points, traits, formes. Utiliser couleurs pour différencier groupes. Créer 'livre d'art mathématique' personnel. Partager techniques artistiques.",
+        "visualSupports": "Exemples de représentations variées, palettes de couleurs, techniques illustrées",
+        "tprElements": "Mouvements de dessin amples, création artistique libre, partage gestuel",
+        "adaptations": "Outils de dessin adaptés, supports variés, aide pour coordination graphique"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Galerie mathématique: Exposition des œuvres et discussion sur clarté des représentations."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Leurs dessins montrent-ils clairement l'addition?",
+          "ifThen": "Si non, modéliser représentations claires. Si oui, encourager créativité artistique."
+        },
+        {
+          "situation": "Utilisent-ils efficacement les couleurs pour organiser?",
+          "ifThen": "Si non, suggérer code couleur simple. Si oui, explorer nuances organisationnelles."
+        },
+        {
+          "situation": "Peuvent-ils 'lire' les dessins des autres?",
+          "ifThen": "Si non, travailler sur conventions communes. Si oui, analyser différentes approches."
+        }
+      ],
+      "whatWhenWrong": "Si dessins confus: enseigner techniques plus structurées. Si perfectionnisme: valoriser communication claire sur beauté.",
+      "keyVocabulary": ["dessiner", "représenter", "montrer", "voir"],
+      "realWorldConnection": "Dessins familiaux, art personnel, documentation visuelle",
+      "progressionNote": "Builds on Lesson 4 by transitioning from concrete to visual representations"
+    },
+    {
+      "lessonNumber": 6,
+      "title": "Cadres de dix magiques",
+      "oneGoal": "Les élèves utilisent des cadres de 10 pour visualiser et résoudre des additions",
+      "estimatedTime": "45 minutes",
+      "materials": ["Cadres de 10 plastifiés", "Jetons colorés", "Marqueurs effaçables", "Cartes d'activités"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Magie des cadres: 'Ces cadres magiques nous aident à voir les nombres! Regardez comme c'est facile!'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Exploration de cadres: Remplir cadres pour montrer additions. Utiliser jetons de couleurs différentes. Voir patterns et relations. Prédire résultats avant remplissage.",
+        "visualSupports": "Cadres de 10 géants, jetons contrastés, cartes de défis progressifs",
+        "tprElements": "Placement physique de jetons, mouvements de remplissage, gestes de prédiction",
+        "adaptations": "Cadres plus grands, jetons tactiles, support pour placement précis"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Démonstrations magiques: Élèves montrent 'tours de magie' avec cadres et expliquent leurs découvertes."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves voient-ils l'organisation des cadres?",
+          "ifThen": "Si non, souligner structure 5+5. Si oui, explorer patterns dans remplissage."
+        },
+        {
+          "situation": "Utilisent-ils cadres pour faciliter calcul?",
+          "ifThen": "Si non, démontrer avantages visuels. Si oui, défier avec problèmes plus complexes."
+        },
+        {
+          "situation": "Peuvent-ils prédire avant de placer jetons?",
+          "ifThen": "Si non, encourager estimations. Si oui, développer intuition numérique."
+        }
+      ],
+      "whatWhenWrong": "Si placement chaotique: enseigner organisation systématique. Si résistance à l'outil: montrer avantages concrets.",
+      "keyVocabulary": ["cadre", "organiser", "voir", "remplir"],
+      "realWorldConnection": "Boîtes d'œufs, emballages organisés, rangement méthodique",
+      "progressionNote": "Builds on Lesson 5 by introducing structured visual tools for number relationships"
+    },
+    {
+      "lessonNumber": 7,
+      "title": "Stratégie des doubles",
+      "oneGoal": "Les élèves reconnaissent et utilisent les doubles comme stratégie d'addition efficace",
+      "estimatedTime": "45 minutes",
+      "materials": ["Miroirs", "Objets symétriques", "Cartes de doubles", "Photos de doubles naturels"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Monde des doubles: 'Regardez autour! Les doubles sont partout! Vos yeux, vos mains, vos pieds!'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Chasse aux doubles: Identifier doubles dans l'environnement. Utiliser miroirs pour créer doubles. Mémoriser doubles jusqu'à 5+5. Appliquer aux problèmes d'addition.",
+        "visualSupports": "Galerie de doubles naturels, cartes de doubles illustrées, tableaux de mémorisation",
+        "tprElements": "Symétrie corporelle, mouvements en miroir, gestes symétriques",
+        "adaptations": "Objets doubles évidents, support mnémotechnique, pratique répétée"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Spectacle de doubles: Élèves présentent leurs doubles favoris et expliquent pourquoi ils sont spéciaux."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves reconnaissent-ils les doubles facilement?",
+          "ifThen": "Si non, utiliser exemples très évidents. Si oui, explorer doubles moins évidents."
+        },
+        {
+          "situation": "Mémorisent-ils les faits de doubles?",
+          "ifThen": "Si non, plus de pratique ludique. Si oui, utiliser pour dériver autres faits."
+        },
+        {
+          "situation": "Voient-ils utilité des doubles pour calculer?",
+          "ifThen": "Si non, démontrer efficacité. Si oui, appliquer à problèmes variés."
+        }
+      ],
+      "whatWhenWrong": "Si difficulté de mémorisation: utiliser chansons et rythmes. Si confusion concept: clarifier 'identique'.",
+      "keyVocabulary": ["double", "même", "identique", "symétrie"],
+      "realWorldConnection": "Parties du corps, objets de la maison, architecture symétrique",
+      "progressionNote": "Builds on Lesson 6 by developing efficiency through pattern recognition"
+    },
+    {
+      "lessonNumber": 8,
+      "title": "Compter en avant intelligemment",
+      "oneGoal": "Les élèves maîtrisent la stratégie de 'compter à partir du plus grand nombre'",
+      "estimatedTime": "45 minutes",
+      "materials": ["Ligne de nombres géante", "Jetons de deux couleurs", "Cartes de stratégies", "Chronomètre"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Course de stratégies: 'Quelle méthode est plus rapide? 2+7 ou 7+2? Découvrons le secret!'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Comparaison de stratégies: Expérimenter 'tout compter' vs 'compter à partir du plus grand'. Chronométrer pour voir efficacité. Pratiquer jusqu'à automatisation. Enseigner à un partenaire.",
+        "visualSupports": "Tableaux de comparaison, cartes de stratégies illustrées, chronomètres visuels",
+        "tprElements": "Mouvements de comptage rapides, gestes d'efficacité, course friendly",
+        "adaptations": "Support visuel pour choix de stratégie, pratique guidée, célébration des progrès"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Conseillers en stratégie: Élèves donnent conseils sur quand utiliser quelle stratégie."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves voient-ils l'avantage de la nouvelle stratégie?",
+          "ifThen": "Si non, démontrer avec exemples évidents. Si oui, pratiquer jusqu'à fluence."
+        },
+        {
+          "situation": "Peuvent-ils identifier le plus grand nombre rapidement?",
+          "ifThen": "Si non, plus de pratique de comparaison. Si oui, automatiser le processus."
+        },
+        {
+          "situation": "Appliquent-ils automatiquement la stratégie efficace?",
+          "ifThen": "Si non, rappeler avant chaque problème. Si oui, défier avec contextes variés."
+        }
+      ],
+      "whatWhenWrong": "Si retour aux méthodes inefficaces: rappeler gentiment avantages. Si confusion: pratiquer un problème à la fois.",
+      "keyVocabulary": ["efficace", "rapide", "intelligent", "stratégie"],
+      "realWorldConnection": "Optimiser routes, économiser temps, méthodes efficaces",
+      "progressionNote": "Builds on Lesson 7 by developing strategic thinking and efficiency"
+    },
+    {
+      "lessonNumber": 9,
+      "title": "Faire 10 - notre ancrage",
+      "oneGoal": "Les élèves découvrent et utilisent la stratégie 'faire 10' pour additions plus grandes",
+      "estimatedTime": "45 minutes",
+      "materials": ["Cadres de 10", "Jetons colorés", "Cartes de décomposition", "Bracelets de 10"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Pouvoir de 10: 'Le nombre 10 est spécial! Il peut nous aider à calculer plus facilement! Regardez!'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Exploration de 'faire 10': Décomposer nombres pour utiliser 10. Exemple: 7+5 = 7+3+2 = 10+2. Utiliser cadres et jetons visuellement. Pratiquer avec différents nombres.",
+        "visualSupports": "Cartes de décomposition, cadres de 10 doubles, flèches de transformation",
+        "tprElements": "Gestes de décomposition, mouvement de regroupement, démonstrations physiques",
+        "adaptations": "Décompositions pré-marquées, couleurs pour différencier étapes, manipulation guidée"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Magiciens de 10: Élèves démontrent 'tours de magie' en transformant additions difficiles avec 10."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves comprennent-ils la décomposition?",
+          "ifThen": "Si non, plus d'exemples concrets. Si oui, appliquer à problèmes variés."
+        },
+        {
+          "situation": "Voient-ils l'avantage de faire 10?",
+          "ifThen": "Si non, comparer avec autres méthodes. Si oui, pratiquer jusqu'à fluence."
+        },
+        {
+          "situation": "Peuvent-ils choisir quand utiliser cette stratégie?",
+          "ifThen": "Si non, donner critères de choix. Si oui, encourager flexibilité stratégique."
+        }
+      ],
+      "whatWhenWrong": "Si décomposition difficile: commencer avec 10 visible. Si surcharge cognitive: une étape à la fois.",
+      "keyVocabulary": ["décomposer", "faire dix", "ancrage", "transformer"],
+      "realWorldConnection": "Utiliser billets de 10$, compter par dizaines, organisation décimale",
+      "progressionNote": "Builds on Lesson 8 by introducing advanced strategy for larger numbers"
+    },
+    {
+      "lessonNumber": 10,
+      "title": "Vérifier nos réponses",
+      "oneGoal": "Les élèves développent des stratégies pour vérifier la justesse de leurs additions",
+      "estimatedTime": "45 minutes",
+      "materials": ["Calculatrices simples", "Objets de vérification", "Cartes de méthodes", "Tableaux de vérification"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Détectives mathématiques: 'Comment savoir si notre réponse est correcte? Devenons des détectives des mathématiques!'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Méthodes de vérification: Recompter avec objets, utiliser stratégie différente, estimer avant calculer, vérifier avec calculatrice. Pratiquer détection d'erreurs intentionnelles.",
+        "visualSupports": "Affiches de méthodes de vérification, listes de contrôle, exemples d'erreurs",
+        "tprElements": "Gestes de vérification, mouvements de detective, démonstrations de méthodes",
+        "adaptations": "Méthodes simples prioritaires, support visuel pour processus, encouragement pour tentatives"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Bureau de vérification: Élèves 'certifient' le travail des autres en utilisant méthodes apprises."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves utilisent-ils spontanément la vérification?",
+          "ifThen": "Si non, rappeler importance. Si oui, renforcer habitude positive."
+        },
+        {
+          "situation": "Peuvent-ils détecter leurs propres erreurs?",
+          "ifThen": "Si non, modéliser auto-correction. Si oui, développer autonomie en vérification."
+        },
+        {
+          "situation": "Comprennent-ils différentes méthodes de vérification?",
+          "ifThen": "Si non, enseigner une méthode à la fois. Si oui, encourager choix personnel."
+        }
+      ],
+      "whatWhenWrong": "Si résistance à vérifier: montrer bénéfices concrets. Si dépendance à calculatrice: équilibrer avec méthodes mentales.",
+      "keyVocabulary": ["vérifier", "correct", "erreur", "contrôler"],
+      "realWorldConnection": "Vérifier monnaie, contrôler devoirs, double-vérification importante",
+      "progressionNote": "Builds on Lesson 9 by developing metacognitive skills and mathematical confidence"
+    },
+    {
+      "lessonNumber": 11,
+      "title": "Découvrir les symboles + et =",
+      "oneGoal": "Les élèves comprennent et utilisent les symboles + et = dans des équations simples",
+      "estimatedTime": "45 minutes",
+      "materials": ["Cartes de symboles géantes", "Équations manipulables", "Autocollants de symboles", "Objets pour équations"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Mystère des symboles: 'Ces signes mystérieux racontent des histoires mathématiques! Découvrons leurs secrets!'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Introduction symbolique: Connecter + avec 'assembler' et = avec 'fait'. Construire équations avec objets puis symboles. Lire équations à haute voix. Créer équations personnelles.",
+        "visualSupports": "Symboles colorés géants, connexions visuelles objet-symbole, affiches de signification",
+        "tprElements": "Gestes pour + (assembler) et = (équilibrer), construction physique d'équations",
+        "adaptations": "Symboles tactiles, couleurs pour différencier, manipulation guidée"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Lecteurs d'équations: Élèves lisent leurs équations créées et expliquent signification des symboles."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves comprennent-ils la signification des symboles?",
+          "ifThen": "Si non, plus de connexions concrètes. Si oui, pratiquer lecture fluide."
+        },
+        {
+          "situation": "Peuvent-ils construire équations correctement?",
+          "ifThen": "Si non, modéliser construction étape par étape. Si oui, encourager création libre."
+        },
+        {
+          "situation": "Lisent-ils les équations avec sens?",
+          "ifThen": "Si non, enseigner langage mathématique. Si oui, varier expressions verbales."
+        }
+      ],
+      "whatWhenWrong": "Si confusion de symboles: un symbole à la fois. Si placement incorrect: utiliser guides visuels.",
+      "keyVocabulary": ["plus", "égale", "équation", "symbole"],
+      "realWorldConnection": "Signes dans l'environnement, codes et symboles familiaux",
+      "progressionNote": "Builds on Lesson 10 by transitioning to formal mathematical notation"
+    },
+    {
+      "lessonNumber": 12,
+      "title": "Écrire nos équations",
+      "oneGoal": "Les élèves écrivent des équations d'addition simples de manière autonome",
+      "estimatedTime": "45 minutes",
+      "materials": ["Papier quadrillé", "Crayons", "Règles", "Cartes modèles", "Problèmes illustrés"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Scribes mathématiques: 'Vous êtes maintenant des écrivains de mathématiques! Écrivons nos histoires en équations!'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Atelier d'écriture: Transformer problèmes en équations. Utiliser papier quadrillé pour organisation. Créer carnet personnel d'équations. Illustrer équations avec dessins.",
+        "visualSupports": "Modèles d'équations bien écrites, guides de formation des chiffres, exemples organisés",
+        "tprElements": "Mouvements d'écriture amples avant écriture fine, formation de symboles dans l'air",
+        "adaptations": "Guides d'écriture, outils adaptés, support pour formation des chiffres"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Publication mathématique: Partager plus belles équations et discuter clarté d'écriture."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves écrivent-ils lisiblement?",
+          "ifThen": "Si non, plus de pratique de formation. Si oui, se concentrer sur organisation."
+        },
+        {
+          "situation": "Leurs équations sont-elles correctes?",
+          "ifThen": "Si non, réviser connexion problème-équation. Si oui, défier avec problèmes complexes."
+        },
+        {
+          "situation": "Peuvent-ils organiser leur travail clairement?",
+          "ifThen": "Si non, fournir plus de structure. Si oui, encourager présentation soignée."
+        }
+      ],
+      "whatWhenWrong": "Si écriture difficile: retourner à manipulation avant écriture. Si équations incorrectes: vérifier compréhension conceptuelle.",
+      "keyVocabulary": ["écrire", "équation", "organiser", "clair"],
+      "realWorldConnection": "Écriture de listes, notes personnelles, communication écrite",
+      "progressionNote": "Builds on Lesson 11 by developing written mathematical communication skills"
+    },
+    {
+      "lessonNumber": 13,
+      "title": "Problèmes de la vraie vie",
+      "oneGoal": "Les élèves résolvent des problèmes d'addition tirés de situations réelles",
+      "estimatedTime": "45 minutes",
+      "materials": ["Photos de situations réelles", "Objets authentiques", "Carnets de problèmes", "Matériel de documentation"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Mathématiques partout: 'Les mathématiques ne sont pas seulement à l'école! Elles sont dans notre vraie vie!'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Résolution authentique: Problèmes de cuisine (ingrédients), magasinage (articles), école (matériel), famille (personnes). Utiliser objets réels quand possible. Documenter solutions.",
+        "visualSupports": "Photos de contextes réels, objets authentiques, tableaux de résolution",
+        "tprElements": "Simulation de situations réelles, mouvements contextuels, jeu de rôle",
+        "adaptations": "Contextes familiers prioritaires, nombres plus petits, support visuel contextuel"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Conseillers en résolution: Élèves donnent conseils sur comment aborder problèmes de vraie vie."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves connectent-ils mathématiques et vie réelle?",
+          "ifThen": "Si non, utiliser exemples plus proches. Si oui, explorer connexions plus larges."
+        },
+        {
+          "situation": "Peuvent-ils extraire information mathématique du contexte?",
+          "ifThen": "Si non, souligner nombres dans problème. Si oui, traiter contextes plus complexes."
+        },
+        {
+          "situation": "Leurs solutions sont-elles raisonnables?",
+          "ifThen": "Si non, discuter sens des réponses. Si oui, encourager vérification contextuelle."
+        }
+      ],
+      "whatWhenWrong": "Si dépassement par contexte: simplifier situation. Si réponses déraisonnables: retourner au contexte.",
+      "keyVocabulary": ["problème", "situation", "solution", "raisonnable"],
+      "realWorldConnection": "Toutes les situations présentées sont de vraie vie par conception",
+      "progressionNote": "Builds on Lesson 12 by applying mathematical skills to authentic contexts"
+    },
+    {
+      "lessonNumber": 14,
+      "title": "Portfolio d'addition - démonstration",
+      "oneGoal": "Les élèves démontrent leur maîtrise de l'addition dans un portfolio complet",
+      "estimatedTime": "45 minutes",
+      "materials": ["Dossiers personnalisés", "Matériaux de documentation", "Critères d'évaluation", "Appareils photo"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Experts en addition: 'Vous êtes maintenant experts! Montrez tout ce que vous savez sur l'addition!'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Création de portfolio: Sélectionner meilleurs exemples de travail. Démontrer différentes stratégies. Inclure problèmes résolus. Réfléchir sur apprentissages. Auto-évaluer avec critères simples.",
+        "visualSupports": "Critères visuels d'évaluation, exemples de portfolios excellents, guides de réflexion",
+        "tprElements": "Organisation physique du portfolio, démonstrations gestuelles, présentation expressive",
+        "adaptations": "Support pour sélection, aide à l'organisation, encouragement personnalisé"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Célébration d'expertise: Reconnaissance des progrès de chacun et partage des fiertés."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les portfolios démontrent-ils compréhension complète?",
+          "ifThen": "Si non, ajouter documentation supplémentaire. Si oui, célébrer accomplissements."
+        },
+        {
+          "situation": "Les élèves peuvent-ils réfléchir sur leurs apprentissages?",
+          "ifThen": "Si non, poser questions guidantes. Si oui, encourager métacognition approfondie."
+        },
+        {
+          "situation": "Montrent-ils confiance en leurs capacités?",
+          "ifThen": "Si non, souligner progrès et réussites. Si oui, valider compétence développée."
+        }
+      ],
+      "whatWhenWrong": "Si anxiété d'évaluation: rappeler que c'est célébration. Si portfolio incomplet: aider à compléter sans pression.",
+      "keyVocabulary": ["portfolio", "démontrer", "expert", "réfléchir"],
+      "realWorldConnection": "Albums personnels, collections de réussites, documentation de progrès",
+      "progressionNote": "Culminating assessment demonstrating comprehensive understanding of addition concepts and skills"
+    },
+    {
+      "lessonNumber": 15,
+      "title": "Art mathématique avec addition",
+      "oneGoal": "Les élèves créent des œuvres artistiques intégrant des concepts d'addition",
+      "estimatedTime": "45 minutes",
+      "materials": ["Matériaux artistiques variés", "Peintures", "Collages", "Objets à compter artistiques"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Artistes-mathématiciens: 'L'art et les maths peuvent danser ensemble! Créons des œuvres mathématiques!'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Création artistique: Œuvres montrant additions visuellement. Collages de groupes assemblés. Peintures avec équations intégrées. Sculptures d'addition. Galerie interactive expliquée.",
+        "visualSupports": "Exemples d'art mathématique, techniques artistiques démontrées, galerie d'inspiration",
+        "tprElements": "Mouvements artistiques libres, expression créative complète, interaction avec œuvres",
+        "adaptations": "Choix de techniques selon capacités, matériaux sensoriels variés, support technique"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Vernissage mathématique: Exposition des créations avec explications artistiques et mathématiques."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les créations intègrent-elles harmonieusement art et maths?",
+          "ifThen": "Si non, guider intégration plus claire. Si oui, célébrer créativité interdisciplinaire."
+        },
+        {
+          "situation": "Les élèves expliquent-ils leurs choix créatifs?",
+          "ifThen": "Si non, poser questions ouvertes. Si oui, encourager réflexion esthétique et mathématique."
+        },
+        {
+          "situation": "Apprécient-ils connexions entre domaines?",
+          "ifThen": "Si oui, explorer autres connexions. Si non, respecter préférences individuelles."
+        }
+      ],
+      "whatWhenWrong": "Si blocage créatif: offrir techniques simples. Si séparation art/maths: modéliser intégration naturelle.",
+      "keyVocabulary": ["art", "créer", "intégrer", "exprimer"],
+      "realWorldConnection": "Art décoratif familial, créations personnelles, expression artistique",
+      "progressionNote": "Extension: Connects mathematical understanding to creative expression and aesthetic appreciation"
+    },
+    {
+      "lessonNumber": 16,
+      "title": "Jeux d'addition amusants",
+      "oneGoal": "Les élèves renforcent leurs compétences d'addition à travers des jeux motivants",
+      "estimatedTime": "45 minutes",
+      "materials": ["Jeux de société adaptés", "Dés", "Cartes", "Matériel de jeu fait maison"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Festival de jeux: 'Apprendre en jouant! Choisissez vos jeux préférés et amusons-nous!'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Centres de jeux: Jeux de dés d'addition, cartes d'addition, courses mathématiques, bingo d'addition. Rotation libre selon intérêts. Création de nouveaux jeux.",
+        "visualSupports": "Instructions visuelles des jeux, tableaux de scores, minuteurs pour rotation",
+        "tprElements": "Mouvements de jeu dynamiques, célébrations de réussites, interaction sociale",
+        "adaptations": "Règles simplifiées disponibles, niveaux de difficulté variés, partenaires de soutien"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Prix du fair-play: Célébration du plaisir de jouer et des stratégies découvertes."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les jeux renforcent-ils effectivement les compétences?",
+          "ifThen": "Observer et ajuster jeux selon apprentissages. Prioriser jeux éducatifs engageants."
+        },
+        {
+          "situation": "Tous les élèves sont-ils engagés?",
+          "ifThen": "Si non, offrir alternatives ou modifier règles. Si oui, maintenir énergie positive."
+        },
+        {
+          "situation": "Y a-t-il équilibre entre compétition et coopération?",
+          "ifThen": "Ajuster selon dynamique du groupe. Privilégier atmosphère positive."
+        }
+      ],
+      "whatWhenWrong": "Si frustration competitive: emphasiser apprentissage et plaisir. Si désengagement: changer de jeu ou règles.",
+      "keyVocabulary": ["jeu", "stratégie", "plaisir", "améliorer"],
+      "realWorldConnection": "Jeux familiaux, activités récréatives, apprentissage ludique",
+      "progressionNote": "Extension: Reinforces learning through intrinsic motivation and social interaction"
+    },
+    {
+      "lessonNumber": 17,
+      "title": "Histoires d'addition créatives",
+      "oneGoal": "Les élèves inventent et racontent des histoires originales mettant en vedette l'addition",
+      "estimatedTime": "45 minutes",
+      "materials": ["Matériel de narration", "Marionnettes", "Costumes simples", "Enregistreur"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Conteurs mathématiques: 'Vous êtes des conteurs magiques! Vos histoires feront vivre les mathématiques!'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Atelier de création narrative: Inventer histoires avec problèmes d'addition. Utiliser personnages, décors, conflits mathématiques. Pratiquer narration expressive. Enregistrer ou jouer histoires.",
+        "visualSupports": "Amorces d'histoires, galerie de personnages, décors illustrés",
+        "tprElements": "Expression théâtrale complète, narration gestuelle, jeu de personnages",
+        "adaptations": "Structures d'histoires simples, aide pour développement narratif, choix de formats"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Festival de contes: Présentation des histoires créées avec applaudissements et appréciation."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les histoires intègrent-elles naturellement l'addition?",
+          "ifThen": "Si non, guider intégration plus fluide. Si oui, encourager sophistication narrative."
+        },
+        {
+          "situation": "Les élèves développent-ils confiance en narration?",
+          "ifThen": "Si non, offrir plus de support. Si oui, défier avec éléments narratifs complexes."
+        },
+        {
+          "situation": "Apprécient-ils créations des autres?",
+          "ifThen": "Si oui, cultiver communauté d'apprentissage. Si non, modéliser appréciation positive."
+        }
+      ],
+      "whatWhenWrong": "Si blocage créatif: offrir amorces et inspiration. Si timidité de présentation: respecter confort personnel.",
+      "keyVocabulary": ["histoire", "inventer", "raconter", "créatif"],
+      "realWorldConnection": "Histoires familiales, lectures personnelles, imagination créative",
+      "progressionNote": "Extension: Develops narrative skills while reinforcing mathematical concepts"
+    },
+    {
+      "lessonNumber": 18,
+      "title": "Addition avec argent de jeu",
+      "oneGoal": "Les élèves appliquent l'addition à des situations d'achat avec argent fictif",
+      "estimatedTime": "45 minutes",
+      "materials": ["Argent fictif", "Articles à 'vendre'", "Caisses enregistreuses", "Prix étiquetés"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Magasin mathématique: 'Bienvenue dans notre magasin spécial! Ici on achète avec des additions!'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Jeu de magasin: Roles de vendeurs et acheteurs. Calculer totaux d'achats multiples. Faire monnaie simple. Résoudre problèmes d'achat réalistes. Rotation des rôles.",
+        "visualSupports": "Prix clairement étiquetés, tableaux de calcul, exemples de transactions",
+        "tprElements": "Jeu de rôle complet, manipulation d'argent, interactions sociales authentiques",
+        "adaptations": "Prix simples, aide pour calculs, rôles selon capacités"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Bilan commercial: Discuter expériences d'achat et stratégies de calcul utilisées."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves calculent-ils correctement les totaux?",
+          "ifThen": "Si non, simplifier prix ou offrir aide. Si oui, introduire situations plus complexes."
+        },
+        {
+          "situation": "Comprennent-ils concept d'argent et valeur?",
+          "ifThen": "Si non, expliquer équivalences simples. Si oui, explorer concepts monétaires plus avancés."
+        },
+        {
+          "situation": "Apprécient-ils aspect pratique des mathématiques?",
+          "ifThen": "Si oui, connecter à autres situations pratiques. Si non, simplifier contexte."
+        }
+      ],
+      "whatWhenWrong": "Si calculs incorrects: revenir à stratégies apprises. Si confusion monétaire: clarifier valeurs de base.",
+      "keyVocabulary": ["argent", "acheter", "total", "calculer"],
+      "realWorldConnection": "Achats familiaux, argent de poche, économie personnelle",
+      "progressionNote": "Extension: Applies mathematical skills to practical financial literacy contexts"
+    },
+    {
+      "lessonNumber": 19,
+      "title": "Enquête mathématique - collecte de données",
+      "oneGoal": "Les élèves mènent une enquête simple en utilisant l'addition pour analyser données",
+      "estimatedTime": "45 minutes",
+      "materials": ["Tableaux de collecte", "Graphiques simples", "Autocollants", "Objets à compter"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Détectives de données: 'Menons une enquête! Combien d'élèves aiment... ? Utilisons l'addition pour découvrir!'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Enquête de classe: Choisir question d'enquête (couleurs préférées, animaux, etc.). Collecter données de tous. Utiliser addition pour combiner résultats. Créer graphique simple avec résultats.",
+        "visualSupports": "Tableaux de collecte organisés, graphiques avec images, outils de comptage",
+        "tprElements": "Mouvements de collecte, organisation physique des données, présentation des résultats",
+        "adaptations": "Questions simples, aide pour organisation, support visuel pour graphiques"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Rapport d'enquête: Présenter découvertes et discuter ce que les données révèlent."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves organisent-ils efficacement leurs données?",
+          "ifThen": "Si non, fournir plus de structure. Si oui, encourager analyse plus approfondie."
+        },
+        {
+          "situation": "Utilisent-ils l'addition appropriément pour combiner données?",
+          "ifThen": "Si non, modéliser processus. Si oui, explorer autres opérations simples."
+        },
+        {
+          "situation": "Comprennent-ils ce que les résultats signifient?",
+          "ifThen": "Si non, discuter interprétation simple. Si oui, encourager conclusions plus sophistiquées."
+        }
+      ],
+      "whatWhenWrong": "Si organisation chaotique: fournir système plus simple. Si confusion d'interprétation: revenir aux faits de base.",
+      "keyVocabulary": ["enquête", "données", "résultat", "analyser"],
+      "realWorldConnection": "Sondages familiaux, préférences personnelles, observation du monde",
+      "progressionNote": "Extension: Introduces data literacy while reinforcing addition skills"
+    },
+    {
+      "lessonNumber": 20,
+      "title": "Grande célébration de l'addition",
+      "oneGoal": "Les élèves célèbrent leurs apprentissages d'addition en partageant avec la communauté",
+      "estimatedTime": "45 minutes",
+      "materials": ["Décorations festives", "Stations d'exposition", "Certificats", "Matériel de démonstration"],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Ouverture du festival: 'Bienvenue au Festival de l'Addition! Célébrons tous nos apprentissages fantastiques!'"
+      },
+      "mainActivity": {
+        "duration": "~27 min",
+        "coreActivity": "Festival interactif: Stations démontrant différentes stratégies d'addition. Élèves enseignent visiteurs leurs techniques. Jeux d'addition pour tous. Exposition des portfolios et créations artistiques.",
+        "visualSupports": "Exposition organisée professionnellement, démonstrations claires, matériel attrayant",
+        "tprElements": "Interactions sociales dynamiques, démonstrations expressives, célébrations joyeuses",
+        "adaptations": "Rôles selon confort personnel, participation flexible, support selon besoins"
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Cérémonie de reconnaissance: Certificats personnalisés et célébration des progrès uniques de chacun."
+      },
+      "decisionPoints": [
+        {
+          "situation": "Les élèves démontrent-ils confiance en leurs compétences?",
+          "ifThen": "Si oui, amplifier opportunités de leadership. Si non, offrir rôles de soutien confortables."
+        },
+        {
+          "situation": "Peuvent-ils enseigner efficacement aux autres?",
+          "ifThen": "Si oui, encourager mentorat. Si non, modéliser techniques d'enseignement simple."
+        },
+        {
+          "situation": "Le festival engage-t-il tous les participants?",
+          "ifThen": "Ajuster activités selon engagement observé. Maintenir atmosphère positive inclusive."
+        }
+      ],
+      "whatWhenWrong": "Si sur-stimulation: créer zones calmes. Si manque de confiance: célébrer chaque contribution unique.",
+      "keyVocabulary": ["célébrer", "partager", "enseigner", "fierté"],
+      "realWorldConnection": "Célébrations familiales, partage de talents, reconnaissance de réussites",
+      "progressionNote": "Culminating celebration consolidating all learning and building mathematical confidence"
+    }
+  ]
+}

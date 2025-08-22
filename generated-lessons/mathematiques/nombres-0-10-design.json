@@ -1,0 +1,262 @@
+[
+  {
+    "lessonNumber": 1,
+    "title": "Découvrir les nombres dans notre monde",
+    "oneGoal": "Les élèves reconnaissent les nombres 0-3 dans leur environnement quotidien",
+    "keyVocabulary": ["nombre", "zéro", "un"],
+    "decisionPoints": [
+      "Les élèves sont-ils nerveux avec les mathématiques?",
+      "Ont-ils besoin de plus de support visuel?",
+      "La leçon doit-elle être plus courte aujourd'hui?"
+    ],
+    "progression": "Première leçon - établit les fondations pour comprendre que les nombres sont partout",
+    "realWorldConnection": "Compter les jouets à la maison, les doigts, les crayons sur le bureau"
+  },
+  {
+    "lessonNumber": 2,
+    "title": "Compter avec nos doigts",
+    "oneGoal": "Les élèves comptent jusqu'à 3 en utilisant leurs doigts et des objets concrets",
+    "keyVocabulary": ["deux", "trois", "compter"],
+    "decisionPoints": [
+      "Les élèves comprennent-ils la correspondance un-à-un?",
+      "Ont-ils besoin de plus d'objets manipulables?",
+      "Faut-il ralentir le rythme de comptage?"
+    ],
+    "progression": "Builds on Lesson 1 by adding hands-on counting with fingers and concrete objects",
+    "realWorldConnection": "Compter les membres de la famille, les animaux de compagnie"
+  },
+  {
+    "lessonNumber": 3,
+    "title": "Représenter les nombres 0-3",
+    "oneGoal": "Les élèves créent différentes représentations visuelles des nombres 0-3",
+    "keyVocabulary": ["dessiner", "montrer", "représenter"],
+    "decisionPoints": [
+      "Les élèves ont-ils besoin d'aide pour dessiner?",
+      "Comprennent-ils que le nombre peut être montré différemment?",
+      "Faut-il plus d'exemples de représentations?"
+    ],
+    "progression": "Builds on Lesson 2 by moving from concrete counting to visual representations",
+    "realWorldConnection": "Dessiner le nombre d'étoiles dans le ciel, de fleurs dans un jardin"
+  },
+  {
+    "lessonNumber": 4,
+    "title": "Explorer les nombres 4 et 5",
+    "oneGoal": "Les élèves découvrent et comptent les nombres 4 et 5 avec des manipulatives",
+    "keyVocabulary": ["quatre", "cinq", "collection"],
+    "decisionPoints": [
+      "Les élèves maîtrisent-ils les nombres 0-3?",
+      "Ont-ils besoin de réviser avant d'avancer?",
+      "Le matériel manipulable est-il approprié?"
+    ],
+    "progression": "Builds on Lesson 3 by extending number range while maintaining concrete approach",
+    "realWorldConnection": "Compter les doigts d'une main, les roues d'une voiture plus une de rechange"
+  },
+  {
+    "lessonNumber": 5,
+    "title": "Jeux de nombres 0-5",
+    "oneGoal": "Les élèves pratiquent la reconnaissance rapide des nombres 0-5 par le jeu",
+    "keyVocabulary": ["reconnaître", "vite", "jeu"],
+    "decisionPoints": [
+      "Les élèves sont-ils engagés dans le jeu?",
+      "Ont-ils besoin de plus de temps pour reconnaître?",
+      "Le niveau de défi est-il approprié?"
+    ],
+    "progression": "Builds on Lesson 4 by developing fluency and speed in number recognition",
+    "realWorldConnection": "Jouer aux dés, reconnaître les numéros de maison en marchant"
+  },
+  {
+    "lessonNumber": 6,
+    "title": "Compter vers l'avant et vers l'arrière",
+    "oneGoal": "Les élèves comptent en ordre croissant et décroissant de 0 à 5",
+    "keyVocabulary": ["avant", "arrière", "ordre"],
+    "decisionPoints": [
+      "Les élèves comprennent-ils le concept 'avant/arrière'?",
+      "Ont-ils besoin de supports visuels pour l'ordre?",
+      "Faut-il plus de pratique avec le comptage en arrière?"
+    ],
+    "progression": "Builds on Lesson 5 by introducing sequence and order concepts",
+    "realWorldConnection": "Compter les marches en montant et descendant l'escalier"
+  },
+  {
+    "lessonNumber": 7,
+    "title": "Découvrir les nombres 6 et 7",
+    "oneGoal": "Les élèves explorent les nombres 6 et 7 avec des blocs et des jetons",
+    "keyVocabulary": ["six", "sept", "plus"],
+    "decisionPoints": [
+      "Les élèves sont-ils prêts pour des nombres plus grands?",
+      "Ont-ils assez de matériel manipulable?",
+      "Comprennent-ils que 6 est 'plus que' 5?"
+    ],
+    "progression": "Builds on Lesson 6 by extending number range and introducing comparison concepts",
+    "realWorldConnection": "Compter les jours de la semaine, les couleurs de l'arc-en-ciel"
+  },
+  {
+    "lessonNumber": 8,
+    "title": "Mesurer avec les nombres",
+    "oneGoal": "Les élèves utilisent les nombres pour mesurer des objets simples",
+    "keyVocabulary": ["mesurer", "long", "court"],
+    "decisionPoints": [
+      "Les élèves comprennent-ils le concept de mesure?",
+      "Ont-ils besoin d'objets plus variés à mesurer?",
+      "Faut-il démontrer plus clairement la mesure?"
+    ],
+    "progression": "Builds on Lesson 7 by applying number knowledge to practical measurement",
+    "realWorldConnection": "Mesurer la taille d'un livre avec des trombones, compter les pas"
+  },
+  {
+    "lessonNumber": 9,
+    "title": "Explorer les nombres 8 et 9",
+    "oneGoal": "Les élèves découvrent les nombres 8 et 9 avec des activités de regroupement",
+    "keyVocabulary": ["huit", "neuf", "groupe"],
+    "decisionPoints": [
+      "Les élèves peuvent-ils gérer des groupes plus grands?",
+      "Ont-ils besoin de plus de temps pour compter?",
+      "Le regroupement aide-t-il leur compréhension?"
+    ],
+    "progression": "Builds on Lesson 8 by introducing larger numbers through grouping strategies",
+    "realWorldConnection": "Compter les pattes d'une araignée, les joueurs dans une équipe de baseball"
+  },
+  {
+    "lessonNumber": 10,
+    "title": "Le nombre magique 10",
+    "oneGoal": "Les élèves découvrent le nombre 10 et sa composition avec deux mains",
+    "keyVocabulary": ["dix", "complet", "mains"],
+    "decisionPoints": [
+      "Les élèves sont-ils excités par le nombre 10?",
+      "Comprennent-ils que 10 = deux mains pleines?",
+      "Ont-ils besoin d'activités supplémentaires avec 10?"
+    ],
+    "progression": "Builds on Lesson 9 by reaching the culminating number 10 using familiar body parts",
+    "realWorldConnection": "Compter tous nos doigts, les orteils, les œufs dans une boîte"
+  },
+  {
+    "lessonNumber": 11,
+    "title": "Régularités avec les nombres",
+    "oneGoal": "Les élèves identifient des régularités simples dans la suite des nombres 0-10",
+    "keyVocabulary": ["régularité", "suite", "suivant"],
+    "decisionPoints": [
+      "Les élèves voient-ils les régularités facilement?",
+      "Ont-ils besoin de supports visuels pour les séquences?",
+      "Comprennent-ils 'quel nombre vient après'?"
+    ],
+    "progression": "Builds on Lesson 10 by exploring patterns and relationships between all numbers learned",
+    "realWorldConnection": "Numéros de maison qui se suivent, pages d'un livre en ordre"
+  },
+  {
+    "lessonNumber": 12,
+    "title": "Comparer les nombres",
+    "oneGoal": "Les élèves comparent les nombres 0-10 en utilisant 'plus que', 'moins que', 'égal'",
+    "keyVocabulary": ["plus que", "moins que", "égal"],
+    "decisionPoints": [
+      "Les élèves comprennent-ils les concepts de comparaison?",
+      "Ont-ils besoin d'objets concrets pour comparer?",
+      "Les termes de comparaison sont-ils trop difficiles?"
+    ],
+    "progression": "Builds on Lesson 11 by developing comparative understanding of number relationships",
+    "realWorldConnection": "Comparer l'âge avec des frères et sœurs, le nombre de jouets"
+  },
+  {
+    "lessonNumber": 13,
+    "title": "Écrire les nombres 0-10",
+    "oneGoal": "Les élèves tracent et écrivent les chiffres 0-10 avec support visuel",
+    "keyVocabulary": ["écrire", "tracer", "chiffre"],
+    "decisionPoints": [
+      "Les élèves ont-ils la motricité fine nécessaire?",
+      "Ont-ils besoin de guides pour tracer?",
+      "Faut-il se concentrer sur quelques chiffres seulement?"
+    ],
+    "progression": "Builds on Lesson 12 by adding written representation to complete number understanding",
+    "realWorldConnection": "Écrire son âge, le numéro de sa maison, la date"
+  },
+  {
+    "lessonNumber": 14,
+    "title": "Portfolio de nombres - évaluation",
+    "oneGoal": "Les élèves démontrent leur compréhension des nombres 0-10 dans un portfolio",
+    "keyVocabulary": ["portfolio", "démontrer", "comprendre"],
+    "decisionPoints": [
+      "Les élèves sont-ils prêts pour l'évaluation?",
+      "Ont-ils besoin de plus de temps ou de support?",
+      "Peuvent-ils choisir leur meilleure représentation?"
+    ],
+    "progression": "Builds on Lesson 13 by consolidating all learning into a comprehensive assessment",
+    "realWorldConnection": "Créer un livre personnel de nombres pour la famille"
+  },
+  {
+    "lessonNumber": 15,
+    "title": "Jeux de nombres amusants",
+    "oneGoal": "Les élèves pratiquent les nombres 0-10 à travers des jeux variés et motivants",
+    "keyVocabulary": [],
+    "decisionPoints": [
+      "Quels jeux engagent le mieux les élèves?",
+      "Certains ont-ils besoin de défis supplémentaires?",
+      "Le niveau de bruit est-il gérable?"
+    ],
+    "progression": "Extension: Renforce les acquis par le jeu et la motivation intrinsèque",
+    "realWorldConnection": "Jeux familiaux avec des dés, cartes numériques"
+  },
+  {
+    "lessonNumber": 16,
+    "title": "Art mathématique avec les nombres",
+    "oneGoal": "Les élèves créent des œuvres artistiques incorporant les nombres 0-10",
+    "keyVocabulary": [],
+    "decisionPoints": [
+      "Les élèves sont-ils créatifs avec les nombres?",
+      "Ont-ils besoin d'exemples artistiques?",
+      "Le matériel artistique est-il suffisant?"
+    ],
+    "progression": "Extension: Intègre les mathématiques à l'expression artistique et créative",
+    "realWorldConnection": "Décorer sa chambre avec des chiffres, créer des cartes d'anniversaire"
+  },
+  {
+    "lessonNumber": 17,
+    "title": "Chansons et rythmes des nombres",
+    "oneGoal": "Les élèves apprennent des chansons et créent des rythmes avec les nombres",
+    "keyVocabulary": [],
+    "decisionPoints": [
+      "Les élèves aiment-ils chanter et bouger?",
+      "Ont-ils besoin de mouvements plus simples?",
+      "La musique aide-t-elle leur mémorisation?"
+    ],
+    "progression": "Extension: Renforce l'apprentissage par la musique et le mouvement",
+    "realWorldConnection": "Chansons comptines à la maison, danser en comptant"
+  },
+  {
+    "lessonNumber": 18,
+    "title": "Enquête sur les nombres dans l'école",
+    "oneGoal": "Les élèves explorent et documentent les nombres trouvés dans l'environnement scolaire",
+    "keyVocabulary": [],
+    "decisionPoints": [
+      "Les élèves peuvent-ils se déplacer en sécurité?",
+      "Ont-ils besoin d'aide pour documenter?",
+      "Trouvent-ils facilement des nombres?"
+    ],
+    "progression": "Extension: Applique les connaissances dans un contexte d'exploration authentique",
+    "realWorldConnection": "Chercher des nombres en sortant, dans les magasins"
+  },
+  {
+    "lessonNumber": 19,
+    "title": "Histoires de nombres créatives",
+    "oneGoal": "Les élèves inventent et partagent des histoires mettant en vedette les nombres",
+    "keyVocabulary": [],
+    "decisionPoints": [
+      "Les élèves sont-ils à l'aise pour créer des histoires?",
+      "Ont-ils besoin d'amorces d'histoire?",
+      "Peuvent-ils intégrer les nombres naturellement?"
+    ],
+    "progression": "Extension: Développe la créativité narrative en intégrant les concepts numériques",
+    "realWorldConnection": "Raconter des histoires à la famille impliquant des nombres"
+  },
+  {
+    "lessonNumber": 20,
+    "title": "Célébration des mathématiques",
+    "oneGoal": "Les élèves célèbrent leurs apprentissages et partagent leurs réussites en mathématiques",
+    "keyVocabulary": [],
+    "decisionPoints": [
+      "Les élèves sont-ils fiers de leurs progrès?",
+      "Veulent-ils partager avec d'autres classes?",
+      "Comment peuvent-ils célébrer de façon significative?"
+    ],
+    "progression": "Extension: Consolide l'unité par la célébration et le partage des apprentissages",
+    "realWorldConnection": "Partager ses connaissances mathématiques avec la famille et les amis"
+  }
+]

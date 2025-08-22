@@ -1,0 +1,551 @@
+{
+  "unitPlan": {
+    "title": "Matériaux de notre environnement",
+    "bigIdeas": "Distinguer les caractéristiques des objets selon leurs matériaux et comprendre l'utilisation des matériaux dans notre environnement",
+    "totalLessons": 20,
+    "coreCount": 14,
+    "extensionCount": 6
+  },
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "title": "Qu'est-ce qu'un matériau?",
+      "oneGoal": "Students will understand that materials are things used to make objects and identify common materials in their classroom",
+      "keyVocabulary": ["matériau", "objet", "regarder"],
+      "decisionPoints": [
+        {
+          "question": "What classroom objects can students safely touch and examine?",
+          "guidance": "If many safe objects: Create exploration stations. If limited options: Use shared demonstration with careful handling."
+        },
+        {
+          "question": "Should we start with familiar items like desks and books?",
+          "guidance": "If students engaged with familiar items: Branch to less familiar objects. If disinterested: Add mystery box element."
+        },
+        {
+          "question": "Are students ready for basic material identification activities?",
+          "guidance": "If ready: Introduce simple sorting. If overwhelmed: Focus on observation and touching only."
+        }
+      ],
+      "opening": "Circle time (5 min): Hold up pencil, ask 'De quoi est fait ce crayon?' Touch different parts (wood, metal, rubber). Say 'Tout est fait de matériaux!' Introduce word 'matériau' with gestures.",
+      "mainActivity": "Material detective hunt (30 min): In pairs, students explore classroom with clipboards. Touch and examine desks, books, chairs, crayons. Draw objects and circle what they think each is made from (picture cards provided: wood, plastic, metal, cloth). Create class 'material map' of classroom discoveries. Practice vocabulary: 'Cet objet est fait de...'",
+      "closing": "Science circle (10 min): Students share one interesting discovery. Teacher records on class chart. End with materials chant: 'Matériaux, matériaux, tout autour de nous!'",
+      "materials": ["Clipboards", "Object exploration sheets", "Picture cards of materials", "Class chart paper", "Various classroom objects"],
+      "whenThingsGoWrong": "If students get distracted touching everything: Use 'scientist focus' signal and limit to 3 objects per pair. If difficulty identifying materials: Start with obvious examples (wooden ruler, plastic bottle).",
+      "realWorldConnection": "Students recognize that everything they use is made from materials",
+      "visualSupports": "Material picture cards, exploration checklist with images, hand gestures for 'made from'"
+    },
+    {
+      "lessonNumber": 2,
+      "title": "Découvrir le bois",
+      "oneGoal": "Students will identify wood as a natural material and explore objects made from wood",
+      "keyVocabulary": ["bois", "arbre", "dur"],
+      "decisionPoints": [
+        {
+          "question": "Which wooden objects in our classroom are safe for student handling?",
+          "guidance": "If many wooden items: Create wood exploration center. If few items: Bring in additional safe wood samples."
+        },
+        {
+          "question": "Should we bring in tree branches or use wooden classroom items?",
+          "guidance": "If branches available: Use for tree connection. If not available: Use photos and focus on processed wood items."
+        },
+        {
+          "question": "Are students ready for texture exploration activities?",
+          "guidance": "If ready: Add feeling vocabulary. If hesitant: Start with visual observation only."
+        }
+      ],
+      "opening": "Story circle (5 min): Show picture of tree, then wooden chair. Ask 'Comment l'arbre devient une chaise?' Simple explanation that wood comes from trees. Touch classroom wooden items together.",
+      "mainActivity": "Wood investigation (30 min): Students receive wooden objects (rulers, blocks, spoons). Feel texture, smell, tap to hear sound. Use magnifying glasses to see wood grain. Compare different wood types if available. Create 'Wood Detective' sheets: draw what wood looks like, feels like, sounds like. Sort classroom objects: 'Made from wood' vs 'Not made from wood.'",
+      "closing": "Wood appreciation (10 min): Students share their favorite wooden object and why. Discuss how trees give us wood. Say thank you to trees for giving us materials.",
+      "materials": ["Wooden objects (rulers, blocks, spoons)", "Magnifying glasses", "Wood detective sheets", "Pictures of trees", "Sorting mats"],
+      "whenThingsGoWrong": "If students want to bite/taste wood: Redirect to safe sensory exploration (feeling, smelling). If overwhelmed by wood grain patterns: Focus on one simple characteristic at a time.",
+      "realWorldConnection": "Students connect wooden furniture and toys to living trees",
+      "visualSupports": "Tree-to-wood picture sequence, texture vocabulary cards, wood grain close-up photos"
+    },
+    {
+      "lessonNumber": 3,
+      "title": "Explorer les propriétés du bois",
+      "oneGoal": "Students will explore wood's properties: hard, rough, brown colors, and that it comes from living trees",
+      "keyVocabulary": ["propriétés", "rugueux", "naturel"],
+      "decisionPoints": [
+        {
+          "question": "What safe materials can demonstrate wood's hardness?",
+          "guidance": "If hard materials available: Compare wood to foam, fabric. If limited: Use verbal descriptions with touching."
+        },
+        {
+          "question": "Should we use different wood types or focus on one type?",
+          "guidance": "If multiple types: Show variety. If one type: Focus on detailed observation of single wood sample."
+        },
+        {
+          "question": "Are students ready for property comparison activities?",
+          "guidance": "If ready: Add comparison charts. If struggling: Focus on describing one property at a time."
+        }
+      ],
+      "opening": "Property investigation (5 min): Pass around wood sample. Everyone touches and says one word describing how it feels. Introduce 'propriétés' - special things about materials.",
+      "mainActivity": "Wood property stations (30 min): Station 1: Feel different wood textures (rough bark, smooth sanded wood). Station 2: Compare wood hardness by gently pressing fingernails. Station 3: Examine wood colors and patterns. Station 4: Compare wood to other materials (foam, fabric, plastic). Students record observations with pictures and words. Create class 'Wood Properties' poster.",
+      "closing": "Property sharing (10 min): Each student shares one wood property they discovered. Practice vocabulary: 'Le bois est...' Make connections to why wood is good for furniture (hard, strong).",
+      "materials": ["Various wood samples", "Magnifying glasses", "Property recording sheets", "Comparison materials (foam, fabric)", "Class poster paper"],
+      "whenThingsGoWrong": "If students press too hard testing hardness: Demonstrate gentle touching. If can't feel texture differences: Guide hand-over-hand exploration.",
+      "realWorldConnection": "Students understand why wood is chosen for making strong, lasting objects",
+      "visualSupports": "Property vocabulary cards with pictures, comparison charts, close-up texture photos"
+    },
+    {
+      "lessonNumber": 4,
+      "title": "Qu'est-ce que le plastique?",
+      "oneGoal": "Students will identify plastic as a human-made material and explore common plastic objects",
+      "keyVocabulary": ["plastique", "fait", "léger"],
+      "decisionPoints": [
+        {
+          "question": "Which plastic items are safe and appropriate for Grade 1 exploration?",
+          "guidance": "If many safe items: Create plastic exploration center. If limited: Use classroom supplies like pencil cases, containers."
+        },
+        {
+          "question": "Should we focus on containers, toys, or school supplies?",
+          "guidance": "If diverse items available: Use variety. If limited: Focus on one category but show pictures of others."
+        },
+        {
+          "question": "Are students ready to distinguish human-made from natural materials?",
+          "guidance": "If ready: Introduce 'made by people' concept. If confusing: Focus on plastic properties first."
+        }
+      ],
+      "opening": "Plastic discovery (5 min): Show water bottle and wooden block. Ask 'Quelle est la différence?' Pass both around. Introduce that plastic is 'fait par les humains' while wood comes from trees.",
+      "mainActivity": "Plastic exploration (30 min): Students examine plastic items: bottles, containers, toys, rulers. Notice that plastic is lighter than wood, smoother, often colorful. Try bending flexible plastic items safely. Use plastic detective sheets to record: color, flexibility, weight, sound when tapped. Sort classroom objects: 'Made from plastic' vs 'Made from wood' vs 'Made from other materials.'",
+      "closing": "Plastic vs Wood comparison (10 min): Create simple class chart comparing plastic and wood. Students contribute observations. Discuss how people invented plastic to make things lighter and colorful.",
+      "materials": ["Various safe plastic items", "Plastic detective sheets", "Sorting mats", "Comparison chart", "Scale for weight comparison"],
+      "whenThingsGoWrong": "If students bend plastic too hard: Show safe bending limits. If overwhelmed by sorting: Start with just plastic vs non-plastic.",
+      "realWorldConnection": "Students recognize plastic items they use daily and understand these are made by people",
+      "visualSupports": "Human-made vs natural picture cards, weight comparison visuals, flexibility demonstration photos"
+    },
+    {
+      "lessonNumber": 5,
+      "title": "Propriétés du plastique",
+      "oneGoal": "Students will explore plastic's properties: smooth, light, colorful, and that it's made by people",
+      "keyVocabulary": ["lisse", "coloré", "humains"],
+      "decisionPoints": [
+        {
+          "question": "What activities best demonstrate plastic's lightweight property?",
+          "guidance": "If balance scale available: Use for weight comparison. If not: Use 'lifting' comparisons with hands."
+        },
+        {
+          "question": "Should we compare different plastic textures or focus on common characteristics?",
+          "guidance": "If varied textures: Show smooth vs textured plastic. If similar items: Focus on plastic vs other materials."
+        },
+        {
+          "question": "Are students ready for human-made vs. natural material discussions?",
+          "guidance": "If ready: Expand discussion. If confusing: Keep focus on observable properties."
+        }
+      ],
+      "opening": "Property comparison (5 min): Give each pair one wood piece and one plastic piece. Have them compare weight, texture, and appearance. Introduce vocabulary: 'lisse' (smooth), 'coloré' (colorful).",
+      "mainActivity": "Plastic property investigation (30 min): Station 1: Weight comparison using simple balance or lifting different materials. Station 2: Texture exploration - feel smooth plastic vs rough wood. Station 3: Color investigation - sort plastic items by color, notice bright options. Station 4: Flexibility test - carefully bend plastic items, compare to rigid wood. Record findings on property comparison charts.",
+      "closing": "Human-made discussion (10 min): Talk about how people created plastic in factories to make things that wood couldn't do (waterproof, light, many colors). Show appreciation for human creativity.",
+      "materials": ["Balance scale or similar", "Various plastic and wood samples", "Property charts", "Colored plastic items", "Flexible plastic samples"],
+      "whenThingsGoWrong": "If balance scale tips too quickly: Use lighter objects or demonstrate teacher-guided. If students confused about 'human-made': Use simple 'people made this' language.",
+      "realWorldConnection": "Students appreciate human innovation in creating materials with specific properties",
+      "visualSupports": "Property comparison charts, factory/manufacturing pictures, smooth vs rough texture cards"
+    },
+    {
+      "lessonNumber": 6,
+      "title": "Découvrir le métal",
+      "oneGoal": "Students will identify metal as a shiny, hard material and explore safe metal objects",
+      "keyVocabulary": ["métal", "brillant", "froid"],
+      "decisionPoints": [
+        {
+          "question": "Which metal objects are safe for young students to handle?",
+          "guidance": "If many safe items: Use spoons, coins, keys. If limited: Focus on one type but show pictures of others."
+        },
+        {
+          "question": "Should we use spoons, coins, or classroom metal items?",
+          "guidance": "If spoons available: Great for safe handling. If coins: Ensure cleanliness. If classroom items: Check for sharp edges."
+        },
+        {
+          "question": "Are students ready for temperature exploration (cold feeling)?",
+          "guidance": "If interested: Compare metal to room temperature materials. If sensitive: Focus on visual and sound properties."
+        }
+      ],
+      "opening": "Metal introduction (5 min): Tap metal spoon against wooden block. Students notice different sounds. Look at spoon in light to see it's shiny ('brillant'). Pass spoon around to feel coolness.",
+      "mainActivity": "Metal exploration (30 min): Students examine safe metal objects: spoons, safe scissors, metal rulers, coins. Notice shininess by reflecting light. Feel temperature difference from plastic and wood. Listen to sound when tapped. Use magnifying glasses to see smooth, shiny surface. Create 'Metal Detective' observations: What does metal look like? Sound like? Feel like?",
+      "closing": "Metal sound orchestra (10 min): Each student gets metal object to gently tap. Create class rhythm. Discuss how metal's hardness makes clear, ringing sounds unlike wood or plastic.",
+      "materials": ["Metal spoons", "Safe metal objects", "Magnifying glasses", "Flashlight for shine demonstration", "Detection sheets"],
+      "whenThingsGoWrong": "If students tap too loudly: Model gentle tapping for 'scientist listening.' If objects feel too cold: Acknowledge sensation and explain this is normal for metal.",
+      "realWorldConnection": "Students connect metal's properties to its uses in kitchen tools and outdoor equipment",
+      "visualSupports": "Shine demonstration with light, sound wave pictures, temperature comparison charts"
+    },
+    {
+      "lessonNumber": 7,
+      "title": "Propriétés du métal",
+      "oneGoal": "Students will explore metal's properties: shiny, hard, cold, and that it can be shaped by people",
+      "keyVocabulary": ["forme", "chaud", "façonner"],
+      "decisionPoints": [
+        {
+          "question": "How can we safely demonstrate metal's cold feeling?",
+          "guidance": "If comfortable: Use room temperature comparisons. If too cold: Focus on visual and sound properties."
+        },
+        {
+          "question": "Should we show metal being heated or focus on room temperature properties?",
+          "guidance": "If heating possible: Show warm (not hot) metal safely. If not possible: Use before/after pictures of shaped metal."
+        },
+        {
+          "question": "Are students ready for discussions about metal being shaped?",
+          "guidance": "If ready: Show different metal shapes. If complex: Focus on observable properties first."
+        }
+      ],
+      "opening": "Property exploration setup (5 min): Place metal, wood, plastic, and fabric samples in sunlight or under lamp. Have students predict which will feel different after a few minutes.",
+      "mainActivity": "Metal property stations (30 min): Station 1: Temperature - compare metal objects to other materials, notice metal feels cooler. Station 2: Hardness - gently try to bend/press different materials, notice metal's strength. Station 3: Shine - use flashlights to see how metal reflects light differently. Station 4: Shape variety - examine different metal shapes (spoons, coins, paper clips) to see how metal can be formed. Record observations on comparison charts.",
+      "closing": "Shaping discussion (10 min): Show pictures of people making metal objects (blacksmith, factory). Explain that when metal gets very hot, people can shape it. Demonstrate with play dough analogy for shaping concept.",
+      "materials": ["Various metal objects", "Flashlights", "Comparison materials", "Pictures of metalworking", "Recording charts"],
+      "whenThingsGoWrong": "If temperature differences not obvious: Use verbal description and focus on other properties. If shaping concept confusing: Keep focus on 'people can change metal's shape.'",
+      "realWorldConnection": "Students understand why metal is chosen for tools and objects that need to be strong and shiny",
+      "visualSupports": "Metalworking pictures, property comparison charts, before/after metal shaping photos"
+    },
+    {
+      "lessonNumber": 8,
+      "title": "Découvrir les tissus",
+      "oneGoal": "Students will identify fabric/cloth as a soft, flexible material and explore different fabric types",
+      "keyVocabulary": ["tissu", "doux", "souple"],
+      "decisionPoints": [
+        {
+          "question": "Which fabric samples are safe and engaging for student exploration?",
+          "guidance": "If fabric squares available: Use variety of textures. If limited: Use clothing items or classroom fabric items."
+        },
+        {
+          "question": "Should we use clothing items or fabric squares?",
+          "guidance": "If fabric squares: Easier handling and comparison. If clothing: More relatable but harder to compare."
+        },
+        {
+          "question": "Are students ready for texture variety activities?",
+          "guidance": "If ready: Introduce rough vs smooth fabric. If overwhelming: Focus on basic soft feeling first."
+        }
+      ],
+      "opening": "Fabric introduction (5 min): Hold up piece of fabric and metal spoon. Let students feel both. Ask 'Quelle est la différence?' Introduce 'tissu' and 'doux' vocabulary. Show how fabric bends and flows.",
+      "mainActivity": "Fabric exploration (30 min): Students examine different fabric samples: cotton, denim, silk-like, fleece, burlap. Feel softness, flexibility by gently stretching. Notice that fabric can be thick or thin, smooth or bumpy. Look at weave patterns with magnifying glasses. Sort fabrics by texture: 'très doux' vs 'un peu rugueux.' Practice folding and unfolding to show flexibility.",
+      "closing": "Fabric fashion show (10 min): Students choose favorite fabric sample and describe why they like it: 'Ce tissu est doux' or 'Ce tissu est coloré.' Discuss how fabric is perfect for clothes because it's soft and moves with our bodies.",
+      "materials": ["Variety of fabric samples", "Magnifying glasses", "Sorting mats", "Texture vocabulary cards", "Comparison materials"],
+      "whenThingsGoWrong": "If students want to unravel fabric: Provide pre-frayed samples for exploration. If texture too rough: Focus on softer samples first.",
+      "realWorldConnection": "Students connect fabric properties to comfortable clothing and soft home items",
+      "visualSupports": "Texture vocabulary cards, fabric weave close-ups, flexibility demonstration photos"
+    },
+    {
+      "lessonNumber": 9,
+      "title": "Propriétés des tissus",
+      "oneGoal": "Students will explore fabric properties: soft, flexible, can be thick or thin, and often comes from plants or animals",
+      "keyVocabulary": ["flexible", "épais", "mince"],
+      "decisionPoints": [
+        {
+          "question": "How can we demonstrate fabric flexibility safely?",
+          "guidance": "If fabric stretches: Show gentle stretching. If doesn't stretch: Focus on bending and folding properties."
+        },
+        {
+          "question": "Should we introduce plant/animal origins or focus on physical properties?",
+          "guidance": "If ready for origins: Show cotton plant, sheep pictures. If complex: Keep focus on observable properties."
+        },
+        {
+          "question": "Are students ready for thickness comparison activities?",
+          "guidance": "If ready: Use layering comparisons. If struggling: Use simple thick vs thin language."
+        }
+      ],
+      "opening": "Flexibility demonstration (5 min): Compare trying to bend metal ruler vs fabric. Show how fabric folds, twists, and moves. Introduce 'flexible' and 'souple' vocabulary with body movements.",
+      "mainActivity": "Fabric property investigation (30 min): Station 1: Flexibility - safely fold, twist, and scrunch different fabrics. Station 2: Thickness - layer fabrics to see thick vs thin, hold up to light. Station 3: Origin exploration - look at cotton balls and discuss how some fabric comes from plants, show sheep picture for wool. Station 4: Texture variety - feel rough burlap vs smooth cotton, arrange from softest to roughest.",
+      "closing": "Fabric origins appreciation (10 min): Simple discussion about how plants like cotton and animals like sheep help give us fabric. Practice saying 'Merci les plantes! Merci les animaux!' Thank nature for providing materials.",
+      "materials": ["Various fabric samples", "Cotton balls", "Pictures of sheep and cotton plants", "Layering sheets", "Texture sorting mats"],
+      "whenThingsGoWrong": "If origin concept confusing: Keep simple with 'some fabric comes from nature.' If too many textures overwhelming: Focus on 3 main types.",
+      "realWorldConnection": "Students understand that fabric connects us to plants and animals, and appreciate comfortable clothing",
+      "visualSupports": "Plant and animal origin pictures, thickness comparison charts, flexibility movement cards"
+    },
+    {
+      "lessonNumber": 10,
+      "title": "Comparons les quatre matériaux",
+      "oneGoal": "Students will compare and contrast the properties of wood, plastic, metal, and fabric through hands-on exploration",
+      "keyVocabulary": ["comparer", "différent", "pareil"],
+      "decisionPoints": [
+        {
+          "question": "Which properties are most important for students to compare?",
+          "guidance": "If understanding all properties: Use comprehensive comparison. If overwhelming: Focus on 2-3 main differences."
+        },
+        {
+          "question": "Should we use sorting activities or side-by-side comparisons?",
+          "guidance": "If ready for sorting: Create material sorting game. If need direct comparison: Use side-by-side exploration."
+        },
+        {
+          "question": "Are students ready for property chart creation?",
+          "guidance": "If ready: Create class comparison chart. If too complex: Use simple 'same/different' discussions."
+        }
+      ],
+      "opening": "Material review (5 min): Show samples of wood, plastic, metal, fabric. Students name each material and share one property they remember. Practice 'comparer' vocabulary.",
+      "mainActivity": "Great material comparison (30 min): Students receive one sample of each material. Create comparison chart with pictures and words: Which is hardest? Softest? Shiniest? Most flexible? Which comes from nature? Made by people? Use sorting activities: group by hardness, flexibility, origin. Play 'Material Mystery' - describe properties while others guess the material.",
+      "closing": "Material experts (10 min): Students present their comparison findings. Create class 'Material Expert' chart. Celebrate that they now know about four important materials and their special properties.",
+      "materials": ["Sample sets of all four materials", "Comparison chart templates", "Property vocabulary cards", "Sorting mats", "Class expert chart"],
+      "whenThingsGoWrong": "If comparisons too complex: Focus on one property at a time. If students disagree on properties: Acknowledge that materials can vary and that's okay.",
+      "realWorldConnection": "Students can now explain why different materials are chosen for different objects",
+      "visualSupports": "Comparison chart templates, property vocabulary visuals, expert badge designs"
+    },
+    {
+      "lessonNumber": 11,
+      "title": "Tester la résistance",
+      "oneGoal": "Students will conduct simple tests to compare how strong different materials are",
+      "keyVocabulary": ["tester", "fort", "casser"],
+      "decisionPoints": [
+        {
+          "question": "What safe strength tests are appropriate for Grade 1 students?",
+          "guidance": "If safe materials: Use gentle bending tests. If concern about breaking: Focus on gentle pressure tests."
+        },
+        {
+          "question": "Should we test tearing, bending, or dropping resistance?",
+          "guidance": "If fabric available: Test gentle tearing. If rigid materials: Focus on bending resistance."
+        },
+        {
+          "question": "Are students ready for prediction and observation activities?",
+          "guidance": "If ready: Add hypothesis making. If new to predictions: Focus on 'What do you think will happen?'"
+        }
+      ],
+      "opening": "Strength demonstration (5 min): Show students paper and cardboard. Gently try to bend both. Ask 'Lequel est plus fort?' Introduce that we can test how strong materials are.",
+      "mainActivity": "Material strength lab (30 min): Station 1: Gentle bending test - try to carefully bend thin wood, plastic strips, fabric. Station 2: Pressure test - gently press materials and see which keep their shape. Station 3: Gentle tearing - test if thin fabric or paper tears easily (thick fabric doesn't). Station 4: Prediction station - predict material strength before testing. Record observations: 'Le métal est très fort' vs 'Le tissu se déchire facilement.'",
+      "closing": "Strength ranking (10 min): As class, rank materials from strongest to least strong. Discuss why strong materials are used for buildings and tools, softer materials for clothes and comfort.",
+      "materials": ["Thin safe samples for testing", "Prediction sheets", "Observation recording charts", "Strength ranking template", "Safety guidelines poster"],
+      "whenThingsGoWrong": "If students test too vigorously: Model gentle 'scientist testing.' If materials break unexpectedly: Use as learning opportunity about material limits.",
+      "realWorldConnection": "Students understand why engineers choose strong materials for structures and softer ones for comfort",
+      "visualSupports": "Testing procedure pictures, strength vocabulary cards, prediction recording sheets"
+    },
+    {
+      "lessonNumber": 12,
+      "title": "Tester la résistance à l'eau",
+      "oneGoal": "Students will test how different materials react to water to understand waterproof properties",
+      "keyVocabulary": ["eau", "mouiller", "sec"],
+      "decisionPoints": [
+        {
+          "question": "How can we safely test water resistance with young students?",
+          "guidance": "If dropper available: Use controlled drops. If not: Use damp sponge touching method."
+        },
+        {
+          "question": "Should we use droppers, spray bottles, or small containers?",
+          "guidance": "If fine motor ready: Use droppers. If easier handling needed: Use small containers for dipping."
+        },
+        {
+          "question": "Are students ready for waterproof vs. absorbent discussions?",
+          "guidance": "If ready: Introduce vocabulary. If complex: Focus on 'water stays on top' vs 'water goes in.'"
+        }
+      ],
+      "opening": "Water prediction (5 min): Show samples of each material and cup of water. Ask students to predict what will happen when water touches each material. Introduce 'mouiller' vocabulary.",
+      "mainActivity": "Water resistance laboratory (30 min): Station 1: Drop test - place small drops of water on each material, observe what happens. Station 2: Dip test - briefly dip material edges in water, see which absorb. Station 3: Time observation - watch how water behaves on different materials over time. Station 4: Recording - draw and write observations about which materials water 'likes' and which it 'slides off.' Use vocabulary: 'L'eau reste sur le plastique' vs 'Le tissu absorbe l'eau.'",
+      "closing": "Waterproof discussion (10 min): Discuss why raincoats are plastic or special fabric, why umbrellas repel water, why towels absorb water. Connect material properties to their uses in wet conditions.",
+      "materials": ["Water in small containers", "Droppers or small spoons", "Material samples", "Towels for cleanup", "Observation sheets"],
+      "whenThingsGoWrong": "If water spills: Use as learning opportunity about absorbent materials. If results unclear: Repeat test with teacher guidance.",
+      "realWorldConnection": "Students understand why different materials are chosen for rainy day items vs items meant to dry things",
+      "visualSupports": "Water behavior pictures, waterproof vs absorbent vocabulary cards, rain gear examples"
+    },
+    {
+      "lessonNumber": 13,
+      "title": "Les matériaux et leurs usages",
+      "oneGoal": "Students will match materials to their common uses based on their properties",
+      "keyVocabulary": ["usage", "utiliser", "pourquoi"],
+      "decisionPoints": [
+        {
+          "question": "Which material uses are most familiar to Grade 1 students?",
+          "guidance": "If familiar with many uses: Create comprehensive matching game. If limited experience: Focus on home and school items."
+        },
+        {
+          "question": "Should we focus on home items, school items, or outdoor items?",
+          "guidance": "If broad interest: Mix categories. If easier understanding: Start with one familiar category."
+        },
+        {
+          "question": "Are students ready for property-to-use connection activities?",
+          "guidance": "If ready: Explain why materials are chosen. If complex: Focus on 'good for' language."
+        }
+      ],
+      "opening": "Usage thinking (5 min): Hold up metal spoon and ask 'Pourquoi est-ce fait de métal?' Guide discussion to metal being hard, easy to clean. Introduce that people choose materials for specific reasons.",
+      "mainActivity": "Material-use matching (30 min): Station 1: Kitchen items - match materials to kitchen tools (metal spoons, plastic containers, fabric towels). Station 2: Clothing - discuss why clothes are fabric (soft, flexible). Station 3: Building items - why wood for furniture (strong, from nature). Station 4: School supplies - analyze pencils (wood, metal, plastic parts), books (paper from trees). Create 'Perfect Match' charts showing material + property + use.",
+      "closing": "Smart choices discussion (10 min): Students share one 'smart material choice' they discovered. Praise people for being clever about choosing the right material for each job. Practice: 'On utilise le métal pour... parce que...'",
+      "materials": ["Various common objects", "Material-use matching cards", "Property reminder charts", "Perfect match templates", "Real object examples"],
+      "whenThingsGoWrong": "If connections too complex: Focus on obvious examples (metal = strong for tools). If overwhelmed by choices: Limit to 2-3 clear examples per material.",
+      "realWorldConnection": "Students appreciate human cleverness in choosing appropriate materials for different purposes",
+      "visualSupports": "Material-use matching pictures, property-purpose connection charts, real object examples"
+    },
+    {
+      "lessonNumber": 14,
+      "title": "Notre musée des matériaux",
+      "oneGoal": "Students will create a class museum displaying objects organized by material type with labels",
+      "keyVocabulary": ["musée", "collection", "étiquette"],
+      "decisionPoints": [
+        {
+          "question": "How should students organize their material collections?",
+          "guidance": "If space allows: Create 4 material sections. If limited space: Use table displays with clear sections."
+        },
+        {
+          "question": "Should we include drawings, photos, or actual objects?",
+          "guidance": "If objects available: Use real items for authenticity. If limited objects: Combine real items with student drawings."
+        },
+        {
+          "question": "Are students ready for museum creation and labeling activities?",
+          "guidance": "If ready: Include property descriptions. If early writing: Use picture labels with simple words."
+        }
+      ],
+      "opening": "Museum introduction (5 min): Show picture of real museum. Explain that museums help people learn by organizing and showing interesting things. Announce that students will create a material museum.",
+      "mainActivity": "Museum creation (35 min): Students work in material teams (wood, plastic, metal, fabric). Collect and arrange objects from their material. Create labels with material name and properties. Design attractive displays with objects and information. Practice being 'museum guides' - explaining their material to visitors. Add 'Did you know?' facts about each material. Set up museum with clear pathways for viewing.",
+      "closing": "Museum opening (5 min): Brief 'grand opening' where students walk through and appreciate all materials. Discuss how organizing helps us understand and compare materials better.",
+      "materials": ["Collection objects for each material", "Label-making supplies", "Display tables or areas", "Museum guide badges", "Fact cards for materials"],
+      "whenThingsGoWrong": "If students disagree about object placement: Discuss materials that combine multiple types. If labeling difficult: Use picture labels with minimal words.",
+      "realWorldConnection": "Students experience how museums organize information to help people learn",
+      "visualSupports": "Museum layout examples, label templates, 'Did you know?' fact cards"
+    },
+    {
+      "lessonNumber": 15,
+      "title": "Recyclage des matériaux",
+      "oneGoal": "Students will understand that some materials can be used again and explore simple recycling concepts (extension)",
+      "keyVocabulary": ["recycler", "réutiliser", "protéger"],
+      "decisionPoints": [
+        {
+          "question": "Which recycling concepts are most appropriate for Grade 1?",
+          "guidance": "If familiar with recycling: Expand to material-specific recycling. If new concept: Focus on 'using again' idea."
+        },
+        {
+          "question": "Should we focus on school recycling or home recycling?",
+          "guidance": "If school has programs: Connect to familiar systems. If home focused: Use examples from student experience."
+        },
+        {
+          "question": "Are students ready for environmental protection discussions?",
+          "guidance": "If ready: Introduce helping Earth concept. If complex: Focus on 'using things again is smart.'"
+        }
+      ],
+      "opening": "Recycling discovery (5 min): Show plastic bottle, ask 'What happens when we're done with this?' Introduce that some materials can be made into new things instead of being thrown away.",
+      "mainActivity": "Recycling exploration (30 min): Station 1: Sorting practice - separate materials that can be recycled. Station 2: Reuse ideas - brainstorm new uses for containers, fabric scraps. Station 3: Recycling journey - follow pictures showing how plastic bottles become new products. Station 4: Environmental helpers - discuss how recycling helps protect trees and animals. Create 'Recycling Heroes' badges for students.",
+      "closing": "Earth helpers (10 min): Students share one way they can help by reusing or recycling materials. Practice: 'Je peux réutiliser...' Make commitment to be material recycling helpers.",
+      "materials": ["Recyclable material examples", "Sorting bins", "Recycling journey pictures", "Reuse idea charts", "Earth helper badges"],
+      "whenThingsGoWrong": "If recycling rules confusing: Focus on general 'use again' concept. If overwhelmed by environmental impact: Keep positive focus on helping.",
+      "realWorldConnection": "Students connect to family recycling practices and understand their role in environmental care",
+      "visualSupports": "Recycling symbol pictures, material sorting charts, environmental protection images"
+    },
+    {
+      "lessonNumber": 16,
+      "title": "Inventer avec des matériaux",
+      "oneGoal": "Students will design and create simple objects using different materials for specific purposes (extension)",
+      "keyVocabulary": ["inventer", "créer", "but"],
+      "decisionPoints": [
+        {
+          "question": "What creation activities are safe and manageable for Grade 1?",
+          "guidance": "If many supplies: Allow free creation. If limited: Provide structured project options."
+        },
+        {
+          "question": "Should students work individually or in small groups?",
+          "guidance": "If collaborative skills ready: Use pairs. If individual focus better: Allow solo creation with sharing."
+        },
+        {
+          "question": "Are students ready for design thinking and problem-solving activities?",
+          "guidance": "If ready: Present problems to solve. If early: Focus on creative exploration."
+        }
+      ],
+      "opening": "Inventor introduction (5 min): Discuss how inventors use different materials to create new things. Challenge: 'Today you are inventors! What will you create?'",
+      "mainActivity": "Materials invention lab (30 min): Students receive variety of safe materials (cardboard, fabric scraps, safe plastic containers, craft sticks). Design and create useful objects: containers, toys, art pieces. Consider which materials work best for their purpose. Explain choices: 'I used fabric because...' or 'I chose plastic because...' Test their inventions and make improvements.",
+      "closing": "Inventor showcase (10 min): Students present their inventions, explaining material choices. Celebrate creative thinking and problem-solving. Award 'Young Inventor' certificates.",
+      "materials": ["Variety of safe crafting materials", "Design planning sheets", "Assembly supplies (safe tape, glue)", "Inventor certificates", "Testing area"],
+      "whenThingsGoWrong": "If creations don't work: Focus on learning process over perfect results. If material disputes: Emphasize sharing and collaboration.",
+      "realWorldConnection": "Students experience the design process and understand how inventors choose materials",
+      "visualSupports": "Inventor process charts, material choice guides, design thinking steps"
+    },
+    {
+      "lessonNumber": 17,
+      "title": "Matériaux dans la nature",
+      "oneGoal": "Students will explore natural materials found outdoors and compare them to human-made materials (extension)",
+      "keyVocabulary": ["nature", "trouver", "extérieur"],
+      "decisionPoints": [
+        {
+          "question": "Which natural materials are safe for students to collect?",
+          "guidance": "If outdoor access: Collect leaves, smooth stones, sticks. If indoor: Use pre-collected natural materials."
+        },
+        {
+          "question": "Should we explore rocks, leaves, or shells?",
+          "guidance": "If local materials available: Use what's accessible. If variety possible: Explore multiple types."
+        },
+        {
+          "question": "Are students ready for natural vs. human-made classification?",
+          "guidance": "If ready: Create clear sorting activities. If challenging: Focus on 'from nature' concept."
+        }
+      ],
+      "opening": "Nature materials hunt (5 min): Show natural materials (stone, stick, leaf) next to human-made (plastic, metal). Discuss how nature provides materials too.",
+      "mainActivity": "Natural materials exploration (30 min): Outdoor collection (if possible) or examination of pre-collected natural materials. Students explore: stones (hard like metal), wood pieces (from trees), leaves (flexible like some fabric), shells (hard and smooth). Compare natural materials to manufactured ones. Create 'Nature's Materials' collection with observations about properties.",
+      "closing": "Nature appreciation (10 min): Discuss how people learned from nature to create materials. Thank nature for providing materials. Share favorite natural material discoveries.",
+      "materials": ["Collection containers", "Natural material samples", "Magnifying glasses", "Comparison charts", "Nature appreciation badges"],
+      "whenThingsGoWrong": "If weather prevents outdoor exploration: Use pre-collected samples and nature pictures. If students want to keep everything: Set limits on collection size.",
+      "realWorldConnection": "Students appreciate that nature provides many materials that inspire human-made versions",
+      "visualSupports": "Natural vs human-made comparison charts, nature collection pictures, outdoor exploration guides"
+    },
+    {
+      "lessonNumber": 18,
+      "title": "Matériaux et les saisons",
+      "oneGoal": "Students will investigate how weather and seasons affect different materials (extension)",
+      "keyVocabulary": ["saison", "temps", "affecter"],
+      "decisionPoints": [
+        {
+          "question": "Which seasonal effects on materials are observable to students?",
+          "guidance": "If current season obvious: Focus on present effects. If subtle changes: Use before/after pictures."
+        },
+        {
+          "question": "Should we focus on temperature, moisture, or sunlight effects?",
+          "guidance": "If multiple factors observable: Explore variety. If one clear effect: Focus on most obvious changes."
+        },
+        {
+          "question": "Are students ready for cause-and-effect discussions?",
+          "guidance": "If ready: Explain why weather affects materials. If complex: Focus on 'this happens when...'"
+        }
+      ],
+      "opening": "Seasonal materials thinking (5 min): Ask students what materials they see more in winter (fabric coats) vs summer (plastic sunglasses). Introduce how seasons affect our material choices.",
+      "mainActivity": "Seasonal materials investigation (30 min): Station 1: Temperature effects - examine how materials feel different in cold vs warm conditions. Station 2: Moisture effects - observe how materials react to rain/snow simulation. Station 3: Sunlight effects - see how some materials fade or warm in sunlight. Station 4: Seasonal clothing - explore why different materials are worn in different seasons.",
+      "closing": "Smart seasonal choices (10 min): Discuss how people choose different materials for different seasons. Students share seasonal material preferences and why.",
+      "materials": ["Material samples for testing", "Temperature simulation materials", "Spray bottles for moisture", "Seasonal clothing examples", "Effect observation sheets"],
+      "whenThingsGoWrong": "If seasonal effects not obvious: Use pictures and descriptions of seasonal changes. If too many variables: Focus on one clear seasonal effect.",
+      "realWorldConnection": "Students understand why clothing and equipment change with seasons",
+      "visualSupports": "Seasonal materials pictures, weather effect charts, clothing season examples"
+    },
+    {
+      "lessonNumber": 19,
+      "title": "Présentation d'experts en matériaux",
+      "oneGoal": "Students will present their material discoveries to others using scientific vocabulary and evidence (extension)",
+      "keyVocabulary": ["présenter", "expert", "expliquer"],
+      "decisionPoints": [
+        {
+          "question": "What presentation format works best for Grade 1 students?",
+          "guidance": "If confident speakers: Allow individual presentations. If support needed: Use paired or small group presentations."
+        },
+        {
+          "question": "Should students present individually or in groups?",
+          "guidance": "If collaborative skills strong: Use group presentations. If individual recognition important: Allow solo presentations."
+        },
+        {
+          "question": "Are students ready for Q&A sessions about their learning?",
+          "guidance": "If ready: Include audience questions. If overwhelming: Focus on prepared presentations only."
+        }
+      ],
+      "opening": "Expert preparation (5 min): Remind students they are now material experts! They will share their knowledge with others. Practice expert vocabulary and confident presentation voices.",
+      "mainActivity": "Materials expert presentations (35 min): Students present their material expertise using visual aids (objects, charts, drawings). Include: favorite material and why, most interesting discovery, material properties demonstration, practical use examples. Audience (classmates) can ask questions and give compliments. Award 'Materials Expert' certificates.",
+      "closing": "Expert celebration (5 min): Celebrate all presentations and scientific learning. Reflect on how much they've learned about materials since the first lesson.",
+      "materials": ["Presentation materials and props", "Expert certificates", "Audience feedback forms", "Materials expertise badges", "Demonstration objects"],
+      "whenThingsGoWrong": "If students nervous: Allow practice time and supportive audience. If presentations too long: Set gentle time limits with visual timers.",
+      "realWorldConnection": "Students experience how scientists share knowledge and feel pride in their expertise",
+      "visualSupports": "Presentation structure guides, expert vocabulary cards, confidence-building visuals"
+    },
+    {
+      "lessonNumber": 20,
+      "title": "Fête des explorateurs de matériaux",
+      "oneGoal": "Students will celebrate their material science journey with families by sharing experiments and discoveries (extension)",
+      "keyVocabulary": ["fête", "partager", "famille"],
+      "decisionPoints": [
+        {
+          "question": "How can the celebration showcase each student's material learning?",
+          "guidance": "If individual portfolios ready: Use personal learning showcases. If class focus: Create collaborative demonstration stations."
+        },
+        {
+          "question": "Should we include hands-on stations or demonstration displays?",
+          "guidance": "If space and supplies allow: Create interactive stations. If simpler setup: Use display boards with student explanations."
+        },
+        {
+          "question": "What activities best demonstrate student growth to families?",
+          "guidance": "If families available: Include guided tours by student experts. If limited attendance: Create take-home learning summaries."
+        }
+      ],
+      "opening": "Celebration setup (10 min): Students arrange their materials museum, demonstration stations, and prepare to be tour guides for families.",
+      "mainActivity": "Materials science celebration (30 min): Student-led family tours through materials stations. Students demonstrate: material property tests, strength and water resistance experiments, material sorting and identification, invention showcase, recycling knowledge. Families participate in simple activities guided by student experts.",
+      "closing": "Celebration reflection (5 min): Thank families for coming. Students share what they're most proud of learning. Award final 'Materials Science Explorer' certificates and celebrate the learning journey.",
+      "materials": ["All previous lesson materials for demonstrations", "Family activity guides", "Final celebration certificates", "Student learning portfolios", "Thank you cards"],
+      "whenThingsGoWrong": "If family attendance low: Adapt to peer audience or create video presentations. If activities too complex: Focus on simple demonstrations that showcase learning.",
+      "realWorldConnection": "Students share their scientific learning with families, building community connections and confidence",
+      "visualSupports": "Celebration setup guides, family activity instructions, learning showcase templates"
+    }
+  ]
+}

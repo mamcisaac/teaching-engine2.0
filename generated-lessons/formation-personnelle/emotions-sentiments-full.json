@@ -1,0 +1,1555 @@
+{
+  "unitTitle": "Mes émotions et sentiments",
+  "subject": "Formation personnelle et sociale",
+  "grade": 1,
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "bigIdeas": "Comprendre et gérer mes émotions pour bien vivre",
+  "essentialQuestions": [
+    "Qu'est-ce que je ressens?",
+    "Comment exprimer mes émotions?",
+    "Comment gérer mes sentiments difficiles?"
+  ],
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "title": "Qu'est-ce que je ressens?",
+      "duration": "45 minutes",
+      "goal": "Students will identify and name basic emotions (happy, sad, angry, scared) in French",
+      "keyVocabulary": ["content", "triste", "émotions"],
+      "materials": [
+        "Cartes d'émotions avec visages",
+        "Miroir de classe",
+        "Marionnette des émotions",
+        "Livre 'Les émotions' (simple)",
+        "Affiche des émotions de base"
+      ],
+      "safetyConsiderations": [
+        "Créer un espace sécuritaire pour partager",
+        "Normaliser toutes les émotions",
+        "Respecter qui ne veut pas partager"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Introduction to emotions with curiosity and acceptance",
+          "activities": [
+            "Regarder dans le miroir: 'Comment je me sens aujourd'hui?'",
+            "Présenter la marionnette qui ressent aussi des émotions",
+            "Chanson d'accueil: 'Bonjour mes émotions'"
+          ],
+          "visualSupports": "Miroir, marionnette expressive, gestes d'accueil"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Explore basic emotions with safety and acceptance",
+          "activities": [
+            "Découvrir les 4 émotions de base avec cartes visuelles",
+            "Marionnette montre chaque émotion (content, triste, fâché, peur)",
+            "Jeu 'Montre-moi l'émotion' avec visages",
+            "Histoire simple: 'La journée d'émotions de Léa'",
+            "Journal des émotions: dessiner comment on se sent"
+          ],
+          "visualSupports": "Cartes émotions, marionnette, gestes TPR, livre illustré",
+          "movementBreak": "Danse des émotions - bouger comme on se sent"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Celebrate emotions and normalize all feelings",
+          "activities": [
+            "Cercle: partage optionnel 'Je me sens...'",
+            "Affiche de classe: 'Toutes les émotions sont OK'",
+            "Chanson de fermeture calme"
+          ],
+          "visualSupports": "Cercle inclusif, affiche colorée, gestes apaisants"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "How comfortable are students talking about feelings?",
+          "ifThen": "IF students seem shy → use marionnette more, model sharing first | IF students are eager → encourage but keep sharing brief"
+        },
+        {
+          "situation": "What visual supports help with emotion vocabulary?",
+          "ifThen": "IF students need more support → use larger cards, more gestures | IF students are following well → add emotion faces mirror work"
+        },
+        {
+          "situation": "How to create a safe space for sharing?",
+          "ifThen": "IF students seem worried → emphasize 'all emotions are normal' | IF sharing gets intense → redirect to marionnette examples"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Focus only on 'content' and 'triste' with lots of visual support",
+        "ifNotEngaged": "More movement, puppet interaction, and silly faces",
+        "ifSensitive": "Use only puppet sharing, no personal sharing pressure"
+      },
+      "realWorldConnection": "Knowing how we feel helps us tell parents, teachers, and friends what we need",
+      "assessmentOpportunities": "Observe students identifying emotions, listen to vocabulary use",
+      "differentiationSupport": "Visual learners: more emotion cards | Kinesthetic: emotion movements | Language: simple gestures and modeling"
+    },
+    {
+      "lessonNumber": 2,
+      "title": "Mon visage montre mes émotions",
+      "duration": "45 minutes",
+      "goal": "Students will recognize emotions in facial expressions and connect faces to feelings",
+      "keyVocabulary": ["visage", "fâché", "peur"],
+      "connectionToPrevious": "Builds on Lesson 1 by adding visual recognition of emotions through facial expressions",
+      "materials": [
+        "Miroirs individuels",
+        "Photos diverses d'enfants montrant des émotions",
+        "Masques d'émotions simples",
+        "Livre 'Visages heureux, visages tristes'",
+        "Tableau des émotions avec photos"
+      ],
+      "safetyConsiderations": [
+        "Utiliser des photos diverses et inclusives",
+        "Respecter les expressions culturelles différentes",
+        "Éviter de forcer les expressions faciales"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Connect faces to feelings from yesterday",
+          "activities": [
+            "Révision: 'Hier on a appris les émotions'",
+            "Miroir: faire un visage content, puis triste",
+            "Marionnette montre ses expressions"
+          ],
+          "visualSupports": "Miroirs, marionnette, révision visuelle"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Practice reading faces and making expressions",
+          "activities": [
+            "Explorer photos d'enfants: 'Comment se sent-il/elle?'",
+            "Jeu de miroir: copier les expressions",
+            "Masques d'émotions: porter et deviner",
+            "Histoire: 'Le visage de Thomas change'",
+            "Dessiner son propre visage d'émotion préférée"
+          ],
+          "visualSupports": "Photos d'enfants, masques, miroirs, histoire illustrée",
+          "movementBreak": "Jeu 'Statues d'émotions' - figer avec une expression"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Practice reading classroom faces",
+          "activities": [
+            "Regarder les amis: 'Comment se sentent-ils maintenant?'",
+            "Partage: 'Mon visage maintenant montre...'",
+            "Création d'une galerie de visages heureux"
+          ],
+          "visualSupports": "Observation respectueuse, galerie de classe"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "Are students connecting faces to emotions?",
+          "ifThen": "IF students struggle → use more obvious expressions, more modeling | IF students are good → add subtle expression photos"
+        },
+        {
+          "situation": "What emotion faces are most relatable?",
+          "ifThen": "IF using diverse photos → discuss how all faces show emotions | IF students relate well → encourage them to share their own"
+        },
+        {
+          "situation": "How to address different cultural expressions of emotion?",
+          "ifThen": "IF questions arise → 'families show emotions differently' | IF confusion → focus on universal expressions first"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Focus on clear happy/sad faces only with simple pointing",
+        "ifNotEngaged": "More mirror play, silly face games",
+        "ifSensitive": "Use cartoon faces instead of real photos if preferred"
+      },
+      "realWorldConnection": "Reading faces helps us know when friends need help or want to play",
+      "assessmentOpportunities": "Watch students matching faces to emotions, observe expression making",
+      "differentiationSupport": "Visual learners: more photos | Kinesthetic: mirror work | Social: partner face reading"
+    },
+    {
+      "lessonNumber": 3,
+      "title": "Mon corps ressent aussi",
+      "duration": "45 minutes",
+      "goal": "Students will identify where emotions are felt in the body (heart racing, tight tummy, etc.)",
+      "keyVocabulary": ["corps", "cœur", "ventre"],
+      "connectionToPrevious": "Builds on Lesson 2 by exploring how emotions manifest physically in our bodies",
+      "materials": [
+        "Silhouette du corps humain",
+        "Autocollants de couleurs",
+        "Stéthoscope jouet",
+        "Coussin pour respiration",
+        "Livre 'Mon corps ressent'"
+      ],
+      "safetyConsiderations": [
+        "Respecter le confort de chacun avec le corps",
+        "Normaliser les sensations corporelles",
+        "Éviter la sur-stimulation sensorielle"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Connect body awareness to emotions",
+          "activities": [
+            "Rappel: 'Notre visage montre nos émotions'",
+            "Question: 'Où sent-on les émotions dans le corps?'",
+            "Marionnette touche son cœur: 'J'ai des sentiments ici aussi'"
+          ],
+          "visualSupports": "Marionnette, gestes vers le corps, curiosité"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Explore body sensations connected to emotions",
+          "activities": [
+            "Écouter notre cœur avec stéthoscope (content vs nerveux)",
+            "Silhouette: colorier où on sent la joie (cœur jaune)",
+            "Silhouette: colorier où on sent la peur (ventre rouge)",
+            "Respiration: sentir le ventre qui bouge",
+            "Histoire: 'Les émotions de Mia dans son corps'"
+          ],
+          "visualSupports": "Silhouette grande, autocollants, stéthoscope, démonstrations",
+          "movementBreak": "Étirements doux pour relâcher les tensions"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Connect body awareness to self-care",
+          "activities": [
+            "Scan corporel: 'Comment se sent mon corps maintenant?'",
+            "Dessiner une émotion dans le corps",
+            "Respiration calme ensemble"
+          ],
+          "visualSupports": "Positions confortables, dessins simples, respiration guidée"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "How are students connecting body sensations to emotions?",
+          "ifThen": "IF students struggle → use more concrete examples, touch own heart | IF students connect well → explore more body parts"
+        },
+        {
+          "situation": "What body awareness activities work best?",
+          "ifThen": "IF students love stethoscope → more heart listening activities | IF students prefer movement → more emotion stretches"
+        },
+        {
+          "situation": "Are all students comfortable with body talk?",
+          "ifThen": "IF some students uncomfortable → use marionnette body, keep impersonal | IF all comfortable → personal sharing OK"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Focus only on heart and happy feelings",
+        "ifNotEngaged": "More stethoscope time, silly body movements",
+        "ifSensitive": "Use only marionnette body, no personal body references"
+      },
+      "realWorldConnection": "When our body tells us we're worried, we can ask for help or take deep breaths",
+      "assessmentOpportunities": "Listen to body sensation vocabulary, observe body awareness",
+      "differentiationSupport": "Tactile learners: stethoscope, cushions | Visual: body diagrams | Kinesthetic: movement breaks"
+    },
+    {
+      "lessonNumber": 4,
+      "title": "Toutes les émotions sont normales",
+      "duration": "45 minutes",
+      "goal": "Students will understand that all emotions are normal and acceptable to feel",
+      "keyVocabulary": ["normal", "accepter", "tous"],
+      "connectionToPrevious": "Builds on Lesson 3 by normalizing all emotions and reducing emotional shame",
+      "materials": [
+        "Arc-en-ciel des émotions",
+        "Livre 'Toutes mes émotions'",
+        "Boîte 'Émotions OK'",
+        "Petits cœurs en papier",
+        "Affiche 'Toutes les émotions'"
+      ],
+      "safetyConsiderations": [
+        "Valider toutes les émotions sans jugement",
+        "Éviter les étiquettes 'bonnes' ou 'mauvaises'",
+        "Créer un espace d'acceptation totale"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Normalize all emotional experiences",
+          "activities": [
+            "Révision: 'Nos émotions dans notre corps'",
+            "Question: 'Y a-t-il des émotions méchantes?'",
+            "Marionnette: 'Moi aussi je ressens toutes ces émotions'"
+          ],
+          "visualSupports": "Marionnette rassurante, ton accueillant"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Celebrate emotional diversity and normalcy",
+          "activities": [
+            "Arc-en-ciel des émotions: 'Chaque couleur est belle'",
+            "Histoire: 'La famille émotions - tous important'",
+            "Boîte magique: mettre toutes les émotions dedans avec amour",
+            "Chaque enfant reçoit un cœur: 'Tes émotions sont précieuses'",
+            "Création affiche de classe: 'Ici, toutes les émotions sont OK'"
+          ],
+          "visualSupports": "Arc-en-ciel coloré, livre inclusif, boîte décorée, cœurs colorés",
+          "movementBreak": "Danse libre: 'Bouger selon notre émotion du moment'"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Reinforce emotional acceptance",
+          "activities": [
+            "Cercle: 'Une émotion que j'accepte chez moi'",
+            "Promesse de classe: 'Nous acceptons toutes les émotions'",
+            "Câlin collectif à l'affiche des émotions"
+          ],
+          "visualSupports": "Cercle chaleureux, affiche visible, gestes d'acceptation"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "How to validate all emotions without judgment?",
+          "ifThen": "IF students say emotions are 'bad' → redirect with 'uncomfortable but normal' | IF students accept easily → deepen with examples"
+        },
+        {
+          "situation": "What examples resonate with student experiences?",
+          "ifThen": "IF students share personal examples → validate and normalize | IF students seem hesitant → use story characters"
+        },
+        {
+          "situation": "How to address 'bad' vs 'uncomfortable' emotions?",
+          "ifThen": "IF students use 'bad' language → teach 'uncomfortable' instead | IF understanding is clear → reinforce with more examples"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Focus on 'all feelings are OK' with simple examples",
+        "ifNotEngaged": "More interactive activities with the emotion box",
+        "ifSensitive": "Extra validation and reassurance about normalcy"
+      },
+      "realWorldConnection": "When we accept our emotions, we feel better about ourselves and can get help easier",
+      "assessmentOpportunities": "Listen for acceptance language, observe comfort with emotion talk",
+      "differentiationSupport": "Verbal processors: more discussion | Visual: more charts | Emotional: extra validation"
+    },
+    {
+      "lessonNumber": 5,
+      "title": "Dire mes sentiments",
+      "duration": "45 minutes",
+      "goal": "Students will practice expressing emotions using simple French phrases",
+      "keyVocabulary": ["dire", "sentir", "parler"],
+      "connectionToPrevious": "Builds on Lesson 4 by providing language tools to express accepted emotions",
+      "materials": [
+        "Cartes phrases émotions",
+        "Téléphones jouets",
+        "Tableau 'Je me sens...'",
+        "Marionnettes pour dialogue",
+        "Livre de phrases émotions"
+      ],
+      "safetyConsiderations": [
+        "Respecter le rythme de chacun pour parler",
+        "Offrir alternatives non-verbales",
+        "Créer un environnement sans pression"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Connect accepted emotions to expression",
+          "activities": [
+            "Rappel: 'Toutes nos émotions sont normales'",
+            "Question: 'Comment dire nos émotions aux autres?'",
+            "Marionnette: 'Je vais apprendre à dire mes sentiments'"
+          ],
+          "visualSupports": "Marionnette, gestes de communication"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Practice expressing emotions with words and alternatives",
+          "activities": [
+            "Apprendre phrases: 'Je me sens content', 'Je me sens triste'",
+            "Téléphones: pratiquer dire ses émotions à un ami",
+            "Marionnettes dialogue: modeler l'expression émotionnelle",
+            "Tableau de classe: pointer et dire 'Je me sens...'",
+            "Jeu 'Devine mon émotion': dire sans gestes"
+          ],
+          "visualSupports": "Cartes phrases, téléphones colorés, tableau interactif, marionnettes",
+          "movementBreak": "Marcher et dire son émotion du moment"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Practice emotional communication",
+          "activities": [
+            "Cercle: chacun dit 'Maintenant je me sens...'",
+            "Création d'un dictionnaire d'émotions de classe",
+            "Chanson: 'Je peux dire mes émotions'"
+          ],
+          "visualSupports": "Cercle supportant, livre de classe, chanson simple"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "Which phrases are most useful for students?",
+          "ifThen": "IF students master basic → add 'Je me sens un peu...' | IF students struggle → focus on 2 phrases only"
+        },
+        {
+          "situation": "How to encourage shy students to share?",
+          "ifThen": "IF students very shy → offer whisper option or pointing | IF students eager → encourage but manage turns"
+        },
+        {
+          "situation": "What communication methods work beyond verbal?",
+          "ifThen": "IF verbal challenging → use pointing, gestures, drawing | IF verbal easy → add tone and facial expression"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Focus on 'content' and 'triste' expressions only",
+        "ifNotEngaged": "More telephone play and puppet conversations",
+        "ifSensitive": "Use only puppet expressing, no personal pressure"
+      },
+      "realWorldConnection": "When we tell people how we feel, they can help us or celebrate with us",
+      "assessmentOpportunities": "Listen to emotion phrases, observe communication attempts",
+      "differentiationSupport": "Verbal learners: more phrase practice | Non-verbal: pointing options | Social: partner practice"
+    },
+    {
+      "lessonNumber": 6,
+      "title": "Quand je suis content",
+      "duration": "45 minutes",
+      "goal": "Students will explore positive emotions and appropriate ways to express joy",
+      "keyVocabulary": ["joie", "heureux", "excité"],
+      "connectionToPrevious": "Builds on Lesson 5 by focusing specifically on positive emotions and their expression",
+      "materials": [
+        "Photos d'enfants joyeux",
+        "Bulles de savon",
+        "Musique joyeuse",
+        "Matériel de fête (banderoles)",
+        "Livre 'La joie de vivre'"
+      ],
+      "safetyConsiderations": [
+        "Gérer l'excitation de groupe",
+        "Inclure les enfants moins expressifs",
+        "Équilibrer énergie et calme"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Celebrate positive emotions",
+          "activities": [
+            "Rappel: 'On peut dire nos émotions'",
+            "Question: 'Qu'est-ce qui nous rend content?'",
+            "Marionnette fait une danse de joie"
+          ],
+          "visualSupports": "Marionnette joyeuse, sourires, énergie positive"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Explore and express joy appropriately",
+          "activities": [
+            "Regarder photos d'enfants heureux: 'Comment montrent-ils la joie?'",
+            "Brainstorm: 'Qu'est-ce qui me rend heureux?'",
+            "Bulles de joie: attraper et rire ensemble",
+            "Danse de la joie avec musique douce",
+            "Dessiner 'Mon moment le plus heureux'"
+          ],
+          "visualSupports": "Photos joyeuses, bulles magiques, musique entraînante, art supplies",
+          "movementBreak": "Sautiller de joie (contrôlé et sécuritaire)"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Channel joy appropriately",
+          "activities": [
+            "Partage: 'Quelque chose qui me rend heureux'",
+            "Apprendre à célébrer sans déranger les autres",
+            "Respiration calme pour revenir au calme"
+          ],
+          "visualSupports": "Cercle joyeux mais calme, démonstration de célébration appropriée"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "How do students show happiness appropriately?",
+          "ifThen": "IF students get too excited → teach 'joie calme' vs 'joie forte' | IF students reserved → encourage gentle expression"
+        },
+        {
+          "situation": "What activities bring students joy?",
+          "ifThen": "IF students love movement → more dancing activities | IF students prefer quiet → more art and bubbles"
+        },
+        {
+          "situation": "How to channel excitement positively?",
+          "ifThen": "IF energy too high → more breathing breaks | IF energy good → maintain current level"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Focus on simple 'content' vs 'très content'",
+        "ifNotEngaged": "More bubbles, simpler activities",
+        "ifOverstimulated": "Calmer activities, more breathing, less stimulation"
+      },
+      "realWorldConnection": "Showing joy appropriately helps us share happiness with others without overwhelming them",
+      "assessmentOpportunities": "Observe appropriate joy expression, listen to joy vocabulary",
+      "differentiationSupport": "Active learners: more movement | Quiet learners: art focus | Social: partner sharing"
+    },
+    {
+      "lessonNumber": 7,
+      "title": "Quand je suis triste",
+      "duration": "45 minutes",
+      "goal": "Students will learn healthy ways to cope with sadness and seek comfort",
+      "keyVocabulary": ["pleurer", "consoler", "réconfort"],
+      "connectionToPrevious": "Builds on Lesson 6 by exploring sadness and healthy coping strategies",
+      "materials": [
+        "Tissus doux pour réconfort",
+        "Livre 'Il est OK d'être triste'",
+        "Boîte de réconfort",
+        "Photos d'animaux réconfortants",
+        "Peluches de classe"
+      ],
+      "safetyConsiderations": [
+        "Valider la tristesse comme normale",
+        "Offrir réconfort sans forcer",
+        "Être attentif aux déclencheurs personnels"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Normalize sadness with compassion",
+          "activities": [
+            "Rappel: 'On a exploré la joie'",
+            "Question douce: 'Parfois on se sent triste aussi'",
+            "Marionnette partage: 'Moi aussi je suis parfois triste'"
+          ],
+          "visualSupports": "Marionnette compatissante, ton doux, sécurité"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Explore sadness and comfort strategies",
+          "activities": [
+            "Histoire: 'Emma se sent triste' - qu'est-ce qui aide?",
+            "Boîte de réconfort: découvrir objets qui consolent",
+            "Apprendre: 'Il est OK de pleurer'",
+            "Pratique: demander un câlin ou du réconfort",
+            "Création d'une carte de réconfort pour soi"
+          ],
+          "visualSupports": "Livre empathique, boîte douce, objets réconfortants, matériel d'art",
+          "movementBreak": "Étirements doux et respirations calmantes"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Reinforce comfort and support",
+          "activities": [
+            "Cercle de réconfort: 'Ce qui m'aide quand je suis triste'",
+            "Câlins de groupe optionnels",
+            "Chanson douce de réconfort"
+          ],
+          "visualSupports": "Cercle chaleureux, peluches disponibles, ambiance apaisante"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "How comfortable are students with sadness?",
+          "ifThen": "IF students uncomfortable → more puppet examples, less personal | IF students open → gentle personal sharing OK"
+        },
+        {
+          "situation": "What comforting strategies work for this age?",
+          "ifThen": "IF students like touch → more hugs, soft items | IF students prefer space → more individual comfort items"
+        },
+        {
+          "situation": "How to normalize crying and seeking help?",
+          "ifThen": "IF stigma around crying → more validation stories | IF students accepting → practice asking for help"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Focus on 'triste' and 'câlin' with comfort items",
+        "ifNotEngaged": "More comfort box exploration",
+        "ifTriggering": "More puppet focus, less personal examples, more comfort available"
+      },
+      "realWorldConnection": "When we're sad, asking for comfort helps us feel better and shows others how to help us",
+      "assessmentOpportunities": "Observe comfort-seeking behavior, listen to sadness vocabulary",
+      "differentiationSupport": "Tactile learners: comfort items | Emotional: extra validation | Social: partner support"
+    },
+    {
+      "lessonNumber": 8,
+      "title": "Quand je suis fâché",
+      "duration": "45 minutes",
+      "goal": "Students will learn appropriate ways to express and manage anger",
+      "keyVocabulary": ["colère", "calmer", "respirer"],
+      "connectionToPrevious": "Builds on Lesson 7 by focusing on anger management and healthy expression",
+      "materials": [
+        "Coussins de colère",
+        "Bouteille de calme (paillettes)",
+        "Livre 'Ma colère et moi'",
+        "Feuilles pour dessiner",
+        "Minuteur pour respiration"
+      ],
+      "safetyConsiderations": [
+        "Enseigner expression sécuritaire de la colère",
+        "Prévenir les comportements agressifs",
+        "Créer des alternatives saines"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Normalize anger with safety",
+          "activities": [
+            "Rappel: 'Tristesse, c'est normal'",
+            "Question: 'Qu'est-ce qui nous rend fâché parfois?'",
+            "Marionnette: 'Moi aussi je me fâche, mais je dois être sécuritaire'"
+          ],
+          "visualSupports": "Marionnette, ton compréhensif mais ferme"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Practice safe anger expression and calming",
+          "activities": [
+            "Histoire: 'Alex est fâché' - que peut-il faire?",
+            "Démonstration: respirer profondément pour se calmer",
+            "Coussins de colère: frapper sécuritairement",
+            "Bouteille de calme: regarder jusqu'à être plus calme",
+            "Dessiner sa colère puis la transformer en calme"
+          ],
+          "visualSupports": "Livre, démonstrations claires, coussins sécuritaires, bouteille magique",
+          "movementBreak": "Mouvements de boxe dans l'air (sans contact)"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Practice calming techniques",
+          "activities": [
+            "Cercle: 'Une façon sécuritaire d'être fâché'",
+            "Pratique groupe: respirer ensemble pour se calmer",
+            "Plan: 'Quand je suis fâché, je peux...'"
+          ],
+          "visualSupports": "Cercle sécuritaire, respiration guidée, affiche stratégies"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "How do students currently handle anger?",
+          "ifThen": "IF students hit/throw → more safe alternatives, more practice | IF students withdraw → validate and offer expression options"
+        },
+        {
+          "situation": "What calming strategies are age-appropriate?",
+          "ifThen": "IF breathing works → add counting breaths | IF movement works → add safe movement options"
+        },
+        {
+          "situation": "How to address aggressive responses to anger?",
+          "ifThen": "IF aggression present → clear boundaries, more safe alternatives | IF no aggression → reinforce current positive strategies"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Focus on 'fâché' and breathing only",
+        "ifNotEngaged": "More hands-on with cushions and bottles",
+        "ifTriggering": "More puppet examples, immediate calming activities"
+      },
+      "realWorldConnection": "Learning to handle anger safely keeps us and others safe and helps solve problems",
+      "assessmentOpportunities": "Observe anger management attempts, listen to calming vocabulary",
+      "differentiationSupport": "Kinesthetic: movement activities | Visual: calm bottle | Auditory: breathing counts"
+    },
+    {
+      "lessonNumber": 9,
+      "title": "Quand j'ai peur",
+      "duration": "45 minutes",
+      "goal": "Students will identify fears and learn strategies to feel brave and seek help",
+      "keyVocabulary": ["courageux", "peur", "aide"],
+      "connectionToPrevious": "Builds on Lesson 8 by exploring fear and developing courage and help-seeking",
+      "materials": [
+        "Lampe de poche 'courage'",
+        "Cape de super-héros",
+        "Livre 'Petit mais courageux'",
+        "Photos d'animaux courageux",
+        "Certificats de courage"
+      ],
+      "safetyConsiderations": [
+        "Valider les peurs sans les minimiser",
+        "Enseigner quand demander de l'aide d'adulte",
+        "Éviter de créer plus de peurs"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Normalize fear with courage",
+          "activities": [
+            "Rappel: 'On peut gérer notre colère'",
+            "Question: 'Tout le monde a-t-il peur parfois?'",
+            "Marionnette: 'J'ai peur du noir, mais je peux être courageux'"
+          ],
+          "visualSupports": "Marionnette rassurante, ton validant"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Explore fears and build courage",
+          "activities": [
+            "Partage: 'Des peurs communes' (peur du noir, gros chiens, etc.)",
+            "Histoire: 'Marie a peur mais trouve du courage'",
+            "Lampe courage: allumer quand on a peur",
+            "Cape de courage: porter pour se sentir brave",
+            "Plan: 'Quand j'ai peur, je peux demander de l'aide à...'"
+          ],
+          "visualSupports": "Livre encourageant, lampe spéciale, cape amusante, photos inspirantes",
+          "movementBreak": "Marche de courage - marcher comme un super-héros"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Build courage and help-seeking",
+          "activities": [
+            "Cercle: 'Je suis courageux quand...'",
+            "Certificats de courage pour chacun",
+            "Promesse: 'Je peux demander de l'aide quand j'ai peur'"
+          ],
+          "visualSupports": "Cercle supportant, certificats colorés, affiche des aides"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "What fears are common for this age group?",
+          "ifThen": "IF common fears shared → normalize and address | IF unique fears → individual validation and strategies"
+        },
+        {
+          "situation": "How to address fears without dismissing them?",
+          "ifThen": "IF fears seem 'silly' to others → validate all fears as real | IF fears are serious → ensure adult follow-up"
+        },
+        {
+          "situation": "What brave strategies can students use?",
+          "ifThen": "IF students like props → use more courage items | IF students prefer talk → more discussion strategies"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Focus on 'peur' and 'demander aide' with simple examples",
+        "ifNotEngaged": "More courage props and superhero play",
+        "ifTriggering": "Less fear talk, more courage building and adult help focus"
+      },
+      "realWorldConnection": "Being brave means we can try new things, and asking for help keeps us safe",
+      "assessmentOpportunities": "Observe courage building, listen to help-seeking language",
+      "differentiationSupport": "Visual learners: courage props | Kinesthetic: superhero movements | Emotional: extra validation"
+    },
+    {
+      "lessonNumber": 10,
+      "title": "Respirer pour me calmer",
+      "duration": "45 minutes",
+      "goal": "Students will learn simple breathing exercises to self-regulate emotions",
+      "keyVocabulary": ["respirer", "calme", "lentement"],
+      "connectionToPrevious": "Builds on Lesson 9 by introducing concrete self-regulation tools",
+      "materials": [
+        "Plumes légères",
+        "Pinwheels (moulins à vent)",
+        "Bubbles for breathing",
+        "Livre 'Respirer comme les animaux'",
+        "Tapis de yoga pour enfants"
+      ],
+      "safetyConsiderations": [
+        "Éviter l'hyperventilation",
+        "Respecter le confort respiratoire de chacun",
+        "Garder les exercices simples et courts"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Connect breathing to emotional regulation",
+          "activities": [
+            "Rappel: 'On peut être courageux et demander de l'aide'",
+            "Démonstration: respirer vite vs respirer lentement",
+            "Question: 'Comment se sent-on avec chaque respiration?'"
+          ],
+          "visualSupports": "Démonstrations claires, contraste visible"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Practice various breathing techniques",
+          "activities": [
+            "Respiration plume: faire voler doucement avec l'expiration",
+            "Pinwheels: tourner lentement avec la respiration",
+            "Bulles calmes: respirer profondément pour faire de grosses bulles",
+            "Respiration animale: respirer comme un chien vs comme une tortue",
+            "Créer son propre 'outil respiration' (dessin ou craft)"
+          ],
+          "visualSupports": "Plumes colorées, pinwheels amusants, bulles magiques, livre animal",
+          "movementBreak": "Yoga respiratoire simple (mains vers le ciel, respirer)"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Integrate breathing into daily emotional regulation",
+          "activities": [
+            "Pratique groupe: respiration collective calme",
+            "Plan personnel: 'Quand utiliser ma respiration'",
+            "Respiration de fermeture: préparer pour la suite de la journée"
+          ],
+          "visualSupports": "Groupe uni, respiration synchronisée, calme collectif"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "Which breathing techniques work best for 6-year-olds?",
+          "ifThen": "IF plume technique works → add more prop breathing | IF props distracting → focus on simple in/out breathing"
+        },
+        {
+          "situation": "How to make breathing exercises engaging?",
+          "ifThen": "IF students love props → rotate through different tools | IF students prefer stories → add more animal breathing"
+        },
+        {
+          "situation": "Are students able to use breathing when upset?",
+          "ifThen": "IF students remember in calm → practice in slightly frustrated moments | IF students forget → more reminders and practice"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Focus on simple 'in, out' breathing with counting",
+        "ifNotEngaged": "More interactive props, less sitting still",
+        "ifOverstimulating": "Simpler breathing, less props, more calm environment"
+      },
+      "realWorldConnection": "Deep breathing helps us feel calmer anywhere - at home, school, or playing",
+      "assessmentOpportunities": "Observe breathing technique use, self-regulation attempts",
+      "differentiationSupport": "Tactile learners: props focus | Visual: demonstration | Kinesthetic: movement breathing"
+    },
+    {
+      "lessonNumber": 11,
+      "title": "Comprendre les autres",
+      "duration": "45 minutes",
+      "goal": "Students will begin to recognize and respond to emotions in others",
+      "keyVocabulary": ["comprendre", "autres", "gentillesse"],
+      "connectionToPrevious": "Builds on Lesson 10 by extending emotional awareness to understanding others",
+      "materials": [
+        "Photos d'enfants avec diverses émotions",
+        "Miroirs pour empathie",
+        "Livre 'Comment se sent mon ami?'",
+        "Cartes scénarios sociaux",
+        "Cœurs de gentillesse"
+      ],
+      "safetyConsiderations": [
+        "Respecter la vie privée des autres",
+        "Enseigner observation respectueuse",
+        "Éviter les étiquettes ou jugements"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Connect self-awareness to other-awareness",
+          "activities": [
+            "Rappel: 'On peut utiliser notre respiration pour se calmer'",
+            "Question: 'Comment savoir ce que ressentent nos amis?'",
+            "Marionnette regarde une autre: 'Je vois qu'elle est triste'"
+          ],
+          "visualSupports": "Deux marionnettes, observation respectueuse"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Practice reading and responding to others' emotions",
+          "activities": [
+            "Photo mystère: 'Comment se sent cet enfant?' (avec indices)",
+            "Miroir empathie: copier l'expression d'un ami",
+            "Scénarios: 'Si ton ami pleure, tu peux...'",
+            "Jeu gentillesse: donner un cœur à quelqu'un qui en a besoin",
+            "Histoire: 'Thomas aide sa sœur qui est fâchée'"
+          ],
+          "visualSupports": "Photos expressives, miroirs, cartes scénarios, cœurs colorés",
+          "movementBreak": "Marcher et offrir des sourires aux amis"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Practice empathy and kindness",
+          "activities": [
+            "Cercle: 'Comment j'ai aidé quelqu'un aujourd'hui'",
+            "Création affiche: 'Façons d'être gentil'",
+            "Promesse: 'Je vais regarder comment se sentent mes amis'"
+          ],
+          "visualSupports": "Cercle empathique, affiche collaborative, engagement positif"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "How well can students read others' emotions?",
+          "ifThen": "IF students struggle → use more obvious expressions, more modeling | IF students good → add subtle emotions"
+        },
+        {
+          "situation": "What empathy skills are developmentally appropriate?",
+          "ifThen": "IF students show natural empathy → encourage with specific strategies | IF empathy challenging → model extensively"
+        },
+        {
+          "situation": "How to encourage kind responses to others' feelings?",
+          "ifThen": "IF students want to help → teach appropriate help | IF students avoid → model gentle approaches"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Focus on 'ami triste' and 'être gentil'",
+        "ifNotEngaged": "More mirror play and heart giving",
+        "ifOverwhelming": "Simpler scenarios, more puppet modeling"
+      },
+      "realWorldConnection": "Understanding others helps us be better friends and makes everyone feel good",
+      "assessmentOpportunities": "Observe empathy attempts, listen to other-focused language",
+      "differentiationSupport": "Social learners: partner work | Visual: photo focus | Emotional: extra empathy modeling"
+    },
+    {
+      "lessonNumber": 12,
+      "title": "Aider un ami triste",
+      "duration": "45 minutes",
+      "goal": "Students will learn how to comfort and support friends who are upset",
+      "keyVocabulary": ["aider", "ami", "soutenir"],
+      "connectionToPrevious": "Builds on Lesson 11 by practicing specific empathy and helping skills",
+      "materials": [
+        "Marionnettes pour role-play",
+        "Boîte à outils d'aide",
+        "Livre 'L'ami qui console'",
+        "Certificats d'ami aidant",
+        "Tissus doux de réconfort"
+      ],
+      "safetyConsiderations": [
+        "Enseigner limites appropriées",
+        "Quand demander l'aide d'un adulte",
+        "Respecter quand quelqu'un veut être seul"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Connect understanding others to helping",
+          "activities": [
+            "Rappel: 'On peut comprendre comment se sentent nos amis'",
+            "Question: 'Que faire quand un ami est triste?'",
+            "Marionnettes: une console l'autre qui pleure"
+          ],
+          "visualSupports": "Marionnettes empathiques, démonstration de consolation"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Practice appropriate helping and comforting",
+          "activities": [
+            "Boîte à outils: découvrir façons d'aider (écouter, câlin, chercher adulte)",
+            "Role-play marionnettes: 'Mon ami est tombé et pleure'",
+            "Pratique: dire 'Ça va aller' et 'Je peux t'aider'",
+            "Histoire: 'Sarah aide Ben qui a peur'",
+            "Création carte de réconfort pour un ami"
+          ],
+          "visualSupports": "Boîte interactive, marionnettes, livre consolant, matériel d'art",
+          "movementBreak": "Pratique: offrir un câlin respectueux"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Consolidate helping skills",
+          "activities": [
+            "Cercle: 'Comment je peux aider un ami triste'",
+            "Certificats d'ami aidant pour chacun",
+            "Plan: 'Quand demander l'aide d'un grand'"
+          ],
+          "visualSupports": "Cercle supportant, certificats fiers, plan d'action clair"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "What helping strategies are appropriate for this age?",
+          "ifThen": "IF students want to fix problems → teach listening and presence | IF students avoid helping → model simple approaches"
+        },
+        {
+          "situation": "How to teach helping without fixing?",
+          "ifThen": "IF students try to solve everything → teach 'être là' for friend | IF students just watch → encourage simple actions"
+        },
+        {
+          "situation": "When should students get adult help?",
+          "ifThen": "IF situation serious → clear adult rules | IF minor upset → teach student helping first"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Focus on 'ami triste' and 'dire à madame'",
+        "ifNotEngaged": "More puppet demonstrations and hands-on practice",
+        "ifOverwhelming": "Simpler helping: just 'tu vas bien?' and get adult"
+      },
+      "realWorldConnection": "Helping sad friends makes them feel better and makes us good friends",
+      "assessmentOpportunities": "Observe helping attempts, listen to supportive language",
+      "differentiationSupport": "Social learners: role-play focus | Emotional: extra modeling | Practical: concrete helping tools"
+    },
+    {
+      "lessonNumber": 13,
+      "title": "Mes stratégies émotionnelles",
+      "duration": "45 minutes",
+      "goal": "Students will identify their personal toolkit of strategies for managing different emotions",
+      "keyVocabulary": ["stratégies", "outils", "choisir"],
+      "connectionToPrevious": "Builds on Lesson 12 by creating personalized emotional regulation toolkits",
+      "materials": [
+        "Boîte personnelle pour chaque enfant",
+        "Matériel de décoration",
+        "Cartes stratégies avec images",
+        "Photos des outils appris",
+        "Autocollants de réussite"
+      ],
+      "safetyConsiderations": [
+        "Respecter les préférences individuelles",
+        "Valider toutes les stratégies appropriées",
+        "Encourager l'autonomie émotionnelle"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Review learning journey and introduce toolkit concept",
+          "activities": [
+            "Rappel: 'On a appris tellement sur les émotions!'",
+            "Question: 'Quels outils avons-nous pour nos émotions?'",
+            "Présentation: 'Chacun aura sa boîte spéciale d'outils'"
+          ],
+          "visualSupports": "Révision visuelle, boîtes décoratives, enthousiasme"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Create personalized emotional regulation toolkit",
+          "activities": [
+            "Révision outils: respiration, câlins, aide, etc.",
+            "Choisir ses 3 stratégies préférées",
+            "Décorer sa boîte personnelle d'outils émotionnels",
+            "Créer cartes-rappel avec dessins",
+            "Test: 'Quand je suis triste, j'utilise...'"
+          ],
+          "visualSupports": "Cartes stratégies, boîtes colorées, photos-rappel, matériel créatif",
+          "movementBreak": "Pratique rapide: utiliser une stratégie choisie"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Celebrate personalized emotional tools",
+          "activities": [
+            "Présentation: montrer sa boîte et ses outils préférés",
+            "Promesse: 'J'utiliserai mes outils quand j'en ai besoin'",
+            "Placement spécial des boîtes dans la classe"
+          ],
+          "visualSupports": "Présentation fière, engagement personnel, espace classe"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "Which strategies work best for each student?",
+          "ifThen": "IF student prefers movement → include movement strategies | IF student prefers quiet → include calm strategies"
+        },
+        {
+          "situation": "How to personalize emotional regulation tools?",
+          "ifThen": "IF student has clear preferences → honor and build on them | IF student unsure → guide with gentle suggestions"
+        },
+        {
+          "situation": "Are students able to choose appropriate strategies?",
+          "ifThen": "IF students choose well → celebrate and confirm | IF choices don't match → gentle guidance and discussion"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Focus on 2 simple strategies only",
+        "ifNotEngaged": "More decoration time, peer sharing",
+        "ifOverwhelming": "Pre-made boxes, simpler choices"
+      },
+      "realWorldConnection": "Having our own emotion tools helps us handle feelings anywhere we go",
+      "assessmentOpportunities": "Observe strategy selection, listen to personal emotional plans",
+      "differentiationSupport": "Visual learners: photo strategies | Kinesthetic: hands-on tools | Independent: self-selected options"
+    },
+    {
+      "lessonNumber": 14,
+      "title": "Mon journal des émotions",
+      "duration": "45 minutes",
+      "goal": "Students will create their emotions journal showing their learning and strategies",
+      "keyVocabulary": ["journal", "montrer", "grandir"],
+      "connectionToPrevious": "Builds on Lesson 13 by synthesizing all emotional learning into a personal journal",
+      "materials": [
+        "Cahier journal pour chaque enfant",
+        "Photos des activités passées",
+        "Autocollants émotions",
+        "Matériel d'art divers",
+        "Certificat de réussite émotionnelle"
+      ],
+      "safetyConsiderations": [
+        "Respecter le niveau de partage de chacun",
+        "Célébrer tous les progrès",
+        "Maintenir la confidentialité appropriée"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Celebrate learning journey",
+          "activities": [
+            "Rappel: 'Nos boîtes d'outils émotionnels sont prêtes!'",
+            "Question: 'Comment montrer tout ce qu'on a appris?'",
+            "Présentation: 'Créer notre journal personnel d'émotions'"
+          ],
+          "visualSupports": "Boîtes d'outils, cahiers spéciaux, fierté collective"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Create comprehensive emotional learning journal",
+          "activities": [
+            "Page 1: 'Mes émotions' - dessiner les 4 émotions de base",
+            "Page 2: 'Mon corps ressent' - colorier où on sent les émotions",
+            "Page 3: 'Mes stratégies' - coller photos ou dessiner ses outils",
+            "Page 4: 'Aider mes amis' - dessiner comment être un bon ami",
+            "Page couverture: décorer avec son nom et 'Expert en émotions'"
+          ],
+          "visualSupports": "Photos d'activités, autocollants variés, exemples de pages, matériel créatif",
+          "movementBreak": "Danse de célébration de l'apprentissage"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Celebrate emotional growth and learning",
+          "activities": [
+            "Présentation optionnelle: montrer une page préférée",
+            "Remise certificat: 'Expert en émotions Grade 1'",
+            "Engagement: 'Je continuerai à grandir avec mes émotions'"
+          ],
+          "visualSupports": "Journaux fiers, certificats officiels, cercle de célébration"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "How can students best show their emotional growth?",
+          "ifThen": "IF students love drawing → more art pages | IF students prefer talking → more verbal sharing opportunities"
+        },
+        {
+          "situation": "What format works for different learners?",
+          "ifThen": "IF students need structure → provide templates | IF students are creative → allow free format"
+        },
+        {
+          "situation": "How to celebrate emotional learning achievements?",
+          "ifThen": "IF individual celebration needed → personal recognition | IF group celebration preferred → class sharing"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Focus on 2 simple pages with lots of support",
+        "ifNotEngaged": "More stickers and decoration, less content pressure",
+        "ifOverwhelming": "Pre-made pages with fill-in-the-blanks"
+      },
+      "realWorldConnection": "Our emotional journal reminds us of our skills and shows how much we've grown",
+      "assessmentOpportunities": "Review journal content, observe emotional vocabulary and concepts",
+      "differentiationSupport": "Artistic learners: creative freedom | Structured learners: templates | Social: sharing opportunities"
+    },
+    {
+      "lessonNumber": 15,
+      "title": "Émotions en musique",
+      "duration": "45 minutes",
+      "goal": "Students will explore emotions through music and songs",
+      "keyVocabulary": [],
+      "connectionToPrevious": "Extension: Uses music as an additional tool for emotional expression and regulation",
+      "materials": [
+        "Variété de musique émotionnelle",
+        "Instruments simples (shakers, tambourins)",
+        "Foulards de danse",
+        "Livre 'Chansons d'émotions'",
+        "Système audio"
+      ],
+      "safetyConsiderations": [
+        "Gérer le volume sonore",
+        "Éviter la sur-stimulation",
+        "Respecter les sensibilités auditives"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Connect music to emotional expression",
+          "activities": [
+            "Extension unit: 'Plus d'outils pour nos émotions!'",
+            "Question: 'Comment la musique nous fait-elle sentir?'",
+            "Écoute: musique joyeuse vs musique calme"
+          ],
+          "visualSupports": "Équipement musical, expressions faciales avec musique"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Experience emotions through musical activities",
+          "activities": [
+            "Écoute active: identifier l'émotion dans différentes musiques",
+            "Création rythmique: jouer l'émotion avec instruments",
+            "Danse émotionnelle: bouger selon ce qu'on ressent",
+            "Chanson d'émotions: apprendre une chanson simple",
+            "Concert d'émotions: chacun joue son émotion préférée"
+          ],
+          "visualSupports": "Musiques variées, instruments colorés, foulards expressifs, participation active",
+          "movementBreak": "Danse libre avec changements d'émotion musicale"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Integrate music into emotional toolkit",
+          "activities": [
+            "Partage: 'Ma musique préférée pour chaque émotion'",
+            "Plan: 'J'utiliserai la musique quand...'",
+            "Écoute calme: musique apaisante pour finir"
+          ],
+          "visualSupports": "Sharing respectueux, intégration avec outils existants"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "Which songs help students express emotions?",
+          "ifThen": "IF students respond to upbeat → include more energetic pieces | IF students prefer calm → focus on soothing music"
+        },
+        {
+          "situation": "How does music help with emotional regulation?",
+          "ifThen": "IF music calms students → teach as calming strategy | IF music energizes → teach appropriate expression"
+        },
+        {
+          "situation": "What musical activities are most engaging?",
+          "ifThen": "IF students love instruments → more rhythm activities | IF students love movement → more dance activities"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Simple listening and basic movements only",
+        "ifNotEngaged": "More instruments, more participation",
+        "ifOverstimulating": "Quieter music, fewer instruments, more structure"
+      },
+      "realWorldConnection": "Music helps us express feelings and feel better when we're upset",
+      "assessmentOpportunities": "Observe musical emotional expression, integration with existing strategies",
+      "differentiationSupport": "Auditory learners: focus on listening | Kinesthetic: movement emphasis | Creative: instrument exploration"
+    },
+    {
+      "lessonNumber": 16,
+      "title": "Art des émotions",
+      "duration": "45 minutes",
+      "goal": "Students will create art to represent different emotions and feelings",
+      "keyVocabulary": [],
+      "connectionToPrevious": "Extension: Provides creative outlets for emotional expression and processing",
+      "materials": [
+        "Peintures de différentes couleurs",
+        "Pinceaux variés",
+        "Papier de différentes textures",
+        "Matériel de collage",
+        "Tabliers de protection"
+      ],
+      "safetyConsiderations": [
+        "Protection des vêtements",
+        "Matériel d'art sécuritaire",
+        "Espace de création organisé"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Connect art to emotional expression",
+          "activities": [
+            "Rappel: 'La musique aide avec nos émotions'",
+            "Question: 'Comment les couleurs nous font-elles sentir?'",
+            "Exploration: regarder des couleurs et nommer les émotions"
+          ],
+          "visualSupports": "Palette de couleurs, association couleur-émotion"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Create artistic representations of emotions",
+          "activities": [
+            "Peinture libre: 'Ma couleur pour chaque émotion'",
+            "Collage d'émotions: créer un visage avec matériaux",
+            "Art abstrait: peindre ce qu'on ressent sans formes",
+            "Galerie de classe: afficher et observer les créations",
+            "Discussion: 'Qu'est-ce que tu vois dans mon art?'"
+          ],
+          "visualSupports": "Matériel artistique varié, exemples d'art émotionnel, galerie improvisée",
+          "movementBreak": "Nettoyer les mains et étirer les bras d'artiste"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Celebrate artistic emotional expression",
+          "activities": [
+            "Partage artistique: expliquer son œuvre émotionnelle",
+            "Connexion: 'L'art peut être un outil émotionnel aussi'",
+            "Nettoyage collaboratif et rangement"
+          ],
+          "visualSupports": "Œuvres d'art fièrement présentées, appréciation mutuelle"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "How can art help students process emotions?",
+          "ifThen": "IF students express freely through art → encourage continued artistic expression | IF students hesitant → provide more structure and examples"
+        },
+        {
+          "situation": "What art materials work best for emotional expression?",
+          "ifThen": "IF students love color → provide more paint options | IF students prefer texture → add more tactile materials"
+        },
+        {
+          "situation": "How to support all artistic abilities?",
+          "ifThen": "IF wide range of abilities → emphasize expression over perfection | IF students compare work → focus on individual meaning"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Simple coloring with emotion colors only",
+        "ifNotEngaged": "More tactile materials, partner work",
+        "ifMessy": "Simpler materials, more structure, contained workspace"
+      },
+      "realWorldConnection": "Art gives us ways to show feelings when words aren't enough",
+      "assessmentOpportunities": "Observe artistic emotional expression, listen to art explanations",
+      "differentiationSupport": "Visual learners: color focus | Tactile: texture materials | Creative: free expression"
+    },
+    {
+      "lessonNumber": 17,
+      "title": "Jeux d'émotions",
+      "duration": "45 minutes",
+      "goal": "Students will play games that practice emotion recognition and regulation",
+      "keyVocabulary": [],
+      "connectionToPrevious": "Extension: Reinforces emotional skills through play and games",
+      "materials": [
+        "Cartes émotions pour jeux",
+        "Dés d'émotions",
+        "Jeu de plateau émotions simple",
+        "Minuteur pour jeux",
+        "Prix de participation"
+      ],
+      "safetyConsiderations": [
+        "Jeux inclusifs pour tous",
+        "Gérer la compétition sainement",
+        "Éviter la frustration excessive"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Connect play to emotional learning",
+          "activities": [
+            "Rappel: 'L'art nous aide avec nos émotions'",
+            "Question: 'Comment jouer peut-il nous aider aussi?'",
+            "Introduction: 'Des jeux spéciaux pour nos émotions'"
+          ],
+          "visualSupports": "Matériel de jeu attrayant, enthousiasme pour le jeu"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Practice emotional skills through various games",
+          "activities": [
+            "Jeu de cartes: apparier émotions et situations",
+            "Dé magique: rouler et montrer l'émotion",
+            "Charades d'émotions: deviner sans paroles",
+            "Parcours émotions: stations avec défis émotionnels",
+            "Jeu coopératif: aider l'équipe avec les émotions"
+          ],
+          "visualSupports": "Cartes colorées, dés amusants, stations claires, matériel de jeu",
+          "movementBreak": "Jeu actif: 'Jacques dit' avec émotions"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Reflect on learning through play",
+          "activities": [
+            "Cercle: 'Mon jeu préféré et pourquoi'",
+            "Connexion: 'Jouer nous aide à pratiquer nos émotions'",
+            "Plan: 'Jeux à jouer à la maison ou récréation'"
+          ],
+          "visualSupports": "Cercle de partage, connexion avec apprentissage"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "Which games are most effective for emotion practice?",
+          "ifThen": "IF students love active games → more movement games | IF students prefer quiet games → more card/board games"
+        },
+        {
+          "situation": "How to keep games inclusive and supportive?",
+          "ifThen": "IF competition creates stress → emphasize cooperation | IF all engaged well → balance competition and cooperation"
+        },
+        {
+          "situation": "What games help with specific emotional skills?",
+          "ifThen": "IF regulation needed → more calming games | IF expression needed → more expressive games"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Simple matching games only",
+        "ifNotEngaged": "More active games, shorter rounds",
+        "ifOverexciting": "Calmer games, more structure, shorter play periods"
+      },
+      "realWorldConnection": "Playing emotion games helps us practice skills in a fun, safe way",
+      "assessmentOpportunities": "Observe game engagement, emotional skill application in play",
+      "differentiationSupport": "Active learners: movement games | Strategic: board games | Social: group games"
+    },
+    {
+      "lessonNumber": 18,
+      "title": "Histoires d'émotions",
+      "duration": "45 minutes",
+      "goal": "Students will explore emotions through stories and characters",
+      "keyVocabulary": [],
+      "connectionToPrevious": "Extension: Uses narrative to explore complex emotions and situations",
+      "materials": [
+        "Sélection de livres émotionnels",
+        "Marionnettes des personnages",
+        "Matériel pour théâtre",
+        "Costumes simples",
+        "Carnet d'histoires"
+      ],
+      "safetyConsiderations": [
+        "Choisir histoires appropriées à l'âge",
+        "Gérer les réactions émotionnelles aux histoires",
+        "Respecter les sensibilités individuelles"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Connect stories to emotional understanding",
+          "activities": [
+            "Rappel: 'On a joué avec nos émotions'",
+            "Question: 'Comment les histoires nous aident-elles à comprendre les émotions?'",
+            "Présentation: 'Histoires spéciales sur les émotions'"
+          ],
+          "visualSupports": "Livres attrayants, marionnettes expressives"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Explore emotions through narrative and discussion",
+          "activities": [
+            "Histoire interactive: 'L'aventure émotionnelle de Léo'",
+            "Discussion: 'Comment se sentait le personnage?'",
+            "Théâtre simple: rejouer l'histoire avec marionnettes",
+            "Création d'histoire: 'Mon personnage qui apprend les émotions'",
+            "Partage: raconter sa mini-histoire émotionnelle"
+          ],
+          "visualSupports": "Livre engageant, marionnettes actives, matériel théâtral, carnet personnel",
+          "movementBreak": "Agir comme les personnages de l'histoire"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Connect stories to personal emotional learning",
+          "activities": [
+            "Réflexion: 'Qu'est-ce que j'ai appris du personnage?'",
+            "Connexion: 'Les histoires nous montrent comment gérer nos émotions'",
+            "Plan: 'Histoires à partager avec ma famille'"
+          ],
+          "visualSupports": "Connexion personnelle, livres à emporter"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "Which stories resonate with students' emotional experiences?",
+          "ifThen": "IF students relate to characters → explore character strategies | IF students don't connect → try different story types"
+        },
+        {
+          "situation": "How to choose diverse, inclusive emotional stories?",
+          "ifThen": "IF diversity needed → select varied character backgrounds | IF representation good → maintain inclusive selection"
+        },
+        {
+          "situation": "What discussion questions deepen emotional understanding?",
+          "ifThen": "IF students engage in discussion → ask deeper questions | IF discussion challenging → use simpler, more concrete questions"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Simpler story, basic emotion identification only",
+        "ifNotEngaged": "More interactive storytelling, puppet focus",
+        "ifOverwhelming": "Shorter story, less discussion, more visual support"
+      },
+      "realWorldConnection": "Stories help us understand how others handle emotions and learn new strategies",
+      "assessmentOpportunities": "Listen to story discussions, observe character emotion identification",
+      "differentiationSupport": "Auditory learners: story focus | Visual: picture books | Dramatic: theater activities"
+    },
+    {
+      "lessonNumber": 19,
+      "title": "Émotions en famille",
+      "duration": "45 minutes",
+      "goal": "Students will explore how different families talk about and handle emotions",
+      "keyVocabulary": [],
+      "connectionToPrevious": "Extension: Connects school emotional learning with home and family practices",
+      "materials": [
+        "Photos de familles diverses",
+        "Livre 'Familles et émotions'",
+        "Cartes familles du monde",
+        "Matériel pour dessiner familles",
+        "Lettre pour parents"
+      ],
+      "safetyConsiderations": [
+        "Respecter toutes les structures familiales",
+        "Éviter les jugements sur pratiques familiales",
+        "Protéger la vie privée familiale"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Honor family diversity in emotional expression",
+          "activities": [
+            "Rappel: 'Les histoires nous enseignent sur les émotions'",
+            "Question: 'Comment nos familles nous aident-elles avec nos émotions?'",
+            "Validation: 'Toutes les familles sont différentes et spéciales'"
+          ],
+          "visualSupports": "Photos de familles diverses, ton respectueux et inclusif"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Explore family emotional practices respectfully",
+          "activities": [
+            "Galerie de familles: observer comment différentes familles montrent l'amour",
+            "Partage optionnel: 'Dans ma famille, quand je suis triste...'",
+            "Discussion: 'Façons différentes d'aider dans les familles'",
+            "Dessin: 'Ma famille me réconforte'",
+            "Lettre simple: 'Merci famille pour ton aide avec mes émotions'"
+          ],
+          "visualSupports": "Photos inclusives, livre respectueux, matériel d'art, modèles de lettres",
+          "movementBreak": "Gestes d'amour de différentes cultures"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Celebrate family emotional support",
+          "activities": [
+            "Cercle: 'Une chose spéciale que ma famille fait'",
+            "Connexion: 'Nos familles nous aident à grandir émotionnellement'",
+            "Plan: 'Partager mes outils d'émotions avec ma famille'"
+          ],
+          "visualSupports": "Cercle chaleureux, célébration familiale"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "How to honor diverse family approaches to emotions?",
+          "ifThen": "IF variety in sharing → celebrate all approaches | IF students hesitant → respect privacy and offer alternatives"
+        },
+        {
+          "situation": "What family sharing is appropriate and safe?",
+          "ifThen": "IF sharing seems personal → redirect to general family support | IF sharing appropriate → encourage and validate"
+        },
+        {
+          "situation": "How to support all family structures and cultures?",
+          "ifThen": "IF diverse structures present → explicitly include all | IF questions about differences → normalize and celebrate diversity"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Focus on 'famille aide' with simple drawings",
+        "ifNotEngaged": "More visual family materials, less personal sharing",
+        "ifSensitive": "Generic family support, no personal details required"
+      },
+      "realWorldConnection": "Families help us learn about emotions and provide support when we need it",
+      "assessmentOpportunities": "Observe respectful family discussion, listen to family emotional connections",
+      "differentiationSupport": "Visual learners: family photos | Private learners: drawing focus | Social: appropriate sharing"
+    },
+    {
+      "lessonNumber": 20,
+      "title": "Célébration des émotions",
+      "duration": "45 minutes",
+      "goal": "Students will celebrate their emotional growth and commit to using their new skills",
+      "keyVocabulary": [],
+      "connectionToPrevious": "Extension: Culminates the unit with celebration and commitment to continued emotional growth",
+      "materials": [
+        "Certificats de maîtrise émotionnelle",
+        "Matériel de fête approprié",
+        "Portfolio de tous les travaux",
+        "Appareil photo pour souvenirs",
+        "Musique de célébration"
+      ],
+      "safetyConsiderations": [
+        "Célébration inclusive pour tous",
+        "Gérer l'excitation de groupe",
+        "Maintenir focus sur l'apprentissage"
+      ],
+      "structure": {
+        "opening": {
+          "duration": "8 minutes",
+          "description": "Launch celebration of emotional learning journey",
+          "activities": [
+            "Rappel: 'Nos familles nous soutiennent avec nos émotions'",
+            "Annonce: 'Aujourd'hui on célèbre notre expertise émotionnelle!'",
+            "Révision rapide: 'Qu'est-ce qu'on a appris ensemble?'"
+          ],
+          "visualSupports": "Ambiance de fête, matériel de célébration, fierté collective"
+        },
+        "mainActivity": {
+          "duration": "27 minutes",
+          "description": "Celebrate comprehensive emotional learning",
+          "activities": [
+            "Défilé d'experts: chacun présente son apprentissage préféré",
+            "Portfolio party: regarder tous nos travaux ensemble",
+            "Promesses d'émotions: 'Je continuerai à utiliser mes outils'",
+            "Certificats officiels: remise avec applaudissements",
+            "Danse de célébration: bouger avec toutes nos émotions"
+          ],
+          "visualSupports": "Portfolios complets, certificats officiels, musique joyeuse, participation de tous",
+          "movementBreak": "Danse libre de célébration avec émotions positives"
+        },
+        "closing": {
+          "duration": "10 minutes",
+          "description": "Commit to continued emotional growth",
+          "activities": [
+            "Cercle final: 'Ce que je ferai avec mes outils d'émotions'",
+            "Promesse collective: 'Nous sommes des experts en émotions'",
+            "Fermeture calme: respiration de gratitude ensemble"
+          ],
+          "visualSupports": "Cercle fier, engagement collectif, fermeture paisible"
+        }
+      },
+      "decisionPoints": [
+        {
+          "situation": "How can we celebrate emotional growth appropriately?",
+          "ifThen": "IF students need individual recognition → personalize celebrations | IF group celebration works → maintain group focus"
+        },
+        {
+          "situation": "What commitments are realistic for students?",
+          "ifThen": "IF students make big promises → help make specific, achievable goals | IF students uncertain → suggest simple daily practices"
+        },
+        {
+          "situation": "How to end the unit with confidence in emotional skills?",
+          "ifThen": "IF students seem confident → celebrate and encourage continued growth | IF students need reassurance → provide extra validation and support"
+        }
+      ],
+      "emergencyBackup": {
+        "ifTooAdvanced": "Simple celebration with certificates and one sharing activity",
+        "ifNotEngaged": "More hands-on celebration activities, music, movement",
+        "ifOverstimulating": "Calmer celebration, smaller groups, more structure"
+      },
+      "realWorldConnection": "Celebrating our emotional learning helps us remember to use our skills every day",
+      "assessmentOpportunities": "Observe confidence in emotional skills, listen to commitments for continued growth",
+      "differentiationSupport": "Performance learners: presentation opportunities | Private learners: written commitments | Social: group celebration"
+    }
+  ]
+}
