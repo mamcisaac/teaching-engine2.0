@@ -1,1315 +1,1051 @@
 {
   "unitTitle": "Histoires d'automne",
   "subject": "Français (Immersion)",
-  "grade": 1,
+  "grade": "1",
   "totalLessons": 20,
-  "estimatedHours": 15,
-  "unitOverview": {
-    "bigIdea": "Les histoires d'automne nous connectent à la nature et aux traditions",
-    "essentialQuestions": [
-      "Que se passe-t-il en automne?",
-      "Quelles histoires raconte l'automne?",
-      "Comment célébrer l'automne ensemble?"
-    ],
-    "culminatingTask": "Livre d'histoires d'automne de la classe"
-  },
+  "coreCount": 14,
+  "extensionCount": 6,
   "lessons": [
     {
       "lessonNumber": 1,
+      "lessonType": "core",
       "title": "L'automne arrive!",
-      "duration": "45 minutes",
       "oneGoal": "Students will recognize autumn vocabulary through seasonal objects, visual supports, and nature exploration",
-      "keyVocabulary": ["automne", "feuilles", "orange"],
-      "materials": [
-        "Real autumn leaves (various colors)",
-        "Autumn picture cards",
-        "Nature observation basket",
-        "Simple autumn song recording",
-        "Magnifying glasses (optional)"
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "automne",
+        "feuilles",
+        "orange"
       ],
-      "lessonStructure": {
-        "opening": {
-          "duration": "8 minutes",
-          "activities": [
-            "Welcome circle with autumn greeting song",
-            "Show mystery nature basket - let students guess what's inside",
-            "Introduce key word 'automne' with gestures (arms spread wide like season embracing us)"
-          ],
-          "flexibility": "If students are very curious about basket contents, extend discovery time and shorten main activity"
-        },
-        "mainActivity": {
-          "duration": "27 minutes",
-          "activities": [
-            "Nature walk around school grounds (15 min) - collect leaves, observe changes",
-            "Return to classroom for leaf exploration (12 min) - touch, sort by color, describe with simple French",
-            "Create class 'Autumn Arrived' display with collected items"
-          ],
-          "storyCircle": {
-            "setup": "Students sit in circle with nature treasures in center",
-            "props": "Real leaves, small pumpkin, autumn-colored scarves",
-            "narrative": "Simple story about autumn's arrival using collected objects as characters"
-          },
-          "artIntegration": "Students create leaf rubbings while practicing color vocabulary",
-          "decisionPoints": [
-            "If weather prevents outdoor walk: Use window observations and pre-collected materials",
-            "If students find many interesting objects: Allow extra sharing time",
-            "If attention wanes: Add movement breaks between activities"
-          ]
-        },
-        "closing": {
-          "duration": "10 minutes",
-          "activities": [
-            "Share one autumn discovery from our walk",
-            "Learn simple autumn gesture routine",
-            "Preview tomorrow's leaf dancing adventure"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "differentiation": {
-        "multipleIntelligences": "Kinesthetic (walking), Visual (leaf colors), Naturalist (outdoor observation)",
-        "languageSupport": "Gestures for all vocabulary, visual cards, hands-on manipulation",
-        "extension": "Students lead nature walk observations, create leaf categories"
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "observational": "Note student engagement with vocabulary, comfort with outdoor exploration",
-        "formative": "Simple thumbs up/down for vocabulary recognition"
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "How people notice and talk about changing seasons in their daily lives",
-      "culturalElements": "Discuss how autumn looks in different French-speaking regions"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 2,
+      "lessonType": "core",
       "title": "Les feuilles dansent",
-      "duration": "45 minutes",
       "oneGoal": "Students will understand leaf-related vocabulary through movement, colors, and creative expression",
-      "keyVocabulary": ["rouge", "jaune", "tomber"],
-      "materials": [
-        "Colored scarves (red, yellow, orange)",
-        "Leaf-shaped paper cutouts",
-        "Gentle wind music",
-        "Picture books about falling leaves",
-        "Basket for leaf collection"
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "rouge",
+        "jaune",
+        "tomber"
       ],
-      "lessonStructure": {
-        "opening": {
-          "duration": "8 minutes",
-          "activities": [
-            "Review yesterday's autumn vocabulary with gestures",
-            "Introduce today's color words with real leaves",
-            "Demonstrate 'tomber' with gentle leaf dropping motion"
-          ]
-        },
-        "mainActivity": {
-          "duration": "27 minutes",
-          "activities": [
-            "Leaf dancing activity (10 min) - students move like falling leaves to music",
-            "Story circle with leaf puppet show (10 min)",
-            "Collaborative leaf art creation (7 min)"
-          ],
-          "storyCircle": {
-            "setup": "Circle with colorful leaf props in center",
-            "props": "Large felt leaves, small basket, wind sound maker",
-            "narrative": "Story of leaves dancing in wind, each color having personality",
-            "interaction": "Students help leaves 'dance' and make wind sounds"
-          },
-          "artIntegration": "Create leaf collage while naming colors in French",
-          "dramaticPlay": "Students become different colored leaves, act out falling and dancing",
-          "decisionPoints": [
-            "If students love dancing: Extend movement time, reduce art time",
-            "If students need calm: Start with gentle movements, build energy gradually",
-            "If weather permits: Take leaf dancing outside"
-          ]
-        },
-        "closing": {
-          "duration": "10 minutes",
-          "activities": [
-            "Gentle leaf meditation - students close eyes and imagine being autumn leaf",
-            "Share favorite leaf color from today",
-            "Preview tomorrow's tree exploration"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "differentiation": {
-        "multipleIntelligences": "Bodily-kinesthetic (dancing), Musical (rhythm), Visual (colors)",
-        "languageSupport": "Color-coded visual supports, movement reinforces vocabulary",
-        "extension": "Students create leaf dance choreography, teach moves to others"
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "observational": "Note color vocabulary recognition during movement",
-        "formative": "Students point to correct colored leaves when named"
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "Observing how leaves change and fall in our neighborhood and parks",
-      "progression": "Builds on Lesson 1 by deepening leaf vocabulary while adding movement and color concepts"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 3,
+      "lessonType": "core",
       "title": "Les arbres en automne",
-      "duration": "45 minutes",
       "oneGoal": "Students will recognize tree vocabulary through observation, drawing, and simple descriptions",
-      "keyVocabulary": ["arbre", "branches", "grand"],
-      "materials": [
-        "Tree identification cards",
-        "Brown and green construction paper",
-        "Cotton swabs for painting",
-        "Autumn-colored paint",
-        "Window view of trees",
-        "Tree puppet or stuffed animal"
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "arbre",
+        "branches",
+        "grand"
       ],
-      "lessonStructure": {
-        "opening": {
-          "duration": "8 minutes",
-          "activities": [
-            "Look out window at real trees while saying 'arbre'",
-            "Use arms to show 'branches' extending from body trunk",
-            "Practice 'grand' by reaching up high like tall tree"
-          ]
-        },
-        "mainActivity": {
-          "duration": "27 minutes",
-          "activities": [
-            "Tree observation walk or window study (8 min)",
-            "Story circle about tree's autumn transformation (10 min)",
-            "Create tree art with cotton swab painting (9 min)"
-          ],
-          "storyCircle": {
-            "setup": "Sit under or near visible tree, or create tree corner with branch props",
-            "props": "Tree puppet, felt leaves to add/remove, seasonal clothing for tree",
-            "narrative": "Story of tree changing clothes from green to autumn colors",
-            "interaction": "Students help dress/undress tree for seasons"
-          },
-          "artIntegration": "Students paint autumn trees using cotton swabs for leaves",
-          "natureWalk": "Focus on tree shapes, sizes, and seasonal changes visible around school",
-          "decisionPoints": [
-            "If students fascinated by tree details: Allow more observation time",
-            "If restless during story: Add more physical tree movements",
-            "If painting gets messy: Simplify to finger printing or stickers"
-          ]
-        },
-        "closing": {
-          "duration": "10 minutes",
-          "activities": [
-            "Share tree drawings and use new vocabulary to describe",
-            "Practice tree growing movement from seed to full size",
-            "Preview tomorrow's weather exploration"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "differentiation": {
-        "multipleIntelligences": "Visual-spatial (observation), Naturalist (tree study), Artistic (painting)",
-        "languageSupport": "Visual tree parts diagram, gestures for size concepts",
-        "extension": "Students create tree fact book, measure and compare tree sizes"
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "observational": "Listen for tree vocabulary during art sharing",
-        "formative": "Students point to tree parts when vocabulary is said"
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "How trees provide homes for animals and beauty in our communities",
-      "progression": "Builds on Lesson 2 by expanding from individual leaves to whole trees while reinforcing colors and movement"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 4,
+      "lessonType": "core",
       "title": "Il fait frais!",
-      "duration": "45 minutes",
       "oneGoal": "Students will understand autumn weather vocabulary through clothing, sensory experiences, and weather observation",
-      "keyVocabulary": ["frais", "vent", "nuages"],
-      "materials": [
-        "Weather observation chart",
-        "Autumn clothing items (sweaters, scarves)",
-        "Fan for wind simulation",
-        "Cotton balls for cloud activity",
-        "Weather station props",
-        "Thermometer (child-safe)"
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "frais",
+        "vent",
+        "nuages"
       ],
-      "lessonStructure": {
-        "opening": {
-          "duration": "8 minutes",
-          "activities": [
-            "Feel the air outside door or window",
-            "Demonstrate 'frais' with gentle shiver and cozy wrap gesture",
-            "Look for 'nuages' in today's sky"
-          ]
-        },
-        "mainActivity": {
-          "duration": "27 minutes",
-          "activities": [
-            "Weather station exploration (8 min) - observe and record today's weather",
-            "Story circle about autumn weather changes (10 min)",
-            "Dress-up activity for autumn weather (9 min)"
-          ],
-          "storyCircle": {
-            "setup": "Circle with weather prop collection in center",
-            "props": "Wind maker (fan), cloud cotton, jacket, umbrella, sun prop",
-            "narrative": "Story of weather changing from summer to autumn",
-            "interaction": "Students experience each weather type with props and movements"
-          },
-          "artIntegration": "Create weather collage with cotton ball clouds and tissue paper wind",
-          "sensoryExperience": "Feel different temperatures, air movement, and textures",
-          "decisionPoints": [
-            "If very windy day: Spend more time outside experiencing real wind",
-            "If students cold: Bring activity inside and use props for wind",
-            "If clothing activity overwhelming: Use just one item per student"
-          ]
-        },
-        "closing": {
-          "duration": "10 minutes",
-          "activities": [
-            "Share what clothes we need for today's weather",
-            "Practice weather vocabulary with matching movements",
-            "Preview tomorrow's animal preparation exploration"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "differentiation": {
-        "multipleIntelligences": "Bodily-kinesthetic (feeling weather), Logical (observing patterns)",
-        "languageSupport": "Real weather experience reinforces abstract vocabulary",
-        "extension": "Students become classroom weather reporters, predict tomorrow's weather"
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "observational": "Note weather vocabulary use during dress-up activity",
-        "formative": "Students choose appropriate clothing for described weather"
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "How autumn weather affects our clothing choices and daily activities",
-      "progression": "Builds on Lesson 3 by connecting trees and leaves to weather changes while introducing sensory vocabulary"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 5,
+      "lessonType": "core",
       "title": "Les animaux se préparent",
-      "duration": "45 minutes",
       "oneGoal": "Students will learn about autumn animal behaviors through stories, movements, and visual supports",
-      "keyVocabulary": ["écureuil", "oiseau", "préparer"],
-      "materials": [
-        "Animal puppets or stuffed animals",
-        "Acorns and seeds for props",
-        "Bird migration map (simple)",
-        "Animal preparation picture books",
-        "Small baskets for gathering game",
-        "Animal movement music"
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "écureuil",
+        "oiseau",
+        "préparer"
       ],
-      "lessonStructure": {
-        "opening": {
-          "duration": "8 minutes",
-          "activities": [
-            "Introduce animal friends with puppets",
-            "Demonstrate 'préparer' by packing pretend suitcase",
-            "Practice animal movements for écureuil and oiseau"
-          ]
-        },
-        "mainActivity": {
-          "duration": "27 minutes",
-          "activities": [
-            "Animal preparation story circle (12 min)",
-            "Animal movement and preparation game (10 min)",
-            "Create animal winter preparation art (5 min)"
-          ],
-          "storyCircle": {
-            "setup": "Forest scene with animal homes (boxes/baskets)",
-            "props": "Squirrel puppet, bird puppet, acorns, nest materials",
-            "narrative": "Story of animals getting ready for winter - squirrel gathering, bird migrating",
-            "interaction": "Students help animals prepare by gathering food and building nests"
-          },
-          "dramaticPlay": "Students become animals preparing for winter through movements and actions",
-          "natureConnection": "Discuss what real animals do in our area during autumn",
-          "decisionPoints": [
-            "If students love animal movements: Extend movement time, add more animals",
-            "If story too long: Break into shorter segments with more interaction",
-            "If outdoor animals visible: Take brief observation break"
-          ]
-        },
-        "closing": {
-          "duration": "10 minutes",
-          "activities": [
-            "Share which animal preparation strategy we think is smartest",
-            "Practice all animal movements with vocabulary",
-            "Preview tomorrow's first autumn story time"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "differentiation": {
-        "multipleIntelligences": "Naturalist (animal behavior), Kinesthetic (animal movements)",
-        "languageSupport": "Animal movements reinforce vocabulary, visual animal cards",
-        "extension": "Students research local animals, create animal preparation guide"
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "observational": "Watch for animal vocabulary during movement activities",
-        "formative": "Students demonstrate animal preparations when prompted"
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "Observing how animals in our area get ready for colder weather",
-      "progression": "Builds on Lesson 4 by introducing animals while connecting to weather and seasonal changes"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 6,
+      "lessonType": "core",
       "title": "Première histoire d'automne",
-      "duration": "45 minutes",
       "oneGoal": "Students will listen to and respond to their first simple autumn story through pictures and gestures",
-      "keyVocabulary": ["histoire", "écouter", "regarder"],
-      "materials": [
-        "Simple autumn picture book",
-        "Story props basket",
-        "Comfortable floor cushions",
-        "Story sequence picture cards",
-        "Soft background music",
-        "Story stick or wand"
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "histoire",
+        "écouter",
+        "regarder"
       ],
-      "lessonStructure": {
-        "opening": {
-          "duration": "8 minutes",
-          "activities": [
-            "Create cozy story circle with cushions",
-            "Introduce story time routine with special story stick",
-            "Practice 'écouter' and 'regarder' with exaggerated gestures"
-          ]
-        },
-        "mainActivity": {
-          "duration": "27 minutes",
-          "activities": [
-            "Read autumn story with interactive props (15 min)",
-            "Story response activity with pictures (8 min)",
-            "Begin planning our class story (4 min)"
-          ],
-          "storyCircle": {
-            "setup": "Intimate circle with dim lighting and autumn decorations",
-            "props": "Story book, character puppets, seasonal objects that appear in story",
-            "narrative": "Simple autumn adventure story with repetitive phrases and clear pictures",
-            "interaction": "Students help tell story by providing sound effects and movements"
-          },
-          "artIntegration": "Students draw favorite story moment while retelling in French",
-          "oralLanguageDevelopment": "Encourage story predictions and simple retellings",
-          "decisionPoints": [
-            "If students very engaged: Read story twice with different focus",
-            "If attention wandering: Pause for movement breaks between story sections",
-            "If students want to share: Allow brief personal connections to story"
-          ]
-        },
-        "closing": {
-          "duration": "10 minutes",
-          "activities": [
-            "Share favorite part of story using pictures or gestures",
-            "Practice story vocabulary with movements",
-            "Preview meeting story characters tomorrow"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "differentiation": {
-        "multipleIntelligences": "Linguistic (story comprehension), Visual (picture support)",
-        "languageSupport": "Rich visual support, repetitive story structure, interactive elements",
-        "extension": "Students create alternative story endings, act out favorite scenes"
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "observational": "Note story comprehension through responses and participation",
-        "formative": "Students point to story elements when mentioned"
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "How families and communities share stories about seasons and nature",
-      "progression": "Builds on Lesson 5 by introducing storytelling while incorporating all previous autumn vocabulary"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 7,
+      "lessonType": "core",
       "title": "Les personnages d'automne",
-      "duration": "45 minutes",
       "oneGoal": "Students will identify story characters through dramatic play, props, and visual character cards",
-      "keyVocabulary": ["personnage", "petit", "gentil"],
-      "materials": [
-        "Character puppets from yesterday's story",
-        "Simple costume pieces (hats, scarves)",
-        "Character trait picture cards",
-        "Mirror for character expressions",
-        "Character voice props",
-        "Story character name cards"
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "personnage",
+        "petit",
+        "gentil"
       ],
-      "lessonStructure": {
-        "opening": {
-          "duration": "8 minutes",
-          "activities": [
-            "Greet yesterday's story characters with puppets",
-            "Practice describing characters with 'petit' and 'gentil' gestures",
-            "Introduce character exploration activity"
-          ]
-        },
-        "mainActivity": {
-          "duration": "27 minutes",
-          "activities": [
-            "Character puppet show and discussion (10 min)",
-            "Character role-play stations (12 min)",
-            "Character trait art activity (5 min)"
-          ],
-          "storyCircle": {
-            "setup": "Character gallery with puppets and props displayed",
-            "props": "Character puppets, trait cards, emotion faces, costume pieces",
-            "narrative": "Introduce each character's personality through puppet interactions",
-            "interaction": "Students help characters show different emotions and traits"
-          },
-          "dramaticPlay": "Students try on character roles with simple props and movements",
-          "artIntegration": "Draw character portraits showing their special traits",
-          "decisionPoints": [
-            "If students love role-playing: Extend dramatic play time",
-            "If shy about performing: Use partner work or smaller groups",
-            "If characters confusing: Focus on one main character today"
-          ]
-        },
-        "closing": {
-          "duration": "10 minutes",
-          "activities": [
-            "Share which character we'd like to be friends with and why",
-            "Practice character movements and voices",
-            "Preview tomorrow's story events exploration"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "differentiation": {
-        "multipleIntelligences": "Interpersonal (character relationships), Kinesthetic (role-play)",
-        "languageSupport": "Visual character cards, emotion faces, gesture support",
-        "extension": "Students create new characters, write character descriptions"
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "observational": "Listen for character vocabulary during role-play",
-        "formative": "Students identify character traits when shown pictures"
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "How stories help us understand different personalities and feelings",
-      "progression": "Builds on Lesson 6 by deepening story comprehension while introducing character vocabulary and dramatic play"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 8,
+      "lessonType": "core",
       "title": "Que se passe-t-il?",
-      "duration": "45 minutes",
       "oneGoal": "Students will understand story events through sequencing, retelling, and simple cause-and-effect activities",
-      "keyVocabulary": ["puis", "après", "maintenant"],
-      "materials": [
-        "Story sequence picture cards",
-        "Timeline rope or string",
-        "Clothespins for hanging pictures",
-        "Story event props",
-        "Large story map poster",
-        "Story retelling dice"
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "puis",
+        "après",
+        "maintenant"
       ],
-      "lessonStructure": {
-        "opening": {
-          "duration": "8 minutes",
-          "activities": [
-            "Review story from previous lessons using pictures",
-            "Introduce sequence words with hand gestures (first, then, now)",
-            "Practice timeline concept with daily routine examples"
-          ]
-        },
-        "mainActivity": {
-          "duration": "27 minutes",
-          "activities": [
-            "Story sequence activity with timeline (10 min)",
-            "Retelling story circle with props (12 min)",
-            "Cause and effect exploration (5 min)"
-          ],
-          "storyCircle": {
-            "setup": "Story timeline displayed around circle with prop stations",
-            "props": "Sequence cards, story timeline, event props, retelling cube",
-            "narrative": "Collaborative retelling using sequence vocabulary and student participation",
-            "interaction": "Students place events in order and explain what happens next"
-          },
-          "oralLanguageDevelopment": "Practice using sequence words to tell simple stories",
-          "artIntegration": "Create story maps showing beginning, middle, and end",
-          "decisionPoints": [
-            "If sequencing challenging: Use only 3 main events today",
-            "If students love retelling: Allow multiple versions of same story",
-            "If timeline confusing: Act out sequence with body movements"
-          ]
-        },
-        "closing": {
-          "duration": "10 minutes",
-          "activities": [
-            "Practice sequence vocabulary with daily routine events",
-            "Share what happens 'après' school today",
-            "Preview tomorrow's vocabulary practice games"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "differentiation": {
-        "multipleIntelligences": "Logical-mathematical (sequencing), Linguistic (retelling)",
-        "languageSupport": "Visual sequence supports, gesture cues for time words",
-        "extension": "Students create personal daily sequence stories, predict story outcomes"
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "observational": "Note use of sequence vocabulary during retelling",
-        "formative": "Students arrange story events in correct order"
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "Understanding how events connect in our daily lives and experiences",
-      "progression": "Builds on Lesson 7 by adding sequence vocabulary while practicing character identification and story comprehension"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 9,
+      "lessonType": "core",
       "title": "Mes mots d'automne",
-      "duration": "45 minutes",
       "oneGoal": "Students will practice autumn vocabulary through word games, picture matching, and creative expression",
-      "keyVocabulary": ["mot", "dire", "répéter"],
-      "materials": [
-        "Autumn vocabulary picture cards",
-        "Word treasure box",
-        "Autumn vocabulary bingo cards",
-        "Word movement activity cards",
-        "Vocabulary memory game",
-        "Student vocabulary journals"
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "mot",
+        "dire",
+        "répéter"
       ],
-      "lessonStructure": {
-        "opening": {
-          "duration": "8 minutes",
-          "activities": [
-            "Open vocabulary treasure box with previously learned words",
-            "Practice 'dire' and 'répéter' with echo games",
-            "Introduce word appreciation concept"
-          ]
-        },
-        "mainActivity": {
-          "duration": "27 minutes",
-          "activities": [
-            "Vocabulary review stations (15 min) - rotate through word games",
-            "Word appreciation circle (8 min)",
-            "Create personal word collection (4 min)"
-          ],
-          "storyCircle": {
-            "setup": "Circle surrounded by vocabulary stations with game materials",
-            "props": "Word treasure box, picture cards, movement props, memory game",
-            "narrative": "Story about words being treasures we collect and share",
-            "interaction": "Students share favorite words and demonstrate meanings"
-          },
-          "gameBasedLearning": "Vocabulary bingo, memory matching, movement games",
-          "artIntegration": "Students illustrate favorite autumn words in personal journals",
-          "decisionPoints": [
-            "If games too exciting: Use calmer activities like matching",
-            "If students struggling: Focus on 5-7 key vocabulary words",
-            "If wanting more challenge: Add rhyming or word family activities"
-          ]
-        },
-        "closing": {
-          "duration": "10 minutes",
-          "activities": [
-            "Share our favorite autumn 'mot' from today's collection",
-            "Practice saying words with different emotions (happy, surprised, quiet)",
-            "Preview tomorrow's collaborative storytelling adventure"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "differentiation": {
-        "multipleIntelligences": "Linguistic (word appreciation), Kinesthetic (movement games)",
-        "languageSupport": "Visual word cards, gesture support, repetition through games",
-        "extension": "Students create word families, make rhyming word pairs"
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "observational": "Note vocabulary retention during games and activities",
-        "formative": "Students match pictures to vocabulary words independently"
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "How learning new words helps us express our thoughts and feelings",
-      "progression": "Builds on Lesson 8 by consolidating vocabulary while introducing meta-language concepts about words and communication"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 10,
+      "lessonType": "core",
       "title": "Raconter ensemble",
-      "duration": "45 minutes",
       "oneGoal": "Students will participate in collaborative storytelling through turns, prompts, and shared creative expression",
-      "keyVocabulary": ["raconter", "ensemble", "tour"],
-      "materials": [
-        "Story starter picture cards",
-        "Talking stick for turn-taking",
-        "Collaborative story poster",
-        "Story building blocks or props",
-        "Recording device (optional)",
-        "Story prompt dice"
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "raconter",
+        "ensemble",
+        "tour"
       ],
-      "lessonStructure": {
-        "opening": {
-          "duration": "8 minutes",
-          "activities": [
-            "Introduce collaborative storytelling with talking stick",
-            "Practice 'tour' concept with simple sharing circle",
-            "Demonstrate 'raconter' and 'ensemble' through group gesture"
-          ]
-        },
-        "mainActivity": {
-          "duration": "27 minutes",
-          "activities": [
-            "Practice turn-taking with simple story starters (8 min)",
-            "Collaborative autumn story creation (15 min)",
-            "Story celebration and sharing (4 min)"
-          ],
-          "storyCircle": {
-            "setup": "Circle with story building materials and talking stick in center",
-            "props": "Story starter cards, autumn vocabulary props, talking stick, poster paper",
-            "narrative": "Students build story together, each adding one element",
-            "interaction": "Turn-taking structure with visual and verbal supports"
-          },
-          "oralLanguageDevelopment": "Structured practice in story construction and turn-taking",
-          "dramaticPlay": "Act out parts of collaborative story as it develops",
-          "decisionPoints": [
-            "If students shy about contributing: Use picture prompts or whisper to teacher",
-            "If story getting complex: Simplify with 'and then...' structure",
-            "If some students dominating: Use timer or gesture cues for turns"
-          ]
-        },
-        "closing": {
-          "duration": "10 minutes",
-          "activities": [
-            "Celebrate our first group story creation",
-            "Practice turn-taking vocabulary with class routine examples",
-            "Preview tomorrow's autumn sounds exploration"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "differentiation": {
-        "multipleIntelligences": "Interpersonal (collaboration), Linguistic (storytelling)",
-        "languageSupport": "Visual turn-taking cues, story prompt pictures, gesture supports",
-        "extension": "Students create story illustrations, retell story to other classes"
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "observational": "Note turn-taking skills and story contribution comfort level",
-        "formative": "Students demonstrate understanding of 'tour' in other contexts"
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "How families and friends create stories together during conversations and activities",
-      "progression": "Builds on Lesson 9 by encouraging oral expression while practicing vocabulary and story structure concepts"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 11,
+      "lessonType": "core",
       "title": "Les sons d'automne",
-      "duration": "45 minutes",
       "oneGoal": "Students will explore autumn sounds through listening activities, sound-making, and vocabulary reinforcement",
-      "keyVocabulary": ["bruit", "entendre", "silence"],
-      "materials": [
-        "Sound recording devices or apps",
-        "Autumn sound effect materials (leaves, sticks, paper)",
-        "Sound identification cards",
-        "Quiet listening area setup",
-        "Sound story props",
-        "Headphones for listening station"
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "bruit",
+        "entendre",
+        "silence"
       ],
-      "lessonStructure": {
-        "opening": {
-          "duration": "8 minutes",
-          "activities": [
-            "Moment of 'silence' to appreciate quiet sounds around us",
-            "Introduce 'entendre' by cupping ears and listening carefully",
-            "Practice making different autumn 'bruits' with materials"
-          ]
-        },
-        "mainActivity": {
-          "duration": "27 minutes",
-          "activities": [
-            "Autumn sound exploration walk (10 min)",
-            "Sound story creation circle (12 min)",
-            "Sound identification game (5 min)"
-          ],
-          "storyCircle": {
-            "setup": "Circle with sound-making materials and listening props",
-            "props": "Leaves for rustling, sticks for tapping, wind chimes, rain sounds",
-            "narrative": "Create story using autumn sounds as characters and plot elements",
-            "interaction": "Students add sound effects as story develops"
-          },
-          "natureWalk": "Focus on listening for autumn sounds - leaves rustling, wind, birds",
-          "artIntegration": "Create sound artwork - drawings inspired by different autumn sounds",
-          "decisionPoints": [
-            "If outdoor sounds limited: Create autumn sounds indoors with materials",
-            "If students overwhelmed by sounds: Use quieter activities and smaller groups",
-            "If very engaged with sound exploration: Extend listening time"
-          ]
-        },
-        "closing": {
-          "duration": "10 minutes",
-          "activities": [
-            "Share favorite autumn sound from our exploration",
-            "Practice sound vocabulary with whisper and loud voice variations",
-            "Preview tomorrow's class story creation beginning"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "differentiation": {
-        "multipleIntelligences": "Musical (sound appreciation), Naturalist (environmental sounds)",
-        "languageSupport": "Auditory vocabulary reinforced through actual sound experiences",
-        "extension": "Students record autumn sounds, create sound compositions"
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "observational": "Note sound vocabulary use during exploration activities",
-        "formative": "Students identify sounds when heard without visual cues"
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "How different seasons bring different sounds to our environment",
-      "progression": "Builds on Lesson 10 by adding auditory elements to storytelling while reinforcing autumn vocabulary and oral expression"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 12,
+      "lessonType": "core",
       "title": "Notre histoire de classe",
-      "duration": "45 minutes",
       "oneGoal": "Students will begin creating a class autumn story through collaboration, illustration, and vocabulary application",
-      "keyVocabulary": ["créer", "dessiner", "notre"],
-      "materials": [
-        "Large story book template",
-        "Art supplies for illustration",
-        "Story planning chart",
-        "Previous lesson vocabulary cards",
-        "Collaborative workspace setup",
-        "Story binding materials"
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "créer",
+        "dessiner",
+        "notre"
       ],
-      "lessonStructure": {
-        "opening": {
-          "duration": "8 minutes",
-          "activities": [
-            "Review all autumn vocabulary learned so far",
-            "Introduce concept of 'notre' story belonging to everyone",
-            "Brainstorm what our class autumn story might include"
-          ]
-        },
-        "mainActivity": {
-          "duration": "27 minutes",
-          "activities": [
-            "Story planning session (10 min) - choose characters, setting, events",
-            "Begin story creation and illustration (15 min)",
-            "Share progress and plan next steps (2 min)"
-          ],
-          "storyCircle": {
-            "setup": "Collaborative workspace with story materials spread around circle",
-            "props": "Large book template, art supplies, vocabulary cards, planning chart",
-            "narrative": "Begin creating original class story incorporating all learned vocabulary",
-            "interaction": "Democratic decision-making about story elements"
-          },
-          "artIntegration": "Students collaborate on illustrations that support story text",
-          "oralLanguageDevelopment": "Practice using all autumn vocabulary in creative context",
-          "decisionPoints": [
-            "If story planning overwhelming: Use teacher-guided prompts and choices",
-            "If artistic abilities vary greatly: Focus on effort and vocabulary use",
-            "If students want very different stories: Find common elements to blend"
-          ]
-        },
-        "closing": {
-          "duration": "10 minutes",
-          "activities": [
-            "Admire our story beginning and celebrate collaborative work",
-            "Practice 'créer' and 'dessiner' vocabulary through gesture",
-            "Preview tomorrow's learning review and preparation for sharing"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "differentiation": {
-        "multipleIntelligences": "Interpersonal (collaboration), Visual-spatial (illustration)",
-        "languageSupport": "Vocabulary cards available for reference, visual story planning",
-        "extension": "Students create individual story pages, add detailed illustrations"
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "observational": "Note vocabulary application during story creation",
-        "formative": "Students contribute meaningfully to collaborative story planning"
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "How communities work together to create and share meaningful stories",
-      "progression": "Builds on Lesson 11 by synthesizing all previous learning into creative production while practicing collaborative skills"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 13,
+      "lessonType": "core",
       "title": "Révision et célébration",
-      "duration": "45 minutes",
       "oneGoal": "Students will demonstrate autumn vocabulary understanding through review activities, games, and assessment opportunities",
-      "keyVocabulary": ["savoir", "apprendre", "bien"],
-      "materials": [
-        "Review game stations",
-        "Assessment observation sheets",
-        "Celebration materials",
-        "Vocabulary review cards",
-        "Achievement recognition items",
-        "Portfolio reflection materials"
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "savoir",
+        "apprendre",
+        "bien"
       ],
-      "lessonStructure": {
-        "opening": {
-          "duration": "8 minutes",
-          "activities": [
-            "Celebrate how much we have learned with 'savoir' gestures",
-            "Practice 'apprendre' by reviewing lesson highlights",
-            "Acknowledge everyone doing 'bien' in their own way"
-          ]
-        },
-        "mainActivity": {
-          "duration": "27 minutes",
-          "activities": [
-            "Vocabulary review stations (15 min) - games and activities from unit",
-            "Individual assessment conversations (8 min)",
-            "Group celebration preparation (4 min)"
-          ],
-          "storyCircle": {
-            "setup": "Celebration circle with all unit materials and achievements displayed",
-            "props": "Vocabulary cards, artwork from unit, story elements, achievement symbols",
-            "narrative": "Review learning journey through unit materials and memories",
-            "interaction": "Students share favorite learning moments and vocabulary"
-          },
-          "assessment": "Gentle individual conversations about vocabulary recognition and story comprehension",
-          "artIntegration": "Create portfolio page showing autumn learning journey",
-          "decisionPoints": [
-            "If students need more review: Focus on 5-7 core vocabulary words",
-            "If assessment anxiety appears: Make conversations very informal and supportive",
-            "If celebration energy high: Allow more time for sharing and recognition"
-          ]
-        },
-        "closing": {
-          "duration": "10 minutes",
-          "activities": [
-            "Recognize each student's learning growth and effort",
-            "Practice reflection vocabulary while looking at our work",
-            "Preview tomorrow's exciting story book presentation"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "differentiation": {
-        "multipleIntelligences": "Intrapersonal (reflection), Multiple review modalities",
-        "languageSupport": "Portfolio visual supports, choice in demonstration methods",
-        "extension": "Students create teaching materials to share learning with others"
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "observational": "Comprehensive observation of vocabulary use and story comprehension",
-        "formative": "Individual conversations about learning progress and favorite activities"
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "How reflecting on our learning helps us grow and feel proud of our progress",
-      "progression": "Builds on Lesson 12 by reviewing and consolidating all core learning while preparing for final demonstration"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 14,
+      "lessonType": "core",
       "title": "Présentation du livre",
-      "duration": "45 minutes",
       "oneGoal": "Students will present their class autumn book through sharing, reading aloud, and celebrating collaborative achievement",
-      "keyVocabulary": ["présenter", "partager", "fier"],
-      "materials": [
-        "Completed class autumn story book",
-        "Presentation area setup",
-        "Audience seating",
-        "Celebration refreshments (optional)",
-        "Camera for memories",
-        "Thank you cards for audience"
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "présenter",
+        "partager",
+        "fier"
       ],
-      "lessonStructure": {
-        "opening": {
-          "duration": "8 minutes",
-          "activities": [
-            "Practice 'présenter' with confident posture and clear voice",
-            "Prepare to 'partager' our story with others",
-            "Acknowledge feeling 'fier' of our collaborative work"
-          ]
-        },
-        "mainActivity": {
-          "duration": "27 minutes",
-          "activities": [
-            "Story presentation preparation (5 min)",
-            "Class book sharing presentation (15 min)",
-            "Audience appreciation and celebration (7 min)"
-          ],
-          "storyCircle": {
-            "setup": "Presentation area with audience seating and book display",
-            "props": "Completed class book, presentation stand, celebration materials",
-            "narrative": "Students present their collaborative autumn story to audience",
-            "interaction": "Shared reading with each student contributing to presentation"
-          },
-          "oralLanguageDevelopment": "Authentic presentation practice with meaningful audience",
-          "communityBuilding": "Celebrate collaborative achievement and individual contributions",
-          "decisionPoints": [
-            "If students nervous about presenting: Use shared reading approach",
-            "If no outside audience available: Present to other class or stuffed animal audience",
-            "If students want individual recognition: Acknowledge specific contributions"
-          ]
-        },
-        "closing": {
-          "duration": "10 minutes",
-          "activities": [
-            "Celebrate our presentation success and learning journey",
-            "Thank audience and share appreciation for support",
-            "Preview exciting extension activities coming in following lessons"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "differentiation": {
-        "multipleIntelligences": "Interpersonal (presentation), Linguistic (sharing story)",
-        "languageSupport": "Shared presentation reduces individual pressure, visual book support",
-        "extension": "Students create individual story pages, plan additional performances"
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "observational": "Note confidence and vocabulary use during presentation",
-        "summative": "Evaluation of overall autumn vocabulary acquisition and story comprehension"
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "How sharing our creations builds confidence and connects us with others",
-      "progression": "Builds on Lesson 13 by culminating core curriculum through authentic presentation and celebration of learning"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 15,
+      "lessonType": "extension",
       "title": "Contes traditionnels d'automne",
-      "duration": "45 minutes",
       "oneGoal": "Students will explore traditional autumn stories from French culture through listening, discussion, and cultural connection (extension)",
-      "keyVocabulary": ["traditionnel", "culture", "autrefois"],
-      "materials": [
-        "Traditional French autumn stories",
-        "Cultural artifacts or pictures",
-        "Map showing French-speaking regions",
-        "Traditional story props",
-        "Comparison chart materials",
-        "Cultural music for background"
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "traditionnel",
+        "culture",
+        "autrefois"
       ],
-      "lessonStructure": {
-        "opening": {
-          "duration": "8 minutes",
-          "activities": [
-            "Introduce concept of 'traditionnel' stories passed down through families",
-            "Show 'culture' through pictures of French-speaking communities",
-            "Practice 'autrefois' with gestures showing long ago time"
-          ]
-        },
-        "mainActivity": {
-          "duration": "27 minutes",
-          "activities": [
-            "Listen to traditional French autumn story (12 min)",
-            "Cultural exploration and comparison (10 min)",
-            "Create cultural appreciation art (5 min)"
-          ],
-          "storyCircle": {
-            "setup": "Cultural circle with French artifacts and traditional story materials",
-            "props": "Traditional story book, cultural artifacts, map, comparison pictures",
-            "narrative": "Traditional autumn story from French-speaking culture",
-            "interaction": "Compare traditional elements to our own experiences"
-          },
-          "culturalExploration": "Discuss how different cultures celebrate and understand autumn",
-          "artIntegration": "Create art inspired by traditional story elements",
-          "decisionPoints": [
-            "If traditional story too complex: Focus on visual elements and simple themes",
-            "If students making many connections: Allow more comparison discussion time",
-            "If cultural concepts abstract: Use concrete examples and pictures"
-          ]
-        },
-        "closing": {
-          "duration": "10 minutes",
-          "activities": [
-            "Share what we found interesting about traditional story",
-            "Practice cultural vocabulary with appreciation gestures",
-            "Preview tomorrow's drama and performance activities"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "differentiation": {
-        "multipleIntelligences": "Cultural (global awareness), Visual (cultural artifacts)",
-        "languageSupport": "Visual cultural supports, comparison to familiar experiences",
-        "extension": "Students research family traditions, create cultural story collection"
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "observational": "Note cultural vocabulary understanding and story engagement",
-        "formative": "Students identify traditional elements in stories"
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "How different cultures have special stories about autumn and harvest time",
-      "progression": "Extension of Lesson 14 - deepens cultural understanding while practicing story comprehension skills"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 16,
+      "lessonType": "extension",
       "title": "Théâtre d'automne",
-      "duration": "45 minutes",
       "oneGoal": "Students will perform simple autumn scenes through dramatic play, costumes, and creative expression (extension)",
-      "keyVocabulary": ["jouer", "spectacle", "rôle"],
-      "materials": [
-        "Simple costume pieces",
-        "Theater performance area",
-        "Autumn scene backdrops",
-        "Props from previous lessons",
-        "Performance music",
-        "Audience seating"
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "jouer",
+        "spectacle",
+        "rôle"
       ],
-      "lessonStructure": {
-        "opening": {
-          "duration": "8 minutes",
-          "activities": [
-            "Transform classroom into theater space",
-            "Practice 'jouer' through simple character movements",
-            "Introduce 'spectacle' and 'rôle' concepts through demonstration"
-          ]
-        },
-        "mainActivity": {
-          "duration": "27 minutes",
-          "activities": [
-            "Choose roles and prepare costumes (8 min)",
-            "Rehearse autumn scenes (12 min)",
-            "Perform mini-theater presentations (7 min)"
-          ],
-          "storyCircle": {
-            "setup": "Theater circle with performance area and costume station",
-            "props": "Costumes, autumn scene backdrops, character props, simple scripts",
-            "narrative": "Students create and perform short autumn scenes",
-            "interaction": "Audience participation and appreciation of performances"
-          },
-          "dramaticPlay": "Structured dramatic expression using autumn vocabulary and themes",
-          "performanceArts": "Introduction to theater concepts through age-appropriate activities",
-          "decisionPoints": [
-            "If students nervous about performing: Use group scenes and familiar characters",
-            "If very enthusiastic about drama: Allow more rehearsal and creative time",
-            "If costumes overwhelming: Use simple props or just movements"
-          ]
-        },
-        "closing": {
-          "duration": "10 minutes",
-          "activities": [
-            "Appreciate all performances and creative choices",
-            "Practice theater vocabulary through performance reflection",
-            "Preview tomorrow's poetry and rhythm exploration"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "differentiation": {
-        "multipleIntelligences": "Bodily-kinesthetic (performance), Interpersonal (audience)",
-        "languageSupport": "Movement and costume support vocabulary expression",
-        "extension": "Students write simple scripts, create elaborate costume designs"
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "observational": "Note creative expression and theater vocabulary use",
-        "formative": "Students demonstrate understanding of performance concepts"
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "How acting and drama help us understand different perspectives and express creativity",
-      "progression": "Extension of Lesson 15 - applies story knowledge through kinesthetic and dramatic expression"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 17,
+      "lessonType": "extension",
       "title": "Poésie d'automne",
-      "duration": "45 minutes",
       "oneGoal": "Students will explore autumn poetry through rhythm, rhyme, and creative language play (extension)",
-      "keyVocabulary": ["poème", "rythme", "rime"],
-      "materials": [
-        "Simple French autumn poems",
-        "Rhythm instruments",
-        "Poetry illustration materials",
-        "Rhyming word cards",
-        "Poetry performance props",
-        "Recording device for poetry"
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "poème",
+        "rythme",
+        "rime"
       ],
-      "lessonStructure": {
-        "opening": {
-          "duration": "8 minutes",
-          "activities": [
-            "Experience 'rythme' through clapping and movement",
-            "Discover 'rime' through simple word pairs that sound alike",
-            "Introduce 'poème' as special way to play with words"
-          ]
-        },
-        "mainActivity": {
-          "duration": "27 minutes",
-          "activities": [
-            "Listen to autumn poetry with rhythm (10 min)",
-            "Create simple class poem together (12 min)",
-            "Illustrate and share poetry (5 min)"
-          ],
-          "storyCircle": {
-            "setup": "Poetry circle with rhythm instruments and word play materials",
-            "props": "Poetry books, rhythm instruments, rhyming cards, illustration materials",
-            "narrative": "Explore different autumn poems with rhythm and movement",
-            "interaction": "Students add rhythm and movement to poetry experience"
-          },
-          "musicIntegration": "Use rhythm and rhyme to enhance language learning",
-          "artIntegration": "Create visual poetry through illustration and creative expression",
-          "decisionPoints": [
-            "If rhythm activities too exciting: Use gentler clapping and movement",
-            "If rhyming difficult: Focus on rhythm and word appreciation",
-            "If students love poetry creation: Allow more time for individual poems"
-          ]
-        },
-        "closing": {
-          "duration": "10 minutes",
-          "activities": [
-            "Share our class poem creation with rhythm performance",
-            "Practice poetry vocabulary through gentle movement",
-            "Preview tomorrow's legends and mystery story exploration"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "differentiation": {
-        "multipleIntelligences": "Musical (rhythm), Linguistic (poetry), Visual (illustration)",
-        "languageSupport": "Rhythm reinforces language patterns, visual poetry support",
-        "extension": "Students create individual poems, perform poetry for other classes"
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "observational": "Note poetry vocabulary understanding and rhythm participation",
-        "formative": "Students identify rhyme and rhythm in simple poems"
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "How poetry helps us express feelings about nature and seasonal changes",
-      "progression": "Extension of Lesson 16 - introduces poetic language while reinforcing autumn vocabulary and oral expression"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 18,
+      "lessonType": "extension",
       "title": "Légendes d'automne",
-      "duration": "45 minutes",
       "oneGoal": "Students will discover autumn legends and myths through storytelling, imagination, and cultural exploration (extension)",
-      "keyVocabulary": ["légende", "magique", "mystère"],
-      "materials": [
-        "Autumn legend picture books",
-        "Mystery story props",
-        "Magical elements for storytelling",
-        "Legend creation materials",
-        "Cultural legend artifacts",
-        "Imagination station setup"
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "légende",
+        "magique",
+        "mystère"
       ],
-      "lessonStructure": {
-        "opening": {
-          "duration": "8 minutes",
-          "activities": [
-            "Create mysterious atmosphere for 'légende' introduction",
-            "Practice 'magique' through wonder and amazement gestures",
-            "Introduce 'mystère' concept through guessing games"
-          ]
-        },
-        "mainActivity": {
-          "duration": "27 minutes",
-          "activities": [
-            "Listen to autumn legend with magical elements (12 min)",
-            "Explore mystery and magic in nature (10 min)",
-            "Begin creating class legend (5 min)"
-          ],
-          "storyCircle": {
-            "setup": "Mystical circle with dim lighting and magical props",
-            "props": "Legend books, magical storytelling objects, mystery boxes, cultural artifacts",
-            "narrative": "Traditional autumn legend with magical and mysterious elements",
-            "interaction": "Students participate in magical story elements and wonder discussions"
-          },
-          "imaginativePlay": "Explore concepts of magic and mystery through safe, age-appropriate activities",
-          "culturalExploration": "Discuss how legends help communities understand nature",
-          "decisionPoints": [
-            "If legends too mysterious for some: Focus on nature wonder rather than supernatural",
-            "If students very engaged with magic: Allow more imaginative exploration time",
-            "If concepts too abstract: Use concrete examples and familiar comparisons"
-          ]
-        },
-        "closing": {
-          "duration": "10 minutes",
-          "activities": [
-            "Share what made the legend special and interesting",
-            "Practice legend vocabulary through storytelling gestures",
-            "Preview tomorrow's exploration of autumn around the world"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "differentiation": {
-        "multipleIntelligences": "Imaginative (wonder), Cultural (legend appreciation)",
-        "languageSupport": "Visual mystery supports, wonder-based vocabulary introduction",
-        "extension": "Students create family legends, explore cultural mythology"
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "observational": "Note legend vocabulary understanding and imaginative engagement",
-        "formative": "Students distinguish between real and legendary story elements"
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "How legends help communities explain natural phenomena and preserve cultural wisdom",
-      "progression": "Extension of Lesson 17 - expands story genres while practicing vocabulary and comprehension skills"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 19,
+      "lessonType": "extension",
       "title": "Automne autour du monde",
-      "duration": "45 minutes",
       "oneGoal": "Students will explore how autumn is celebrated in different French-speaking regions through photos, stories, and cultural comparison (extension)",
-      "keyVocabulary": ["monde", "pays", "différent"],
-      "materials": [
-        "World map with French-speaking regions",
-        "Autumn photos from different countries",
-        "Cultural celebration materials",
-        "Comparison chart materials",
-        "Global autumn music",
-        "Cultural artifacts or clothing"
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "monde",
+        "pays",
+        "différent"
       ],
-      "lessonStructure": {
-        "opening": {
-          "duration": "8 minutes",
-          "activities": [
-            "Explore our big 'monde' using world map and pictures",
-            "Identify different 'pays' where French is spoken",
-            "Practice 'différent' by comparing local autumn to other places"
-          ]
-        },
-        "mainActivity": {
-          "duration": "27 minutes",
-          "activities": [
-            "Virtual journey to French-speaking autumn regions (12 min)",
-            "Compare autumn celebrations and traditions (10 min)",
-            "Create world autumn appreciation art (5 min)"
-          ],
-          "storyCircle": {
-            "setup": "World exploration circle with map, photos, and cultural materials",
-            "props": "World map, autumn photos from different regions, cultural artifacts, music",
-            "narrative": "Journey through different French-speaking regions experiencing autumn",
-            "interaction": "Students compare autumn experiences and ask questions about different places"
-          },
-          "globalAwareness": "Develop appreciation for diverse autumn experiences worldwide",
-          "artIntegration": "Create artwork showing autumn diversity around the world",
-          "decisionPoints": [
-            "If global concepts overwhelming: Focus on 2-3 specific regions",
-            "If students very curious about places: Allow more exploration and question time",
-            "If comparison difficult: Use simple same/different activities"
-          ]
-        },
-        "closing": {
-          "duration": "10 minutes",
-          "activities": [
-            "Share most interesting autumn discovery from our world journey",
-            "Practice global vocabulary through appreciation gestures",
-            "Preview tomorrow's final celebration and festival planning"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "differentiation": {
-        "multipleIntelligences": "Spatial (global awareness), Cultural (diversity appreciation)",
-        "languageSupport": "Visual global supports, comparison to familiar experiences",
-        "extension": "Students research specific countries, create travel brochures"
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "observational": "Note global vocabulary understanding and cultural curiosity",
-        "formative": "Students identify similarities and differences in autumn celebrations"
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "How people around the world experience and celebrate autumn in diverse ways",
-      "progression": "Extension of Lesson 18 - broadens cultural perspective while applying autumn vocabulary in global contexts"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 20,
+      "lessonType": "extension",
       "title": "Notre festival d'automne",
-      "duration": "45 minutes",
       "oneGoal": "Students will celebrate their autumn learning journey through a festival combining stories, activities, and community sharing (extension)",
-      "keyVocabulary": ["festival", "célébrer", "communauté"],
-      "materials": [
-        "Festival decoration materials",
-        "All unit artifacts and creations",
-        "Celebration refreshments (optional)",
-        "Festival activity stations",
-        "Memory book materials",
-        "Thank you materials for community"
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "festival",
+        "célébrer",
+        "communauté"
       ],
-      "lessonStructure": {
-        "opening": {
-          "duration": "8 minutes",
-          "activities": [
-            "Transform classroom into 'festival' celebration space",
-            "Practice 'célébrer' through joyful movements and expressions",
-            "Welcome our learning 'communauté' to the festival"
-          ]
-        },
-        "mainActivity": {
-          "duration": "27 minutes",
-          "activities": [
-            "Festival station activities (15 min) - showcase all unit learning",
-            "Community appreciation ceremony (8 min)",
-            "Festival reflection and memory creation (4 min)"
-          ],
-          "storyCircle": {
-            "setup": "Festival center with all unit creations and learning displayed",
-            "props": "All unit artifacts, student work, celebration materials, memory book",
-            "narrative": "Celebration of complete learning journey through autumn stories",
-            "interaction": "Community appreciation and sharing of learning growth"
-          },
-          "communityBuilding": "Celebrate individual growth within supportive learning community",
-          "portfolioReflection": "Review entire learning journey and recognize growth",
-          "decisionPoints": [
-            "If festival energy very high: Allow more celebration time and free exploration",
-            "If some students overwhelmed: Provide quiet appreciation areas",
-            "If community wants to extend: Plan follow-up celebration activities"
-          ]
-        },
-        "closing": {
-          "duration": "10 minutes",
-          "activities": [
-            "Express gratitude for learning journey and community support",
-            "Practice festival vocabulary through celebration gestures",
-            "Look forward to future French learning adventures"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "differentiation": {
-        "multipleIntelligences": "Interpersonal (community), Intrapersonal (reflection)",
-        "languageSupport": "Celebration context supports all vocabulary demonstration",
-        "extension": "Students plan future festivals, create learning showcase presentations"
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "observational": "Comprehensive observation of all unit vocabulary and skills in celebration context",
-        "summative": "Portfolio assessment of complete autumn learning journey"
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "How festivals and celebrations strengthen community bonds and honor seasonal transitions",
-      "progression": "Extension of Lesson 19 - culminates the entire unit with comprehensive celebration and community building"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     }
-  ]
+  ],
+  "assessmentTools": {
+    "observationChecklist": [],
+    "rubrics": [],
+    "selfAssessment": [],
+    "portfolioGuidelines": ""
+  },
+  "familyConnections": {
+    "unitLetter": "",
+    "homeActivities": [],
+    "vocabularyList": []
+  },
+  "resourceAlternatives": {
+    "materials": {},
+    "digitalResources": []
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
+  }
 }

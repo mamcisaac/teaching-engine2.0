@@ -1,922 +1,1560 @@
-[
-  {
-    "lessonNumber": 1,
-    "title": "Notre année scientifique en révision",
-    "oneGoal": "Students will identify and recall the main science topics they explored during the year",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Welcome circle and year overview introduction",
-      "materials": ["calendar", "photo timeline", "science journal covers"],
-      "visualSupports": "Timeline display of the school year with science unit photos"
+{
+  "unitTitle": "",
+  "subject": "Sciences de la nature",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "lessonType": "core",
+      "title": "Notre année scientifique en révision",
+      "oneGoal": "Students will identify and recall the main science topics they explored during the year",
+      "duration": 45,
+      "keyVocabulary": [
+        "révision",
+        "année",
+        "sciences"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Welcome circle and year overview introduction",
+        "materials": [
+          "calendar",
+          "photo timeline",
+          "science journal covers"
+        ],
+        "visualSupports": "Timeline display of the school year with science unit photos",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Interactive science year review using timeline and memory sharing",
+        "materials": [
+          "science unit posters",
+          "student journals",
+          "sticky notes",
+          "markers"
+        ],
+        "visualSupports": "Visual timeline with unit icons and key vocabulary cards",
+        "decisionPoints": [
+          {
+            "question": "What science topics were most memorable for students this year?",
+            "ifYes": "Focus on those topics for deeper recall and connection",
+            "ifNo": "Use visual prompts and peer sharing to activate memories"
+          },
+          {
+            "question": "Should we use a timeline format or topic-by-topic review?",
+            "ifYes": "Continue with chronological timeline approach",
+            "ifNo": "Switch to thematic groupings of similar concepts"
+          },
+          {
+            "question": "Are students ready to make connections between different science units?",
+            "ifYes": "Guide students to find links between units",
+            "ifNo": "Focus on individual unit recall before making connections"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Share one favorite science memory with the class",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "remembering science activities",
+        "then": "use visual prompts, peer partnerships, and journal browsing to support recall"
+      },
+      "realWorldConnection": "Reflecting on learning helps us understand how much we've grown, like looking at photos from the beginning of the year",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
-    "main": {
-      "duration": 27,
-      "activity": "Interactive science year review using timeline and memory sharing",
-      "materials": ["science unit posters", "student journals", "sticky notes", "markers"],
-      "visualSupports": "Visual timeline with unit icons and key vocabulary cards",
-      "decisionPoints": [
-        {
-          "question": "What science topics were most memorable for students this year?",
-          "ifYes": "Focus on those topics for deeper recall and connection",
-          "ifNo": "Use visual prompts and peer sharing to activate memories"
-        },
-        {
-          "question": "Should we use a timeline format or topic-by-topic review?",
-          "ifYes": "Continue with chronological timeline approach",
-          "ifNo": "Switch to thematic groupings of similar concepts"
-        },
-        {
-          "question": "Are students ready to make connections between different science units?",
-          "ifYes": "Guide students to find links between units",
-          "ifNo": "Focus on individual unit recall before making connections"
-        }
-      ]
+    {
+      "lessonNumber": 2,
+      "lessonType": "core",
+      "title": "Nos découvertes les plus excitantes",
+      "oneGoal": "Students will identify their most exciting scientific discoveries from the year and explain why they were special",
+      "duration": 45,
+      "keyVocabulary": [
+        "découvertes",
+        "excitant",
+        "spécial"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Review previous lesson and introduce the concept of scientific discoveries",
+        "materials": [
+          "discovery jar",
+          "exciting moment cards"
+        ],
+        "visualSupports": "Images of famous scientific discoveries adapted for Grade 1",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Individual reflection and small group sharing of most exciting science discoveries",
+        "materials": [
+          "drawing paper",
+          "crayons",
+          "discovery sharing template",
+          "timer"
+        ],
+        "visualSupports": "Sentence starters and emotion words display",
+        "decisionPoints": [
+          {
+            "question": "Should students share discoveries individually or in small groups?",
+            "ifYes": "Use individual presentation format with audience",
+            "ifNo": "Keep to small group sharing for comfort and time management"
+          },
+          {
+            "question": "How can we help students who struggle to identify favorite discoveries?",
+            "ifYes": "Provide guided prompts and visual reminders of activities",
+            "ifNo": "Use peer partnerships to help generate ideas together"
+          },
+          {
+            "question": "Are students ready to explain their thinking or should we focus on sharing experiences?",
+            "ifYes": "Include 'why' questions in sharing prompts",
+            "ifNo": "Focus on describing what happened and how it felt"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Gallery walk of discovery drawings with positive comments",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "choosing between multiple favorites",
+        "then": "encourage choosing one for now and saving others for later lessons"
+      },
+      "realWorldConnection": "Scientists often share their most exciting discoveries with others, just like we share exciting news with friends",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
-    "closing": {
-      "duration": 10,
-      "activity": "Share one favorite science memory with the class",
-      "assessment": "Observation of student ability to recall and articulate science experiences"
+    {
+      "lessonNumber": 3,
+      "lessonType": "core",
+      "title": "Qu'est-ce qu'une exposition scientifique?",
+      "oneGoal": "Students will understand what a science fair or exposition is and how scientists share their work",
+      "duration": 45,
+      "keyVocabulary": [
+        "exposition",
+        "montrer",
+        "partager"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Connect sharing discoveries to the idea of science exhibitions",
+        "materials": [
+          "science fair photos",
+          "sharing circle props"
+        ],
+        "visualSupports": "Age-appropriate images of children at science fairs and exhibitions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Explore the concept of science sharing through videos, pictures, and role-play",
+        "materials": [
+          "video clips",
+          "dress-up scientist props",
+          "demonstration table",
+          "audience chairs"
+        ],
+        "visualSupports": "Simple flowchart showing: Learn → Practice → Share → Celebrate",
+        "decisionPoints": [
+          {
+            "question": "Should we show examples of science fairs or focus on simple sharing concepts?",
+            "ifYes": "Use carefully selected, age-appropriate science fair videos",
+            "ifNo": "Focus on familiar sharing experiences like show-and-tell"
+          },
+          {
+            "question": "How can we make the concept accessible without overwhelming students?",
+            "ifYes": "Use simple analogies and familiar sharing situations",
+            "ifNo": "Break down the concept into very small, concrete steps"
+          },
+          {
+            "question": "Are students ready to understand audience or should we focus on showing work?",
+            "ifYes": "Include discussion about who comes to see science work",
+            "ifNo": "Focus mainly on the act of showing what we've learned"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Practice being a science audience for teacher demonstration",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "understanding the concept of formal presentation",
+        "then": "relate to familiar experiences like birthday parties or school concerts"
+      },
+      "realWorldConnection": "Understanding how people share their best work at art shows, school concerts, or sports games",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
-    "vocabulary": ["révision", "année", "sciences"],
-    "troubleshooting": {
-      "ifStrugglingWith": "remembering science activities",
-      "then": "use visual prompts, peer partnerships, and journal browsing to support recall"
+    {
+      "lessonNumber": 4,
+      "lessonType": "core",
+      "title": "Choisir notre projet de démonstration",
+      "oneGoal": "Students will select one science topic or experiment from the year to demonstrate at the exposition",
+      "duration": 45,
+      "keyVocabulary": [
+        "choisir",
+        "projet",
+        "démonstration"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Review science year and introduce project selection",
+        "materials": [
+          "choice chart",
+          "science topic cards",
+          "thinking time music"
+        ],
+        "visualSupports": "Visual menu of science topics studied this year with pictures",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Individual reflection and selection process with teacher conferences",
+        "materials": [
+          "selection worksheet",
+          "colored pencils",
+          "conference schedule",
+          "topic reminder cards"
+        ],
+        "visualSupports": "Decision-making criteria poster: Safe, Fun, I Know It Well",
+        "decisionPoints": [
+          {
+            "question": "Should students choose individually or work in small groups?",
+            "ifYes": "Allow individual choice with option for partnerships",
+            "ifNo": "Organize into predetermined small groups with shared choices"
+          },
+          {
+            "question": "What criteria should guide project selection (interest, success, safety)?",
+            "ifYes": "Use all three criteria in a simple checklist format",
+            "ifNo": "Focus primarily on student interest and engagement level"
+          },
+          {
+            "question": "Are students ready for independent choice or need guided options?",
+            "ifYes": "Provide full menu of year's topics for selection",
+            "ifNo": "Pre-select 4-5 most appropriate options for students to choose from"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Share chosen project with a partner and explain why",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "making a decision between options",
+        "then": "use elimination process and 'gut feeling' check to narrow choices"
+      },
+      "realWorldConnection": "Making choices about what to share, like picking our best artwork for a family display",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
-    "realWorldConnection": "Reflecting on learning helps us understand how much we've grown, like looking at photos from the beginning of the year"
+    {
+      "lessonNumber": 5,
+      "lessonType": "core",
+      "title": "Planifier notre démonstration",
+      "oneGoal": "Students will create a simple plan for how they will show their chosen science topic to visitors",
+      "duration": 45,
+      "keyVocabulary": [
+        "planifier",
+        "plan",
+        "visiteurs"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Review chosen projects and introduce planning concepts",
+        "materials": [
+          "planning examples",
+          "step cards",
+          "demonstration area"
+        ],
+        "visualSupports": "Simple planning template with pictures: What? How? What do I need?",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Create individual planning sheets with drawings and simple steps",
+        "materials": [
+          "planning templates",
+          "crayons",
+          "sticky notes",
+          "pencils",
+          "planning examples"
+        ],
+        "visualSupports": "Step-by-step planning process poster and sample completed plans",
+        "decisionPoints": [
+          {
+            "question": "Should we provide planning templates or encourage creative formats?",
+            "ifYes": "Provide basic template but allow creative additions",
+            "ifNo": "Start with completely open-ended planning approach"
+          },
+          {
+            "question": "How detailed should the planning be for Grade 1 students?",
+            "ifYes": "Include 3-4 simple steps with drawings",
+            "ifNo": "Focus on just the main idea and one key step"
+          },
+          {
+            "question": "Are students ready for thinking about audience needs or focus on their own presentation?",
+            "ifYes": "Include 'What will visitors see?' in planning",
+            "ifNo": "Focus on 'What will I do?' for now"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Partner sharing of plans with feedback and suggestions",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "organizing thoughts into steps",
+        "then": "use think-aloud modeling and break into very small actions"
+      },
+      "realWorldConnection": "Planning how to explain something to others, like teaching a game to a younger child",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 6,
+      "lessonType": "core",
+      "title": "Matériel et outils nécessaires",
+      "oneGoal": "Students will identify and gather the materials they need for their science demonstration",
+      "duration": 45,
+      "keyVocabulary": [
+        "matériel",
+        "outils",
+        "nécessaires"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Review plans and introduce material identification",
+        "materials": [
+          "material cards",
+          "safety symbols",
+          "planning sheets from previous lesson"
+        ],
+        "visualSupports": "Safety symbol chart and material category pictures",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Create material lists and practice safe handling procedures",
+        "materials": [
+          "material checklist sheets",
+          "sample materials",
+          "safety practice items",
+          "storage containers"
+        ],
+        "visualSupports": "Material safety chart with green, yellow, and red categories",
+        "decisionPoints": [
+          {
+            "question": "Which materials are safe and appropriate for student-led demonstrations?",
+            "ifYes": "Allow all green-category materials with student responsibility",
+            "ifNo": "Restrict to pre-approved safe materials list only"
+          },
+          {
+            "question": "Should we focus on simple materials or allow more complex tools with supervision?",
+            "ifYes": "Include some yellow-category materials with adult helper assigned",
+            "ifNo": "Stick to simple, completely safe materials students can handle alone"
+          },
+          {
+            "question": "Are students ready for material responsibility or need teacher-prepared sets?",
+            "ifYes": "Have students gather and organize their own materials",
+            "ifNo": "Pre-prepare material sets with student input on arrangement"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Practice setup and cleanup procedures with materials",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "remembering all needed materials",
+        "then": "create visual checklist and practice run-through with materials"
+      },
+      "realWorldConnection": "Getting ready for activities by gathering what we need, like packing for a trip or preparing for cooking",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 7,
+      "lessonType": "core",
+      "title": "Pratiquer notre explication simple",
+      "oneGoal": "Students will practice explaining their science topic using simple words that other children can understand",
+      "duration": 45,
+      "keyVocabulary": [
+        "pratiquer",
+        "explication",
+        "comprendre"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Warm-up with simple explanation practice using familiar objects",
+        "materials": [
+          "familiar objects",
+          "explanation cards",
+          "timer"
+        ],
+        "visualSupports": "Simple explanation framework: This is... It does... I like it because...",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Practice rounds with partners, focusing on clear, simple language",
+        "materials": [
+          "explanation practice cards",
+          "recording device",
+          "feedback sheets",
+          "encouragement stickers"
+        ],
+        "visualSupports": "Word choice helper chart: hard words → easy words",
+        "decisionPoints": [
+          {
+            "question": "Should students practice with peers or adults first?",
+            "ifYes": "Start with peer practice for comfort level",
+            "ifNo": "Begin with adult practice for immediate feedback"
+          },
+          {
+            "question": "How can we help students use age-appropriate vocabulary?",
+            "ifYes": "Provide word substitution chart and practice",
+            "ifNo": "Model simple language and have students repeat"
+          },
+          {
+            "question": "Are students ready for feedback on their explanations or need encouragement first?",
+            "ifYes": "Include gentle, specific feedback with encouragement",
+            "ifNo": "Focus purely on positive reinforcement and building confidence"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "One-minute explanation challenge with whole group audience",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "using simple language",
+        "then": "practice explaining to a stuffed animal or younger child first"
+      },
+      "realWorldConnection": "Learning to explain things clearly so others understand, like telling someone how to play our favorite game",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 8,
+      "lessonType": "core",
+      "title": "Créer un affichage visuel",
+      "oneGoal": "Students will create a simple visual display (drawing, poster, or model) to support their science demonstration",
+      "duration": 45,
+      "keyVocabulary": [
+        "créer",
+        "affichage",
+        "visuel"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Look at examples of visual displays and discuss their purpose",
+        "materials": [
+          "visual display examples",
+          "magnifying glass",
+          "observation sheets"
+        ],
+        "visualSupports": "Gallery of age-appropriate science displays with features highlighted",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Create individual visual displays with choice of format and materials",
+        "materials": [
+          "poster paper",
+          "construction paper",
+          "markers",
+          "crayons",
+          "glue sticks",
+          "scissors",
+          "simple templates"
+        ],
+        "visualSupports": "Visual display planning template and design idea examples",
+        "decisionPoints": [
+          {
+            "question": "What visual formats are most appropriate for Grade 1 science concepts?",
+            "ifYes": "Allow choice between drawing, simple poster, or basic model",
+            "ifNo": "Focus on drawings with labels as the primary format"
+          },
+          {
+            "question": "Should we focus on drawings, simple posters, or 3D models?",
+            "ifYes": "Offer all three options based on student project needs",
+            "ifNo": "Standardize on one format for consistency and time management"
+          },
+          {
+            "question": "Are students ready for independent creation or need guided templates?",
+            "ifYes": "Provide optional templates but encourage creative additions",
+            "ifNo": "Use structured templates with specific areas for student input"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Gallery walk with positive feedback on visual displays",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "knowing what to include in display",
+        "then": "use guiding questions: What? How? Why is it cool?"
+      },
+      "realWorldConnection": "Using pictures and displays to help explain ideas, like showing photos when telling about vacation",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 9,
+      "lessonType": "core",
+      "title": "Questions que les visiteurs pourraient poser",
+      "oneGoal": "Students will anticipate and practice answering simple questions about their science topic",
+      "duration": 45,
+      "keyVocabulary": [
+        "questions",
+        "visiteurs",
+        "répondre"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Introduce the idea of visitor questions through role-play",
+        "materials": [
+          "question cards",
+          "visitor name tags",
+          "demonstration props"
+        ],
+        "visualSupports": "Common question types poster with picture cues",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Generate possible questions and practice answering with partners",
+        "materials": [
+          "question practice cards",
+          "answer recording sheets",
+          "timer",
+          "conversation practice props"
+        ],
+        "visualSupports": "Answer framework: I think... because... Do you want to see?",
+        "decisionPoints": [
+          {
+            "question": "What types of questions are most likely from different age groups?",
+            "ifYes": "Practice with age-specific question categories",
+            "ifNo": "Focus on general curiosity questions regardless of age"
+          },
+          {
+            "question": "Should we practice specific questions or general question-answering skills?",
+            "ifYes": "Create specific question bank for each project type",
+            "ifNo": "Focus on general questioning strategies and comfort building"
+          },
+          {
+            "question": "Are students ready for unknown questions or should we stick to predictable ones?",
+            "ifYes": "Include some surprise questions in practice",
+            "ifNo": "Practice only with predictable, prepared questions"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Quick question-answer rounds with the whole class as visitors",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "not knowing an answer",
+        "then": "practice saying 'That's a great question! Let me think...' or 'I'm not sure, but I know...'"
+      },
+      "realWorldConnection": "Being ready to answer questions about things we know well, like explaining our favorite books or toys",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 10,
+      "lessonType": "core",
+      "title": "Sécurité pendant notre démonstration",
+      "oneGoal": "Students will identify and practice safety rules for their science demonstration with visitors",
+      "duration": 45,
+      "keyVocabulary": [
+        "sécurité",
+        "règles",
+        "démonstration"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Review general safety rules and apply them to demonstration contexts",
+        "materials": [
+          "safety rule cards",
+          "demonstration area setup",
+          "safety props"
+        ],
+        "visualSupports": "Safety rules poster with pictures and symbols",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Create personalized safety checklists and practice safety procedures",
+        "materials": [
+          "safety checklist templates",
+          "demonstration materials",
+          "safety practice scenarios",
+          "first aid kit display"
+        ],
+        "visualSupports": "Safety action cards: Stop, Look, Think, Ask",
+        "decisionPoints": [
+          {
+            "question": "Which safety considerations are most important for student-led demonstrations?",
+            "ifYes": "Focus on material handling and visitor guidance safety",
+            "ifNo": "Concentrate on basic personal safety and space organization"
+          },
+          {
+            "question": "Should we focus on material safety or visitor safety protocols?",
+            "ifYes": "Include both with emphasis on visitor safety",
+            "ifNo": "Prioritize material safety as the foundation"
+          },
+          {
+            "question": "Are students ready for safety leadership or need adult supervision reminders?",
+            "ifYes": "Practice student safety leadership with backup adult support",
+            "ifNo": "Focus on recognizing when to call for adult help"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Safety scenario practice with problem-solving discussions",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "remembering safety rules under pressure",
+        "then": "create visual safety reminder cards and practice calm breathing"
+      },
+      "realWorldConnection": "Being responsible for safety when showing others our activities, like teaching someone to ride a bike safely",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 11,
+      "lessonType": "core",
+      "title": "Première pratique complète",
+      "oneGoal": "Students will perform a complete run-through of their science demonstration with classmates as audience",
+      "duration": 45,
+      "keyVocabulary": [
+        "première",
+        "pratique",
+        "complète"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Setup demonstration spaces and review practice expectations",
+        "materials": [
+          "demonstration setup materials",
+          "audience seating",
+          "practice schedule",
+          "encouragement props"
+        ],
+        "visualSupports": "Practice checklist and supportive audience behavior chart",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Full demonstration practice with structured audience feedback",
+        "materials": [
+          "all demonstration materials",
+          "feedback forms",
+          "timer",
+          "positive comment cards",
+          "practice evaluation sheets"
+        ],
+        "visualSupports": "Audience job chart: Listen, Look, Think of kind words",
+        "decisionPoints": [
+          {
+            "question": "Should students present individually or in small groups?",
+            "ifYes": "Use individual presentations with small audience rotation",
+            "ifNo": "Organize small group presentations with larger audiences"
+          },
+          {
+            "question": "How can we provide supportive feedback without discouraging students?",
+            "ifYes": "Use structured positive feedback with one gentle suggestion",
+            "ifNo": "Focus purely on encouragement and celebration of efforts"
+          },
+          {
+            "question": "Are students ready for peer feedback or should we focus on teacher observation?",
+            "ifYes": "Include guided peer feedback with kind word focus",
+            "ifNo": "Have teacher provide all feedback while peers practice audience skills"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Celebration circle sharing what went well and how students felt",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "nervousness during practice",
+        "then": "provide calm-down strategies and extra practice opportunities"
+      },
+      "realWorldConnection": "Practicing performances before the real event, like rehearsing for a school play or music concert",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 12,
+      "lessonType": "core",
+      "title": "Améliorer notre présentation",
+      "oneGoal": "Students will identify one specific improvement they can make to their science demonstration",
+      "duration": 45,
+      "keyVocabulary": [
+        "améliorer",
+        "mieux",
+        "changement"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Reflect on practice session and introduce improvement mindset",
+        "materials": [
+          "reflection sheets",
+          "practice videos if available",
+          "improvement examples"
+        ],
+        "visualSupports": "Growth mindset poster: Good → Better → Best!",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Self-reflection and improvement planning with teacher conferences",
+        "materials": [
+          "improvement planning sheets",
+          "conference materials",
+          "goal-setting cards",
+          "practice materials"
+        ],
+        "visualSupports": "Improvement areas chart: Louder voice, Clearer words, Better showing",
+        "decisionPoints": [
+          {
+            "question": "Should improvements focus on content clarity or presentation skills?",
+            "ifYes": "Allow student choice between content and delivery improvements",
+            "ifNo": "Focus primarily on presentation skills as more immediately achievable"
+          },
+          {
+            "question": "How can we help students identify achievable improvements?",
+            "ifYes": "Provide specific, small-step improvement options to choose from",
+            "ifNo": "Guide students to very specific, single-focus improvements"
+          },
+          {
+            "question": "Are students ready for self-reflection or need guided improvement suggestions?",
+            "ifYes": "Start with self-reflection then confirm with teacher guidance",
+            "ifNo": "Provide teacher-identified improvements with student input"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Practice improved element with a partner for immediate feedback",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "seeing areas for improvement",
+        "then": "use video replay or peer observations to identify growth opportunities"
+      },
+      "realWorldConnection": "Making things better through practice and changes, like improving at sports or drawing",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 13,
+      "lessonType": "core",
+      "title": "Aider les autres avec leurs projets",
+      "oneGoal": "Students will provide helpful feedback and encouragement to classmates preparing their demonstrations",
+      "duration": 45,
+      "keyVocabulary": [
+        "aider",
+        "autres",
+        "encouragement"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Discuss what helpful feedback looks like and practice kind words",
+        "materials": [
+          "feedback examples",
+          "kind words cards",
+          "helper badges"
+        ],
+        "visualSupports": "Helpful helper chart: Listen, Think, Say something kind and helpful",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Structured peer feedback sessions with rotation and guided prompts",
+        "materials": [
+          "feedback forms",
+          "positive comment templates",
+          "peer observation sheets",
+          "encouragement stickers"
+        ],
+        "visualSupports": "Feedback sentence starters: I liked... You could try... Great job with...",
+        "decisionPoints": [
+          {
+            "question": "What feedback skills are appropriate for Grade 1 students to practice?",
+            "ifYes": "Focus on specific positive observations and gentle suggestions",
+            "ifNo": "Concentrate only on positive encouragement and celebration"
+          },
+          {
+            "question": "Should we focus on positive comments or specific suggestions?",
+            "ifYes": "Balance positive comments with one gentle suggestion",
+            "ifNo": "Emphasize positive comments with optional suggestions"
+          },
+          {
+            "question": "Are students ready for peer evaluation or should we model supportive language?",
+            "ifYes": "Allow guided peer evaluation with supportive language frames",
+            "ifNo": "Have teacher model supportive language while students practice listening"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Thank-you circle where students appreciate help received from others",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "giving helpful feedback",
+        "then": "provide specific sentence frames and model examples"
+      },
+      "realWorldConnection": "Helping friends get better at things they're working on, like cheering each other on during games",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 14,
+      "lessonType": "core",
+      "title": "Inviter notre famille",
+      "oneGoal": "Students will create invitations for their families to attend the science exposition",
+      "duration": 45,
+      "keyVocabulary": [
+        "inviter",
+        "famille",
+        "venir"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Discuss family celebration and the importance of sharing learning",
+        "materials": [
+          "family photos",
+          "invitation examples",
+          "celebration props"
+        ],
+        "visualSupports": "Family words chart and invitation template examples",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Create personalized family invitations with drawings and key information",
+        "materials": [
+          "invitation templates",
+          "art supplies",
+          "family information sheets",
+          "envelope materials",
+          "stickers"
+        ],
+        "visualSupports": "Invitation checklist: Who, What, When, Where, Why",
+        "decisionPoints": [
+          {
+            "question": "Should invitations include specific details about student demonstrations?",
+            "ifYes": "Include brief description of student's project on invitation",
+            "ifNo": "Keep invitations general with focus on celebration aspect"
+          },
+          {
+            "question": "How can we make invitations accessible for all family situations?",
+            "ifYes": "Use multiple language options and flexible wording about family",
+            "ifNo": "Use simple universal language about 'special people' instead of specific family terms"
+          },
+          {
+            "question": "Are students ready for writing invitations or should we use templates/dictation?",
+            "ifYes": "Provide writing templates with student choice in personalization",
+            "ifNo": "Use teacher/student dictated text with student art additions"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Share invitations with partners and practice explaining the event",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "including important information",
+        "then": "use guided questions to help students think through invitation details"
+      },
+      "realWorldConnection": "Inviting people we care about to see our special work, like asking grandparents to come to graduation",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 15,
+      "lessonType": "extension",
+      "title": "Préparer notre espace d'exposition",
+      "oneGoal": "Students will organize their demonstration space and materials for the science exposition",
+      "duration": 45,
+      "keyVocabulary": [
+        "préparer",
+        "espace",
+        "organiser"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Tour exposition space and discuss organization principles",
+        "materials": [
+          "space layout maps",
+          "organizing bins",
+          "label makers"
+        ],
+        "visualSupports": "Space organization examples and setup checklist",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Set up individual demonstration spaces with materials and displays",
+        "materials": [
+          "tables",
+          "display stands",
+          "all demonstration materials",
+          "organizational containers",
+          "name tags",
+          "setup guides"
+        ],
+        "visualSupports": "Space setup diagram and material organization chart",
+        "decisionPoints": [
+          {
+            "question": "How much space and setup responsibility can Grade 1 students handle?",
+            "ifYes": "Give students full responsibility for their defined space",
+            "ifNo": "Provide structured setup tasks with adult support available"
+          },
+          {
+            "question": "Should we focus on individual spaces or collaborative classroom setup?",
+            "ifYes": "Organize individual spaces within collaborative room setup",
+            "ifNo": "Focus on individual spaces with minimal room-wide coordination"
+          },
+          {
+            "question": "Are students ready for independent organization or need step-by-step guidance?",
+            "ifYes": "Provide setup checklist and allow independent organization",
+            "ifNo": "Use step-by-step guided setup with teacher direction"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Space walk-through and final setup adjustments",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "organizing materials effectively",
+        "then": "provide specific placement guides and practice setup routine"
+      },
+      "realWorldConnection": "Getting ready for special events by organizing our space, like setting up for a birthday party",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 16,
+      "lessonType": "extension",
+      "title": "Répétition générale",
+      "oneGoal": "Students will perform a final practice run of their science demonstration with timing and setup",
+      "duration": 45,
+      "keyVocabulary": [
+        "répétition",
+        "générale",
+        "prêt"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Final preparation check and confidence building activities",
+        "materials": [
+          "confidence building props",
+          "final checklist",
+          "calming music"
+        ],
+        "visualSupports": "Final preparation checklist and confidence affirmation cards",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Complete dress rehearsal with timing, setup, and audience simulation",
+        "materials": [
+          "all exposition materials",
+          "timer",
+          "visitor simulation props",
+          "final feedback forms",
+          "celebration materials"
+        ],
+        "visualSupports": "Performance flow chart and timing guidelines",
+        "decisionPoints": [
+          {
+            "question": "Should the dress rehearsal include other classes as audience?",
+            "ifYes": "Invite other classes for authentic audience experience",
+            "ifNo": "Use classroom-only rehearsal to maintain comfort level"
+          },
+          {
+            "question": "How can we address last-minute concerns without creating anxiety?",
+            "ifYes": "Address concerns individually with calm problem-solving",
+            "ifNo": "Focus on positive reinforcement and confidence building"
+          },
+          {
+            "question": "Are students ready for independent performance or need support reminders?",
+            "ifYes": "Allow independent performance with minimal prompting",
+            "ifNo": "Provide discrete support cues and encouragement throughout"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Celebration of readiness and final encouragement circle",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "last-minute nerves",
+        "then": "provide calming strategies and focus on fun aspects of sharing"
+      },
+      "realWorldConnection": "Final practice before important events to make sure everything goes smoothly, like rehearsing before performing",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 17,
+      "lessonType": "extension",
+      "title": "Notre exposition scientifique!",
+      "oneGoal": "Students will successfully demonstrate their science learning to visitors at the exposition event",
+      "duration": 90,
+      "keyVocabulary": [
+        "exposition",
+        "succès",
+        "fier"
+      ],
+      "opening": {
+        "duration": 15,
+        "activity": "Final setup, calm preparation, and welcome visitors",
+        "materials": [
+          "all demonstration materials",
+          "welcome signs",
+          "visitor guides",
+          "calming music"
+        ],
+        "visualSupports": "Welcome display and student confidence reminders",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 60,
+        "activity": "Active science exposition with student demonstrations to family and community visitors",
+        "materials": [
+          "all prepared demonstration materials",
+          "visitor feedback forms",
+          "celebration props",
+          "documentation cameras"
+        ],
+        "visualSupports": "Station guides and visitor flow directions",
+        "decisionPoints": [
+          {
+            "question": "How can we support nervous students during the actual event?",
+            "ifYes": "Provide discrete teacher support and calm encouragement",
+            "ifNo": "Use peer buddy system and confident student helpers"
+          },
+          {
+            "question": "Should students rotate as both presenters and audience members?",
+            "ifYes": "Plan rotation schedule for students to see other presentations",
+            "ifNo": "Keep students focused on their own demonstrations throughout"
+          },
+          {
+            "question": "How do we ensure every student feels successful regardless of performance?",
+            "ifYes": "Celebrate effort and participation rather than performance quality",
+            "ifNo": "Focus on individual growth and personal achievement recognition"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 15,
+        "activity": "Thank visitors, celebration of accomplishment, and cleanup",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "overwhelming emotions during event",
+        "then": "provide quiet space option and emphasize that participation is the success"
+      },
+      "realWorldConnection": "Sharing our learning and hard work with others in a special celebration of what we've accomplished",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 18,
+      "lessonType": "extension",
+      "title": "Célébrer nos réussites",
+      "oneGoal": "Students will reflect on their successful participation in the science exposition and celebrate their growth",
+      "duration": 45,
+      "keyVocabulary": [
+        "célébrer",
+        "réussites",
+        "grandir"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Celebration circle sharing favorite moments from the exposition",
+        "materials": [
+          "exposition photos",
+          "celebration props",
+          "success certificates"
+        ],
+        "visualSupports": "Photo display from the exposition event",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Individual and group reflection on growth, learning, and accomplishments",
+        "materials": [
+          "reflection sheets",
+          "growth documentation",
+          "celebration art supplies",
+          "success story templates"
+        ],
+        "visualSupports": "Growth comparison charts and accomplishment celebration display",
+        "decisionPoints": [
+          {
+            "question": "Should celebration focus on individual achievements or collective success?",
+            "ifYes": "Balance individual recognition with group celebration",
+            "ifNo": "Focus primarily on collective class accomplishment"
+          },
+          {
+            "question": "How can we help students identify specific growth and learning?",
+            "ifYes": "Use before/after comparisons and specific skill identification",
+            "ifNo": "Focus on general feelings of accomplishment and pride"
+          },
+          {
+            "question": "Are students ready for formal reflection or should we use informal sharing?",
+            "ifYes": "Use guided reflection activities with sharing opportunities",
+            "ifNo": "Keep to informal celebration and story sharing"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Class celebration with recognition of everyone's unique contribution",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "recognizing personal growth",
+        "then": "use specific examples and peer recognition to highlight individual progress"
+      },
+      "realWorldConnection": "Feeling proud of accomplishments and recognizing how much we've learned and grown",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 19,
+      "lessonType": "extension",
+      "title": "Apprendre des autres projets",
+      "oneGoal": "Students will identify interesting ideas and discoveries they learned from other students' demonstrations",
+      "duration": 45,
+      "keyVocabulary": [
+        "apprendre",
+        "autres",
+        "idées"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Share memories of seeing other students' science projects",
+        "materials": [
+          "exposition photos",
+          "memory sharing cards",
+          "peer project documentation"
+        ],
+        "visualSupports": "Photo gallery of all student projects from the exposition",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Structured sharing about what students learned from classmates' projects",
+        "materials": [
+          "learning documentation sheets",
+          "peer appreciation cards",
+          "discovery sharing templates",
+          "art supplies"
+        ],
+        "visualSupports": "Learning from others chart and appreciation sentence starters",
+        "decisionPoints": [
+          {
+            "question": "Should we structure learning observations or allow free exploration?",
+            "ifYes": "Provide guided observation questions with free sharing time",
+            "ifNo": "Use completely open sharing about interesting discoveries"
+          },
+          {
+            "question": "How can we help students articulate what they found interesting?",
+            "ifYes": "Use specific prompts about what surprised or excited them",
+            "ifNo": "Allow general sharing of positive reactions and feelings"
+          },
+          {
+            "question": "Are students ready for comparing approaches or should we focus on appreciation?",
+            "ifYes": "Include gentle comparisons about different ways to show science",
+            "ifNo": "Focus purely on appreciation and positive observations"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Create thank-you notes or appreciation messages for classmates",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "remembering what others shared",
+        "then": "use photos and documentation to prompt memories and observations"
+      },
+      "realWorldConnection": "Learning new things from friends and family, discovering that everyone has interesting knowledge to share",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 20,
+      "lessonType": "extension",
+      "title": "Sciences pour l'été",
+      "oneGoal": "Students will identify safe science exploration opportunities they can pursue during summer break",
+      "duration": 45,
+      "keyVocabulary": [
+        "été",
+        "explorer",
+        "vacances"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Introduce summer science exploration and connect to year's learning",
+        "materials": [
+          "summer activity cards",
+          "seasonal props",
+          "exploration journals"
+        ],
+        "visualSupports": "Summer science opportunities poster with seasonal activities",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Brainstorm and plan safe summer science activities with family involvement",
+        "materials": [
+          "summer science booklets",
+          "family activity suggestions",
+          "safety reminder cards",
+          "nature exploration guides"
+        ],
+        "visualSupports": "Safe summer science chart and family activity ideas display",
+        "decisionPoints": [
+          {
+            "question": "Which summer science activities are safest and most accessible for families?",
+            "ifYes": "Focus on observation and simple safe activities requiring minimal materials",
+            "ifNo": "Provide extensive activity options with clear safety guidelines"
+          },
+          {
+            "question": "Should we focus on observation activities or simple experiments?",
+            "ifYes": "Balance observation with very simple, safe experimental activities",
+            "ifNo": "Concentrate on observation and discovery activities"
+          },
+          {
+            "question": "Are students ready for independent science thinking or need structured suggestions?",
+            "ifYes": "Encourage independent wondering with family support structure",
+            "ifNo": "Provide specific, structured activity suggestions to follow"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Share summer science plans and final celebration of year's science learning",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "thinking of science activities for summer",
+        "then": "connect to favorite activities from the year and seasonal opportunities"
+      },
+      "realWorldConnection": "Continuing to explore and discover during summer through nature walks, backyard observations, and safe family experiments",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    }
+  ],
+  "assessmentTools": {
+    "observationChecklist": [],
+    "rubrics": [],
+    "selfAssessment": [],
+    "portfolioGuidelines": ""
   },
-  {
-    "lessonNumber": 2,
-    "title": "Nos découvertes les plus excitantes",
-    "oneGoal": "Students will identify their most exciting scientific discoveries from the year and explain why they were special",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Review previous lesson and introduce the concept of scientific discoveries",
-      "materials": ["discovery jar", "exciting moment cards"],
-      "visualSupports": "Images of famous scientific discoveries adapted for Grade 1"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Individual reflection and small group sharing of most exciting science discoveries",
-      "materials": ["drawing paper", "crayons", "discovery sharing template", "timer"],
-      "visualSupports": "Sentence starters and emotion words display",
-      "decisionPoints": [
-        {
-          "question": "Should students share discoveries individually or in small groups?",
-          "ifYes": "Use individual presentation format with audience",
-          "ifNo": "Keep to small group sharing for comfort and time management"
-        },
-        {
-          "question": "How can we help students who struggle to identify favorite discoveries?",
-          "ifYes": "Provide guided prompts and visual reminders of activities",
-          "ifNo": "Use peer partnerships to help generate ideas together"
-        },
-        {
-          "question": "Are students ready to explain their thinking or should we focus on sharing experiences?",
-          "ifYes": "Include 'why' questions in sharing prompts",
-          "ifNo": "Focus on describing what happened and how it felt"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Gallery walk of discovery drawings with positive comments",
-      "assessment": "Observe student ability to identify personally meaningful learning moments"
-    },
-    "vocabulary": ["découvertes", "excitant", "spécial"],
-    "troubleshooting": {
-      "ifStrugglingWith": "choosing between multiple favorites",
-      "then": "encourage choosing one for now and saving others for later lessons"
-    },
-    "realWorldConnection": "Scientists often share their most exciting discoveries with others, just like we share exciting news with friends"
+  "familyConnections": {
+    "unitLetter": "",
+    "homeActivities": [],
+    "vocabularyList": []
   },
-  {
-    "lessonNumber": 3,
-    "title": "Qu'est-ce qu'une exposition scientifique?",
-    "oneGoal": "Students will understand what a science fair or exposition is and how scientists share their work",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Connect sharing discoveries to the idea of science exhibitions",
-      "materials": ["science fair photos", "sharing circle props"],
-      "visualSupports": "Age-appropriate images of children at science fairs and exhibitions"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Explore the concept of science sharing through videos, pictures, and role-play",
-      "materials": ["video clips", "dress-up scientist props", "demonstration table", "audience chairs"],
-      "visualSupports": "Simple flowchart showing: Learn → Practice → Share → Celebrate",
-      "decisionPoints": [
-        {
-          "question": "Should we show examples of science fairs or focus on simple sharing concepts?",
-          "ifYes": "Use carefully selected, age-appropriate science fair videos",
-          "ifNo": "Focus on familiar sharing experiences like show-and-tell"
-        },
-        {
-          "question": "How can we make the concept accessible without overwhelming students?",
-          "ifYes": "Use simple analogies and familiar sharing situations",
-          "ifNo": "Break down the concept into very small, concrete steps"
-        },
-        {
-          "question": "Are students ready to understand audience or should we focus on showing work?",
-          "ifYes": "Include discussion about who comes to see science work",
-          "ifNo": "Focus mainly on the act of showing what we've learned"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Practice being a science audience for teacher demonstration",
-      "assessment": "Note student understanding of basic science sharing concepts"
-    },
-    "vocabulary": ["exposition", "montrer", "partager"],
-    "troubleshooting": {
-      "ifStrugglingWith": "understanding the concept of formal presentation",
-      "then": "relate to familiar experiences like birthday parties or school concerts"
-    },
-    "realWorldConnection": "Understanding how people share their best work at art shows, school concerts, or sports games"
+  "resourceAlternatives": {
+    "materials": {},
+    "digitalResources": []
   },
-  {
-    "lessonNumber": 4,
-    "title": "Choisir notre projet de démonstration",
-    "oneGoal": "Students will select one science topic or experiment from the year to demonstrate at the exposition",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Review science year and introduce project selection",
-      "materials": ["choice chart", "science topic cards", "thinking time music"],
-      "visualSupports": "Visual menu of science topics studied this year with pictures"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Individual reflection and selection process with teacher conferences",
-      "materials": ["selection worksheet", "colored pencils", "conference schedule", "topic reminder cards"],
-      "visualSupports": "Decision-making criteria poster: Safe, Fun, I Know It Well",
-      "decisionPoints": [
-        {
-          "question": "Should students choose individually or work in small groups?",
-          "ifYes": "Allow individual choice with option for partnerships",
-          "ifNo": "Organize into predetermined small groups with shared choices"
-        },
-        {
-          "question": "What criteria should guide project selection (interest, success, safety)?",
-          "ifYes": "Use all three criteria in a simple checklist format",
-          "ifNo": "Focus primarily on student interest and engagement level"
-        },
-        {
-          "question": "Are students ready for independent choice or need guided options?",
-          "ifYes": "Provide full menu of year's topics for selection",
-          "ifNo": "Pre-select 4-5 most appropriate options for students to choose from"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Share chosen project with a partner and explain why",
-      "assessment": "Document student project choices and reasoning"
-    },
-    "vocabulary": ["choisir", "projet", "démonstration"],
-    "troubleshooting": {
-      "ifStrugglingWith": "making a decision between options",
-      "then": "use elimination process and 'gut feeling' check to narrow choices"
-    },
-    "realWorldConnection": "Making choices about what to share, like picking our best artwork for a family display"
-  },
-  {
-    "lessonNumber": 5,
-    "title": "Planifier notre démonstration",
-    "oneGoal": "Students will create a simple plan for how they will show their chosen science topic to visitors",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Review chosen projects and introduce planning concepts",
-      "materials": ["planning examples", "step cards", "demonstration area"],
-      "visualSupports": "Simple planning template with pictures: What? How? What do I need?"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Create individual planning sheets with drawings and simple steps",
-      "materials": ["planning templates", "crayons", "sticky notes", "pencils", "planning examples"],
-      "visualSupports": "Step-by-step planning process poster and sample completed plans",
-      "decisionPoints": [
-        {
-          "question": "Should we provide planning templates or encourage creative formats?",
-          "ifYes": "Provide basic template but allow creative additions",
-          "ifNo": "Start with completely open-ended planning approach"
-        },
-        {
-          "question": "How detailed should the planning be for Grade 1 students?",
-          "ifYes": "Include 3-4 simple steps with drawings",
-          "ifNo": "Focus on just the main idea and one key step"
-        },
-        {
-          "question": "Are students ready for thinking about audience needs or focus on their own presentation?",
-          "ifYes": "Include 'What will visitors see?' in planning",
-          "ifNo": "Focus on 'What will I do?' for now"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Partner sharing of plans with feedback and suggestions",
-      "assessment": "Review planning sheets for clarity and feasibility"
-    },
-    "vocabulary": ["planifier", "plan", "visiteurs"],
-    "troubleshooting": {
-      "ifStrugglingWith": "organizing thoughts into steps",
-      "then": "use think-aloud modeling and break into very small actions"
-    },
-    "realWorldConnection": "Planning how to explain something to others, like teaching a game to a younger child"
-  },
-  {
-    "lessonNumber": 6,
-    "title": "Matériel et outils nécessaires",
-    "oneGoal": "Students will identify and gather the materials they need for their science demonstration",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Review plans and introduce material identification",
-      "materials": ["material cards", "safety symbols", "planning sheets from previous lesson"],
-      "visualSupports": "Safety symbol chart and material category pictures"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Create material lists and practice safe handling procedures",
-      "materials": ["material checklist sheets", "sample materials", "safety practice items", "storage containers"],
-      "visualSupports": "Material safety chart with green, yellow, and red categories",
-      "decisionPoints": [
-        {
-          "question": "Which materials are safe and appropriate for student-led demonstrations?",
-          "ifYes": "Allow all green-category materials with student responsibility",
-          "ifNo": "Restrict to pre-approved safe materials list only"
-        },
-        {
-          "question": "Should we focus on simple materials or allow more complex tools with supervision?",
-          "ifYes": "Include some yellow-category materials with adult helper assigned",
-          "ifNo": "Stick to simple, completely safe materials students can handle alone"
-        },
-        {
-          "question": "Are students ready for material responsibility or need teacher-prepared sets?",
-          "ifYes": "Have students gather and organize their own materials",
-          "ifNo": "Pre-prepare material sets with student input on arrangement"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Practice setup and cleanup procedures with materials",
-      "assessment": "Observe student understanding of material safety and organization"
-    },
-    "vocabulary": ["matériel", "outils", "nécessaires"],
-    "troubleshooting": {
-      "ifStrugglingWith": "remembering all needed materials",
-      "then": "create visual checklist and practice run-through with materials"
-    },
-    "realWorldConnection": "Getting ready for activities by gathering what we need, like packing for a trip or preparing for cooking"
-  },
-  {
-    "lessonNumber": 7,
-    "title": "Pratiquer notre explication simple",
-    "oneGoal": "Students will practice explaining their science topic using simple words that other children can understand",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Warm-up with simple explanation practice using familiar objects",
-      "materials": ["familiar objects", "explanation cards", "timer"],
-      "visualSupports": "Simple explanation framework: This is... It does... I like it because..."
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Practice rounds with partners, focusing on clear, simple language",
-      "materials": ["explanation practice cards", "recording device", "feedback sheets", "encouragement stickers"],
-      "visualSupports": "Word choice helper chart: hard words → easy words",
-      "decisionPoints": [
-        {
-          "question": "Should students practice with peers or adults first?",
-          "ifYes": "Start with peer practice for comfort level",
-          "ifNo": "Begin with adult practice for immediate feedback"
-        },
-        {
-          "question": "How can we help students use age-appropriate vocabulary?",
-          "ifYes": "Provide word substitution chart and practice",
-          "ifNo": "Model simple language and have students repeat"
-        },
-        {
-          "question": "Are students ready for feedback on their explanations or need encouragement first?",
-          "ifYes": "Include gentle, specific feedback with encouragement",
-          "ifNo": "Focus purely on positive reinforcement and building confidence"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "One-minute explanation challenge with whole group audience",
-      "assessment": "Note clarity of explanations and comfort level with presenting"
-    },
-    "vocabulary": ["pratiquer", "explication", "comprendre"],
-    "troubleshooting": {
-      "ifStrugglingWith": "using simple language",
-      "then": "practice explaining to a stuffed animal or younger child first"
-    },
-    "realWorldConnection": "Learning to explain things clearly so others understand, like telling someone how to play our favorite game"
-  },
-  {
-    "lessonNumber": 8,
-    "title": "Créer un affichage visuel",
-    "oneGoal": "Students will create a simple visual display (drawing, poster, or model) to support their science demonstration",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Look at examples of visual displays and discuss their purpose",
-      "materials": ["visual display examples", "magnifying glass", "observation sheets"],
-      "visualSupports": "Gallery of age-appropriate science displays with features highlighted"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Create individual visual displays with choice of format and materials",
-      "materials": ["poster paper", "construction paper", "markers", "crayons", "glue sticks", "scissors", "simple templates"],
-      "visualSupports": "Visual display planning template and design idea examples",
-      "decisionPoints": [
-        {
-          "question": "What visual formats are most appropriate for Grade 1 science concepts?",
-          "ifYes": "Allow choice between drawing, simple poster, or basic model",
-          "ifNo": "Focus on drawings with labels as the primary format"
-        },
-        {
-          "question": "Should we focus on drawings, simple posters, or 3D models?",
-          "ifYes": "Offer all three options based on student project needs",
-          "ifNo": "Standardize on one format for consistency and time management"
-        },
-        {
-          "question": "Are students ready for independent creation or need guided templates?",
-          "ifYes": "Provide optional templates but encourage creative additions",
-          "ifNo": "Use structured templates with specific areas for student input"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Gallery walk with positive feedback on visual displays",
-      "assessment": "Evaluate visual displays for clarity and connection to science topic"
-    },
-    "vocabulary": ["créer", "affichage", "visuel"],
-    "troubleshooting": {
-      "ifStrugglingWith": "knowing what to include in display",
-      "then": "use guiding questions: What? How? Why is it cool?"
-    },
-    "realWorldConnection": "Using pictures and displays to help explain ideas, like showing photos when telling about vacation"
-  },
-  {
-    "lessonNumber": 9,
-    "title": "Questions que les visiteurs pourraient poser",
-    "oneGoal": "Students will anticipate and practice answering simple questions about their science topic",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Introduce the idea of visitor questions through role-play",
-      "materials": ["question cards", "visitor name tags", "demonstration props"],
-      "visualSupports": "Common question types poster with picture cues"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Generate possible questions and practice answering with partners",
-      "materials": ["question practice cards", "answer recording sheets", "timer", "conversation practice props"],
-      "visualSupports": "Answer framework: I think... because... Do you want to see?",
-      "decisionPoints": [
-        {
-          "question": "What types of questions are most likely from different age groups?",
-          "ifYes": "Practice with age-specific question categories",
-          "ifNo": "Focus on general curiosity questions regardless of age"
-        },
-        {
-          "question": "Should we practice specific questions or general question-answering skills?",
-          "ifYes": "Create specific question bank for each project type",
-          "ifNo": "Focus on general questioning strategies and comfort building"
-        },
-        {
-          "question": "Are students ready for unknown questions or should we stick to predictable ones?",
-          "ifYes": "Include some surprise questions in practice",
-          "ifNo": "Practice only with predictable, prepared questions"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Quick question-answer rounds with the whole class as visitors",
-      "assessment": "Observe student comfort level and ability to respond to questions"
-    },
-    "vocabulary": ["questions", "visiteurs", "répondre"],
-    "troubleshooting": {
-      "ifStrugglingWith": "not knowing an answer",
-      "then": "practice saying 'That's a great question! Let me think...' or 'I'm not sure, but I know...'"
-    },
-    "realWorldConnection": "Being ready to answer questions about things we know well, like explaining our favorite books or toys"
-  },
-  {
-    "lessonNumber": 10,
-    "title": "Sécurité pendant notre démonstration",
-    "oneGoal": "Students will identify and practice safety rules for their science demonstration with visitors",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Review general safety rules and apply them to demonstration contexts",
-      "materials": ["safety rule cards", "demonstration area setup", "safety props"],
-      "visualSupports": "Safety rules poster with pictures and symbols"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Create personalized safety checklists and practice safety procedures",
-      "materials": ["safety checklist templates", "demonstration materials", "safety practice scenarios", "first aid kit display"],
-      "visualSupports": "Safety action cards: Stop, Look, Think, Ask",
-      "decisionPoints": [
-        {
-          "question": "Which safety considerations are most important for student-led demonstrations?",
-          "ifYes": "Focus on material handling and visitor guidance safety",
-          "ifNo": "Concentrate on basic personal safety and space organization"
-        },
-        {
-          "question": "Should we focus on material safety or visitor safety protocols?",
-          "ifYes": "Include both with emphasis on visitor safety",
-          "ifNo": "Prioritize material safety as the foundation"
-        },
-        {
-          "question": "Are students ready for safety leadership or need adult supervision reminders?",
-          "ifYes": "Practice student safety leadership with backup adult support",
-          "ifNo": "Focus on recognizing when to call for adult help"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Safety scenario practice with problem-solving discussions",
-      "assessment": "Check student understanding of safety priorities and procedures"
-    },
-    "vocabulary": ["sécurité", "règles", "démonstration"],
-    "troubleshooting": {
-      "ifStrugglingWith": "remembering safety rules under pressure",
-      "then": "create visual safety reminder cards and practice calm breathing"
-    },
-    "realWorldConnection": "Being responsible for safety when showing others our activities, like teaching someone to ride a bike safely"
-  },
-  {
-    "lessonNumber": 11,
-    "title": "Première pratique complète",
-    "oneGoal": "Students will perform a complete run-through of their science demonstration with classmates as audience",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Setup demonstration spaces and review practice expectations",
-      "materials": ["demonstration setup materials", "audience seating", "practice schedule", "encouragement props"],
-      "visualSupports": "Practice checklist and supportive audience behavior chart"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Full demonstration practice with structured audience feedback",
-      "materials": ["all demonstration materials", "feedback forms", "timer", "positive comment cards", "practice evaluation sheets"],
-      "visualSupports": "Audience job chart: Listen, Look, Think of kind words",
-      "decisionPoints": [
-        {
-          "question": "Should students present individually or in small groups?",
-          "ifYes": "Use individual presentations with small audience rotation",
-          "ifNo": "Organize small group presentations with larger audiences"
-        },
-        {
-          "question": "How can we provide supportive feedback without discouraging students?",
-          "ifYes": "Use structured positive feedback with one gentle suggestion",
-          "ifNo": "Focus purely on encouragement and celebration of efforts"
-        },
-        {
-          "question": "Are students ready for peer feedback or should we focus on teacher observation?",
-          "ifYes": "Include guided peer feedback with kind word focus",
-          "ifNo": "Have teacher provide all feedback while peers practice audience skills"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Celebration circle sharing what went well and how students felt",
-      "assessment": "Document demonstration readiness and areas needing support"
-    },
-    "vocabulary": ["première", "pratique", "complète"],
-    "troubleshooting": {
-      "ifStrugglingWith": "nervousness during practice",
-      "then": "provide calm-down strategies and extra practice opportunities"
-    },
-    "realWorldConnection": "Practicing performances before the real event, like rehearsing for a school play or music concert"
-  },
-  {
-    "lessonNumber": 12,
-    "title": "Améliorer notre présentation",
-    "oneGoal": "Students will identify one specific improvement they can make to their science demonstration",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Reflect on practice session and introduce improvement mindset",
-      "materials": ["reflection sheets", "practice videos if available", "improvement examples"],
-      "visualSupports": "Growth mindset poster: Good → Better → Best!"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Self-reflection and improvement planning with teacher conferences",
-      "materials": ["improvement planning sheets", "conference materials", "goal-setting cards", "practice materials"],
-      "visualSupports": "Improvement areas chart: Louder voice, Clearer words, Better showing",
-      "decisionPoints": [
-        {
-          "question": "Should improvements focus on content clarity or presentation skills?",
-          "ifYes": "Allow student choice between content and delivery improvements",
-          "ifNo": "Focus primarily on presentation skills as more immediately achievable"
-        },
-        {
-          "question": "How can we help students identify achievable improvements?",
-          "ifYes": "Provide specific, small-step improvement options to choose from",
-          "ifNo": "Guide students to very specific, single-focus improvements"
-        },
-        {
-          "question": "Are students ready for self-reflection or need guided improvement suggestions?",
-          "ifYes": "Start with self-reflection then confirm with teacher guidance",
-          "ifNo": "Provide teacher-identified improvements with student input"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Practice improved element with a partner for immediate feedback",
-      "assessment": "Note student ability to identify and work on specific improvements"
-    },
-    "vocabulary": ["améliorer", "mieux", "changement"],
-    "troubleshooting": {
-      "ifStrugglingWith": "seeing areas for improvement",
-      "then": "use video replay or peer observations to identify growth opportunities"
-    },
-    "realWorldConnection": "Making things better through practice and changes, like improving at sports or drawing"
-  },
-  {
-    "lessonNumber": 13,
-    "title": "Aider les autres avec leurs projets",
-    "oneGoal": "Students will provide helpful feedback and encouragement to classmates preparing their demonstrations",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Discuss what helpful feedback looks like and practice kind words",
-      "materials": ["feedback examples", "kind words cards", "helper badges"],
-      "visualSupports": "Helpful helper chart: Listen, Think, Say something kind and helpful"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Structured peer feedback sessions with rotation and guided prompts",
-      "materials": ["feedback forms", "positive comment templates", "peer observation sheets", "encouragement stickers"],
-      "visualSupports": "Feedback sentence starters: I liked... You could try... Great job with...",
-      "decisionPoints": [
-        {
-          "question": "What feedback skills are appropriate for Grade 1 students to practice?",
-          "ifYes": "Focus on specific positive observations and gentle suggestions",
-          "ifNo": "Concentrate only on positive encouragement and celebration"
-        },
-        {
-          "question": "Should we focus on positive comments or specific suggestions?",
-          "ifYes": "Balance positive comments with one gentle suggestion",
-          "ifNo": "Emphasize positive comments with optional suggestions"
-        },
-        {
-          "question": "Are students ready for peer evaluation or should we model supportive language?",
-          "ifYes": "Allow guided peer evaluation with supportive language frames",
-          "ifNo": "Have teacher model supportive language while students practice listening"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Thank-you circle where students appreciate help received from others",
-      "assessment": "Observe student ability to give and receive constructive feedback"
-    },
-    "vocabulary": ["aider", "autres", "encouragement"],
-    "troubleshooting": {
-      "ifStrugglingWith": "giving helpful feedback",
-      "then": "provide specific sentence frames and model examples"
-    },
-    "realWorldConnection": "Helping friends get better at things they're working on, like cheering each other on during games"
-  },
-  {
-    "lessonNumber": 14,
-    "title": "Inviter notre famille",
-    "oneGoal": "Students will create invitations for their families to attend the science exposition",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Discuss family celebration and the importance of sharing learning",
-      "materials": ["family photos", "invitation examples", "celebration props"],
-      "visualSupports": "Family words chart and invitation template examples"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Create personalized family invitations with drawings and key information",
-      "materials": ["invitation templates", "art supplies", "family information sheets", "envelope materials", "stickers"],
-      "visualSupports": "Invitation checklist: Who, What, When, Where, Why",
-      "decisionPoints": [
-        {
-          "question": "Should invitations include specific details about student demonstrations?",
-          "ifYes": "Include brief description of student's project on invitation",
-          "ifNo": "Keep invitations general with focus on celebration aspect"
-        },
-        {
-          "question": "How can we make invitations accessible for all family situations?",
-          "ifYes": "Use multiple language options and flexible wording about family",
-          "ifNo": "Use simple universal language about 'special people' instead of specific family terms"
-        },
-        {
-          "question": "Are students ready for writing invitations or should we use templates/dictation?",
-          "ifYes": "Provide writing templates with student choice in personalization",
-          "ifNo": "Use teacher/student dictated text with student art additions"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Share invitations with partners and practice explaining the event",
-      "assessment": "Check invitation completeness and student excitement about sharing"
-    },
-    "vocabulary": ["inviter", "famille", "venir"],
-    "troubleshooting": {
-      "ifStrugglingWith": "including important information",
-      "then": "use guided questions to help students think through invitation details"
-    },
-    "realWorldConnection": "Inviting people we care about to see our special work, like asking grandparents to come to graduation"
-  },
-  {
-    "lessonNumber": 15,
-    "title": "Préparer notre espace d'exposition",
-    "oneGoal": "Students will organize their demonstration space and materials for the science exposition",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Tour exposition space and discuss organization principles",
-      "materials": ["space layout maps", "organizing bins", "label makers"],
-      "visualSupports": "Space organization examples and setup checklist"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Set up individual demonstration spaces with materials and displays",
-      "materials": ["tables", "display stands", "all demonstration materials", "organizational containers", "name tags", "setup guides"],
-      "visualSupports": "Space setup diagram and material organization chart",
-      "decisionPoints": [
-        {
-          "question": "How much space and setup responsibility can Grade 1 students handle?",
-          "ifYes": "Give students full responsibility for their defined space",
-          "ifNo": "Provide structured setup tasks with adult support available"
-        },
-        {
-          "question": "Should we focus on individual spaces or collaborative classroom setup?",
-          "ifYes": "Organize individual spaces within collaborative room setup",
-          "ifNo": "Focus on individual spaces with minimal room-wide coordination"
-        },
-        {
-          "question": "Are students ready for independent organization or need step-by-step guidance?",
-          "ifYes": "Provide setup checklist and allow independent organization",
-          "ifNo": "Use step-by-step guided setup with teacher direction"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Space walk-through and final setup adjustments",
-      "assessment": "Check space organization and student readiness for event"
-    },
-    "vocabulary": ["préparer", "espace", "organiser"],
-    "troubleshooting": {
-      "ifStrugglingWith": "organizing materials effectively",
-      "then": "provide specific placement guides and practice setup routine"
-    },
-    "realWorldConnection": "Getting ready for special events by organizing our space, like setting up for a birthday party"
-  },
-  {
-    "lessonNumber": 16,
-    "title": "Répétition générale",
-    "oneGoal": "Students will perform a final practice run of their science demonstration with timing and setup",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Final preparation check and confidence building activities",
-      "materials": ["confidence building props", "final checklist", "calming music"],
-      "visualSupports": "Final preparation checklist and confidence affirmation cards"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Complete dress rehearsal with timing, setup, and audience simulation",
-      "materials": ["all exposition materials", "timer", "visitor simulation props", "final feedback forms", "celebration materials"],
-      "visualSupports": "Performance flow chart and timing guidelines",
-      "decisionPoints": [
-        {
-          "question": "Should the dress rehearsal include other classes as audience?",
-          "ifYes": "Invite other classes for authentic audience experience",
-          "ifNo": "Use classroom-only rehearsal to maintain comfort level"
-        },
-        {
-          "question": "How can we address last-minute concerns without creating anxiety?",
-          "ifYes": "Address concerns individually with calm problem-solving",
-          "ifNo": "Focus on positive reinforcement and confidence building"
-        },
-        {
-          "question": "Are students ready for independent performance or need support reminders?",
-          "ifYes": "Allow independent performance with minimal prompting",
-          "ifNo": "Provide discrete support cues and encouragement throughout"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Celebration of readiness and final encouragement circle",
-      "assessment": "Final readiness check and confidence level assessment"
-    },
-    "vocabulary": ["répétition", "générale", "prêt"],
-    "troubleshooting": {
-      "ifStrugglingWith": "last-minute nerves",
-      "then": "provide calming strategies and focus on fun aspects of sharing"
-    },
-    "realWorldConnection": "Final practice before important events to make sure everything goes smoothly, like rehearsing before performing"
-  },
-  {
-    "lessonNumber": 17,
-    "title": "Notre exposition scientifique!",
-    "oneGoal": "Students will successfully demonstrate their science learning to visitors at the exposition event",
-    "duration": 90,
-    "opening": {
-      "duration": 15,
-      "activity": "Final setup, calm preparation, and welcome visitors",
-      "materials": ["all demonstration materials", "welcome signs", "visitor guides", "calming music"],
-      "visualSupports": "Welcome display and student confidence reminders"
-    },
-    "main": {
-      "duration": 60,
-      "activity": "Active science exposition with student demonstrations to family and community visitors",
-      "materials": ["all prepared demonstration materials", "visitor feedback forms", "celebration props", "documentation cameras"],
-      "visualSupports": "Station guides and visitor flow directions",
-      "decisionPoints": [
-        {
-          "question": "How can we support nervous students during the actual event?",
-          "ifYes": "Provide discrete teacher support and calm encouragement",
-          "ifNo": "Use peer buddy system and confident student helpers"
-        },
-        {
-          "question": "Should students rotate as both presenters and audience members?",
-          "ifYes": "Plan rotation schedule for students to see other presentations",
-          "ifNo": "Keep students focused on their own demonstrations throughout"
-        },
-        {
-          "question": "How do we ensure every student feels successful regardless of performance?",
-          "ifYes": "Celebrate effort and participation rather than performance quality",
-          "ifNo": "Focus on individual growth and personal achievement recognition"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 15,
-      "activity": "Thank visitors, celebration of accomplishment, and cleanup",
-      "assessment": "Observe successful participation and celebrate all student efforts"
-    },
-    "vocabulary": ["exposition", "succès", "fier"],
-    "troubleshooting": {
-      "ifStrugglingWith": "overwhelming emotions during event",
-      "then": "provide quiet space option and emphasize that participation is the success"
-    },
-    "realWorldConnection": "Sharing our learning and hard work with others in a special celebration of what we've accomplished"
-  },
-  {
-    "lessonNumber": 18,
-    "title": "Célébrer nos réussites",
-    "oneGoal": "Students will reflect on their successful participation in the science exposition and celebrate their growth",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Celebration circle sharing favorite moments from the exposition",
-      "materials": ["exposition photos", "celebration props", "success certificates"],
-      "visualSupports": "Photo display from the exposition event"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Individual and group reflection on growth, learning, and accomplishments",
-      "materials": ["reflection sheets", "growth documentation", "celebration art supplies", "success story templates"],
-      "visualSupports": "Growth comparison charts and accomplishment celebration display",
-      "decisionPoints": [
-        {
-          "question": "Should celebration focus on individual achievements or collective success?",
-          "ifYes": "Balance individual recognition with group celebration",
-          "ifNo": "Focus primarily on collective class accomplishment"
-        },
-        {
-          "question": "How can we help students identify specific growth and learning?",
-          "ifYes": "Use before/after comparisons and specific skill identification",
-          "ifNo": "Focus on general feelings of accomplishment and pride"
-        },
-        {
-          "question": "Are students ready for formal reflection or should we use informal sharing?",
-          "ifYes": "Use guided reflection activities with sharing opportunities",
-          "ifNo": "Keep to informal celebration and story sharing"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Class celebration with recognition of everyone's unique contribution",
-      "assessment": "Document student recognition of personal growth and learning"
-    },
-    "vocabulary": ["célébrer", "réussites", "grandir"],
-    "troubleshooting": {
-      "ifStrugglingWith": "recognizing personal growth",
-      "then": "use specific examples and peer recognition to highlight individual progress"
-    },
-    "realWorldConnection": "Feeling proud of accomplishments and recognizing how much we've learned and grown"
-  },
-  {
-    "lessonNumber": 19,
-    "title": "Apprendre des autres projets",
-    "oneGoal": "Students will identify interesting ideas and discoveries they learned from other students' demonstrations",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Share memories of seeing other students' science projects",
-      "materials": ["exposition photos", "memory sharing cards", "peer project documentation"],
-      "visualSupports": "Photo gallery of all student projects from the exposition"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Structured sharing about what students learned from classmates' projects",
-      "materials": ["learning documentation sheets", "peer appreciation cards", "discovery sharing templates", "art supplies"],
-      "visualSupports": "Learning from others chart and appreciation sentence starters",
-      "decisionPoints": [
-        {
-          "question": "Should we structure learning observations or allow free exploration?",
-          "ifYes": "Provide guided observation questions with free sharing time",
-          "ifNo": "Use completely open sharing about interesting discoveries"
-        },
-        {
-          "question": "How can we help students articulate what they found interesting?",
-          "ifYes": "Use specific prompts about what surprised or excited them",
-          "ifNo": "Allow general sharing of positive reactions and feelings"
-        },
-        {
-          "question": "Are students ready for comparing approaches or should we focus on appreciation?",
-          "ifYes": "Include gentle comparisons about different ways to show science",
-          "ifNo": "Focus purely on appreciation and positive observations"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Create thank-you notes or appreciation messages for classmates",
-      "assessment": "Note student ability to recognize and appreciate diverse approaches to science"
-    },
-    "vocabulary": ["apprendre", "autres", "idées"],
-    "troubleshooting": {
-      "ifStrugglingWith": "remembering what others shared",
-      "then": "use photos and documentation to prompt memories and observations"
-    },
-    "realWorldConnection": "Learning new things from friends and family, discovering that everyone has interesting knowledge to share"
-  },
-  {
-    "lessonNumber": 20,
-    "title": "Sciences pour l'été",
-    "oneGoal": "Students will identify safe science exploration opportunities they can pursue during summer break",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Introduce summer science exploration and connect to year's learning",
-      "materials": ["summer activity cards", "seasonal props", "exploration journals"],
-      "visualSupports": "Summer science opportunities poster with seasonal activities"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Brainstorm and plan safe summer science activities with family involvement",
-      "materials": ["summer science booklets", "family activity suggestions", "safety reminder cards", "nature exploration guides"],
-      "visualSupports": "Safe summer science chart and family activity ideas display",
-      "decisionPoints": [
-        {
-          "question": "Which summer science activities are safest and most accessible for families?",
-          "ifYes": "Focus on observation and simple safe activities requiring minimal materials",
-          "ifNo": "Provide extensive activity options with clear safety guidelines"
-        },
-        {
-          "question": "Should we focus on observation activities or simple experiments?",
-          "ifYes": "Balance observation with very simple, safe experimental activities",
-          "ifNo": "Concentrate on observation and discovery activities"
-        },
-        {
-          "question": "Are students ready for independent science thinking or need structured suggestions?",
-          "ifYes": "Encourage independent wondering with family support structure",
-          "ifNo": "Provide specific, structured activity suggestions to follow"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Share summer science plans and final celebration of year's science learning",
-      "assessment": "Document student enthusiasm for continued science exploration"
-    },
-    "vocabulary": ["été", "explorer", "vacances"],
-    "troubleshooting": {
-      "ifStrugglingWith": "thinking of science activities for summer",
-      "then": "connect to favorite activities from the year and seasonal opportunities"
-    },
-    "realWorldConnection": "Continuing to explore and discover during summer through nature walks, backyard observations, and safe family experiments"
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
   }
-]
+}

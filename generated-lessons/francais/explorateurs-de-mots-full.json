@@ -1,767 +1,1051 @@
 {
   "unitTitle": "Explorateurs de mots",
+  "subject": "Français (Immersion)",
+  "grade": "1",
   "totalLessons": 20,
-  "estimatedHours": 15,
+  "coreCount": 14,
+  "extensionCount": 6,
   "lessons": [
     {
       "lessonNumber": 1,
+      "lessonType": "core",
       "title": "Découvrir les mots",
-      "duration": 45,
       "oneGoal": "Students recognize that French has words we can discover and explore",
-      "keyVocabulary": ["mot", "découvrir", "français"],
-      "materials": ["Picture cards", "Magnifying glasses (props)", "Word discovery chart"],
+      "duration": 45,
+      "keyVocabulary": [
+        "mot",
+        "découvrir",
+        "français"
+      ],
       "opening": {
         "duration": 8,
         "activity": "Welcome circle - Show magnifying glass and say 'Nous sommes des explorateurs!' Use TPR to mime looking and discovering. Point to French words around the room.",
-        "connection": "This starts our word exploration journey"
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": 27,
         "activity": "Word Detective Walk - Take students around the room to 'discover' French words on labels, posters, books. Students point and teacher names each word clearly. Create a simple chart of discovered words with pictures.",
-        "flexibility": "Adjust pace based on student engagement. Some may need more time at each word, others may want to find more."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": 10,
-        "activity": "Circle back - Show three discovered words with pictures. Students repeat after teacher. End with 'Nous sommes des explorateurs de mots!'"
+        "activity": "Circle back - Show three discovered words with pictures. Students repeat after teacher. End with 'Nous sommes des explorateurs de mots!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "decision": "How comfortable are students with French sounds?",
-          "ifThen": "If hesitant → Use more gestures and visual supports. If eager → Let them point to words they notice"
-        },
-        {
-          "decision": "What visual supports do they need for comprehension?",
-          "ifThen": "If confused → Add more pictures and gestures. If understanding → Continue with current supports"
-        },
-        {
-          "decision": "Should we use more gestures and TPR?",
-          "ifThen": "If students seem lost → Add exaggerated movements for 'explorer' and 'découvrir'. If engaged → Continue current approach"
-        }
-      ],
-      "whenThingsGoWrong": "If students are overwhelmed, focus on just 2-3 words instead of many. If too easy, let them be word detectives and find more words independently.",
-      "realWorldConnection": "People use words to communicate every day in French - in stores, on signs, in conversations"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "People use words to communicate every day in French - in stores, on signs, in conversations",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 2,
+      "lessonType": "core",
       "title": "Sons et lettres",
-      "duration": 45,
       "oneGoal": "Students connect French sounds to letters they can see",
-      "keyVocabulary": ["son", "lettre", "écouter"],
-      "materials": ["Letter cards", "Sound boxes", "Simple French picture books"],
+      "duration": 45,
+      "keyVocabulary": [
+        "son",
+        "lettre",
+        "écouter"
+      ],
       "opening": {
         "duration": 8,
         "activity": "Review yesterday's discovered words from chart. Point to each word and have students repeat the sounds they hear.",
-        "connection": "Builds on Lesson 1 by connecting the abstract concept of 'mots' to concrete sounds and letters"
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": 27,
         "activity": "Sound Matching Game - Show large letter cards A, E, I, O, U. Say simple French words (ami, eau, etc.) and students listen for the vowel sounds. Use picture cards to support meaning. Students move to the letter they hear.",
-        "flexibility": "Start with 2-3 letters if 5 is too many. Let confident students help others hear the sounds."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": 10,
-        "activity": "Sound Circle - Everyone sits and practices the 5 vowel sounds with hand gestures: A (arms wide), E (hands by ears), I (point up), O (make circle), U (pucker lips)."
+        "activity": "Sound Circle - Everyone sits and practices the 5 vowel sounds with hand gestures: A (arms wide), E (hands by ears), I (point up), O (make circle), U (pucker lips).",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "decision": "Are students making sound-letter connections?",
-          "ifThen": "If struggling → Focus on fewer vowels and use more repetition. If succeeding → Add simple consonants"
-        },
-        {
-          "decision": "Do they need more auditory repetition?",
-          "ifThen": "If yes → Repeat each sound 5-6 times with gestures. If no → Move to visual-auditory matching"
-        },
-        {
-          "decision": "Should we focus on specific sounds causing difficulty?",
-          "ifThen": "If certain sounds are hard → Practice those with more TPR and visual support. If all sounds are manageable → Continue progression"
-        }
-      ],
-      "whenThingsGoWrong": "If too noisy, switch to quiet listening game. If students can't hear differences, use exaggerated pronunciation and mouth shapes.",
-      "realWorldConnection": "Reading signs, labels, and books requires knowing letter sounds - like the letters on the bathroom doors or lunch menu"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Reading signs, labels, and books requires knowing letter sounds - like the letters on the bathroom doors or lunch menu",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 3,
+      "lessonType": "core",
       "title": "Familles de sons",
-      "duration": 45,
       "oneGoal": "Students group words that start with the same sound",
-      "keyVocabulary": ["même", "commence", "famille"],
-      "materials": ["Picture cards for sorting", "Three labeled baskets or circles", "Family photos (optional)"],
+      "duration": 45,
+      "keyVocabulary": [
+        "même",
+        "commence",
+        "famille"
+      ],
       "opening": {
         "duration": 8,
         "activity": "Sound Review - Practice vowel sounds from yesterday with gestures. Then show family photo and explain 'famille' - people who belong together.",
-        "connection": "Builds on Lesson 2 by organizing individual sounds into patterns and families"
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": 27,
         "activity": "Sound Family Sorting - Give students picture cards (ballon, bébé, bateau / chat, chien, chaussure / pain, papa, poisson). Students sort cards by beginning sound into labeled circles. Teacher models first few.",
-        "flexibility": "Start with 2 sound families if 3 is too many. Let faster students help slower ones or find more examples."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": 10,
-        "activity": "Family Parade - Each sound family group stands up and says their sound together, then marches around showing their pictures."
+        "activity": "Family Parade - Each sound family group stands up and says their sound together, then marches around showing their pictures.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "decision": "Can students hear the beginning sounds clearly?",
-          "ifThen": "If struggling → Exaggerate the beginning sounds and use mouth positions. If clear → Continue with sorting activity"
-        },
-        {
-          "decision": "Do they need more physical sorting activities?",
-          "ifThen": "If yes → Let them walk to different corners of room for each sound. If no → Continue with table sorting"
-        },
-        {
-          "decision": "Should we reduce the number of sound families?",
-          "ifThen": "If overwhelmed → Start with just B and P sounds. If managing well → Keep all three families"
-        }
-      ],
-      "whenThingsGoWrong": "If students mix up sounds, go back to individual sound practice. If too easy, let them find more examples from around the room.",
-      "realWorldConnection": "Grouping similar things helps us organize our thoughts and learning - like putting all the books together or all the toys together"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Grouping similar things helps us organize our thoughts and learning - like putting all the books together or all the toys together",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 4,
+      "lessonType": "core",
       "title": "Jeu des rimes",
-      "duration": 45,
       "oneGoal": "Students recognize words that sound similar at the end (rhymes)",
-      "keyVocabulary": ["rime", "pareil", "fin"],
-      "materials": ["Rhyming picture cards", "Simple French nursery rhyme", "Rhythm sticks or shakers"],
+      "duration": 45,
+      "keyVocabulary": [
+        "rime",
+        "pareil",
+        "fin"
+      ],
       "opening": {
         "duration": 8,
         "activity": "Review sound families from yesterday by having students make the B, P, and CH sounds. Explain that today we listen to the END of words.",
-        "connection": "Builds on Lesson 3 by extending sound families to include ending sounds and rhymes"
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": 27,
         "activity": "Rhyme Time - Teach simple rhyme 'Chat, rat, chocolat!' with rhythm sticks. Show picture cards that rhyme (chat/rat, pain/main, eau/bateau). Students clap when they hear rhyming words.",
-        "flexibility": "Use just 2-3 rhyming pairs if more is confusing. Let musical students lead the rhythm."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": 10,
-        "activity": "Rhyme Circle - Students sit in circle and pass a ball. When they catch it, they say one word from today's rhymes and everyone else says the rhyming partner."
+        "activity": "Rhyme Circle - Students sit in circle and pass a ball. When they catch it, they say one word from today's rhymes and everyone else says the rhyming partner.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "decision": "Are students hearing the rhyming patterns?",
-          "ifThen": "If no → Exaggerate the ending sounds and use more repetition. If yes → Add new rhyming pairs"
-        },
-        {
-          "decision": "Do they need more movement-based rhyming activities?",
-          "ifThen": "If yes → Have them jump or clap when they hear rhymes. If no → Continue with listening focus"
-        },
-        {
-          "decision": "Should we use familiar songs or chants?",
-          "ifThen": "If students need familiarity → Use simple songs they know. If ready for new → Introduce French nursery rhymes"
-        }
-      ],
-      "whenThingsGoWrong": "If rhyming is too abstract, focus on rhythm and repetition instead. If too easy, let students create their own rhyming words.",
-      "realWorldConnection": "Rhymes help us remember songs, poems, and make language fun - like the songs we sing or the books we enjoy"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Rhymes help us remember songs, poems, and make language fun - like the songs we sing or the books we enjoy",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 5,
+      "lessonType": "core",
       "title": "Mots courts et longs",
-      "duration": 45,
       "oneGoal": "Students compare and categorize words by their length",
-      "keyVocabulary": ["court", "long", "comparer"],
-      "materials": ["Word cards of varying lengths", "Measuring tape or ruler", "Two labeled boxes"],
+      "duration": 45,
+      "keyVocabulary": [
+        "court",
+        "long",
+        "comparer"
+      ],
       "opening": {
         "duration": 8,
         "activity": "Practice rhyming from yesterday with 'Chat, rat, chocolat!' Then show arms for 'court' (close together) and 'long' (far apart).",
-        "connection": "Builds on Lesson 4 by adding visual analysis to sound analysis of words"
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": 27,
         "activity": "Word Measuring - Show word cards (la, éléphant, chat, ordinateur). Students use arms or fingers to show if words are 'court' or 'long'. Sort cards into two boxes labeled with visual symbols.",
-        "flexibility": "Start with very obvious length differences. Let kinesthetic learners use whole body to show length."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": 10,
-        "activity": "Length Line-up - Students stand and arrange themselves in order from shortest to longest names, with teacher support for pronunciation."
+        "activity": "Length Line-up - Students stand and arrange themselves in order from shortest to longest names, with teacher support for pronunciation.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "decision": "Can students visually see the difference in word length?",
-          "ifThen": "If no → Use more dramatic size differences and hand gestures. If yes → Continue with sorting activity"
-        },
-        {
-          "decision": "Do they need hands-on measuring activities?",
-          "ifThen": "If yes → Use rulers, string, or body measurements. If no → Continue with visual comparison"
-        },
-        {
-          "decision": "Should we use clapping to count syllables?",
-          "ifThen": "If helpful → Add clapping to feel the word length. If distracting → Keep focus visual"
-        }
-      ],
-      "whenThingsGoWrong": "If length concept is unclear, use familiar objects (short pencil vs long pencil). If too easy, have students find long and short words in books.",
-      "realWorldConnection": "Long and short words appear in books, signs, and everyday writing - like short words on stop signs and long words on street signs"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Long and short words appear in books, signs, and everyday writing - like short words on stop signs and long words on street signs",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 6,
+      "lessonType": "core",
       "title": "Syllabes et battements",
-      "duration": 45,
       "oneGoal": "Students identify syllables by clapping word parts",
-      "keyVocabulary": ["syllabe", "battre", "partie"],
-      "materials": ["Drums or clapping sticks", "Picture cards", "Name cards for each student"],
+      "duration": 45,
+      "keyVocabulary": [
+        "syllabe",
+        "battre",
+        "partie"
+      ],
       "opening": {
         "duration": 8,
         "activity": "Review long and short words with arm gestures. Introduce clapping by clapping your name slowly: 'Ma-da-me Smith' (3 claps).",
-        "connection": "Builds on Lesson 5 by breaking long words into manageable parts"
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": 27,
         "activity": "Name Clapping Circle - Students sit in circle with instruments. Each student claps their name syllables and everyone repeats. Then try picture words: 'é-lé-phant', 'chat', 'cho-co-lat'.",
-        "flexibility": "Start with 1-2 syllable words only. Let students without instruments use hand clapping."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": 10,
-        "activity": "Syllable Symphony - Whole class claps 'Au re-voir' (3 claps) together to end the lesson."
+        "activity": "Syllable Symphony - Whole class claps 'Au re-voir' (3 claps) together to end the lesson.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "decision": "Are students successfully clapping syllables?",
-          "ifThen": "If no → Model more slowly and use exaggerated pauses between syllables. If yes → Try more challenging words"
-        },
-        {
-          "decision": "Do they need more kinesthetic practice?",
-          "ifThen": "If yes → Add marching or stepping for each syllable. If no → Continue with clapping focus"
-        },
-        {
-          "decision": "Should we focus on 1-2 syllable words first?",
-          "ifThen": "If students struggle with longer words → Stick to simple words. If managing well → Include 3-syllable words"
-        }
-      ],
-      "whenThingsGoWrong": "If clapping becomes chaotic, switch to quiet finger tapping. If too difficult, just focus on names and simple words.",
-      "realWorldConnection": "Breaking words into parts helps us read and spell new words - like when we sound out unfamiliar words in books"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Breaking words into parts helps us read and spell new words - like when we sound out unfamiliar words in books",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 7,
+      "lessonType": "core",
       "title": "Petits mots magiques",
-      "duration": 45,
       "oneGoal": "Students recognize high-frequency words that appear everywhere",
-      "keyVocabulary": ["petit", "magique", "partout"],
-      "materials": ["High-frequency word cards (le, la, et, de, un, une)", "Magic wand (prop)", "Simple French books"],
+      "duration": 45,
+      "keyVocabulary": [
+        "petit",
+        "magique",
+        "partout"
+      ],
       "opening": {
         "duration": 8,
         "activity": "Practice syllable clapping with 'Bon-jour' and 'Au re-voir'. Show magic wand and explain these are 'mots magiques' that appear everywhere.",
-        "connection": "Builds on Lesson 6 by introducing words that appear frequently in French reading"
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": 27,
         "activity": "Magic Word Hunt - Show 3 high-frequency words (le, la, et) on large cards. Look through simple French books together to find these 'magic words'. Students point and count how many times they appear.",
-        "flexibility": "Start with just 1-2 words if 3 is overwhelming. Let confident readers help others spot the words."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": 10,
-        "activity": "Magic Word Spell - Students stand and 'cast spells' by saying each magic word while waving imaginary wands: 'le!', 'la!', 'et!'"
+        "activity": "Magic Word Spell - Students stand and 'cast spells' by saying each magic word while waving imaginary wands: 'le!', 'la!', 'et!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "decision": "Which high-frequency words are students ready for?",
-          "ifThen": "If beginners → Start with 'le' and 'la' only. If more advanced → Add 'un', 'une', 'et'"
-        },
-        {
-          "decision": "Do they need more visual word cards or games?",
-          "ifThen": "If yes → Create matching games with word cards. If no → Continue with book hunting"
-        },
-        {
-          "decision": "Should we focus on word recognition or spelling?",
-          "ifThen": "If Grade 1 level → Focus only on recognition. If advanced → Try finger spelling"
-        }
-      ],
-      "whenThingsGoWrong": "If students can't find words in books, use enlarged text or highlight the words first. If too easy, have them count total appearances of each word.",
-      "realWorldConnection": "These 'magic words' help us read books, signs, and messages faster - they're like keys that unlock reading"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "These 'magic words' help us read books, signs, and messages faster - they're like keys that unlock reading",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 8,
+      "lessonType": "core",
       "title": "Construire des mots",
-      "duration": 45,
       "oneGoal": "Students build new words by combining letters and sounds",
-      "keyVocabulary": ["construire", "combiner", "nouveau"],
-      "materials": ["Magnetic letters or letter tiles", "Letter building mats", "Simple word cards as models"],
+      "duration": 45,
+      "keyVocabulary": [
+        "construire",
+        "combiner",
+        "nouveau"
+      ],
       "opening": {
         "duration": 8,
         "activity": "Review magic words 'le', 'la', 'et' by having students spot them on the word wall. Show letter tiles and explain we're going to BUILD words like construction workers.",
-        "connection": "Builds on Lesson 7 by actively creating words instead of just recognizing them"
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": 27,
         "activity": "Letter Construction - Give students magnetic letters. Start with simple 3-letter words (pot, ami, eau). Teacher builds first word together, then students try to copy and build new ones with guidance.",
-        "flexibility": "Some students may only manage 2-letter words - that's fine. Others might try 4-letter words if ready."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": 10,
-        "activity": "Word Builders' Show - Students hold up one word they built and say it proudly. Everyone claps for the 'constructors'."
+        "activity": "Word Builders' Show - Students hold up one word they built and say it proudly. Everyone claps for the 'constructors'.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "decision": "Are students able to blend sounds successfully?",
-          "ifThen": "If no → Focus on letter names first, then sounds later. If yes → Encourage sound blending"
-        },
-        {
-          "decision": "Do they need more letter manipulation practice?",
-          "ifThen": "If yes → Let them explore letters freely before structured building. If no → Continue with guided word building"
-        },
-        {
-          "decision": "Should we use magnetic letters or letter tiles?",
-          "ifThen": "If fine motor challenges → Use larger magnetic letters. If no issues → Either option works"
-        }
-      ],
-      "whenThingsGoWrong": "If letter building is too hard, switch to copying simple words. If too easy, challenge students to build rhyming words or word families.",
-      "realWorldConnection": "Writers create new words by putting letters and sounds together - just like we do when we write shopping lists or messages"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Writers create new words by putting letters and sounds together - just like we do when we write shopping lists or messages",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 9,
+      "lessonType": "core",
       "title": "Mots de la même famille",
-      "duration": 45,
       "oneGoal": "Students find words that belong to the same word family",
-      "keyVocabulary": ["famille", "appartenir", "groupe"],
-      "materials": ["Word family cards (-at, -an, -in families)", "Sorting mats", "Picture supports"],
+      "duration": 45,
+      "keyVocabulary": [
+        "famille",
+        "appartenir",
+        "groupe"
+      ],
       "opening": {
         "duration": 8,
         "activity": "Review word building by having students build 'chat' with letters. Show family photo again and explain word families - words that look and sound similar at the end.",
-        "connection": "Builds on Lesson 8 by organizing constructed words into meaningful groups"
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": 27,
         "activity": "Word Family Houses - Set up three 'houses' (sorting mats) for -at, -an, -in families. Students sort word cards (chat, rat, chocolat / plan, Jean, maman / fin, pain, main) into correct family houses.",
-        "flexibility": "Start with one family if three is too many. Let students who finish early illustrate the word families."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": 10,
-        "activity": "Family Reunion - Each word family group stands together and chants their family ending: '-at, -at, we're the -at family!'"
+        "activity": "Family Reunion - Each word family group stands together and chants their family ending: '-at, -at, we're the -at family!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "decision": "Can students see the patterns in word families?",
-          "ifThen": "If no → Use color-coding for the common endings. If yes → Continue with sorting activity"
-        },
-        {
-          "decision": "Do they need more visual sorting activities?",
-          "ifThen": "If yes → Use picture cards with word cards for support. If no → Use word cards only"
-        },
-        {
-          "decision": "Should we focus on one word family at a time?",
-          "ifThen": "If overwhelmed → Master -at family first. If managing → Continue with all three"
-        }
-      ],
-      "whenThingsGoWrong": "If word families are confusing, focus on just rhyming instead. If too easy, have students generate new words for each family.",
-      "realWorldConnection": "Word families help us predict how to read and spell similar words - like if you know 'cat', you can figure out 'hat' and 'bat'"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Word families help us predict how to read and spell similar words - like if you know 'cat', you can figure out 'hat' and 'bat'",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 10,
+      "lessonType": "core",
       "title": "Chasse aux mots",
-      "duration": 45,
       "oneGoal": "Students search for and identify specific words in text",
-      "keyVocabulary": ["chercher", "trouver", "texte"],
-      "materials": ["Simple French texts or big books", "Word hunting sheets", "Magnifying glasses (props)", "Highlighters or markers"],
+      "duration": 45,
+      "keyVocabulary": [
+        "chercher",
+        "trouver",
+        "texte"
+      ],
       "opening": {
         "duration": 8,
         "activity": "Review word families by chanting '-at, -an, -in' with actions. Put on detective hats/magnifying glasses and explain we're going hunting for words in real books.",
-        "connection": "Builds on Lesson 9 by applying word recognition skills to actual reading materials"
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": 27,
         "activity": "Text Detective Work - Give pairs of students simple French texts. Have them hunt for previously learned words (le, la, et, words from families). Students circle or highlight words they find and keep count.",
-        "flexibility": "Provide texts at different difficulty levels. Some students may need texts with larger print or fewer words per page."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": 10,
-        "activity": "Detective Report - Each pair reports one interesting word they found. Class celebrates all discoveries with detective applause."
+        "activity": "Detective Report - Each pair reports one interesting word they found. Class celebrates all discoveries with detective applause.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "decision": "Are students successfully locating target words?",
-          "ifThen": "If struggling → Use highlighted text or frame individual words. If succeeding → Let them find words independently"
-        },
-        {
-          "decision": "Do they need highlighted text or word frames?",
-          "ifThen": "If yes → Pre-highlight some words or use word-finding frames. If no → Use regular text"
-        },
-        {
-          "decision": "Should we use familiar books or simple sentences?",
-          "ifThen": "If need familiarity → Use books they've heard before. If ready for challenge → Use new simple texts"
-        }
-      ],
-      "whenThingsGoWrong": "If text is too difficult, switch to word cards scattered around the room. If too easy, have students count how many times each word appears.",
-      "realWorldConnection": "We search for specific words when reading recipes, instructions, or finding information - like looking for ingredients on a food package"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "We search for specific words when reading recipes, instructions, or finding information - like looking for ingredients on a food package",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 11,
+      "lessonType": "core",
       "title": "Inventer avec les mots",
-      "duration": 45,
       "oneGoal": "Students create simple sentences using their word knowledge",
-      "keyVocabulary": ["inventer", "phrase", "créer"],
-      "materials": ["Word cards from previous lessons", "Sentence strips or paper", "Pictures for inspiration", "Magnetic board"],
+      "duration": 45,
+      "keyVocabulary": [
+        "inventer",
+        "phrase",
+        "créer"
+      ],
       "opening": {
         "duration": 8,
         "activity": "Review word hunting by showing some words they found yesterday. Explain that now we'll put words together to create messages, like building with blocks.",
-        "connection": "Builds on Lesson 10 by using found words to create meaningful communication"
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": 27,
         "activity": "Sentence Building Workshop - Provide word cards (le, chat, et, petit, grand, la, maison). Students work in pairs to arrange 3-4 words into simple sentences like 'Le chat et la maison'. Teacher circulates to help with word order.",
-        "flexibility": "Some may only combine 2 words - celebrate that! Others may want to try longer sentences."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": 10,
-        "activity": "Sentence Share Circle - Students take turns showing their sentence creations. Class repeats each sentence together."
+        "activity": "Sentence Share Circle - Students take turns showing their sentence creations. Class repeats each sentence together.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "decision": "Are students ready to combine words into sentences?",
-          "ifThen": "If no → Focus on 2-word combinations first. If yes → Try 3-4 word sentences"
-        },
-        {
-          "decision": "Do they need sentence frames or word banks?",
-          "ifThen": "If yes → Provide 'Le ___ et la ___' frames. If no → Let them arrange words freely"
-        },
-        {
-          "decision": "Should we focus on oral or written creation?",
-          "ifThen": "If Grade 1 → Focus on oral sentence creation and word arrangement. If advanced → Try simple writing"
-        }
-      ],
-      "whenThingsGoWrong": "If sentence creation is too complex, go back to word pairing. If too easy, encourage students to add describing words.",
-      "realWorldConnection": "We combine words to share our thoughts, feelings, and ideas with others - like when we tell someone what we want for lunch"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "We combine words to share our thoughts, feelings, and ideas with others - like when we tell someone what we want for lunch",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 12,
+      "lessonType": "core",
       "title": "Mes mots préférés",
-      "duration": 45,
       "oneGoal": "Students choose and justify their favorite French words",
-      "keyVocabulary": ["préféré", "choisir", "pourquoi"],
-      "materials": ["All word cards from previous lessons", "Heart-shaped paper", "Favorite word booklets", "Drawing supplies"],
+      "duration": 45,
+      "keyVocabulary": [
+        "préféré",
+        "choisir",
+        "pourquoi"
+      ],
       "opening": {
         "duration": 8,
         "activity": "Review sentence building by having class create one sentence together. Show heart shape and explain everyone has 'mots préférés' - favorite words that they like best.",
-        "connection": "Builds on Lesson 11 by encouraging personal connection and reflection on word learning"
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": 27,
         "activity": "Favorite Word Gallery - Students choose 3 favorite French words from all those learned. They write/draw each word on heart-shaped paper and explain why they like it: 'J'aime... parce que...' (with teacher support).",
-        "flexibility": "Some students may only choose 1-2 words. Others might want to choose more - both are fine."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": 10,
-        "activity": "Favorite Word Show-and-Tell - Students share one favorite word and show their heart. Class says 'C'est beau!' after each share."
+        "activity": "Favorite Word Show-and-Tell - Students share one favorite word and show their heart. Class says 'C'est beau!' after each share.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "decision": "Can students explain why they like certain words?",
-          "ifThen": "If no → Let them just choose favorites without explanations. If yes → Encourage simple reasons"
-        },
-        {
-          "decision": "Do they need support with opinion language?",
-          "ifThen": "If yes → Provide sentence starters like 'J'aime... parce que...' If no → Let them express freely"
-        },
-        {
-          "decision": "Should we use drawings or gestures to help explanations?",
-          "ifThen": "If verbal expression is difficult → Encourage drawings and gestures. If comfortable with words → Focus on verbal sharing"
-        }
-      ],
-      "whenThingsGoWrong": "If students can't choose favorites, help by asking about words that sound nice or are fun to say. If too many choices, limit to words from this week only.",
-      "realWorldConnection": "Having favorite words makes reading and writing more personal and enjoyable - like having a favorite song or color"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Having favorite words makes reading and writing more personal and enjoyable - like having a favorite song or color",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 13,
+      "lessonType": "core",
       "title": "Dictionnaire d'images",
-      "duration": 45,
       "oneGoal": "Students organize their learned words into a visual dictionary",
-      "keyVocabulary": ["dictionnaire", "organiser", "image"],
-      "materials": ["Mini booklets or folders", "Word cards from all lessons", "Drawing supplies", "Letter dividers (A, B, C, etc.)"],
+      "duration": 45,
+      "keyVocabulary": [
+        "dictionnaire",
+        "organiser",
+        "image"
+      ],
       "opening": {
         "duration": 8,
         "activity": "Review favorite words by having a few students share. Show a real dictionary and explain it's a book that organizes all words - we'll make our own with pictures.",
-        "connection": "Builds on Lesson 12 by formally organizing and documenting word learning"
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": 27,
         "activity": "Dictionary Makers - Students create personal picture dictionaries by sorting their learned words and drawing pictures for each. Start with simple alphabetical order (A words together, B words together, etc.).",
-        "flexibility": "Some may just group by themes instead of alphabet. Others might want to write definitions too."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": 10,
-        "activity": "Dictionary Celebration - Students flip through their dictionaries and share one page they're proud of. Class applauds each mini-dictionary."
+        "activity": "Dictionary Celebration - Students flip through their dictionaries and share one page they're proud of. Class applauds each mini-dictionary.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "decision": "How should students organize their word collection?",
-          "ifThen": "If alphabetical is too hard → Organize by themes or lessons. If ready → Try simple A-B-C grouping"
-        },
-        {
-          "decision": "Do they need help with alphabetical order or categories?",
-          "ifThen": "If yes → Pre-sort letters or provide theme categories. If no → Let them organize independently"
-        },
-        {
-          "decision": "Should we use digital tools or paper-based organization?",
-          "ifThen": "If available technology → Could use simple digital tools. If not → Stick with paper booklets"
-        }
-      ],
-      "whenThingsGoWrong": "If organization is too complex, just let students put all their words in one booklet without sorting. If finished early, let them add more pictures or decorations.",
-      "realWorldConnection": "Dictionaries help us find and remember words when reading and writing - like when we don't know what a word means in a story"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Dictionaries help us find and remember words when reading and writing - like when we don't know what a word means in a story",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 14,
+      "lessonType": "core",
       "title": "Présentation de mes découvertes",
-      "duration": 45,
       "oneGoal": "Students share their word discoveries with classmates",
-      "keyVocabulary": ["présenter", "découverte", "partager"],
-      "materials": ["Student dictionaries from Lesson 13", "Presentation chart", "Microphone (prop)", "Celebration stickers"],
+      "duration": 45,
+      "keyVocabulary": [
+        "présenter",
+        "découverte",
+        "partager"
+      ],
       "opening": {
         "duration": 8,
         "activity": "Students get their dictionaries from yesterday. Explain that good explorers share their discoveries with others - like scientists or treasure hunters.",
-        "connection": "Builds on Lesson 13 by demonstrating mastery through teaching others"
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": 27,
         "activity": "Word Explorer Presentations - Each student chooses 2-3 words from their dictionary to present to the class. They show the word, picture, and teach it to classmates. Audience repeats each new word.",
-        "flexibility": "Some may only present 1 word. Others might want to present more. Shy students can present to small groups."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": 10,
-        "activity": "Explorer Celebration - Give each presenter a 'Word Explorer' sticker. Class chants 'Nous sommes des explorateurs de mots!' to celebrate everyone's learning journey."
+        "activity": "Explorer Celebration - Give each presenter a 'Word Explorer' sticker. Class chants 'Nous sommes des explorateurs de mots!' to celebrate everyone's learning journey.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "decision": "How comfortable are students presenting in French?",
-          "ifThen": "If nervous → Let them present in pairs or small groups. If confident → Individual presentations work"
-        },
-        {
-          "decision": "Do they need presentation supports or sentence starters?",
-          "ifThen": "If yes → Provide 'Voici mon mot...' sentence starter. If no → Let them present naturally"
-        },
-        {
-          "decision": "Should presentations be individual or in pairs?",
-          "ifThen": "If shy students → Pair presentations reduce anxiety. If confident → Individual showcases work well"
-        }
-      ],
-      "whenThingsGoWrong": "If students are too nervous, let them just show their dictionary without talking. If presentations run long, set a 1-minute timer for each student.",
-      "realWorldConnection": "Sharing what we learn helps others and strengthens our own understanding - like when we teach our family a new game or skill"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Sharing what we learn helps others and strengthens our own understanding - like when we teach our family a new game or skill",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 15,
+      "lessonType": "extension",
       "title": "Jeux de mots créatifs",
-      "duration": 45,
       "oneGoal": "Students play creative word games for enjoyment and practice",
-      "keyVocabulary": ["jeu", "créatif", "s'amuser"],
-      "materials": ["Word cards from all lessons", "Timer", "Game prizes (stickers)", "Music for musical words game"],
+      "duration": 45,
+      "keyVocabulary": [
+        "jeu",
+        "créatif",
+        "s'amuser"
+      ],
       "opening": {
         "duration": 8,
         "activity": "Celebrate completing the core lessons! Explain that now we get to PLAY with all the words we've learned. Show game materials and build excitement.",
-        "connection": "Extends Lesson 14 by applying word knowledge in playful, low-pressure contexts"
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": 27,
         "activity": "Word Game Stations - Set up 3 game stations: 1) Word Bingo with learned words, 2) Musical Words (walk around, when music stops grab a word card), 3) Word Memory matching game. Students rotate every 8 minutes.",
-        "flexibility": "Adjust games based on student interests. Some may prefer collaborative games over competitive ones."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": 10,
-        "activity": "Game Champions Circle - Everyone sits and shares which game was most fun. Give everyone a 'Word Game Champion' sticker because everyone played well."
+        "activity": "Game Champions Circle - Everyone sits and shares which game was most fun. Give everyone a 'Word Game Champion' sticker because everyone played well.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "decision": "Which word games engage students most effectively?",
-          "ifThen": "If they like movement → Use more active games like Word Charades. If prefer quiet → Use more card and board games"
-        },
-        {
-          "decision": "Do they need new games or variations of familiar ones?",
-          "ifThen": "If bored with current → Introduce new game formats. If enjoying → Continue with familiar games"
-        },
-        {
-          "decision": "Should games be competitive or collaborative?",
-          "ifThen": "If competition causes stress → Use team games or individual challenges. If they enjoy competition → Keep competitive elements"
-        }
-      ],
-      "whenThingsGoWrong": "If games become too chaotic, switch to quieter activities. If students argue about rules, switch to non-competitive games.",
-      "realWorldConnection": "Playing with words makes language learning fun and memorable - like word games families play in the car or at home"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Playing with words makes language learning fun and memorable - like word games families play in the car or at home",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 16,
+      "lessonType": "extension",
       "title": "Histoires avec nos mots",
-      "duration": 45,
       "oneGoal": "Students create simple stories using their vocabulary collection",
-      "keyVocabulary": ["histoire", "utiliser", "collection"],
-      "materials": ["Student word collections", "Story templates", "Drawing paper", "Story cubes or pictures for inspiration"],
+      "duration": 45,
+      "keyVocabulary": [
+        "histoire",
+        "utiliser",
+        "collection"
+      ],
       "opening": {
         "duration": 8,
         "activity": "Review favorite word games from yesterday. Show a simple picture book and explain that stories are made with words - we can make stories with OUR words.",
-        "connection": "Extends Lesson 15 by combining word play with narrative creation"
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": 27,
         "activity": "Mini Story Creators - Students choose 4-5 words from their collection and create a simple story. They can draw pictures and use simple sentences like 'Le chat et le chien...' Template: Beginning, middle, end with pictures.",
-        "flexibility": "Some may tell oral stories with pictures only. Others might write simple sentences. Both approaches are valid."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": 10,
-        "activity": "Story Time Circle - 3-4 volunteers share their mini stories. Class responds with 'C'est une belle histoire!' after each one."
+        "activity": "Story Time Circle - 3-4 volunteers share their mini stories. Class responds with 'C'est une belle histoire!' after each one.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "decision": "Are students ready for story creation?",
-          "ifThen": "If overwhelmed → Focus on picture stories with 2-3 words. If ready → Encourage simple sentence stories"
-        },
-        {
-          "decision": "Do they need story frames or picture prompts?",
-          "ifThen": "If yes → Provide 'Il était une fois...' story starter. If no → Let creativity flow freely"
-        },
-        {
-          "decision": "Should stories be oral, written, or illustrated?",
-          "ifThen": "If writing is challenging → Focus on oral stories with pictures. If comfortable writing → Encourage simple written stories"
-        }
-      ],
-      "whenThingsGoWrong": "If story creation is too complex, switch to describing single pictures with their words. If finished early, let students illustrate their stories more.",
-      "realWorldConnection": "Stories help us share experiences and connect with others - like telling family about our day or sharing favorite memories"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Stories help us share experiences and connect with others - like telling family about our day or sharing favorite memories",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 17,
+      "lessonType": "extension",
       "title": "Mots dans notre école",
-      "duration": 45,
       "oneGoal": "Students identify and collect French words around the school environment",
-      "keyVocabulary": ["école", "environnement", "identifier"],
-      "materials": ["Clipboards and pencils", "Word collection sheets", "Digital camera (optional)", "School map"],
+      "duration": 45,
+      "keyVocabulary": [
+        "école",
+        "environnement",
+        "identifier"
+      ],
       "opening": {
         "duration": 8,
         "activity": "Share a few mini stories from yesterday. Show school map and explain that our school is FULL of French words - we're going on a word treasure hunt around the building.",
-        "connection": "Extends Lesson 16 by connecting vocabulary learning to their immediate environment"
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": 27,
         "activity": "School Word Safari - Take students on guided walk through school (library, office, cafeteria, gym). Students identify and record French words on signs, posters, labels. Work in pairs with clipboards.",
-        "flexibility": "Adjust route based on time and student stamina. Some areas may have more accessible French words than others."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": 10,
-        "activity": "Safari Debrief - Back in classroom, share the most interesting words found. Create a class list of 'School French Words' on chart paper."
+        "activity": "Safari Debrief - Back in classroom, share the most interesting words found. Create a class list of 'School French Words' on chart paper.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "decision": "Which school areas have the most accessible French words?",
-          "ifThen": "If limited French signage → Focus on classroom labels and library. If rich French environment → Explore widely"
-        },
-        {
-          "decision": "Do students need recording sheets or cameras?",
-          "ifThen": "If writing is challenging → Use cameras or simple check-off sheets. If comfortable writing → Use word collection sheets"
-        },
-        {
-          "decision": "Should this be done in small groups or as a class?",
-          "ifThen": "If large class → Use small groups with parent volunteers. If manageable class size → Whole class works"
-        }
-      ],
-      "whenThingsGoWrong": "If students get too excited and noisy, have quiet 'whisper safari' rules. If they can't find words, point out classroom labels and books.",
-      "realWorldConnection": "French words surround us in our daily environment at school and beyond - on signs, in books, and in conversations"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "French words surround us in our daily environment at school and beyond - on signs, in books, and in conversations",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 18,
+      "lessonType": "extension",
       "title": "Atelier de poésie simple",
-      "duration": 45,
       "oneGoal": "Students create simple poems using their favorite words and sounds",
-      "keyVocabulary": ["poésie", "simple", "création"],
-      "materials": ["School word collection from yesterday", "Poetry templates", "Rhyming word lists", "Beautiful paper for final poems"],
+      "duration": 45,
+      "keyVocabulary": [
+        "poésie",
+        "simple",
+        "création"
+      ],
       "opening": {
         "duration": 8,
         "activity": "Review school words found yesterday. Read a simple French poem or chant with rhythm and rhyme. Explain that poems are special ways to play with words and sounds.",
-        "connection": "Extends Lesson 17 by using environmental words in artistic expression"
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": 27,
         "activity": "Young Poets Workshop - Students create simple 4-line poems using rhyming words from their collection. Template: 'Dans l'école je vois... / Dans l'école j'entends...' Encourage rhythm and repetition.",
-        "flexibility": "Some may create 2-line poems or focus on rhythm without rhyme. Others might try more complex patterns."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": 10,
-        "activity": "Poetry Café - Students sit in circle and share poems like a coffee shop poetry reading. Soft snaps or finger wiggles for applause after each poem."
+        "activity": "Poetry Café - Students sit in circle and share poems like a coffee shop poetry reading. Soft snaps or finger wiggles for applause after each poem.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "decision": "Are students comfortable with creative expression?",
-          "ifThen": "If hesitant → Use more structured templates and examples. If confident → Allow free-form poetry creation"
-        },
-        {
-          "decision": "Do they need poetry templates or complete freedom?",
-          "ifThen": "If need structure → Provide fill-in-the-blank poem templates. If creative → Let them experiment freely"
-        },
-        {
-          "decision": "Should poems focus on rhyme, rhythm, or meaning?",
-          "ifThen": "If rhyming is hard → Focus on rhythm and repetition. If they enjoy rhyming → Encourage simple rhyme patterns"
-        }
-      ],
-      "whenThingsGoWrong": "If poetry seems too abstract, switch to creating rhythmic chants with their words. If students struggle with rhyming, focus on words that sound nice together.",
-      "realWorldConnection": "Poetry helps us express feelings and appreciate the beauty of language - like songs we love or beautiful words that make us happy"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Poetry helps us express feelings and appreciate the beauty of language - like songs we love or beautiful words that make us happy",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 19,
+      "lessonType": "extension",
       "title": "Concours d'orthographe amical",
-      "duration": 45,
       "oneGoal": "Students participate in a friendly spelling celebration of learned words",
-      "keyVocabulary": ["concours", "orthographe", "amical"],
-      "materials": ["Word cards from all lessons", "Team badges or colors", "Celebration certificates", "Spelling bee buzzer (optional)"],
+      "duration": 45,
+      "keyVocabulary": [
+        "concours",
+        "orthographe",
+        "amical"
+      ],
       "opening": {
         "duration": 8,
         "activity": "Share a few poems from yesterday's poetry café. Explain that today we celebrate how well we can spell our learned words - like a friendly contest where everyone wins.",
-        "connection": "Extends Lesson 18 by celebrating spelling achievement in a supportive atmosphere"
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": 27,
         "activity": "Friendly Spelling Celebration - Divide class into mixed-ability teams. Use learned words for team spelling challenges: letter building, word completion, and oral spelling. Focus on encouragement and team support.",
-        "flexibility": "Adjust word difficulty for different teams. Some may work with 3-letter words while others tackle 5-letter words."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": 10,
-        "activity": "Spelling Champions Ceremony - Every student receives a 'Spelling Star' certificate. Celebrate growth and effort rather than perfect spelling."
+        "activity": "Spelling Champions Ceremony - Every student receives a 'Spelling Star' certificate. Celebrate growth and effort rather than perfect spelling.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "decision": "How can we make spelling fun and non-threatening?",
-          "ifThen": "If students seem anxious → Use team formats and celebrate all attempts. If enjoying → Continue with friendly competition"
-        },
-        {
-          "decision": "Should we use team formats or individual challenges?",
-          "ifThen": "If mixed abilities → Use teams for peer support. If similar levels → Individual challenges work"
-        },
-        {
-          "decision": "Do we need different difficulty levels for different students?",
-          "ifThen": "If wide range → Provide choice of word difficulties. If similar levels → Use same words for all"
-        }
-      ],
-      "whenThingsGoWrong": "If competition becomes stressful, switch to collaborative spelling where teams help each other. If too easy, add bonus challenge words.",
-      "realWorldConnection": "Correct spelling helps others understand our writing clearly - like when we write notes to family or friends"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Correct spelling helps others understand our writing clearly - like when we write notes to family or friends",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 20,
+      "lessonType": "extension",
       "title": "Célébration des explorateurs",
-      "duration": 45,
       "oneGoal": "Students celebrate their journey as word explorers and plan future learning",
-      "keyVocabulary": ["célébration", "explorateur", "futur"],
-      "materials": ["All student work from the unit", "Celebration decorations", "Memory book or photo album", "Future learning goal sheets"],
+      "duration": 45,
+      "keyVocabulary": [
+        "célébration",
+        "explorateur",
+        "futur"
+      ],
       "opening": {
         "duration": 8,
         "activity": "Show spelling certificates from yesterday. Set up celebration atmosphere with decorations. Announce that today we celebrate our amazing journey as word explorers!",
-        "connection": "Extends Lesson 19 by reflecting on the complete learning journey and looking forward"
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": 27,
         "activity": "Explorer Celebration Festival - Set up stations: 1) Memory gallery of all unit work, 2) Favorite moment sharing circle, 3) Future goals setting ('Next I want to learn...'). Students rotate and celebrate their growth.",
-        "flexibility": "Some students may want to spend more time at certain stations. Others may want to help set up or lead activities."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": 10,
-        "activity": "Explorer Pledge - Class stands together and recites: 'We are word explorers! We discover, we learn, we share, we grow!' End with group cheer and applause."
+        "activity": "Explorer Pledge - Class stands together and recites: 'We are word explorers! We discover, we learn, we share, we grow!' End with group cheer and applause.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "decision": "How should we recognize each student's growth?",
-          "ifThen": "If need individual recognition → Give personalized certificates highlighting specific growth. If group celebration → Focus on collective achievement"
-        },
-        {
-          "decision": "What celebration format would be most meaningful?",
-          "ifThen": "If students love performance → Include sharing and presenting. If prefer quiet reflection → Focus on gallery walks and discussions"
-        },
-        {
-          "decision": "How can we connect this to continued French learning?",
-          "ifThen": "If continuing French → Set goals for next unit. If transitioning → Focus on celebrating current achievement"
-        }
-      ],
-      "whenThingsGoWrong": "If students get too excited, use calm celebration activities like quiet sharing circles. If some are sad the unit is ending, focus on how learning continues.",
-      "realWorldConnection": "Celebrating our learning motivates us to continue growing and exploring - like when we feel proud of learning to ride a bike and want to go further"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Celebrating our learning motivates us to continue growing and exploring - like when we feel proud of learning to ride a bike and want to go further",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     }
-  ]
+  ],
+  "assessmentTools": {
+    "observationChecklist": [],
+    "rubrics": [],
+    "selfAssessment": [],
+    "portfolioGuidelines": ""
+  },
+  "familyConnections": {
+    "unitLetter": "",
+    "homeActivities": [],
+    "vocabularyList": []
+  },
+  "resourceAlternatives": {
+    "materials": {},
+    "digitalResources": []
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
+  }
 }

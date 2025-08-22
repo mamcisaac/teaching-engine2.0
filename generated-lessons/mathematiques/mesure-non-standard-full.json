@@ -1,805 +1,1051 @@
 {
   "unitTitle": "Mesure non-standard",
+  "subject": "Mathématiques",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
   "lessons": [
     {
       "lessonNumber": 1,
+      "lessonType": "core",
       "title": "Comparer avec nos mains",
       "oneGoal": "Les élèves comparent la longueur d'objets en utilisant leurs mains comme unité de mesure",
-      "estimatedTime": "45 minutes",
-      "materials": ["Objets variés de la classe (livres, crayons, règles)", "Tableau de comparaison simple", "Images de mains de différentes tailles"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "plus long",
+        "plus court",
+        "main"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Chanson de bienvenue avec gestes: 'Mes mains mesurent tout!' Les élèves lèvent leurs mains, les comparent, explorent leur taille. Jeu 'Grande main, petite main' avec mouvements."
+        "activity": "Chanson de bienvenue avec gestes: 'Mes mains mesurent tout!' Les élèves lèvent leurs mains, les comparent, explorent leur taille. Jeu 'Grande main, petite main' avec mouvements.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Exploration libre: Les élèves choisissent des objets et les mesurent avec leurs mains. Ils placent leurs mains bout à bout le long des objets. Activité en duo: comparer leurs résultats pour le même objet.",
+        "activity": "Exploration libre: Les élèves choisissent des objets et les mesurent avec leurs mains. Ils placent leurs mains bout à bout le long des objets. Activité en duo: comparer leurs résultats pour le même objet.",
+        "materials": [],
         "visualSupports": "Tableau avec images: main = unité de mesure. Démonstration visuelle de 'bout à bout' sans espaces",
-        "tprElements": "Placer les mains le long des objets, geste 'bout à bout', montrer 'plus long' et 'plus court' avec les bras",
-        "adaptations": "Objets de tailles variées pour différents niveaux, support visuel avec contours de mains"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Cercle de partage: Chaque élève montre un objet mesuré et dit combien de mains il fait. Chanson: 'Une main, deux mains, je sais mesurer!'"
+        "activity": "Cercle de partage: Chaque élève montre un objet mesuré et dit combien de mains il fait. Chanson: 'Une main, deux mains, je sais mesurer!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves comprennent-ils le concept de comparaison?",
-          "ifThen": "Si non, démontrer avec un objet très long et un très court. Si oui, laisser explorer librement."
-        },
-        {
-          "situation": "Ont-ils besoin d'objets plus grands pour mesurer?",
-          "ifThen": "Si oui, utiliser des livres, des boîtes. Si non, continuer avec crayons et petits objets."
-        },
-        {
-          "situation": "Faut-il d'abord démontrer avec l'enseignant?",
-          "ifThen": "Si oui, modéliser lentement avec un crayon. Si non, encourager l'exploration autonome."
-        }
-      ],
-      "whatWhenWrong": "Si les élèves laissent des espaces entre leurs mains: démontrer 'bout à bout' clairement. Si confusion sur 'plus long': utiliser des objets très différents.",
-      "keyVocabulary": ["plus long", "plus court", "main"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si les élèves laissent des espaces entre leurs mains: démontrer 'bout à bout' clairement. Si confusion sur 'plus long': utiliser des objets très différents.",
+        "then": ""
+      },
       "realWorldConnection": "Mesurer la largeur de leur bureau, la longueur de leur cahier avec leurs mains",
-      "progressionNote": "Première leçon - établit les fondations de la mesure comme comparaison directe avec les mains"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 2,
+      "lessonType": "core",
       "title": "Nos pieds comme règles",
       "oneGoal": "Les élèves utilisent leurs pieds pour mesurer des distances et comparer les résultats",
-      "estimatedTime": "45 minutes",
-      "materials": ["Espace dégagé pour marcher", "Objets à mesurer au sol", "Marqueurs ou cônes", "Carnet de mesures simple"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "pied",
+        "pas",
+        "mesurer"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Révision gestuelle: 'Hier, nous avons mesuré avec nos mains!' Nouvelle chanson: 'Avec mes pieds, je marche et je mesure!' Marche sur place avec rythme."
+        "activity": "Révision gestuelle: 'Hier, nous avons mesuré avec nos mains!' Nouvelle chanson: 'Avec mes pieds, je marche et je mesure!' Marche sur place avec rythme.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Marche de mesure: Les élèves marchent de leur place jusqu'au tableau en comptant leurs pas. Ils mesurent ensuite des objets au sol (tapis, ligne). Comparaison: pourquoi les résultats diffèrent-ils?",
+        "activity": "Marche de mesure: Les élèves marchent de leur place jusqu'au tableau en comptant leurs pas. Ils mesurent ensuite des objets au sol (tapis, ligne). Comparaison: pourquoi les résultats diffèrent-ils?",
+        "materials": [],
         "visualSupports": "Cartes avec empreintes de pieds, tableau pour noter les découvertes",
-        "tprElements": "Marcher pas à pas, compter à voix haute, pointer les pieds, gestes pour 'plus de pas' et 'moins de pas'",
-        "adaptations": "Lignes au sol pour guider la marche, objets de différentes longueurs pour varier les défis"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Discussion en cercle: 'Pourquoi avons-nous des résultats différents?' Découverte que nous avons des pieds de tailles différentes. Jeu: 'Devine combien de pas'."
+        "activity": "Discussion en cercle: 'Pourquoi avons-nous des résultats différents?' Découverte que nous avons des pieds de tailles différentes. Jeu: 'Devine combien de pas'.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves marchent-ils de façon régulière?",
-          "ifThen": "Si non, modéliser des pas réguliers et lents. Si oui, varier les objets à mesurer."
-        },
-        {
-          "situation": "Comprennent-ils pourquoi les résultats sont différents?",
-          "ifThen": "Si non, comparer directement leurs pieds côte à côte. Si oui, explorer d'autres exemples."
-        },
-        {
-          "situation": "Ont-ils besoin de marquer leurs pas?",
-          "ifThen": "Si oui, utiliser de petits marqueurs. Si non, encourager le comptage vocal."
-        }
-      ],
-      "whatWhenWrong": "Si les élèves prennent des pas irréguliers: pratiquer la marche lente et régulière. Si perte de compte: compter ensemble à voix haute.",
-      "keyVocabulary": ["pied", "pas", "mesurer"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si les élèves prennent des pas irréguliers: pratiquer la marche lente et régulière. Si perte de compte: compter ensemble à voix haute.",
+        "then": ""
+      },
       "realWorldConnection": "Mesurer la longueur de la classe, le corridor, le tableau avec leurs pieds",
-      "progressionNote": "S'appuie sur la leçon 1 en introduisant une nouvelle unité corporelle pour des objets plus grands"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 3,
+      "lessonType": "core",
       "title": "Blocs et cubes partout",
       "oneGoal": "Les élèves mesurent des objets en alignant des blocs unifibiens ou des cubes",
-      "estimatedTime": "45 minutes",
-      "materials": ["Blocs unifibiens identiques", "Cubes en bois", "Objets variés à mesurer", "Plateaux pour organiser"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "bloc",
+        "aligner",
+        "bout à bout"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Révision rapide: 'Nous avons mesuré avec nos mains et nos pieds!' Présentation des blocs: 'Voici nos nouveaux outils de mesure!' Chanson des blocs avec manipulation."
+        "activity": "Révision rapide: 'Nous avons mesuré avec nos mains et nos pieds!' Présentation des blocs: 'Voici nos nouveaux outils de mesure!' Chanson des blocs avec manipulation.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Stations de mesure: Station 1 - Mesurer des crayons avec des blocs. Station 2 - Mesurer des livres avec des cubes. Station 3 - Mesurer la largeur du pupitre. Focus sur l'alignement bout à bout.",
+        "activity": "Stations de mesure: Station 1 - Mesurer des crayons avec des blocs. Station 2 - Mesurer des livres avec des cubes. Station 3 - Mesurer la largeur du pupitre. Focus sur l'alignement bout à bout.",
+        "materials": [],
         "visualSupports": "Images démontrant l'alignement correct, tableau de résultats avec dessins",
-        "tprElements": "Geste 'bout à bout' avec les mains, alignement physique des blocs, montrer 'droit' avec les bras",
-        "adaptations": "Blocs de couleurs différentes pour faciliter le comptage, objets de tailles graduées"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Partage des découvertes: 'Mon crayon fait 4 blocs!' Jeu: deviner combien de blocs font différents objets. Rangement collaboratif."
+        "activity": "Partage des découvertes: 'Mon crayon fait 4 blocs!' Jeu: deviner combien de blocs font différents objets. Rangement collaboratif.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves alignent-ils correctement les blocs?",
-          "ifThen": "Si non, démontrer lentement l'alignement parfait. Si oui, introduire des objets plus complexes."
-        },
-        {
-          "situation": "Laissent-ils des espaces entre les blocs?",
-          "ifThen": "Si oui, pratiquer 'coller les blocs ensemble'. Si non, encourager la précision."
-        },
-        {
-          "situation": "Comprennent-ils qu'il faut des blocs identiques?",
-          "ifThen": "Si non, montrer l'importance avec des blocs différents. Si oui, explorer la raison ensemble."
-        }
-      ],
-      "whatWhenWrong": "Si les blocs ne sont pas alignés: utiliser une ligne tracée comme guide. Si les élèves mélangent les tailles: trier les blocs d'abord.",
-      "keyVocabulary": ["bloc", "aligner", "bout à bout"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si les blocs ne sont pas alignés: utiliser une ligne tracée comme guide. Si les élèves mélangent les tailles: trier les blocs d'abord.",
+        "then": ""
+      },
       "realWorldConnection": "Mesurer leurs crayons, leurs livres, leur trousse avec des blocs",
-      "progressionNote": "S'appuie sur la leçon 2 en introduisant des unités standardisées simples pour plus de précision"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 4,
+      "lessonType": "core",
       "title": "Trombones magiques",
       "oneGoal": "Les élèves découvrent les trombones comme petite unité de mesure pour des objets délicats",
-      "estimatedTime": "45 minutes",
-      "materials": ["Trombones identiques", "Petits objets délicats (gommes, cartes)", "Plateaux de tri", "Loupes optionnelles"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "trombone",
+        "petit",
+        "délicat"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Mystère du petit objet: présenter un trombone. 'Qu'est-ce que c'est? À quoi ça sert?' Découvrir qu'on peut mesurer avec! Chanson: 'Petit trombone, grande mesure!'"
+        "activity": "Mystère du petit objet: présenter un trombone. 'Qu'est-ce que c'est? À quoi ça sert?' Découvrir qu'on peut mesurer avec! Chanson: 'Petit trombone, grande mesure!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Atelier minutieux: Les élèves mesurent de petits objets avec des trombones. Ils découvrent qu'il faut être délicat et précis. Comparaison: quand utiliser des trombones vs des blocs?",
+        "activity": "Atelier minutieux: Les élèves mesurent de petits objets avec des trombones. Ils découvrent qu'il faut être délicat et précis. Comparaison: quand utiliser des trombones vs des blocs?",
+        "materials": [],
         "visualSupports": "Images agrandies montrant l'alignement des trombones, tableau de comparaison 'grand objet/petite unité'",
-        "tprElements": "Gestes délicats avec les doigts, manipulation précise, montrer 'petit' et 'précis'",
-        "adaptations": "Objets de différentes petites tailles, support visuel avec grilles pour aligner"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Cercle de réflexion: 'Quand utilise-t-on des trombones?' Discussion sur le choix d'unités. Jeu de devinettes: quel objet fait 3 trombones?"
+        "activity": "Cercle de réflexion: 'Quand utilise-t-on des trombones?' Discussion sur le choix d'unités. Jeu de devinettes: quel objet fait 3 trombones?",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves manipulent-ils les trombones avec soin?",
-          "ifThen": "Si non, modéliser les gestes délicats. Si oui, introduire des objets plus variés."
-        },
-        {
-          "situation": "Comprennent-ils pourquoi utiliser des petites unités?",
-          "ifThen": "Si non, démontrer avec un bloc sur une gomme. Si oui, explorer d'autres exemples."
-        },
-        {
-          "situation": "Ont-ils besoin d'aide pour aligner les trombones?",
-          "ifThen": "Si oui, utiliser des lignes guide. Si non, encourager l'autonomie."
-        }
-      ],
-      "whatWhenWrong": "Si les trombones glissent: utiliser un support antidérapant. Si impatience avec la précision: encourager la lenteur et la qualité.",
-      "keyVocabulary": ["trombone", "petit", "délicat"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si les trombones glissent: utiliser un support antidérapant. Si impatience avec la précision: encourager la lenteur et la qualité.",
+        "then": ""
+      },
       "realWorldConnection": "Mesurer leur gomme à effacer, leur règle, des feuilles avec des trombones",
-      "progressionNote": "S'appuie sur la leçon 3 en introduisant une unité plus petite et adaptable"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 5,
+      "lessonType": "core",
       "title": "Choisir la bonne unité",
       "oneGoal": "Les élèves décident quelle unité utiliser selon la taille de l'objet à mesurer",
-      "estimatedTime": "45 minutes",
-      "materials": ["Mains, pieds, blocs, trombones", "Objets de tailles très variées", "Tableau de choix d'unités", "Cartes décisionnelles"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "choisir",
+        "approprié",
+        "taille"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Révision des unités apprises: mains, pieds, blocs, trombones. Chanson: 'Quelle unité choisir?' avec gestes pour chaque unité. Jeu de reconnaissance rapide."
+        "activity": "Révision des unités apprises: mains, pieds, blocs, trombones. Chanson: 'Quelle unité choisir?' avec gestes pour chaque unité. Jeu de reconnaissance rapide.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Défis de choix: Présenter différents objets (crayon, livre, tableau, gomme). Les élèves discutent et choisissent la meilleure unité avant de mesurer. Justification de leurs choix.",
+        "activity": "Défis de choix: Présenter différents objets (crayon, livre, tableau, gomme). Les élèves discutent et choisissent la meilleure unité avant de mesurer. Justification de leurs choix.",
+        "materials": [],
         "visualSupports": "Tableau avec objets et unités appropriées, cartes aide-mémoire visuelles",
-        "tprElements": "Gestes de réflexion (main sur le menton), montrer les tailles avec les bras, mimer les unités",
-        "adaptations": "Objets gradués en taille, support visuel avec associations objet-unité"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Jeu 'Expert en mesure': L'enseignant montre un objet, les élèves lèvent la main pour l'unité appropriée. Célébration des bonnes décisions!"
+        "activity": "Jeu 'Expert en mesure': L'enseignant montre un objet, les élèves lèvent la main pour l'unité appropriée. Célébration des bonnes décisions!",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves font-ils des choix logiques d'unités?",
-          "ifThen": "Si non, guider avec des questions 'Cet objet est-il grand ou petit?' Si oui, complexifier avec des objets moyens."
-        },
-        {
-          "situation": "Comprennent-ils le lien entre taille d'objet et unité?",
-          "ifThen": "Si non, démontrer avec des exemples extrêmes. Si oui, explorer les cas limites."
-        },
-        {
-          "situation": "Ont-ils besoin de plus d'exemples?",
-          "ifThen": "Si oui, multiplier les pratiques guidées. Si non, encourager l'autonomie."
-        }
-      ],
-      "whatWhenWrong": "Si confusion dans les choix: retourner aux exemples très clairs (fourmi/trombone, maison/pas). Si hésitation: encourager l'essai et l'ajustement.",
-      "keyVocabulary": ["choisir", "approprié", "taille"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si confusion dans les choix: retourner aux exemples très clairs (fourmi/trombone, maison/pas). Si hésitation: encourager l'essai et l'ajustement.",
+        "then": ""
+      },
       "realWorldConnection": "Décider comment mesurer différents objets: leur pupitre, leur crayon, le mur",
-      "progressionNote": "S'appuie sur les leçons 1-4 en consolidant le choix stratégique d'unités de mesure"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 6,
+      "lessonType": "core",
       "title": "Comparer nos mesures",
       "oneGoal": "Les élèves comparent leurs résultats de mesure et discutent des différences",
-      "estimatedTime": "45 minutes",
-      "materials": ["Unités de mesure variées", "Tableaux de résultats", "Même objet pour tous", "Cartes de nombres"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "comparer",
+        "différent",
+        "résultat"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Activité mystère: 'Nous allons tous mesurer le même livre. Aurons-nous le même résultat?' Hypothèses avec levée de mains. Anticipation et curiosité."
+        "activity": "Activité mystère: 'Nous allons tous mesurer le même livre. Aurons-nous le même résultat?' Hypothèses avec levée de mains. Anticipation et curiosité.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Expérience collective: Tous mesurent le même livre avec leurs mains. Noter les résultats au tableau. Discussion: pourquoi des résultats différents? Répéter avec d'autres unités.",
+        "activity": "Expérience collective: Tous mesurent le même livre avec leurs mains. Noter les résultats au tableau. Discussion: pourquoi des résultats différents? Répéter avec d'autres unités.",
+        "materials": [],
         "visualSupports": "Tableau de résultats collectif, images des différentes tailles de mains",
-        "tprElements": "Comparer les tailles de mains côte à côte, gestes d'étonnement, montrer les différences",
-        "adaptations": "Objets identiques multiples, support visuel pour noter les résultats"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Cercle de découverte: 'Qu'avons-nous appris aujourd'hui?' Les élèves partagent leurs observations sur les différences. Célébrer la diversité comme normale."
+        "activity": "Cercle de découverte: 'Qu'avons-nous appris aujourd'hui?' Les élèves partagent leurs observations sur les différences. Célébrer la diversité comme normale.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves remarquent-ils les différences de résultats?",
-          "ifThen": "Si non, souligner clairement les écarts. Si oui, explorer pourquoi ensemble."
-        },
-        {
-          "situation": "Comprennent-ils pourquoi les mesures varient?",
-          "ifThen": "Si non, comparer physiquement leurs mains. Si oui, explorer d'autres facteurs."
-        },
-        {
-          "situation": "Peuvent-ils expliquer leurs observations?",
-          "ifThen": "Si non, modéliser l'explication. Si oui, encourager le partage avec la classe."
-        }
-      ],
-      "whatWhenWrong": "Si frustration face aux différences: expliquer que c'est normal et intéressant. Si incompréhension: utiliser des exemples visuels clairs.",
-      "keyVocabulary": ["comparer", "différent", "résultat"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si frustration face aux différences: expliquer que c'est normal et intéressant. Si incompréhension: utiliser des exemples visuels clairs.",
+        "then": ""
+      },
       "realWorldConnection": "Comparer combien de mains fait leur bureau versus celui de leur ami",
-      "progressionNote": "S'appuie sur la leçon 5 en développant la réflexion critique sur les résultats de mesure"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 7,
+      "lessonType": "core",
       "title": "Mesurer ensemble",
       "oneGoal": "Les élèves travaillent en équipe pour mesurer des objets plus grands de la classe",
-      "estimatedTime": "45 minutes",
-      "materials": ["Unités variées en quantité", "Grands objets de classe", "Cartes de rôles d'équipe", "Feuilles de résultats"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "équipe",
+        "ensemble",
+        "grand"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Formation d'équipes avec chanson: 'Ensemble nous mesurons!' Présentation des rôles: mesureur, compteur, vérificateur. Pratique des rôles avec démonstration."
+        "activity": "Formation d'équipes avec chanson: 'Ensemble nous mesurons!' Présentation des rôles: mesureur, compteur, vérificateur. Pratique des rôles avec démonstration.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Missions d'équipe: Chaque équipe reçoit un grand objet à mesurer (tableau, porte, tapis). Ils planifient, collaborent et mesurent ensemble. Rotation des rôles à mi-parcours.",
+        "activity": "Missions d'équipe: Chaque équipe reçoit un grand objet à mesurer (tableau, porte, tapis). Ils planifient, collaborent et mesurent ensemble. Rotation des rôles à mi-parcours.",
+        "materials": [],
         "visualSupports": "Cartes visuelles des rôles, aide-mémoire pour la collaboration",
-        "tprElements": "Gestes de collaboration, signaux de communication d'équipe, mouvements coordonnés",
-        "adaptations": "Équipes mixtes en habiletés, objets de différentes complexités"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Présentation des équipes: chaque équipe partage son objet mesuré et explique leur processus. Célébration du travail d'équipe avec applaudissements."
+        "activity": "Présentation des équipes: chaque équipe partage son objet mesuré et explique leur processus. Célébration du travail d'équipe avec applaudissements.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves collaborent-ils efficacement?",
-          "ifThen": "Si non, rappeler les rôles et modéliser. Si oui, observer et encourager."
-        },
-        {
-          "situation": "Partagent-ils les tâches de façon équitable?",
-          "ifThen": "Si non, intervenir pour la rotation. Si oui, laisser l'autonomie."
-        },
-        {
-          "situation": "Ont-ils besoin de plus de structure pour travailler ensemble?",
-          "ifThen": "Si oui, donner des étapes claires. Si non, encourager la créativité."
-        }
-      ],
-      "whatWhenWrong": "Si conflits dans l'équipe: arrêter et résoudre ensemble. Si désorganisation: rappeler les rôles et replanifier.",
-      "keyVocabulary": ["équipe", "ensemble", "grand"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si conflits dans l'équipe: arrêter et résoudre ensemble. Si désorganisation: rappeler les rôles et replanifier.",
+        "then": ""
+      },
       "realWorldConnection": "Mesurer ensemble la porte de la classe, le tableau, les étagères",
-      "progressionNote": "S'appuie sur la leçon 6 en introduisant le travail collaboratif et des objets plus grands"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 8,
+      "lessonType": "core",
       "title": "Prédire avant de mesurer",
       "oneGoal": "Les élèves font des prédictions sur la longueur d'objets avant de les mesurer",
-      "estimatedTime": "45 minutes",
-      "materials": ["Objets variés", "Cartes de prédiction", "Unités de mesure", "Tableau prédiction/réalité"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "prédire",
+        "estimer",
+        "avant"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Jeu de devinettes: 'Je pense que ce livre fait... mains!' Modéliser la prédiction avec gestes réfléchis. Chanson: 'Devine avant de mesurer!'"
+        "activity": "Jeu de devinettes: 'Je pense que ce livre fait... mains!' Modéliser la prédiction avec gestes réfléchis. Chanson: 'Devine avant de mesurer!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Cycle prédiction-mesure: Pour chaque objet, les élèves prédisent d'abord, puis mesurent. Comparer prédiction et réalité. Noter les surprises et les bonnes estimations.",
+        "activity": "Cycle prédiction-mesure: Pour chaque objet, les élèves prédisent d'abord, puis mesurent. Comparer prédiction et réalité. Noter les surprises et les bonnes estimations.",
+        "materials": [],
         "visualSupports": "Tableau avec colonnes 'Je pense' et 'Je mesure', images aide-mémoire",
-        "tprElements": "Gestes de réflexion, mimer les tailles estimées, expressions de surprise ou satisfaction",
-        "adaptations": "Objets de tailles prévisibles au début, puis plus surprenants"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Cercle de réflexion: 'Quelles prédictions étaient bonnes?' Célébrer les bonnes estimations et apprendre des surprises. Encourager l'amélioration des prédictions."
+        "activity": "Cercle de réflexion: 'Quelles prédictions étaient bonnes?' Célébrer les bonnes estimations et apprendre des surprises. Encourager l'amélioration des prédictions.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves font-ils des prédictions raisonnables?",
-          "ifThen": "Si non, guider avec des indices visuels. Si oui, complexifier les objets."
-        },
-        {
-          "situation": "Comprennent-ils la différence entre prédire et mesurer?",
-          "ifThen": "Si non, séparer clairement les deux moments. Si oui, explorer l'amélioration des prédictions."
-        },
-        {
-          "situation": "Leurs estimations s'améliorent-elles?",
-          "ifThen": "Si non, donner plus de pratique guidée. Si oui, féliciter et encourager."
-        }
-      ],
-      "whatWhenWrong": "Si prédictions totalement irréalistes: donner des points de référence. Si découragement: souligner que l'estimation s'améliore avec la pratique.",
-      "keyVocabulary": ["prédire", "estimer", "avant"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si prédictions totalement irréalistes: donner des points de référence. Si découragement: souligner que l'estimation s'améliore avec la pratique.",
+        "then": ""
+      },
       "realWorldConnection": "Prédire combien de pas jusqu'à la porte, combien de mains fait le tableau",
-      "progressionNote": "S'appuie sur la leçon 7 en développant l'estimation et la réflexion avant l'action"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 9,
+      "lessonType": "core",
       "title": "Objets longs et courts",
       "oneGoal": "Les élèves trient et classent des objets selon leur longueur en utilisant des unités non-standard",
-      "estimatedTime": "45 minutes",
-      "materials": ["Collection d'objets de longueurs variées", "Bacs de tri", "Étiquettes 'long' et 'court'", "Unités de mesure"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "trier",
+        "classer",
+        "longueur"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Jeu 'Long ou court?': montrer rapidement des objets extrêmes. Les élèves lèvent les bras (long) ou se baissent (court). Chanson avec mouvements expressifs."
+        "activity": "Jeu 'Long ou court?': montrer rapidement des objets extrêmes. Les élèves lèvent les bras (long) ou se baissent (court). Chanson avec mouvements expressifs.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Atelier de tri: Les élèves mesurent d'abord chaque objet, puis les classent en catégories (très court, court, long, très long). Création d'une ligne de longueur du plus court au plus long.",
+        "activity": "Atelier de tri: Les élèves mesurent d'abord chaque objet, puis les classent en catégories (très court, court, long, très long). Création d'une ligne de longueur du plus court au plus long.",
+        "materials": [],
         "visualSupports": "Bacs avec pictogrammes, ligne graduée au sol, référentiels visuels",
-        "tprElements": "Gestes expressifs pour les longueurs, manipulation des objets, formation de lignes",
-        "adaptations": "Objets de longueurs très contrastées au début, puis nuances plus fines"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Exposition de tri: chaque groupe présente sa ligne d'objets. Vérification collective: 'Êtes-vous d'accord avec ce classement?' Discussion des critères."
+        "activity": "Exposition de tri: chaque groupe présente sa ligne d'objets. Vérification collective: 'Êtes-vous d'accord avec ce classement?' Discussion des critères.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves identifient-ils correctement les objets longs et courts?",
-          "ifThen": "Si non, utiliser des contrastes plus marqués. Si oui, introduire des nuances."
-        },
-        {
-          "situation": "Comprennent-ils les critères de classement?",
-          "ifThen": "Si non, clarifier ensemble les règles de tri. Si oui, laisser plus d'autonomie."
-        },
-        {
-          "situation": "Ont-ils besoin de plus d'objets pour trier?",
-          "ifThen": "Si oui, ajouter des objets intermédiaires. Si non, perfectionner le classement."
-        }
-      ],
-      "whatWhenWrong": "Si désaccords sur le classement: mesurer ensemble pour vérifier. Si confusion: retourner aux exemples extrêmes clairs.",
-      "keyVocabulary": ["trier", "classer", "longueur"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si désaccords sur le classement: mesurer ensemble pour vérifier. Si confusion: retourner aux exemples extrêmes clairs.",
+        "then": ""
+      },
       "realWorldConnection": "Trier les crayons, les livres, les règles par ordre de longueur",
-      "progressionNote": "S'appuie sur la leçon 8 en appliquant la mesure pour organiser et classifier"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 10,
+      "lessonType": "core",
       "title": "Mesurer des courbes",
       "oneGoal": "Les élèves découvrent comment mesurer des objets qui ne sont pas droits avec des cordes",
-      "estimatedTime": "45 minutes",
-      "materials": ["Cordes ou ficelles", "Objets courbes (livres ronds, plantes)", "Règles flexibles", "Cartes d'objets courbes"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "courbe",
+        "corde",
+        "flexible"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Mystère de l'objet impossible: montrer un livre rond. 'Comment mesurer quelque chose de courbe?' Exploration tactile de formes courbes. Introduction de la corde magique."
+        "activity": "Mystère de l'objet impossible: montrer un livre rond. 'Comment mesurer quelque chose de courbe?' Exploration tactile de formes courbes. Introduction de la corde magique.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Exploration des courbes: Les élèves utilisent des cordes pour suivre les contours d'objets courbes. Ils découvrent qu'ensuite ils peuvent mesurer la corde droite avec leurs unités habituelles.",
+        "activity": "Exploration des courbes: Les élèves utilisent des cordes pour suivre les contours d'objets courbes. Ils découvrent qu'ensuite ils peuvent mesurer la corde droite avec leurs unités habituelles.",
+        "materials": [],
         "visualSupports": "Démonstration visuelle de corde qui suit les contours, exemples d'objets courbes",
-        "tprElements": "Suivre les contours avec les doigts, manipuler la corde avec fluidité, gestes ondulants",
-        "adaptations": "Objets avec courbes simples d'abord, puis plus complexes"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Partage des découvertes: 'Qu'avez-vous appris sur les courbes?' Jeu: trouver d'autres objets courbes dans la classe à mesurer."
+        "activity": "Partage des découvertes: 'Qu'avez-vous appris sur les courbes?' Jeu: trouver d'autres objets courbes dans la classe à mesurer.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves comprennent-ils pourquoi la corde est utile?",
-          "ifThen": "Si non, démontrer avec un objet droit vs courbe. Si oui, explorer d'autres objets courbes."
-        },
-        {
-          "situation": "Arrivent-ils à bien suivre les contours?",
-          "ifThen": "Si non, guider leurs mains sur la corde. Si oui, encourager la précision."
-        },
-        {
-          "situation": "Ont-ils besoin de démonstration supplémentaire?",
-          "ifThen": "Si oui, répéter avec différents objets. Si non, laisser explorer librement."
-        }
-      ],
-      "whatWhenWrong": "Si la corde ne suit pas bien: aider à tenir et guider. Si confusion sur le concept: utiliser des exemples très simples d'abord.",
-      "keyVocabulary": ["courbe", "corde", "flexible"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si la corde ne suit pas bien: aider à tenir et guider. Si confusion sur le concept: utiliser des exemples très simples d'abord.",
+        "then": ""
+      },
       "realWorldConnection": "Mesurer le contour de leur main, d'un livre rond, d'une plante avec une corde",
-      "progressionNote": "S'appuie sur la leçon 9 en introduisant la mesure d'objets non-linéaires"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 11,
+      "lessonType": "core",
       "title": "Hauteur et largeur",
       "oneGoal": "Les élèves explorent la mesure de la hauteur et de la largeur d'objets",
-      "estimatedTime": "45 minutes",
-      "materials": ["Objets avec hauteur et largeur marquées", "Bandelettes pour mesurer", "Images directionnelles", "Unités de mesure"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "hauteur",
+        "largeur",
+        "vertical"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Jeu corporel: 'Montre-moi la hauteur!' (bras vers le haut), 'Montre-moi la largeur!' (bras écartés). Exploration de leur propre hauteur et largeur. Chanson directionnelle."
+        "activity": "Jeu corporel: 'Montre-moi la hauteur!' (bras vers le haut), 'Montre-moi la largeur!' (bras écartés). Exploration de leur propre hauteur et largeur. Chanson directionnelle.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Stations directionnelles: Station 1 - Mesurer la hauteur de tours de blocs. Station 2 - Mesurer la largeur de livres. Station 3 - Mesurer leur propre hauteur et largeur. Découvrir les deux dimensions.",
+        "activity": "Stations directionnelles: Station 1 - Mesurer la hauteur de tours de blocs. Station 2 - Mesurer la largeur de livres. Station 3 - Mesurer leur propre hauteur et largeur. Découvrir les deux dimensions.",
+        "materials": [],
         "visualSupports": "Flèches indiquant hauteur (↑) et largeur (↔), images de référence",
-        "tprElements": "Gestes directionnels clairs, mesurer verticalement et horizontalement, mouvements expressifs",
-        "adaptations": "Objets avec dimensions contrastées, support visuel avec directionnalité claire"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Jeu 'Direction mystère': L'enseignant demande la hauteur ou largeur d'un objet, les élèves montrent la direction appropriée avant de mesurer."
+        "activity": "Jeu 'Direction mystère': L'enseignant demande la hauteur ou largeur d'un objet, les élèves montrent la direction appropriée avant de mesurer.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves distinguent-ils hauteur et largeur?",
-          "ifThen": "Si non, accentuer les gestes directionnels. Si oui, explorer des formes plus complexes."
-        },
-        {
-          "situation": "Comprennent-ils les différentes directions de mesure?",
-          "ifThen": "Si non, pratiquer avec leur corps d'abord. Si oui, appliquer aux objets."
-        },
-        {
-          "situation": "Ont-ils besoin de référents visuels?",
-          "ifThen": "Si oui, utiliser des flèches et couleurs. Si non, encourager l'autonomie."
-        }
-      ],
-      "whatWhenWrong": "Si confusion des directions: retourner aux gestes corporels. Si mesure diagonale: clarifier 'droit vers le haut' et 'droit sur le côté'.",
-      "keyVocabulary": ["hauteur", "largeur", "vertical"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si confusion des directions: retourner aux gestes corporels. Si mesure diagonale: clarifier 'droit vers le haut' et 'droit sur le côté'.",
+        "then": ""
+      },
       "realWorldConnection": "Mesurer la hauteur de leur chaise, la largeur de la fenêtre",
-      "progressionNote": "S'appuie sur la leçon 10 en étendant la mesure à différentes dimensions"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 12,
+      "lessonType": "core",
       "title": "Créer nos propres unités",
       "oneGoal": "Les élèves inventent et utilisent leurs propres unités de mesure créatives",
-      "estimatedTime": "45 minutes",
-      "materials": ["Objets variés potentiels (crayons, gommes, jetons)", "Bacs de création", "Cartes d'invention", "Objets à mesurer"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "créer",
+        "inventer",
+        "unité"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Défi de l'inventeur: 'Vous êtes des inventeurs de mesure!' Brainstorm: quels objets pourraient servir d'unités? Encourager la créativité avec enthousiasme."
+        "activity": "Défi de l'inventeur: 'Vous êtes des inventeurs de mesure!' Brainstorm: quels objets pourraient servir d'unités? Encourager la créativité avec enthousiasme.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Atelier d'invention: Les élèves choisissent ou créent leur propre unité de mesure. Ils testent leur efficacité en mesurant différents objets. Partage et échange d'unités inventées.",
+        "activity": "Atelier d'invention: Les élèves choisissent ou créent leur propre unité de mesure. Ils testent leur efficacité en mesurant différents objets. Partage et échange d'unités inventées.",
+        "materials": [],
         "visualSupports": "Galerie d'idées d'unités possibles, critères d'une bonne unité de mesure",
-        "tprElements": "Gestes de création et d'invention, manipulation créative, expressions d'émerveillement",
-        "adaptations": "Variété d'objets selon les intérêts, support pour les choix créatifs"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Expo des inventions: chaque élève présente son unité inventée et démontre son utilisation. Applaudissements pour chaque invention créative."
+        "activity": "Expo des inventions: chaque élève présente son unité inventée et démontre son utilisation. Applaudissements pour chaque invention créative.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves choisissent-ils des unités pratiques?",
-          "ifThen": "Si non, guider vers des objets plus appropriés. Si oui, encourager la diversité."
-        },
-        {
-          "situation": "Comprennent-ils que leur unité doit être uniforme?",
-          "ifThen": "Si non, démontrer avec des objets différents. Si oui, explorer la créativité."
-        },
-        {
-          "situation": "Sont-ils créatifs tout en restant logiques?",
-          "ifThen": "Si trop fantaisistes, ramener vers le pratique. Si pas assez créatifs, encourager l'originalité."
-        }
-      ],
-      "whatWhenWrong": "Si unités inappropriées: guider vers des alternatives. Si manque de créativité: donner des exemples inspirants.",
-      "keyVocabulary": ["créer", "inventer", "unité"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si unités inappropriées: guider vers des alternatives. Si manque de créativité: donner des exemples inspirants.",
+        "then": ""
+      },
       "realWorldConnection": "Utiliser des biscuits, des crayons de couleur, des épingles comme unités",
-      "progressionNote": "S'appuie sur la leçon 11 en encourageant l'innovation et la créativité"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 13,
+      "lessonType": "core",
       "title": "Mesurer notre croissance",
       "oneGoal": "Les élèves mesurent leur propre taille en utilisant différentes unités non-standard",
-      "estimatedTime": "45 minutes",
-      "materials": ["Mur dédié aux mesures", "Unités variées", "Bandelettes pour marquer", "Carnet de croissance"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "croissance",
+        "taille",
+        "grandir"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Célébration de la croissance: 'Vous grandissez chaque jour!' Comparaison de tailles avec jeu debout. Anticipation: 'Combien mesurons-nous?' Chanson de croissance."
+        "activity": "Célébration de la croissance: 'Vous grandissez chaque jour!' Comparaison de tailles avec jeu debout. Anticipation: 'Combien mesurons-nous?' Chanson de croissance.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Stations de mesure personnelle: Les élèves se mesurent mutuellement contre le mur avec différentes unités. Ils notent leurs résultats et comparent. Photo de leur taille avec leur unité préférée.",
+        "activity": "Stations de mesure personnelle: Les élèves se mesurent mutuellement contre le mur avec différentes unités. Ils notent leurs résultats et comparent. Photo de leur taille avec leur unité préférée.",
+        "materials": [],
         "visualSupports": "Mur gradué, carnet visuel de croissance, photos de référence",
-        "tprElements": "Se tenir droit contre le mur, marquer avec précision, comparaisons corporelles",
-        "adaptations": "Aide pour rester immobile, unités de tailles appropriées pour tous"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Cercle de fierté: chaque élève partage sa taille dans son unité préférée. Célébration de leurs découvertes. Discussion sur la croissance future."
+        "activity": "Cercle de fierté: chaque élève partage sa taille dans son unité préférée. Célébration de leurs découvertes. Discussion sur la croissance future.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves restent-ils immobiles pendant la mesure?",
-          "ifThen": "Si non, donner des trucs pour rester droit. Si oui, encourager la précision."
-        },
-        {
-          "situation": "Comprennent-ils le concept de leur propre taille?",
-          "ifThen": "Si non, utiliser des miroirs et comparaisons. Si oui, explorer les variations."
-        },
-        {
-          "situation": "Ont-ils besoin d'aide pour la mesure verticale?",
-          "ifThen": "Si oui, travailler en duo avec aide. Si non, encourager l'autonomie."
-        }
-      ],
-      "whatWhenWrong": "Si difficulté à rester immobile: utiliser des jeux de statues. Si confusion sur le concept: utiliser des comparaisons visuelles.",
-      "keyVocabulary": ["croissance", "taille", "grandir"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si difficulté à rester immobile: utiliser des jeux de statues. Si confusion sur le concept: utiliser des comparaisons visuelles.",
+        "then": ""
+      },
       "realWorldConnection": "Se mesurer contre le mur avec des blocs, comparer avec leurs amis",
-      "progressionNote": "S'appuie sur la leçon 12 en appliquant la mesure à eux-mêmes de façon significative"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 14,
+      "lessonType": "core",
       "title": "Mesurer pour construire",
       "oneGoal": "Les élèves utilisent la mesure pour planifier et construire une structure simple",
-      "estimatedTime": "45 minutes",
-      "materials": ["Matériaux de construction variés", "Plans simples", "Unités de mesure", "Espaces de construction"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "construire",
+        "planifier",
+        "structure"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Défi de l'architecte: 'Vous êtes des architectes!' Présentation du projet: construire selon des mesures précises. Exploration des matériaux. Chanson des constructeurs."
+        "activity": "Défi de l'architecte: 'Vous êtes des architectes!' Présentation du projet: construire selon des mesures précises. Exploration des matériaux. Chanson des constructeurs.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Projet de construction guidée: Les élèves reçoivent des consignes de construction (tour de 8 blocs, route de 12 trombones). Ils mesurent, planifient puis construisent. Vérification finale des mesures.",
+        "activity": "Projet de construction guidée: Les élèves reçoivent des consignes de construction (tour de 8 blocs, route de 12 trombones). Ils mesurent, planifient puis construisent. Vérification finale des mesures.",
+        "materials": [],
         "visualSupports": "Plans visuels simples, aide-mémoire des consignes, exemples de réussites",
-        "tprElements": "Gestes de construction, mesurer pendant la construction, vérifications tactiles",
-        "adaptations": "Projets de complexités variées, travail individuel ou en duo selon les besoins"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Exposition des constructions: présentation des créations avec explication du processus de mesure. Célébration des réussites et apprentissages des défis."
+        "activity": "Exposition des constructions: présentation des créations avec explication du processus de mesure. Célébration des réussites et apprentissages des défis.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves planifient-ils avant de construire?",
-          "ifThen": "Si non, encourager la réflexion d'abord. Si oui, laisser libre cours à leur processus."
-        },
-        {
-          "situation": "Utilisent-ils la mesure de façon fonctionnelle?",
-          "ifThen": "Si non, rappeler l'importance de vérifier. Si oui, encourager la précision."
-        },
-        {
-          "situation": "Leur construction correspond-elle à leurs mesures?",
-          "ifThen": "Si non, guider vers la vérification. Si oui, féliciter et complexifier."
-        }
-      ],
-      "whatWhenWrong": "Si construction ne correspond pas: arrêter et remesurer ensemble. Si découragement: célébrer les efforts et ajuster.",
-      "keyVocabulary": ["construire", "planifier", "structure"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si construction ne correspond pas: arrêter et remesurer ensemble. Si découragement: célébrer les efforts et ajuster.",
+        "then": ""
+      },
       "realWorldConnection": "Construire une tour qui fait 10 blocs, une route de 15 trombones",
-      "progressionNote": "S'appuie sur la leçon 13 en appliquant la mesure à un projet concret"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 15,
+      "lessonType": "extension",
       "title": "Raconter nos mesures",
       "oneGoal": "Les élèves racontent leurs découvertes de mesure en utilisant le vocabulaire approprié",
-      "estimatedTime": "45 minutes",
-      "materials": ["Objets mesurés précédemment", "Cartes de vocabulaire", "Support de présentation", "Appareil photo optionnel"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "raconter",
+        "découvrir",
+        "expliquer"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Cercle de conteurs: 'Vous êtes maintenant des experts en mesure!' Révision rapide du vocabulaire appris. Préparation à devenir des conteurs de mesures."
+        "activity": "Cercle de conteurs: 'Vous êtes maintenant des experts en mesure!' Révision rapide du vocabulaire appris. Préparation à devenir des conteurs de mesures.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Atelier de narration: Les élèves préparent et présentent l'histoire de leurs apprentissages en mesure. Ils utilisent des objets pour démontrer et expliquent leurs méthodes à un public imagé.",
+        "activity": "Atelier de narration: Les élèves préparent et présentent l'histoire de leurs apprentissages en mesure. Ils utilisent des objets pour démontrer et expliquent leurs méthodes à un public imagé.",
+        "materials": [],
         "visualSupports": "Cartes de vocabulaire, chronologie des apprentissages, objets de démonstration",
-        "tprElements": "Gestes narratifs, démonstrations physiques, expressions de communication",
-        "adaptations": "Support visuel pour la narration, présentations individuelles ou en duo"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Applaudissements pour tous les conteurs! Discussion: 'Qu'est-ce qui était difficile à expliquer?' Célébration de leur maîtrise du vocabulaire de mesure."
+        "activity": "Applaudissements pour tous les conteurs! Discussion: 'Qu'est-ce qui était difficile à expliquer?' Célébration de leur maîtrise du vocabulaire de mesure.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves utilisent-ils le vocabulaire de mesure correctement?",
-          "ifThen": "Si non, rappeler doucement les mots justes. Si oui, encourager l'enrichissement."
-        },
-        {
-          "situation": "Peuvent-ils expliquer leurs méthodes?",
-          "ifThen": "Si non, modéliser l'explication. Si oui, encourager les détails."
-        },
-        {
-          "situation": "Leurs explications sont-elles claires?",
-          "ifThen": "Si non, aider à restructurer. Si oui, célébrer leur expertise."
-        }
-      ],
-      "whatWhenWrong": "Si timidité pour présenter: commencer par des présentations à un ami. Si vocabulaire incorrect: répéter les mots justes avec bienveillance.",
-      "keyVocabulary": ["raconter", "découvrir", "expliquer"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si timidité pour présenter: commencer par des présentations à un ami. Si vocabulaire incorrect: répéter les mots justes avec bienveillance.",
+        "then": ""
+      },
       "realWorldConnection": "Expliquer à leurs parents comment ils mesurent les choses à la maison",
-      "progressionNote": "S'appuie sur la leçon 14 en développant la communication des apprentissages"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 16,
+      "lessonType": "extension",
       "title": "Défis de mesure amusants",
       "oneGoal": "Les élèves relèvent des défis de mesure ludiques pour consolider leurs apprentissages",
-      "estimatedTime": "45 minutes",
-      "materials": ["Stations de défis variées", "Cartes de missions", "Récompenses symboliques", "Chronomètre optionnel"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "défi",
+        "amusant",
+        "réussir"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Rassemblement des champions: 'Bienvenue aux Jeux olympiques de la mesure!' Présentation des défis avec enthousiasme. Échauffement avec gestes de mesure."
+        "activity": "Rassemblement des champions: 'Bienvenue aux Jeux olympiques de la mesure!' Présentation des défis avec enthousiasme. Échauffement avec gestes de mesure.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Circuit de défis: Station 1 - Trouver un objet de 5 mains. Station 2 - Construire une tour de 10 blocs. Station 3 - Mesurer un objet mystère. Station 4 - Défi créatif libre. Rotation avec célébrations.",
+        "activity": "Circuit de défis: Station 1 - Trouver un objet de 5 mains. Station 2 - Construire une tour de 10 blocs. Station 3 - Mesurer un objet mystère. Station 4 - Défi créatif libre. Rotation avec célébrations.",
+        "materials": [],
         "visualSupports": "Cartes de défis illustrées, tableau de réussites, exemples de solutions",
-        "tprElements": "Mouvements sportifs, gestes de victoire, encouragements physiques",
-        "adaptations": "Défis adaptés aux niveaux, support individuel selon les besoins"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Cérémonie de clôture: célébration de tous les participants. Remise de 'médailles' symboliques. Chant de victoire: 'Nous sommes des champions de la mesure!'"
+        "activity": "Cérémonie de clôture: célébration de tous les participants. Remise de 'médailles' symboliques. Chant de victoire: 'Nous sommes des champions de la mesure!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les défis sont-ils à leur niveau?",
-          "ifThen": "Si trop faciles, complexifier. Si trop difficiles, simplifier ou donner des indices."
-        },
-        {
-          "situation": "Les élèves persévèrent-ils face aux difficultés?",
-          "ifThen": "Si non, encourager et donner des stratégies. Si oui, féliciter la persévérance."
-        },
-        {
-          "situation": "Ont-ils besoin d'indices supplémentaires?",
-          "ifThen": "Si oui, donner des indices progressifs. Si non, laisser l'autonomie créative."
-        }
-      ],
-      "whatWhenWrong": "Si frustration face aux défis: rappeler que c'est un jeu d'apprentissage. Si compétition excessive: emphasiser l'entraide et la célébration collective.",
-      "keyVocabulary": ["défi", "amusant", "réussir"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si frustration face aux défis: rappeler que c'est un jeu d'apprentissage. Si compétition excessive: emphasiser l'entraide et la célébration collective.",
+        "then": ""
+      },
       "realWorldConnection": "Trouver des objets qui font exactement 5 mains, 3 pieds, 10 trombones",
-      "progressionNote": "S'appuie sur la leçon 15 en consolidant par le jeu et les défis"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 17,
+      "lessonType": "extension",
       "title": "Mesurer dans la nature",
       "oneGoal": "Les élèves explorent la mesure à l'extérieur avec des éléments naturels",
-      "estimatedTime": "45 minutes",
-      "materials": ["Accès à l'extérieur", "Sacs de collecte", "Cartes d'exploration", "Unités de mesure portable"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "nature",
+        "extérieur",
+        "feuille"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Préparation d'expédition: 'Nous partons explorer la nature!' Règles de sécurité extérieure. Anticipation des découvertes. Chanson des explorateurs."
+        "activity": "Préparation d'expédition: 'Nous partons explorer la nature!' Règles de sécurité extérieure. Anticipation des découvertes. Chanson des explorateurs.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Exploration nature: Collecte d'éléments naturels (feuilles, branches, pierres). Utilisation de ces éléments comme unités de mesure. Mesure d'objets extérieurs avec leurs trouvailles naturelles.",
+        "activity": "Exploration nature: Collecte d'éléments naturels (feuilles, branches, pierres). Utilisation de ces éléments comme unités de mesure. Mesure d'objets extérieurs avec leurs trouvailles naturelles.",
+        "materials": [],
         "visualSupports": "Cartes d'exploration, aide-mémoire pour la collecte sécuritaire",
-        "tprElements": "Marche d'exploration, manipulation délicate d'éléments naturels, observations tactiles",
-        "adaptations": "Zone d'exploration adaptée à la mobilité de tous, alternatives pour temps non propice"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Retour à la classe: partage des trouvailles et des mesures découvertes. Création d'une collection naturelle de mesure pour la classe."
+        "activity": "Retour à la classe: partage des trouvailles et des mesures découvertes. Création d'une collection naturelle de mesure pour la classe.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves restent-ils concentrés à l'extérieur?",
-          "ifThen": "Si distraits, donner des missions spécifiques. Si concentrés, laisser explorer librement."
-        },
-        {
-          "situation": "Trouvent-ils facilement des unités naturelles?",
-          "ifThen": "Si non, guider vers des éléments appropriés. Si oui, encourager la diversité."
-        },
-        {
-          "situation": "Le temps permet-il l'activité extérieure?",
-          "ifThen": "Si non, adapter à l'intérieur avec éléments naturels apportés. Si oui, profiter pleinement."
-        }
-      ],
-      "whatWhenWrong": "Si éléments inadéquats: guider vers de meilleurs choix. Si désorganisation extérieure: regrouper et recentrer.",
-      "keyVocabulary": ["nature", "extérieur", "feuille"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si éléments inadéquats: guider vers de meilleurs choix. Si désorganisation extérieure: regrouper et recentrer.",
+        "then": ""
+      },
       "realWorldConnection": "Mesurer des branches avec des feuilles, des pierres avec des glands",
-      "progressionNote": "S'appuie sur la leçon 16 en étendant la mesure à l'environnement extérieur"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 18,
+      "lessonType": "extension",
       "title": "Mesures en cuisine",
       "oneGoal": "Les élèves découvrent la mesure dans le contexte culinaire avec des ustensiles",
-      "estimatedTime": "45 minutes",
-      "materials": ["Ustensiles de cuisine sécuritaires", "Ingrédients simulés (sable, riz)", "Récipients variés", "Tabliers optionnels"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "cuisine",
+        "cuillère",
+        "recette"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Transformation en chefs: 'Bienvenue dans notre cuisine!' Exploration des ustensiles de mesure. Jeu de reconnaissance: 'À quoi sert cet outil?' Chanson des petits chefs."
+        "activity": "Transformation en chefs: 'Bienvenue dans notre cuisine!' Exploration des ustensiles de mesure. Jeu de reconnaissance: 'À quoi sert cet outil?' Chanson des petits chefs.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Atelier cuisine simulée: Les élèves 'cuisinent' des recettes imaginaires en mesurant avec cuillères, tasses, bols. Ils découvrent les unités culinaires et comparent avec leurs unités habituelles.",
+        "activity": "Atelier cuisine simulée: Les élèves 'cuisinent' des recettes imaginaires en mesurant avec cuillères, tasses, bols. Ils découvrent les unités culinaires et comparent avec leurs unités habituelles.",
+        "materials": [],
         "visualSupports": "Recettes visuelles simples, images d'ustensiles de mesure, tableau d'équivalences",
-        "tprElements": "Gestes culinaires, mesurer et verser, manipulations délicates",
-        "adaptations": "Ingrédients adaptés aux allergies, ustensiles de tailles variées"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Festin des mesures: présentation des 'plats' préparés avec explication des mesures utilisées. Discussion sur l'importance de mesurer en cuisine."
+        "activity": "Festin des mesures: présentation des 'plats' préparés avec explication des mesures utilisées. Discussion sur l'importance de mesurer en cuisine.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves comprennent-ils l'utilité de mesurer en cuisine?",
-          "ifThen": "Si non, expliquer avec des exemples concrets. Si oui, explorer d'autres contextes."
-        },
-        {
-          "situation": "Manipulent-ils les ustensiles avec soin?",
-          "ifThen": "Si non, modéliser la manipulation sécuritaire. Si oui, encourager la précision."
-        },
-        {
-          "situation": "Ont-ils besoin de plus d'exemples concrets?",
-          "ifThen": "Si oui, multiplier les démonstrations. Si non, laisser expérimenter."
-        }
-      ],
-      "whatWhenWrong": "Si renversements: rappeler la prudence et nettoyer ensemble. Si confusion avec les ustensiles: identifier et nommer clairement.",
-      "keyVocabulary": ["cuisine", "cuillère", "recette"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si renversements: rappeler la prudence et nettoyer ensemble. Si confusion avec les ustensiles: identifier et nommer clairement.",
+        "then": ""
+      },
       "realWorldConnection": "Mesurer de la farine avec des cuillères, de l'eau avec des tasses",
-      "progressionNote": "S'appuie sur la leçon 17 en explorant la mesure dans un contexte familier et pratique"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 19,
+      "lessonType": "extension",
       "title": "Exposition de nos mesures",
       "oneGoal": "Les élèves préparent une exposition de leurs apprentissages en mesure non-standard",
-      "estimatedTime": "45 minutes",
-      "materials": ["Travaux des leçons précédentes", "Matériel d'exposition", "Cartes explicatives", "Appareils photo optionnels"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "exposition",
+        "montrer",
+        "apprentissage"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Préparation d'exposition: 'Nous organisons un musée de la mesure!' Planification collective de l'exposition. Assignation des rôles: conservateurs, guides, artistes."
+        "activity": "Préparation d'exposition: 'Nous organisons un musée de la mesure!' Planification collective de l'exposition. Assignation des rôles: conservateurs, guides, artistes.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Montage de l'exposition: Les élèves organisent leurs travaux, créent des étiquettes explicatives, préparent leurs présentations. Pratique de leur rôle de guide pour expliquer leurs apprentissages.",
+        "activity": "Montage de l'exposition: Les élèves organisent leurs travaux, créent des étiquettes explicatives, préparent leurs présentations. Pratique de leur rôle de guide pour expliquer leurs apprentissages.",
+        "materials": [],
         "visualSupports": "Exemples d'étiquettes d'exposition, organisation spatiale claire",
-        "tprElements": "Organisation physique de l'espace, gestes de présentation, préparation de démonstrations",
-        "adaptations": "Rôles adaptés aux forces de chacun, support pour la préparation des explications"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Répétition générale: pratique des présentations entre élèves. Ajustements finaux de l'exposition. Anticipation de la venue des visiteurs."
+        "activity": "Répétition générale: pratique des présentations entre élèves. Ajustements finaux de l'exposition. Anticipation de la venue des visiteurs.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves choisissent-ils leurs meilleurs exemples?",
-          "ifThen": "Si difficulté à choisir, aider à identifier les réussites. Si choix appropriés, féliciter le discernement."
-        },
-        {
-          "situation": "Peuvent-ils expliquer leurs méthodes aux visiteurs?",
-          "ifThen": "Si non, pratiquer les explications simples. Si oui, encourager les détails intéressants."
-        },
-        {
-          "situation": "Leur présentation est-elle organisée?",
-          "ifThen": "Si désorganisée, aider à structurer. Si bien organisée, encourager la créativité."
-        }
-      ],
-      "whatWhenWrong": "Si stress de présentation: rassurer et pratiquer. Si désorganisation: simplifier et recentrer sur l'essentiel.",
-      "keyVocabulary": ["exposition", "montrer", "apprentissage"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si stress de présentation: rassurer et pratiquer. Si désorganisation: simplifier et recentrer sur l'essentiel.",
+        "then": ""
+      },
       "realWorldConnection": "Montrer à d'autres classes comment ils mesurent, présenter à leurs familles",
-      "progressionNote": "S'appuie sur la leçon 18 en préparant une célébration des apprentissages"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 20,
+      "lessonType": "extension",
       "title": "Célébrons la mesure",
       "oneGoal": "Les élèves célèbrent leurs apprentissages et réfléchissent sur leur parcours en mesure",
-      "estimatedTime": "45 minutes",
-      "materials": ["Exposition préparée", "Livret souvenir", "Certificats symboliques", "Musique de célébration"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "célébrer",
+        "réfléchir",
+        "parcours"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Ouverture festive: 'Bienvenue à notre célébration de la mesure!' Accueil des visiteurs avec fierté. Chanson thème de l'unité avec tous les gestes appris."
+        "activity": "Ouverture festive: 'Bienvenue à notre célébration de la mesure!' Accueil des visiteurs avec fierté. Chanson thème de l'unité avec tous les gestes appris.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Célébration interactive: Les élèves guident les visiteurs dans leur exposition, démontrent leurs apprentissages, partagent leurs découvertes préférées. Moment de réflexion collective sur le chemin parcouru.",
+        "activity": "Célébration interactive: Les élèves guident les visiteurs dans leur exposition, démontrent leurs apprentissages, partagent leurs découvertes préférées. Moment de réflexion collective sur le chemin parcouru.",
+        "materials": [],
         "visualSupports": "Exposition complète, chronologie visuelle des apprentissages, photos souvenirs",
-        "tprElements": "Gestes de fierté, démonstrations expertises, interactions chaleureuses",
-        "adaptations": "Participation selon le confort de chacun, célébration inclusive de tous les apprentissages"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Remise des certificats 'Expert en mesure non-standard'. Cercle final de partage: 'Qu'avez-vous préféré apprendre?' Engagement à continuer de mesurer dans leur vie quotidienne."
+        "activity": "Remise des certificats 'Expert en mesure non-standard'. Cercle final de partage: 'Qu'avez-vous préféré apprendre?' Engagement à continuer de mesurer dans leur vie quotidienne.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves peuvent-ils articuler ce qu'ils ont appris?",
-          "ifThen": "Si difficulté, aider avec des indices visuels. Si clairement, célébrer leur maîtrise."
-        },
-        {
-          "situation": "Reconnaissent-ils leurs progrès?",
-          "ifThen": "Si non, souligner concrètement leurs réussites. Si oui, encourager la fierté personnelle."
-        },
-        {
-          "situation": "La célébration est-elle inclusive pour tous?",
-          "ifThen": "Si non, ajuster pour inclure chacun. Si oui, maintenir l'atmosphère chaleureuse."
-        }
-      ],
-      "whatWhenWrong": "Si timidité devant les visiteurs: rassurer et accompagner. Si surexcitation: canaliser positivement l'énergie.",
-      "keyVocabulary": ["célébrer", "réfléchir", "parcours"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si timidité devant les visiteurs: rassurer et accompagner. Si surexcitation: canaliser positivement l'énergie.",
+        "then": ""
+      },
       "realWorldConnection": "Partager avec leurs familles tout ce qu'ils savent maintenant sur la mesure",
-      "progressionNote": "Leçon culminante - consolide tous les apprentissages et célèbre les réussites"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     }
-  ]
+  ],
+  "assessmentTools": {
+    "observationChecklist": [],
+    "rubrics": [],
+    "selfAssessment": [],
+    "portfolioGuidelines": ""
+  },
+  "familyConnections": {
+    "unitLetter": "",
+    "homeActivities": [],
+    "vocabularyList": []
+  },
+  "resourceAlternatives": {
+    "materials": {},
+    "digitalResources": []
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
+  }
 }

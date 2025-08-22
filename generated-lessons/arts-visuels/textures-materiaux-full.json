@@ -1,31 +1,18 @@
 {
   "unitTitle": "Textures et matériaux",
   "subject": "Arts visuels",
-  "grade": "1re année",
-  "totalDuration": "15 heures",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
   "lessons": [
     {
       "lessonNumber": 1,
-      "type": "core",
+      "lessonType": "core",
       "title": "Découverte tactile: Qu'est-ce qu'une texture?",
+      "oneGoal": "",
       "duration": "45 minutes",
-      "expectations": ["AV1", "AV3"],
-      "bigIdea": "Explorer et créer avec de nouveaux concepts artistiques",
-      "essentialQuestion": "Comment explorer ce concept?",
-      "learningGoals": [
-        "Identifier différentes textures par le toucher",
-        "Utiliser le vocabulaire approprié pour décrire les textures",
-        "Associer les sensations tactiles aux mots descriptifs"
-      ],
-      "materials": [
-        "Boîte mystère",
-        "Échantillons de tissus variés (velours, lin, soie, denim)",
-        "Objets naturels (écorce, feuilles, cailloux lisses et rugueux)",
-        "Papiers texturés (sablé, ondulé, lisse)",
-        "Bandeaux pour les yeux",
-        "Affiche de vocabulaire des textures"
-      ],
-      "vocabulary": [
+      "keyVocabulary": [
         "texture",
         "rugueux",
         "lisse",
@@ -34,109 +21,53 @@
         "bosselé",
         "ondulé"
       ],
-      "structure": {
-        "amorce": {
-          "duration": "10 minutes",
-          "activities": [
-            "Rassemblement en cercle sur le tapis",
-            "Question d'ouverture: 'Fermez les yeux et touchez votre bureau. Que sentez-vous?'",
-            "Partage des observations tactiles",
-            "Introduction du mot 'texture' et de son importance dans l'art"
-          ],
-          "teachingStrategies": [
-            "Questionnement socratique",
-            "Expérience sensorielle directe",
-            "Discussion guidée"
-          ]
-        },
-        "exploration": {
-          "duration": "25 minutes",
-          "activities": [
-            "Activité 1: Boîte mystère tactile (10 min)",
-            "- Les élèves, yeux fermés, identifient des objets par le toucher",
-            "- Descriptions verbales avant la révélation visuelle",
-            "- Introduction progressive du vocabulaire spécialisé",
-            "",
-            "Activité 2: Station de textures (15 min)",
-            "- Rotation par petits groupes à 4 stations:",
-            "  Station 1: Tissus et textiles",
-            "  Station 2: Matériaux naturels", 
-            "  Station 3: Papiers et cartons",
-            "  Station 4: Objets du quotidien",
-            "- Carnet d'exploration pour dessiner et noter les découvertes",
-            "- Comparaisons entre textures similaires"
-          ],
-          "teachingStrategies": [
-            "Apprentissage par stations",
-            "Exploration sensorielle guidée",
-            "Documentation des apprentissages",
-            "Travail collaboratif"
-          ],
-          "differentiation": [
-            "Support visuel avec pictogrammes pour les mots de vocabulaire",
-            "Partenariat d'entraide",
-            "Objets adaptés aux sensibilités tactiles",
-            "Temps supplémentaire au besoin"
-          ]
-        },
-        "synthese": {
-          "duration": "10 minutes",
-          "activities": [
-            "Retour en grand groupe",
-            "Partage des découvertes favorites par station",
-            "Création collective d'une carte mentale des textures découvertes",
-            "Défi pour la prochaine fois: 'Trouvez une texture intéressante à la maison'",
-            "Rangement collaboratif des matériaux"
-          ],
-          "teachingStrategies": [
-            "Synthèse collaborative",
-            "Représentation visuelle des apprentissages",
-            "Connexion école-maison",
-            "Responsabilisation"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "formative": [
-          "Observation des descriptions verbales pendant l'exploration",
-          "Utilisation du vocabulaire spécialisé",
-          "Participation aux discussions de groupe",
-          "Qualité des comparaisons entre textures"
-        ],
-        "selfAssessment": [
-          "Je peux toucher et décrire différentes textures",
-          "Je connais des mots pour parler des textures", 
-          "J'ai découvert quelque chose de nouveau aujourd'hui"
-        ]
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "extensions": [
-        "Recherche de textures à la maison",
-        "Création d'un livre personnel de textures",
-        "Jeu de devinettes tactiles avec la famille"
-      ]
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 2,
-      "type": "core", 
+      "lessonType": "core",
       "title": "Chasse aux textures dans notre environnement",
+      "oneGoal": "",
       "duration": "45 minutes",
-      "expectations": ["AV1", "AV2"],
-      "bigIdea": "Explorer et créer avec de nouveaux concepts artistiques",
-      "essentialQuestion": "Comment explorer ce concept?",
-      "learningGoals": [
-        "Observer et identifier des textures dans l'environnement scolaire",
-        "Documenter ses découvertes par le dessin et la photographie",
-        "Classer les textures selon leurs caractéristiques"
-      ],
-      "materials": [
-        "Carnets d'exploration individuel",
-        "Crayons et crayons de couleur",
-        "Tablettes ou appareils photo",
-        "Loupes",
-        "Planchettes à pince",
-        "Carte de l'école simplifiée"
-      ],
-      "vocabulary": [
+      "keyVocabulary": [
         "observer",
         "documenter",
         "environnement",
@@ -144,220 +75,107 @@
         "artificiel",
         "classifier"
       ],
-      "structure": {
-        "amorce": {
-          "duration": "8 minutes",
-          "activities": [
-            "Révision du vocabulaire de la leçon précédente",
-            "Présentation des outils d'exploration (carnet, loupe, appareil photo)",
-            "Démonstration de la technique de frottage simple sur une surface près de la classe",
-            "Explication des consignes de sécurité pour l'exploration",
-            "Formation des équipes de 2-3 élèves"
-          ],
-          "teachingStrategies": [
-            "Modelage explicite",
-            "Instructions claires et visuelles",
-            "Formation d'équipes stratégiques"
-          ]
-        },
-        "exploration": {
-          "duration": "30 minutes",
-          "activities": [
-            "Phase 1: Exploration intérieure (15 min)",
-            "- Corridor, bibliothèque, gymnase",
-            "- Documentation par dessin et/ou photo",
-            "- Recherche de contrastes (lisse/rugueux)",
-            "- Utilisation des loupes pour les détails",
-            "",
-            "Phase 2: Exploration extérieure (15 min)",
-            "- Cour d'école, murs extérieurs, éléments naturels",
-            "- Collecte respectueuse d'échantillons (feuilles, petites branches)",
-            "- Observation des changements saisonniers dans les textures",
-            "- Comparaison nature vs. matériaux humains"
-          ],
-          "teachingStrategies": [
-            "Exploration guidée",
-            "Apprentissage experiential",
-            "Documentation authentique",
-            "Observation scientifique"
-          ],
-          "differentiation": [
-            "Groupes mixtes avec soutien par les pairs",
-            "Choix entre dessin et photographie",
-            "Zones d'exploration adaptées aux mobilités",
-            "Support adulte disponible"
-          ]
-        },
-        "synthese": {
-          "duration": "7 minutes",
-          "activities": [
-            "Regroupement en classe",
-            "Partage rapide d'une découverte surprise par équipe",
-            "Tri préliminaire: textures naturelles vs artificielles",
-            "Préparation des découvertes pour la prochaine leçon",
-            "Réflexion: 'Quelle texture vous a le plus surpris?'"
-          ],
-          "teachingStrategies": [
-            "Partage structuré",
-            "Classification préliminaire",
-            "Préparation de la continuité",
-            "Réflexion métacognitive"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "formative": [
-          "Qualité de l'observation pendant l'exploration",
-          "Utilisation appropriée des outils",
-          "Richesse de la documentation",
-          "Collaboration efficace en équipe"
-        ],
-        "selfAssessment": [
-          "J'ai observé attentivement les textures autour de moi",
-          "J'ai documenté mes découvertes clairement",
-          "J'ai travaillé bien avec mon équipe"
-        ]
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "connections": {
-        "science": "Observation et classification des matériaux",
-        "mathematics": "Tri et classification",
-        "language": "Enrichissement du vocabulaire descriptif"
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
       }
     },
     {
       "lessonNumber": 3,
-      "type": "core",
+      "lessonType": "core",
       "title": "Premiers frottages: Technique de base",
-      "duration": "45 minutes", 
-      "expectations": ["AV2", "AV3"],
-      "bigIdea": "Explorer et créer avec de nouveaux concepts artistiques",
-      "essentialQuestion": "Que peux-tu créer?",
-      "learningGoals": [
-        "Maîtriser la technique de base du frottage",
-        "Expérimenter avec différentes pressions et mouvements",
-        "Créer des œuvres expressives à partir de textures existantes"
-      ],
-      "materials": [
-        "Papier fin (papier à calquer ou papier de soie)",
-        "Crayons à la cire de différentes couleurs",
-        "Surfaces texturées variées (grillage, planches de bois, écorces)",
-        "Planches à découper comme support",
-        "Lingettes pour nettoyer les mains",
-        "Tabliers ou vieux vêtements"
-      ],
-      "vocabulary": [
+      "oneGoal": "",
+      "duration": "45 minutes",
+      "keyVocabulary": [
         "frottage",
         "pression",
-        "mouvement", 
+        "mouvement",
         "impression",
         "révéler",
         "technique"
       ],
-      "structure": {
-        "amorce": {
-          "duration": "10 minutes",
-          "activities": [
-            "Démonstration magistrale de la technique de frottage",
-            "Explication du terme 'frottage' et de son origine artistique",
-            "Présentation des matériaux et des consignes de sécurité",
-            "Anticipation: 'Que pensez-vous qui va apparaître?'",
-            "Distribution du matériel par équipes"
-          ],
-          "teachingStrategies": [
-            "Modelage explicite et verbal",
-            "Connexion historique artistique",
-            "Procédures claires",
-            "Anticipation créative"
-          ]
-        },
-        "exploration": {
-          "duration": "25 minutes",
-          "activities": [
-            "Expérimentation guidée (10 min)",
-            "- Premiers essais sur surfaces simples (planche de bois)",
-            "- Exploration des différentes pressions (léger, fort)",
-            "- Test des différents mouvements (circulaire, linéaire)",
-            "- Observation des effets obtenus",
-            "",
-            "Création libre (15 min)",
-            "- Choix personnel de surfaces texturées",
-            "- Expérimentation avec les couleurs",
-            "- Superposition de frottages",
-            "- Création de compositions personnelles",
-            "- Aide mutuelle et partage d'astuces entre pairs"
-          ],
-          "teachingStrategies": [
-            "Apprentissage progressif",
-            "Expérimentation guidée puis libre",
-            "Choix et autonomie créative",
-            "Apprentissage par les pairs"
-          ],
-          "differentiation": [
-            "Surfaces de différentes complexités disponibles",
-            "Support individuel pour la technique",
-            "Papiers de différentes tailles",
-            "Possibilité de travailler debout ou assis"
-          ]
-        },
-        "synthese": {
-          "duration": "10 minutes",
-          "activities": [
-            "Galerie éphémère: exposition des premières créations",
-            "Observation collective et commentaires positifs",
-            "Identification des techniques qui fonctionnent bien",
-            "Discussion: 'Qu'avez-vous découvert de surprenant?'",
-            "Planification de la prochaine étape: frottages plus créatifs",
-            "Nettoyage et rangement collaboratif"
-          ],
-          "teachingStrategies": [
-            "Valorisation des créations",
-            "Analyse collective des techniques",
-            "Réflexion sur les découvertes",
-            "Anticipation et motivation"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "formative": [
-          "Maîtrise progressive de la technique",
-          "Créativité dans l'expérimentation", 
-          "Persévérance face aux défis techniques",
-          "Qualité des observations et commentaires"
-        ],
-        "selfAssessment": [
-          "Je peux faire un frottage qui révèle bien la texture",
-          "J'ai essayé différentes façons de faire",
-          "Je suis fier/fière de ma création"
-        ]
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "extensions": [
-        "Frottages à la maison sur différentes surfaces",
-        "Recherche sur l'artiste Max Ernst et ses frottages",
-        "Création d'un carnet de frottages personnel"
-      ]
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 4,
-      "type": "core",
+      "lessonType": "core",
       "title": "Frottages créatifs: Exploration avancée",
+      "oneGoal": "",
       "duration": "45 minutes",
-      "expectations": ["AV2", "AV3"],
-      "bigIdea": "Explorer et créer avec de nouveaux concepts artistiques", 
-      "essentialQuestion": "Que peux-tu créer?",
-      "learningGoals": [
-        "Développer des techniques avancées de frottage",
-        "Créer des compositions complexes par superposition",
-        "Exprimer sa créativité à travers les choix artistiques"
-      ],
-      "materials": [
-        "Papiers de différentes épaisseurs",
-        "Crayons à la cire et pastels gras",
-        "Surfaces texturées variées",
-        "Gabarits et formes découpées",
-        "Matériaux collectés lors des explorations précédentes",
-        "Supports rigides variés"
-      ],
-      "vocabulary": [
+      "keyVocabulary": [
         "superposition",
         "composition",
         "contraste",
@@ -365,107 +183,53 @@
         "effet",
         "créatif"
       ],
-      "structure": {
-        "amorce": {
-          "duration": "8 minutes",
-          "activities": [
-            "Rappel des techniques de base apprises",
-            "Présentation de nouvelles possibilités: superposition, gabarits",
-            "Démonstration d'une superposition de frottages",
-            "Question créative: 'Comment pourriez-vous combiner plusieurs textures?'",
-            "Présentation des nouveaux matériaux disponibles"
-          ],
-          "teachingStrategies": [
-            "Activation des connaissances antérieures",
-            "Modelage de techniques avancées",
-            "Questionnement créatif",
-            "Motivation par la nouveauté"
-          ]
-        },
-        "exploration": {
-          "duration": "30 minutes",
-          "activities": [
-            "Expérimentation dirigée (12 min)",
-            "- Technique de superposition avec deux couleurs",
-            "- Utilisation de gabarits pour créer des formes",
-            "- Expérimentation des effets de transparence",
-            "- Test des contrastes clair/foncé",
-            "",
-            "Projet créatif personnel (18 min)",
-            "- Planification individuelle du projet",
-            "- Sélection personnelle de textures et couleurs",
-            "- Création d'une œuvre originale",
-            "- Application des techniques apprises",
-            "- Entraide et conseils entre pairs",
-            "- Ajustements et améliorations continues"
-          ],
-          "teachingStrategies": [
-            "Instruction directe suivie de pratique libre",
-            "Planification créative individuelle",
-            "Autonomie créative guidée",
-            "Collaboration et entraide"
-          ],
-          "differentiation": [
-            "Projets de complexité variable",
-            "Support technique individualisé",
-            "Choix dans les matériaux et formats",
-            "Temps flexible selon les besoins"
-          ]
-        },
-        "synthese": {
-          "duration": "7 minutes",
-          "activities": [
-            "Partage en petit groupe des créations",
-            "Explication des choix artistiques personnels",
-            "Identification des techniques préférées",
-            "Appréciation mutuelle des œuvres",
-            "Préparation pour l'intégration avec les matériaux naturels"
-          ],
-          "teachingStrategies": [
-            "Partage structuré",
-            "Verbalisation des choix créatifs",
-            "Appréciation artistique",
-            "Transition vers les prochains apprentissages"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "formative": [
-          "Application créative des techniques avancées",
-          "Originalité des compositions",
-          "Persévérance dans la création",
-          "Capacité à expliquer ses choix artistiques"
-        ],
-        "selfAssessment": [
-          "J'ai utilisé plusieurs techniques dans mon œuvre",
-          "J'ai fait des choix créatifs personnels",
-          "Je peux expliquer comment j'ai créé mon œuvre"
-        ]
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
       }
     },
     {
       "lessonNumber": 5,
-      "type": "core",
+      "lessonType": "core",
       "title": "Matériaux naturels: Découverte et collection",
+      "oneGoal": "",
       "duration": "45 minutes",
-      "expectations": ["AV1", "AV3"],
-      "bigIdea": "Explorer et créer avec de nouveaux concepts artistiques",
-      "essentialQuestion": "Comment explorer ce concept?",
-      "learningGoals": [
-        "Découvrir la diversité des textures dans la nature",
-        "Collecter respectueusement des matériaux naturels",
-        "Observer et classifier les matériaux selon leurs propriétés"
-      ],
-      "materials": [
-        "Sacs de collecte en tissu",
-        "Gants de jardinage pour enfants",
-        "Loupes individuelles",
-        "Plateaux de tri",
-        "Étiquettes et crayons",
-        "Carnets d'observation",
-        "Guide visuel des matériaux autorisés"
-      ],
-      "vocabulary": [
+      "keyVocabulary": [
         "naturel",
         "collecter",
         "respectueux",
@@ -473,110 +237,53 @@
         "propriétés",
         "classifier"
       ],
-      "structure": {
-        "amorce": {
-          "duration": "10 minutes",
-          "activities": [
-            "Discussion sur le respect de la nature",
-            "Présentation des règles de collecte respectueuse",
-            "Démonstration de l'utilisation des outils (loupes, sacs)",
-            "Identification des matériaux autorisés et interdits",
-            "Formation des équipes et attribution des zones d'exploration"
-          ],
-          "teachingStrategies": [
-            "Éducation environnementale",
-            "Instructions claires de sécurité",
-            "Modelage des comportements respectueux",
-            "Organisation sécuritaire"
-          ]
-        },
-        "exploration": {
-          "duration": "25 minutes",
-          "activities": [
-            "Phase de collecte extérieure (20 min)",
-            "- Exploration supervisée de la cour d'école",
-            "- Collecte de feuilles, écorces, brindilles, cailloux",
-            "- Observation à la loupe des détails",
-            "- Respect des consignes de sécurité et d'environnement",
-            "- Documentation des trouvailles intéressantes",
-            "",
-            "Retour en classe pour tri initial (5 min)",
-            "- Nettoyage des mains et des matériaux",
-            "- Tri préliminaire par équipe",
-            "- Préparation pour l'observation détaillée"
-          ],
-          "teachingStrategies": [
-            "Exploration directe et authentique",
-            "Observation scientifique",
-            "Apprentissage expérientiel",
-            "Responsabilisation environnementale"
-          ],
-          "differentiation": [
-            "Zones d'exploration adaptées aux mobilités",
-            "Assistance pour la manipulation des outils",
-            "Collecte adaptée aux sensibilités tactiles",
-            "Support constant de l'adulte"
-          ]
-        },
-        "synthese": {
-          "duration": "10 minutes",
-          "activities": [
-            "Observation détaillée des matériaux collectés",
-            "Tri collaboratif par caractéristiques (rugueux/lisse, dur/mou)",
-            "Création d'un tableau de classification collectif",
-            "Partage des trouvailles les plus intéressantes",
-            "Planification de l'utilisation artistique des matériaux",
-            "Rangement sécuritaire pour la prochaine leçon"
-          ],
-          "teachingStrategies": [
-            "Observation scientifique guidée",
-            "Classification collaborative",
-            "Préparation de la continuité pédagogique",
-            "Valorisation des découvertes"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "formative": [
-          "Respect des consignes de collecte",
-          "Qualité de l'observation des détails",
-          "Participation à la classification",
-          "Comportement respectueux envers l'environnement"
-        ],
-        "selfAssessment": [
-          "J'ai respecté la nature pendant la collecte",
-          "J'ai trouvé des matériaux intéressants",
-          "J'ai bien observé les détails des matériaux"
-        ]
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "connections": {
-        "science": "Observation et classification des matériaux naturels",
-        "socialStudies": "Respect de l'environnement et responsabilité collective",
-        "health": "Sécurité lors de l'exploration extérieure"
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
       }
     },
     {
       "lessonNumber": 6,
-      "type": "core",
+      "lessonType": "core",
       "title": "Art avec la nature: Créations éphémères",
+      "oneGoal": "",
       "duration": "45 minutes",
-      "expectations": ["AV2", "AV3"],
-      "bigIdea": "Explorer et créer avec de nouveaux concepts artistiques",
-      "essentialQuestion": "Que peux-tu créer?",
-      "learningGoals": [
-        "Créer des arrangements artistiques temporaires avec des matériaux naturels",
-        "Comprendre le concept d'art éphémère",
-        "Documenter ses créations par la photographie"
-      ],
-      "materials": [
-        "Matériaux naturels collectés (leçon précédente)",
-        "Plateaux individuels ou tapis de création",
-        "Tablettes ou appareils photo",
-        "Cartes d'inspiration Land Art",
-        "Miroirs de poche pour perspectives différentes",
-        "Carnets de documentation"
-      ],
-      "vocabulary": [
+      "keyVocabulary": [
         "éphémère",
         "temporaire",
         "arrangement",
@@ -584,220 +291,107 @@
         "documenter",
         "perspective"
       ],
-      "structure": {
-        "amorce": {
-          "duration": "10 minutes",
-          "activities": [
-            "Introduction au concept d'art éphémère",
-            "Présentation d'œuvres de Land Art (Andy Goldsworthy)",
-            "Discussion: 'Pourquoi créer quelque chose de temporaire?'",
-            "Démonstration d'un arrangement simple avec les matériaux collectés",
-            "Explication de l'importance de la documentation photographique"
-          ],
-          "teachingStrategies": [
-            "Découverte culturelle artistique",
-            "Questionnement philosophique adapté à l'âge",
-            "Modelage créatif",
-            "Sensibilisation à la documentation"
-          ]
-        },
-        "exploration": {
-          "duration": "25 minutes",
-          "activities": [
-            "Création individuelle (15 min)",
-            "- Sélection personnelle de matériaux naturels",
-            "- Création d'arrangements sur plateaux individuels",
-            "- Expérimentation avec les formes, couleurs, textures",
-            "- Ajustements et améliorations continues",
-            "- Utilisation du miroir pour voir sous différents angles",
-            "",
-            "Documentation et partage (10 min)",
-            "- Photographie des créations sous différents angles",
-            "- Tournée d'appréciation des créations des pairs",
-            "- Brefs commentaires positifs et encourageants",
-            "- Démontage respectueux des œuvres"
-          ],
-          "teachingStrategies": [
-            "Création artistique autonome",
-            "Expérimentation libre guidée",
-            "Documentation authentique",
-            "Appréciation mutuelle"
-          ],
-          "differentiation": [
-            "Matériaux variés pour différents intérêts",
-            "Formats de création adaptables",
-            "Support pour l'utilisation des outils",
-            "Temps flexible selon les besoins créatifs"
-          ]
-        },
-        "synthese": {
-          "duration": "10 minutes",
-          "activities": [
-            "Discussion sur l'expérience de création éphémère",
-            "Réflexion: 'Comment vous êtes-vous sentis en démontant votre œuvre?'",
-            "Visualisation collective des photos prises",
-            "Appréciation de la diversité des créations",
-            "Introduction à la prochaine étape: collage permanent"
-          ],
-          "teachingStrategies": [
-            "Réflexion métacognitive",
-            "Expression des émotions",
-            "Célébration collective",
-            "Transition conceptuelle"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "formative": [
-          "Créativité dans les arrangements",
-          "Utilisation réfléchie des matériaux",
-          "Qualité de la documentation photographique",
-          "Réflexion sur l'expérience artistique"
-        ],
-        "selfAssessment": [
-          "J'ai créé un arrangement que je trouve beau",
-          "J'ai bien utilisé les matériaux naturels",
-          "J'ai documenté mon travail avec des photos"
-        ]
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "extensions": [
-        "Création de Land Art temporaire à la maison",
-        "Recherche sur d'autres artistes du Land Art",
-        "Observation des changements naturels dans le temps"
-      ]
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 7,
-      "type": "core",
+      "lessonType": "core",
       "title": "Introduction au collage: Techniques de base",
+      "oneGoal": "",
       "duration": "45 minutes",
-      "expectations": ["AV2", "AV3"],
-      "bigIdea": "Explorer et créer avec de nouveaux concepts artistiques",
-      "essentialQuestion": "Que peux-tu créer?",
-      "learningGoals": [
-        "Apprendre les techniques de base du collage",
-        "Expérimenter avec différents matériaux et adhésifs",
-        "Créer des compositions simples et harmonieuses"
-      ],
-      "materials": [
-        "Colle liquide et bâtons de colle",
-        "Papiers de différentes textures et couleurs",
-        "Ciseaux sécuritaires",
-        "Supports cartonnés variés",
-        "Magazines et catalogues",
-        "Tissus et matériaux texturés",
-        "Pinceaux pour étaler la colle",
-        "Lingettes pour nettoyer"
-      ],
-      "vocabulary": [
+      "keyVocabulary": [
         "collage",
-        "adhésif", 
+        "adhésif",
         "support",
         "composition",
         "harmonie",
         "superposer"
       ],
-      "structure": {
-        "amorce": {
-          "duration": "10 minutes",
-          "activities": [
-            "Présentation historique du collage (Picasso, Braque)",
-            "Exploration tactile des différents adhésifs disponibles",
-            "Démonstration des techniques de base: découper, placer, coller",
-            "Présentation des consignes de sécurité avec les ciseaux et la colle",
-            "Distribution du matériel par équipes de travail"
-          ],
-          "teachingStrategies": [
-            "Contextualisation historique simple",
-            "Exploration multi-sensorielle",
-            "Modelage technique détaillé",
-            "Prévention et sécurité"
-          ]
-        },
-        "exploration": {
-          "duration": "25 minutes",
-          "activities": [
-            "Expérimentation technique (10 min)",
-            "- Tests des différents adhésifs sur divers matériaux",
-            "- Pratique du découpage de formes simples",
-            "- Expérimentation des techniques de superposition",
-            "- Observation des effets obtenus",
-            "",
-            "Création de premières compositions (15 min)",
-            "- Sélection personnelle de matériaux",
-            "- Création de compositions simples (paysages, portraits abstraits)",
-            "- Application des techniques apprises",
-            "- Entraide et partage d'astuces",
-            "- Ajustements et améliorations"
-          ],
-          "teachingStrategies": [
-            "Apprentissage progressif par l'expérimentation",
-            "Création guidée puis autonome",
-            "Collaboration et apprentissage par les pairs",
-            "Processus itératif d'amélioration"
-          ],
-          "differentiation": [
-            "Matériaux pré-découpés pour certains élèves",
-            "Ciseaux adaptés aux besoins spéciaux",
-            "Formats variés de supports",
-            "Assistance individuelle pour les techniques"
-          ]
-        },
-        "synthese": {
-          "duration": "10 minutes",
-          "activities": [
-            "Présentation des premières créations",
-            "Discussion sur les défis rencontrés et les solutions trouvées",
-            "Identification des techniques qui fonctionnent le mieux",
-            "Appréciation collective des différentes approches",
-            "Planification de l'intégration avec les textures naturelles",
-            "Nettoyage méthodique et rangement"
-          ],
-          "teachingStrategies": [
-            "Partage réflexif d'expériences",
-            "Résolution collaborative de problèmes",
-            "Métacognition sur les apprentissages",
-            "Anticipation des prochaines étapes"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "formative": [
-          "Maîtrise des techniques de base du collage",
-          "Créativité dans la sélection et l'arrangement des matériaux",
-          "Persévérance face aux défis techniques",
-          "Collaboration efficace et partage d'astuces"
-        ],
-        "selfAssessment": [
-          "Je sais utiliser la colle et les ciseaux correctement",
-          "J'ai créé une composition qui me plaît",
-          "J'ai aidé mes camarades ou demandé de l'aide au besoin"
-        ]
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
       }
     },
     {
       "lessonNumber": 8,
-      "type": "core",
+      "lessonType": "core",
       "title": "Collage texturé: Intégration des matériaux",
+      "oneGoal": "",
       "duration": "45 minutes",
-      "expectations": ["AV2", "AV3"],
-      "bigIdea": "Explorer et créer avec de nouveaux concepts artistiques",
-      "essentialQuestion": "Que peux-tu créer?",
-      "learningGoals": [
-        "Intégrer les matériaux naturels dans des créations de collage",
-        "Combiner différentes techniques apprises (frottage, collage)",
-        "Développer un style personnel dans ses créations"
-      ],
-      "materials": [
-        "Matériaux naturels collectés et séchés",
-        "Frottages créés précédemment",
-        "Colle forte adaptée aux matériaux naturels",
-        "Supports rigides variés",
-        "Papiers texturés de différentes couleurs",
-        "Pinceaux et éponges",
-        "Matériaux de finition (vernis, spray fixatif)"
-      ],
-      "vocabulary": [
+      "keyVocabulary": [
         "intégrer",
         "combiner",
         "mixte",
@@ -805,106 +399,53 @@
         "style",
         "personnel"
       ],
-      "structure": {
-        "amorce": {
-          "duration": "8 minutes",
-          "activities": [
-            "Révision des techniques apprises: frottage et collage de base",
-            "Présentation des nouvelles possibilités: collage mixte",
-            "Démonstration d'intégration d'un frottage dans un collage naturel",
-            "Discussion: 'Comment pouvons-nous combiner nos apprentissages?'",
-            "Planification individuelle du projet personnel"
-          ],
-          "teachingStrategies": [
-            "Synthèse des apprentissages antérieurs",
-            "Modelage de techniques combinées",
-            "Questionnement créatif",
-            "Planification créative individuelle"
-          ]
-        },
-        "exploration": {
-          "duration": "30 minutes",
-          "activities": [
-            "Préparation des matériaux (8 min)",
-            "- Sélection des frottages précédents à intégrer",
-            "- Choix des matériaux naturels à utiliser",
-            "- Préparation du support et de l'espace de travail",
-            "- Planification de la composition",
-            "",
-            "Création mixte (22 min)",
-            "- Intégration progressive des différents éléments",
-            "- Application des techniques de collage aux matériaux naturels",
-            "- Incorporation des frottages dans la composition",
-            "- Ajustements et améliorations continues",
-            "- Expérimentation avec les superpositions et transparences",
-            "- Finalisation et touches personnelles"
-          ],
-          "teachingStrategies": [
-            "Processus créatif structuré",
-            "Autonomie créative guidée",
-            "Intégration de multiples techniques",
-            "Développement de l'expression personnelle"
-          ],
-          "differentiation": [
-            "Projets de complexité adaptable",
-            "Support technique individualisé", 
-            "Choix dans les matériaux et formats",
-            "Rythme de travail personnalisé"
-          ]
-        },
-        "synthese": {
-          "duration": "7 minutes",
-          "activities": [
-            "Présentation des créations mixtes",
-            "Explication des choix créatifs et techniques utilisées",
-            "Appréciation de la diversité des approches",
-            "Réflexion sur l'évolution de ses compétences artistiques",
-            "Préparation pour la documentation dans le portfolio"
-          ],
-          "teachingStrategies": [
-            "Valorisation des créations personnelles",
-            "Verbalisation du processus créatif",
-            "Reconnaissance des progrès individuels",
-            "Préparation de la documentation"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "formative": [
-          "Intégration créative de multiples techniques",
-          "Originalité et expression personnelle",
-          "Maîtrise technique progressive",
-          "Réflexion sur ses propres apprentissages"
-        ],
-        "selfAssessment": [
-          "J'ai combiné plusieurs techniques dans ma création",
-          "Mon œuvre exprime mes idées personnelles",
-          "Je peux expliquer comment j'ai procédé"
-        ]
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
       }
     },
     {
       "lessonNumber": 9,
-      "type": "core",
+      "lessonType": "core",
       "title": "Palette de textures: Organisation et présentation",
+      "oneGoal": "",
       "duration": "45 minutes",
-      "expectations": ["AV1", "AV2"],
-      "bigIdea": "Explorer et créer avec de nouveaux concepts artistiques",
-      "essentialQuestion": "Pourquoi est-ce important?",
-      "learningGoals": [
-        "Organiser et présenter ses découvertes de textures",
-        "Créer un répertoire personnel de références",
-        "Développer ses capacités de présentation orale"
-      ],
-      "materials": [
-        "Portfolios ou cartables individuels",
-        "Toutes les créations précédentes",
-        "Fiches de présentation",
-        "Matériel de reliure (anneaux, agrafes)",
-        "Étiquettes et marqueurs",
-        "Appareils photo pour documentation finale"
-      ],
-      "vocabulary": [
+      "keyVocabulary": [
         "portfolio",
         "organiser",
         "présenter",
@@ -912,104 +453,53 @@
         "référence",
         "documentation"
       ],
-      "structure": {
-        "amorce": {
-          "duration": "10 minutes",
-          "activities": [
-            "Introduction au concept de portfolio artistique",
-            "Présentation d'exemples de portfolios d'artistes",
-            "Discussion sur l'importance de documenter ses apprentissages",
-            "Explication des critères d'organisation du portfolio",
-            "Distribution des matériaux d'organisation"
-          ],
-          "teachingStrategies": [
-            "Modélisation professionnelle",
-            "Connexion avec la pratique artistique réelle",
-            "Sensibilisation à l'importance de la documentation",
-            "Instructions claires pour l'organisation"
-          ]
-        },
-        "exploration": {
-          "duration": "25 minutes",
-          "activities": [
-            "Organisation du portfolio (15 min)",
-            "- Tri chronologique de toutes les créations",
-            "- Sélection des meilleures pièces représentatives",
-            "- Création de fiches descriptives pour chaque œuvre",
-            "- Organisation logique du contenu",
-            "- Décoration personnalisée de la couverture",
-            "",
-            "Préparation de la présentation (10 min)",
-            "- Choix de 2-3 œuvres favorites à présenter",
-            "- Réflexion sur les apprentissages réalisés",
-            "- Pratique de la présentation avec un partenaire",
-            "- Préparation des questions à poser aux autres"
-          ],
-          "teachingStrategies": [
-            "Travail organisationnel autonome",
-            "Réflexion métacognitive",
-            "Préparation de la communication",
-            "Apprentissage par les pairs"
-          ],
-          "differentiation": [
-            "Support pour l'organisation selon les besoins",
-            "Fiches visuelles pour structurer la présentation",
-            "Choix dans le niveau de détail des présentations",
-            "Soutien pour la préparation orale"
-          ]
-        },
-        "synthese": {
-          "duration": "10 minutes",
-          "activities": [
-            "Présentation courte en petit groupe (6-8 élèves par groupe)",
-            "Écoute active et questions respectueuses",
-            "Appréciation mutuelle des portfolios",
-            "Réflexion collective sur les apprentissages de l'unité",
-            "Célébration des réussites individuelles et collectives"
-          ],
-          "teachingStrategies": [
-            "Communication structurée en petit groupe",
-            "Développement de l'écoute active",
-            "Valorisation mutuelle",
-            "Synthèse collective des apprentissages"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "summative": [
-          "Qualité de l'organisation du portfolio",
-          "Complétude de la documentation",
-          "Clarté de la présentation orale",
-          "Réflexion sur les apprentissages réalisés"
-        ],
-        "selfAssessment": [
-          "Mon portfolio montre bien mes apprentissages",
-          "J'ai organisé mes œuvres de façon logique",
-          "J'ai bien présenté mon travail à mes camarades"
-        ]
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
       }
     },
     {
       "lessonNumber": 10,
-      "type": "core",
+      "lessonType": "core",
       "title": "Projet personnel: Planification",
+      "oneGoal": "",
       "duration": "45 minutes",
-      "expectations": ["AV2", "AV3"],
-      "bigIdea": "Explorer et créer avec de nouveaux concepts artistiques",
-      "essentialQuestion": "Que peux-tu créer?",
-      "learningGoals": [
-        "Planifier un projet artistique personnel intégrant les techniques apprises",
-        "Faire des choix créatifs réfléchis",
-        "Anticiper les étapes de réalisation"
-      ],
-      "materials": [
-        "Feuilles de planification illustrées",
-        "Échantillons de tous les matériaux disponibles",
-        "Exemples d'œuvres inspirantes",
-        "Carnets de croquis",
-        "Crayons et marqueurs de couleur"
-      ],
-      "vocabulary": [
+      "keyVocabulary": [
         "planifier",
         "projet",
         "personnel",
@@ -1017,693 +507,278 @@
         "anticiper",
         "réfléchi"
       ],
-      "structure": {
-        "amorce": {
-          "duration": "12 minutes",
-          "activities": [
-            "Révision de toutes les techniques apprises dans l'unité",
-            "Présentation d'exemples de projets intégrant plusieurs techniques",
-            "Discussion: 'Qu'est-ce qui vous inspire le plus?'",
-            "Introduction à la planification créative",
-            "Présentation de la feuille de planification"
-          ],
-          "teachingStrategies": [
-            "Synthèse des apprentissages de l'unité",
-            "Inspiration par des exemples concrets",
-            "Activation de la motivation intrinsèque",
-            "Guidance pour la planification"
-          ]
-        },
-        "exploration": {
-          "duration": "25 minutes",
-          "activities": [
-            "Exploration d'idées (10 min)",
-            "- Brainstorming individuel d'idées de projets",
-            "- Exploration des matériaux disponibles",
-            "- Réflexion sur les thèmes qui les intéressent",
-            "- Discussion avec des pairs pour affiner les idées",
-            "",
-            "Planification détaillée (15 min)",
-            "- Sélection du projet final",
-            "- Choix des techniques à intégrer",
-            "- Sélection des matériaux nécessaires",
-            "- Planification des étapes de réalisation",
-            "- Croquis préparatoire du projet",
-            "- Anticipation des défis possibles"
-          ],
-          "teachingStrategies": [
-            "Processus créatif structuré",
-            "Exploration libre suivie de focalisation",
-            "Collaboration dans la réflexion",
-            "Planification méthodique"
-          ],
-          "differentiation": [
-            "Projets de complexité variable selon les intérêts",
-            "Support visuel pour la planification",
-            "Accompagnement individualisé",
-            "Flexibilité dans les choix créatifs"
-          ]
-        },
-        "synthese": {
-          "duration": "8 minutes",
-          "activities": [
-            "Partage des projets planifiés en binômes",
-            "Conseils et suggestions constructives entre pairs",
-            "Validation finale des projets par l'enseignant",
-            "Préparation des matériaux pour la prochaine séance",
-            "Anticipation enthousiaste de la création"
-          ],
-          "teachingStrategies": [
-            "Validation par les pairs",
-            "Rétroaction constructive",
-            "Approbation pédagogique",
-            "Préparation logistique",
-            "Maintien de la motivation"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "formative": [
-          "Qualité de la réflexion dans la planification",
-          "Pertinence des choix de techniques et matériaux",
-          "Réalisme du projet par rapport au temps disponible",
-          "Créativité et originalité des idées"
-        ],
-        "selfAssessment": [
-          "J'ai planifié un projet qui me passionne",
-          "J'ai choisi des techniques que je maîtrise",
-          "Mon projet est réalisable dans le temps prévu"
-        ]
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
       }
     },
     {
       "lessonNumber": 11,
-      "type": "core",
+      "lessonType": "core",
       "title": "Projet personnel: Création (Partie 1)",
+      "oneGoal": "",
       "duration": "45 minutes",
-      "expectations": ["AV2", "AV3"],
-      "bigIdea": "Explorer et créer avec de nouveaux concepts artistiques",
-      "essentialQuestion": "Que peux-tu créer?",
-      "learningGoals": [
-        "Amorcer la réalisation de son projet personnel",
-        "Appliquer les techniques apprises de façon autonome",
-        "Persévérer face aux défis créatifs"
-      ],
-      "materials": [
-        "Tous les matériaux sélectionnés lors de la planification",
-        "Outils et supports nécessaires",
-        "Plans et croquis de la leçon précédente",
-        "Matériaux de réserve pour ajustements"
-      ],
-      "vocabulary": [
+      "keyVocabulary": [
         "réalisation",
         "autonome",
         "persévérer",
         "défis",
         "ajustements"
       ],
-      "structure": {
-        "amorce": {
-          "duration": "8 minutes",
-          "activities": [
-            "Rappel des projets planifiés individuellement",
-            "Révision des techniques nécessaires selon les besoins",
-            "Organisation de l'espace de travail",
-            "Rappel des consignes de sécurité et d'entraide",
-            "Lancement officiel de la phase de création"
-          ],
-          "teachingStrategies": [
-            "Personnalisation des rappels selon les projets",
-            "Révision ciblée des techniques",
-            "Organisation efficace de l'environnement",
-            "Culture de collaboration et sécurité"
-          ]
-        },
-        "exploration": {
-          "duration": "30 minutes",
-          "activities": [
-            "Préparation des matériaux individuels (5 min)",
-            "- Installation de l'espace de travail personnel",
-            "- Préparation des outils nécessaires",
-            "- Révision du plan de création",
-            "",
-            "Création active (25 min)",
-            "- Réalisation autonome du projet selon la planification",
-            "- Application personnalisée des techniques apprises",
-            "- Ajustements créatifs selon les découvertes en cours",
-            "- Entraide spontanée entre élèves",
-            "- Support individuel de l'enseignant au besoin",
-            "- Documentation du processus de création"
-          ],
-          "teachingStrategies": [
-            "Autonomie créative maximale",
-            "Accompagnement individualisé discret",
-            "Collaboration naturelle encouragée",
-            "Flexibilité dans les ajustements créatifs"
-          ],
-          "differentiation": [
-            "Support technique adapté aux besoins individuels",
-            "Rythme de travail respectueux des différences",
-            "Matériaux supplémentaires disponibles",
-            "Encouragement constant et spécifique"
-          ]
-        },
-        "synthese": {
-          "duration": "7 minutes",
-          "activities": [
-            "Pause créative et observation de l'avancement",
-            "Partage rapide des découvertes et défis rencontrés",
-            "Planification des ajustements pour la suite",
-            "Rangement sécuritaire des projets en cours",
-            "Anticipation de la prochaine séance de création"
-          ],
-          "teachingStrategies": [
-            "Réflexion sur le processus en cours",
-            "Partage d'expériences créatives",
-            "Planification de la continuité",
-            "Gestion pratique des projets"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "formative": [
-          "Application autonome des techniques apprises",
-          "Persévérance face aux défis créatifs",
-          "Qualité du processus de création",
-          "Capacité d'ajustement et de résolution de problèmes"
-        ],
-        "selfAssessment": [
-          "J'applique bien les techniques que j'ai apprises",
-          "Je persiste même quand c'est difficile",
-          "Je suis fier/fière de ce que je crée"
-        ]
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
       }
     },
     {
       "lessonNumber": 12,
-      "type": "core",
+      "lessonType": "core",
       "title": "Projet personnel: Création (Partie 2)",
+      "oneGoal": "",
       "duration": "45 minutes",
-      "expectations": ["AV2", "AV3"],
-      "bigIdea": "Explorer et créer avec de nouveaux concepts artistiques",
-      "essentialQuestion": "Que peux-tu créer?",
-      "learningGoals": [
-        "Finaliser son projet personnel avec soin",
-        "Appliquer des techniques de finition",
-        "Évaluer sa propre création avec regard critique constructif"
-      ],
-      "materials": [
-        "Projets en cours de la leçon précédente",
-        "Matériaux de finition (vernis, cadres simples)",
-        "Outils de finition et de présentation",
-        "Matériaux supplémentaires pour ajustements finaux"
-      ],
-      "vocabulary": [
+      "keyVocabulary": [
         "finaliser",
         "finition",
         "évaluer",
         "critique",
         "constructif"
       ],
-      "structure": {
-        "amorce": {
-          "duration": "8 minutes",
-          "activities": [
-            "Reprise des projets et observation de l'état d'avancement",
-            "Discussion sur les critères d'une œuvre finalisée",
-            "Présentation des techniques de finition disponibles",
-            "Planification individuelle des étapes de finalisation",
-            "Rappel du temps disponible et gestion du rythme"
-          ],
-          "teachingStrategies": [
-            "Évaluation de l'état des projets",
-            "Établissement de critères de qualité",
-            "Présentation de nouvelles techniques",
-            "Planification réaliste du temps"
-          ]
-        },
-        "exploration": {
-          "duration": "30 minutes",
-          "activities": [
-            "Finalisation active (25 min)",
-            "- Completion des éléments en cours",
-            "- Application des techniques de finition",
-            "- Ajustements créatifs finaux",
-            "- Amélioration des détails",
-            "- Préparation pour la présentation",
-            "",
-            "Évaluation personnelle (5 min)",
-            "- Auto-évaluation guidée du projet terminé",
-            "- Réflexion sur les apprentissages réalisés",
-            "- Identification des réussites et défis surmontés"
-          ],
-          "teachingStrategies": [
-            "Finalisation soignée et réfléchie",
-            "Développement du sens esthétique",
-            "Auto-évaluation constructive",
-            "Métacognition sur les apprentissages"
-          ],
-          "differentiation": [
-            "Temps supplémentaire selon les besoins",
-            "Support pour les techniques de finition",
-            "Critères d'évaluation adaptés aux projets",
-            "Valorisation de tous les niveaux d'accomplissement"
-          ]
-        },
-        "synthese": {
-          "duration": "7 minutes",
-          "activities": [
-            "Présentation des projets finalisés en petit groupe",
-            "Appréciation mutuelle des créations",
-            "Partage des fiertés et des apprentissages",
-            "Préparation pour la présentation officielle",
-            "Célébration des accomplissements créatifs"
-          ],
-          "teachingStrategies": [
-            "Valorisation des accomplissements",
-            "Reconnaissance mutuelle",
-            "Préparation de la présentation publique",
-            "Célébration positive des réussites"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "summative": [
-          "Qualité technique de la réalisation finale",
-          "Créativité et originalité de l'œuvre",
-          "Intégration des techniques apprises",
-          "Persévérance et engagement dans le processus"
-        ],
-        "selfAssessment": [
-          "Mon projet final représente bien mes idées",
-          "J'ai utilisé les techniques apprises de façon créative",
-          "Je suis satisfait/e du résultat final"
-        ]
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
       }
     },
     {
       "lessonNumber": 13,
-      "type": "core",
+      "lessonType": "core",
       "title": "Présentation et partage",
+      "oneGoal": "",
       "duration": "45 minutes",
-      "expectations": ["AV1", "AV2"],
-      "bigIdea": "Explorer et créer avec de nouveaux concepts artistiques",
-      "essentialQuestion": "Pourquoi est-ce important?",
-      "learningGoals": [
-        "Présenter son œuvre personnelle avec fierté et clarté",
-        "Développer ses compétences en communication orale",
-        "Apprécier et respecter les créations des autres"
-      ],
-      "materials": [
-        "Projets finalisés de tous les élèves",
-        "Espace de présentation organisé",
-        "Appareils photo pour documentation",
-        "Cartes de commentaires positifs",
-        "Système de rotation pour les présentations"
-      ],
-      "vocabulary": [
+      "keyVocabulary": [
         "présenter",
         "fierté",
         "communication",
         "apprécier",
         "respecter"
       ],
-      "structure": {
-        "amorce": {
-          "duration": "10 minutes",
-          "activities": [
-            "Préparation de l'espace de présentation comme une galerie",
-            "Installation des œuvres avec soin et respect",
-            "Révision des consignes de présentation orale",
-            "Rappel des attitudes d'écoute respectueuse",
-            "Répartition en petits groupes pour les présentations rotatives"
-          ],
-          "teachingStrategies": [
-            "Création d'un environnement professionnel",
-            "Valorisation des œuvres par la présentation",
-            "Établissement d'un climat respectueux",
-            "Organisation efficace pour maximiser les échanges"
-          ]
-        },
-        "exploration": {
-          "duration": "25 minutes",
-          "activities": [
-            "Présentations rotatives (20 min)",
-            "- Rotation par groupes de 6-8 élèves",
-            "- Présentation individuelle (2 min par élève):",
-            "  * Explication de l'inspiration du projet",
-            "  * Description des techniques utilisées",
-            "  * Partage des défis surmontés",
-            "  * Expression de sa fierté personnelle",
-            "- Écoute active et questions respectueuses",
-            "- Commentaires positifs spécifiques",
-            "",
-            "Tour de galerie libre (5 min)",
-            "- Observation libre de toutes les œuvres",
-            "- Échanges informels entre créateurs",
-            "- Appréciation de la diversité des créations"
-          ],
-          "teachingStrategies": [
-            "Structure de présentation claire et bienveillante",
-            "Développement des compétences orales",
-            "Écoute active et respectueuse",
-            "Appréciation artistique mutuelle"
-          ],
-          "differentiation": [
-            "Soutien pour la présentation orale selon les besoins",
-            "Flexibilité dans la durée des présentations",
-            "Support visuel pour structurer la présentation",
-            "Valorisation de toutes les formes d'expression"
-          ]
-        },
-        "synthese": {
-          "duration": "10 minutes",
-          "activities": [
-            "Retour en grand groupe pour synthèse collective",
-            "Partage des découvertes et apprentissages mutuels",
-            "Expression de la fierté collective des accomplissements",
-            "Discussion sur l'importance de partager ses créations",
-            "Planification de la suite: réflexion sur l'unité complète"
-          ],
-          "teachingStrategies": [
-            "Synthèse collective des apprentissages",
-            "Valorisation des accomplissements de groupe",
-            "Réflexion sur l'importance de la communication artistique",
-            "Transition vers la conclusion de l'unité"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "formative": [
-          "Clarté et engagement dans la présentation orale",
-          "Capacité à expliquer ses choix créatifs",
-          "Qualité de l'écoute et du respect envers les autres",
-          "Appréciation constructive des œuvres des pairs"
-        ],
-        "selfAssessment": [
-          "J'ai présenté mon œuvre avec fierté",
-          "J'ai bien écouté les présentations de mes camarades",
-          "J'ai donné des commentaires positifs et respectueux"
-        ]
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "connections": {
-        "language": "Développement des compétences orales et vocabulaire spécialisé",
-        "socialStudies": "Respect et appréciation de la diversité créative",
-        "health": "Développement de la confiance en soi et de l'estime personnelle"
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
       }
     },
     {
       "lessonNumber": 14,
-      "type": "core",
+      "lessonType": "core",
       "title": "Réflexion et évaluation de l'unité",
+      "oneGoal": "",
       "duration": "45 minutes",
-      "expectations": ["AV1", "AV2", "AV3"],
-      "bigIdea": "Explorer et créer avec de nouveaux concepts artistiques",
-      "essentialQuestion": "Pourquoi est-ce important?",
-      "learningGoals": [
-        "Réfléchir sur les apprentissages réalisés pendant l'unité",
-        "Évaluer ses progrès et ses réussites personnelles",
-        "Établir des connexions entre l'art et sa vie quotidienne"
-      ],
-      "materials": [
-        "Portfolios complets des élèves",
-        "Grilles d'auto-évaluation adaptées à l'âge",
-        "Photos des créations et processus",
-        "Carnet de réflexion de l'unité",
-        "Matériel pour créer une carte mentale collective"
-      ],
-      "vocabulary": [
+      "keyVocabulary": [
         "réfléchir",
         "évaluer",
         "progrès",
         "connexions",
         "quotidien"
       ],
-      "structure": {
-        "amorce": {
-          "duration": "10 minutes",
-          "activities": [
-            "Révision chronologique de toutes les activités de l'unité",
-            "Observation collective des premières et dernières créations",
-            "Discussion sur les changements observés dans leurs œuvres",
-            "Introduction à l'importance de la réflexion sur ses apprentissages",
-            "Présentation des outils de réflexion et d'évaluation"
-          ],
-          "teachingStrategies": [
-            "Activation de la mémoire des apprentissages",
-            "Visualisation concrète des progrès",
-            "Sensibilisation à la métacognition",
-            "Orientation vers la réflexion personnelle"
-          ]
-        },
-        "exploration": {
-          "duration": "25 minutes",
-          "activities": [
-            "Auto-évaluation guidée (15 min)",
-            "- Révision du portfolio personnel",
-            "- Completion de la grille d'auto-évaluation:",
-            "  * Techniques maîtrisées",
-            "  * Créations préférées et pourquoi",
-            "  * Défis surmontés",
-            "  * Découvertes surprenantes",
-            "  * Applications dans la vie quotidienne",
-            "- Sélection des œuvres les plus représentatives des apprentissages",
-            "",
-            "Réflexion collaborative (10 min)",
-            "- Partage en binômes des réflexions personnelles",
-            "- Création collective d'une carte mentale des apprentissages de l'unité",
-            "- Discussion sur l'utilité des textures dans la vie quotidienne",
-            "- Identification des connexions avec d'autres matières scolaires"
-          ],
-          "teachingStrategies": [
-            "Auto-évaluation structurée et bienveillante",
-            "Réflexion métacognitive approfondie",
-            "Partage constructif entre pairs",
-            "Synthèse collective des apprentissages"
-          ],
-          "differentiation": [
-            "Grilles d'évaluation avec support visuel",
-            "Accompagnement pour la réflexion écrite",
-            "Expression orale alternative à l'écriture",
-            "Validation des accomplissements à tous les niveaux"
-          ]
-        },
-        "synthese": {
-          "duration": "10 minutes",
-          "activities": [
-            "Présentation de la carte mentale collective des apprentissages",
-            "Célébration des progrès individuels et collectifs",
-            "Discussion sur l'importance de continuer à observer les textures",
-            "Planification informelle de projets personnels futurs",
-            "Remerciements mutuels pour l'entraide et la collaboration",
-            "Fermeture positive de l'unité"
-          ],
-          "teachingStrategies": [
-            "Valorisation collective des accomplissements",
-            "Encouragement à la poursuite des apprentissages",
-            "Maintien de la motivation créative",
-            "Clôture positive et reconnaissante"
-          ]
-        }
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "assessment": {
-        "summative": [
-          "Qualité de la réflexion sur les apprentissages personnels",
-          "Capacité à identifier ses progrès et réussites",
-          "Compréhension des liens entre l'art et la vie quotidienne",
-          "Completude et organisation du portfolio final"
-        ],
-        "selfAssessment": [
-          "Je reconnais tout ce que j'ai appris dans cette unité",
-          "Je peux expliquer comment utiliser les textures dans mes créations",
-          "Je vois les textures différemment maintenant dans ma vie"
-        ]
+      "main": {
+        "duration": 27,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "culminatingTask": {
-        "description": "Portfolio complet démontrant la maîtrise progressive des techniques de texture et matériaux, incluant auto-évaluation réfléchie et présentation des apprentissages réalisés",
-        "components": [
-          "Collection organisée de toutes les créations de l'unité",
-          "Auto-évaluation écrite ou orale des apprentissages",
-          "Sélection et présentation des œuvres les plus significatives",
-          "Réflexion sur l'évolution de ses compétences artistiques"
-        ]
+      "closing": {
+        "duration": 10,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
       }
     }
   ],
-  "extensionLessons": [
-    {
-      "lessonNumber": 15,
-      "type": "extension",
-      "title": "Textures dans l'art: Étude d'œuvres célèbres",
-      "duration": "45 minutes",
-      "expectations": ["AV1"],
-      "learningGoals": [
-        "Découvrir comment les artistes célèbres utilisent les textures",
-        "Développer son vocabulaire d'appréciation artistique",
-        "Établir des connexions entre ses propres créations et l'art professionnel"
-      ],
-      "keyActivities": [
-        "Observation guidée d'œuvres d'art texturées",
-        "Discussion sur les techniques identifiées",
-        "Comparaison avec ses propres créations",
-        "Création d'un carnet d'appréciation artistique"
-      ],
-      "materials": [
-        "Reproductions d'œuvres célèbres (Van Gogh, Monet, sculptures texturées)",
-        "Loupes pour observation détaillée",
-        "Carnets d'appréciation",
-        "Vocabulaire d'appréciation artistique illustré"
-      ]
-    },
-    {
-      "lessonNumber": 16,
-      "type": "extension", 
-      "title": "Techniques avancées de frottage",
-      "duration": "45 minutes",
-      "expectations": ["AV3"],
-      "learningGoals": [
-        "Maîtriser des techniques complexes de frottage",
-        "Expérimenter avec des outils spécialisés",
-        "Créer des effets artistiques sophistiqués"
-      ],
-      "keyActivities": [
-        "Frottages multicouches et superpositions complexes",
-        "Utilisation d'outils variés (brosses, éponges, etc.)",
-        "Création d'effets spéciaux et de textures artificielles",
-        "Projet de frottage artistique avancé"
-      ],
-      "materials": [
-        "Outils spécialisés pour frottage",
-        "Papiers de qualité artistique",
-        "Supports texturés complexes",
-        "Matériaux de finition professionnels"
-      ]
-    },
-    {
-      "lessonNumber": 17,
-      "type": "extension",
-      "title": "Collage 3D: Volume et relief", 
-      "duration": "45 minutes",
-      "expectations": ["AV2", "AV3"],
-      "learningGoals": [
-        "Créer des collages avec dimension et relief",
-        "Expérimenter avec des matériaux volumiques",
-        "Développer la compréhension de l'espace tridimensionnel"
-      ],
-      "keyActivities": [
-        "Techniques de création de relief",
-        "Utilisation de matériaux volumiques",
-        "Création de collages sculpturaux",
-        "Expérimentation avec les ombres et la lumière"
-      ],
-      "materials": [
-        "Matériaux volumiques variés",
-        "Supports épais et rigides",
-        "Colle forte et adhésifs spécialisés",
-        "Outils de modelage et sculpture"
-      ]
-    },
-    {
-      "lessonNumber": 18,
-      "type": "extension",
-      "title": "Textures artificielles: Création et simulation",
-      "duration": "45 minutes", 
-      "expectations": ["AV2", "AV3"],
-      "learningGoals": [
-        "Créer des textures originales et artificielles",
-        "Innover avec des techniques personnelles",
-        "Développer sa créativité technique"
-      ],
-      "keyActivities": [
-        "Invention de techniques personnelles de texture",
-        "Simulation de textures naturelles avec matériaux artificiels",
-        "Expérimentation libre avec outils et matériaux",
-        "Documentation des innovations techniques"
-      ],
-      "materials": [
-        "Matériaux de création innovants",
-        "Outils de manipulation variés",
-        "Supports d'expérimentation",
-        "Journal d'innovation technique"
-      ]
-    },
-    {
-      "lessonNumber": 19,
-      "type": "extension",
-      "title": "Projet collaboratif: Murale texturée",
-      "duration": "45 minutes",
-      "expectations": ["AV1", "AV2", "AV3"],
-      "learningGoals": [
-        "Collaborer dans un grand projet artistique collectif",
-        "Coordonner ses créations avec celles des autres",
-        "Contribuer à une œuvre d'art communautaire"
-      ],
-      "keyActivities": [
-        "Planification collective du projet de murale",
-        "Attribution des sections individuelles",
-        "Création coordonnée avec cohérence artistique",
-        "Assemblage et finalisation collaborative"
-      ],
-      "materials": [
-        "Grand support mural",
-        "Matériaux partagés pour cohérence",
-        "Outils de planification collective",
-        "Matériaux de fixation et présentation"
-      ]
-    },
-    {
-      "lessonNumber": 20,
-      "type": "extension", 
-      "title": "Exposition et célébration",
-      "duration": "45 minutes",
-      "expectations": ["AV1", "AV2"],
-      "learningGoals": [
-        "Organiser une exposition professionnelle de ses œuvres",
-        "Présenter son travail à un public élargi",
-        "Célébrer les accomplissements artistiques collectifs"
-      ],
-      "keyActivities": [
-        "Préparation d'une exposition publique",
-        "Accueil des visiteurs (parents, autres classes)",
-        "Présentation guidée des œuvres et techniques",
-        "Célébration collective des apprentissages"
-      ],
-      "materials": [
-        "Matériel d'exposition professionnel",
-        "Cartels informatifs pour les œuvres", 
-        "Système d'accueil des visiteurs",
-        "Matériel de célébration"
-      ]
-    }
-  ],
-  "assessmentRubric": {
-    "techniques": {
-      "emerging": "Explore les techniques de base avec support",
-      "developing": "Applique les techniques avec autonomie croissante", 
-      "proficient": "Maîtrise et combine plusieurs techniques créativement",
-      "extending": "Innovate et développe ses propres approches techniques"
-    },
-    "creativity": {
-      "emerging": "Exprime des idées simples dans ses créations",
-      "developing": "Développe des idées personnelles originales",
-      "proficient": "Crée des œuvres expressives et significatives", 
-      "extending": "Inspire et influence les créations des autres"
-    },
-    "reflection": {
-      "emerging": "Identifie ses préférences et réussites simples",
-      "developing": "Explique ses choix et processus créatifs",
-      "proficient": "Analyse et évalue ses apprentissages de façon critique",
-      "extending": "Établit des connexions complexes et planifie ses apprentissages futurs"
-    }
+  "assessmentTools": {
+    "observationChecklist": [],
+    "rubrics": [],
+    "selfAssessment": [],
+    "portfolioGuidelines": ""
   },
-  "generationMetadata": {
-    "timestamp": "2025-08-21",
-    "totalLessons": 20,
-    "coreComplete": 14,
-    "extensionsIncluded": 6,
-    "threePartStructure": "All lessons include amorce, exploration, synthèse",
-    "ageAppropriate": "Grade 1 developmental considerations throughout",
-    "tactileEmphasis": "Strong focus on hands-on, sensory learning",
-    "progressiveSkillBuilding": "Each lesson builds on previous learning"
+  "familyConnections": {
+    "unitLetter": "",
+    "homeActivities": [],
+    "vocabularyList": []
+  },
+  "resourceAlternatives": {
+    "materials": {},
+    "digitalResources": []
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
   }
 }

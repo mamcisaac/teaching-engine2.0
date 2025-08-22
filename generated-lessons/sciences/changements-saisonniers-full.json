@@ -1,551 +1,1051 @@
 {
-  "unitPlan": {
-    "title": "Changements saisonniers d'automne",
-    "bigIdeas": "Analyser les changements quotidiens et saisonniers dans l'environnement",
-    "totalLessons": 20,
-    "coreCount": 14,
-    "extensionCount": 6
-  },
+  "unitTitle": "",
+  "subject": "Sciences de la nature",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
   "lessons": [
     {
       "lessonNumber": 1,
+      "lessonType": "core",
       "title": "L'automne arrive - nos observations",
       "oneGoal": "Students will observe and identify signs that autumn is beginning in our environment",
-      "keyVocabulary": ["automne", "changer", "observer"],
-      "decisionPoints": [
-        {
-          "question": "What autumn signs can students see outside our classroom today?",
-          "guidance": "If many signs visible: Focus on detailed observation. If few signs: Use photos to supplement direct observation."
-        },
-        {
-          "question": "Should we start with outdoor exploration or window observations?",
-          "guidance": "If weather suitable: Go outside for 10 minutes. If weather poor: Use windows and bring materials inside."
-        },
-        {
-          "question": "Are students ready for simple weather comparison activities?",
-          "guidance": "If engaged: Add weather journal. If overwhelmed: Focus on one observation at a time."
-        }
+      "duration": 45,
+      "keyVocabulary": [
+        "automne",
+        "changer",
+        "observer"
       ],
-      "opening": "Circle time (5 min): Show summer photo of school yard. Ask 'Qu'est-ce qui est différent maintenant?' Look out window together. Point and name: 'C'est l'automne!'",
-      "mainActivity": "Autumn detective walk (25 min): Outside or window observation with clipboards. Students draw/circle autumn signs on observation sheet: leaf colors, temperature feeling, clothing changes, sky appearance. Practice saying 'Je vois...' for each observation. Create class autumn discovery chart with student findings.",
-      "closing": "Science circle (10 min): Students share one autumn sign they found. Teacher records on class chart. End with autumn observation chant: 'En automne, ça change, en automne, c'est différent!'",
-      "materials": ["Observation clipboards", "Autumn signs checklist", "Colored pencils", "Class chart paper", "Summer comparison photo"],
-      "whenThingsGoWrong": "If students get distracted outside: Use 'scientist focus' signal. If too many observations: Choose 3 main signs to focus on. If weather changes: Adapt to indoor window observations.",
+      "opening": {
+        "duration": 8,
+        "activity": "Circle time (5 min): Show summer photo of school yard. Ask 'Qu'est-ce qui est différent maintenant?' Look out window together. Point and name: 'C'est l'automne!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Autumn detective walk (25 min): Outside or window observation with clipboards. Students draw/circle autumn signs on observation sheet: leaf colors, temperature feeling, clothing changes, sky appearance. Practice saying 'Je vois...' for each observation. Create class autumn discovery chart with student findings.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Science circle (10 min): Students share one autumn sign they found. Teacher records on class chart. End with autumn observation chant: 'En automne, ça change, en automne, c'est différent!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
       "realWorldConnection": "Students recognize autumn changes they see walking to school or playing outside",
-      "visualSupports": "Observation checklist with pictures, hand gestures for temperature (shivering), seasonal comparison photos"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 2,
+      "lessonType": "core",
       "title": "Les feuilles commencent à changer",
       "oneGoal": "Students will observe leaf color changes and understand that this is a natural autumn process",
-      "keyVocabulary": ["feuilles", "couleur", "rouge"],
-      "decisionPoints": [
-        {
-          "question": "Which leaf colors are students noticing in our area?",
-          "guidance": "If limited colors: Use color cards to expand vocabulary. If many colors: Focus on 3-4 main autumn colors."
-        },
-        {
-          "question": "Should we collect real leaves or observe them on trees first?",
-          "guidance": "If permission to collect: Gather leaves for hands-on sorting. If no collection allowed: Use observation and photos."
-        },
-        {
-          "question": "Are students ready for color-sorting leaf activities?",
-          "guidance": "If sorting easily: Add shape sorting too. If struggling: Focus only on green vs. non-green leaves."
-        }
+      "duration": 45,
+      "keyVocabulary": [
+        "feuilles",
+        "couleur",
+        "rouge"
       ],
-      "opening": "Leaf mystery box (5 min): Feel different colored leaves in box without looking. Describe textures. Reveal and name colors: 'rouge, jaune, brun, vert'.",
-      "mainActivity": "Leaf color investigation (25 min): Collect or observe leaves from different trees. Sort into color groups using sorting mats. Create leaf rubbings with different colored leaves. Discuss: 'Pourquoi les feuilles changent-elles de couleur?' Simple explanation: Trees need less water, leaves change color. Practice color vocabulary with leaf sorting games.",
-      "closing": "Leaf color parade (10 min): Students hold up leaves and march around saying color names. Create class 'autumn color tree' by taping sorted leaves to wall tree outline.",
-      "materials": ["Real leaves or leaf collection", "Color sorting mats", "Crayons for leaf rubbings", "Paper", "Wall tree outline", "Leaf color vocabulary cards"],
-      "whenThingsGoWrong": "If leaves are fragile: Use sturdier samples or photos. If color disputes: Focus on 'mostly red' or 'mostly yellow'. If short attention: Add movement between sorting activities.",
+      "opening": {
+        "duration": 8,
+        "activity": "Leaf mystery box (5 min): Feel different colored leaves in box without looking. Describe textures. Reveal and name colors: 'rouge, jaune, brun, vert'.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Leaf color investigation (25 min): Collect or observe leaves from different trees. Sort into color groups using sorting mats. Create leaf rubbings with different colored leaves. Discuss: 'Pourquoi les feuilles changent-elles de couleur?' Simple explanation: Trees need less water, leaves change color. Practice color vocabulary with leaf sorting games.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Leaf color parade (10 min): Students hold up leaves and march around saying color names. Create class 'autumn color tree' by taping sorted leaves to wall tree outline.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
       "realWorldConnection": "Students notice leaf color changes on trees in their neighborhood and understand why it happens",
-      "visualSupports": "Color vocabulary cards, sorting mats with color labels, hand gestures for each color (red = point up, yellow = circle hands)"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 3,
+      "lessonType": "core",
       "title": "Pourquoi les feuilles changent-elles?",
       "oneGoal": "Students will understand that leaves change colors because they need less sun and water in autumn",
-      "keyVocabulary": ["soleil", "eau", "besoin"],
-      "decisionPoints": [
-        {
-          "question": "How can we make sun and water needs concrete for young learners?",
-          "guidance": "If abstract concepts difficult: Use props and acting. If understanding well: Add simple plant experiments."
-        },
-        {
-          "question": "Should we use plant experiments or simple demonstrations?",
-          "guidance": "If time/materials permit: Try simple plant experiments. If limited resources: Use demonstrations with props."
-        },
-        {
-          "question": "Are students ready for basic cause-and-effect discussions?",
-          "guidance": "If ready: Use 'if-then' language. If struggling: Focus on 'trees need sun and water' concept only."
-        }
+      "duration": 45,
+      "keyVocabulary": [
+        "soleil",
+        "eau",
+        "besoin"
       ],
-      "opening": "Plant needs drama (5 min): Students act as trees. Feel warm 'summer sun' (warm hands), drink 'water' (pretend). Then feel less 'autumn sun' (cooler hands), less water. Show how 'tree' changes.",
-      "mainActivity": "Sun and water experiment (25 min): Compare two small plants - one with full sun/water, one with less. Observe leaves. Use flashlight as 'sun' and watering as 'rain'. Demonstrate how less sun/water makes leaves change color. Create simple before/after drawings. Practice vocabulary: 'Le soleil donne de la lumière. L'eau aide les plantes. En automne, moins de soleil, moins d'eau.'",
-      "closing": "Tree needs chant (10 min): Create actions for sun (arms up), water (wiggling fingers down), and leaf colors (color gestures). Sing simple song about tree needs changing in autumn.",
-      "materials": ["Small plants in pots", "Flashlight", "Watering cup", "Before/after drawing paper", "Sun and water props", "Plant needs picture cards"],
-      "whenThingsGoWrong": "If plants not available: Use silk plants and role play. If concepts too complex: Focus on 'less sun, leaves change' only. If restless: Add more movement and acting.",
+      "opening": {
+        "duration": 8,
+        "activity": "Plant needs drama (5 min): Students act as trees. Feel warm 'summer sun' (warm hands), drink 'water' (pretend). Then feel less 'autumn sun' (cooler hands), less water. Show how 'tree' changes.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Sun and water experiment (25 min): Compare two small plants - one with full sun/water, one with less. Observe leaves. Use flashlight as 'sun' and watering as 'rain'. Demonstrate how less sun/water makes leaves change color. Create simple before/after drawings. Practice vocabulary: 'Le soleil donne de la lumière. L'eau aide les plantes. En automne, moins de soleil, moins d'eau.'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Tree needs chant (10 min): Create actions for sun (arms up), water (wiggling fingers down), and leaf colors (color gestures). Sing simple song about tree needs changing in autumn.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
       "realWorldConnection": "Students understand why trees in their yard look different and how sun and rain affect plants",
-      "visualSupports": "Picture sequence showing sun → water → green leaves, then less sun → less water → colored leaves, hand gestures for each concept"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 4,
+      "lessonType": "core",
       "title": "Collection de feuilles scientifiques",
       "oneGoal": "Students will collect, sort, and record autumn leaf observations using scientific methods",
-      "keyVocabulary": ["collection", "trier", "noter"],
-      "decisionPoints": [
-        {
-          "question": "How many different leaf types can students find safely?",
-          "guidance": "If many varieties: Focus on 4-5 main types. If limited varieties: Use collected samples to supplement."
-        },
-        {
-          "question": "Should we focus on colors, shapes, or sizes first?",
-          "guidance": "If one attribute obvious: Start there. If multiple clear differences: Let students choose sorting method."
-        },
-        {
-          "question": "Are students ready for simple data recording activities?",
-          "guidance": "If writing skills emerging: Use pictures and tallies. If writing confident: Add simple words and numbers."
-        }
+      "duration": 45,
+      "keyVocabulary": [
+        "collection",
+        "trier",
+        "noter"
       ],
-      "opening": "Scientist preparation (5 min): Put on 'scientist hats' (real or pretend). Learn scientist jobs: observe, collect, sort, record. Practice carrying collection bags and clipboards carefully.",
-      "mainActivity": "Scientific leaf collection (25 min): Outdoor collection with scientist clipboards. Find 3-5 different leaves per student. Return to classroom for scientific sorting: by color, by shape, by size. Create individual leaf collection sheets with drawing/taping leaves and simple recording (tally marks, basic words). Use magnifying glasses to observe leaf details. Practice scientific vocabulary: 'Ma collection a...' 'Je trie par couleur.'",
-      "closing": "Scientist sharing circle (10 min): Students present one interesting leaf from their collection. Teacher helps them use scientific language: 'Cette feuille est rouge et petite.' Display collections on science wall.",
-      "materials": ["Collection bags", "Scientist clipboards", "Collection recording sheets", "Magnifying glasses", "Tape or glue sticks", "Scientist hats (optional)", "Chart paper for class observations"],
-      "whenThingsGoWrong": "If outdoor collection not possible: Use pre-collected leaf sets. If sorting overwhelming: Provide labeled sorting areas. If recording difficult: Use stamps or stickers instead of writing.",
+      "opening": {
+        "duration": 8,
+        "activity": "Scientist preparation (5 min): Put on 'scientist hats' (real or pretend). Learn scientist jobs: observe, collect, sort, record. Practice carrying collection bags and clipboards carefully.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Scientific leaf collection (25 min): Outdoor collection with scientist clipboards. Find 3-5 different leaves per student. Return to classroom for scientific sorting: by color, by shape, by size. Create individual leaf collection sheets with drawing/taping leaves and simple recording (tally marks, basic words). Use magnifying glasses to observe leaf details. Practice scientific vocabulary: 'Ma collection a...' 'Je trie par couleur.'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Scientist sharing circle (10 min): Students present one interesting leaf from their collection. Teacher helps them use scientific language: 'Cette feuille est rouge et petite.' Display collections on science wall.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
       "realWorldConnection": "Students learn how scientists collect and organize natural objects to understand patterns in nature",
-      "visualSupports": "Scientific method poster (observe, collect, sort, record), sorting area labels with pictures, recording sheet examples"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 5,
+      "lessonType": "core",
       "title": "Il fait plus froid - mesurer la température",
       "oneGoal": "Students will observe that autumn brings cooler temperatures and learn simple temperature measurement",
-      "keyVocabulary": ["froid", "chaud", "température"],
-      "decisionPoints": [
-        {
-          "question": "What temperature tools are appropriate for Grade 1 students?",
-          "guidance": "If real thermometers available: Use large display thermometers. If not: Use color-coded temperature cards or body sensations."
-        },
-        {
-          "question": "Should we compare indoor and outdoor temperatures?",
-          "guidance": "If clear difference: Compare both locations. If similar: Focus on comparing autumn to summer memories."
-        },
-        {
-          "question": "Are students ready for simple thermometer readings?",
-          "guidance": "If number skills developing: Focus on 'higher/lower' and 'hot/cold' zones. If advanced: Try simple number reading."
-        }
+      "duration": 45,
+      "keyVocabulary": [
+        "froid",
+        "chaud",
+        "température"
       ],
-      "opening": "Temperature detective game (5 min): Students put hands on different surfaces (metal, wood, paper) and describe feelings: 'froid, frais, chaud'. Practice temperature vocabulary with gestures (shivering, fanning).",
-      "mainActivity": "Temperature investigation (25 min): Use large thermometer to check indoor temperature, then outdoor temperature. Students predict which will be colder. Create temperature comparison chart with pictures (ice = very cold, sun = very hot). Test temperature of water in different containers (ice water, room temperature, warm). Students sort classroom objects by temperature feeling. Practice saying: 'C'est froid', 'C'est chaud', 'La température change en automne.'",
-      "closing": "Temperature song and movement (10 min): Sing song about autumn temperature changes with movements (shivering for cold, wiping sweat for hot). Create class temperature calendar to track daily weather.",
-      "materials": ["Large display thermometer", "Water containers at different temperatures", "Temperature comparison chart", "Classroom objects for sorting", "Daily weather tracking chart", "Temperature vocabulary cards"],
-      "whenThingsGoWrong": "If thermometer reading too complex: Focus on temperature feelings only. If water activities messy: Use sealed containers. If concepts abstract: Use lots of physical examples and movement.",
+      "opening": {
+        "duration": 8,
+        "activity": "Temperature detective game (5 min): Students put hands on different surfaces (metal, wood, paper) and describe feelings: 'froid, frais, chaud'. Practice temperature vocabulary with gestures (shivering, fanning).",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Temperature investigation (25 min): Use large thermometer to check indoor temperature, then outdoor temperature. Students predict which will be colder. Create temperature comparison chart with pictures (ice = very cold, sun = very hot). Test temperature of water in different containers (ice water, room temperature, warm). Students sort classroom objects by temperature feeling. Practice saying: 'C'est froid', 'C'est chaud', 'La température change en automne.'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Temperature song and movement (10 min): Sing song about autumn temperature changes with movements (shivering for cold, wiping sweat for hot). Create class temperature calendar to track daily weather.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
       "realWorldConnection": "Students notice that they need different clothing for autumn weather and understand temperature changes",
-      "visualSupports": "Temperature scale with pictures (ice, snow, comfortable, hot sun), thermometer poster with color zones, gesture cards for hot and cold"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 6,
+      "lessonType": "core",
       "title": "Les jours deviennent plus courts",
       "oneGoal": "Students will observe that daylight hours decrease in autumn and understand this affects living things",
-      "keyVocabulary": ["jour", "court", "lumière"],
-      "decisionPoints": [
-        {
-          "question": "How can we make daylight changes visible to young students?",
-          "guidance": "If obvious changes noticed: Use students' observations. If changes subtle: Use before/after photos and clock comparisons."
-        },
-        {
-          "question": "Should we track sunset times or use classroom observations?",
-          "guidance": "If sunset visible from school: Note classroom lighting changes. If not: Use family observations and photos."
-        },
-        {
-          "question": "Are students ready for before-and-after daylight comparisons?",
-          "guidance": "If time concepts developing: Focus on 'dark earlier' concept. If understanding time: Add simple clock comparisons."
-        }
+      "duration": 45,
+      "keyVocabulary": [
+        "jour",
+        "court",
+        "lumière"
       ],
-      "opening": "Light and dark exploration (5 min): Use classroom lights to demonstrate 'long day' (lights on long time) vs 'short day' (lights on short time). Students experience how less light affects activities.",
-      "mainActivity": "Daylight investigation (25 min): Compare photos of school at same time in summer vs autumn - notice sky brightness differences. Use flashlights to demonstrate how sun gives us less light in autumn (hold flashlight farther away). Create 'daylight timeline' showing morning, noon, evening in summer vs autumn using pictures. Students draw what they do when it gets dark earlier. Practice vocabulary: 'Le jour est court', 'Il fait noir plus tôt', 'Nous avons besoin de lumière'.",
-      "closing": "Daylight changes song (10 min): Sing about how autumn brings shorter days and longer nights. Create movements for sun rising late and setting early. Start class daylight observation chart.",
-      "materials": ["Summer/autumn photos of same location", "Flashlights", "Timeline template", "Drawing paper", "Daylight observation chart", "Light/dark picture cards"],
-      "whenThingsGoWrong": "If time concepts too abstract: Focus on 'dark when we go home' observations. If photo comparisons unclear: Use exaggerated light/dark examples. If attention waning: Add more interactive light exploration.",
+      "opening": {
+        "duration": 8,
+        "activity": "Light and dark exploration (5 min): Use classroom lights to demonstrate 'long day' (lights on long time) vs 'short day' (lights on short time). Students experience how less light affects activities.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Daylight investigation (25 min): Compare photos of school at same time in summer vs autumn - notice sky brightness differences. Use flashlights to demonstrate how sun gives us less light in autumn (hold flashlight farther away). Create 'daylight timeline' showing morning, noon, evening in summer vs autumn using pictures. Students draw what they do when it gets dark earlier. Practice vocabulary: 'Le jour est court', 'Il fait noir plus tôt', 'Nous avons besoin de lumière'.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Daylight changes song (10 min): Sing about how autumn brings shorter days and longer nights. Create movements for sun rising late and setting early. Start class daylight observation chart.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
       "realWorldConnection": "Students notice they need lights on earlier at home and have less time to play outside after school",
-      "visualSupports": "Day/night picture sequence, sun position charts showing high summer sun vs low autumn sun, clock faces showing daylight hours"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 7,
+      "lessonType": "core",
       "title": "Les animaux se préparent pour l'hiver",
       "oneGoal": "Students will observe how local animals begin preparing for winter through behavior changes",
-      "keyVocabulary": ["animaux", "préparer", "hiver"],
-      "decisionPoints": [
-        {
-          "question": "Which local animals show obvious preparation behaviors?",
-          "guidance": "If squirrels active nearby: Focus on nut gathering. If birds visible: Observe feeding behaviors. Use videos if live animals not observable."
-        },
-        {
-          "question": "Should we observe real animals or use photos and videos?",
-          "guidance": "If weather/location allows: Spend time observing outdoors. If indoor lesson needed: Use engaging videos and photos."
-        },
-        {
-          "question": "Are students ready for animal behavior prediction activities?",
-          "guidance": "If prediction skills developing: Ask 'What do you think will happen?' If advanced: Have students make specific behavior predictions."
-        }
+      "duration": 45,
+      "keyVocabulary": [
+        "animaux",
+        "préparer",
+        "hiver"
       ],
-      "opening": "Animal preparation mime (5 min): Students act out how they prepare for cold weather (putting on coats, gathering warm clothes). Introduce: animals prepare too, but differently.",
-      "mainActivity": "Animal preparation observation (25 min): Watch videos or observe local animals preparing for winter. Focus on specific behaviors: squirrels gathering nuts, birds eating more food, some animals growing thicker fur. Create class chart showing 'How animals prepare': gathering food, growing warm fur, finding warm homes. Students draw their favorite animal preparation behavior. Role-play being different animals getting ready for winter.",
-      "closing": "Animal preparation parade (10 min): Students move like different animals showing preparation behaviors (squirrel gathering, bird eating, bear finding den). Practice saying: 'Les animaux se préparent pour l'hiver.'",
-      "materials": ["Animal preparation videos", "Chart paper", "Animal behavior picture cards", "Drawing materials", "Animal preparation worksheet", "Props for role-play (optional)"],
-      "whenThingsGoWrong": "If animal behaviors not obvious: Use clear video examples. If students get overly excited about animals: Use calm observation signals. If concepts too complex: Focus on one animal behavior at a time.",
+      "opening": {
+        "duration": 8,
+        "activity": "Animal preparation mime (5 min): Students act out how they prepare for cold weather (putting on coats, gathering warm clothes). Introduce: animals prepare too, but differently.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Animal preparation observation (25 min): Watch videos or observe local animals preparing for winter. Focus on specific behaviors: squirrels gathering nuts, birds eating more food, some animals growing thicker fur. Create class chart showing 'How animals prepare': gathering food, growing warm fur, finding warm homes. Students draw their favorite animal preparation behavior. Role-play being different animals getting ready for winter.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Animal preparation parade (10 min): Students move like different animals showing preparation behaviors (squirrel gathering, bird eating, bear finding den). Practice saying: 'Les animaux se préparent pour l'hiver.'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
       "realWorldConnection": "Students observe squirrels, birds, and other animals in their neighborhood preparing for winter",
-      "visualSupports": "Animal preparation behavior chart with pictures, sequence cards showing before/after animal appearance, animal behavior gesture cards"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 8,
+      "lessonType": "core",
       "title": "Les oiseaux et la migration",
       "oneGoal": "Students will understand that some birds fly south for winter and observe migration behaviors",
-      "keyVocabulary": ["oiseaux", "voler", "sud"],
-      "decisionPoints": [
-        {
-          "question": "Which migrating birds can students observe in our area?",
-          "guidance": "If geese or other migrants visible: Focus observation outside. If migration subtle: Use videos and photos of clear examples."
-        },
-        {
-          "question": "Should we focus on why birds migrate or how they migrate?",
-          "guidance": "If 'why' questions emerging: Explain food and warmth reasons. If more interested in 'how': Focus on flying formations and journeys."
-        },
-        {
-          "question": "Are students ready for simple map activities showing bird journeys?",
-          "guidance": "If map skills developing: Use simple north/south arrows. If advanced: Show basic migration routes on large map."
-        }
+      "duration": 45,
+      "keyVocabulary": [
+        "oiseaux",
+        "voler",
+        "sud"
       ],
-      "opening": "Flying south demonstration (5 min): Students spread arms like wings and 'fly' from cold area of room (with fan or ice) to warm area (with heater or sunny spot). Feel temperature difference.",
-      "mainActivity": "Bird migration investigation (25 min): Watch videos of birds flying in V-formations going south. Use simple map to show north (cold) and south (warm). Students practice 'flying south' movements across classroom map. Compare birds that stay vs. birds that leave using picture sorting activity. Create migration journal with drawings of birds flying south. Practice vocabulary: 'Les oiseaux volent vers le sud', 'Il fait chaud au sud', 'Les oiseaux cherchent la nourriture'.",
-      "closing": "Migration flight simulation (10 min): Students line up in V-formation like migrating birds and 'fly' around classroom saying 'Nous volons vers le sud pour trouver la chaleur.' Create class migration chart.",
-      "materials": ["Bird migration videos", "Large classroom map", "North/south directional signs", "Bird pictures for sorting", "Migration journal pages", "Chart paper for class observations"],
-      "whenThingsGoWrong": "If map concepts too abstract: Use simple hot/cold areas in room. If students get too excited 'flying': Use calm signal and smaller movements. If migration complex: Focus on 'birds go where it's warm' concept only.",
+      "opening": {
+        "duration": 8,
+        "activity": "Flying south demonstration (5 min): Students spread arms like wings and 'fly' from cold area of room (with fan or ice) to warm area (with heater or sunny spot). Feel temperature difference.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Bird migration investigation (25 min): Watch videos of birds flying in V-formations going south. Use simple map to show north (cold) and south (warm). Students practice 'flying south' movements across classroom map. Compare birds that stay vs. birds that leave using picture sorting activity. Create migration journal with drawings of birds flying south. Practice vocabulary: 'Les oiseaux volent vers le sud', 'Il fait chaud au sud', 'Les oiseaux cherchent la nourriture'.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Migration flight simulation (10 min): Students line up in V-formation like migrating birds and 'fly' around classroom saying 'Nous volons vers le sud pour trouver la chaleur.' Create class migration chart.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
       "realWorldConnection": "Students notice fewer birds in autumn and understand where they go for warmer weather",
-      "visualSupports": "Simple map with arrows showing south direction, pictures of birds in winter vs summer locations, temperature comparison charts (cold north, warm south)"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 9,
+      "lessonType": "core",
       "title": "Fourrure d'hiver - les animaux qui restent",
       "oneGoal": "Students will observe how animals that stay develop thicker fur or change color for winter protection",
-      "keyVocabulary": ["fourrure", "épais", "protéger"],
-      "decisionPoints": [
-        {
-          "question": "Which local animals show obvious coat changes?",
-          "guidance": "If local examples available: Use dogs, cats, or wildlife photos. If not obvious: Use clear video examples from other regions."
-        },
-        {
-          "question": "Should we use real animal fur samples or photos for comparison?",
-          "guidance": "If fur samples available safely: Let students feel different thicknesses. If not available: Use fabric samples to demonstrate thickness."
-        },
-        {
-          "question": "Are students ready for before-and-after animal appearance activities?",
-          "guidance": "If comparison skills developing: Use obvious examples. If advanced: Include subtle changes and color variations."
-        }
+      "duration": 45,
+      "keyVocabulary": [
+        "fourrure",
+        "épais",
+        "protéger"
       ],
-      "opening": "Fur thickness exploration (5 min): Students feel different fabric samples (thin summer shirt vs thick winter coat). Discuss how thickness keeps us warm. Introduce: animals grow thicker fur the same way.",
-      "mainActivity": "Winter coat investigation (25 min): Compare photos of same animals in summer (thin fur) vs winter (thick fur). Use magnifying glasses to examine real fur samples or fabric samples of different thicknesses. Students sort animals into 'thick winter fur' vs 'thin summer fur' categories. Create thickness comparison using cotton balls (thin layer for summer, thick layer for winter). Practice saying: 'La fourrure épaisse protège du froid', 'Les animaux ont plus de fourrure en hiver'.",
-      "closing": "Fur protection dance (10 min): Students pretend to be animals growing thicker fur for winter - start thin and add imaginary layers. Practice fur vocabulary with actions (thick = arms spread wide, protect = arms around body).",
-      "materials": ["Summer/winter animal photos", "Fabric samples of different thicknesses", "Magnifying glasses", "Cotton balls", "Animal sorting mats", "Fur thickness comparison chart"],
-      "whenThingsGoWrong": "If fur samples not available: Use obvious fabric thickness differences. If students allergic to materials: Use visual examples only. If concepts abstract: Focus on 'animals get warmer coats' idea only.",
+      "opening": {
+        "duration": 8,
+        "activity": "Fur thickness exploration (5 min): Students feel different fabric samples (thin summer shirt vs thick winter coat). Discuss how thickness keeps us warm. Introduce: animals grow thicker fur the same way.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Winter coat investigation (25 min): Compare photos of same animals in summer (thin fur) vs winter (thick fur). Use magnifying glasses to examine real fur samples or fabric samples of different thicknesses. Students sort animals into 'thick winter fur' vs 'thin summer fur' categories. Create thickness comparison using cotton balls (thin layer for summer, thick layer for winter). Practice saying: 'La fourrure épaisse protège du froid', 'Les animaux ont plus de fourrure en hiver'.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Fur protection dance (10 min): Students pretend to be animals growing thicker fur for winter - start thin and add imaginary layers. Practice fur vocabulary with actions (thick = arms spread wide, protect = arms around body).",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
       "realWorldConnection": "Students notice their pets have thicker fur in winter or see wild animals with different coat thickness",
-      "visualSupports": "Before/after photos showing obvious fur differences, thickness comparison chart, gesture cards for thick/thin and warm/cold"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 10,
+      "lessonType": "core",
       "title": "Expérience: pourquoi la fourrure?",
       "oneGoal": "Students will conduct a simple experiment to understand how fur keeps animals warm in cold weather",
-      "keyVocabulary": ["expérience", "chaud", "garder"],
-      "decisionPoints": [
-        {
-          "question": "What materials can safely demonstrate insulation for Grade 1?",
-          "guidance": "If ice available: Use ice cubes in different wrappings. If not: Use cold water and different materials for insulation testing."
-        },
-        {
-          "question": "Should we use ice cubes, warm water, or room temperature comparisons?",
-          "guidance": "If ice safe and available: Use ice cube experiments. If warm water safer: Test keeping warm things warm instead of cold things cold."
-        },
-        {
-          "question": "Are students ready for hypothesis-making before experiments?",
-          "guidance": "If prediction skills emerging: Ask simple 'What do you think?' questions. If advanced: Have students make specific predictions and explain reasoning."
-        }
+      "duration": 45,
+      "keyVocabulary": [
+        "expérience",
+        "chaud",
+        "garder"
       ],
-      "opening": "Warmth prediction circle (5 min): Show ice cube and various materials (cotton balls, fabric, paper). Ask students to predict which will keep ice cube coldest longest. Explain: this is like fur keeping animals warm.",
-      "mainActivity": "Fur insulation experiment (25 min): Wrap identical ice cubes in different materials: bare (no fur), thin cloth (thin fur), thick cotton balls (thick fur). Place in cups and observe which melts slowest. Students make predictions, then check results every 5 minutes. Record observations with drawings and simple words. Alternative: Use thermometers in cups of warm water with different insulation to see which stays warmest. Create experiment recording sheet with predictions vs results.",
-      "closing": "Experiment conclusion sharing (10 min): Students share which insulation worked best and why. Connect to animals: 'Thick fur keeps animals warm like thick cotton balls kept our ice cold.' Practice scientific vocabulary: 'Notre expérience montre que...'",
-      "materials": ["Ice cubes or warm water", "Various insulation materials (cotton, fabric, paper)", "Clear cups", "Timers", "Thermometers (optional)", "Experiment recording sheets", "Chart paper for results"],
-      "whenThingsGoWrong": "If ice melts too quickly: Use larger cubes or colder room. If materials get messy: Use sealed containers. If timing challenging: Focus on final results rather than timed observations.",
+      "opening": {
+        "duration": 8,
+        "activity": "Warmth prediction circle (5 min): Show ice cube and various materials (cotton balls, fabric, paper). Ask students to predict which will keep ice cube coldest longest. Explain: this is like fur keeping animals warm.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Fur insulation experiment (25 min): Wrap identical ice cubes in different materials: bare (no fur), thin cloth (thin fur), thick cotton balls (thick fur). Place in cups and observe which melts slowest. Students make predictions, then check results every 5 minutes. Record observations with drawings and simple words. Alternative: Use thermometers in cups of warm water with different insulation to see which stays warmest. Create experiment recording sheet with predictions vs results.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Experiment conclusion sharing (10 min): Students share which insulation worked best and why. Connect to animals: 'Thick fur keeps animals warm like thick cotton balls kept our ice cold.' Practice scientific vocabulary: 'Notre expérience montre que...'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
       "realWorldConnection": "Students understand why animals grow thicker fur and why people wear coats - both work as insulation",
-      "visualSupports": "Experiment steps visual guide, prediction vs results chart, scientific vocabulary cards with pictures"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 11,
+      "lessonType": "core",
       "title": "Nourriture d'automne - récolter et stocker",
       "oneGoal": "Students will understand how animals collect and store food for winter when food becomes scarce",
-      "keyVocabulary": ["nourriture", "récolter", "garder"],
-      "decisionPoints": [
-        {
-          "question": "Which food storage examples are most visible to students?",
-          "guidance": "If squirrels active locally: Focus on nut collection. If not visible: Use clear video examples and hands-on storage activities."
-        },
-        {
-          "question": "Should we create our own food storage experiment or observe animal behavior?",
-          "guidance": "If hands-on preferred: Set up classroom storage activity. If observation skills focus: Watch animals collecting food."
-        },
-        {
-          "question": "Are students ready for discussions about food scarcity and abundance?",
-          "guidance": "If concepts developing: Focus on 'lots of food now, less food later'. If advanced: Discuss planning ahead concepts."
-        }
+      "duration": 45,
+      "keyVocabulary": [
+        "nourriture",
+        "récolter",
+        "garder"
       ],
-      "opening": "Food collection game (5 min): Scatter play food or pictures around room. Give students baskets and 2 minutes to collect as much as possible. Discuss: animals do this in autumn to prepare for winter.",
-      "mainActivity": "Food storage investigation (25 min): Watch videos of squirrels, chipmunks, and other animals collecting nuts and seeds. Set up classroom food storage activity: students sort play food into 'eat now' vs 'save for later' categories. Create storage containers with different foods. Discuss why animals store food (winter has less food available). Students draw animals collecting and storing food. Practice vocabulary: 'Les animaux récoltent la nourriture', 'Ils gardent la nourriture pour l'hiver'.",
-      "closing": "Food storage pantry tour (10 min): Create classroom 'animal pantry' with stored food pictures. Students take turns being different animals checking their food storage. Practice saying: 'J'ai assez de nourriture pour l'hiver.'",
-      "materials": ["Animal food collection videos", "Play food or food pictures", "Storage baskets", "Sorting mats", "Drawing materials", "Food storage display area"],
-      "whenThingsGoWrong": "If play food gets disorganized: Use pictures instead. If storage concepts abstract: Focus on 'saving food' idea only. If students get distracted by food items: Use timer and clear collection rules.",
+      "opening": {
+        "duration": 8,
+        "activity": "Food collection game (5 min): Scatter play food or pictures around room. Give students baskets and 2 minutes to collect as much as possible. Discuss: animals do this in autumn to prepare for winter.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Food storage investigation (25 min): Watch videos of squirrels, chipmunks, and other animals collecting nuts and seeds. Set up classroom food storage activity: students sort play food into 'eat now' vs 'save for later' categories. Create storage containers with different foods. Discuss why animals store food (winter has less food available). Students draw animals collecting and storing food. Practice vocabulary: 'Les animaux récoltent la nourriture', 'Ils gardent la nourriture pour l'hiver'.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Food storage pantry tour (10 min): Create classroom 'animal pantry' with stored food pictures. Students take turns being different animals checking their food storage. Practice saying: 'J'ai assez de nourriture pour l'hiver.'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
       "realWorldConnection": "Students observe squirrels burying nuts and understand why animals collect food when it's available",
-      "visualSupports": "Food scarcity comparison pictures (autumn abundance vs winter scarcity), animal food storage behavior charts, seasonal food availability timeline"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 12,
+      "lessonType": "core",
       "title": "Notre jardin d'automne - que se passe-t-il?",
       "oneGoal": "Students will observe how garden plants respond to autumn changes and what happens to their growth",
-      "keyVocabulary": ["jardin", "plantes", "pousser"],
-      "decisionPoints": [
-        {
-          "question": "What plants can students observe changing in our school area?",
-          "guidance": "If school garden available: Use direct observation. If no garden: Use potted plants or photos of seasonal garden changes."
-        },
-        {
-          "question": "Should we plant autumn vegetables or observe existing garden changes?",
-          "guidance": "If planting possible: Plant quick-growing autumn seeds. If observation focus: Document changes in existing plants."
-        },
-        {
-          "question": "Are students ready for plant growth comparisons over time?",
-          "guidance": "If comparison skills developing: Use obvious before/after examples. If advanced: Track multiple plants over time."
-        }
+      "duration": 45,
+      "keyVocabulary": [
+        "jardin",
+        "plantes",
+        "pousser"
       ],
-      "opening": "Plant life cycle review (5 min): Use actions to show plant growing from seed to full plant. Ask: 'What happens to plants in autumn?' Show wilted vs healthy plant examples.",
-      "mainActivity": "Garden change observation (25 min): Visit school garden area or examine potted plants showing autumn changes. Students observe and draw plants at different autumn stages: some still growing, some finished producing, some preparing for winter rest. Compare summer photos of garden to current appearance. Plant autumn seeds (lettuce, radish) in classroom containers to observe autumn growing conditions. Create garden observation journals documenting plant changes.",
-      "closing": "Plant needs discussion (10 min): Review what plants need (sun, water, warm weather). Discuss how autumn changes affect plant growth. Students predict what will happen to garden plants in winter.",
-      "materials": ["Potted plants at different autumn stages", "Summer garden photos", "Quick-growing autumn seeds", "Small planting containers", "Observation journals", "Plant care materials"],
-      "whenThingsGoWrong": "If plants not available: Use clear photos and videos. If planting too complex: Focus on observation only. If garden inaccessible: Bring garden examples into classroom.",
+      "opening": {
+        "duration": 8,
+        "activity": "Plant life cycle review (5 min): Use actions to show plant growing from seed to full plant. Ask: 'What happens to plants in autumn?' Show wilted vs healthy plant examples.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Garden change observation (25 min): Visit school garden area or examine potted plants showing autumn changes. Students observe and draw plants at different autumn stages: some still growing, some finished producing, some preparing for winter rest. Compare summer photos of garden to current appearance. Plant autumn seeds (lettuce, radish) in classroom containers to observe autumn growing conditions. Create garden observation journals documenting plant changes.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Plant needs discussion (10 min): Review what plants need (sun, water, warm weather). Discuss how autumn changes affect plant growth. Students predict what will happen to garden plants in winter.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
       "realWorldConnection": "Students understand why family gardens look different in autumn and what happens to plants in colder weather",
-      "visualSupports": "Plant life cycle posters, seasonal garden comparison photos, plant needs reminder charts"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 13,
+      "lessonType": "core",
       "title": "Expérience: les graines en automne",
       "oneGoal": "Students will conduct experiments to understand how plants create seeds in autumn for next year's growth",
-      "keyVocabulary": ["graines", "planter", "année"],
-      "decisionPoints": [
-        {
-          "question": "Which seeds are most appropriate for classroom planting experiments?",
-          "guidance": "If quick results wanted: Use fast-germinating seeds like beans. If season-appropriate: Use seeds that naturally plant in autumn."
-        },
-        {
-          "question": "Should we focus on seed collection or seed planting activities?",
-          "guidance": "If hands-on exploration preferred: Do both collecting and planting. If time limited: Focus on one activity thoroughly."
-        },
-        {
-          "question": "Are students ready for discussions about plant life cycles?",
-          "guidance": "If concepts developing: Focus on 'seeds make new plants'. If advanced: Discuss yearly plant cycles."
-        }
+      "duration": 45,
+      "keyVocabulary": [
+        "graines",
+        "planter",
+        "année"
       ],
-      "opening": "Seed hunt introduction (5 min): Show various seeds (apple, bean, sunflower). Ask students to find seeds inside fruits/vegetables. Explain: plants make seeds in autumn so new plants can grow next year.",
-      "mainActivity": "Seed experiment setup (25 min): Students dissect autumn fruits/vegetables to find seeds (apples, pumpkins, peppers). Examine seeds with magnifying glasses and sort by size, shape, color. Plant different types of seeds in labeled containers with varying conditions (light vs dark, water vs no water). Make predictions about which seeds will grow best. Create seed experiment charts to track growth over time. Students draw the seeds they planted and write/dictate predictions.",
-      "closing": "Seed cycle song (10 min): Sing about how plants make seeds in autumn, seeds wait in winter, then grow in spring. Use actions for each part of seed cycle. Set up observation schedule for planted seeds.",
-      "materials": ["Various autumn fruits/vegetables with seeds", "Magnifying glasses", "Planting containers", "Potting soil", "Seeds for planting", "Experiment tracking charts", "Labels for containers"],
-      "whenThingsGoWrong": "If seed dissection too complex: Use pre-prepared seed samples. If planting gets messy: Use newspaper and limit soil amounts. If growth tracking difficult: Focus on planting experience only.",
+      "opening": {
+        "duration": 8,
+        "activity": "Seed hunt introduction (5 min): Show various seeds (apple, bean, sunflower). Ask students to find seeds inside fruits/vegetables. Explain: plants make seeds in autumn so new plants can grow next year.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Seed experiment setup (25 min): Students dissect autumn fruits/vegetables to find seeds (apples, pumpkins, peppers). Examine seeds with magnifying glasses and sort by size, shape, color. Plant different types of seeds in labeled containers with varying conditions (light vs dark, water vs no water). Make predictions about which seeds will grow best. Create seed experiment charts to track growth over time. Students draw the seeds they planted and write/dictate predictions.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Seed cycle song (10 min): Sing about how plants make seeds in autumn, seeds wait in winter, then grow in spring. Use actions for each part of seed cycle. Set up observation schedule for planted seeds.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
       "realWorldConnection": "Students understand where seeds come from and how plants prepare for growing new plants next year",
-      "visualSupports": "Seed-to-plant cycle diagram, seed comparison chart, experiment setup visual guide"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 14,
+      "lessonType": "core",
       "title": "Notre livre scientifique d'automne",
       "oneGoal": "Students will create a class science book documenting all their autumn observations and discoveries",
-      "keyVocabulary": ["livre", "documenter", "découvertes"],
-      "decisionPoints": [
-        {
-          "question": "What format works best for student science documentation?",
-          "guidance": "If writing skills emerging: Use mostly drawings with simple labels. If writing developing: Include more detailed descriptions."
-        },
-        {
-          "question": "Should we include drawings, photos, or written observations?",
-          "guidance": "If comprehensive documentation wanted: Include all types. If time limited: Focus on drawings and simple writing."
-        },
-        {
-          "question": "Are students ready for collaborative book creation activities?",
-          "guidance": "If collaboration skills developing: Assign specific pages to pairs. If working well together: Allow choice of partnerships."
-        }
+      "duration": 45,
+      "keyVocabulary": [
+        "livre",
+        "documenter",
+        "découvertes"
       ],
-      "opening": "Scientist author circle (5 min): Review all the autumn science discoveries made in previous lessons. Show real science books and explain: scientists write books to share their discoveries with others.",
-      "mainActivity": "Science book creation (25 min): Students work in pairs to create pages for class autumn science book. Each page covers one lesson topic (leaf changes, animal preparation, temperature, etc.). Include drawings, simple writing, photos from experiments, and key vocabulary. Students choose their best observations and discoveries to include. Teacher helps with writing and organization. Create table of contents and book cover with class input.",
-      "closing": "Book preview sharing (10 min): Each pair presents their favorite page from the science book. Practice using scientific language: 'Nous avons découvert que...', 'Notre expérience a montré...'. Plan book celebration for next lesson.",
-      "materials": ["Large paper or book-making materials", "Drawing and writing materials", "Photos from previous lessons", "Vocabulary cards", "Binding materials", "Science book examples"],
-      "whenThingsGoWrong": "If book creation overwhelming: Make individual pages instead of collaborative book. If writing frustrating: Focus on pictures with teacher-written captions. If time runs short: Continue in next lesson.",
+      "opening": {
+        "duration": 8,
+        "activity": "Scientist author circle (5 min): Review all the autumn science discoveries made in previous lessons. Show real science books and explain: scientists write books to share their discoveries with others.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Science book creation (25 min): Students work in pairs to create pages for class autumn science book. Each page covers one lesson topic (leaf changes, animal preparation, temperature, etc.). Include drawings, simple writing, photos from experiments, and key vocabulary. Students choose their best observations and discoveries to include. Teacher helps with writing and organization. Create table of contents and book cover with class input.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Book preview sharing (10 min): Each pair presents their favorite page from the science book. Practice using scientific language: 'Nous avons découvert que...', 'Notre expérience a montré...'. Plan book celebration for next lesson.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
       "realWorldConnection": "Students learn how scientists document and share their discoveries just like authors write books",
-      "visualSupports": "Science book examples, page layout templates, vocabulary reference charts from previous lessons"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 15,
+      "lessonType": "extension",
       "title": "Prédictions: que va-t-il se passer en hiver?",
       "oneGoal": "Students will use their autumn observations to make scientific predictions about winter changes (extension)",
-      "keyVocabulary": ["prédictions", "penser", "hiver"],
-      "decisionPoints": [
-        {
-          "question": "Which predictions can students reasonably make based on autumn observations?",
-          "guidance": "If logical thinking developing: Focus on obvious progressions (colder → coldest). If advanced: Encourage detailed predictions."
-        },
-        {
-          "question": "Should we focus on weather, animals, or plant predictions?",
-          "guidance": "If one area interests students most: Deep dive into that topic. If broad interest: Touch on all areas briefly."
-        },
-        {
-          "question": "Are students ready for hypothesis-making based on evidence?",
-          "guidance": "If evidence-based thinking emerging: Use 'because' statements. If developing: Focus on reasonable guesses."
-        }
+      "duration": 45,
+      "keyVocabulary": [
+        "prédictions",
+        "penser",
+        "hiver"
       ],
-      "opening": "Crystal ball predictions (5 min): Use pretend crystal ball (clear bowl) to make silly predictions, then explain scientists make predictions based on what they observe, not magic.",
-      "mainActivity": "Winter prediction workshop (25 min): Review autumn observations from science book. Students make predictions about winter: What will happen to leaves? How will animals behave? What will the weather be like? How will plants change? Create prediction charts with drawings and simple explanations. Students share reasoning: 'Je pense que... parce que...' Compare different students' predictions and discuss possibilities.",
-      "closing": "Prediction time capsule (10 min): Students write/draw their winter predictions and place in class 'prediction box' to open in winter to check accuracy. Practice scientific prediction language.",
-      "materials": ["Class science book from previous lesson", "Prediction chart templates", "Drawing materials", "Prediction time capsule box", "Autumn observation summary charts"],
-      "whenThingsGoWrong": "If predictions too wild: Guide back to autumn observations. If students reluctant to predict: Model prediction-making process. If concepts abstract: Focus on simple temperature and weather predictions only.",
+      "opening": {
+        "duration": 8,
+        "activity": "Crystal ball predictions (5 min): Use pretend crystal ball (clear bowl) to make silly predictions, then explain scientists make predictions based on what they observe, not magic.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Winter prediction workshop (25 min): Review autumn observations from science book. Students make predictions about winter: What will happen to leaves? How will animals behave? What will the weather be like? How will plants change? Create prediction charts with drawings and simple explanations. Students share reasoning: 'Je pense que... parce que...' Compare different students' predictions and discuss possibilities.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Prediction time capsule (10 min): Students write/draw their winter predictions and place in class 'prediction box' to open in winter to check accuracy. Practice scientific prediction language.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
       "realWorldConnection": "Students use their autumn observations to predict winter changes they'll see at home and school",
-      "visualSupports": "Autumn-to-winter progression charts, prediction sentence starters, seasonal change timeline"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 16,
+      "lessonType": "extension",
       "title": "Automne autour du monde",
       "oneGoal": "Students will explore how autumn looks different in various climates and regions (extension)",
-      "keyVocabulary": ["monde", "différent", "climat"],
-      "decisionPoints": [
-        {
-          "question": "Which global autumn examples are most accessible to Grade 1 students?",
-          "guidance": "If world geography emerging: Use obvious contrasts (Canada vs tropical). If geography skills developing: Include more varied examples."
-        },
-        {
-          "question": "Should we use photos, videos, or maps to explore different regions?",
-          "guidance": "If visual learners dominate: Use lots of photos and videos. If geography interest high: Include simple maps."
-        },
-        {
-          "question": "Are students ready for climate comparison activities?",
-          "guidance": "If comparison skills strong: Create detailed comparison charts. If developing: Focus on 'same/different' observations."
-        }
+      "duration": 45,
+      "keyVocabulary": [
+        "monde",
+        "différent",
+        "climat"
       ],
-      "opening": "World autumn tour (5 min): Show globe and explain autumn happens in different ways around the world. Point to local area and other regions while showing autumn photos from each.",
-      "mainActivity": "Global autumn exploration (25 min): Compare autumn in different places using photos/videos: deciduous forests (colorful leaves), evergreen forests (stays green), tropical areas (less obvious changes), desert regions (minimal changes). Students sort pictures into 'autumn like ours' vs 'different autumn'. Create world autumn comparison chart. Discuss why autumn looks different in different places (different trees, different weather).",
-      "closing": "World autumn celebration (10 min): Students choose their favorite type of autumn from around the world and explain why. Create classroom display showing different global autumn experiences.",
-      "materials": ["Globe or world map", "Photos/videos of autumn in different regions", "Sorting mats", "World autumn comparison chart", "Display materials"],
-      "whenThingsGoWrong": "If world concepts too abstract: Focus on familiar vs unfamiliar comparisons. If too many examples: Choose 2-3 clear contrasts. If geography overwhelming: Focus on picture observations only.",
+      "opening": {
+        "duration": 8,
+        "activity": "World autumn tour (5 min): Show globe and explain autumn happens in different ways around the world. Point to local area and other regions while showing autumn photos from each.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Global autumn exploration (25 min): Compare autumn in different places using photos/videos: deciduous forests (colorful leaves), evergreen forests (stays green), tropical areas (less obvious changes), desert regions (minimal changes). Students sort pictures into 'autumn like ours' vs 'different autumn'. Create world autumn comparison chart. Discuss why autumn looks different in different places (different trees, different weather).",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "World autumn celebration (10 min): Students choose their favorite type of autumn from around the world and explain why. Create classroom display showing different global autumn experiences.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
       "realWorldConnection": "Students understand that autumn happens differently around the world but people everywhere notice seasonal changes",
-      "visualSupports": "World map with autumn photos, climate comparison chart, simple weather symbols for different regions"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 17,
+      "lessonType": "extension",
       "title": "Expérience: créer de l'automne",
       "oneGoal": "Students will design experiments to recreate autumn conditions and observe their effects (extension)",
-      "keyVocabulary": ["créer", "conditions", "effet"],
-      "decisionPoints": [
-        {
-          "question": "What autumn conditions can students safely recreate in classroom experiments?",
-          "guidance": "If equipment available: Try temperature, light, or water changes. If limited materials: Focus on one variable like light or water."
-        },
-        {
-          "question": "Should we focus on temperature, light, or water changes?",
-          "guidance": "If one variable most obvious: Deep dive into that factor. If interested in multiple: Try simple experiments with each."
-        },
-        {
-          "question": "Are students ready for experiment design rather than just following procedures?",
-          "guidance": "If design skills emerging: Offer choices within structured experiment. If advanced: Let students suggest experiment modifications."
-        }
+      "duration": 45,
+      "keyVocabulary": [
+        "créer",
+        "conditions",
+        "effet"
       ],
-      "opening": "Experiment designer introduction (5 min): Introduce students as 'autumn scientists' who will create autumn conditions in the classroom. Review what makes autumn different: less light, cooler temperature, less water.",
-      "mainActivity": "Create autumn experiment (25 min): Set up experiments to recreate autumn conditions: Place plants in different light conditions (full light vs reduced light), different temperatures (warm vs cool areas), different watering schedules (normal vs reduced water). Students predict what will happen to plants under different 'autumn' conditions. Create experiment tracking sheets and begin observations. Students design their own mini-experiments with teacher guidance.",
-      "closing": "Experiment prediction circle (10 min): Students share their experiment setups and predictions. Begin observation schedule for tracking changes over time. Practice scientific language: 'Si nous changeons..., alors...'",
-      "materials": ["Small plants for experiments", "Light-blocking materials", "Different temperature areas", "Watering supplies", "Experiment tracking sheets", "Prediction recording materials"],
-      "whenThingsGoWrong": "If experiment setup too complex: Simplify to one variable change. If plants not available: Use other materials that respond to environmental changes. If tracking overwhelming: Focus on initial setup and one follow-up observation.",
+      "opening": {
+        "duration": 8,
+        "activity": "Experiment designer introduction (5 min): Introduce students as 'autumn scientists' who will create autumn conditions in the classroom. Review what makes autumn different: less light, cooler temperature, less water.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Create autumn experiment (25 min): Set up experiments to recreate autumn conditions: Place plants in different light conditions (full light vs reduced light), different temperatures (warm vs cool areas), different watering schedules (normal vs reduced water). Students predict what will happen to plants under different 'autumn' conditions. Create experiment tracking sheets and begin observations. Students design their own mini-experiments with teacher guidance.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Experiment prediction circle (10 min): Students share their experiment setups and predictions. Begin observation schedule for tracking changes over time. Practice scientific language: 'Si nous changeons..., alors...'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
       "realWorldConnection": "Students understand how environmental changes cause the autumn effects they observe in nature",
-      "visualSupports": "Experiment setup diagram, variable change charts, prediction vs observation recording sheets"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 18,
+      "lessonType": "extension",
       "title": "L'automne et les humains",
       "oneGoal": "Students will investigate how humans adapt their behaviors and activities for autumn changes (extension)",
-      "keyVocabulary": ["humains", "adapter", "activités"],
-      "decisionPoints": [
-        {
-          "question": "Which human autumn adaptations are most visible to students?",
-          "guidance": "If obvious changes noted: Focus on clothing, food, activities. If less obvious: Use photo comparisons and family examples."
-        },
-        {
-          "question": "Should we focus on clothing, food, or activity changes?",
-          "guidance": "If one area generates most interest: Deep dive into that topic. If broad interest: Cover all areas briefly."
-        },
-        {
-          "question": "Are students ready for comparing human and animal adaptations?",
-          "guidance": "If comparison skills strong: Create detailed comparison charts. If developing: Focus on similarities and differences."
-        }
+      "duration": 45,
+      "keyVocabulary": [
+        "humains",
+        "adapter",
+        "activités"
       ],
-      "opening": "Human adaptation demonstration (5 min): Students show how they dress differently for autumn weather compared to summer. Discuss other changes families make for autumn (different foods, activities, schedules).",
-      "mainActivity": "Human autumn adaptation investigation (25 min): Create comparison chart showing how humans and animals both adapt to autumn: clothing vs fur, heated homes vs dens, storing food vs gathering food, different activities vs migration/hibernation. Students interview each other about family autumn changes. Create human adaptation timeline showing changes from summer to autumn to winter preparations.",
-      "closing": "Adaptation comparison celebration (10 min): Students present one way their family adapts to autumn and compare it to animal adaptations studied earlier. Create class display showing human and animal autumn adaptations.",
-      "materials": ["Human/animal adaptation comparison charts", "Interview question sheets", "Timeline materials", "Family autumn photos (if available)", "Display materials"],
-      "whenThingsGoWrong": "If family information sensitive: Focus on general human adaptations. If comparisons too complex: Focus on one or two clear examples. If interviews difficult: Use observation and discussion instead.",
+      "opening": {
+        "duration": 8,
+        "activity": "Human adaptation demonstration (5 min): Students show how they dress differently for autumn weather compared to summer. Discuss other changes families make for autumn (different foods, activities, schedules).",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Human autumn adaptation investigation (25 min): Create comparison chart showing how humans and animals both adapt to autumn: clothing vs fur, heated homes vs dens, storing food vs gathering food, different activities vs migration/hibernation. Students interview each other about family autumn changes. Create human adaptation timeline showing changes from summer to autumn to winter preparations.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Adaptation comparison celebration (10 min): Students present one way their family adapts to autumn and compare it to animal adaptations studied earlier. Create class display showing human and animal autumn adaptations.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
       "realWorldConnection": "Students recognize how their families change routines, clothing, and activities for autumn weather just like animals adapt",
-      "visualSupports": "Human vs animal adaptation comparison chart, seasonal activity pictures, adaptation timeline template"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 19,
+      "lessonType": "extension",
       "title": "Présentation scientifique",
       "oneGoal": "Students will present their autumn science discoveries to others using scientific language and evidence (extension)",
-      "keyVocabulary": ["présenter", "preuves", "scientifique"],
-      "decisionPoints": [
-        {
-          "question": "What format best allows students to share their scientific learning?",
-          "guidance": "If presentation skills emerging: Use show-and-tell format with props. If confident speakers: Try mini-science conferences."
-        },
-        {
-          "question": "Should presentations focus on individual discoveries or group findings?",
-          "guidance": "If collaboration preferred: Present class discoveries together. If individual recognition important: Allow personal discovery sharing."
-        },
-        {
-          "question": "Are students ready for answering questions about their observations?",
-          "guidance": "If question-answering developing: Prepare students with practice questions. If confident: Encourage spontaneous questions from audience."
-        }
+      "duration": 45,
+      "keyVocabulary": [
+        "présenter",
+        "preuves",
+        "scientifique"
       ],
-      "opening": "Scientist conference introduction (5 min): Explain that scientists share their discoveries at conferences. Students will be scientists presenting their autumn research. Practice using scientific language.",
-      "mainActivity": "Science presentation preparation and delivery (25 min): Students prepare short presentations about their favorite autumn discovery using class science book, experiment results, and observations. Include props, drawings, or demonstrations. Practice using evidence to support statements: 'We observed...', 'Our experiment showed...', 'The evidence proves...'. Students present to small groups or whole class.",
-      "closing": "Science celebration (10 min): Celebrate all scientific discoveries made during the unit. Students vote on most surprising discovery, best experiment, and most interesting observation. Award 'scientist certificates'.",
-      "materials": ["Class science book", "Experiment results and materials", "Presentation props", "Scientist certificates", "Evidence statement templates"],
-      "whenThingsGoWrong": "If presentations cause anxiety: Use partner presentations or smaller groups. If time runs long: Focus on 2-3 key discoveries per student. If scientific language difficult: Use sentence starters and vocabulary supports.",
+      "opening": {
+        "duration": 8,
+        "activity": "Scientist conference introduction (5 min): Explain that scientists share their discoveries at conferences. Students will be scientists presenting their autumn research. Practice using scientific language.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Science presentation preparation and delivery (25 min): Students prepare short presentations about their favorite autumn discovery using class science book, experiment results, and observations. Include props, drawings, or demonstrations. Practice using evidence to support statements: 'We observed...', 'Our experiment showed...', 'The evidence proves...'. Students present to small groups or whole class.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Science celebration (10 min): Celebrate all scientific discoveries made during the unit. Students vote on most surprising discovery, best experiment, and most interesting observation. Award 'scientist certificates'.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
       "realWorldConnection": "Students learn how scientists communicate their discoveries to help others understand the natural world",
-      "visualSupports": "Scientific language sentence starters, presentation format examples, evidence-based statement templates"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 20,
+      "lessonType": "extension",
       "title": "Fête des petits scientifiques d'automne",
       "oneGoal": "Students will celebrate their autumn science journey with families by sharing experiments and discoveries (extension)",
-      "keyVocabulary": ["fête", "partager", "expériences"],
-      "decisionPoints": [
-        {
-          "question": "How can the celebration showcase each student's scientific growth?",
-          "guidance": "If individual recognition important: Create personal science portfolios. If group celebration preferred: Focus on class achievements."
-        },
-        {
-          "question": "Should we include live experiments or displays of completed work?",
-          "guidance": "If hands-on engagement desired: Set up experiment stations. If display focus preferred: Create science museum-style exhibits."
-        },
-        {
-          "question": "What activities best demonstrate student learning to families?",
-          "guidance": "If interactive preferred: Let students teach families simple experiments. If showcase desired: Display learning journey with explanations."
-        }
+      "duration": 45,
+      "keyVocabulary": [
+        "fête",
+        "partager",
+        "expériences"
       ],
-      "opening": "Science celebration setup (5 min): Students put on scientist hats and prepare to share their autumn learning journey with families. Review key discoveries and prepare materials for sharing.",
-      "mainActivity": "Family science celebration (25 min): Students guide families through science stations: leaf color experiment, temperature measurement, animal adaptation demonstrations, plant growth observations, autumn prediction sharing. Students explain their discoveries using scientific vocabulary and evidence. Families participate in simple experiments and ask questions about observations.",
-      "closing": "Scientist achievement ceremony (10 min): Celebrate student growth as autumn scientists. Present certificates recognizing specific achievements (best observer, creative experimenter, thoughtful questioner). Students share one thing they learned about autumn changes.",
-      "materials": ["All experiment materials from unit", "Science displays and documentation", "Scientist certificates", "Family activity guides", "Celebration decorations"],
-      "whenThingsGoWrong": "If family participation varies: Have backup activities for students without family present. If overwhelming: Focus on 2-3 key activities. If timing challenging: Allow flexible participation in different stations.",
+      "opening": {
+        "duration": 8,
+        "activity": "Science celebration setup (5 min): Students put on scientist hats and prepare to share their autumn learning journey with families. Review key discoveries and prepare materials for sharing.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Family science celebration (25 min): Students guide families through science stations: leaf color experiment, temperature measurement, animal adaptation demonstrations, plant growth observations, autumn prediction sharing. Students explain their discoveries using scientific vocabulary and evidence. Families participate in simple experiments and ask questions about observations.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Scientist achievement ceremony (10 min): Celebrate student growth as autumn scientists. Present certificates recognizing specific achievements (best observer, creative experimenter, thoughtful questioner). Students share one thing they learned about autumn changes.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
       "realWorldConnection": "Students proudly share their scientific learning with families, building community appreciation for science education and environmental awareness",
-      "visualSupports": "Learning journey display showing progression through unit, scientific vocabulary posters, experiment result charts"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     }
-  ]
+  ],
+  "assessmentTools": {
+    "observationChecklist": [],
+    "rubrics": [],
+    "selfAssessment": [],
+    "portfolioGuidelines": ""
+  },
+  "familyConnections": {
+    "unitLetter": "",
+    "homeActivities": [],
+    "vocabularyList": []
+  },
+  "resourceAlternatives": {
+    "materials": {},
+    "digitalResources": []
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
+  }
 }

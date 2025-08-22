@@ -1,1004 +1,1349 @@
-[
-  {
-    "lessonNumber": 1,
-    "title": "Bonjour les couleurs!",
-    "oneGoal": "Students recognize and name primary colors in their environment",
-    "keyVocabulary": ["rouge", "bleu", "jaune"],
-    "materials": ["Primary color cards", "Colorful classroom objects", "Color gesture cards"],
-    "
-    
-    "mindsOn": {
-      "duration": "~8 minutes",
-      "connectionToPrevious": "First lesson - introduces our magical color journey",
-      "activity": "Color Detective Circle: Hold up red, blue, and yellow cards. Use TPR - point to red (strong gesture up), blue (calm gesture across), yellow (happy gesture around face). Students copy gestures and attempt to say color names. Walk around classroom saying 'Je vois rouge!' and point to red objects. Students join in hunting.",
-      "visualSupports": "Large primary color cards, color gesture reference poster",
-      "backupPlan": "If too excited: Just hold colors and whisper 'rouge, bleu, jaune' with gestures. If too quiet: Make it a whisper game with color cards."
-    },
-    
-    "action": {
-      "duration": "~27 minutes",
-      "coreActivity": "Color Hunt Adventure: Students move around classroom in pairs with color cards, finding objects that match. Teacher models: 'Rouge comme...' (red like...) pointing to objects. Students practice phrase with their discoveries. Create class color collection on floor by color groups.",
-      "decisionPoints": [
-        {
-          "question": "How comfortable are students with French color words?",
-          "ifBeginner": "Focus only on pointing and gesturing with single words. Allow English responses.",
-          "ifAdvanced": "Encourage 'Rouge comme une pomme' or simple comparisons."
-        },
-        {
-          "question": "Do we need more visual cues or gestures?",
-          "ifYes": "Use exaggerated gestures, facial expressions showing color emotions (red=excited, blue=calm, yellow=happy).",
-          "ifNo": "Students can lead gestures and teach others their color movements."
-        },
-        {
-          "question": "Should we extend or shorten color hunt activity?",
-          "ifExtend": "Add texture hunt - find rough rouge items, smooth bleu items.",
-          "ifShorten": "Focus on one color at a time with whole group instead of pairs."
-        }
+{
+  "unitTitle": "",
+  "subject": "Arts visuels",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "lessonType": "core",
+      "title": "Bonjour les couleurs!",
+      "oneGoal": "Students recognize and name primary colors in their environment",
+      "duration": 45,
+      "keyVocabulary": [
+        "rouge",
+        "bleu",
+        "jaune"
       ],
-      "visualSupports": "Color cards for each pair, gesture reference chart, real objects in each color",
-      "movementBreaks": "Color statue game at 10 and 20 minutes - call color, students find something that color and freeze touching it"
+      "opening": {
+        "duration": "~8 minutes",
+        "activity": "Color Detective Circle: Hold up red, blue, and yellow cards. Use TPR - point to red (strong gesture up), blue (calm gesture across), yellow (happy gesture around face). Students copy gestures and attempt to say color names. Walk around classroom saying 'Je vois rouge!' and point to red objects. Students join in hunting.",
+        "materials": [],
+        "visualSupports": "Large primary color cards, color gesture reference poster",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 minutes",
+        "activity": "Color Hunt Adventure: Students move around classroom in pairs with color cards, finding objects that match. Teacher models: 'Rouge comme...' (red like...) pointing to objects. Students practice phrase with their discoveries. Create class color collection on floor by color groups.",
+        "materials": [],
+        "visualSupports": "Color cards for each pair, gesture reference chart, real objects in each color",
+        "decisionPoints": [
+          {
+            "question": "How comfortable are students with French color words?",
+            "ifBeginner": "Focus only on pointing and gesturing with single words. Allow English responses.",
+            "ifAdvanced": "Encourage 'Rouge comme une pomme' or simple comparisons."
+          },
+          {
+            "question": "Do we need more visual cues or gestures?",
+            "ifYes": "Use exaggerated gestures, facial expressions showing color emotions (red=excited, blue=calm, yellow=happy).",
+            "ifNo": "Students can lead gestures and teach others their color movements."
+          },
+          {
+            "question": "Should we extend or shorten color hunt activity?",
+            "ifExtend": "Add texture hunt - find rough rouge items, smooth bleu items.",
+            "ifShorten": "Focus on one color at a time with whole group instead of pairs."
+          }
+        ],
+        "movementBreaks": "Color statue game at 10 and 20 minutes - call color, students find something that color and freeze touching it"
+      },
+      "closing": {
+        "duration": "~10 minutes",
+        "activity": "Color Circle Share: Sit in circle with collected objects in center. Each student picks one object and attempts to name its color using gestures. Simple celebration clap for each attempt. Close with: 'Demain, nous explorons les sentiments des couleurs!' (Tomorrow, we explore color feelings!)",
+        "materials": [],
+        "visualSupports": "All collected objects displayed by color groups",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If activity fails completely: Simple color Simon Says using just gestures and pointing to color cards. If too chaotic: Calm color breathing - breathe in blue (calm gesture), breathe out yellow (happy gesture)."
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
-    
-    "consolidation": {
-      "duration": "~10 minutes", 
-      "activity": "Color Circle Share: Sit in circle with collected objects in center. Each student picks one object and attempts to name its color using gestures. Simple celebration clap for each attempt. Close with: 'Demain, nous explorons les sentiments des couleurs!' (Tomorrow, we explore color feelings!)",
-      "visualSupports": "All collected objects displayed by color groups",
-      "realWorldConnection": "Colors are everywhere - in our clothes, toys, nature, and food we see every day"
+    {
+      "lessonNumber": 2,
+      "lessonType": "core",
+      "title": "Les couleurs ont des sentiments",
+      "oneGoal": "Students connect primary colors to basic emotions and feelings",
+      "duration": 45,
+      "keyVocabulary": [
+        "content",
+        "triste",
+        "calme"
+      ],
+      "opening": {
+        "duration": "~8 minutes",
+        "activity": "Color Feelings Circle: Hold up red card with excited face expression and gesture. Say 'Rouge me rend...' (Red makes me...) and show excitement. Repeat with blue (calm face/gesture) and yellow (happy face/gesture). Students mirror facial expressions and gestures.",
+        "materials": [],
+        "visualSupports": "Color cards paired with emotion face cards, teacher modeling clear facial expressions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 minutes",
+        "activity": "Emotion Color Theater: Students explore how each color makes them feel. Red station - energetic movements and 'content!' expressions. Blue station - slow, calm movements and peaceful faces. Yellow station - happy dancing and smiles. Rotate every 8 minutes. Teacher models appropriate movements and expressions at each station.",
+        "materials": [],
+        "visualSupports": "Large emotion face posters at each station, mirrors for self-expression, music to match color moods",
+        "decisionPoints": [
+          {
+            "question": "Are students making personal connections to colors and feelings?",
+            "ifYes": "Encourage sharing: 'Rouge comme moi quand je...' (Red like me when I...)",
+            "ifNo": "Provide concrete examples: Show red fire truck (exciting!), blue sky (peaceful), yellow sun (happy)."
+          },
+          {
+            "question": "Do we need to model more emotional expressions?",
+            "ifYes": "Teacher demonstrates exaggerated emotions, students copy. Use mirrors for self-awareness.",
+            "ifNo": "Students can lead emotional expressions and teach others their interpretations."
+          },
+          {
+            "question": "Should we use more concrete examples from their experiences?",
+            "ifYes": "Ask about times they felt excited (red), calm (blue), happy (yellow). Connect to playground, home, school.",
+            "ifNo": "Continue with abstract color-emotion exploration and creative expression."
+          }
+        ],
+        "movementBreaks": "Built into activity - energetic red movements, calming blue stretches, happy yellow dancing"
+      },
+      "closing": {
+        "duration": "~10 minutes",
+        "activity": "My Color Feeling: Each student chooses their favorite color feeling from today and shows it with face and gesture. Create class 'emotion color chart' with student demonstrations. Preview tomorrow: 'Demain, rouge nous montre sa magie!' (Tomorrow, red shows us its magic!)",
+        "materials": [],
+        "visualSupports": "Simple chart showing color + student emotion demonstrations",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If too emotional/overwhelming: Simple color breathing with calm music. If not engaging: Color freeze dance - move to music, freeze in color emotion when music stops."
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
-    
-    "emergencyBackup": "If activity fails completely: Simple color Simon Says using just gestures and pointing to color cards. If too chaotic: Calm color breathing - breathe in blue (calm gesture), breathe out yellow (happy gesture).",
-    "assessmentNotes": "Notice which students can match colors to objects, attempt French words, and use gestures appropriately."
+    {
+      "lessonNumber": 3,
+      "lessonType": "core",
+      "title": "Rouge comme...",
+      "oneGoal": "Students explore red in nature and connect it to energy and warmth",
+      "duration": 45,
+      "keyVocabulary": [
+        "chaud",
+        "énergie",
+        "feu"
+      ],
+      "opening": {
+        "duration": "~8 minutes",
+        "activity": "Red Energy Wake-Up: Students hold red scarves or fabric. Practice 'rouge comme...' structure with energetic gestures. Teacher models: 'Rouge comme le feu!' with flame-like hand movements. Students repeat and add their own movements.",
+        "materials": [],
+        "visualSupports": "Red scarves/fabric for movement, pictures of fire and energetic red things",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 minutes",
+        "activity": "Red Nature Detective: Explore red items from nature (leaves, apples, flowers). Touch and describe temperature - 'chaud' or warm feelings. Create red energy movements for each item - strong like red rock, flowing like red leaf, bright like red flower. Practice 'Rouge comme...' with each discovery. End with red art creation using natural items as stamps.",
+        "materials": [],
+        "visualSupports": "Real red natural objects, pictures of red in nature, temperature comparison items (warm/cool)",
+        "decisionPoints": [
+          {
+            "question": "Are students finding red examples in their surroundings?",
+            "ifYes": "Extend exploration to less obvious reds - pink as light red, burgundy as dark red.",
+            "ifNo": "Provide clear red examples, focus on obvious items like apples, fire truck pictures, red blocks."
+          },
+          {
+            "question": "Do we need more scaffolding for descriptive language?",
+            "ifYes": "Use sentence frames: 'Rouge comme ___' with picture supports. Accept single words.",
+            "ifNo": "Encourage elaboration: 'Rouge comme le feu chaud' or 'Rouge comme une pomme délicieuse.'"
+          },
+          {
+            "question": "Should we incorporate movement to show energy?",
+            "ifYes": "Add red energy dance - strong movements, jumping, clapping. Red like fire crackling.",
+            "ifNo": "Focus on quiet red exploration - gentle touching and soft descriptive language."
+          }
+        ],
+        "movementBreaks": "Red energy bursts at 10 and 20 minutes - students show red energy through movement"
+      },
+      "closing": {
+        "duration": "~10 minutes",
+        "activity": "Red Gallery Walk: Display all red creations and natural items. Students walk quietly and whisper 'Rouge comme...' for each item they see. Choose one favorite red thing to share with gesture. Preview: 'Demain, bleu nous donne la paix!' (Tomorrow, blue gives us peace!)",
+        "materials": [],
+        "visualSupports": "Gallery display of red items and artwork",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If overwhelmed by choices: Focus only on red apples and red blocks for comparison. If too chaotic: Simple red sorting activity - put all red things in one basket."
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 4,
+      "lessonType": "core",
+      "title": "Bleu comme le ciel",
+      "oneGoal": "Students discover blue in nature and connect it to peace and coolness",
+      "duration": 45,
+      "keyVocabulary": [
+        "froid",
+        "paix",
+        "ciel"
+      ],
+      "opening": {
+        "duration": "~8 minutes",
+        "activity": "Blue Sky Breathing: Students lie on floor looking up, imagining blue sky. Slow, calm breathing with blue scarves. Teacher models peaceful blue gestures - smooth, flowing movements. Soft voice: 'Bleu comme le ciel calme...'",
+        "materials": [],
+        "visualSupports": "Blue scarves for movement, large sky picture above, calming music",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 minutes",
+        "activity": "Cool Blue Exploration: Handle cool blue items (water in blue container, blue stones, blue ice packs). Compare to yesterday's warm red items. Practice calm blue movements - flowing like water, gentle like sky. Create blue artwork with cool blue materials. Express how blue makes body feel peaceful.",
+        "materials": [],
+        "visualSupports": "Cool blue objects, sky/water photographs, temperature comparison materials",
+        "decisionPoints": [
+          {
+            "question": "Are students contrasting blue feelings with red from last lesson?",
+            "ifYes": "Encourage direct comparisons: 'Rouge chaud, bleu froid' with contrasting gestures.",
+            "ifNo": "Provide explicit comparison examples - touch warm red item, then cool blue item."
+          },
+          {
+            "question": "Do we need to go outside to observe blue in nature?",
+            "ifYes": "Quick outdoor observation of sky, shadows, any blue flowers or objects visible.",
+            "ifNo": "Use large nature photographs and bring blue natural items inside for exploration."
+          },
+          {
+            "question": "Should we incorporate calming movements or breathing?",
+            "ifYes": "Add blue meditation - slow movements like calm water, peaceful breathing exercises.",
+            "ifNo": "Focus on tactile blue exploration and visual identification activities."
+          }
+        ],
+        "movementBreaks": "Calm blue movements at 10 and 20 minutes - flowing like gentle water, peaceful like sky"
+      },
+      "closing": {
+        "duration": "~10 minutes",
+        "activity": "Peaceful Blue Sharing: Students sit in calm circle with blue items. Whisper sharing - each student holds blue object and whispers how it feels. End with group blue breathing. Preview: 'Demain, jaune nous apporte la joie!' (Tomorrow, yellow brings us joy!)",
+        "materials": [],
+        "visualSupports": "All blue items in center of circle, calm lighting if possible",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If too calm/sleepy: Add gentle blue movements like calm ocean waves. If not engaging with peaceful theme: Focus on blue identification game with more energy."
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 5,
+      "lessonType": "core",
+      "title": "Jaune comme le soleil",
+      "oneGoal": "Students connect yellow to happiness and light",
+      "duration": 45,
+      "keyVocabulary": [
+        "heureux",
+        "lumière",
+        "soleil"
+      ],
+      "opening": {
+        "duration": "~8 minutes",
+        "activity": "Sunshine Wake-Up: Turn on bright lamp/flashlight for 'soleil.' Students stretch like flowers growing toward light. Yellow scarves wave like sunshine rays. Practice happy 'Bonjour soleil!' with big smiles and reaching gestures.",
+        "materials": [],
+        "visualSupports": "Bright light source, yellow scarves, large sunflower picture",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 minutes",
+        "activity": "Happy Yellow Hunt: Find all yellow items and create 'sunshine collection.' Practice happy expressions and movements with each yellow discovery. Compare yellow warmth to red warmth - different feelings? Create yellow art with happy themes. Dance to cheerful music with yellow items.",
+        "materials": [],
+        "visualSupports": "Collection of yellow objects, happiness expression cards, bright lighting",
+        "decisionPoints": [
+          {
+            "question": "Are students showing joy when working with yellow?",
+            "ifYes": "Channel joy into creative expression - yellow happiness paintings, joyful movements.",
+            "ifNo": "Model extreme happiness - big smiles, laughter, excited gestures with yellow items."
+          },
+          {
+            "question": "Do we need more examples of yellow bringing happiness?",
+            "ifYes": "Share yellow happiness stories - sunshine days, yellow flowers, yellow birthday balloons.",
+            "ifNo": "Let students lead with their own yellow happiness connections and experiences."
+          },
+          {
+            "question": "Should we sing or move to express yellow's energy?",
+            "ifYes": "Create yellow happiness songs, energetic but joyful dancing with yellow scarves.",
+            "ifNo": "Focus on quiet yellow appreciation - gentle yellow art creation and calm sharing."
+          }
+        ],
+        "movementBreaks": "Happy yellow movements at 10 and 20 minutes - sunshine stretching, joyful swaying"
+      },
+      "closing": {
+        "duration": "~10 minutes",
+        "activity": "Sunshine Circle: Students hold yellow items and share what makes them 'heureux' (happy). Simple yellow happiness gestures. Create class 'sunshine chart' of happy yellow things. Preview primary color completion: 'Maintenant nous connaissons rouge, bleu, et jaune - demain, la magie commence!' (Now we know red, blue, and yellow - tomorrow, the magic begins!)",
+        "materials": [],
+        "visualSupports": "All yellow items displayed, happiness chart creation space",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If too energetic: Calm yellow activities like gentle yellow painting. If not connecting to happiness: Use familiar yellow items like bananas, yellow toys they love."
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 6,
+      "lessonType": "core",
+      "title": "Mélanges magiques: Rouge + Jaune",
+      "oneGoal": "Students discover that mixing red and yellow creates orange",
+      "duration": 45,
+      "keyVocabulary": [
+        "mélanger",
+        "orange",
+        "nouveau"
+      ],
+      "opening": {
+        "duration": "~8 minutes",
+        "activity": "Magic Mixing Prediction: Hold red and yellow items together. Students predict what might happen. Use 'magic wand' (special stirrer) and announce: 'Nous allons mélanger!' Practice mixing motions in air. Build excitement for the magic moment.",
+        "materials": [],
+        "visualSupports": "Red and yellow color cards, magic wand/special tool, prediction chart",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 minutes",
+        "activity": "Color Magic Laboratory: Students work in pairs to mix red and yellow paint/colored water. Teacher demonstrates first mixing with dramatic excitement: 'Oh! Regardez! Orange!' Compare created orange to real orange objects (oranges, pumpkins, orange blocks). Practice saying 'mélanger' with mixing motions. Create orange artwork celebrating the magic discovery.",
+        "materials": [],
+        "visualSupports": "Real orange objects for comparison, step-by-step mixing pictures, color mixing chart starting",
+        "decisionPoints": [
+          {
+            "question": "Are students amazed by the color transformation?",
+            "ifYes": "Extend amazement - try different ratios, make lighter/darker orange, celebrate each discovery.",
+            "ifNo": "Add more drama and excitement - gasps, 'Wow!', magical language, treat it as real magic."
+          },
+          {
+            "question": "Do we need more hands-on mixing time?",
+            "ifYes": "Provide multiple mixing opportunities - different tools, different containers, various amounts.",
+            "ifNo": "Move to identifying orange in environment and creating with the mixed color."
+          },
+          {
+            "question": "Should we predict what will happen before mixing?",
+            "ifYes": "Make formal predictions, record guesses, compare to results with excitement.",
+            "ifNo": "Focus on the surprise and wonder of the immediate mixing experience."
+          }
+        ],
+        "movementBreaks": "Orange energy movements at 15 minutes - mixing motions, orange excitement dancing"
+      },
+      "closing": {
+        "duration": "~10 minutes",
+        "activity": "Orange Celebration: Show off all orange creations. Practice new vocabulary: 'mélanger rouge et jaune fait orange!' Display orange artwork. Orange objects hunt in classroom. Preview next magic: 'Demain, bleu + jaune = ???' with magical mystery gestures.",
+        "materials": [],
+        "visualSupports": "Display area for orange creations, orange objects collection",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If mixing is too messy: Use orange playdough to explore instead. If paint doesn't work well: Use orange crayons to color over red and yellow areas."
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 7,
+      "lessonType": "core",
+      "title": "Mélanges magiques: Bleu + Jaune",
+      "oneGoal": "Students discover that mixing blue and yellow creates green",
+      "duration": 45,
+      "keyVocabulary": [
+        "vert",
+        "nature",
+        "plantes"
+      ],
+      "opening": {
+        "duration": "~8 minutes",
+        "activity": "Nature Color Mystery: Show pictures of green plants, grass, leaves. Ask: 'How does nature make this color?' Hold blue sky picture next to yellow sun picture. 'Sky + sun = ???' Build anticipation for today's mixing magic.",
+        "materials": [],
+        "visualSupports": "Blue and yellow cards, nature pictures, real green leaves/grass",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 minutes",
+        "activity": "Green Magic Discovery: Mix blue and yellow to create green. Dramatic reveal: 'Vert! Like nature!' Compare mixed green to real leaves, grass, plants. Use magnifying glasses to examine green nature items. Practice 'vert comme...' with nature examples. Create green nature artwork inspired by discoveries.",
+        "materials": [],
+        "visualSupports": "Real green nature items, magnifying glasses, nature photographs, growing plants if available",
+        "decisionPoints": [
+          {
+            "question": "Are students making connections to green in nature?",
+            "ifYes": "Extend nature exploration - different shades of green in leaves, green nature hunt outside if possible.",
+            "ifNo": "Provide explicit nature examples - bring in various green leaves, show green nature photos."
+          },
+          {
+            "question": "Do we need to explore more green examples around us?",
+            "ifYes": "Green treasure hunt in classroom and hallways, cataloging all green discoveries.",
+            "ifNo": "Focus deeply on mixing technique and color creation process."
+          },
+          {
+            "question": "Should we compare green feelings to primary colors?",
+            "ifYes": "Discuss how green feels different from red energy, blue calm, yellow happiness - peaceful growth feeling.",
+            "ifNo": "Concentrate on green identification and nature connections without emotional analysis."
+          }
+        ],
+        "movementBreaks": "Green growing movements at 10 and 20 minutes - stretch like growing plants, sway like trees"
+      },
+      "closing": {
+        "duration": "~10 minutes",
+        "activity": "Green Nature Gallery: Display green artwork next to real nature items. Students share their favorite green discovery using 'vert comme...' practice growing plant movements. Start color mixing chart with red+yellow=orange, blue+yellow=green. Preview final primary mix: 'Demain, rouge + bleu = ???'",
+        "materials": [],
+        "visualSupports": "Nature gallery display, growing color mixing chart",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If green isn't mixing well: Use green materials to explore instead of creating. If nature connection unclear: Focus on green objects in classroom environment."
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 8,
+      "lessonType": "core",
+      "title": "Mélanges magiques: Rouge + Bleu",
+      "oneGoal": "Students discover that mixing red and blue creates purple",
+      "duration": 45,
+      "keyVocabulary": [
+        "violet",
+        "mystère",
+        "royauté"
+      ],
+      "opening": {
+        "duration": "~8 minutes",
+        "activity": "Royal Mystery Introduction: Play mysterious music. Drape purple fabric around room. Show crown or royal items. 'Some colors are very special, very mysterious...' Build suspense for the magical purple discovery.",
+        "materials": [],
+        "visualSupports": "Purple fabric decoration, crown/royal items, mysterious atmosphere",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 minutes",
+        "activity": "Royal Purple Discovery: Mix red and blue with extra ceremony and mystery. Dramatic reveal: 'Violet! The royal color!' Students try on crown while holding purple items. Explore purple's special feeling - mysterious, fancy, royal. Create purple artwork with royal themes. Practice 'violet mystérieux' with regal gestures.",
+        "materials": [],
+        "visualSupports": "Crown for trying on, purple objects collection, royal/mysterious atmosphere items",
+        "decisionPoints": [
+          {
+            "question": "Are students intrigued by purple's special qualities?",
+            "ifYes": "Extend royal theme - purple palace artwork, royal purple movements, special purple ceremonies.",
+            "ifNo": "Focus on purple identification and mixing process rather than royal/mysterious themes."
+          },
+          {
+            "question": "Do we need examples of purple in their world?",
+            "ifYes": "Purple treasure hunt - find purple crayons, purple clothes, purple flowers, purple toys.",
+            "ifNo": "Continue with mixing exploration and purple creation activities."
+          },
+          {
+            "question": "Should we explore purple's mysterious feeling?",
+            "ifYes": "Create mysterious purple movements, whispered purple conversations, magical purple gestures.",
+            "ifNo": "Treat purple as another color discovery without special mystery theme."
+          }
+        ],
+        "movementBreaks": "Royal purple movements at 10 and 20 minutes - regal walking, mysterious floating, crown wearing"
+      },
+      "closing": {
+        "duration": "~10 minutes",
+        "activity": "Purple Royalty Ceremony: Each student wears crown briefly while showing purple creation. Complete color mixing chart: red+yellow=orange, blue+yellow=green, red+blue=purple. Celebrate all secondary color discoveries. Preview: 'Maintenant nous pouvons peindre l'automne!' (Now we can paint autumn!)",
+        "materials": [],
+        "visualSupports": "Complete color mixing chart, royal ceremony setup, all purple creations displayed",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If royal theme too complex: Simply explore purple as another mixed color without ceremony. If purple not mixing well: Use purple materials for exploration instead."
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 9,
+      "lessonType": "core",
+      "title": "L'automne en couleurs",
+      "oneGoal": "Students connect warm colors (red, orange, yellow) to autumn feelings and changes",
+      "duration": 45,
+      "keyVocabulary": [
+        "automne",
+        "changement",
+        "feuilles"
+      ],
+      "opening": {
+        "duration": "~8 minutes",
+        "activity": "Autumn Leaf Welcome: Present basket of real autumn leaves in red, orange, yellow colors. Students gently touch and sort by colors learned. Practice 'feuilles d'automne' with falling leaf gestures. Discuss how leaves 'changent' (change) colors.",
+        "materials": [],
+        "visualSupports": "Real autumn leaves in warm colors, basket for sorting, autumn scene pictures",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 minutes",
+        "activity": "Warm Color Autumn Art: Use warm colors (red, orange, yellow) learned in previous lessons to create autumn scenes. Paint falling leaves, autumn trees, warm autumn feelings. Compare warm autumn colors to cool colors - which feel more like autumn? Practice color mixing to create different autumn shades.",
+        "materials": [],
+        "visualSupports": "Autumn photographs, real or paper leaves, warm color palette display",
+        "decisionPoints": [
+          {
+            "question": "Are students observing autumn colors in their environment?",
+            "ifYes": "Take brief outdoor observation walk to collect and observe real autumn colors in nature.",
+            "ifNo": "Provide rich autumn photographs and focus on warm color identification in pictures."
+          },
+          {
+            "question": "Do we need to collect real leaves for exploration?",
+            "ifYes": "Organize leaf collecting expedition, sort and compare colors, use leaves as art stamps.",
+            "ifNo": "Use provided leaf materials and focus on color mixing and painting activities."
+          },
+          {
+            "question": "Should we discuss why leaves change colors?",
+            "ifYes": "Simple explanation: leaves change when weather gets cooler, like clothes changing for seasons.",
+            "ifNo": "Focus on color observation and artistic creation rather than scientific explanation."
+          }
+        ],
+        "movementBreaks": "Autumn movements at 10 and 20 minutes - falling like leaves, swaying like autumn trees"
+      },
+      "closing": {
+        "duration": "~10 minutes",
+        "activity": "Autumn Gallery Creation: Display all autumn artwork and leaf collections. Students walk through 'autumn gallery' and practice warm color vocabulary. Choose favorite autumn colors and share why. Preview cool season: 'L'automne a des couleurs chaudes. L'hiver aura des couleurs...' (Autumn has warm colors. Winter will have colors...)",
+        "materials": [],
+        "visualSupports": "Gallery display of autumn artwork and natural materials",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If autumn theme too complex: Focus on warm color (red, orange, yellow) identification and mixing practice. If no seasonal connection: Explore warm colors in any context."
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 10,
+      "lessonType": "core",
+      "title": "L'hiver en couleurs",
+      "oneGoal": "Students explore cool colors (blue, white, purple) and winter emotions",
+      "duration": 45,
+      "keyVocabulary": [
+        "hiver",
+        "blanc",
+        "neige"
+      ],
+      "opening": {
+        "duration": "~8 minutes",
+        "activity": "Winter Color Introduction: Introduce 'blanc' (white) as new winter color along with cool blue and purple learned before. Use cotton balls as 'neige' (snow). Practice cool, calm movements with white, blue, purple materials. Contrast with yesterday's warm autumn movements.",
+        "materials": [],
+        "visualSupports": "Cotton ball snow, cool color materials, winter scene photographs",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 minutes",
+        "activity": "Cool Winter Art Creation: Use cool colors (blue, white, purple) to create winter scenes. Mix blue and white to create light blue winter sky. Practice 'froid' feelings with cool colors compared to 'chaud' autumn colors. Create peaceful winter artwork with cool color palette.",
+        "materials": [],
+        "visualSupports": "Winter photographs, temperature comparison items, cool color palette display",
+        "decisionPoints": [
+          {
+            "question": "Are students feeling the coolness of winter colors?",
+            "ifYes": "Emphasize temperature contrast - touch cool items while using cool colors, practice cool movements.",
+            "ifNo": "Provide direct temperature comparisons - warm vs cool objects while painting with corresponding colors."
+          },
+          {
+            "question": "Do we need to contrast with warm autumn colors?",
+            "ifYes": "Direct side-by-side comparison - warm autumn painting next to cool winter painting.",
+            "ifNo": "Focus on cool color exploration and winter theme development."
+          },
+          {
+            "question": "Should we incorporate winter experiences they know?",
+            "ifYes": "Share winter stories - snow days, winter clothes, cold weather, cozy indoor times.",
+            "ifNo": "Focus on color temperature exploration without personal winter connections."
+          }
+        ],
+        "movementBreaks": "Cool winter movements at 10 and 20 minutes - gentle snow falling, peaceful winter walking"
+      },
+      "closing": {
+        "duration": "~10 minutes",
+        "activity": "Season Color Comparison: Display autumn (warm) and winter (cool) artwork side by side. Students compare and practice temperature vocabulary - 'chaud/froid.' Create season color chart showing warm autumn vs cool winter. Preview cultural colors: 'Les familles utilisent des couleurs spéciales...' (Families use special colors...)",
+        "materials": [],
+        "visualSupports": "Side-by-side seasonal artwork display, season color comparison chart",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If seasonal theme too abstract: Focus on warm vs cool color identification with temperature items. If white paint issues: Use white paper and blue/purple crayons."
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 11,
+      "lessonType": "core",
+      "title": "Couleurs dans ma famille",
+      "oneGoal": "Students explore how different cultures use colors in celebrations and traditions",
+      "duration": 45,
+      "keyVocabulary": [
+        "famille",
+        "tradition",
+        "fête"
+      ],
+      "opening": {
+        "duration": "~8 minutes",
+        "activity": "Family Color Sharing: Students think about colors their family uses for special occasions. Show diverse cultural celebration pictures with different color traditions. Practice 'ma famille' and 'tradition' with welcoming gestures.",
+        "materials": [],
+        "visualSupports": "Diverse cultural celebration photographs, welcoming family gesture cards",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 minutes",
+        "activity": "Cultural Color Exploration: Examine how different cultures use colors - Chinese red for luck, Diwali bright colors, Christmas red/green, etc. Students share any family color traditions respectfully. Create artwork celebrating diverse color traditions. Practice appreciating all color choices and traditions.",
+        "materials": [],
+        "visualSupports": "Respectful cultural photographs, diverse celebration images, inclusive artwork materials",
+        "decisionPoints": [
+          {
+            "question": "Are students sharing their family's color traditions respectfully?",
+            "ifYes": "Encourage respectful listening and appreciation of all traditions shared by classmates.",
+            "ifNo": "Model respectful sharing and listening. Provide structure for sharing special family colors."
+          },
+          {
+            "question": "Do we need to provide examples from various cultures?",
+            "ifYes": "Show diverse cultural color examples, explain briefly and respectfully, focus on beauty.",
+            "ifNo": "Focus on students' own family color experiences and personal connections."
+          },
+          {
+            "question": "Should we create a visual display of diverse traditions?",
+            "ifYes": "Create inclusive class display celebrating all shared color traditions and families.",
+            "ifNo": "Focus on discussion and individual artwork rather than permanent display."
+          }
+        ],
+        "movementBreaks": "Celebratory movements at 10 and 20 minutes - gentle celebration gestures, happy family movements"
+      },
+      "closing": {
+        "duration": "~10 minutes",
+        "activity": "Family Color Appreciation: Students share one family color tradition or favorite family color. Create respectful appreciation circle where all family traditions are celebrated. Practice 'Toutes les familles sont belles' (All families are beautiful). Preview personal connection: 'Demain, nos couleurs personnelles!' (Tomorrow, our personal colors!)",
+        "materials": [],
+        "visualSupports": "Appreciation circle setup, family color sharing space",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If cultural topic too sensitive: Focus on favorite family colors in general terms. If no cultural examples: Talk about colors in any celebrations they know."
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 12,
+      "lessonType": "core",
+      "title": "Mon arc-en-ciel d'émotions",
+      "oneGoal": "Students create a personal color wheel connecting all colors to their own emotions",
+      "duration": 45,
+      "keyVocabulary": [
+        "arc-en-ciel",
+        "émotions",
+        "personnel"
+      ],
+      "opening": {
+        "duration": "~8 minutes",
+        "activity": "Emotion Color Review: Quick review of color emotions learned - rouge (energy), bleu (calm), jaune (happy), orange (warm), vert (growing), violet (mysterious). Students practice gestures and expressions for each color emotion.",
+        "materials": [],
+        "visualSupports": "Color cards with emotion faces, gesture reference chart",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 minutes",
+        "activity": "Personal Rainbow Creation: Students create their own 'arc-en-ciel' (rainbow) showing how each color makes THEM feel personally. May be different from class discussions - honor personal connections. Use all colors learned and add personal emotion expressions or drawings for each color section.",
+        "materials": [],
+        "visualSupports": "Circle templates for rainbows, emotion expression examples, all colors available",
+        "decisionPoints": [
+          {
+            "question": "Are students making personal connections to all colors learned?",
+            "ifYes": "Encourage individual interpretation - if blue makes them excited instead of calm, that's perfect for them.",
+            "ifNo": "Help students think of personal experiences with each color to create individual connections."
+          },
+          {
+            "question": "Do we need to review color mixing before creating?",
+            "ifYes": "Quick color mixing review - how to make orange, green, purple - then apply to personal rainbow.",
+            "ifNo": "Focus on personal color-emotion connections rather than technical color mixing."
+          },
+          {
+            "question": "Should we allow individual interpretation of color feelings?",
+            "ifYes": "Celebrate unique interpretations - each person's color rainbow is different and special.",
+            "ifNo": "Guide toward previously learned color emotions while still allowing some personal variation."
+          }
+        ],
+        "movementBreaks": "Personal color movements at 15 minutes - each student shows their unique color emotion movement"
+      },
+      "closing": {
+        "duration": "~10 minutes",
+        "activity": "Rainbow Sharing Celebration: Students share their personal color rainbows, explaining how colors make them feel. Celebrate individual differences and personal connections to colors. Display all rainbows as celebration of individual color personalities. Preview artist connection: 'Les artistes utilisent des couleurs pour leurs émotions aussi!' (Artists use colors for their emotions too!)",
+        "materials": [],
+        "visualSupports": "Display space for all personal rainbows",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If personal sharing too complex: Focus on creating individual rainbows without sharing requirement. If overwhelmed by choices: Guide students through one color feeling at a time."
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 13,
+      "lessonType": "core",
+      "title": "Artistes et leurs couleurs",
+      "oneGoal": "Students observe how famous artists use colors to express feelings and ideas",
+      "duration": 45,
+      "keyVocabulary": [
+        "artiste",
+        "expression",
+        "créateur"
+      ],
+      "opening": {
+        "duration": "~8 minutes",
+        "activity": "Artist Introduction: Show simple, colorful artwork (Van Gogh sunflowers, Matisse cut-outs). 'This person is an artiste!' Practice word 'artiste' with creative gestures. Point to colors in artwork: 'L'artiste utilise jaune, bleu...' Show how artists choose colors like students do.",
+        "materials": [],
+        "visualSupports": "Simple, colorful artwork reproductions, pictures of artists, magnifying glasses",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 minutes",
+        "activity": "Artist Color Detective: Use magnifying glasses to examine artwork colors closely. Find primary colors, mixed colors learned. Discuss how artist chose colors - happy yellow like lesson 5? Calm blue like lesson 4? Create artwork 'like an artist' using color choices to show feelings.",
+        "materials": [],
+        "visualSupports": "Magnifying glasses for close examination, artwork reproductions, color identification charts",
+        "decisionPoints": [
+          {
+            "question": "Are students making connections between artist choices and emotions?",
+            "ifYes": "Deepen connections - 'Why did artist choose rouge here? How does it make you feel?'",
+            "ifNo": "Provide explicit emotion connections - point to yellow and say 'Artist wanted happy feeling here.'"
+          },
+          {
+            "question": "Do we need simpler art examples for this age?",
+            "ifYes": "Focus on very colorful, simple artwork - children's book illustrations, bright simple paintings.",
+            "ifNo": "Continue with famous artwork but focus on color identification rather than complex artistic concepts."
+          },
+          {
+            "question": "Should we focus on one artist or show variety?",
+            "ifOne": "Deep dive into one very colorful artist's work - identify all learned colors, create artwork in their style.",
+            "ifVariety": "Show diverse artists using different color approaches - compare how different artists use colors."
+          }
+        ],
+        "movementBreaks": "Artist movements at 10 and 20 minutes - painting gestures, creative movements, artist poses"
+      },
+      "closing": {
+        "duration": "~10 minutes",
+        "activity": "Young Artist Celebration: Students show their 'artist' creations and explain color choices using vocabulary learned. Compare their choices to famous artists examined. Practice 'Je suis un artiste!' (I am an artist!) with pride. Preview personal creation: 'Demain, votre chef-d'œuvre!' (Tomorrow, your masterpiece!)",
+        "materials": [],
+        "visualSupports": "Display space for student artist work alongside famous artwork",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If artist concept too abstract: Focus on color identification in any pictures or artwork available. If no artwork: Use student work from previous lessons as 'artist' examples."
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 14,
+      "lessonType": "core",
+      "title": "Ma création colorée",
+      "oneGoal": "Students demonstrate all color learning by creating their own expressive artwork",
+      "duration": 45,
+      "keyVocabulary": [
+        "création",
+        "démontrer",
+        "fierté"
+      ],
+      "opening": {
+        "duration": "~8 minutes",
+        "activity": "Master Artist Preparation: Students choose their art materials and colors. Review quick color mixing if needed. Practice 'ma création' (my creation) with proud gestures. Set intention: 'What do you want your colors to say?'",
+        "materials": [],
+        "visualSupports": "All color materials displayed and accessible, choice boards for decision making",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 minutes",
+        "activity": "Masterpiece Creation: Students create their own expressive artwork using all color knowledge gained. Can mix colors, show emotions, include seasonal themes, family colors, whatever feels important to them. Teacher circulates offering encouragement and color vocabulary support.",
+        "materials": [],
+        "visualSupports": "All learned color materials available, inspirational display of past color work",
+        "decisionPoints": [
+          {
+            "question": "Are students applying color mixing and emotional connections?",
+            "ifYes": "Encourage risk-taking and creative expression. Support advanced color mixing attempts.",
+            "ifNo": "Provide gentle reminders - 'What colors make you happy? What happens when you mix rouge et jaune?'"
+          },
+          {
+            "question": "Do we need to provide choice in materials or subject?",
+            "ifYes": "Offer various art materials, different paper sizes, choice in what to create - let creativity guide.",
+            "ifNo": "Focus on color expression with available materials rather than expanding material choices."
+          },
+          {
+            "question": "Should we plan for sharing and celebration?",
+            "ifYes": "Prepare sharing structure - each student explains one color choice in their artwork.",
+            "ifNo": "Focus on creation process and personal satisfaction rather than public sharing."
+          }
+        ],
+        "movementBreaks": "Creative stretching at 15 minutes - artist movements, color inspiration movements"
+      },
+      "closing": {
+        "duration": "~10 minutes",
+        "activity": "Masterpiece Gallery: Create class gallery of all masterpieces. Students walk through gallery appreciating all work. Each student shares one thing they're proud of in their creation using color vocabulary. Celebrate growth from lesson 1 to now. Preview extension lessons: 'Encore plus de magie colorée!' (Even more color magic!)",
+        "materials": [],
+        "visualSupports": "Gallery display of all student masterpieces",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If creations not finished: Focus on process celebration rather than finished products. If sharing too overwhelming: Simple gallery walk without verbal sharing."
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 15,
+      "lessonType": "extension",
+      "title": "Couleurs dans notre école",
+      "oneGoal": "Students practice color identification and mixing by exploring school environment",
+      "duration": 45,
+      "keyVocabulary": [],
+      "opening": {
+        "duration": "~8 minutes",
+        "activity": "School Color Expedition Preparation: Practice all color names learned. Prepare for color detective work throughout school. Discuss respectful hallway behavior and quiet color hunting techniques.",
+        "materials": [],
+        "visualSupports": "Color vocabulary review cards, school map showing exploration areas",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 minutes",
+        "activity": "School Color Safari: Systematic exploration of school environment identifying all learned colors. Record findings - where do we find rouge? bleu? What about mixed colors like orange and green? Practice color vocabulary naturally in new environment context.",
+        "materials": [],
+        "visualSupports": "Recording materials, school areas with natural color variety",
+        "decisionPoints": [
+          {
+            "question": "Which areas of school offer the most color variety?",
+            "ifLibrary": "Focus on colorful book displays, posters, reading areas with diverse colors.",
+            "ifGym": "Explore equipment colors, floor markings, wall colors in large space.",
+            "ifArt": "Rich color exploration in art displays, materials, student work throughout school."
+          },
+          {
+            "question": "Are students applying learned vocabulary naturally?",
+            "ifYes": "Encourage natural conversation about colors discovered, build on their observations.",
+            "ifNo": "Provide sentence frames: 'Je vois...' 'Ici il y a...' to support language use."
+          },
+          {
+            "question": "Should we document findings for future reference?",
+            "ifYes": "Create school color map, photograph color discoveries, make permanent record.",
+            "ifNo": "Focus on immediate discovery experience and vocabulary practice."
+          }
+        ],
+        "movementBreaks": "Built into exploration - walking, discovering, quiet movement through school"
+      },
+      "closing": {
+        "duration": "~10 minutes",
+        "activity": "School Color Report: Return to classroom and share discoveries. Create simple school color chart showing where different colors were found. Practice vocabulary through sharing discoveries. Appreciate school environment through color lens.",
+        "materials": [],
+        "visualSupports": "School color discovery chart, documentation of findings",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If school exploration not possible: Deep classroom color exploration with new perspective. If too stimulating: Calm color observation from classroom window or doorway."
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 16,
+      "lessonType": "extension",
+      "title": "Peinture libre avec couleurs chaudes",
+      "oneGoal": "Students freely explore warm colors while practicing mixing and emotional expression",
+      "duration": 45,
+      "keyVocabulary": [],
+      "opening": {
+        "duration": "~8 minutes",
+        "activity": "Warm Color Energy Building: Handle only warm color materials. Practice warm color movements and feelings. Set up warm color painting stations. Build energy for creative warm color exploration.",
+        "materials": [],
+        "visualSupports": "Only warm color materials displayed, energetic warm atmosphere",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 minutes",
+        "activity": "Free Warm Color Expression: Open-ended painting with only warm colors available. Students experiment with mixing red, orange, yellow combinations. Focus on how warm colors make them feel and express that through painting. No specific subject - pure color exploration and expression.",
+        "materials": [],
+        "visualSupports": "Only warm color palette available, examples of warm color combinations",
+        "decisionPoints": [
+          {
+            "question": "Are students confidently mixing warm colors?",
+            "ifYes": "Encourage experimentation with different warm color ratios and combinations.",
+            "ifNo": "Provide gentle mixing guidance - demonstrate red+yellow=orange again if needed."
+          },
+          {
+            "question": "Do we need to encourage experimentation?",
+            "ifYes": "Model risk-taking - 'What happens if we try this?' Celebrate all attempts at mixing.",
+            "ifNo": "Let students explore at their own pace without additional encouragement."
+          },
+          {
+            "question": "Should we play music to inspire warm color feelings?",
+            "ifYes": "Play energetic but not overwhelming music that matches warm color energy.",
+            "ifNo": "Allow natural quiet concentration and personal warm color exploration."
+          }
+        ],
+        "movementBreaks": "Warm color movements at 15 minutes - energetic but controlled movements matching warm color feelings"
+      },
+      "closing": {
+        "duration": "~10 minutes",
+        "activity": "Warm Color Celebration: Display all warm color creations. Students share how warm colors made them feel during painting. Compare to previous warm color lessons (autumn, red energy). Appreciate diverse warm color expressions.",
+        "materials": [],
+        "visualSupports": "Gallery of warm color creations",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If painting too messy: Use warm color crayons or pastels instead. If not engaging: Add simple warm color games or movement activities."
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 17,
+      "lessonType": "extension",
+      "title": "Peinture libre avec couleurs froides",
+      "oneGoal": "Students freely explore cool colors while practicing mixing and calming expressions",
+      "duration": 45,
+      "keyVocabulary": [],
+      "opening": {
+        "duration": "~8 minutes",
+        "activity": "Cool Color Calming: Handle only cool color materials with gentle movements. Practice peaceful breathing with cool colors. Create calm atmosphere for cool color exploration. Slow, peaceful preparation.",
+        "materials": [],
+        "visualSupports": "Only cool color materials, peaceful atmosphere setup",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 minutes",
+        "activity": "Peaceful Cool Color Creation: Free painting exploration using only cool colors. Mix blues with white, explore purple combinations. Focus on calm, peaceful feelings. Paint slowly, thoughtfully, expressing cool color emotions through gentle artistic expression.",
+        "materials": [],
+        "visualSupports": "Only cool color palette, peaceful examples of cool color combinations",
+        "decisionPoints": [
+          {
+            "question": "Are students experiencing the calming effect of cool colors?",
+            "ifYes": "Encourage meditative painting approach - slow, thoughtful, peaceful creation.",
+            "ifNo": "Model calm cool color movements and breathing. Demonstrate peaceful painting techniques."
+          },
+          {
+            "question": "Do we need quiet music or nature sounds?",
+            "ifYes": "Play gentle, calming background music or nature sounds to enhance cool color mood.",
+            "ifNo": "Maintain natural quiet atmosphere allowing individual peaceful exploration."
+          },
+          {
+            "question": "Should we encourage slower, more meditative movements?",
+            "ifYes": "Guide students toward slow, thoughtful painting movements matching cool color feelings.",
+            "ifNo": "Allow natural pace while maintaining focus on cool color emotional expression."
+          }
+        ],
+        "movementBreaks": "Gentle cool movements at 15 minutes - slow stretching, peaceful movements like calm water"
+      },
+      "closing": {
+        "duration": "~10 minutes",
+        "activity": "Cool Color Peace Sharing: Display cool color creations in peaceful gallery. Students share quietly how cool colors made them feel. Compare to warm color energy from yesterday. Appreciate calming effect of cool color palette.",
+        "materials": [],
+        "visualSupports": "Peaceful gallery display of cool color art",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If too calm: Add gentle cool color movements to maintain engagement. If painting not working: Use cool color materials for gentle exploration activities."
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 18,
+      "lessonType": "extension",
+      "title": "Couleurs de nos jouets favoris",
+      "oneGoal": "Students analyze and recreate colors from beloved toys and objects",
+      "duration": 45,
+      "keyVocabulary": [],
+      "opening": {
+        "duration": "~8 minutes",
+        "activity": "Favorite Object Sharing: Students bring or describe favorite toy/object. Identify colors in beloved items using all vocabulary learned. Practice describing colors: 'Mon jouet favori a rouge et bleu...'",
+        "materials": [],
+        "visualSupports": "Student toys/objects, color identification materials",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 minutes",
+        "activity": "Beloved Object Color Recreation: Students carefully observe colors in their favorite objects and try to recreate those exact colors through mixing and matching. Practice precise color matching, mixing to achieve specific shades found in beloved items.",
+        "materials": [],
+        "visualSupports": "Favorite objects for reference, color matching tools, magnifying equipment",
+        "decisionPoints": [
+          {
+            "question": "Are students excited to share their favorite objects?",
+            "ifYes": "Channel excitement into detailed color exploration and sharing discoveries about object colors.",
+            "ifNo": "Provide encouraging examples and focus on color discovery rather than object sharing."
+          },
+          {
+            "question": "Do we need help with color matching techniques?",
+            "ifYes": "Demonstrate color matching process, provide magnifying glasses, show mixing techniques for achieving specific shades.",
+            "ifNo": "Allow independent exploration and problem-solving in color matching process."
+          },
+          {
+            "question": "Should we create a class gallery of favorite things?",
+            "ifYes": "Create special display celebrating everyone's favorite objects and the colors that make them special.",
+            "ifNo": "Focus on individual color exploration and personal connection to beloved object colors."
+          }
+        ],
+        "movementBreaks": "Gentle object appreciation movements at 15 minutes - careful handling, loving gestures"
+      },
+      "closing": {
+        "duration": "~10 minutes",
+        "activity": "Favorite Color Celebration: Students share their color matching discoveries. Discuss how colors make favorite objects special. Practice vocabulary through personal object descriptions. Appreciate personal connections to colors through beloved items.",
+        "materials": [],
+        "visualSupports": "Display of color matching work and favorite objects",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If objects not available: Use pictures of toys or focus on favorite classroom objects. If color matching too difficult: Focus on simple color identification in favorite things."
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 19,
+      "lessonType": "extension",
+      "title": "Histoire colorée en images",
+      "oneGoal": "Students tell a story using only colors and simple shapes",
+      "duration": 45,
+      "keyVocabulary": [],
+      "opening": {
+        "duration": "~8 minutes",
+        "activity": "Color Story Introduction: Demonstrate simple color story - happy yellow beginning, excited red middle, peaceful blue ending. Show how colors can tell story emotions. Students practice understanding color story sequence.",
+        "materials": [],
+        "visualSupports": "Simple color story example, emotion sequence cards",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 minutes",
+        "activity": "Color Story Creation: Students create their own stories using only colors and simple shapes. Plan story sequence - beginning feeling (color choice), middle action (color choice), ending feeling (color choice). Paint/create story sequence showing emotion progression through color choices.",
+        "materials": [],
+        "visualSupports": "Story sequence planning sheets, all color materials, simple shape templates",
+        "decisionPoints": [
+          {
+            "question": "Are students connecting colors to story emotions effectively?",
+            "ifYes": "Encourage complex color stories with multiple emotions and color transitions.",
+            "ifNo": "Simplify to basic emotion sequence - provide emotion-color connections explicitly."
+          },
+          {
+            "question": "Do we need to scaffold storytelling structure?",
+            "ifYes": "Provide story frames: beginning/middle/end structure with color emotion supports.",
+            "ifNo": "Allow free creative storytelling through color choices without rigid structure."
+          },
+          {
+            "question": "Should we encourage peer sharing and interpretation?",
+            "ifYes": "Partner sharing where students 'read' each other's color stories and guess emotions.",
+            "ifNo": "Focus on individual color story creation without interpretation sharing."
+          }
+        ],
+        "movementBreaks": "Story movement at 15 minutes - act out color story emotions through movement"
+      },
+      "closing": {
+        "duration": "~10 minutes",
+        "activity": "Color Story Theater: Students share color stories and others guess the emotions/story progression. Celebrate creative use of colors for storytelling. Appreciate how colors communicate feelings and ideas without words.",
+        "materials": [],
+        "visualSupports": "Display area for color stories, sharing circle setup",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If storytelling too complex: Focus on single color emotion expression. If sharing overwhelming: Simple gallery walk of color stories without verbal presentation."
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 20,
+      "lessonType": "extension",
+      "title": "Célébration de nos couleurs magiques",
+      "oneGoal": "Students celebrate their color journey by sharing favorite creations and discoveries",
+      "duration": 45,
+      "keyVocabulary": [],
+      "opening": {
+        "duration": "~8 minutes",
+        "activity": "Color Learning Journey Review: Quick review of color learning progression - primary colors, mixing, emotions, seasons, families, artists, personal creations. Students choose their most favorite color learning memory.",
+        "materials": [],
+        "visualSupports": "Display of work from all previous lessons, journey timeline",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 minutes",
+        "activity": "Color Magic Celebration: Students set up gallery of their best color work from the entire unit. Practice explaining their color learning to others. Share favorite color discoveries, proudest moments, biggest surprises. Celebrate growth from first color identification to complex color storytelling and artistic expression.",
+        "materials": [],
+        "visualSupports": "Complete gallery of all color work, celebration setup, learning journey documentation",
+        "decisionPoints": [
+          {
+            "question": "How should students choose which work to share?",
+            "ifPersonal": "Students choose work that makes them most proud or shows their biggest learning growth.",
+            "ifTeacher": "Teacher guides selection to show range of learning and ensure all students have representation.",
+            "ifAll": "Display everything from the unit to show complete learning journey progression."
+          },
+          {
+            "question": "Do we invite families or other classes to celebrate?",
+            "ifYes": "Organize celebration exhibition where students present their color learning to special guests.",
+            "ifNo": "Focus on internal class celebration appreciating each other's growth and learning."
+          },
+          {
+            "question": "Should we create a permanent display of their learning?",
+            "ifYes": "Create lasting display in classroom or hallway showing the complete color learning journey.",
+            "ifNo": "Focus on celebration experience and personal satisfaction rather than permanent display."
+          }
+        ],
+        "movementBreaks": "Celebration movements throughout - happy color dancing, proud sharing gestures"
+      },
+      "closing": {
+        "duration": "~10 minutes",
+        "activity": "Color Magic Graduation: Each student receives recognition for their color learning journey. Practice final color vocabulary celebration. Share hopes for continued color exploration. End with group celebration of all color magic learned together.",
+        "materials": [],
+        "visualSupports": "Celebration recognition materials, final display of learning",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If celebration overwhelming: Simple appreciation circle sharing one color learning memory each. If setup issues: Focus on individual reflection and personal celebration of growth."
+      },
+      "realWorldConnection": "",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    }
+  ],
+  "assessmentTools": {
+    "observationChecklist": [],
+    "rubrics": [],
+    "selfAssessment": [],
+    "portfolioGuidelines": ""
   },
-  
-  {
-    "lessonNumber": 2,
-    "title": "Les couleurs ont des sentiments",
-    "oneGoal": "Students connect primary colors to basic emotions and feelings",
-    "keyVocabulary": ["content", "triste", "calme"],
-    "materials": ["Primary color cards", "Emotion face cards", "Mirrors", "Soft music"],
-    
-    "mindsOn": {
-      "duration": "~8 minutes",
-      "connectionToPrevious": "Review yesterday's color hunt: 'Hier, nous avons trouvé rouge, bleu, jaune!' Show objects from previous lesson.",
-      "activity": "Color Feelings Circle: Hold up red card with excited face expression and gesture. Say 'Rouge me rend...' (Red makes me...) and show excitement. Repeat with blue (calm face/gesture) and yellow (happy face/gesture). Students mirror facial expressions and gestures.",
-      "visualSupports": "Color cards paired with emotion face cards, teacher modeling clear facial expressions",
-      "backupPlan": "If students don't engage with emotions: Just practice making faces in mirrors while holding color cards. If overwhelmed: Focus on one color feeling at a time."
-    },
-    
-    "action": {
-      "duration": "~27 minutes", 
-      "coreActivity": "Emotion Color Theater: Students explore how each color makes them feel. Red station - energetic movements and 'content!' expressions. Blue station - slow, calm movements and peaceful faces. Yellow station - happy dancing and smiles. Rotate every 8 minutes. Teacher models appropriate movements and expressions at each station.",
-      "decisionPoints": [
-        {
-          "question": "Are students making personal connections to colors and feelings?",
-          "ifYes": "Encourage sharing: 'Rouge comme moi quand je...' (Red like me when I...)",
-          "ifNo": "Provide concrete examples: Show red fire truck (exciting!), blue sky (peaceful), yellow sun (happy)."
-        },
-        {
-          "question": "Do we need to model more emotional expressions?",
-          "ifYes": "Teacher demonstrates exaggerated emotions, students copy. Use mirrors for self-awareness.",
-          "ifNo": "Students can lead emotional expressions and teach others their interpretations."
-        },
-        {
-          "question": "Should we use more concrete examples from their experiences?",
-          "ifYes": "Ask about times they felt excited (red), calm (blue), happy (yellow). Connect to playground, home, school.",
-          "ifNo": "Continue with abstract color-emotion exploration and creative expression."
-        }
-      ],
-      "visualSupports": "Large emotion face posters at each station, mirrors for self-expression, music to match color moods",
-      "movementBreaks": "Built into activity - energetic red movements, calming blue stretches, happy yellow dancing"
-    },
-    
-    "consolidation": {
-      "duration": "~10 minutes",
-      "activity": "My Color Feeling: Each student chooses their favorite color feeling from today and shows it with face and gesture. Create class 'emotion color chart' with student demonstrations. Preview tomorrow: 'Demain, rouge nous montre sa magie!' (Tomorrow, red shows us its magic!)",
-      "visualSupports": "Simple chart showing color + student emotion demonstrations",
-      "realWorldConnection": "When we choose clothes or decorate our rooms, colors help show how we feel"
-    },
-    
-    "emergencyBackup": "If too emotional/overwhelming: Simple color breathing with calm music. If not engaging: Color freeze dance - move to music, freeze in color emotion when music stops.",
-    "assessmentNotes": "Observe which students connect colors to emotions, participate in movement activities, and express feelings appropriately."
+  "familyConnections": {
+    "unitLetter": "",
+    "homeActivities": [],
+    "vocabularyList": []
   },
-
-  {
-    "lessonNumber": 3,
-    "title": "Rouge comme...",
-    "oneGoal": "Students explore red in nature and connect it to energy and warmth",
-    "keyVocabulary": ["chaud", "énergie", "feu"],
-    "materials": ["Red objects from nature", "Red fabric/scarves", "Pictures of fire/sun", "Warm/cool touch items"],
-    
-    "mindsOn": {
-      "duration": "~8 minutes",
-      "connectionToPrevious": "Yesterday we learned colors have feelings. Rouge made us feel...? Show red card with excited gestures from yesterday.",
-      "activity": "Red Energy Wake-Up: Students hold red scarves or fabric. Practice 'rouge comme...' structure with energetic gestures. Teacher models: 'Rouge comme le feu!' with flame-like hand movements. Students repeat and add their own movements.",
-      "visualSupports": "Red scarves/fabric for movement, pictures of fire and energetic red things",
-      "backupPlan": "If no scarves available: Use red paper strips for waving. If too energetic: Calm red breathing - red like warm sunshine on face."
-    },
-    
-    "action": {
-      "duration": "~27 minutes",
-      "coreActivity": "Red Nature Detective: Explore red items from nature (leaves, apples, flowers). Touch and describe temperature - 'chaud' or warm feelings. Create red energy movements for each item - strong like red rock, flowing like red leaf, bright like red flower. Practice 'Rouge comme...' with each discovery. End with red art creation using natural items as stamps.",
-      "decisionPoints": [
-        {
-          "question": "Are students finding red examples in their surroundings?",
-          "ifYes": "Extend exploration to less obvious reds - pink as light red, burgundy as dark red.",
-          "ifNo": "Provide clear red examples, focus on obvious items like apples, fire truck pictures, red blocks."
-        },
-        {
-          "question": "Do we need more scaffolding for descriptive language?",
-          "ifYes": "Use sentence frames: 'Rouge comme ___' with picture supports. Accept single words.",
-          "ifNo": "Encourage elaboration: 'Rouge comme le feu chaud' or 'Rouge comme une pomme délicieuse.'"
-        },
-        {
-          "question": "Should we incorporate movement to show energy?",
-          "ifYes": "Add red energy dance - strong movements, jumping, clapping. Red like fire crackling.",
-          "ifNo": "Focus on quiet red exploration - gentle touching and soft descriptive language."
-        }
-      ],
-      "visualSupports": "Real red natural objects, pictures of red in nature, temperature comparison items (warm/cool)",
-      "movementBreaks": "Red energy bursts at 10 and 20 minutes - students show red energy through movement"
-    },
-    
-    "consolidation": {
-      "duration": "~10 minutes",
-      "activity": "Red Gallery Walk: Display all red creations and natural items. Students walk quietly and whisper 'Rouge comme...' for each item they see. Choose one favorite red thing to share with gesture. Preview: 'Demain, bleu nous donne la paix!' (Tomorrow, blue gives us peace!)",
-      "visualSupports": "Gallery display of red items and artwork",
-      "realWorldConnection": "Red appears in stop signs, fire trucks, apples, and flowers - it gets our attention and shows importance"
-    },
-    
-    "emergencyBackup": "If overwhelmed by choices: Focus only on red apples and red blocks for comparison. If too chaotic: Simple red sorting activity - put all red things in one basket.",
-    "assessmentNotes": "Notice students' ability to identify red in various contexts, use 'rouge comme' structure, and connect red to warmth/energy concepts."
+  "resourceAlternatives": {
+    "materials": {},
+    "digitalResources": []
   },
-
-  {
-    "lessonNumber": 4,
-    "title": "Bleu comme le ciel",
-    "oneGoal": "Students discover blue in nature and connect it to peace and coolness",
-    "keyVocabulary": ["froid", "paix", "ciel"],
-    "materials": ["Blue natural items", "Blue fabric/scarves", "Pictures of sky/water", "Cool touch items", "Soft calming music"],
-    
-    "mindsOn": {
-      "duration": "~8 minutes",
-      "connectionToPrevious": "Yesterday rouge was warm and energetic. Today we explore bleu. How different will bleu feel?",
-      "activity": "Blue Sky Breathing: Students lie on floor looking up, imagining blue sky. Slow, calm breathing with blue scarves. Teacher models peaceful blue gestures - smooth, flowing movements. Soft voice: 'Bleu comme le ciel calme...'",
-      "visualSupports": "Blue scarves for movement, large sky picture above, calming music",
-      "backupPlan": "If students can't lie down: Sit and look at sky picture while holding blue items. If too sleepy: Gentle blue waves with arms instead."
-    },
-    
-    "action": {
-      "duration": "~27 minutes",
-      "coreActivity": "Cool Blue Exploration: Handle cool blue items (water in blue container, blue stones, blue ice packs). Compare to yesterday's warm red items. Practice calm blue movements - flowing like water, gentle like sky. Create blue artwork with cool blue materials. Express how blue makes body feel peaceful.",
-      "decisionPoints": [
-        {
-          "question": "Are students contrasting blue feelings with red from last lesson?",
-          "ifYes": "Encourage direct comparisons: 'Rouge chaud, bleu froid' with contrasting gestures.",
-          "ifNo": "Provide explicit comparison examples - touch warm red item, then cool blue item."
-        },
-        {
-          "question": "Do we need to go outside to observe blue in nature?",
-          "ifYes": "Quick outdoor observation of sky, shadows, any blue flowers or objects visible.",
-          "ifNo": "Use large nature photographs and bring blue natural items inside for exploration."
-        },
-        {
-          "question": "Should we incorporate calming movements or breathing?",
-          "ifYes": "Add blue meditation - slow movements like calm water, peaceful breathing exercises.",
-          "ifNo": "Focus on tactile blue exploration and visual identification activities."
-        }
-      ],
-      "visualSupports": "Cool blue objects, sky/water photographs, temperature comparison materials",
-      "movementBreaks": "Calm blue movements at 10 and 20 minutes - flowing like gentle water, peaceful like sky"
-    },
-    
-    "consolidation": {
-      "duration": "~10 minutes",
-      "activity": "Peaceful Blue Sharing: Students sit in calm circle with blue items. Whisper sharing - each student holds blue object and whispers how it feels. End with group blue breathing. Preview: 'Demain, jaune nous apporte la joie!' (Tomorrow, yellow brings us joy!)",
-      "visualSupports": "All blue items in center of circle, calm lighting if possible",
-      "realWorldConnection": "Blue sky makes us feel calm, blue water is refreshing, and blue pajamas help us feel peaceful at bedtime"
-    },
-    
-    "emergencyBackup": "If too calm/sleepy: Add gentle blue movements like calm ocean waves. If not engaging with peaceful theme: Focus on blue identification game with more energy.",
-    "assessmentNotes": "Observe students' ability to contrast blue with red, engage in calm activities, and identify blue in nature contexts."
-  },
-
-  {
-    "lessonNumber": 5,
-    "title": "Jaune comme le soleil",
-    "oneGoal": "Students connect yellow to happiness and light",
-    "keyVocabulary": ["heureux", "lumière", "soleil"],
-    "materials": ["Yellow objects", "Flashlights/lamp", "Yellow fabric/scarves", "Happy music", "Sunflower pictures"],
-    
-    "mindsOn": {
-      "duration": "~8 minutes",
-      "connectionToPrevious": "Rouge was warm energy, bleu was cool peace. What will jaune bring us? Show yellow card with questioning gesture.",
-      "activity": "Sunshine Wake-Up: Turn on bright lamp/flashlight for 'soleil.' Students stretch like flowers growing toward light. Yellow scarves wave like sunshine rays. Practice happy 'Bonjour soleil!' with big smiles and reaching gestures.",
-      "visualSupports": "Bright light source, yellow scarves, large sunflower picture",
-      "backupPlan": "If no lamp available: Use yellow paper fans to wave like sunshine. If too excited: Calm sunshine stretching without music."
-    },
-    
-    "action": {
-      "duration": "~27 minutes",
-      "coreActivity": "Happy Yellow Hunt: Find all yellow items and create 'sunshine collection.' Practice happy expressions and movements with each yellow discovery. Compare yellow warmth to red warmth - different feelings? Create yellow art with happy themes. Dance to cheerful music with yellow items.",
-      "decisionPoints": [
-        {
-          "question": "Are students showing joy when working with yellow?",
-          "ifYes": "Channel joy into creative expression - yellow happiness paintings, joyful movements.",
-          "ifNo": "Model extreme happiness - big smiles, laughter, excited gestures with yellow items."
-        },
-        {
-          "question": "Do we need more examples of yellow bringing happiness?",
-          "ifYes": "Share yellow happiness stories - sunshine days, yellow flowers, yellow birthday balloons.",
-          "ifNo": "Let students lead with their own yellow happiness connections and experiences."
-        },
-        {
-          "question": "Should we sing or move to express yellow's energy?",
-          "ifYes": "Create yellow happiness songs, energetic but joyful dancing with yellow scarves.",
-          "ifNo": "Focus on quiet yellow appreciation - gentle yellow art creation and calm sharing."
-        }
-      ],
-      "visualSupports": "Collection of yellow objects, happiness expression cards, bright lighting",
-      "movementBreaks": "Happy yellow movements at 10 and 20 minutes - sunshine stretching, joyful swaying"
-    },
-    
-    "consolidation": {
-      "duration": "~10 minutes",
-      "activity": "Sunshine Circle: Students hold yellow items and share what makes them 'heureux' (happy). Simple yellow happiness gestures. Create class 'sunshine chart' of happy yellow things. Preview primary color completion: 'Maintenant nous connaissons rouge, bleu, et jaune - demain, la magie commence!' (Now we know red, blue, and yellow - tomorrow, the magic begins!)",
-      "visualSupports": "All yellow items displayed, happiness chart creation space",
-      "realWorldConnection": "Yellow sun makes us smile, yellow flowers brighten gardens, and yellow makes us think of fun times"
-    },
-    
-    "emergencyBackup": "If too energetic: Calm yellow activities like gentle yellow painting. If not connecting to happiness: Use familiar yellow items like bananas, yellow toys they love.",
-    "assessmentNotes": "Notice students' ability to connect yellow with happiness, compare different warm colors, and express joy through movement and language."
-  },
-
-  {
-    "lessonNumber": 6,
-    "title": "Mélanges magiques: Rouge + Jaune",
-    "oneGoal": "Students discover that mixing red and yellow creates orange",
-    "keyVocabulary": ["mélanger", "orange", "nouveau"],
-    "materials": ["Red and yellow paint/water", "Mixing containers", "Brushes/stirrers", "Orange objects for comparison", "Magic wand or special mixing tool"],
-    
-    "mindsOn": {
-      "duration": "~8 minutes",
-      "connectionToPrevious": "We know rouge, bleu, jaune. Today we make magic! Rouge + jaune = ??? Show red and yellow cards with questioning expression.",
-      "activity": "Magic Mixing Prediction: Hold red and yellow items together. Students predict what might happen. Use 'magic wand' (special stirrer) and announce: 'Nous allons mélanger!' Practice mixing motions in air. Build excitement for the magic moment.",
-      "visualSupports": "Red and yellow color cards, magic wand/special tool, prediction chart",
-      "backupPlan": "If no paint available: Use red and yellow cellophane sheets to layer and see color mixing. If mess concerns: Use individual small containers with minimal paint."
-    },
-    
-    "action": {
-      "duration": "~27 minutes",
-      "coreActivity": "Color Magic Laboratory: Students work in pairs to mix red and yellow paint/colored water. Teacher demonstrates first mixing with dramatic excitement: 'Oh! Regardez! Orange!' Compare created orange to real orange objects (oranges, pumpkins, orange blocks). Practice saying 'mélanger' with mixing motions. Create orange artwork celebrating the magic discovery.",
-      "decisionPoints": [
-        {
-          "question": "Are students amazed by the color transformation?",
-          "ifYes": "Extend amazement - try different ratios, make lighter/darker orange, celebrate each discovery.",
-          "ifNo": "Add more drama and excitement - gasps, 'Wow!', magical language, treat it as real magic."
-        },
-        {
-          "question": "Do we need more hands-on mixing time?",
-          "ifYes": "Provide multiple mixing opportunities - different tools, different containers, various amounts.",
-          "ifNo": "Move to identifying orange in environment and creating with the mixed color."
-        },
-        {
-          "question": "Should we predict what will happen before mixing?",
-          "ifYes": "Make formal predictions, record guesses, compare to results with excitement.",
-          "ifNo": "Focus on the surprise and wonder of the immediate mixing experience."
-        }
-      ],
-      "visualSupports": "Real orange objects for comparison, step-by-step mixing pictures, color mixing chart starting",
-      "movementBreaks": "Orange energy movements at 15 minutes - mixing motions, orange excitement dancing"
-    },
-    
-    "consolidation": {
-      "duration": "~10 minutes",
-      "activity": "Orange Celebration: Show off all orange creations. Practice new vocabulary: 'mélanger rouge et jaune fait orange!' Display orange artwork. Orange objects hunt in classroom. Preview next magic: 'Demain, bleu + jaune = ???' with magical mystery gestures.",
-      "visualSupports": "Display area for orange creations, orange objects collection",
-      "realWorldConnection": "We mix ingredients when cooking, and colors mix too - like orange pumpkins and carrots in nature"
-    },
-    
-    "emergencyBackup": "If mixing is too messy: Use orange playdough to explore instead. If paint doesn't work well: Use orange crayons to color over red and yellow areas.",
-    "assessmentNotes": "Observe students' amazement and understanding of color mixing, use of new vocabulary, and connection to orange objects in environment."
-  },
-
-  {
-    "lessonNumber": 7,
-    "title": "Mélanges magiques: Bleu + Jaune",
-    "oneGoal": "Students discover that mixing blue and yellow creates green",
-    "keyVocabulary": ["vert", "nature", "plantes"],
-    "materials": ["Blue and yellow paint/water", "Mixing supplies", "Green natural items (leaves, grass)", "Plant pictures", "Magnifying glasses"],
-    
-    "mindsOn": {
-      "duration": "~8 minutes",
-      "connectionToPrevious": "Yesterday rouge + jaune made orange magic! Today: bleu + jaune = ??? Show blue and yellow cards together with excitement.",
-      "activity": "Nature Color Mystery: Show pictures of green plants, grass, leaves. Ask: 'How does nature make this color?' Hold blue sky picture next to yellow sun picture. 'Sky + sun = ???' Build anticipation for today's mixing magic.",
-      "visualSupports": "Blue and yellow cards, nature pictures, real green leaves/grass",
-      "backupPlan": "If no nature items: Use green classroom objects. If hard to see connection: Focus on the mixing excitement and discovery."
-    },
-    
-    "action": {
-      "duration": "~27 minutes",
-      "coreActivity": "Green Magic Discovery: Mix blue and yellow to create green. Dramatic reveal: 'Vert! Like nature!' Compare mixed green to real leaves, grass, plants. Use magnifying glasses to examine green nature items. Practice 'vert comme...' with nature examples. Create green nature artwork inspired by discoveries.",
-      "decisionPoints": [
-        {
-          "question": "Are students making connections to green in nature?",
-          "ifYes": "Extend nature exploration - different shades of green in leaves, green nature hunt outside if possible.",
-          "ifNo": "Provide explicit nature examples - bring in various green leaves, show green nature photos."
-        },
-        {
-          "question": "Do we need to explore more green examples around us?",
-          "ifYes": "Green treasure hunt in classroom and hallways, cataloging all green discoveries.",
-          "ifNo": "Focus deeply on mixing technique and color creation process."
-        },
-        {
-          "question": "Should we compare green feelings to primary colors?",
-          "ifYes": "Discuss how green feels different from red energy, blue calm, yellow happiness - peaceful growth feeling.",
-          "ifNo": "Concentrate on green identification and nature connections without emotional analysis."
-        }
-      ],
-      "visualSupports": "Real green nature items, magnifying glasses, nature photographs, growing plants if available",
-      "movementBreaks": "Green growing movements at 10 and 20 minutes - stretch like growing plants, sway like trees"
-    },
-    
-    "consolidation": {
-      "duration": "~10 minutes",
-      "activity": "Green Nature Gallery: Display green artwork next to real nature items. Students share their favorite green discovery using 'vert comme...' practice growing plant movements. Start color mixing chart with red+yellow=orange, blue+yellow=green. Preview final primary mix: 'Demain, rouge + bleu = ???'",
-      "visualSupports": "Nature gallery display, growing color mixing chart",
-      "realWorldConnection": "Green grass, leaves, and plants grow all around us - mixing colors helps us paint nature"
-    },
-    
-    "emergencyBackup": "If green isn't mixing well: Use green materials to explore instead of creating. If nature connection unclear: Focus on green objects in classroom environment.",
-    "assessmentNotes": "Notice students' connection between mixed green and nature, growing vocabulary use, and understanding of second color mixing combination."
-  },
-
-  {
-    "lessonNumber": 8,
-    "title": "Mélanges magiques: Rouge + Bleu",
-    "oneGoal": "Students discover that mixing red and blue creates purple",
-    "keyVocabulary": ["violet", "mystère", "royauté"],
-    "materials": ["Red and blue paint/water", "Purple objects", "Crown or royal items", "Mysterious music", "Purple fabric/scarves"],
-    
-    "mindsOn": {
-      "duration": "~8 minutes",
-      "connectionToPrevious": "Rouge + jaune = orange, bleu + jaune = vert. Final magic: rouge + bleu = ??? This is very special magic!",
-      "activity": "Royal Mystery Introduction: Play mysterious music. Drape purple fabric around room. Show crown or royal items. 'Some colors are very special, very mysterious...' Build suspense for the magical purple discovery.",
-      "visualSupports": "Purple fabric decoration, crown/royal items, mysterious atmosphere",
-      "backupPlan": "If no royal items: Use purple objects and create mysterious atmosphere with voice and gestures. If music not available: Use whispered mysterious voice."
-    },
-    
-    "action": {
-      "duration": "~27 minutes",
-      "coreActivity": "Royal Purple Discovery: Mix red and blue with extra ceremony and mystery. Dramatic reveal: 'Violet! The royal color!' Students try on crown while holding purple items. Explore purple's special feeling - mysterious, fancy, royal. Create purple artwork with royal themes. Practice 'violet mystérieux' with regal gestures.",
-      "decisionPoints": [
-        {
-          "question": "Are students intrigued by purple's special qualities?",
-          "ifYes": "Extend royal theme - purple palace artwork, royal purple movements, special purple ceremonies.",
-          "ifNo": "Focus on purple identification and mixing process rather than royal/mysterious themes."
-        },
-        {
-          "question": "Do we need examples of purple in their world?",
-          "ifYes": "Purple treasure hunt - find purple crayons, purple clothes, purple flowers, purple toys.",
-          "ifNo": "Continue with mixing exploration and purple creation activities."
-        },
-        {
-          "question": "Should we explore purple's mysterious feeling?",
-          "ifYes": "Create mysterious purple movements, whispered purple conversations, magical purple gestures.",
-          "ifNo": "Treat purple as another color discovery without special mystery theme."
-        }
-      ],
-      "visualSupports": "Crown for trying on, purple objects collection, royal/mysterious atmosphere items",
-      "movementBreaks": "Royal purple movements at 10 and 20 minutes - regal walking, mysterious floating, crown wearing"
-    },
-    
-    "consolidation": {
-      "duration": "~10 minutes",
-      "activity": "Purple Royalty Ceremony: Each student wears crown briefly while showing purple creation. Complete color mixing chart: red+yellow=orange, blue+yellow=green, red+blue=purple. Celebrate all secondary color discoveries. Preview: 'Maintenant nous pouvons peindre l'automne!' (Now we can paint autumn!)",
-      "visualSupports": "Complete color mixing chart, royal ceremony setup, all purple creations displayed",
-      "realWorldConnection": "Purple flowers are special, purple clothes feel fancy, and purple makes things seem magical"
-    },
-    
-    "emergencyBackup": "If royal theme too complex: Simply explore purple as another mixed color without ceremony. If purple not mixing well: Use purple materials for exploration instead.",
-    "assessmentNotes": "Observe students' completion of primary mixing understanding, engagement with purple's special qualities, and ability to complete all three secondary color discoveries."
-  },
-
-  {
-    "lessonNumber": 9,
-    "title": "L'automne en couleurs",
-    "oneGoal": "Students connect warm colors (red, orange, yellow) to autumn feelings and changes",
-    "keyVocabulary": ["automne", "changement", "feuilles"],
-    "materials": ["Real autumn leaves", "Warm color paints", "Pictures of autumn scenes", "Basket for leaf collection"],
-    
-    "mindsOn": {
-      "duration": "~8 minutes",
-      "connectionToPrevious": "We can make orange (rouge + jaune), and we know rouge, jaune. Perfect for autumn! Show mixed orange paint from lesson 6.",
-      "activity": "Autumn Leaf Welcome: Present basket of real autumn leaves in red, orange, yellow colors. Students gently touch and sort by colors learned. Practice 'feuilles d'automne' with falling leaf gestures. Discuss how leaves 'changent' (change) colors.",
-      "visualSupports": "Real autumn leaves in warm colors, basket for sorting, autumn scene pictures",
-      "backupPlan": "If no real leaves: Use colored paper leaves or autumn pictures. If wrong season: Talk about 'when leaves change colors' with pictures."
-    },
-    
-    "action": {
-      "duration": "~27 minutes",
-      "coreActivity": "Warm Color Autumn Art: Use warm colors (red, orange, yellow) learned in previous lessons to create autumn scenes. Paint falling leaves, autumn trees, warm autumn feelings. Compare warm autumn colors to cool colors - which feel more like autumn? Practice color mixing to create different autumn shades.",
-      "decisionPoints": [
-        {
-          "question": "Are students observing autumn colors in their environment?",
-          "ifYes": "Take brief outdoor observation walk to collect and observe real autumn colors in nature.",
-          "ifNo": "Provide rich autumn photographs and focus on warm color identification in pictures."
-        },
-        {
-          "question": "Do we need to collect real leaves for exploration?",
-          "ifYes": "Organize leaf collecting expedition, sort and compare colors, use leaves as art stamps.",
-          "ifNo": "Use provided leaf materials and focus on color mixing and painting activities."
-        },
-        {
-          "question": "Should we discuss why leaves change colors?",
-          "ifYes": "Simple explanation: leaves change when weather gets cooler, like clothes changing for seasons.",
-          "ifNo": "Focus on color observation and artistic creation rather than scientific explanation."
-        }
-      ],
-      "visualSupports": "Autumn photographs, real or paper leaves, warm color palette display",
-      "movementBreaks": "Autumn movements at 10 and 20 minutes - falling like leaves, swaying like autumn trees"
-    },
-    
-    "consolidation": {
-      "duration": "~10 minutes",
-      "activity": "Autumn Gallery Creation: Display all autumn artwork and leaf collections. Students walk through 'autumn gallery' and practice warm color vocabulary. Choose favorite autumn colors and share why. Preview cool season: 'L'automne a des couleurs chaudes. L'hiver aura des couleurs...' (Autumn has warm colors. Winter will have colors...)",
-      "visualSupports": "Gallery display of autumn artwork and natural materials",
-      "realWorldConnection": "Autumn leaves turn beautiful warm colors, and we can paint or draw these changes we see outside"
-    },
-    
-    "emergencyBackup": "If autumn theme too complex: Focus on warm color (red, orange, yellow) identification and mixing practice. If no seasonal connection: Explore warm colors in any context.",
-    "assessmentNotes": "Notice students' ability to connect learned colors to seasonal themes, use warm color vocabulary, and observe color changes in nature."
-  },
-
-  {
-    "lessonNumber": 10,
-    "title": "L'hiver en couleurs",
-    "oneGoal": "Students explore cool colors (blue, white, purple) and winter emotions",
-    "keyVocabulary": ["hiver", "blanc", "neige"],
-    "materials": ["White materials", "Cool color paints", "Winter scene pictures", "Cotton balls for snow", "Blue and purple items"],
-    
-    "mindsOn": {
-      "duration": "~8 minutes",
-      "connectionToPrevious": "Yesterday autumn was warm colors - rouge, orange, jaune. Today winter brings different colors. Feel the difference!",
-      "activity": "Winter Color Introduction: Introduce 'blanc' (white) as new winter color along with cool blue and purple learned before. Use cotton balls as 'neige' (snow). Practice cool, calm movements with white, blue, purple materials. Contrast with yesterday's warm autumn movements.",
-      "visualSupports": "Cotton ball snow, cool color materials, winter scene photographs",
-      "backupPlan": "If no cotton: Use white paper scraps as snow. If hard to contrast: Focus on blue and white identification without seasonal theme."
-    },
-    
-    "action": {
-      "duration": "~27 minutes",
-      "coreActivity": "Cool Winter Art Creation: Use cool colors (blue, white, purple) to create winter scenes. Mix blue and white to create light blue winter sky. Practice 'froid' feelings with cool colors compared to 'chaud' autumn colors. Create peaceful winter artwork with cool color palette.",
-      "decisionPoints": [
-        {
-          "question": "Are students feeling the coolness of winter colors?",
-          "ifYes": "Emphasize temperature contrast - touch cool items while using cool colors, practice cool movements.",
-          "ifNo": "Provide direct temperature comparisons - warm vs cool objects while painting with corresponding colors."
-        },
-        {
-          "question": "Do we need to contrast with warm autumn colors?",
-          "ifYes": "Direct side-by-side comparison - warm autumn painting next to cool winter painting.",
-          "ifNo": "Focus on cool color exploration and winter theme development."
-        },
-        {
-          "question": "Should we incorporate winter experiences they know?",
-          "ifYes": "Share winter stories - snow days, winter clothes, cold weather, cozy indoor times.",
-          "ifNo": "Focus on color temperature exploration without personal winter connections."
-        }
-      ],
-      "visualSupports": "Winter photographs, temperature comparison items, cool color palette display",
-      "movementBreaks": "Cool winter movements at 10 and 20 minutes - gentle snow falling, peaceful winter walking"
-    },
-    
-    "consolidation": {
-      "duration": "~10 minutes",
-      "activity": "Season Color Comparison: Display autumn (warm) and winter (cool) artwork side by side. Students compare and practice temperature vocabulary - 'chaud/froid.' Create season color chart showing warm autumn vs cool winter. Preview cultural colors: 'Les familles utilisent des couleurs spéciales...' (Families use special colors...)",
-      "visualSupports": "Side-by-side seasonal artwork display, season color comparison chart",
-      "realWorldConnection": "Winter snow is white and blue, making us feel quiet and peaceful, different from autumn's energy"
-    },
-    
-    "emergencyBackup": "If seasonal theme too abstract: Focus on warm vs cool color identification with temperature items. If white paint issues: Use white paper and blue/purple crayons.",
-    "assessmentNotes": "Observe students' ability to contrast warm and cool colors, understand seasonal color connections, and use temperature vocabulary."
-  },
-
-  {
-    "lessonNumber": 11,
-    "title": "Couleurs dans ma famille",
-    "oneGoal": "Students explore how different cultures use colors in celebrations and traditions",
-    "keyVocabulary": ["famille", "tradition", "fête"],
-    "materials": ["Diverse cultural color examples", "Family photo space", "Celebration pictures", "Various colored materials"],
-    
-    "mindsOn": {
-      "duration": "~8 minutes",
-      "connectionToPrevious": "Colors change with seasons. Colors also have special meaning in families and celebrations. What colors does your family love?",
-      "activity": "Family Color Sharing: Students think about colors their family uses for special occasions. Show diverse cultural celebration pictures with different color traditions. Practice 'ma famille' and 'tradition' with welcoming gestures.",
-      "visualSupports": "Diverse cultural celebration photographs, welcoming family gesture cards",
-      "backupPlan": "If cultural examples too complex: Focus on family's favorite colors in general. If sensitive topic: Talk about colors we see in celebrations around us."
-    },
-    
-    "action": {
-      "duration": "~27 minutes",
-      "coreActivity": "Cultural Color Exploration: Examine how different cultures use colors - Chinese red for luck, Diwali bright colors, Christmas red/green, etc. Students share any family color traditions respectfully. Create artwork celebrating diverse color traditions. Practice appreciating all color choices and traditions.",
-      "decisionPoints": [
-        {
-          "question": "Are students sharing their family's color traditions respectfully?",
-          "ifYes": "Encourage respectful listening and appreciation of all traditions shared by classmates.",
-          "ifNo": "Model respectful sharing and listening. Provide structure for sharing special family colors."
-        },
-        {
-          "question": "Do we need to provide examples from various cultures?",
-          "ifYes": "Show diverse cultural color examples, explain briefly and respectfully, focus on beauty.",
-          "ifNo": "Focus on students' own family color experiences and personal connections."
-        },
-        {
-          "question": "Should we create a visual display of diverse traditions?",
-          "ifYes": "Create inclusive class display celebrating all shared color traditions and families.",
-          "ifNo": "Focus on discussion and individual artwork rather than permanent display."
-        }
-      ],
-      "visualSupports": "Respectful cultural photographs, diverse celebration images, inclusive artwork materials",
-      "movementBreaks": "Celebratory movements at 10 and 20 minutes - gentle celebration gestures, happy family movements"
-    },
-    
-    "consolidation": {
-      "duration": "~10 minutes",
-      "activity": "Family Color Appreciation: Students share one family color tradition or favorite family color. Create respectful appreciation circle where all family traditions are celebrated. Practice 'Toutes les familles sont belles' (All families are beautiful). Preview personal connection: 'Demain, nos couleurs personnelles!' (Tomorrow, our personal colors!)",
-      "visualSupports": "Appreciation circle setup, family color sharing space",
-      "realWorldConnection": "Families use special colors for holidays, celebrations, and traditions that are important to them"
-    },
-    
-    "emergencyBackup": "If cultural topic too sensitive: Focus on favorite family colors in general terms. If no cultural examples: Talk about colors in any celebrations they know.",
-    "assessmentNotes": "Notice students' respectful sharing, appreciation of diversity, and connection between colors and family/cultural meanings."
-  },
-
-  {
-    "lessonNumber": 12,
-    "title": "Mon arc-en-ciel d'émotions",
-    "oneGoal": "Students create a personal color wheel connecting all colors to their own emotions",
-    "keyVocabulary": ["arc-en-ciel", "émotions", "personnel"],
-    "materials": ["Large paper for color wheels", "All colors learned", "Emotion face cards", "Circle templates"],
-    
-    "mindsOn": {
-      "duration": "~8 minutes",
-      "connectionToPrevious": "We learned about primary colors, mixed colors, seasonal colors, family colors. Now we create our own personal color feelings!",
-      "activity": "Emotion Color Review: Quick review of color emotions learned - rouge (energy), bleu (calm), jaune (happy), orange (warm), vert (growing), violet (mysterious). Students practice gestures and expressions for each color emotion.",
-      "visualSupports": "Color cards with emotion faces, gesture reference chart",
-      "backupPlan": "If too many emotions: Focus on primary three emotions only. If overwhelming: Just practice color names with simple happy/calm gestures."
-    },
-    
-    "action": {
-      "duration": "~27 minutes",
-      "coreActivity": "Personal Rainbow Creation: Students create their own 'arc-en-ciel' (rainbow) showing how each color makes THEM feel personally. May be different from class discussions - honor personal connections. Use all colors learned and add personal emotion expressions or drawings for each color section.",
-      "decisionPoints": [
-        {
-          "question": "Are students making personal connections to all colors learned?",
-          "ifYes": "Encourage individual interpretation - if blue makes them excited instead of calm, that's perfect for them.",
-          "ifNo": "Help students think of personal experiences with each color to create individual connections."
-        },
-        {
-          "question": "Do we need to review color mixing before creating?",
-          "ifYes": "Quick color mixing review - how to make orange, green, purple - then apply to personal rainbow.",
-          "ifNo": "Focus on personal color-emotion connections rather than technical color mixing."
-        },
-        {
-          "question": "Should we allow individual interpretation of color feelings?",
-          "ifYes": "Celebrate unique interpretations - each person's color rainbow is different and special.",
-          "ifNo": "Guide toward previously learned color emotions while still allowing some personal variation."
-        }
-      ],
-      "visualSupports": "Circle templates for rainbows, emotion expression examples, all colors available",
-      "movementBreaks": "Personal color movements at 15 minutes - each student shows their unique color emotion movement"
-    },
-    
-    "consolidation": {
-      "duration": "~10 minutes",
-      "activity": "Rainbow Sharing Celebration: Students share their personal color rainbows, explaining how colors make them feel. Celebrate individual differences and personal connections to colors. Display all rainbows as celebration of individual color personalities. Preview artist connection: 'Les artistes utilisent des couleurs pour leurs émotions aussi!' (Artists use colors for their emotions too!)",
-      "visualSupports": "Display space for all personal rainbows",
-      "realWorldConnection": "Everyone feels differently about colors based on their experiences and personality"
-    },
-    
-    "emergencyBackup": "If personal sharing too complex: Focus on creating individual rainbows without sharing requirement. If overwhelmed by choices: Guide students through one color feeling at a time.",
-    "assessmentNotes": "Observe students' personal color-emotion connections, individual expression, and ability to synthesize all color learning into personal creation."
-  },
-
-  {
-    "lessonNumber": 13,
-    "title": "Artistes et leurs couleurs",
-    "oneGoal": "Students observe how famous artists use colors to express feelings and ideas",
-    "keyVocabulary": ["artiste", "expression", "créateur"],
-    "materials": ["Simple famous artwork reproductions", "Artist pictures", "Magnifying glasses", "Art creation materials"],
-    
-    "mindsOn": {
-      "duration": "~8 minutes",
-      "connectionToPrevious": "Yesterday we made personal color rainbows. Today we see how real artists use colors like we do!",
-      "activity": "Artist Introduction: Show simple, colorful artwork (Van Gogh sunflowers, Matisse cut-outs). 'This person is an artiste!' Practice word 'artiste' with creative gestures. Point to colors in artwork: 'L'artiste utilise jaune, bleu...' Show how artists choose colors like students do.",
-      "visualSupports": "Simple, colorful artwork reproductions, pictures of artists, magnifying glasses",
-      "backupPlan": "If no art reproductions: Use colorful artwork from previous lessons as 'student artist' examples. If complex: Focus on color identification in any artwork."
-    },
-    
-    "action": {
-      "duration": "~27 minutes",
-      "coreActivity": "Artist Color Detective: Use magnifying glasses to examine artwork colors closely. Find primary colors, mixed colors learned. Discuss how artist chose colors - happy yellow like lesson 5? Calm blue like lesson 4? Create artwork 'like an artist' using color choices to show feelings.",
-      "decisionPoints": [
-        {
-          "question": "Are students making connections between artist choices and emotions?",
-          "ifYes": "Deepen connections - 'Why did artist choose rouge here? How does it make you feel?'",
-          "ifNo": "Provide explicit emotion connections - point to yellow and say 'Artist wanted happy feeling here.'"
-        },
-        {
-          "question": "Do we need simpler art examples for this age?",
-          "ifYes": "Focus on very colorful, simple artwork - children's book illustrations, bright simple paintings.",
-          "ifNo": "Continue with famous artwork but focus on color identification rather than complex artistic concepts."
-        },
-        {
-          "question": "Should we focus on one artist or show variety?",
-          "ifOne": "Deep dive into one very colorful artist's work - identify all learned colors, create artwork in their style.",
-          "ifVariety": "Show diverse artists using different color approaches - compare how different artists use colors."
-        }
-      ],
-      "visualSupports": "Magnifying glasses for close examination, artwork reproductions, color identification charts",
-      "movementBreaks": "Artist movements at 10 and 20 minutes - painting gestures, creative movements, artist poses"
-    },
-    
-    "consolidation": {
-      "duration": "~10 minutes",
-      "activity": "Young Artist Celebration: Students show their 'artist' creations and explain color choices using vocabulary learned. Compare their choices to famous artists examined. Practice 'Je suis un artiste!' (I am an artist!) with pride. Preview personal creation: 'Demain, votre chef-d'œuvre!' (Tomorrow, your masterpiece!)",
-      "visualSupports": "Display space for student artist work alongside famous artwork",
-      "realWorldConnection": "Artists throughout history have used colors to tell stories and share feelings, just like we do"
-    },
-    
-    "emergencyBackup": "If artist concept too abstract: Focus on color identification in any pictures or artwork available. If no artwork: Use student work from previous lessons as 'artist' examples.",
-    "assessmentNotes": "Notice students' ability to identify learned colors in artwork, connect colors to emotions in art context, and see themselves as artists using color choices."
-  },
-
-  {
-    "lessonNumber": 14,
-    "title": "Ma création colorée",
-    "oneGoal": "Students demonstrate all color learning by creating their own expressive artwork",
-    "keyVocabulary": ["création", "démontrer", "fierté"],
-    "materials": ["All colors available", "Various art materials", "Large creation paper", "Choice of tools"],
-    
-    "mindsOn": {
-      "duration": "~8 minutes",
-      "connectionToPrevious": "We learned primary colors, mixed colors, emotions, seasons, family colors, and artists' colors. Today you show everything you know!",
-      "activity": "Master Artist Preparation: Students choose their art materials and colors. Review quick color mixing if needed. Practice 'ma création' (my creation) with proud gestures. Set intention: 'What do you want your colors to say?'",
-      "visualSupports": "All color materials displayed and accessible, choice boards for decision making",
-      "backupPlan": "If choice overwhelming: Provide three simple options. If materials limited: Focus on available colors and emphasize creativity over materials."
-    },
-    
-    "action": {
-      "duration": "~27 minutes",
-      "coreActivity": "Masterpiece Creation: Students create their own expressive artwork using all color knowledge gained. Can mix colors, show emotions, include seasonal themes, family colors, whatever feels important to them. Teacher circulates offering encouragement and color vocabulary support.",
-      "decisionPoints": [
-        {
-          "question": "Are students applying color mixing and emotional connections?",
-          "ifYes": "Encourage risk-taking and creative expression. Support advanced color mixing attempts.",
-          "ifNo": "Provide gentle reminders - 'What colors make you happy? What happens when you mix rouge et jaune?'"
-        },
-        {
-          "question": "Do we need to provide choice in materials or subject?",
-          "ifYes": "Offer various art materials, different paper sizes, choice in what to create - let creativity guide.",
-          "ifNo": "Focus on color expression with available materials rather than expanding material choices."
-        },
-        {
-          "question": "Should we plan for sharing and celebration?",
-          "ifYes": "Prepare sharing structure - each student explains one color choice in their artwork.",
-          "ifNo": "Focus on creation process and personal satisfaction rather than public sharing."
-        }
-      ],
-      "visualSupports": "All learned color materials available, inspirational display of past color work",
-      "movementBreaks": "Creative stretching at 15 minutes - artist movements, color inspiration movements"
-    },
-    
-    "consolidation": {
-      "duration": "~10 minutes",
-      "activity": "Masterpiece Gallery: Create class gallery of all masterpieces. Students walk through gallery appreciating all work. Each student shares one thing they're proud of in their creation using color vocabulary. Celebrate growth from lesson 1 to now. Preview extension lessons: 'Encore plus de magie colorée!' (Even more color magic!)",
-      "visualSupports": "Gallery display of all student masterpieces",
-      "realWorldConnection": "We can use everything we learned about colors to create art that shows who we are and how we feel"
-    },
-    
-    "emergencyBackup": "If creations not finished: Focus on process celebration rather than finished products. If sharing too overwhelming: Simple gallery walk without verbal sharing.",
-    "assessmentNotes": "Observe students' application of all color learning, creative expression, pride in creation, and ability to explain color choices using developed vocabulary."
-  },
-
-  {
-    "lessonNumber": 15,
-    "title": "Couleurs dans notre école",
-    "oneGoal": "Students practice color identification and mixing by exploring school environment",
-    "keyVocabulary": [],
-    "materials": ["Color recording sheets", "Clipboards", "Pencils/crayons", "Magnifying glasses"],
-    
-    "mindsOn": {
-      "duration": "~8 minutes",
-      "connectionToPrevious": "We've learned colors in our classroom. Today we explore colors throughout our whole school!",
-      "activity": "School Color Expedition Preparation: Practice all color names learned. Prepare for color detective work throughout school. Discuss respectful hallway behavior and quiet color hunting techniques.",
-      "visualSupports": "Color vocabulary review cards, school map showing exploration areas",
-      "backupPlan": "If can't leave classroom: Focus on detailed classroom color exploration. If behavior concerns: Limit to visible hallway areas from classroom."
-    },
-    
-    "action": {
-      "duration": "~27 minutes",
-      "coreActivity": "School Color Safari: Systematic exploration of school environment identifying all learned colors. Record findings - where do we find rouge? bleu? What about mixed colors like orange and green? Practice color vocabulary naturally in new environment context.",
-      "decisionPoints": [
-        {
-          "question": "Which areas of school offer the most color variety?",
-          "ifLibrary": "Focus on colorful book displays, posters, reading areas with diverse colors.",
-          "ifGym": "Explore equipment colors, floor markings, wall colors in large space.",
-          "ifArt": "Rich color exploration in art displays, materials, student work throughout school."
-        },
-        {
-          "question": "Are students applying learned vocabulary naturally?",
-          "ifYes": "Encourage natural conversation about colors discovered, build on their observations.",
-          "ifNo": "Provide sentence frames: 'Je vois...' 'Ici il y a...' to support language use."
-        },
-        {
-          "question": "Should we document findings for future reference?",
-          "ifYes": "Create school color map, photograph color discoveries, make permanent record.",
-          "ifNo": "Focus on immediate discovery experience and vocabulary practice."
-        }
-      ],
-      "visualSupports": "Recording materials, school areas with natural color variety",
-      "movementBreaks": "Built into exploration - walking, discovering, quiet movement through school"
-    },
-    
-    "consolidation": {
-      "duration": "~10 minutes",
-      "activity": "School Color Report: Return to classroom and share discoveries. Create simple school color chart showing where different colors were found. Practice vocabulary through sharing discoveries. Appreciate school environment through color lens.",
-      "visualSupports": "School color discovery chart, documentation of findings",
-      "realWorldConnection": "School colors help us feel welcome and create a positive learning environment"
-    },
-    
-    "emergencyBackup": "If school exploration not possible: Deep classroom color exploration with new perspective. If too stimulating: Calm color observation from classroom window or doorway.",
-    "assessmentNotes": "Notice students' natural use of color vocabulary, ability to identify learned colors in new contexts, and engagement with environmental color exploration."
-  },
-
-  {
-    "lessonNumber": 16,
-    "title": "Peinture libre avec couleurs chaudes",
-    "oneGoal": "Students freely explore warm colors while practicing mixing and emotional expression",
-    "keyVocabulary": [],
-    "materials": ["Warm colors only", "Various brushes", "Large paper", "Mixing palettes", "Warm music"],
-    
-    "mindsOn": {
-      "duration": "~8 minutes",
-      "connectionToPrevious": "Remember warm autumn colors - rouge, orange, jaune? Today we paint freely with only warm colors!",
-      "activity": "Warm Color Energy Building: Handle only warm color materials. Practice warm color movements and feelings. Set up warm color painting stations. Build energy for creative warm color exploration.",
-      "visualSupports": "Only warm color materials displayed, energetic warm atmosphere",
-      "backupPlan": "If too energetic: Start with calm warm color breathing. If materials limited: Focus on available warm colors and maximize creativity."
-    },
-    
-    "action": {
-      "duration": "~27 minutes",
-      "coreActivity": "Free Warm Color Expression: Open-ended painting with only warm colors available. Students experiment with mixing red, orange, yellow combinations. Focus on how warm colors make them feel and express that through painting. No specific subject - pure color exploration and expression.",
-      "decisionPoints": [
-        {
-          "question": "Are students confidently mixing warm colors?",
-          "ifYes": "Encourage experimentation with different warm color ratios and combinations.",
-          "ifNo": "Provide gentle mixing guidance - demonstrate red+yellow=orange again if needed."
-        },
-        {
-          "question": "Do we need to encourage experimentation?",
-          "ifYes": "Model risk-taking - 'What happens if we try this?' Celebrate all attempts at mixing.",
-          "ifNo": "Let students explore at their own pace without additional encouragement."
-        },
-        {
-          "question": "Should we play music to inspire warm color feelings?",
-          "ifYes": "Play energetic but not overwhelming music that matches warm color energy.",
-          "ifNo": "Allow natural quiet concentration and personal warm color exploration."
-        }
-      ],
-      "visualSupports": "Only warm color palette available, examples of warm color combinations",
-      "movementBreaks": "Warm color movements at 15 minutes - energetic but controlled movements matching warm color feelings"
-    },
-    
-    "consolidation": {
-      "duration": "~10 minutes",
-      "activity": "Warm Color Celebration: Display all warm color creations. Students share how warm colors made them feel during painting. Compare to previous warm color lessons (autumn, red energy). Appreciate diverse warm color expressions.",
-      "visualSupports": "Gallery of warm color creations",
-      "realWorldConnection": "Warm colors help us feel cozy and energetic, perfect for decorating spaces where we want to feel happy"
-    },
-    
-    "emergencyBackup": "If painting too messy: Use warm color crayons or pastels instead. If not engaging: Add simple warm color games or movement activities.",
-    "assessmentNotes": "Observe students' comfortable use of warm colors, mixing confidence, and emotional expression through warm color choices."
-  },
-
-  {
-    "lessonNumber": 17,
-    "title": "Peinture libre avec couleurs froides",
-    "oneGoal": "Students freely explore cool colors while practicing mixing and calming expressions",
-    "keyVocabulary": [],
-    "materials": ["Cool colors only", "Soft brushes", "Large paper", "Calm music", "Blue/purple/white materials"],
-    
-    "mindsOn": {
-      "duration": "~8 minutes",
-      "connectionToPrevious": "Yesterday warm colors gave us energy. Today cool colors - bleu, violet, blanc - bring us peace.",
-      "activity": "Cool Color Calming: Handle only cool color materials with gentle movements. Practice peaceful breathing with cool colors. Create calm atmosphere for cool color exploration. Slow, peaceful preparation.",
-      "visualSupports": "Only cool color materials, peaceful atmosphere setup",
-      "backupPlan": "If too calm/sleepy: Add gentle cool color movements. If materials limited: Focus on available cool colors with emphasis on peaceful feelings."
-    },
-    
-    "action": {
-      "duration": "~27 minutes",
-      "coreActivity": "Peaceful Cool Color Creation: Free painting exploration using only cool colors. Mix blues with white, explore purple combinations. Focus on calm, peaceful feelings. Paint slowly, thoughtfully, expressing cool color emotions through gentle artistic expression.",
-      "decisionPoints": [
-        {
-          "question": "Are students experiencing the calming effect of cool colors?",
-          "ifYes": "Encourage meditative painting approach - slow, thoughtful, peaceful creation.",
-          "ifNo": "Model calm cool color movements and breathing. Demonstrate peaceful painting techniques."
-        },
-        {
-          "question": "Do we need quiet music or nature sounds?",
-          "ifYes": "Play gentle, calming background music or nature sounds to enhance cool color mood.",
-          "ifNo": "Maintain natural quiet atmosphere allowing individual peaceful exploration."
-        },
-        {
-          "question": "Should we encourage slower, more meditative movements?",
-          "ifYes": "Guide students toward slow, thoughtful painting movements matching cool color feelings.",
-          "ifNo": "Allow natural pace while maintaining focus on cool color emotional expression."
-        }
-      ],
-      "visualSupports": "Only cool color palette, peaceful examples of cool color combinations",
-      "movementBreaks": "Gentle cool movements at 15 minutes - slow stretching, peaceful movements like calm water"
-    },
-    
-    "consolidation": {
-      "duration": "~10 minutes",
-      "activity": "Cool Color Peace Sharing: Display cool color creations in peaceful gallery. Students share quietly how cool colors made them feel. Compare to warm color energy from yesterday. Appreciate calming effect of cool color palette.",
-      "visualSupports": "Peaceful gallery display of cool color art",
-      "realWorldConnection": "Cool colors help us feel calm and peaceful, perfect for bedrooms or quiet spaces"
-    },
-    
-    "emergencyBackup": "If too calm: Add gentle cool color movements to maintain engagement. If painting not working: Use cool color materials for gentle exploration activities.",
-    "assessmentNotes": "Notice students' response to cool color atmosphere, ability to contrast with warm colors, and peaceful artistic expression."
-  },
-
-  {
-    "lessonNumber": 18,
-    "title": "Couleurs de nos jouets favoris",
-    "oneGoal": "Students analyze and recreate colors from beloved toys and objects",
-    "keyVocabulary": [],
-    "materials": ["Students' favorite toys/objects", "All colors available", "Color matching materials", "Magnifying glasses"],
-    
-    "mindsOn": {
-      "duration": "~8 minutes",
-      "connectionToPrevious": "We've painted with warm colors and cool colors. Today we paint the colors of things we love!",
-      "activity": "Favorite Object Sharing: Students bring or describe favorite toy/object. Identify colors in beloved items using all vocabulary learned. Practice describing colors: 'Mon jouet favori a rouge et bleu...'",
-      "visualSupports": "Student toys/objects, color identification materials",
-      "backupPlan": "If no toys brought: Use classroom objects students like. If sharing too chaotic: Focus on individual color identification quietly."
-    },
-    
-    "action": {
-      "duration": "~27 minutes",
-      "coreActivity": "Beloved Object Color Recreation: Students carefully observe colors in their favorite objects and try to recreate those exact colors through mixing and matching. Practice precise color matching, mixing to achieve specific shades found in beloved items.",
-      "decisionPoints": [
-        {
-          "question": "Are students excited to share their favorite objects?",
-          "ifYes": "Channel excitement into detailed color exploration and sharing discoveries about object colors.",
-          "ifNo": "Provide encouraging examples and focus on color discovery rather than object sharing."
-        },
-        {
-          "question": "Do we need help with color matching techniques?",
-          "ifYes": "Demonstrate color matching process, provide magnifying glasses, show mixing techniques for achieving specific shades.",
-          "ifNo": "Allow independent exploration and problem-solving in color matching process."
-        },
-        {
-          "question": "Should we create a class gallery of favorite things?",
-          "ifYes": "Create special display celebrating everyone's favorite objects and the colors that make them special.",
-          "ifNo": "Focus on individual color exploration and personal connection to beloved object colors."
-        }
-      ],
-      "visualSupports": "Favorite objects for reference, color matching tools, magnifying equipment",
-      "movementBreaks": "Gentle object appreciation movements at 15 minutes - careful handling, loving gestures"
-    },
-    
-    "consolidation": {
-      "duration": "~10 minutes",
-      "activity": "Favorite Color Celebration: Students share their color matching discoveries. Discuss how colors make favorite objects special. Practice vocabulary through personal object descriptions. Appreciate personal connections to colors through beloved items.",
-      "visualSupports": "Display of color matching work and favorite objects",
-      "realWorldConnection": "The colors of our favorite things often reflect our personality and what makes us happy"
-    },
-    
-    "emergencyBackup": "If objects not available: Use pictures of toys or focus on favorite classroom objects. If color matching too difficult: Focus on simple color identification in favorite things.",
-    "assessmentNotes": "Observe students' personal engagement with color learning, ability to match colors precisely, and connection between colors and personal preferences."
-  },
-
-  {
-    "lessonNumber": 19,
-    "title": "Histoire colorée en images",
-    "oneGoal": "Students tell a story using only colors and simple shapes",
-    "keyVocabulary": [],
-    "materials": ["All colors available", "Simple shape templates", "Large story paper", "Sequence planning sheets"],
-    
-    "mindsOn": {
-      "duration": "~8 minutes",
-      "connectionToPrevious": "Colors show our feelings, seasons, families, favorite things. Today colors tell a story without words!",
-      "activity": "Color Story Introduction: Demonstrate simple color story - happy yellow beginning, excited red middle, peaceful blue ending. Show how colors can tell story emotions. Students practice understanding color story sequence.",
-      "visualSupports": "Simple color story example, emotion sequence cards",
-      "backupPlan": "If concept too abstract: Focus on color emotion sequence - happy, excited, calm. If overwhelming: Start with three-color simple story."
-    },
-    
-    "action": {
-      "duration": "~27 minutes",
-      "coreActivity": "Color Story Creation: Students create their own stories using only colors and simple shapes. Plan story sequence - beginning feeling (color choice), middle action (color choice), ending feeling (color choice). Paint/create story sequence showing emotion progression through color choices.",
-      "decisionPoints": [
-        {
-          "question": "Are students connecting colors to story emotions effectively?",
-          "ifYes": "Encourage complex color stories with multiple emotions and color transitions.",
-          "ifNo": "Simplify to basic emotion sequence - provide emotion-color connections explicitly."
-        },
-        {
-          "question": "Do we need to scaffold storytelling structure?",
-          "ifYes": "Provide story frames: beginning/middle/end structure with color emotion supports.",
-          "ifNo": "Allow free creative storytelling through color choices without rigid structure."
-        },
-        {
-          "question": "Should we encourage peer sharing and interpretation?",
-          "ifYes": "Partner sharing where students 'read' each other's color stories and guess emotions.",
-          "ifNo": "Focus on individual color story creation without interpretation sharing."
-        }
-      ],
-      "visualSupports": "Story sequence planning sheets, all color materials, simple shape templates",
-      "movementBreaks": "Story movement at 15 minutes - act out color story emotions through movement"
-    },
-    
-    "consolidation": {
-      "duration": "~10 minutes",
-      "activity": "Color Story Theater: Students share color stories and others guess the emotions/story progression. Celebrate creative use of colors for storytelling. Appreciate how colors communicate feelings and ideas without words.",
-      "visualSupports": "Display area for color stories, sharing circle setup",
-      "realWorldConnection": "Colors help tell stories in books, movies, and art all around us every day"
-    },
-    
-    "emergencyBackup": "If storytelling too complex: Focus on single color emotion expression. If sharing overwhelming: Simple gallery walk of color stories without verbal presentation.",
-    "assessmentNotes": "Notice students' ability to use colors intentionally for emotional storytelling, understanding of color-emotion connections, and creative expression through color choices."
-  },
-
-  {
-    "lessonNumber": 20,
-    "title": "Célébration de nos couleurs magiques",
-    "oneGoal": "Students celebrate their color journey by sharing favorite creations and discoveries",
-    "keyVocabulary": [],
-    "materials": ["All student color work", "Celebration setup", "Display materials", "Certificate materials"],
-    
-    "mindsOn": {
-      "duration": "~8 minutes",
-      "connectionToPrevious": "From Lesson 1 'Bonjour les couleurs!' to today - we've learned so much color magic! Let's celebrate our journey.",
-      "activity": "Color Learning Journey Review: Quick review of color learning progression - primary colors, mixing, emotions, seasons, families, artists, personal creations. Students choose their most favorite color learning memory.",
-      "visualSupports": "Display of work from all previous lessons, journey timeline",
-      "backupPlan": "If overwhelming to choose: Focus on celebrating all learning equally. If setup issues: Simple sharing circle with color memories."
-    },
-    
-    "action": {
-      "duration": "~27 minutes",
-      "coreActivity": "Color Magic Celebration: Students set up gallery of their best color work from the entire unit. Practice explaining their color learning to others. Share favorite color discoveries, proudest moments, biggest surprises. Celebrate growth from first color identification to complex color storytelling and artistic expression.",
-      "decisionPoints": [
-        {
-          "question": "How should students choose which work to share?",
-          "ifPersonal": "Students choose work that makes them most proud or shows their biggest learning growth.",
-          "ifTeacher": "Teacher guides selection to show range of learning and ensure all students have representation.",
-          "ifAll": "Display everything from the unit to show complete learning journey progression."
-        },
-        {
-          "question": "Do we invite families or other classes to celebrate?",
-          "ifYes": "Organize celebration exhibition where students present their color learning to special guests.",
-          "ifNo": "Focus on internal class celebration appreciating each other's growth and learning."
-        },
-        {
-          "question": "Should we create a permanent display of their learning?",
-          "ifYes": "Create lasting display in classroom or hallway showing the complete color learning journey.",
-          "ifNo": "Focus on celebration experience and personal satisfaction rather than permanent display."
-        }
-      ],
-      "visualSupports": "Complete gallery of all color work, celebration setup, learning journey documentation",
-      "movementBreaks": "Celebration movements throughout - happy color dancing, proud sharing gestures"
-    },
-    
-    "consolidation": {
-      "duration": "~10 minutes",
-      "activity": "Color Magic Graduation: Each student receives recognition for their color learning journey. Practice final color vocabulary celebration. Share hopes for continued color exploration. End with group celebration of all color magic learned together.",
-      "visualSupports": "Celebration recognition materials, final display of learning",
-      "realWorldConnection": "Artists share their work with others because art is meant to be enjoyed and celebrated together"
-    },
-    
-    "emergencyBackup": "If celebration overwhelming: Simple appreciation circle sharing one color learning memory each. If setup issues: Focus on individual reflection and personal celebration of growth.",
-    "assessmentNotes": "Celebrate and document complete color learning journey, growth from beginning to end, student pride in accomplishments, and readiness for continued artistic exploration."
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
   }
-]
+}

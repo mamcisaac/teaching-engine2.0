@@ -8,863 +8,1044 @@
   "lessons": [
     {
       "lessonNumber": 1,
+      "lessonType": "core",
       "title": "Découvrir enlever",
       "oneGoal": "Comprendre que la soustraction c'est enlever quelque chose",
-      "keyVocabulary": ["enlever", "partir", "reste"],
       "duration": "45 minutes",
-      "materials": ["Blocs ou cubes colorés", "Panier ou boîte", "Peluches ou figurines"],
-      "decisionPoints": [
-        {
-          "question": "Comment les enfants réagissent aux manipulatifs?",
-          "ifThis": "Ils sont très excités et touchent tout",
-          "thenThis": "Donner 2-3 minutes d'exploration libre avant de commencer"
-        },
-        {
-          "question": "Quel niveau de soutien gestuel nécessaire?",
-          "ifThis": "Ils ne comprennent pas 'enlever'",
-          "thenThis": "Montrer avec des gestes exagérés - prendre et mettre de côté"
-        },
-        {
-          "question": "Les concepts 'enlever' sont-ils clairs?",
-          "ifThis": "Confusion entre enlever et ajouter",
-          "thenThis": "Utiliser des contenants clairs - montrer 'dedans' vs 'dehors'"
-        }
+      "keyVocabulary": [
+        "enlever",
+        "partir",
+        "reste"
       ],
       "opening": {
-        "activity": "Chanson de bienvenue et introduction des 'amis cubes'",
         "duration": "8 minutes",
-        "description": "Présenter les manipulatifs comme des 'amis' qui aiment jouer à cache-cache. Les enfants explorent librement pendant 3 minutes."
+        "activity": "Chanson de bienvenue et introduction des 'amis cubes'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
-        "activity": "Histoire des cubes qui partent en voyage",
+      "main": {
         "duration": "27 minutes",
-        "description": "Raconter une histoire simple: 5 cubes dans un panier, 2 partent en voyage. Combien restent? Les enfants manipulent leurs propres cubes en suivant l'histoire. Répéter avec différents nombres et objets.",
-        "scaffolding": "Commencer avec 3 objets maximum. Utiliser des gestes clairs. Laisser les enfants toucher et bouger les objets."
+        "activity": "Histoire des cubes qui partent en voyage",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
-        "activity": "Chanson 'Au revoir les cubes'",
         "duration": "10 minutes",
-        "description": "Chanter en rangeant les cubes. Demander: 'Qu'est-ce qu'on a appris aujourd'hui?' Accepter les réponses en français et en gestes."
+        "activity": "Chanson 'Au revoir les cubes'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "Quand maman mange des biscuits dans le pot, il en reste moins",
-      "whatIfWrong": "Si les enfants sont confus, revenir aux objets concrets et répéter avec des quantités plus petites (2-3 objets)."
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 2,
+      "lessonType": "core",
       "title": "Compter à l'envers",
       "oneGoal": "Apprendre à compter de 10 à 0 pour comprendre la soustraction",
-      "keyVocabulary": ["reculer", "moins", "compte"],
       "duration": "45 minutes",
-      "materials": ["Escalier en carton ou tapis numéroté", "Figurines ou voitures", "Affichage des nombres 0-10"],
-      "decisionPoints": [
-        {
-          "question": "Les enfants maîtrisent-ils déjà compter vers l'avant?",
-          "ifThis": "Ils ont de la difficulté avec l'ordre croissant",
-          "thenThis": "Pratiquer d'abord 1-2-3-4-5 avant d'essayer à l'envers"
-        },
-        {
-          "question": "Quel support visuel aide le mieux?",
-          "ifThis": "Ils se perdent dans la séquence",
-          "thenThis": "Utiliser des gestes de la main ou pointer physiquement les nombres"
-        },
-        {
-          "question": "Faut-il ralentir ou accélérer le rythme?",
-          "ifThis": "Ils suivent facilement",
-          "thenThis": "Ajouter du mouvement - marcher en comptant à l'envers"
-        }
+      "keyVocabulary": [
+        "reculer",
+        "moins",
+        "compte"
       ],
       "opening": {
-        "activity": "Révision rapide - Histoire des cubes de la leçon 1",
         "duration": "8 minutes",
-        "description": "Rappeler l'histoire d'hier avec 3 cubes. Demander: 'Qui se souvient de ce qu'on a appris?'"
+        "activity": "Révision rapide - Histoire des cubes de la leçon 1",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
-        "activity": "L'escalier magique qui descend",
+      "main": {
         "duration": "27 minutes",
-        "description": "Utiliser un escalier visuel (carton ou tapis). Une figurine 'descend' de la marche 10 à 0. Les enfants comptent ensemble. Répéter avec différents points de départ. Puis les enfants bougent leurs propres figurines.",
-        "scaffolding": "Commencer par 5-4-3-2-1-0. Utiliser des gestes et des voix expressives. Laisser les enfants être les 'figurines'."
+        "activity": "L'escalier magique qui descend",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
-        "activity": "Comptine à l'envers avec mouvements",
         "duration": "10 minutes",
-        "description": "Créer une comptine simple: '10, 9, 8, on descend! 7, 6, 5, ça continue! 4, 3, 2, presque fini! 1, 0, on est arrivé!'"
+        "activity": "Comptine à l'envers avec mouvements",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "Comme compter les marches en descendant l'escalier",
-      "whatIfWrong": "Si trop difficile, rester sur 5-0 seulement. Utiliser plus de support physique - vraies marches ou gradins."
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 3,
+      "lessonType": "core",
       "title": "Histoires d'enlever",
       "oneGoal": "Créer des histoires simples avec des situations de soustraction",
-      "keyVocabulary": ["histoire", "problème", "solution"],
       "duration": "45 minutes",
-      "materials": ["Livre d'images simple", "Peluches d'animaux", "Tableau ou grande feuille", "Crayons de couleur"],
-      "decisionPoints": [
-        {
-          "question": "Quels objets/animaux intéressent le plus les enfants?",
-          "ifThis": "Ils préfèrent les dinosaures aux lapins",
-          "thenThis": "Adapter l'histoire aux intérêts - utiliser leurs suggestions"
-        },
-        {
-          "question": "Les histoires sont-elles assez simples?",
-          "ifThis": "Ils se perdent dans les détails",
-          "thenThis": "Simplifier: 'Il y a X. Y partent. Combien restent?'"
-        },
-        {
-          "question": "Comment adapter pour différents styles d'apprentissage?",
-          "ifThis": "Certains préfèrent écouter, d'autres manipuler",
-          "thenThis": "Combiner: raconter ET montrer avec des objets"
-        }
+      "keyVocabulary": [
+        "histoire",
+        "problème",
+        "solution"
       ],
       "opening": {
-        "activity": "Révision avec l'escalier magique de la leçon 2",
         "duration": "8 minutes",
-        "description": "Compter ensemble de 5 à 0 avec les gestes. Introduire: 'Aujourd'hui on va faire des histoires avec des nombres!'"
+        "activity": "Révision avec l'escalier magique de la leçon 2",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
-        "activity": "Théâtre d'histoires mathématiques",
+      "main": {
         "duration": "27 minutes",
-        "description": "Raconter l'histoire de 4 lapins dans un jardin, 2 sautent dans la forêt. Combien restent? Les enfants utilisent des peluches pour jouer l'histoire. Créer 2-3 histoires différentes ensemble.",
-        "scaffolding": "Utiliser des images et des objets. Permettre aux enfants de suggérer des éléments d'histoire. Garder les nombres petits (0-5)."
+        "activity": "Théâtre d'histoires mathématiques",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
-        "activity": "Dessiner notre histoire préférée",
         "duration": "10 minutes",
-        "description": "Les enfants dessinent rapidement leur histoire mathématique préférée de la leçon. Partager avec un ami."
+        "activity": "Dessiner notre histoire préférée",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "Les histoires qu'on lit à la maison parlent souvent d'enlever ou perdre",
-      "whatIfWrong": "Si les enfants inventent des histoires trop compliquées, donner un cadre simple: 'Il y a ___ [objets]. ___ partent. Combien restent?'"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 4,
+      "lessonType": "core",
       "title": "Jeux avec des objets",
       "oneGoal": "Manipuler des objets concrets pour pratiquer la soustraction",
-      "keyVocabulary": ["cubes", "jetons", "manipuler"],
       "duration": "45 minutes",
-      "materials": ["Jetons colorés", "Petits contenants", "Dés avec points (1-3)", "Feuilles de travail simples"],
-      "decisionPoints": [
-        {
-          "question": "Quels manipulatifs fonctionnent le mieux?",
-          "ifThis": "Les jetons roulent et tombent",
-          "thenThis": "Utiliser des blocs ou objets plus stables"
-        },
-        {
-          "question": "Comment gérer le partage des matériaux?",
-          "ifThis": "Disputes sur les couleurs préférées",
-          "thenThis": "Chaque enfant a sa propre couleur ou mélange aléatoire"
-        },
-        {
-          "question": "Le niveau de difficulté est-il approprié?",
-          "ifThis": "Trop facile ou trop difficile",
-          "thenThis": "Ajuster entre 1-3 objets ou 1-6 objets selon le groupe"
-        }
+      "keyVocabulary": [
+        "cubes",
+        "jetons",
+        "manipuler"
       ],
       "opening": {
-        "activity": "Histoire éclair de la leçon 3",
         "duration": "8 minutes",
-        "description": "Rappeler une histoire de lapins rapidement avec 3 objets. Dire: 'Aujourd'hui on va jouer avec plein d'objets différents!'"
+        "activity": "Histoire éclair de la leçon 3",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
-        "activity": "Centres de jeux mathématiques",
+      "main": {
         "duration": "27 minutes",
-        "description": "3 centres: 1) Jetons dans des contenants - enlever selon le dé, 2) Blocs - construire puis démonter partiellement, 3) Feuille simple - entourer ce qui reste. Rotation de 9 minutes par centre.",
-        "scaffolding": "Démontrer chaque centre d'abord. Circulation active pour soutenir. Permettre collaboration entre enfants."
+        "activity": "Centres de jeux mathématiques",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
-        "activity": "Partage des découvertes",
         "duration": "10 minutes",
-        "description": "Chaque centre présente rapidement leur jeu préféré. Ranger ensemble en comptant les objets."
+        "activity": "Partage des découvertes",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "Comme jouer avec des jouets et les ranger dans des boîtes",
-      "whatIfWrong": "Si un centre ne fonctionne pas, rejoindre ce groupe et redémontrer. Simplifier les règles au besoin."
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 5,
+      "lessonType": "core",
       "title": "Addition et soustraction ensemble",
       "oneGoal": "Découvrir que l'addition et la soustraction sont des opérations inverses",
-      "keyVocabulary": ["inverse", "ajouter", "contraire"],
       "duration": "45 minutes",
-      "materials": ["Balances ou plateaux", "Cubes unifix", "Cartes d'addition connues", "Grande affiche pour démonstration"],
-      "decisionPoints": [
-        {
-          "question": "Les enfants comprennent-ils bien l'addition d'abord?",
-          "ifThis": "Confusion avec l'addition de base",
-          "thenThis": "Réviser rapidement 2+1=3 avec des objets avant de continuer"
-        },
-        {
-          "question": "Comment montrer la relation inverse visuellement?",
-          "ifThis": "Le concept d'inverse est abstrait",
-          "thenThis": "Utiliser des objets qui vont et viennent - montrer le mouvement"
-        },
-        {
-          "question": "Quel rythme pour introduire cette connexion?",
-          "ifThis": "Les enfants semblent perdus",
-          "thenThis": "Se concentrer sur UN exemple concret répété plusieurs fois"
-        }
+      "keyVocabulary": [
+        "inverse",
+        "ajouter",
+        "contraire"
       ],
       "opening": {
-        "activity": "Jeu rapide avec les cubes de la leçon 4",
         "duration": "8 minutes",
-        "description": "Réviser rapidement: 5 cubes, enlever 2. Demander: 'Et si on les remet? Qu'est-ce qui arrive?'"
+        "activity": "Jeu rapide avec les cubes de la leçon 4",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
-        "activity": "La machine magique addition-soustraction",
+      "main": {
         "duration": "27 minutes",
-        "description": "Démontrer avec une 'machine' (boîte): Mettre 3 cubes + 2 cubes = 5 cubes. Puis enlever 2 cubes = 3 cubes (retour au début!). Les enfants expérimentent avec leurs propres 'machines'.",
-        "scaffolding": "Utiliser des nombres très petits (1-4). Répéter la même séquence plusieurs fois. Utiliser des couleurs différentes pour les groupes."
+        "activity": "La machine magique addition-soustraction",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
-        "activity": "Chanson de l'addition-soustraction",
         "duration": "10 minutes",
-        "description": "Créer une chanson simple: 'On ajoute, puis on enlève, on revient où on était! C'est magique, c'est logique, les math c'est amusant!'"
+        "activity": "Chanson de l'addition-soustraction",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "Si on met des chaussettes puis les enlève, on revient au début",
-      "whatIfWrong": "Si trop confus, se concentrer uniquement sur les objets concrets. Ignorer les mots 'inverse' et montrer juste l'action."
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 6,
+      "lessonType": "core",
       "title": "Vérifier nos réponses",
       "oneGoal": "Apprendre à vérifier les soustractions en utilisant l'addition",
-      "keyVocabulary": ["vérifier", "correct", "erreur"],
       "duration": "45 minutes",
-      "materials": ["Calculatrices jouets (optionnel)", "Cubes pour vérification", "Feuilles de vérification simples", "Tampons ou autocollants"],
-      "decisionPoints": [
-        {
-          "question": "Les enfants sont-ils prêts pour cette stratégie?",
-          "ifThis": "Ils maîtrisent mal l'addition de base",
-          "thenThis": "Se concentrer sur vérifier avec des objets concrets seulement"
-        },
-        {
-          "question": "Comment rendre la vérification amusante?",
-          "ifThis": "Ils trouvent ça ennuyeux",
-          "thenThis": "Utiliser un jeu de 'détective' - trouver si c'est correct"
-        },
-        {
-          "question": "Quel niveau de soutien offrir?",
-          "ifThis": "Ils veulent être indépendants",
-          "thenThis": "Donner les outils et circuler pour encourager"
-        }
+      "keyVocabulary": [
+        "vérifier",
+        "correct",
+        "erreur"
       ],
       "opening": {
-        "activity": "Révision machine magique de la leçon 5",
         "duration": "8 minutes",
-        "description": "Faire rapidement: 4-2=2, puis vérifier 2+2=4. Dire: 'Aujourd'hui on devient des détectives mathématiques!'"
+        "activity": "Révision machine magique de la leçon 5",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
-        "activity": "Bureau des détectives mathématiques",
+      "main": {
         "duration": "27 minutes",
-        "description": "Présenter 3-4 problèmes simples (certains corrects, d'autres incorrects). Les enfants utilisent des cubes pour vérifier. S'ils trouvent une erreur, ils gagnent un tampon de détective.",
-        "scaffolding": "Travailler en paires. Démontrer la première vérification ensemble. Utiliser des nombres 1-5 seulement."
+        "activity": "Bureau des détectives mathématiques",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
-        "activity": "Certificat de détective mathématique",
         "duration": "10 minutes",
-        "description": "Remettre un certificat simple à chaque enfant. Discuter: 'Pourquoi c'est important de vérifier?'"
+        "activity": "Certificat de détective mathématique",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "Comme compter ses jouets pour être sûr qu'on n'en a pas perdu",
-      "whatIfWrong": "Si les enfants trouvent leurs propres erreurs dans leurs vérifications, les féliciter! C'est exactement le but."
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 7,
+      "lessonType": "core",
       "title": "Soustraction avec des images",
       "oneGoal": "Résoudre des problèmes de soustraction en utilisant des supports visuels",
-      "keyVocabulary": ["image", "voir", "dessiner"],
       "duration": "45 minutes",
-      "materials": ["Images colorées d'objets familiers", "Crayons pour barrer", "Feuilles avec dessins simples", "Autocollants amovibles"],
-      "decisionPoints": [
-        {
-          "question": "Quelles images parlent le mieux aux enfants?",
-          "ifThis": "Ils préfèrent les animaux aux objets",
-          "thenThis": "Utiliser leurs préférences - chats, chiens, dinosaures"
-        },
-        {
-          "question": "Comment adapter pour les apprenants visuels?",
-          "ifThis": "Ils comprennent mieux en voyant qu'en manipulant",
-          "thenThis": "Utiliser plus d'images colorées et de démonstrations visuelles"
-        },
-        {
-          "question": "Le niveau de complexité est-il approprié?",
-          "ifThis": "Images trop détaillées ou trop simples",
-          "thenThis": "Ajuster la complexité des images selon la réaction"
-        }
+      "keyVocabulary": [
+        "image",
+        "voir",
+        "dessiner"
       ],
       "opening": {
-        "activity": "Révision détective avec des cubes de la leçon 6",
         "duration": "8 minutes",
-        "description": "Vérification rapide: 5-3=2. Introduire: 'Aujourd'hui on travaille comme des artistes mathématiques!'"
+        "activity": "Révision détective avec des cubes de la leçon 6",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
-        "activity": "Galerie d'art mathématique",
+      "main": {
         "duration": "27 minutes",
-        "description": "Présenter des images: 6 ballons, barrer 2, combien restent? Les enfants travaillent sur des feuilles avec des dessins, utilisent des crayons pour barrer ou des autocollants pour couvrir.",
-        "scaffolding": "Démontrer comment barrer proprement. Permettre différentes méthodes (barrer, entourer, couvrir). Encourager les explications."
+        "activity": "Galerie d'art mathématique",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
-        "activity": "Exposition de nos œuvres",
         "duration": "10 minutes",
-        "description": "Afficher quelques travaux. Chaque enfant explique rapidement son dessin mathématique préféré."
+        "activity": "Exposition de nos œuvres",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "Comme regarder des photos de famille et voir qui manque",
-      "whatIfWrong": "Si difficile de barrer proprement, essayer d'entourer ou utiliser des autocollants pour couvrir plutôt."
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 8,
+      "lessonType": "core",
       "title": "Nombres jusqu'à 5",
       "oneGoal": "Maîtriser la soustraction avec des nombres de 0 à 5",
-      "keyVocabulary": ["cinq", "zéro", "petit"],
       "duration": "45 minutes",
-      "materials": ["Cartes de nombres 0-5", "5 objets identiques par enfant", "Dés avec 1-3 points", "Feuille de suivi simple"],
-      "decisionPoints": [
-        {
-          "question": "Les enfants sont-ils à l'aise avec ces nombres?",
-          "ifThis": "Confusion avec 4 et 5",
-          "thenThis": "Se concentrer sur 0-3 d'abord, ajouter 4-5 graduellement"
-        },
-        {
-          "question": "Faut-il plus de pratique avec les quantités?",
-          "ifThis": "Ils comptent encore chaque objet",
-          "thenThis": "Encourager la reconnaissance visuelle mais accepter le comptage"
-        },
-        {
-          "question": "Comment scaffolder pour les nombres plus difficiles?",
-          "ifThis": "Ils maîtrisent bien 0-5",
-          "thenThis": "Introduire 6 avec beaucoup de support"
-        }
+      "keyVocabulary": [
+        "cinq",
+        "zéro",
+        "petit"
       ],
       "opening": {
-        "activity": "Révision art mathématique de la leçon 7",
         "duration": "8 minutes",
-        "description": "Montrer rapidement: 4 étoiles, barrer 1, reste 3. Dire: 'Aujourd'hui on devient des experts des petits nombres!'"
+        "activity": "Révision art mathématique de la leçon 7",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
-        "activity": "École des experts 0-5",
+      "main": {
         "duration": "27 minutes",
-        "description": "Rotation entre 3 stations: 1) Cartes de nombres - associer nombre et quantité, 2) Dés et objets - soustraire selon le dé, 3) Feuille de pratique simple avec images.",
-        "scaffolding": "Commencer ensemble à chaque station. Laisser les enfants s'entraider. Célébrer les progrès individuels."
+        "activity": "École des experts 0-5",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
-        "activity": "Test d'expert rigolo",
         "duration": "10 minutes",
-        "description": "Jeu rapide: montrer 5 doigts, en cacher quelques-uns, deviner combien sont cachés. Remettre un badge d'expert."
+        "activity": "Test d'expert rigolo",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "Compter nos doigts d'une main et en cacher quelques-uns",
-      "whatIfWrong": "Si encore difficile, rester sur 0-3 et donner plus de temps. La maîtrise est plus importante que la vitesse."
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 9,
+      "lessonType": "core",
       "title": "Nombres jusqu'à 10",
       "oneGoal": "Étendre la soustraction aux nombres de 6 à 10",
-      "keyVocabulary": ["dix", "grand", "difficile"],
       "duration": "45 minutes",
-      "materials": ["Cartes 0-10", "10 cubes par enfant", "Plateau de 10 cases", "Feuilles avec grilles de 10"],
-      "decisionPoints": [
-        {
-          "question": "Les enfants maîtrisent-ils bien 0-5 d'abord?",
-          "ifThis": "Encore hésitants avec 0-5",
-          "thenThis": "Réviser 0-5 rapidement avant d'ajouter 6-10"
-        },
-        {
-          "question": "Quel support additionnel est nécessaire?",
-          "ifThis": "Perdus avec les grands nombres",
-          "thenThis": "Utiliser les plateaux de 10 cases pour organiser visuellement"
-        },
-        {
-          "question": "Comment maintenir la confiance?",
-          "ifThis": "Frustration face à la difficulté",
-          "thenThis": "Rappeler leurs progrès et offrir des choix plus faciles"
-        }
+      "keyVocabulary": [
+        "dix",
+        "grand",
+        "difficile"
       ],
       "opening": {
-        "activity": "Test d'expert 0-5 de la leçon 8",
         "duration": "8 minutes",
-        "description": "Révision rapide: 5-2, 4-1, 3-3. Dire: 'Maintenant on va voir les grands nombres comme nos grandes sœurs et frères!'"
+        "activity": "Test d'expert 0-5 de la leçon 8",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
-        "activity": "Aventure des grands nombres",
+      "main": {
         "duration": "27 minutes",
-        "description": "Utiliser des plateaux de 10 cases. Placer 8 cubes, enlever 3, compter ce qui reste. Progresser graduellement de 6 à 10. Les enfants travaillent en paires pour se soutenir.",
-        "scaffolding": "Démontrer avec de grands gestes. Utiliser le plateau pour organiser. Permettre de retourner aux nombres plus petits si nécessaire."
+        "activity": "Aventure des grands nombres",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
-        "activity": "Chanson des grands nombres",
         "duration": "10 minutes",
-        "description": "Créer une chanson: '6, 7, 8, 9, 10, les grands nombres on les comprend! On enlève un peu, on enlève beaucoup, les math c'est partout!'"
+        "activity": "Chanson des grands nombres",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "Compter tous nos doigts et en cacher quelques-uns",
-      "whatIfWrong": "Si trop difficile, se concentrer sur 6-7 seulement. Utiliser plus de support concret et visuel."
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 10,
+      "lessonType": "core",
       "title": "Jeux de soustraction",
       "oneGoal": "Jouer à des jeux qui renforcent les concepts de soustraction",
-      "keyVocabulary": ["jeu", "tour", "gagner"],
       "duration": "45 minutes",
-      "materials": ["Dés spéciaux", "Jetons colorés", "Cartes de jeu simples", "Sablier ou minuteur"],
-      "decisionPoints": [
-        {
-          "question": "Quels jeux engagent le mieux les enfants?",
-          "ifThis": "Ils préfèrent les jeux actifs aux jeux de table",
-          "thenThis": "Inclure plus de mouvement et d'activité physique"
-        },
-        {
-          "question": "Comment assurer la participation de tous?",
-          "ifThis": "Certains dominent, d'autres se retirent",
-          "thenThis": "Créer des rôles spécifiques et des tours équitables"
-        },
-        {
-          "question": "Le niveau de compétition est-il approprié?",
-          "ifThis": "Trop compétitif ou pas assez motivant",
-          "thenThis": "Ajuster les règles pour équilibrer défi et succès"
-        }
+      "keyVocabulary": [
+        "jeu",
+        "tour",
+        "gagner"
       ],
       "opening": {
-        "activity": "Révision chanson des grands nombres de la leçon 9",
         "duration": "8 minutes",
-        "description": "Chanter ensemble et démontrer 8-3. Dire: 'Aujourd'hui on va jouer à des jeux mathématiques fantastiques!'"
+        "activity": "Révision chanson des grands nombres de la leçon 9",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
-        "activity": "Carnaval de jeux mathématiques",
+      "main": {
         "duration": "27 minutes",
-        "description": "3 stations de jeux: 1) 'Disparition magique' - dé et jetons, 2) 'Course à l'envers' - partir de 10 et descendre, 3) 'Devine combien' - cacher des objets. Rotation de 9 minutes.",
-        "scaffolding": "Démontrer chaque jeu. Encourager la collaboration. Célébrer les bonnes stratégies, pas seulement les bonnes réponses."
+        "activity": "Carnaval de jeux mathématiques",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
-        "activity": "Vote pour le jeu préféré",
         "duration": "10 minutes",
-        "description": "Chaque enfant vote pour son jeu préféré. Discuter pourquoi. Promettre de rejouer aux favoris plus tard."
+        "activity": "Vote pour le jeu préféré",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "Comme jouer à cache-cache - quelqu'un part et il en reste moins",
-      "whatIfWrong": "Si un jeu ne fonctionne pas, impliquer les enfants dans la modification des règles pour que ce soit plus amusant."
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 11,
+      "lessonType": "core",
       "title": "Problèmes de la vraie vie",
       "oneGoal": "Résoudre des problèmes de soustraction tirés de situations réelles",
-      "keyVocabulary": ["réel", "quotidien", "utilise"],
       "duration": "45 minutes",
-      "materials": ["Images de situations familières", "Objets du quotidien", "Carnet de problèmes illustrés", "Appareil photo (optionnel)"],
-      "decisionPoints": [
-        {
-          "question": "Quelles situations résonnent avec les enfants?",
-          "ifThis": "Ils s'intéressent plus aux animaux qu'aux objets",
-          "thenThis": "Adapter les problèmes selon leurs intérêts exprimés"
-        },
-        {
-          "question": "Comment connecter avec leurs expériences?",
-          "ifThis": "Ils partagent des histoires personnelles",
-          "thenThis": "Utiliser leurs expériences pour créer de nouveaux problèmes"
-        },
-        {
-          "question": "Le niveau de difficulté est-il réaliste?",
-          "ifThis": "Les situations sont trop complexes",
-          "thenThis": "Simplifier en gardant seulement l'élément mathématique essentiel"
-        }
+      "keyVocabulary": [
+        "réel",
+        "quotidien",
+        "utilise"
       ],
       "opening": {
-        "activity": "Révision jeu préféré de la leçon 10",
         "duration": "8 minutes",
-        "description": "Jouer rapidement au jeu gagnant du vote. Dire: 'Maintenant on va utiliser les math dans la vraie vie!'"
+        "activity": "Révision jeu préféré de la leçon 10",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
-        "activity": "Détectives de la vraie vie",
+      "main": {
         "duration": "27 minutes",
-        "description": "Présenter des situations: 'Maman a fait 7 biscuits, nous en mangeons 3 au dîner. Combien pour le souper?' Les enfants résolvent avec des objets réels ou des images.",
-        "scaffolding": "Utiliser des situations de leur quotidien. Avoir des objets concrets disponibles. Encourager les différentes méthodes de résolution."
+        "activity": "Détectives de la vraie vie",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
-        "activity": "Notre livre de problèmes",
         "duration": "10 minutes",
-        "description": "Chaque enfant dessine rapidement UN problème de la vraie vie qu'ils ont résolu. Compléter un livre de classe collectif."
+        "activity": "Notre livre de problèmes",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "Résoudre des problèmes qu'on rencontre vraiment chaque jour",
-      "whatIfWrong": "Si un problème semble trop abstrait, le rendre plus concret avec des objets ou des actions réelles."
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 12,
+      "lessonType": "core",
       "title": "Stratégies de calcul",
       "oneGoal": "Apprendre différentes façons de faire une soustraction",
-      "keyVocabulary": ["stratégie", "façon", "méthode"],
       "duration": "45 minutes",
-      "materials": ["Affiches de stratégies", "Objets variés pour manipuler", "Feuilles de choix de stratégies", "Crayons de couleurs différentes"],
-      "decisionPoints": [
-        {
-          "question": "Quelles stratégies conviennent le mieux aux enfants?",
-          "ifThis": "Ils préfèrent compter sur leurs doigts",
-          "thenThis": "Commencer par légitimer cette méthode avant d'en présenter d'autres"
-        },
-        {
-          "question": "Comment éviter la surcharge cognitive?",
-          "ifThis": "Trop de choix les paralysent",
-          "thenThis": "Présenter seulement 2-3 stratégies principales"
-        },
-        {
-          "question": "Quel soutien individualiser?",
-          "ifThis": "Différents enfants préfèrent différentes méthodes",
-          "thenThis": "Permettre les choix personnels et célébrer la diversité"
-        }
+      "keyVocabulary": [
+        "stratégie",
+        "façon",
+        "méthode"
       ],
       "opening": {
-        "activity": "Révision problèmes de la vraie vie de la leçon 11",
         "duration": "8 minutes",
-        "description": "Résoudre rapidement: 'Il y a 6 crayons, j'en prête 2. Combien me restent?' Dire: 'Il y a plusieurs façons de résoudre!'"
+        "activity": "Révision problèmes de la vraie vie de la leçon 11",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
-        "activity": "Marché aux stratégies",
+      "main": {
         "duration": "27 minutes",
-        "description": "Présenter 3 'stands': 1) Compter à l'envers, 2) Enlever avec des objets, 3) Dessiner et barrer. Les enfants essaient chaque méthode avec le même problème.",
-        "scaffolding": "Démontrer chaque stratégie clairement. Permettre aux enfants de choisir leur préférée. Valoriser toutes les méthodes."
+        "activity": "Marché aux stratégies",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
-        "activity": "Ma stratégie préférée",
         "duration": "10 minutes",
-        "description": "Chaque enfant dessine ou explique sa stratégie préférée. Créer une affiche de classe avec toutes les méthodes."
+        "activity": "Ma stratégie préférée",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "Il y a plusieurs façons de faire la même chose dans la vie",
-      "whatIfWrong": "Si une stratégie ne fonctionne pas pour un enfant, l'encourager à essayer une autre sans jugement."
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 13,
+      "lessonType": "core",
       "title": "Montrer son travail",
       "oneGoal": "Expliquer comment on a résolu un problème de soustraction",
-      "keyVocabulary": ["expliquer", "montrer", "travail"],
       "duration": "45 minutes",
-      "materials": ["Microphone jouet", "Tableau pour démonstrations", "Feuilles pour dessiner les étapes", "Caméra jouet (optionnel)"],
-      "decisionPoints": [
-        {
-          "question": "Comment encourager l'expression orale?",
-          "ifThis": "Certains enfants sont très timides",
-          "thenThis": "Offrir des alternatives: dessiner, chuchoter à un ami, utiliser des gestes"
-        },
-        {
-          "question": "Quel support offrir aux enfants timides?",
-          "ifThis": "Ils refusent de parler devant le groupe",
-          "thenThis": "Commencer par des explications en paires ou petits groupes"
-        },
-        {
-          "question": "Comment valoriser différentes explications?",
-          "ifThis": "Leurs explications ne sont pas parfaites",
-          "thenThis": "Célébrer l'effort et aider à clarifier gentiment"
-        }
+      "keyVocabulary": [
+        "expliquer",
+        "montrer",
+        "travail"
       ],
       "opening": {
-        "activity": "Révision stratégies préférées de la leçon 12",
         "duration": "8 minutes",
-        "description": "Montrer rapidement leur stratégie préférée avec 7-4. Dire: 'Aujourd'hui on devient des professeurs mathématiques!'"
+        "activity": "Révision stratégies préférées de la leçon 12",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
-        "activity": "École de mini-professeurs",
+      "main": {
         "duration": "27 minutes",
-        "description": "Chaque enfant résout un problème simple (5-2) puis l'explique à un partenaire avec le microphone jouet. Puis inverser les rôles. Quelques volontaires présentent à la classe.",
-        "scaffolding": "Démontrer comment expliquer étape par étape. Encourager l'usage des mots mathématiques. Accepter les explications en gestes."
+        "activity": "École de mini-professeurs",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
-        "activity": "Diplôme de mini-professeur",
         "duration": "10 minutes",
-        "description": "Remettre un diplôme à chaque enfant. Discuter: 'Qu'est-ce qui aide le mieux pour expliquer?' Afficher leurs conseils."
+        "activity": "Diplôme de mini-professeur",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "Expliquer à papa comment on a résolu un problème",
-      "whatIfWrong": "Si un enfant donne une explication confuse, poser des questions guidantes pour l'aider à clarifier, sans corriger directement."
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 14,
+      "lessonType": "core",
       "title": "Évaluation et célébration",
       "oneGoal": "Démontrer sa compréhension de la soustraction et célébrer les progrès",
-      "keyVocabulary": ["réussir", "fier", "apprendre"],
       "duration": "45 minutes",
-      "materials": ["Portfolio mathématique de chaque enfant", "Certificats personnalisés", "Matériel de fête", "Appareil photo"],
-      "decisionPoints": [
-        {
-          "question": "Comment évaluer sans stresser les enfants?",
-          "ifThis": "Ils semblent anxieux face à l'évaluation",
-          "thenThis": "Présenter comme un jeu ou une célébration plutôt qu'un test"
-        },
-        {
-          "question": "Quelles réussites célébrer?",
-          "ifThis": "Certains ont progressé plus que d'autres",
-          "thenThis": "Célébrer les progrès individuels et les efforts, pas seulement les résultats"
-        },
-        {
-          "question": "Comment préparer les extensions?",
-          "ifThis": "Certains sont prêts pour plus de défis",
-          "thenThis": "Mentionner les activités amusantes qui s'en viennent"
-        }
+      "keyVocabulary": [
+        "réussir",
+        "fier",
+        "apprendre"
       ],
       "opening": {
-        "activity": "Révision mini-professeur de la leçon 13",
         "duration": "8 minutes",
-        "description": "Quelques enfants expliquent rapidement 6-3 à la classe. Dire: 'Aujourd'hui on célèbre tout ce qu'on a appris!'"
+        "activity": "Révision mini-professeur de la leçon 13",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
-        "activity": "Festival de la soustraction",
+      "main": {
         "duration": "27 minutes",
-        "description": "Stations de démonstration: les enfants choisissent comment montrer leurs apprentissages - avec des objets, des dessins, des explications, ou des jeux. Portfolio mathématique complété.",
-        "scaffolding": "Permettre les choix de démonstration. Encourager la créativité. Documenter les réussites individuelles."
+        "activity": "Festival de la soustraction",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
-        "activity": "Cérémonie de remise des certificats",
         "duration": "10 minutes",
-        "description": "Remettre des certificats personnalisés soulignant les forces de chaque enfant. Photo de groupe. Prévisuler les activités amusantes à venir."
+        "activity": "Cérémonie de remise des certificats",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "Être fier de ce qu'on a appris, comme apprendre à faire du vélo",
-      "whatIfWrong": "S'il y a encore des concepts non maîtrisés, les noter pour la révision dans les leçons d'extension, sans stress."
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 15,
+      "lessonType": "extension",
       "title": "Créer nos propres problèmes",
       "oneGoal": "Inventer des problèmes de soustraction pour les amis",
-      "keyVocabulary": ["créer", "inventer", "partager"],
       "duration": "45 minutes",
-      "materials": ["Cahiers de création", "Images diverses pour inspiration", "Objets variés", "Enregistreur vocal (optionnel)"],
-      "decisionPoints": [
-        {
-          "question": "Comment scaffolder la création de problèmes?",
-          "ifThis": "Ils ne savent pas par où commencer",
-          "thenThis": "Donner un cadre: 'Il y a ___ [quelque chose], ___ partent/sont utilisés/etc., combien restent?'"
-        },
-        {
-          "question": "Quel niveau de créativité encourager?",
-          "ifThis": "Leurs histoires deviennent très élaborées",
-          "thenThis": "Apprécier la créativité mais aider à identifier la partie mathématique"
-        },
-        {
-          "question": "Comment faciliter le partage?",
-          "ifThis": "Ils veulent tous partager en même temps",
-          "thenThis": "Créer des paires d'écoute ou utiliser un système de tours"
-        }
+      "keyVocabulary": [
+        "créer",
+        "inventer",
+        "partager"
       ],
       "opening": {
-        "activity": "Révision célébration de la leçon 14",
         "duration": "8 minutes",
-        "description": "Rappeler leurs certificats et fierté. Dire: 'Maintenant vous êtes des experts! Vous pouvez créer vos propres problèmes comme les vrais professeurs!'"
+        "activity": "Révision célébration de la leçon 14",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
-        "activity": "Atelier d'auteurs mathématiques",
+      "main": {
         "duration": "27 minutes",
-        "description": "Les enfants créent 2-3 problèmes simples inspirés par des images ou objets. Ils les testent avec un partenaire. Les meilleurs sont compilés dans un livre de classe.",
-        "scaffolding": "Fournir des déclencheurs visuels. Modeler en créant un problème ensemble d'abord. Encourager les révisions basées sur les tests."
+        "activity": "Atelier d'auteurs mathématiques",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
-        "activity": "Première de notre livre de problèmes",
         "duration": "10 minutes",
-        "description": "Lecture de quelques problèmes créés par les enfants. Vote pour ceux qui iront dans le livre officiel de la classe."
+        "activity": "Première de notre livre de problèmes",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "Inventer des histoires comme les auteurs de nos livres préférés",
-      "whatIfWrong": "Si leurs problèmes n'ont pas de sens mathématiquement, les aider à ajuster gentiment en posant des questions guidantes."
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 16,
+      "lessonType": "extension",
       "title": "Soustraction avec des dessins",
       "oneGoal": "Créer des représentations artistiques de problèmes de soustraction",
-      "keyVocabulary": ["dessiner", "colorier", "artistique"],
       "duration": "45 minutes",
-      "materials": ["Papier de qualité artistique", "Crayons de couleur, pastels", "Peinture à l'eau", "Pinceaux", "Tabliers"],
-      "decisionPoints": [
-        {
-          "question": "Comment intégrer l'art naturellement?",
-          "ifThis": "L'art domine et les math sont oubliées",
-          "thenThis": "Rappeler régulièrement l'objectif mathématique et demander des explications"
-        },
-        {
-          "question": "Quel matériel artistique utiliser?",
-          "ifThis": "Ils préfèrent certains médiums",
-          "thenThis": "Offrir des choix mais s'assurer que tous peuvent participer"
-        },
-        {
-          "question": "Comment honorer différents styles artistiques?",
-          "ifThis": "Certains dessinent différemment",
-          "thenThis": "Valoriser toutes les expressions tant que l'idée mathématique est présente"
-        }
+      "keyVocabulary": [
+        "dessiner",
+        "colorier",
+        "artistique"
       ],
       "opening": {
-        "activity": "Révision livre de problèmes de la leçon 15",
         "duration": "8 minutes",
-        "description": "Relire un problème créé par les enfants. Dire: 'Aujourd'hui on va dessiner nos problèmes comme de vrais artistes!'"
+        "activity": "Révision livre de problèmes de la leçon 15",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
-        "activity": "Galerie d'art mathématique",
+      "main": {
         "duration": "27 minutes",
-        "description": "Les enfants choisissent un problème (le leur ou un autre) et le représentent artistiquement. Ils doivent pouvoir expliquer la partie mathématique de leur œuvre.",
-        "scaffolding": "Encourager d'abord la planification avec des crayons. Circuler pour discuter des choix artistiques ET mathématiques. Prévoir du temps de séchage."
+        "activity": "Galerie d'art mathématique",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
-        "activity": "Vernissage de notre galerie",
         "duration": "10 minutes",
-        "description": "Exposition des œuvres séchées. Chaque artiste explique brièvement sa création mathématique. Applaudissements pour tous."
+        "activity": "Vernissage de notre galerie",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "Dessiner nos histoires préférées avec des math dedans",
-      "whatIfWrong": "Si un dessin ne montre pas clairement la mathématique, aider l'enfant à ajouter des éléments ou explications."
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 17,
+      "lessonType": "extension",
       "title": "Enseigner à un ami",
       "oneGoal": "Expliquer la soustraction à un partenaire ou à la classe",
-      "keyVocabulary": ["enseigner", "aide", "patient"],
       "duration": "45 minutes",
-      "materials": ["Tableau miniature pour chaque paire", "Crayons effaçables", "Manipulatifs variés", "Aide-mémoire pour enseignants"],
-      "decisionPoints": [
-        {
-          "question": "Comment jumeler les enfants efficacement?",
-          "ifThis": "Certains dominent, d'autres se retirent",
-          "thenThis": "Créer des rôles clairs: enseignant et élève, puis échanger"
-        },
-        {
-          "question": "Quel soutien offrir aux 'enseignants'?",
-          "ifThis": "Ils ne savent pas comment expliquer",
-          "thenThis": "Fournir des phrases de départ et modeler des exemples d'explication"
-        },
-        {
-          "question": "Comment gérer les différents rythmes?",
-          "ifThis": "Certaines paires finissent beaucoup plus vite",
-          "thenThis": "Avoir des activités d'extension ou permettre d'aider d'autres paires"
-        }
+      "keyVocabulary": [
+        "enseigner",
+        "aide",
+        "patient"
       ],
       "opening": {
-        "activity": "Révision galerie d'art de la leçon 16",
         "duration": "8 minutes",
-        "description": "Admirer rapidement les œuvres affichées. Dire: 'Vous êtes devenus des experts! Maintenant vous pouvez enseigner à d'autres!'"
+        "activity": "Révision galerie d'art de la leçon 16",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
-        "activity": "École de formation des enseignants",
+      "main": {
         "duration": "27 minutes",
-        "description": "Paires d'enfants: un enseigne un concept de soustraction (ex: 8-3) à l'autre en utilisant des manipulatifs et explications. Puis inversion des rôles avec un nouveau problème.",
-        "scaffolding": "Modeler comment être un bon enseignant (patient, encourageant). Circuler pour soutenir les deux rôles. Célébrer les bonnes stratégies d'enseignement."
+        "activity": "École de formation des enseignants",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
-        "activity": "Certificat de jeune enseignant",
         "duration": "10 minutes",
-        "description": "Chaque enfant reçoit un certificat. Partager: 'Qu'est-ce qui aide le plus quand quelqu'un nous enseigne?' Créer une liste de conseils."
+        "activity": "Certificat de jeune enseignant",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "Aider notre petit frère ou sœur à apprendre quelque chose",
-      "whatIfWrong": "Si un 'enseignant' donne des informations incorrectes, intervenir délicatement et retourner le problème au groupe pour discussion."
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 18,
+      "lessonType": "extension",
       "title": "Jeux mathématiques avancés",
       "oneGoal": "Jouer à des jeux plus complexes qui utilisent la soustraction",
-      "keyVocabulary": ["avancé", "défi", "complexe"],
       "duration": "45 minutes",
-      "materials": ["Jeux de société adaptés", "Cartes de défi", "Dés spéciaux", "Chronomètre", "Tableaux de scores"],
-      "decisionPoints": [
-        {
-          "question": "Quel niveau de défi est motivant?",
-          "ifThis": "Trop facile, ils s'ennuient",
-          "thenThis": "Augmenter les nombres ou ajouter des étapes multiples"
-        },
-        {
-          "question": "Comment maintenir l'inclusion?",
-          "ifThis": "Certains enfants se découragent",
-          "thenThis": "Créer des équipes mixtes ou offrir des versions simplifiées"
-        },
-        {
-          "question": "Quand offrir du soutien supplémentaire?",
-          "ifThis": "Frustration visible chez certains",
-          "thenThis": "Intervenir rapidement avec des indices ou des simplifications"
-        }
+      "keyVocabulary": [
+        "avancé",
+        "défi",
+        "complexe"
       ],
       "opening": {
-        "activity": "Révision enseignement de la leçon 17",
         "duration": "8 minutes",
-        "description": "Quelques enfants enseignent rapidement 9-4 à la classe. Dire: 'Vous êtes prêts pour des défis plus grands maintenant!'"
+        "activity": "Révision enseignement de la leçon 17",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
-        "activity": "Championnat de jeux mathématiques",
+      "main": {
         "duration": "27 minutes",
-        "description": "Rotation entre 3 jeux avancés: 1) 'Course aux 20' - soustraction séquentielle, 2) 'Bingo soustraction' avec nombres plus grands, 3) 'Stratégie mystère' - deviner la soustraction cachée.",
-        "scaffolding": "Expliquer les règles clairement. Permettre les équipes pour le soutien. Ajuster la difficulté selon les groupes."
+        "activity": "Championnat de jeux mathématiques",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
-        "activity": "Remise des médailles de championnat",
         "duration": "10 minutes",
-        "description": "Médailles pour différentes catégories: meilleur travail d'équipe, meilleure stratégie, meilleur encouragement. Tout le monde gagne quelque chose."
+        "activity": "Remise des médailles de championnat",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "Jouer à des jeux plus difficiles comme les grands",
-      "whatIfWrong": "Si un jeu ne fonctionne pas, demander aux enfants comment l'améliorer et ajuster ensemble les règles."
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 19,
+      "lessonType": "extension",
       "title": "Projet mathématique",
       "oneGoal": "Compléter un projet qui démontre sa compréhension de la soustraction",
-      "keyVocabulary": ["projet", "démontrer", "complet"],
       "duration": "45 minutes",
-      "materials": ["Matériaux de projet variés", "Instructions de projet illustrées", "Liste de vérification simple", "Matériel de présentation"],
-      "decisionPoints": [
-        {
-          "question": "Quel type de projet convient le mieux?",
-          "ifThis": "Ils préfèrent créer vs présenter",
-          "thenThis": "Offrir des options: livre, affiche, présentation, ou démonstration"
-        },
-        {
-          "question": "Comment structurer le travail?",
-          "ifThis": "Ils ont besoin de plus de guidage",
-          "thenThis": "Décomposer en étapes claires avec vérifications"
-        },
-        {
-          "question": "Quels choix offrir aux enfants?",
-          "ifThis": "Trop de choix les paralysent",
-          "thenThis": "Limiter à 2-3 options bien définies"
-        }
+      "keyVocabulary": [
+        "projet",
+        "démontrer",
+        "complet"
       ],
       "opening": {
-        "activity": "Révision championnat de la leçon 18",
         "duration": "8 minutes",
-        "description": "Rejouer rapidement leur jeu préféré. Dire: 'Maintenant on va faire un grand projet pour montrer tout ce qu'on sait!'"
+        "activity": "Révision championnat de la leçon 18",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
-        "activity": "Atelier de projets mathématiques",
+      "main": {
         "duration": "27 minutes",
-        "description": "Choix de projets: 1) Livre illustré de problèmes, 2) Jeu inventé pour la classe, 3) Affiche explicative, 4) Démonstration avec manipulatifs. Travail individuel ou en paires.",
-        "scaffolding": "Modeler chaque type de projet. Fournir des exemples et des listes de vérification. Circuler pour soutenir individuellement."
+        "activity": "Atelier de projets mathématiques",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
-        "activity": "Planification de la présentation",
         "duration": "10 minutes",
-        "description": "Chaque enfant/équipe planifie comment présenter leur projet demain. Mise en place de l'espace de présentation."
+        "activity": "Planification de la présentation",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "Faire un projet spécial comme à la maison avec papa et maman",
-      "whatIfWrong": "Si un projet ne progresse pas bien, aider à simplifier ou rediriger vers une option plus gérable."
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 20,
+      "lessonType": "extension",
       "title": "Célébration et réflexion",
       "oneGoal": "Célébrer tous les apprentissages et réfléchir sur le parcours",
-      "keyVocabulary": ["célébrer", "réfléchir", "parcours"],
       "duration": "45 minutes",
-      "materials": ["Projets complétés", "Certificats spéciaux", "Matériel de fête", "Journal de réflexion", "Appareil photo"],
-      "decisionPoints": [
-        {
-          "question": "Comment rendre la célébration significative?",
-          "ifThis": "Ils veulent tous présenter en même temps",
-          "thenThis": "Créer un système équitable avec temps égal pour chacun"
-        },
-        {
-          "question": "Quelles réflexions encourager?",
-          "ifThis": "Ils ont de la difficulté à exprimer leurs apprentissages",
-          "thenThis": "Utiliser des phrases de départ ou des images pour stimuler la réflexion"
-        },
-        {
-          "question": "Comment connecter aux prochains apprentissages?",
-          "ifThis": "Ils demandent 'qu'est-ce qu'on apprend maintenant?'",
-          "thenThis": "Donner un aperçu excitant des prochaines aventures mathématiques"
-        }
+      "keyVocabulary": [
+        "célébrer",
+        "réfléchir",
+        "parcours"
       ],
       "opening": {
-        "activity": "Installation de la galerie de projets",
         "duration": "8 minutes",
-        "description": "Installer tous les projets dans la classe comme une exposition. Chaque enfant admire le travail des autres."
+        "activity": "Installation de la galerie de projets",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
-        "activity": "Festival de fin d'unité",
+      "main": {
         "duration": "27 minutes",
-        "description": "Présentation des projets (3 min chacun), remise de certificats personnalisés, réflexion guidée sur les apprentissages, et planification collective: 'Qu'est-ce qu'on veut apprendre maintenant?'",
-        "scaffolding": "Encourager l'écoute respectueuse. Poser des questions d'approfondissement. Documenter leurs réflexions et suggestions."
+        "activity": "Festival de fin d'unité",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
-        "activity": "Photo souvenir et promesses",
         "duration": "10 minutes",
-        "description": "Photo de groupe avec leurs projets. Chaque enfant fait une promesse: comment ils vont utiliser la soustraction dans leur vie. Carte postale aux parents sur leurs progrès."
+        "activity": "Photo souvenir et promesses",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
       },
       "realWorldConnection": "Célébrer nos réussites comme lors des anniversaires ou fêtes",
-      "whatIfWrong": "Si certains enfants sont émotifs que l'unité se termine, les rassurer qu'ils garderont leurs apprentissages et qu'il y aura d'autres aventures."
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     }
-  ]
+  ],
+  "assessmentTools": {
+    "observationChecklist": [],
+    "rubrics": [],
+    "selfAssessment": [],
+    "portfolioGuidelines": ""
+  },
+  "familyConnections": {
+    "unitLetter": "",
+    "homeActivities": [],
+    "vocabularyList": []
+  },
+  "resourceAlternatives": {
+    "materials": {},
+    "digitalResources": []
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
+  }
 }

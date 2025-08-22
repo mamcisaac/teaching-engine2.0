@@ -1,822 +1,1446 @@
-[
-  {
-    "lessonNumber": 1,
-    "title": "Bienvenue dans notre école!",
-    "oneGoal": "Students will identify their school as a special place and express feelings about being part of the school community",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Welcome circle with school mascot or special object. Share excitement about being at school together.",
-      "materials": ["school mascot or special school symbol", "welcome chart", "feeling faces cards"],
-      "visualSupports": "Big smile gestures, welcoming arms, photos of happy children at school"
+{
+  "unitTitle": "",
+  "subject": "Sciences humaines",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "lessonType": "core",
+      "title": "Bienvenue dans notre école!",
+      "oneGoal": "Students will identify their school as a special place and express feelings about being part of the school community",
+      "duration": 45,
+      "keyVocabulary": [
+        "école",
+        "élève",
+        "bienvenue"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Welcome circle with school mascot or special object. Share excitement about being at school together.",
+        "materials": [
+          "school mascot or special school symbol",
+          "welcome chart",
+          "feeling faces cards"
+        ],
+        "visualSupports": "Big smile gestures, welcoming arms, photos of happy children at school",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "School building appreciation walk. Stop at special places to notice what makes school feel welcoming. Return to create a 'Our School is Special' chart with drawings and words.",
+        "materials": [
+          "clipboards for outdoor writing",
+          "colored pencils",
+          "chart paper",
+          "camera for documentation"
+        ],
+        "visualSupports": "Point to building features, use appreciation gestures, encouraging facial expressions",
+        "decisionPoints": [
+          {
+            "question": "How familiar are students with their school building?",
+            "ifYes": "Focus on deeper appreciation and feelings about familiar spaces",
+            "ifNo": "Take more time exploring and orienting students to school layout"
+          },
+          {
+            "question": "What level of emotional support do students need for school comfort?",
+            "ifYes": "Use buddy system and extra reassurance about school safety",
+            "ifNo": "Encourage independent exploration and sharing of discoveries"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Share one thing that makes our school special. Create class commitment to taking care of our special school.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students feeling nervous or uncertain about school",
+        "then": "Focus on safe, welcoming people and spaces. Use more reassurance and buddy support"
+      },
+      "realWorldConnection": "Every person belongs to communities like school, family, and neighborhood",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
-    "main": {
-      "duration": 27,
-      "activity": "School building appreciation walk. Stop at special places to notice what makes school feel welcoming. Return to create a 'Our School is Special' chart with drawings and words.",
-      "materials": ["clipboards for outdoor writing", "colored pencils", "chart paper", "camera for documentation"],
-      "visualSupports": "Point to building features, use appreciation gestures, encouraging facial expressions",
-      "decisionPoints": [
-        {
-          "question": "How familiar are students with their school building?",
-          "ifYes": "Focus on deeper appreciation and feelings about familiar spaces",
-          "ifNo": "Take more time exploring and orienting students to school layout"
-        },
-        {
-          "question": "What level of emotional support do students need for school comfort?",
-          "ifYes": "Use buddy system and extra reassurance about school safety",
-          "ifNo": "Encourage independent exploration and sharing of discoveries"
-        }
-      ]
+    {
+      "lessonNumber": 2,
+      "lessonType": "core",
+      "title": "Je suis un élève",
+      "oneGoal": "Students will understand their identity as students and recognize their rights and responsibilities in school",
+      "duration": 45,
+      "keyVocabulary": [
+        "élève",
+        "droits",
+        "responsabilités"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Mirror circle where students look at themselves and say 'Je suis un élève' (I am a student). Discuss what being a student means.",
+        "materials": [
+          "hand mirrors",
+          "student identity badges",
+          "photos of students learning"
+        ],
+        "visualSupports": "Point to self proudly, student badge gestures, learning action poses",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Rights and responsibilities exploration through role-play scenarios. Act out student rights (safety, learning, respect) and responsibilities (kindness, effort, care). Create student rights and responsibilities poster.",
+        "materials": [
+          "scenario cards",
+          "poster paper",
+          "markers",
+          "dress-up items for role-play"
+        ],
+        "visualSupports": "Acting gestures for scenarios, thumbs up for rights, helping hands for responsibilities",
+        "decisionPoints": [
+          {
+            "question": "Are students ready to discuss responsibilities or should we focus on rights first?",
+            "ifYes": "Balance rights and responsibilities equally in discussion",
+            "ifNo": "Focus heavily on rights first, then gently introduce responsibilities"
+          },
+          {
+            "question": "How do we balance individual identity with group belonging?",
+            "ifYes": "Emphasize both 'I am special' and 'We belong together'",
+            "ifNo": "Focus more on individual identity and comfort first"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Student identity celebration where each child receives recognition for being an important student in our class.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students confused about abstract concepts like rights and responsibilities",
+        "then": "Use more concrete examples and role-play. Focus on specific situations they experience daily"
+      },
+      "realWorldConnection": "Being a student is an important role with special rights and responsibilities",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
-    "closing": {
-      "duration": 10,
-      "activity": "Share one thing that makes our school special. Create class commitment to taking care of our special school.",
-      "assessment": "Observe student comfort level with school environment and ability to identify positive school features"
+    {
+      "lessonNumber": 3,
+      "lessonType": "core",
+      "title": "Notre salle de classe",
+      "oneGoal": "Students will explore their classroom space and understand how spaces are organized for learning and community",
+      "duration": 45,
+      "keyVocabulary": [
+        "salle de classe",
+        "espace",
+        "apprentissage"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Classroom space appreciation tour. Students become 'space detectives' looking for different areas and their purposes.",
+        "materials": [
+          "detective badges",
+          "magnifying glasses (toy)",
+          "exploration clipboards"
+        ],
+        "visualSupports": "Detective gestures, pointing to different areas, questioning expressions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Classroom mapping activity. Students work in pairs to create simple maps of classroom areas. Identify learning spaces, quiet spaces, group spaces. Share maps and explain favorite areas.",
+        "materials": [
+          "large paper for mapping",
+          "colored pencils",
+          "rulers",
+          "area labels"
+        ],
+        "visualSupports": "Bird's eye view gestures, mapping motions, labeling actions",
+        "decisionPoints": [
+          {
+            "question": "Which classroom areas are most meaningful for students to explore?",
+            "ifYes": "Focus on student-chosen areas and their personal connections",
+            "ifNo": "Guide exploration to ensure all functional areas are understood"
+          },
+          {
+            "question": "Should we create a classroom map together or individually?",
+            "ifYes": "Create individual maps first, then combine into class map",
+            "ifNo": "Work together on one large class map with everyone contributing"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Classroom space commitment circle. Students share how they will take care of different classroom areas.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students having difficulty with mapping concepts",
+        "then": "Use floor-level perspective first, then gradually introduce bird's eye view with physical examples"
+      },
+      "realWorldConnection": "All learning spaces are designed to help people work, learn, and be together",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
-    "vocabulary": ["école", "élève", "bienvenue"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students feeling nervous or uncertain about school",
-      "then": "Focus on safe, welcoming people and spaces. Use more reassurance and buddy support"
+    {
+      "lessonNumber": 4,
+      "lessonType": "core",
+      "title": "Les espaces de notre école",
+      "oneGoal": "Students will identify different school spaces and understand how each space serves the school community",
+      "duration": 45,
+      "keyVocabulary": [
+        "bibliothèque",
+        "gymnase",
+        "cafétéria"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "School space picture walk. Show photos of different school areas and have students predict what happens in each space.",
+        "materials": [
+          "photos of school spaces",
+          "prediction chart",
+          "questioning gestures cards"
+        ],
+        "visualSupports": "Point to photos clearly, use wondering gestures, prediction thinking poses",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "School exploration walking tour. Visit library, gymnasium, cafeteria, office, music room. At each space, observe activities and interview people about how the space serves the school community. Record discoveries on exploration sheets.",
+        "materials": [
+          "exploration recording sheets",
+          "clipboards",
+          "cameras",
+          "interview question cards"
+        ],
+        "visualSupports": "Observation gestures, respectful visiting behavior, note-taking actions",
+        "decisionPoints": [
+          {
+            "question": "Which school spaces are most important for students to understand first?",
+            "ifYes": "Prioritize spaces students use regularly (library, gym, cafeteria)",
+            "ifNo": "Include spaces students rarely see (boiler room, storage) for broader understanding"
+          },
+          {
+            "question": "Should we take a walking tour or use photos and maps?",
+            "ifYes": "Combine walking tour with photo documentation for later reference",
+            "ifNo": "Use virtual tour approach with photos, videos, and maps"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "School spaces appreciation circle. Share discoveries about how different spaces help our school community.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students overwhelmed by large school building or getting distracted during tour",
+        "then": "Visit fewer spaces with more focused attention, or use virtual tour approach with photos"
+      },
+      "realWorldConnection": "Different spaces in our community serve different purposes for different people",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
-    "realWorldConnection": "Every person belongs to communities like school, family, and neighborhood"
+    {
+      "lessonNumber": 5,
+      "lessonType": "core",
+      "title": "Notre directeur et secrétaire",
+      "oneGoal": "Students will understand the roles of principal and secretary in supporting the school community",
+      "duration": 45,
+      "keyVocabulary": [
+        "directeur",
+        "secrétaire",
+        "bureau"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Role guessing game. Act out different jobs and have students guess. Introduce principal and secretary roles through mime and photos.",
+        "materials": [
+          "job role cards",
+          "photos of principal and secretary",
+          "office props (toy phone, papers)"
+        ],
+        "visualSupports": "Clear job action gestures, office work motions, helping others poses",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Office visit and interview session. Visit school office to meet principal and secretary. Conduct prepared interview about their roles in helping students and teachers. Observe office work and ask questions about how they support school community.",
+        "materials": [
+          "interview question cards",
+          "recording sheets",
+          "thank you cards to make"
+        ],
+        "visualSupports": "Respectful visiting posture, listening gestures, questioning hand raises",
+        "decisionPoints": [
+          {
+            "question": "How comfortable are students with meeting school authority figures?",
+            "ifYes": "Encourage natural conversation and questions",
+            "ifNo": "Use more structured interview format with prepared questions"
+          },
+          {
+            "question": "Should we visit the office or invite guests to our classroom?",
+            "ifYes": "Office visit gives authentic context for understanding their work",
+            "ifNo": "Classroom visit might feel safer and more controlled for students"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Thank you card creation for principal and secretary. Share appreciation for how they help our school community.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students intimidated by principal or office environment",
+        "then": "Focus on friendly, helping aspects of roles. Use photos and stories before any direct meeting"
+      },
+      "realWorldConnection": "Every community has leaders who help organize and support everyone",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 6,
+      "lessonType": "core",
+      "title": "Nos enseignants et aide-enseignants",
+      "oneGoal": "Students will recognize teaching roles and understand how educators support student learning and growth",
+      "duration": 45,
+      "keyVocabulary": [
+        "enseignant",
+        "aide-enseignant",
+        "apprendre"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Teacher appreciation discussion. Share what students notice about how teachers help them learn and feel cared for.",
+        "materials": [
+          "teacher appreciation chart",
+          "heart-shaped notes",
+          "photos of teachers helping students"
+        ],
+        "visualSupports": "Caring gestures, helping hand motions, learning support actions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Teacher and aide-enseignant interview project. Students prepare questions about why people become teachers and how they help students. Interview classroom teacher, aide-enseignant, and other school teachers. Learn about teachers' interests, families, and reasons for loving teaching.",
+        "materials": [
+          "interview recording sheets",
+          "photos of teachers",
+          "thank you art supplies"
+        ],
+        "visualSupports": "Interview posture, respectful listening, note-taking gestures",
+        "decisionPoints": [
+          {
+            "question": "How do we help students see teachers as people with feelings and needs?",
+            "ifYes": "Include questions about teachers' lives, interests, and experiences",
+            "ifNo": "Focus primarily on professional roles and classroom responsibilities"
+          },
+          {
+            "question": "Should we interview teachers or observe them in action?",
+            "ifYes": "Combine interviews with classroom observation of teaching in action",
+            "ifNo": "Focus on interview format to encourage personal connection"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Teacher appreciation creation. Make thank you notes or drawings expressing gratitude for how teachers support learning.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students struggling to think of meaningful interview questions",
+        "then": "Provide question starters and model questioning. Focus on what students are curious about"
+      },
+      "realWorldConnection": "Teachers and helpers exist in many community settings, not just schools",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 7,
+      "lessonType": "core",
+      "title": "Le concierge et la cuisine",
+      "oneGoal": "Students will appreciate support staff roles and understand how everyone contributes to school community",
+      "duration": 45,
+      "keyVocabulary": [
+        "concierge",
+        "cuisinier",
+        "entretien"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Community helpers appreciation circle. Discuss all the people who help make school work, focusing on often-overlooked support roles.",
+        "materials": [
+          "community helper photos",
+          "appreciation badges",
+          "work action cards"
+        ],
+        "visualSupports": "Work action gestures, appreciation expressions, community helper poses",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Support staff appreciation interviews and observations. Visit custodial areas and kitchen (if possible) to observe support staff work. Interview custodian about keeping school clean and safe. Meet kitchen staff and learn about feeding school community. Understand how support work keeps school functioning.",
+        "materials": [
+          "interview question cards",
+          "observation sheets",
+          "thank you card supplies"
+        ],
+        "visualSupports": "Work observation gestures, respectful visiting behavior, appreciation expressions",
+        "decisionPoints": [
+          {
+            "question": "How do we highlight the importance of support roles without stereotyping?",
+            "ifYes": "Emphasize skill, importance, and choice in all work roles",
+            "ifNo": "Focus primarily on appreciation without discussing role value comparisons"
+          },
+          {
+            "question": "Should we observe work in action or have conversations with staff?",
+            "ifYes": "Combine observation with conversation for full understanding",
+            "ifNo": "Focus on conversation to build personal connections with staff"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Support staff thank you project. Create appreciation gifts or notes recognizing essential work of custodial and kitchen staff.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students not understanding importance of support roles",
+        "then": "Use 'what if' scenarios - what if no one cleaned, cooked, or maintained school?"
+      },
+      "realWorldConnection": "Every community depends on people who maintain spaces and provide services",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 8,
+      "lessonType": "core",
+      "title": "Les règles de notre école",
+      "oneGoal": "Students will understand school rules as community agreements that help everyone feel safe and included",
+      "duration": 45,
+      "keyVocabulary": [
+        "règles",
+        "sécurité",
+        "respect"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Rule exploration through scenarios. Present situations and discuss what rules might help everyone feel safe and happy.",
+        "materials": [
+          "scenario cards",
+          "safety symbols",
+          "rule examples chart"
+        ],
+        "visualSupports": "Safety gestures, problem-solving expressions, community cooperation poses",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "School rule investigation project. Explore different areas of school to discover existing rules (posted signs, common practices). Interview staff about why certain rules exist. Discuss how rules help community function. Create illustrated rule book showing how rules help everyone.",
+        "materials": [
+          "rule discovery sheets",
+          "cameras for documentation",
+          "art supplies for rule book"
+        ],
+        "visualSupports": "Rule reading gestures, safety demonstrations, community agreement actions",
+        "decisionPoints": [
+          {
+            "question": "Are students ready to discuss rule purposes or should we focus on examples first?",
+            "ifYes": "Explore both what rules are and why they exist",
+            "ifNo": "Focus on identifying and understanding existing rules first"
+          },
+          {
+            "question": "Should we create new class rules or explore existing school rules?",
+            "ifYes": "Combine exploration of existing rules with collaborative creation of class agreements",
+            "ifNo": "Focus on understanding and appreciating existing school rule system"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Rule commitment ceremony. Students share how they will follow school rules to help everyone feel safe and included.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students seeing rules as restrictive rather than helpful",
+        "then": "Use more positive framing - 'rules help us' rather than 'rules stop us'. Focus on safety and inclusion benefits"
+      },
+      "realWorldConnection": "All communities have agreements that help people live and work together safely",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 9,
+      "lessonType": "core",
+      "title": "Comment nous résolvons les problèmes",
+      "oneGoal": "Students will practice conflict resolution and understand how to seek help when problems arise",
+      "duration": 45,
+      "keyVocabulary": [
+        "problème",
+        "solution",
+        "aide"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Problem-solving warm-up. Present simple classroom problems and brainstorm solutions together.",
+        "materials": [
+          "problem scenario cards",
+          "solution brainstorming chart",
+          "thinking poses cards"
+        ],
+        "visualSupports": "Thinking gestures, problem-solving expressions, solution discovery actions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Conflict resolution skill building through role-play. Practice common student conflicts (sharing, fairness, feelings). Learn steps: stop, breathe, talk, listen, solve together. Practice seeking help from adults when needed. Create problem-solving poster for classroom reference.",
+        "materials": [
+          "conflict scenario cards",
+          "solution step cards",
+          "calm-down tools",
+          "poster materials"
+        ],
+        "visualSupports": "Calm-down gestures, talking and listening poses, helping hand signals",
+        "decisionPoints": [
+          {
+            "question": "What types of conflicts are most relevant to students' experience?",
+            "ifYes": "Focus on conflicts students actually experience in classroom and playground",
+            "ifNo": "Use hypothetical scenarios to introduce problem-solving concepts"
+          },
+          {
+            "question": "Should we role-play solutions or discuss real classroom situations?",
+            "ifYes": "Carefully address real situations that have occurred with sensitivity",
+            "ifNo": "Use role-play scenarios to practice skills without personalizing conflicts"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Problem-solving commitment circle. Students share one problem-solving strategy they will try when conflicts arise.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students getting upset during conflict role-play or real situation discussion",
+        "then": "Use more abstract scenarios, focus on positive solutions, provide extra emotional support"
+      },
+      "realWorldConnection": "Learning to solve problems peacefully helps in all relationships and communities",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 10,
+      "lessonType": "core",
+      "title": "Nos traditions scolaires",
+      "oneGoal": "Students will explore school traditions and understand how shared experiences build community identity",
+      "duration": 45,
+      "keyVocabulary": [
+        "tradition",
+        "célébration",
+        "communauté"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Tradition introduction through storytelling. Share stories about special things the school does every year that make it unique.",
+        "materials": [
+          "school tradition photos",
+          "storytelling props",
+          "celebration symbols"
+        ],
+        "visualSupports": "Story gestures, celebration actions, tradition demonstration poses",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "School tradition exploration project. Research school traditions through photos, artifacts, and interviews with long-time staff. Learn about assemblies, special events, annual celebrations. Understand how traditions connect past and present school community. Create tradition timeline or museum display.",
+        "materials": [
+          "tradition research sheets",
+          "historical photos",
+          "interview materials",
+          "display supplies"
+        ],
+        "visualSupports": "Historical comparison gestures, timeline actions, celebration demonstrations",
+        "decisionPoints": [
+          {
+            "question": "Which school traditions are most meaningful for Grade 1 students?",
+            "ifYes": "Focus on traditions students can participate in and understand",
+            "ifNo": "Include broader school traditions to build comprehensive understanding"
+          },
+          {
+            "question": "Should we focus on current year traditions or school history?",
+            "ifYes": "Balance current traditions students will experience with historical context",
+            "ifNo": "Focus primarily on traditions students will directly participate in this year"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Tradition appreciation circle. Students share excitement about school traditions they want to participate in.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students from different cultural backgrounds feeling excluded from school traditions",
+        "then": "Explicitly discuss how diverse traditions enrich school community. Invite sharing of family traditions"
+      },
+      "realWorldConnection": "Traditions help communities remember their values and celebrate together",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 11,
+      "lessonType": "core",
+      "title": "Ma carte de l'école",
+      "oneGoal": "Students will create simple maps of school spaces and understand how maps help us navigate community spaces",
+      "duration": 45,
+      "keyVocabulary": [
+        "carte",
+        "plan",
+        "direction"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Map exploration introduction. Look at different types of maps and discuss how they help people find their way.",
+        "materials": [
+          "various map examples",
+          "school aerial photo",
+          "treasure map props"
+        ],
+        "visualSupports": "Map reading gestures, direction pointing, navigation actions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "School mapping project. Students create individual maps of school layout, marking important spaces and pathways. Include favorite spots, important rooms, and safety locations. Add symbols and labels. Share maps and compare different perspectives and details noticed.",
+        "materials": [
+          "large mapping paper",
+          "colored pencils",
+          "rulers",
+          "symbol stickers",
+          "school layout reference"
+        ],
+        "visualSupports": "Bird's eye view demonstrations, mapping motions, symbol explanation gestures",
+        "decisionPoints": [
+          {
+            "question": "Are students ready for bird's-eye view mapping or should we use floor-level perspective?",
+            "ifYes": "Introduce bird's eye view with physical demonstrations and examples",
+            "ifNo": "Start with floor-level perspective and gradually introduce aerial view concepts"
+          },
+          {
+            "question": "Should maps focus on favorite spaces or all school areas?",
+            "ifYes": "Encourage personal mapping with favorite spaces highlighted",
+            "ifNo": "Provide structure for comprehensive school area mapping"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Map gallery walk. Students display maps and explain special features they included. Appreciate different mapping perspectives.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students frustrated with mapping complexity or accuracy",
+        "then": "Focus on creative representation rather than accuracy. Emphasize personal meaning over technical precision"
+      },
+      "realWorldConnection": "Maps help us understand and navigate all the communities we belong to",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 12,
+      "lessonType": "core",
+      "title": "Interview avec le personnel",
+      "oneGoal": "Students will conduct simple interviews with school staff to understand their roles and contributions",
+      "duration": 45,
+      "keyVocabulary": [
+        "interview",
+        "questions",
+        "réponses"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Interview skill practice. Learn how to ask good questions, listen carefully, and show appreciation for people's answers.",
+        "materials": [
+          "interview question examples",
+          "listening pose cards",
+          "appreciation gesture guides"
+        ],
+        "visualSupports": "Question asking gestures, careful listening poses, note-taking actions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "School staff interview project. Students work in pairs to interview different school staff members they haven't met yet (music teacher, librarian, special education teacher, etc.). Ask about their roles, why they chose their job, how they help students. Record answers through drawings and simple words. Share discoveries with class.",
+        "materials": [
+          "interview recording sheets",
+          "clipboards",
+          "colored pencils",
+          "interview question guides"
+        ],
+        "visualSupports": "Professional interview posture, respectful questioning, note-taking demonstrations",
+        "decisionPoints": [
+          {
+            "question": "Which staff members would be most comfortable and engaging for student interviews?",
+            "ifYes": "Choose staff known for enjoying student interaction and communication",
+            "ifNo": "Prepare staff in advance and provide structured interview formats"
+          },
+          {
+            "question": "Should interviews be structured with prepared questions or more conversational?",
+            "ifYes": "Use structured questions to build student confidence and focus",
+            "ifNo": "Encourage natural conversation with question prompts available"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Interview discovery sharing. Students share interesting things they learned about school staff and their contributions to school community.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students too shy or nervous to conduct interviews",
+        "then": "Use buddy system, practice with familiar adults first, or allow observation-based learning"
+      },
+      "realWorldConnection": "Asking questions and listening to answers helps us understand our community better",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 13,
+      "lessonType": "core",
+      "title": "Les besoins de notre école",
+      "oneGoal": "Students will identify school community needs and understand how needs are met through cooperation",
+      "duration": 45,
+      "keyVocabulary": [
+        "besoins",
+        "désirs",
+        "coopération"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Needs vs. wants exploration. Discuss difference between things we need and things we want, using personal examples.",
+        "materials": [
+          "needs vs wants sorting cards",
+          "basic needs examples",
+          "want examples"
+        ],
+        "visualSupports": "Essential need gestures, want desire expressions, sorting actions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "School needs assessment project. Walk through school to identify what the school community needs to function well (safety, cleanliness, learning materials, kindness, cooperation). Distinguish between material needs and social/emotional needs. Interview staff about current school needs. Brainstorm how needs are currently met and how students can help.",
+        "materials": [
+          "needs assessment sheets",
+          "clipboards",
+          "interview questions",
+          "brainstorming charts"
+        ],
+        "visualSupports": "Needs identification gestures, assessment actions, brainstorming thinking poses",
+        "decisionPoints": [
+          {
+            "question": "How do we help students distinguish between wants and needs in school context?",
+            "ifYes": "Use concrete examples and 'what if' scenarios to clarify essential vs. nice-to-have",
+            "ifNo": "Accept broader interpretation of needs and focus on community cooperation"
+          },
+          {
+            "question": "Should we focus on material needs or emotional/social needs first?",
+            "ifYes": "Start with tangible material needs, then explore social/emotional community needs",
+            "ifNo": "Integrate both types of needs as equally important for school community"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "School needs commitment circle. Students choose one school need they want to help address and share their commitment.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students identifying too many wants as needs or feeling overwhelmed by school needs",
+        "then": "Focus on basic essential needs and emphasize how well current needs are already being met"
+      },
+      "realWorldConnection": "All communities have needs that are met when people work together",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 14,
+      "lessonType": "core",
+      "title": "Comment nous aidons notre école",
+      "oneGoal": "Students will identify ways they can contribute to school community and take action to help",
+      "duration": 45,
+      "keyVocabulary": [
+        "aider",
+        "contribuer",
+        "action"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Helper appreciation circle. Discuss ways students already help at school and home. Celebrate existing contributions.",
+        "materials": [
+          "helper action cards",
+          "appreciation stickers",
+          "contribution examples chart"
+        ],
+        "visualSupports": "Helping action demonstrations, appreciation expressions, contribution celebration gestures",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "School contribution action project. Choose specific ways students can help school community based on needs identified in previous lesson. Implement helping actions: classroom organization, playground cleanup, kindness notes, buddy helping, office assistance. Document contributions through photos and reflections.",
+        "materials": [
+          "action choice cards",
+          "helping supplies",
+          "cameras for documentation",
+          "reflection sheets"
+        ],
+        "visualSupports": "Helping action demonstrations, teamwork gestures, pride in contribution expressions",
+        "decisionPoints": [
+          {
+            "question": "What level of responsibility are students ready to take on?",
+            "ifYes": "Offer substantial helping opportunities with appropriate supervision",
+            "ifNo": "Start with simple, manageable helping tasks to build confidence"
+          },
+          {
+            "question": "Should we focus on individual contributions or group projects?",
+            "ifYes": "Balance individual choice with collaborative group helping projects",
+            "ifNo": "Focus on group projects to build community cooperation skills"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Contribution celebration circle. Students share how it felt to help school community and plan continued contributions.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students feeling overwhelmed by responsibility or not seeing impact of their help",
+        "then": "Focus on small, immediately visible contributions. Celebrate all efforts enthusiastically"
+      },
+      "realWorldConnection": "Everyone, including children, can make important contributions to their communities",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 15,
+      "lessonType": "extension",
+      "title": "Notre école dans le quartier",
+      "oneGoal": "Students will understand their school's place in the larger neighborhood community",
+      "duration": 45,
+      "keyVocabulary": [
+        "quartier",
+        "voisinage",
+        "environnement"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Neighborhood exploration introduction. Look at school location on maps and discuss what surrounds the school.",
+        "materials": [
+          "neighborhood maps",
+          "aerial photos",
+          "community location cards"
+        ],
+        "visualSupports": "Map pointing gestures, location identification actions, neighborhood connection expressions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "School-community connection exploration. From classroom windows and school boundaries, observe neighborhood features. Identify community connections (nearby businesses, homes, other schools, parks). Interview staff about school's role in neighborhood. Create community connection map showing school's place in larger community.",
+        "materials": [
+          "observation sheets",
+          "community connection recording forms",
+          "mapping materials",
+          "cameras"
+        ],
+        "visualSupports": "Observation pointing, community connection gestures, mapping demonstration actions",
+        "decisionPoints": [
+          {
+            "question": "How familiar are students with the area around their school?",
+            "ifYes": "Build on existing knowledge to deepen community understanding",
+            "ifNo": "Provide foundational orientation to immediate school neighborhood"
+          },
+          {
+            "question": "Should we explore through windows, walks, or maps and photos?",
+            "ifYes": "Combine multiple exploration methods for comprehensive understanding",
+            "ifNo": "Choose safest and most practical exploration method for student group"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "School-community appreciation circle. Students share connections they discovered between school and neighborhood.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students not seeing connections between school and neighborhood or feeling confused about community boundaries",
+        "then": "Use more concrete examples and visual aids. Focus on obvious, immediate connections first"
+      },
+      "realWorldConnection": "Schools are part of larger communities with connections to many other places and people",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 16,
+      "lessonType": "extension",
+      "title": "Les écoles d'hier et d'aujourd'hui",
+      "oneGoal": "Students will compare past and present schools and understand how communities change over time",
+      "duration": 45,
+      "keyVocabulary": [
+        "hier",
+        "aujourd'hui",
+        "changement"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Time travel introduction. Use props and storytelling to introduce concept of schools from long ago compared to today.",
+        "materials": [
+          "historical school photos",
+          "time travel props",
+          "then/now comparison cards"
+        ],
+        "visualSupports": "Time passage gestures, historical comparison expressions, then/now demonstration actions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "School history exploration project. Compare historical photos of schools with current school. Interview older community members or staff about how schools have changed. Explore differences in classrooms, technology, activities, rules. Create then/now comparison display showing school community changes over time.",
+        "materials": [
+          "historical photos",
+          "comparison charts",
+          "interview materials",
+          "display supplies"
+        ],
+        "visualSupports": "Historical comparison gestures, time difference demonstrations, change explanation actions",
+        "decisionPoints": [
+          {
+            "question": "What aspects of school history will be most interesting and accessible to Grade 1s?",
+            "ifYes": "Focus on tangible differences students can observe and understand",
+            "ifNo": "Include broader historical context about education and community changes"
+          },
+          {
+            "question": "Should we use photos, artifacts, or stories from older community members?",
+            "ifYes": "Combine multiple sources for rich historical understanding",
+            "ifNo": "Focus on most engaging and accessible historical source for student group"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Time appreciation circle. Students share what they appreciate about schools today and what was interesting about schools in the past.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students confused about time concepts or overwhelmed by historical information",
+        "then": "Use simpler time comparisons. Focus on obvious, concrete differences students can easily understand"
+      },
+      "realWorldConnection": "All communities have histories that help us understand how they became what they are today",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 17,
+      "lessonType": "extension",
+      "title": "Créer ensemble un projet d'école",
+      "oneGoal": "Students will collaborate on a project that improves their school community",
+      "duration": 45,
+      "keyVocabulary": [
+        "projet",
+        "collaboration",
+        "amélioration"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Project planning circle. Review school needs identified earlier and brainstorm manageable improvement projects students can complete together.",
+        "materials": [
+          "project brainstorming charts",
+          "school needs review sheets",
+          "collaboration planning tools"
+        ],
+        "visualSupports": "Brainstorming thinking gestures, collaboration planning actions, project excitement expressions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Community improvement project implementation. Work together on chosen project (classroom library organization, playground beautification, kindness campaign, school garden care, office helper program). Divide responsibilities, collaborate on execution, document process and impact.",
+        "materials": [
+          "project supplies specific to chosen project",
+          "documentation cameras",
+          "responsibility charts"
+        ],
+        "visualSupports": "Teamwork cooperation gestures, project work demonstrations, progress celebration actions",
+        "decisionPoints": [
+          {
+            "question": "What type of project would be meaningful and achievable for Grade 1 students?",
+            "ifYes": "Choose project that provides visible impact and matches student developmental capabilities",
+            "ifNo": "Select simpler project that ensures success and builds confidence in community contribution"
+          },
+          {
+            "question": "Should the project focus on classroom, school, or neighborhood improvement?",
+            "ifYes": "Choose scope that allows students to see direct impact of their work",
+            "ifNo": "Focus on immediate school community for most meaningful and visible results"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Project completion celebration. Admire completed project and discuss how collaboration made improvement possible.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students having difficulty with collaboration or project feeling too complex",
+        "then": "Simplify project scope, provide more structure for collaboration, celebrate small progress steps"
+      },
+      "realWorldConnection": "Working together on projects is how communities solve problems and create positive changes",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 18,
+      "lessonType": "extension",
+      "title": "Présenter notre école",
+      "oneGoal": "Students will share their school community knowledge with others and practice being school ambassadors",
+      "duration": 45,
+      "keyVocabulary": [
+        "présenter",
+        "ambassadeur",
+        "partager"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "School ambassador preparation. Discuss how to share positive information about school with others. Practice confident, welcoming presentation skills.",
+        "materials": [
+          "presentation preparation charts",
+          "school information summaries",
+          "confidence building activities"
+        ],
+        "visualSupports": "Confident presentation postures, welcoming gestures, information sharing actions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "School presentation project. Prepare and deliver presentations about school community to chosen audience (parents, other classes, potential new students, community members). Include information about school spaces, people, traditions, and why school is special. Use drawings, photos, maps, and spoken explanations.",
+        "materials": [
+          "presentation materials from previous lessons",
+          "display boards",
+          "presentation prompts",
+          "audience seating"
+        ],
+        "visualSupports": "Presentation delivery gestures, audience engagement actions, information sharing demonstrations",
+        "decisionPoints": [
+          {
+            "question": "Who would be the best audience for student presentations about their school?",
+            "ifYes": "Choose audience that will be genuinely interested and supportive",
+            "ifNo": "Present to classmates or teachers if external audience isn't available"
+          },
+          {
+            "question": "Should presentations be formal or conversational, individual or group?",
+            "ifYes": "Match presentation format to student comfort levels and learning goals",
+            "ifNo": "Use group presentations to provide mutual support and shared responsibility"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Ambassador appreciation circle. Celebrate student success in representing their school community and sharing their knowledge.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students feeling nervous about presentations or struggling to organize information",
+        "then": "Provide more structure and support. Use group presentations or allow alternative sharing formats"
+      },
+      "realWorldConnection": "Being able to describe and represent our communities helps others understand and appreciate them",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 19,
+      "lessonType": "extension",
+      "title": "Notre célébration scolaire",
+      "oneGoal": "Students will plan and participate in a celebration that honors their school community",
+      "duration": 45,
+      "keyVocabulary": [
+        "célébration",
+        "honorer",
+        "reconnaissance"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Celebration planning circle. Discuss different ways communities celebrate and appreciate each other. Brainstorm celebration ideas for school community.",
+        "materials": [
+          "celebration brainstorming charts",
+          "celebration photo examples",
+          "planning materials"
+        ],
+        "visualSupports": "Celebration planning gestures, joyful expressions, community appreciation actions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "School community celebration event. Implement planned celebration that honors school community (appreciation assembly, thank you note delivery, community helper recognition, school pride display, gratitude ceremony). Include all school community members and focus on shared appreciation and belonging.",
+        "materials": [
+          "celebration supplies based on chosen format",
+          "appreciation materials",
+          "documentation cameras"
+        ],
+        "visualSupports": "Celebration participation gestures, appreciation expressions, community joy demonstrations",
+        "decisionPoints": [
+          {
+            "question": "What format of celebration would best honor the diverse contributions in school community?",
+            "ifYes": "Choose inclusive celebration format that recognizes many different contributions",
+            "ifNo": "Focus on simple appreciation format that ensures everyone feels included"
+          },
+          {
+            "question": "Should celebration focus on students, staff, or the whole school community?",
+            "ifYes": "Include whole school community to emphasize interconnected relationships",
+            "ifNo": "Focus on group that would be most meaningful and manageable for Grade 1 students"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Celebration reflection circle. Share feelings about celebration and appreciation for school community relationships.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students overwhelmed by celebration planning or execution",
+        "then": "Simplify celebration format, focus on genuine appreciation rather than elaborate activities"
+      },
+      "realWorldConnection": "Celebrations help communities appreciate their shared experiences and values",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 20,
+      "lessonType": "extension",
+      "title": "Moi, élève et citoyen",
+      "oneGoal": "Students will reflect on their growth as school community members and set goals for continued contribution",
+      "duration": 45,
+      "keyVocabulary": [
+        "citoyen",
+        "croissance",
+        "objectifs"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Growth reflection introduction. Look at documentation from throughout unit to see learning journey and community understanding development.",
+        "materials": [
+          "unit documentation portfolio",
+          "growth reflection charts",
+          "journey timeline materials"
+        ],
+        "visualSupports": "Growth demonstration gestures, journey reflection actions, learning appreciation expressions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "School citizenship reflection project. Create personal reflection portfolio showing growth in understanding school community, roles, relationships, and contribution. Set goals for continued school citizenship. Plan ways to keep contributing to school community. Share reflections and goals with school community members.",
+        "materials": [
+          "reflection portfolio materials",
+          "goal setting charts",
+          "growth documentation",
+          "sharing preparation supplies"
+        ],
+        "visualSupports": "Reflection thinking poses, goal setting actions, citizenship demonstration gestures",
+        "decisionPoints": [
+          {
+            "question": "How do we help students see their learning journey and growth over the unit?",
+            "ifYes": "Use concrete examples and documentation to show visible learning progression",
+            "ifNo": "Focus on current understanding and abilities rather than change over time"
+          },
+          {
+            "question": "Should reflection focus on personal growth or community contribution?",
+            "ifYes": "Balance both personal learning and community impact in reflection",
+            "ifNo": "Focus on area that feels most meaningful and achievable for student group"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "School citizenship commitment ceremony. Students make commitments to continued positive school community membership and receive recognition as valued school citizens.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students struggling with abstract citizenship concepts or goal setting",
+        "then": "Use concrete examples of good school community membership. Focus on specific, achievable goals"
+      },
+      "realWorldConnection": "Being a good community member is a lifelong journey of learning, contributing, and growing",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    }
+  ],
+  "assessmentTools": {
+    "observationChecklist": [],
+    "rubrics": [],
+    "selfAssessment": [],
+    "portfolioGuidelines": ""
   },
-  {
-    "lessonNumber": 2,
-    "title": "Je suis un élève",
-    "oneGoal": "Students will understand their identity as students and recognize their rights and responsibilities in school",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Mirror circle where students look at themselves and say 'Je suis un élève' (I am a student). Discuss what being a student means.",
-      "materials": ["hand mirrors", "student identity badges", "photos of students learning"],
-      "visualSupports": "Point to self proudly, student badge gestures, learning action poses"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Rights and responsibilities exploration through role-play scenarios. Act out student rights (safety, learning, respect) and responsibilities (kindness, effort, care). Create student rights and responsibilities poster.",
-      "materials": ["scenario cards", "poster paper", "markers", "dress-up items for role-play"],
-      "visualSupports": "Acting gestures for scenarios, thumbs up for rights, helping hands for responsibilities",
-      "decisionPoints": [
-        {
-          "question": "Are students ready to discuss responsibilities or should we focus on rights first?",
-          "ifYes": "Balance rights and responsibilities equally in discussion",
-          "ifNo": "Focus heavily on rights first, then gently introduce responsibilities"
-        },
-        {
-          "question": "How do we balance individual identity with group belonging?",
-          "ifYes": "Emphasize both 'I am special' and 'We belong together'",
-          "ifNo": "Focus more on individual identity and comfort first"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Student identity celebration where each child receives recognition for being an important student in our class.",
-      "assessment": "Note student understanding of student role and comfort with rights/responsibilities concepts"
-    },
-    "vocabulary": ["élève", "droits", "responsabilités"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students confused about abstract concepts like rights and responsibilities",
-      "then": "Use more concrete examples and role-play. Focus on specific situations they experience daily"
-    },
-    "realWorldConnection": "Being a student is an important role with special rights and responsibilities"
+  "familyConnections": {
+    "unitLetter": "",
+    "homeActivities": [],
+    "vocabularyList": []
   },
-  {
-    "lessonNumber": 3,
-    "title": "Notre salle de classe",
-    "oneGoal": "Students will explore their classroom space and understand how spaces are organized for learning and community",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Classroom space appreciation tour. Students become 'space detectives' looking for different areas and their purposes.",
-      "materials": ["detective badges", "magnifying glasses (toy)", "exploration clipboards"],
-      "visualSupports": "Detective gestures, pointing to different areas, questioning expressions"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Classroom mapping activity. Students work in pairs to create simple maps of classroom areas. Identify learning spaces, quiet spaces, group spaces. Share maps and explain favorite areas.",
-      "materials": ["large paper for mapping", "colored pencils", "rulers", "area labels"],
-      "visualSupports": "Bird's eye view gestures, mapping motions, labeling actions",
-      "decisionPoints": [
-        {
-          "question": "Which classroom areas are most meaningful for students to explore?",
-          "ifYes": "Focus on student-chosen areas and their personal connections",
-          "ifNo": "Guide exploration to ensure all functional areas are understood"
-        },
-        {
-          "question": "Should we create a classroom map together or individually?",
-          "ifYes": "Create individual maps first, then combine into class map",
-          "ifNo": "Work together on one large class map with everyone contributing"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Classroom space commitment circle. Students share how they will take care of different classroom areas.",
-      "assessment": "Observe student spatial awareness and understanding of how space organization supports learning"
-    },
-    "vocabulary": ["salle de classe", "espace", "apprentissage"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students having difficulty with mapping concepts",
-      "then": "Use floor-level perspective first, then gradually introduce bird's eye view with physical examples"
-    },
-    "realWorldConnection": "All learning spaces are designed to help people work, learn, and be together"
+  "resourceAlternatives": {
+    "materials": {},
+    "digitalResources": []
   },
-  {
-    "lessonNumber": 4,
-    "title": "Les espaces de notre école",
-    "oneGoal": "Students will identify different school spaces and understand how each space serves the school community",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "School space picture walk. Show photos of different school areas and have students predict what happens in each space.",
-      "materials": ["photos of school spaces", "prediction chart", "questioning gestures cards"],
-      "visualSupports": "Point to photos clearly, use wondering gestures, prediction thinking poses"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "School exploration walking tour. Visit library, gymnasium, cafeteria, office, music room. At each space, observe activities and interview people about how the space serves the school community. Record discoveries on exploration sheets.",
-      "materials": ["exploration recording sheets", "clipboards", "cameras", "interview question cards"],
-      "visualSupports": "Observation gestures, respectful visiting behavior, note-taking actions",
-      "decisionPoints": [
-        {
-          "question": "Which school spaces are most important for students to understand first?",
-          "ifYes": "Prioritize spaces students use regularly (library, gym, cafeteria)",
-          "ifNo": "Include spaces students rarely see (boiler room, storage) for broader understanding"
-        },
-        {
-          "question": "Should we take a walking tour or use photos and maps?",
-          "ifYes": "Combine walking tour with photo documentation for later reference",
-          "ifNo": "Use virtual tour approach with photos, videos, and maps"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "School spaces appreciation circle. Share discoveries about how different spaces help our school community.",
-      "assessment": "Note student understanding of space-function relationships and community service concepts"
-    },
-    "vocabulary": ["bibliothèque", "gymnase", "cafétéria"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students overwhelmed by large school building or getting distracted during tour",
-      "then": "Visit fewer spaces with more focused attention, or use virtual tour approach with photos"
-    },
-    "realWorldConnection": "Different spaces in our community serve different purposes for different people"
-  },
-  {
-    "lessonNumber": 5,
-    "title": "Notre directeur et secrétaire",
-    "oneGoal": "Students will understand the roles of principal and secretary in supporting the school community",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Role guessing game. Act out different jobs and have students guess. Introduce principal and secretary roles through mime and photos.",
-      "materials": ["job role cards", "photos of principal and secretary", "office props (toy phone, papers)"],
-      "visualSupports": "Clear job action gestures, office work motions, helping others poses"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Office visit and interview session. Visit school office to meet principal and secretary. Conduct prepared interview about their roles in helping students and teachers. Observe office work and ask questions about how they support school community.",
-      "materials": ["interview question cards", "recording sheets", "thank you cards to make"],
-      "visualSupports": "Respectful visiting posture, listening gestures, questioning hand raises",
-      "decisionPoints": [
-        {
-          "question": "How comfortable are students with meeting school authority figures?",
-          "ifYes": "Encourage natural conversation and questions",
-          "ifNo": "Use more structured interview format with prepared questions"
-        },
-        {
-          "question": "Should we visit the office or invite guests to our classroom?",
-          "ifYes": "Office visit gives authentic context for understanding their work",
-          "ifNo": "Classroom visit might feel safer and more controlled for students"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Thank you card creation for principal and secretary. Share appreciation for how they help our school community.",
-      "assessment": "Observe student understanding of leadership roles and comfort with school authority figures"
-    },
-    "vocabulary": ["directeur", "secrétaire", "bureau"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students intimidated by principal or office environment",
-      "then": "Focus on friendly, helping aspects of roles. Use photos and stories before any direct meeting"
-    },
-    "realWorldConnection": "Every community has leaders who help organize and support everyone"
-  },
-  {
-    "lessonNumber": 6,
-    "title": "Nos enseignants et aide-enseignants",
-    "oneGoal": "Students will recognize teaching roles and understand how educators support student learning and growth",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Teacher appreciation discussion. Share what students notice about how teachers help them learn and feel cared for.",
-      "materials": ["teacher appreciation chart", "heart-shaped notes", "photos of teachers helping students"],
-      "visualSupports": "Caring gestures, helping hand motions, learning support actions"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Teacher and aide-enseignant interview project. Students prepare questions about why people become teachers and how they help students. Interview classroom teacher, aide-enseignant, and other school teachers. Learn about teachers' interests, families, and reasons for loving teaching.",
-      "materials": ["interview recording sheets", "photos of teachers", "thank you art supplies"],
-      "visualSupports": "Interview posture, respectful listening, note-taking gestures",
-      "decisionPoints": [
-        {
-          "question": "How do we help students see teachers as people with feelings and needs?",
-          "ifYes": "Include questions about teachers' lives, interests, and experiences",
-          "ifNo": "Focus primarily on professional roles and classroom responsibilities"
-        },
-        {
-          "question": "Should we interview teachers or observe them in action?",
-          "ifYes": "Combine interviews with classroom observation of teaching in action",
-          "ifNo": "Focus on interview format to encourage personal connection"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Teacher appreciation creation. Make thank you notes or drawings expressing gratitude for how teachers support learning.",
-      "assessment": "Note student understanding of teaching roles and ability to appreciate educator contributions"
-    },
-    "vocabulary": ["enseignant", "aide-enseignant", "apprendre"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students struggling to think of meaningful interview questions",
-      "then": "Provide question starters and model questioning. Focus on what students are curious about"
-    },
-    "realWorldConnection": "Teachers and helpers exist in many community settings, not just schools"
-  },
-  {
-    "lessonNumber": 7,
-    "title": "Le concierge et la cuisine",
-    "oneGoal": "Students will appreciate support staff roles and understand how everyone contributes to school community",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Community helpers appreciation circle. Discuss all the people who help make school work, focusing on often-overlooked support roles.",
-      "materials": ["community helper photos", "appreciation badges", "work action cards"],
-      "visualSupports": "Work action gestures, appreciation expressions, community helper poses"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Support staff appreciation interviews and observations. Visit custodial areas and kitchen (if possible) to observe support staff work. Interview custodian about keeping school clean and safe. Meet kitchen staff and learn about feeding school community. Understand how support work keeps school functioning.",
-      "materials": ["interview question cards", "observation sheets", "thank you card supplies"],
-      "visualSupports": "Work observation gestures, respectful visiting behavior, appreciation expressions",
-      "decisionPoints": [
-        {
-          "question": "How do we highlight the importance of support roles without stereotyping?",
-          "ifYes": "Emphasize skill, importance, and choice in all work roles",
-          "ifNo": "Focus primarily on appreciation without discussing role value comparisons"
-        },
-        {
-          "question": "Should we observe work in action or have conversations with staff?",
-          "ifYes": "Combine observation with conversation for full understanding",
-          "ifNo": "Focus on conversation to build personal connections with staff"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Support staff thank you project. Create appreciation gifts or notes recognizing essential work of custodial and kitchen staff.",
-      "assessment": "Observe student appreciation for diverse work roles and understanding of community interdependence"
-    },
-    "vocabulary": ["concierge", "cuisinier", "entretien"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students not understanding importance of support roles",
-      "then": "Use 'what if' scenarios - what if no one cleaned, cooked, or maintained school?"
-    },
-    "realWorldConnection": "Every community depends on people who maintain spaces and provide services"
-  },
-  {
-    "lessonNumber": 8,
-    "title": "Les règles de notre école",
-    "oneGoal": "Students will understand school rules as community agreements that help everyone feel safe and included",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Rule exploration through scenarios. Present situations and discuss what rules might help everyone feel safe and happy.",
-      "materials": ["scenario cards", "safety symbols", "rule examples chart"],
-      "visualSupports": "Safety gestures, problem-solving expressions, community cooperation poses"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "School rule investigation project. Explore different areas of school to discover existing rules (posted signs, common practices). Interview staff about why certain rules exist. Discuss how rules help community function. Create illustrated rule book showing how rules help everyone.",
-      "materials": ["rule discovery sheets", "cameras for documentation", "art supplies for rule book"],
-      "visualSupports": "Rule reading gestures, safety demonstrations, community agreement actions",
-      "decisionPoints": [
-        {
-          "question": "Are students ready to discuss rule purposes or should we focus on examples first?",
-          "ifYes": "Explore both what rules are and why they exist",
-          "ifNo": "Focus on identifying and understanding existing rules first"
-        },
-        {
-          "question": "Should we create new class rules or explore existing school rules?",
-          "ifYes": "Combine exploration of existing rules with collaborative creation of class agreements",
-          "ifNo": "Focus on understanding and appreciating existing school rule system"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Rule commitment ceremony. Students share how they will follow school rules to help everyone feel safe and included.",
-      "assessment": "Note student understanding of rule purposes and commitment to community agreements"
-    },
-    "vocabulary": ["règles", "sécurité", "respect"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students seeing rules as restrictive rather than helpful",
-      "then": "Use more positive framing - 'rules help us' rather than 'rules stop us'. Focus on safety and inclusion benefits"
-    },
-    "realWorldConnection": "All communities have agreements that help people live and work together safely"
-  },
-  {
-    "lessonNumber": 9,
-    "title": "Comment nous résolvons les problèmes",
-    "oneGoal": "Students will practice conflict resolution and understand how to seek help when problems arise",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Problem-solving warm-up. Present simple classroom problems and brainstorm solutions together.",
-      "materials": ["problem scenario cards", "solution brainstorming chart", "thinking poses cards"],
-      "visualSupports": "Thinking gestures, problem-solving expressions, solution discovery actions"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Conflict resolution skill building through role-play. Practice common student conflicts (sharing, fairness, feelings). Learn steps: stop, breathe, talk, listen, solve together. Practice seeking help from adults when needed. Create problem-solving poster for classroom reference.",
-      "materials": ["conflict scenario cards", "solution step cards", "calm-down tools", "poster materials"],
-      "visualSupports": "Calm-down gestures, talking and listening poses, helping hand signals",
-      "decisionPoints": [
-        {
-          "question": "What types of conflicts are most relevant to students' experience?",
-          "ifYes": "Focus on conflicts students actually experience in classroom and playground",
-          "ifNo": "Use hypothetical scenarios to introduce problem-solving concepts"
-        },
-        {
-          "question": "Should we role-play solutions or discuss real classroom situations?",
-          "ifYes": "Carefully address real situations that have occurred with sensitivity",
-          "ifNo": "Use role-play scenarios to practice skills without personalizing conflicts"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Problem-solving commitment circle. Students share one problem-solving strategy they will try when conflicts arise.",
-      "assessment": "Observe student understanding of conflict resolution steps and comfort with help-seeking"
-    },
-    "vocabulary": ["problème", "solution", "aide"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students getting upset during conflict role-play or real situation discussion",
-      "then": "Use more abstract scenarios, focus on positive solutions, provide extra emotional support"
-    },
-    "realWorldConnection": "Learning to solve problems peacefully helps in all relationships and communities"
-  },
-  {
-    "lessonNumber": 10,
-    "title": "Nos traditions scolaires",
-    "oneGoal": "Students will explore school traditions and understand how shared experiences build community identity",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Tradition introduction through storytelling. Share stories about special things the school does every year that make it unique.",
-      "materials": ["school tradition photos", "storytelling props", "celebration symbols"],
-      "visualSupports": "Story gestures, celebration actions, tradition demonstration poses"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "School tradition exploration project. Research school traditions through photos, artifacts, and interviews with long-time staff. Learn about assemblies, special events, annual celebrations. Understand how traditions connect past and present school community. Create tradition timeline or museum display.",
-      "materials": ["tradition research sheets", "historical photos", "interview materials", "display supplies"],
-      "visualSupports": "Historical comparison gestures, timeline actions, celebration demonstrations",
-      "decisionPoints": [
-        {
-          "question": "Which school traditions are most meaningful for Grade 1 students?",
-          "ifYes": "Focus on traditions students can participate in and understand",
-          "ifNo": "Include broader school traditions to build comprehensive understanding"
-        },
-        {
-          "question": "Should we focus on current year traditions or school history?",
-          "ifYes": "Balance current traditions students will experience with historical context",
-          "ifNo": "Focus primarily on traditions students will directly participate in this year"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Tradition appreciation circle. Students share excitement about school traditions they want to participate in.",
-      "assessment": "Note student understanding of tradition purposes and excitement about school community participation"
-    },
-    "vocabulary": ["tradition", "célébration", "communauté"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students from different cultural backgrounds feeling excluded from school traditions",
-      "then": "Explicitly discuss how diverse traditions enrich school community. Invite sharing of family traditions"
-    },
-    "realWorldConnection": "Traditions help communities remember their values and celebrate together"
-  },
-  {
-    "lessonNumber": 11,
-    "title": "Ma carte de l'école",
-    "oneGoal": "Students will create simple maps of school spaces and understand how maps help us navigate community spaces",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Map exploration introduction. Look at different types of maps and discuss how they help people find their way.",
-      "materials": ["various map examples", "school aerial photo", "treasure map props"],
-      "visualSupports": "Map reading gestures, direction pointing, navigation actions"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "School mapping project. Students create individual maps of school layout, marking important spaces and pathways. Include favorite spots, important rooms, and safety locations. Add symbols and labels. Share maps and compare different perspectives and details noticed.",
-      "materials": ["large mapping paper", "colored pencils", "rulers", "symbol stickers", "school layout reference"],
-      "visualSupports": "Bird's eye view demonstrations, mapping motions, symbol explanation gestures",
-      "decisionPoints": [
-        {
-          "question": "Are students ready for bird's-eye view mapping or should we use floor-level perspective?",
-          "ifYes": "Introduce bird's eye view with physical demonstrations and examples",
-          "ifNo": "Start with floor-level perspective and gradually introduce aerial view concepts"
-        },
-        {
-          "question": "Should maps focus on favorite spaces or all school areas?",
-          "ifYes": "Encourage personal mapping with favorite spaces highlighted",
-          "ifNo": "Provide structure for comprehensive school area mapping"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Map gallery walk. Students display maps and explain special features they included. Appreciate different mapping perspectives.",
-      "assessment": "Observe student spatial awareness, mapping skills, and ability to represent three-dimensional space"
-    },
-    "vocabulary": ["carte", "plan", "direction"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students frustrated with mapping complexity or accuracy",
-      "then": "Focus on creative representation rather than accuracy. Emphasize personal meaning over technical precision"
-    },
-    "realWorldConnection": "Maps help us understand and navigate all the communities we belong to"
-  },
-  {
-    "lessonNumber": 12,
-    "title": "Interview avec le personnel",
-    "oneGoal": "Students will conduct simple interviews with school staff to understand their roles and contributions",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Interview skill practice. Learn how to ask good questions, listen carefully, and show appreciation for people's answers.",
-      "materials": ["interview question examples", "listening pose cards", "appreciation gesture guides"],
-      "visualSupports": "Question asking gestures, careful listening poses, note-taking actions"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "School staff interview project. Students work in pairs to interview different school staff members they haven't met yet (music teacher, librarian, special education teacher, etc.). Ask about their roles, why they chose their job, how they help students. Record answers through drawings and simple words. Share discoveries with class.",
-      "materials": ["interview recording sheets", "clipboards", "colored pencils", "interview question guides"],
-      "visualSupports": "Professional interview posture, respectful questioning, note-taking demonstrations",
-      "decisionPoints": [
-        {
-          "question": "Which staff members would be most comfortable and engaging for student interviews?",
-          "ifYes": "Choose staff known for enjoying student interaction and communication",
-          "ifNo": "Prepare staff in advance and provide structured interview formats"
-        },
-        {
-          "question": "Should interviews be structured with prepared questions or more conversational?",
-          "ifYes": "Use structured questions to build student confidence and focus",
-          "ifNo": "Encourage natural conversation with question prompts available"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Interview discovery sharing. Students share interesting things they learned about school staff and their contributions to school community.",
-      "assessment": "Note student questioning skills, listening abilities, and understanding of diverse school roles"
-    },
-    "vocabulary": ["interview", "questions", "réponses"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students too shy or nervous to conduct interviews",
-      "then": "Use buddy system, practice with familiar adults first, or allow observation-based learning"
-    },
-    "realWorldConnection": "Asking questions and listening to answers helps us understand our community better"
-  },
-  {
-    "lessonNumber": 13,
-    "title": "Les besoins de notre école",
-    "oneGoal": "Students will identify school community needs and understand how needs are met through cooperation",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Needs vs. wants exploration. Discuss difference between things we need and things we want, using personal examples.",
-      "materials": ["needs vs wants sorting cards", "basic needs examples", "want examples"],
-      "visualSupports": "Essential need gestures, want desire expressions, sorting actions"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "School needs assessment project. Walk through school to identify what the school community needs to function well (safety, cleanliness, learning materials, kindness, cooperation). Distinguish between material needs and social/emotional needs. Interview staff about current school needs. Brainstorm how needs are currently met and how students can help.",
-      "materials": ["needs assessment sheets", "clipboards", "interview questions", "brainstorming charts"],
-      "visualSupports": "Needs identification gestures, assessment actions, brainstorming thinking poses",
-      "decisionPoints": [
-        {
-          "question": "How do we help students distinguish between wants and needs in school context?",
-          "ifYes": "Use concrete examples and 'what if' scenarios to clarify essential vs. nice-to-have",
-          "ifNo": "Accept broader interpretation of needs and focus on community cooperation"
-        },
-        {
-          "question": "Should we focus on material needs or emotional/social needs first?",
-          "ifYes": "Start with tangible material needs, then explore social/emotional community needs",
-          "ifNo": "Integrate both types of needs as equally important for school community"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "School needs commitment circle. Students choose one school need they want to help address and share their commitment.",
-      "assessment": "Observe student understanding of community needs and readiness to contribute solutions"
-    },
-    "vocabulary": ["besoins", "désirs", "coopération"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students identifying too many wants as needs or feeling overwhelmed by school needs",
-      "then": "Focus on basic essential needs and emphasize how well current needs are already being met"
-    },
-    "realWorldConnection": "All communities have needs that are met when people work together"
-  },
-  {
-    "lessonNumber": 14,
-    "title": "Comment nous aidons notre école",
-    "oneGoal": "Students will identify ways they can contribute to school community and take action to help",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Helper appreciation circle. Discuss ways students already help at school and home. Celebrate existing contributions.",
-      "materials": ["helper action cards", "appreciation stickers", "contribution examples chart"],
-      "visualSupports": "Helping action demonstrations, appreciation expressions, contribution celebration gestures"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "School contribution action project. Choose specific ways students can help school community based on needs identified in previous lesson. Implement helping actions: classroom organization, playground cleanup, kindness notes, buddy helping, office assistance. Document contributions through photos and reflections.",
-      "materials": ["action choice cards", "helping supplies", "cameras for documentation", "reflection sheets"],
-      "visualSupports": "Helping action demonstrations, teamwork gestures, pride in contribution expressions",
-      "decisionPoints": [
-        {
-          "question": "What level of responsibility are students ready to take on?",
-          "ifYes": "Offer substantial helping opportunities with appropriate supervision",
-          "ifNo": "Start with simple, manageable helping tasks to build confidence"
-        },
-        {
-          "question": "Should we focus on individual contributions or group projects?",
-          "ifYes": "Balance individual choice with collaborative group helping projects",
-          "ifNo": "Focus on group projects to build community cooperation skills"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Contribution celebration circle. Students share how it felt to help school community and plan continued contributions.",
-      "assessment": "Note student engagement in helping activities and understanding of community contribution"
-    },
-    "vocabulary": ["aider", "contribuer", "action"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students feeling overwhelmed by responsibility or not seeing impact of their help",
-      "then": "Focus on small, immediately visible contributions. Celebrate all efforts enthusiastically"
-    },
-    "realWorldConnection": "Everyone, including children, can make important contributions to their communities"
-  },
-  {
-    "lessonNumber": 15,
-    "title": "Notre école dans le quartier",
-    "oneGoal": "Students will understand their school's place in the larger neighborhood community",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Neighborhood exploration introduction. Look at school location on maps and discuss what surrounds the school.",
-      "materials": ["neighborhood maps", "aerial photos", "community location cards"],
-      "visualSupports": "Map pointing gestures, location identification actions, neighborhood connection expressions"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "School-community connection exploration. From classroom windows and school boundaries, observe neighborhood features. Identify community connections (nearby businesses, homes, other schools, parks). Interview staff about school's role in neighborhood. Create community connection map showing school's place in larger community.",
-      "materials": ["observation sheets", "community connection recording forms", "mapping materials", "cameras"],
-      "visualSupports": "Observation pointing, community connection gestures, mapping demonstration actions",
-      "decisionPoints": [
-        {
-          "question": "How familiar are students with the area around their school?",
-          "ifYes": "Build on existing knowledge to deepen community understanding",
-          "ifNo": "Provide foundational orientation to immediate school neighborhood"
-        },
-        {
-          "question": "Should we explore through windows, walks, or maps and photos?",
-          "ifYes": "Combine multiple exploration methods for comprehensive understanding",
-          "ifNo": "Choose safest and most practical exploration method for student group"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "School-community appreciation circle. Students share connections they discovered between school and neighborhood.",
-      "assessment": "Observe student understanding of school's place in larger community context"
-    },
-    "vocabulary": ["quartier", "voisinage", "environnement"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students not seeing connections between school and neighborhood or feeling confused about community boundaries",
-      "then": "Use more concrete examples and visual aids. Focus on obvious, immediate connections first"
-    },
-    "realWorldConnection": "Schools are part of larger communities with connections to many other places and people"
-  },
-  {
-    "lessonNumber": 16,
-    "title": "Les écoles d'hier et d'aujourd'hui",
-    "oneGoal": "Students will compare past and present schools and understand how communities change over time",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Time travel introduction. Use props and storytelling to introduce concept of schools from long ago compared to today.",
-      "materials": ["historical school photos", "time travel props", "then/now comparison cards"],
-      "visualSupports": "Time passage gestures, historical comparison expressions, then/now demonstration actions"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "School history exploration project. Compare historical photos of schools with current school. Interview older community members or staff about how schools have changed. Explore differences in classrooms, technology, activities, rules. Create then/now comparison display showing school community changes over time.",
-      "materials": ["historical photos", "comparison charts", "interview materials", "display supplies"],
-      "visualSupports": "Historical comparison gestures, time difference demonstrations, change explanation actions",
-      "decisionPoints": [
-        {
-          "question": "What aspects of school history will be most interesting and accessible to Grade 1s?",
-          "ifYes": "Focus on tangible differences students can observe and understand",
-          "ifNo": "Include broader historical context about education and community changes"
-        },
-        {
-          "question": "Should we use photos, artifacts, or stories from older community members?",
-          "ifYes": "Combine multiple sources for rich historical understanding",
-          "ifNo": "Focus on most engaging and accessible historical source for student group"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Time appreciation circle. Students share what they appreciate about schools today and what was interesting about schools in the past.",
-      "assessment": "Note student understanding of change over time and appreciation for historical and current school communities"
-    },
-    "vocabulary": ["hier", "aujourd'hui", "changement"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students confused about time concepts or overwhelmed by historical information",
-      "then": "Use simpler time comparisons. Focus on obvious, concrete differences students can easily understand"
-    },
-    "realWorldConnection": "All communities have histories that help us understand how they became what they are today"
-  },
-  {
-    "lessonNumber": 17,
-    "title": "Créer ensemble un projet d'école",
-    "oneGoal": "Students will collaborate on a project that improves their school community",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Project planning circle. Review school needs identified earlier and brainstorm manageable improvement projects students can complete together.",
-      "materials": ["project brainstorming charts", "school needs review sheets", "collaboration planning tools"],
-      "visualSupports": "Brainstorming thinking gestures, collaboration planning actions, project excitement expressions"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Community improvement project implementation. Work together on chosen project (classroom library organization, playground beautification, kindness campaign, school garden care, office helper program). Divide responsibilities, collaborate on execution, document process and impact.",
-      "materials": ["project supplies specific to chosen project", "documentation cameras", "responsibility charts"],
-      "visualSupports": "Teamwork cooperation gestures, project work demonstrations, progress celebration actions",
-      "decisionPoints": [
-        {
-          "question": "What type of project would be meaningful and achievable for Grade 1 students?",
-          "ifYes": "Choose project that provides visible impact and matches student developmental capabilities",
-          "ifNo": "Select simpler project that ensures success and builds confidence in community contribution"
-        },
-        {
-          "question": "Should the project focus on classroom, school, or neighborhood improvement?",
-          "ifYes": "Choose scope that allows students to see direct impact of their work",
-          "ifNo": "Focus on immediate school community for most meaningful and visible results"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Project completion celebration. Admire completed project and discuss how collaboration made improvement possible.",
-      "assessment": "Observe student collaboration skills, project engagement, and understanding of community improvement"
-    },
-    "vocabulary": ["projet", "collaboration", "amélioration"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students having difficulty with collaboration or project feeling too complex",
-      "then": "Simplify project scope, provide more structure for collaboration, celebrate small progress steps"
-    },
-    "realWorldConnection": "Working together on projects is how communities solve problems and create positive changes"
-  },
-  {
-    "lessonNumber": 18,
-    "title": "Présenter notre école",
-    "oneGoal": "Students will share their school community knowledge with others and practice being school ambassadors",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "School ambassador preparation. Discuss how to share positive information about school with others. Practice confident, welcoming presentation skills.",
-      "materials": ["presentation preparation charts", "school information summaries", "confidence building activities"],
-      "visualSupports": "Confident presentation postures, welcoming gestures, information sharing actions"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "School presentation project. Prepare and deliver presentations about school community to chosen audience (parents, other classes, potential new students, community members). Include information about school spaces, people, traditions, and why school is special. Use drawings, photos, maps, and spoken explanations.",
-      "materials": ["presentation materials from previous lessons", "display boards", "presentation prompts", "audience seating"],
-      "visualSupports": "Presentation delivery gestures, audience engagement actions, information sharing demonstrations",
-      "decisionPoints": [
-        {
-          "question": "Who would be the best audience for student presentations about their school?",
-          "ifYes": "Choose audience that will be genuinely interested and supportive",
-          "ifNo": "Present to classmates or teachers if external audience isn't available"
-        },
-        {
-          "question": "Should presentations be formal or conversational, individual or group?",
-          "ifYes": "Match presentation format to student comfort levels and learning goals",
-          "ifNo": "Use group presentations to provide mutual support and shared responsibility"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Ambassador appreciation circle. Celebrate student success in representing their school community and sharing their knowledge.",
-      "assessment": "Note student confidence in sharing school knowledge and ability to represent school community positively"
-    },
-    "vocabulary": ["présenter", "ambassadeur", "partager"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students feeling nervous about presentations or struggling to organize information",
-      "then": "Provide more structure and support. Use group presentations or allow alternative sharing formats"
-    },
-    "realWorldConnection": "Being able to describe and represent our communities helps others understand and appreciate them"
-  },
-  {
-    "lessonNumber": 19,
-    "title": "Notre célébration scolaire",
-    "oneGoal": "Students will plan and participate in a celebration that honors their school community",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Celebration planning circle. Discuss different ways communities celebrate and appreciate each other. Brainstorm celebration ideas for school community.",
-      "materials": ["celebration brainstorming charts", "celebration photo examples", "planning materials"],
-      "visualSupports": "Celebration planning gestures, joyful expressions, community appreciation actions"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "School community celebration event. Implement planned celebration that honors school community (appreciation assembly, thank you note delivery, community helper recognition, school pride display, gratitude ceremony). Include all school community members and focus on shared appreciation and belonging.",
-      "materials": ["celebration supplies based on chosen format", "appreciation materials", "documentation cameras"],
-      "visualSupports": "Celebration participation gestures, appreciation expressions, community joy demonstrations",
-      "decisionPoints": [
-        {
-          "question": "What format of celebration would best honor the diverse contributions in school community?",
-          "ifYes": "Choose inclusive celebration format that recognizes many different contributions",
-          "ifNo": "Focus on simple appreciation format that ensures everyone feels included"
-        },
-        {
-          "question": "Should celebration focus on students, staff, or the whole school community?",
-          "ifYes": "Include whole school community to emphasize interconnected relationships",
-          "ifNo": "Focus on group that would be most meaningful and manageable for Grade 1 students"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Celebration reflection circle. Share feelings about celebration and appreciation for school community relationships.",
-      "assessment": "Observe student joy in community celebration and understanding of appreciation expression"
-    },
-    "vocabulary": ["célébration", "honorer", "reconnaissance"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students overwhelmed by celebration planning or execution",
-      "then": "Simplify celebration format, focus on genuine appreciation rather than elaborate activities"
-    },
-    "realWorldConnection": "Celebrations help communities appreciate their shared experiences and values"
-  },
-  {
-    "lessonNumber": 20,
-    "title": "Moi, élève et citoyen",
-    "oneGoal": "Students will reflect on their growth as school community members and set goals for continued contribution",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Growth reflection introduction. Look at documentation from throughout unit to see learning journey and community understanding development.",
-      "materials": ["unit documentation portfolio", "growth reflection charts", "journey timeline materials"],
-      "visualSupports": "Growth demonstration gestures, journey reflection actions, learning appreciation expressions"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "School citizenship reflection project. Create personal reflection portfolio showing growth in understanding school community, roles, relationships, and contribution. Set goals for continued school citizenship. Plan ways to keep contributing to school community. Share reflections and goals with school community members.",
-      "materials": ["reflection portfolio materials", "goal setting charts", "growth documentation", "sharing preparation supplies"],
-      "visualSupports": "Reflection thinking poses, goal setting actions, citizenship demonstration gestures",
-      "decisionPoints": [
-        {
-          "question": "How do we help students see their learning journey and growth over the unit?",
-          "ifYes": "Use concrete examples and documentation to show visible learning progression",
-          "ifNo": "Focus on current understanding and abilities rather than change over time"
-        },
-        {
-          "question": "Should reflection focus on personal growth or community contribution?",
-          "ifYes": "Balance both personal learning and community impact in reflection",
-          "ifNo": "Focus on area that feels most meaningful and achievable for student group"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "School citizenship commitment ceremony. Students make commitments to continued positive school community membership and receive recognition as valued school citizens.",
-      "assessment": "Note student understanding of citizenship concepts and commitment to ongoing community contribution"
-    },
-    "vocabulary": ["citoyen", "croissance", "objectifs"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students struggling with abstract citizenship concepts or goal setting",
-      "then": "Use concrete examples of good school community membership. Focus on specific, achievable goals"
-    },
-    "realWorldConnection": "Being a good community member is a lifelong journey of learning, contributing, and growing"
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
   }
-]
+}

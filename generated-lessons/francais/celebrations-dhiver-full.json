@@ -1,1164 +1,1143 @@
 {
   "unitTitle": "Célébrations d'hiver",
   "subject": "Français (Immersion)",
+  "grade": "1",
   "totalLessons": 20,
   "coreCount": 14,
   "extensionCount": 6,
   "lessons": [
     {
       "lessonNumber": 1,
+      "lessonType": "core",
       "title": "L'hiver arrive!",
       "oneGoal": "Students understand that 'hiver' means winter and can identify winter weather signs",
-      "keyVocabulary": ["hiver", "froid", "neige"],
-      "openingConnection": "Look outside! What do you notice about the weather? Today we learn about 'hiver'!",
-      "mainActivity": {
-        "description": "Winter weather exploration with sensory experiences",
+      "duration": 45,
+      "keyVocabulary": [
+        "hiver",
+        "froid",
+        "neige"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Show winter weather photos and introduce 'hiver' with shivering gesture",
-          "Practice 'froid' with arms hugging self and cold expressions",
-          "Explore 'neige' with white paper snow and gentle falling gestures",
-          "Winter weather sorting: hot vs cold, summer vs winter pictures",
-          "Create classroom winter scene with cotton snow and winter animals",
-          "Winter weather walk: observe real winter signs outside or in photos"
-        ],
+        "activity": "Winter weather exploration with sensory experiences",
+        "materials": [],
         "visualSupports": [
           "Large winter weather photo collection showing snow, ice, frost",
           "Temperature gestures (shivering for froid, warm for chaud)",
           "Real winter items to touch: ice cubes, fake snow, winter gloves",
           "Weather sorting cards for hands-on categorization"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Are students familiar with seasonal vocabulary?",
-          "ifFamiliar": "Build on existing knowledge and add French winter words",
-          "ifNotFamiliar": "Start with basic hot/cold concepts before introducing hiver"
-        },
-        {
-          "question": "Do students need visual winter weather supports?",
-          "ifYes": "Use lots of photos, real ice, cotton snow for tactile experience",
-          "ifNo": "Focus on gestures and movement to represent winter weather"
-        },
-        {
-          "question": "Should I include local winter experiences?",
-          "ifYes": "Use photos of local winter scenes and weather students recognize",
-          "ifNo": "Use general winter images that represent universal winter experiences"
-        }
-      ],
-      "materials": [
-        "Winter weather photo collection",
-        "Ice cubes in sealed bags",
-        "Cotton balls for snow",
-        "Hot/cold sorting pictures",
-        "Winter clothing items for display"
-      ],
-      "whenThingsGoWrong": {
-        "studentsCold": "Move indoors quickly and use warm gestures to teach 'froid'",
-        "noWinterOutside": "Use ice cubes and photos to create winter sensory experience",
-        "vocabularyOverload": "Focus only on 'hiver' and reinforce with lots of repetition"
+      "closing": {
+        "duration": 10,
+        "activity": "Students point outside and say 'C'est l'hiver!' while doing shivering gesture",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students point outside and say 'C'est l'hiver!' while doing shivering gesture",
-      "realWorldConnection": "Winter brings changes in weather, clothing, and activities that affect daily life"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Winter brings changes in weather, clothing, and activities that affect daily life",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 2,
+      "lessonType": "core",
       "title": "Que porte-t-on en hiver?",
       "oneGoal": "Students can name 3 winter clothing items in French",
-      "keyVocabulary": ["manteau", "mitaines", "tuque"],
-      "openingConnection": "Brrr! It's froid in hiver! What do we put on to stay warm?",
-      "mainActivity": {
-        "description": "Winter clothing exploration with dress-up and movement",
+      "duration": 45,
+      "keyVocabulary": [
+        "manteau",
+        "mitaines",
+        "tuque"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Review 'froid' and demonstrate need for warm clothes",
-          "Introduce 'manteau' with coat-putting-on gesture and real coats",
-          "Practice 'mitaines' with hand-warming gesture and mittens to try on",
-          "Learn 'tuque' with head-covering gesture and winter hats collection",
-          "Winter clothing dress-up fashion show with French vocabulary",
-          "Clothing sorting game: winter clothes vs summer clothes",
-          "Students draw themselves wearing winter clothes with French labels"
-        ],
+        "activity": "Winter clothing exploration with dress-up and movement",
+        "materials": [],
         "visualSupports": [
           "Real winter clothing collection for trying on",
           "Clothing gesture cards showing how to wear each item",
           "Before/after pictures: same person in summer vs winter clothes",
           "Cultural winter clothing from different countries"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Are students ready for clothing vocabulary?",
-          "ifReady": "Add all three clothing items and encourage dress-up play",
-          "ifNotReady": "Focus on just 'manteau' and let students try on coats"
-        },
-        {
-          "question": "Do students need to touch real winter clothes?",
-          "ifYes": "Provide collection of clean winter items for students to try on",
-          "ifNo": "Use pictures and gestures to demonstrate winter clothing"
-        },
-        {
-          "question": "Should I include different cultural winter clothing?",
-          "ifYes": "Show winter clothes from different cultures: parkas, scarves, boots styles",
-          "ifNo": "Focus on common local winter clothing students would recognize"
-        }
-      ],
-      "materials": [
-        "Collection of clean winter clothing items",
-        "Full-length mirror for fashion show",
-        "Drawing paper and crayons",
-        "Clothing sorting cards",
-        "Cultural winter clothing photos"
-      ],
-      "whenThingsGoWrong": {
-        "clothingTooLarge": "Focus on naming rather than wearing, use gestures",
-        "studentsOverexcited": "Calm with quiet clothing naming game using pictures",
-        "hygienesConcerns": "Use clean demonstration items only, no sharing of worn items"
+      "closing": {
+        "duration": 10,
+        "activity": "Students model their winter clothing and name one item: 'Je porte mon manteau'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students model their winter clothing and name one item: 'Je porte mon manteau'",
-      "realWorldConnection": "People wear special clothes to stay warm during winter"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "People wear special clothes to stay warm during winter",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 3,
+      "lessonType": "core",
       "title": "Activités d'hiver amusantes",
       "oneGoal": "Students can identify winter activities they can do outside",
-      "keyVocabulary": ["glisser", "patiner", "jouer"],
-      "openingConnection": "We have our manteau, mitaines, tuque! Now what can we DO in the neige?",
-      "mainActivity": {
-        "description": "Winter activities exploration with movement and imaginative play",
+      "duration": 45,
+      "keyVocabulary": [
+        "glisser",
+        "patiner",
+        "jouer"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Review winter clothing and introduce fun winter activities",
-          "Demonstrate 'glisser' with sliding motion and sledding photos",
-          "Practice 'patiner' with skating movements and ice skating videos",
-          "Explore 'jouer' in winter context: snowball games, snow angels",
-          "Winter activity charades: act out activities for others to guess",
-          "Create classroom winter playground with activity stations",
-          "Students draw their favorite winter activity with French labels"
-        ],
+        "activity": "Winter activities exploration with movement and imaginative play",
+        "materials": [],
         "visualSupports": [
           "Winter activity photos: sledding, skating, building snowmen, skiing",
           "Movement cards showing how to mime each activity",
           "Video clips of children doing winter activities safely",
           "Activity station signs with pictures and French words"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Do students have experience with winter activities?",
-          "ifYes": "Let students share their experiences and add French vocabulary",
-          "ifNo": "Use videos and photos to introduce winter activities concept"
-        },
-        {
-          "question": "Should I focus on activities available locally?",
-          "ifYes": "Emphasize winter activities students can actually do in their area",
-          "ifNo": "Include variety of winter activities from different regions"
-        },
-        {
-          "question": "Are students ready for action vocabulary?",
-          "ifReady": "Add all three activities with movement and action practice",
-          "ifNotReady": "Focus on one activity and practice movement thoroughly"
-        }
-      ],
-      "materials": [
-        "Winter activity photo and video collection",
-        "Space for movement and miming activities",
-        "Drawing materials for activity pictures",
-        "Props for activity stations (scarves for skating, pillows for sledding)",
-        "Activity cards for charades game"
-      ],
-      "whenThingsGoWrong": {
-        "limitedSpace": "Use finger movements and seated gestures for activities",
-        "studentsFearful": "Emphasize safety and fun, show gentle winter activities",
-        "noWinterExperience": "Use imagination and stories to make activities accessible"
+      "closing": {
+        "duration": 10,
+        "activity": "Students choose favorite winter activity and demonstrate: 'J'aime glisser!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students choose favorite winter activity and demonstrate: 'J'aime glisser!'",
-      "realWorldConnection": "Winter offers unique outdoor activities and fun experiences"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Winter offers unique outdoor activities and fun experiences",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 4,
+      "lessonType": "core",
       "title": "Animaux en hiver",
       "oneGoal": "Students understand how animals prepare for and survive winter",
-      "keyVocabulary": ["ours", "oiseaux", "dormir"],
-      "openingConnection": "We jouer outside in hiver! But what do animals do when it's froid?",
-      "mainActivity": {
-        "description": "Animal winter survival exploration with movement and discovery",
+      "duration": 45,
+      "keyVocabulary": [
+        "ours",
+        "oiseaux",
+        "dormir"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Introduce winter animal survival as fascinating mystery",
-          "Learn about 'ours' with bear gesture and hibernation photos",
-          "Explore 'oiseaux' migration with flying movements and bird photos",
-          "Practice 'dormir' with sleeping gesture and hibernation concept",
-          "Animal winter survival sorting: hibernate, migrate, stay active",
-          "Act out animal winter behaviors with movements and sounds",
-          "Create winter animal habitat scenes with students as animals"
-        ],
+        "activity": "Animal winter survival exploration with movement and discovery",
+        "materials": [],
         "visualSupports": [
           "Animal winter survival photos: bears sleeping, birds flying south, deer in snow",
           "Animal movement cards for acting out behaviors",
           "Hibernation den photos and migration maps",
           "Before/after photos: animals in summer vs winter"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Are students interested in animal behavior?",
-          "ifInterested": "Include detailed animal stories and lots of movement activities",
-          "ifNotInterested": "Keep simple with basic vocabulary and gentle animal photos"
-        },
-        {
-          "question": "Do students need animal pictures for support?",
-          "ifYes": "Use lots of real animal photos and videos of winter behaviors",
-          "ifNo": "Focus on movement and acting out animal winter behaviors"
-        },
-        {
-          "question": "Should I include hibernation concepts?",
-          "ifYes": "Explain simple hibernation as long winter sleep for some animals",
-          "ifNo": "Focus just on vocabulary and what animals do differently in winter"
-        }
-      ],
-      "materials": [
-        "Animal winter behavior photo collection",
-        "Soft materials for hibernation den dramatic play",
-        "Animal sound recordings",
-        "Movement space for animal actions",
-        "Simple migration map or pictures"
-      ],
-      "whenThingsGoWrong": {
-        "studentsScared": "Focus on how clever animals are, not on survival dangers",
-        "tooComplicated": "Simply say animals have special ways to stay warm in winter",
-        "limitedMovement": "Use finger puppets or small movements for animal behaviors"
+      "closing": {
+        "duration": 10,
+        "activity": "Students choose animal and show winter behavior: 'L'ours dormir en hiver'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students choose animal and show winter behavior: 'L'ours dormir en hiver'",
-      "realWorldConnection": "Animals have special ways to survive cold winter weather"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Animals have special ways to survive cold winter weather",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 5,
+      "lessonType": "core",
       "title": "Célébrations autour du monde",
       "oneGoal": "Students discover that many cultures celebrate during winter season",
-      "keyVocabulary": ["célébration", "lumières", "famille"],
-      "openingConnection": "Animals dormir in hiver, but people have special parties! Let's discover célébrations!",
-      "mainActivity": {
-        "description": "Global winter celebration exploration with cultural appreciation",
+      "duration": 45,
+      "keyVocabulary": [
+        "célébration",
+        "lumières",
+        "famille"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Introduce 'célébration' with party gesture and celebration photos",
-          "Explore 'lumières' with candles, lights, and bright celebration images",
-          "Connect 'famille' to winter celebrations and gathering photos",
-          "World tour of winter celebrations: show different cultural celebrations",
-          "Light ceremony: demonstrate different ways cultures use lights in winter",
-          "Family celebration sharing: students tell about their family traditions",
-          "Create celebration collage with diverse cultural winter celebration images"
-        ],
+        "activity": "Global winter celebration exploration with cultural appreciation",
+        "materials": [],
         "visualSupports": [
           "Photos of diverse winter celebrations from around the world",
           "World map showing where different celebrations happen",
           "Real candles, string lights, lanterns (safely demonstrated)",
           "Cultural celebration music and sounds",
           "Family celebration photos representing different traditions"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Which cultural celebrations should I include?",
-          "ifInclusive": "Show Christmas, Hanukkah, Kwanzaa, Diwali, Chinese New Year, winter solstice",
-          "ifFocused": "Choose 3-4 major celebrations and explore them briefly"
-        },
-        {
-          "question": "Do students need visual supports for different traditions?",
-          "ifYes": "Use photos, artifacts, music, and cultural items for each celebration",
-          "ifNo": "Focus on storytelling and discussion about different celebrations"
-        },
-        {
-          "question": "Should I focus on similarities or differences?",
-          "ifSimilarities": "Emphasize how all celebrations bring famille together with lumières",
-          "ifDifferences": "Celebrate unique traditions and customs from each culture"
-        }
-      ],
-      "materials": [
-        "World map or globe",
-        "Cultural celebration photo collection",
-        "Safe lighting demonstrations (battery candles, string lights)",
-        "Cultural celebration music playlist",
-        "Chart paper for celebration collage"
-      ],
-      "whenThingsGoWrong": {
-        "culturalSensitivity": "Present all celebrations as equally beautiful and important",
-        "overwhelmingChoices": "Focus on 2-3 celebrations and explore them gently",
-        "studentExclusion": "Ensure every student's family traditions are valued"
+      "closing": {
+        "duration": 10,
+        "activity": "Students point to celebration photo and say: 'C'est une belle célébration!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students point to celebration photo and say: 'C'est une belle célébration!'",
-      "realWorldConnection": "Many cultures have special celebrations during winter months"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Many cultures have special celebrations during winter months",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 6,
+      "lessonType": "core",
       "title": "Noël autour du monde",
       "oneGoal": "Students explore how Christmas is celebrated in different French-speaking countries",
-      "keyVocabulary": ["Noël", "sapin", "cadeaux"],
-      "openingConnection": "Today we explore one winter célébration: Noël! How is it celebrated around the world?",
-      "mainActivity": {
-        "description": "Christmas traditions exploration with French cultural focus",
+      "duration": 45,
+      "keyVocabulary": [
+        "Noël",
+        "sapin",
+        "cadeaux"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Introduce 'Noël' with celebration gesture and Christmas photos",
-          "Explore 'sapin' (Christmas tree) with tree shape and evergreen photos",
-          "Learn 'cadeaux' (gifts) with giving gesture and wrapped present photos",
-          "Christmas around the world tour: France, Quebec, Africa, Caribbean",
-          "Compare Christmas traditions: different trees, foods, gift traditions",
-          "Christmas craft: create simple French Christmas decoration",
-          "Christmas song: learn simple French Christmas carol with movements"
-        ],
+        "activity": "Christmas traditions exploration with French cultural focus",
+        "materials": [],
         "visualSupports": [
           "Christmas photos from French-speaking countries",
           "Different types of Christmas trees and decorations",
           "Cultural Christmas foods and traditions photos",
           "Simple French Christmas song with picture supports",
           "Craft materials for cultural Christmas decoration"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Should I include diverse Christmas traditions?",
-          "ifYes": "Show Christmas celebrations from different French-speaking cultures",
-          "ifFocused": "Focus on French and French-Canadian Christmas traditions"
-        },
-        {
-          "question": "Do students celebrate Christmas at home?",
-          "ifYes": "Let students share their family Christmas traditions",
-          "ifNo": "Present Christmas as one of many beautiful winter celebrations"
-        },
-        {
-          "question": "How can I be inclusive of all students?",
-          "ifInclusive": "Present Christmas as one tradition among many, all equally special",
-          "ifSensitive": "Focus on cultural learning rather than religious aspects"
-        }
-      ],
-      "materials": [
-        "French Christmas tradition photos and videos",
-        "Simple craft materials for Christmas decoration",
-        "French Christmas carol recording and lyrics",
-        "Examples of different Christmas trees and decorations",
-        "Cultural Christmas food photos"
-      ],
-      "whenThingsGoWrong": {
-        "religiousSensitivity": "Focus on cultural traditions rather than religious meanings",
-        "studentExclusion": "Emphasize learning about cultures, not personal belief",
-        "craftDifficulty": "Simplify to coloring or decorating pre-made items"
+      "closing": {
+        "duration": 10,
+        "activity": "Students show their Christmas craft and say: 'Joyeux Noël!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students show their Christmas craft and say: 'Joyeux Noël!'",
-      "realWorldConnection": "Christmas is celebrated differently around the world, including in French-speaking countries"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Christmas is celebrated differently around the world, including in French-speaking countries",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 7,
+      "lessonType": "core",
       "title": "Hanoukka - Festival des lumières",
       "oneGoal": "Students learn about Hanukkah as a winter celebration of lights",
-      "keyVocabulary": ["Hanoukka", "menorah", "huit"],
-      "openingConnection": "Noël has lumières! Another winter celebration with beautiful lumières is Hanoukka!",
-      "mainActivity": {
-        "description": "Hanukkah exploration with respectful cultural learning",
+      "duration": 45,
+      "keyVocabulary": [
+        "Hanoukka",
+        "menorah",
+        "huit"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Introduce 'Hanoukka' with respect and celebration photos",
-          "Explore 'menorah' with nine-branched candleholder photos and counting",
-          "Learn 'huit' (eight) by counting eight nights and candles",
-          "Hanukkah story: simple story of lights lasting eight nights",
-          "Light counting activity: practice numbers with Hanukkah candles",
-          "Hanukkah craft: create simple paper menorah with eight candles",
-          "Hanukkah game: play simple dreidel-inspired spinning game with French numbers"
-        ],
+        "activity": "Hanukkah exploration with respectful cultural learning",
+        "materials": [],
         "visualSupports": [
           "Beautiful Hanukkah celebration photos showing families",
           "Menorah photos and safe demonstration model",
           "Number cards 1-8 for counting practice",
           "Simple Hanukkah story picture book",
           "Craft template for paper menorah"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Do students know about Jewish traditions?",
-          "ifYes": "Build on existing knowledge with French vocabulary",
-          "ifNo": "Introduce gently as beautiful tradition of light and family"
-        },
-        {
-          "question": "Should I include hands-on menorah activity?",
-          "ifYes": "Create safe paper menorah craft for tactile learning",
-          "ifNo": "Focus on visual exploration and counting activities"
-        },
-        {
-          "question": "How can I teach respectfully about religious traditions?",
-          "ifRespectfully": "Present as cultural learning, emphasize beauty and family values",
-          "ifCarefully": "Focus on lights, numbers, and family celebration aspects"
-        }
-      ],
-      "materials": [
-        "Hanukkah celebration photos",
-        "Safe menorah demonstration model",
-        "Paper craft materials for menorah making",
-        "Number cards and counting materials",
-        "Simple Hanukkah story or pictures"
-      ],
-      "whenThingsGoWrong": {
-        "religiousConcerns": "Focus on cultural appreciation and family traditions",
-        "conceptTooComplex": "Simply focus on eight nights of lights and family celebration",
-        "craftDifficulties": "Provide pre-cut materials and simple assembly"
+      "closing": {
+        "duration": 10,
+        "activity": "Students count to huit and point to their menorah craft",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students count to huit and point to their menorah craft",
-      "realWorldConnection": "Hanukkah is an important winter festival celebrating religious freedom and miracles"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Hanukkah is an important winter festival celebrating religious freedom and miracles",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 8,
+      "lessonType": "core",
       "title": "Kwanzaa - Célébration africaine-américaine",
       "oneGoal": "Students discover Kwanzaa as a cultural winter celebration",
-      "keyVocabulary": ["Kwanzaa", "principes", "sept"],
-      "openingConnection": "Hanoukka has huit nights! Another winter célébration has sept special days: Kwanzaa!",
-      "mainActivity": {
-        "description": "Kwanzaa exploration with cultural appreciation and respect",
+      "duration": 45,
+      "keyVocabulary": [
+        "Kwanzaa",
+        "principes",
+        "sept"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Introduce 'Kwanzaa' with cultural respect and celebration photos",
-          "Explore 'principes' (principles) as important family and community values",
-          "Learn 'sept' (seven) by counting seven days and seven principles",
-          "Kwanzaa colors: explore red, black, and green significance",
-          "Community values discussion: what makes communities strong?",
-          "Kwanzaa craft: create kinara (candleholder) with seven candles",
-          "Unity activity: practice working together as community value"
-        ],
+        "activity": "Kwanzaa exploration with cultural appreciation and respect",
+        "materials": [],
         "visualSupports": [
           "Respectful Kwanzaa celebration photos",
           "Kinara (candleholder) photos and demonstration model",
           "Red, black, and green color displays",
           "Community helper photos showing unity and cooperation",
           "Number cards for counting to seven"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "How can I present Kwanzaa respectfully?",
-          "ifRespectfully": "Focus on community values and family celebration aspects",
-          "ifCarefully": "Emphasize cultural appreciation and learning about African-American traditions"
-        },
-        {
-          "question": "Do students need background on African-American culture?",
-          "ifYes": "Provide simple, respectful context about African-American community celebrations",
-          "ifNo": "Focus on universal values like unity, creativity, and responsibility"
-        },
-        {
-          "question": "Should I include the seven principles?",
-          "ifYes": "Introduce simplified versions: unity, helping others, working together",
-          "ifNo": "Focus on sept days, couleurs, and family celebration"
-        }
-      ],
-      "materials": [
-        "Kwanzaa celebration photos",
-        "Red, black, and green craft materials",
-        "Kinara craft template",
-        "Community values pictures",
-        "Number counting materials"
-      ],
-      "whenThingsGoWrong": {
-        "culturalMisunderstanding": "Focus on universal values and respectful cultural learning",
-        "tooComplicated": "Simply focus on sept days of family celebration and community",
-        "craftChallenges": "Provide pre-made kinara template for decorating"
+      "closing": {
+        "duration": 10,
+        "activity": "Students count sept candles and say one community value",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students count sept candles and say one community value",
-      "realWorldConnection": "Kwanzaa celebrates African-American culture and community values"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Kwanzaa celebrates African-American culture and community values",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 9,
+      "lessonType": "core",
       "title": "Diwali d'hiver et autres fêtes",
       "oneGoal": "Students explore other cultural celebrations that can happen in winter",
-      "keyVocabulary": ["Diwali", "lanternes", "tradition"],
-      "openingConnection": "Winter has many lumières celebrations! Let's discover more beautiful traditions!",
-      "mainActivity": {
-        "description": "Diverse winter celebration exploration with inclusive cultural appreciation",
+      "duration": 45,
+      "keyVocabulary": [
+        "Diwali",
+        "lanternes",
+        "tradition"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Introduce 'Diwali' as festival of lights (when it occurs in winter)",
-          "Explore 'lanternes' with beautiful lantern photos from different cultures",
-          "Learn 'tradition' as special ways families celebrate over time",
-          "Cultural light celebration tour: Chinese lanterns, Winter Solstice, Las Posadas",
-          "Light pattern exploration: compare different celebration lights and colors",
-          "Winter solstice simple explanation: longest night, celebrating light return",
-          "Create multicultural lantern craft representing different celebration traditions"
-        ],
+        "activity": "Diverse winter celebration exploration with inclusive cultural appreciation",
+        "materials": [],
         "visualSupports": [
           "Beautiful photos of lanterns from different cultures",
           "Diwali celebration photos (if occurring in winter)",
           "Winter solstice explanation with simple day/night visuals",
           "Various cultural light celebration photos",
           "Craft materials for simple lantern making"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Which other celebrations should I include?",
-          "ifDiverse": "Include Chinese New Year, Winter Solstice, Three Kings Day, Las Posadas",
-          "ifFocused": "Choose 2-3 celebrations represented in class or community"
-        },
-        {
-          "question": "Do students represent other cultures in class?",
-          "ifYes": "Invite students to share their family celebrations",
-          "ifNo": "Present celebrations as beautiful examples of world diversity"
-        },
-        {
-          "question": "Should I focus on light themes across cultures?",
-          "ifYes": "Emphasize how many cultures use lumières to celebrate in dark winter",
-          "ifNo": "Explore variety of celebration elements: food, music, family time"
-        }
-      ],
-      "materials": [
-        "Multicultural celebration photo collection",
-        "Lantern craft materials (paper, tissue, safe lights)",
-        "World map showing celebration locations",
-        "Cultural music samples from different celebrations",
-        "Light demonstration materials"
-      ],
-      "whenThingsGoWrong": {
-        "tooManyTraditions": "Focus on 2-3 celebrations and explore them well",
-        "culturalConfusion": "Emphasize that all traditions are beautiful and meaningful",
-        "craftComplexity": "Simplify to decorating pre-made lantern shapes"
+      "closing": {
+        "duration": 10,
+        "activity": "Students hold their lantern craft and name one winter tradition",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students hold their lantern craft and name one winter tradition",
-      "realWorldConnection": "Many cultures have light-based celebrations during dark winter months"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Many cultures have light-based celebrations during dark winter months",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 10,
+      "lessonType": "core",
       "title": "Nouvel An autour du monde",
       "oneGoal": "Students discover different New Year celebrations and traditions",
-      "keyVocabulary": ["nouveau", "année", "souhaits"],
-      "openingConnection": "Many traditions in hiver! One special time is when we start a nouveau année!",
-      "mainActivity": {
-        "description": "New Year celebration exploration with hope and renewal themes",
+      "duration": 45,
+      "keyVocabulary": [
+        "nouveau",
+        "année",
+        "souhaits"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Introduce 'nouveau' (new) with fresh, clean, beginning concepts",
-          "Explore 'année' (year) with calendar and time passage concepts",
-          "Learn 'souhaits' (wishes) with hoping and dreaming gestures",
-          "New Year around the world: January 1st, Chinese New Year, other cultural new years",
-          "New Year traditions comparison: fireworks, dragon dances, resolutions",
-          "Wish-making activity: students share hopes for nouveau année",
-          "Create New Year celebration noise makers with cultural decorations"
-        ],
+        "activity": "New Year celebration exploration with hope and renewal themes",
+        "materials": [],
         "visualSupports": [
           "New Year celebration photos from different cultures",
           "Calendar showing different new year dates",
           "Fireworks photos and dragon dance videos",
           "Wish and hope gesture demonstrations",
           "Noise maker craft materials"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Should I include lunar new year traditions?",
-          "ifYes": "Show Chinese New Year dragon dances, red decorations, family traditions",
-          "ifNo": "Focus on January 1st traditions and universal new year concepts"
-        },
-        {
-          "question": "Do students understand calendar concepts?",
-          "ifYes": "Explore different calendar systems and new year dates",
-          "ifNo": "Keep simple with 'old year ends, new year begins' concept"
-        },
-        {
-          "question": "How can I make new year concepts age-appropriate?",
-          "ifAge": "Focus on hopes, family time, and celebration rather than resolutions",
-          "ifSimple": "Emphasize nouveau beginnings and family celebrating together"
-        }
-      ],
-      "materials": [
-        "Cultural New Year celebration photos",
-        "Simple calendar for demonstrating year change",
-        "Noise maker craft materials",
-        "Wish cards or paper for hope activity",
-        "Cultural New Year music samples"
-      ],
-      "whenThingsGoWrong": {
-        "timeConceptsConfusing": "Focus on celebration and family gathering aspects",
-        "wishesTooPersonal": "Suggest simple wishes like kindness, fun, learning",
-        "noiseMakersLoud": "Create quiet versions or practice 'inside voices'"
+      "closing": {
+        "duration": 10,
+        "activity": "Students shake their noise makers and shout: 'Bonne année!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students shake their noise makers and shout: 'Bonne année!'",
-      "realWorldConnection": "Different cultures celebrate new year at different times with unique traditions"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Different cultures celebrate new year at different times with unique traditions",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 11,
+      "lessonType": "core",
       "title": "Cuisine d'hiver réconfortante",
       "oneGoal": "Students explore comfort foods and special dishes from winter celebrations",
-      "keyVocabulary": ["soupe", "chocolat", "biscuits"],
-      "openingConnection": "Winter célébrations bring famille together! What special foods do families share?",
-      "mainActivity": {
-        "description": "Winter comfort food exploration with cultural food appreciation",
+      "duration": 45,
+      "keyVocabulary": [
+        "soupe",
+        "chocolat",
+        "biscuits"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Introduce 'soupe' with warm, comfort food photos and steaming gestures",
-          "Explore 'chocolat' with hot chocolate photos and warm drink demonstrations",
-          "Learn 'biscuits' with holiday cookie photos and baking gesture",
-          "Cultural winter foods tour: matzo ball soup, hot chocolate, sugar cookies, latkes",
-          "Food and celebration matching: which foods go with which celebrations?",
-          "Sensory food exploration: smell spices, feel textures (safely)",
-          "Winter menu creation: students draw their favorite winter comfort foods"
-        ],
+        "activity": "Winter comfort food exploration with cultural food appreciation",
+        "materials": [],
         "visualSupports": [
           "Diverse cultural winter food photos",
           "Real food samples for safe smelling and observing",
           "Cooking demonstration props (safe utensils, empty containers)",
           "Cultural food-celebration matching cards",
           "Seasonal spice bottles for safe sensory exploration"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Should I include cooking or tasting activities?",
-          "ifYes": "Prepare safe food samples considering allergies and dietary restrictions",
-          "ifNo": "Focus on photos, smells, and visual food exploration"
-        },
-        {
-          "question": "Do students have food allergies to consider?",
-          "ifYes": "Use only photos and sealed spice containers for sensory exploration",
-          "ifNo": "Include safe food samples and smelling activities"
-        },
-        {
-          "question": "Which cultural foods should I represent?",
-          "ifDiverse": "Include foods from Jewish, African-American, Latin, Asian, European traditions",
-          "ifFocused": "Choose foods that represent class cultural backgrounds"
-        }
-      ],
-      "materials": [
-        "Cultural winter food photo collection",
-        "Safe food samples or sealed containers",
-        "Cooking props for demonstration",
-        "Drawing materials for menu creation",
-        "Spice containers for safe smelling"
-      ],
-      "whenThingsGoWrong": {
-        "allergyReactions": "Remove all food immediately, use only photos",
-        "foodSafetyConcerns": "Switch to picture-only exploration",
-        "culturalSensitivity": "Present all cultural foods as equally delicious and special"
+      "closing": {
+        "duration": 10,
+        "activity": "Students show their winter menu and name one comfort food",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students show their winter menu and name one comfort food",
-      "realWorldConnection": "Special foods and warm drinks are important parts of winter celebrations"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Special foods and warm drinks are important parts of winter celebrations",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 12,
+      "lessonType": "core",
       "title": "Musique et chansons d'hiver",
       "oneGoal": "Students learn songs and music from different winter celebrations",
-      "keyVocabulary": ["chanson", "musique", "danser"],
-      "openingConnection": "Winter foods warm our bodies! Winter musique and chansons warm our hearts!",
-      "mainActivity": {
-        "description": "Winter celebration music exploration with movement and cultural appreciation",
+      "duration": 45,
+      "keyVocabulary": [
+        "chanson",
+        "musique",
+        "danser"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Introduce 'chanson' with singing gesture and diverse cultural songs",
-          "Explore 'musique' with musical instrument sounds and celebration music",
-          "Learn 'danser' with movement and cultural dance demonstrations",
-          "Cultural music tour: Christmas carols, Hanukkah songs, Kwanzaa music, folk songs",
-          "Instrument exploration: shakers, drums, bells from different celebrations",
-          "Movement activity: dance to different cultural celebration music",
-          "Create class winter celebration song combining elements from different cultures"
-        ],
+        "activity": "Winter celebration music exploration with movement and cultural appreciation",
+        "materials": [],
         "visualSupports": [
           "Musical instruments from different cultures",
           "Song lyric cards with picture supports",
           "Cultural dance photos and videos",
           "Music recording equipment for class song creation",
           "Movement scarves and props for dancing"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Which songs are appropriate for this age?",
-          "ifAge": "Choose simple, repetitive songs with actions and familiar melodies",
-          "ifCultural": "Include songs from different traditions that are respectful and inclusive"
-        },
-        {
-          "question": "Should I include instruments or movement?",
-          "ifYes": "Provide simple instruments and encourage movement to music",
-          "ifNo": "Focus on singing and listening to different cultural music"
-        },
-        {
-          "question": "Do students need visual supports for song lyrics?",
-          "ifYes": "Create picture-supported lyric cards for each song",
-          "ifNo": "Focus on melody, rhythm, and movement rather than lyrics"
-        }
-      ],
-      "materials": [
-        "Cultural celebration music collection",
-        "Simple musical instruments (shakers, bells, drums)",
-        "Movement scarves and props",
-        "Song lyric cards with pictures",
-        "Recording device for class song"
-      ],
-      "whenThingsGoWrong": {
-        "tooNoisy": "Use quieter instruments or focus on humming and gentle movement",
-        "reluctantParticipants": "Allow listening and gentle swaying rather than full participation",
-        "culturalMisrepresentation": "Focus on appreciation and respect for all musical traditions"
+      "closing": {
+        "duration": 10,
+        "activity": "Students choose their favorite winter song and hum together",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students choose their favorite winter song and hum together",
-      "realWorldConnection": "Music and songs are essential parts of cultural celebrations"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Music and songs are essential parts of cultural celebrations",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 13,
+      "lessonType": "core",
       "title": "Créons nos décorations",
       "oneGoal": "Students create winter celebration decorations from different cultures",
-      "keyVocabulary": ["décorer", "couleurs", "créer"],
-      "openingConnection": "Beautiful musique for célébrations! Now let's créer beautiful décorations!",
-      "mainActivity": {
-        "description": "Multicultural decoration creation with artistic expression and cultural appreciation",
+      "duration": 45,
+      "keyVocabulary": [
+        "décorer",
+        "couleurs",
+        "créer"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Introduce 'décorer' with decorating gesture and celebration decoration photos",
-          "Explore 'couleurs' with cultural color meanings: red/green Christmas, blue/white Hanukkah",
-          "Learn 'créer' with making and building gestures",
-          "Decoration station rotation: make ornaments, paper chains, cultural symbols",
-          "Cultural decoration exploration: stars, trees, menorahs, kinaras, lanterns",
-          "Classroom decoration project: create multicultural celebration display",
-          "Decoration sharing: students explain their creation and cultural inspiration"
-        ],
+        "activity": "Multicultural decoration creation with artistic expression and cultural appreciation",
+        "materials": [],
         "visualSupports": [
           "Photos of decorations from different cultural celebrations",
           "Cultural color meaning charts",
           "Step-by-step craft instruction cards",
           "Examples of finished decorations from each culture",
           "Decoration station signs with pictures and instructions"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Which decorations are manageable for Grade 1?",
-          "ifManageable": "Choose simple crafts: paper chains, star cutting, coloring templates",
-          "ifComplex": "Provide pre-cut pieces and focus on assembly and decorating"
-        },
-        {
-          "question": "Do students need step-by-step craft support?",
-          "ifYes": "Provide visual instruction cards and demonstrate each step clearly",
-          "ifNo": "Allow creative exploration with minimal instruction"
-        },
-        {
-          "question": "Should I focus on one culture or multiple?",
-          "ifOne": "Choose one cultural decoration and make it well",
-          "ifMultiple": "Create stations representing different cultural decorations"
-        }
-      ],
-      "materials": [
-        "Craft supplies in cultural celebration colors",
-        "Pre-cut shapes and templates",
-        "Glue sticks, scissors, markers, crayons",
-        "Cultural decoration examples",
-        "Station rotation signs"
-      ],
-      "whenThingsGoWrong": {
-        "craftFrustration": "Provide simpler alternatives and focus on effort rather than perfection",
-        "materialShortage": "Adapt crafts to available materials",
-        "culturalInaccuracy": "Focus on appreciation and creativity rather than authentic reproduction"
+      "closing": {
+        "duration": 10,
+        "activity": "Students display their decorations and share cultural inspiration",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students display their decorations and share cultural inspiration",
-      "realWorldConnection": "People decorate their homes and communities for winter celebrations"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "People decorate their homes and communities for winter celebrations",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 14,
+      "lessonType": "core",
       "title": "Notre festival d'hiver multiculturel",
       "oneGoal": "Students participate in a classroom winter celebration festival",
-      "keyVocabulary": ["festival", "partager", "ensemble"],
-      "openingConnection": "We have food, musique, décorations! Time for our grand festival d'hiver!",
-      "mainActivity": {
-        "description": "Culminating multicultural winter festival celebration",
+      "duration": 45,
+      "keyVocabulary": [
+        "festival",
+        "partager",
+        "ensemble"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Introduce 'festival' with celebration and community gathering concepts",
-          "Practice 'partager' with sharing gesture and community sharing examples",
-          "Learn 'ensemble' with togetherness gesture and unity demonstrations",
-          "Festival setup: arrange decorations, music stations, cultural displays",
-          "Multicultural celebration rotation: experience different cultural stations",
-          "Community sharing time: students present what they learned about celebrations",
-          "Festival closing ceremony: group celebration of cultural diversity and unity"
-        ],
+        "activity": "Culminating multicultural winter festival celebration",
+        "materials": [],
         "visualSupports": [
           "Festival setup with multicultural decoration displays",
           "Station signs representing different cultural celebrations",
           "Photo documentation of student learning journey",
           "Community gathering photos showing people celebrating together",
           "Celebration music playlist representing all cultures studied"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "How should I organize the multicultural festival?",
-          "ifOrganized": "Create stations representing each culture with activities and displays",
-          "ifOpen": "Allow free exploration of all decorations, foods, and music together"
-        },
-        {
-          "question": "Should students present what they've learned?",
-          "ifYes": "Invite students to share favorite celebration or decoration they made",
-          "ifNo": "Focus on experiencing and enjoying the multicultural festival atmosphere"
-        },
-        {
-          "question": "Do families want to participate or observe?",
-          "ifParticipate": "Invite families to share their cultural traditions at festival",
-          "ifObserve": "Keep as classroom celebration with photos to share with families"
-        }
-      ],
-      "materials": [
-        "All student decorations from previous lessons",
-        "Cultural celebration music playlist",
-        "Festival setup materials and station signs",
-        "Camera for documenting celebration",
-        "Simple refreshments if appropriate"
-      ],
-      "whenThingsGoWrong": {
-        "overwhelmingActivity": "Simplify to quiet appreciation of decorations and gentle music",
-        "culturalConflicts": "Emphasize respect and appreciation for all traditions equally",
-        "studentShyness": "Allow observation and gentle participation rather than performance"
+      "closing": {
+        "duration": 10,
+        "activity": "Group circle celebrating diversity: 'Toutes les célébrations sont belles!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Group circle celebrating diversity: 'Toutes les célébrations sont belles!'",
-      "realWorldConnection": "Communities often hold winter festivals celebrating cultural diversity"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Communities often hold winter festivals celebrating cultural diversity",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 15,
+      "lessonType": "extension",
       "title": "Histoires d'hiver magiques",
       "oneGoal": "Students explore winter stories and legends from different cultures",
+      "duration": 45,
       "keyVocabulary": [],
-      "openingConnection": "Extension: Every culture has beautiful histoires about hiver! Let's discover magical winter stories!",
-      "mainActivity": {
-        "description": "Multicultural winter storytelling with imagination and cultural appreciation",
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Storytelling circle with diverse cultural winter stories",
-          "Interactive story exploration: The Snow Queen, winter solstice legends, cultural folk tales",
-          "Story element identification using French vocabulary: neige, froid, célébration",
-          "Student story creation: imagine their own winter celebration story",
-          "Story illustration: draw favorite scene from cultural winter story",
-          "Story sharing: students tell their winter story using French vocabulary",
-          "Story appreciation: celebrate the diversity of winter storytelling traditions"
-        ],
+        "activity": "Multicultural winter storytelling with imagination and cultural appreciation",
+        "materials": [],
         "visualSupports": [
           "Cultural winter storybooks with beautiful illustrations",
           "Story prop basket with winter items: snowflakes, stars, lights",
           "Story illustration examples from different cultures",
           "Visual story sequence cards",
           "Cultural storytelling tradition photos"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Which winter stories are culturally inclusive?",
-          "ifInclusive": "Include stories from various cultures: Inuit, Scandinavian, African, Native American",
-          "ifFamiliar": "Choose well-known winter stories and add cultural context"
-        },
-        {
-          "question": "Do students need visual story supports?",
-          "ifYes": "Use picture books, story props, and illustration activities",
-          "ifNo": "Focus on oral storytelling and imagination"
-        },
-        {
-          "question": "Should stories be read or told?",
-          "ifRead": "Use beautiful picture books representing different cultures",
-          "ifTold": "Tell stories dramatically with gestures and student participation"
-        }
-      ],
-      "materials": [
-        "Multicultural winter story collection",
-        "Story props and visual aids",
-        "Drawing materials for story illustration",
-        "Comfortable storytelling area setup",
-        "Cultural storytelling tradition examples"
-      ],
-      "whenThingsGoWrong": {
-        "attentionDifficulties": "Use shorter stories with more interaction and movement",
-        "culturalUnfamiliarity": "Provide simple cultural context before each story",
-        "scarystoryElements": "Choose gentle, positive winter stories focusing on celebration"
+      "closing": {
+        "duration": 10,
+        "activity": "Students share one word from their favorite winter story",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students share one word from their favorite winter story",
-      "realWorldConnection": "Cultures share winter stories that teach values and traditions"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Cultures share winter stories that teach values and traditions",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 16,
+      "lessonType": "extension",
       "title": "Jeux d'hiver intérieurs",
       "oneGoal": "Students play traditional winter games from different cultures",
+      "duration": 45,
       "keyVocabulary": [],
-      "openingConnection": "Extension: When it's too froid outside, cultures have special jeux to play inside!",
-      "mainActivity": {
-        "description": "Traditional winter game exploration with cultural appreciation and movement",
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Traditional game introduction: explore games from different cultures",
-          "French-Canadian game: play simple version of traditional winter game",
-          "Cultural game rotation: experience games from various winter-celebrating cultures",
-          "Game instruction practice: students teach each other games using French vocabulary",
-          "Cooperative game emphasis: focus on playing together rather than competition",
-          "Game adaptation: modify traditional games for classroom space and age",
-          "Game appreciation: celebrate how games bring people together in winter"
-        ],
+        "activity": "Traditional winter game exploration with cultural appreciation and movement",
+        "materials": [],
         "visualSupports": [
           "Photos of traditional winter games from different cultures",
           "Game instruction cards with pictures",
           "Traditional game materials adapted for classroom",
           "Cultural game context photos showing families playing together",
           "Game safety and cooperation visual reminders"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Which games are appropriate for classroom space?",
-          "ifSpace": "Choose movement games adaptable to limited indoor space",
-          "ifLimited": "Focus on finger games, card games, and seated circle games"
-        },
-        {
-          "question": "Do students need game instruction supports?",
-          "ifYes": "Provide visual instruction cards and demonstrate games clearly",
-          "ifNo": "Allow exploration and discovery of game rules through play"
-        },
-        {
-          "question": "Should games be competitive or cooperative?",
-          "ifCooperative": "Emphasize working together and everyone having fun",
-          "ifCompetitive": "Include gentle competition with emphasis on good sportsmanship"
-        }
-      ],
-      "materials": [
-        "Traditional game materials adapted for age",
-        "Game instruction visual cards",
-        "Safe indoor movement space",
-        "Cultural context photos for each game",
-        "Cooperation and kindness reminder signs"
-      ],
-      "whenThingsGoWrong": {
-        "gameConflicts": "Pause game and practice cooperation and kindness",
-        "rulesTooComplex": "Simplify games to basic versions appropriate for Grade 1",
-        "limitedParticipation": "Provide observer roles and alternative participation options"
+      "closing": {
+        "duration": 10,
+        "activity": "Students share their favorite winter game and demonstrate one move",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students share their favorite winter game and demonstrate one move",
-      "realWorldConnection": "Winter games help people stay active and connected during cold months"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Winter games help people stay active and connected during cold months",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 17,
+      "lessonType": "extension",
       "title": "Cartes de vœux multiculturelles",
       "oneGoal": "Students create greeting cards for different winter celebrations",
+      "duration": 45,
       "keyVocabulary": [],
-      "openingConnection": "Extension: Families share beautiful vœux during winter! Let's create special cartes!",
-      "mainActivity": {
-        "description": "Multicultural greeting card creation with cultural appreciation and communication",
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Greeting card exploration: examine cards from different cultural celebrations",
-          "Cultural greeting learning: 'Joyeux Noël', 'Happy Hanukkah', 'Habari Gani' (Kwanzaa)",
-          "Card design planning: choose celebration and recipient for card",
-          "Multicultural card creation: incorporate colors, symbols, greetings from chosen culture",
-          "Greeting practice: learn to say greetings respectfully",
-          "Card sharing: students exchange cards and practice cultural greetings",
-          "Card delivery planning: decide how to share cards with families or community"
-        ],
+        "activity": "Multicultural greeting card creation with cultural appreciation and communication",
+        "materials": [],
         "visualSupports": [
           "Example greeting cards from various cultural celebrations",
           "Cultural symbol and color reference charts",
           "Greeting pronunciation guides with pictures",
           "Card-making supplies organized by cultural themes",
           "Cultural greeting gesture demonstrations"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Which celebration greetings should students learn?",
-          "ifMultiple": "Teach greetings from all celebrations studied in unit",
-          "ifFocused": "Choose 2-3 greetings and practice them well"
-        },
-        {
-          "question": "Do students need writing support for cards?",
-          "ifYes": "Provide greeting templates and French word cards to copy",
-          "ifNo": "Allow students to write greetings from memory"
-        },
-        {
-          "question": "Should cards be for classmates or families?",
-          "ifClassmates": "Create card exchange within classroom community",
-          "ifFamilies": "Make cards to take home and share with famille"
-        }
-      ],
-      "materials": [
-        "Card-making supplies in cultural celebration colors",
-        "Cultural greeting reference cards",
-        "Decoration materials representing different celebrations",
-        "Example greeting cards from various cultures",
-        "Envelopes or delivery method for cards"
-      ],
-      "whenThingsGoWrong": {
-        "writingDifficulties": "Allow drawing-focused cards with minimal writing",
-        "culturalMispronunciation": "Focus on respect and effort rather than perfect pronunciation",
-        "cardExchangeConflicts": "Emphasize kindness and appreciation in card giving"
+      "closing": {
+        "duration": 10,
+        "activity": "Students share one cultural greeting they learned",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students share one cultural greeting they learned",
-      "realWorldConnection": "People send cards and greetings to share celebration wishes"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "People send cards and greetings to share celebration wishes",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 18,
+      "lessonType": "extension",
       "title": "Spectacle de talents d'hiver",
       "oneGoal": "Students perform songs, dances, or stories from winter celebrations",
+      "duration": 45,
       "keyVocabulary": [],
-      "openingConnection": "Extension: Time to show our winter celebration talents! Everyone has special gifts to share!",
-      "mainActivity": {
-        "description": "Cultural performance celebration with student choice and cultural appreciation",
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Talent show planning: students choose how to share winter celebration learning",
-          "Performance options: sing cultural songs, tell winter stories, show cultural dances",
-          "Rehearsal time: practice performances with supportive feedback",
-          "Cultural context sharing: students explain cultural background of their performance",
-          "Supportive audience practice: learn to appreciate and celebrate all performances",
-          "Mini talent show: students perform for classmates with celebration and encouragement",
-          "Performance reflection: celebrate diversity of talents and cultural sharing"
-        ],
+        "activity": "Cultural performance celebration with student choice and cultural appreciation",
+        "materials": [],
         "visualSupports": [
           "Performance option cards with pictures and ideas",
           "Cultural context cards to support student explanations",
           "Performance area setup with supportive audience arrangement",
           "Encouragement and appreciation gesture cards",
           "Documentation camera for celebrating performances"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "What types of performances are comfortable for students?",
-          "ifComfortable": "Encourage variety: singing, dancing, storytelling, showing crafts",
-          "ifNervous": "Allow group performances or simple sharing rather than solo performance"
-        },
-        {
-          "question": "Should performances represent different cultures?",
-          "ifYes": "Encourage students to choose from various cultural celebrations studied",
-          "ifNo": "Allow students to perform whatever winter celebration element they prefer"
-        },
-        {
-          "question": "Do students need costumes or props?",
-          "ifYes": "Provide simple costume pieces and props from unit activities",
-          "ifNo": "Focus on performance content rather than costumes"
-        }
-      ],
-      "materials": [
-        "Simple costume pieces and performance props",
-        "Performance area setup materials",
-        "Cultural music recordings for background",
-        "Encouragement signs and celebration materials",
-        "Camera for documenting performances"
-      ],
-      "whenThingsGoWrong": {
-        "performanceAnxiety": "Allow students to perform for teacher only or in pairs",
-        "culturalMisrepresentation": "Focus on appreciation and learning rather than authenticity",
-        "audienceDisruption": "Practice respectful audience behavior and celebration"
+      "closing": {
+        "duration": 10,
+        "activity": "Group celebration of all performances with appreciation circle",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Group celebration of all performances with appreciation circle",
-      "realWorldConnection": "Performance and entertainment are important parts of cultural celebrations"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Performance and entertainment are important parts of cultural celebrations",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 19,
+      "lessonType": "extension",
       "title": "Interview avec les familles",
       "oneGoal": "Students interview family members about their winter celebration traditions",
+      "duration": 45,
       "keyVocabulary": [],
-      "openingConnection": "Extension: Families are the keepers of celebration traditions! Let's become cultural researchers!",
-      "mainActivity": {
-        "description": "Family tradition research with respectful cultural inquiry",
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Interview preparation: create questions about family winter traditions",
-          "Question practice: role-play family interviews using French vocabulary",
-          "Cultural research planning: what to ask families about their celebrations",
-          "Interview technique practice: listening respectfully, asking follow-up questions",
-          "Family tradition sharing: students share what they learned from families",
-          "Cultural tradition documentation: record family traditions respectfully",
-          "Appreciation activity: celebrate diversity of family winter traditions"
-        ],
+        "activity": "Family tradition research with respectful cultural inquiry",
+        "materials": [],
         "visualSupports": [
           "Interview question cards with pictures and French vocabulary",
           "Family tradition documentation templates",
           "Cultural appreciation photos showing diverse family celebrations",
           "Interview role-play props and recording materials",
           "Respectful listening and questioning visual guides"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Should interviews be homework or classroom role-play?",
-          "ifHomework": "Send interview questions home with guidance for families",
-          "ifClassroom": "Practice interviews through role-play with classmates"
-        },
-        {
-          "question": "Do students need interview question supports?",
-          "ifYes": "Provide question cards with pictures and simple French phrases",
-          "ifNo": "Allow students to create their own interview questions"
-        },
-        {
-          "question": "How can I accommodate diverse family backgrounds?",
-          "ifAccommodate": "Emphasize that all family traditions are valuable and interesting",
-          "ifSensitive": "Provide alternative questions for families who don't celebrate winter holidays"
-        }
-      ],
-      "materials": [
-        "Interview question templates",
-        "Family tradition documentation sheets",
-        "Role-play interview props",
-        "Cultural appreciation discussion guides",
-        "Family communication materials"
-      ],
-      "whenThingsGoWrong": {
-        "familyLanguageBarriers": "Adapt interviews to family comfort level and languages",
-        "limitedFamilyTraditions": "Help students explore any special family winter activities",
-        "culturalSensitivity": "Focus on learning and appreciation rather than comparison"
+      "closing": {
+        "duration": 10,
+        "activity": "Students share one interesting family tradition they discovered",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students share one interesting family tradition they discovered",
-      "realWorldConnection": "Families are the primary source of cultural celebration knowledge"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Families are the primary source of cultural celebration knowledge",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 20,
+      "lessonType": "extension",
       "title": "Calendrier de célébrations d'hiver",
       "oneGoal": "Students create a winter celebration calendar showing diverse cultural celebrations",
+      "duration": 45,
       "keyVocabulary": [],
-      "openingConnection": "Extension finale: Let's create a beautiful calendrier showing all the winter célébrations we learned!",
-      "mainActivity": {
-        "description": "Culminating winter celebration calendar creation with cultural synthesis",
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Calendar planning: organize all winter celebrations studied by dates",
-          "Cultural celebration timeline: when do different celebrations happen in winter?",
-          "Calendar design: choose format for class winter celebration calendar",
-          "Celebration documentation: add decorations, foods, traditions to calendar dates",
-          "Cultural appreciation addition: include respectful notes about each celebration",
-          "Calendar completion: finalize class winter celebration calendar",
-          "Calendar celebration: present completed calendar and reflect on learning journey"
-        ],
+        "activity": "Culminating winter celebration calendar creation with cultural synthesis",
+        "materials": [],
         "visualSupports": [
           "Large calendar template for winter months",
           "Cultural celebration date reference charts",
           "Decoration materials representing all celebrations studied",
           "Photos and artwork from all previous lessons",
           "Cultural celebration timeline visual supports"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Should calendar include all celebrations studied?",
-          "ifAll": "Include every celebration with appropriate cultural respect",
-          "ifFocused": "Choose key celebrations and represent them well"
-        },
-        {
-          "question": "Do students need calendar template support?",
-          "ifYes": "Provide large class calendar template with spaces for decorating",
-          "ifNo": "Allow students to design their own calendar format"
-        },
-        {
-          "question": "Should calendar be individual or class project?",
-          "ifClass": "Create one large class calendar showing all cultural celebrations",
-          "ifIndividual": "Have each student create personal winter celebration calendar"
-        }
-      ],
-      "materials": [
-        "Large calendar template or poster board",
-        "All decorations and artwork from previous lessons",
-        "Cultural celebration date information",
-        "Decorating materials in cultural celebration colors",
-        "Photo documentation of unit learning journey"
-      ],
-      "whenThingsGoWrong": {
-        "calendarTooBusy": "Focus on key celebrations and simple, clear design",
-        "culturalAccuracy": "Emphasize learning and appreciation rather than perfect representation",
-        "timeManagement": "Complete calendar over multiple days if needed"
+      "closing": {
+        "duration": 10,
+        "activity": "Class celebration of completed calendar and reflection on winter celebration learning journey",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Class celebration of completed calendar and reflection on winter celebration learning journey",
-      "realWorldConnection": "Calendars help communities plan and remember important cultural celebrations"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Calendars help communities plan and remember important cultural celebrations",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     }
-  ]
+  ],
+  "assessmentTools": {
+    "observationChecklist": [],
+    "rubrics": [],
+    "selfAssessment": [],
+    "portfolioGuidelines": ""
+  },
+  "familyConnections": {
+    "unitLetter": "",
+    "homeActivities": [],
+    "vocabularyList": []
+  },
+  "resourceAlternatives": {
+    "materials": {},
+    "digitalResources": []
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
+  }
 }

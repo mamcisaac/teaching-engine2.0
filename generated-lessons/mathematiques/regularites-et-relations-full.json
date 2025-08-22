@@ -1,805 +1,1054 @@
 {
   "unitTitle": "Régularités et relations",
+  "subject": "Mathématiques",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
   "lessons": [
     {
       "lessonNumber": 1,
+      "lessonType": "core",
       "title": "Découverte des motifs autour de nous",
       "oneGoal": "Les élèves reconnaissent des motifs simples dans leur environnement immédiat",
-      "estimatedTime": "45 minutes",
-      "materials": ["Objets avec motifs (tissus, papiers peints)", "Loupe", "Appareil photo", "Carnet d'exploration"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "motif",
+        "répéter",
+        "même"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Promenade des motifs: Explorer la classe pour trouver des motifs (carreaux, rayures, points). 'Regardez partout! Les motifs sont cachés!'"
+        "activity": "Promenade des motifs: Explorer la classe pour trouver des motifs (carreaux, rayures, points). 'Regardez partout! Les motifs sont cachés!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Chasse aux motifs: Équipes explorent avec loupes pour documenter motifs trouvés. Dessiner ou photographier découvertes. Créer galerie de motifs de classe.",
+        "activity": "Chasse aux motifs: Équipes explorent avec loupes pour documenter motifs trouvés. Dessiner ou photographier découvertes. Créer galerie de motifs de classe.",
+        "materials": [],
         "visualSupports": "Affiches de motifs simples, exemples visuels clairs",
-        "tprElements": "Pointer, encercler, tracer motifs dans l'air, marcher en suivant motifs au sol",
-        "adaptations": "Objets avec motifs très contrastés, zones d'exploration définies, partenaires de soutien"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Partage des trésors: Chaque équipe présente son motif préféré trouvé. 'Qu'est-ce qui se répète?'"
+        "activity": "Partage des trésors: Chaque équipe présente son motif préféré trouvé. 'Qu'est-ce qui se répète?'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves voient-ils les répétitions facilement?",
-          "ifThen": "Si non, utiliser objets très contrastés et pointer clairement. Si oui, chercher motifs plus subtils."
-        },
-        {
-          "situation": "Ont-ils besoin de plus d'exemples concrets?",
-          "ifThen": "Si oui, montrer plus d'objets évidents. Si non, encourager exploration libre."
-        },
-        {
-          "situation": "Comprennent-ils 'ce qui se répète'?",
-          "ifThen": "Si non, utiliser gestes répétitifs clairs. Si oui, introduire vocabulaire 'motif'."
-        }
-      ],
-      "whatWhenWrong": "Si confusion: revenir à motifs très simples (AB). Si dispersion: recentrer avec objets fascinants.",
-      "keyVocabulary": ["motif", "répéter", "même"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si confusion: revenir à motifs très simples (AB). Si dispersion: recentrer avec objets fascinants.",
+        "then": ""
+      },
       "realWorldConnection": "Motifs sur les vêtements, papier peint à la maison, carrelage",
-      "progressionNote": "Leçon fondatrice - établit la reconnaissance visuelle des répétitions"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 2,
+      "lessonType": "core",
       "title": "Construire des motifs simples",
       "oneGoal": "Les élèves créent des motifs AB avec des blocs et objets concrets",
-      "estimatedTime": "45 minutes",
-      "materials": ["Blocs de deux couleurs", "Jetons rouges et bleus", "Perles", "Ficelle", "Modèles visuels"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "construire",
+        "alterner",
+        "suivant"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Révision énergique: 'Hier nous avons trouvé des motifs! Aujourd'hui nous en créons!' Montrer modèle rouge-bleu-rouge-bleu."
+        "activity": "Révision énergique: 'Hier nous avons trouvé des motifs! Aujourd'hui nous en créons!' Montrer modèle rouge-bleu-rouge-bleu.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Ateliers de construction: Station 1 - Tours AB avec blocs. Station 2 - Colliers AB avec perles. Station 3 - Lignes AB avec jetons. Rotation toutes les 8 minutes.",
+        "activity": "Ateliers de construction: Station 1 - Tours AB avec blocs. Station 2 - Colliers AB avec perles. Station 3 - Lignes AB avec jetons. Rotation toutes les 8 minutes.",
+        "materials": [],
         "visualSupports": "Cartes modèles AB, code couleur pour chaque station",
-        "tprElements": "Mouvement rythmé 'rouge-bleu-rouge-bleu', construire avec tout le corps",
-        "adaptations": "Objets plus gros pour motricité fine limitée, couleurs très contrastées"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Galerie de motifs: Exposer créations et inviter commentaires. 'Quel motif continue le mieux?'"
+        "activity": "Galerie de motifs: Exposer créations et inviter commentaires. 'Quel motif continue le mieux?'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves suivent-ils le modèle AB correctement?",
-          "ifThen": "Si non, modéliser étape par étape avec eux. Si oui, les laisser créer librement."
-        },
-        {
-          "situation": "Ont-ils besoin de plus de support visuel?",
-          "ifThen": "Si oui, garder modèles visibles. Si non, encourager création de mémoire."
-        },
-        {
-          "situation": "Peuvent-ils verbaliser leur motif?",
-          "ifThen": "Si non, modéliser 'rouge-bleu-rouge-bleu'. Si oui, demander de l'expliquer."
-        }
-      ],
-      "whatWhenWrong": "Si motifs incorrects: remodéliser ensemble. Si frustration: simplifier avec seulement deux objets.",
-      "keyVocabulary": ["construire", "alterner", "suivant"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si motifs incorrects: remodéliser ensemble. Si frustration: simplifier avec seulement deux objets.",
+        "then": ""
+      },
       "realWorldConnection": "Ranger jouets en alternance, décorer avec motifs",
-      "progressionNote": "Builds on Lesson 1 by moving from recognition to active creation"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 3,
+      "lessonType": "core",
       "title": "Motifs sonores et corporels",
       "oneGoal": "Les élèves explorent des motifs à travers sons, rythmes et mouvements",
-      "estimatedTime": "45 minutes",
-      "materials": ["Instruments simples", "Enregistrements rythmés", "Foulards colorés", "Tambour"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "rythme",
+        "son",
+        "mouvement"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Échauffement rythmique: 'Clap-clap-stomp, clap-clap-stomp' avec mouvements corporels expressifs."
+        "activity": "Échauffement rythmique: 'Clap-clap-stomp, clap-clap-stomp' avec mouvements corporels expressifs.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Exploration multi-sensorielle: Créer motifs avec voix (fort-doux), corps (saut-marche), instruments (tambour-cloche). Enregistrer créations musicales.",
+        "activity": "Exploration multi-sensorielle: Créer motifs avec voix (fort-doux), corps (saut-marche), instruments (tambour-cloche). Enregistrer créations musicales.",
+        "materials": [],
         "visualSupports": "Cartes de gestes, symboles pour sons forts/doux",
-        "tprElements": "Motifs corporels complets, danse rythmée, expression gestuelle",
-        "adaptations": "Volume ajustable, gestes simples, choix d'instruments"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Concert de motifs: Chaque groupe présente son motif sonore. Audience devine le motif."
+        "activity": "Concert de motifs: Chaque groupe présente son motif sonore. Audience devine le motif.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves entendent-ils les répétitions sonores?",
-          "ifThen": "Si non, exagérer différences sonores. Si oui, complexifier avec trois sons."
-        },
-        {
-          "situation": "Peuvent-ils coordonner mouvement et son?",
-          "ifThen": "Si non, se concentrer sur un seul à la fois. Si oui, encourager créativité."
-        },
-        {
-          "situation": "Le niveau sonore est-il gérable?",
-          "ifThen": "Si non, introduire signal de silence. Si oui, laisser l'énergie positive."
-        }
-      ],
-      "whatWhenWrong": "Si cacophonie: établir règles de tour de rôle. Si timidité: commencer par groupes entiers.",
-      "keyVocabulary": ["rythme", "son", "mouvement"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si cacophonie: établir règles de tour de rôle. Si timidité: commencer par groupes entiers.",
+        "then": ""
+      },
       "realWorldConnection": "Chansons avec motifs, marcher en rythme, battement de cœur",
-      "progressionNote": "Builds on Lesson 2 by adding auditory and kinesthetic pattern dimensions"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 4,
+      "lessonType": "core",
       "title": "Trier et classer nos trésors",
       "oneGoal": "Les élèves trient objets selon un attribut et expliquent leur règle de classification",
-      "estimatedTime": "45 minutes",
-      "materials": ["Collection d'objets variés", "Cercles de tri", "Étiquettes", "Boîtes de rangement"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "trier",
+        "groupe",
+        "règle",
+        "attribut"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Mystère du tri: Présenter boîte mélangée d'objets. 'Comment pouvons-nous organiser tout cela?'"
+        "activity": "Mystère du tri: Présenter boîte mélangée d'objets. 'Comment pouvons-nous organiser tout cela?'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Défis de tri: Trier par couleur, forme, taille, texture. Expliquer choix de tri. Deviner règle de tri d'un partenaire. Créer nouveau système de tri original.",
+        "activity": "Défis de tri: Trier par couleur, forme, taille, texture. Expliquer choix de tri. Deviner règle de tri d'un partenaire. Créer nouveau système de tri original.",
+        "materials": [],
         "visualSupports": "Cercles de tri colorés, cartes d'attributs, exemples de classifications",
-        "tprElements": "Déplacer objets physiquement, gestes pour grand/petit, toucher textures",
-        "adaptations": "Objets avec différences évidentes, groupes plus petits, support visuel pour règles"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Jeu 'Devine ma règle': Un élève trie, les autres devinent la règle utilisée."
+        "activity": "Jeu 'Devine ma règle': Un élève trie, les autres devinent la règle utilisée.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves voient-ils les attributs facilement?",
-          "ifThen": "Si non, pointer attributs spécifiques. Si oui, laisser explorer librement."
-        },
-        {
-          "situation": "Peuvent-ils expliquer leur règle de tri?",
-          "ifThen": "Si non, modéliser explications simples. Si oui, encourager descriptions détaillées."
-        },
-        {
-          "situation": "Comprennent-ils qu'un objet peut aller dans plusieurs groupes?",
-          "ifThen": "Si non, garder tri simple. Si oui, explorer classifications multiples."
-        }
-      ],
-      "whatWhenWrong": "Si confusion: utiliser seulement deux groupes évidents. Si désaccords: valider différentes façons de trier.",
-      "keyVocabulary": ["trier", "groupe", "règle", "attribut"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si confusion: utiliser seulement deux groupes évidents. Si désaccords: valider différentes façons de trier.",
+        "then": ""
+      },
       "realWorldConnection": "Ranger jouets par type, trier vêtements, organiser matériel scolaire",
-      "progressionNote": "Builds on Lesson 3 by introducing logical classification skills"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 5,
+      "lessonType": "core",
       "title": "Prédire la suite des motifs",
       "oneGoal": "Les élèves prédisent l'élément suivant dans des séquences simples",
-      "estimatedTime": "45 minutes",
-      "materials": ["Cartes séquentielles", "Objets manipulables", "Tableau de prédiction", "Autocollants"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "prédire",
+        "suivant",
+        "après"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Jeu de devinette: Montrer début de motif 'rouge-bleu-rouge-?' Suspense: 'Qu'est-ce qui vient ensuite?'"
+        "activity": "Jeu de devinette: Montrer début de motif 'rouge-bleu-rouge-?' Suspense: 'Qu'est-ce qui vient ensuite?'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Détectives de motifs: Compléter motifs interrompus. Prédire suite avec confidence. Vérifier prédictions. Créer motifs pour défier camarades.",
+        "activity": "Détectives de motifs: Compléter motifs interrompus. Prédire suite avec confidence. Vérifier prédictions. Créer motifs pour défier camarades.",
+        "materials": [],
         "visualSupports": "Cartes avec points d'interrogation, flèches de direction, tableau de réponses",
-        "tprElements": "Pointer vers l'élément suivant, gestes d'anticipation, mouvement de vérification",
-        "adaptations": "Motifs plus courts, indices visuels supplémentaires, vérification immédiate"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Cercle de prédiction: Chacun propose motif, classe prédit ensemble l'élément suivant."
+        "activity": "Cercle de prédiction: Chacun propose motif, classe prédit ensemble l'élément suivant.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves prédisent-ils correctement?",
-          "ifThen": "Si non, revoir motif avec eux étape par étape. Si oui, complexifier avec motifs ABC."
-        },
-        {
-          "situation": "Comprennent-ils le concept de 'suivant'?",
-          "ifThen": "Si non, utiliser plus de gestes directionnels. Si oui, introduire 'après ça, qu'est-ce qui vient?'"
-        },
-        {
-          "situation": "Ont-ils confiance en leurs prédictions?",
-          "ifThen": "Si non, encourager et valider tentatives. Si oui, défier avec motifs plus complexes."
-        }
-      ],
-      "whatWhenWrong": "Si erreurs fréquentes: ralentir et remodéliser. Si manque de confiance: célébrer toutes les tentatives.",
-      "keyVocabulary": ["prédire", "suivant", "après"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si erreurs fréquentes: ralentir et remodéliser. Si manque de confiance: célébrer toutes les tentatives.",
+        "then": ""
+      },
       "realWorldConnection": "Deviner la suite d'une chanson, prédire les activités quotidiennes",
-      "progressionNote": "Builds on Lesson 4 by developing predictive thinking skills"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 6,
+      "lessonType": "core",
       "title": "Motifs complexes ABC",
       "oneGoal": "Les élèves créent et continuent des motifs à trois éléments",
-      "estimatedTime": "45 minutes",
-      "materials": ["Blocs de trois couleurs", "Formes géométriques", "Perles variées", "Papier motifs"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "trois",
+        "cycle",
+        "recommencer"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Évolution des motifs: Réviser AB, puis révéler 'Aujourd'hui: rouge-bleu-vert-rouge-bleu-vert!'"
+        "activity": "Évolution des motifs: Réviser AB, puis révéler 'Aujourd'hui: rouge-bleu-vert-rouge-bleu-vert!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Défis ABC: Construire motifs à trois éléments. Transformer motifs AB en ABC. Inventer motifs ABC originaux. Enseigner motif à un partenaire.",
+        "activity": "Défis ABC: Construire motifs à trois éléments. Transformer motifs AB en ABC. Inventer motifs ABC originaux. Enseigner motif à un partenaire.",
+        "materials": [],
         "visualSupports": "Cartes modèles ABC, code couleur pour séquences, lignes de construction",
-        "tprElements": "Rythme à trois temps, mouvements corporels ABC, construction avec tout le corps",
-        "adaptations": "Commencer avec éléments très différents, support visuel constant, modélisation fréquente"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Exposition ABC: Présenter créations et expliquer la 'règle de trois' de leur motif."
+        "activity": "Exposition ABC: Présenter créations et expliquer la 'règle de trois' de leur motif.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves gèrent-ils la complexité de trois éléments?",
-          "ifThen": "Si non, revenir temporairement à AB. Si oui, explorer variations comme AAB."
-        },
-        {
-          "situation": "Peuvent-ils maintenir la séquence sur plusieurs répétitions?",
-          "ifThen": "Si non, limiter à deux répétitions complètes. Si oui, encourager motifs plus longs."
-        },
-        {
-          "situation": "Comprennent-ils que ABC recommence?",
-          "ifThen": "Si non, souligner point de recommencement. Si oui, explorer motifs cycliques."
-        }
-      ],
-      "whatWhenWrong": "Si surcharge cognitive: décomposer en étapes plus petites. Si erreurs: remodéliser patiemment.",
-      "keyVocabulary": ["trois", "cycle", "recommencer"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si surcharge cognitive: décomposer en étapes plus petites. Si erreurs: remodéliser patiemment.",
+        "then": ""
+      },
       "realWorldConnection": "Feux de circulation (rouge-jaune-vert), motifs sur tissus complexes",
-      "progressionNote": "Builds on Lesson 5 by increasing pattern complexity while maintaining core concepts"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 7,
+      "lessonType": "core",
       "title": "Motifs dans la nature",
       "oneGoal": "Les élèves découvrent et documentent des motifs naturels",
-      "estimatedTime": "45 minutes",
-      "materials": ["Loupes", "Carnets nature", "Crayons", "Appareils photo", "Collection naturelle"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "nature",
+        "découvrir",
+        "observer"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Préparation d'explorateurs: 'La nature est pleine de motifs secrets! Devenons des détectives nature!'"
+        "activity": "Préparation d'explorateurs: 'La nature est pleine de motifs secrets! Devenons des détectives nature!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Expédition nature: Explorer extérieur pour motifs (feuilles, fleurs, écorce, nuages). Dessiner découvertes. Créer collection de motifs naturels. Comparer avec motifs artificiels.",
+        "activity": "Expédition nature: Explorer extérieur pour motifs (feuilles, fleurs, écorce, nuages). Dessiner découvertes. Créer collection de motifs naturels. Comparer avec motifs artificiels.",
+        "materials": [],
         "visualSupports": "Guide de motifs naturels, carnet d'exploration structuré",
-        "tprElements": "Marche exploratoire, gestes de découverte, toucher respectueux de la nature",
-        "adaptations": "Zones d'exploration définies, objets pré-collectés si météo difficile, partenaires d'exploration"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Musée nature: Exposer trouvailles et discuter 'Pourquoi la nature fait-elle des motifs?'"
+        "activity": "Musée nature: Exposer trouvailles et discuter 'Pourquoi la nature fait-elle des motifs?'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves trouvent-ils des motifs naturels facilement?",
-          "ifThen": "Si non, guider vers exemples évidents (nervures feuilles). Si oui, chercher motifs plus subtils."
-        },
-        {
-          "situation": "La météo permet-elle l'exploration extérieure?",
-          "ifThen": "Si non, utiliser collection préparée ou fenêtres. Si oui, sortir avec enthousiasme."
-        },
-        {
-          "situation": "Comprennent-ils la différence naturel/artificiel?",
-          "ifThen": "Si non, montrer exemples contrastés. Si oui, explorer nuances entre les deux."
-        }
-      ],
-      "whatWhenWrong": "Si pas de trouvailles: pointer motifs évidents. Si distraction: recentrer sur mission d'exploration.",
-      "keyVocabulary": ["nature", "découvrir", "observer"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si pas de trouvailles: pointer motifs évidents. Si distraction: recentrer sur mission d'exploration.",
+        "then": ""
+      },
       "realWorldConnection": "Jardinage, promenades en famille, observation des saisons",
-      "progressionNote": "Builds on Lesson 6 by connecting mathematical patterns to natural world"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 8,
+      "lessonType": "core",
       "title": "Réparer des motifs brisés",
       "oneGoal": "Les élèves identifient et corrigent des erreurs dans des motifs",
-      "estimatedTime": "45 minutes",
-      "materials": ["Motifs avec erreurs", "Matériel de correction", "Cartes 'Réparation'", "Autocollants récompense"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "erreur",
+        "réparer",
+        "corriger"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Alerte motifs brisés: 'Oh non! Des motifs sont cassés! Nous sommes les réparateurs de motifs!'"
+        "activity": "Alerte motifs brisés: 'Oh non! Des motifs sont cassés! Nous sommes les réparateurs de motifs!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Clinique de réparation: Diagnostiquer erreurs dans motifs présentés. Expliquer où est le problème. Proposer corrections. Vérifier réparations avec partenaire.",
+        "activity": "Clinique de réparation: Diagnostiquer erreurs dans motifs présentés. Expliquer où est le problème. Proposer corrections. Vérifier réparations avec partenaire.",
+        "materials": [],
         "visualSupports": "Cartes diagnostiques, outils de réparation visuels, avant/après",
-        "tprElements": "Gestes de détection (pointer), actions de réparation, célébration de succès",
-        "adaptations": "Erreurs très évidentes pour commencer, indices visuels, travail en équipe"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Certificat de réparateur: Célébrer succès et remettre 'diplômes de réparateurs de motifs'."
+        "activity": "Certificat de réparateur: Célébrer succès et remettre 'diplômes de réparateurs de motifs'.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves détectent-ils les erreurs facilement?",
-          "ifThen": "Si non, commencer par erreurs très évidentes. Si oui, créer erreurs plus subtiles."
-        },
-        {
-          "situation": "Peuvent-ils expliquer où est le problème?",
-          "ifThen": "Si non, modéliser explications simples. Si oui, encourager descriptions détaillées."
-        },
-        {
-          "situation": "Leurs corrections sont-elles appropriées?",
-          "ifThen": "Si non, guider vers solutions correctes. Si oui, défier avec motifs plus complexes."
-        }
-      ],
-      "whatWhenWrong": "Si frustration avec détection: donner indices plus évidents. Si corrections incorrectes: modéliser ensemble.",
-      "keyVocabulary": ["erreur", "réparer", "corriger"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si frustration avec détection: donner indices plus évidents. Si corrections incorrectes: modéliser ensemble.",
+        "then": ""
+      },
       "realWorldConnection": "Corriger erreurs dans rangement, réparer objets cassés",
-      "progressionNote": "Builds on Lesson 7 by developing analytical and problem-solving skills"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 9,
+      "lessonType": "core",
       "title": "Comparer et contraster des motifs",
       "oneGoal": "Les élèves comparent différents motifs et expliquent leurs similarités et différences",
-      "estimatedTime": "45 minutes",
-      "materials": ["Collections de motifs variés", "Tableaux de comparaison", "Loupe", "Papier graphique"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "comparer",
+        "similaire",
+        "différent",
+        "famille"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Jeu des jumeaux: Présenter motifs similaires. 'Sont-ils identiques ou différents? Comment le savez-vous?'"
+        "activity": "Jeu des jumeaux: Présenter motifs similaires. 'Sont-ils identiques ou différents? Comment le savez-vous?'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Laboratoire de comparaison: Analyser paires de motifs. Identifier points communs et différences. Classer motifs par familles. Créer motifs 'cousins' (similaires mais pas identiques).",
+        "activity": "Laboratoire de comparaison: Analyser paires de motifs. Identifier points communs et différences. Classer motifs par familles. Créer motifs 'cousins' (similaires mais pas identiques).",
+        "materials": [],
         "visualSupports": "Tableaux Venn simples, cartes de comparaison, codes couleur",
-        "tprElements": "Gestes pour 'même' et 'différent', placement physique des objets, pointage comparatif",
-        "adaptations": "Différences très marquées au début, support visuel pour comparaisons, travail guidé"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Galerie de familles: Exposer groupes de motifs similaires et expliquer liens de parenté."
+        "activity": "Galerie de familles: Exposer groupes de motifs similaires et expliquer liens de parenté.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves voient-ils les similarités et différences?",
-          "ifThen": "Si non, exagérer différences visuelles. Si oui, explorer nuances plus subtiles."
-        },
-        {
-          "situation": "Peuvent-ils verbaliser leurs observations?",
-          "ifThen": "Si non, fournir vocabulaire de comparaison. Si oui, encourager descriptions précises."
-        },
-        {
-          "situation": "Comprennent-ils les concepts de famille de motifs?",
-          "ifThen": "Si non, utiliser métaphore familiale simple. Si oui, créer classification sophistiquée."
-        }
-      ],
-      "whatWhenWrong": "Si confusion: revenir à comparaisons très simples. Si manque de vocabulaire: modéliser descriptions.",
-      "keyVocabulary": ["comparer", "similaire", "différent", "famille"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si confusion: revenir à comparaisons très simples. Si manque de vocabulaire: modéliser descriptions.",
+        "then": ""
+      },
       "realWorldConnection": "Comparer vêtements similaires, différentes sortes de chiens",
-      "progressionNote": "Builds on Lesson 8 by developing comparative analysis skills"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 10,
+      "lessonType": "core",
       "title": "Créer des motifs personnels",
       "oneGoal": "Les élèves inventent leurs propres motifs uniques et les partagent",
-      "estimatedTime": "45 minutes",
-      "materials": ["Matériaux artistiques variés", "Cahiers personnels", "Tampons", "Autocollants", "Outils créatifs"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "créer",
+        "unique",
+        "personnel"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Inspiration créative: 'Vous êtes maintenant des artistes de motifs! Créez quelque chose que personne n'a jamais vu!'"
+        "activity": "Inspiration créative: 'Vous êtes maintenant des artistes de motifs! Créez quelque chose que personne n'a jamais vu!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Atelier création libre: Inventer motifs personnels uniques. Utiliser couleurs, formes, textures préférées. Documenter dans cahier personnel. Enseigner motif à quelqu'un d'autre.",
+        "activity": "Atelier création libre: Inventer motifs personnels uniques. Utiliser couleurs, formes, textures préférées. Documenter dans cahier personnel. Enseigner motif à quelqu'un d'autre.",
+        "materials": [],
         "visualSupports": "Galerie d'inspiration, matériaux organisés par type, exemples de créativité",
-        "tprElements": "Liberté de mouvement créatif, expression artistique corporelle, partage gestuel",
-        "adaptations": "Choix de matériaux selon préférences, aide technique si nécessaire, encouragement constant"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Vernissage personnel: Chaque artiste présente sa création unique et explique son inspiration."
+        "activity": "Vernissage personnel: Chaque artiste présente sa création unique et explique son inspiration.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves ont-ils confiance pour créer librement?",
-          "ifThen": "Si non, offrir suggestions et encouragements. Si oui, laisser explorer sans contrainte."
-        },
-        {
-          "situation": "Leurs créations montrent-elles compréhension des motifs?",
-          "ifThen": "Si non, guider subtilement vers répétitions. Si oui, célébrer innovation."
-        },
-        {
-          "situation": "Peuvent-ils expliquer leurs choix créatifs?",
-          "ifThen": "Si non, poser questions guidantes. Si oui, encourager réflexion approfondie."
-        }
-      ],
-      "whatWhenWrong": "Si blocage créatif: offrir inspiration ou commencer ensemble. Si perfectionnisme: célébrer processus créatif.",
-      "keyVocabulary": ["créer", "unique", "personnel"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si blocage créatif: offrir inspiration ou commencer ensemble. Si perfectionnisme: célébrer processus créatif.",
+        "then": ""
+      },
       "realWorldConnection": "Décorer sa chambre, créer cartes personnalisées, art familial",
-      "progressionNote": "Builds on Lesson 9 by synthesizing learning into personal creative expression"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 11,
+      "lessonType": "core",
       "title": "Motifs cachés - résolution de mystères",
       "oneGoal": "Les élèves résolvent des défis complexes de motifs partiellement cachés",
-      "estimatedTime": "45 minutes",
-      "materials": ["Cartes mystère", "Matériel de révélation", "Loupes", "Carnets détective"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "mystère",
+        "révéler",
+        "déduire"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Mission secrète: 'Agents secrets, des motifs sont cachés dans des codes mystérieux! Mission: les décoder!'"
+        "activity": "Mission secrète: 'Agents secrets, des motifs sont cachés dans des codes mystérieux! Mission: les décoder!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Enquêtes de motifs: Résoudre motifs avec parties couvertes. Utiliser indices pour prédire parties cachées. Créer cartes mystère pour défier camarades. Documenter méthodes de résolution.",
+        "activity": "Enquêtes de motifs: Résoudre motifs avec parties couvertes. Utiliser indices pour prédire parties cachées. Créer cartes mystère pour défier camarades. Documenter méthodes de résolution.",
+        "materials": [],
         "visualSupports": "Cartes avec révélations progressives, outils d'investigation, tableaux de déduction",
-        "tprElements": "Gestes de détective, mouvements d'investigation, révélations dramatiques",
-        "adaptations": "Mystères de difficulté variable, travail en équipe, indices supplémentaires si nécessaire"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Rapport d'agents: Présenter résolutions et expliquer méthodes de déduction utilisées."
+        "activity": "Rapport d'agents: Présenter résolutions et expliquer méthodes de déduction utilisées.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves résolvent-ils les mystères avec succès?",
-          "ifThen": "Si non, fournir indices supplémentaires. Si oui, créer défis plus complexes."
-        },
-        {
-          "situation": "Utilisent-ils des stratégies logiques?",
-          "ifThen": "Si non, modéliser processus de déduction. Si oui, encourager explications de méthodes."
-        },
-        {
-          "situation": "Apprécient-ils l'aspect mystère?",
-          "ifThen": "Si oui, amplifier aspects dramatiques. Si non, simplifier présentation."
-        }
-      ],
-      "whatWhenWrong": "Si frustration: offrir révélations partielles. Si trop facile: masquer plus d'éléments.",
-      "keyVocabulary": ["mystère", "révéler", "déduire"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si frustration: offrir révélations partielles. Si trop facile: masquer plus d'éléments.",
+        "then": ""
+      },
       "realWorldConnection": "Jeux de devinettes, puzzles, résolution de problèmes quotidiens",
-      "progressionNote": "Builds on Lesson 10 by applying pattern knowledge to problem-solving challenges"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 12,
+      "lessonType": "core",
       "title": "Motifs temporels et calendriers",
       "oneGoal": "Les élèves explorent des motifs dans le temps: jours, semaines, saisons",
-      "estimatedTime": "45 minutes",
-      "materials": ["Calendriers visuels", "Cartes de jours", "Météo-motifs", "Ligne de temps"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "temps",
+        "jour",
+        "semaine",
+        "cycle"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Voyage dans le temps: 'Les motifs ne sont pas que dans l'espace, ils sont aussi dans le TEMPS!'"
+        "activity": "Voyage dans le temps: 'Les motifs ne sont pas que dans l'espace, ils sont aussi dans le TEMPS!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Exploration temporelle: Identifier motifs dans semaine (lundi-mardi-...). Observer motifs météo. Créer calendrier personnel avec motifs d'activités. Prédire motifs futurs.",
+        "activity": "Exploration temporelle: Identifier motifs dans semaine (lundi-mardi-...). Observer motifs météo. Créer calendrier personnel avec motifs d'activités. Prédire motifs futurs.",
+        "materials": [],
         "visualSupports": "Calendriers colorés, cartes temporelles, graphiques de routine",
-        "tprElements": "Mouvements cycliques, gestes pour jours de semaine, marche temporelle",
-        "adaptations": "Calendriers simplifiés, aide pour concepts temporels, connexions personnelles"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Prophètes du temps: Prédire motifs de demain, semaine prochaine, saison suivante."
+        "activity": "Prophètes du temps: Prédire motifs de demain, semaine prochaine, saison suivante.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves comprennent-ils les concepts temporels?",
-          "ifThen": "Si non, utiliser exemples très concrets. Si oui, explorer cycles plus longs."
-        },
-        {
-          "situation": "Voient-ils les motifs dans leurs routines?",
-          "ifThen": "Si non, pointer routines évidentes. Si oui, explorer variations dans routines."
-        },
-        {
-          "situation": "Peuvent-ils prédire motifs temporels?",
-          "ifThen": "Si non, donner indices contextuels. Si oui, défier avec cycles complexes."
-        }
-      ],
-      "whatWhenWrong": "Si confusion temporelle: ancrer dans expérience quotidienne. Si concepts abstraits: utiliser matériel concret.",
-      "keyVocabulary": ["temps", "jour", "semaine", "cycle"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si confusion temporelle: ancrer dans expérience quotidienne. Si concepts abstraits: utiliser matériel concret.",
+        "then": ""
+      },
       "realWorldConnection": "Routine quotidienne, emploi du temps scolaire, saisons de l'année",
-      "progressionNote": "Builds on Lesson 11 by extending pattern concepts to temporal dimension"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 13,
+      "lessonType": "core",
       "title": "Représenter des motifs de multiples façons",
       "oneGoal": "Les élèves montrent le même motif avec différents matériaux et méthodes",
-      "estimatedTime": "45 minutes",
-      "materials": ["Matériaux diversifiés", "Appareils photo", "Instruments musicaux", "Matériel artistique"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "représenter",
+        "transformer",
+        "équivalent"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Transformation magique: 'Un motif peut se transformer! Regardez ce rouge-bleu devenir fort-doux!'"
+        "activity": "Transformation magique: 'Un motif peut se transformer! Regardez ce rouge-bleu devenir fort-doux!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Métamorphoses créatives: Transformer motif visuel en sonore. Créer même motif avec corps, objets, couleurs. Photographier motifs dans différents contextes. Explorer équivalences créatives.",
+        "activity": "Métamorphoses créatives: Transformer motif visuel en sonore. Créer même motif avec corps, objets, couleurs. Photographier motifs dans différents contextes. Explorer équivalences créatives.",
+        "materials": [],
         "visualSupports": "Tableaux de transformation, exemples de métamorphoses, guides de création",
-        "tprElements": "Transformation corporelle de motifs, expression multi-sensorielle, démonstrations dynamiques",
-        "adaptations": "Choix de modalités selon préférences, aide pour transformations complexes, encouragement expérimentation"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Festival de métamorphoses: Présenter transformations et expliquer connexions entre versions."
+        "activity": "Festival de métamorphoses: Présenter transformations et expliquer connexions entre versions.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves voient-ils les équivalences entre représentations?",
-          "ifThen": "Si non, souligner éléments communs. Si oui, explorer transformations créatives."
-        },
-        {
-          "situation": "Peuvent-ils transformer dans différentes modalités?",
-          "ifThen": "Si non, modéliser transformations simples. Si oui, encourager innovation libre."
-        },
-        {
-          "situation": "Comprennent-ils que l'essence du motif reste?",
-          "ifThen": "Si non, pointer constantes dans variations. Si oui, philosopher sur motifs universels."
-        }
-      ],
-      "whatWhenWrong": "Si confusion conceptuelle: revenir au motif original. Si blocage créatif: offrir inspirations variées.",
-      "keyVocabulary": ["représenter", "transformer", "équivalent"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si confusion conceptuelle: revenir au motif original. Si blocage créatif: offrir inspirations variées.",
+        "then": ""
+      },
       "realWorldConnection": "Même chanson avec différents instruments, histoire racontée/dessinée",
-      "progressionNote": "Builds on Lesson 12 by developing flexible thinking about pattern representation"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 14,
+      "lessonType": "core",
       "title": "Portfolio de régularités - évaluation",
       "oneGoal": "Les élèves démontrent leur compréhension des motifs dans un portfolio complet",
-      "estimatedTime": "45 minutes",
-      "materials": ["Dossiers personnalisés", "Matériaux de documentation", "Appareils photo", "Feuilles de réflexion"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "portfolio",
+        "démontrer",
+        "réfléchir"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Célébration des experts: 'Vous êtes maintenant des experts en motifs! Montrez tous vos talents!'"
+        "activity": "Célébration des experts: 'Vous êtes maintenant des experts en motifs! Montrez tous vos talents!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Création de portfolio: Documenter meilleurs exemples de motifs créés. Inclure découvertes naturelles, créations personnelles, résolutions de mystères. Auto-évaluation avec critères simples.",
+        "activity": "Création de portfolio: Documenter meilleurs exemples de motifs créés. Inclure découvertes naturelles, créations personnelles, résolutions de mystères. Auto-évaluation avec critères simples.",
+        "materials": [],
         "visualSupports": "Critères d'évaluation visuels, exemples de portfolios excellents, guides de réflexion",
-        "tprElements": "Organisation physique du portfolio, présentation gestuelle, expression de fierté",
-        "adaptations": "Support pour organisation, choix de formats de documentation, encouragement personnalisé"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Galerie des experts: Exposition des portfolios et partage des fiertés personnelles."
+        "activity": "Galerie des experts: Exposition des portfolios et partage des fiertés personnelles.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves peuvent-ils sélectionner leurs meilleurs travaux?",
-          "ifThen": "Si non, guider vers exemples représentatifs. Si oui, respecter choix personnels."
-        },
-        {
-          "situation": "Leurs portfolios démontrent-ils la compréhension?",
-          "ifThen": "Si non, ajouter documentation supplémentaire. Si oui, célébrer accomplissements."
-        },
-        {
-          "situation": "Peuvent-ils réfléchir sur leurs apprentissages?",
-          "ifThen": "Si non, poser questions guidantes. Si oui, encourager auto-évaluation approfondie."
-        }
-      ],
-      "whatWhenWrong": "Si anxiété évaluative: rassurer sur célébration des progrès. Si perfectionnisme: valoriser effort et créativité.",
-      "keyVocabulary": ["portfolio", "démontrer", "réfléchir"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si anxiété évaluative: rassurer sur célébration des progrès. Si perfectionnisme: valoriser effort et créativité.",
+        "then": ""
+      },
       "realWorldConnection": "Album photo familial, collection personnelle organisée",
-      "progressionNote": "Culminating assessment that synthesizes all pattern learning into comprehensive demonstration"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 15,
+      "lessonType": "extension",
       "title": "Art et motifs décoratifs",
       "oneGoal": "Les élèves créent des œuvres artistiques en utilisant des motifs décoratifs",
-      "estimatedTime": "45 minutes",
-      "materials": ["Matériaux artistiques variés", "Pochoirs", "Peintures", "Papiers décoratifs", "Outils d'impression"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "art",
+        "décoratif",
+        "esthétique"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Inspiration artistique: Explorer œuvres d'art avec motifs. 'Les artistes utilisent les motifs pour rendre leurs œuvres belles!'"
+        "activity": "Inspiration artistique: Explorer œuvres d'art avec motifs. 'Les artistes utilisent les motifs pour rendre leurs œuvres belles!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Atelier d'art décoratif: Créer bordures à motifs, papiers peints personnalisés, tissus décorés. Expérimenter avec tampons, pochoirs, techniques d'impression. Combiner motifs multiples.",
+        "activity": "Atelier d'art décoratif: Créer bordures à motifs, papiers peints personnalisés, tissus décorés. Expérimenter avec tampons, pochoirs, techniques d'impression. Combiner motifs multiples.",
+        "materials": [],
         "visualSupports": "Galerie d'art avec motifs, techniques démontrées, palettes de couleurs",
-        "tprElements": "Mouvements artistiques amples, techniques de tamponnage rythmées, expression créative libre",
-        "adaptations": "Techniques adaptées aux capacités motrices, choix de matériaux selon préférences, aide technique"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Vernissage décoratif: Exposer créations artistiques et apprécier diversité esthétique."
+        "activity": "Vernissage décoratif: Exposer créations artistiques et apprécier diversité esthétique.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves intègrent-ils motifs harmonieusement?",
-          "ifThen": "Si non, guider composition simple. Si oui, encourager complexité artistique."
-        },
-        {
-          "situation": "Apprécient-ils aspect esthétique des motifs?",
-          "ifThen": "Si oui, développer sensibilité artistique. Si non, se concentrer sur plaisir créatif."
-        },
-        {
-          "situation": "Leurs créations montrent-elles progression technique?",
-          "ifThen": "Si non, offrir techniques plus simples. Si oui, défier avec techniques avancées."
-        }
-      ],
-      "whatWhenWrong": "Si frustration technique: simplifier méthodes. Si résultats décevants: valoriser processus créatif.",
-      "keyVocabulary": ["art", "décoratif", "esthétique"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si frustration technique: simplifier méthodes. Si résultats décevants: valoriser processus créatif.",
+        "then": ""
+      },
       "realWorldConnection": "Décoration de la maison, cartes faites main, arts et artisanat",
-      "progressionNote": "Extension: Connects mathematical patterns to artistic expression and cultural appreciation"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 16,
+      "lessonType": "extension",
       "title": "Motifs musicaux et compositons rythmiques",
       "oneGoal": "Les élèves composent musique simple basée sur motifs rythmiques",
-      "estimatedTime": "45 minutes",
-      "materials": ["Instruments variés", "Enregistreur", "Partitions picturales", "Objets sonores"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "musique",
+        "rythme",
+        "composer"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Concert d'ouverture: Écouter motifs dans musiques familières. 'La musique est pleine de motifs qui se répètent!'"
+        "activity": "Concert d'ouverture: Écouter motifs dans musiques familières. 'La musique est pleine de motifs qui se répètent!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Compositeurs en herbe: Créer rythmes à motifs avec instruments. Enregistrer compositions personnelles. Diriger orchestre de classe. Inventer notations visuelles pour motifs.",
+        "activity": "Compositeurs en herbe: Créer rythmes à motifs avec instruments. Enregistrer compositions personnelles. Diriger orchestre de classe. Inventer notations visuelles pour motifs.",
+        "materials": [],
         "visualSupports": "Partitions avec symboles, cartes rythmiques, conducteur visuel",
-        "tprElements": "Direction musicale gestuelle, expression corporelle rythmée, performance musicale",
-        "adaptations": "Instruments adaptés, participation selon confort, rôles musicaux variés"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Festival musical: Concert de compositions originales avec applaudissements rythmés."
+        "activity": "Festival musical: Concert de compositions originales avec applaudissements rythmés.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves créent-ils des rythmes cohérents?",
-          "ifThen": "Si non, simplifier à motifs de deux éléments. Si oui, explorer polyrythmes simples."
-        },
-        {
-          "situation": "Apprécient-ils création musicale?",
-          "ifThen": "Si oui, développer compositions complexes. Si non, se concentrer sur exploration ludique."
-        },
-        {
-          "situation": "Peuvent-ils répéter leurs motifs de façon stable?",
-          "ifThen": "Si non, pratiquer avec métronome simple. Si oui, varier tempos et dynamiques."
-        }
-      ],
-      "whatWhenWrong": "Si cacophonie: établir règles de tour de rôle. Si timidité musicale: commencer par accompagnement simple.",
-      "keyVocabulary": ["musique", "rythme", "composer"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si cacophonie: établir règles de tour de rôle. Si timidité musicale: commencer par accompagnement simple.",
+        "then": ""
+      },
       "realWorldConnection": "Chansons familiales, instruments à la maison, concerts",
-      "progressionNote": "Extension: Develops musical intelligence through pattern-based composition"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 17,
+      "lessonType": "extension",
       "title": "Motifs culturels du monde",
       "oneGoal": "Les élèves explorent motifs traditionnels de différentes cultures",
-      "estimatedTime": "45 minutes",
-      "materials": ["Images culturelles", "Tissus traditionnels", "Poteries décorées", "Cartes du monde"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "culture",
+        "tradition",
+        "monde"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Voyage culturel: 'Partons en voyage! Chaque culture du monde a ses motifs spéciaux!'"
+        "activity": "Voyage culturel: 'Partons en voyage! Chaque culture du monde a ses motifs spéciaux!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Exploration culturelle: Examiner motifs de différents continents. Reproduire motifs traditionnels simples. Discuter significations culturelles. Créer motif 'fusion' personnel.",
+        "activity": "Exploration culturelle: Examiner motifs de différents continents. Reproduire motifs traditionnels simples. Discuter significations culturelles. Créer motif 'fusion' personnel.",
+        "materials": [],
         "visualSupports": "Atlas de motifs culturels, exemples authentiques, carte du monde interactive",
-        "tprElements": "Danses traditionnelles simples, gestes culturels respectueux, exploration tactile",
-        "adaptations": "Images agrandies, connexions avec expériences personnelles, respect des sensibilités culturelles"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Festival mondial: Partager motifs créés et apprécier diversité culturelle des motifs."
+        "activity": "Festival mondial: Partager motifs créés et apprécier diversité culturelle des motifs.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves apprécient-ils diversité culturelle?",
-          "ifThen": "Si oui, approfondir connexions culturelles. Si questions, expliquer avec respect."
-        },
-        {
-          "situation": "Peuvent-ils reproduire motifs traditionnels?",
-          "ifThen": "Si non, simplifier éléments. Si oui, explorer variations respectueuses."
-        },
-        {
-          "situation": "Comprennent-ils que motifs ont des significations?",
-          "ifThen": "Si non, expliquer simplement. Si oui, explorer symbolisme approprié à l'âge."
-        }
-      ],
-      "whatWhenWrong": "Si stéréotypes culturels: corriger avec respect. Si motifs trop complexes: adapter au niveau.",
-      "keyVocabulary": ["culture", "tradition", "monde"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si stéréotypes culturels: corriger avec respect. Si motifs trop complexes: adapter au niveau.",
+        "then": ""
+      },
       "realWorldConnection": "Vêtements familiaux traditionnels, voyages, diversité communautaire",
-      "progressionNote": "Extension: Builds cultural awareness and global perspective through pattern exploration"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 18,
+      "lessonType": "extension",
       "title": "Motifs architecturaux et constructions",
       "oneGoal": "Les élèves découvrent motifs dans bâtiments et créent structures décoratives",
-      "estimatedTime": "45 minutes",
-      "materials": ["Photos d'architecture", "Blocs de construction", "Matériaux architecturaux", "Appareils photo"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "architecture",
+        "bâtiment",
+        "structure"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Architectes en herbe: 'Les bâtiments aussi ont des motifs! Regardons notre école comme des architectes!'"
+        "activity": "Architectes en herbe: 'Les bâtiments aussi ont des motifs! Regardons notre école comme des architectes!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Exploration architecturale: Observer motifs dans bâtiment scolaire. Construire structures avec motifs répétitifs. Dessiner plans avec motifs décoratifs. Créer maquettes de maisons à motifs.",
+        "activity": "Exploration architecturale: Observer motifs dans bâtiment scolaire. Construire structures avec motifs répétitifs. Dessiner plans avec motifs décoratifs. Créer maquettes de maisons à motifs.",
+        "materials": [],
         "visualSupports": "Photos architecturales, plans simples, exemples de motifs structurels",
-        "tprElements": "Construction physique, exploration spatiale, mouvements architecturaux",
-        "adaptations": "Matériaux de construction variés, aide pour concepts spatiaux, sécurité construction"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Exposition architecturale: Présenter créations et expliquer choix de motifs décoratifs."
+        "activity": "Exposition architecturale: Présenter créations et expliquer choix de motifs décoratifs.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves voient-ils motifs dans architecture?",
-          "ifThen": "Si non, pointer exemples évidents (fenêtres, briques). Si oui, explorer détails subtils."
-        },
-        {
-          "situation": "Leurs constructions intègrent-elles motifs harmonieusement?",
-          "ifThen": "Si non, suggérer répétitions simples. Si oui, encourager innovation architecturale."
-        },
-        {
-          "situation": "Comprennent-ils fonction décorative des motifs?",
-          "ifThen": "Si non, expliquer beauté et fonction. Si oui, explorer équilibre esthétique/pratique."
-        }
-      ],
-      "whatWhenWrong": "Si constructions s'effondrent: encourager persistance et aide mutuelle. Si manque d'inspiration: montrer plus d'exemples.",
-      "keyVocabulary": ["architecture", "bâtiment", "structure"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si constructions s'effondrent: encourager persistance et aide mutuelle. Si manque d'inspiration: montrer plus d'exemples.",
+        "then": ""
+      },
       "realWorldConnection": "Observer bâtiments en famille, LEGO à la maison, dessins de maisons",
-      "progressionNote": "Extension: Integrates mathematical patterns with spatial reasoning and design thinking"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 19,
+      "lessonType": "extension",
       "title": "Recherche de motifs dans les livres",
       "oneGoal": "Les élèves identifient motifs narratifs et visuels dans littérature",
-      "estimatedTime": "45 minutes",
-      "materials": ["Livres d'images", "Histoires répétitives", "Carnets de recherche", "Matériel de documentation"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "histoire",
+        "répéter",
+        "prédire"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Détectives littéraires: 'Les histoires aussi ont des motifs cachés! Trouvons-les ensemble!'"
+        "activity": "Détectives littéraires: 'Les histoires aussi ont des motifs cachés! Trouvons-les ensemble!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Investigation littéraire: Identifier phrases répétitives dans histoires. Reconnaître motifs visuels dans illustrations. Prédire répétitions narratives. Créer histoire simple avec motifs.",
+        "activity": "Investigation littéraire: Identifier phrases répétitives dans histoires. Reconnaître motifs visuels dans illustrations. Prédire répétitions narratives. Créer histoire simple avec motifs.",
+        "materials": [],
         "visualSupports": "Histoires avec motifs évidents, tableaux de documentation, cartes narratives",
-        "tprElements": "Gestes narratifs, expression des personnages, mouvements de découverte",
-        "adaptations": "Livres de niveaux variés, histoires audio, support pour compréhension narrative"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Cercle de conteurs: Partager histoires créées et souligner motifs inventés."
+        "activity": "Cercle de conteurs: Partager histoires créées et souligner motifs inventés.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves reconnaissent-ils motifs narratifs?",
-          "ifThen": "Si non, choisir histoires très répétitives. Si oui, explorer motifs plus subtils."
-        },
-        {
-          "situation": "Peuvent-ils créer histoires avec motifs?",
-          "ifThen": "Si non, fournir structures simples. Si oui, encourager créativité narrative."
-        },
-        {
-          "situation": "Comprennent-ils plaisir des répétitions en littérature?",
-          "ifThen": "Si non, lire avec expressivité. Si oui, explorer pourquoi répétitions plaisent."
-        }
-      ],
-      "whatWhenWrong": "Si attention difficile: choisir histoires plus courtes. Si création bloquée: offrir amorces narratives.",
-      "keyVocabulary": ["histoire", "répéter", "prédire"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si attention difficile: choisir histoires plus courtes. Si création bloquée: offrir amorces narratives.",
+        "then": ""
+      },
       "realWorldConnection": "Histoires familiales, comptines, lectures personnelles",
-      "progressionNote": "Extension: Connects pattern recognition to literacy and narrative understanding"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 20,
+      "lessonType": "extension",
       "title": "Célébration des motifs - festival créatif",
       "oneGoal": "Les élèves célèbrent apprentissages en présentant créations à la communauté",
-      "estimatedTime": "45 minutes",
-      "materials": ["Décorations festives", "Stations d'exposition", "Matériel de présentation", "Certificats", "Appareils photo"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "célébrer",
+        "partager",
+        "enseigner"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Ouverture festive: 'Bienvenue au Festival des Motifs! Célébrons tous nos apprentissages merveilleux!'"
+        "activity": "Ouverture festive: 'Bienvenue au Festival des Motifs! Célébrons tous nos apprentissages merveilleux!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Festival multi-stations: Exposition de tous les portfolios et créations. Démonstrations interactives pour visiteurs. Performances musicales de motifs. Ateliers où élèves enseignent aux invités.",
+        "activity": "Festival multi-stations: Exposition de tous les portfolios et créations. Démonstrations interactives pour visiteurs. Performances musicales de motifs. Ateliers où élèves enseignent aux invités.",
+        "materials": [],
         "visualSupports": "Exposition organisée, panneaux explicatifs, démonstrations visuelles",
-        "tprElements": "Performances expressives, interaction sociale dynamique, mouvements de célébration",
-        "adaptations": "Participation selon confort personnel, rôles variés dans festival, support pour présentations"
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Cercle de fierté finale: Remise de certificats et partage des plus grandes fiertés d'apprentissage."
+        "activity": "Cercle de fierté finale: Remise de certificats et partage des plus grandes fiertés d'apprentissage.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves sont-ils fiers de présenter leurs apprentissages?",
-          "ifThen": "Si oui, amplifier opportunités de partage. Si timides, offrir rôles confortables."
-        },
-        {
-          "situation": "Le festival engage-t-il efficacement les visiteurs?",
-          "ifThen": "Si oui, continuer interactions. Si non, adapter activités plus engageantes."
-        },
-        {
-          "situation": "Les élèves peuvent-ils expliquer leurs apprentissages?",
-          "ifThen": "Si non, fournir aide pour explications. Si oui, encourager enseignement aux autres."
-        }
-      ],
-      "whatWhenWrong": "Si sur-stimulation: créer zones calmes. Si manque de confiance: célébrer chaque contribution.",
-      "keyVocabulary": ["célébrer", "partager", "enseigner"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si sur-stimulation: créer zones calmes. Si manque de confiance: célébrer chaque contribution.",
+        "then": ""
+      },
       "realWorldConnection": "Fêtes familiales, présentations à la famille, partage de talents",
-      "progressionNote": "Culminating celebration that consolidates learning and builds confidence in mathematical communication"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     }
-  ]
+  ],
+  "assessmentTools": {
+    "observationChecklist": [],
+    "rubrics": [],
+    "selfAssessment": [],
+    "portfolioGuidelines": ""
+  },
+  "familyConnections": {
+    "unitLetter": "",
+    "homeActivities": [],
+    "vocabularyList": []
+  },
+  "resourceAlternatives": {
+    "materials": {},
+    "digitalResources": []
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
+  }
 }

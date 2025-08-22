@@ -1,507 +1,870 @@
 {
+  "unitTitle": "",
+  "subject": "Arts visuels",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
   "lessons": [
     {
       "lessonNumber": 1,
+      "lessonType": "core",
       "title": "Qu'est-ce qu'une galerie?",
       "oneGoal": "Students will understand the purpose and function of art galleries",
-      "keyVocabulary": ["galerie", "exposition", "visiteur"],
-      "mindsOn": {
+      "duration": 45,
+      "keyVocabulary": [
+        "galerie",
+        "exposition",
+        "visiteur"
+      ],
+      "opening": {
         "duration": "~8 min",
         "activity": "Virtual gallery tour using photos or videos of famous galleries. Compare to other spaces students know: stores, libraries, theaters. Introduce vocabulary: GALERIE (showcase gesture), EXPOSITION (displaying motion), VISITEUR (walking/looking gesture).",
-        "visualSupport": "Photos of different types of galleries, comparison charts showing gallery vs other spaces, vocabulary cards with gallery images",
-        "decisionPoint": "If students have visited galleries: Build on their experiences and observations. If they haven't: Use familiar spaces like libraries or museums for comparison."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "action": {
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Gallery Space Exploration (~9 min): Transform part of classroom into mock gallery. Arrange desks, create walls, establish viewing areas. Practice vocabulary: 'Voici notre galerie!' Walk through space as visitors.",
-          "Gallery Function Discussion (~9 min): Discuss why galleries exist: to show art, educate people, preserve culture. Compare to libraries (show books) and museums (show history). Practice exposition vocabulary.",
-          "Gallery Rules Development (~9 min): Create class rules for gallery behavior: quiet voices, careful looking, respectful movement. Practice 'visiteur' vocabulary while role-playing good gallery visitors."
+        "activity": "",
+        "materials": [
+          "Classroom furniture for space creation",
+          "Gallery photos for reference",
+          "Simple artworks or posters for display",
+          "Gallery rules poster materials"
         ],
-        "materials": ["Classroom furniture for space creation", "Gallery photos for reference", "Simple artworks or posters for display", "Gallery rules poster materials"],
-        "visualSupport": "Gallery layout diagrams, behavior expectation cards, real gallery photos showing visitor behavior",
-        "decisionPoint": "If students are excited about space transformation: Allow more time for gallery setup exploration. If they're focused on concept: emphasize gallery function and purpose."
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "consolidation": {
+      "closing": {
         "duration": "~10 min",
         "activity": "Gallery Visitor Practice. Students take turns being visitors in their mock gallery. Practice appropriate behavior and vocabulary: 'Je visite la galerie.' 'Je regarde l'exposition.' Discuss what makes a good gallery experience.",
-        "assessment": "Can students explain what a gallery does? Do they use gallery vocabulary appropriately? Can they behave appropriately in gallery space?",
-        "decisionPoint": "If students love the gallery role-play: Plan regular gallery visitor practice sessions. If they understand concepts quickly: Move toward more complex gallery operations."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "emergencyBackup": "Gallery exploration through pictures: Use art books or online gallery tours to explore gallery concepts, practice vocabulary through virtual visits.",
-      "realWorldConnection": "Visiting museums, art shows, looking at displays in libraries or community centers"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Gallery exploration through pictures: Use art books or online gallery tours to explore gallery concepts, practice vocabulary through virtual visits."
+      },
+      "realWorldConnection": "Visiting museums, art shows, looking at displays in libraries or community centers",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 2,
+      "lessonType": "core",
       "title": "Rôles dans une galerie",
       "oneGoal": "Students will identify different roles people play in gallery operations",
-      "keyVocabulary": ["conservateur", "guide", "artiste"],
-      "mindsOn": {
+      "duration": 45,
+      "keyVocabulary": [
+        "conservateur",
+        "guide",
+        "artiste"
+      ],
+      "opening": {
         "duration": "~8 min",
         "activity": "Role-play different gallery jobs using simple props. Show what each person does. Introduce vocabulary: CONSERVATEUR (organizing/selecting gesture), GUIDE (leading/explaining motion), ARTISTE (creating gesture).",
-        "visualSupport": "Photos of people in different gallery roles, simple costumes or props for role-play, job description cards with pictures",
-        "decisionPoint": "If students are confused by professional roles: Use simpler job comparisons they know. If they understand quickly: Add more gallery roles like security or visitor services."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "action": {
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Gallery Job Exploration (~10 min): Students try each gallery role. Practice curator decisions (what art to show), guide explanations (telling about art), artist creation (making art). Use vocabulary for each role.",
-          "Job Matching Activity (~8 min): Match gallery tasks to appropriate roles. 'Qui fait quoi?' Use pictures and vocabulary: 'Le conservateur sélectionne...' 'Le guide explique...' 'L'artiste crée...'",
-          "Classroom Gallery Roles (~9 min): Assign gallery roles for their classroom gallery. Students choose preferred roles based on interests and strengths. Practice role vocabulary in context."
+        "activity": "",
+        "materials": [
+          "Role-play props (clipboard for curator, badge for guide, art supplies for artist)",
+          "Job matching cards",
+          "Role assignment charts"
         ],
-        "materials": ["Role-play props (clipboard for curator, badge for guide, art supplies for artist)", "Job matching cards", "Role assignment charts"],
-        "visualSupport": "Gallery job description posters, role demonstration photos, job responsibility charts",
-        "decisionPoint": "If students all want same role: Discuss how galleries need all roles to function. If they're uncertain about roles: Allow job rotation and exploration."
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "consolidation": {
+      "closing": {
         "duration": "~10 min",
         "activity": "Gallery Team Introduction. Students introduce themselves in their chosen gallery roles: 'Je suis conservateur/guide/artiste.' Explain what their job will be in classroom gallery. Practice professional vocabulary.",
-        "assessment": "Can students identify different gallery roles? Do they use role vocabulary appropriately? Can they explain what each gallery job involves?",
-        "decisionPoint": "If students are excited about their roles: Begin role-specific training in next lessons. If they want to change roles: Allow flexibility and continued exploration."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "emergencyBackup": "Gallery job study: Use pictures and videos to study different gallery jobs, practice vocabulary without role-play activities.",
-      "realWorldConnection": "Understanding different jobs people do, like teachers, doctors, store workers"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Gallery job study: Use pictures and videos to study different gallery jobs, practice vocabulary without role-play activities."
+      },
+      "realWorldConnection": "Understanding different jobs people do, like teachers, doctors, store workers",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 3,
+      "lessonType": "core",
       "title": "Sélection d'œuvres",
       "oneGoal": "Students will learn to curate and select artworks for exhibition",
-      "keyVocabulary": ["sélectionner", "qualité", "thème"],
-      "mindsOn": {
+      "duration": 45,
+      "keyVocabulary": [
+        "sélectionner",
+        "qualité",
+        "thème"
+      ],
+      "opening": {
         "duration": "~8 min",
         "activity": "Present large collection of student artwork from previous units. Discuss how to choose which pieces to display. Introduce vocabulary: SÉLECTIONNER (choosing gesture), QUALITÉ (thumbs up quality), THÈME (grouping gesture).",
-        "visualSupport": "Large collection of student artwork, selection criteria posters, theme example cards",
-        "decisionPoint": "If there's limited student artwork: Use art reproductions or simple classroom examples. If there's lots of artwork: Focus on selection criteria and decision-making."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "action": {
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Quality Criteria Development (~9 min): Discuss what makes artwork good for exhibition: clear technique, interesting concept, good condition. Practice vocabulary: 'Cette œuvre a une bonne qualité parce que...'",
-          "Theme Exploration (~9 min): Group artworks by possible themes: colors, techniques, subjects, seasons. Practice 'thème' vocabulary: 'Ce thème inclut...' Compare different thematic organizations.",
-          "Curatorial Selection Process (~9 min): Students work as curators to select artworks for exhibition. Use criteria and themes developed. Practice 'sélectionner' vocabulary: 'Je sélectionne cette œuvre pour...'"
+        "activity": "",
+        "materials": [
+          "Student artwork collection",
+          "Selection criteria checklist",
+          "Theme organization materials",
+          "Curatorial decision sheets"
         ],
-        "materials": ["Student artwork collection", "Selection criteria checklist", "Theme organization materials", "Curatorial decision sheets"],
-        "visualSupport": "Quality criteria visual examples, theme organization charts, curatorial process flowchart",
-        "decisionPoint": "If selection is too difficult: Provide more structured criteria and guidance. If students excel at selection: Allow more complex curatorial decision-making."
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "consolidation": {
+      "closing": {
         "duration": "~10 min",
         "activity": "Curatorial Presentations. Student curators present their selections and explain choices: 'J'ai sélectionné ces œuvres parce qu'elles montrent...' Discuss different curatorial approaches.",
-        "assessment": "Can students make thoughtful artwork selections? Do they use curatorial vocabulary appropriately? Can they explain their selection criteria?",
-        "decisionPoint": "If selections are very different: Celebrate diverse curatorial approaches. If students struggle with selection: Provide more guided practice with clear criteria."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "emergencyBackup": "Selection practice with art reproductions: Practice curatorial selection using famous artworks or art book images, focusing on vocabulary and selection criteria.",
-      "realWorldConnection": "Choosing photos for albums, selecting clothes to wear, picking favorite books"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Selection practice with art reproductions: Practice curatorial selection using famous artworks or art book images, focusing on vocabulary and selection criteria."
+      },
+      "realWorldConnection": "Choosing photos for albums, selecting clothes to wear, picking favorite books",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 4,
+      "lessonType": "core",
       "title": "Présentation et affichage",
       "oneGoal": "Students will learn effective methods for displaying artwork",
-      "keyVocabulary": ["afficher", "cadre", "éclairage"],
-      "mindsOn": {
+      "duration": 45,
+      "keyVocabulary": [
+        "afficher",
+        "cadre",
+        "éclairage"
+      ],
+      "opening": {
         "duration": "~8 min",
         "activity": "Compare well-displayed art to poorly displayed art using examples. Discuss how presentation affects viewing experience. Introduce vocabulary: AFFICHER (hanging/displaying motion), CADRE (frame outline gesture), ÉCLAIRAGE (light gesture).",
-        "visualSupport": "Good vs poor display examples, frame samples, lighting demonstration",
-        "decisionPoint": "If students don't notice display differences: Point out specific elements like height, spacing, lighting. If they notice immediately: focus on vocabulary and technique refinement."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "action": {
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Display Height and Spacing (~9 min): Practice hanging artwork at appropriate height for viewers. Learn proper spacing between pieces. Practice 'afficher' vocabulary: 'J'affiche à la bonne hauteur.'",
-          "Frame and Mat Exploration (~9 min): Try different frame styles and mat colors with same artwork. See how presentation changes perception. Practice 'cadre' vocabulary: 'Ce cadre améliore l'œuvre.'",
-          "Lighting Experimentation (~9 min): Test how different lighting affects artwork appearance. Use natural light, artificial light, spotlights. Practice 'éclairage' vocabulary: 'Cet éclairage montre bien les couleurs.'"
+        "activity": "",
+        "materials": [
+          "Variety of frames and mats",
+          "Hanging hardware (teacher-supervised)",
+          "Different light sources",
+          "Artwork for display practice"
         ],
-        "materials": ["Variety of frames and mats", "Hanging hardware (teacher-supervised)", "Different light sources", "Artwork for display practice"],
-        "visualSupport": "Display technique demonstration cards, frame style comparison charts, lighting effect examples",
-        "decisionPoint": "If display techniques are too complex: Focus on basic spacing and height concepts. If students master techniques quickly: introduce more sophisticated display concepts."
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "consolidation": {
+      "closing": {
         "duration": "~10 min",
         "activity": "Display Quality Assessment. Students evaluate different artwork displays and suggest improvements. Practice vocabulary: 'Cet affichage pourrait être amélioré avec...' Focus on helpful, constructive suggestions.",
-        "assessment": "Can students display artwork effectively? Do they use display vocabulary appropriately? Can they evaluate and improve display quality?",
-        "decisionPoint": "If displays are very successful: Document techniques for future use. If students struggle with display: provide more guided practice with clear steps."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "emergencyBackup": "Display planning on paper: Plan artwork displays using drawings and layouts, practice vocabulary without physical hanging and arrangement.",
-      "realWorldConnection": "Arranging their bedroom, setting table for dinner, organizing school supplies"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Display planning on paper: Plan artwork displays using drawings and layouts, practice vocabulary without physical hanging and arrangement."
+      },
+      "realWorldConnection": "Arranging their bedroom, setting table for dinner, organizing school supplies",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 5,
+      "lessonType": "core",
       "title": "Étiquettes et information",
       "oneGoal": "Students will create informative labels and descriptions for artworks",
-      "keyVocabulary": ["étiquette", "description", "information"],
-      "mindsOn": {
+      "duration": 45,
+      "keyVocabulary": [
+        "étiquette",
+        "description",
+        "information"
+      ],
+      "opening": {
         "duration": "~8 min",
         "activity": "Examine labels from various contexts: food labels, museum labels, store signs. Discuss what makes labels helpful vs confusing. Introduce vocabulary: ÉTIQUETTE (label pointing), DESCRIPTION (explaining gesture), INFORMATION (sharing knowledge motion).",
-        "visualSupport": "Examples of good and poor labels, label templates, information hierarchy charts",
-        "decisionPoint": "If students struggle with reading labels: Use more picture-based examples. If they understand labels well: focus on writing effective descriptions."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "action": {
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Label Information Selection (~9 min): Decide what information belongs on artwork labels: title, artist name, materials, date. Practice vocabulary: 'Cette étiquette inclut des informations sur...'",
-          "Description Writing (~10 min): Write simple descriptions of artworks using French vocabulary learned. Focus on clear, helpful information for visitors. Practice 'description' vocabulary.",
-          "Label Design and Creation (~8 min): Design labels that are easy to read and attractively presented. Consider size, font, placement. Practice vocabulary: 'Mon étiquette donne de l'information claire.'"
+        "activity": "",
+        "materials": [
+          "Label templates",
+          "Writing materials",
+          "Example artworks for labeling",
+          "Design materials for label creation"
         ],
-        "materials": ["Label templates", "Writing materials", "Example artworks for labeling", "Design materials for label creation"],
-        "visualSupport": "Label information checklists, description writing templates, label design examples",
-        "decisionPoint": "If writing is challenging: Use fill-in-the-blank templates or picture-supported descriptions. If students excel at writing: encourage creative and detailed descriptions."
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "consolidation": {
+      "closing": {
         "duration": "~10 min",
         "activity": "Label Testing. Students read each other's labels and provide feedback: 'Cette étiquette m'aide à comprendre...' Test label clarity and helpfulness from visitor perspective.",
-        "assessment": "Can students create clear, informative labels? Do they use label vocabulary appropriately? Can their labels help others understand artwork?",
-        "decisionPoint": "If labels are very helpful: use them in gallery display. If labels need improvement: provide revision time and additional support."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "emergencyBackup": "Label analysis without creation: Study effective labels from museums or books, practice vocabulary through label evaluation and discussion.",
-      "realWorldConnection": "Reading labels in stores, signs at zoo, instructions for games"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Label analysis without creation: Study effective labels from museums or books, practice vocabulary through label evaluation and discussion."
+      },
+      "realWorldConnection": "Reading labels in stores, signs at zoo, instructions for games",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 6,
+      "lessonType": "core",
       "title": "Parcours de visite",
       "oneGoal": "Students will design logical pathways for gallery visitors",
-      "keyVocabulary": ["parcours", "séquence", "flux"],
-      "mindsOn": {
+      "duration": 45,
+      "keyVocabulary": [
+        "parcours",
+        "séquence",
+        "flux"
+      ],
+      "opening": {
         "duration": "~8 min",
         "activity": "Walk through classroom following different pathways. Notice how route affects experience. Introduce vocabulary: PARCOURS (pathway tracing), SÉQUENCE (ordering gesture), FLUX (flowing movement).",
-        "visualSupport": "Pathway diagrams, visitor flow arrows, sequence planning charts",
-        "decisionPoint": "If students struggle with pathway concepts: Use more concrete examples like following recipes or game rules. If they understand quickly: focus on sophisticated flow planning."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "action": {
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Pathway Experimentation (~10 min): Try different routes through gallery space. Which feels natural? Which is confusing? Practice 'parcours' vocabulary: 'Ce parcours guide bien les visiteurs.'",
-          "Sequence Planning (~8 min): Decide order for viewing artworks. Should visitors see certain pieces first? Last? Practice 'séquence' vocabulary: 'Cette séquence raconte une histoire.'",
-          "Flow Optimization (~9 min): Design pathway that avoids crowding and confusion. Consider entry, exit, gathering spots. Practice 'flux' vocabulary: 'Le flux des visiteurs fonctionne bien.'"
+        "activity": "",
+        "materials": [
+          "Floor tape for pathway marking",
+          "Visitor flow planning sheets",
+          "Gallery space layout materials",
+          "Pathway testing supplies"
         ],
-        "materials": ["Floor tape for pathway marking", "Visitor flow planning sheets", "Gallery space layout materials", "Pathway testing supplies"],
-        "visualSupport": "Gallery flow diagram examples, pathway planning templates, visitor movement pattern examples",
-        "decisionPoint": "If pathway planning is complex: simplify to basic entry-to-exit flow. If students handle complexity well: include multiple pathway options and gathering areas."
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "consolidation": {
+      "closing": {
         "duration": "~10 min",
         "activity": "Pathway Testing. Students follow designed pathways and evaluate visitor experience. Practice vocabulary: 'Ce parcours crée une bonne séquence parce que...' Make adjustments based on testing.",
-        "assessment": "Can students design logical visitor pathways? Do they use pathway vocabulary appropriately? Do their pathways enhance the gallery experience?",
-        "decisionPoint": "If pathways work well: mark them permanently for gallery opening. If pathways need work: continue testing and refinement."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "emergencyBackup": "Pathway planning on paper: Design gallery pathways using floor plan drawings, practice vocabulary through planning without physical testing.",
-      "realWorldConnection": "Following paths in parks, routes through stores, order of activities in their day"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Pathway planning on paper: Design gallery pathways using floor plan drawings, practice vocabulary through planning without physical testing."
+      },
+      "realWorldConnection": "Following paths in parks, routes through stores, order of activities in their day",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 7,
+      "lessonType": "core",
       "title": "Vernissage et inauguration",
       "oneGoal": "Students will plan and execute a gallery opening event",
-      "keyVocabulary": ["vernissage", "invité", "célébration"],
-      "mindsOn": {
+      "duration": 45,
+      "keyVocabulary": [
+        "vernissage",
+        "invité",
+        "célébration"
+      ],
+      "opening": {
         "duration": "~8 min",
         "activity": "Learn about gallery opening traditions. Show photos of vernissages and art openings. Introduce vocabulary: VERNISSAGE (celebration gesture), INVITÉ (welcoming gesture), CÉLÉBRATION (party/joy motion).",
-        "visualSupport": "Photos of gallery openings, invitation examples, celebration planning materials",
-        "decisionPoint": "If students are unfamiliar with formal events: Use birthday party planning as comparison. If they understand events: focus on gallery-specific traditions."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "action": {
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Event Planning (~10 min): Plan gallery opening: who to invite, what activities to include, how to welcome guests. Practice 'vernissage' vocabulary: 'Notre vernissage inclura...'",
-          "Invitation Creation (~8 min): Design invitations for gallery opening. Include important information: date, time, gallery theme. Practice 'invité' vocabulary: 'Nos invités recevront...'",
-          "Opening Event Preparation (~9 min): Prepare gallery space for opening: final artwork placement, pathway marking, welcoming area setup. Practice 'célébration' vocabulary while preparing."
+        "activity": "",
+        "materials": [
+          "Event planning templates",
+          "Invitation creation materials",
+          "Gallery setup supplies",
+          "Welcome area materials"
         ],
-        "materials": ["Event planning templates", "Invitation creation materials", "Gallery setup supplies", "Welcome area materials"],
-        "visualSupport": "Event planning checklists, invitation examples, gallery opening setup photos",
-        "decisionPoint": "If planning is overwhelming: simplify to basic invitation and setup. If students love event planning: allow elaborate celebration preparation."
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "consolidation": {
+      "closing": {
         "duration": "~10 min",
         "activity": "Opening Event Rehearsal. Practice welcoming guests, explaining gallery, conducting opening ceremony. Practice vocabulary: 'Bienvenue à notre vernissage!' Prepare for actual opening.",
-        "assessment": "Can students plan and prepare gallery opening event? Do they use event vocabulary appropriately? Are they ready to welcome guests professionally?",
-        "decisionPoint": "If students are nervous about opening: provide more rehearsal time. If they're confident: focus on final details and hospitality preparation."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "emergencyBackup": "Opening event planning only: Plan gallery opening using templates and discussion, practice vocabulary without full preparation if time or resources are limited.",
-      "realWorldConnection": "Birthday parties, school concerts, family gatherings"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Opening event planning only: Plan gallery opening using templates and discussion, practice vocabulary without full preparation if time or resources are limited."
+      },
+      "realWorldConnection": "Birthday parties, school concerts, family gatherings",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 8,
+      "lessonType": "core",
       "title": "Visite guidée",
       "oneGoal": "Students will conduct guided tours of their gallery",
-      "keyVocabulary": ["guide", "expliquer", "présenter"],
-      "mindsOn": {
+      "duration": 45,
+      "keyVocabulary": [
+        "guide",
+        "expliquer",
+        "présenter"
+      ],
+      "opening": {
         "duration": "~8 min",
         "activity": "Experience difference between self-guided and guided gallery visits. Practice basic tour guide techniques. Introduce vocabulary: GUIDE (leading gesture), EXPLIQUER (explanation motion), PRÉSENTER (presentation gesture).",
-        "visualSupport": "Tour guide demonstration examples, explanation technique cards, presentation posture examples",
-        "decisionPoint": "If students are shy about presenting: start with partner practice. If they're confident: focus on advanced tour guide techniques."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "action": {
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Tour Script Development (~10 min): Write simple tour scripts for gallery sections. Include key information and interesting details. Practice 'expliquer' vocabulary: 'Je vais expliquer cette œuvre...'",
-          "Presentation Skills Practice (~8 min): Practice speaking clearly, making eye contact, using gestures. Learn to 'présenter' artwork effectively: voice projection, body language, audience engagement.",
-          "Full Tour Rehearsal (~9 min): Conduct complete gallery tours with classmates as visitors. Practice 'guide' vocabulary: 'Comme votre guide, je vous montre...' Receive feedback and adjust."
+        "activity": "",
+        "materials": [
+          "Tour script templates",
+          "Presentation skills reminders",
+          "Gallery tour route maps",
+          "Feedback forms for tour evaluation"
         ],
-        "materials": ["Tour script templates", "Presentation skills reminders", "Gallery tour route maps", "Feedback forms for tour evaluation"],
-        "visualSupport": "Tour guide technique posters, presentation skills checklist, effective tour examples",
-        "decisionPoint": "If tours are too long: help students focus on most important information. If tours are too short: encourage more detailed explanations and interaction."
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "consolidation": {
+      "closing": {
         "duration": "~10 min",
         "activity": "Tour Guide Evaluation. Students evaluate each other's tours using constructive feedback. Practice vocabulary: 'Ce guide explique bien parce que...' Plan improvements for real visitor tours.",
-        "assessment": "Can students conduct informative gallery tours? Do they use tour guide vocabulary appropriately? Can they engage visitors effectively during tours?",
-        "decisionPoint": "If students excel at tours: prepare them for real visitor groups. If tours need work: provide additional practice and support."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "emergencyBackup": "Tour planning without execution: Plan gallery tours using scripts and route maps, practice vocabulary through planning without actual tour conduct.",
-      "realWorldConnection": "Showing friends their room, explaining games to others, teaching family members new things"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Tour planning without execution: Plan gallery tours using scripts and route maps, practice vocabulary through planning without actual tour conduct."
+      },
+      "realWorldConnection": "Showing friends their room, explaining games to others, teaching family members new things",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 9,
+      "lessonType": "core",
       "title": "Critique et évaluation",
       "oneGoal": "Students will gather and respond to feedback about their gallery",
-      "keyVocabulary": ["critique", "amélioration", "feedback"],
-      "mindsOn": {
+      "duration": 45,
+      "keyVocabulary": [
+        "critique",
+        "amélioration",
+        "feedback"
+      ],
+      "opening": {
         "duration": "~8 min",
         "activity": "Discuss difference between helpful criticism and hurtful comments. Practice giving and receiving constructive feedback. Introduce vocabulary: CRITIQUE (analytical thinking), AMÉLIORATION (improvement gesture), FEEDBACK (response/sharing motion).",
-        "visualSupport": "Examples of constructive vs destructive feedback, improvement planning templates, feedback collection methods",
-        "decisionPoint": "If students struggle with criticism concepts: focus on positive feedback first. If they understand feedback well: introduce more sophisticated evaluation methods."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "action": {
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Feedback Collection Methods (~9 min): Learn different ways to gather visitor feedback: comment books, surveys, informal conversations. Practice 'feedback' vocabulary: 'Les visiteurs donnent du feedback sur...'",
-          "Gallery Evaluation Session (~10 min): Invite other class members to visit gallery and provide structured feedback. Use evaluation forms. Practice receiving 'critique' constructively.",
-          "Improvement Planning (~8 min): Analyze feedback received and plan specific improvements. Practice 'amélioration' vocabulary: 'Nous pouvons améliorer notre galerie en...' Make realistic improvement plans."
+        "activity": "",
+        "materials": [
+          "Feedback collection forms",
+          "Comment books or digital feedback tools",
+          "Gallery evaluation checklists",
+          "Improvement planning sheets"
         ],
-        "materials": ["Feedback collection forms", "Comment books or digital feedback tools", "Gallery evaluation checklists", "Improvement planning sheets"],
-        "visualSupport": "Feedback analysis charts, improvement planning templates, evaluation criteria examples",
-        "decisionPoint": "If feedback is overwhelmingly positive: encourage critical analysis for real improvement. If feedback is too critical: focus on constructive elements and manageable improvements."
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "consolidation": {
+      "closing": {
         "duration": "~10 min",
         "activity": "Improvement Implementation. Begin implementing planned improvements based on feedback. Practice vocabulary: 'Grâce à la critique, nous améliorons...' Celebrate willingness to grow and improve.",
-        "assessment": "Can students gather and analyze feedback constructively? Do they use evaluation vocabulary appropriately? Can they plan realistic improvements based on criticism?",
-        "decisionPoint": "If improvements are major: plan extended implementation time. If improvements are minor: focus on continuous improvement mindset."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "emergencyBackup": "Feedback analysis simulation: Use hypothetical feedback to practice evaluation and improvement planning, focus on vocabulary without real visitor feedback.",
-      "realWorldConnection": "Getting suggestions from friends, teacher feedback on work, family advice"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Feedback analysis simulation: Use hypothetical feedback to practice evaluation and improvement planning, focus on vocabulary without real visitor feedback."
+      },
+      "realWorldConnection": "Getting suggestions from friends, teacher feedback on work, family advice",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 10,
+      "lessonType": "core",
       "title": "Art français célèbre",
       "oneGoal": "Students will explore famous French artworks and artists",
-      "keyVocabulary": ["célèbre", "français", "patrimoine"],
-      "mindsOn": {
+      "duration": 45,
+      "keyVocabulary": [
+        "célèbre",
+        "français",
+        "patrimoine"
+      ],
+      "opening": {
         "duration": "~8 min",
         "activity": "Introduce famous French artists and artworks using reproductions. Compare to student artwork in their gallery. Introduce vocabulary: CÉLÈBRE (fame gesture), FRANÇAIS (France connection), PATRIMOINE (heritage/treasure gesture).",
-        "visualSupport": "Famous French artwork reproductions, artist biography cards, French cultural heritage examples",
-        "decisionPoint": "If students are unfamiliar with French culture: focus on basic recognition and connection. If they have cultural knowledge: explore deeper connections and influences."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "action": {
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Famous Artist Exploration (~10 min): Study 3-4 famous French artists and their most known works. Practice 'célèbre' vocabulary: 'Cet artiste français est célèbre pour...' Connect to student interests.",
-          "Cultural Heritage Discussion (~8 min): Discuss how art becomes part of cultural heritage. Connect to their own heritage and traditions. Practice 'patrimoine' vocabulary: 'L'art fait partie du patrimoine français.'",
-          "Artwork Comparison Activity (~9 min): Compare famous French art to student artwork. Find similarities in techniques, themes, or concepts. Practice 'français' vocabulary while making cultural connections."
+        "activity": "",
+        "materials": [
+          "French art reproductions",
+          "Artist biography materials",
+          "Cultural heritage examples",
+          "Comparison activity sheets"
         ],
-        "materials": ["French art reproductions", "Artist biography materials", "Cultural heritage examples", "Comparison activity sheets"],
-        "visualSupport": "French artist timeline, cultural heritage concept maps, art comparison charts",
-        "decisionPoint": "If cultural connections are difficult: focus on visual similarities and basic recognition. If students engage deeply: explore cultural and historical contexts."
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "consolidation": {
+      "closing": {
         "duration": "~10 min",
         "activity": "French Art Appreciation. Students choose favorite French artwork and explain why it appeals to them. Practice vocabulary: 'J'aime cet art français célèbre parce que...' Connect to their gallery.",
-        "assessment": "Can students identify famous French artworks and artists? Do they use French cultural vocabulary appropriately? Can they make connections between French art and their own work?",
-        "decisionPoint": "If students love French art: plan deeper cultural exploration. If connections are challenging: focus on basic appreciation and vocabulary development."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "emergencyBackup": "French art study through books and digital resources: Explore French art using available resources, practice vocabulary through visual analysis without hands-on activities.",
-      "realWorldConnection": "Learning about their country's history, famous people from their area"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "French art study through books and digital resources: Explore French art using available resources, practice vocabulary through visual analysis without hands-on activities."
+      },
+      "realWorldConnection": "Learning about their country's history, famous people from their area",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 11,
+      "lessonType": "core",
       "title": "Techniques françaises traditionnelles",
       "oneGoal": "Students will try traditional French artistic techniques",
-      "keyVocabulary": ["traditionnel", "technique", "héritage"],
-      "mindsOn": {
+      "duration": 45,
+      "keyVocabulary": [
+        "traditionnel",
+        "technique",
+        "héritage"
+      ],
+      "opening": {
         "duration": "~8 min",
         "activity": "Explore traditional French art techniques: impressionist brushwork, pastels, simple printmaking. Connect to famous French artists studied. Introduce vocabulary: TRADITIONNEL (heritage gesture), TECHNIQUE (skill demonstration), HÉRITAGE (passing down motion).",
-        "visualSupport": "Traditional French technique examples, technique demonstration materials, cultural tradition examples",
-        "decisionPoint": "If techniques are too advanced: simplify to accessible versions maintaining cultural connection. If students have strong skills: introduce more authentic traditional methods."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "action": {
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Impressionist Color Technique (~9 min): Try impressionist-style brushwork and color mixing inspired by French masters. Practice 'technique' vocabulary: 'Cette technique traditionnelle utilise...'",
-          "French Pastel Methods (~9 min): Explore pastel techniques used by French artists. Focus on blending and layering methods. Practice 'traditionnel' vocabulary: 'Les artistes français traditionnels utilisaient...'",
-          "Cultural Art Connection (~9 min): Create artwork using learned traditional techniques. Connect to French cultural heritage. Practice 'héritage' vocabulary: 'Je pratique l'héritage artistique français.'"
+        "activity": "",
+        "materials": [
+          "Paints for impressionist techniques",
+          "Pastels and blending tools",
+          "Traditional technique reference materials",
+          "Cultural connection worksheets"
         ],
-        "materials": ["Paints for impressionist techniques", "Pastels and blending tools", "Traditional technique reference materials", "Cultural connection worksheets"],
-        "visualSupport": "Traditional technique demonstration cards, French art style examples, cultural heritage connection charts",
-        "decisionPoint": "If techniques are challenging: focus on exploration and cultural appreciation over perfection. If students excel: encourage deeper technique development."
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "consolidation": {
+      "closing": {
         "duration": "~10 min",
         "activity": "Traditional Technique Showcase. Students present artwork created using traditional French techniques. Practice vocabulary: 'J'ai utilisé cette technique traditionnelle pour créer...' Connect to cultural heritage.",
-        "assessment": "Can students attempt traditional French art techniques? Do they use traditional technique vocabulary appropriately? Can they connect techniques to French cultural heritage?",
-        "decisionPoint": "If students love traditional techniques: plan more cultural art exploration. If techniques were challenging: focus on cultural appreciation and vocabulary development."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "emergencyBackup": "Traditional technique study: Study traditional French techniques through examples and demonstrations, practice vocabulary without hands-on technique practice.",
-      "realWorldConnection": "Learning traditional recipes, games, or crafts from their own family"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Traditional technique study: Study traditional French techniques through examples and demonstrations, practice vocabulary without hands-on technique practice."
+      },
+      "realWorldConnection": "Learning traditional recipes, games, or crafts from their own family",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 12,
+      "lessonType": "core",
       "title": "Galerie virtuelle",
       "oneGoal": "Students will create digital documentation of their gallery",
-      "keyVocabulary": ["virtuel", "numérique", "documentation"],
-      "mindsOn": {
+      "duration": 45,
+      "keyVocabulary": [
+        "virtuel",
+        "numérique",
+        "documentation"
+      ],
+      "opening": {
         "duration": "~8 min",
         "activity": "Explore virtual galleries online. Compare virtual to physical gallery experiences. Introduce vocabulary: VIRTUEL (digital gesture), NUMÉRIQUE (technology motion), DOCUMENTATION (recording/saving gesture).",
-        "visualSupport": "Virtual gallery examples, digital documentation tools, online vs physical comparison charts",
-        "decisionPoint": "If technology access is limited: focus on planning and vocabulary development. If technology is available: create comprehensive digital documentation."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "action": {
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Digital Photography (~10 min): Photograph all gallery artworks and displays professionally. Learn basic photography for documentation. Practice 'documentation' vocabulary: 'Je documente notre galerie avec des photos.'",
-          "Virtual Gallery Planning (~8 min): Plan how to organize digital gallery: categories, descriptions, navigation. Practice 'virtuel' vocabulary: 'Notre galerie virtuelle montrera...'",
-          "Digital Presentation Creation (~9 min): Create simple digital presentation or slideshow of gallery. Include photos, descriptions, audio if possible. Practice 'numérique' vocabulary while creating."
+        "activity": "",
+        "materials": [
+          "Digital cameras or tablets",
+          "Computer access for presentation creation",
+          "Digital organization templates",
+          "Audio recording equipment if available"
         ],
-        "materials": ["Digital cameras or tablets", "Computer access for presentation creation", "Digital organization templates", "Audio recording equipment if available"],
-        "visualSupport": "Digital photography technique cards, virtual gallery organization examples, presentation creation guides",
-        "decisionPoint": "If technology is too complex: focus on planning and photo documentation. If students excel with technology: create sophisticated virtual gallery experiences."
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "consolidation": {
+      "closing": {
         "duration": "~10 min",
         "activity": "Virtual Gallery Sharing. Present digital gallery to others. Discuss how virtual galleries can reach more people. Practice vocabulary: 'Notre documentation numérique permet de partager...'",
-        "assessment": "Can students create digital documentation of their gallery? Do they use digital vocabulary appropriately? Can they understand benefits of virtual gallery access?",
-        "decisionPoint": "If virtual gallery is successful: plan sharing with families or other classes. If technology was challenging: focus on digital literacy vocabulary development."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "emergencyBackup": "Virtual gallery planning without creation: Plan digital gallery organization and content, practice vocabulary through planning without actual digital creation.",
-      "realWorldConnection": "Taking photos to share with family, video calls with distant relatives"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Virtual gallery planning without creation: Plan digital gallery organization and content, practice vocabulary through planning without actual digital creation."
+      },
+      "realWorldConnection": "Taking photos to share with family, video calls with distant relatives",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 13,
+      "lessonType": "core",
       "title": "Échange avec d'autres galeries",
       "oneGoal": "Students will connect with other classroom galleries or art spaces",
-      "keyVocabulary": ["échange", "partager", "collaboration"],
-      "mindsOn": {
+      "duration": 45,
+      "keyVocabulary": [
+        "échange",
+        "partager",
+        "collaboration"
+      ],
+      "opening": {
         "duration": "~8 min",
         "activity": "Discuss how museums and galleries collaborate and share exhibitions. Plan connections with other classrooms or local art spaces. Introduce vocabulary: ÉCHANGE (exchange/sharing gesture), PARTAGER (giving/sharing motion), COLLABORATION (working together gesture).",
-        "visualSupport": "Examples of gallery collaborations, exchange planning materials, collaboration possibility charts",
-        "decisionPoint": "If other collaborating groups available: plan real exchanges. If no collaborators available: simulate exchange experiences and focus on vocabulary."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "action": {
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Exchange Planning (~9 min): Plan what to share with other galleries: student artwork, techniques learned, gallery innovations. Practice 'échange' vocabulary: 'Nous pouvons échanger nos idées sur...'",
-          "Collaboration Preparation (~10 min): Prepare materials for sharing: artwork samples, technique demonstrations, gallery tours. Practice 'partager' vocabulary: 'Nous partageons notre expérience artistique.'",
-          "Exchange Activity (~8 min): Conduct exchange with other class/group if possible, or simulate exchange experience. Practice 'collaboration' vocabulary: 'Cette collaboration enrichit notre galerie.'"
+        "activity": "",
+        "materials": [
+          "Exchange planning materials",
+          "Artwork samples for sharing",
+          "Demonstration materials",
+          "Communication tools for collaboration"
         ],
-        "materials": ["Exchange planning materials", "Artwork samples for sharing", "Demonstration materials", "Communication tools for collaboration"],
-        "visualSupport": "Exchange activity planning charts, collaboration benefit examples, sharing preparation checklists",
-        "decisionPoint": "If real exchange is possible: facilitate meaningful artistic sharing. If simulated: focus on collaboration concepts and vocabulary development."
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "consolidation": {
+      "closing": {
         "duration": "~10 min",
         "activity": "Exchange Reflection. Reflect on what was learned through exchange or collaboration. Practice vocabulary: 'Grâce à cet échange, nous avons appris...' Plan future collaborations.",
-        "assessment": "Can students plan and participate in gallery exchanges? Do they use exchange vocabulary appropriately? Can they learn from collaboration with other artistic groups?",
-        "decisionPoint": "If exchange was very successful: plan ongoing collaborations. If challenging: focus on collaboration skills development and vocabulary practice."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "emergencyBackup": "Collaboration planning and simulation: Plan gallery exchanges using hypothetical scenarios, practice vocabulary through planning without actual exchanges.",
-      "realWorldConnection": "Pen pals, visiting other classrooms, community connections"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Collaboration planning and simulation: Plan gallery exchanges using hypothetical scenarios, practice vocabulary through planning without actual exchanges."
+      },
+      "realWorldConnection": "Pen pals, visiting other classrooms, community connections",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 14,
+      "lessonType": "core",
       "title": "Évolution de la galerie",
       "oneGoal": "Students will plan how their gallery will change and grow over time",
-      "keyVocabulary": ["évolution", "changement", "croissance"],
-      "mindsOn": {
+      "duration": 45,
+      "keyVocabulary": [
+        "évolution",
+        "changement",
+        "croissance"
+      ],
+      "opening": {
         "duration": "~8 min",
         "activity": "Discuss how galleries change over time: new exhibitions, growing collections, facility improvements. Plan gallery future. Introduce vocabulary: ÉVOLUTION (growth/change motion), CHANGEMENT (transformation gesture), CROISSANCE (expansion gesture).",
-        "visualSupport": "Gallery evolution examples, change planning templates, growth visualization charts",
-        "decisionPoint": "If students want gallery to continue: focus on realistic sustainability planning. If they're ready to move on: focus on learning transfer and future applications."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "action": {
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Future Exhibition Planning (~10 min): Plan next exhibitions for classroom gallery: seasonal themes, new techniques, visiting artists. Practice 'évolution' vocabulary: 'Notre galerie va évoluer avec...'",
-          "Gallery Improvement Ideas (~8 min): Brainstorm improvements for gallery space and operations. Consider feedback from previous lessons. Practice 'changement' vocabulary: 'Nous changerons notre galerie en...'",
-          "Sustainability Planning (~9 min): Plan how gallery can continue without constant teacher support. Train student leaders, create systems. Practice 'croissance' vocabulary: 'La croissance de notre galerie nécessite...'"
+        "activity": "",
+        "materials": [
+          "Future planning templates",
+          "Improvement brainstorming materials",
+          "Sustainability planning guides",
+          "Student leadership training materials"
         ],
-        "materials": ["Future planning templates", "Improvement brainstorming materials", "Sustainability planning guides", "Student leadership training materials"],
-        "visualSupport": "Gallery evolution timeline examples, improvement planning charts, sustainability strategy examples",
-        "decisionPoint": "If sustainability planning is complex: focus on simple continuation strategies. If students are very engaged: develop comprehensive long-term gallery plans."
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "consolidation": {
+      "closing": {
         "duration": "~10 min",
         "activity": "Gallery Future Presentation. Students present plans for gallery evolution and growth. Practice vocabulary: 'Pour l'évolution future, nous planifions...' Commit to realistic next steps.",
-        "assessment": "Can students plan realistic gallery evolution? Do they use development vocabulary appropriately? Can they take ownership of gallery's future development?",
-        "decisionPoint": "If plans are very ambitious: help students identify priority next steps. If plans are modest: encourage them to think bigger about possibilities."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "emergencyBackup": "Gallery future planning through discussion: Plan gallery evolution using discussion and planning sheets, practice vocabulary without implementation commitments.",
-      "realWorldConnection": "How their room changes as they grow, family traditions that evolve"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Gallery future planning through discussion: Plan gallery evolution using discussion and planning sheets, practice vocabulary without implementation commitments."
+      },
+      "realWorldConnection": "How their room changes as they grow, family traditions that evolve",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 15,
+      "lessonType": "extension",
       "title": "Célébration finale",
       "oneGoal": "Students will celebrate their gallery achievements and plan future artistic endeavors",
-      "keyVocabulary": ["célébration", "accomplissement", "futur"],
-      "mindsOn": {
+      "duration": 45,
+      "keyVocabulary": [
+        "célébration",
+        "accomplissement",
+        "futur"
+      ],
+      "opening": {
         "duration": "~8 min",
         "activity": "Reflect on gallery journey from first lesson to final exhibition. Celebrate growth and achievements. Introduce vocabulary: CÉLÉBRATION (celebration gesture), ACCOMPLISSEMENT (achievement motion), FUTUR (forward-looking gesture).",
-        "visualSupport": "Gallery journey timeline, achievement documentation, future possibility examples",
-        "decisionPoint": "If students are very proud: allow extended celebration and sharing. If they're modest about achievements: help them recognize significant growth."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "action": {
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Achievement Recognition (~9 min): Document specific achievements: skills learned, challenges overcome, growth demonstrated. Practice 'accomplissement' vocabulary: 'Notre accomplissement inclut...'",
-          "Gallery Legacy Planning (~9 min): Create documentation of gallery for future students. Include lessons learned, best practices, inspiration. Practice legacy vocabulary.",
-          "Celebration Event (~9 min): Conduct final celebration of gallery success. Include stakeholders: family, other classes, administration. Practice 'célébration' vocabulary during event."
+        "activity": "",
+        "materials": [
+          "Achievement documentation tools",
+          "Legacy creation materials",
+          "Celebration event supplies",
+          "Recognition certificates or awards"
         ],
-        "materials": ["Achievement documentation tools", "Legacy creation materials", "Celebration event supplies", "Recognition certificates or awards"],
-        "visualSupport": "Achievement tracking charts, legacy documentation examples, celebration planning materials",
-        "decisionPoint": "If celebration is large: manage logistics while maintaining focus on student achievement. If celebration is small: ensure meaningful recognition of growth."
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "consolidation": {
+      "closing": {
         "duration": "~10 min",
         "activity": "Future Artistic Commitment. Students commit to continuing artistic growth beyond gallery project. Practice 'futur' vocabulary: 'Dans le futur, je continuerai l'art en...' Connect to lifelong learning.",
-        "assessment": "Can students recognize and celebrate their gallery achievements? Do they use celebration vocabulary appropriately? Do they commit to continued artistic development?",
-        "decisionPoint": "If students want to continue gallery work: support transition to independent operation. If they're ready for new challenges: celebrate completion and support next artistic steps."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "emergencyBackup": "Celebration planning and reflection: Plan celebration activities and reflect on achievements through discussion, practice vocabulary without large celebration event.",
-      "realWorldConnection": "Graduation ceremonies, end-of-season celebrations, family milestones"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Celebration planning and reflection: Plan celebration activities and reflect on achievements through discussion, practice vocabulary without large celebration event."
+      },
+      "realWorldConnection": "Graduation ceremonies, end-of-season celebrations, family milestones",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     }
   ],
-  "assessmentRubric": {
-    "beginningSpeaker": {
-      "description": "Student uses 1-2 gallery vocabulary words with support, participates in gallery activities with guidance, shows understanding of basic gallery concepts",
-      "indicators": [
-        "Recognizes gallery vocabulary when demonstrated",
-        "Participates in gallery setup and activities",
-        "Shows respect for artwork and gallery space",
-        "Attempts gallery roles with support"
-      ]
-    },
-    "developingSpeaker": {
-      "description": "Student uses 3-5 gallery vocabulary words independently, takes active role in gallery operations, demonstrates understanding of gallery functions",
-      "indicators": [
-        "Uses gallery vocabulary in appropriate contexts",
-        "Contributes to gallery planning and setup",
-        "Explains gallery concepts to others",
-        "Shows responsibility in gallery role"
-      ]
-    },
-    "expandingSpeaker": {
-      "description": "Student uses 6+ gallery vocabulary words in explanations, leads gallery activities, demonstrates sophisticated understanding of curation and presentation",
-      "indicators": [
-        "Explains gallery operations using rich vocabulary",
-        "Makes thoughtful curatorial decisions",
-        "Leads gallery tours and presentations",
-        "Shows innovation in gallery development"
-      ]
-    },
-    "bridgingSpeaker": {
-      "description": "Student uses extensive gallery vocabulary naturally, demonstrates mastery of gallery operations, shows leadership and innovation in gallery development",
-      "indicators": [
-        "Uses sophisticated gallery vocabulary fluently",
-        "Demonstrates mastery of curatorial skills",
-        "Teaches and mentors others in gallery operations",
-        "Shows advanced understanding of art presentation and cultural heritage"
-      ]
-    }
+  "assessmentTools": {
+    "observationChecklist": [],
+    "rubrics": [],
+    "selfAssessment": [],
+    "portfolioGuidelines": ""
+  },
+  "familyConnections": {
+    "unitLetter": "",
+    "homeActivities": [],
+    "vocabularyList": []
+  },
+  "resourceAlternatives": {
+    "materials": {},
+    "digitalResources": []
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
   }
 }

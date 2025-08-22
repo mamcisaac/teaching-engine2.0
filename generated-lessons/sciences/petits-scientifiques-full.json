@@ -1,722 +1,1353 @@
-[
-  {
-    "lessonNumber": 1,
-    "title": "Bienvenue dans notre laboratoire scientifique",
-    "oneGoal": "Students will identify the classroom science area as a special place for discovery and learning",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Science area tour - students explore and touch safe science materials while teacher narrates",
-      "materials": ["science corner setup", "safe tools display", "welcome poster"],
-      "visualSupports": "colorful science area label with pictures of tools and discoveries"
+{
+  "unitTitle": "",
+  "subject": "Sciences de la nature",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "lessonType": "core",
+      "title": "Bienvenue dans notre laboratoire scientifique",
+      "oneGoal": "Students will identify the classroom science area as a special place for discovery and learning",
+      "duration": 45,
+      "keyVocabulary": [
+        "scientifique",
+        "laboratoire",
+        "découverte"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Science area tour - students explore and touch safe science materials while teacher narrates",
+        "materials": [
+          "science corner setup",
+          "safe tools display",
+          "welcome poster"
+        ],
+        "visualSupports": "colorful science area label with pictures of tools and discoveries",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "hands-on exploration of science tools and materials with guided discovery questions",
+        "materials": [
+          "magnifying glasses",
+          "measuring cups",
+          "safe objects to explore",
+          "science journals"
+        ],
+        "visualSupports": "picture cards showing scientists at work, lab safety symbols",
+        "decisionPoints": [
+          {
+            "question": "Are students excited about the science tools and asking questions?",
+            "ifYes": "Let them handle tools briefly with safety reminders",
+            "ifNo": "Model exciting discoveries you can make with each tool"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Circle discussion - students share what they're most excited to discover in our science area",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "understanding what 'scientifique' means",
+        "then": "Show pictures of real scientists and compare them to students: 'You are scientists when you explore and discover!'"
+      },
+      "realWorldConnection": "Understanding that scientists work in special places with special tools, just like doctors or chefs",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
-    "main": {
-      "duration": 27,
-      "activity": "hands-on exploration of science tools and materials with guided discovery questions",
-      "materials": ["magnifying glasses", "measuring cups", "safe objects to explore", "science journals"],
-      "visualSupports": "picture cards showing scientists at work, lab safety symbols",
-      "decisionPoints": [
-        {
-          "question": "Are students excited about the science tools and asking questions?",
-          "ifYes": "Let them handle tools briefly with safety reminders",
-          "ifNo": "Model exciting discoveries you can make with each tool"
-        }
-      ]
+    {
+      "lessonNumber": 2,
+      "lessonType": "core",
+      "title": "Nos règles de sécurité en sciences",
+      "oneGoal": "Students will learn and practice three basic safety rules for science activities: listen, look, and be careful",
+      "duration": 45,
+      "keyVocabulary": [
+        "sécurité",
+        "règles",
+        "attention"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Safety song with actions - teaching three key safety moves: hands on ears (listen), hand over eyes (look), gentle hands (be careful)",
+        "materials": [
+          "safety rule posters",
+          "props for demonstration"
+        ],
+        "visualSupports": "three large safety rule pictures with simple symbols",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "safety practice scenarios where students demonstrate listening, looking carefully, and being gentle with science materials",
+        "materials": [
+          "scenario cards",
+          "safe science materials",
+          "safety symbols"
+        ],
+        "visualSupports": "safety rule reminder chart visible during all activities",
+        "decisionPoints": [
+          {
+            "question": "Can students demonstrate the three safety rules consistently?",
+            "ifYes": "Practice with actual science materials",
+            "ifNo": "Use role-play with stuffed animals or puppets to show safe vs unsafe behaviors"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Safety promise circle - each student practices one safety rule and makes a promise to stay safe",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "remembering all three safety rules",
+        "then": "Start with just 'listen' rule and add others gradually over several lessons"
+      },
+      "realWorldConnection": "Learning that safety rules help us have fun and stay safe, like wearing seatbelts in cars",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
-    "closing": {
-      "duration": 10,
-      "activity": "Circle discussion - students share what they're most excited to discover in our science area",
-      "assessment": "observation of student engagement and interest in science tools"
+    {
+      "lessonNumber": 3,
+      "lessonType": "core",
+      "title": "Observer avec nos yeux de scientifiques",
+      "oneGoal": "Students will practice careful observation skills using only their eyes to notice details about objects",
+      "duration": 45,
+      "keyVocabulary": [
+        "observer",
+        "regarder",
+        "détails"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Eye spy science game - students find objects with specific characteristics using only their eyes",
+        "materials": [
+          "variety of interesting classroom objects",
+          "observation cards"
+        ],
+        "visualSupports": "poster showing different observation words: big, small, shiny, rough",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "detailed observation practice with mystery objects in bags - students describe what they see without touching",
+        "materials": [
+          "cloth bags with interesting objects",
+          "observation recording sheets",
+          "colored pencils"
+        ],
+        "visualSupports": "observation vocabulary chart with pictures, 'scientist eyes' poster",
+        "decisionPoints": [
+          {
+            "question": "Can students describe multiple details about objects using observation words?",
+            "ifYes": "Challenge them to notice tiny details or compare two similar objects",
+            "ifNo": "Model observation by thinking aloud about one object together"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Observation sharing - students tell partners about the most interesting detail they noticed",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "finding details to describe",
+        "then": "Give sentence starters: 'I see that it is...' or 'This object looks...'"
+      },
+      "realWorldConnection": "Using careful looking to notice things around us, like watching for changes in the weather",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
-    "vocabulary": ["scientifique", "laboratoire", "découverte"],
-    "troubleshooting": {
-      "ifStrugglingWith": "understanding what 'scientifique' means",
-      "then": "Show pictures of real scientists and compare them to students: 'You are scientists when you explore and discover!'"
+    {
+      "lessonNumber": 4,
+      "lessonType": "core",
+      "title": "Écouter comme des scientifiques",
+      "oneGoal": "Students will use their sense of hearing to gather information about different objects and materials",
+      "duration": 45,
+      "keyVocabulary": [
+        "écouter",
+        "sons",
+        "différent"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Sound detective game - students close eyes and identify familiar classroom sounds",
+        "materials": [
+          "mystery sound makers",
+          "sound cards",
+          "quiet listening space"
+        ],
+        "visualSupports": "poster showing different sound words: loud, quiet, high, low",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "sound exploration stations where students safely shake, tap, and drop different materials to compare sounds",
+        "materials": [
+          "containers with rice/beans/sand",
+          "wooden blocks",
+          "metal spoons",
+          "soft materials"
+        ],
+        "visualSupports": "sound comparison chart, listening rules poster",
+        "decisionPoints": [
+          {
+            "question": "Can students describe differences between sounds using sound vocabulary?",
+            "ifYes": "Have them predict what sounds different materials will make",
+            "ifNo": "Focus on simple loud/quiet comparisons with clear examples"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Sound symphony - students create patterns with their favorite sound-makers from the lesson",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "describing sound differences",
+        "then": "Use comparative language: 'This sounds more like...' or 'Which is louder?'"
+      },
+      "realWorldConnection": "Understanding how listening carefully helps us learn, like hearing if something is working properly",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
-    "realWorldConnection": "Understanding that scientists work in special places with special tools, just like doctors or chefs"
+    {
+      "lessonNumber": 5,
+      "lessonType": "core",
+      "title": "Sentir en sécurité",
+      "oneGoal": "Students will learn when and how to safely use their sense of smell in science investigations",
+      "duration": 45,
+      "keyVocabulary": [
+        "sentir",
+        "odeur",
+        "sécurité"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Safe smelling demonstration - teacher shows proper 'wafting' technique with pleasant scents",
+        "materials": [
+          "safe scent containers",
+          "demonstration props",
+          "safety reminder cards"
+        ],
+        "visualSupports": "step-by-step safe smelling poster with hand gestures",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "guided scent exploration with teacher-prepared safe containers and practice of safe smelling technique",
+        "materials": [
+          "scent containers with vanilla, lemon, cinnamon",
+          "wafting practice materials",
+          "recording sheets"
+        ],
+        "visualSupports": "smell safety rules chart, scent description word wall",
+        "decisionPoints": [
+          {
+            "question": "Are students using safe smelling technique consistently?",
+            "ifYes": "Let them explore different scents and describe what they smell",
+            "ifNo": "Practice wafting technique with unscented containers first"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Scent memory game - students match pleasant scents they explored and discuss safety rules",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "safe smelling technique",
+        "then": "Practice with empty containers and emphasize 'gentle waving' motion"
+      },
+      "realWorldConnection": "Learning that some smells tell us about safety, like smelling food to know if it's fresh",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 6,
+      "lessonType": "core",
+      "title": "Toucher avec précaution",
+      "oneGoal": "Students will learn safe touching techniques for science exploration and when NOT to touch",
+      "duration": 45,
+      "keyVocabulary": [
+        "toucher",
+        "texture",
+        "précaution"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Touch safety demonstration using 'one finger first' rule and identifying no-touch items",
+        "materials": [
+          "texture exploration materials",
+          "no-touch examples",
+          "safety gloves"
+        ],
+        "visualSupports": "safe touching rules poster with pictures, red 'no-touch' symbols",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "texture exploration stations with various safe materials and practice of gentle touching techniques",
+        "materials": [
+          "sandpaper",
+          "cotton balls",
+          "smooth stones",
+          "bumpy materials",
+          "texture recording sheets"
+        ],
+        "visualSupports": "texture vocabulary chart with feeling words, safe touch reminder signs",
+        "decisionPoints": [
+          {
+            "question": "Are students using gentle touch and following 'one finger first' rule?",
+            "ifYes": "Challenge them to find textures that are similar or completely different",
+            "ifNo": "Model gentle touching with a puppet or stuffed animal first"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Texture guessing game - students describe how materials feel without naming them",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "being gentle with materials",
+        "then": "Practice 'butterfly touches' - gentle like a butterfly landing on a flower"
+      },
+      "realWorldConnection": "Understanding when it's safe to touch things and when we need to be careful, like petting friendly animals",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 7,
+      "lessonType": "core",
+      "title": "Nos outils de scientifiques",
+      "oneGoal": "Students will identify and name basic science tools: magnifying glass, ruler, and measuring cups",
+      "duration": 45,
+      "keyVocabulary": [
+        "outils",
+        "loupe",
+        "mesurer"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Science tool mystery box - students guess tools by feeling them and discussing their uses",
+        "materials": [
+          "mystery box with tools",
+          "real science tools",
+          "tool picture cards"
+        ],
+        "visualSupports": "large tool identification poster with names and pictures",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "hands-on tool exploration where students practice holding and using each tool safely with teacher guidance",
+        "materials": [
+          "magnifying glasses",
+          "rulers",
+          "measuring cups",
+          "exploration objects",
+          "tool practice sheets"
+        ],
+        "visualSupports": "tool safety rules chart, proper holding technique pictures",
+        "decisionPoints": [
+          {
+            "question": "Can students hold tools safely and name them correctly?",
+            "ifYes": "Let them practice using tools with interesting objects",
+            "ifNo": "Focus on one tool at a time with lots of modeling and practice"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Tool match game - students match tool names to pictures and share which tool they're most excited to use",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "remembering tool names",
+        "then": "Create simple rhymes or songs for each tool: 'Loupe helps me see, tiny things clearly!'"
+      },
+      "realWorldConnection": "Understanding that scientists use special tools to see and measure better, like how doctors use stethoscopes",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 8,
+      "lessonType": "core",
+      "title": "Explorer avec une loupe",
+      "oneGoal": "Students will use magnifying glasses safely to observe small details in familiar objects",
+      "duration": 45,
+      "keyVocabulary": [
+        "loupe",
+        "agrandir",
+        "petits détails"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Magnifying glass magic - teacher demonstrates amazing details visible through magnification",
+        "materials": [
+          "large magnifying glasses",
+          "interesting objects for magnifying",
+          "discovery collection"
+        ],
+        "visualSupports": "magnifying glass safety rules poster with pictures",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "guided magnifying exploration of classroom objects with focus on discovering new details and safe handling",
+        "materials": [
+          "individual magnifying glasses",
+          "leaves",
+          "fabric samples",
+          "coins",
+          "exploration recording sheets"
+        ],
+        "visualSupports": "detail discovery chart, safe magnifying technique posters",
+        "decisionPoints": [
+          {
+            "question": "Are students discovering new details and using magnifiers safely?",
+            "ifYes": "Challenge them to compare details between similar objects",
+            "ifNo": "Provide easier objects with obvious details and model proper magnifying technique"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Amazing discoveries sharing - students share the coolest detail they discovered through magnification",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "seeing details through magnifier",
+        "then": "Help them find the right distance by moving slowly closer and farther from objects"
+      },
+      "realWorldConnection": "Understanding how magnifying glasses help us see tiny things, like looking at insects or reading small print",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 9,
+      "lessonType": "core",
+      "title": "Mesurer avec des outils",
+      "oneGoal": "Students will use simple measuring tools to compare sizes and amounts of classroom objects",
+      "duration": 45,
+      "keyVocabulary": [
+        "mesurer",
+        "comparer",
+        "taille"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Size comparison game - students order objects by size using their hands and eyes before using tools",
+        "materials": [
+          "objects of different sizes",
+          "measuring tools",
+          "comparison charts"
+        ],
+        "visualSupports": "size comparison vocabulary poster: bigger, smaller, same size",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "measurement exploration stations using non-standard (blocks, hands) and standard tools (rulers) to compare object sizes",
+        "materials": [
+          "unit blocks",
+          "rulers",
+          "measuring cups",
+          "various objects to measure",
+          "measurement recording sheets"
+        ],
+        "visualSupports": "measurement technique posters, comparison language chart",
+        "decisionPoints": [
+          {
+            "question": "Can students use measuring tools to compare objects accurately?",
+            "ifYes": "Have them predict measurements before testing and compare predictions to results",
+            "ifNo": "Start with non-standard units (blocks, hands) and focus on 'longer/shorter' comparisons"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Measurement discoveries - students share surprising measurement discoveries and demonstrate measuring techniques",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "using rulers correctly",
+        "then": "Start with measuring in blocks or hands first, then gradually introduce ruler use"
+      },
+      "realWorldConnection": "Understanding how we measure things in daily life, like checking if clothes fit or measuring ingredients",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 10,
+      "lessonType": "core",
+      "title": "Dessiner nos observations",
+      "oneGoal": "Students will create simple drawings to record what they observe during science investigations",
+      "duration": 45,
+      "keyVocabulary": [
+        "dessiner",
+        "noter",
+        "observations"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Scientist drawing demonstration - teacher shows how scientists draw what they see, not what they think",
+        "materials": [
+          "drawing materials",
+          "observation object",
+          "example science drawings"
+        ],
+        "visualSupports": "scientific drawing rules poster: draw what you see, include details, use labels",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "guided observation drawing practice with real objects, focusing on accuracy and detail recording",
+        "materials": [
+          "drawing paper",
+          "pencils",
+          "colored pencils",
+          "interesting objects to draw",
+          "observation journals"
+        ],
+        "visualSupports": "scientific drawing examples, observation vocabulary for labeling",
+        "decisionPoints": [
+          {
+            "question": "Are students drawing what they actually see rather than what they know?",
+            "ifYes": "Encourage them to add labels and more details to their drawings",
+            "ifNo": "Cover the object and uncover it gradually, drawing each part as they see it"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Drawing gallery walk - students display their observation drawings and explain what details they included",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "drawing detailed observations",
+        "then": "Start with simple shapes and add one detail at a time: 'First draw the shape, then add the color'"
+      },
+      "realWorldConnection": "Understanding that scientists keep track of what they discover by drawing, like how we draw pictures of family trips",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 11,
+      "lessonType": "core",
+      "title": "Trier et classer nos découvertes",
+      "oneGoal": "Students will sort objects into groups based on observable characteristics like color, size, or texture",
+      "duration": 45,
+      "keyVocabulary": [
+        "trier",
+        "classer",
+        "groupes"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Sorting game with students - teacher sorts students by clothing colors, then students suggest other sorting rules",
+        "materials": [
+          "various classroom objects",
+          "sorting containers",
+          "classification cards"
+        ],
+        "visualSupports": "sorting rules poster with pictures showing different ways to group objects",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "hands-on sorting activities where students classify objects multiple ways and explain their sorting decisions",
+        "materials": [
+          "mixed collection of objects",
+          "sorting mats",
+          "classification labels",
+          "recording sheets"
+        ],
+        "visualSupports": "classification vocabulary chart, sorting strategy posters",
+        "decisionPoints": [
+          {
+            "question": "Can students sort objects consistently using observable characteristics?",
+            "ifYes": "Challenge them to re-sort the same objects using different rules",
+            "ifNo": "Start with obvious differences (big/small, red/blue) and model thinking aloud"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Sorting explanations - students explain their sorting choices to partners and try to guess partners' sorting rules",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "explaining sorting decisions",
+        "then": "Provide sentence frames: 'I put these together because they are all...' or 'These go together because...'"
+      },
+      "realWorldConnection": "Understanding how we organize things at home by putting similar items together, like toys in bins",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 12,
+      "lessonType": "core",
+      "title": "Prédire et vérifier",
+      "oneGoal": "Students will make simple predictions about what might happen and then test their ideas safely",
+      "duration": 45,
+      "keyVocabulary": [
+        "prédire",
+        "penser",
+        "vérifier"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Prediction demonstration - teacher models making a guess about what will happen, then testing it",
+        "materials": [
+          "simple prediction materials",
+          "prediction recording sheets",
+          "testing materials"
+        ],
+        "visualSupports": "prediction process poster: guess, test, discover",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "guided prediction and testing activities with safe materials like floating/sinking or rolling/sliding experiments",
+        "materials": [
+          "water containers",
+          "various objects to test",
+          "ramps for rolling",
+          "prediction recording sheets"
+        ],
+        "visualSupports": "prediction vocabulary chart, testing safety reminders",
+        "decisionPoints": [
+          {
+            "question": "Are students making thoughtful predictions based on observations?",
+            "ifYes": "Have them explain why they made specific predictions",
+            "ifNo": "Model prediction thinking: 'I think this will float because it's light like...'"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Prediction celebration - students share their favorite predictions and discoveries from testing",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "making predictions",
+        "then": "Start with either/or choices: 'Do you think this will float or sink?' rather than open-ended questions"
+      },
+      "realWorldConnection": "Understanding that we often guess what will happen before we try something, like predicting weather or game outcomes",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 13,
+      "lessonType": "core",
+      "title": "Expérience simple avec l'eau",
+      "oneGoal": "Students will conduct a safe, simple water experiment while following established safety and observation protocols",
+      "duration": 45,
+      "keyVocabulary": [
+        "expérience",
+        "eau",
+        "résultats"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Water safety review and experiment preview - students practice safety rules and predict experiment outcomes",
+        "materials": [
+          "water experiment materials",
+          "safety reminders",
+          "prediction sheets"
+        ],
+        "visualSupports": "water safety rules poster, experiment steps chart",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "guided water experiment where students test objects for floating/sinking while using observation tools and recording results",
+        "materials": [
+          "water containers",
+          "test objects",
+          "magnifying glasses",
+          "towels",
+          "recording sheets"
+        ],
+        "visualSupports": "experiment process chart, result recording template",
+        "decisionPoints": [
+          {
+            "question": "Are students following safety protocols and making good observations?",
+            "ifYes": "Let them design their own tests with additional objects",
+            "ifNo": "Provide more structure and model each step clearly"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Experiment results sharing - students compare their discoveries and discuss surprises from the experiment",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "recording experiment results",
+        "then": "Use simple pictures or stamps instead of writing: float symbol or sink symbol"
+      },
+      "realWorldConnection": "Understanding that experiments help us learn by trying things safely, like testing which materials work best",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 14,
+      "lessonType": "core",
+      "title": "Partager nos découvertes",
+      "oneGoal": "Students will communicate their scientific observations and discoveries to classmates using words and drawings",
+      "duration": 45,
+      "keyVocabulary": [
+        "partager",
+        "expliquer",
+        "découvertes"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Scientist presentation modeling - teacher demonstrates how scientists share discoveries clearly and excitedly",
+        "materials": [
+          "presentation examples",
+          "discovery collections",
+          "sharing materials"
+        ],
+        "visualSupports": "good presentation rules poster with pictures",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "student presentation preparation and practice where they choose their favorite discovery to share with the class",
+        "materials": [
+          "discovery journals",
+          "presentation props",
+          "sharing station materials",
+          "audience response sheets"
+        ],
+        "visualSupports": "presentation planning template, audience listening rules",
+        "decisionPoints": [
+          {
+            "question": "Are students comfortable sharing their discoveries and findings?",
+            "ifYes": "Encourage them to demonstrate their discoveries interactively",
+            "ifNo": "Allow sharing in pairs or small groups before presenting to the whole class"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Discovery celebration - students applaud each presentation and share what they learned from classmates",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "speaking in front of the group",
+        "then": "Let them present to stuffed animals first or whisper their discovery to you to share"
+      },
+      "realWorldConnection": "Understanding that scientists share their discoveries with others, like how we tell family about interesting things we learned",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 15,
+      "lessonType": "extension",
+      "title": "Scientifiques dans la nature",
+      "oneGoal": "Students will apply their observation and safety skills to explore natural objects and phenomena outdoors (extension)",
+      "duration": 45,
+      "keyVocabulary": [
+        "nature",
+        "extérieur",
+        "explorer"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Outdoor safety preparation - reviewing safety rules for nature exploration and discussing what to observe outside",
+        "materials": [
+          "outdoor exploration tools",
+          "safety equipment",
+          "nature observation sheets"
+        ],
+        "visualSupports": "outdoor safety rules poster, nature observation checklist",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "guided outdoor exploration using learned observation skills to investigate natural objects, weather, and phenomena",
+        "materials": [
+          "magnifying glasses",
+          "collection containers",
+          "drawing materials",
+          "measurement tools"
+        ],
+        "visualSupports": "portable observation guide, nature safety reminders",
+        "decisionPoints": [
+          {
+            "question": "Are students applying indoor observation skills successfully outdoors?",
+            "ifYes": "Encourage them to make comparisons between indoor and outdoor discoveries",
+            "ifNo": "Focus on one observation skill at a time and provide more guided structure"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Nature discoveries debrief - students share their most interesting outdoor observations back in the classroom",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "focusing on observations outdoors",
+        "then": "Give specific challenges: 'Find something rough' or 'Listen for three different sounds'"
+      },
+      "realWorldConnection": "Understanding that science happens everywhere, especially in nature where we can observe weather, plants, and animals",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 16,
+      "lessonType": "extension",
+      "title": "Questions de scientifiques curieux",
+      "oneGoal": "Students will learn to ask scientific questions that can be investigated through safe observation and simple testing (extension)",
+      "duration": 45,
+      "keyVocabulary": [
+        "questions",
+        "curieux",
+        "pourquoi"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Question modeling - teacher demonstrates asking scientific questions about classroom objects and how to find answers",
+        "materials": [
+          "interesting objects",
+          "question word cards",
+          "investigation materials"
+        ],
+        "visualSupports": "question word poster: What? How? Why? Where?",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "guided question generation and simple investigation planning where students ask questions about familiar objects",
+        "materials": [
+          "mystery objects",
+          "question recording sheets",
+          "simple investigation materials",
+          "answer-finding tools"
+        ],
+        "visualSupports": "question formation examples, investigation process chart",
+        "decisionPoints": [
+          {
+            "question": "Are students asking questions that can be answered through observation or simple testing?",
+            "ifYes": "Help them plan ways to investigate their questions safely",
+            "ifNo": "Model question formation and provide question starters: 'What happens if...' or 'How does...'"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Question sharing circle - students share their scientific questions and discuss how they might find answers",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "asking scientific questions",
+        "then": "Start with wonder statements: 'I wonder what would happen if...' and turn them into questions"
+      },
+      "realWorldConnection": "Understanding that asking questions leads to learning, just like how we ask questions to learn about new places or activities",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 17,
+      "lessonType": "extension",
+      "title": "Mini-laboratoire à la maison",
+      "oneGoal": "Students will identify safe science exploration opportunities they can pursue at home with family supervision (extension)",
+      "duration": 45,
+      "keyVocabulary": [
+        "maison",
+        "famille",
+        "explorer"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Home safety discussion - reviewing what makes science activities safe at home with family help",
+        "materials": [
+          "home science examples",
+          "safety checklist",
+          "family permission materials"
+        ],
+        "visualSupports": "home science safety rules poster with family pictures",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "home science activity planning where students choose safe investigations they can do with family members",
+        "materials": [
+          "home science idea cards",
+          "planning sheets",
+          "family instruction guides",
+          "safety checklists"
+        ],
+        "visualSupports": "home science examples chart, family supervision reminders",
+        "decisionPoints": [
+          {
+            "question": "Can students identify which activities are safe for home exploration?",
+            "ifYes": "Help them plan specific home investigations with clear family instruction",
+            "ifNo": "Focus on simple observation activities that require no special materials"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Home science promises - students commit to specific home explorations and discuss safety with families",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "understanding what's safe at home",
+        "then": "Create clear examples of DO and DON'T activities with pictures and simple rules"
+      },
+      "realWorldConnection": "Understanding that science learning continues at home through safe kitchen experiments, nature walks, and careful observation",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 18,
+      "lessonType": "extension",
+      "title": "Aider les autres à être sécuritaires",
+      "oneGoal": "Students will teach safety rules to younger students or family members, demonstrating their scientific safety knowledge (extension)",
+      "duration": 45,
+      "keyVocabulary": [
+        "enseigner",
+        "aider",
+        "sécuritaire"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Teaching preparation - students review safety rules and practice explaining them simply to others",
+        "materials": [
+          "safety rule materials",
+          "teaching props",
+          "practice audience (stuffed animals)"
+        ],
+        "visualSupports": "teaching tips poster, safety rule visual aids",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "safety teaching practice where students prepare presentations about science safety for younger students or families",
+        "materials": [
+          "presentation materials",
+          "safety demonstration props",
+          "teaching practice sheets",
+          "audience feedback forms"
+        ],
+        "visualSupports": "good teaching examples, safety rule visuals for sharing",
+        "decisionPoints": [
+          {
+            "question": "Can students explain safety rules clearly and demonstrate them properly?",
+            "ifYes": "Have them create interactive safety demonstrations or games",
+            "ifNo": "Focus on one simple safety rule and model clear explanation techniques"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Teaching reflection - students discuss how teaching others helps them remember safety rules better",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "teaching others about safety",
+        "then": "Practice with partners first and use simple phrases: 'Always remember to...'"
+      },
+      "realWorldConnection": "Understanding that we can help keep others safe by sharing what we know, like teaching siblings about playground safety",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 19,
+      "lessonType": "extension",
+      "title": "Nos outils de scientifiques à la maison",
+      "oneGoal": "Students will identify common household items that can be used safely as science tools with adult supervision (extension)",
+      "duration": 45,
+      "keyVocabulary": [
+        "maison",
+        "objets",
+        "utiliser"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Home tool hunt - students brainstorm household items that could work like science tools",
+        "materials": [
+          "household item pictures",
+          "tool comparison charts",
+          "home exploration ideas"
+        ],
+        "visualSupports": "household science tools poster with pictures and safety notes",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "home tool exploration where students match household items to science tools and plan safe home investigations",
+        "materials": [
+          "household item samples",
+          "science tool comparisons",
+          "home investigation planning sheets",
+          "safety guides"
+        ],
+        "visualSupports": "tool matching chart, home safety reminder posters",
+        "decisionPoints": [
+          {
+            "question": "Can students identify appropriate household items as science tools?",
+            "ifYes": "Have them plan specific investigations using these household tools",
+            "ifNo": "Show clear examples and focus on simple tools like measuring cups or flashlights"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Home tool commitments - students choose specific household tools to use for science exploration with family",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "identifying appropriate home tools",
+        "then": "Start with obvious examples like kitchen measuring tools or flashlights, then expand gradually"
+      },
+      "realWorldConnection": "Understanding that science tools are all around us, like using kitchen measuring cups or flashlights for exploration",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 20,
+      "lessonType": "extension",
+      "title": "Célébration des petits scientifiques",
+      "oneGoal": "Students will demonstrate their scientific skills and safety knowledge in a celebration showcase for families and other classes (extension)",
+      "duration": 45,
+      "keyVocabulary": [
+        "célébration",
+        "montrer",
+        "fierté"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Celebration preparation - students set up demonstration stations showing their favorite scientific discoveries",
+        "materials": [
+          "display materials",
+          "demonstration tools",
+          "celebration decorations",
+          "showcase props"
+        ],
+        "visualSupports": "celebration schedule poster, demonstration station signs",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "science celebration showcase where students demonstrate skills, share discoveries, and teach visitors about safety",
+        "materials": [
+          "all unit tools and materials",
+          "demonstration stations",
+          "visitor interaction materials",
+          "celebration activities"
+        ],
+        "visualSupports": "skill demonstration posters, visitor welcome signs, safety rule displays",
+        "decisionPoints": [
+          {
+            "question": "Are students confidently demonstrating their scientific skills and knowledge?",
+            "ifYes": "Encourage them to teach visitors about their favorite discoveries",
+            "ifNo": "Provide support partners and focus on skills they feel most confident about"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Celebration reflection - students share what they're proudest of learning and what they want to explore next",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "feeling confident during celebration",
+        "then": "Let them demonstrate with friends or focus on their strongest skills first"
+      },
+      "realWorldConnection": "Sharing our scientific learning with families and showing how we can safely explore and discover the world around us",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    }
+  ],
+  "assessmentTools": {
+    "observationChecklist": [],
+    "rubrics": [],
+    "selfAssessment": [],
+    "portfolioGuidelines": ""
   },
-  {
-    "lessonNumber": 2,
-    "title": "Nos règles de sécurité en sciences",
-    "oneGoal": "Students will learn and practice three basic safety rules for science activities: listen, look, and be careful",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Safety song with actions - teaching three key safety moves: hands on ears (listen), hand over eyes (look), gentle hands (be careful)",
-      "materials": ["safety rule posters", "props for demonstration"],
-      "visualSupports": "three large safety rule pictures with simple symbols"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "safety practice scenarios where students demonstrate listening, looking carefully, and being gentle with science materials",
-      "materials": ["scenario cards", "safe science materials", "safety symbols"],
-      "visualSupports": "safety rule reminder chart visible during all activities",
-      "decisionPoints": [
-        {
-          "question": "Can students demonstrate the three safety rules consistently?",
-          "ifYes": "Practice with actual science materials",
-          "ifNo": "Use role-play with stuffed animals or puppets to show safe vs unsafe behaviors"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Safety promise circle - each student practices one safety rule and makes a promise to stay safe",
-      "assessment": "observation of student ability to demonstrate and explain safety rules"
-    },
-    "vocabulary": ["sécurité", "règles", "attention"],
-    "troubleshooting": {
-      "ifStrugglingWith": "remembering all three safety rules",
-      "then": "Start with just 'listen' rule and add others gradually over several lessons"
-    },
-    "realWorldConnection": "Learning that safety rules help us have fun and stay safe, like wearing seatbelts in cars"
+  "familyConnections": {
+    "unitLetter": "",
+    "homeActivities": [],
+    "vocabularyList": []
   },
-  {
-    "lessonNumber": 3,
-    "title": "Observer avec nos yeux de scientifiques",
-    "oneGoal": "Students will practice careful observation skills using only their eyes to notice details about objects",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Eye spy science game - students find objects with specific characteristics using only their eyes",
-      "materials": ["variety of interesting classroom objects", "observation cards"],
-      "visualSupports": "poster showing different observation words: big, small, shiny, rough"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "detailed observation practice with mystery objects in bags - students describe what they see without touching",
-      "materials": ["cloth bags with interesting objects", "observation recording sheets", "colored pencils"],
-      "visualSupports": "observation vocabulary chart with pictures, 'scientist eyes' poster",
-      "decisionPoints": [
-        {
-          "question": "Can students describe multiple details about objects using observation words?",
-          "ifYes": "Challenge them to notice tiny details or compare two similar objects",
-          "ifNo": "Model observation by thinking aloud about one object together"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Observation sharing - students tell partners about the most interesting detail they noticed",
-      "assessment": "listening to student descriptions and checking observation drawings"
-    },
-    "vocabulary": ["observer", "regarder", "détails"],
-    "troubleshooting": {
-      "ifStrugglingWith": "finding details to describe",
-      "then": "Give sentence starters: 'I see that it is...' or 'This object looks...'"
-    },
-    "realWorldConnection": "Using careful looking to notice things around us, like watching for changes in the weather"
+  "resourceAlternatives": {
+    "materials": {},
+    "digitalResources": []
   },
-  {
-    "lessonNumber": 4,
-    "title": "Écouter comme des scientifiques",
-    "oneGoal": "Students will use their sense of hearing to gather information about different objects and materials",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Sound detective game - students close eyes and identify familiar classroom sounds",
-      "materials": ["mystery sound makers", "sound cards", "quiet listening space"],
-      "visualSupports": "poster showing different sound words: loud, quiet, high, low"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "sound exploration stations where students safely shake, tap, and drop different materials to compare sounds",
-      "materials": ["containers with rice/beans/sand", "wooden blocks", "metal spoons", "soft materials"],
-      "visualSupports": "sound comparison chart, listening rules poster",
-      "decisionPoints": [
-        {
-          "question": "Can students describe differences between sounds using sound vocabulary?",
-          "ifYes": "Have them predict what sounds different materials will make",
-          "ifNo": "Focus on simple loud/quiet comparisons with clear examples"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Sound symphony - students create patterns with their favorite sound-makers from the lesson",
-      "assessment": "observation of student ability to distinguish and describe different sounds"
-    },
-    "vocabulary": ["écouter", "sons", "différent"],
-    "troubleshooting": {
-      "ifStrugglingWith": "describing sound differences",
-      "then": "Use comparative language: 'This sounds more like...' or 'Which is louder?'"
-    },
-    "realWorldConnection": "Understanding how listening carefully helps us learn, like hearing if something is working properly"
-  },
-  {
-    "lessonNumber": 5,
-    "title": "Sentir en sécurité",
-    "oneGoal": "Students will learn when and how to safely use their sense of smell in science investigations",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Safe smelling demonstration - teacher shows proper 'wafting' technique with pleasant scents",
-      "materials": ["safe scent containers", "demonstration props", "safety reminder cards"],
-      "visualSupports": "step-by-step safe smelling poster with hand gestures"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "guided scent exploration with teacher-prepared safe containers and practice of safe smelling technique",
-      "materials": ["scent containers with vanilla, lemon, cinnamon", "wafting practice materials", "recording sheets"],
-      "visualSupports": "smell safety rules chart, scent description word wall",
-      "decisionPoints": [
-        {
-          "question": "Are students using safe smelling technique consistently?",
-          "ifYes": "Let them explore different scents and describe what they smell",
-          "ifNo": "Practice wafting technique with unscented containers first"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Scent memory game - students match pleasant scents they explored and discuss safety rules",
-      "assessment": "observation of safe smelling technique and ability to describe scents"
-    },
-    "vocabulary": ["sentir", "odeur", "sécurité"],
-    "troubleshooting": {
-      "ifStrugglingWith": "safe smelling technique",
-      "then": "Practice with empty containers and emphasize 'gentle waving' motion"
-    },
-    "realWorldConnection": "Learning that some smells tell us about safety, like smelling food to know if it's fresh"
-  },
-  {
-    "lessonNumber": 6,
-    "title": "Toucher avec précaution",
-    "oneGoal": "Students will learn safe touching techniques for science exploration and when NOT to touch",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Touch safety demonstration using 'one finger first' rule and identifying no-touch items",
-      "materials": ["texture exploration materials", "no-touch examples", "safety gloves"],
-      "visualSupports": "safe touching rules poster with pictures, red 'no-touch' symbols"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "texture exploration stations with various safe materials and practice of gentle touching techniques",
-      "materials": ["sandpaper", "cotton balls", "smooth stones", "bumpy materials", "texture recording sheets"],
-      "visualSupports": "texture vocabulary chart with feeling words, safe touch reminder signs",
-      "decisionPoints": [
-        {
-          "question": "Are students using gentle touch and following 'one finger first' rule?",
-          "ifYes": "Challenge them to find textures that are similar or completely different",
-          "ifNo": "Model gentle touching with a puppet or stuffed animal first"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Texture guessing game - students describe how materials feel without naming them",
-      "assessment": "observation of safe touching behavior and texture description vocabulary"
-    },
-    "vocabulary": ["toucher", "texture", "précaution"],
-    "troubleshooting": {
-      "ifStrugglingWith": "being gentle with materials",
-      "then": "Practice 'butterfly touches' - gentle like a butterfly landing on a flower"
-    },
-    "realWorldConnection": "Understanding when it's safe to touch things and when we need to be careful, like petting friendly animals"
-  },
-  {
-    "lessonNumber": 7,
-    "title": "Nos outils de scientifiques",
-    "oneGoal": "Students will identify and name basic science tools: magnifying glass, ruler, and measuring cups",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Science tool mystery box - students guess tools by feeling them and discussing their uses",
-      "materials": ["mystery box with tools", "real science tools", "tool picture cards"],
-      "visualSupports": "large tool identification poster with names and pictures"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "hands-on tool exploration where students practice holding and using each tool safely with teacher guidance",
-      "materials": ["magnifying glasses", "rulers", "measuring cups", "exploration objects", "tool practice sheets"],
-      "visualSupports": "tool safety rules chart, proper holding technique pictures",
-      "decisionPoints": [
-        {
-          "question": "Can students hold tools safely and name them correctly?",
-          "ifYes": "Let them practice using tools with interesting objects",
-          "ifNo": "Focus on one tool at a time with lots of modeling and practice"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Tool match game - students match tool names to pictures and share which tool they're most excited to use",
-      "assessment": "observation of safe tool handling and ability to name basic science tools"
-    },
-    "vocabulary": ["outils", "loupe", "mesurer"],
-    "troubleshooting": {
-      "ifStrugglingWith": "remembering tool names",
-      "then": "Create simple rhymes or songs for each tool: 'Loupe helps me see, tiny things clearly!'"
-    },
-    "realWorldConnection": "Understanding that scientists use special tools to see and measure better, like how doctors use stethoscopes"
-  },
-  {
-    "lessonNumber": 8,
-    "title": "Explorer avec une loupe",
-    "oneGoal": "Students will use magnifying glasses safely to observe small details in familiar objects",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Magnifying glass magic - teacher demonstrates amazing details visible through magnification",
-      "materials": ["large magnifying glasses", "interesting objects for magnifying", "discovery collection"],
-      "visualSupports": "magnifying glass safety rules poster with pictures"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "guided magnifying exploration of classroom objects with focus on discovering new details and safe handling",
-      "materials": ["individual magnifying glasses", "leaves", "fabric samples", "coins", "exploration recording sheets"],
-      "visualSupports": "detail discovery chart, safe magnifying technique posters",
-      "decisionPoints": [
-        {
-          "question": "Are students discovering new details and using magnifiers safely?",
-          "ifYes": "Challenge them to compare details between similar objects",
-          "ifNo": "Provide easier objects with obvious details and model proper magnifying technique"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Amazing discoveries sharing - students share the coolest detail they discovered through magnification",
-      "assessment": "observation of magnifying glass technique and student excitement about detailed observations"
-    },
-    "vocabulary": ["loupe", "agrandir", "petits détails"],
-    "troubleshooting": {
-      "ifStrugglingWith": "seeing details through magnifier",
-      "then": "Help them find the right distance by moving slowly closer and farther from objects"
-    },
-    "realWorldConnection": "Understanding how magnifying glasses help us see tiny things, like looking at insects or reading small print"
-  },
-  {
-    "lessonNumber": 9,
-    "title": "Mesurer avec des outils",
-    "oneGoal": "Students will use simple measuring tools to compare sizes and amounts of classroom objects",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Size comparison game - students order objects by size using their hands and eyes before using tools",
-      "materials": ["objects of different sizes", "measuring tools", "comparison charts"],
-      "visualSupports": "size comparison vocabulary poster: bigger, smaller, same size"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "measurement exploration stations using non-standard (blocks, hands) and standard tools (rulers) to compare object sizes",
-      "materials": ["unit blocks", "rulers", "measuring cups", "various objects to measure", "measurement recording sheets"],
-      "visualSupports": "measurement technique posters, comparison language chart",
-      "decisionPoints": [
-        {
-          "question": "Can students use measuring tools to compare objects accurately?",
-          "ifYes": "Have them predict measurements before testing and compare predictions to results",
-          "ifNo": "Start with non-standard units (blocks, hands) and focus on 'longer/shorter' comparisons"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Measurement discoveries - students share surprising measurement discoveries and demonstrate measuring techniques",
-      "assessment": "observation of measuring tool use and understanding of size comparisons"
-    },
-    "vocabulary": ["mesurer", "comparer", "taille"],
-    "troubleshooting": {
-      "ifStrugglingWith": "using rulers correctly",
-      "then": "Start with measuring in blocks or hands first, then gradually introduce ruler use"
-    },
-    "realWorldConnection": "Understanding how we measure things in daily life, like checking if clothes fit or measuring ingredients"
-  },
-  {
-    "lessonNumber": 10,
-    "title": "Dessiner nos observations",
-    "oneGoal": "Students will create simple drawings to record what they observe during science investigations",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Scientist drawing demonstration - teacher shows how scientists draw what they see, not what they think",
-      "materials": ["drawing materials", "observation object", "example science drawings"],
-      "visualSupports": "scientific drawing rules poster: draw what you see, include details, use labels"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "guided observation drawing practice with real objects, focusing on accuracy and detail recording",
-      "materials": ["drawing paper", "pencils", "colored pencils", "interesting objects to draw", "observation journals"],
-      "visualSupports": "scientific drawing examples, observation vocabulary for labeling",
-      "decisionPoints": [
-        {
-          "question": "Are students drawing what they actually see rather than what they know?",
-          "ifYes": "Encourage them to add labels and more details to their drawings",
-          "ifNo": "Cover the object and uncover it gradually, drawing each part as they see it"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Drawing gallery walk - students display their observation drawings and explain what details they included",
-      "assessment": "evaluation of drawing accuracy and inclusion of observed details"
-    },
-    "vocabulary": ["dessiner", "noter", "observations"],
-    "troubleshooting": {
-      "ifStrugglingWith": "drawing detailed observations",
-      "then": "Start with simple shapes and add one detail at a time: 'First draw the shape, then add the color'"
-    },
-    "realWorldConnection": "Understanding that scientists keep track of what they discover by drawing, like how we draw pictures of family trips"
-  },
-  {
-    "lessonNumber": 11,
-    "title": "Trier et classer nos découvertes",
-    "oneGoal": "Students will sort objects into groups based on observable characteristics like color, size, or texture",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Sorting game with students - teacher sorts students by clothing colors, then students suggest other sorting rules",
-      "materials": ["various classroom objects", "sorting containers", "classification cards"],
-      "visualSupports": "sorting rules poster with pictures showing different ways to group objects"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "hands-on sorting activities where students classify objects multiple ways and explain their sorting decisions",
-      "materials": ["mixed collection of objects", "sorting mats", "classification labels", "recording sheets"],
-      "visualSupports": "classification vocabulary chart, sorting strategy posters",
-      "decisionPoints": [
-        {
-          "question": "Can students sort objects consistently using observable characteristics?",
-          "ifYes": "Challenge them to re-sort the same objects using different rules",
-          "ifNo": "Start with obvious differences (big/small, red/blue) and model thinking aloud"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Sorting explanations - students explain their sorting choices to partners and try to guess partners' sorting rules",
-      "assessment": "observation of sorting accuracy and student ability to explain classification decisions"
-    },
-    "vocabulary": ["trier", "classer", "groupes"],
-    "troubleshooting": {
-      "ifStrugglingWith": "explaining sorting decisions",
-      "then": "Provide sentence frames: 'I put these together because they are all...' or 'These go together because...'"
-    },
-    "realWorldConnection": "Understanding how we organize things at home by putting similar items together, like toys in bins"
-  },
-  {
-    "lessonNumber": 12,
-    "title": "Prédire et vérifier",
-    "oneGoal": "Students will make simple predictions about what might happen and then test their ideas safely",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Prediction demonstration - teacher models making a guess about what will happen, then testing it",
-      "materials": ["simple prediction materials", "prediction recording sheets", "testing materials"],
-      "visualSupports": "prediction process poster: guess, test, discover"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "guided prediction and testing activities with safe materials like floating/sinking or rolling/sliding experiments",
-      "materials": ["water containers", "various objects to test", "ramps for rolling", "prediction recording sheets"],
-      "visualSupports": "prediction vocabulary chart, testing safety reminders",
-      "decisionPoints": [
-        {
-          "question": "Are students making thoughtful predictions based on observations?",
-          "ifYes": "Have them explain why they made specific predictions",
-          "ifNo": "Model prediction thinking: 'I think this will float because it's light like...'"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Prediction celebration - students share their favorite predictions and discoveries from testing",
-      "assessment": "observation of prediction-making process and enthusiasm for testing ideas"
-    },
-    "vocabulary": ["prédire", "penser", "vérifier"],
-    "troubleshooting": {
-      "ifStrugglingWith": "making predictions",
-      "then": "Start with either/or choices: 'Do you think this will float or sink?' rather than open-ended questions"
-    },
-    "realWorldConnection": "Understanding that we often guess what will happen before we try something, like predicting weather or game outcomes"
-  },
-  {
-    "lessonNumber": 13,
-    "title": "Expérience simple avec l'eau",
-    "oneGoal": "Students will conduct a safe, simple water experiment while following established safety and observation protocols",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Water safety review and experiment preview - students practice safety rules and predict experiment outcomes",
-      "materials": ["water experiment materials", "safety reminders", "prediction sheets"],
-      "visualSupports": "water safety rules poster, experiment steps chart"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "guided water experiment where students test objects for floating/sinking while using observation tools and recording results",
-      "materials": ["water containers", "test objects", "magnifying glasses", "towels", "recording sheets"],
-      "visualSupports": "experiment process chart, result recording template",
-      "decisionPoints": [
-        {
-          "question": "Are students following safety protocols and making good observations?",
-          "ifYes": "Let them design their own tests with additional objects",
-          "ifNo": "Provide more structure and model each step clearly"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Experiment results sharing - students compare their discoveries and discuss surprises from the experiment",
-      "assessment": "evaluation of safety compliance, observation skills, and experimental thinking"
-    },
-    "vocabulary": ["expérience", "eau", "résultats"],
-    "troubleshooting": {
-      "ifStrugglingWith": "recording experiment results",
-      "then": "Use simple pictures or stamps instead of writing: float symbol or sink symbol"
-    },
-    "realWorldConnection": "Understanding that experiments help us learn by trying things safely, like testing which materials work best"
-  },
-  {
-    "lessonNumber": 14,
-    "title": "Partager nos découvertes",
-    "oneGoal": "Students will communicate their scientific observations and discoveries to classmates using words and drawings",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Scientist presentation modeling - teacher demonstrates how scientists share discoveries clearly and excitedly",
-      "materials": ["presentation examples", "discovery collections", "sharing materials"],
-      "visualSupports": "good presentation rules poster with pictures"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "student presentation preparation and practice where they choose their favorite discovery to share with the class",
-      "materials": ["discovery journals", "presentation props", "sharing station materials", "audience response sheets"],
-      "visualSupports": "presentation planning template, audience listening rules",
-      "decisionPoints": [
-        {
-          "question": "Are students comfortable sharing their discoveries and findings?",
-          "ifYes": "Encourage them to demonstrate their discoveries interactively",
-          "ifNo": "Allow sharing in pairs or small groups before presenting to the whole class"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Discovery celebration - students applaud each presentation and share what they learned from classmates",
-      "assessment": "observation of communication skills and scientific vocabulary use"
-    },
-    "vocabulary": ["partager", "expliquer", "découvertes"],
-    "troubleshooting": {
-      "ifStrugglingWith": "speaking in front of the group",
-      "then": "Let them present to stuffed animals first or whisper their discovery to you to share"
-    },
-    "realWorldConnection": "Understanding that scientists share their discoveries with others, like how we tell family about interesting things we learned"
-  },
-  {
-    "lessonNumber": 15,
-    "title": "Scientifiques dans la nature",
-    "oneGoal": "Students will apply their observation and safety skills to explore natural objects and phenomena outdoors (extension)",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Outdoor safety preparation - reviewing safety rules for nature exploration and discussing what to observe outside",
-      "materials": ["outdoor exploration tools", "safety equipment", "nature observation sheets"],
-      "visualSupports": "outdoor safety rules poster, nature observation checklist"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "guided outdoor exploration using learned observation skills to investigate natural objects, weather, and phenomena",
-      "materials": ["magnifying glasses", "collection containers", "drawing materials", "measurement tools"],
-      "visualSupports": "portable observation guide, nature safety reminders",
-      "decisionPoints": [
-        {
-          "question": "Are students applying indoor observation skills successfully outdoors?",
-          "ifYes": "Encourage them to make comparisons between indoor and outdoor discoveries",
-          "ifNo": "Focus on one observation skill at a time and provide more guided structure"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Nature discoveries debrief - students share their most interesting outdoor observations back in the classroom",
-      "assessment": "observation of skill transfer to natural settings and outdoor safety compliance"
-    },
-    "vocabulary": ["nature", "extérieur", "explorer"],
-    "troubleshooting": {
-      "ifStrugglingWith": "focusing on observations outdoors",
-      "then": "Give specific challenges: 'Find something rough' or 'Listen for three different sounds'"
-    },
-    "realWorldConnection": "Understanding that science happens everywhere, especially in nature where we can observe weather, plants, and animals"
-  },
-  {
-    "lessonNumber": 16,
-    "title": "Questions de scientifiques curieux",
-    "oneGoal": "Students will learn to ask scientific questions that can be investigated through safe observation and simple testing (extension)",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Question modeling - teacher demonstrates asking scientific questions about classroom objects and how to find answers",
-      "materials": ["interesting objects", "question word cards", "investigation materials"],
-      "visualSupports": "question word poster: What? How? Why? Where?"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "guided question generation and simple investigation planning where students ask questions about familiar objects",
-      "materials": ["mystery objects", "question recording sheets", "simple investigation materials", "answer-finding tools"],
-      "visualSupports": "question formation examples, investigation process chart",
-      "decisionPoints": [
-        {
-          "question": "Are students asking questions that can be answered through observation or simple testing?",
-          "ifYes": "Help them plan ways to investigate their questions safely",
-          "ifNo": "Model question formation and provide question starters: 'What happens if...' or 'How does...'"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Question sharing circle - students share their scientific questions and discuss how they might find answers",
-      "assessment": "evaluation of question quality and understanding of scientific inquiry"
-    },
-    "vocabulary": ["questions", "curieux", "pourquoi"],
-    "troubleshooting": {
-      "ifStrugglingWith": "asking scientific questions",
-      "then": "Start with wonder statements: 'I wonder what would happen if...' and turn them into questions"
-    },
-    "realWorldConnection": "Understanding that asking questions leads to learning, just like how we ask questions to learn about new places or activities"
-  },
-  {
-    "lessonNumber": 17,
-    "title": "Mini-laboratoire à la maison",
-    "oneGoal": "Students will identify safe science exploration opportunities they can pursue at home with family supervision (extension)",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Home safety discussion - reviewing what makes science activities safe at home with family help",
-      "materials": ["home science examples", "safety checklist", "family permission materials"],
-      "visualSupports": "home science safety rules poster with family pictures"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "home science activity planning where students choose safe investigations they can do with family members",
-      "materials": ["home science idea cards", "planning sheets", "family instruction guides", "safety checklists"],
-      "visualSupports": "home science examples chart, family supervision reminders",
-      "decisionPoints": [
-        {
-          "question": "Can students identify which activities are safe for home exploration?",
-          "ifYes": "Help them plan specific home investigations with clear family instruction",
-          "ifNo": "Focus on simple observation activities that require no special materials"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Home science promises - students commit to specific home explorations and discuss safety with families",
-      "assessment": "evaluation of home activity appropriateness and safety understanding"
-    },
-    "vocabulary": ["maison", "famille", "explorer"],
-    "troubleshooting": {
-      "ifStrugglingWith": "understanding what's safe at home",
-      "then": "Create clear examples of DO and DON'T activities with pictures and simple rules"
-    },
-    "realWorldConnection": "Understanding that science learning continues at home through safe kitchen experiments, nature walks, and careful observation"
-  },
-  {
-    "lessonNumber": 18,
-    "title": "Aider les autres à être sécuritaires",
-    "oneGoal": "Students will teach safety rules to younger students or family members, demonstrating their scientific safety knowledge (extension)",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Teaching preparation - students review safety rules and practice explaining them simply to others",
-      "materials": ["safety rule materials", "teaching props", "practice audience (stuffed animals)"],
-      "visualSupports": "teaching tips poster, safety rule visual aids"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "safety teaching practice where students prepare presentations about science safety for younger students or families",
-      "materials": ["presentation materials", "safety demonstration props", "teaching practice sheets", "audience feedback forms"],
-      "visualSupports": "good teaching examples, safety rule visuals for sharing",
-      "decisionPoints": [
-        {
-          "question": "Can students explain safety rules clearly and demonstrate them properly?",
-          "ifYes": "Have them create interactive safety demonstrations or games",
-          "ifNo": "Focus on one simple safety rule and model clear explanation techniques"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Teaching reflection - students discuss how teaching others helps them remember safety rules better",
-      "assessment": "observation of safety knowledge depth and teaching confidence"
-    },
-    "vocabulary": ["enseigner", "aider", "sécuritaire"],
-    "troubleshooting": {
-      "ifStrugglingWith": "teaching others about safety",
-      "then": "Practice with partners first and use simple phrases: 'Always remember to...'"
-    },
-    "realWorldConnection": "Understanding that we can help keep others safe by sharing what we know, like teaching siblings about playground safety"
-  },
-  {
-    "lessonNumber": 19,
-    "title": "Nos outils de scientifiques à la maison",
-    "oneGoal": "Students will identify common household items that can be used safely as science tools with adult supervision (extension)",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Home tool hunt - students brainstorm household items that could work like science tools",
-      "materials": ["household item pictures", "tool comparison charts", "home exploration ideas"],
-      "visualSupports": "household science tools poster with pictures and safety notes"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "home tool exploration where students match household items to science tools and plan safe home investigations",
-      "materials": ["household item samples", "science tool comparisons", "home investigation planning sheets", "safety guides"],
-      "visualSupports": "tool matching chart, home safety reminder posters",
-      "decisionPoints": [
-        {
-          "question": "Can students identify appropriate household items as science tools?",
-          "ifYes": "Have them plan specific investigations using these household tools",
-          "ifNo": "Show clear examples and focus on simple tools like measuring cups or flashlights"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Home tool commitments - students choose specific household tools to use for science exploration with family",
-      "assessment": "evaluation of tool appropriateness and understanding of home science safety"
-    },
-    "vocabulary": ["maison", "objets", "utiliser"],
-    "troubleshooting": {
-      "ifStrugglingWith": "identifying appropriate home tools",
-      "then": "Start with obvious examples like kitchen measuring tools or flashlights, then expand gradually"
-    },
-    "realWorldConnection": "Understanding that science tools are all around us, like using kitchen measuring cups or flashlights for exploration"
-  },
-  {
-    "lessonNumber": 20,
-    "title": "Célébration des petits scientifiques",
-    "oneGoal": "Students will demonstrate their scientific skills and safety knowledge in a celebration showcase for families and other classes (extension)",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Celebration preparation - students set up demonstration stations showing their favorite scientific discoveries",
-      "materials": ["display materials", "demonstration tools", "celebration decorations", "showcase props"],
-      "visualSupports": "celebration schedule poster, demonstration station signs"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "science celebration showcase where students demonstrate skills, share discoveries, and teach visitors about safety",
-      "materials": ["all unit tools and materials", "demonstration stations", "visitor interaction materials", "celebration activities"],
-      "visualSupports": "skill demonstration posters, visitor welcome signs, safety rule displays",
-      "decisionPoints": [
-        {
-          "question": "Are students confidently demonstrating their scientific skills and knowledge?",
-          "ifYes": "Encourage them to teach visitors about their favorite discoveries",
-          "ifNo": "Provide support partners and focus on skills they feel most confident about"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Celebration reflection - students share what they're proudest of learning and what they want to explore next",
-      "assessment": "comprehensive evaluation of scientific skill development, safety knowledge, and learning confidence"
-    },
-    "vocabulary": ["célébration", "montrer", "fierté"],
-    "troubleshooting": {
-      "ifStrugglingWith": "feeling confident during celebration",
-      "then": "Let them demonstrate with friends or focus on their strongest skills first"
-    },
-    "realWorldConnection": "Sharing our scientific learning with families and showing how we can safely explore and discover the world around us"
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
   }
-]
+}

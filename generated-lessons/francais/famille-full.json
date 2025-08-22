@@ -1,1103 +1,1122 @@
 {
   "unitTitle": "Ma famille française",
   "subject": "Français (Immersion)",
+  "grade": "1",
   "totalLessons": 20,
   "coreCount": 14,
   "extensionCount": 6,
   "lessons": [
     {
       "lessonNumber": 1,
+      "lessonType": "core",
       "title": "Ma famille",
       "oneGoal": "Students understand that 'famille' means family and can identify their own family members",
-      "keyVocabulary": ["famille", "maman", "papa"],
-      "openingConnection": "This is our very first lesson about families! Look at your family photos at home.",
-      "mainActivity": {
-        "description": "Family photo sharing circle with visual support",
+      "duration": 45,
+      "keyVocabulary": [
+        "famille",
+        "maman",
+        "papa"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Show diverse family photos and point to 'famille'",
-          "Students hold their family photos and say 'ma famille'",
-          "Practice maman/papa with gestures and pointing",
-          "Family photo walk - students move around showing photos"
-        ],
+        "activity": "Family photo sharing circle with visual support",
+        "materials": [],
         "visualSupports": [
           "Large diverse family photos on wall",
           "Hand gestures for maman (rocking baby) and papa (strong arms)",
           "Picture cards showing different family structures"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "How comfortable are students with French sounds?",
-          "ifComfortable": "Add more vocabulary and encourage repetition",
-          "ifNotComfortable": "Focus on listening and gestures, reduce speaking pressure"
-        },
-        {
-          "question": "Do students need visual family photos?",
-          "ifYes": "Provide family photo collection for students without photos",
-          "ifNo": "Let students draw quick family pictures if they prefer"
-        },
-        {
-          "question": "Should I use more gestures for comprehension?",
-          "ifYes": "Increase TPR with family member actions",
-          "ifNo": "Balance gestures with verbal repetition"
-        }
-      ],
-      "materials": [
-        "Diverse family photos (laminated)",
-        "Students' family photos",
-        "Drawing paper and crayons (backup)"
-      ],
-      "whenThingsGoWrong": {
-        "studentOverwhelmed": "Switch to just pointing and saying 'famille' together",
-        "noFamilyPhotos": "Use provided diverse family photo collection",
-        "tooNoise": "Move to quiet finger-pointing activity with photos"
+      "closing": {
+        "duration": 10,
+        "activity": "Students point to their family photo and whisper 'ma famille' - celebrates diversity",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students point to their family photo and whisper 'ma famille' - celebrates diversity",
-      "realWorldConnection": "Everyone has a family and can talk about who lives at home"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Everyone has a family and can talk about who lives at home",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 2,
+      "lessonType": "core",
       "title": "Qui est dans ma famille?",
       "oneGoal": "Students can name 3 basic family members using simple French words",
-      "keyVocabulary": ["frère", "sœur", "grand-maman"],
-      "openingConnection": "Yesterday we learned 'famille' - today we learn WHO is in the family!",
-      "mainActivity": {
-        "description": "Family member identification with movement and photos",
+      "duration": 45,
+      "keyVocabulary": [
+        "frère",
+        "sœur",
+        "grand-maman"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Review maman/papa with yesterday's photos",
-          "Introduce frère with tall/short gestures and photo examples",
-          "Practice sœur with girl gestures and inclusive examples",
-          "Add grand-maman with loving grandma gestures",
-          "Family member sorting game with photos"
-        ],
+        "activity": "Family member identification with movement and photos",
+        "materials": [],
         "visualSupports": [
           "Family member picture cards showing diversity",
           "Height gestures for frère (brother)",
           "Inclusive photos showing different family structures"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Are students ready for siblings vocabulary?",
-          "ifReady": "Continue with frère/sœur and let students share about siblings",
-          "ifNotReady": "Focus only on parents today, save siblings for tomorrow"
-        },
-        {
-          "question": "Do students need to draw their families first?",
-          "ifYes": "Start with 5-minute family drawing, then add vocabulary",
-          "ifNo": "Use photos and cards for vocabulary introduction"
-        },
-        {
-          "question": "Should I include different family structures?",
-          "ifYes": "Show single parents, step-siblings, adopted families naturally",
-          "ifSensitive": "Focus on 'people who love us' rather than traditional labels"
-        }
-      ],
-      "materials": [
-        "Diverse family member photo cards",
-        "Students' family photos from yesterday",
-        "Large chart paper for family sorting"
-      ],
-      "whenThingsGoWrong": {
-        "studentConfused": "Go back to maman/papa only, add one new word",
-        "familyStructureQuestion": "Emphasize 'people who love and care for us'",
-        "tooManyWords": "Choose one new word (frère OR sœur) and practice well"
+      "closing": {
+        "duration": 10,
+        "activity": "Students point to family members in photos and name them in French",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students point to family members in photos and name them in French",
-      "realWorldConnection": "Children can describe who lives in their house"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Children can describe who lives in their house",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 3,
+      "lessonType": "core",
       "title": "Ma famille à moi",
       "oneGoal": "Students can point to and name their family members in photos or drawings",
-      "keyVocabulary": ["grand-papa", "mon", "ma"],
-      "openingConnection": "We know frère, sœur, maman, papa - now let's talk about YOUR special family!",
-      "mainActivity": {
-        "description": "Personalized family sharing with possessive language",
+      "duration": 45,
+      "keyVocabulary": [
+        "grand-papa",
+        "mon",
+        "ma"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Introduce 'mon papa' and 'ma maman' with personal photos",
-          "Practice pointing: 'mon frère' or 'ma sœur'",
-          "Add grand-papa with gesture of wise, loving grandfather",
-          "Students create personal family poster with labels",
-          "Gallery walk where students share 'ma famille'"
-        ],
+        "activity": "Personalized family sharing with possessive language",
+        "materials": [],
         "visualSupports": [
           "Hand gestures showing possession (pointing to self, then family)",
           "Visual cue cards for 'mon' (masculine) vs 'ma' (feminine)",
           "Student family photos arranged on personal posters"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Are students ready for possessive words?",
-          "ifReady": "Practice mon/ma with multiple family members",
-          "ifNotReady": "Just use names without possessives: 'papa' instead of 'mon papa'"
-        },
-        {
-          "question": "Do some students need help with family photos?",
-          "ifYes": "Provide drawing materials and help students draw family",
-          "ifNo": "Focus on labeling and sharing existing photos"
-        },
-        {
-          "question": "Should I focus on speaking or pointing today?",
-          "ifSpeaking": "Encourage students to name family members aloud",
-          "ifPointing": "Allow quiet pointing with teacher saying words"
-        }
-      ],
-      "materials": [
-        "Students' family photos",
-        "Poster paper and glue sticks",
-        "French family labels to cut out",
-        "Crayons for students who want to draw"
-      ],
-      "whenThingsGoWrong": {
-        "studentEmbarrassed": "Let them work with a partner or just point quietly",
-        "confusedByPossessive": "Skip mon/ma and just use family member names",
-        "noFamilyInfo": "Help student create 'chosen family' with caring adults"
+      "closing": {
+        "duration": 10,
+        "activity": "Students hold up their family poster and say one family member name",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students hold up their family poster and say one family member name",
-      "realWorldConnection": "Children show family photos and talk about them"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Children show family photos and talk about them",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 4,
+      "lessonType": "core",
       "title": "Les familles sont différentes",
       "oneGoal": "Students understand that families can look different and that's wonderful",
-      "keyVocabulary": ["différent", "spécial", "beau"],
-      "openingConnection": "Look at all our family posters! Every family is different and special!",
-      "mainActivity": {
-        "description": "Celebrating family diversity with visual exploration",
+      "duration": 45,
+      "keyVocabulary": [
+        "différent",
+        "spécial",
+        "beau"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Gallery walk of diverse family photos showing different structures",
-          "Practice 'différent' with contrasting family photos (size, composition)",
-          "Teach 'spécial' with heart gestures - every family is special",
-          "Learn 'beau' (beautiful) while looking at all family types",
-          "Students find similarities AND differences in family photos",
-          "Create class book page: 'Our families are different and beautiful'"
-        ],
+        "activity": "Celebrating family diversity with visual exploration",
+        "materials": [],
         "visualSupports": [
           "Photo collection: single parents, grandparents raising children, mixed race families, adopted families, same-gender parents, big and small families",
           "Heart gesture for 'spécial'",
           "Beauty gesture (hands to face, smile) for 'beau'",
           "Comparison charts showing different family structures"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "How can I represent diverse family structures sensitively?",
-          "ifSensitively": "Present all families as loving, use inclusive language naturally",
-          "ifQuestion": "Answer simply: 'Some families have two moms, some have grandparents, all families love each other'"
-        },
-        {
-          "question": "Do students need time to process differences?",
-          "ifYes": "Slow down, let students ask questions and explore photos longer",
-          "ifNo": "Continue with vocabulary and move to similarities activity"
-        },
-        {
-          "question": "Should I focus on similarities or differences today?",
-          "ifSimilarities": "Emphasize how all families love and care for each other",
-          "ifDifferences": "Celebrate the wonderful variety in family structures"
-        }
-      ],
-      "materials": [
-        "Diverse family photo collection (many different structures)",
-        "Chart paper for class book",
-        "Markers and crayons",
-        "Simple comparison chart template"
-      ],
-      "whenThingsGoWrong": {
-        "studentQuestions": "Answer simply: 'Families are made of people who love each other'",
-        "confusionAboutDifferences": "Focus on 'love' being the same in all families",
-        "sensitiveFamilyIssue": "Privately affirm that student's family is wonderful and special"
+      "closing": {
+        "duration": 10,
+        "activity": "Students look at their own family poster and say 'Ma famille est spéciale'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students look at their own family poster and say 'Ma famille est spéciale'",
-      "realWorldConnection": "Families come in many forms - single parents, grandparents, step-families, adopted families"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Families come in many forms - single parents, grandparents, step-families, adopted families",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 5,
+      "lessonType": "core",
       "title": "Qu'est-ce qu'on fait ensemble?",
       "oneGoal": "Students can identify one activity they do with family members",
-      "keyVocabulary": ["manger", "jouer", "regarder"],
-      "openingConnection": "Beautiful! All families are spécial. Now let's learn what families DO together!",
-      "mainActivity": {
-        "description": "Family activities introduction with action and movement",
+      "duration": 45,
+      "keyVocabulary": [
+        "manger",
+        "jouer",
+        "regarder"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Introduce 'manger' with eating gesture and family meal photos",
-          "Practice 'jouer' with play actions and game photos",
-          "Learn 'regarder' with looking gesture and TV/book photos",
-          "Family activity charades - students act out activities",
-          "Students draw one activity they do with their family",
-          "Share drawings: 'Je... avec ma famille' (with gestures)"
-        ],
+        "activity": "Family activities introduction with action and movement",
+        "materials": [],
         "visualSupports": [
           "Action photos: families eating together, playing games, watching movies, reading books",
           "Large gesture cards for each activity",
           "TPR actions: eating motion, playing motion, watching motion"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Are students ready for action words?",
-          "ifReady": "Add all three activities and let students practice with movement",
-          "ifNotReady": "Focus on just one activity (manger) and do it well"
-        },
-        {
-          "question": "Do students need to act out activities?",
-          "ifYes": "Include lots of TPR and movement with each vocabulary word",
-          "ifNo": "Focus more on photo recognition and simple repetition"
-        },
-        {
-          "question": "Should I use family activity photos?",
-          "ifYes": "Show diverse families doing activities together",
-          "ifNo": "Have students demonstrate activities with their own gestures"
-        }
-      ],
-      "materials": [
-        "Family activity photo collection",
-        "Action gesture cards",
-        "Drawing paper and crayons",
-        "Simple activity props (play food, books, games)"
-      ],
-      "whenThingsGoWrong": {
-        "tooMuchMovement": "Switch to seated gestures and quiet photo activity",
-        "vocabularyOverload": "Choose one activity word and practice it thoroughly",
-        "studentNoIdeas": "Show photo prompts and help student choose one activity"
+      "closing": {
+        "duration": 10,
+        "activity": "Students do one activity gesture and say the French word",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students do one activity gesture and say the French word",
-      "realWorldConnection": "Families eat meals together, play games, watch movies"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Families eat meals together, play games, watch movies",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 6,
+      "lessonType": "core",
       "title": "Notre maison",
       "oneGoal": "Students can name where their family lives and spends time",
-      "keyVocabulary": ["maison", "cuisine", "salon"],
-      "openingConnection": "Families manger, jouer, regarder - now WHERE do families do these things?",
-      "mainActivity": {
-        "description": "Family homes and rooms exploration with inclusive housing types",
+      "duration": 45,
+      "keyVocabulary": [
+        "maison",
+        "cuisine",
+        "salon"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Introduce 'maison' with house gesture and diverse home photos",
-          "Show 'cuisine' with cooking gesture and kitchen photos",
-          "Learn 'salon' with relaxing gesture and living room photos",
-          "Students draw their home and label one room in French",
-          "Room connection activity: match activities to rooms",
-          "Students share: 'Dans ma cuisine, on manger'"
-        ],
+        "activity": "Family homes and rooms exploration with inclusive housing types",
+        "materials": [],
         "visualSupports": [
           "Diverse home photos: houses, apartments, condos, mobile homes, different sizes",
           "Room photos showing different home layouts and decorating styles",
           "Simple house outline template for drawing",
           "Activity-room matching cards"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Do students understand home vocabulary?",
-          "ifYes": "Continue with room names and matching activities",
-          "ifNo": "Focus only on 'maison' and let students show their homes"
-        },
-        {
-          "question": "Should I include apartments and other homes?",
-          "ifYes": "Show apartments, condos, different types of housing naturally",
-          "ifSensitive": "Focus on 'home is where family is' rather than house types"
-        },
-        {
-          "question": "Are students ready to describe rooms?",
-          "ifReady": "Let students describe what happens in each room",
-          "ifNotReady": "Just name rooms and point to them in pictures"
-        }
-      ],
-      "materials": [
-        "Diverse housing photos (houses, apartments, different styles)",
-        "Room photos with families doing activities",
-        "Simple house drawing template",
-        "Room-activity matching cards"
-      ],
-      "whenThingsGoWrong": {
-        "housingInsecurity": "Emphasize 'where family is together' not type of house",
-        "vocabularyConfusion": "Focus on just 'maison' and let students draw",
-        "drawingDifficulty": "Provide simple house templates or let students use photos"
+      "closing": {
+        "duration": 10,
+        "activity": "Students point to their house drawing and say 'Ma maison'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students point to their house drawing and say 'Ma maison'",
-      "realWorldConnection": "Families live in houses, apartments, different types of homes"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Families live in houses, apartments, different types of homes",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 7,
+      "lessonType": "core",
       "title": "Nos traditions familiales",
       "oneGoal": "Students understand that families have special traditions and celebrations",
-      "keyVocabulary": ["tradition", "fête", "célébrer"],
-      "openingConnection": "In our maisons, families do special things! Let's learn about traditions!",
-      "mainActivity": {
-        "description": "Family traditions exploration celebrating cultural diversity",
+      "duration": 45,
+      "keyVocabulary": [
+        "tradition",
+        "fête",
+        "célébrer"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Introduce 'tradition' with photos of diverse family celebrations",
-          "Learn 'fête' with party gesture and celebration photos",
-          "Practice 'célébrer' with happy celebration movements",
-          "Share diverse cultural traditions: birthdays, holidays, cultural festivals, special meals",
-          "Students draw or share one family tradition",
-          "Create tradition gallery showing class diversity"
-        ],
+        "activity": "Family traditions exploration celebrating cultural diversity",
+        "materials": [],
         "visualSupports": [
           "Photos of diverse cultural celebrations: Christmas, Hanukkah, Eid, Diwali, Chinese New Year, birthdays, quinceañeras, powwows, etc.",
           "Celebration gestures (clapping, arms up, happy movements)",
           "Cultural food photos, music, decorations from different traditions"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "How can I include diverse cultural traditions?",
-          "ifInclude": "Show many different cultural celebrations as equally wonderful",
-          "ifLimited": "Start with birthdays and common celebrations, expand later"
-        },
-        {
-          "question": "Do students need examples of traditions first?",
-          "ifYes": "Show lots of different tradition photos before asking students to share",
-          "ifNo": "Let students share their traditions and support with French vocabulary"
-        },
-        {
-          "question": "Should I focus on holidays or daily traditions?",
-          "ifHolidays": "Celebrate big cultural holidays and religious celebrations",
-          "ifDaily": "Focus on daily traditions like family dinner, bedtime stories"
-        }
-      ],
-      "materials": [
-        "Diverse cultural celebration photo collection",
-        "Drawing materials for tradition pictures",
-        "Chart paper for tradition gallery",
-        "Props representing different cultural traditions"
-      ],
-      "whenThingsGoWrong": {
-        "culturalSensitivity": "Present all traditions as wonderful, avoid comparisons",
-        "studentNoTraditions": "Help identify simple traditions like family dinner",
-        "overwhelmingChoices": "Focus on one tradition student wants to share"
+      "closing": {
+        "duration": 10,
+        "activity": "Students make celebration gesture and say 'Ma famille célèbre'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students make celebration gesture and say 'Ma famille célèbre'",
-      "realWorldConnection": "Families celebrate birthdays, holidays, have special meals and customs"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Families celebrate birthdays, holidays, have special meals and customs",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 8,
+      "lessonType": "core",
       "title": "Mon histoire familiale",
       "oneGoal": "Students can tell one simple story about their family",
-      "keyVocabulary": ["histoire", "hier", "aujourd'hui"],
-      "openingConnection": "Our families have beautiful traditions! Now let's tell stories about our families!",
-      "mainActivity": {
-        "description": "Family storytelling with sequence support and visual aids",
+      "duration": 45,
+      "keyVocabulary": [
+        "histoire",
+        "hier",
+        "aujourd'hui"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Introduce 'histoire' with story book gesture and family story photos",
-          "Learn 'hier' (yesterday) with backward gesture and past photos",
-          "Practice 'aujourd'hui' (today) with present gesture and current photos",
-          "Teacher models simple family story with photos: 'Hier, ma famille...'",
-          "Students choose family memory to share (with photo or drawing support)",
-          "Partner storytelling with simple French phrases and gestures"
-        ],
+        "activity": "Family storytelling with sequence support and visual aids",
+        "materials": [],
         "visualSupports": [
           "Story sequence cards showing family activities over time",
           "Time gesture cards: yesterday (backward point), today (here point)",
           "Family memory photo prompts",
           "Simple story starter phrases on cards"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Are students ready to sequence events?",
-          "ifReady": "Help students put family memories in hier/aujourd'hui order",
-          "ifNotReady": "Just focus on one family memory with 'histoire' vocabulary"
-        },
-        {
-          "question": "Do students need story prompts or pictures?",
-          "ifYes": "Provide family activity picture prompts and story starters",
-          "ifNo": "Let students choose their own family memory to share"
-        },
-        {
-          "question": "Should stories be about recent or past events?",
-          "ifRecent": "Focus on yesterday and today activities",
-          "ifPast": "Allow any family memory that's important to student"
-        }
-      ],
-      "materials": [
-        "Family story photo examples",
-        "Time sequence cards (yesterday/today)",
-        "Drawing materials for memory pictures",
-        "Simple French story starter phrases"
-      ],
-      "whenThingsGoWrong": {
-        "studentNonverbal": "Let student point to pictures and teacher narrates in French",
-        "difficultMemory": "Guide toward positive, simple family activities",
-        "timeConfusion": "Skip time words, focus just on family 'histoire'"
+      "closing": {
+        "duration": 10,
+        "activity": "Students show their memory picture and say 'Mon histoire'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students show their memory picture and say 'Mon histoire'",
-      "realWorldConnection": "People tell stories about their families and share memories"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "People tell stories about their families and share memories",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 9,
+      "lessonType": "core",
       "title": "Je décris ma famille",
       "oneGoal": "Students can use simple descriptive words about family members",
-      "keyVocabulary": ["grand", "petit", "gentil"],
-      "openingConnection": "We have family stories! Now let's describe our family members!",
-      "mainActivity": {
-        "description": "Family description practice with inclusive, positive language",
+      "duration": 45,
+      "keyVocabulary": [
+        "grand",
+        "petit",
+        "gentil"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Introduce 'grand' with tall gesture and photos of tall family members",
-          "Practice 'petit' with small gesture and photos of young family members",
-          "Learn 'gentil' (kind) with heart gesture and photos of caring moments",
-          "Students practice describing family photos: 'Mon papa est grand'",
-          "Create family description cards with drawings and labels",
-          "Guess the family member game using descriptions"
-        ],
+        "activity": "Family description practice with inclusive, positive language",
+        "materials": [],
         "visualSupports": [
           "Family photos showing different sizes and ages positively",
           "Size comparison gestures (tall, short) that are respectful",
           "Kindness photos: hugging, helping, caring family moments",
           "Description word cards with pictures and gestures"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Are students ready for descriptive language?",
-          "ifReady": "Add more descriptive words and encourage full descriptions",
-          "ifNotReady": "Focus on just one descriptor per family member"
-        },
-        {
-          "question": "Should I focus on physical or personality traits?",
-          "ifPhysical": "Use grand/petit respectfully for height/age descriptions",
-          "ifPersonality": "Focus on gentil and other positive personality words"
-        },
-        {
-          "question": "Do students need vocabulary cards for support?",
-          "ifYes": "Provide picture-word cards for descriptive vocabulary",
-          "ifNo": "Let students practice descriptions from memory"
-        }
-      ],
-      "materials": [
-        "Diverse family photos showing different sizes, ages",
-        "Descriptive word cards with pictures",
-        "Drawing materials for family description cards",
-        "Family member photos for guessing game"
-      ],
-      "whenThingsGoWrong": {
-        "negativeDescriptions": "Redirect to positive traits, model kind language",
-        "sizeSensitivity": "Focus on age rather than size if needed",
-        "vocabularyOverload": "Choose one descriptive word and practice well"
+      "closing": {
+        "duration": 10,
+        "activity": "Students show family photo and share one positive description",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students show family photo and share one positive description",
-      "realWorldConnection": "When we talk about family, we describe what they look like and how they act"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "When we talk about family, we describe what they look like and how they act",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 10,
+      "lessonType": "core",
       "title": "Les émotions en famille",
       "oneGoal": "Students can express how family makes them feel",
-      "keyVocabulary": ["heureux", "content", "aimé"],
-      "openingConnection": "We describe our families! Now let's share how our families make us feel!",
-      "mainActivity": {
-        "description": "Family emotions exploration with emotional safety and support",
+      "duration": 45,
+      "keyVocabulary": [
+        "heureux",
+        "content",
+        "aimé"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Introduce 'heureux' (happy) with big smile and happy family photos",
-          "Practice 'content' (pleased/satisfied) with calm happy gesture",
-          "Learn 'aimé' (loved) with hug-self gesture and loving family photos",
-          "Students match emotion words to family activity photos",
-          "Create feeling flower: family activities that make them feel each emotion",
-          "Share: 'Avec ma famille, je suis...' with emotion gesture"
-        ],
+        "activity": "Family emotions exploration with emotional safety and support",
+        "materials": [],
         "visualSupports": [
           "Family emotion photos: laughing together, hugging, playing peacefully",
           "Emotion face cards showing happy, content, loved feelings",
           "Feeling flower template with petals for different emotions",
           "Gesture cards for each emotion word"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Are students comfortable sharing emotions?",
-          "ifComfortable": "Encourage detailed sharing about family feelings",
-          "ifNotComfortable": "Keep sharing private or with just teacher"
-        },
-        {
-          "question": "Do students need emotion cards or faces?",
-          "ifYes": "Provide emotion face cards and let students point to feelings",
-          "ifNo": "Let students express emotions through gestures and words"
-        },
-        {
-          "question": "Should I include challenging emotions too?",
-          "ifYes": "Acknowledge that families sometimes have sad moments too",
-          "ifNo": "Focus only on positive family emotions today"
-        }
-      ],
-      "materials": [
-        "Happy family activity photos",
-        "Emotion face cards (positive emotions)",
-        "Feeling flower template",
-        "Crayons and markers for flower activity"
-      ],
-      "whenThingsGoWrong": {
-        "studentSadness": "Acknowledge feelings, focus on love and support available",
-        "emotionalOverwhelm": "Move to simple pointing activity with emotion cards",
-        "familyDifficulties": "Emphasize that all families have challenges and love"
+      "closing": {
+        "duration": 10,
+        "activity": "Students hug themselves and say 'Je suis aimé dans ma famille'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students hug themselves and say 'Je suis aimé dans ma famille'",
-      "realWorldConnection": "Families make us feel loved, happy, safe, and sometimes other emotions too"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Families make us feel loved, happy, safe, and sometimes other emotions too",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 11,
+      "lessonType": "core",
       "title": "Créer notre livre de famille",
       "oneGoal": "Students begin creating a simple family book with pictures and words",
-      "keyVocabulary": ["livre", "page", "écrire"],
-      "openingConnection": "Family emotions are beautiful! Let's create a book about our families!",
-      "mainActivity": {
-        "description": "Family book creation project with scaffolded writing support",
+      "duration": 45,
+      "keyVocabulary": [
+        "livre",
+        "page",
+        "écrire"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Introduce 'livre' with book gesture and family book examples",
-          "Practice 'page' by turning pages and pointing",
-          "Learn 'écrire' (to write) with writing gesture and examples",
-          "Students plan their family book: what to include on each page",
-          "Create first book page: cover with 'Ma Famille' and decorations",
-          "Choose photos or draw family members for inside pages"
-        ],
+        "activity": "Family book creation project with scaffolded writing support",
+        "materials": [],
         "visualSupports": [
           "Family book examples showing different styles and contents",
           "Book-making materials clearly organized",
           "Page planning template with picture/word spaces",
           "French word labels available for students to copy"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Are students ready for a creation project?",
-          "ifReady": "Let students plan and create their own book design",
-          "ifNotReady": "Provide more structure and template pages"
-        },
-        {
-          "question": "Do students need templates or can they start from scratch?",
-          "ifTemplate": "Provide book page templates with spaces for pictures and words",
-          "ifScratch": "Let creative students design their own book layout"
-        },
-        {
-          "question": "Should I focus on pictures or words today?",
-          "ifPictures": "Emphasize family photos and drawings with minimal writing",
-          "ifWords": "Help students copy French family vocabulary into books"
-        }
-      ],
-      "materials": [
-        "Construction paper for book pages",
-        "Stapler or brad fasteners for binding",
-        "Glue sticks for photos",
-        "French family vocabulary word bank",
-        "Crayons, markers, decorating materials"
-      ],
-      "whenThingsGoWrong": {
-        "overwhelmedByChoices": "Provide simple 3-page template: cover, family members, activities",
-        "perfectionistConcerns": "Emphasize that all books are beautiful and personal",
-        "writingDifficulty": "Let students dictate to teacher or copy simple French words"
+      "closing": {
+        "duration": 10,
+        "activity": "Students hold their book cover and say 'Mon livre de famille'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students hold their book cover and say 'Mon livre de famille'",
-      "realWorldConnection": "People create photo albums and books to remember and share family memories"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "People create photo albums and books to remember and share family memories",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 12,
+      "lessonType": "core",
       "title": "Mon arbre généalogique",
       "oneGoal": "Students create a simple family tree showing relationships",
-      "keyVocabulary": ["arbre", "parents", "enfant"],
-      "openingConnection": "Our family books are beautiful! Now let's make family trees!",
-      "mainActivity": {
-        "description": "Family tree creation with inclusive, diverse family structures",
+      "duration": 45,
+      "keyVocabulary": [
+        "arbre",
+        "parents",
+        "enfant"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Introduce 'arbre' (tree) with tree gesture and family tree examples",
-          "Practice 'parents' with protective gesture and diverse parent photos",
-          "Learn 'enfant' (child) with small person gesture and children photos",
-          "Show family tree examples with different family structures",
-          "Students create their own family tree using template or freehand",
-          "Add family photos or drawings to their tree"
-        ],
+        "activity": "Family tree creation with inclusive, diverse family structures",
+        "materials": [],
         "visualSupports": [
           "Family tree examples showing single parents, grandparents, step-families, adopted families, etc.",
           "Tree templates with flexible branching for different family structures",
           "Family relationship picture cards",
           "Examples of creative family trees (not just traditional format)"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Do students understand family relationships?",
-          "ifYes": "Help students map their specific family relationships on tree",
-          "ifNo": "Focus on immediate family members (people at home) only"
-        },
-        {
-          "question": "Should I provide tree templates?",
-          "ifYes": "Offer multiple template options for different family structures",
-          "ifNo": "Let students draw their own tree design from scratch"
-        },
-        {
-          "question": "How can I accommodate different family structures?",
-          "ifAccommodate": "Show trees with guardians, single parents, blended families as equally valid",
-          "ifSensitive": "Focus on 'important people in my family' rather than traditional roles"
-        }
-      ],
-      "materials": [
-        "Family tree templates (multiple formats)",
-        "Large paper for creative tree designs",
-        "Family photos for tree decoration",
-        "Green paper for leaves, brown for branches",
-        "Glue sticks and decorating materials"
-      ],
-      "whenThingsGoWrong": {
-        "complexFamilySituation": "Help student focus on people who care for them now",
-        "traditionalTreeDoesntFit": "Create 'family garden' or 'family heart' instead of tree",
-        "missingFamilyInfo": "Include chosen family, caring adults, or close friends"
+      "closing": {
+        "duration": 10,
+        "activity": "Students point to their family tree and say 'Mon arbre de famille'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students point to their family tree and say 'Mon arbre de famille'",
-      "realWorldConnection": "Family trees help people understand how family members are related"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Family trees help people understand how family members are related",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 13,
+      "lessonType": "core",
       "title": "Partager nos familles",
       "oneGoal": "Students practice presenting their family information to others",
-      "keyVocabulary": ["présenter", "montrer", "expliquer"],
-      "openingConnection": "Beautiful family trees! Now let's get ready to share our families with others!",
-      "mainActivity": {
-        "description": "Presentation preparation with confidence-building supports",
+      "duration": 45,
+      "keyVocabulary": [
+        "présenter",
+        "montrer",
+        "expliquer"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Introduce 'présenter' with presentation gesture and examples",
-          "Practice 'montrer' (to show) with pointing and displaying gestures",
-          "Learn 'expliquer' (to explain) with talking gesture and examples",
-          "Students practice presenting with their family books and trees",
-          "Partner practice: students share with one other person first",
-          "Presentation tips: speak slowly, point to pictures, take turns"
-        ],
+        "activity": "Presentation preparation with confidence-building supports",
+        "materials": [],
         "visualSupports": [
           "Presentation example videos or photos of children sharing",
           "Gesture cards for presenting vocabulary",
           "Simple French phrases for presentations on chart",
           "Visual cues for good presentation skills"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Are students ready to share publicly?",
-          "ifReady": "Practice presentations and prepare for tomorrow's sharing",
-          "ifNotReady": "Keep sharing in pairs or small groups for comfort"
-        },
-        {
-          "question": "Do students need presentation supports?",
-          "ifYes": "Provide French phrase cards and presentation structure supports",
-          "ifNo": "Let students present freely using vocabulary they know"
-        },
-        {
-          "question": "Should sharing be in pairs or small groups?",
-          "ifPairs": "Continue partner sharing for more practice and comfort",
-          "ifGroups": "Move to small group sharing (3-4 students) for safety"
-        }
-      ],
-      "materials": [
-        "Students' family books and trees from previous lessons",
-        "French presentation phrase cards",
-        "Chart with presentation tips",
-        "Timer for practice sessions"
-      ],
-      "whenThingsGoWrong": {
-        "presentationAnxiety": "Allow written sharing or drawing instead of speaking",
-        "studentNotReady": "Let student be audience member only, no pressure",
-        "vocabularyForgotten": "Provide phrase cards and pointing supports"
+      "closing": {
+        "duration": 10,
+        "activity": "Students practice presentation opening: 'Voici ma famille'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students practice presentation opening: 'Voici ma famille'",
-      "realWorldConnection": "People enjoy sharing and learning about each other's families"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "People enjoy sharing and learning about each other's families",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 14,
+      "lessonType": "core",
       "title": "Célébration des familles",
       "oneGoal": "Students demonstrate their French family vocabulary through presentations and celebration",
-      "keyVocabulary": ["célébration", "fier", "apprendre"],
-      "openingConnection": "Today we celebrate! Let's share our beautiful families with pride!",
-      "mainActivity": {
-        "description": "Culminating family celebration with presentations and reflection",
+      "duration": 45,
+      "keyVocabulary": [
+        "célébration",
+        "fier",
+        "apprendre"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Learn 'célébration' with party gesture and excitement",
-          "Practice 'fier' (proud) with proud posture and confidence gesture",
-          "Introduce 'apprendre' (to learn) with learning gesture and examples",
-          "Students present their family books and trees to class",
-          "Celebration of family diversity: all families are wonderful",
-          "Reflection: What did we learn about families? (Je sais...)"
-        ],
+        "activity": "Culminating family celebration with presentations and reflection",
+        "materials": [],
         "visualSupports": [
           "Celebration decorations honoring family diversity",
           "Presentation area with special chair or podium",
           "Photo documentation of student presentations",
           "Celebration music from different cultures"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Are students confident enough to present?",
-          "ifConfident": "Encourage full presentations with questions from audience",
-          "ifNervous": "Support with shortened sharing or partner presentations"
-        },
-        {
-          "question": "Should presentations be formal or informal?",
-          "ifFormal": "Create special presentation ceremony with audience seating",
-          "ifInformal": "Casual sharing in circle with family books and trees displayed"
-        },
-        {
-          "question": "How can I ensure every family feels celebrated?",
-          "ifEnsure": "Comment positively on each family's unique qualities",
-          "ifWorried": "Prepare inclusive language celebrating all family structures equally"
-        }
-      ],
-      "materials": [
-        "All student family books and trees",
-        "Celebration decorations representing cultural diversity",
-        "Camera for documentation",
-        "Special certificate or recognition for each student"
-      ],
-      "whenThingsGoWrong": {
-        "studentRefusesPresent": "Let them show their work quietly to teacher only",
-        "timeRunsOut": "Continue celebration over multiple days if needed",
-        "emotionalMoments": "Celebrate emotions as part of loving families"
+      "closing": {
+        "duration": 10,
+        "activity": "Group celebration: 'Nos familles sont belles et spéciales!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Group celebration: 'Nos familles sont belles et spéciales!'",
-      "realWorldConnection": "Communities celebrate diversity and the importance of families"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Communities celebrate diversity and the importance of families",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 15,
+      "lessonType": "extension",
       "title": "Jeux de rôle familiaux",
       "oneGoal": "Students practice family vocabulary through dramatic play and role-playing",
+      "duration": 45,
       "keyVocabulary": [],
-      "openingConnection": "Extension: Now let's PLAY being families and practice our French vocabulary!",
-      "mainActivity": {
-        "description": "Family dramatic play with French vocabulary reinforcement",
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Set up family role-play center with diverse family scenarios",
-          "Students choose family roles and practice French vocabulary in context",
-          "Role-play family activities: manger, jouer, célébrer",
-          "Practice family relationships and interactions in French",
-          "Rotate through different family scenarios and traditions",
-          "Reflection: Which French family words did we use in our play?"
-        ],
+        "activity": "Family dramatic play with French vocabulary reinforcement",
+        "materials": [],
         "visualSupports": [
           "Role-play props representing different cultures and family structures",
           "French vocabulary cards displayed in play area",
           "Family scenario cards for inspiration",
           "Costumes or accessories representing different family roles"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Which family scenarios should we act out?",
-          "ifVariety": "Include meal times, celebrations, daily activities, traditions",
-          "ifSimple": "Focus on basic family interactions like playing and eating"
-        },
-        {
-          "question": "Do students need props or costumes?",
-          "ifYes": "Provide simple props that represent different cultures and roles",
-          "ifNo": "Use imagination and gestures for role-play without props"
-        },
-        {
-          "question": "Should role-play be structured or free?",
-          "ifStructured": "Provide scenario cards and specific vocabulary to use",
-          "ifFree": "Let students create their own family play using French vocabulary"
-        }
-      ],
-      "materials": [
-        "Play kitchen area or props",
-        "Culturally diverse dolls and figures",
-        "French vocabulary cards for reference",
-        "Simple costumes or props",
-        "Family scenario suggestion cards"
-      ],
-      "whenThingsGoWrong": {
-        "conflictInPlay": "Redirect to cooperation and family kindness",
-        "forgettingFrench": "Prompt with vocabulary cards and gentle reminders",
-        "excludingOthers": "Practice including everyone in family play"
+      "closing": {
+        "duration": 10,
+        "activity": "Students share one French word they used during family play",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students share one French word they used during family play",
-      "realWorldConnection": "Playing family helps children understand family roles and relationships"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Playing family helps children understand family roles and relationships",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 16,
+      "lessonType": "extension",
       "title": "Album photo familial",
       "oneGoal": "Students create detailed family photo albums with French captions",
+      "duration": 45,
       "keyVocabulary": [],
-      "openingConnection": "Extension: Let's create beautiful photo albums with French words about our families!",
-      "mainActivity": {
-        "description": "Family photo album creation with French captioning practice",
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Students organize their family photos chronologically or by theme",
-          "Practice writing French captions using unit vocabulary",
-          "Create album pages with photos and French descriptions",
-          "Add family vocabulary labels to photos",
-          "Decorate album pages with family traditions and cultural elements",
-          "Partner sharing of photo albums with French descriptions"
-        ],
+        "activity": "Family photo album creation with French captioning practice",
+        "materials": [],
         "visualSupports": [
           "Album page templates with spaces for photos and captions",
           "French family vocabulary word bank displayed",
           "Example photo albums with French captions",
           "Cultural decorating materials representing diversity"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Do students have enough photos to work with?",
-          "ifYes": "Let students select their favorite family photos for album",
-          "ifNo": "Provide option to draw family pictures or use previous drawings"
-        },
-        {
-          "question": "Should captions be single words or sentences?",
-          "ifWords": "Focus on labeling family members and activities with single French words",
-          "ifSentences": "Help students create simple French sentences about their photos"
-        },
-        {
-          "question": "How can I help students with writing?",
-          "ifSupport": "Provide French word cards to copy and sentence starters",
-          "ifIndependent": "Let students write freely using vocabulary they remember"
-        }
-      ],
-      "materials": [
-        "Student family photos",
-        "Album pages or small booklets",
-        "Glue sticks and scissors",
-        "French vocabulary word bank",
-        "Decorating materials from different cultures",
-        "Fine-tip markers for writing"
-      ],
-      "whenThingsGoWrong": {
-        "writingFrustration": "Allow students to copy words or dictate to teacher",
-        "noPhotos": "Help students use drawings from previous lessons",
-        "perfectionism": "Emphasize that family albums are personal and all are beautiful"
+      "closing": {
+        "duration": 10,
+        "activity": "Students show one photo album page and read the French caption",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students show one photo album page and read the French caption",
-      "realWorldConnection": "Family photo albums preserve memories and help tell family stories"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Family photo albums preserve memories and help tell family stories",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 17,
+      "lessonType": "extension",
       "title": "Interviews avec la famille",
       "oneGoal": "Students practice asking family members questions in French",
+      "duration": 45,
       "keyVocabulary": [],
-      "openingConnection": "Extension: Let's learn to ask questions about families in French!",
-      "mainActivity": {
-        "description": "Family interview practice with simple French questions",
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Learn simple French questions: 'Comment tu t'appelles?' 'Quel âge as-tu?'",
-          "Practice question intonation and gestures",
-          "Role-play family interviews with classmates",
-          "Create interview questions about family activities and traditions",
-          "Practice interviewing with family photos as prompts",
-          "Plan homework family interview with simple questions"
-        ],
+        "activity": "Family interview practice with simple French questions",
+        "materials": [],
         "visualSupports": [
           "French question cards with pictures and pronunciation guides",
           "Interview clipboard prop for role-play",
           "Family photos to prompt questions",
           "Question intonation gesture cues"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Are students ready for question formation?",
-          "ifReady": "Teach several simple questions and practice variations",
-          "ifNotReady": "Focus on one simple question and practice well"
-        },
-        {
-          "question": "Should interviews be homework or in-class practice?",
-          "ifHomework": "Send simple French questions home for family interviews",
-          "ifClass": "Keep all interview practice in classroom with role-play"
-        },
-        {
-          "question": "What questions are appropriate for this age?",
-          "ifAge": "Focus on names, ages, favorite activities, and simple preferences",
-          "ifSimple": "Use only basic questions about family members and activities"
-        }
-      ],
-      "materials": [
-        "French question cards",
-        "Interview recording sheets (optional)",
-        "Props for interview role-play",
-        "Family photos for question prompts"
-      ],
-      "whenThingsGoWrong": {
-        "questionFormationDifficult": "Let students point to question cards and ask",
-        "shyStudents": "Practice interviews in whispered voices or with teacher only",
-        "familyLanguageBarrier": "Adapt to families who don't speak French at home"
+      "closing": {
+        "duration": 10,
+        "activity": "Students practice asking one interview question to the class",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students practice asking one interview question to the class",
-      "realWorldConnection": "People ask questions to learn more about their family history and members"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "People ask questions to learn more about their family history and members",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 18,
+      "lessonType": "extension",
       "title": "Familles du monde",
       "oneGoal": "Students explore how families are similar and different around the world",
+      "duration": 45,
       "keyVocabulary": [],
-      "openingConnection": "Extension: Let's discover families from around the world!",
-      "mainActivity": {
-        "description": "Global family exploration celebrating worldwide family diversity",
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Explore family photos from different countries and cultures",
-          "Compare family traditions around the world using familiar vocabulary",
-          "Discover how families say 'famille' in different languages",
-          "Find similarities: all families love, eat together, celebrate",
-          "Celebrate differences: different foods, traditions, celebrations",
-          "Create world family map showing family diversity"
-        ],
+        "activity": "Global family exploration celebrating worldwide family diversity",
+        "materials": [],
         "visualSupports": [
           "Family photos from diverse countries and cultures",
           "World map for family traditions mapping",
           "'Family' word in different languages chart",
           "Cultural family tradition photos and artifacts"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Which cultures should we explore?",
-          "ifDiverse": "Include cultures represented in class plus others from around world",
-          "ifClassroom": "Focus on cultures and countries represented by students' families"
-        },
-        {
-          "question": "Do students need visual supports for different cultures?",
-          "ifYes": "Use photos, artifacts, and cultural materials to support learning",
-          "ifNo": "Focus on discussion and comparison using existing vocabulary"
-        },
-        {
-          "question": "Should we focus on similarities or differences?",
-          "ifSimilarities": "Emphasize universal family love and care across cultures",
-          "ifDifferences": "Celebrate unique traditions and customs as beautiful diversity"
-        }
-      ],
-      "materials": [
-        "Diverse cultural family photos",
-        "World map or globe",
-        "Cultural artifacts representing family traditions",
-        "'Family' word translations chart"
-      ],
-      "whenThingsGoWrong": {
-        "culturalStereotypes": "Present all cultures respectfully, avoid generalizations",
-        "overwhelmingInformation": "Focus on 2-3 cultures and explore them well",
-        "languageConfusion": "Keep focus on French while appreciating linguistic diversity"
+      "closing": {
+        "duration": 10,
+        "activity": "Students point to world map and say 'Families everywhere!' in French",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students point to world map and say 'Families everywhere!' in French",
-      "realWorldConnection": "Families exist in every culture with both universal and unique characteristics"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Families exist in every culture with both universal and unique characteristics",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 19,
+      "lessonType": "extension",
       "title": "Chansons et comptines familiales",
       "oneGoal": "Students learn and sing French songs about families",
+      "duration": 45,
       "keyVocabulary": [],
-      "openingConnection": "Extension: Let's sing beautiful songs about families in French!",
-      "mainActivity": {
-        "description": "French family songs and rhymes with movement and cultural elements",
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Learn simple French family song with gestures and movements",
-          "Practice family vocabulary through rhythm and rhyme",
-          "Explore French-Canadian family songs and lullabies",
-          "Add movements and actions to reinforce vocabulary",
-          "Create class performance of family song",
-          "Share songs families sing at home from different cultures"
-        ],
+        "activity": "French family songs and rhymes with movement and cultural elements",
+        "materials": [],
         "visualSupports": [
           "Song lyrics with pictures for vocabulary support",
           "Action cards showing movements for songs",
           "Musical instruments for accompaniment",
           "Video examples of French family songs"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "Which songs are age-appropriate and engaging?",
-          "ifAge": "Choose simple, repetitive songs with actions and familiar vocabulary",
-          "ifEngaging": "Select songs with strong rhythm and movement opportunities"
-        },
-        {
-          "question": "Do students need visual supports for song lyrics?",
-          "ifYes": "Provide picture-supported lyrics and gesture cues",
-          "ifNo": "Focus on singing and movement without written support"
-        },
-        {
-          "question": "Should we focus on singing or actions?",
-          "ifSinging": "Emphasize pronunciation and melody of French songs",
-          "ifActions": "Use movement and gestures to support vocabulary learning"
-        }
-      ],
-      "materials": [
-        "French family song recordings",
-        "Song lyric charts with pictures",
-        "Simple musical instruments",
-        "Scarves or props for movement"
-      ],
-      "whenThingsGoWrong": {
-        "reluctantSingers": "Allow humming, clapping, or movement without singing",
-        "difficultPronunciation": "Focus on rhythm and melody, support pronunciation gently",
-        "tooNoisy": "Move to quieter activities like fingerplays or whispered songs"
+      "closing": {
+        "duration": 10,
+        "activity": "Students sing one line of French family song together",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students sing one line of French family song together",
-      "realWorldConnection": "Songs and rhymes are traditional ways families share language and culture"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Songs and rhymes are traditional ways families share language and culture",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 20,
+      "lessonType": "extension",
       "title": "Exposition des familles",
       "oneGoal": "Students create a final exhibition showcasing their family learning and books",
+      "duration": 45,
       "keyVocabulary": [],
-      "openingConnection": "Extension finale: Let's create a beautiful exhibition of all our family learning!",
-      "mainActivity": {
-        "description": "Culminating family exhibition preparation and celebration",
+      "opening": {
+        "duration": 8,
+        "activity": "",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Students organize all their family projects: books, trees, albums, photos",
-          "Create exhibition displays showing family vocabulary learning journey",
-          "Practice being exhibition guides using French family vocabulary",
-          "Prepare family celebration invitations in French",
-          "Set up family learning exhibition with student work displayed",
-          "Celebration of learning: reflection on French family vocabulary journey"
-        ],
+        "activity": "Culminating family exhibition preparation and celebration",
+        "materials": [],
         "visualSupports": [
           "Exhibition display boards and tables",
           "French vocabulary journey timeline",
           "Student work from all 20 lessons organized attractively",
           "Multilingual welcome signs for families"
-        ]
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "question": "How should we organize the family exhibition?",
-          "ifOrganized": "Create stations showing progression through family vocabulary learning",
-          "ifOpen": "Display all student work together in celebration of diversity"
-        },
-        {
-          "question": "Should we invite other classes or families?",
-          "ifInvite": "Prepare student presentations for visitors using French vocabulary",
-          "ifClassroom": "Keep exhibition as class celebration and reflection"
-        },
-        {
-          "question": "What format works best for showcasing student work?",
-          "ifFormat": "Combine displays, student presentations, and interactive activities",
-          "ifSimple": "Focus on displaying student work with opportunity for sharing"
-        }
-      ],
-      "materials": [
-        "All student family projects from unit",
-        "Display boards and tables",
-        "French vocabulary cards for reference",
-        "Celebration refreshments representing cultural diversity"
-      ],
-      "whenThingsGoWrong": {
-        "overwhelmedStudents": "Simplify to displaying work without pressure to present",
-        "tooMuchWork": "Focus on highlighting student favorites rather than everything",
-        "exhibitionAnxiety": "Create comfortable, supportive celebration atmosphere"
+      "closing": {
+        "duration": 10,
+        "activity": "Students tour exhibition and celebrate: 'J'ai appris beaucoup sur les familles!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "closing": "Students tour exhibition and celebrate: 'J'ai appris beaucoup sur les familles!'",
-      "realWorldConnection": "Museums and exhibitions help people learn about and celebrate different families and cultures"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": ""
+      },
+      "realWorldConnection": "Museums and exhibitions help people learn about and celebrate different families and cultures",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     }
-  ]
+  ],
+  "assessmentTools": {
+    "observationChecklist": [],
+    "rubrics": [],
+    "selfAssessment": [],
+    "portfolioGuidelines": ""
+  },
+  "familyConnections": {
+    "unitLetter": "",
+    "homeActivities": [],
+    "vocabularyList": []
+  },
+  "resourceAlternatives": {
+    "materials": {},
+    "digitalResources": []
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
+  }
 }

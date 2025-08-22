@@ -1,822 +1,1443 @@
-[
-  {
-    "lessonNumber": 1,
-    "title": "Notre école dans la communauté",
-    "oneGoal": "Students will identify their school as an important part of their local autumn community",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Community circle where students look out classroom windows and share what they see in their school neighborhood. Introduce the word 'communauté' with wide arm gestures showing connection.",
-      "materials": ["window access or school photos", "community connection gestures", "autumn background music"],
-      "visualSupports": "Wide arm gestures for community, pointing outward for neighborhood, heart hands for belonging"
+{
+  "unitTitle": "",
+  "subject": "Sciences humaines",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "lessonType": "core",
+      "title": "Notre école dans la communauté",
+      "oneGoal": "Students will identify their school as an important part of their local autumn community",
+      "duration": 45,
+      "keyVocabulary": [
+        "communauté",
+        "école",
+        "voisins"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Community circle where students look out classroom windows and share what they see in their school neighborhood. Introduce the word 'communauté' with wide arm gestures showing connection.",
+        "materials": [
+          "window access or school photos",
+          "community connection gestures",
+          "autumn background music"
+        ],
+        "visualSupports": "Wide arm gestures for community, pointing outward for neighborhood, heart hands for belonging",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "School community exploration using school maps and autumn neighborhood photos. Students create a 'Our School Community' poster, drawing or pasting pictures of places and people they see around school in autumn. Emphasize how school connects to neighborhood.",
+        "materials": [
+          "school area maps",
+          "autumn neighborhood photos",
+          "poster paper",
+          "drawing supplies",
+          "glue sticks"
+        ],
+        "visualSupports": "Connecting gestures between school and community, proud posture for school belonging, discovery expressions",
+        "decisionPoints": [
+          {
+            "question": "How familiar are students with the area around their school?",
+            "ifYes": "Encourage students to share specific places they know and visit with families",
+            "ifNo": "Use photos and maps to introduce nearby community places and explain connections"
+          },
+          {
+            "question": "What community landmarks can students see from school windows?",
+            "ifYes": "Point out visible landmarks and explain how they connect to school community",
+            "ifNo": "Use photos of nearby landmarks and discuss how they support school community"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Community belonging circle where students share one thing they like about their school being part of the community. End with group chant: 'Notre école fait partie de notre communauté!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students not understanding how school connects to community",
+        "then": "Use concrete examples like mail delivery to school, school buses in neighborhood, families walking to school"
+      },
+      "realWorldConnection": "Our school is connected to many community helpers and neighbors who work together in autumn",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
-    "main": {
-      "duration": 27,
-      "activity": "School community exploration using school maps and autumn neighborhood photos. Students create a 'Our School Community' poster, drawing or pasting pictures of places and people they see around school in autumn. Emphasize how school connects to neighborhood.",
-      "materials": ["school area maps", "autumn neighborhood photos", "poster paper", "drawing supplies", "glue sticks"],
-      "visualSupports": "Connecting gestures between school and community, proud posture for school belonging, discovery expressions",
-      "decisionPoints": [
-        {
-          "question": "How familiar are students with the area around their school?",
-          "ifYes": "Encourage students to share specific places they know and visit with families",
-          "ifNo": "Use photos and maps to introduce nearby community places and explain connections"
-        },
-        {
-          "question": "What community landmarks can students see from school windows?",
-          "ifYes": "Point out visible landmarks and explain how they connect to school community",
-          "ifNo": "Use photos of nearby landmarks and discuss how they support school community"
-        }
-      ]
+    {
+      "lessonNumber": 2,
+      "lessonType": "core",
+      "title": "Les personnes qui nous aident à l'école",
+      "oneGoal": "Students will recognize the school community helpers who support their learning every day",
+      "duration": 45,
+      "keyVocabulary": [
+        "directeur",
+        "concierge",
+        "secrétaire"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Helper appreciation circle where students think of one school person who helps them. Practice helper appreciation gestures and the phrase 'Merci de nous aider!'",
+        "materials": [
+          "school helper photos",
+          "appreciation gestures",
+          "thank you phrases in French"
+        ],
+        "visualSupports": "Helping hands gestures, grateful expressions, pointing to helper photos with appreciation",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "School helper exploration using photos and possible mini-interviews. Students create a 'School Helpers' book with drawings and simple descriptions of what each helper does. Include principal, secretary, custodian, librarian, and volunteers.",
+        "materials": [
+          "school helper photos",
+          "mini-book templates",
+          "drawing supplies",
+          "simple French helper descriptions"
+        ],
+        "visualSupports": "Helper-specific gestures (key for principal, cleaning for custodian), appreciation expressions, helping hand motions",
+        "decisionPoints": [
+          {
+            "question": "Which school helpers do students interact with most often?",
+            "ifYes": "Focus on these familiar helpers first and add others as extensions",
+            "ifNo": "Introduce helpers through photos and explain how they help students even if not seen daily"
+          },
+          {
+            "question": "Should we include volunteers or focus only on staff?",
+            "ifYes": "Include parent volunteers and reading helpers to show broader school community",
+            "ifNo": "Focus on consistent staff helpers that students see regularly"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Helper appreciation circle where students share which school helper they'd like to thank and why. Practice saying 'Merci' to different school helpers they might see.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students not recognizing less visible school helpers",
+        "then": "Take brief school walk to see helpers at work or arrange brief helper visits to classroom"
+      },
+      "realWorldConnection": "Many people work together to make our school a safe, clean, and welcoming place to learn",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
-    "closing": {
-      "duration": 10,
-      "activity": "Community belonging circle where students share one thing they like about their school being part of the community. End with group chant: 'Notre école fait partie de notre communauté!'",
-      "assessment": "Observe student recognition of school as connected to broader community and comfort with community vocabulary"
+    {
+      "lessonNumber": 3,
+      "lessonType": "core",
+      "title": "Les changements d'automne dans notre communauté",
+      "oneGoal": "Students will observe and describe how autumn brings changes to their local community",
+      "duration": 45,
+      "keyVocabulary": [
+        "automne",
+        "changement",
+        "feuilles"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Autumn observation circle where students share autumn changes they've noticed at home or school. Practice autumn vocabulary with seasonal gestures and expressions.",
+        "materials": [
+          "autumn photos of local area",
+          "seasonal gesture cards",
+          "autumn leaves or props"
+        ],
+        "visualSupports": "Falling leaf gestures, cooler weather motions (rubbing arms), changing colors hand movements",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Community autumn changes exploration using before/after photos of local areas in summer vs autumn. Students create an 'Autumn Changes' observation journal, drawing community changes they see and describing them with simple French words.",
+        "materials": [
+          "local seasonal photos",
+          "observation journals",
+          "colored pencils",
+          "autumn vocabulary cards"
+        ],
+        "visualSupports": "Comparison gestures (showing different), observation motions (pointing and looking), seasonal change expressions",
+        "decisionPoints": [
+          {
+            "question": "What autumn changes are most visible in our local area?",
+            "ifYes": "Focus on dramatic local changes like leaf colors, harvest activities, or weather preparations",
+            "ifNo": "Use photos of typical autumn changes and help students look for subtle local changes"
+          },
+          {
+            "question": "Should we focus on natural changes or community activity changes?",
+            "ifYes": "Balance both natural changes (leaves, weather) and community changes (harvest festivals, preparation activities)",
+            "ifNo": "Start with natural changes students can see, then connect to community activity changes"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Autumn appreciation circle where students share their favorite autumn change in the community. Practice saying 'J'aime l'automne parce que...'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students not noticing community changes beyond obvious leaf colors",
+        "then": "Provide specific prompts: people's clothing, community decorations, different activities outside"
+      },
+      "realWorldConnection": "Autumn brings special changes that affect how our community looks, feels, and works together",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
-    "vocabulary": ["communauté", "école", "voisins"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students not understanding how school connects to community",
-      "then": "Use concrete examples like mail delivery to school, school buses in neighborhood, families walking to school"
+    {
+      "lessonNumber": 4,
+      "lessonType": "core",
+      "title": "Les gens qui nous gardent en sécurité",
+      "oneGoal": "Students will identify community safety helpers and understand how they protect everyone in autumn",
+      "duration": 45,
+      "keyVocabulary": [
+        "sécurité",
+        "police",
+        "pompier"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Safety helper circle where students share safety helpers they know. Practice safety vocabulary with protective gestures and expressions of gratitude for safety helpers.",
+        "materials": [
+          "safety helper photos",
+          "safety gesture cards",
+          "protective equipment props"
+        ],
+        "visualSupports": "Protective gestures (shield motion), safety pointing (stop hand), grateful expressions for helpers",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Safety helper exploration using photos and simple role-play. Students create a 'Safety Helpers' chart showing different helpers (police, firefighters, crossing guards) and how they keep the community safe in autumn weather.",
+        "materials": [
+          "safety helper photos",
+          "chart paper",
+          "safety equipment pictures",
+          "role-play props"
+        ],
+        "visualSupports": "Helper-specific gestures (traffic directing for crossing guard, siren sounds for emergency helpers), safety expressions",
+        "decisionPoints": [
+          {
+            "question": "Are students comfortable discussing safety without creating fear?",
+            "ifYes": "Focus on positive safety helper roles and how they help community feel secure",
+            "ifNo": "Emphasize helper friendliness and community service rather than emergency situations"
+          },
+          {
+            "question": "Which safety helpers are most visible in our community?",
+            "ifYes": "Feature most visible helpers prominently and explain their daily community presence",
+            "ifNo": "Introduce variety of safety helpers and explain when and how they help community"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Safety appreciation circle where students practice saying 'Merci de nous protéger' and share how safety helpers make them feel secure in their community.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students feeling anxious about safety topics",
+        "then": "Emphasize helper friendliness, community care, and how helpers prevent problems rather than respond to emergencies"
+      },
+      "realWorldConnection": "Safety helpers work every day, including during autumn, to keep our community safe and secure",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
-    "realWorldConnection": "Our school is connected to many community helpers and neighbors who work together in autumn"
+    {
+      "lessonNumber": 5,
+      "lessonType": "core",
+      "title": "Visite d'un pompier à l'école",
+      "oneGoal": "Students will learn about fire safety and fire fighters' important community role through a special visit",
+      "duration": 45,
+      "keyVocabulary": [
+        "pompier",
+        "urgence",
+        "protéger"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Fire safety preparation circle where students practice fire safety vocabulary and prepare respectful questions for firefighter visitor. Review appropriate visitor behavior.",
+        "materials": [
+          "fire safety vocabulary cards",
+          "question preparation charts",
+          "visitor etiquette reminders"
+        ],
+        "visualSupports": "Fire safety gestures (stop drop roll motions), respectful listening posture, question asking gestures",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Firefighter visit (or virtual presentation) with Q&A, equipment demonstration, and fire safety education. Students create a 'Fire Safety' reminder poster with key safety messages and appreciation for firefighters.",
+        "materials": [
+          "firefighter visitor or virtual presentation",
+          "safety demonstration materials",
+          "poster supplies"
+        ],
+        "visualSupports": "Following firefighter demonstrations, safety rule gestures, appreciation expressions for visitor",
+        "decisionPoints": [
+          {
+            "question": "Can we arrange an actual firefighter visit or should we use virtual resources?",
+            "ifYes": "Coordinate with local fire department for in-person visit with equipment demonstration",
+            "ifNo": "Use high-quality virtual firefighter presentation with interactive elements and Q&A"
+          },
+          {
+            "question": "What fire safety concepts are appropriate for Grade 1?",
+            "ifYes": "Focus on basic safety: stop-drop-roll, calling 911, meeting spots, not playing with fire",
+            "ifNo": "Keep concepts simple and positive, focusing on firefighter helpers rather than fire dangers"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Firefighter appreciation circle where students share what they learned and practice saying 'Merci, pompier!' End with commitment to fire safety rules.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students becoming too excited or distracted during firefighter visit",
+        "then": "Use structured Q&A format, clear expectations, and frequent appreciation reminders to maintain focus"
+      },
+      "realWorldConnection": "Fire fighters help our community stay safe from fires and other emergencies all year long",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 6,
+      "lessonType": "core",
+      "title": "Les gens qui nous aident quand nous sommes malades",
+      "oneGoal": "Students will understand how healthcare helpers support community wellness in all seasons",
+      "duration": 45,
+      "keyVocabulary": [
+        "docteur",
+        "infirmière",
+        "santé"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Health helper circle where students share healthcare helpers they know (doctors, nurses, dentists). Practice health vocabulary with caring gestures and wellness expressions.",
+        "materials": [
+          "healthcare helper photos",
+          "health vocabulary cards",
+          "caring gesture demonstrations"
+        ],
+        "visualSupports": "Caring gestures (gentle hands), health checking motions (listening, looking), wellness expressions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Healthcare helper exploration using photos and simple health role-play. Students create a 'Health Helpers' book showing different helpers and how they keep the community healthy, especially during autumn cold season.",
+        "materials": [
+          "healthcare photos",
+          "health book templates",
+          "simple medical props for role-play"
+        ],
+        "visualSupports": "Helper-specific gestures (stethoscope listening, gentle care motions), health and wellness expressions",
+        "decisionPoints": [
+          {
+            "question": "Should we include mental health helpers or focus on physical health?",
+            "ifYes": "Include school counselors and explain how they help with feelings and worries",
+            "ifNo": "Focus on familiar physical health helpers that students encounter regularly"
+          },
+          {
+            "question": "How do we discuss medical help without creating anxiety?",
+            "ifYes": "Emphasize helper kindness, community care, and how helpers help people feel better",
+            "ifNo": "Focus on wellness promotion and helper friendliness rather than illness treatment"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Health appreciation circle where students share ways to stay healthy and practice thanking healthcare helpers with 'Merci de prendre soin de nous!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students feeling worried about medical situations",
+        "then": "Emphasize prevention, wellness, and helper kindness; focus on how helpers help people feel better and stronger"
+      },
+      "realWorldConnection": "Healthcare helpers work to keep everyone in our community healthy and strong",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 7,
+      "lessonType": "core",
+      "title": "Les gens qui apportent notre nourriture",
+      "oneGoal": "Students will explore how food gets to their community and the helpers involved in this process",
+      "duration": 45,
+      "keyVocabulary": [
+        "fermier",
+        "camionneur",
+        "épicier"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Food journey circle where students think about where their breakfast came from. Practice food helper vocabulary with farm-to-table gestures and appreciation expressions.",
+        "materials": [
+          "food journey visual cards",
+          "farm and store photos",
+          "food appreciation gestures"
+        ],
+        "visualSupports": "Farm growing gestures, transportation motions, food sharing expressions, grateful eating motions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Food system exploration using autumn harvest photos and food journey maps. Students create a 'From Farm to Table' poster showing farmers, truckers, store workers, and how autumn harvest reaches their community.",
+        "materials": [
+          "harvest photos",
+          "food journey maps",
+          "poster supplies",
+          "food system pictures"
+        ],
+        "visualSupports": "Sequential gestures for food journey, harvest celebration motions, food sharing expressions",
+        "decisionPoints": [
+          {
+            "question": "Should we focus on local farmers or include broader food supply chain?",
+            "ifYes": "Emphasize local autumn harvest and nearby farms that supply community stores",
+            "ifNo": "Include broader food system while highlighting autumn harvest and seasonal foods"
+          },
+          {
+            "question": "Which food helpers are most visible in our autumn community?",
+            "ifYes": "Feature farmers market vendors, grocery store workers, and autumn harvest helpers",
+            "ifNo": "Use photos to introduce variety of food system workers and their autumn contributions"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Food appreciation circle where students share their favorite autumn food and practice saying 'Merci aux fermiers!' for bringing food to community.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students not understanding food journey from farm to home",
+        "then": "Use specific examples with familiar foods, simple sequential pictures, and concrete farm-to-store connections"
+      },
+      "realWorldConnection": "Many helpers work together to bring fresh, healthy food to our community, especially during autumn harvest",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 8,
+      "lessonType": "core",
+      "title": "Visite à l'épicerie du quartier",
+      "oneGoal": "Students will observe food helpers in action and understand the grocery store as a community hub",
+      "duration": 45,
+      "keyVocabulary": [
+        "épicerie",
+        "service",
+        "clients"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Grocery store preparation circle where students practice grocery vocabulary and prepare respectful observation questions. Review field trip behavior expectations.",
+        "materials": [
+          "grocery vocabulary cards",
+          "field trip behavior charts",
+          "observation question prompts"
+        ],
+        "visualSupports": "Shopping gestures, respectful observation postures, polite interaction expressions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Grocery store field trip (or virtual tour) observing workers, autumn produce, and community interactions. Students complete observation checklist and practice polite interactions with store helpers.",
+        "materials": [
+          "field trip permission or virtual tour",
+          "observation checklists",
+          "interaction practice cards"
+        ],
+        "visualSupports": "Following field trip guides, observation gestures, polite interaction demonstrations",
+        "decisionPoints": [
+          {
+            "question": "Can we arrange an actual grocery store field trip or virtual tour?",
+            "ifYes": "Coordinate with local grocery store for educational visit with worker interactions",
+            "ifNo": "Use comprehensive virtual grocery tour with focus on worker roles and community service"
+          },
+          {
+            "question": "Which grocery store roles should we highlight for Grade 1?",
+            "ifYes": "Focus on visible roles: cashiers, produce workers, managers, cart helpers",
+            "ifNo": "Introduce variety of store workers and explain how they serve community families"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Grocery appreciation circle where students share what they observed and practice thanking store workers with 'Merci de nous servir!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students getting overwhelmed or distracted during field trip",
+        "then": "Use buddy system, clear observation focus, and frequent appreciation reminders to maintain educational purpose"
+      },
+      "realWorldConnection": "Grocery stores are important community places where food helpers serve families every day",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 9,
+      "lessonType": "core",
+      "title": "Les gens qui gardent notre communauté propre",
+      "oneGoal": "Students will appreciate sanitation workers and understand how keeping communities clean is everyone's job",
+      "duration": 45,
+      "keyVocabulary": [
+        "propre",
+        "déchets",
+        "recyclage"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Clean community circle where students share what they do to keep spaces clean. Practice cleanliness vocabulary with tidy-up gestures and environmental appreciation.",
+        "materials": [
+          "cleanliness photos",
+          "tidy-up demonstration props",
+          "environmental care gestures"
+        ],
+        "visualSupports": "Cleaning gestures (sweeping, picking up), environmental care motions, pride in clean spaces expressions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Environmental helper exploration using photos of sanitation workers, recycling helpers, and park maintenance. Students create a 'Clean Community' action plan showing how helpers and families work together, especially with autumn leaf cleanup.",
+        "materials": [
+          "sanitation worker photos",
+          "recycling education materials",
+          "action plan templates"
+        ],
+        "visualSupports": "Environmental helper gestures, recycling motions, community cooperation expressions",
+        "decisionPoints": [
+          {
+            "question": "Should we include environmental helpers beyond garbage collection?",
+            "ifYes": "Include park maintenance, recycling workers, and environmental protection helpers",
+            "ifNo": "Focus on most visible sanitation workers and explain their daily community contributions"
+          },
+          {
+            "question": "How do we emphasize student responsibility for community cleanliness?",
+            "ifYes": "Balance helper appreciation with student actions like not littering and helping with cleanup",
+            "ifNo": "Focus primarily on helper appreciation while mentioning simple student contributions"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Clean community commitment circle where students share one way they'll help keep their community clean and practice saying 'Merci de garder notre communauté propre!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students not understanding connection between individual actions and community cleanliness",
+        "then": "Use concrete examples of how one person's littering affects everyone, and how helping cleanup benefits whole community"
+      },
+      "realWorldConnection": "Keeping our community clean requires helpers working together and everyone doing their part",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 10,
+      "lessonType": "core",
+      "title": "Les activités d'automne dans notre communauté",
+      "oneGoal": "Students will identify special autumn activities that bring their community together",
+      "duration": 45,
+      "keyVocabulary": [
+        "festivités",
+        "célébration",
+        "ensemble"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Autumn activity circle where students share autumn activities they enjoy with families. Practice autumn celebration vocabulary with festive gestures and community expressions.",
+        "materials": [
+          "autumn activity photos",
+          "celebration vocabulary cards",
+          "festive gesture demonstrations"
+        ],
+        "visualSupports": "Celebration gestures (clapping, cheering), autumn activity motions, community togetherness expressions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Community autumn celebration exploration using local event photos and activity descriptions. Students create an 'Autumn Community Calendar' showing harvest festivals, Halloween events, and autumn sports that bring neighbors together.",
+        "materials": [
+          "local autumn event photos",
+          "calendar templates",
+          "community activity descriptions"
+        ],
+        "visualSupports": "Activity-specific gestures, calendar organization motions, community participation expressions",
+        "decisionPoints": [
+          {
+            "question": "Which autumn activities are most common in our local community?",
+            "ifYes": "Feature prominent local events like harvest festivals, pumpkin patches, or autumn sports",
+            "ifNo": "Introduce variety of typical autumn community activities and help students identify local versions"
+          },
+          {
+            "question": "Should we focus on organized events or informal community gatherings?",
+            "ifYes": "Include both formal events and informal activities like neighborhood leaf raking or outdoor play",
+            "ifNo": "Focus on organized community events that families can easily participate in together"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Autumn celebration circle where students share which community autumn activity they'd most like to try and practice saying 'J'aimerais participer!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students not aware of local community autumn activities",
+        "then": "Provide specific local examples, send home family inquiry about autumn activities, use photos of nearby events"
+      },
+      "realWorldConnection": "Autumn brings special opportunities for community members to celebrate and have fun together",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 11,
+      "lessonType": "core",
+      "title": "Promenade dans le quartier en automne",
+      "oneGoal": "Students will observe their neighborhood community helpers and autumn changes through direct exploration",
+      "duration": 45,
+      "keyVocabulary": [
+        "quartier",
+        "observer",
+        "découvrir"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Neighborhood walk preparation circle where students practice observation vocabulary and prepare safety rules for community exploration. Review respectful neighbor behavior.",
+        "materials": [
+          "observation vocabulary cards",
+          "safety rule charts",
+          "neighborhood exploration guidelines"
+        ],
+        "visualSupports": "Observation gestures (pointing, looking carefully), safety rule demonstrations, respectful neighbor interactions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Neighborhood walk (or virtual neighborhood tour) observing autumn changes, community helpers at work, and neighborhood helpers. Students complete neighborhood observation journal documenting helpers and autumn changes they discover.",
+        "materials": [
+          "neighborhood walk route or virtual tour",
+          "observation journals",
+          "clipboards and pencils"
+        ],
+        "visualSupports": "Guided observation techniques, discovery expressions, community helper identification gestures",
+        "decisionPoints": [
+          {
+            "question": "Can we take an actual neighborhood walk or should we use virtual exploration?",
+            "ifYes": "Plan safe walking route with multiple helper observation opportunities and autumn change viewing",
+            "ifNo": "Use comprehensive virtual neighborhood tour with interactive elements and discussion opportunities"
+          },
+          {
+            "question": "Which community helpers are we likely to see during our walk?",
+            "ifYes": "Prepare students to recognize mail carriers, crossing guards, maintenance workers, shop keepers",
+            "ifNo": "Use photos and descriptions to supplement observation with helper identification activities"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Neighborhood discovery circle where students share their most interesting observation and practice saying 'J'ai découvert que...'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students having difficulty focusing observation during walk",
+        "then": "Use specific observation prompts, buddy observation system, and frequent stop-and-share opportunities"
+      },
+      "realWorldConnection": "Taking time to really look at our neighborhood helps us appreciate all the helpers around us",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 12,
+      "lessonType": "core",
+      "title": "Les gens qui nous aident à nous déplacer",
+      "oneGoal": "Students will explore transportation helpers who keep community members moving safely",
+      "duration": 45,
+      "keyVocabulary": [
+        "transport",
+        "autobus",
+        "conducteur"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Transportation circle where students share how they get to school and around community. Practice transportation vocabulary with movement gestures and safety expressions.",
+        "materials": [
+          "transportation photos",
+          "movement vocabulary cards",
+          "safety gesture demonstrations"
+        ],
+        "visualSupports": "Transportation motions (driving, walking, riding), safety rule gestures, grateful traveler expressions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Transportation helper exploration using photos of bus drivers, crossing guards, traffic officers, and road maintenance workers. Students create a 'Safe Transportation' poster showing helpers who keep community members moving safely in autumn weather.",
+        "materials": [
+          "transportation helper photos",
+          "safety poster templates",
+          "autumn weather transportation pictures"
+        ],
+        "visualSupports": "Helper-specific motions, safety demonstration gestures, weather-appropriate transportation expressions",
+        "decisionPoints": [
+          {
+            "question": "Should we include public transportation or focus on school transportation?",
+            "ifYes": "Include both school buses and public transportation to show full range of community transportation",
+            "ifNo": "Focus on school transportation helpers that students interact with most regularly"
+          },
+          {
+            "question": "Which transportation helpers are most relevant to student experience?",
+            "ifYes": "Emphasize school bus drivers, crossing guards, and walking safety helpers",
+            "ifNo": "Introduce variety of transportation helpers and explain how they serve different community needs"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Transportation appreciation circle where students practice thanking transportation helpers with 'Merci de nous aider à voyager en sécurité!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students not recognizing less visible transportation helpers",
+        "then": "Point out specific helpers during school arrival/dismissal, use photos of helpers at work, explain helper importance"
+      },
+      "realWorldConnection": "Transportation helpers make it possible for people to move safely around our community",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 13,
+      "lessonType": "core",
+      "title": "Les gens qui construisent et réparent",
+      "oneGoal": "Students will understand how construction and repair workers maintain and improve their community",
+      "duration": 45,
+      "keyVocabulary": [
+        "construire",
+        "réparer",
+        "outils"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Building and repair circle where students share things that need fixing or building in their community. Practice construction vocabulary with building gestures and improvement expressions.",
+        "materials": [
+          "construction photos",
+          "tool pictures",
+          "building gesture demonstrations"
+        ],
+        "visualSupports": "Building motions (hammering, measuring), repair gestures, community improvement expressions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Construction helper exploration using photos of builders, repair workers, road crews, and maintenance teams. Students create a 'Community Builders' appreciation chart showing how these helpers make community stronger, especially preparing for autumn and winter.",
+        "materials": [
+          "construction worker photos",
+          "appreciation chart templates",
+          "seasonal preparation pictures"
+        ],
+        "visualSupports": "Construction motions, seasonal preparation gestures, community strength expressions",
+        "decisionPoints": [
+          {
+            "question": "Should we focus on new construction or maintenance and repair work?",
+            "ifYes": "Balance both new building projects and ongoing maintenance that keeps community functioning",
+            "ifNo": "Focus on maintenance and repair work that students can observe in their daily community experience"
+          },
+          {
+            "question": "Which construction helpers are most visible in our autumn community?",
+            "ifYes": "Highlight road crews, building maintenance, and autumn preparation workers",
+            "ifNo": "Use photos to introduce variety of construction helpers and explain their community contributions"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Builder appreciation circle where students share how construction helpers make their community better and practice saying 'Merci de construire notre communauté!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students not understanding connection between construction work and community improvement",
+        "then": "Use before/after photos of community improvements, point out specific construction benefits for families"
+      },
+      "realWorldConnection": "Construction and repair workers help make our community stronger and better for everyone",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 14,
+      "lessonType": "core",
+      "title": "Comment nous pouvons aider notre communauté",
+      "oneGoal": "Students will identify ways they can contribute to their community as young citizens",
+      "duration": 45,
+      "keyVocabulary": [
+        "aider",
+        "citoyen",
+        "contribuer"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Young helper circle where students share ways they already help at home or school. Practice citizen vocabulary with helpful gestures and community contribution expressions.",
+        "materials": [
+          "young helper photos",
+          "citizen vocabulary cards",
+          "helpful gesture demonstrations"
+        ],
+        "visualSupports": "Helping hand gestures, citizen pride expressions, community contribution motions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Young citizen exploration using photos of children helping community and age-appropriate service ideas. Students create a 'Young Citizens' action plan showing realistic ways Grade 1 students can contribute to community wellbeing.",
+        "materials": [
+          "young citizen photos",
+          "action plan templates",
+          "age-appropriate service examples"
+        ],
+        "visualSupports": "Service action demonstrations, citizen pride gestures, community impact expressions",
+        "decisionPoints": [
+          {
+            "question": "What are realistic ways Grade 1 students can help their community?",
+            "ifYes": "Focus on simple actions: not littering, being kind to neighbors, helping elderly, thanking helpers",
+            "ifNo": "Brainstorm with students and provide examples of age-appropriate community contributions"
+          },
+          {
+            "question": "Should we focus on individual actions or group community projects?",
+            "ifYes": "Include both individual kindness actions and simple group projects like card-making for helpers",
+            "ifNo": "Focus on individual actions students can take immediately in their daily community interactions"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Young citizen commitment circle where students choose one way they'll help their community and practice saying 'Je vais aider ma communauté en...'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students feeling too young to make a community difference",
+        "then": "Provide specific examples of young people helping, emphasize that small actions matter, build confidence about impact"
+      },
+      "realWorldConnection": "Even young people can make important contributions to help their community be better",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 15,
+      "lessonType": "extension",
+      "title": "Créer une carte de notre communauté",
+      "oneGoal": "Students will create a visual map showing important community helpers and places in their neighborhood",
+      "duration": 45,
+      "keyVocabulary": [
+        "carte",
+        "lieux",
+        "important"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Map-making circle where students share places they know in their community. Practice mapping vocabulary with directional gestures and location expressions.",
+        "materials": [
+          "simple community maps",
+          "mapping vocabulary cards",
+          "directional gesture demonstrations"
+        ],
+        "visualSupports": "Directional pointing, map-reading gestures, location identification expressions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Community map creation using simple base maps or drawing from scratch. Students add community helper locations, important places, and autumn features to create personalized community maps showing where helpers work and families visit.",
+        "materials": [
+          "base maps or large paper",
+          "mapping supplies",
+          "community location stickers",
+          "colored pencils"
+        ],
+        "visualSupports": "Map-making motions, spatial organization gestures, community pride expressions",
+        "decisionPoints": [
+          {
+            "question": "Should maps focus on helper locations or general community landmarks?",
+            "ifYes": "Balance both helper workplaces and general landmarks to show complete community picture",
+            "ifNo": "Focus on helper locations while including key landmarks that students recognize"
+          },
+          {
+            "question": "What map-making tools are appropriate for Grade 1 students?",
+            "ifYes": "Use simple symbols, stickers, and drawing tools that allow creative but clear map-making",
+            "ifNo": "Provide templates with some pre-drawn elements that students can add to and personalize"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Map sharing circle where students show their community maps and practice describing locations with 'Sur ma carte, je vois...'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students having difficulty representing spatial relationships on maps",
+        "then": "Use concrete reference points, provide map templates with major landmarks, focus on general location rather than precise mapping"
+      },
+      "realWorldConnection": "Making maps helps us understand how our community is organized and where helpers work",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 16,
+      "lessonType": "extension",
+      "title": "Dessiner nos héros communautaires",
+      "oneGoal": "Students will create artwork celebrating community helpers they've learned about",
+      "duration": 45,
+      "keyVocabulary": [
+        "héros",
+        "dessiner",
+        "apprécier"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Art inspiration circle where students choose their favorite community helper to draw. Practice art vocabulary with creative gestures and artistic appreciation expressions.",
+        "materials": [
+          "community helper photos for reference",
+          "art vocabulary cards",
+          "creative inspiration examples"
+        ],
+        "visualSupports": "Artistic creation gestures, helper appreciation expressions, creative celebration motions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Community helper artwork creation using various art supplies and reference photos. Students create detailed drawings or paintings of chosen helpers, including tools, uniforms, and community settings, with focus on showing appreciation.",
+        "materials": [
+          "art paper",
+          "colored pencils",
+          "crayons",
+          "paint supplies",
+          "helper reference photos"
+        ],
+        "visualSupports": "Artistic demonstration techniques, detailed observation gestures, creative expression encouragement",
+        "decisionPoints": [
+          {
+            "question": "Should students choose their favorite helper or draw multiple helpers?",
+            "ifYes": "Allow choice of favorite helper to ensure personal connection and artistic motivation",
+            "ifNo": "Assign specific helpers to ensure variety across classroom while allowing artistic interpretation"
+          },
+          {
+            "question": "What art materials will help students best express their appreciation?",
+            "ifYes": "Provide variety of materials so students can choose tools that match their artistic vision",
+            "ifNo": "Use consistent art materials to focus on content creation rather than material choice"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Artist appreciation circle where students share their helper artwork and practice describing with 'J'ai dessiné... parce que...'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students feeling their artwork isn't good enough to show appreciation",
+        "then": "Emphasize that thoughtful effort shows appreciation, focus on helper recognition rather than artistic perfection"
+      },
+      "realWorldConnection": "Creating art about community helpers helps us remember and appreciate their important work",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 17,
+      "lessonType": "extension",
+      "title": "Jeu de rôles: Nous sommes des aides communautaires",
+      "oneGoal": "Students will role-play being different community helpers to practice helper vocabulary and actions",
+      "duration": 45,
+      "keyVocabulary": [
+        "jouer",
+        "rôle",
+        "profession"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Role-play preparation circle where students choose community helper roles and practice helper-specific vocabulary and actions. Review respectful role-play guidelines.",
+        "materials": [
+          "helper role cards",
+          "simple costume props",
+          "role-play vocabulary cards"
+        ],
+        "visualSupports": "Helper-specific gestures and movements, role-play demonstration techniques, respectful performance expressions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Community helper role-play scenarios where students act out helper roles, interact with community members, and demonstrate helper services. Include appreciation interactions between helpers and community members.",
+        "materials": [
+          "role-play props",
+          "scenario cards",
+          "helper costume pieces",
+          "community interaction scripts"
+        ],
+        "visualSupports": "Role-specific actions and movements, community interaction demonstrations, helper service expressions",
+        "decisionPoints": [
+          {
+            "question": "Which helper roles are most engaging and appropriate for Grade 1 role-play?",
+            "ifYes": "Focus on active, visible helpers like firefighters, teachers, store workers, safety helpers",
+            "ifNo": "Include variety of helpers and let students explore different roles throughout activity"
+          },
+          {
+            "question": "Should students choose their own roles or rotate through different helpers?",
+            "ifYes": "Allow role choice to ensure engagement while encouraging some role rotation for variety",
+            "ifNo": "Assign roles to ensure variety and give all students opportunity to explore different helpers"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Role-play reflection circle where students share what they learned about helpers through acting and practice saying 'Maintenant je comprends que...'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students becoming too silly or losing educational focus during role-play",
+        "then": "Use structured scenarios, frequent appreciation reminders, and clear performance expectations to maintain educational purpose"
+      },
+      "realWorldConnection": "Playing community helper roles helps us understand what different helpers do every day",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 18,
+      "lessonType": "extension",
+      "title": "Lettres de remerciement aux aides communautaires",
+      "oneGoal": "Students will write simple thank you letters to community helpers expressing appreciation",
+      "duration": 45,
+      "keyVocabulary": [
+        "lettre",
+        "merci",
+        "gratitude"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Letter writing circle where students practice gratitude vocabulary and choose community helpers to thank. Review letter writing basics and appreciation expressions.",
+        "materials": [
+          "letter templates",
+          "gratitude vocabulary cards",
+          "helper photo reminders"
+        ],
+        "visualSupports": "Letter writing gestures, gratitude expressions, appreciation demonstration techniques",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Thank you letter creation using simple templates and guided writing support. Students write or dictate letters to specific community helpers, including drawings and expressing specific appreciation for helper contributions to community.",
+        "materials": [
+          "letter paper",
+          "writing supplies",
+          "letter templates",
+          "drawing supplies"
+        ],
+        "visualSupports": "Writing demonstration techniques, gratitude expression examples, letter completion celebrations",
+        "decisionPoints": [
+          {
+            "question": "Which community helpers should receive student thank you letters?",
+            "ifYes": "Target helpers students have met or observed, like school helpers, local store workers, safety helpers",
+            "ifNo": "Choose variety of helpers to represent different types of community service students have learned about"
+          },
+          {
+            "question": "What writing level is appropriate for Grade 1 thank you letters?",
+            "ifYes": "Support simple sentences, drawings, and dictated messages that express genuine appreciation",
+            "ifNo": "Provide templates with starter phrases that students can complete with specific appreciation details"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Letter sharing circle where students share portions of their letters and practice saying 'J'ai écrit pour remercier...'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students struggling to express specific appreciation in letters",
+        "then": "Provide sentence starters, specific appreciation examples, and drawing options to supplement written expression"
+      },
+      "realWorldConnection": "Thanking community helpers shows appreciation and builds positive community relationships",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 19,
+      "lessonType": "extension",
+      "title": "Célébration des aides communautaires",
+      "oneGoal": "Students will plan and participate in a celebration honoring all types of community helpers",
+      "duration": 45,
+      "keyVocabulary": [
+        "célébration",
+        "honorer",
+        "remercier"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Celebration planning circle where students share ideas for honoring community helpers. Practice celebration vocabulary with festive gestures and appreciation expressions.",
+        "materials": [
+          "celebration planning charts",
+          "festive vocabulary cards",
+          "appreciation demonstration examples"
+        ],
+        "visualSupports": "Celebration gestures (clapping, cheering), planning motions, community appreciation expressions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Community helper celebration preparation including decoration making, appreciation speech practice, and gratitude expression preparation. Students create celebration elements that honor different types of helpers learned throughout unit.",
+        "materials": [
+          "celebration supplies",
+          "decoration materials",
+          "speech preparation cards",
+          "appreciation activity supplies"
+        ],
+        "visualSupports": "Celebration preparation actions, appreciation demonstration techniques, festive community expressions",
+        "decisionPoints": [
+          {
+            "question": "Should we invite real community helpers to our celebration?",
+            "ifYes": "Invite available local helpers to attend and receive student appreciation in person",
+            "ifNo": "Create celebration that honors helpers symbolically and prepares students to express appreciation in community"
+          },
+          {
+            "question": "What type of celebration activities would best honor community helpers?",
+            "ifYes": "Include appreciation speeches, thank you art displays, helper role demonstrations, and gratitude expressions",
+            "ifNo": "Focus on student-led appreciation activities that demonstrate learning and genuine gratitude"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Celebration reflection circle where students share their favorite part of honoring helpers and practice saying 'Nous célébrons nos héros communautaires!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students becoming too excited and losing focus on helper appreciation purpose",
+        "then": "Use structured celebration activities, frequent appreciation reminders, and clear expectations for respectful celebration"
+      },
+      "realWorldConnection": "Celebrating community helpers together shows our gratitude and builds community connections",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 20,
+      "lessonType": "extension",
+      "title": "Nous faisons partie de notre communauté automnale",
+      "oneGoal": "Students will reflect on their learning and understand their important place in the autumn community",
+      "duration": 45,
+      "keyVocabulary": [
+        "appartenir",
+        "important",
+        "fierté"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Community belonging circle where students reflect on all the helpers they've learned about and how they feel as community members. Practice belonging vocabulary with inclusive gestures.",
+        "materials": [
+          "helper learning review photos",
+          "belonging vocabulary cards",
+          "community connection demonstrations"
+        ],
+        "visualSupports": "Inclusive community gestures, belonging expressions, proud community member demonstrations",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Community learning reflection using unit review materials and personal growth assessment. Students create a 'My Community Learning' book showing their favorite helpers, how they want to contribute, and their pride in community belonging.",
+        "materials": [
+          "learning review materials",
+          "reflection book templates",
+          "personal growth assessment sheets"
+        ],
+        "visualSupports": "Reflection demonstration techniques, learning celebration gestures, community pride expressions",
+        "decisionPoints": [
+          {
+            "question": "How do we help students articulate what they've learned about community?",
+            "ifYes": "Use specific prompts about favorite helpers, most interesting discoveries, and personal community connections",
+            "ifNo": "Provide sentence starters and visual prompts to help students express learning and community understanding"
+          },
+          {
+            "question": "Should reflection focus on helper appreciation or student community belonging?",
+            "ifYes": "Balance both helper appreciation and student recognition of their own community membership and contribution potential",
+            "ifNo": "Focus primarily on student community belonging while acknowledging helper learning throughout unit"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Community pride circle where students share one thing they're proud to know about their community and practice saying 'Je suis fier de faire partie de ma communauté!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students not feeling confident about their place in community",
+        "then": "Emphasize that all community members are important, highlight student contributions, and celebrate community belonging"
+      },
+      "realWorldConnection": "Understanding our community helps us feel proud to belong and excited to contribute as we grow",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    }
+  ],
+  "assessmentTools": {
+    "observationChecklist": [],
+    "rubrics": [],
+    "selfAssessment": [],
+    "portfolioGuidelines": ""
   },
-  {
-    "lessonNumber": 2,
-    "title": "Les personnes qui nous aident à l'école",
-    "oneGoal": "Students will recognize the school community helpers who support their learning every day",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Helper appreciation circle where students think of one school person who helps them. Practice helper appreciation gestures and the phrase 'Merci de nous aider!'",
-      "materials": ["school helper photos", "appreciation gestures", "thank you phrases in French"],
-      "visualSupports": "Helping hands gestures, grateful expressions, pointing to helper photos with appreciation"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "School helper exploration using photos and possible mini-interviews. Students create a 'School Helpers' book with drawings and simple descriptions of what each helper does. Include principal, secretary, custodian, librarian, and volunteers.",
-      "materials": ["school helper photos", "mini-book templates", "drawing supplies", "simple French helper descriptions"],
-      "visualSupports": "Helper-specific gestures (key for principal, cleaning for custodian), appreciation expressions, helping hand motions",
-      "decisionPoints": [
-        {
-          "question": "Which school helpers do students interact with most often?",
-          "ifYes": "Focus on these familiar helpers first and add others as extensions",
-          "ifNo": "Introduce helpers through photos and explain how they help students even if not seen daily"
-        },
-        {
-          "question": "Should we include volunteers or focus only on staff?",
-          "ifYes": "Include parent volunteers and reading helpers to show broader school community",
-          "ifNo": "Focus on consistent staff helpers that students see regularly"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Helper appreciation circle where students share which school helper they'd like to thank and why. Practice saying 'Merci' to different school helpers they might see.",
-      "assessment": "Observe student recognition of different school helpers and understanding of how helpers support learning"
-    },
-    "vocabulary": ["directeur", "concierge", "secrétaire"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students not recognizing less visible school helpers",
-      "then": "Take brief school walk to see helpers at work or arrange brief helper visits to classroom"
-    },
-    "realWorldConnection": "Many people work together to make our school a safe, clean, and welcoming place to learn"
+  "familyConnections": {
+    "unitLetter": "",
+    "homeActivities": [],
+    "vocabularyList": []
   },
-  {
-    "lessonNumber": 3,
-    "title": "Les changements d'automne dans notre communauté",
-    "oneGoal": "Students will observe and describe how autumn brings changes to their local community",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Autumn observation circle where students share autumn changes they've noticed at home or school. Practice autumn vocabulary with seasonal gestures and expressions.",
-      "materials": ["autumn photos of local area", "seasonal gesture cards", "autumn leaves or props"],
-      "visualSupports": "Falling leaf gestures, cooler weather motions (rubbing arms), changing colors hand movements"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Community autumn changes exploration using before/after photos of local areas in summer vs autumn. Students create an 'Autumn Changes' observation journal, drawing community changes they see and describing them with simple French words.",
-      "materials": ["local seasonal photos", "observation journals", "colored pencils", "autumn vocabulary cards"],
-      "visualSupports": "Comparison gestures (showing different), observation motions (pointing and looking), seasonal change expressions",
-      "decisionPoints": [
-        {
-          "question": "What autumn changes are most visible in our local area?",
-          "ifYes": "Focus on dramatic local changes like leaf colors, harvest activities, or weather preparations",
-          "ifNo": "Use photos of typical autumn changes and help students look for subtle local changes"
-        },
-        {
-          "question": "Should we focus on natural changes or community activity changes?",
-          "ifYes": "Balance both natural changes (leaves, weather) and community changes (harvest festivals, preparation activities)",
-          "ifNo": "Start with natural changes students can see, then connect to community activity changes"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Autumn appreciation circle where students share their favorite autumn change in the community. Practice saying 'J'aime l'automne parce que...'",
-      "assessment": "Observe student ability to identify and describe autumn changes in community using French vocabulary"
-    },
-    "vocabulary": ["automne", "changement", "feuilles"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students not noticing community changes beyond obvious leaf colors",
-      "then": "Provide specific prompts: people's clothing, community decorations, different activities outside"
-    },
-    "realWorldConnection": "Autumn brings special changes that affect how our community looks, feels, and works together"
+  "resourceAlternatives": {
+    "materials": {},
+    "digitalResources": []
   },
-  {
-    "lessonNumber": 4,
-    "title": "Les gens qui nous gardent en sécurité",
-    "oneGoal": "Students will identify community safety helpers and understand how they protect everyone in autumn",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Safety helper circle where students share safety helpers they know. Practice safety vocabulary with protective gestures and expressions of gratitude for safety helpers.",
-      "materials": ["safety helper photos", "safety gesture cards", "protective equipment props"],
-      "visualSupports": "Protective gestures (shield motion), safety pointing (stop hand), grateful expressions for helpers"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Safety helper exploration using photos and simple role-play. Students create a 'Safety Helpers' chart showing different helpers (police, firefighters, crossing guards) and how they keep the community safe in autumn weather.",
-      "materials": ["safety helper photos", "chart paper", "safety equipment pictures", "role-play props"],
-      "visualSupports": "Helper-specific gestures (traffic directing for crossing guard, siren sounds for emergency helpers), safety expressions",
-      "decisionPoints": [
-        {
-          "question": "Are students comfortable discussing safety without creating fear?",
-          "ifYes": "Focus on positive safety helper roles and how they help community feel secure",
-          "ifNo": "Emphasize helper friendliness and community service rather than emergency situations"
-        },
-        {
-          "question": "Which safety helpers are most visible in our community?",
-          "ifYes": "Feature most visible helpers prominently and explain their daily community presence",
-          "ifNo": "Introduce variety of safety helpers and explain when and how they help community"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Safety appreciation circle where students practice saying 'Merci de nous protéger' and share how safety helpers make them feel secure in their community.",
-      "assessment": "Observe student understanding of safety helper roles and comfort with safety helper interactions"
-    },
-    "vocabulary": ["sécurité", "police", "pompier"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students feeling anxious about safety topics",
-      "then": "Emphasize helper friendliness, community care, and how helpers prevent problems rather than respond to emergencies"
-    },
-    "realWorldConnection": "Safety helpers work every day, including during autumn, to keep our community safe and secure"
-  },
-  {
-    "lessonNumber": 5,
-    "title": "Visite d'un pompier à l'école",
-    "oneGoal": "Students will learn about fire safety and fire fighters' important community role through a special visit",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Fire safety preparation circle where students practice fire safety vocabulary and prepare respectful questions for firefighter visitor. Review appropriate visitor behavior.",
-      "materials": ["fire safety vocabulary cards", "question preparation charts", "visitor etiquette reminders"],
-      "visualSupports": "Fire safety gestures (stop drop roll motions), respectful listening posture, question asking gestures"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Firefighter visit (or virtual presentation) with Q&A, equipment demonstration, and fire safety education. Students create a 'Fire Safety' reminder poster with key safety messages and appreciation for firefighters.",
-      "materials": ["firefighter visitor or virtual presentation", "safety demonstration materials", "poster supplies"],
-      "visualSupports": "Following firefighter demonstrations, safety rule gestures, appreciation expressions for visitor",
-      "decisionPoints": [
-        {
-          "question": "Can we arrange an actual firefighter visit or should we use virtual resources?",
-          "ifYes": "Coordinate with local fire department for in-person visit with equipment demonstration",
-          "ifNo": "Use high-quality virtual firefighter presentation with interactive elements and Q&A"
-        },
-        {
-          "question": "What fire safety concepts are appropriate for Grade 1?",
-          "ifYes": "Focus on basic safety: stop-drop-roll, calling 911, meeting spots, not playing with fire",
-          "ifNo": "Keep concepts simple and positive, focusing on firefighter helpers rather than fire dangers"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Firefighter appreciation circle where students share what they learned and practice saying 'Merci, pompier!' End with commitment to fire safety rules.",
-      "assessment": "Observe student engagement with firefighter visit and understanding of basic fire safety concepts"
-    },
-    "vocabulary": ["pompier", "urgence", "protéger"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students becoming too excited or distracted during firefighter visit",
-      "then": "Use structured Q&A format, clear expectations, and frequent appreciation reminders to maintain focus"
-    },
-    "realWorldConnection": "Fire fighters help our community stay safe from fires and other emergencies all year long"
-  },
-  {
-    "lessonNumber": 6,
-    "title": "Les gens qui nous aident quand nous sommes malades",
-    "oneGoal": "Students will understand how healthcare helpers support community wellness in all seasons",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Health helper circle where students share healthcare helpers they know (doctors, nurses, dentists). Practice health vocabulary with caring gestures and wellness expressions.",
-      "materials": ["healthcare helper photos", "health vocabulary cards", "caring gesture demonstrations"],
-      "visualSupports": "Caring gestures (gentle hands), health checking motions (listening, looking), wellness expressions"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Healthcare helper exploration using photos and simple health role-play. Students create a 'Health Helpers' book showing different helpers and how they keep the community healthy, especially during autumn cold season.",
-      "materials": ["healthcare photos", "health book templates", "simple medical props for role-play"],
-      "visualSupports": "Helper-specific gestures (stethoscope listening, gentle care motions), health and wellness expressions",
-      "decisionPoints": [
-        {
-          "question": "Should we include mental health helpers or focus on physical health?",
-          "ifYes": "Include school counselors and explain how they help with feelings and worries",
-          "ifNo": "Focus on familiar physical health helpers that students encounter regularly"
-        },
-        {
-          "question": "How do we discuss medical help without creating anxiety?",
-          "ifYes": "Emphasize helper kindness, community care, and how helpers help people feel better",
-          "ifNo": "Focus on wellness promotion and helper friendliness rather than illness treatment"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Health appreciation circle where students share ways to stay healthy and practice thanking healthcare helpers with 'Merci de prendre soin de nous!'",
-      "assessment": "Observe student understanding of healthcare helper roles and positive associations with health helpers"
-    },
-    "vocabulary": ["docteur", "infirmière", "santé"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students feeling worried about medical situations",
-      "then": "Emphasize prevention, wellness, and helper kindness; focus on how helpers help people feel better and stronger"
-    },
-    "realWorldConnection": "Healthcare helpers work to keep everyone in our community healthy and strong"
-  },
-  {
-    "lessonNumber": 7,
-    "title": "Les gens qui apportent notre nourriture",
-    "oneGoal": "Students will explore how food gets to their community and the helpers involved in this process",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Food journey circle where students think about where their breakfast came from. Practice food helper vocabulary with farm-to-table gestures and appreciation expressions.",
-      "materials": ["food journey visual cards", "farm and store photos", "food appreciation gestures"],
-      "visualSupports": "Farm growing gestures, transportation motions, food sharing expressions, grateful eating motions"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Food system exploration using autumn harvest photos and food journey maps. Students create a 'From Farm to Table' poster showing farmers, truckers, store workers, and how autumn harvest reaches their community.",
-      "materials": ["harvest photos", "food journey maps", "poster supplies", "food system pictures"],
-      "visualSupports": "Sequential gestures for food journey, harvest celebration motions, food sharing expressions",
-      "decisionPoints": [
-        {
-          "question": "Should we focus on local farmers or include broader food supply chain?",
-          "ifYes": "Emphasize local autumn harvest and nearby farms that supply community stores",
-          "ifNo": "Include broader food system while highlighting autumn harvest and seasonal foods"
-        },
-        {
-          "question": "Which food helpers are most visible in our autumn community?",
-          "ifYes": "Feature farmers market vendors, grocery store workers, and autumn harvest helpers",
-          "ifNo": "Use photos to introduce variety of food system workers and their autumn contributions"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Food appreciation circle where students share their favorite autumn food and practice saying 'Merci aux fermiers!' for bringing food to community.",
-      "assessment": "Observe student understanding of food system helpers and connection between autumn harvest and community food"
-    },
-    "vocabulary": ["fermier", "camionneur", "épicier"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students not understanding food journey from farm to home",
-      "then": "Use specific examples with familiar foods, simple sequential pictures, and concrete farm-to-store connections"
-    },
-    "realWorldConnection": "Many helpers work together to bring fresh, healthy food to our community, especially during autumn harvest"
-  },
-  {
-    "lessonNumber": 8,
-    "title": "Visite à l'épicerie du quartier",
-    "oneGoal": "Students will observe food helpers in action and understand the grocery store as a community hub",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Grocery store preparation circle where students practice grocery vocabulary and prepare respectful observation questions. Review field trip behavior expectations.",
-      "materials": ["grocery vocabulary cards", "field trip behavior charts", "observation question prompts"],
-      "visualSupports": "Shopping gestures, respectful observation postures, polite interaction expressions"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Grocery store field trip (or virtual tour) observing workers, autumn produce, and community interactions. Students complete observation checklist and practice polite interactions with store helpers.",
-      "materials": ["field trip permission or virtual tour", "observation checklists", "interaction practice cards"],
-      "visualSupports": "Following field trip guides, observation gestures, polite interaction demonstrations",
-      "decisionPoints": [
-        {
-          "question": "Can we arrange an actual grocery store field trip or virtual tour?",
-          "ifYes": "Coordinate with local grocery store for educational visit with worker interactions",
-          "ifNo": "Use comprehensive virtual grocery tour with focus on worker roles and community service"
-        },
-        {
-          "question": "Which grocery store roles should we highlight for Grade 1?",
-          "ifYes": "Focus on visible roles: cashiers, produce workers, managers, cart helpers",
-          "ifNo": "Introduce variety of store workers and explain how they serve community families"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Grocery appreciation circle where students share what they observed and practice thanking store workers with 'Merci de nous servir!'",
-      "assessment": "Observe student ability to identify grocery store helpers and understanding of store as community service location"
-    },
-    "vocabulary": ["épicerie", "service", "clients"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students getting overwhelmed or distracted during field trip",
-      "then": "Use buddy system, clear observation focus, and frequent appreciation reminders to maintain educational purpose"
-    },
-    "realWorldConnection": "Grocery stores are important community places where food helpers serve families every day"
-  },
-  {
-    "lessonNumber": 9,
-    "title": "Les gens qui gardent notre communauté propre",
-    "oneGoal": "Students will appreciate sanitation workers and understand how keeping communities clean is everyone's job",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Clean community circle where students share what they do to keep spaces clean. Practice cleanliness vocabulary with tidy-up gestures and environmental appreciation.",
-      "materials": ["cleanliness photos", "tidy-up demonstration props", "environmental care gestures"],
-      "visualSupports": "Cleaning gestures (sweeping, picking up), environmental care motions, pride in clean spaces expressions"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Environmental helper exploration using photos of sanitation workers, recycling helpers, and park maintenance. Students create a 'Clean Community' action plan showing how helpers and families work together, especially with autumn leaf cleanup.",
-      "materials": ["sanitation worker photos", "recycling education materials", "action plan templates"],
-      "visualSupports": "Environmental helper gestures, recycling motions, community cooperation expressions",
-      "decisionPoints": [
-        {
-          "question": "Should we include environmental helpers beyond garbage collection?",
-          "ifYes": "Include park maintenance, recycling workers, and environmental protection helpers",
-          "ifNo": "Focus on most visible sanitation workers and explain their daily community contributions"
-        },
-        {
-          "question": "How do we emphasize student responsibility for community cleanliness?",
-          "ifYes": "Balance helper appreciation with student actions like not littering and helping with cleanup",
-          "ifNo": "Focus primarily on helper appreciation while mentioning simple student contributions"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Clean community commitment circle where students share one way they'll help keep their community clean and practice saying 'Merci de garder notre communauté propre!'",
-      "assessment": "Observe student appreciation for sanitation workers and understanding of shared responsibility for community cleanliness"
-    },
-    "vocabulary": ["propre", "déchets", "recyclage"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students not understanding connection between individual actions and community cleanliness",
-      "then": "Use concrete examples of how one person's littering affects everyone, and how helping cleanup benefits whole community"
-    },
-    "realWorldConnection": "Keeping our community clean requires helpers working together and everyone doing their part"
-  },
-  {
-    "lessonNumber": 10,
-    "title": "Les activités d'automne dans notre communauté",
-    "oneGoal": "Students will identify special autumn activities that bring their community together",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Autumn activity circle where students share autumn activities they enjoy with families. Practice autumn celebration vocabulary with festive gestures and community expressions.",
-      "materials": ["autumn activity photos", "celebration vocabulary cards", "festive gesture demonstrations"],
-      "visualSupports": "Celebration gestures (clapping, cheering), autumn activity motions, community togetherness expressions"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Community autumn celebration exploration using local event photos and activity descriptions. Students create an 'Autumn Community Calendar' showing harvest festivals, Halloween events, and autumn sports that bring neighbors together.",
-      "materials": ["local autumn event photos", "calendar templates", "community activity descriptions"],
-      "visualSupports": "Activity-specific gestures, calendar organization motions, community participation expressions",
-      "decisionPoints": [
-        {
-          "question": "Which autumn activities are most common in our local community?",
-          "ifYes": "Feature prominent local events like harvest festivals, pumpkin patches, or autumn sports",
-          "ifNo": "Introduce variety of typical autumn community activities and help students identify local versions"
-        },
-        {
-          "question": "Should we focus on organized events or informal community gatherings?",
-          "ifYes": "Include both formal events and informal activities like neighborhood leaf raking or outdoor play",
-          "ifNo": "Focus on organized community events that families can easily participate in together"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Autumn celebration circle where students share which community autumn activity they'd most like to try and practice saying 'J'aimerais participer!'",
-      "assessment": "Observe student understanding of community autumn activities and enthusiasm for community participation"
-    },
-    "vocabulary": ["festivités", "célébration", "ensemble"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students not aware of local community autumn activities",
-      "then": "Provide specific local examples, send home family inquiry about autumn activities, use photos of nearby events"
-    },
-    "realWorldConnection": "Autumn brings special opportunities for community members to celebrate and have fun together"
-  },
-  {
-    "lessonNumber": 11,
-    "title": "Promenade dans le quartier en automne",
-    "oneGoal": "Students will observe their neighborhood community helpers and autumn changes through direct exploration",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Neighborhood walk preparation circle where students practice observation vocabulary and prepare safety rules for community exploration. Review respectful neighbor behavior.",
-      "materials": ["observation vocabulary cards", "safety rule charts", "neighborhood exploration guidelines"],
-      "visualSupports": "Observation gestures (pointing, looking carefully), safety rule demonstrations, respectful neighbor interactions"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Neighborhood walk (or virtual neighborhood tour) observing autumn changes, community helpers at work, and neighborhood helpers. Students complete neighborhood observation journal documenting helpers and autumn changes they discover.",
-      "materials": ["neighborhood walk route or virtual tour", "observation journals", "clipboards and pencils"],
-      "visualSupports": "Guided observation techniques, discovery expressions, community helper identification gestures",
-      "decisionPoints": [
-        {
-          "question": "Can we take an actual neighborhood walk or should we use virtual exploration?",
-          "ifYes": "Plan safe walking route with multiple helper observation opportunities and autumn change viewing",
-          "ifNo": "Use comprehensive virtual neighborhood tour with interactive elements and discussion opportunities"
-        },
-        {
-          "question": "Which community helpers are we likely to see during our walk?",
-          "ifYes": "Prepare students to recognize mail carriers, crossing guards, maintenance workers, shop keepers",
-          "ifNo": "Use photos and descriptions to supplement observation with helper identification activities"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Neighborhood discovery circle where students share their most interesting observation and practice saying 'J'ai découvert que...'",
-      "assessment": "Observe student ability to identify community helpers and autumn changes during neighborhood exploration"
-    },
-    "vocabulary": ["quartier", "observer", "découvrir"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students having difficulty focusing observation during walk",
-      "then": "Use specific observation prompts, buddy observation system, and frequent stop-and-share opportunities"
-    },
-    "realWorldConnection": "Taking time to really look at our neighborhood helps us appreciate all the helpers around us"
-  },
-  {
-    "lessonNumber": 12,
-    "title": "Les gens qui nous aident à nous déplacer",
-    "oneGoal": "Students will explore transportation helpers who keep community members moving safely",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Transportation circle where students share how they get to school and around community. Practice transportation vocabulary with movement gestures and safety expressions.",
-      "materials": ["transportation photos", "movement vocabulary cards", "safety gesture demonstrations"],
-      "visualSupports": "Transportation motions (driving, walking, riding), safety rule gestures, grateful traveler expressions"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Transportation helper exploration using photos of bus drivers, crossing guards, traffic officers, and road maintenance workers. Students create a 'Safe Transportation' poster showing helpers who keep community members moving safely in autumn weather.",
-      "materials": ["transportation helper photos", "safety poster templates", "autumn weather transportation pictures"],
-      "visualSupports": "Helper-specific motions, safety demonstration gestures, weather-appropriate transportation expressions",
-      "decisionPoints": [
-        {
-          "question": "Should we include public transportation or focus on school transportation?",
-          "ifYes": "Include both school buses and public transportation to show full range of community transportation",
-          "ifNo": "Focus on school transportation helpers that students interact with most regularly"
-        },
-        {
-          "question": "Which transportation helpers are most relevant to student experience?",
-          "ifYes": "Emphasize school bus drivers, crossing guards, and walking safety helpers",
-          "ifNo": "Introduce variety of transportation helpers and explain how they serve different community needs"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Transportation appreciation circle where students practice thanking transportation helpers with 'Merci de nous aider à voyager en sécurité!'",
-      "assessment": "Observe student understanding of transportation helper roles and appreciation for transportation safety"
-    },
-    "vocabulary": ["transport", "autobus", "conducteur"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students not recognizing less visible transportation helpers",
-      "then": "Point out specific helpers during school arrival/dismissal, use photos of helpers at work, explain helper importance"
-    },
-    "realWorldConnection": "Transportation helpers make it possible for people to move safely around our community"
-  },
-  {
-    "lessonNumber": 13,
-    "title": "Les gens qui construisent et réparent",
-    "oneGoal": "Students will understand how construction and repair workers maintain and improve their community",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Building and repair circle where students share things that need fixing or building in their community. Practice construction vocabulary with building gestures and improvement expressions.",
-      "materials": ["construction photos", "tool pictures", "building gesture demonstrations"],
-      "visualSupports": "Building motions (hammering, measuring), repair gestures, community improvement expressions"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Construction helper exploration using photos of builders, repair workers, road crews, and maintenance teams. Students create a 'Community Builders' appreciation chart showing how these helpers make community stronger, especially preparing for autumn and winter.",
-      "materials": ["construction worker photos", "appreciation chart templates", "seasonal preparation pictures"],
-      "visualSupports": "Construction motions, seasonal preparation gestures, community strength expressions",
-      "decisionPoints": [
-        {
-          "question": "Should we focus on new construction or maintenance and repair work?",
-          "ifYes": "Balance both new building projects and ongoing maintenance that keeps community functioning",
-          "ifNo": "Focus on maintenance and repair work that students can observe in their daily community experience"
-        },
-        {
-          "question": "Which construction helpers are most visible in our autumn community?",
-          "ifYes": "Highlight road crews, building maintenance, and autumn preparation workers",
-          "ifNo": "Use photos to introduce variety of construction helpers and explain their community contributions"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Builder appreciation circle where students share how construction helpers make their community better and practice saying 'Merci de construire notre communauté!'",
-      "assessment": "Observe student understanding of construction helper roles and appreciation for community building work"
-    },
-    "vocabulary": ["construire", "réparer", "outils"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students not understanding connection between construction work and community improvement",
-      "then": "Use before/after photos of community improvements, point out specific construction benefits for families"
-    },
-    "realWorldConnection": "Construction and repair workers help make our community stronger and better for everyone"
-  },
-  {
-    "lessonNumber": 14,
-    "title": "Comment nous pouvons aider notre communauté",
-    "oneGoal": "Students will identify ways they can contribute to their community as young citizens",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Young helper circle where students share ways they already help at home or school. Practice citizen vocabulary with helpful gestures and community contribution expressions.",
-      "materials": ["young helper photos", "citizen vocabulary cards", "helpful gesture demonstrations"],
-      "visualSupports": "Helping hand gestures, citizen pride expressions, community contribution motions"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Young citizen exploration using photos of children helping community and age-appropriate service ideas. Students create a 'Young Citizens' action plan showing realistic ways Grade 1 students can contribute to community wellbeing.",
-      "materials": ["young citizen photos", "action plan templates", "age-appropriate service examples"],
-      "visualSupports": "Service action demonstrations, citizen pride gestures, community impact expressions",
-      "decisionPoints": [
-        {
-          "question": "What are realistic ways Grade 1 students can help their community?",
-          "ifYes": "Focus on simple actions: not littering, being kind to neighbors, helping elderly, thanking helpers",
-          "ifNo": "Brainstorm with students and provide examples of age-appropriate community contributions"
-        },
-        {
-          "question": "Should we focus on individual actions or group community projects?",
-          "ifYes": "Include both individual kindness actions and simple group projects like card-making for helpers",
-          "ifNo": "Focus on individual actions students can take immediately in their daily community interactions"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Young citizen commitment circle where students choose one way they'll help their community and practice saying 'Je vais aider ma communauté en...'",
-      "assessment": "Observe student understanding of their ability to contribute to community and commitment to community service"
-    },
-    "vocabulary": ["aider", "citoyen", "contribuer"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students feeling too young to make a community difference",
-      "then": "Provide specific examples of young people helping, emphasize that small actions matter, build confidence about impact"
-    },
-    "realWorldConnection": "Even young people can make important contributions to help their community be better"
-  },
-  {
-    "lessonNumber": 15,
-    "title": "Créer une carte de notre communauté",
-    "oneGoal": "Students will create a visual map showing important community helpers and places in their neighborhood",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Map-making circle where students share places they know in their community. Practice mapping vocabulary with directional gestures and location expressions.",
-      "materials": ["simple community maps", "mapping vocabulary cards", "directional gesture demonstrations"],
-      "visualSupports": "Directional pointing, map-reading gestures, location identification expressions"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Community map creation using simple base maps or drawing from scratch. Students add community helper locations, important places, and autumn features to create personalized community maps showing where helpers work and families visit.",
-      "materials": ["base maps or large paper", "mapping supplies", "community location stickers", "colored pencils"],
-      "visualSupports": "Map-making motions, spatial organization gestures, community pride expressions",
-      "decisionPoints": [
-        {
-          "question": "Should maps focus on helper locations or general community landmarks?",
-          "ifYes": "Balance both helper workplaces and general landmarks to show complete community picture",
-          "ifNo": "Focus on helper locations while including key landmarks that students recognize"
-        },
-        {
-          "question": "What map-making tools are appropriate for Grade 1 students?",
-          "ifYes": "Use simple symbols, stickers, and drawing tools that allow creative but clear map-making",
-          "ifNo": "Provide templates with some pre-drawn elements that students can add to and personalize"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Map sharing circle where students show their community maps and practice describing locations with 'Sur ma carte, je vois...'",
-      "assessment": "Observe student ability to represent community geography and helper locations on maps"
-    },
-    "vocabulary": ["carte", "lieux", "important"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students having difficulty representing spatial relationships on maps",
-      "then": "Use concrete reference points, provide map templates with major landmarks, focus on general location rather than precise mapping"
-    },
-    "realWorldConnection": "Making maps helps us understand how our community is organized and where helpers work"
-  },
-  {
-    "lessonNumber": 16,
-    "title": "Dessiner nos héros communautaires",
-    "oneGoal": "Students will create artwork celebrating community helpers they've learned about",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Art inspiration circle where students choose their favorite community helper to draw. Practice art vocabulary with creative gestures and artistic appreciation expressions.",
-      "materials": ["community helper photos for reference", "art vocabulary cards", "creative inspiration examples"],
-      "visualSupports": "Artistic creation gestures, helper appreciation expressions, creative celebration motions"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Community helper artwork creation using various art supplies and reference photos. Students create detailed drawings or paintings of chosen helpers, including tools, uniforms, and community settings, with focus on showing appreciation.",
-      "materials": ["art paper", "colored pencils", "crayons", "paint supplies", "helper reference photos"],
-      "visualSupports": "Artistic demonstration techniques, detailed observation gestures, creative expression encouragement",
-      "decisionPoints": [
-        {
-          "question": "Should students choose their favorite helper or draw multiple helpers?",
-          "ifYes": "Allow choice of favorite helper to ensure personal connection and artistic motivation",
-          "ifNo": "Assign specific helpers to ensure variety across classroom while allowing artistic interpretation"
-        },
-        {
-          "question": "What art materials will help students best express their appreciation?",
-          "ifYes": "Provide variety of materials so students can choose tools that match their artistic vision",
-          "ifNo": "Use consistent art materials to focus on content creation rather than material choice"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Artist appreciation circle where students share their helper artwork and practice describing with 'J'ai dessiné... parce que...'",
-      "assessment": "Observe student ability to represent community helpers through art and express appreciation for helper contributions"
-    },
-    "vocabulary": ["héros", "dessiner", "apprécier"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students feeling their artwork isn't good enough to show appreciation",
-      "then": "Emphasize that thoughtful effort shows appreciation, focus on helper recognition rather than artistic perfection"
-    },
-    "realWorldConnection": "Creating art about community helpers helps us remember and appreciate their important work"
-  },
-  {
-    "lessonNumber": 17,
-    "title": "Jeu de rôles: Nous sommes des aides communautaires",
-    "oneGoal": "Students will role-play being different community helpers to practice helper vocabulary and actions",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Role-play preparation circle where students choose community helper roles and practice helper-specific vocabulary and actions. Review respectful role-play guidelines.",
-      "materials": ["helper role cards", "simple costume props", "role-play vocabulary cards"],
-      "visualSupports": "Helper-specific gestures and movements, role-play demonstration techniques, respectful performance expressions"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Community helper role-play scenarios where students act out helper roles, interact with community members, and demonstrate helper services. Include appreciation interactions between helpers and community members.",
-      "materials": ["role-play props", "scenario cards", "helper costume pieces", "community interaction scripts"],
-      "visualSupports": "Role-specific actions and movements, community interaction demonstrations, helper service expressions",
-      "decisionPoints": [
-        {
-          "question": "Which helper roles are most engaging and appropriate for Grade 1 role-play?",
-          "ifYes": "Focus on active, visible helpers like firefighters, teachers, store workers, safety helpers",
-          "ifNo": "Include variety of helpers and let students explore different roles throughout activity"
-        },
-        {
-          "question": "Should students choose their own roles or rotate through different helpers?",
-          "ifYes": "Allow role choice to ensure engagement while encouraging some role rotation for variety",
-          "ifNo": "Assign roles to ensure variety and give all students opportunity to explore different helpers"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Role-play reflection circle where students share what they learned about helpers through acting and practice saying 'Maintenant je comprends que...'",
-      "assessment": "Observe student understanding of helper roles through role-play performance and helper vocabulary usage"
-    },
-    "vocabulary": ["jouer", "rôle", "profession"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students becoming too silly or losing educational focus during role-play",
-      "then": "Use structured scenarios, frequent appreciation reminders, and clear performance expectations to maintain educational purpose"
-    },
-    "realWorldConnection": "Playing community helper roles helps us understand what different helpers do every day"
-  },
-  {
-    "lessonNumber": 18,
-    "title": "Lettres de remerciement aux aides communautaires",
-    "oneGoal": "Students will write simple thank you letters to community helpers expressing appreciation",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Letter writing circle where students practice gratitude vocabulary and choose community helpers to thank. Review letter writing basics and appreciation expressions.",
-      "materials": ["letter templates", "gratitude vocabulary cards", "helper photo reminders"],
-      "visualSupports": "Letter writing gestures, gratitude expressions, appreciation demonstration techniques"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Thank you letter creation using simple templates and guided writing support. Students write or dictate letters to specific community helpers, including drawings and expressing specific appreciation for helper contributions to community.",
-      "materials": ["letter paper", "writing supplies", "letter templates", "drawing supplies"],
-      "visualSupports": "Writing demonstration techniques, gratitude expression examples, letter completion celebrations",
-      "decisionPoints": [
-        {
-          "question": "Which community helpers should receive student thank you letters?",
-          "ifYes": "Target helpers students have met or observed, like school helpers, local store workers, safety helpers",
-          "ifNo": "Choose variety of helpers to represent different types of community service students have learned about"
-        },
-        {
-          "question": "What writing level is appropriate for Grade 1 thank you letters?",
-          "ifYes": "Support simple sentences, drawings, and dictated messages that express genuine appreciation",
-          "ifNo": "Provide templates with starter phrases that students can complete with specific appreciation details"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Letter sharing circle where students share portions of their letters and practice saying 'J'ai écrit pour remercier...'",
-      "assessment": "Observe student ability to express gratitude in writing and understanding of specific helper contributions"
-    },
-    "vocabulary": ["lettre", "merci", "gratitude"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students struggling to express specific appreciation in letters",
-      "then": "Provide sentence starters, specific appreciation examples, and drawing options to supplement written expression"
-    },
-    "realWorldConnection": "Thanking community helpers shows appreciation and builds positive community relationships"
-  },
-  {
-    "lessonNumber": 19,
-    "title": "Célébration des aides communautaires",
-    "oneGoal": "Students will plan and participate in a celebration honoring all types of community helpers",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Celebration planning circle where students share ideas for honoring community helpers. Practice celebration vocabulary with festive gestures and appreciation expressions.",
-      "materials": ["celebration planning charts", "festive vocabulary cards", "appreciation demonstration examples"],
-      "visualSupports": "Celebration gestures (clapping, cheering), planning motions, community appreciation expressions"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Community helper celebration preparation including decoration making, appreciation speech practice, and gratitude expression preparation. Students create celebration elements that honor different types of helpers learned throughout unit.",
-      "materials": ["celebration supplies", "decoration materials", "speech preparation cards", "appreciation activity supplies"],
-      "visualSupports": "Celebration preparation actions, appreciation demonstration techniques, festive community expressions",
-      "decisionPoints": [
-        {
-          "question": "Should we invite real community helpers to our celebration?",
-          "ifYes": "Invite available local helpers to attend and receive student appreciation in person",
-          "ifNo": "Create celebration that honors helpers symbolically and prepares students to express appreciation in community"
-        },
-        {
-          "question": "What type of celebration activities would best honor community helpers?",
-          "ifYes": "Include appreciation speeches, thank you art displays, helper role demonstrations, and gratitude expressions",
-          "ifNo": "Focus on student-led appreciation activities that demonstrate learning and genuine gratitude"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Celebration reflection circle where students share their favorite part of honoring helpers and practice saying 'Nous célébrons nos héros communautaires!'",
-      "assessment": "Observe student enthusiasm for helper appreciation and understanding of celebration as community gratitude expression"
-    },
-    "vocabulary": ["célébration", "honorer", "remercier"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students becoming too excited and losing focus on helper appreciation purpose",
-      "then": "Use structured celebration activities, frequent appreciation reminders, and clear expectations for respectful celebration"
-    },
-    "realWorldConnection": "Celebrating community helpers together shows our gratitude and builds community connections"
-  },
-  {
-    "lessonNumber": 20,
-    "title": "Nous faisons partie de notre communauté automnale",
-    "oneGoal": "Students will reflect on their learning and understand their important place in the autumn community",
-    "duration": 45,
-    "opening": {
-      "duration": 8,
-      "activity": "Community belonging circle where students reflect on all the helpers they've learned about and how they feel as community members. Practice belonging vocabulary with inclusive gestures.",
-      "materials": ["helper learning review photos", "belonging vocabulary cards", "community connection demonstrations"],
-      "visualSupports": "Inclusive community gestures, belonging expressions, proud community member demonstrations"
-    },
-    "main": {
-      "duration": 27,
-      "activity": "Community learning reflection using unit review materials and personal growth assessment. Students create a 'My Community Learning' book showing their favorite helpers, how they want to contribute, and their pride in community belonging.",
-      "materials": ["learning review materials", "reflection book templates", "personal growth assessment sheets"],
-      "visualSupports": "Reflection demonstration techniques, learning celebration gestures, community pride expressions",
-      "decisionPoints": [
-        {
-          "question": "How do we help students articulate what they've learned about community?",
-          "ifYes": "Use specific prompts about favorite helpers, most interesting discoveries, and personal community connections",
-          "ifNo": "Provide sentence starters and visual prompts to help students express learning and community understanding"
-        },
-        {
-          "question": "Should reflection focus on helper appreciation or student community belonging?",
-          "ifYes": "Balance both helper appreciation and student recognition of their own community membership and contribution potential",
-          "ifNo": "Focus primarily on student community belonging while acknowledging helper learning throughout unit"
-        }
-      ]
-    },
-    "closing": {
-      "duration": 10,
-      "activity": "Community pride circle where students share one thing they're proud to know about their community and practice saying 'Je suis fier de faire partie de ma communauté!'",
-      "assessment": "Observe student understanding of community membership, helper appreciation, and confidence in community belonging"
-    },
-    "vocabulary": ["appartenir", "important", "fierté"],
-    "troubleshooting": {
-      "ifStrugglingWith": "Students not feeling confident about their place in community",
-      "then": "Emphasize that all community members are important, highlight student contributions, and celebrate community belonging"
-    },
-    "realWorldConnection": "Understanding our community helps us feel proud to belong and excited to contribute as we grow"
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
   }
-]
+}

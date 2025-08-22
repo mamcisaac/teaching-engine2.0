@@ -1,1081 +1,1324 @@
-[
-  {
-    "lessonNumber": 1,
-    "title": "Découverte des lignes",
-    "oneGoal": "Students recognize that lines are everywhere in their environment",
-    "keyVocabulary": ["ligne", "droit", "courbe"],
-    "connectionToPrevious": "Starting our artistic adventure - we're going to be visual detectives!",
-    "realWorldConnection": "Lines in classroom objects, clothing patterns, and body movements",
-    "materials": ["Colored tape strips", "Handheld magnifying glasses", "Large visual cards showing different lines"],
-    
-    "mindsOn": {
-      "duration": "~8 min",
-      "activity": "Line Detective Walk",
-      "description": "Take students on a 'detective walk' around classroom. Use magnifying glasses to 'discover' lines on desks, chairs, windows. Teacher models excitement: 'Je vois une ligne!' while tracing lines with finger in air.",
-      "visualSupports": ["Magnifying glasses", "Teacher finger tracing", "Excited facial expressions"],
-      "tpr": "Trace lines in the air with whole arm movements while saying words"
-    },
-    
-    "action": {
-      "duration": "~27 min",
-      "activity": "Line Creation Station",
-      "description": "Students move between stations: 1) Creating straight lines with tape on floor, 2) Making curved lines with their bodies, 3) Drawing lines in sand tray. Teacher demonstrates each station first.",
-      "visualSupports": ["Station picture cards", "Teacher demonstration", "Tape lines on floor as examples"],
-      "tpr": "Straight arms for 'droit', curved body sway for 'courbe', finger tracing for 'ligne'"
-    },
-    
-    "consolidation": {
-      "duration": "~10 min",
-      "activity": "Line Collection Circle",
-      "description": "Gather in circle. Each student shares one line they found using 'J'ai trouvé une ligne...' Students can point, gesture, or draw in air instead of speaking if needed.",
-      "visualSupports": ["Circle formation", "Student pointing/gesturing allowed", "Visual sentence starter card"],
-      "tpr": "Students show their line discovery with body movements"
-    },
-    
-    "decisionPoints": [
-      {
-        "situation": "If students seem restless during detective walk",
-        "action": "Add more physical movement - have them march, tiptoe, or dance between line discoveries"
+{
+  "unitTitle": "",
+  "subject": "Arts visuels",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "lessonType": "core",
+      "title": "Découverte des lignes",
+      "oneGoal": "Students recognize that lines are everywhere in their environment",
+      "duration": 45,
+      "keyVocabulary": [
+        "ligne",
+        "droit",
+        "courbe"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Line Detective Walk",
+        "materials": [],
+        "visualSupports": [
+          "Magnifying glasses",
+          "Teacher finger tracing",
+          "Excited facial expressions"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      {
-        "situation": "If students struggle with vocabulary",
-        "action": "Focus on gestures only - finger straight up for 'droit', wavy arm for 'courbe', pointing for 'ligne'"
+      "main": {
+        "duration": "~27 min",
+        "activity": "Line Creation Station",
+        "materials": [],
+        "visualSupports": [
+          "Station picture cards",
+          "Teacher demonstration",
+          "Tape lines on floor as examples"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      {
-        "situation": "If students finish stations early",
-        "action": "Have them become 'line teachers' helping friends or creating new line combinations"
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Line Collection Circle",
+        "materials": [],
+        "visualSupports": [
+          "Circle formation",
+          "Student pointing/gesturing allowed",
+          "Visual sentence starter card"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": {
+          "situation": "Materials missing or broken",
+          "plan": "Use student bodies as lines - lie down straight for 'droit', curl up for 'courbe'. Dance with line movements to music."
+        }
+      },
+      "realWorldConnection": "Lines in classroom objects, clothing patterns, and body movements",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
       }
-    ],
-    
-    "emergencyBackup": {
-      "situation": "Materials missing or broken",
-      "plan": "Use student bodies as lines - lie down straight for 'droit', curl up for 'courbe'. Dance with line movements to music."
+    },
+    {
+      "lessonNumber": 2,
+      "lessonType": "core",
+      "title": "Lignes avec le corps",
+      "oneGoal": "Students create different types of lines using their bodies and gestures",
+      "duration": 45,
+      "keyVocabulary": [
+        "zigzag",
+        "ondulé",
+        "spirale"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Line Memory Game",
+        "materials": [],
+        "visualSupports": [
+          "Paper strips showing line types",
+          "Teacher full-body demonstrations"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Line Dance Creation",
+        "materials": [],
+        "visualSupports": [
+          "Ribbon scarves for movement trails",
+          "Teacher demonstration",
+          "Music for rhythm"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Line Performance",
+        "materials": [],
+        "visualSupports": [
+          "Performance space marked on floor",
+          "Clapping for encouragement"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": {
+          "situation": "Music system fails",
+          "plan": "Teacher provides rhythm with clapping or simple songs. Students can create their own rhythm sounds for line movements."
+        }
+      },
+      "realWorldConnection": "Body movements create invisible lines in dance and sports",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 3,
+      "lessonType": "core",
+      "title": "Lignes émotionnelles",
+      "oneGoal": "Students understand that different line qualities express different feelings",
+      "duration": 45,
+      "keyVocabulary": [
+        "heureux",
+        "triste",
+        "en colère"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Emotion Line Theater",
+        "materials": [],
+        "visualSupports": [
+          "Large emotion face cards",
+          "Teacher dramatic demonstrations"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Emotion Line Painting",
+        "materials": [],
+        "visualSupports": [
+          "Color-emotion associations shown",
+          "Teacher demonstration painting",
+          "Emotion cards as reference"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Emotion Line Gallery Walk",
+        "materials": [],
+        "visualSupports": [
+          "Paintings displayed at student height",
+          "Thumbs up/down for guessing game"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": {
+          "situation": "Paint supplies unavailable",
+          "plan": "Use colored pencils or crayons. Focus more on body movement emotions and tracing emotions in sand trays or on rough paper."
+        }
+      },
+      "realWorldConnection": "How we draw when happy versus sad shows in our line quality",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 4,
+      "lessonType": "core",
+      "title": "Chasse aux formes",
+      "oneGoal": "Students identify basic shapes (circle, square, triangle) in their environment",
+      "duration": 45,
+      "keyVocabulary": [
+        "cercle",
+        "carré",
+        "triangle"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Shape Body Sculptures",
+        "materials": [],
+        "visualSupports": [
+          "Teacher body demonstrations",
+          "Large shape cards as reference"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Shape Safari Adventure",
+        "materials": [],
+        "visualSupports": [
+          "Shape binoculars with cutout viewing holes",
+          "Visual checklist with pictures",
+          "Shape stickers for marking finds"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Shape Celebration Circle",
+        "materials": [],
+        "visualSupports": [
+          "Students pointing to shape locations",
+          "Body shape demonstrations"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": {
+          "situation": "Cannot leave classroom for hunt",
+          "plan": "Hide large paper shapes around classroom beforehand. Students hunt for hidden shapes instead of naturally occurring ones."
+        }
+      },
+      "realWorldConnection": "Shapes appear in signs, windows, wheels, and everyday objects",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 5,
+      "lessonType": "core",
+      "title": "Création de lignes libres",
+      "oneGoal": "Students practice making various line types with drawing tools",
+      "duration": 45,
+      "keyVocabulary": [
+        "épais",
+        "mince",
+        "pointillé"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Line Tool Exploration",
+        "materials": [],
+        "visualSupports": [
+          "Tools displayed clearly",
+          "Sample lines chart",
+          "Teacher demonstrations"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Line Quality Art Studio",
+        "materials": [],
+        "visualSupports": [
+          "Station example cards",
+          "Tool-specific paper at each station",
+          "Visual instruction cards"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Line Quality Show and Tell",
+        "materials": [],
+        "visualSupports": [
+          "Student artwork displayed",
+          "Hand movement demonstrations"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": {
+          "situation": "Drawing tools malfunction or unavailable",
+          "plan": "Use fingers with different pressures - light touch for thin lines, firm press for thick lines, fingertip dots for pointillé. Draw in sand tray or on textured surfaces."
+        }
+      },
+      "realWorldConnection": "Different drawing tools create different line qualities for different purposes",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 6,
+      "lessonType": "core",
+      "title": "Formes avec les mains",
+      "oneGoal": "Students create shapes using finger painting and hand printing techniques",
+      "duration": 45,
+      "keyVocabulary": [
+        "rectangle",
+        "ovale",
+        "losange"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Hand Shape Warm-up",
+        "materials": [],
+        "visualSupports": [
+          "Teacher hand demonstrations",
+          "Shape reference cards",
+          "Mirror for students to see their hand shapes"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Hand Print Shape Gallery",
+        "materials": [],
+        "visualSupports": [
+          "Step-by-step visual guides",
+          "Teacher demonstration",
+          "Shape examples made with hand prints"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Shape Gallery Walk",
+        "materials": [],
+        "visualSupports": [
+          "Artwork displayed on desks or walls",
+          "Pointing and nodding communication"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": {
+          "situation": "Finger paints unavailable or classroom restrictions",
+          "plan": "Use clay or playdough to create 3D shapes with hands. Students can press hands into clay to make shape impressions."
+        }
+      },
+      "realWorldConnection": "Hands can create shapes in sand, clay, and other materials",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 7,
+      "lessonType": "core",
+      "title": "Lignes racontent des histoires",
+      "oneGoal": "Students use different lines to illustrate simple stories or experiences",
+      "duration": 45,
+      "keyVocabulary": [
+        "histoire",
+        "voyage",
+        "chemin"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Story Line Acting",
+        "materials": [],
+        "visualSupports": [
+          "Teacher dramatic storytelling",
+          "Simple story picture cards",
+          "Large gestures and movements"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Journey Map Creation",
+        "materials": [],
+        "visualSupports": [
+          "Simple map examples",
+          "Step-by-step visual instructions",
+          "Teacher's own journey map example"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Journey Sharing Circle",
+        "materials": [],
+        "visualSupports": [
+          "Maps displayed in center of circle",
+          "Finger tracing demonstrations"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": {
+          "situation": "Students struggle with personal journey concept",
+          "plan": "Use a familiar story like 'Three Little Pigs' and create the pigs' journey using different lines for different parts of their adventure."
+        }
+      },
+      "realWorldConnection": "Maps use lines to show paths and journeys we take",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 8,
+      "lessonType": "core",
+      "title": "Motifs avec des formes",
+      "oneGoal": "Students create simple repeating patterns using basic shapes",
+      "duration": 45,
+      "keyVocabulary": [
+        "motif",
+        "répéter",
+        "ensemble"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Pattern Body Dance",
+        "materials": [],
+        "visualSupports": [
+          "Teacher clear body demonstrations",
+          "Pattern cards showing body positions"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Pattern Creation Studio",
+        "materials": [],
+        "visualSupports": [
+          "Pattern example cards",
+          "Step-by-step stamping demonstration",
+          "Completed pattern examples"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Pattern Fashion Show",
+        "materials": [],
+        "visualSupports": [
+          "Pattern strips worn or displayed",
+          "Clapping rhythms",
+          "Walking presentation"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": {
+          "situation": "Stamp supplies fail",
+          "plan": "Use cut paper shapes to glue patterns, or create patterns with pattern blocks and copy them by drawing."
+        }
+      },
+      "realWorldConnection": "Patterns appear in clothing, wallpaper, and nature around us",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 9,
+      "lessonType": "core",
+      "title": "Lignes et nature",
+      "oneGoal": "Students observe and recreate natural line patterns from plants and animals",
+      "duration": 45,
+      "keyVocabulary": [
+        "nature",
+        "feuille",
+        "branche"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Nature Line Detective Work",
+        "materials": [],
+        "visualSupports": [
+          "Real natural objects",
+          "Magnifying glasses",
+          "Teacher finger tracing demonstrations"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Nature Line Art Creation",
+        "materials": [],
+        "visualSupports": [
+          "Nature reference objects on tables",
+          "Nature photo books",
+          "Teacher demonstration drawings"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Nature Gallery and Guessing Game",
+        "materials": [],
+        "visualSupports": [
+          "Student artwork displayed",
+          "Natural reference objects available for comparison"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": {
+          "situation": "No natural objects available",
+          "plan": "Use online nature videos or photos on screen. Students can trace line patterns they see in the air, then draw them on paper."
+        }
+      },
+      "realWorldConnection": "Tree branches, leaf veins, and animal stripes are natural line patterns",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 10,
+      "lessonType": "core",
+      "title": "Formes géométriques composées",
+      "oneGoal": "Students combine basic shapes to create more complex forms and objects",
+      "duration": 45,
+      "keyVocabulary": [
+        "construire",
+        "assembler",
+        "créer"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Shape Building Challenge",
+        "materials": [],
+        "visualSupports": [
+          "Pattern blocks for manipulation",
+          "Example shape combinations",
+          "Teacher demonstration"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Shape Construction Studio",
+        "materials": [],
+        "visualSupports": [
+          "Variety of pre-cut shapes in different sizes",
+          "Example combinations displayed",
+          "Step-by-step building visuals"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Shape Building Show and Tell",
+        "materials": [],
+        "visualSupports": [
+          "Student creations displayed",
+          "Pointing and counting demonstrations"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": {
+          "situation": "Paper shapes or glue unavailable",
+          "plan": "Use pattern blocks to build creations and have students draw their constructions. Or use sidewalk chalk outside to draw large shape combinations."
+        }
+      },
+      "realWorldConnection": "Houses, cars, and toys are made by combining basic shapes",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 11,
+      "lessonType": "core",
+      "title": "Cultures et motifs",
+      "oneGoal": "Students explore line and shape patterns from different cultures",
+      "duration": 45,
+      "keyVocabulary": [
+        "culture",
+        "tradition",
+        "décoration"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Cultural Pattern Discovery",
+        "materials": [],
+        "visualSupports": [
+          "Real cultural objects or high-quality photos",
+          "Pattern close-up examples",
+          "World map showing pattern origins"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Cultural Pattern Creation",
+        "materials": [],
+        "visualSupports": [
+          "Pattern templates from different cultures",
+          "Step-by-step pattern guides",
+          "Cultural reference materials"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Cultural Pattern Appreciation Circle",
+        "materials": [],
+        "visualSupports": [
+          "Student pattern creations",
+          "Cultural reference materials for comparison"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": {
+          "situation": "Cultural materials unavailable",
+          "plan": "Focus on patterns from students' own family backgrounds. Ask students if their families have special decorations or patterns at home."
+        }
+      },
+      "realWorldConnection": "Every culture decorates objects with special line and shape patterns",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 12,
+      "lessonType": "core",
+      "title": "Expression personnelle",
+      "oneGoal": "Students create original artworks expressing their feelings using lines and shapes",
+      "duration": 45,
+      "keyVocabulary": [
+        "expression",
+        "personnel",
+        "sentiment"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Feeling Check-in and Expression",
+        "materials": [],
+        "visualSupports": [
+          "Mirrors for self-reflection",
+          "Emotion reference cards",
+          "Teacher demonstration of feeling-lines"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Personal Expression Art Creation",
+        "materials": [],
+        "visualSupports": [
+          "All previous lesson techniques available",
+          "Soft background music",
+          "Encouraging teacher presence"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Artist Reflection Time",
+        "materials": [],
+        "visualSupports": [
+          "Quiet, respectful environment",
+          "Student artwork as focus"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": {
+          "situation": "Students resist personal expression",
+          "plan": "Make it less personal - have them create artwork about their favorite animal or color instead, focusing on technique rather than emotion."
+        }
+      },
+      "realWorldConnection": "Art helps us share our feelings with others through visual language",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 13,
+      "lessonType": "core",
+      "title": "Critique et appréciation",
+      "oneGoal": "Students observe and discuss how lines and shapes work in artworks and daily life",
+      "duration": 45,
+      "keyVocabulary": [
+        "regarder",
+        "observer",
+        "décrire"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Art Detective Training",
+        "materials": [],
+        "visualSupports": [
+          "Art detective badges or clipboards",
+          "Magnifying glasses",
+          "One clear art example"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Gallery Investigation",
+        "materials": [],
+        "visualSupports": [
+          "Art prints at student eye level",
+          "Simple observation sheets with pictures",
+          "Detective tools"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Detective Report Sharing",
+        "materials": [],
+        "visualSupports": [
+          "Student pointing at artworks",
+          "Body demonstrations of elements"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": {
+          "situation": "Art prints unavailable",
+          "plan": "Use student artwork from previous lessons as gallery pieces, or investigate line and shape elements in classroom decorations and displays."
+        }
+      },
+      "realWorldConnection": "Looking carefully at art and design helps us see beauty everywhere",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 14,
+      "lessonType": "core",
+      "title": "Portfolio et réflexion",
+      "oneGoal": "Students compile their work and reflect on their learning about lines and shapes",
+      "duration": 45,
+      "keyVocabulary": [
+        "portfolio",
+        "apprendre",
+        "grandir"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Art Memory Lane",
+        "materials": [],
+        "visualSupports": [
+          "All previous artwork displayed chronologically",
+          "Lesson reference cards for teacher prompts"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Portfolio Creation and Reflection",
+        "materials": [],
+        "visualSupports": [
+          "Portfolio organization examples",
+          "Simple reflection sheets with picture prompts",
+          "Teacher individual conferencing"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Portfolio Pride Celebration",
+        "materials": [],
+        "visualSupports": [
+          "Student portfolios as props",
+          "Celebratory atmosphere"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": {
+          "situation": "Student artwork is incomplete or missing",
+          "plan": "Focus on memories and learning instead of physical pieces. Students can recreate favorite techniques or demonstrate what they learned through movement and gesture."
+        }
+      },
+      "realWorldConnection": "Keeping artwork helps us see how our skills grow and change",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 15,
+      "lessonType": "extension",
+      "title": "Lignes dans l'espace",
+      "oneGoal": "Students practice creating three-dimensional line sculptures with wire and pipe cleaners",
+      "duration": 45,
+      "keyVocabulary": [
+        "espace",
+        "sculpture",
+        "tridimensionnel"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "3D Line Body Sculptures",
+        "materials": [],
+        "visualSupports": [
+          "Partner demonstrations",
+          "Teacher showing different viewing angles"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Wire Line Sculpture Studio",
+        "materials": [],
+        "visualSupports": [
+          "3D sculpture examples",
+          "Step-by-step construction visuals",
+          "Teacher demonstration"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Sculpture Gallery Walk",
+        "materials": [],
+        "visualSupports": [
+          "Sculpture display tables",
+          "Walking gallery format"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": {
+          "situation": "Wire materials unavailable",
+          "plan": "Use playdough or clay to create 3D line sculptures by rolling and shaping. Students can make standing line forms that can be viewed from all angles."
+        }
+      },
+      "realWorldConnection": "Sculptors use lines in space to create artwork we can walk around",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 16,
+      "lessonType": "extension",
+      "title": "Formes en collage",
+      "oneGoal": "Students practice shape recognition and composition through paper collage techniques",
+      "duration": 45,
+      "keyVocabulary": [
+        "collage",
+        "composition",
+        "superposer"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Shape Layering Exploration",
+        "materials": [],
+        "visualSupports": [
+          "Pre-cut shapes for demonstration",
+          "Teacher layering examples",
+          "Visual vocabulary cards"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Collage Creation Workshop",
+        "materials": [],
+        "visualSupports": [
+          "Collage examples",
+          "Step-by-step cutting and layering visuals",
+          "Safe scissor use demonstration"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Collage Composition Discussion",
+        "materials": [],
+        "visualSupports": [
+          "Student collages displayed",
+          "Pointing to layered elements"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": {
+          "situation": "Cutting materials unavailable or unsafe",
+          "plan": "Use pre-torn paper shapes or digital shape arranging if technology is available. Focus on layering and composition concepts rather than cutting skills."
+        }
+      },
+      "realWorldConnection": "Magazine pictures are made of shapes that can be cut and rearranged",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 17,
+      "lessonType": "extension",
+      "title": "Lignes de mouvement",
+      "oneGoal": "Students practice drawing action lines that show movement and energy",
+      "duration": 45,
+      "keyVocabulary": [
+        "mouvement",
+        "énergie",
+        "action"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Movement Line Acting",
+        "materials": [],
+        "visualSupports": [
+          "Ribbon scarves for visible movement trails",
+          "Teacher movement demonstrations"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Action Line Drawing Studio",
+        "materials": [],
+        "visualSupports": [
+          "Action photo references",
+          "Comic book examples of movement lines",
+          "Teacher demonstration drawings"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Movement Line Performance",
+        "materials": [],
+        "visualSupports": [
+          "Student artwork displayed",
+          "Movement demonstrations"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": {
+          "situation": "Drawing supplies limited",
+          "plan": "Use finger movement in air to practice action lines, or draw large movement lines with sidewalk chalk outside."
+        }
+      },
+      "realWorldConnection": "Comic books use special lines to show speed and movement",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 18,
+      "lessonType": "extension",
+      "title": "Motifs personnalisés",
+      "oneGoal": "Students practice creating their own unique patterns using learned shapes and lines",
+      "duration": 45,
+      "keyVocabulary": [
+        "personnalisé",
+        "unique",
+        "invention"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Pattern Inventor Brainstorm",
+        "materials": [],
+        "visualSupports": [
+          "Review charts of all learned shapes and lines",
+          "Brainstorming encouraging environment"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Personal Pattern Design Studio",
+        "materials": [],
+        "visualSupports": [
+          "All previous art techniques available",
+          "Pattern planning guides",
+          "Designer pattern examples for inspiration"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Pattern Designer Presentation",
+        "materials": [],
+        "visualSupports": [
+          "Student patterns displayed professionally",
+          "Presentation space"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": {
+          "situation": "Art supplies limited",
+          "plan": "Focus on pattern planning and design using paper and pencil, or create patterns using natural materials found outside."
+        }
+      },
+      "realWorldConnection": "Designers create new patterns for fabric, wallpaper, and products",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 19,
+      "lessonType": "extension",
+      "title": "Collaborations créatives",
+      "oneGoal": "Students practice teamwork by creating large group artworks using lines and shapes",
+      "duration": 45,
+      "keyVocabulary": [
+        "collaboration",
+        "équipe",
+        "ensemble"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Teamwork Planning Circle",
+        "materials": [],
+        "visualSupports": [
+          "Small group formation",
+          "Planning sheets with pictures",
+          "Turn-taking visual cues"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Collaborative Art Creation",
+        "materials": [],
+        "visualSupports": [
+          "Large workspace for each group",
+          "Shared supplies",
+          "Collaboration examples"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Collaborative Art Gallery Opening",
+        "materials": [],
+        "visualSupports": [
+          "Professional gallery setup",
+          "Group presentation format"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": {
+          "situation": "Group dynamics become difficult",
+          "plan": "Switch to individual work on one large class mural where everyone contributes their own section connected to others."
+        }
+      },
+      "realWorldConnection": "Many public artworks are created by teams of artists working together",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 20,
+      "lessonType": "extension",
+      "title": "Galerie d'exposition",
+      "oneGoal": "Students practice presentation skills by displaying and explaining their line and shape artworks",
+      "duration": 45,
+      "keyVocabulary": [
+        "exposition",
+        "présenter",
+        "partager"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Gallery Setup Preparation",
+        "materials": [],
+        "visualSupports": [
+          "Gallery setup examples",
+          "Museum behavior visual guides"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Art Exhibition and Gallery Tours",
+        "materials": [],
+        "visualSupports": [
+          "Professional gallery display",
+          "Artist presentation spaces",
+          "Audience behavior guides"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Artist Appreciation Celebration",
+        "materials": [],
+        "visualSupports": [
+          "Circle formation for community",
+          "Celebration atmosphere"
+        ],
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": {
+          "situation": "Gallery setup impossible",
+          "plan": "Create individual portfolio sharing in pairs or small groups, focus on personal artistic growth rather than public exhibition."
+        }
+      },
+      "realWorldConnection": "Art galleries and museums help artists share their work with the community",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     }
+  ],
+  "assessmentTools": {
+    "observationChecklist": [],
+    "rubrics": [],
+    "selfAssessment": [],
+    "portfolioGuidelines": ""
   },
-  
-  {
-    "lessonNumber": 2,
-    "title": "Lignes avec le corps",
-    "oneGoal": "Students create different types of lines using their bodies and gestures",
-    "keyVocabulary": ["zigzag", "ondulé", "spirale"],
-    "connectionToPrevious": "Yesterday we found lines everywhere - today we BECOME the lines!",
-    "realWorldConnection": "Body movements create invisible lines in dance and sports",
-    "materials": ["Upbeat music", "Ribbon scarves", "Large paper strips showing line types"],
-    
-    "mindsOn": {
-      "duration": "~8 min",
-      "activity": "Line Memory Game",
-      "description": "Quick review of yesterday's lines using body movements. Teacher calls out 'ligne droite!' and students make straight body line. Add yesterday's vocabulary with actions.",
-      "visualSupports": ["Paper strips showing line types", "Teacher full-body demonstrations"],
-      "tpr": "Full body becomes the line shape - straight, curved, angular"
-    },
-    
-    "action": {
-      "duration": "~27 min",
-      "activity": "Line Dance Creation",
-      "description": "Teach new line types through movement: zigzag (elbows sharp, changing directions), ondulé (flowing wave movements), spirale (spinning inward/outward). Students create a group line dance combining all types.",
-      "visualSupports": ["Ribbon scarves for movement trails", "Teacher demonstration", "Music for rhythm"],
-      "tpr": "Sharp elbow movements for zigzag, flowing arms for ondulé, spinning whole body for spirale"
-    },
-    
-    "consolidation": {
-      "duration": "~10 min",
-      "activity": "Line Performance",
-      "description": "Small groups (3-4 students) perform their favorite line type for others to guess. Audience can join in if they recognize the line movement.",
-      "visualSupports": ["Performance space marked on floor", "Clapping for encouragement"],
-      "tpr": "Whole body expression for line types, audience copying movements"
-    },
-    
-    "decisionPoints": [
-      {
-        "situation": "If students are too energetic",
-        "action": "Add slow-motion challenge - perform line movements in slow motion for control"
-      },
-      {
-        "situation": "If students are shy about movement",
-        "action": "Start with seated arm movements only, gradually add standing and whole body"
-      },
-      {
-        "situation": "If space is limited",
-        "action": "Focus on upper body and arm movements, use finger dancing on desk surface"
-      }
-    ],
-    
-    "emergencyBackup": {
-      "situation": "Music system fails",
-      "plan": "Teacher provides rhythm with clapping or simple songs. Students can create their own rhythm sounds for line movements."
-    }
+  "familyConnections": {
+    "unitLetter": "",
+    "homeActivities": [],
+    "vocabularyList": []
   },
-
-  {
-    "lessonNumber": 3,
-    "title": "Lignes émotionnelles",
-    "oneGoal": "Students understand that different line qualities express different feelings",
-    "keyVocabulary": ["heureux", "triste", "en colère"],
-    "connectionToPrevious": "Our bodies made amazing lines yesterday - now let's give our lines feelings!",
-    "realWorldConnection": "How we draw when happy versus sad shows in our line quality",
-    "materials": ["Emotion face cards", "Large brushes", "Finger paints in 3 colors", "Large paper"],
-    
-    "mindsOn": {
-      "duration": "~8 min",
-      "activity": "Emotion Line Theater",
-      "description": "Show emotion face cards. Students make their bodies into lines that match feelings: happy lines bounce and curve up, sad lines droop down, angry lines are sharp and jagged.",
-      "visualSupports": ["Large emotion face cards", "Teacher dramatic demonstrations"],
-      "tpr": "Bouncy curved movements for happy, drooping arms for sad, sharp jabbing motions for angry"
-    },
-    
-    "action": {
-      "duration": "~27 min",
-      "activity": "Emotion Line Painting",
-      "description": "Students paint lines that show feelings. Happy lines in bright colors with curves, sad lines that droop in blue/purple, angry lines in red with jagged strokes. Teacher demonstrates first with exaggerated emotions.",
-      "visualSupports": ["Color-emotion associations shown", "Teacher demonstration painting", "Emotion cards as reference"],
-      "tpr": "Painting movements match emotions - light bouncy strokes for happy, heavy slow strokes for sad, quick sharp strokes for angry"
-    },
-    
-    "consolidation": {
-      "duration": "~10 min",
-      "activity": "Emotion Line Gallery Walk",
-      "description": "Display paintings around room. Students walk around and guess which emotion each painting shows. Artist can confirm with gesture/movement, no words needed.",
-      "visualSupports": ["Paintings displayed at student height", "Thumbs up/down for guessing game"],
-      "tpr": "Students show the emotion with their body when their painting is discussed"
-    },
-    
-    "decisionPoints": [
-      {
-        "situation": "If students resist painting",
-        "action": "Start with finger tracing emotions in air, then move to dry brushes on paper, then add paint"
-      },
-      {
-        "situation": "If students mix up emotions",
-        "action": "Pair each emotion with a simple song or chant with matching movements"
-      },
-      {
-        "situation": "If paint creates chaos",
-        "action": "Switch to oil pastels or thick markers with same emotion-line concepts"
-      }
-    ],
-    
-    "emergencyBackup": {
-      "situation": "Paint supplies unavailable",
-      "plan": "Use colored pencils or crayons. Focus more on body movement emotions and tracing emotions in sand trays or on rough paper."
-    }
+  "resourceAlternatives": {
+    "materials": {},
+    "digitalResources": []
   },
-
-  {
-    "lessonNumber": 4,
-    "title": "Chasse aux formes",
-    "oneGoal": "Students identify basic shapes (circle, square, triangle) in their environment",
-    "keyVocabulary": ["cercle", "carré", "triangle"],
-    "connectionToPrevious": "Lines helped us show feelings - now let's see what happens when lines connect to make shapes!",
-    "realWorldConnection": "Shapes appear in signs, windows, wheels, and everyday objects",
-    "materials": ["Shape sorting hoops", "Shape binoculars (cardboard with shape cutouts)", "Stickers in 3 shape types", "Shape hunt checklist cards"],
-    
-    "mindsOn": {
-      "duration": "~8 min",
-      "activity": "Shape Body Sculptures",
-      "description": "Students make shapes with their bodies. Demonstrate: arms in circle above head for 'cercle', arms and legs making square corners for 'carré', three students forming triangle together.",
-      "visualSupports": ["Teacher body demonstrations", "Large shape cards as reference"],
-      "tpr": "Round arms for circle, angular arm/leg positions for square, three students connecting for triangle"
-    },
-    
-    "action": {
-      "duration": "~27 min",
-      "activity": "Shape Safari Adventure",
-      "description": "Using shape binoculars, students hunt for shapes around classroom and school. When they spot a shape, they place matching sticker on checklist and celebrate with shape dance move. Work in pairs for support.",
-      "visualSupports": ["Shape binoculars with cutout viewing holes", "Visual checklist with pictures", "Shape stickers for marking finds"],
-      "tpr": "Specific dance move for each shape found - spinning for circles, marching in square pattern, jumping with arms up for triangles"
-    },
-    
-    "consolidation": {
-      "duration": "~10 min",
-      "activity": "Shape Celebration Circle",
-      "description": "Students share favorite shape discoveries by showing location and making shape with their body. Others try to guess which shape before the reveal.",
-      "visualSupports": ["Students pointing to shape locations", "Body shape demonstrations"],
-      "tpr": "Full body shape-making, pointing gestures, group copying of shape movements"
-    },
-    
-    "decisionPoints": [
-      {
-        "situation": "If students get overwhelmed by too many shape choices",
-        "action": "Focus on just one shape at a time - complete circle hunt, then move to squares, then triangles"
-      },
-      {
-        "situation": "If students can't find shapes",
-        "action": "Teacher points out obvious examples first, gradually let students discover more subtle ones"
-      },
-      {
-        "situation": "If students finish hunt quickly",
-        "action": "Challenge them to find unusual or hidden shapes, or create shapes using classroom objects"
-      }
-    ],
-    
-    "emergencyBackup": {
-      "situation": "Cannot leave classroom for hunt",
-      "plan": "Hide large paper shapes around classroom beforehand. Students hunt for hidden shapes instead of naturally occurring ones."
-    }
-  },
-
-  {
-    "lessonNumber": 5,
-    "title": "Création de lignes libres",
-    "oneGoal": "Students practice making various line types with drawing tools",
-    "keyVocabulary": ["épais", "mince", "pointillé"],
-    "connectionToPrevious": "We found amazing shapes everywhere - now let's create special lines using different tools!",
-    "realWorldConnection": "Different drawing tools create different line qualities for different purposes",
-    "materials": ["Thick markers", "Thin pencils", "Dotting tools (cotton swabs)", "Various paper textures", "Line samples chart"],
-    
-    "mindsOn": {
-      "duration": "~8 min",
-      "activity": "Line Tool Exploration",
-      "description": "Students explore how different tools make different lines. Demonstrate thick marker making 'épais' lines, thin pencil making 'mince' lines, cotton swab making 'pointillé' dots. Let students feel the tools and make test marks.",
-      "visualSupports": ["Tools displayed clearly", "Sample lines chart", "Teacher demonstrations"],
-      "tpr": "Wide arm gestures for thick lines, delicate finger movements for thin lines, dabbing motion for dotted lines"
-    },
-    
-    "action": {
-      "duration": "~27 min",
-      "activity": "Line Quality Art Studio",
-      "description": "Students rotate through three stations: 1) Thick line weather patterns (sun rays, rain), 2) Thin line delicate drawings (grass, hair), 3) Dotted line pictures (flowers, paths). Each station has visual examples and encourages experimentation.",
-      "visualSupports": ["Station example cards", "Tool-specific paper at each station", "Visual instruction cards"],
-      "tpr": "Hand movements match line quality while drawing - bold strokes, gentle touches, rhythmic dotting"
-    },
-    
-    "consolidation": {
-      "duration": "~10 min",
-      "activity": "Line Quality Show and Tell",
-      "description": "Students choose their favorite line creation to share. They demonstrate the hand movement needed to make that type of line while others guess 'épais', 'mince', or 'pointillé'.",
-      "visualSupports": ["Student artwork displayed", "Hand movement demonstrations"],
-      "tpr": "Students demonstrate the physical motion needed for their line type, others copy the movement"
-    },
-    
-    "decisionPoints": [
-      {
-        "situation": "If students struggle with tool control",
-        "action": "Start with larger paper and bigger arm movements, gradually work toward smaller, more controlled lines"
-      },
-      {
-        "situation": "If students rush through stations",
-        "action": "Add challenge cards at each station with specific line patterns to create or copy"
-      },
-      {
-        "situation": "If students are frustrated with thin lines",
-        "action": "Encourage them that thin lines take practice, show how even 'mistakes' can become art"
-      }
-    ],
-    
-    "emergencyBackup": {
-      "situation": "Drawing tools malfunction or unavailable",
-      "plan": "Use fingers with different pressures - light touch for thin lines, firm press for thick lines, fingertip dots for pointillé. Draw in sand tray or on textured surfaces."
-    }
-  },
-
-  {
-    "lessonNumber": 6,
-    "title": "Formes avec les mains",
-    "oneGoal": "Students create shapes using finger painting and hand printing techniques",
-    "keyVocabulary": ["rectangle", "ovale", "losange"],
-    "connectionToPrevious": "We made amazing lines with tools - now let's use our hands to create new shapes!",
-    "realWorldConnection": "Hands can create shapes in sand, clay, and other materials",
-    "materials": ["Washable finger paints", "Large paper", "Hand wipes", "Shape templates for reference", "Aprons or old shirts"],
-    
-    "mindsOn": {
-      "duration": "~8 min",
-      "activity": "Hand Shape Warm-up",
-      "description": "Students practice making new shapes with their hands in the air before painting. Rectangle (hands making corners), ovale (hands forming oval), losange (diamond with fingertips touching). Add the shapes from previous lesson for review.",
-      "visualSupports": ["Teacher hand demonstrations", "Shape reference cards", "Mirror for students to see their hand shapes"],
-      "tpr": "Specific hand positions for each shape, full arm movements to show shape boundaries"
-    },
-    
-    "action": {
-      "duration": "~27 min",
-      "activity": "Hand Print Shape Gallery",
-      "description": "Students create shapes using hand prints and finger painting. Make rectangles by printing hand four times in corners, ovals by curving finger paints, diamonds by using fingertips. Encourage experimentation and multiple attempts.",
-      "visualSupports": ["Step-by-step visual guides", "Teacher demonstration", "Shape examples made with hand prints"],
-      "tpr": "Hand movements for painting match the shape being created, students can trace shapes in air while paint dries"
-    },
-    
-    "consolidation": {
-      "duration": "~10 min",
-      "activity": "Shape Gallery Walk",
-      "description": "Students walk around to see everyone's hand-print shapes. They can point to shapes they recognize and make the hand gesture for that shape. Artist nods or shakes head to confirm guesses.",
-      "visualSupports": ["Artwork displayed on desks or walls", "Pointing and nodding communication"],
-      "tpr": "Hand shape gestures for each shape type, pointing, celebratory movements for correct guesses"
-    },
-    
-    "decisionPoints": [
-      {
-        "situation": "If students are messy or worried about getting dirty",
-        "action": "Start with one finger painting only, use wet wipes frequently, emphasize that mess is part of art"
-      },
-      {
-        "situation": "If students can't make recognizable shapes",
-        "action": "Focus on the attempt rather than perfection, help them see shapes in their 'accidents'"
-      },
-      {
-        "situation": "If paint is too runny or thick",
-        "action": "Adjust consistency or switch to using hands to trace shapes in sand/salt trays"
-      }
-    ],
-    
-    "emergencyBackup": {
-      "situation": "Finger paints unavailable or classroom restrictions",
-      "plan": "Use clay or playdough to create 3D shapes with hands. Students can press hands into clay to make shape impressions."
-    }
-  },
-
-  {
-    "lessonNumber": 7,
-    "title": "Lignes racontent des histoires",
-    "oneGoal": "Students use different lines to illustrate simple stories or experiences",
-    "keyVocabulary": ["histoire", "voyage", "chemin"],
-    "connectionToPrevious": "Our hands made beautiful shapes - now let's use lines to tell stories about our adventures!",
-    "realWorldConnection": "Maps use lines to show paths and journeys we take",
-    "materials": ["Story picture cards", "Long strips of paper", "Various drawing tools", "Simple map examples"],
-    
-    "mindsOn": {
-      "duration": "~8 min",
-      "activity": "Story Line Acting",
-      "description": "Teacher tells simple story using body movements and lines: 'Je marche en ligne droite à l'école' (walk straight), 'Je tourne en ligne courbe au parc' (curved walking), 'Mon chat fait un chemin zigzag' (zigzag movements). Students act out with teacher.",
-      "visualSupports": ["Teacher dramatic storytelling", "Simple story picture cards", "Large gestures and movements"],
-      "tpr": "Walking in different line patterns, full body story acting, directional movements"
-    },
-    
-    "action": {
-      "duration": "~27 min",
-      "activity": "Journey Map Creation",
-      "description": "Students create a 'map' of their journey from home to school using different lines. Straight lines for sidewalks, curved lines for turns, zigzag lines for stairs or hills. They can add simple drawings of landmarks along their path.",
-      "visualSupports": ["Simple map examples", "Step-by-step visual instructions", "Teacher's own journey map example"],
-      "tpr": "Tracing path lines with finger while drawing, walking movements to show journey parts"
-    },
-    
-    "consolidation": {
-      "duration": "~10 min",
-      "activity": "Journey Sharing Circle",
-      "description": "Students share their journey maps by tracing the path with their finger and making the appropriate line movements (straight walking, curved turning, zigzag climbing). Others can guess what each line represents.",
-      "visualSupports": ["Maps displayed in center of circle", "Finger tracing demonstrations"],
-      "tpr": "Finger tracing combined with body movements that match each line type"
-    },
-    
-    "decisionPoints": [
-      {
-        "situation": "If students don't remember their route to school",
-        "action": "Help them create an imaginary journey or a journey through the classroom/school instead"
-      },
-      {
-        "situation": "If students make very complex maps",
-        "action": "Praise their detail but encourage them to pick the three most important parts of their journey"
-      },
-      {
-        "situation": "If students finish early",
-        "action": "Have them create a journey map for a favorite story character or pet"
-      }
-    ],
-    
-    "emergencyBackup": {
-      "situation": "Students struggle with personal journey concept",
-      "plan": "Use a familiar story like 'Three Little Pigs' and create the pigs' journey using different lines for different parts of their adventure."
-    }
-  },
-
-  {
-    "lessonNumber": 8,
-    "title": "Motifs avec des formes",
-    "oneGoal": "Students create simple repeating patterns using basic shapes",
-    "keyVocabulary": ["motif", "répéter", "ensemble"],
-    "connectionToPrevious": "Our lines told wonderful stories - now let's put shapes together to make patterns!",
-    "realWorldConnection": "Patterns appear in clothing, wallpaper, and nature around us",
-    "materials": ["Shape stamps (foam or wooden)", "Stamp pads", "Long paper strips", "Pattern example cards", "Pattern blocks"],
-    
-    "mindsOn": {
-      "duration": "~8 min",
-      "activity": "Pattern Body Dance",
-      "description": "Create simple body patterns as a group. Teacher leads: 'circle arms, square arms, circle arms, square arms' - students follow and predict what comes next. Add triangle arms. Students take turns leading a simple pattern.",
-      "visualSupports": ["Teacher clear body demonstrations", "Pattern cards showing body positions"],
-      "tpr": "Circular arm movements, square corner arms, triangle arms up, rhythmic pattern repetition"
-    },
-    
-    "action": {
-      "duration": "~27 min",
-      "activity": "Pattern Creation Studio",
-      "description": "Students use shape stamps to create repeating patterns on long paper strips. Start with simple AB patterns (circle-square-circle-square), then try ABC patterns. Display example patterns but encourage original creations.",
-      "visualSupports": ["Pattern example cards", "Step-by-step stamping demonstration", "Completed pattern examples"],
-      "tpr": "Rhythmic stamping motions, counting patterns with finger pointing, clapping pattern rhythms"
-    },
-    
-    "consolidation": {
-      "duration": "~10 min",
-      "activity": "Pattern Fashion Show",
-      "description": "Students wear their pattern strips as belts, headbands, or hold them up as banners. Walk around room showing off patterns while others clap to the rhythm of their pattern. Audience tries to continue the pattern.",
-      "visualSupports": ["Pattern strips worn or displayed", "Clapping rhythms", "Walking presentation"],
-      "tpr": "Clapping to match pattern rhythm, walking in pattern tempo, pointing to pattern elements"
-    },
-    
-    "decisionPoints": [
-      {
-        "situation": "If students make random shapes instead of patterns",
-        "action": "Start with just two shapes and physically help them alternate: 'your turn circle, now square, now circle...'"
-      },
-      {
-        "situation": "If students create very complex patterns",
-        "action": "Celebrate their creativity and help them teach their pattern to a friend"
-      },
-      {
-        "situation": "If stamps don't work well",
-        "action": "Switch to drawing patterns with crayons or use pattern blocks to build patterns instead"
-      }
-    ],
-    
-    "emergencyBackup": {
-      "situation": "Stamp supplies fail",
-      "plan": "Use cut paper shapes to glue patterns, or create patterns with pattern blocks and copy them by drawing."
-    }
-  },
-
-  {
-    "lessonNumber": 9,
-    "title": "Lignes et nature",
-    "oneGoal": "Students observe and recreate natural line patterns from plants and animals",
-    "keyVocabulary": ["nature", "feuille", "branche"],
-    "connectionToPrevious": "We made patterns with shapes - now let's discover the amazing patterns nature makes with lines!",
-    "realWorldConnection": "Tree branches, leaf veins, and animal stripes are natural line patterns",
-    "materials": ["Real leaves and small branches", "Magnifying glasses", "Nature photos/books", "Drawing paper", "Green and brown crayons"],
-    
-    "mindsOn": {
-      "duration": "~8 min",
-      "activity": "Nature Line Detective Work",
-      "description": "Students examine real leaves and branches with magnifying glasses. Teacher guides observation: 'Regardez les lignes!' Point out veins in leaves, branch patterns, tree bark lines. Students trace these lines with their fingers.",
-      "visualSupports": ["Real natural objects", "Magnifying glasses", "Teacher finger tracing demonstrations"],
-      "tpr": "Finger tracing on real objects, branching arm gestures to show branch patterns, leaf-like hand movements"
-    },
-    
-    "action": {
-      "duration": "~27 min",
-      "activity": "Nature Line Art Creation",
-      "description": "Students create artwork inspired by natural line patterns. They can: 1) Draw leaf vein patterns, 2) Create branch patterns like trees, 3) Make animal stripe patterns. Use nature objects as reference and encourage close observation.",
-      "visualSupports": ["Nature reference objects on tables", "Nature photo books", "Teacher demonstration drawings"],
-      "tpr": "Drawing movements that match natural patterns - flowing for branches, delicate for leaf veins, rhythmic for stripes"
-    },
-    
-    "consolidation": {
-      "duration": "~10 min",
-      "activity": "Nature Gallery and Guessing Game",
-      "description": "Display student artwork. Others try to guess what natural element inspired each drawing (leaf, branch, animal stripes). Artists can give clues using gestures or show the natural object that inspired them.",
-      "visualSupports": ["Student artwork displayed", "Natural reference objects available for comparison"],
-      "tpr": "Gesture clues about natural elements, pointing comparisons between art and nature objects"
-    },
-    
-    "decisionPoints": [
-      {
-        "situation": "If natural objects aren't available",
-        "action": "Use high-quality nature photos or take students on a brief outdoor observation walk if possible"
-      },
-      {
-        "situation": "If students struggle to see patterns",
-        "action": "Use your finger to trace patterns on the natural objects while students watch, then have them try"
-      },
-      {
-        "situation": "If students want to draw realistically",
-        "action": "Encourage them but focus on the line patterns rather than perfect representation"
-      }
-    ],
-    
-    "emergencyBackup": {
-      "situation": "No natural objects available",
-      "plan": "Use online nature videos or photos on screen. Students can trace line patterns they see in the air, then draw them on paper."
-    }
-  },
-
-  {
-    "lessonNumber": 10,
-    "title": "Formes géométriques composées",
-    "oneGoal": "Students combine basic shapes to create more complex forms and objects",
-    "keyVocabulary": ["construire", "assembler", "créer"],
-    "connectionToPrevious": "Nature showed us amazing line patterns - now let's build with shapes like nature builds with elements!",
-    "realWorldConnection": "Houses, cars, and toys are made by combining basic shapes",
-    "materials": ["Large cut paper shapes in multiple sizes", "Glue sticks", "Large construction paper", "Shape building examples", "Pattern blocks"],
-    
-    "mindsOn": {
-      "duration": "~8 min",
-      "activity": "Shape Building Challenge",
-      "description": "Using pattern blocks, students work in pairs to build simple objects (house, car, robot) using only basic shapes. Teacher shows example: triangle on top of square makes a house. Students explore combinations.",
-      "visualSupports": ["Pattern blocks for manipulation", "Example shape combinations", "Teacher demonstration"],
-      "tpr": "Building motions with hands, stacking gestures, pointing to shape combinations"
-    },
-    
-    "action": {
-      "duration": "~27 min",
-      "activity": "Shape Construction Studio",
-      "description": "Students create pictures by combining paper shapes. They can make: houses (triangles + squares + rectangles), animals (circles + ovals), vehicles (rectangles + circles). Encourage experimentation and personal creativity.",
-      "visualSupports": ["Variety of pre-cut shapes in different sizes", "Example combinations displayed", "Step-by-step building visuals"],
-      "tpr": "Placing and arranging motions, building up gestures, creation celebration movements"
-    },
-    
-    "consolidation": {
-      "duration": "~10 min",
-      "activity": "Shape Building Show and Tell",
-      "description": "Students present their shape creations. They point to each shape used and count how many shapes total. Audience can guess what object was created before the reveal.",
-      "visualSupports": ["Student creations displayed", "Pointing and counting demonstrations"],
-      "tpr": "Pointing to individual shapes, counting with fingers, guessing gestures from audience"
-    },
-    
-    "decisionPoints": [
-      {
-        "situation": "If students glue shapes too quickly",
-        "action": "Encourage them to try different arrangements before gluing, have a 'no-glue exploration time' first"
-      },
-      {
-        "situation": "If students are frustrated with shape placement",
-        "action": "Remind them that there's no wrong way to combine shapes, help them see beauty in unexpected combinations"
-      },
-      {
-        "situation": "If students run out of shapes",
-        "action": "Have them trade shapes with classmates or use drawing to add details to their shape constructions"
-      }
-    ],
-    
-    "emergencyBackup": {
-      "situation": "Paper shapes or glue unavailable",
-      "plan": "Use pattern blocks to build creations and have students draw their constructions. Or use sidewalk chalk outside to draw large shape combinations."
-    }
-  },
-
-  {
-    "lessonNumber": 11,
-    "title": "Cultures et motifs",
-    "oneGoal": "Students explore line and shape patterns from different cultures",
-    "keyVocabulary": ["culture", "tradition", "décoration"],
-    "connectionToPrevious": "We built amazing things with shapes - now let's see how people around the world decorate with patterns!",
-    "realWorldConnection": "Every culture decorates objects with special line and shape patterns",
-    "materials": ["Cultural pattern examples (textiles, pottery, etc.)", "Pattern templates from various cultures", "Colored pencils", "Simple cultural artifacts or photos"],
-    
-    "mindsOn": {
-      "duration": "~8 min",
-      "activity": "Cultural Pattern Discovery",
-      "description": "Show examples of patterns from different cultures (African kente cloth, Indigenous beadwork, Mexican pottery, etc.). Students observe and identify familiar shapes and lines. Teacher explains these are special decorations from different families around the world.",
-      "visualSupports": ["Real cultural objects or high-quality photos", "Pattern close-up examples", "World map showing pattern origins"],
-      "tpr": "Tracing pattern elements with finger, respectful observation postures, appreciation gestures"
-    },
-    
-    "action": {
-      "duration": "~27 min",
-      "activity": "Cultural Pattern Creation",
-      "description": "Students choose one cultural pattern style to explore and create their own version. Provide simple templates or guides but encourage personal interpretation. Focus on the shapes and lines used rather than exact replication.",
-      "visualSupports": ["Pattern templates from different cultures", "Step-by-step pattern guides", "Cultural reference materials"],
-      "tpr": "Pattern-drawing movements that match cultural styles, rhythmic pattern creation, respectful handling of cultural examples"
-    },
-    
-    "consolidation": {
-      "duration": "~10 min",
-      "activity": "Cultural Pattern Appreciation Circle",
-      "description": "Students share their pattern creations and identify which culture inspired them. Discuss how all cultures make beautiful decorations and how patterns help people express their identity and traditions.",
-      "visualSupports": ["Student pattern creations", "Cultural reference materials for comparison"],
-      "tpr": "Presenting postures, respectful listening, appreciation clapping, pattern-tracing for sharing"
-    },
-    
-    "decisionPoints": [
-      {
-        "situation": "If students don't understand cultural context",
-        "action": "Focus on appreciation of beautiful patterns made by families far away, emphasize respect and admiration"
-      },
-      {
-        "situation": "If students try to copy exactly",
-        "action": "Encourage them to be inspired by the patterns but make their own version using the same shapes and lines"
-      },
-      {
-        "situation": "If cultural materials are limited",
-        "action": "Use online resources or library books with cultural pattern examples, focus on 2-3 clear examples"
-      }
-    ],
-    
-    "emergencyBackup": {
-      "situation": "Cultural materials unavailable",
-      "plan": "Focus on patterns from students' own family backgrounds. Ask students if their families have special decorations or patterns at home."
-    }
-  },
-
-  {
-    "lessonNumber": 12,
-    "title": "Expression personnelle",
-    "oneGoal": "Students create original artworks expressing their feelings using lines and shapes",
-    "keyVocabulary": ["expression", "personnel", "sentiment"],
-    "connectionToPrevious": "We learned how different cultures express themselves - now it's time to express ourselves with lines and shapes!",
-    "realWorldConnection": "Art helps us share our feelings with others through visual language",
-    "materials": ["Various art supplies (paper, crayons, markers, paint)", "Emotion reference cards", "Music for inspiration", "Mirrors for self-reflection"],
-    
-    "mindsOn": {
-      "duration": "~8 min",
-      "activity": "Feeling Check-in and Expression",
-      "description": "Students look in mirrors and identify how they feel today. Practice making lines and shapes in the air that match their feelings. Review emotional lines from Lesson 3 and add new feeling words as needed.",
-      "visualSupports": ["Mirrors for self-reflection", "Emotion reference cards", "Teacher demonstration of feeling-lines"],
-      "tpr": "Facial expressions in mirror, air-drawing of emotional lines, full body expression of feelings"
-    },
-    
-    "action": {
-      "duration": "~27 min",
-      "activity": "Personal Expression Art Creation",
-      "description": "Students create a personal artwork using lines and shapes to express something important to them - their family, their favorite place, their dreams, or their feelings. Provide gentle music and encourage experimentation with all learned techniques.",
-      "visualSupports": ["All previous lesson techniques available", "Soft background music", "Encouraging teacher presence"],
-      "tpr": "Personal choice of drawing movements, self-directed art-making gestures, individual expression through movement"
-    },
-    
-    "consolidation": {
-      "duration": "~10 min",
-      "activity": "Artist Reflection Time",
-      "description": "Students sit quietly with their artwork and reflect on what they created. They can share with a partner or just appreciate their own work. Focus on the process and personal meaning rather than appearance.",
-      "visualSupports": ["Quiet, respectful environment", "Student artwork as focus"],
-      "tpr": "Quiet appreciation gestures, gentle pointing to artwork elements, reflective postures"
-    },
-    
-    "decisionPoints": [
-      {
-        "situation": "If students feel overwhelmed by open-ended choice",
-        "action": "Provide simple prompts like 'draw your family using shapes' or 'show your favorite season with lines'"
-      },
-      {
-        "situation": "If students compare their work negatively",
-        "action": "Emphasize that each artwork is special because it comes from their unique heart and mind"
-      },
-      {
-        "situation": "If students finish very quickly",
-        "action": "Encourage them to add more details or create a second piece about a different feeling or memory"
-      }
-    ],
-    
-    "emergencyBackup": {
-      "situation": "Students resist personal expression",
-      "plan": "Make it less personal - have them create artwork about their favorite animal or color instead, focusing on technique rather than emotion."
-    }
-  },
-
-  {
-    "lessonNumber": 13,
-    "title": "Critique et appréciation",
-    "oneGoal": "Students observe and discuss how lines and shapes work in artworks and daily life",
-    "keyVocabulary": ["regarder", "observer", "décrire"],
-    "connectionToPrevious": "We expressed ourselves through art - now let's become art detectives and look carefully at art around us!",
-    "realWorldConnection": "Looking carefully at art and design helps us see beauty everywhere",
-    "materials": ["Art prints or books", "Magnifying glasses", "Observation worksheets with pictures", "Clipboard for 'official' art detective work"],
-    
-    "mindsOn": {
-      "duration": "~8 min",
-      "activity": "Art Detective Training",
-      "description": "Students become official 'art detectives.' Practice looking closely at one simple artwork, finding all the lines and shapes they can see. Teacher demonstrates careful observation with magnifying glass and excited discovery voice.",
-      "visualSupports": ["Art detective badges or clipboards", "Magnifying glasses", "One clear art example"],
-      "tpr": "Detective postures, careful observation movements, pointing discoveries, excited recognition gestures"
-    },
-    
-    "action": {
-      "duration": "~27 min",
-      "activity": "Gallery Investigation",
-      "description": "Set up classroom as mini gallery with art prints. Students move through in pairs, using detective skills to find and mark lines and shapes they recognize. Each artwork has simple questions: 'What shapes do you see?' 'Which lines look happy/sad?'",
-      "visualSupports": ["Art prints at student eye level", "Simple observation sheets with pictures", "Detective tools"],
-      "tpr": "Gallery walking postures, pointing at art elements, partner discussion gestures, careful observation movements"
-    },
-    
-    "consolidation": {
-      "duration": "~10 min",
-      "activity": "Detective Report Sharing",
-      "description": "Students share their most interesting art discovery. They point to what they found and demonstrate the line or shape with their body. Others can add their observations about the same artwork.",
-      "visualSupports": ["Student pointing at artworks", "Body demonstrations of elements"],
-      "tpr": "Presenting postures, pointing to art elements, body shape demonstrations, attentive listening positions"
-    },
-    
-    "decisionPoints": [
-      {
-        "situation": "If students get distracted by art content rather than elements",
-        "action": "Use abstract artworks or focus their attention with specific 'missions' like 'find all the circles'"
-      },
-      {
-        "situation": "If students rush through observations",
-        "action": "Add timer challenge - spend full 2 minutes looking at each artwork before moving on"
-      },
-      {
-        "situation": "If vocabulary is too challenging",
-        "action": "Focus on pointing and gesturing, let students show what they see rather than describe verbally"
-      }
-    ],
-    
-    "emergencyBackup": {
-      "situation": "Art prints unavailable",
-      "plan": "Use student artwork from previous lessons as gallery pieces, or investigate line and shape elements in classroom decorations and displays."
-    }
-  },
-
-  {
-    "lessonNumber": 14,
-    "title": "Portfolio et réflexion",
-    "oneGoal": "Students compile their work and reflect on their learning about lines and shapes",
-    "keyVocabulary": ["portfolio", "apprendre", "grandir"],
-    "connectionToPrevious": "We've been art detectives looking at art - now let's look at all the amazing art we've created!",
-    "realWorldConnection": "Keeping artwork helps us see how our skills grow and change",
-    "materials": ["Student artwork from all lessons", "Portfolio folders or books", "Reflection sheets with pictures", "Stickers for favorite pieces"],
-    
-    "mindsOn": {
-      "duration": "~8 min",
-      "activity": "Art Memory Lane",
-      "description": "Display all student artwork from previous lessons around the room. Students walk around and try to remember which lesson each piece came from. Teacher helps by giving clues about activities: 'This is from when we painted with our hands!'",
-      "visualSupports": ["All previous artwork displayed chronologically", "Lesson reference cards for teacher prompts"],
-      "tpr": "Memory recall gestures, pointing recognition, walking tour movements, excited remembering expressions"
-    },
-    
-    "action": {
-      "duration": "~27 min",
-      "activity": "Portfolio Creation and Reflection",
-      "description": "Students organize their artwork into portfolios, choosing their favorites for the front. For each piece, they reflect on simple questions: 'What do you like about this?' 'What was fun to make?' Use pictures and gestures more than writing.",
-      "visualSupports": ["Portfolio organization examples", "Simple reflection sheets with picture prompts", "Teacher individual conferencing"],
-      "tpr": "Organizing and arranging movements, reflection thinking postures, sharing gestures with teacher"
-    },
-    
-    "consolidation": {
-      "duration": "~10 min",
-      "activity": "Portfolio Pride Celebration",
-      "description": "Students hold their portfolios and share one thing they learned about lines and shapes. This can be done through gesture, pointing to artwork, or simple words. Celebrate growth and artistic journey.",
-      "visualSupports": ["Student portfolios as props", "Celebratory atmosphere"],
-      "tpr": "Proud holding postures, sharing gestures, celebration movements, appreciation clapping"
-    },
-    
-    "decisionPoints": [
-      {
-        "situation": "If students can't remember lesson activities",
-        "action": "Re-demonstrate key movements or techniques from each lesson to trigger memory"
-      },
-      {
-        "situation": "If students are critical of their early work",
-        "action": "Focus on growth and learning, show how each piece taught them something new"
-      },
-      {
-        "situation": "If portfolio organization is overwhelming",
-        "action": "Help students choose just 3-5 favorite pieces and focus on those for reflection"
-      }
-    ],
-    
-    "emergencyBackup": {
-      "situation": "Student artwork is incomplete or missing",
-      "plan": "Focus on memories and learning instead of physical pieces. Students can recreate favorite techniques or demonstrate what they learned through movement and gesture."
-    }
-  },
-
-  {
-    "lessonNumber": 15,
-    "title": "Lignes dans l'espace",
-    "oneGoal": "Students practice creating three-dimensional line sculptures with wire and pipe cleaners",
-    "keyVocabulary": ["espace", "sculpture", "tridimensionnel"],
-    "connectionToPrevious": "Our portfolios showed our amazing flat artwork - now let's make lines that stand up in space!",
-    "realWorldConnection": "Sculptors use lines in space to create artwork we can walk around",
-    "materials": ["Pipe cleaners in various colors", "Soft craft wire", "Small bases (cardboard or clay)", "3D line sculpture examples"],
-    
-    "mindsOn": {
-      "duration": "~8 min",
-      "activity": "3D Line Body Sculptures",
-      "description": "Students work in pairs to create 3D line sculptures with their bodies. One student poses making a line shape (straight, curved, zigzag) while partner walks around them to see the line from different angles. Switch roles.",
-      "visualSupports": ["Partner demonstrations", "Teacher showing different viewing angles"],
-      "tpr": "Line posing with whole body, walking around to observe, changing viewpoints, pointing to line elements from different angles"
-    },
-    
-    "action": {
-      "duration": "~27 min",
-      "activity": "Wire Line Sculpture Studio",
-      "description": "Students create 3D line sculptures using pipe cleaners and craft wire. Start with simple lines that stand up, then encourage curves, spirals, and combinations. Attach to small base so sculptures can stand independently.",
-      "visualSupports": ["3D sculpture examples", "Step-by-step construction visuals", "Teacher demonstration"],
-      "tpr": "Twisting and bending motions with hands, building up gestures, viewing sculptures from different angles"
-    },
-    
-    "consolidation": {
-      "duration": "~10 min",
-      "activity": "Sculpture Gallery Walk",
-      "description": "Display all sculptures on tables. Students walk around the gallery, viewing each sculpture from different angles. They can point out favorite line elements and demonstrate the hand movements needed to create similar lines.",
-      "visualSupports": ["Sculpture display tables", "Walking gallery format"],
-      "tpr": "Gallery walking, viewing from different angles, hand movement demonstrations, appreciation gestures"
-    },
-    
-    "decisionPoints": [
-      {
-        "situation": "If students struggle with 3D concept",
-        "action": "Start with simple standing lines, gradually add curves and bends, emphasize that sculptures can be seen from all sides"
-      },
-      {
-        "situation": "If wire materials are difficult to manipulate",
-        "action": "Use thicker pipe cleaners only, or help students work in pairs to support each other's construction"
-      },
-      {
-        "situation": "If sculptures don't stand up well",
-        "action": "Provide larger bases or help students create wider, more stable base designs"
-      }
-    ],
-    
-    "emergencyBackup": {
-      "situation": "Wire materials unavailable",
-      "plan": "Use playdough or clay to create 3D line sculptures by rolling and shaping. Students can make standing line forms that can be viewed from all angles."
-    }
-  },
-
-  {
-    "lessonNumber": 16,
-    "title": "Formes en collage",
-    "oneGoal": "Students practice shape recognition and composition through paper collage techniques",
-    "keyVocabulary": ["collage", "composition", "superposer"],
-    "connectionToPrevious": "We built amazing 3D line sculptures - now let's layer shapes to create beautiful collages!",
-    "realWorldConnection": "Magazine pictures are made of shapes that can be cut and rearranged",
-    "materials": ["Colored paper in various shapes", "Child-safe scissors", "Glue sticks", "Magazines for shape finding", "Large background paper"],
-    
-    "mindsOn": {
-      "duration": "~8 min",
-      "activity": "Shape Layering Exploration",
-      "description": "Using pre-cut paper shapes, students experiment with layering shapes on top of each other. Demonstrate how shapes can overlap, hide behind each other, or peek out from behind. Students practice the concept of 'superposer' (layering/overlapping).",
-      "visualSupports": ["Pre-cut shapes for demonstration", "Teacher layering examples", "Visual vocabulary cards"],
-      "tpr": "Layering hand movements, stacking gestures, peeking movements to show shapes hiding and revealing"
-    },
-    
-    "action": {
-      "duration": "~27 min",
-      "activity": "Collage Creation Workshop",
-      "description": "Students create collages by cutting shapes from colored paper and magazines, then arranging and layering them on background paper. Encourage experimentation with overlapping and composition. They can create abstract designs or simple representational images.",
-      "visualSupports": ["Collage examples", "Step-by-step cutting and layering visuals", "Safe scissor use demonstration"],
-      "tpr": "Cutting motions, arranging and rearranging movements, layering gestures, composition planning movements"
-    },
-    
-    "consolidation": {
-      "duration": "~10 min",
-      "activity": "Collage Composition Discussion",
-      "description": "Students present their collages and point out where shapes are layered or overlapped. Others can identify shapes they recognize and discuss how the layering creates visual interest.",
-      "visualSupports": ["Student collages displayed", "Pointing to layered elements"],
-      "tpr": "Presenting gestures, pointing to overlapped areas, shape identification movements, layering demonstrations"
-    },
-    
-    "decisionPoints": [
-      {
-        "situation": "If students struggle with scissors",
-        "action": "Provide more pre-cut shapes or use tear-paper technique instead of cutting"
-      },
-      {
-        "situation": "If students glue too quickly without planning",
-        "action": "Encourage arrangement planning before gluing, have a 'no-glue exploration time'"
-      },
-      {
-        "situation": "If students make very busy collages",
-        "action": "Suggest they choose their favorite elements and remove some for cleaner composition"
-      }
-    ],
-    
-    "emergencyBackup": {
-      "situation": "Cutting materials unavailable or unsafe",
-      "plan": "Use pre-torn paper shapes or digital shape arranging if technology is available. Focus on layering and composition concepts rather than cutting skills."
-    }
-  },
-
-  {
-    "lessonNumber": 17,
-    "title": "Lignes de mouvement",
-    "oneGoal": "Students practice drawing action lines that show movement and energy",
-    "keyVocabulary": ["mouvement", "énergie", "action"],
-    "connectionToPrevious": "Our collages showed shapes in interesting arrangements - now let's show movement and action with special lines!",
-    "realWorldConnection": "Comic books use special lines to show speed and movement",
-    "materials": ["Drawing paper", "Crayons and markers", "Action photos or comic examples", "Ribbon scarves for movement"],
-    
-    "mindsOn": {
-      "duration": "~8 min",
-      "activity": "Movement Line Acting",
-      "description": "Students use ribbon scarves to create movement lines in the air. Fast movements make quick lines, slow movements make flowing lines. Teacher demonstrates how different movements create different line qualities in the air.",
-      "visualSupports": ["Ribbon scarves for visible movement trails", "Teacher movement demonstrations"],
-      "tpr": "Fast and slow movement with scarves, whole body movement creating line trails, rhythm variations for different line types"
-    },
-    
-    "action": {
-      "duration": "~27 min",
-      "activity": "Action Line Drawing Studio",
-      "description": "Students create drawings that show movement using special action lines. They can draw: running figures with speed lines, bouncing balls with arc lines, spinning objects with spiral lines. Encourage experimentation with line direction and spacing.",
-      "visualSupports": ["Action photo references", "Comic book examples of movement lines", "Teacher demonstration drawings"],
-      "tpr": "Drawing movements that match the action being drawn - fast strokes for speed, curved motions for bouncing, spiraling for spinning"
-    },
-    
-    "consolidation": {
-      "duration": "~10 min",
-      "activity": "Movement Line Performance",
-      "description": "Students show their action drawings and demonstrate the movement their lines represent. Others guess what action is being shown based on the line types and directions.",
-      "visualSupports": ["Student artwork displayed", "Movement demonstrations"],
-      "tpr": "Action demonstrations to match drawn movement lines, guessing gestures, copying movement patterns"
-    },
-    
-    "decisionPoints": [
-      {
-        "situation": "If students don't understand movement concept",
-        "action": "Start with simple movements like bouncing balls, use real objects to show movement paths"
-      },
-      {
-        "situation": "If students focus too much on realistic drawing",
-        "action": "Emphasize that movement lines are special effects, like magic lines that show action"
-      },
-      {
-        "situation": "If students make chaotic scribbles",
-        "action": "Guide them to specific movements - choose one action and practice just those movement lines"
-      }
-    ],
-    
-    "emergencyBackup": {
-      "situation": "Drawing supplies limited",
-      "plan": "Use finger movement in air to practice action lines, or draw large movement lines with sidewalk chalk outside."
-    }
-  },
-
-  {
-    "lessonNumber": 18,
-    "title": "Motifs personnalisés",
-    "oneGoal": "Students practice creating their own unique patterns using learned shapes and lines",
-    "keyVocabulary": ["personnalisé", "unique", "invention"],
-    "connectionToPrevious": "We showed movement with special lines - now let's invent our own special patterns using everything we've learned!",
-    "realWorldConnection": "Designers create new patterns for fabric, wallpaper, and products",
-    "materials": ["Pattern-making tools (stamps, stencils, etc.)", "Various art supplies", "Pattern planning sheets", "Examples of designer patterns"],
-    
-    "mindsOn": {
-      "duration": "~8 min",
-      "activity": "Pattern Inventor Brainstorm",
-      "description": "Students become 'pattern inventors.' Review all the shapes and lines they've learned, then brainstorm combinations that no one has tried before. Use body movements to test pattern ideas before drawing them.",
-      "visualSupports": ["Review charts of all learned shapes and lines", "Brainstorming encouraging environment"],
-      "tpr": "Inventive thinking gestures, combination movements mixing different line types, creative brainstorming postures"
-    },
-    
-    "action": {
-      "duration": "~27 min",
-      "activity": "Personal Pattern Design Studio",
-      "description": "Students create their own unique patterns using combinations of shapes, lines, and techniques from all previous lessons. Encourage them to name their patterns and think about where their pattern might be used in real life.",
-      "visualSupports": ["All previous art techniques available", "Pattern planning guides", "Designer pattern examples for inspiration"],
-      "tpr": "Creative pattern-making movements, personal artistic expression, invention celebration gestures"
-    },
-    
-    "consolidation": {
-      "duration": "~10 min",
-      "activity": "Pattern Designer Presentation",
-      "description": "Students present their unique patterns as professional designers. They show their pattern, demonstrate how to make part of it, and suggest where it could be used (clothing, wallpaper, etc.).",
-      "visualSupports": ["Student patterns displayed professionally", "Presentation space"],
-      "tpr": "Professional presentation postures, demonstration of pattern-making techniques, pointing to pattern applications"
-    },
-    
-    "decisionPoints": [
-      {
-        "situation": "If students copy existing patterns exactly",
-        "action": "Encourage them to change one element to make it uniquely theirs - different colors, sizes, or combinations"
-      },
-      {
-        "situation": "If students feel overwhelmed by choices",
-        "action": "Limit options to 2-3 techniques or provide simple starting prompts for pattern creation"
-      },
-      {
-        "situation": "If students create very complex patterns",
-        "action": "Help them identify the core repeating unit and practice making it clearly"
-      }
-    ],
-    
-    "emergencyBackup": {
-      "situation": "Art supplies limited",
-      "plan": "Focus on pattern planning and design using paper and pencil, or create patterns using natural materials found outside."
-    }
-  },
-
-  {
-    "lessonNumber": 19,
-    "title": "Collaborations créatives",
-    "oneGoal": "Students practice teamwork by creating large group artworks using lines and shapes",
-    "keyVocabulary": ["collaboration", "équipe", "ensemble"],
-    "connectionToPrevious": "We invented amazing personal patterns - now let's work together to create something bigger than any of us could make alone!",
-    "realWorldConnection": "Many public artworks are created by teams of artists working together",
-    "materials": ["Large paper or canvas", "Shared art supplies", "Collaboration planning sheets", "Examples of collaborative artworks"],
-    
-    "mindsOn": {
-      "duration": "~8 min",
-      "activity": "Teamwork Planning Circle",
-      "description": "Students sit in small groups (3-4) and plan a collaborative artwork. Each person will contribute their specialty from previous lessons. Practice taking turns and listening to each other's ideas.",
-      "visualSupports": ["Small group formation", "Planning sheets with pictures", "Turn-taking visual cues"],
-      "tpr": "Planning discussion gestures, turn-taking movements, listening postures, agreement gestures"
-    },
-    
-    "action": {
-      "duration": "~27 min",
-      "activity": "Collaborative Art Creation",
-      "description": "Groups work together to create large collaborative artworks. Each student contributes their strengths - one might add shapes, another patterns, another movement lines. Encourage communication and shared decision-making.",
-      "visualSupports": ["Large workspace for each group", "Shared supplies", "Collaboration examples"],
-      "tpr": "Cooperative working movements, sharing gestures, collaborative problem-solving postures, group celebration movements"
-    },
-    
-    "consolidation": {
-      "duration": "~10 min",
-      "activity": "Collaborative Art Gallery Opening",
-      "description": "Groups present their collaborative artworks to the class. Each team member points out their contribution and explains one thing they learned from working together.",
-      "visualSupports": ["Professional gallery setup", "Group presentation format"],
-      "tpr": "Group presentation postures, pointing to individual contributions, teamwork appreciation gestures"
-    },
-    
-    "decisionPoints": [
-      {
-        "situation": "If groups have conflicts over artistic choices",
-        "action": "Guide them to combine ideas rather than choose one, teach compromise through art techniques"
-      },
-      {
-        "situation": "If some students dominate the collaborative process",
-        "action": "Assign specific roles or areas of the artwork to each student, use timer for turn-taking"
-      },
-      {
-        "situation": "If groups finish at very different rates",
-        "action": "Early finishers can add refinements or help other groups with encouragement and ideas"
-      }
-    ],
-    
-    "emergencyBackup": {
-      "situation": "Group dynamics become difficult",
-      "plan": "Switch to individual work on one large class mural where everyone contributes their own section connected to others."
-    }
-  },
-
-  {
-    "lessonNumber": 20,
-    "title": "Galerie d'exposition",
-    "oneGoal": "Students practice presentation skills by displaying and explaining their line and shape artworks",
-    "keyVocabulary": ["exposition", "présenter", "partager"],
-    "connectionToPrevious": "We created beautiful collaborative art together - now let's celebrate all our artistic learning by sharing it with others!",
-    "realWorldConnection": "Art galleries and museums help artists share their work with the community",
-    "materials": ["Display materials (tape, labels)", "Gallery setup supplies", "Artist statement cards", "Celebration materials"],
-    
-    "mindsOn": {
-      "duration": "~8 min",
-      "activity": "Gallery Setup Preparation",
-      "description": "Students help transform classroom into professional gallery space. They practice being museum guides, learning to walk quietly, speak clearly, and point respectfully at artwork. Practice gallery etiquette.",
-      "visualSupports": ["Gallery setup examples", "Museum behavior visual guides"],
-      "tpr": "Quiet walking movements, respectful pointing gestures, clear speaking postures, professional gallery behaviors"
-    },
-    
-    "action": {
-      "duration": "~27 min",
-      "activity": "Art Exhibition and Gallery Tours",
-      "description": "Students take turns being artists and audience members. Artists stand by their work and share one thing about their artistic learning journey. Audience members practice respectful appreciation and asking kind questions.",
-      "visualSupports": ["Professional gallery display", "Artist presentation spaces", "Audience behavior guides"],
-      "tpr": "Professional artist presentation postures, respectful audience listening, appreciation gestures, celebration movements"
-    },
-    
-    "consolidation": {
-      "duration": "~10 min",
-      "activity": "Artist Appreciation Celebration",
-      "description": "Gather in circle for final celebration of artistic growth. Each student shares one favorite memory from their line and shape learning journey. Celebrate everyone's artistic development and creativity.",
-      "visualSupports": ["Circle formation for community", "Celebration atmosphere"],
-      "tpr": "Celebratory postures, memory sharing gestures, appreciation movements, community celebration"
-    },
-    
-    "decisionPoints": [
-      {
-        "situation": "If students are nervous about presenting",
-        "action": "Allow pointing and gesturing instead of speaking, pair shy students with confident partners"
-      },
-      {
-        "situation": "If exhibition becomes chaotic",
-        "action": "Use small group rotations instead of whole class movement, add structure with specific viewing times"
-      },
-      {
-        "situation": "If students focus on comparing artwork",
-        "action": "Redirect to appreciating each person's unique artistic journey and growth"
-      }
-    ],
-    
-    "emergencyBackup": {
-      "situation": "Gallery setup impossible",
-      "plan": "Create individual portfolio sharing in pairs or small groups, focus on personal artistic growth rather than public exhibition."
-    }
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
   }
-]
+}

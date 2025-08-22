@@ -1,507 +1,878 @@
 {
+  "unitTitle": "",
+  "subject": "Arts visuels",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
   "lessons": [
     {
       "lessonNumber": 1,
+      "lessonType": "core",
       "title": "Outils d'artiste professionnel",
       "oneGoal": "Students will explore and safely use professional art tools",
-      "keyVocabulary": ["outil", "professionnel", "sécurité"],
-      "mindsOn": {
+      "duration": 45,
+      "keyVocabulary": [
+        "outil",
+        "professionnel",
+        "sécurité"
+      ],
+      "opening": {
         "duration": "~8 min",
         "activity": "Mystery tool exploration: Show professional art tools (palette knives, brayers, fine brushes, sculpting tools) in covered containers. Students guess what each tool does. Introduce vocabulary: OUTIL (show tool gesture), PROFESSIONNEL (formal, careful handling), SÉCURITÉ (safe handling demonstration).",
-        "visualSupport": "Real professional art tools, safety demonstration pictures, vocabulary cards with tool images",
-        "decisionPoint": "If students are overwhelmed by tool complexity: Start with just 2-3 tools and focus on safety. If they're very interested: Allow more exploration time and tool comparison."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "action": {
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Tool Safety Training (~8 min): Learn proper handling for each professional tool. Practice safe passing, storage, and cleaning. Role-play being 'professional artists' with responsible tool use. Say 'Je suis sécuritaire avec mes outils!'",
-          "Tool Exploration Stations (~15 min): Rotate through stations with different professional tools. Try palette knife painting, brayer printing, fine detail brushwork, sculpting tool texture-making. Practice vocabulary at each station.",
-          "Tool Matching Challenge (~4 min): Match tools to their best uses. Discussion: 'Quel outil pour quel travail?' Practice professional vocabulary while explaining tool choices."
+        "activity": "",
+        "materials": [
+          "Professional art tools (palette knives, brayers, detail brushes, sculpting tools)",
+          "Practice materials for each tool",
+          "Safety guidelines poster",
+          "Tool storage organization"
         ],
-        "materials": ["Professional art tools (palette knives, brayers, detail brushes, sculpting tools)", "Practice materials for each tool", "Safety guidelines poster", "Tool storage organization"],
-        "visualSupport": "Tool safety demonstration cards, tool-to-task matching visuals, professional artist photos using tools",
-        "decisionPoint": "If tools are too advanced: Simplify to more basic versions but maintain professional vocabulary. If students master quickly: Introduce more specialized tools."
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "consolidation": {
+      "closing": {
         "duration": "~10 min",
         "activity": "Professional Artist Role-Play. Students choose their favorite professional tool and demonstrate proper use to 'art students' (classmates). Practice vocabulary: 'Cet outil professionnel fait...' Emphasize safety and skill.",
-        "assessment": "Can students handle professional tools safely? Do they use tool vocabulary appropriately? Can they explain why professional tools require special care?",
-        "decisionPoint": "If students struggle with safety: Extend safety practice before using tools independently. If they're very responsible: Plan more advanced tool introduction for future lessons."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "emergencyBackup": "Tool study without handling: Use pictures and videos of professional artists using tools, practice vocabulary and safety concepts without physical tool use.",
-      "realWorldConnection": "Understanding that artists use special tools, like how doctors, builders, or chefs have professional tools"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Tool study without handling: Use pictures and videos of professional artists using tools, practice vocabulary and safety concepts without physical tool use."
+      },
+      "realWorldConnection": "Understanding that artists use special tools, like how doctors, builders, or chefs have professional tools",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 2,
+      "lessonType": "core",
       "title": "Mélange des médiums",
       "oneGoal": "Students will combine different art materials in single artworks",
-      "keyVocabulary": ["mélanger", "médium", "combinaison"],
-      "mindsOn": {
+      "duration": 45,
+      "keyVocabulary": [
+        "mélanger",
+        "médium",
+        "combinaison"
+      ],
+      "opening": {
         "duration": "~8 min",
         "activity": "Show examples of mixed media artworks. Identify different materials used together: paint + collage, crayon + watercolor, etc. Introduce vocabulary: MÉLANGER (mixing gesture), MÉDIUM (hold up different materials), COMBINAISON (bringing hands together).",
-        "visualSupport": "Mixed media artwork examples, separate art materials, combination demonstration cards",
-        "decisionPoint": "If students are confused by multiple materials: Start with just two materials to combine. If they understand quickly: Show more complex mixed media examples."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "action": {
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Media Experimentation (~10 min): Try simple combinations: crayon resist with watercolor, collage with paint details, chalk pastels with markers. Say 'Je mélange deux médiums!' Observe how materials interact.",
-          "Combination Planning (~8 min): Choose 3 different art materials. Plan artwork that uses all three meaningfully. Sketch plan showing where each medium will be used. Practice vocabulary while planning.",
-          "Mixed Media Creation (~9 min): Create planned mixed media artwork. Focus on how different mediums can enhance each other. Document process: 'D'abord crayon, puis peinture, enfin collage!'"
+        "activity": "",
+        "materials": [
+          "Variety of art materials (paints, crayons, markers, collage materials, pastels)",
+          "Planning sheets",
+          "Mixed media paper",
+          "Demonstration examples"
         ],
-        "materials": ["Variety of art materials (paints, crayons, markers, collage materials, pastels)", "Planning sheets", "Mixed media paper", "Demonstration examples"],
-        "visualSupport": "Step-by-step mixed media process cards, successful combination examples, planning templates",
-        "decisionPoint": "If combinations aren't working: Provide tested successful combinations to try. If students are very experimental: Allow complete freedom in material combinations."
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "consolidation": {
+      "closing": {
         "duration": "~10 min",
         "activity": "Mixed Media Gallery Walk. Display all mixed media works. Students identify different mediums used in each artwork. Practice vocabulary: 'Je vois une combinaison de...' Discuss which combinations were most effective.",
-        "assessment": "Can students successfully combine different art materials? Do they use mixed media vocabulary appropriately? Can they plan intentional combinations rather than random mixing?",
-        "decisionPoint": "If students want to continue experimenting: Set up mixed media exploration station for future work. If they're satisfied with results: focus on analyzing successful combinations."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "emergencyBackup": "Mixed media planning: Use magazines and art materials to plan mixed media combinations without creating full artworks, focusing on vocabulary and combination concepts.",
-      "realWorldConnection": "Mixing different ingredients in cooking, combining different materials in building projects"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Mixed media planning: Use magazines and art materials to plan mixed media combinations without creating full artworks, focusing on vocabulary and combination concepts."
+      },
+      "realWorldConnection": "Mixing different ingredients in cooking, combining different materials in building projects",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 3,
+      "lessonType": "core",
       "title": "Techniques de peinture avancées",
       "oneGoal": "Students will master advanced painting techniques beyond basic brushwork",
-      "keyVocabulary": ["technique", "éponge", "pochoir"],
-      "mindsOn": {
+      "duration": 45,
+      "keyVocabulary": [
+        "technique",
+        "éponge",
+        "pochoir"
+      ],
+      "opening": {
         "duration": "~8 min",
         "activity": "Compare basic brush painting to advanced techniques using demonstrations. Show sponge painting, stencil work, palette knife techniques. Introduce vocabulary: TECHNIQUE (skillful gesture), ÉPONGE (dabbing motion), POCHOIR (stencil demonstration).",
-        "visualSupport": "Side-by-side comparison of basic vs advanced painting techniques, tools for each technique",
-        "decisionPoint": "If students struggle with basic brushwork: Review brush basics before advancing. If they're ready for challenge: demonstrate more complex advanced techniques."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "action": {
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Sponge Technique Mastery (~9 min): Learn controlled sponge painting for textures and effects. Practice dabbing, stippling, gradient creation. Say 'Ma technique d'éponge crée...' Compare to brush effects.",
-          "Stencil Precision Work (~9 min): Use stencils (premade and self-cut) for clean, precise designs. Learn proper stencil holding, paint application, clean removal. Practice 'technique de pochoir' vocabulary.",
-          "Palette Knife Exploration (~9 min): Use palette knives for paint application, texture creation, and mixing. Practice controlled spreading, scraping, and detail work. Advanced tool from Lesson 1 applied to painting."
+        "activity": "",
+        "materials": [
+          "Various sponges for painting",
+          "Stencils (commercial and handmade)",
+          "Palette knives",
+          "Paints suitable for advanced techniques",
+          "Practice papers"
         ],
-        "materials": ["Various sponges for painting", "Stencils (commercial and handmade)", "Palette knives", "Paints suitable for advanced techniques", "Practice papers"],
-        "visualSupport": "Technique demonstration cards, examples of each advanced technique, step-by-step process posters",
-        "decisionPoint": "If techniques are too difficult: Simplify to one technique per lesson. If students master quickly: combine techniques in single artworks."
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "consolidation": {
+      "closing": {
         "duration": "~10 min",
         "activity": "Technique Showcase. Students demonstrate their best advanced technique to classmates. Explain process: 'Ma technique avancée utilise...' Compare effects achieved with different techniques.",
-        "assessment": "Can students execute advanced painting techniques with control? Do they use technique vocabulary accurately? Can they choose appropriate techniques for desired effects?",
-        "decisionPoint": "If students need more practice: plan additional technique refinement sessions. If they've mastered techniques: challenge them to invent new techniques."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "emergencyBackup": "Technique analysis: Study photos and videos of advanced painting techniques, practice vocabulary and technique identification without hands-on painting.",
-      "realWorldConnection": "Watching house painters use different techniques, seeing how artists create different effects"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Technique analysis: Study photos and videos of advanced painting techniques, practice vocabulary and technique identification without hands-on painting."
+      },
+      "realWorldConnection": "Watching house painters use different techniques, seeing how artists create different effects",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 4,
+      "lessonType": "core",
       "title": "Sculpture et modelage",
       "oneGoal": "Students will create three-dimensional artworks using various sculpting materials",
-      "keyVocabulary": ["sculpture", "modelage", "forme"],
-      "mindsOn": {
+      "duration": 45,
+      "keyVocabulary": [
+        "sculpture",
+        "modelage",
+        "forme"
+      ],
+      "opening": {
         "duration": "~8 min",
         "activity": "Explore 3D vs 2D concepts using simple objects and pictures. Handle sculptures vs looking at paintings. Introduce vocabulary: SCULPTURE (3D gesture with hands), MODELAGE (shaping clay motion), FORME (outline 3D shapes in air).",
-        "visualSupport": "Real sculpture examples, 2D/3D comparison objects, sculpting tools and materials",
-        "decisionPoint": "If students struggle with 3D concept: Use more concrete examples and manipulation activities. If they understand quickly: introduce more complex sculptural concepts."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "action": {
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Clay Exploration (~10 min): Learn basic clay techniques: pinching, coiling, slab building. Practice vocabulary: 'Je fais du modelage!' Focus on 3D thinking rather than flat shapes.",
-          "Additive Sculpture (~8 min): Build sculptures by adding materials together (clay pieces, found objects, natural materials). Practice 'construction de sculpture' vocabulary. Think about all sides of artwork.",
-          "Subtractive Carving (~9 min): Remove material to create forms (soft carving materials like soap, foam). Practice controlled removal. Say 'J'enlève pour créer ma forme!' Compare to additive process."
+        "activity": "",
+        "materials": [
+          "Various clay types",
+          "Sculpting tools from Lesson 1",
+          "Found objects for assemblage",
+          "Soft carving materials (soap, foam)",
+          "Workspace protection"
         ],
-        "materials": ["Various clay types", "Sculpting tools from Lesson 1", "Found objects for assemblage", "Soft carving materials (soap, foam)", "Workspace protection"],
-        "visualSupport": "3D process demonstration cards, additive vs subtractive examples, sculptural vocabulary posters",
-        "decisionPoint": "If fine motor skills are challenging: Focus on larger, simpler forms. If students excel: introduce more detailed sculptural techniques."
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "consolidation": {
+      "closing": {
         "duration": "~10 min",
         "activity": "Sculpture Gallery. Display 3D works so they can be viewed from all angles. Students walk around sculptures, describing what they see from different viewpoints. Practice 3D vocabulary.",
-        "assessment": "Can students think and work three-dimensionally? Do they use sculpture vocabulary appropriately? Can they plan and execute basic sculptural techniques?",
-        "decisionPoint": "If sculptures need more work time: plan extended sculpture sessions. If students are satisfied: focus on presentation and 3D analysis skills."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "emergencyBackup": "3D construction with classroom materials: Use blocks, boxes, and other classroom items to explore 3D construction concepts and practice vocabulary.",
-      "realWorldConnection": "Playing with playdough, building with blocks, shaping sand castles"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "3D construction with classroom materials: Use blocks, boxes, and other classroom items to explore 3D construction concepts and practice vocabulary."
+      },
+      "realWorldConnection": "Playing with playdough, building with blocks, shaping sand castles",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 5,
+      "lessonType": "core",
       "title": "Gravure et impression",
       "oneGoal": "Students will create multiple copies of artworks using printmaking techniques",
-      "keyVocabulary": ["gravure", "impression", "multiples"],
-      "mindsOn": {
+      "duration": 45,
+      "keyVocabulary": [
+        "gravure",
+        "impression",
+        "multiples"
+      ],
+      "opening": {
         "duration": "~8 min",
         "activity": "Demonstrate concept of making multiple copies: stamp a simple design multiple times. Compare to unique artworks vs prints. Introduce vocabulary: GRAVURE (carving motion), IMPRESSION (printing press motion), MULTIPLES (counting copies).",
-        "visualSupport": "Examples of original artworks vs prints, simple stamping demonstration, professional printmaking examples",
-        "decisionPoint": "If students don't understand multiples concept: Use more concrete examples like photocopies or stamps. If they understand: show more sophisticated printmaking examples."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "action": {
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Simple Relief Printing (~10 min): Create printing blocks using foam plates, cardboard, or potatoes. Carve/cut designs, apply paint, make multiple prints. Practice 'faire une gravure' vocabulary.",
-          "Monoprinting Exploration (~8 min): Create one-of-a-kind prints using paint on plastic, then transferring to paper. Compare to multiple prints. Practice impression vocabulary.",
-          "Print Series Creation (~9 min): Make series of 3-5 identical prints using relief method. Number prints: 'Impression numéro un, deux, trois...' Understand concept of edition."
+        "activity": "",
+        "materials": [
+          "Printmaking materials (foam plates, cardboard, cutting tools)",
+          "Printing ink or paint",
+          "Printing paper",
+          "Brayers for ink application",
+          "Printing press or spoons"
         ],
-        "materials": ["Printmaking materials (foam plates, cardboard, cutting tools)", "Printing ink or paint", "Printing paper", "Brayers for ink application", "Printing press or spoons"],
-        "visualSupport": "Printmaking process demonstration, examples of print series, professional printmaker tools",
-        "decisionPoint": "If printing is too complex: Focus on simple stamping and multiples concept. If students love printmaking: introduce more sophisticated techniques."
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "consolidation": {
+      "closing": {
         "duration": "~10 min",
         "activity": "Print Exhibition and Trading. Display print series. Students can trade prints with each other since multiple copies exist. Discuss how printmaking allows sharing artwork. Practice printmaking vocabulary.",
-        "assessment": "Can students create multiple identical prints? Do they understand printmaking vocabulary? Can they plan designs that work well for printing?",
-        "decisionPoint": "If prints are very successful: plan more advanced printmaking sessions. If technique was challenging: review simpler printing methods."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "emergencyBackup": "Print analysis and planning: Study different types of prints, plan printmaking designs on paper, practice vocabulary without actual printing process.",
-      "realWorldConnection": "Stamps, copying machines, printed books and newspapers"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Print analysis and planning: Study different types of prints, plan printmaking designs on paper, practice vocabulary without actual printing process."
+      },
+      "realWorldConnection": "Stamps, copying machines, printed books and newspapers",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 6,
+      "lessonType": "core",
       "title": "Collage sophistiqué",
       "oneGoal": "Students will create complex collages using advanced layering and composition",
-      "keyVocabulary": ["collage", "couche", "composition"],
-      "mindsOn": {
+      "duration": 45,
+      "keyVocabulary": [
+        "collage",
+        "couche",
+        "composition"
+      ],
+      "opening": {
         "duration": "~8 min",
         "activity": "Compare simple collages to sophisticated examples. Identify layers, composition principles, intentional material choices. Introduce vocabulary: COLLAGE (layering gesture), COUCHE (layer-building motion), COMPOSITION (arranging gesture).",
-        "visualSupport": "Simple vs sophisticated collage examples, layering demonstration, composition principle visuals",
-        "decisionPoint": "If students need collage basics review: spend time on fundamental cutting and pasting. If they're ready for complexity: focus on advanced composition concepts."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "action": {
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Advanced Material Selection (~8 min): Choose collage materials intentionally for color, texture, meaning. Practice vocabulary: 'Je choisis ce matériel pour...' Consider how materials work together compositionally.",
-          "Complex Layering Techniques (~10 min): Create depth through layering: foreground, middle ground, background. Use transparency, overlap, scale changes. Practice 'couche' vocabulary while building layers.",
-          "Compositional Planning (~9 min): Plan overall composition considering balance, focal point, movement. Arrange before gluing. Practice 'composition' vocabulary while making decisions."
+        "activity": "",
+        "materials": [
+          "Variety of sophisticated collage materials (textured papers, transparencies, fabrics)",
+          "Quality adhesives",
+          "Cutting tools",
+          "Large format papers",
+          "Planning sketches"
         ],
-        "materials": ["Variety of sophisticated collage materials (textured papers, transparencies, fabrics)", "Quality adhesives", "Cutting tools", "Large format papers", "Planning sketches"],
-        "visualSupport": "Composition planning templates, layering technique examples, advanced collage artist examples",
-        "decisionPoint": "If planning is too abstract: focus on hands-on exploration with guidance. If students excel at planning: introduce more complex compositional concepts."
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "consolidation": {
+      "closing": {
         "duration": "~10 min",
         "activity": "Collage Critique Session. Students present their sophisticated collages, explaining layering and compositional choices. Use advanced vocabulary: 'Ma composition utilise des couches pour...'",
-        "assessment": "Can students create intentionally complex collages? Do they use advanced collage vocabulary meaningfully? Can they make sophisticated compositional decisions?",
-        "decisionPoint": "If collages need more work: provide additional studio time. If students are proud of results: plan exhibition or documentation of sophisticated work."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "emergencyBackup": "Collage analysis and planning: Study sophisticated collages in art books or online, plan complex collages on paper using drawing and vocabulary practice.",
-      "realWorldConnection": "Magazine layouts, scrapbooks, mood boards, advertising design"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Collage analysis and planning: Study sophisticated collages in art books or online, plan complex collages on paper using drawing and vocabulary practice."
+      },
+      "realWorldConnection": "Magazine layouts, scrapbooks, mood boards, advertising design",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 7,
+      "lessonType": "core",
       "title": "Art textile",
       "oneGoal": "Students will explore fiber arts including weaving, stitching, and fabric manipulation",
-      "keyVocabulary": ["textile", "tisser", "coudre"],
-      "mindsOn": {
+      "duration": 45,
+      "keyVocabulary": [
+        "textile",
+        "tisser",
+        "coudre"
+      ],
+      "opening": {
         "duration": "~8 min",
         "activity": "Explore different textiles: woven vs knitted vs sewn. Feel different fabric textures and structures. Introduce vocabulary: TEXTILE (fabric touching motion), TISSER (weaving motion with fingers), COUDRE (stitching motion).",
-        "visualSupport": "Variety of textile examples showing different construction methods, textile tools, cultural textile examples",
-        "decisionPoint": "If students have limited textile experience: focus on simple fabric exploration and basic vocabulary. If they have textile knowledge: connect to cultural and historical contexts."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "action": {
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Simple Weaving (~10 min): Use cardboard looms or simple frames to weave with yarn, fabric strips, or natural materials. Practice 'tisser' vocabulary. Over, under, over, under pattern.",
-          "Basic Stitching (~8 min): Learn simple running stitch to join fabrics or create decorative lines. Use large needles and felt or burlap. Practice 'coudre' vocabulary with safety.",
-          "Fabric Manipulation (~9 min): Experiment with pleating, gathering, fraying, layering fabrics for artistic effects. Create texture and dimension. Practice textile vocabulary while exploring."
+        "activity": "",
+        "materials": [
+          "Simple weaving looms or cardboard frames",
+          "Yarn and fabric strips",
+          "Large, safe needles",
+          "Felt and burlap for stitching",
+          "Variety of fabrics for manipulation"
         ],
-        "materials": ["Simple weaving looms or cardboard frames", "Yarn and fabric strips", "Large, safe needles", "Felt and burlap for stitching", "Variety of fabrics for manipulation"],
-        "visualSupport": "Weaving pattern diagrams, stitching technique cards, fabric manipulation examples",
-        "decisionPoint": "If fine motor skills are challenging: focus on larger-scale textile work. If students enjoy precision work: introduce more detailed techniques."
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "consolidation": {
+      "closing": {
         "duration": "~10 min",
         "activity": "Textile Arts Appreciation. Display textile creations and discuss how textile arts connect to clothing, decoration, and cultural traditions. Practice textile vocabulary in context.",
-        "assessment": "Can students execute basic textile techniques? Do they use textile vocabulary appropriately? Can they appreciate textile arts as legitimate art form?",
-        "decisionPoint": "If students love textile work: plan more advanced fiber arts exploration. If they found it challenging: focus on appreciation and vocabulary rather than complex techniques."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "emergencyBackup": "Textile exploration without tools: Examine different fabrics and textiles, practice vocabulary, plan textile art projects using drawing and fabric samples.",
-      "realWorldConnection": "Clothing construction, quilts, traditional crafts, home decoration"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Textile exploration without tools: Examine different fabrics and textiles, practice vocabulary, plan textile art projects using drawing and fabric samples."
+      },
+      "realWorldConnection": "Clothing construction, quilts, traditional crafts, home decoration",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 8,
+      "lessonType": "core",
       "title": "Techniques mixtes",
       "oneGoal": "Students will combine multiple advanced techniques in single complex artworks",
-      "keyVocabulary": ["mixte", "complexe", "intégrer"],
-      "mindsOn": {
+      "duration": 45,
+      "keyVocabulary": [
+        "mixte",
+        "complexe",
+        "intégrer"
+      ],
+      "opening": {
         "duration": "~8 min",
         "activity": "Review all advanced techniques learned in previous lessons. Show examples of artworks combining multiple techniques. Introduce vocabulary: MIXTE (combining gesture), COMPLEXE (layered complexity gesture), INTÉGRER (integration motion).",
-        "visualSupport": "Examples of multi-technique artworks, technique review cards from previous lessons, integration planning templates",
-        "decisionPoint": "If students need technique review: spend more time reconnecting with previous lessons. If they remember well: focus on integration planning."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "action": {
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Technique Integration Planning (~8 min): Choose 3-4 advanced techniques to combine in one artwork. Plan how each technique will be used and how they'll work together. Practice 'intégrer' vocabulary.",
-          "Complex Artwork Creation (~15 min): Execute planned multi-technique artwork. May combine: advanced painting + printmaking + collage + textile elements. Focus on intentional integration.",
-          "Process Documentation (~4 min): Document creation process showing how multiple techniques were integrated. Practice vocabulary: 'J'ai intégré ces techniques mixtes pour...'"
+        "activity": "",
+        "materials": [
+          "All materials from previous advanced technique lessons",
+          "Large format paper or canvas",
+          "Planning sheets",
+          "Documentation cameras",
+          "Complex artwork examples"
         ],
-        "materials": ["All materials from previous advanced technique lessons", "Large format paper or canvas", "Planning sheets", "Documentation cameras", "Complex artwork examples"],
-        "visualSupport": "Integration planning templates, multi-technique process examples, technique combination charts",
-        "decisionPoint": "If integration is overwhelming: limit to 2-3 techniques. If students excel: encourage experimentation with unconventional technique combinations."
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "consolidation": {
+      "closing": {
         "duration": "~10 min",
         "activity": "Complex Artwork Presentation. Students present their multi-technique works, explaining how different techniques were integrated. Use sophisticated vocabulary to describe complex creative decisions.",
-        "assessment": "Can students successfully integrate multiple advanced techniques? Do they use complex art vocabulary meaningfully? Can they plan and execute sophisticated multi-technique works?",
-        "decisionPoint": "If artworks are very successful: plan advanced exhibition or documentation. If students struggled with integration: focus on simpler technique combinations."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "emergencyBackup": "Integration planning and analysis: Plan multi-technique artworks on paper, analyze complex artworks by other artists, practice integration vocabulary without full creation.",
-      "realWorldConnection": "Professional artists combining many techniques, complex craft projects"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Integration planning and analysis: Plan multi-technique artworks on paper, analyze complex artworks by other artists, practice integration vocabulary without full creation."
+      },
+      "realWorldConnection": "Professional artists combining many techniques, complex craft projects",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 9,
+      "lessonType": "core",
       "title": "Style personnel avancé",
       "oneGoal": "Students will develop and articulate their own advanced artistic style",
-      "keyVocabulary": ["style", "personnel", "développer"],
-      "mindsOn": {
+      "duration": 45,
+      "keyVocabulary": [
+        "style",
+        "personnel",
+        "développer"
+      ],
+      "opening": {
         "duration": "~8 min",
         "activity": "Look at students' artwork from throughout the unit. Identify patterns in their choices: favorite techniques, colors, subjects, approaches. Introduce vocabulary: STYLE (distinctive gesture), PERSONNEL (point to self), DÉVELOPPER (growth motion).",
-        "visualSupport": "Student artwork portfolios from unit, examples of distinctive artistic styles, style development timeline concepts",
-        "decisionPoint": "If students struggle to see patterns in their work: help them identify specific preferences. If they clearly see their style: encourage articulation and development."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "action": {
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Style Analysis (~8 min): Examine own artwork collection. Identify: favorite techniques, recurring themes, preferred colors, typical compositions. Practice vocabulary: 'Mon style personnel inclut...'",
-          "Intentional Style Development (~12 min): Create new artwork that deliberately emphasizes identified personal style elements. Make conscious choices to strengthen distinctive approach.",
-          "Style Articulation (~7 min): Write or record description of personal artistic style using advanced vocabulary. Practice explaining: 'Je développe mon style en...' Share style statements."
+        "activity": "",
+        "materials": [
+          "Student artwork portfolios from entire unit",
+          "Art creation materials matching individual preferences",
+          "Style documentation sheets",
+          "Recording equipment for style statements"
         ],
-        "materials": ["Student artwork portfolios from entire unit", "Art creation materials matching individual preferences", "Style documentation sheets", "Recording equipment for style statements"],
-        "visualSupport": "Style analysis templates, examples of artist style statements, personal style development examples",
-        "decisionPoint": "If students can't identify their style: help them through guided questioning. If they're very aware of their style: challenge them to push style boundaries."
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "consolidation": {
+      "closing": {
         "duration": "~10 min",
         "activity": "Personal Style Gallery. Display newest artworks that emphasize individual styles. Students present style statements and point out style elements in their work. Celebrate artistic individuality.",
-        "assessment": "Can students identify elements of their personal artistic style? Do they use style vocabulary appropriately? Can they create artworks that intentionally reflect their style?",
-        "decisionPoint": "If students are proud of their styles: encourage continued development. If they want to change styles: discuss how artists evolve over time."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "emergencyBackup": "Style study without creation: Analyze famous artists' styles, identify style elements in artwork reproduction, practice style vocabulary through analysis activities.",
-      "realWorldConnection": "Recognizing that everyone has their own way of creating and expressing"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Style study without creation: Analyze famous artists' styles, identify style elements in artwork reproduction, practice style vocabulary through analysis activities."
+      },
+      "realWorldConnection": "Recognizing that everyone has their own way of creating and expressing",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 10,
+      "lessonType": "core",
       "title": "Art conceptuel",
       "oneGoal": "Students will create artworks that express specific ideas or concepts",
-      "keyVocabulary": ["concept", "idée", "exprimer"],
-      "mindsOn": {
+      "duration": 45,
+      "keyVocabulary": [
+        "concept",
+        "idée",
+        "exprimer"
+      ],
+      "opening": {
         "duration": "~8 min",
         "activity": "Discuss difference between decorative art and conceptual art. Show examples of art that expresses ideas vs art that's purely visual. Introduce vocabulary: CONCEPT (thinking gesture), IDÉE (lightbulb gesture), EXPRIMER (expression gestures).",
-        "visualSupport": "Examples of conceptual vs decorative art, idea-to-art connection diagrams, expression gesture cards",
-        "decisionPoint": "If conceptual thinking is too abstract: use concrete examples with obvious meanings. If students understand quickly: introduce more subtle conceptual art examples."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "action": {
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Concept Selection (~7 min): Choose important idea to express through art: friendship, family, seasons, growth, etc. Practice vocabulary: 'Mon concept est...' 'Je veux exprimer...'",
-          "Technique-to-Concept Matching (~8 min): Decide which advanced techniques best express chosen concept. Plan intentional connections: 'J'utilise cette technique parce que...'",
-          "Conceptual Artwork Creation (~12 min): Create artwork that clearly expresses chosen concept using intentionally selected techniques. Focus on meaning-making rather than just appearance."
+        "activity": "",
+        "materials": [
+          "All advanced technique materials from previous lessons",
+          "Concept planning sheets",
+          "Idea development templates",
+          "Examples of concept-technique connections"
         ],
-        "materials": ["All advanced technique materials from previous lessons", "Concept planning sheets", "Idea development templates", "Examples of concept-technique connections"],
-        "visualSupport": "Concept-to-technique matching charts, idea development flowcharts, conceptual art process examples",
-        "decisionPoint": "If concept-technique connections are unclear: provide more structured guidance and examples. If students make clear connections: encourage sophisticated conceptual thinking."
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "consolidation": {
+      "closing": {
         "duration": "~10 min",
         "activity": "Conceptual Art Presentations. Students present artworks and explain concepts being expressed. Audience tries to 'read' concepts in artwork. Practice vocabulary: 'Cette œuvre exprime le concept de...'",
-        "assessment": "Can students connect artistic techniques to conceptual expression? Do they use conceptual vocabulary meaningfully? Can they create art that communicates specific ideas?",
-        "decisionPoint": "If concepts are clearly communicated: celebrate successful conceptual art-making. If concepts are unclear: work on stronger concept-technique connections."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "emergencyBackup": "Conceptual planning without creation: Develop concept-to-technique plans on paper, analyze conceptual artworks, practice conceptual vocabulary through planning exercises.",
-      "realWorldConnection": "Understanding that art can express feelings, ideas, and messages"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Conceptual planning without creation: Develop concept-to-technique plans on paper, analyze conceptual artworks, practice conceptual vocabulary through planning exercises."
+      },
+      "realWorldConnection": "Understanding that art can express feelings, ideas, and messages",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 11,
+      "lessonType": "core",
       "title": "Critique d'art",
       "oneGoal": "Students will analyze and critique artworks using advanced vocabulary",
-      "keyVocabulary": ["critique", "analyser", "vocabulaire"],
-      "mindsOn": {
+      "duration": 45,
+      "keyVocabulary": [
+        "critique",
+        "analyser",
+        "vocabulaire"
+      ],
+      "opening": {
         "duration": "~8 min",
         "activity": "Introduce art criticism as learning tool, not just opinion sharing. Practice constructive criticism vs destructive criticism. Introduce vocabulary: CRITIQUE (analytical thinking gesture), ANALYSER (close examination motion), VOCABULAIRE (words/speaking gesture).",
-        "visualSupport": "Examples of constructive vs destructive criticism, art criticism question templates, analytical vocabulary lists",
-        "decisionPoint": "If students confuse criticism with being mean: emphasize constructive, helpful analysis. If they understand distinction: introduce more sophisticated critical concepts."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "action": {
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Vocabulary Development (~8 min): Learn advanced art vocabulary for criticism: composition, technique, expression, effectiveness, innovation. Practice using words in sentences about artwork.",
-          "Structured Art Analysis (~10 min): Use guided questions to analyze artwork: What techniques? How effective? What concepts? What could be strengthened? Practice 'analyser' vocabulary systematically.",
-          "Peer Critique Practice (~9 min): Give constructive critiques of classmates' work using advanced vocabulary. Focus on helpful suggestions and genuine appreciation. Practice respectful critical discussion."
+        "activity": "",
+        "materials": [
+          "Advanced art vocabulary lists",
+          "Critique question templates",
+          "Student artworks for analysis",
+          "Professional artwork examples",
+          "Critique recording sheets"
         ],
-        "materials": ["Advanced art vocabulary lists", "Critique question templates", "Student artworks for analysis", "Professional artwork examples", "Critique recording sheets"],
-        "visualSupport": "Art criticism question posters, advanced vocabulary cards, examples of good critique language",
-        "decisionPoint": "If critiques become too harsh: refocus on constructive elements. If students are too gentle: encourage more specific analytical observations."
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "consolidation": {
+      "closing": {
         "duration": "~10 min",
         "activity": "Critique Reflection. Students reflect on criticism received and given. Discuss how critique helps artistic growth. Practice vocabulary: 'La critique m'aide à...' Plan how to use critique for improvement.",
-        "assessment": "Can students give constructive, specific critiques? Do they use advanced art vocabulary in analysis? Can they receive criticism constructively and use it for growth?",
-        "decisionPoint": "If critique skills are strong: introduce peer critique partnerships for ongoing work. If skills need development: continue structured critique practice."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "emergencyBackup": "Critique practice with reproductions: Practice critique skills using famous artworks or art reproductions, focusing on vocabulary development and analytical thinking.",
-      "realWorldConnection": "Discussing movies, books, music - expressing opinions about creative works"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Critique practice with reproductions: Practice critique skills using famous artworks or art reproductions, focusing on vocabulary development and analytical thinking."
+      },
+      "realWorldConnection": "Discussing movies, books, music - expressing opinions about creative works",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 12,
+      "lessonType": "core",
       "title": "Processus créatif",
       "oneGoal": "Students will understand and document their own creative process",
-      "keyVocabulary": ["processus", "créatif", "documenter"],
-      "mindsOn": {
+      "duration": 45,
+      "keyVocabulary": [
+        "processus",
+        "créatif",
+        "documenter"
+      ],
+      "opening": {
         "duration": "~8 min",
         "activity": "Discuss how they created their best artwork: what steps, what decisions, what changes. Introduce vocabulary: PROCESSUS (step-by-step motion), CRÉATIF (creative thinking gesture), DOCUMENTER (recording/writing motion).",
-        "visualSupport": "Creative process flowcharts, examples of documented art-making processes, process documentation tools",
-        "decisionPoint": "If students struggle to identify their process: use specific recent artwork examples. If they're very aware: encourage detailed process analysis."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "action": {
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Process Documentation Setup (~7 min): Choose method for documenting creative process: photos, written notes, voice recordings, video. Practice vocabulary: 'Je documente mon processus créatif en...'",
-          "Live Process Documentation (~15 min): Create new artwork while documenting every step of creative process. Record decisions, changes, problems, solutions. Focus on metacognitive awareness.",
-          "Process Analysis (~5 min): Review documented process. Identify patterns, successful strategies, areas for improvement. Practice vocabulary: 'Mon processus inclut...' 'Je remarque que...'"
+        "activity": "",
+        "materials": [
+          "Documentation tools (cameras, recording devices, notebooks)",
+          "Art materials for new creation",
+          "Process analysis templates",
+          "Process documentation examples"
         ],
-        "materials": ["Documentation tools (cameras, recording devices, notebooks)", "Art materials for new creation", "Process analysis templates", "Process documentation examples"],
-        "visualSupport": "Process documentation example formats, metacognitive question prompts, creative process analysis charts",
-        "decisionPoint": "If documentation interferes with creation: simplify documentation methods. If students love process awareness: encourage detailed creative process study."
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "consolidation": {
+      "closing": {
         "duration": "~10 min",
         "activity": "Process Sharing. Students share insights about their creative processes. Compare different approaches. Discuss how understanding process helps improve art-making. Celebrate process diversity.",
-        "assessment": "Can students identify and document their creative process? Do they use process vocabulary appropriately? Can they analyze their own creative decision-making?",
-        "decisionPoint": "If process awareness is high: encourage ongoing process documentation. If students struggle with metacognition: provide more structured process analysis tools."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "emergencyBackup": "Process analysis without new creation: Analyze creative processes used in previous artworks, discuss creative decision-making, practice process vocabulary through reflection.",
-      "realWorldConnection": "Understanding how they learn and create in all areas of life"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Process analysis without new creation: Analyze creative processes used in previous artworks, discuss creative decision-making, practice process vocabulary through reflection."
+      },
+      "realWorldConnection": "Understanding how they learn and create in all areas of life",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 13,
+      "lessonType": "core",
       "title": "Collaboration artistique avancée",
       "oneGoal": "Students will collaborate on complex artworks requiring advanced technical skills",
-      "keyVocabulary": ["collaboration", "avancé", "technique"],
-      "mindsOn": {
+      "duration": 45,
+      "keyVocabulary": [
+        "collaboration",
+        "avancé",
+        "technique"
+      ],
+      "opening": {
         "duration": "~8 min",
         "activity": "Discuss how professional artists collaborate: sharing expertise, dividing complex tasks, combining different strengths. Introduce vocabulary: COLLABORATION (working together gesture), AVANCÉ (sophisticated level gesture), TECHNIQUE (skillful demonstration).",
-        "visualSupport": "Examples of artistic collaborations, role division charts, advanced technique review from unit",
-        "decisionPoint": "If students struggle with collaboration: review basic cooperation skills. If they collaborate well: focus on advanced collaboration strategies."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "action": {
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Collaboration Planning (~8 min): Form groups based on complementary advanced skills. Plan complex artwork requiring multiple techniques. Assign roles based on individual strengths.",
-          "Advanced Collaborative Creation (~15 min): Work on complex collaborative artwork. Each person contributes specialized advanced techniques. Practice vocabulary: 'Nous collaborons en utilisant nos techniques avancées!'",
-          "Integration and Refinement (~4 min): Combine individual contributions into unified artwork. Make collaborative decisions about final adjustments. Practice advanced collaboration vocabulary."
+        "activity": "",
+        "materials": [
+          "All advanced technique materials from unit",
+          "Large format collaborative workspace",
+          "Role assignment tools",
+          "Collaboration planning templates"
         ],
-        "materials": ["All advanced technique materials from unit", "Large format collaborative workspace", "Role assignment tools", "Collaboration planning templates"],
-        "visualSupport": "Collaboration strategy cards, advanced technique role charts, successful collaborative artwork examples",
-        "decisionPoint": "If collaboration breaks down: provide more structure and clear role definitions. If collaboration flows well: allow creative expansion and complex problem-solving."
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "consolidation": {
+      "closing": {
         "duration": "~10 min",
         "activity": "Collaborative Artwork Presentation. Groups present artworks and explain how different advanced techniques were contributed by different collaborators. Celebrate successful artistic teamwork.",
-        "assessment": "Can students contribute specialized skills to collaborative work? Do they use advanced collaboration vocabulary? Can they integrate individual contributions into unified artwork?",
-        "decisionPoint": "If collaborations are very successful: plan more advanced collaborative projects. If skills need development: focus on collaboration skill-building activities."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "emergencyBackup": "Collaboration planning without creation: Plan complex collaborative artworks on paper, assign roles, practice collaboration vocabulary through planning exercises.",
-      "realWorldConnection": "Professional artists working together, family projects requiring different skills"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Collaboration planning without creation: Plan complex collaborative artworks on paper, assign roles, practice collaboration vocabulary through planning exercises."
+      },
+      "realWorldConnection": "Professional artists working together, family projects requiring different skills",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 14,
+      "lessonType": "core",
       "title": "Installation artistique",
       "oneGoal": "Students will create large-scale installations using advanced techniques",
-      "keyVocabulary": ["installation", "échelle", "espace"],
-      "mindsOn": {
+      "duration": 45,
+      "keyVocabulary": [
+        "installation",
+        "échelle",
+        "espace"
+      ],
+      "opening": {
         "duration": "~8 min",
         "activity": "Experience difference between small artworks and large installations. Walk through or around large classroom arrangement. Introduce vocabulary: INSTALLATION (environmental gesture), ÉCHELLE (scale comparison), ESPACE (space-defining gesture).",
-        "visualSupport": "Photos of art installations, scale comparison examples, spatial relationship demonstrations",
-        "decisionPoint": "If space is limited: focus on smaller-scale installation concepts. If space is ample: plan ambitious installation projects."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "action": {
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Space Analysis (~7 min): Examine available installation space. Consider how viewers will move through and around installation. Plan spatial relationships. Practice 'espace' vocabulary.",
-          "Large-Scale Planning (~8 min): Plan installation that uses advanced techniques at large scale. Consider how techniques work differently at installation échelle. Practice scaling vocabulary.",
-          "Installation Creation (~12 min): Execute installation using advanced techniques from unit. Work individually or collaboratively. Focus on spatial relationships and viewer experience."
+        "activity": "",
+        "materials": [
+          "Large installation space",
+          "Advanced technique materials scaled up",
+          "Installation planning tools",
+          "Spatial measurement tools"
         ],
-        "materials": ["Large installation space", "Advanced technique materials scaled up", "Installation planning tools", "Spatial measurement tools"],
-        "visualSupport": "Installation planning templates, scale relationship charts, spatial design examples",
-        "decisionPoint": "If installation is too ambitious: scale down to manageable size. If students handle large scale well: encourage environmental and immersive elements."
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "consolidation": {
+      "closing": {
         "duration": "~10 min",
         "activity": "Installation Experience. Walk through completed installation as viewers. Discuss how large scale and spatial relationships affect artistic experience. Practice installation vocabulary.",
-        "assessment": "Can students work effectively at large scale? Do they understand spatial relationships in installation? Can they adapt advanced techniques to installation échelle?",
-        "decisionPoint": "If installation is very successful: plan documentation and possible permanent display. If scale was challenging: focus on smaller-scale spatial relationship work."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "emergencyBackup": "Installation planning and analysis: Plan installations on paper or in miniature, analyze famous installations, practice installation vocabulary through planning exercises.",
-      "realWorldConnection": "Museum installations, public art, themed room decoration"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Installation planning and analysis: Plan installations on paper or in miniature, analyze famous installations, practice installation vocabulary through planning exercises."
+      },
+      "realWorldConnection": "Museum installations, public art, themed room decoration",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 15,
+      "lessonType": "extension",
       "title": "Maîtrise technique",
       "oneGoal": "Students will demonstrate mastery of chosen advanced techniques",
-      "keyVocabulary": ["maîtrise", "démontrer", "choisi"],
-      "mindsOn": {
+      "duration": 45,
+      "keyVocabulary": [
+        "maîtrise",
+        "démontrer",
+        "choisi"
+      ],
+      "opening": {
         "duration": "~8 min",
         "activity": "Review all advanced techniques learned in unit. Students identify which techniques they feel most confident using. Introduce vocabulary: MAÎTRISE (mastery demonstration), DÉMONTRER (showing/proving gesture), CHOISI (choice-making gesture).",
-        "visualSupport": "Unit technique review poster, mastery examples, technique confidence self-assessment tools",
-        "decisionPoint": "If students struggle to identify mastery: help them through guided reflection. If they're very confident: challenge them to demonstrate teaching-level mastery."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "action": {
+      "main": {
         "duration": "~27 min",
-        "activities": [
-          "Mastery Selection (~5 min): Choose 1-2 advanced techniques to demonstrate at mastery level. Consider personal strengths and interests. Practice vocabulary: 'J'ai choisi de démontrer ma maîtrise de...'",
-          "Mastery Artwork Creation (~18 min): Create artwork that showcases highest level of technical skill in chosen techniques. Focus on excellence, refinement, and personal style integration.",
-          "Mastery Documentation (~4 min): Document mastery artwork with artist statement explaining technical choices and skill demonstration. Practice mastery vocabulary in written reflection."
+        "activity": "",
+        "materials": [
+          "All advanced technique materials",
+          "High-quality art materials for mastery work",
+          "Documentation tools",
+          "Artist statement templates"
         ],
-        "materials": ["All advanced technique materials", "High-quality art materials for mastery work", "Documentation tools", "Artist statement templates"],
-        "visualSupport": "Mastery criteria checklists, technical excellence examples, artist statement examples",
-        "decisionPoint": "If students set mastery goals too low: encourage them to challenge themselves. If goals are unrealistic: help them set achievable mastery demonstrations."
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "consolidation": {
+      "closing": {
         "duration": "~10 min",
         "activity": "Mastery Exhibition. Present mastery artworks with formal artist statements. Celebrate individual technical growth and achievement. Practice mastery vocabulary in formal presentation context.",
-        "assessment": "Can students demonstrate genuine mastery of chosen techniques? Do they use mastery vocabulary appropriately? Can they articulate their technical growth and achievements?",
-        "decisionPoint": "If mastery demonstrations are excellent: document for portfolios and continued development. If students want to continue: plan advanced technique extension opportunities."
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "emergencyBackup": "Mastery planning and analysis: Plan mastery demonstrations on paper, analyze technical mastery in professional artworks, practice mastery vocabulary through self-assessment.",
-      "realWorldConnection": "Showing what they've learned, like performing a piano piece or demonstrating sports skills"
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Mastery planning and analysis: Plan mastery demonstrations on paper, analyze technical mastery in professional artworks, practice mastery vocabulary through self-assessment."
+      },
+      "realWorldConnection": "Showing what they've learned, like performing a piano piece or demonstrating sports skills",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     }
   ],
-  "assessmentRubric": {
-    "beginningSpeaker": {
-      "description": "Student uses 1-2 technique vocabulary words with support, attempts basic advanced techniques with significant help, shows interest in technical learning",
-      "indicators": [
-        "Recognizes technique vocabulary when demonstrated",
-        "Attempts advanced techniques with guidance",
-        "Shows willingness to try challenging technical work",
-        "Participates in technical skill activities"
-      ]
-    },
-    "developingSpeaker": {
-      "description": "Student uses 3-5 technique vocabulary words independently, executes some advanced techniques with minimal help, shows growing technical confidence",
-      "indicators": [
-        "Uses technique vocabulary in context",
-        "Demonstrates improving technical skills",
-        "Makes intentional technique choices",
-        "Shows persistence with challenging techniques"
-      ]
-    },
-    "expandingSpeaker": {
-      "description": "Student uses 6+ technique vocabulary words in explanations, executes multiple advanced techniques independently, demonstrates technical problem-solving",
-      "indicators": [
-        "Explains technical processes in French",
-        "Combines multiple advanced techniques",
-        "Shows technical innovation and creativity",
-        "Helps others with technical skills"
-      ]
-    },
-    "bridgingSpeaker": {
-      "description": "Student uses sophisticated technique vocabulary naturally, masters advanced techniques and teaches others, shows artistic and technical leadership",
-      "indicators": [
-        "Uses rich technical vocabulary naturally",
-        "Demonstrates mastery-level technical skills",
-        "Innovates new technique applications",
-        "Teaches and mentors other students in advanced techniques"
-      ]
-    }
+  "assessmentTools": {
+    "observationChecklist": [],
+    "rubrics": [],
+    "selfAssessment": [],
+    "portfolioGuidelines": ""
+  },
+  "familyConnections": {
+    "unitLetter": "",
+    "homeActivities": [],
+    "vocabularyList": []
+  },
+  "resourceAlternatives": {
+    "materials": {},
+    "digitalResources": []
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
   }
 }

@@ -1,836 +1,1066 @@
 {
   "unitTitle": "Stratégies de calcul mental",
-  "unitDescription": "Un parcours complet pour développer la fluidité en calcul mental chez les élèves de 1re année à travers les stratégies fondamentales: compter en partant de, doubles, presque doubles, et faire 10.",
-  "bigIdeas": [
-    "Le calcul mental nous aide à résoudre des problèmes mathématiques rapidement et efficacement",
-    "Il existe plusieurs stratégies pour calculer mentalement, et on peut choisir la plus appropriée",
-    "Les patterns et relations entre les nombres facilitent le calcul mental"
-  ],
-  "essentialQuestions": [
-    "Comment peut-on calculer sans papier ni crayon?",
-    "Quelle stratégie est la plus efficace pour ce problème?",
-    "Comment les patterns dans les nombres nous aident-ils?"
-  ],
+  "subject": "Mathématiques",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
   "lessons": [
     {
       "lessonNumber": 1,
+      "lessonType": "core",
       "title": "Découvrir le calcul mental avec nos doigts",
       "oneGoal": "Les élèves explorent leurs doigts comme premier outil de calcul mental pour additionner jusqu'à 5",
-      "estimatedTime": "45 minutes",
-      "materials": ["Doigts de tous!", "Gants colorés", "Marionnettes de doigts", "Cartes visuelles d'additions simples", "Cubes unifix"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "calcul mental",
+        "doigts",
+        "additionner",
+        "stratégie"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Chanson d'ouverture avec gestes: 'Mes dix doigts sont mes amis, ils m'aident à compter ici!' Montrer tous les doigts, puis cacher et révéler différents nombres."
+        "activity": "Chanson d'ouverture avec gestes: 'Mes dix doigts sont mes amis, ils m'aident à compter ici!' Montrer tous les doigts, puis cacher et révéler différents nombres.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Station rotation: 1) Additions avec doigts (2+1, 3+2), 2) Marionnettes de doigts qui 'parlent' maths, 3) Cubes unifix pour vérifier les calculs de doigts. Démonstration explicite: 'Je pense 2+3. Je mets 2 doigts, puis j'ajoute 3. Je compte tous mes doigts: 1,2,3,4,5!'",
+        "activity": "Station rotation: 1) Additions avec doigts (2+1, 3+2), 2) Marionnettes de doigts qui 'parlent' maths, 3) Cubes unifix pour vérifier les calculs de doigts. Démonstration explicite: 'Je pense 2+3. Je mets 2 doigts, puis j'ajoute 3. Je compte tous mes doigts: 1,2,3,4,5!'",
+        "materials": [],
         "visualSupports": "Affiches murales montrant différentes façons de montrer les nombres avec les doigts. Tableaux de référence des additions simples avec illustrations de mains.",
-        "tprElements": "Gestes spécifiques pour chaque nombre. Mouvement 'ajouter' (apporter les doigts ensemble). Geste 'compter' (pointer chaque doigt).",
-        "concreteSupports": "Cubes unifix pour matérialiser les additions. Gants colorés pour distinguer les groupes. Cartes plastifiées montrant les mains.",
-        "adaptations": "Pour élèves tactiles: utiliser des textures sur les doigts. Pour support visuel: cartes agrandies. Pour défi: additions jusqu'à 8 avec les deux mains."
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Jeu 'Devinez mon calcul': Un élève montre ses doigts pour une addition, les autres devinent l'équation. Célébrer que nos doigts sont des outils mathématiques!"
+        "activity": "Jeu 'Devinez mon calcul': Un élève montre ses doigts pour une addition, les autres devinent l'équation. Célébrer que nos doigts sont des outils mathématiques!",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves comprennent-ils que leurs doigts sont des outils mathématiques?",
-          "ifThen": "Si non, faire plus de démonstrations en parallèle objets/doigts. Si oui, encourager l'utilisation autonome."
-        },
-        {
-          "situation": "Ont-ils besoin de plus de démonstrations visuelles?",
-          "ifThen": "Si oui, utiliser les cartes et affiches. Si non, se concentrer sur la pratique guidée."
-        },
-        {
-          "situation": "Sont-ils à l'aise avec les concepts d'addition simple?",
-          "ifThen": "Si non, revenir aux objets concrets avant les doigts. Si oui, introduire des défis supplémentaires."
-        }
-      ],
-      "whatWhenWrong": "Si confusion entre les doigts: utiliser un gant différent pour chaque nombre ajouté. Si difficulté à compter: ralentir et compter ensemble à voix haute.",
-      "keyVocabulary": ["calcul mental", "doigts", "additionner", "stratégie"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si confusion entre les doigts: utiliser un gant différent pour chaque nombre ajouté. Si difficulté à compter: ralentir et compter ensemble à voix haute.",
+        "then": ""
+      },
       "realWorldConnection": "Compter sur ses doigts pour savoir combien de biscuits manger",
-      "progressionNote": "Première leçon - établit les doigts comme outil fondamental de calcul mental"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 2,
+      "lessonType": "core",
       "title": "Compter à partir d'un nombre",
       "oneGoal": "Les élèves apprennent la stratégie 'compter en partant de' pour additionner efficacement",
-      "estimatedTime": "45 minutes",
-      "materials": ["Ligne numérique géante au sol", "Cartes nombres", "Jetons de deux couleurs", "Sablier 30 secondes", "Fiches d'activités visuelles"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "compter en partant de",
+        "efficace",
+        "plus rapide"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Révision rapide: Montrer 3+2 avec les doigts. Puis démonstration dramatique: 'Compter 1,2,3,4,5 vs commencer à 3 et dire 4,5!' Lequel est plus rapide?"
+        "activity": "Révision rapide: Montrer 3+2 avec les doigts. Puis démonstration dramatique: 'Compter 1,2,3,4,5 vs commencer à 3 et dire 4,5!' Lequel est plus rapide?",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Enseignement explicite avec ligne numérique: 'Pour 4+3, je commence à 4 (pas à 1!) et je saute: 5,6,7!' Pratique guidée avec problèmes variés. Course amicale: qui peut faire 5+2 plus rapidement, en comptant depuis 1 ou depuis 5?",
+        "activity": "Enseignement explicite avec ligne numérique: 'Pour 4+3, je commence à 4 (pas à 1!) et je saute: 5,6,7!' Pratique guidée avec problèmes variés. Course amicale: qui peut faire 5+2 plus rapidement, en comptant depuis 1 ou depuis 5?",
+        "materials": [],
         "visualSupports": "Ligne numérique colorée de 0-20. Affiches comparant les deux méthodes. Cartes stratégies avec images step-by-step.",
-        "tprElements": "Geste 'commencer ici' (pointer le premier nombre). Mouvement 'sauter en avant' sur la ligne numérique. Geste 'plus rapide' (pointer sa montre).",
-        "concreteSupports": "Jetons rouges pour le premier nombre (déjà là), jetons bleus pour ajouter. Ligne numérique tactile avec textures.",
-        "adaptations": "Ligne numérique personnelle plastifiée pour chaque élève. Support visuel: flèches montrant le direction. Défi: problèmes avec nombres plus grands."
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Réflexion guidée: 'Pourquoi commencer par le plus grand nombre est-il plus intelligent?' Engagement: promettre d'essayer cette stratégie à la maison!"
+        "activity": "Réflexion guidée: 'Pourquoi commencer par le plus grand nombre est-il plus intelligent?' Engagement: promettre d'essayer cette stratégie à la maison!",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves voient-ils pourquoi commencer par le plus grand nombre est plus efficace?",
-          "ifThen": "Si non, faire plus de comparaisons chronométrées. Si oui, passer à la pratique autonome."
-        },
-        {
-          "situation": "Ont-ils besoin de plus d'exemples concrets?",
-          "ifThen": "Si oui, utiliser plus de jetons et objets. Si non, passer aux représentations abstraites."
-        },
-        {
-          "situation": "Comprennent-ils la différence avec compter depuis 1?",
-          "ifThen": "Si non, refaire des démonstrations côte à côte. Si oui, encourager la verbalisation de la différence."
-        }
-      ],
-      "whatWhenWrong": "Si retour à compter depuis 1: rappeler gentiment la nouvelle stratégie. Si confusion sur quel nombre est plus grand: utiliser des objets pour comparer.",
-      "keyVocabulary": ["compter en partant de", "efficace", "plus rapide"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si retour à compter depuis 1: rappeler gentiment la nouvelle stratégie. Si confusion sur quel nombre est plus grand: utiliser des objets pour comparer.",
+        "then": ""
+      },
       "realWorldConnection": "Ajouter des nouveaux livres à une pile existante en comptant depuis le nombre déjà là",
-      "progressionNote": "S'appuie sur la Leçon 1 en introduisant une stratégie plus efficace que compter depuis 1"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 3,
+      "lessonType": "core",
       "title": "Mes premiers doubles magiques",
       "oneGoal": "Les élèves découvrent et mémorisent les doubles simples (1+1, 2+2, 3+3, 4+4, 5+5)",
-      "estimatedTime": "45 minutes",
-      "materials": ["Miroirs", "Objets identiques par paires", "Cartes doubles illustrées", "Pâte à modeler", "Chanson des doubles"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "doubles",
+        "même nombre",
+        "magique",
+        "facile"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Jeu du miroir: par paires, un élève fait un geste avec des objets, l'autre 'reflète' exactement la même chose. Introduire: 'C'est un double!'"
+        "activity": "Jeu du miroir: par paires, un élève fait un geste avec des objets, l'autre 'reflète' exactement la même chose. Introduire: 'C'est un double!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Exploration des doubles dans la nature et notre corps: 2 yeux, 2 mains, 2 pieds. Créer des doubles avec pâte à modeler. Station apprentissage: cartes doubles à associer, construction de doubles avec blocs, chanson des doubles avec gestes.",
+        "activity": "Exploration des doubles dans la nature et notre corps: 2 yeux, 2 mains, 2 pieds. Créer des doubles avec pâte à modeler. Station apprentissage: cartes doubles à associer, construction de doubles avec blocs, chanson des doubles avec gestes.",
+        "materials": [],
         "visualSupports": "Affiches murales des doubles avec images symétriques (papillons, maisons, visages). Cartes de référence plastifiées. Tableau des doubles avec illustrations.",
-        "tprElements": "Geste 'double' (mains qui se reflètent). Mouvement 'même' (paumes qui se touchent). Geste 'magique' (mains qui scintillent).",
-        "concreteSupports": "Objets symétriques réels: chaussures, gants, crayons par paires. Blocs de couleurs identiques. Miroirs pour voir les doubles.",
-        "adaptations": "Pour élèves visuels: emphasis sur la symétrie. Pour élèves kinesthésiques: manipulation d'objets. Pour défi: doubles jusqu'à 10+10."
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Chanson finale des doubles: '1+1 fait 2, 2+2 fait 4, 3+3 fait 6, et encore plus!' avec gestes. Chaque élève partage son double préféré."
+        "activity": "Chanson finale des doubles: '1+1 fait 2, 2+2 fait 4, 3+3 fait 6, et encore plus!' avec gestes. Chaque élève partage son double préféré.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves reconnaissent-ils visuellement les doubles?",
-          "ifThen": "Si non, utiliser plus de miroirs et objets symétriques. Si oui, passer à la mémorisation."
-        },
-        {
-          "situation": "Ont-ils besoin d'objets symétriques pour comprendre?",
-          "ifThen": "Si oui, continuer avec objets concrets. Si non, introduire les représentations abstraites."
-        },
-        {
-          "situation": "Les doubles deviennent-ils automatiques?",
-          "ifThen": "Si non, plus de pratique avec chanson et jeux. Si oui, commencer à chronométrer les réponses."
-        }
-      ],
-      "whatWhenWrong": "Si difficulté avec concept double: retourner aux objets identiques réels. Si confusion avec autres additions: souligner la spécialité des 'nombres jumeaux'.",
-      "keyVocabulary": ["doubles", "même nombre", "magique", "facile"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si difficulté avec concept double: retourner aux objets identiques réels. Si confusion avec autres additions: souligner la spécialité des 'nombres jumeaux'.",
+        "then": ""
+      },
       "realWorldConnection": "Voir ses deux mains, deux chaussures, deux yeux - tout vient en paires",
-      "progressionNote": "Introduit les faits de base les plus simples à mémoriser après le comptage"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 4,
+      "lessonType": "core",
       "title": "Doubles plus un",
       "oneGoal": "Les élèves utilisent leur connaissance des doubles pour calculer 'doubles plus un' (3+4, 5+6)",
-      "estimatedTime": "45 minutes",
-      "materials": ["Cartes doubles de la leçon précédente", "Jetons +1 spéciaux", "Tableau à pockets", "Cubes de couleur contrastante"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "doubles plus un",
+        "presque double",
+        "un de plus"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Révision rapide des doubles avec chanson. Puis mystère: 'Que se passe-t-il si j'ajoute UN de plus à un double?' Démonstration avec objets."
+        "activity": "Révision rapide des doubles avec chanson. Puis mystère: 'Que se passe-t-il si j'ajoute UN de plus à un double?' Démonstration avec objets.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Découverte guidée: 'Je sais que 3+3=6. Donc 3+4, c'est juste 6+1=7!' Pratique avec manipulatives: construire le double, ajouter un cube différent. Jeu 'Presque jumeaux': identifier les additions qui sont 'presque des doubles'.",
+        "activity": "Découverte guidée: 'Je sais que 3+3=6. Donc 3+4, c'est juste 6+1=7!' Pratique avec manipulatives: construire le double, ajouter un cube différent. Jeu 'Presque jumeaux': identifier les additions qui sont 'presque des doubles'.",
+        "materials": [],
         "visualSupports": "Cartes visuelles montrant double + jeton différent. Affiche stratégie step-by-step. Tableau comparatif doubles vs presque doubles.",
-        "tprElements": "Geste 'presque' (mains presque ensemble). Mouvement '+1' (lever un doigt). Geste 'facile' (sourire et pouce levé).",
-        "concreteSupports": "Cubes de même couleur pour doubles, cube rouge spécial pour le '+1'. Cartes plastifiées pour construire les équations.",
-        "adaptations": "Support visuel: flèches montrant la progression du double. Pour défi: presque doubles avec nombres plus grands. Pour support: retour aux doubles si nécessaire."
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Partage de découvertes: 'Quel presque double avez-vous trouvé le plus facile?' Promesse d'utiliser cette stratégie intelligente!"
+        "activity": "Partage de découvertes: 'Quel presque double avez-vous trouvé le plus facile?' Promesse d'utiliser cette stratégie intelligente!",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves font-ils le lien avec les doubles connus?",
-          "ifThen": "Si non, réviser les doubles d'abord. Si oui, pratiquer la connexion explicite."
-        },
-        {
-          "situation": "Ont-ils besoin de visualiser avec des objets?",
-          "ifThen": "Si oui, continuer avec manipulatives. Si non, passer aux représentations symboliques."
-        },
-        {
-          "situation": "Voient-ils que c'est plus facile que compter?",
-          "ifThen": "Si non, faire des comparaisons chronométrées. Si oui, célébrer leur intelligence mathématique!"
-        }
-      ],
-      "whatWhenWrong": "Si oubli des doubles de base: révision rapide. Si addition du +1 difficile: utiliser ligne numérique pour 'un de plus'.",
-      "keyVocabulary": ["doubles plus un", "presque double", "un de plus"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si oubli des doubles de base: révision rapide. Si addition du +1 difficile: utiliser ligne numérique pour 'un de plus'.",
+        "then": ""
+      },
       "realWorldConnection": "Avoir 3 biscuits et en recevoir 4 autres - c'est presque un double!",
-      "progressionNote": "S'appuie sur la Leçon 3 en étendant la stratégie des doubles"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 5,
+      "lessonType": "core",
       "title": "La famille du 10 magique",
       "oneGoal": "Les élèves découvrent tous les liens vers 10 (1+9, 2+8, 3+7, 4+6, 5+5)",
-      "estimatedTime": "45 minutes",
-      "materials": ["Cadre de 10 (ten frame)", "Jetons de deux couleurs", "Boîte d'œufs vide (10 places)", "Cartes des liens vers 10", "Gants avec 10 doigts"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "faire 10",
+        "partenaires de 10",
+        "liens vers 10"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Mystère de la boîte magique: montrer une boîte d'œufs de 10. 'Cette boîte veut toujours être complète! Trouvons toutes les façons de la remplir!'"
+        "activity": "Mystère de la boîte magique: montrer une boîte d'œufs de 10. 'Cette boîte veut toujours être complète! Trouvons toutes les façons de la remplir!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Exploration systématique avec ten frames: commencer avec 1 jeton rouge, combien de bleus pour faire 10? Puis 2 rouges, etc. Création d'un mur des 'liens vers 10'. Jeu 'Partenaires de 10': cartes flash rapides.",
+        "activity": "Exploration systématique avec ten frames: commencer avec 1 jeton rouge, combien de bleus pour faire 10? Puis 2 rouges, etc. Création d'un mur des 'liens vers 10'. Jeu 'Partenaires de 10': cartes flash rapides.",
+        "materials": [],
         "visualSupports": "Ten frames géants muraux. Affiche 'Famille du 10' avec toutes les combinaisons. Cartes visuelles colorées pour chaque lien.",
-        "tprElements": "Geste '10' (deux mains ouvertes). Mouvement 'liens' (mains qui se connectent). Geste 'famille' (bras qui encerclent).",
-        "concreteSupports": "Ten frames individuels plastifiés. Jetons rouges et bleus. Boîtes d'œufs réelles. Cartes manipulables pour construire les liens.",
-        "adaptations": "Ten frames tactiles avec textures. Support visuel: couleurs contrastantes. Défi: chronométrer la reconnaissance des liens."
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Célébration de la famille du 10: chanter tous les liens découverts. 'Nous connaissons maintenant tous les amis du 10!'"
+        "activity": "Célébration de la famille du 10: chanter tous les liens découverts. 'Nous connaissons maintenant tous les amis du 10!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves voient-ils les relations entre les nombres?",
-          "ifThen": "Si non, utiliser plus d'objets concrets. Si oui, commencer à mémoriser les liens."
-        },
-        {
-          "situation": "Ont-ils besoin de matériel de base 10?",
-          "ifThen": "Si oui, continuer avec ten frames et objets. Si non, passer aux représentations abstraites."
-        },
-        {
-          "situation": "Comprennent-ils que 10 est spécial?",
-          "ifThen": "Si non, expliquer l'importance du 10 dans notre système. Si oui, explorer pourquoi c'est utile."
-        }
-      ],
-      "whatWhenWrong": "Si confusion avec les liens: revenir à remplir physiquement la boîte d'œufs. Si difficulté à voir les patterns: utiliser couleurs contrastantes.",
-      "keyVocabulary": ["faire 10", "partenaires de 10", "liens vers 10"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si confusion avec les liens: revenir à remplir physiquement la boîte d'œufs. Si difficulté à voir les patterns: utiliser couleurs contrastantes.",
+        "then": ""
+      },
       "realWorldConnection": "Remplir une boîte d'œufs de 10 - différentes façons d'arriver à 10",
-      "progressionNote": "Introduit le concept fondamental des liens vers 10 pour le calcul mental"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 6,
+      "lessonType": "core",
       "title": "Utiliser 10 pour additionner",
       "oneGoal": "Les élèves utilisent la stratégie 'faire 10' pour calculer des additions comme 8+5",
-      "estimatedTime": "45 minutes",
-      "materials": ["Ten frames avec jetons", "Cartes problèmes", "Schémas de décomposition", "Cubes de liaison", "Tableaux de stratégies"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "décomposer",
+        "faire 10 d'abord",
+        "puis ajouter"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Problème mystère au tableau: '8+5=?' Défi: 'Pouvez-vous utiliser votre connaissance du 10 pour résoudre ceci plus facilement?'"
+        "activity": "Problème mystère au tableau: '8+5=?' Défi: 'Pouvez-vous utiliser votre connaissance du 10 pour résoudre ceci plus facilement?'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Enseignement explicite de la décomposition: '8+5 → je prends 2 du 5 pour faire 8+2=10, puis j'ajoute les 3 restants: 10+3=13!' Pratique guidée avec ten frames et schémas visuels. Stations: problèmes variés avec support.",
+        "activity": "Enseignement explicite de la décomposition: '8+5 → je prends 2 du 5 pour faire 8+2=10, puis j'ajoute les 3 restants: 10+3=13!' Pratique guidée avec ten frames et schémas visuels. Stations: problèmes variés avec support.",
+        "materials": [],
         "visualSupports": "Schémas muraux montrant la décomposition step-by-step. Ten frames avec lignes de décomposition. Affiches de référence stratégique.",
-        "tprElements": "Geste 'décomposer' (séparer avec les mains). Mouvement 'faire 10 d'abord' (assembler). Geste 'puis ajouter' (mouvement d'addition).",
-        "concreteSupports": "Ten frames avec jetons amovibles. Cubes que l'on peut séparer et regrouper. Cartes de décomposition manipulables.",
-        "adaptations": "Schémas personnalisés pour chaque élève. Support tactile: boîtes réelles à remplir. Défi: problèmes avec nombres plus grands."
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Réflexion: 'Comment faire 10 d'abord vous a-t-il aidé?' Partage de stratégies réussies. Promesse d'utiliser cette 'super stratégie'!"
+        "activity": "Réflexion: 'Comment faire 10 d'abord vous a-t-il aidé?' Partage de stratégies réussies. Promesse d'utiliser cette 'super stratégie'!",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves peuvent-ils décomposer le deuxième nombre?",
-          "ifThen": "Si non, pratiquer la décomposition isolément. Si oui, appliquer dans différents problèmes."
-        },
-        {
-          "situation": "Voient-ils comment faire 10 aide?",
-          "ifThen": "Si non, comparer avec la méthode de comptage. Si oui, encourager l'utilisation autonome."
-        },
-        {
-          "situation": "Ont-ils besoin de supports visuels pour décomposer?",
-          "ifThen": "Si oui, continuer avec les ten frames. Si non, essayer mentalement."
-        }
-      ],
-      "whatWhenWrong": "Si décomposition difficile: utiliser objets physiques à séparer. Si oubli des liens vers 10: révision rapide de la famille du 10.",
-      "keyVocabulary": ["décomposer", "faire 10 d'abord", "puis ajouter"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si décomposition difficile: utiliser objets physiques à séparer. Si oubli des liens vers 10: révision rapide de la famille du 10.",
+        "then": ""
+      },
       "realWorldConnection": "Mettre 8 jouets dans une boîte de 10, puis ajouter les 5 restants",
-      "progressionNote": "S'appuie sur la Leçon 5 en appliquant les liens vers 10 dans des calculs"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 7,
+      "lessonType": "core",
       "title": "Compter par bonds de 2",
       "oneGoal": "Les élèves apprennent à compter par 2 comme stratégie de calcul mental pour l'addition",
-      "estimatedTime": "45 minutes",
-      "materials": ["Chaussures/chaussettes", "Ligne numérique avec bonds", "Cartes de patterns", "Instruments de musique", "Tableau des nombres pairs"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "bonds de 2",
+        "sauter",
+        "plus vite",
+        "paires"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Chanson des bonds: 'Hop, hop, on saute de 2 en 2!' avec mouvements. Démonstration: compter les chaussures de 5 élèves en sautant: 2,4,6,8,10!"
+        "activity": "Chanson des bonds: 'Hop, hop, on saute de 2 en 2!' avec mouvements. Démonstration: compter les chaussures de 5 élèves en sautant: 2,4,6,8,10!",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Exploration des patterns de 2: sur la ligne numérique, identifier les nombres 'sautés'. Pratique corporelle: marcher sur les nombres pairs seulement. Applications: additionner des paires d'objets rapidement (chaussettes, gants, yeux).",
+        "activity": "Exploration des patterns de 2: sur la ligne numérique, identifier les nombres 'sautés'. Pratique corporelle: marcher sur les nombres pairs seulement. Applications: additionner des paires d'objets rapidement (chaussettes, gants, yeux).",
+        "materials": [],
         "visualSupports": "Ligne numérique colorée alternant les bonds de 2. Tableau des nombres pairs mis en évidence. Affiches d'objets qui viennent par paires.",
-        "tprElements": "Mouvement de 'saut' physique sur ligne au sol. Geste 'bonds' (mains qui sautent). Rythme musical pour les bonds de 2.",
-        "concreteSupports": "Objets réels par paires: chaussures, gants, etc. Ligne numérique tactile au sol. Cartes nombres pour construire les séquences.",
-        "adaptations": "Support auditif: rythme musical pour les bonds. Support visuel: couleurs alternées. Défi: bonds de 2 jusqu'à 30."
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Récital des bonds: chaque élève dit un nombre en bonds de 2. Célébration: 'Nous pouvons compter super rapidement maintenant!'"
+        "activity": "Récital des bonds: chaque élève dit un nombre en bonds de 2. Célébration: 'Nous pouvons compter super rapidement maintenant!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves voient-ils le pattern des nombres pairs?",
-          "ifThen": "Si non, utiliser plus de couleurs et objets visuels. Si oui, pratiquer l'automaticité."
-        },
-        {
-          "situation": "Peuvent-ils maintenir le rythme de comptage par 2?",
-          "ifThen": "Si non, ralentir et utiliser supports auditifs. Si oui, accélérer progressivement."
-        },
-        {
-          "situation": "Comprennent-ils quand utiliser cette stratégie?",
-          "ifThen": "Si non, donner plus d'exemples d'objets par paires. Si oui, créer des problèmes d'application."
-        }
-      ],
-      "whatWhenWrong": "Si perte du pattern: retourner aux objets concrets par paires. Si confusion avec comptage normal: souligner les 'sauts' sur la ligne.",
-      "keyVocabulary": ["bonds de 2", "sauter", "plus vite", "paires"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si perte du pattern: retourner aux objets concrets par paires. Si confusion avec comptage normal: souligner les 'sauts' sur la ligne.",
+        "then": ""
+      },
       "realWorldConnection": "Compter les chaussures de la classe par paires",
-      "progressionNote": "Introduit le comptage par bonds comme extension des stratégies précédentes"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 8,
+      "lessonType": "core",
       "title": "Stratégies pour la soustraction",
       "oneGoal": "Les élèves adaptent leurs stratégies d'addition pour la soustraction (compter en arrière, enlever)",
-      "estimatedTime": "45 minutes",
-      "materials": ["Ligne numérique bidirectionnelle", "Objets à enlever", "Cartes problèmes de soustraction", "Cubes de liaison", "Tableaux comparatifs"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "compter en arrière",
+        "enlever",
+        "stratégie inverse"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Jeu de magie: 'J'ai 7 crayons, j'en cache 3. Combien en reste-t-il?' Introduire: 'La soustraction, c'est comme l'addition en arrière!'"
+        "activity": "Jeu de magie: 'J'ai 7 crayons, j'en cache 3. Combien en reste-t-il?' Introduire: 'La soustraction, c'est comme l'addition en arrière!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Comparaison explicite: addition vs soustraction sur ligne numérique. Pour 8-3, montrer 'compter en arrière': 8,7,6,5 ou 'enlever' 3 objets d'un groupe de 8. Connexion: 'Si 5+3=8, alors 8-3=5!'",
+        "activity": "Comparaison explicite: addition vs soustraction sur ligne numérique. Pour 8-3, montrer 'compter en arrière': 8,7,6,5 ou 'enlever' 3 objets d'un groupe de 8. Connexion: 'Si 5+3=8, alors 8-3=5!'",
+        "materials": [],
         "visualSupports": "Ligne numérique avec flèches dans les deux directions. Affiches montrant 'enlever' vs 'compter en arrière'. Tableaux de familles de faits.",
-        "tprElements": "Mouvement 'en arrière' (reculer). Geste 'enlever' (prendre et cacher). Geste 'lien' (connecter addition et soustraction).",
-        "concreteSupports": "Objets réels à manipuler et enlever. Cubes de liaison à séparer. Ligne numérique tactile pour marcher en arrière.",
-        "adaptations": "Support kinesthésique: marcher physiquement en arrière. Support visuel: objets qu'on peut cacher. Défi: soustractions plus complexes."
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Découverte: 'Comment l'addition peut-elle aider avec la soustraction?' Partage des connexions trouvées. Célébrer la flexibilité mathématique!"
+        "activity": "Découverte: 'Comment l'addition peut-elle aider avec la soustraction?' Partage des connexions trouvées. Célébrer la flexibilité mathématique!",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves peuvent-ils compter en arrière efficacement?",
-          "ifThen": "Si non, pratiquer sur ligne numérique avec support. Si oui, essayer mentalement."
-        },
-        {
-          "situation": "Comprennent-ils le lien entre addition et soustraction?",
-          "ifThen": "Si non, faire plus de démonstrations avec objets. Si oui, pratiquer les familles de faits."
-        },
-        {
-          "situation": "Ont-ils besoin de supports concrets pour 'enlever'?",
-          "ifThen": "Si oui, continuer avec objets manipulables. Si non, passer aux représentations abstraites."
-        }
-      ],
-      "whatWhenWrong": "Si difficulté à compter en arrière: utiliser chanson ou rythme. Si confusion avec addition: souligner les différences avec gestes opposés.",
-      "keyVocabulary": ["compter en arrière", "enlever", "stratégie inverse"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si difficulté à compter en arrière: utiliser chanson ou rythme. Si confusion avec addition: souligner les différences avec gestes opposés.",
+        "then": ""
+      },
       "realWorldConnection": "Enlever des biscuits d'une assiette en comptant combien il en reste",
-      "progressionNote": "Étend les stratégies de calcul mental à la soustraction"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 9,
+      "lessonType": "core",
       "title": "Choisir la meilleure stratégie",
       "oneGoal": "Les élèves évaluent différents problèmes et choisissent la stratégie de calcul mental la plus efficace",
-      "estimatedTime": "45 minutes",
-      "materials": ["Cartes problèmes variés", "Tableau des stratégies", "Chronomètre", "Badges de stratégies", "Journal de réflexion"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "choisir",
+        "meilleure stratégie",
+        "efficace",
+        "comparer"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Défi du jour: '6+6' - qui peut utiliser une stratégie différente? Collecter toutes les approches: doubles, compter, doigts, etc."
+        "activity": "Défi du jour: '6+6' - qui peut utiliser une stratégie différente? Collecter toutes les approches: doubles, compter, doigts, etc.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Station 'Détectives de stratégies': examiner des problèmes (3+4, 8+2, 5+5, 9-4) et débattre de la meilleure approche. Chronométrer différentes stratégies pour le même problème. Créer un guide personnel des 'meilleures stratégies'.",
+        "activity": "Station 'Détectives de stratégies': examiner des problèmes (3+4, 8+2, 5+5, 9-4) et débattre de la meilleure approche. Chronométrer différentes stratégies pour le même problème. Créer un guide personnel des 'meilleures stratégies'.",
+        "materials": [],
         "visualSupports": "Tableau de référence des stratégies avec exemples. Affiches 'Quand utiliser chaque stratégie'. Cartes de décision avec questions guides.",
-        "tprElements": "Geste 'choisir' (pointer du doigt). Mouvement 'comparer' (balancer les mains). Geste 'efficace' (pouce levé avec sourire).",
-        "concreteSupports": "Cartes stratégies manipulables. Chronomètre visuel. Badges à porter pour les stratégies maîtrisées.",
-        "adaptations": "Guide de décision personnalisé. Support visuel: algorithmes de choix. Défi: justifier le choix de stratégie par écrit."
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Partage des découvertes: 'Quelle stratégie avez-vous trouvé la plus utile aujourd'hui?' Engagement à être des 'détectives de stratégies' intelligents!"
+        "activity": "Partage des découvertes: 'Quelle stratégie avez-vous trouvé la plus utile aujourd'hui?' Engagement à être des 'détectives de stratégies' intelligents!",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves peuvent-ils expliquer leur choix de stratégie?",
-          "ifThen": "Si non, modeler la verbalisation du processus. Si oui, encourager l'enseignement entre pairs."
-        },
-        {
-          "situation": "Reconnaissent-ils quand une stratégie est plus efficace?",
-          "ifThen": "Si non, faire plus de comparaisons chronométrées. Si oui, développer l'automaticité du choix."
-        },
-        {
-          "situation": "Ont-ils besoin de guidance pour choisir?",
-          "ifThen": "Si oui, fournir des cartes de décision. Si non, encourager l'autonomie."
-        }
-      ],
-      "whatWhenWrong": "Si choix inefficaces: guider avec questions 'Quelle stratégie serait plus rapide?' Si hésitation: rassurer que plusieurs stratégies peuvent fonctionner.",
-      "keyVocabulary": ["choisir", "meilleure stratégie", "efficace", "comparer"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si choix inefficaces: guider avec questions 'Quelle stratégie serait plus rapide?' Si hésitation: rassurer que plusieurs stratégies peuvent fonctionner.",
+        "then": ""
+      },
       "realWorldConnection": "Choisir la façon la plus rapide de compter ses cadeaux d'anniversaire",
-      "progressionNote": "Développe la métacognition en comparant et choisissant entre stratégies"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 10,
+      "lessonType": "core",
       "title": "Doubles jusqu'à 10+10",
       "oneGoal": "Les élèves étendent leur connaissance des doubles aux nombres plus grands (6+6, 7+7, 8+8, 9+9, 10+10)",
-      "estimatedTime": "45 minutes",
-      "materials": ["Cartes doubles étendues", "Objets en grandes quantités", "Calculatrice pour vérification", "Patterns visuels", "Chanson des grands doubles"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "grands doubles",
+        "étendre",
+        "pattern",
+        "mémoriser"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Révision rapide des petits doubles avec chanson. Défi mystère: 'Si 5+5=10, que pensez-vous de 6+6?' Construire l'anticipation!"
+        "activity": "Révision rapide des petits doubles avec chanson. Défi mystère: 'Si 5+5=10, que pensez-vous de 6+6?' Construire l'anticipation!",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Exploration pattern des doubles: construire 6+6 avec objets, observer le pattern de croissance. Découverte guidée: chaque double augmente de 2. Construction de la chanson des grands doubles. Vérification avec calculatrice pour émerveillement.",
+        "activity": "Exploration pattern des doubles: construire 6+6 avec objets, observer le pattern de croissance. Découverte guidée: chaque double augmente de 2. Construction de la chanson des grands doubles. Vérification avec calculatrice pour émerveillement.",
+        "materials": [],
         "visualSupports": "Tableau de tous les doubles avec patterns colorés. Affiches visuelles montrant l'augmentation de +2. Cartes de référence des grands doubles.",
-        "tprElements": "Geste 'grandir' (mains qui s'élèvent). Mouvement 'pattern' (répétition rythmique). Geste '+2' (deux doigts qui ajoutent).",
-        "concreteSupports": "Grands groupes d'objets identiques. Blocs pour construire les doubles visuellement. Calculatrice pour confirmer les découvertes.",
-        "adaptations": "Support visuel: patterns colorés évidents. Support tactile: manipulation de grandes quantités. Défi: prédire des doubles encore plus grands."
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Célébration des mathématiciens: 'Vous connaissez maintenant les doubles jusqu'à 20!' Partage du double le plus impressionnant découvert."
+        "activity": "Célébration des mathématiciens: 'Vous connaissez maintenant les doubles jusqu'à 20!' Partage du double le plus impressionnant découvert.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves voient-ils le pattern dans les doubles?",
-          "ifThen": "Si non, utiliser plus de couleurs et objets. Si oui, les laisser prédire les suivants."
-        },
-        {
-          "situation": "Peuvent-ils visualiser ces doubles plus grands?",
-          "ifThen": "Si non, utiliser plus d'objets concrets. Si oui, essayer la visualisation mentale."
-        },
-        {
-          "situation": "Ont-ils besoin de plus de pratique avec les petits doubles?",
-          "ifThen": "Si oui, réviser avant de continuer. Si non, procéder avec les grands doubles."
-        }
-      ],
-      "whatWhenWrong": "Si perte du pattern: retourner aux objets concrets pour reconstruire. Si nombres trop grands: se concentrer sur les doubles jusqu'à 8+8.",
-      "keyVocabulary": ["grands doubles", "étendre", "pattern", "mémoriser"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si perte du pattern: retourner aux objets concrets pour reconstruire. Si nombres trop grands: se concentrer sur les doubles jusqu'à 8+8.",
+        "then": ""
+      },
       "realWorldConnection": "Compter les roues de plusieurs voitures (4+4, 6+6 pour 3 voitures)",
-      "progressionNote": "Étend la stratégie des doubles à une gamme plus large de nombres"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 11,
+      "lessonType": "core",
       "title": "Presque doubles avancés",
       "oneGoal": "Les élèves utilisent les grands doubles pour calculer des 'presque doubles' (7+8, 9+10)",
-      "estimatedTime": "45 minutes",
-      "materials": ["Cartes grands doubles", "Jetons +1/-1", "Schémas de connexion", "Tableaux de référence", "Défis progressifs"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "presque doubles avancés",
+        "grands nombres",
+        "un de plus",
+        "un de moins"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Révision rapide: 'Si 7+7=14, que pensez-vous de 7+8?' Démonstration avec objets: construire 7+7, puis ajouter 1 de plus."
+        "activity": "Révision rapide: 'Si 7+7=14, que pensez-vous de 7+8?' Démonstration avec objets: construire 7+7, puis ajouter 1 de plus.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Extension systématique: pour chaque grand double, explorer le +1 et -1. 8+8=16, donc 8+9=17 et 7+8=15. Pratique guidée avec supports visuels. Jeu 'Presque jumeaux avancés': cartes flash rapides.",
+        "activity": "Extension systématique: pour chaque grand double, explorer le +1 et -1. 8+8=16, donc 8+9=17 et 7+8=15. Pratique guidée avec supports visuels. Jeu 'Presque jumeaux avancés': cartes flash rapides.",
+        "materials": [],
         "visualSupports": "Tableaux montrant double → presque double avec flèches +1. Affiches de référence pour tous les presque doubles avancés. Schémas de connexion colorés.",
-        "tprElements": "Geste 'presque' (mains presque ensemble). Mouvement '+1' (ajouter un doigt). Geste 'avancé' (mains en haut avec fierté).",
-        "concreteSupports": "Jetons spéciaux pour le +1/-1. Cartes manipulables des doubles de base. Objets pour construire les connexions.",
-        "adaptations": "Tableaux de référence personnels. Support visuel: couleurs contrastantes pour le +1. Défi: presque doubles avec nombres encore plus grands."
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Réflexion sur les connexions: 'Comment les doubles vous aident-ils avec les presque doubles?' Célébrer la pensée mathématique avancée!"
+        "activity": "Réflexion sur les connexions: 'Comment les doubles vous aident-ils avec les presque doubles?' Célébrer la pensée mathématique avancée!",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves maîtrisent-ils les doubles de base?",
-          "ifThen": "Si non, réviser avant de continuer. Si oui, procéder avec les connexions."
-        },
-        {
-          "situation": "Peuvent-ils faire le lien rapidement?",
-          "ifThen": "Si non, pratiquer plus lentement avec supports. Si oui, accélérer les défis."
-        },
-        {
-          "situation": "Ont-ils besoin de plus de pratique avec les ajustements +1/-1?",
-          "ifThen": "Si oui, utiliser plus d'objets concrets. Si non, passer aux applications mentales."
-        }
-      ],
-      "whatWhenWrong": "Si confusion avec les connexions: retourner aux doubles de base. Si difficulté avec +1/-1: utiliser ligne numérique pour visualiser.",
-      "keyVocabulary": ["presque doubles avancés", "grands nombres", "un de plus", "un de moins"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si confusion avec les connexions: retourner aux doubles de base. Si difficulté avec +1/-1: utiliser ligne numérique pour visualiser.",
+        "then": ""
+      },
       "realWorldConnection": "Compter les doigts de 7 amis plus les 8 doigts d'un autre ami",
-      "progressionNote": "S'appuie sur la Leçon 10 en appliquant la stratégie aux nombres plus grands"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 12,
+      "lessonType": "core",
       "title": "Faire 10 avec des nombres plus grands",
       "oneGoal": "Les élèves appliquent la stratégie 'faire 10' à des problèmes avec des nombres jusqu'à 20",
-      "estimatedTime": "45 minutes",
-      "materials": ["Ten frames multiples", "Cartes nombres à deux chiffres", "Schémas de décomposition avancés", "Blocs de base 10", "Tableaux de stratégies"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "nombres plus grands",
+        "décomposer",
+        "faire 10 d'abord",
+        "puis continuer"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Défi du jour: '13+8=?' Rappel: 'Comment notre stratégie favorite 'faire 10' peut-elle nous aider avec des nombres plus grands?'"
+        "activity": "Défi du jour: '13+8=?' Rappel: 'Comment notre stratégie favorite 'faire 10' peut-elle nous aider avec des nombres plus grands?'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Extension de la stratégie: 13+8 → je prends 7 du 8 pour faire 13+7=20, puis j'ajoute le 1 restant: 20+1=21. Pratique avec ten frames doubles. Application à diverses situations avec nombres jusqu'à 20.",
+        "activity": "Extension de la stratégie: 13+8 → je prends 7 du 8 pour faire 13+7=20, puis j'ajoute le 1 restant: 20+1=21. Pratique avec ten frames doubles. Application à diverses situations avec nombres jusqu'à 20.",
+        "materials": [],
         "visualSupports": "Schémas de décomposition pour nombres à deux chiffres. Ten frames multiples pour visualiser. Affiches step-by-step de la stratégie étendue.",
-        "tprElements": "Geste 'décomposer' étendu (séparer en groupes). Mouvement 'faire 10 ou 20' (assembler). Geste 'nombres plus grands' (bras étendus).",
-        "concreteSupports": "Multiple ten frames pour construire. Blocs de base 10 pour visualiser dizaines et unités. Cartes de décomposition manipulables.",
-        "adaptations": "Schémas personnalisés pour chaque niveau. Support visuel: couleurs pour dizaines vs unités. Défi: problèmes avec nombres jusqu'à 30."
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Émerveillement: 'Notre stratégie fonctionne même avec de grands nombres!' Partage des découvertes et succès personnels."
+        "activity": "Émerveillement: 'Notre stratégie fonctionne même avec de grands nombres!' Partage des découvertes et succès personnels.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves peuvent-ils décomposer des nombres à deux chiffres?",
-          "ifThen": "Si non, pratiquer la décomposition isolément avec blocs. Si oui, appliquer dans les calculs."
-        },
-        {
-          "situation": "Voient-ils comment faire 10 reste utile?",
-          "ifThen": "Si non, comparer avec autres méthodes. Si oui, encourager l'utilisation flexible."
-        },
-        {
-          "situation": "Ont-ils besoin de matériel de base 10 pour visualiser?",
-          "ifThen": "Si oui, continuer avec supports concrets. Si non, essayer visualisation mentale."
-        }
-      ],
-      "whatWhenWrong": "Si décomposition difficile: utiliser blocs physiques pour séparer. Si confusion avec nombres à deux chiffres: réviser la valeur de position.",
-      "keyVocabulary": ["nombres plus grands", "décomposer", "faire 10 d'abord", "puis continuer"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si décomposition difficile: utiliser blocs physiques pour séparer. Si confusion avec nombres à deux chiffres: réviser la valeur de position.",
+        "then": ""
+      },
       "realWorldConnection": "Ajouter des crayons à une boîte qui en contient déjà 7 pour faire des groupes de 10",
-      "progressionNote": "Étend la stratégie fondamentale 'faire 10' aux nombres plus complexes"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 13,
+      "lessonType": "core",
       "title": "Compter par bonds de 5 et 10",
       "oneGoal": "Les élèves maîtrisent le comptage par bonds de 5 et 10 comme stratégies de calcul mental",
-      "estimatedTime": "45 minutes",
-      "materials": ["Mains pour compter par 5", "Objets groupés par 5 et 10", "Ligne numérique des bonds", "Monnaie (5¢, 10¢)", "Chansons rythmées"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "bonds de 5",
+        "bonds de 10",
+        "patterns",
+        "plus efficace"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Révision bonds de 2 avec mouvement. Nouveau défi: 'Nos mains ont 5 doigts. Comptons par mains complètes!' Démonstration: 5, 10, 15, 20!"
+        "activity": "Révision bonds de 2 avec mouvement. Nouveau défi: 'Nos mains ont 5 doigts. Comptons par mains complètes!' Démonstration: 5, 10, 15, 20!",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Exploration des patterns de 5 et 10 sur ligne numérique. Pratique corporelle: lever une main pour +5, deux mains pour +10. Applications concrètes: compter par nickels et dimes. Découverte: les bonds de 10 sont encore plus faciles!",
+        "activity": "Exploration des patterns de 5 et 10 sur ligne numérique. Pratique corporelle: lever une main pour +5, deux mains pour +10. Applications concrètes: compter par nickels et dimes. Découverte: les bonds de 10 sont encore plus faciles!",
+        "materials": [],
         "visualSupports": "Ligne numérique avec bonds colorés de 5 et 10. Tableaux des multiples mis en évidence. Affiches montrant mains et monnaie.",
-        "tprElements": "Mouvement 'main complète' pour 5. Geste 'deux mains' pour 10. Rythme musical pour maintenir les bonds.",
-        "concreteSupports": "Vrais nickels et dimes pour compter. Objets groupés par 5 et 10. Mains comme outils de comptage naturels.",
-        "adaptations": "Support auditif: chansons rythmées pour bonds. Support visuel: couleurs alternées claires. Défi: bonds de 5 et 10 jusqu'à 100."
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Concert des bonds: groupes chantent bonds de 5 vs bonds de 10. Célébration: 'Nous pouvons compter très vite maintenant!'"
+        "activity": "Concert des bonds: groupes chantent bonds de 5 vs bonds de 10. Célébration: 'Nous pouvons compter très vite maintenant!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves voient-ils les patterns dans les bonds de 5?",
-          "ifThen": "Si non, utiliser plus de supports visuels colorés. Si oui, pratiquer l'automaticité."
-        },
-        {
-          "situation": "Comprennent-ils pourquoi les bonds de 10 sont faciles?",
-          "ifThen": "Si non, expliquer le système de base 10. Si oui, explorer les applications."
-        },
-        {
-          "situation": "Peuvent-ils choisir entre différents bonds?",
-          "ifThen": "Si non, donner des critères de choix. Si oui, créer des défis de stratégie."
-        }
-      ],
-      "whatWhenWrong": "Si perte des patterns: retourner aux objets groupés concrets. Si confusion entre 5 et 10: utiliser couleurs distinctes.",
-      "keyVocabulary": ["bonds de 5", "bonds de 10", "patterns", "plus efficace"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si perte des patterns: retourner aux objets groupés concrets. Si confusion entre 5 et 10: utiliser couleurs distinctes.",
+        "then": ""
+      },
       "realWorldConnection": "Compter les doigts de plusieurs mains (5, 10, 15...) ou des pièces de 10 cents",
-      "progressionNote": "Étend les stratégies de comptage par bonds aux multiples utiles"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 14,
+      "lessonType": "core",
       "title": "Stratégies de regroupement",
       "oneGoal": "Les élèves apprennent à regrouper des nombres pour faciliter le calcul mental (3+7+2 = 10+2)",
-      "estimatedTime": "45 minutes",
-      "materials": ["Cartes nombres multiples", "Cordes pour regrouper", "Tableaux de réorganisation", "Objets de couleurs différentes", "Schémas de stratégies"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "regrouper",
+        "réorganiser",
+        "plus facile",
+        "liens"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Problème mystère: '3+7+2=?' Défi: 'Y a-t-il une façon plus intelligente de faire ce calcul?' Découverte guidée du regroupement."
+        "activity": "Problème mystère: '3+7+2=?' Défi: 'Y a-t-il une façon plus intelligente de faire ce calcul?' Découverte guidée du regroupement.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Enseignement explicite du regroupement: identifier les liens vers 10 dans un groupe de nombres. Pratique avec objets: réorganiser physiquement pour voir les liens. Extensions: 4+8+6+2 → (4+6)+(8+2) = 10+10.",
+        "activity": "Enseignement explicite du regroupement: identifier les liens vers 10 dans un groupe de nombres. Pratique avec objets: réorganiser physiquement pour voir les liens. Extensions: 4+8+6+2 → (4+6)+(8+2) = 10+10.",
+        "materials": [],
         "visualSupports": "Schémas montrant 'avant regroupement' vs 'après regroupement'. Affiches des liens vers 10 à rechercher. Tableaux de stratégies de réorganisation.",
-        "tprElements": "Geste 'regrouper' (rassembler avec les bras). Mouvement 'réorganiser' (mélanger et restructurer). Geste 'liens' (connecter avec les mains).",
-        "concreteSupports": "Objets de couleurs pour visualiser les groupes. Cordes ou cercles pour regrouper physiquement. Cartes manipulables pour réorganiser.",
-        "adaptations": "Support visuel: couleurs contrastantes pour groupes. Support tactile: objets texturés différents. Défi: regroupements avec nombres plus complexes."
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Réflexion sur la flexibilité: 'Comment le regroupement rend-il les maths plus faciles?' Partage des découvertes de regroupement créatives."
+        "activity": "Réflexion sur la flexibilité: 'Comment le regroupement rend-il les maths plus faciles?' Partage des découvertes de regroupement créatives.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves voient-ils comment réorganiser aide?",
-          "ifThen": "Si non, faire plus de démonstrations avec objets. Si oui, pratiquer l'identification autonome."
-        },
-        {
-          "situation": "Peuvent-ils identifier les liens vers 10 dans un groupe?",
-          "ifThen": "Si non, réviser les liens vers 10. Si oui, chercher des liens plus complexes."
-        },
-        {
-          "situation": "Comprennent-ils qu'on peut changer l'ordre?",
-          "ifThen": "Si non, démontrer avec objets concrets. Si oui, explorer la propriété commutative."
-        }
-      ],
-      "whatWhenWrong": "Si confusion avec l'ordre: utiliser objets physiques pour montrer que l'ordre n'affecte pas le total. Si difficulté à voir les liens: utiliser couleurs pour mettre en évidence.",
-      "keyVocabulary": ["regrouper", "réorganiser", "plus facile", "liens"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si confusion avec l'ordre: utiliser objets physiques pour montrer que l'ordre n'affecte pas le total. Si difficulté à voir les liens: utiliser couleurs pour mettre en évidence.",
+        "then": ""
+      },
       "realWorldConnection": "Réorganiser des jouets en groupes pour les compter plus facilement",
-      "progressionNote": "Introduit la flexibilité dans l'organisation des calculs"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 15,
+      "lessonType": "extension",
       "title": "Calcul mental rapide - défis amusants",
       "oneGoal": "Les élèves pratiquent toutes leurs stratégies dans des jeux de calcul mental rapide",
-      "estimatedTime": "45 minutes",
-      "materials": ["Cartes de défis", "Chronomètres", "Tableaux de scores", "Badges de réussite", "Jeux de société mathématiques"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "rapide",
+        "défi",
+        "stratégies",
+        "automatique"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Échauffement rapide: chaque élève partage sa stratégie préférée. 'Aujourd'hui, nous testons nos super pouvoirs mathématiques!'"
+        "activity": "Échauffement rapide: chaque élève partage sa stratégie préférée. 'Aujourd'hui, nous testons nos super pouvoirs mathématiques!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Stations de jeux rotatifs: 1) Course de calculs avec chronomètre, 2) Jeu de société avec dés mathématiques, 3) Défis par équipes, 4) 'Bataille' de cartes avec calculs. Emphasis sur choix de stratégies rapides.",
+        "activity": "Stations de jeux rotatifs: 1) Course de calculs avec chronomètre, 2) Jeu de société avec dés mathématiques, 3) Défis par équipes, 4) 'Bataille' de cartes avec calculs. Emphasis sur choix de stratégies rapides.",
+        "materials": [],
         "visualSupports": "Affiches de référence des stratégies disponibles. Tableaux de scores visuels. Cartes aide-mémoire pour chaque station.",
-        "tprElements": "Geste 'rapide' (mains qui bougent vite). Mouvement 'défi' (poings déterminés). Célébrations corporelles pour les réussites.",
-        "concreteSupports": "Vrais chronomètres pour mesurer. Cartes et dés pour jeux. Badges tangibles pour récompenser les efforts.",
-        "adaptations": "Différents niveaux de défis par station. Support visuel: stratégies affichées. Adaptation temps: plus de temps si nécessaire."
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Célébration des mathématiciens rapides! Partage des stratégies qui ont le mieux fonctionné. Remise des badges d'effort."
+        "activity": "Célébration des mathématiciens rapides! Partage des stratégies qui ont le mieux fonctionné. Remise des badges d'effort.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves peuvent-ils choisir des stratégies rapidement?",
-          "ifThen": "Si non, donner plus de temps et support. Si oui, accélérer les défis."
-        },
-        {
-          "situation": "Sont-ils motivés par les défis?",
-          "ifThen": "Si non, réduire la pression et focus sur l'amusement. Si oui, ajouter des éléments compétitifs."
-        },
-        {
-          "situation": "Ont-ils besoin de plus de temps pour réfléchir?",
-          "ifThen": "Si oui, rallonger les chronométrages. Si non, introduire des défis bonus."
-        }
-      ],
-      "whatWhenWrong": "Si stress avec la vitesse: rappeler que l'exactitude est plus importante. Si frustration: offrir encouragement et supports visuels.",
-      "keyVocabulary": ["rapide", "défi", "stratégies", "automatique"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si stress avec la vitesse: rappeler que l'exactitude est plus importante. Si frustration: offrir encouragement et supports visuels.",
+        "then": ""
+      },
       "realWorldConnection": "Jeux de mathématiques en famille, calculs rapides au magasin",
-      "progressionNote": "Consolide toutes les stratégies dans des contextes de rapidité et de jeu"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 16,
+      "lessonType": "extension",
       "title": "Résolution de problèmes avec le calcul mental",
       "oneGoal": "Les élèves appliquent leurs stratégies de calcul mental pour résoudre des problèmes concrets",
-      "estimatedTime": "45 minutes",
-      "materials": ["Problèmes contextualisés", "Objets de manipulation", "Schémas de résolution", "Tableaux de stratégies", "Carnets de mathématiques"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "problèmes réels",
+        "appliquer",
+        "stratégies",
+        "résoudre"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Problème du jour: 'Sarah a 7 autocollants. Son frère lui en donne 6 de plus. Combien en a-t-elle maintenant?' Réflexion: quelle stratégie utiliser?"
+        "activity": "Problème du jour: 'Sarah a 7 autocollants. Son frère lui en donne 6 de plus. Combien en a-t-elle maintenant?' Réflexion: quelle stratégie utiliser?",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Résolution guidée de problèmes variés: partage de bonbons, collection de cartes, argent de poche. Pour chaque problème: 1) Comprendre la situation, 2) Choisir une stratégie, 3) Calculer mentalement, 4) Vérifier si la réponse a du sens.",
+        "activity": "Résolution guidée de problèmes variés: partage de bonbons, collection de cartes, argent de poche. Pour chaque problème: 1) Comprendre la situation, 2) Choisir une stratégie, 3) Calculer mentalement, 4) Vérifier si la réponse a du sens.",
+        "materials": [],
         "visualSupports": "Schémas de processus de résolution. Affiches des types de problèmes courants. Tableaux de stratégies avec exemples d'usage.",
-        "tprElements": "Geste 'comprendre' (main sur le front). Mouvement 'choisir stratégie' (pointer). Geste 'vérifier' (pouce levé ou baissé).",
-        "concreteSupports": "Objets réels pour modéliser les problèmes. Cartes stratégies pour référence. Carnets pour documenter la pensée.",
-        "adaptations": "Problèmes avec nombres plus petits si nécessaire. Support visuel: images pour contextualiser. Défi: problèmes multi-étapes."
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Partage des résolutions: 'Quelle stratégie avez-vous choisie et pourquoi?' Célébrer les différentes approches valides."
+        "activity": "Partage des résolutions: 'Quelle stratégie avez-vous choisie et pourquoi?' Célébrer les différentes approches valides.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves peuvent-ils identifier quelle stratégie utiliser?",
-          "ifThen": "Si non, donner des indices ou options multiples. Si oui, les laisser choisir librement."
-        },
-        {
-          "situation": "Comprennent-ils le problème avant de calculer?",
-          "ifThen": "Si non, utiliser objets pour modéliser. Si oui, encourager la planification mentale."
-        },
-        {
-          "situation": "Leurs stratégies les aident-elles à résoudre plus facilement?",
-          "ifThen": "Si non, revenir aux stratégies de base. Si oui, introduire des problèmes plus complexes."
-        }
-      ],
-      "whatWhenWrong": "Si confusion avec le problème: utiliser objets concrets pour modéliser. Si choix de stratégie inefficace: guider vers une meilleure option.",
-      "keyVocabulary": ["problèmes réels", "appliquer", "stratégies", "résoudre"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si confusion avec le problème: utiliser objets concrets pour modéliser. Si choix de stratégie inefficace: guider vers une meilleure option.",
+        "then": ""
+      },
       "realWorldConnection": "Calculer combien d'argent de poche on aura après deux semaines",
-      "progressionNote": "Applique les stratégies dans des contextes authentiques de résolution de problèmes"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 17,
+      "lessonType": "extension",
       "title": "Enseigner nos stratégies",
       "oneGoal": "Les élèves expliquent et enseignent leurs stratégies de calcul mental préférées à leurs pairs",
-      "estimatedTime": "45 minutes",
-      "materials": ["Tableaux d'enseignement", "Marqueurs", "Objets de démonstration", "Cartes d'exemples", "Badges 'Professeur'"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "enseigner",
+        "expliquer",
+        "partager",
+        "stratégie préférée"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Invitation spéciale: 'Aujourd'hui, vous êtes tous des professeurs de mathématiques! Quelle stratégie voulez-vous enseigner?' Préparation en paires."
+        "activity": "Invitation spéciale: 'Aujourd'hui, vous êtes tous des professeurs de mathématiques! Quelle stratégie voulez-vous enseigner?' Préparation en paires.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Mini-leçons par les élèves: chaque paire enseigne une stratégie (5 minutes par présentation). Structure: 1) Expliquer la stratégie, 2) Démontrer avec exemple, 3) Faire pratiquer la classe, 4) Répondre aux questions. Audience active avec questions et encouragements.",
+        "activity": "Mini-leçons par les élèves: chaque paire enseigne une stratégie (5 minutes par présentation). Structure: 1) Expliquer la stratégie, 2) Démontrer avec exemple, 3) Faire pratiquer la classe, 4) Répondre aux questions. Audience active avec questions et encouragements.",
+        "materials": [],
         "visualSupports": "Tableaux vierges pour créer des affiches d'enseignement. Cartes d'exemples disponibles. Modèles de présentation affichés.",
-        "tprElements": "Geste 'enseigner' (pointer vers le tableau). Mouvement 'démontrer' (montrer clairement). Geste 'questions' (lever la main).",
-        "concreteSupports": "Objets variés pour démonstrations. Marqueurs colorés pour créer visuels. Badges 'Professeur' à porter fièrement.",
-        "adaptations": "Temps flexible selon le rythme des présentations. Support: aide à la formulation si nécessaire. Défi: enseigner une stratégie avancée."
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Assemblée d'appréciation: applaudir chaque 'professeur'. Réflexion: 'Qu'avez-vous appris en enseignant?' Certificats d'excellence en enseignement!"
+        "activity": "Assemblée d'appréciation: applaudir chaque 'professeur'. Réflexion: 'Qu'avez-vous appris en enseignant?' Certificats d'excellence en enseignement!",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves peuvent-ils expliquer clairement leur pensée?",
-          "ifThen": "Si non, offrir support et modèles. Si oui, encourager l'autonomie complète."
-        },
-        {
-          "situation": "Sont-ils confiants pour enseigner aux autres?",
-          "ifThen": "Si non, commencer par petits groupes. Si oui, laisser présenter à toute la classe."
-        },
-        {
-          "situation": "Comprennent-ils pourquoi une stratégie fonctionne?",
-          "ifThen": "Si non, les aider à approfondir leur compréhension. Si oui, les encourager à expliquer le 'pourquoi'."
-        }
-      ],
-      "whatWhenWrong": "Si nervosité pour présenter: offrir support par paires. Si explication confuse: poser des questions guidantes pour clarifier.",
-      "keyVocabulary": ["enseigner", "expliquer", "partager", "stratégie préférée"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si nervosité pour présenter: offrir support par paires. Si explication confuse: poser des questions guidantes pour clarifier.",
+        "then": ""
+      },
       "realWorldConnection": "Aider un petit frère ou une petite sœur avec ses devoirs de mathématiques",
-      "progressionNote": "Développe la métacognition en enseignant et expliquant les stratégies"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 18,
+      "lessonType": "extension",
       "title": "Estimation avec le calcul mental",
       "oneGoal": "Les élèves utilisent leurs stratégies pour faire des estimations rapides et raisonnables",
-      "estimatedTime": "45 minutes",
-      "materials": ["Bocaux avec objets", "Cartes d'estimation", "Tableaux 'Environ'", "Objets à estimer", "Calculatrices pour vérifier"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "estimation",
+        "environ",
+        "raisonnable",
+        "proche"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Jeu mystère: montrer un bocal avec des bonbons. 'Combien y en a-t-il ENVIRON?' Introduire: 'Parfois, on n'a pas besoin d'une réponse exacte!'"
+        "activity": "Jeu mystère: montrer un bocal avec des bonbons. 'Combien y en a-t-il ENVIRON?' Introduire: 'Parfois, on n'a pas besoin d'une réponse exacte!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Stations d'estimation: 1) Estimer puis compter des objets, 2) Estimation de calculs (13+17 ≈ ?), 3) Estimer des mesures, 4) Jeux d'estimation en équipes. Emphasis sur 'raisonnable' vs 'exact'. Stratégies: arrondir, regrouper visuellement, utiliser les benchmarks.",
+        "activity": "Stations d'estimation: 1) Estimer puis compter des objets, 2) Estimation de calculs (13+17 ≈ ?), 3) Estimer des mesures, 4) Jeux d'estimation en équipes. Emphasis sur 'raisonnable' vs 'exact'. Stratégies: arrondir, regrouper visuellement, utiliser les benchmarks.",
+        "materials": [],
         "visualSupports": "Affiches 'Environ vs Exact'. Tableaux de mots d'estimation (environ, près de, plus ou moins). Références visuelles pour les benchmarks.",
-        "tprElements": "Geste 'environ' (mains qui oscillent). Mouvement 'proche' (mains qui se rapprochent). Geste 'raisonnable' (pouce levé avec réflexion).",
-        "concreteSupports": "Objets réels à estimer et compter. Bocaux transparents avec contenus variés. Calculatrices pour vérifier les estimations de calculs.",
-        "adaptations": "Commencer avec petites quantités si nécessaire. Support visuel: regroupements évidents. Défi: estimations avec nombres plus grands."
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Partage des découvertes: 'Quand est-ce qu'une estimation est assez bonne?' Célébrer les estimations raisonnables, même si pas exactes."
+        "activity": "Partage des découvertes: 'Quand est-ce qu'une estimation est assez bonne?' Célébrer les estimations raisonnables, même si pas exactes.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves comprennent-ils qu'une estimation n'est pas exacte?",
-          "ifThen": "Si non, expliquer avec plus d'exemples concrets. Si oui, pratiquer différents contextes d'estimation."
-        },
-        {
-          "situation": "Peuvent-ils utiliser leurs stratégies pour estimer?",
-          "ifThen": "Si non, guider l'application des stratégies connues. Si oui, encourager l'innovation."
-        },
-        {
-          "situation": "Leurs estimations sont-elles raisonnables?",
-          "ifThen": "Si non, enseigner les benchmarks et références. Si oui, célébrer leur sens numérique."
-        }
-      ],
-      "whatWhenWrong": "Si estimations déraisonnables: utiliser objets de référence familiers. Si confusion estimation/calcul exact: clarifier les contextes d'usage.",
-      "keyVocabulary": ["estimation", "environ", "raisonnable", "proche"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si estimations déraisonnables: utiliser objets de référence familiers. Si confusion estimation/calcul exact: clarifier les contextes d'usage.",
+        "then": ""
+      },
       "realWorldConnection": "Estimer combien de bonbons il y a dans un bocal avant de compter",
-      "progressionNote": "Étend l'utilisation des stratégies au domaine de l'estimation"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 19,
+      "lessonType": "extension",
       "title": "Portfolio de stratégies personnelles",
       "oneGoal": "Les élèves créent un portfolio démontrant leur maîtrise des différentes stratégies de calcul mental",
-      "estimatedTime": "45 minutes",
-      "materials": ["Portfolios/cartables", "Fiches de démonstration", "Crayons de couleur", "Autocollants", "Cartes de réflexion"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "portfolio",
+        "maîtrise",
+        "démontrer",
+        "stratégies personnelles"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Invitation spéciale: 'Créons un livre de vos super pouvoirs mathématiques!' Présentation du format portfolio et des attentes."
+        "activity": "Invitation spéciale: 'Créons un livre de vos super pouvoirs mathématiques!' Présentation du format portfolio et des attentes.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Création guidée du portfolio: 1) Page couverture personnalisée, 2) Une page par stratégie maîtrisée avec exemple et explication, 3) Page 'Ma stratégie préférée', 4) Page 'Mes défis surmontés', 5) Réflexion finale sur les apprentissages. Travail autonome avec support disponible.",
+        "activity": "Création guidée du portfolio: 1) Page couverture personnalisée, 2) Une page par stratégie maîtrisée avec exemple et explication, 3) Page 'Ma stratégie préférée', 4) Page 'Mes défis surmontés', 5) Réflexion finale sur les apprentissages. Travail autonome avec support disponible.",
+        "materials": [],
         "visualSupports": "Modèles de pages de portfolio affichés. Exemples de démonstrations acceptables. Critères de qualité visibles.",
-        "tprElements": "Geste 'créer' (mains qui dessinent). Mouvement 'démontrer' (montrer avec fierté). Geste 'réfléchir' (main sur le menton).",
-        "concreteSupports": "Vrais portfolios ou cartables. Matériel artistique varié. Cartes aide-mémoire pour les stratégies. Autocollants de récompense.",
-        "adaptations": "Templates préremplis pour élèves ayant besoin de support. Options orales pour démonstrations. Extensions créatives pour défis."
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Première présentation des portfolios: chaque élève partage une page dont il est fier. Planifier le partage avec les familles."
+        "activity": "Première présentation des portfolios: chaque élève partage une page dont il est fier. Planifier le partage avec les familles.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves peuvent-ils choisir leurs meilleures démonstrations?",
-          "ifThen": "Si non, les aider à identifier leurs forces. Si oui, encourager la sélection réfléchie."
-        },
-        {
-          "situation": "Comprennent-ils leurs propres forces en calcul mental?",
-          "ifThen": "Si non, guider l'auto-évaluation. Si oui, les aider à articuler leurs forces."
-        },
-        {
-          "situation": "Peuvent-ils réfléchir à leurs apprentissages?",
-          "ifThen": "Si non, poser des questions guidantes. Si oui, encourager la réflexion profonde."
-        }
-      ],
-      "whatWhenWrong": "Si difficulté à choisir: offrir des options limitées. Si perfectionnisme paralysant: rappeler que l'effort compte plus que la perfection.",
-      "keyVocabulary": ["portfolio", "maîtrise", "démontrer", "stratégies personnelles"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si difficulté à choisir: offrir des options limitées. Si perfectionnisme paralysant: rappeler que l'effort compte plus que la perfection.",
+        "then": ""
+      },
       "realWorldConnection": "Créer un guide personnel de mathématiques pour la famille",
-      "progressionNote": "Évalue et consolide toutes les stratégies apprises dans un format authentique"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     },
     {
       "lessonNumber": 20,
+      "lessonType": "extension",
       "title": "Célébration des mathématiciens en herbe",
       "oneGoal": "Les élèves célèbrent leurs progrès en calcul mental et partagent leurs réussites",
-      "estimatedTime": "45 minutes",
-      "materials": ["Portfolios complétés", "Certificats de réussite", "Décorations festives", "Caméra pour photos", "Livre d'or de la classe"],
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "célébrer",
+        "mathématiciens",
+        "progrès",
+        "réussites"
+      ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Ouverture festive: 'Bienvenue à notre célébration des mathématiciens!' Reconnaissance des progrès extraordinaires de chacun."
+        "activity": "Ouverture festive: 'Bienvenue à notre célébration des mathématiciens!' Reconnaissance des progrès extraordinaires de chacun.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "mainActivity": {
+      "main": {
         "duration": "~27 min",
-        "coreActivity": "Célébration interactive: 1) Galerie des portfolios avec visite libre, 2) Présentations volontaires des réussites personnelles, 3) Jeu 'Devine ma stratégie préférée', 4) Création collective d'une affiche 'Nos stratégies de classe', 5) Signature du livre d'or avec réflexions.",
+        "activity": "Célébration interactive: 1) Galerie des portfolios avec visite libre, 2) Présentations volontaires des réussites personnelles, 3) Jeu 'Devine ma stratégie préférée', 4) Création collective d'une affiche 'Nos stratégies de classe', 5) Signature du livre d'or avec réflexions.",
+        "materials": [],
         "visualSupports": "Galerie d'affichage des portfolios. Affiche collective géante à créer. Certificats personnalisés pour chaque élève.",
-        "tprElements": "Gestes de célébration (applaudissements). Mouvement 'fierté' (poitrine bombée). Gestes de partage et reconnaissance mutuelle.",
-        "concreteSupports": "Vrais certificats imprimés. Livre d'or physique à signer. Décorations réelles pour l'ambiance festive.",
-        "adaptations": "Différents formats de partage selon le confort. Reconnaissance des efforts autant que des résultats. Inclusion de tous les types de réussites."
+        "decisionPoints": [],
+        "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
-        "activity": "Cercle de gratitude: chaque élève partage une chose qu'il a apprise et dont il est fier. Remise solennelle des certificats. Promesse de continuer à être des mathématiciens curieux!"
+        "activity": "Cercle de gratitude: chaque élève partage une chose qu'il a apprise et dont il est fier. Remise solennelle des certificats. Promesse de continuer à être des mathématiciens curieux!",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
       },
-      "decisionPoints": [
-        {
-          "situation": "Les élèves sont-ils fiers de leurs apprentissages?",
-          "ifThen": "Si non, souligner leurs progrès spécifiques. Si oui, amplifier cette fierté positive."
-        },
-        {
-          "situation": "Veulent-ils partager avec d'autres?",
-          "ifThen": "Si non, respecter et célébrer en privé. Si oui, organiser des présentations à d'autres classes."
-        },
-        {
-          "situation": "Se voient-ils comme des mathématiciens compétents?",
-          "ifThen": "Si non, renforcer leur identité mathématique positive. Si oui, encourager la poursuite de l'apprentissage."
-        }
-      ],
-      "whatWhenWrong": "Si timidité pour célébrer: offrir des formats de partage moins exposants. Si compétition négative: recentrer sur les progrès personnels.",
-      "keyVocabulary": ["célébrer", "mathématiciens", "progrès", "réussites"],
+      "troubleshooting": {
+        "ifStrugglingWith": "Si timidité pour célébrer: offrir des formats de partage moins exposants. Si compétition négative: recentrer sur les progrès personnels.",
+        "then": ""
+      },
       "realWorldConnection": "Partager ses nouvelles compétences mathématiques avec la famille et les amis",
-      "progressionNote": "Consolide l'unité par la célébration et renforce l'identité mathématique positive"
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
     }
-  ]
+  ],
+  "assessmentTools": {
+    "observationChecklist": [],
+    "rubrics": [],
+    "selfAssessment": [],
+    "portfolioGuidelines": ""
+  },
+  "familyConnections": {
+    "unitLetter": "",
+    "homeActivities": [],
+    "vocabularyList": []
+  },
+  "resourceAlternatives": {
+    "materials": {},
+    "digitalResources": []
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
+  }
 }
