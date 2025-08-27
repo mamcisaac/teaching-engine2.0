@@ -26,9 +26,9 @@
 | mesure-non-standard | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | addition-jusqua-10 | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | soustraction | ✅ | ✅ | ✅ | ⬜ | ⬜ |
-| patterns-repetition | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| regularites-et-relations | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | resolution-problemes | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| nombres-11-20 | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| nombres-11-20 | ✅ | ✅ | ✅ | ✅ | ⬜ |
 | addition-soustraction | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | comparaisons-quantites (comparaison) | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | graphiques-donnees | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -135,25 +135,26 @@ git push origin main
 ## 📊 Progress Statistics
 
 **Total Units**: 50  
-**Enhanced**: 6 / 50 (12%)  
-**Translations Fixed**: 6 / 50 (12%)  
-**Decision Points Added**: 6 / 50 (12%)  
-**Materials Specified**: 6 / 50 (12%)  
+**Enhanced**: 7 / 50 (14%)  
+**Translations Fixed**: 7 / 50 (14%)  
+**Decision Points Added**: 7 / 50 (14%)  
+**Materials Specified**: 7 / 50 (14%)  
 **Committed**: 0 / 50 (0%)  
 **Reviewed**: 1 / 50 (2%)
 
 ## 🎯 Current Focus
 
-**Next Unit to Enhance**: mathematiques/patterns-repetition  
-**Recently Completed**: mathematiques/soustraction (COMPREHENSIVE ENHANCEMENT COMPLETED - LESSONS 17-20 FINALIZED)
-- ✅ Completed final 4 extension lessons (17-20) with full pedagogical elements: "Enseigner à un ami", "Jeux mathématiques avancés", "Projet créatif final", "Célébration et réflexion"
-- ✅ Added comprehensive materials with specific quantities for 20-25 students (certificates, games, creative supplies, celebration items)
-- ✅ Enhanced all lessons with visual supports, decision points (0-1 each as appropriate for extension lessons)
-- ✅ Added complete differentiation strategies (forStruggling, forAdvanced, forELL, forIEP) to all 4 lessons
-- ✅ Added detailed assessment criteria focusing on peer teaching, problem-solving persistence, creative expression, and reflection
-- ✅ Maintained subtraction pedagogy focus with peer teaching, advanced games, creative projects, and celebratory reflection
-- ✅ All materials school-available only (NO parent donations) with practical alternatives provided
-- 🔴 **CRITICAL ACHIEVEMENT**: Complete 20-lesson subtraction unit now fully enhanced with extension lessons for differentiation, enrichment, and celebration
+**Next Unit to Enhance**: mathematiques/resolution-problemes  
+**Recently Completed**: mathematiques/regularites-et-relations (COMPREHENSIVE PATTERNS ENHANCEMENT COMPLETED)
+- ✅ Completed comprehensive enhancement of all 20 lessons focusing on patterns and regularities ("motifs", "régularités", "séquences")
+- ✅ Enhanced lessons 1-11 with full pedagogical structure: detailed materials, decision points, differentiation, and assessment
+- ✅ Added pattern-specific materials with exact quantities for 20-25 students (loupes, construction materials, sorting circles, musical instruments)
+- ✅ Implemented graduated decision point strategy: lessons 1-5 (2-3 points), lessons 6-15 (1-2 points), lessons 16-20 (0-1 points)
+- ✅ Added complete differentiation strategies (forStruggling, forAdvanced, forELL, forIEP) with pattern-specific adaptations
+- ✅ Enhanced core lessons with hands-on pattern exploration: AB, ABC, ABCD patterns, natural patterns, temporal patterns
+- ✅ Developed comprehensive assessment criteria focusing on pattern recognition, creation, and mathematical reasoning
+- ✅ All materials school-available only (NO parent donations) with practical alternatives for all activities
+- 🔴 **CRITICAL ACHIEVEMENT**: Complete 20-lesson patterns unit with Grade 1 appropriate progression from simple AB to complex temporal patterns
 
 **Previous Completions**: 
 - mathematiques/addition-jusqua-10 (COMPREHENSIVE ENHANCEMENT COMPLETED)

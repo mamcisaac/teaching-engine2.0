@@ -20,24 +20,85 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Promenade des motifs: Explorer la classe pour trouver des motifs (carreaux, rayures, points). 'Regardez partout! Les motifs sont cachés!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Loupes en plastique",
+              "quantity": "8 loupes (1 pour 3 élèves)",
+              "source": "Matériel scientifique - armoire sciences",
+              "preparation": "Vérifier propreté, distribuer dans paniers",
+              "alternatives": ["Verres grossissants", "Exploration à l'œil nu"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Carnet d'exploration",
+              "quantity": "25 carnets (1 par élève)",
+              "purpose": "Documenter découvertes de motifs"
+            }
+          ]
+        },
+        "visualSupports": "Affiches grandes avec exemples de motifs évidents: rayures, pois, carreaux",
+        "decisionPoints": [
+          "Si les élèves ne trouvent pas de motifs → pointer des exemples évidents comme les carreaux du sol",
+          "Si trop d'excitation → diviser en groupes de 4-5 avec zones assignées",
+          "Si confusion sur ce qu'est un motif → modéliser avec rayures sur vêtements"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Chasse aux motifs: Équipes explorent avec loupes pour documenter motifs trouvés. Dessiner ou photographier découvertes. Créer galerie de motifs de classe.",
-        "materials": [],
-        "visualSupports": "Affiches de motifs simples, exemples visuels clairs",
+        "materials": {
+          "required": [
+            {
+              "item": "Papier blanc format lettre",
+              "quantity": "50 feuilles pour dessins de motifs",
+              "source": "Fournitures bureau - salle des enseignants",
+              "preparation": "Couper en quarts pour carnets individuels",
+              "alternatives": ["Papier de brouillon", "Dos de papier usagé"]
+            },
+            {
+              "item": "Crayons de couleur",
+              "quantity": "6 boîtes de 8 couleurs (matériel classe)",
+              "source": "Fournitures artistiques classe",
+              "preparation": "Vérifier mines, tailler si nécessaire",
+              "alternatives": ["Crayons de cire", "Marqueurs lavables"]
+            },
+            {
+              "item": "Planchettes à pinces",
+              "quantity": "8 planchettes pour équipes",
+              "source": "Matériel général école",
+              "preparation": "Attacher papier, distribuer par équipe",
+              "alternatives": ["Livres comme support", "Tables directement"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Appareil photo/tablette",
+              "quantity": "2 appareils pour documentation",
+              "purpose": "Capturer motifs difficiles à dessiner"
+            }
+          ]
+        },
+        "visualSupports": "Affiches de motifs simples (AB, AAB, ABC), tableau d'exemples avec flèches montrant répétition",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Partage des trésors: Chaque équipe présente son motif préféré trouvé. 'Qu'est-ce qui se répète?'",
-        "materials": [],
-        "visualSupports": "",
+        "materials": {
+          "required": [],
+          "optional": [
+            {
+              "item": "Tableau d'affichage mobile",
+              "quantity": "1 pour exposition",
+              "purpose": "Créer galerie temporaire des découvertes"
+            }
+          ]
+        },
+        "visualSupports": "Espace d'affichage désigné pour galerie, cercle de rassemblement",
         "decisionPoints": [],
         "movementBreaks": []
       },
@@ -47,14 +108,43 @@
       },
       "realWorldConnection": "Motifs sur les vêtements, papier peint à la maison, carrelage",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser seulement motifs très évidents (rayures, pois) au début",
+          "Permettre travail en partenariat avec élève plus avancé",
+          "Fournir exemples pré-dessinés à compléter plutôt que création libre",
+          "Offrir plus de temps pour exploration avec moins de pression de documentation"
+        ],
+        "forAdvanced": [
+          "Chercher motifs plus complexes (ABCD, patterns cachés)",
+          "Créer catégories de motifs trouvés (couleur, forme, taille)",
+          "Aider autres élèves à identifier motifs difficiles",
+          "Inventer nouveaux motifs inspirés des découvertes"
+        ],
+        "forELL": [
+          "Associer mot 'motif' avec gestes de répétition",
+          "Utiliser objets familiers culturellement pour premiers exemples",
+          "Permettre description en langue première puis traduction",
+          "Fournir vocabulaire visuel: répéter, même, encore"
+        ],
+        "forIEP": [
+          "Adapter exploration selon mobilité (zone restreinte si nécessaire)",
+          "Modifier outils de documentation (photos au lieu de dessins)",
+          "Ajuster attentes de participation (pointage au lieu de description)",
+          "Fournir supports sensoriels appropriés (réduction bruit, éclairage)"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève identifie au moins 2 motifs différents dans l'environnement",
+          "Élève explique ce qui se répète dans un motif simple",
+          "Élève utilise vocabulaire: motif, répéter, même en contexte",
+          "Élève participe activement à l'exploration et documentation"
+        ],
+        "checkpoints": [
+          "Pendant promenade: Vérifier si élève pointe vraiment des motifs",
+          "Pendant documentation: Observer qualité des dessins/descriptions",
+          "Pendant partage: Noter utilisation du vocabulaire des motifs"
+        ]
       }
     },
     {
@@ -71,24 +161,86 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Révision énergique: 'Hier nous avons trouvé des motifs! Aujourd'hui nous en créons!' Montrer modèle rouge-bleu-rouge-bleu.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Blocs de construction rouges et bleus",
+              "quantity": "40 blocs (20 rouge, 20 bleu)",
+              "source": "Matériel de construction - armoire B",
+              "preparation": "Séparer couleurs, placer dans contenants",
+              "alternatives": ["Cubes emboîtables", "Jetons de couleur"]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Grand modèle AB au tableau avec flèches montrant alternance",
+        "decisionPoints": [
+          "Si confusion sur l'alternance → utiliser gestes rythmiques (gauche-droite)",
+          "Si élèves font AAB au lieu de AB → remodéliser lentement",
+          "Si manque d'attention → intégrer chanson 'rouge-bleu-rouge-bleu'"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Ateliers de construction: Station 1 - Tours AB avec blocs. Station 2 - Colliers AB avec perles. Station 3 - Lignes AB avec jetons. Rotation toutes les 8 minutes.",
-        "materials": [],
-        "visualSupports": "Cartes modèles AB, code couleur pour chaque station",
+        "materials": {
+          "required": [
+            {
+              "item": "Cubes emboîtables multicolores",
+              "quantity": "200 cubes (minimum 50 rouge, 50 bleu)",
+              "source": "Kit mathématiques - armoire A",
+              "preparation": "Trier par couleur, 8 cubes par élève",
+              "alternatives": ["Blocs de bois", "Jetons colorés"]
+            },
+            {
+              "item": "Perles en plastique grandes",
+              "quantity": "300 perles (2 couleurs)",
+              "source": "Matériel artistique - armoire arts",
+              "preparation": "Sélectionner 2 couleurs contrastantes",
+              "alternatives": ["Boutons", "Jetons percés"]
+            },
+            {
+              "item": "Ficelle ou laine",
+              "quantity": "25 bouts de 30cm chacun",
+              "source": "Fournitures artisanat classe",
+              "preparation": "Couper, faire nœud à une extrémité",
+              "alternatives": ["Cure-pipes", "Cordon"]
+            },
+            {
+              "item": "Jetons ronds bicolores",
+              "quantity": "150 jetons pour alignements",
+              "source": "Matériel mathématiques général",
+              "preparation": "Vérifier quantités par couleur",
+              "alternatives": ["Bouchons", "Cartons découpés"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Minuteur visuel",
+              "quantity": "3 pour rotations",
+              "purpose": "Gestion temps entre stations"
+            }
+          ]
+        },
+        "visualSupports": "Cartes modèles AB plastifiées à chaque station, code couleur au sol",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Galerie de motifs: Exposer créations et inviter commentaires. 'Quel motif continue le mieux?'",
-        "materials": [],
-        "visualSupports": "",
+        "materials": {
+          "required": [],
+          "optional": [
+            {
+              "item": "Tables d'exposition",
+              "quantity": "3 tables pour galerie temporaire",
+              "purpose": "Afficher toutes les créations"
+            }
+          ]
+        },
+        "visualSupports": "Espace d'exposition organisé par type de motif",
         "decisionPoints": [],
         "movementBreaks": []
       },
@@ -98,14 +250,43 @@
       },
       "realWorldConnection": "Ranger jouets en alternance, décorer avec motifs",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Commencer avec seulement 4 éléments AB-AB au lieu de longues séquences",
+          "Utiliser objets plus gros et faciles à manipuler",
+          "Permettre imitation directe des modèles avant création libre",
+          "Fournir support verbal constant: 'rouge, bleu, rouge, bleu'"
+        ],
+        "forAdvanced": [
+          "Introduire patterns AAB ou ABB s'ils maîtrisent AB",
+          "Créer motifs avec 3 couleurs (ABC)",
+          "Enseigner leur technique à un camarade",
+          "Inventer patterns originaux et les démontrer"
+        ],
+        "forELL": [
+          "Associer 'alterner' avec gestes de va-et-vient",
+          "Répéter vocabulaire: construire, suivant, alterner",
+          "Utiliser modèles visuels constants avec flèches",
+          "Permettre comptage rythmique dans langue première"
+        ],
+        "forIEP": [
+          "Adapter manipulatifs selon capacités motrices (plus gros, texturés)",
+          "Modifier attentes de production (montrer au lieu de construire)",
+          "Ajuster durée stations selon attention individuelle",
+          "Fournir supports visuels renforcés avec couleurs vives"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève crée motif AB correct avec au moins 4 éléments",
+          "Élève explique l'alternance dans son motif",
+          "Élève utilise vocabulaire: construire, alterner, suivant",
+          "Élève participe aux 3 stations avec engagement"
+        ],
+        "checkpoints": [
+          "Station 1: Vérifier construction tours AB correctes",
+          "Station 2: Observer enfilage perles en alternance",
+          "Station 3: Noter alignement jetons selon motif AB"
+        ]
       }
     },
     {
@@ -122,24 +303,70 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Échauffement rythmique: 'Clap-clap-stomp, clap-clap-stomp' avec mouvements corporels expressifs.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [],
+          "optional": [
+            {
+              "item": "Haut-parleur portable",
+              "quantity": "1 pour ambiance musicale",
+              "purpose": "Fond sonore pour échauffement"
+            }
+          ]
+        },
+        "visualSupports": "Cartes de gestes avec images: clap (mains), stomp (pieds)",
+        "decisionPoints": [
+          "Si les élèves ne suivent pas le rythme → ralentir et accentuer les gestes",
+          "Si trop de bruit → établir signal pour 'stop' et 'écoute'",
+          "Si timidité → commencer par imitation simple de l'enseignant"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Exploration multi-sensorielle: Créer motifs avec voix (fort-doux), corps (saut-marche), instruments (tambour-cloche). Enregistrer créations musicales.",
-        "materials": [],
-        "visualSupports": "Cartes de gestes, symboles pour sons forts/doux",
+        "materials": {
+          "required": [
+            {
+              "item": "Instruments de percussion simples",
+              "quantity": "12 instruments: 6 tambourins, 6 clochettes",
+              "source": "Matériel musical - armoire arts",
+              "preparation": "Vérifier état, nettoyer si nécessaire",
+              "alternatives": ["Boîtes métalliques", "Cuillères en bois", "Claquoirs"]  
+            },
+            {
+              "item": "Cartes visuelles sons",
+              "quantity": "10 cartes: fort/doux, rapide/lent",
+              "source": "Création enseignant - carton bristol",
+              "preparation": "Dessiner symboles clairs, plastifier",
+              "alternatives": ["Gestes uniquement", "Tableau noir"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Enregistreur audio/tablette",
+              "quantity": "1 pour capturer créations",
+              "purpose": "Documenter motifs sonores créés"
+            }
+          ]
+        },
+        "visualSupports": "Cartes de gestes, symboles pour sons forts/doux, pictogrammes mouvements",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Concert de motifs: Chaque groupe présente son motif sonore. Audience devine le motif.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": {
+          "required": [],
+          "optional": [
+            {
+              "item": "Micro jouet ou amplificateur vocal",
+              "quantity": "1 pour présentations",
+              "purpose": "Effet 'spectacle' pour motiviation"
+            }
+          ]
+        },
+        "visualSupports": "Espace de 'scène' désigné, public assis en demi-cercle",
         "decisionPoints": [],
         "movementBreaks": []
       },
@@ -149,14 +376,43 @@
       },
       "realWorldConnection": "Chansons avec motifs, marcher en rythme, battement de cœur",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser seulement 2 sons alternants (fort-doux) au début",
+          "Permettre imitation plutôt que création libre",
+          "Fournir support physique pour garder le rythme (tenir mains)",
+          "Utiliser motifs très courts (4 temps maximum)"
+        ],
+        "forAdvanced": [
+          "Créer motifs à 3 éléments (fort-doux-moyen)",
+          "Combiner motifs corporels ET sonores simultanément",
+          "Diriger groupe comme chef d'orchestre",
+          "Inventer notation personnelle pour leurs motifs"
+        ],
+        "forELL": [
+          "Associer mots à gestes clairs: rythme = battement régulier",
+          "Utiliser onomatopées universelles (boom, clap, ding)",
+          "Répéter vocabulaire avec actions motrices",
+          "Permettre expressions rythmiques de leur culture"
+        ],
+        "forIEP": [
+          "Adapter instruments selon capacités motrices (plus légers/lourds)",
+          "Modifier niveau sonore selon sensibilités auditives",
+          "Offrir participation par observation si préférée",
+          "Utiliser vibrations tactiles pour perception rythme"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève maintient motif rythmique simple sur 8 temps",
+          "Élève distingue entre sons forts et doux dans motifs",
+          "Élève utilise vocabulaire: rythme, son, mouvement",
+          "Élève participe aux créations collectives avec enthousiasme"
+        ],
+        "checkpoints": [
+          "Pendant échauffement: Vérifier si suit le rythme de base",
+          "Pendant exploration: Observer créativité et coopération",
+          "Pendant concert: Noter capacité à maintenir motif en groupe"
+        ]
       }
     },
     {
@@ -174,24 +430,81 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Mystère du tri: Présenter boîte mélangée d'objets. 'Comment pouvons-nous organiser tout cela?'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Collection d'objets variés",
+              "quantity": "100 objets: boutons, blocs, jetons, crayons, gommes",
+              "source": "Matériel classe + fournitures recyclées",
+              "preparation": "Mélanger dans grande boîte transparente",
+              "alternatives": ["Matériel nature", "Jouets petits de classe"]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Boîte transparente pleine d'objets mélangés, tableaux de classification vierges",
+        "decisionPoints": [
+          "Si élèves submergés par quantité → commencer avec seulement 20 objets",
+          "Si pas d'idées de tri → suggérer 'couleur' comme premier critère",
+          "Si dispute sur méthode → valider que plusieurs façons sont correctes"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Défis de tri: Trier par couleur, forme, taille, texture. Expliquer choix de tri. Deviner règle de tri d'un partenaire. Créer nouveau système de tri original.",
-        "materials": [],
-        "visualSupports": "Cercles de tri colorés, cartes d'attributs, exemples de classifications",
+        "materials": {
+          "required": [
+            {
+              "item": "Cercles de tri en tissu",
+              "quantity": "12 cercles (3 par équipe de 6 élèves)",
+              "source": "Matériel mathématiques - boîtes de manipulation",
+              "preparation": "Placer sur tables, un par catégorie",
+              "alternatives": ["Assiettes de papier", "Feuilles colorées"]
+            },
+            {
+              "item": "Cartes d'attributs visuelles",
+              "quantity": "20 cartes: couleur, forme, taille, texture",
+              "source": "Création enseignant ou ressources éducatives",
+              "preparation": "Plastifier, organiser par catégorie",
+              "alternatives": ["Dessins au tableau", "Gestes seulement"]
+            },
+            {
+              "item": "Matériel de manipulation diversifié",
+              "quantity": "200 pièces: formes géométriques, objets texturés",
+              "source": "Kit exploration mathématique classe",
+              "preparation": "Vérifier variété attributs disponibles",
+              "alternatives": ["Objets de la nature", "Matériel recyclage"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Etiquettes auto-collantes",
+              "quantity": "50 étiquettes pour identification groupes",
+              "purpose": "Nommer catégories créées"
+            }
+          ]
+        },
+        "visualSupports": "Cercles de tri colorés, cartes d'attributs affichées, exemples de classifications au tableau",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Jeu 'Devine ma règle': Un élève trie, les autres devinent la règle utilisée.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": {
+          "required": [
+            {
+              "item": "Petit ensemble d'objets pour démonstration",
+              "quantity": "15 objets avec attributs clairs",
+              "source": "Sélection du matériel principal",
+              "preparation": "Choisir objets avec différences évidentes",
+              "alternatives": ["Réutiliser matériel de l'activité principale"]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Espace de démonstration désigné, cercle pour audience",
         "decisionPoints": [],
         "movementBreaks": []
       },
@@ -201,14 +514,43 @@
       },
       "realWorldConnection": "Ranger jouets par type, trier vêtements, organiser matériel scolaire",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Commencer avec seulement 2 groupes de tri évidents (rouge vs bleu)",
+          "Utiliser objets très différents pour faciliter distinction",
+          "Permettre travail avec partenaire pour support",
+          "Fournir modèles visuels constants pour chaque attribut"
+        ],
+        "forAdvanced": [
+          "Créer systèmes de tri à double critère (couleur ET forme)",
+          "Inventer nouvelles catégories non-évidentes",
+          "Enseigner stratégie de tri à d'autres élèves",
+          "Défier classe avec tris complexes à deviner"
+        ],
+        "forELL": [
+          "Associer chaque attribut à geste ou image claire",
+          "Répéter vocabulaire: trier = séparer, groupe = ensemble",
+          "Utiliser objets familiers culturellement",
+          "Permettre explication en langue première puis traduction"
+        ],
+        "forIEP": [
+          "Adapter taille objets selon capacités motrices fines",
+          "Modifier nombre d'objets à trier (moins si fatigue)",
+          "Utiliser supports visuels renforcés avec couleurs vives",
+          "Accepter pointage au lieu de manipulation si nécessaire"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève trie objets selon au moins un attribut de façon cohérente",
+          "Élève explique sa règle de classification simplement",
+          "Élève utilise vocabulaire: trier, groupe, règle, attribut",
+          "Élève respecte classifications différentes des autres"
+        ],
+        "checkpoints": [
+          "Pendant exploration: Vérifier cohérence des groupes créés",
+          "Pendant explication: Noter clarté de justification",
+          "Pendant jeu final: Observer capacité à deviner règles"
+        ]
       }
     },
     {
@@ -225,15 +567,61 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Jeu de devinette: Montrer début de motif 'rouge-bleu-rouge-?' Suspense: 'Qu'est-ce qui vient ensuite?'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Cartes colorées grandes",
+              "quantity": "20 cartes (10 rouges, 10 bleues) format 15x20cm",
+              "source": "Carton bristol - fournitures classe",
+              "preparation": "Découper, plastifier pour durabilité",
+              "alternatives": ["Blocs colorés", "Papier de couleur"]
+            },
+            {
+              "item": "Cartes avec points d'interrogation",
+              "quantity": "10 cartes avec ? gros et visible",
+              "source": "Création enseignant",
+              "preparation": "Dessiner ? en noir épais sur carton blanc",
+              "alternatives": ["Ecrire ? au tableau", "Boîtes cachées"]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Séquence visible au tableau avec espace pour prédiction",
+        "decisionPoints": [
+          "Si élèves devinent au hasard → remodeler le motif complétement",
+          "Si trop facile → introduire motif AAB au lieu de AB",
+          "Si frustration → laisser vérifier réponse rapidement"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Détectives de motifs: Compléter motifs interrompus. Prédire suite avec confidence. Vérifier prédictions. Créer motifs pour défier camarades.",
-        "materials": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Fiches de motifs incomplets",
+              "quantity": "30 fiches avec différents motifs à compléter",
+              "source": "Préparation enseignant - photocopies",
+              "preparation": "Créer variété AB, AAB, ABC avec espaces vides",
+              "alternatives": ["Ecrire motifs au tableau", "Matériel concret"]
+            },
+            {
+              "item": "Matériel de vérification",
+              "quantity": "50 jetons colorés pour compléter séquences",
+              "source": "Matériel mathématiques classe",
+              "preparation": "Séparer par couleur dans contenants",
+              "alternatives": ["Crayons de couleur", "Gommettes"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Minuteur sablier",
+              "quantity": "1 pour créer suspense",
+              "purpose": "Temps de réflexion avant révélation"
+            }
+          ]
+        },
         "visualSupports": "Cartes avec points d'interrogation, flèches de direction, tableau de réponses",
         "decisionPoints": [],
         "movementBreaks": []
@@ -241,8 +629,19 @@
       "closing": {
         "duration": "~10 min",
         "activity": "Cercle de prédiction: Chacun propose motif, classe prédit ensemble l'élément suivant.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": {
+          "required": [
+            {
+              "item": "Objets variés pour motifs",
+              "quantity": "30 objets: blocs, jetons, formes géométriques",
+              "source": "Matériel classe déjà utilisé",
+              "preparation": "Sélectionner objets avec attributs clairs",
+              "alternatives": ["Dessins rapides", "Gestes seulement"]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Cercle au sol, espace central pour démonstrations",
         "decisionPoints": [],
         "movementBreaks": []
       },
@@ -252,14 +651,43 @@
       },
       "realWorldConnection": "Deviner la suite d'une chanson, prédire les activités quotidiennes",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser seulement motifs AB très courts (4 éléments maximum)",
+          "Donner indices verbaux: 'Regarde, c'est rouge, bleu, rouge...'",
+          "Permettre manipulation physique avant prédiction",
+          "Offrir choix multiples au lieu de réponse libre"
+        ],
+        "forAdvanced": [
+          "Introduire motifs plus complexes (AABB, ABCD)",
+          "Créer motifs à multiples attributs (couleur ET forme)",
+          "Défier classe avec séquences longues",
+          "Prédire plusieurs éléments suivants au lieu d'un seul"
+        ],
+        "forELL": [
+          "Répéter 'prédire' avec geste de regarder vers l'avenir",
+          "Utiliser 'suivant' avec mouvement de doigt vers droite",
+          "Associer '?' avec expression faciale questionnante",
+          "Permettre prédiction par gestes avant mots"
+        ],
+        "forIEP": [
+          "Adapter présentation selon besoins visuels (plus gros, contraste)",
+          "Modifier attentes: pointer au lieu de nommer",
+          "Utiliser supports tactiles si nécessaire",
+          "Ajuster nombre de prédictions attendues"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève prédit correctement suite dans motifs AB simples",
+          "Élève explique sa stratégie de prédiction ('je regarde ce qui se répète')",
+          "Élève utilise vocabulaire: prédire, suivant, après",
+          "Élève montre confiance en faisant des tentatives"
+        ],
+        "checkpoints": [
+          "Pendant démonstration: Vérifier prédictions initiales",
+          "Pendant travail individuel: Observer stratégies utilisées",
+          "Pendant cercle: Noter participation et justifications"
+        ]
       }
     },
     {
@@ -276,24 +704,71 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Évolution des motifs: Réviser AB, puis révéler 'Aujourd'hui: rouge-bleu-vert-rouge-bleu-vert!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Blocs rouges, bleus, verts",
+              "quantity": "60 blocs (20 de chaque couleur)",
+              "source": "Matériel de construction classe",
+              "preparation": "Séparer par couleur dans 3 contenants",
+              "alternatives": ["Cartes colorées", "Jetons tricolores"]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Séquence AB au tableau, puis ABC avec flèche montrant cycle",
+        "decisionPoints": [
+          "Si confusion cognitive → revenir temporairement aux motifs AB",
+          "Si élèves font ABAB au lieu d'ABC → emphasizer le troisième élément"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Défis ABC: Construire motifs à trois éléments. Transformer motifs AB en ABC. Inventer motifs ABC originaux. Enseigner motif à un partenaire.",
-        "materials": [],
-        "visualSupports": "Cartes modèles ABC, code couleur pour séquences, lignes de construction",
+        "materials": {
+          "required": [
+            {
+              "item": "Matériel de construction diversifié",
+              "quantity": "150 pièces: cubes, cylindres, triangles (3 couleurs)",
+              "source": "Kits de géométrie et construction classe",
+              "preparation": "Organiser par forme ET couleur",
+              "alternatives": ["Formes en carton", "Objets classe triés"]
+            },
+            {
+              "item": "Bandes de papier pour séquences",
+              "quantity": "50 bandes 60cm pour documenter motifs",
+              "source": "Papier format légal - fournitures",
+              "preparation": "Découper en longueurs égales",
+              "alternatives": ["Tableaux individuels", "Sol directement"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Crayons feutres à 3 couleurs",
+              "quantity": "25 ensembles pour documentation",
+              "purpose": "Enregistrer motifs créés"
+            }
+          ]
+        },
+        "visualSupports": "Cartes modèles ABC plastifiées, code couleur pour séquences, lignes de construction",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Exposition ABC: Présenter créations et expliquer la 'règle de trois' de leur motif.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": {
+          "required": [],
+          "optional": [
+            {
+              "item": "Espace d'exposition organisé",
+              "quantity": "Tables pour galerie temporaire",
+              "purpose": "Mettre en valeur toutes les créations ABC"
+            }
+          ]
+        },
+        "visualSupports": "Zone d'exposition désignée, cercle pour présentations",
         "decisionPoints": [],
         "movementBreaks": []
       },
@@ -303,14 +778,43 @@
       },
       "realWorldConnection": "Feux de circulation (rouge-jaune-vert), motifs sur tissus complexes",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Rester avec motifs AB jusqu'à maîtrise complète",
+          "Utiliser seulement 6 éléments ABC-ABC au lieu de longues séquences",
+          "Fournir modèle à copier avant création libre",
+          "Compter à voix haute: un-deux-trois-un-deux-trois"
+        ],
+        "forAdvanced": [
+          "Créer motifs ABCD ou patterns plus complexes",
+          "Combiner attributs: couleur ET forme en patterns",
+          "Inventer systèmes de notation pour leurs motifs",
+          "Enseigner technique ABC à élèves en difficulté"
+        ],
+        "forELL": [
+          "Associer 'trois' avec gestes des doigts clairs",
+          "Répéter 'cycle' avec mouvement circulaire",
+          "Utiliser 'recommencer' avec geste de retour au début",
+          "Compter en langue première puis en français"
+        ],
+        "forIEP": [
+          "Adapter matériel selon capacités motrices (plus gros, légers)",
+          "Réduire nombre d'éléments si concentration limitée",
+          "Utiliser supports visuels renforcés avec couleurs vives",
+          "Permettre pauses fréquentes pour éviter surcharge"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève crée motif ABC correct sur au moins 6 éléments",
+          "Élève explique le cycle de trois dans son motif",
+          "Élève utilise vocabulaire: trois, cycle, recommencer",
+          "Élève distingue entre motifs AB et ABC correctement"
+        ],
+        "checkpoints": [
+          "Pendant construction: Vérifier séquence ABC répétée",
+          "Pendant transformation: Observer compréhension des différences",
+          "Pendant exposition: Noter clarté des explications"
+        ]
       }
     },
     {
@@ -327,24 +831,84 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Préparation d'explorateurs: 'La nature est pleine de motifs secrets! Devenons des détectives nature!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Loupes d'exploration",
+              "quantity": "12 loupes pour observation détaillée",
+              "source": "Matériel scientifique - kit exploration",
+              "preparation": "Vérifier propreté et attacher ficelles",
+              "alternatives": ["Verres grossissants", "Observation directe"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Chapeaux d'explorateur",
+              "quantity": "25 pour ambiance (optionnel)",
+              "purpose": "Créer esprit d'aventure et d'exploration"
+            }
+          ]
+        },
+        "visualSupports": "Images de motifs naturels: spirales coquillages, rayées zèbres, écailles poissons",
+        "decisionPoints": [
+          "Si météo défavorable → explorer motifs dans plantes d'intérieur",
+          "Si trop d'excitation → établir règles de sécurité extérieure claires"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Expédition nature: Explorer extérieur pour motifs (feuilles, fleurs, écorce, nuages). Dessiner découvertes. Créer collection de motifs naturels. Comparer avec motifs artificiels.",
-        "materials": [],
-        "visualSupports": "Guide de motifs naturels, carnet d'exploration structuré",
+        "materials": {
+          "required": [
+            {
+              "item": "Carnets d'exploration",
+              "quantity": "25 carnets format poche",
+              "source": "Papier recyclé agrafé - préparation classe",
+              "preparation": "Créer carnets 10 pages avec couverture",
+              "alternatives": ["Feuilles sur planchettes", "Bloc-notes simple"]
+            },
+            {
+              "item": "Crayons de couleur résistants",
+              "quantity": "50 crayons pour usage extérieur",
+              "source": "Fournitures artistiques classe",
+              "preparation": "Sélectionner couleurs naturelles (vert, brun, etc.)",
+              "alternatives": ["Crayons de cire", "Marqueurs lavables"]
+            },
+            {
+              "item": "Contenants de collection",
+              "quantity": "8 boîtes pour specimens (avec couvercle)",
+              "source": "Boîtes recyclées - école",
+              "preparation": "Nettoyer, faire trous pour aération si nécessaire",
+              "alternatives": ["Sacs plastique", "Poches de vêtements"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Appareil photo/tablette",
+              "quantity": "2 pour documentation",
+              "purpose": "Capturer motifs difficiles à collectionner"
+            }
+          ]
+        },
+        "visualSupports": "Guide visuel de motifs naturels, carnet d'exploration structuré avec sections",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Musée nature: Exposer trouvailles et discuter 'Pourquoi la nature fait-elle des motifs?'",
-        "materials": [],
-        "visualSupports": "",
+        "materials": {
+          "required": [],
+          "optional": [
+            {
+              "item": "Espace d'exposition nature",
+              "quantity": "Tables pour musée temporaire",
+              "purpose": "Organiser et partager découvertes"
+            }
+          ]
+        },
+        "visualSupports": "Zone d'exposition organisée, étiquettes pour classification",
         "decisionPoints": [],
         "movementBreaks": []
       },
@@ -354,14 +918,43 @@
       },
       "realWorldConnection": "Jardinage, promenades en famille, observation des saisons",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir images de motifs naturels à chercher spécifiquement",
+          "Permettre travail en partenariat avec guide",
+          "Utiliser zone restreinte pour exploration plus focalisée",
+          "Accepter dessins simples au lieu de représentations détaillées"
+        ],
+        "forAdvanced": [
+          "Chercher motifs plus subtils (textures, organisations)",
+          "Catégoriser découvertes par type de motif (spirales, rayés, etc.)",
+          "Créer hypothèses sur pourquoi motifs existent dans nature",
+          "Documenter avec descriptions détaillées écrites"
+        ],
+        "forELL": [
+          "Associer vocabulaire nature avec objets réels touchés",
+          "Utiliser 'découvrir' avec geste de chercher et trouver",
+          "Répéter 'observer' avec gestes des yeux",
+          "Permettre descriptions en langue première puis traduction"
+        ],
+        "forIEP": [
+          "Adapter exploration selon mobilité (zones accessibles)",
+          "Modifier outils selon capacités motrices (crayons plus gros)",
+          "Ajuster durée extérieure selon tolérance",
+          "Fournir alternatives sensorielles (tactiles, auditives)"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève identifie au moins 3 motifs différents dans la nature",
+          "Élève documente découvertes par dessin ou collection",
+          "Élève utilise vocabulaire: nature, découvrir, observer",
+          "Élève fait liens entre motifs naturels et artificiels"
+        ],
+        "checkpoints": [
+          "Pendant exploration: Vérifier découvertes authentiques de motifs",
+          "Pendant documentation: Observer qualité des représentations",
+          "Pendant partage: Noter vocabulaire et explications"
+        ]
       }
     },
     {
@@ -378,24 +971,85 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Alerte motifs brisés: 'Oh non! Des motifs sont cassés! Nous sommes les réparateurs de motifs!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Cartes de motifs avec erreurs",
+              "quantity": "15 cartes préparées avec motifs incorrects",
+              "source": "Création enseignant - bristol coloré",
+              "preparation": "Créer motifs AB et ABC avec 1 erreur chacun",
+              "alternatives": ["Dessins au tableau", "Motifs avec objets réels"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Trousse de réparateur fantaisie",
+              "quantity": "1 pour ambiance (avec outils jouets)",
+              "purpose": "Créer atmosphère ludique de réparation"
+            }
+          ]
+        },
+        "visualSupports": "Exemple de motif cassé vs réparé au tableau",
+        "decisionPoints": [
+          "Si élèves ne voient pas l'erreur → pointer la zone problématique"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Clinique de réparation: Diagnostiquer erreurs dans motifs présentés. Expliquer où est le problème. Proposer corrections. Vérifier réparations avec partenaire.",
-        "materials": [],
-        "visualSupports": "Cartes diagnostiques, outils de réparation visuels, avant/après",
+        "materials": {
+          "required": [
+            {
+              "item": "Fiches diagnostiques avec motifs brisés",
+              "quantity": "30 fiches avec variété d'erreurs",
+              "source": "Préparation enseignant - photocopies",
+              "preparation": "Créer AB brisés (ex: AB-AC), ABC brisés (ex: ABC-ABD)",
+              "alternatives": ["Constructions avec matériel concret"]
+            },
+            {
+              "item": "Matériel de correction",
+              "quantity": "100 pièces: jetons, cubes pour corriger",
+              "source": "Matériel mathématiques classe",
+              "preparation": "Séparer par couleur, types",
+              "alternatives": ["Crayons pour dessiner corrections"]
+            },
+            {
+              "item": "Cartes 'avant/après'",
+              "quantity": "25 cartes pour documenter réparations",
+              "source": "Carton blanc - fournitures",
+              "preparation": "Plier en deux pour comparaison",
+              "alternatives": ["Feuilles séparées", "Tableau individuel"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Loupe de détective",
+              "quantity": "6 pour ambiance investigation",
+              "purpose": "Rendre la recherche d'erreurs plus ludique"
+            }
+          ]
+        },
+        "visualSupports": "Cartes diagnostiques, outils de réparation visuels, tableau avant/après",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Certificat de réparateur: Célébrer succès et remettre 'diplômes de réparateurs de motifs'.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": {
+          "required": [
+            {
+              "item": "Certificats de réparateur",
+              "quantity": "25 certificats personnalisés",
+              "source": "Création enseignant - papier spécial",
+              "preparation": "Préparer modèle avec espaces pour noms",
+              "alternatives": ["Autocollants de félicitation"]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Espace cérémoniel pour remise de certificats",
         "decisionPoints": [],
         "movementBreaks": []
       },
@@ -405,14 +1059,43 @@
       },
       "realWorldConnection": "Corriger erreurs dans rangement, réparer objets cassés",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Commencer avec erreurs très évidentes (couleur complètement différente)",
+          "Montrer motif correct à côté pour comparaison",
+          "Permettre travail en équipe pour support mutuel",
+          "Accepter identification d'erreur même sans correction parfaite"
+        ],
+        "forAdvanced": [
+          "Présenter erreurs plus subtiles (formes similaires)",
+          "Donner motifs avec erreurs multiples à réparer",
+          "Demander création de motifs brisés pour défier camarades",
+          "Expliquer pourquoi erreur brise le motif"
+        ],
+        "forELL": [
+          "Associer 'erreur' avec geste de 'non' ou 'stop'",
+          "Montrer 'réparer' avec gestes de réparation",
+          "Utiliser 'corriger' avec mouvement de changement",
+          "Répéter vocabulaire avec actions concrètes"
+        ],
+        "forIEP": [
+          "Utiliser erreurs visuelles très contrastantes",
+          "Modifier nombre d'erreurs à chercher selon attention",
+          "Permettre pointage au lieu de manipulation si nécessaire",
+          "Adapter outils de correction selon capacités motrices"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève identifie erreurs dans motifs AB et ABC simples",
+          "Élève propose corrections appropriées pour rétablir motif",
+          "Élève utilise vocabulaire: erreur, réparer, corriger",
+          "Élève explique pourquoi élément ne correspond pas au motif"
+        ],
+        "checkpoints": [
+          "Pendant diagnostic: Vérifier détection précise des erreurs",
+          "Pendant réparation: Observer logêque des corrections",
+          "Pendant vérification: Noter compréhension du motif réparé"
+        ]
       }
     },
     {
@@ -430,24 +1113,77 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Jeu des jumeaux: Présenter motifs similaires. 'Sont-ils identiques ou différents? Comment le savez-vous?'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Paires de cartes motifs similaires",
+              "quantity": "12 paires avec variations subtiles",
+              "source": "Création enseignant - bristol",
+              "preparation": "Créer paires AB vs AC, ABC vs ABD, etc.",
+              "alternatives": ["Motifs dessinés au tableau", "Objets concrets"]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Paires de motifs affichées côte à côte pour comparaison directe",
+        "decisionPoints": [
+          "Si élèves disent 'identiques' pour motifs différents → pointer spécifiquement la différence"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Laboratoire de comparaison: Analyser paires de motifs. Identifier points communs et différences. Classer motifs par familles. Créer motifs 'cousins' (similaires mais pas identiques).",
-        "materials": [],
-        "visualSupports": "Tableaux Venn simples, cartes de comparaison, codes couleur",
+        "materials": {
+          "required": [
+            {
+              "item": "Collection de cartes motifs variés",
+              "quantity": "50 cartes avec motifs de différentes familles",
+              "source": "Préparation enseignant + réutilisation leçons précédentes",
+              "preparation": "Organiser par familles: AB, ABC, AAB, etc.",
+              "alternatives": ["Matériel concret pour créer motifs"]
+            },
+            {
+              "item": "Cercles de classification",
+              "quantity": "15 cercles en tissu ou carton",
+              "source": "Matériel organisation mathématique",
+              "preparation": "Différentes tailles pour hiérarchie familles",
+              "alternatives": ["Feuilles de papier grandes"]
+            },
+            {
+              "item": "Matériel création nouveaux motifs",
+              "quantity": "75 pièces: formes, couleurs variées",
+              "source": "Kits manipulation mathématique",
+              "preparation": "Mélanger pour permettre créations originales",
+              "alternatives": ["Papier et crayons pour dessiner"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Tableau de comparaison Venn",
+              "quantity": "8 diagrammes simples pour équipes",
+              "purpose": "Structurer comparaisons et différences"
+            }
+          ]
+        },
+        "visualSupports": "Tableaux Venn simples, cartes de comparaison, codes couleur par famille",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Galerie de familles: Exposer groupes de motifs similaires et expliquer liens de parenté.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": {
+          "required": [],
+          "optional": [
+            {
+              "item": "Panneaux de famille",
+              "quantity": "6 panneaux pour organiser exposition",
+              "purpose": "Structurer présentation par familles de motifs"
+            }
+          ]
+        },
+        "visualSupports": "Espace exposition organisé par familles, étiquettes claires",
         "decisionPoints": [],
         "movementBreaks": []
       },
@@ -457,14 +1193,43 @@
       },
       "realWorldConnection": "Comparer vêtements similaires, différentes sortes de chiens",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser seulement comparaisons très évidentes (AB vs CD)",
+          "Fournir phrases à compléter: 'C'est pareil parce que..., c'est différent parce que...'",
+          "Permettre comparaisons par pointage avant verbalisation",
+          "Travailler avec seulement 2 motifs à la fois"
+        ],
+        "forAdvanced": [
+          "Comparer motifs avec multiples attributs (couleur ET forme)",
+          "Créer système de classification original",
+          "Identifier sous-catégories dans familles (AB courts vs longs)",
+          "Expliquer pourquoi certains motifs appartiennent à même famille"
+        ],
+        "forELL": [
+          "Utiliser gestes pour 'similaire' (rapprocher) et 'différent' (éloigner)",
+          "Répéter 'comparer' avec geste des yeux allant d'un à l'autre",
+          "Associer 'famille' avec geste de regroupement",
+          "Utiliser objets concrets familiers pour premiers comparaisons"
+        ],
+        "forIEP": [
+          "Adapter présentation visuelle (contraste, taille)",
+          "Réduire nombre de motifs à comparer simultanément",
+          "Utiliser supports tactiles pour distinction",
+          "Modifier attentes de production verbale selon capacités"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève identifie similarités et différences entre motifs simples",
+          "Élève groupe motifs similaires ensemble correctement",
+          "Élève utilise vocabulaire: comparer, similaire, différent, famille",
+          "Élève explique ses critères de regroupement"
+        ],
+        "checkpoints": [
+          "Pendant comparaisons: Vérifier précision des observations",
+          "Pendant classification: Observer logêque des regroupements",
+          "Pendant présentation: Noter utilisation vocabulaire spécifique"
+        ]
       }
     },
     {
@@ -508,14 +1273,43 @@
       },
       "realWorldConnection": "Décorer sa chambre, créer cartes personnalisées, art familial",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier avec seulement 2 couleurs/formes pour premiers motifs",
+          "Fournir modèles concrets à imiter avant création libre",
+          "Permettre collaboration avec partenaire plus expérimenté",
+          "Accepter motifs plus courts (4-6 éléments) comme réussites"
+        ],
+        "forAdvanced": [
+          "Créer motifs avec multiples attributs (couleur ET forme ET taille)",
+          "Inventer nouveaux types de motifs non-enseignés",
+          "Défier classe avec motifs complexes à continuer",
+          "Créer histoire ou chanson incorporant leur motif personnel"
+        ],
+        "forELL": [
+          "Associer 'créer' avec gestes de construction/invention",
+          "Répéter 'unique' avec geste de 'seulement un'",
+          "Utiliser 'personnel' en montrant soi-même",
+          "Permettre création motifs inspirés de leur culture d'origine"
+        ],
+        "forIEP": [
+          "Adapter matériel selon besoins moteurs (plus gros, légers)",
+          "Modifier attentes créatives selon capacités",
+          "Utiliser supports visuels renforcés pour inspiration",
+          "Permettre expression non-verbale de la créativité"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève crée motif personnel cohérent et répétable",
+          "Élève explique les choix dans sa création",
+          "Élève utilise vocabulaire: créer, unique, personnel",
+          "Élève montre fierté et ownership de sa création"
+        ],
+        "checkpoints": [
+          "Pendant création: Vérifier originalité et cohérence du motif",
+          "Pendant documentation: Observer soin et précision",
+          "Pendant présentation: Noter confiance et clarté d'explication"
+        ]
       }
     },
     {
@@ -532,24 +1326,83 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Mission secrète: 'Agents secrets, des motifs sont cachés dans des codes mystérieux! Mission: les décoder!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Cartes motifs partiellement cachées",
+              "quantity": "15 cartes avec sections couvertes",
+              "source": "Création enseignant avec papier autocollant",
+              "preparation": "Créer motifs puis couvrir parties stratégiques",
+              "alternatives": ["Boîtes avec motifs partiels visibles"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Badge d'agent secret",
+              "quantity": "25 badges pour ambiance",
+              "purpose": "Créer atmosphère d'enquête ludique"
+            }
+          ]
+        },
+        "visualSupports": "Exemple de motif avec révélation progressive au tableau",
+        "decisionPoints": [
+          "Si élèves devinent au hasard → enseigner à regarder le motif visible d'abord"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Enquêtes de motifs: Résoudre motifs avec parties couvertes. Utiliser indices pour prédire parties cachées. Créer cartes mystère pour défier camarades. Documenter méthodes de résolution.",
-        "materials": [],
-        "visualSupports": "Cartes avec révélations progressives, outils d'investigation, tableaux de déduction",
+        "materials": {
+          "required": [
+            {
+              "item": "Collection de cartes mystère",
+              "quantity": "40 cartes de difficultés variées",
+              "source": "Préparation enseignant - motifs avec cachettes",
+              "preparation": "Graduer difficulté: 1 élément caché à plusieurs",
+              "alternatives": ["Matériel concret avec couvertures"]
+            },
+            {
+              "item": "Matériel de découverte",
+              "quantity": "50 pièces pour compléter motifs",
+              "source": "Jetons, blocs, formes de classe",
+              "preparation": "Assortir aux motifs des cartes mystère",
+              "alternatives": ["Crayons pour dessiner prédictions"]
+            },
+            {
+              "item": "Carnets de détective",
+              "quantity": "25 petits carnets pour méthodes",
+              "source": "Papier agrafé - préparation classe",
+              "preparation": "Créer pages avec sections pour stratégies",
+              "alternatives": ["Feuilles simples pliées"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Loupe de détective",
+              "quantity": "8 loupes pour atmosphère",
+              "purpose": "Renforcer thème investigation"
+            }
+          ]
+        },
+        "visualSupports": "Cartes avec révélations progressives, tableau de stratégies de déduction",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Rapport d'agents: Présenter résolutions et expliquer méthodes de déduction utilisées.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": {
+          "required": [],
+          "optional": [
+            {
+              "item": "Tableaux de résultats",
+              "quantity": "1 pour enregistrer succès d'équipes",
+              "purpose": "Célébrer réussites d'enquêtes"
+            }
+          ]
+        },
+        "visualSupports": "Espace rapport avec mystères résolus affichés",
         "decisionPoints": [],
         "movementBreaks": []
       },
@@ -559,14 +1412,43 @@
       },
       "realWorldConnection": "Jeux de devinettes, puzzles, résolution de problèmes quotidiens",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Commencer avec seulement 1 élément caché à la fin du motif",
+          "Fournir choix multiples au lieu de réponse libre",
+          "Permettre travail en partenariat pour soutien mutuel",
+          "Révéler progressivement plus d'indices si blocage"
+        ],
+        "forAdvanced": [
+          "Présenter motifs avec plusieurs éléments cachés non-consécutifs",
+          "Créer motifs mystères originaux pour défier la classe",
+          "Résoudre motifs à double attributs (couleur ET forme cachés)",
+          "Expliquer stratégies de déduction à d'autres élèves"
+        ],
+        "forELL": [
+          "Associer 'mystère' avec geste de questionner et chercher",
+          "Utiliser 'révéler' avec mouvement de découvrir",
+          "Répéter 'déduire' avec geste de réflexion logique",
+          "Permettre explication de stratégie en langue première d'abord"
+        ],
+        "forIEP": [
+          "Adapter présentation visuelle (contraste, taille des cachettes)",
+          "Réduire nombre de mystères à résoudre selon attention",
+          "Utiliser supports tactiles pour exploration des motifs",
+          "Modifier attentes de documentation selon capacités"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève résout motifs simples avec 1-2 éléments cachés",
+          "Élève explique sa stratégie de déduction",
+          "Élève utilise vocabulaire: mystère, révéler, déduire",
+          "Élève persiste face aux défis sans abandonner rapidement"
+        ],
+        "checkpoints": [
+          "Pendant résolution: Observer stratégies utilisées",
+          "Pendant création: Vérifier compréhension du concept mystère",
+          "Pendant rapport: Noter clarté des explications logiques"
+        ]
       }
     },
     {
