@@ -20,38 +20,65 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Explore different voices - whisper, loud, high, low. Point to throat and say 'voix'. Everyone practices saying their name with their special voice.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Miroir de classe", "Cartes d'images voix (chuchoter, crier, chanter)"],
+        "visualSupports": "Images des parties du corps (gorge, bouche) pour expliquer la voix",
+        "decisionPoints": [
+          {
+            "moment": "Si certains élèves sont timides avec leur voix",
+            "options": ["Commencer par chuchoter ensemble", "Utiliser des marionnettes", "Faire des sons avec la bouche fermée"]
+          },
+          {
+            "moment": "Si les élèves deviennent trop bruyants",
+            "options": ["Signal de silence avec la main", "Jeu du volume (1-5)", "Pause respiratoire calme"]
+          }
+        ],
+        "movementBreaks": ["Étirements du cou et des épaules", "Respirations profondes"]
       },
       "main": {
         "duration": "~27 min",
         "activity": "Voice exploration games - students experiment with volume, pitch, and expression. Practice 'Bonjour' in different ways. Record some voices if technology available.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Enregistreur audio (si disponible)", "Tableau des volumes 1-5"],
+        "visualSupports": "Affiche des différents types de voix (forte, douce, aiguë, grave)",
+        "decisionPoints": [
+          {
+            "moment": "Si la technologie n'est pas disponible",
+            "options": ["Utiliser écho en classe", "Partenaires s'enregistrent mutuellement", "Imitation en temps réel"]
+          },
+          {
+            "moment": "Si certains élèves monopolisent",
+            "options": ["Chronomètre de 30 secondes", "Tour de rôle structuré", "Partenaires changent"]
+          }
+        ],
+        "movementBreaks": ["Exercices de respiration", "Étirements faciaux"]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Circle sharing - each student says one word in their special voice. Celebrate the uniqueness of each voice.",
         "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "visualSupports": "Cercle de partage au sol avec coussin spécial pour le partage",
+        "decisionPoints": [
+          {
+            "moment": "Si un élève ne veut pas partager",
+            "options": ["Partage optionnel", "Partage avec l'enseignant(e) seulement", "Écoute active seulement"]
+          },
+          {
+            "moment": "Si le temps manque",
+            "options": ["Un mot par élève seulement", "Petits groupes de 3-4", "Continuer demain"]
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": "If voice exploration feels uncomfortable, use familiar songs or chants as starting point",
       "realWorldConnection": "We use our voices every day to talk to family and friends - our voice is special and unique",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Commencer par des sons familiers (animaux)", "Support en petit groupe", "Imiter d'abord avant créer"],
+        "forAdvanced": ["Expérimenter avec accents différents", "Créer des histoires avec voix", "Diriger l'exploration du groupe"],
+        "forELL": ["Support visuel avec gestes", "Encourager mélange L1/français", "Partenaire francophone"],
+        "forIEP": ["Volume personnalisé selon confort", "Support technologique si nécessaire", "Temps additionnel"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Participe à l'exploration vocale", "Démontre confort avec sa voix", "Respecte les autres voix"],
+        "checkpoints": ["Essaie différents volumes", "Partage sa voix spéciale", "Écoute avec respect"]
       }
     },
     {
@@ -68,38 +95,61 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Review using our voices. Today we use voice to share special things. Model with teacher's special item.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Objet spécial de l'enseignant(e) pour modèle"],
+        "visualSupports": "Phrases de départ sur affiche : 'Voici...', 'J'aime...', 'C'est important parce que...'",
+        "decisionPoints": [
+          {
+            "moment": "Si élève oublie d'apporter quelque chose",
+            "options": ["Choisir objet de classe", "Dessiner objet spécial", "Partager souvenir sans objet"]
+          },
+          {
+            "moment": "Si présentation trop longue",
+            "options": ["Chronomètre de 2 minutes", "3 phrases maximum", "Signal gentil de temps"]
+          }
+        ],
+        "movementBreaks": ["Se lever pour montrer objet", "Applaudir chaque présentation"]
       },
       "main": {
         "duration": "~27 min",
         "activity": "Traditional show and tell with French vocabulary support. Students show item and say 2-3 simple French words about it. Use 'Voici...' and 'J'aime...' sentence starters.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Cartes visuelles des phrases de départ", "Objets variés pour pratique"],
+        "visualSupports": "Modèles de phrases : 'Voici mon/ma...', 'J'aime ça parce que...'",
+        "decisionPoints": [
+          {
+            "moment": "Si élève très nerveux",
+            "options": ["Présenter à un ami d'abord", "Enseignant(e) aide", "Présentation assise"]
+          },
+          {
+            "moment": "Si participation inégale",
+            "options": ["Petits groupes", "Partenaires", "Présentation volontaire seulement"]
+          }
+        ],
+        "movementBreaks": ["Circulation pour voir objets", "Applaudissements debout"]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Reflection on sharing - students say one thing they learned about a classmate today.",
         "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "visualSupports": "Questions de réflexion au tableau : 'Qu'est-ce que j'ai appris?', 'Qu'est-ce qui m'a surpris?'",
+        "decisionPoints": [
+          {
+            "moment": "Si élèves ont de la difficulté à réfléchir",
+            "options": ["Questions plus spécifiques", "Partage en paires", "Dessiner ce qu'ils ont appris"]
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": "If students are nervous about presenting, let them share with just teacher or one friend first",
       "realWorldConnection": "Show and tell helps us share what's important to us - just like telling family about special things",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Support pour choisir objet simple", "Phrases pré-écrites disponibles", "Présentation avec aide"],
+        "forAdvanced": ["Phrases complexes", "Questions du public", "Histoire derrière l'objet"],
+        "forELL": ["Support visuel pour phrases", "Mélange de langues accepté", "Traduction si nécessaire"],
+        "forIEP": ["Format adapté aux besoins", "Temps flexible", "Support technologique"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Partage objet personnel", "Utilise phrases françaises", "Écoute respectueusement"],
+        "checkpoints": ["Apporte quelque chose de spécial", "Utilise 'Voici' ou 'J'aime'", "Participe au partage"]
       }
     },
     {
@@ -116,38 +166,61 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Review using voice to share. Today explore how body 'talks' too. Model gestures for hello, goodbye, happy, sad.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Cartes d'images émotions/actions pour gestes"],
+        "visualSupports": "Affiche des gestes de base : bonjour, au revoir, content, triste",
+        "decisionPoints": [
+          {
+            "moment": "Si concept des gestes est trop abstrait",
+            "options": ["Commencer par gestes évidents (saluer)", "Utiliser des objets", "Gestes en paires"]
+          },
+          {
+            "moment": "Si élèves deviennent agités",
+            "options": ["Gestes plus calmes", "Assis pour certains gestes", "Pause réflexion"]
+          }
+        ],
+        "movementBreaks": ["Étirements des bras et mains", "Gestes de relaxation"]
       },
       "main": {
         "duration": "~27 min",
         "activity": "Gesture games - students communicate ideas using only body language, then add French words. Practice common gestures and their meanings.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Cartes scenarios simples", "Minuteur pour tours de rôle"],
+        "visualSupports": "Exemples visuels des gestes communs dans notre culture",
+        "decisionPoints": [
+          {
+            "moment": "Si jeux deviennent compétitifs",
+            "options": ["Accent sur collaboration", "Pas de 'gagnants'", "Célébrer toutes tentatives"]
+          },
+          {
+            "moment": "Si certains gestes semblent inappropriés",
+            "options": ["Rediriger vers gestes positifs", "Discussion sur respect", "Gestes de classe seulement"]
+          }
+        ],
+        "movementBreaks": ["Mouvement libre créatif", "Étirements guidés"]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Silent communication challenge - students communicate one idea to partner using only gestures.",
         "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "visualSupports": "Liste des gestes appris pour référence",
+        "decisionPoints": [
+          {
+            "moment": "Si communication silencieuse est difficile",
+            "options": ["Commencer par gestes simples", "Permettre quelques mots", "Gestes en équipe"]
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": "If gesture communication feels abstract, use familiar actions like waving, clapping, pointing",
       "realWorldConnection": "Our bodies help us communicate even without words - like waving hello or pointing to things we want",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Gestes simples et évidents", "Imitation d'abord", "Support en petit groupe"],
+        "forAdvanced": ["Gestes complexes et créatifs", "Séquences de gestes", "Enseigner aux autres"],
+        "forELL": ["Gestes universels d'abord", "Comparaison avec culture d'origine", "Support visuel constant"],
+        "forIEP": ["Gestes adaptés aux capacités", "Support physique si nécessaire", "Alternative communication"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Utilise gestes pour communiquer", "Comprend gestes des autres", "Respecte différents styles de communication"],
+        "checkpoints": ["Essaie différents gestes", "Communique sans mots", "Interprète gestes d'autrui"]
       }
     },
     {
@@ -164,38 +237,61 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Review using voice and body to communicate. Today focus on the other side - listening! Put on 'listening ears'.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Oreilles en papier pour 'oreilles d'écoute'"],
+        "visualSupports": "Affiche des signes d'un bon auditeur : yeux, oreilles, bouche fermée",
+        "decisionPoints": [
+          {
+            "moment": "Si concept d'écoute est abstrait",
+            "options": ["Démonstration exagérée bonne/mauvaise écoute", "Jeu du téléphone", "Écoute de sons mystères"]
+          },
+          {
+            "moment": "Si élèves ont du mal à se concentrer",
+            "options": ["Séances d'écoute plus courtes", "Support visuel pendant écoute", "Position d'écoute spéciale"]
+          }
+        ],
+        "movementBreaks": ["Exercices d'oreilles (toucher, bouger)", "Position d'écoute spéciale"]
       },
       "main": {
         "duration": "~27 min",
         "activity": "Listening practice with partners - one student shares, other practices active listening and asking simple questions using 'Qu'est-ce que...?' and 'Pourquoi...?'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Cartes de questions de départ", "Minuteur pour tours d'écoute"],
+        "visualSupports": "Exemples de bonnes questions : 'Qu'est-ce que...?', 'Pourquoi...?'",
+        "decisionPoints": [
+          {
+            "moment": "Si questions trop difficiles à formuler",
+            "options": ["Commencer par 'Qu'est-ce que...?'", "Questions en français/anglais", "Montrer plutôt que demander"]
+          },
+          {
+            "moment": "Si un partenaire domine",
+            "options": ["Chronomètre strict", "Changer partenaires", "Rôles clairement définis"]
+          }
+        ],
+        "movementBreaks": ["Changement de partenaires", "Étirements d'écoute"]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Reflect on what makes good listening. Students share what they learned by listening carefully today.",
         "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "visualSupports": "Critères d'écoute affichés : attention, questions, respect",
+        "decisionPoints": [
+          {
+            "moment": "Si réflexion sur écoute difficile",
+            "options": ["Questions spécifiques", "Exemples concrets", "Dessiner bon auditeur"]
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": "If listening skills are challenging, use structured turn-taking with clear signals for speaker/listener roles",
       "realWorldConnection": "Good communication means both talking and listening - like how family members take turns sharing",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Écoute en petits groupes", "Support visuel pour questions", "Modèles de questions simples"],
+        "forAdvanced": ["Questions complexes et de suivi", "Aide aux pairs", "Résumé de ce qu'ils entendent"],
+        "forELL": ["Questions en français et anglais OK", "Support visuel pour compréhension", "Partenaire patient"],
+        "forIEP": ["Format adapté aux besoins auditifs", "Support technologique", "Temps flexible"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Démontre écoute active", "Pose questions appropriées", "Respecte temps de parole"],
+        "checkpoints": ["Maintient contact visuel", "Pose au moins une question", "Répond de façon pertinente"]
       }
     },
     {
@@ -212,38 +308,61 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Review good listening and sharing. Today tell adventure stories! Model simple adventure with sequence words.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Cartes de séquence (1, 2, 3)"],
+        "visualSupports": "Mots de séquence sur affiche : 'D'abord', 'Ensuite', 'Finalement'",
+        "decisionPoints": [
+          {
+            "moment": "Si concept de séquence difficile",
+            "options": ["Utiliser routine de classe comme exemple", "Actions physiques pour séquence", "Images séquentielles"]
+          },
+          {
+            "moment": "Si élèves n'ont pas d'aventures à partager",
+            "options": ["Aventures de classe récentes", "Aventures imaginaires OK", "Aventures simples (jouer dehors)"]
+          }
+        ],
+        "movementBreaks": ["Actions pour 'd'abord, ensuite, finalement'", "Marche séquentielle"]
       },
       "main": {
         "duration": "~27 min",
         "activity": "Students share simple personal adventures (playground, home, weekend) using 'D'abord...', 'Ensuite...', 'Finalement...' Support with visual sequence cards.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Cartes visuelles de séquence 1-2-3", "Images d'aventures pour inspiration"],
+        "visualSupports": "Support visuel avec images pour 'D'abord', 'Ensuite', 'Finalement'",
+        "decisionPoints": [
+          {
+            "moment": "Si histoires deviennent très longues",
+            "options": ["3 étapes maximum", "Minuteur discret", "Signal pour conclusion"]
+          },
+          {
+            "moment": "Si certains élèves dominent",
+            "options": ["Tour de rôle strict", "Bâton de parole", "Petits groupes"]
+          }
+        ],
+        "movementBreaks": ["Gestes pour chaque étape", "Marche d'aventure"]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Celebrate adventurous storytellers. Practice sequence words together as group.",
         "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "visualSupports": "Mots de séquence restent affichés pour référence",
+        "decisionPoints": [
+          {
+            "moment": "Si pratique groupe difficile",
+            "options": ["Pratique individuelle d'abord", "Séquence avec gestes", "Chanson de séquence"]
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": "If sequence concepts are difficult, use familiar classroom routine as practice for 'first, then, last'",
       "realWorldConnection": "We tell family about our adventures and experiences - sharing stories helps us remember and connect",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Support visuel constant pour séquence", "Aventures très simples", "Aide pour structurer récit"],
+        "forAdvanced": ["Plus d'étapes dans séquence", "Détails riches", "Questions du public encouragées"],
+        "forELL": ["Mélange séquence en deux langues OK", "Support visuel fort", "Partenaire pour aider"],
+        "forIEP": ["Format adapté (dessin, gestes)", "Support technologique", "Temps flexible"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Utilise mots de séquence", "Raconte aventure personnelle", "Structure histoire logiquement"],
+        "checkpoints": ["Dit 'D'abord'", "Ajoute 'Ensuite'", "Conclut histoire"]
       }
     },
     {
@@ -260,38 +379,48 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Review adventure storytelling. Today make characters come alive with special voices and movements!",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Images de personnages variés (animaux, personnes)"],
+        "visualSupports": "Affiche des types de personnages avec leurs voix",
+        "decisionPoints": [
+          {
+            "moment": "Si travail de personnage trop complexe",
+            "options": ["Commencer par voix d'animaux", "Personnages très simples", "Imitation en groupe"]
+          }
+        ],
+        "movementBreaks": ["Étirements créatifs"]
       },
       "main": {
         "duration": "~27 min",
         "activity": "Character exploration - students practice different character voices (big/small, happy/sad, fast/slow) and movements. Create simple character scenarios.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Cartes de personnages", "Foulards ou accessoires simples"],
+        "visualSupports": "Exemples visuels : grand/petit, rapide/lent, content/triste",
+        "decisionPoints": [
+          {
+            "moment": "Si certains élèves sont timides",
+            "options": ["Travail en paires", "Derrière un rideau", "Personnages assis"]
+          }
+        ],
+        "movementBreaks": ["Transformation physique libre"]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Character parade - students briefly demonstrate their favorite character voice and movement.",
         "materials": [],
-        "visualSupports": "",
+        "visualSupports": "Espace désigné pour la parade",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": "If character work feels too complex, start with familiar animals or family member voices",
       "realWorldConnection": "We change our voices when we pretend to be different people - like when playing with toys or telling stories",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Personnages très familiers", "Voix simples seulement", "Support en petit groupe"],
+        "forAdvanced": ["Personnages complexes", "Combinaison voix-mouvement", "Improvisation de scènes"],
+        "forELL": ["Personnages universels", "Support visuel pour caractéristiques", "Expression non-verbale encouragée"],
+        "forIEP": ["Personnages adaptés aux capacités", "Modifications physiques au besoin", "Participation à son niveau"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Expérimente avec voix différentes", "Ajoute mouvement aux personnages", "Partage créations avec confiance"],
+        "checkpoints": ["Crée au moins un personnage", "Change sa voix", "Participe à la parade"]
       }
     },
     {
@@ -308,38 +437,48 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Review character voices. Today explore how emotions change our voice and face. Model happy vs. sad voice.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Miroir de classe", "Cartes d'émotions avec visages"],
+        "visualSupports": "Roue des émotions avec expressions faciales",
+        "decisionPoints": [
+          {
+            "moment": "Si sujet des émotions semble difficile",
+            "options": ["Commencer par content/triste seulement", "Utiliser marionnettes", "Imitation en groupe"]
+          }
+        ],
+        "movementBreaks": ["Exercices faciaux amusants"]
       },
       "main": {
         "duration": "~27 min",
         "activity": "Emotion exploration - students practice expressing different emotions through facial expressions and voice tone. Use scenarios to practice appropriate emotional responses.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Scénarios simples sur cartes", "Miroirs individuels si disponibles"],
+        "visualSupports": "Affiche des émotions principales avec mots français",
+        "decisionPoints": [
+          {
+            "moment": "Si certains élèves deviennent bouleversés",
+            "options": ["Retour aux émotions positives", "Pause réconfortante", "Discussion sur sécurité émotionnelle"]
+          }
+        ],
+        "movementBreaks": ["Mouvements d'émotions corporelles"]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Emotion check-in - students share how they're feeling using French emotion words and expressions.",
         "materials": [],
-        "visualSupports": "",
+        "visualSupports": "Thermomètre des émotions pour auto-évaluation",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": "If emotion work feels too personal, use characters or stuffed animals to explore emotional expression",
       "realWorldConnection": "Our faces and voices show how we feel - helping others understand our emotions",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Émotions de base seulement", "Support avec objets", "Expression non-verbale prioritaire"],
+        "forAdvanced": ["Émotions complexes", "Nuances d'expression", "Aide aux pairs pour reconnaissance"],
+        "forELL": ["Émotions universelles d'abord", "Support visuel constant", "Comparaison interculturelle"],
+        "forIEP": ["Adaptations pour confort émotionnel", "Expression au niveau de capacité", "Soutien supplémentaire si nécessaire"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Exprime émotions avec visage", "Change voix selon émotion", "Reconnaît émotions chez autrui"],
+        "checkpoints": ["Montre content et triste", "Utilise mots d'émotions", "Participe avec respect"]
       }
     },
     {
@@ -356,38 +495,48 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Review expressing emotions. Today combine everything to act out real-life scenes with partners!",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Cartes de scénarios simples"],
+        "visualSupports": "Exemples de scènes à jouer avec illustrations",
+        "decisionPoints": [
+          {
+            "moment": "Si travail en paires difficile",
+            "options": ["Groupes de trois", "Enseignant(e) comme partenaire", "Scènes individuelles"]
+          }
+        ],
+        "movementBreaks": ["Échauffement théâtral"]
       },
       "main": {
         "duration": "~27 min",
         "activity": "Partner drama - students act out simple scenarios (ordering food, asking for help, greeting friends) using voice, emotion, and character skills.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Accessoires simples (chapeaux, foulards)", "Minuteur pour scènes"],
+        "visualSupports": "Guide visuel pour expressions faciales et gestes",
+        "decisionPoints": [
+          {
+            "moment": "Si scènes deviennent désorganisées",
+            "options": ["Structure plus claire", "Rôles précis", "Pause pour réorganiser"]
+          }
+        ],
+        "movementBreaks": ["Changement de partenaires avec mouvement"]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Mini performances - few pairs share their scenes with class. Celebrate teamwork and creativity.",
         "materials": [],
-        "visualSupports": "",
+        "visualSupports": "Espace de performance désigné",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": "If partner work is challenging, let students work individually or provide very structured role assignments",
       "realWorldConnection": "We act out different situations in our daily play - practicing helps us in real situations",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Scénarios très simples", "Rôles précis assignés", "Support constant"],
+        "forAdvanced": ["Scénarios complexes", "Improvisation libre", "Leadership dans groupes"],
+        "forELL": ["Scénarios universels", "Gestes prioritaires", "Support de partenaire francophone"],
+        "forIEP": ["Adaptations pour interactions sociales", "Rôles selon forces", "Support pour anxiité sociale"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Collabore avec partenaire", "Intègre voix et mouvement", "Joue scène avec confiance"],
+        "checkpoints": ["Participe en équipe", "Utilise compétences apprises", "Respecte partenaire"]
       }
     },
     {
@@ -404,38 +553,48 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Review acting scenes together. Today be solo presenters sharing our own special creations!",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Créations d'élèves (dessins, projets)"],
+        "visualSupports": "Phrases pour présenter : 'J'ai fait...', 'J'aime ça parce que...'",
+        "decisionPoints": [
+          {
+            "moment": "Si élèves n'ont pas de créations",
+            "options": ["Dessin rapide sur place", "Projet imaginé", "Création de classe"]
+          }
+        ],
+        "movementBreaks": ["Préparation créative debout"]
       },
       "main": {
         "duration": "~27 min",
         "activity": "Art presentation - students present their artwork or projects using simple French descriptions. Practice explaining process and meaning.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Chevalet ou support d'affichage", "Pointeur pour montrer détails"],
+        "visualSupports": "Guide des mots descriptifs : couleurs, formes, sentiments",
+        "decisionPoints": [
+          {
+            "moment": "Si anxiiété de présentation haute",
+            "options": ["Présentation assise", "Avec un ami", "Juste à l'enseignant(e)"]
+          }
+        ],
+        "movementBreaks": ["Tour de la classe pour voir créations"]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Audience appreciation - students practice giving positive feedback using simple French phrases.",
         "materials": [],
-        "visualSupports": "",
+        "visualSupports": "Phrases de félicitations : 'Bravo!', 'J'aime...', 'C'est beau!'",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": "If presentation anxiety is high, let students practice explanation with just teacher before group presentation",
       "realWorldConnection": "Artists explain their work to help others understand - sharing our creations spreads joy",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Créations très simples OK", "Phrases courtes suffisantes", "Support pour expliquer"],
+        "forAdvanced": ["Détails complexes", "Questions techniques", "Aide aux pairs presenters"],
+        "forELL": ["Description en deux langues OK", "Support visuel pour mots", "Focus sur fierté plutôt que perfection"],
+        "forIEP": ["Format adapté aux forces", "Présentation modifiée", "Soutien émotionnel"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Présente sa création", "Utilise vocabulaire descriptif", "Démontre fierté dans travail"],
+        "checkpoints": ["Montre sa création", "Explique un aspect", "Accepte félicitations"]
       }
     },
     {
@@ -452,38 +611,48 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Review presenting our work. Today be curious audience members who ask great questions!",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Cartes de questions exemple"],
+        "visualSupports": "Exemples de bonnes questions sur affiche",
+        "decisionPoints": [
+          {
+            "moment": "Si concept de poser questions difficile",
+            "options": ["Modéliser beaucoup", "Questions simples oui/non d'abord", "Questions en équipe"]
+          }
+        ],
+        "movementBreaks": ["Geste de curiosité"]
       },
       "main": {
         "duration": "~27 min",
         "activity": "Question practice - students present briefly while others practice asking thoughtful questions using 'Pourquoi...?', 'Comment...?', 'Qu'est-ce que...?'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Minuteur pour présentations courtes", "Cartes d'aide questions"],
+        "visualSupports": "Guide visuel des types de questions",
+        "decisionPoints": [
+          {
+            "moment": "Si questions répétitives ou inappropriées",
+            "options": ["Reformuler ensemble", "Banque de questions variées", "Enseignant modèle questions"]
+          }
+        ],
+        "movementBreaks": ["Changement de présentateur avec mouvement"]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Celebrate good questions asked today. Discuss how questions help us learn about each other.",
         "materials": [],
-        "visualSupports": "",
+        "visualSupports": "Collection des meilleures questions de la journée",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": "If questioning feels awkward, use familiar topics and model enthusiastic curiosity about simple things",
       "realWorldConnection": "Asking questions shows we're interested in others - curiosity helps us learn and make friends",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Questions très simples", "Aide pour formuler", "Questions oui/non OK"],
+        "forAdvanced": ["Questions détaillées", "Questions de suivi", "Aide à formuler questions complexes"],
+        "forELL": ["Questions dans deux langues OK", "Support visuel pour structure", "Modèles concrets"],
+        "forIEP": ["Questions adaptées aux capacités", "Support pour interaction sociale", "Temps additionnel"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Pose questions aux pairs", "Montre curiosité authentique", "Écoute réponses avec attention"],
+        "checkpoints": ["Essaie de poser question", "Utilise mots question", "Respecte réponses d'autrui"]
       }
     },
     {
@@ -500,38 +669,48 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Review asking good questions. Today give clear instructions to help others learn new things!",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Exemples d'instructions écrites simples"],
+        "visualSupports": "Guide des mots d'instruction : 'D'abord', 'Ensuite', 'Finalement'",
+        "decisionPoints": [
+          {
+            "moment": "Si donner instructions trop difficile",
+            "options": ["Instructions très courtes", "Avec démonstration", "En paires"]
+          }
+        ],
+        "movementBreaks": ["Pratique gestes d'instruction"]
       },
       "main": {
         "duration": "~27 min",
         "activity": "Instruction practice - students teach classmates simple games, activities, or skills using clear French instructions. Practice giving and following instructions.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Cartes d'activités simples", "Minuteur pour tours"],
+        "visualSupports": "Modèles d'instructions avec images",
+        "decisionPoints": [
+          {
+            "moment": "Si instructions pas claires",
+            "options": ["Redémontrer", "Simplifier étapes", "Aide d'un pair"]
+          }
+        ],
+        "movementBreaks": ["Changement d'enseignant avec mouvement"]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Reflect on what makes instructions easy to follow. Celebrate successful teaching moments.",
         "materials": [],
-        "visualSupports": "",
+        "visualSupports": "Critères d'instructions claires affichés",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": "If instruction-giving is overwhelming, start with very familiar activities like hand-washing or line-up procedures",
       "realWorldConnection": "We give instructions to help others learn new things - like teaching friends games or showing family how to do something",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Instructions en 2 étapes maximum", "Avec démonstration physique", "Aide pour organiser idées"],
+        "forAdvanced": ["Instructions multi-étapes", "Enseigner activités complexes", "Aider pairs avec instructions"],
+        "forELL": ["Instructions avec gestes", "Support visuel fort", "Mélange langues pour clarté"],
+        "forIEP": ["Instructions adaptées capacités", "Support pour séquencer", "Temps flexible"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Donne instructions dans ordre logique", "Utilise gestes pour clarifier", "Vérifie compréhension"],
+        "checkpoints": ["Enseigne une activité simple", "Utilise mots de séquence", "Aide autrui à réussir"]
       }
     },
     {
@@ -548,38 +727,48 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Review giving clear instructions. Today paint pictures with words using vivid descriptions!",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Images variées pour description"],
+        "visualSupports": "Mots descriptifs par catégorie : couleur, taille, forme, texture",
+        "decisionPoints": [
+          {
+            "moment": "Si descriptions très simples",
+            "options": ["Commencer par couleurs seulement", "Phrases courtes OK", "Support en paires"]
+          }
+        ],
+        "movementBreaks": ["Gestes descriptifs"]
       },
       "main": {
         "duration": "~27 min",
         "activity": "Description practice - students describe pictures, objects, or experiences using sensory details and descriptive French words. Help others 'see' through words.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Objets variés pour toucher", "Images mystères"],
+        "visualSupports": "Banque de mots sensoriels avec images",
+        "decisionPoints": [
+          {
+            "moment": "Si descriptions manquent de détails",
+            "options": ["Questions guides", "Exploration sensorielle d'abord", "Modéliser descriptions riches"]
+          }
+        ],
+        "movementBreaks": ["Exploration tactile d'objets"]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Guessing game - students give descriptions while others guess what they're describing.",
         "materials": [],
-        "visualSupports": "",
+        "visualSupports": "Règles du jeu de devinettes affichées",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": "If descriptive language feels difficult, start with familiar objects and use sensory exploration",
       "realWorldConnection": "Good descriptions help others picture what we're talking about - like describing a movie to someone who hasn't seen it",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Un détail à la fois", "Objets très familiers", "Support pour trouver mots"],
+        "forAdvanced": ["Descriptions multi-sensorielles", "Métaphores simples", "Descriptions d'émotions aussi"],
+        "forELL": ["Support visuel pour vocabulaire", "Descriptions bilingues OK", "Gestes pour expliquer"],
+        "forIEP": ["Descriptions adaptées aux forces", "Supports sensoriels", "Temps flexible"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Utilise mots descriptifs variés", "Aide autres à visualiser", "Améliore descriptions avec pratique"],
+        "checkpoints": ["Décrit avec 2+ détails", "Utilise mots nouveaux", "Participe jeux devinettes"]
       }
     },
     {
@@ -596,38 +785,48 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Review all communication skills learned. Today put everything together in special class performance!",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Liste des compétences apprises"],
+        "visualSupports": "Menu des options de performance",
+        "decisionPoints": [
+          {
+            "moment": "Si anxiiété de performance",
+            "options": ["Performances optionnelles", "En paires pour soutien", "Audience réduite"]
+          }
+        ],
+        "movementBreaks": ["Échauffement de performance"]
       },
       "main": {
         "duration": "~27 min",
         "activity": "Class show - students choose how to showcase their communication skills (storytelling, character work, presentations, etc.) in mini-performances.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Accessoires simples pour performances", "Chronomètre"],
+        "visualSupports": "Espace de scène désigné",
+        "decisionPoints": [
+          {
+            "moment": "Si performances trop longues ou courtes",
+            "options": ["Temps flexible selon élève", "Signal doux pour temps", "Encouragement pour continuer"]
+          }
+        ],
+        "movementBreaks": ["Transitions entre performances"]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Audience appreciation and celebration of everyone's communication growth. Take photos of proud performers.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": ["Caméra ou téléphone pour photos"],
+        "visualSupports": "Certificats de participation",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": "If performance anxiety is high, make it optional or offer alternative ways to showcase learning",
       "realWorldConnection": "Performers share their talents with audiences - celebrating what we've learned makes us proud",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Performance très courte OK", "Avec support d'ami", "Montrer plutôt que dire"],
+        "forAdvanced": ["Performances élaborées", "Combinaison plusieurs compétences", "Leadership pour organiser"],
+        "forELL": ["Performance dans langue confortable", "Gestes et actions prioritaires", "Célébration de la participation"],
+        "forIEP": ["Performance adaptée aux forces", "Soutien selon besoins", "Célébration individualisée"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Participe selon ses capacités", "Démontre compétences apprises", "Célèbre avec fierté"],
+        "checkpoints": ["Partage une compétence", "Respecte autres performers", "Montre progrès depuis début"]
       }
     },
     {
@@ -644,38 +843,48 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Review class performance success. Today look back at amazing communication journey from Lesson 1 to now!",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Travaux des élèves depuis le début"],
+        "visualSupports": "Chronologie des leçons apprises",
+        "decisionPoints": [
+          {
+            "moment": "Si élèves ne voient pas progrès",
+            "options": ["Comparer travail début/fin", "Célébrer petits progrès", "Demander aux pairs ce qu'ils ont remarqué"]
+          }
+        ],
+        "movementBreaks": ["Revisiter espace classe avec souvenirs"]
       },
       "main": {
         "duration": "~27 min",
         "activity": "Portfolio creation - students compile examples of their communication growth, reflections on learning, and goals for continued French communication.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Dossiers individuels", "Papier et crayons pour réflexion"],
+        "visualSupports": "Questions de réflexion guidée avec images",
+        "decisionPoints": [
+          {
+            "moment": "Si réflexion abstraite difficile",
+            "options": ["Dessiner progrès", "Comparer photos début/fin", "Questions très concrètes"]
+          }
+        ],
+        "movementBreaks": ["Recherche de travaux dans différents espaces"]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Portfolio sharing - students share one thing they're most proud of in their communication growth.",
         "materials": [],
-        "visualSupports": "",
+        "visualSupports": "Cercle de fierté avec coussins spéciaux",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": "If reflection feels abstract, use concrete examples like 'remember when you were shy to speak, now you love presenting!'",
       "realWorldConnection": "We can see how much better we've become at sharing ideas - like looking at old photos to see how we've grown",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Portfolio très simple", "Support pour identifier progrès", "Focus sur réussites"],
+        "forAdvanced": ["Réflexion approfondie", "Objectifs futurs détaillés", "Aide pairs à voir progrès"],
+        "forELL": ["Portfolio bilingue OK", "Images pour montrer progrès", "Célébration courage linguistique"],
+        "forIEP": ["Portfolio adapté aux forces", "Méthodes variées de réflexion", "Soutien pour autoesteem"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Reconnaît son progrès", "Exprime fierté d'apprentissage", "Identifie compétences acquises"],
+        "checkpoints": ["Compile travaux", "Partage réflexion", "Exprime fierté authentique"]
       }
     },
     {
@@ -692,38 +901,43 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Celebrate communication portfolio completion. Today become master storytellers creating elaborate tales!",
-        "materials": [],
-        "visualSupports": "",
+        "materials": ["Images d'inspiration pour histoires"],
+        "visualSupports": "Structure d'histoire : début, milieu, fin",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": ["Échauffement créatif"]
       },
       "main": {
         "duration": "~27 min",
         "activity": "Advanced storytelling - students create and tell complex stories using multiple characters, different voices, and rich details. Focus on creative expression.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Accessoires pour personnages", "Cartes d'éléments d'histoire"],
+        "visualSupports": "Galerie de personnages possibles avec voix",
+        "decisionPoints": [
+          {
+            "moment": "Si histoires trop complexes ou confuses",
+            "options": ["Retour à structure simple", "Aide pour organiser idées", "Focus sur un personnage principal"]
+          }
+        ],
+        "movementBreaks": ["Actions physiques pendant histoires"]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Storyteller appreciation circle - audience gives specific compliments about storytelling techniques.",
         "materials": [],
-        "visualSupports": "",
+        "visualSupports": "Modèles de compliments spécifiques",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": "If elaborate storytelling feels overwhelming, let students adapt familiar stories with their own creative twists",
       "realWorldConnection": "Storytellers entertain people with creative tales - sharing stories brings joy to listeners",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Histoires courtes et simples", "Un personnage principal", "Structure guidée"],
+        "forAdvanced": ["Histoires complexes multi-personnages", "Techniques narratives avancées", "Mentorship d'autres conteurs"],
+        "forELL": ["Mélange narratif bilingue OK", "Gestes pour enrichir histoire", "Histoires de culture d'origine"],
+        "forIEP": ["Format narratif adapté", "Support pour séquencer", "Célébration de créativité unique"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Crée histoire originale", "Intègre compétences multiples", "Captive audience avec narration"],
+        "checkpoints": ["Raconte histoire complète", "Utilise voix différentes", "Réagit positivement aux commentaires"]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -780,38 +994,43 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Review creative storytelling. Today be news reporters sharing real information about our school!",
-        "materials": [],
-        "visualSupports": "",
+        "materials": ["Microphones-jouets", "Cartes d'événements scolaires"],
+        "visualSupports": "Format de nouvelles : Qui, Quoi, Où, Quand",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": ["Pratique posture reporter"]
       },
       "main": {
         "duration": "~27 min",
         "activity": "News reporting - students research and report on classroom or school events using reporter techniques. Practice clear, informative communication.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Bloc-notes pour reporters", "Caméra-jouet"],
+        "visualSupports": "Structure de rapport de nouvelles avec exemples",
+        "decisionPoints": [
+          {
+            "moment": "Si format nouvelles trop formel",
+            "options": ["Nouvelles très simples", "Format conversation", "Nouvelles amusantes OK"]
+          }
+        ],
+        "movementBreaks": ["Reporter en action dans classe"]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Evening news show - students present their news reports to 'television audience' (class).",
         "materials": [],
-        "visualSupports": "",
+        "visualSupports": "Décor 'télévision' simple",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": "If news reporting feels too formal, start with sharing simple announcements or describing class activities",
       "realWorldConnection": "Reporters tell people about important events - sharing information helps our community stay connected",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Nouvelles très courtes", "Avec aide pour organiser infos", "Focus sur un fait simple"],
+        "forAdvanced": ["Rapports détaillés", "Interviews avec questions", "Production nouvelles complexes"],
+        "forELL": ["Nouvelles bilingues OK", "Support visuel pour structure", "Nouvelles sur culture d'origine"],
+        "forIEP": ["Format adapté aux forces", "Support pour organiser informations", "Rôle selon préférences"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Partage information factuelle", "Utilise format nouvelles", "Communique clairement avec audience"],
+        "checkpoints": ["Répond à 'Qui/Quoi/Où'", "Présente avec confiance", "Respecte faits vs opinions"]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -868,38 +1087,43 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Review news reporting. Today learn that people can have different ideas and still be friends!",
-        "materials": [],
-        "visualSupports": "",
+        "materials": ["Images de sujets d'opinion simples"],
+        "visualSupports": "Phrases respectueuses : 'Je pense que...', 'Tu as raison aussi'",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": ["Gestes d'accord et désaccord respectueux"]
       },
       "main": {
         "duration": "~27 min",
         "activity": "Gentle debate practice - students share different opinions on simple topics (favorite seasons, best playground games) while practicing respectful disagreement.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Cartes de sujets d'opinion appropriées", "Bâton de parole"],
+        "visualSupports": "Règles du débat respectueux affichées",
+        "decisionPoints": [
+          {
+            "moment": "Si désaccord devient tendu",
+            "options": ["Pause rappel respect", "Changement de sujet", "Focus sur écouter plutôt que convaincre"]
+          }
+        ],
+        "movementBreaks": ["Cercle de respect entre sujets"]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Reflection on respectful disagreement - students share what they learned about different opinions.",
         "materials": [],
-        "visualSupports": "",
+        "visualSupports": "Leçons sur diversité d'opinions affichées",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": "If debate concept is too challenging, focus on sharing preferences and asking 'why do you think that?'",
       "realWorldConnection": "People can have different ideas and still be friends - listening to different opinions helps us learn",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Partage préférences simples", "Sujets très familiers", "Pas de pression argumenter"],
+        "forAdvanced": ["Argmentation avec raisons", "Questions de suivi", "Médiation entre opinions"]
+, "forELL": ["Opinions culturelles valorisées", "Support pour exprimer idées", "Comparaisons interculturelles"],
+        "forIEP": ["Participation selon confort social", "Support pour interaction respectueuse", "Alternatives à débat oral"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Exprime opinion personnelle", "Respecte opinions différentes", "Écoute sans interrompre"],
+        "checkpoints": ["Partage une préférence", "Accepte désaccord avec calme", "Pose question respectueuse"]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -956,38 +1180,43 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Review respectful opinion sharing. Today become teachers sharing expertise with others!",
-        "materials": [],
-        "visualSupports": "",
+        "materials": ["Badge 'Enseignant Expert'"],
+        "visualSupports": "Qualités d'un bon enseignant affichées",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": ["Posture enseignant confiant"]
       },
       "main": {
         "duration": "~27 min",
         "activity": "Teaching practice - students plan and practice teaching something they know well to younger students, family members, or classmates.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Matériaux variés pour démonstrations", "Tableau individuel si possible"],
+        "visualSupports": "Guide de planification de leçon simple",
+        "decisionPoints": [
+          {
+            "moment": "Si difficulté à choisir sujet d'expertise",
+            "options": ["Suggérer compétences observées", "Compétences de classe OK", "Travail en équipes enseignantes"]
+          }
+        ],
+        "movementBreaks": ["Rotation entre enseignants-élèves"]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Teacher appreciation - students reflect on what makes good teaching and how it feels to help others learn.",
         "materials": [],
-        "visualSupports": "",
+        "visualSupports": "Célébration des enseignants du jour",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": "If teaching concept is too abstract, let students demonstrate rather than formally teach",
       "realWorldConnection": "We can teach others what we've learned - sharing knowledge helps everyone grow",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Démonstration simple", "Sujet très familier", "Co-enseignement avec ami"],
+        "forAdvanced": ["Enseignement structuré", "Adaptation à différents apprenants", "Création matériel pédagogique"],
+        "forELL": ["Enseignement bilingue valorisé", "Partage expertise culturelle", "Démonstration prioritaire"],
+        "forIEP": ["Enseignement selon forces uniques", "Support pour planification", "Format adapté aux capacités"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Partage expertise authentique", "Adapte enseignement à audience", "Montre fierté dans savoir partagé"],
+        "checkpoints": ["Enseigne quelque chose qu'il maîtrise", "Aide autrui à apprendre", "Réfléchit sur expérience enseignement"]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1044,38 +1273,43 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Review being teachers and experts. Today be cultural ambassadors sharing special traditions from our families!",
-        "materials": [],
-        "visualSupports": "",
+        "materials": ["Objets culturels apportés par élèves"],
+        "visualSupports": "Carte du monde pour localiser cultures",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": ["Salutations de différentes cultures"]
       },
       "main": {
         "duration": "~27 min",
         "activity": "Cultural sharing - students present aspects of their family culture, traditions, or heritage using communication skills developed throughout unit.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Photos de famille", "Aliments culturels si possible"],
+        "visualSupports": "Galerie de diversité culturelle de classe",
+        "decisionPoints": [
+          {
+            "moment": "Si partage culturel inconfortable",
+            "options": ["Traditions très générales OK", "Culture de classe/école aussi", "Soutien pour tous types familles"]
+          }
+        ],
+        "movementBreaks": ["Danses ou mouvements culturels simples"]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Cultural appreciation - celebrate the diversity in classroom and what we learned about each other's backgrounds.",
         "materials": [],
-        "visualSupports": "",
+        "visualSupports": "Mosaïque de diversité créée ensemble",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": "If cultural sharing feels uncomfortable, focus on simple family traditions like holiday celebrations or favorite foods",
       "realWorldConnection": "We can share our family traditions with others - learning about different cultures makes our community richer",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Tradition très simple", "Avec support familial", "Objets pour montrer plutôt que expliquer"],
+        "forAdvanced": ["Présentation culturelle détaillée", "Comparaisons interculturelles", "Leadership pour célébration diversité"],
+        "forELL": ["Expertise culturelle valorisée", "Partage dans langue d'origine encourage", "Traduction pour classe"],
+        "forIEP": ["Partage selon niveau confort", "Toutes formes de partage valorisées", "Soutien pour participation sociale"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Partage aspect de sa culture", "Respecte cultures d'autrui", "Contribue à appréciation diversité"],
+        "checkpoints": ["Présente tradition familiale", "Pose questions respectueuses", "Célèbre richesse culturelle classe"]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1132,38 +1366,43 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Look back at incredible communication journey from shy beginners to confident communicators!",
-        "materials": [],
-        "visualSupports": "",
+        "materials": ["Portfolio de classe avec photos/travaux du début"],
+        "visualSupports": "Ligne de temps des apprentissages avec photos",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": ["Danse célébration du progrès"]
       },
       "main": {
         "duration": "~27 min",
         "activity": "Communication celebration - students showcase their favorite communication skills, receive certificates, and reflect on amazing growth as French speakers.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Certificats personnalisés", "Décorations festives"],
+        "visualSupports": "Galerie de réussites et progrès affichés",
+        "decisionPoints": [
+          {
+            "moment": "Si élèves ne reconnaissent pas progrès",
+            "options": ["Rappels spécifiques de croissance", "Témoignages de pairs", "Comparaison concrète début/maintenant"]
+          }
+        ],
+        "movementBreaks": ["Parade de fierté communicative"]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Final circle: each student completes 'Je suis un communicateur confiant parce que...' Group celebration photo with certificates.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": ["Caméra pour photo de groupe"],
+        "visualSupports": "Phrase de complétion affichée",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": "If students don't recognize their progress, use before/after examples from beginning of unit",
       "realWorldConnection": "Confident communicators can share ideas with anyone - our voices can now reach the French-speaking world!",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Célébration de tout progrès", "Reconnaissance efforts plutôt que résultats", "Soutien pour identifier forces"],
+        "forAdvanced": ["Réflexion approfondie sur apprentissage", "Plans futurs détaillés", "Mentorship pour célébration collective"],
+        "forELL": ["Célébration courage linguistique", "Fierté identité multilingue", "Progrès dans toutes langues valorisés"],
+        "forIEP": ["Célébration personnalisée aux réussites uniques", "Reconnaissance de tous types progrès", "Soutien pour confiance en soi"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Exprime fierté d'apprentissage", "Reconnaît progrès personnel", "Célèbre avec communauté classe"],
+        "checkpoints": ["Complète phrase de fierté", "Participe à célébration", "Montre confiance communicative acquise"]
       },
       "extensionGuidance": {
         "category": "Célébration",

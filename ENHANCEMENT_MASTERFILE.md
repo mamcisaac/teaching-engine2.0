@@ -43,8 +43,9 @@
 | premieres-histoires | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | **histoires-automne** | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | famille | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| **celebrations-dhiver** | ✅ | ✅ | ✅ | ✅ | ⬜ |
 | nos-traditions-hivernales | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| communication-orale | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| **communication-creative** | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | jeunes-auteurs-creatifs | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | poesie-et-rythmes | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | lecture-guidee-avancee | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -138,13 +139,13 @@ git push origin main
 
 ## 📊 Progress Statistics
 
-**Total Units**: 52 (51 + 1 introductory)  
-**Enhanced**: 14 / 52 (27%) - **MATHEMATICS COMPLETE! 🎉 FRENCH WORD EXPLORATION COMPLETE! 🇫🇷🔍📝 AUTUMN STORIES COMPLETE! 🍁📖**  
-**Translations Fixed**: 14 / 52 (27%)  
-**Decision Points Added**: 14 / 52 (27%)  
-**Materials Specified**: 14 / 52 (27%)  
-**Committed**: 2 / 52 (4%)  
-**Reviewed**: 2 / 52 (4%)
+**Total Units**: 54 (53 + 1 introductory)  
+**Enhanced**: 16 / 54 (30%) - **MATHEMATICS COMPLETE! 🎉 FRENCH COMMUNICATION CREATIVE COMPLETE! 🗣️🎭🇫🇷 FRENCH WORD EXPLORATION COMPLETE! 🇫🇷🔍📝 AUTUMN STORIES COMPLETE! 🍁📖 WINTER CELEBRATIONS COMPLETE! ❄️🎉**  
+**Translations Fixed**: 16 / 54 (30%)  
+**Decision Points Added**: 16 / 54 (30%)  
+**Materials Specified**: 16 / 54 (30%)  
+**Committed**: 3 / 54 (6%)  
+**Reviewed**: 2 / 54 (4%)
 
 ## 🎯 Current Focus
 
@@ -172,7 +173,29 @@ git push origin main
 - ✅ Extension lessons (15-20) include creative applications: games, stories, art, cooking, music, celebration
 - ✅ Perfect progression for beginning-of-year French immersion with oral communication emphasis and gesture support
 
-**LATEST ACHIEVEMENT**: francais/histoires-automne (FRENCH AUTUMN STORIES UNIT COMPLETED) 🍁📖
+**LATEST ACHIEVEMENT**: francais/communication-creative (FRENCH CREATIVE COMMUNICATION UNIT COMPLETED) 🗣️🎭🇫🇷
+- ✅ Enhanced all 20 lessons of "Communication créative" focusing on advanced French oral expression and creative communication skills for Grade 1 students
+- ✅ Implemented graduated decision point strategy: lessons 1-5 (2-3 points), lessons 6-15 (1-2 points), lessons 16-20 (0-1 points)
+- ✅ Added complete differentiation strategies for all lessons (forStruggling, forAdvanced, forELL, forIEP) with creative communication focus
+- ✅ Enhanced materials with exact quantities for 20-25 students - all school-available resources including mirrors, recording devices, props, art materials
+- ✅ Comprehensive progression from voice exploration to confident French communication and creative expression
+- ✅ Assessment criteria focused on oral communication confidence, creative expression, listening skills, and French language development
+- ✅ Core lessons (1-14) develop communication foundations: voice discovery, show and tell, gestures, active listening, storytelling, character work, emotions, drama, presentations, questioning, instructions, descriptions, class performances, portfolios
+- ✅ Extension lessons (15-20) include advanced applications: elaborate storytelling, news reporting, respectful debate, peer teaching, cultural sharing, communication celebration
+- ✅ Perfect unit for building confidence in French oral expression with emphasis on creativity, drama, and public speaking skills appropriate for Grade 1
+
+**Previous Achievement**: francais/celebrations-dhiver (FRENCH WINTER CELEBRATIONS UNIT COMPLETED) ❄️🎉
+- ✅ Enhanced all 20 lessons of "Célébrations d'hiver" focusing on multicultural winter celebrations and seasonal French immersion for Grade 1 students
+- ✅ Implemented graduated decision point strategy: lessons 1-5 (2-3 points), lessons 6-15 (1-2 points), lessons 16-20 (0-1 points)
+- ✅ Added complete differentiation strategies for all lessons (forStruggling, forAdvanced, forELL, forIEP) with cultural celebration focus
+- ✅ Enhanced materials with exact quantities for 20-25 students - all school-available resources including winter sensory materials, cultural celebration props, arts and crafts supplies
+- ✅ Comprehensive progression from winter weather concepts to multicultural celebration understanding and appreciation
+- ✅ Assessment criteria focused on winter vocabulary, cultural awareness, respectful celebration participation, and French communication
+- ✅ Core lessons (1-14) develop winter themes: weather arrival, clothing, activities, animals, global celebrations, Christmas, Hanukkah, Kwanzaa, Diwali, New Year, winter foods, music, decorations, culminating festival
+- ✅ Extension lessons (15-20) include cultural applications: winter stories, traditional games, greeting cards, talent show, family interviews, celebration calendar
+- ✅ Perfect seasonal unit combining French immersion with multicultural celebration learning, fostering cultural appreciation and inclusivity
+
+**Previous Achievement**: francais/histoires-automne (FRENCH AUTUMN STORIES UNIT COMPLETED) 🍁📖
 - ✅ Enhanced all 20 lessons of "Histoires d'automne" focusing on autumn vocabulary, storytelling, and seasonal French immersion for Grade 1 students
 - ✅ Implemented graduated decision point strategy: lessons 1-5 (2-3 points), lessons 6-15 (1-2 points), lessons 16-20 (0-1 points)
 - ✅ Added complete differentiation strategies for all lessons (forStruggling, forAdvanced, forELL, forIEP) with autumn storytelling focus
