@@ -38,6 +38,7 @@
 | Unit | Translations | Decision Points | Materials | Committed | Reviewed |
 |------|--------------|-----------------|-----------|-----------|----------|
 | **bienvenue** *(introductory)* | ✅ | ✅ | ✅ | ✅ | ⬜ |
+| **explorateurs-de-mots** | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | exploration-phonemes-lettres | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | premieres-histoires | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | famille | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -136,13 +137,13 @@ git push origin main
 
 ## 📊 Progress Statistics
 
-**Total Units**: 51 (50 + 1 introductory)  
-**Enhanced**: 12 / 51 (24%) - **MATHEMATICS COMPLETE! 🎉 FRENCH BIENVENUE + CREATIVE WRITING COMPLETE! 🇫🇷📝**  
-**Translations Fixed**: 12 / 51 (24%)  
-**Decision Points Added**: 12 / 51 (24%)  
-**Materials Specified**: 12 / 51 (24%)  
-**Committed**: 2 / 51 (4%)  
-**Reviewed**: 2 / 51 (4%)
+**Total Units**: 52 (51 + 1 introductory)  
+**Enhanced**: 13 / 52 (25%) - **MATHEMATICS COMPLETE! 🎉 FRENCH WORD EXPLORATION COMPLETE! 🇫🇷🔍📝**  
+**Translations Fixed**: 13 / 52 (25%)  
+**Decision Points Added**: 13 / 52 (25%)  
+**Materials Specified**: 13 / 52 (25%)  
+**Committed**: 2 / 52 (4%)  
+**Reviewed**: 2 / 52 (4%)
 
 ## 🎯 Current Focus
 
@@ -170,7 +171,18 @@ git push origin main
 - ✅ Extension lessons (15-20) include creative applications: games, stories, art, cooking, music, celebration
 - ✅ Perfect progression for beginning-of-year French immersion with oral communication emphasis and gesture support
 
-**LATEST ACHIEVEMENT**: francais/jeunes-auteurs-creatifs (FRENCH CREATIVE WRITING UNIT COMPLETED)
+**LATEST ACHIEVEMENT**: francais/explorateurs-de-mots (FRENCH WORD EXPLORATION UNIT COMPLETED) 🔍📚
+- ✅ Enhanced all 20 lessons of "Explorateurs de mots" focusing on French vocabulary building, phonics, and word exploration for Grade 1 students
+- ✅ Implemented graduated decision point strategy: lessons 1-5 (2-3 points), lessons 6-15 (1-2 points), lessons 16-20 (0-1 points)
+- ✅ Added complete differentiation strategies for all lessons (forStruggling, forAdvanced, forELL, forIEP) with word exploration focus
+- ✅ Enhanced materials with exact quantities for 20-25 students - all school-available resources including magnifying glasses, word cards, rhythm instruments, sorting materials
+- ✅ Comprehensive progression from discovering words to creating personal dictionaries and sharing discoveries
+- ✅ Assessment criteria focused on phonological awareness, vocabulary development, and French word recognition
+- ✅ Core lessons (1-14) develop foundational skills: word discovery, sounds & letters, word families, rhymes, syllables, sight words, word building, sorting
+- ✅ Extension lessons (15-20) include creative applications: word games, storytelling, school exploration, poetry, spelling celebration, explorer celebration
+- ✅ Perfect foundation for French literacy with emphasis on phonics awareness, vocabulary building, and joyful word exploration
+
+**Previous Achievement**: francais/jeunes-auteurs-creatifs (FRENCH CREATIVE WRITING UNIT COMPLETED)
 - ✅ Enhanced all 20 lessons of "Jeunes auteurs créatifs" focusing on developing beginning French writing skills for Grade 1 students
 - ✅ Implemented graduated decision point strategy: lessons 1-5 (2-3 points), lessons 6-15 (1-2 points), lessons 16-20 (0-1 points)
 - ✅ Added complete differentiation strategies for all lessons (forStruggling, forAdvanced, forELL, forIEP) with creative writing focus
